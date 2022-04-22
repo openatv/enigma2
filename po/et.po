@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2045,7 +2045,7 @@ msgstr "<Salvestuste tavaasukoht >"
 msgid "<Last timer location>"
 msgstr "<Viimase taimeri asukoht>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<tundmatu>"
 
 msgid "?"
@@ -6084,6 +6084,9 @@ msgstr "Kustutamise kinnitus"
 msgid "Delete EPG"
 msgstr "Kustuta EPG"
 
+msgid "Delete Image"
+msgstr "Kustuta püsivara"
+
 msgid "Delete Language"
 msgstr "Kustuta keel"
 
@@ -6763,7 +6766,7 @@ msgstr "Ära talleta"
 msgid "Don't show default"
 msgstr "Vaikejärjestus"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
 
 msgid ""
@@ -7028,6 +7031,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Muuda"
 
+msgid "Edit Mode Off"
+msgstr "Keela muutmine"
+
+msgid "Edit Mode On"
+msgstr "Luba muutmine"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Muuda Quad PiP kanalit"
 
@@ -7050,13 +7059,7 @@ msgstr "Muuda käesolev rida"
 msgid "Edit line "
 msgstr "Muuda rida "
 
-msgid "Edit Mode Off"
-msgstr "Keela muutmine"
-
-msgid "Edit Mode On"
-msgstr "Luba muutmine"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Muuda uut kirjet"
 
 msgid "Edit position is the line end"
@@ -9043,6 +9046,9 @@ msgstr "Varjatud / tühi"
 
 msgid "Hidden network"
 msgstr "Varjatud võrk"
+
+msgid "Hide"
+msgstr "Peida"
 
 msgid "Hide VBI line for this service"
 msgstr "Peida punktiirjoon ekraani ülaservas"
@@ -11309,6 +11315,12 @@ msgstr "Liiguta 1 üksus"
 msgid "Move Left/Right"
 msgstr "Liiguta vasakule/paremale"
 
+msgid "Move Mode Off"
+msgstr "Keela liigutamine"
+
+msgid "Move Mode On"
+msgstr "Luba liigutamine"
+
 msgid "Move PIP"
 msgstr "Liiguta PiP-akent"
 
@@ -11370,12 +11382,6 @@ msgstr "Liiguta failid/kataloogid sihtkohta"
 
 msgid "Move folder"
 msgstr "Liiguta kataloog"
-
-msgid "Move Mode Off"
-msgstr "Keela liigutamine"
-
-msgid "Move Mode On"
-msgstr "Luba liigutamine"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -17747,11 +17753,11 @@ msgstr "Meediaotsing ei ole paigaldatud!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA on seadistamata"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Käivad hoidlate hooldustööd"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Käivad hoidlate hooldustööd"
 
 #
 msgid "Sorry no backups found!"
@@ -18061,10 +18067,10 @@ msgstr "Sulge PiP"
 msgid "Stop Streams"
 msgstr "Peata voogesitused"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Peata aktiivne salvestus ja keela tulevad"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Peata aktiivne salvestus, aga ära keela tulevaid"
 
 msgid "Stop entry"
@@ -19647,13 +19653,13 @@ msgstr ""
 "Taimerite ajad kattuvad!\n"
 "Kontrolli ajad üle!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Taimeri ülevaade"
 
 msgid "Timer recording location"
 msgstr "Taimeriga salvestuse asukoht"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Taimeri viga"
 
 #
@@ -21675,10 +21681,10 @@ msgstr "Jah, aga talleta ajanihe ja jätka salvestamist"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Jah, aga talleta ajanihe ja lõpeta salvestamine"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Jah, kustuta taimeriloendist"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Jah, kustuta taimeriloendist ja kustuta salvestus"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22241,7 +22247,7 @@ msgstr "Tühista muudatused"
 msgid "abort favourites edit"
 msgstr "Tühista muudatused"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "algamas"
 
 msgid "ac3"
@@ -22915,9 +22921,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "Peida"
-
 msgid "highest Resolution"
 msgstr "Kõrgeim lahutus"
 
@@ -23513,9 +23516,6 @@ msgstr "jagu:"
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr "Näita"
-
 msgid "show DVD main menu"
 msgstr "Kuva DVD peamenüü"
 
@@ -23948,7 +23948,7 @@ msgstr "Jah (säilita fiidid)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne %s %s taaskäivitamist."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "vahetatud"
 
 msgid "zapping"
@@ -23957,8 +23957,8 @@ msgstr "Kanalivahetus"
 msgid "®"
 msgstr ""
 
-msgid "Delete Image"
-msgstr "Kustuta püsivara"
+#~ msgid "show"
+#~ msgstr "Näita"
 
 #, python-format
 #~ msgid ""

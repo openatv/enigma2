@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2222,7 +2222,7 @@ msgid "<Last timer location>"
 msgstr "<Prejšnja \"timer\" lokacija>"
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<nepoznano>"
 
 #
@@ -6628,6 +6628,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Izbris"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -7357,7 +7360,7 @@ msgid "Don't show default"
 msgstr ""
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ne ustavi trenutnega dogodka. Onemogoči pa prihodnje dogodke"
 
 msgid ""
@@ -7637,6 +7640,16 @@ msgstr ""
 msgid "Edit"
 msgstr "Spremeni"
 
+#
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "Spremenite naslov"
+
+#
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Spremenite naslov"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7665,17 +7678,7 @@ msgstr "Urejanje poglavja trenutnega naslova"
 msgid "Edit line "
 msgstr "Spremenite naslov"
 
-#
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Spremenite naslov"
-
-#
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Spremenite naslov"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #
@@ -9791,6 +9794,9 @@ msgstr "Skrito omrežje"
 
 msgid "Hidden network"
 msgstr "Skrito omrežje"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -12255,6 +12261,16 @@ msgstr "Premikanje proti vzhodu"
 msgid "Move Left/Right"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[način premeščanja]"
+
+#
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Premikanje proti vzhodu"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -12333,16 +12349,6 @@ msgstr "Premaknite se v drugo mapo"
 #, fuzzy
 msgid "Move folder"
 msgstr "[način premeščanja]"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[način premeščanja]"
-
-#
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Premikanje proti vzhodu"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -19314,10 +19320,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -19651,11 +19657,11 @@ msgid "Stop Streams"
 msgstr "Ustavim test"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Ustavite trenutni dogodek in onemogočite prihodnje dogodke."
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Ustavite trenutni dogodek, ne pa prihodnjih dogodkov"
 
 #
@@ -21295,7 +21301,7 @@ msgstr ""
 "Prosim, ponovno preverite!"
 
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Pregled časovnikov"
 
 #
@@ -21304,7 +21310,7 @@ msgid "Timer recording location"
 msgstr "Lokacija \"timer\" snemanja"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Napaka časovnika"
 
 #
@@ -23465,10 +23471,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -24027,7 +24033,7 @@ msgid "abort favourites edit"
 msgstr "Prekinitev urejanja priljubljenih"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "se bo zagnalo"
 
 msgid "ac3"
@@ -24756,9 +24762,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -25430,9 +25433,6 @@ msgstr ""
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr ""
-
 #
 msgid "show DVD main menu"
 msgstr "Prikaz glavnega DVD menija"
@@ -25923,7 +25923,7 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr ""
 
 #
-msgid "zapped"
+msgid "Zapped"
 msgstr "preklopljen"
 
 #

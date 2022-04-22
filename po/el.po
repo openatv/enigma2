@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2060,7 +2060,7 @@ msgstr "<Προεπιλεγμένη τοποθεσία ταινιών>"
 msgid "<Last timer location>"
 msgstr "<Τελευταία τοποθεσία χρονοδιακόπτη>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<άγνωστο>"
 
 msgid "?"
@@ -6029,6 +6029,9 @@ msgstr "Επιβεβαίωση διαγραφής"
 msgid "Delete EPG"
 msgstr "Διαγραφή EPG"
 
+msgid "Delete Image"
+msgstr "Διαγραφή image"
+
 msgid "Delete Language"
 msgstr "Διαγραφή γλωσσών"
 
@@ -6696,7 +6699,7 @@ msgstr "Να μη γίνει αποθήκευση"
 msgid "Don't show default"
 msgstr "Ταξινόμηση από προεπιλογή"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Χωρίς παύση του τρέχοντος προγράμματος, αλλά με απενεργοποίηση των επερχόμενων"
 
 msgid ""
@@ -6955,6 +6958,12 @@ msgstr "Ισημερινός"
 msgid "Edit"
 msgstr "Επεξεργασία"
 
+msgid "Edit Mode Off"
+msgstr "Μετακίνηση ανενεργή"
+
+msgid "Edit Mode On"
+msgstr "Επεξεργασία ενεργή"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Επεξεργασία στοιχείου τετραπλού καναλιού"
 
@@ -6976,13 +6985,7 @@ msgstr "Επεξεργασία τρέχουσας γραμμής"
 msgid "Edit line "
 msgstr "Επεξεργασία γραμμής "
 
-msgid "Edit Mode Off"
-msgstr "Μετακίνηση ανενεργή"
-
-msgid "Edit Mode On"
-msgstr "Επεξεργασία ενεργή"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Επεξεργασία νέου στοιχείου"
 
 msgid "Edit position is the line end"
@@ -8921,6 +8924,9 @@ msgstr "Κρυφό / Κενό"
 
 msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
+
+msgid "Hide"
+msgstr "απόκρυψη"
 
 msgid "Hide VBI line for this service"
 msgstr "Απόκρυψη της γραμμής VBI για αυτή την υπηρεσία"
@@ -11126,6 +11132,12 @@ msgstr "Μετακίνηση 1 στοιχείου"
 msgid "Move Left/Right"
 msgstr "Μετακίνηση Αριστερά/Δεξιά"
 
+msgid "Move Mode Off"
+msgstr "Μετακίνηση ανενεργή"
+
+msgid "Move Mode On"
+msgstr "Μετακίνηση ενεργή"
+
 msgid "Move PIP"
 msgstr "Μετακίνηση PIP"
 
@@ -11186,12 +11198,6 @@ msgstr "Μετακίνηση αρχείων/καταλόγων στον φάκε
 
 msgid "Move folder"
 msgstr "Μετακίνηση φακέλου"
-
-msgid "Move Mode Off"
-msgstr "Μετακίνηση ανενεργή"
-
-msgid "Move Mode On"
-msgstr "Μετακίνηση ενεργή"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -17382,11 +17388,11 @@ msgstr "Λυπούμαστε, το MediaScanner δεν είναι εγκατεσ
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Λυπούμαστε, απουσιάζει το αρχείο ρυθμίσεων του MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης, δοκιμάστε αργότερα."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης"
 
 msgid "Sorry no backups found!"
 msgstr "Λυπούμαστε, δεν βρέθηκαν αντίγραφα ασφαλείας!"
@@ -17686,10 +17692,10 @@ msgstr "Τερματισμός PiP"
 msgid "Stop Streams"
 msgstr "Διακοπή ροών"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Τερματισμός τρέχοντος προγράμματος και ακύρωση των επερχόμενων"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Τερματισμός τρέχοντος προγράμματος αλλά όχι των επερχόμενων"
 
 msgid "Stop entry"
@@ -19229,13 +19235,13 @@ msgstr ""
 "Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο timers.xml!\n"
 "Παρακαλώ ελέγξτε ξανά!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Επισκόπηση χρονοδιακόπτη"
 
 msgid "Timer recording location"
 msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Σφάλμα χρονοδιακόπτη"
 
 msgid "Timer selection"
@@ -21196,10 +21202,10 @@ msgstr "Ναι, αποθήκευση χρονομετατόπισης ως τα�
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ναι, αποθήκευση χρονομετατόπισης ως ταινία και τερματισμός εγγραφής"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ναι, διαγραφή από τη λίστα χρονομετατόπισης"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ναι, διαγραφή από τη λίστα χρονομετατόπισης και διαγραφή εγγραφής"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21748,7 +21754,7 @@ msgstr "ακύρωση επεξεργασίας μπουκέτου"
 msgid "abort favourites edit"
 msgstr "ακύρωση επεξεργασίας αγαπημένων"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "έτοιμο για εκκίνηση"
 
 msgid "ac3"
@@ -22402,9 +22408,6 @@ msgstr "ωω:λλΠΜ/ΜΜ"
 msgid "hh:mmam/pm"
 msgstr "ωω:λλπμ/μμ"
 
-msgid "Hide"
-msgstr "απόκρυψη"
-
 msgid "highest Resolution"
 msgstr "υψηλότερη ανάλυση"
 
@@ -22985,9 +22988,6 @@ msgstr "κοινόχρηστο στοιχείο:"
 msgid "shell"
 msgstr "κέλυφος"
 
-msgid "show"
-msgstr "εμφάνιση"
-
 msgid "show DVD main menu"
 msgstr "εμφάνιση κύριου μενού DVD"
 
@@ -23415,7 +23415,7 @@ msgstr "ναι (διατήρηση των feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ συμβουλευτείτε το εγχειρίδιο για περισσότερη βοήθεια πριν επανεκκινήσετε τον %s %s σας."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "έγινε μετάβαση"
 
 msgid "zapping"
@@ -23424,8 +23424,8 @@ msgstr "ζάπινγκ"
 msgid "®"
 msgstr ""
 
-msgid "Delete Image"
-msgstr "Διαγραφή image"
+#~ msgid "show"
+#~ msgstr "εμφάνιση"
 
 #, python-format
 #~ msgid ""

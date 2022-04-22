@@ -65,7 +65,7 @@ class TimerEditList(Screen):
 			"right": self.pageDown,
 			# "bottom": self.moveBottom
 		}, prio=-1)
-		self.setTitle(_("Timer overview"))
+		self.setTitle(_("Timer Overview"))
 		# Disabled because it crashes on some boxes with SSD ######################
 		# self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		# #########################################################################
@@ -120,9 +120,9 @@ class TimerEditList(Screen):
 				if t.isRunning():
 					if t.repeated:
 						list = (
-							(_("Stop current event but not coming events"), "stoponlycurrent"),
-							(_("Stop current event and disable coming events"), "stopall"),
-							(_("Don't stop current event but disable coming events"), "stoponlycoming")
+							(_("Stop current event but not future events"), "stoponlycurrent"),
+							(_("Stop current event and disable future events"), "stopall"),
+							(_("Don't stop current event but disable future events"), "stoponlycoming")
 						)
 						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording.  What do you want to do?"), list=list)
 				else:
@@ -202,15 +202,15 @@ class TimerEditList(Screen):
 				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)  # FIXME: This should handle singular/plural durations!
 				service = str(timer.service_ref.getServiceName())
 				if timer.state == RealTimerEntry.StateWaiting:
-					state = _("waiting")
+					state = _("Waiting")
 				elif timer.state == RealTimerEntry.StatePrepared:
-					state = _("about to start")
+					state = _("About to start")
 				elif timer.state == RealTimerEntry.StateRunning:
-					state = _("zapped") if timer.justplay else _("recording...")
+					state = _("Zapped") if timer.justplay else _("Recording")
 				elif timer.state == RealTimerEntry.StateEnded:
-					state = _("done!")
+					state = _("Done")
 				else:
-					state = _("<unknown>")
+					state = _("<Unknown>")
 			except Exception:
 				name = ""
 				time = ""
@@ -327,8 +327,8 @@ class TimerEditList(Screen):
 			message = (_("Do you really want to delete '%s'?") % (cur.name))
 			choices = [
 				(_("No"), "no"),
-				(_("Yes, delete from Timerlist"), "yes"),
-				(_("Yes, delete from Timerlist and delete recording"), "yesremove")
+				(_("Yes, delete from timer list"), "yes"),
+				(_("Yes, delete from timer list and delete recording"), "yesremove")
 			]
 			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
 		else:
@@ -507,7 +507,7 @@ class TimerSanityConflict(Screen):
 			self.list.append((_("Channel not in services list")))
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
-		self["key_red"] = StaticText(_("Edit new entry"))
+		self["key_red"] = StaticText(_("Edit New Entry"))
 		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
@@ -521,7 +521,7 @@ class TimerSanityConflict(Screen):
 			"up": self.up,
 			"down": self.down
 		}, prio=-1)
-		self.setTitle(_("Timer sanity error"))
+		self.setTitle(_("Timer Sanity Error"))
 		self.onShown.append(self.updateState)
 
 	def getTimerList(self, timer):

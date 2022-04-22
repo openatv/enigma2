@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2133,7 +2133,7 @@ msgid "<Last timer location>"
 msgstr "<Son zamanlayıcı konumu>"
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<bilinmiyor>"
 
 #
@@ -6376,6 +6376,9 @@ msgstr "Silme Onayı"
 msgid "Delete EPG"
 msgstr "EPG'yi sil"
 
+msgid "Delete Image"
+msgstr "Skin sil"
+
 msgid "Delete Language"
 msgstr "Dilleri Sil"
 
@@ -7100,7 +7103,7 @@ msgid "Don't show default"
 msgstr "Varsayılan olarak sırala"
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Geçerli etkinliği durdurma ama gelecek etkinlikleri kapat"
 
 msgid ""
@@ -7371,6 +7374,12 @@ msgstr "Ekvador"
 msgid "Edit"
 msgstr "Düzenle"
 
+msgid "Edit Mode Off"
+msgstr "Düzenleme modu kapalı"
+
+msgid "Edit Mode On"
+msgstr "Düzenleme modu açık"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Dört Kanal Girişini Düzenle"
 
@@ -7393,13 +7402,7 @@ msgstr "Mevcut satırı düzenle"
 msgid "Edit line "
 msgstr "Satırı düzenle "
 
-msgid "Edit Mode Off"
-msgstr "Düzenleme modu kapalı"
-
-msgid "Edit Mode On"
-msgstr "Düzenleme modu açık"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Yeni girişi düzenle"
 
 #
@@ -9478,6 +9481,9 @@ msgstr "Gizli / Boş"
 
 msgid "Hidden network"
 msgstr "Gizlenmiş ağ"
+
+msgid "Hide"
+msgstr "gizlemek"
 
 msgid "Hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
@@ -11847,6 +11853,14 @@ msgstr "1 öğeyi taşı"
 msgid "Move Left/Right"
 msgstr "Sola/Sağa Taşı"
 
+#
+msgid "Move Mode Off"
+msgstr "Modu kapalı taşımak"
+
+#
+msgid "Move Mode On"
+msgstr "Hareket modu açık"
+
 msgid "Move PIP"
 msgstr "RİR Taşı"
 
@@ -11912,14 +11926,6 @@ msgstr "Dosyaları / dizinleri hedef dizine taşı"
 
 msgid "Move folder"
 msgstr "Klasörü taşı"
-
-#
-msgid "Move Mode Off"
-msgstr "Modu kapalı taşımak"
-
-#
-msgid "Move Mode On"
-msgstr "Hareket modu açık"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -18595,11 +18601,11 @@ msgstr "Üzgünüz MediaScanner yüklü değil!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Üzgünüm, MiniDLNA Yapılandırması eksik"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Üzgünüz beslemeler bakım için kapalı"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar deneyin."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Üzgünüz beslemeler bakım için kapalı"
 
 msgid "Sorry no backups found!"
 msgstr "Ne yazık ki yedekleme bulunamadı!"
@@ -18925,11 +18931,11 @@ msgid "Stop Streams"
 msgstr "Akışları Durdur"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Geçerli etkinliği durdur ve gelecek etkinlikleri devre dışı bırak"
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Geçerli etkinliği durdur ama gelecek etkinliklere dokunma"
 
 #
@@ -20549,7 +20555,7 @@ msgstr ""
 "Timers.xml'de Timer çakışması tespit edildi!\n"
 "Lütfen tekrar kontrol et!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Zamanlayıcı Görünümü"
 
 #
@@ -20557,7 +20563,7 @@ msgid "Timer recording location"
 msgstr "Zamanlayıcı kayıt konumu"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Zamanlayıcı hatası"
 
 #
@@ -22678,10 +22684,10 @@ msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Evet, Zamanlayıcı listesinden sil"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Evet, Zamanlayıcı listesinden sil ve kaydı sil"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -23273,7 +23279,7 @@ msgid "abort favourites edit"
 msgstr "favori düzenlemeden vazgeç"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "başlayacak"
 
 msgid "ac3"
@@ -23993,9 +23999,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "gizlemek"
-
 #
 msgid "highest Resolution"
 msgstr "en yüksek çözünürlük"
@@ -24657,9 +24660,6 @@ msgstr "paylaşım:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "sergilemek"
-
 #
 msgid "show DVD main menu"
 msgstr "dvd ana menüsünü göster"
@@ -25128,8 +25128,8 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan önce daha fazla yardım almak için kılavuza bakın %s%s."
 
 #
-msgid "zapped"
-msgstr "zapped"
+msgid "Zapped"
+msgstr "Zapped"
 
 msgid "zapping"
 msgstr "zap"
@@ -25137,8 +25137,8 @@ msgstr "zap"
 msgid "®"
 msgstr ""
 
-msgid "Delete Image"
-msgstr "Skin sil"
+#~ msgid "show"
+#~ msgstr "sergilemek"
 
 #, python-format
 #~ msgid ""

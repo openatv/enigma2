@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2054,7 +2054,7 @@ msgstr "<Vị trí phim mặc định>"
 msgid "<Last timer location>"
 msgstr "<Vị trí hẹn giờ cuối>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<không rõ>"
 
 msgid "?"
@@ -6056,6 +6056,9 @@ msgstr "Xóa xác nhận"
 msgid "Delete EPG"
 msgstr "Xóa EPG"
 
+msgid "Delete Image"
+msgstr "Xóa hình ảnh"
+
 msgid "Delete Language"
 msgstr "Xóa ngôn ngữ"
 
@@ -6733,7 +6736,7 @@ msgstr "Đừng tiết kiệm"
 msgid "Don't show default"
 msgstr "Sắp xếp theo mặc định"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Đừng dừng sự kiện hiện tại mà vô hiệu hóa các sự kiện sắp tới"
 
 msgid ""
@@ -6992,6 +6995,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Chỉnh sửa"
 
+msgid "Edit Mode Off"
+msgstr "Chỉnh sửa chế độ tắt"
+
+msgid "Edit Mode On"
+msgstr "Chỉnh sửa chế độ trên"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Chỉnh sửa mục nhập kênh Quad"
 
@@ -7013,13 +7022,7 @@ msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 msgid "Edit line "
 msgstr "Chỉnh sửa dòng "
 
-msgid "Edit Mode Off"
-msgstr "Chỉnh sửa chế độ tắt"
-
-msgid "Edit Mode On"
-msgstr "Chỉnh sửa chế độ trên"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Chỉnh sửa mục mới"
 
 msgid "Edit position is the line end"
@@ -8985,6 +8988,9 @@ msgstr "Ẩn / Trống"
 
 msgid "Hidden network"
 msgstr "Mạng ẩn"
+
+msgid "Hide"
+msgstr "ẩn giấu"
 
 msgid "Hide VBI line for this service"
 msgstr "Ẩn dòng VBI cho dịch vụ này"
@@ -11211,6 +11217,12 @@ msgstr "Di chuyển 1 yếu tố"
 msgid "Move Left/Right"
 msgstr "Di chuyển sang trái / phải"
 
+msgid "Move Mode Off"
+msgstr "Di chuyển chế độ tắt"
+
+msgid "Move Mode On"
+msgstr "Chế độ di chuyển trên"
+
 msgid "Move PIP"
 msgstr "Di chuyển PIP"
 
@@ -11272,12 +11284,6 @@ msgstr "Di chuyển tệp / thư mục vào thư mục đích"
 
 msgid "Move folder"
 msgstr "Di chuyển thư mục"
-
-msgid "Move Mode Off"
-msgstr "Di chuyển chế độ tắt"
-
-msgid "Move Mode On"
-msgstr "Chế độ di chuyển trên"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -17516,11 +17522,11 @@ msgstr "Xin lỗi MediaScanner chưa được cài đặt!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Xin lỗi, cấu hình MiniDLNA bị thiếu"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
 
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
@@ -17824,10 +17830,10 @@ msgstr "Dừng PiP"
 msgid "Stop Streams"
 msgstr "Dừng tất cả các luồng"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Dừng sự kiện hiện tại và vô hiệu hóa các sự kiện sắp tới"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Sự kiện hàng đầu hiện tại nhưng không đến"
 
 msgid "Stop entry"
@@ -19373,13 +19379,13 @@ msgstr ""
 "Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
 "Vui lòng kiểm tra lại!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Tổng quan về bộ đếm thời gian"
 
 msgid "Timer recording location"
 msgstr "Vị trí ghi thời gian"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Lỗi hẹn giờ"
 
 msgid "Timer selection"
@@ -21358,10 +21364,10 @@ msgstr "Có, nhưng lưu timeshift như phim và tiếp tục ghi"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Có, nhưng lưu timeshift dưới dạng phim và dừng ghi"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Có, xóa khỏi Danh sách thời gian"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Có, xóa khỏi Danh sách thời gian và xóa ghi âm"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21913,7 +21919,7 @@ msgstr "hủy bỏ gói kênh"
 msgid "abort favourites edit"
 msgstr "hủy bỏ yêu thích chỉnh sửa"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "về để bắt đầu"
 
 msgid "ac3"
@@ -22575,9 +22581,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "ẩn giấu"
-
 msgid "highest Resolution"
 msgstr "độ phân giải cao nhất"
 
@@ -23163,9 +23166,6 @@ msgstr "chia sẻ:"
 msgid "shell"
 msgstr "vỏ"
 
-msgid "show"
-msgstr "hiển thị"
-
 msgid "show DVD main menu"
 msgstr "hiển thị menu chính DVD"
 
@@ -23595,7 +23595,7 @@ msgstr "có (giữ thức ăn)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng dẫn để được hỗ trợ thêm trước khi khởi động lại% s% s của bạn."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "hạ gục"
 
 msgid "zapping"
@@ -23604,8 +23604,8 @@ msgstr "hạ gục"
 msgid "®"
 msgstr ""
 
-msgid "Delete Image"
-msgstr "Xóa hình ảnh"
+#~ msgid "show"
+#~ msgstr "hiển thị"
 
 #, python-format
 #~ msgid ""

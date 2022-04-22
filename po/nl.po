@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-03-28 08:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2025,7 +2025,7 @@ msgstr "<Standaard opnamelocatie>"
 msgid "<Last timer location>"
 msgstr "<Laatste timer locatie>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<onbekend>"
 
 msgid "?"
@@ -6083,6 +6083,9 @@ msgstr "Bevestig verwijderen"
 msgid "Delete EPG"
 msgstr "EPG verwijderen"
 
+msgid "Delete Image"
+msgstr "Image verwijderen"
+
 msgid "Delete Language"
 msgstr "Verwijder taal"
 
@@ -6749,7 +6752,7 @@ msgstr "Niet opslaan"
 msgid "Don't show default"
 msgstr "Geen default laten zien"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
 msgid ""
@@ -7005,6 +7008,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Bewerk"
 
+msgid "Edit Mode Off"
+msgstr "Wijzig modus uit"
+
+msgid "Edit Mode On"
+msgstr "Wijzig modus aan"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Wijzig Quad zender"
 
@@ -7026,13 +7035,7 @@ msgstr "Wijzig huidige regel"
 msgid "Edit line "
 msgstr "Wijzig regel "
 
-msgid "Edit Mode Off"
-msgstr "Wijzig modus uit"
-
-msgid "Edit Mode On"
-msgstr "Wijzig modus aan"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Pas nieuwe invoer aan"
 
 msgid "Edit position is the line end"
@@ -8964,6 +8967,9 @@ msgstr "Verborgen/blanco"
 
 msgid "Hidden network"
 msgstr "Verborgen netwerk"
+
+msgid "Hide"
+msgstr "Verberg"
 
 msgid "Hide VBI line for this service"
 msgstr "Verberg VBI regel voor deze zender"
@@ -11128,6 +11134,12 @@ msgstr "Verplaats 1 element"
 msgid "Move Left/Right"
 msgstr "Verplaats links/rechts"
 
+msgid "Move Mode Off"
+msgstr "Verplaats modus uit"
+
+msgid "Move Mode On"
+msgstr "Verplaats modus aan"
+
 msgid "Move PIP"
 msgstr "Verplaats PIP"
 
@@ -11184,12 +11196,6 @@ msgstr "Verplaats bestanden/mappen naar doelmap"
 
 msgid "Move folder"
 msgstr "Verplaats map"
-
-msgid "Move Mode Off"
-msgstr "Verplaats modus uit"
-
-msgid "Move Mode On"
-msgstr "Verplaats modus aan"
 
 msgid "Move the current DNS entry down one line"
 msgstr "De huidige DNS invoer één regel naar beneden verplaatsen"
@@ -17327,11 +17333,11 @@ msgstr "Sorry, MediaScanner is niet geïnstalleerd!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA Configuratie ontbreekt"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Excuses: de feeds zijn niet actief i.v.m. onderhoud."
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Excuses: de feeds zijn niet actief i.v.m. onderhoud."
 
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-up gevonden!"
@@ -17626,10 +17632,10 @@ msgstr "Beëindig PiP"
 msgid "Stop Streams"
 msgstr "Stop Streams"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Stop huidige timer en annuleer de volgende timers"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Stop de huidige timer, maar alle volgende timers toestaan"
 
 msgid "Stop entry"
@@ -19198,13 +19204,13 @@ msgstr ""
 "Overlappende timers gevonden in timers.xml!\n"
 "Controleer deze!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Timeroverzicht"
 
 msgid "Timer recording location"
 msgstr "Timer opnamelocatie"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Timerlogica fout"
 
 msgid "Timer selection"
@@ -21166,10 +21172,10 @@ msgstr "Ja, maar bewaar Timeshift als opname en ga door met opnemen"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, maar bewaar Timeshift als opname en stop opname"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ja, verwijder uit Timerlijst"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ja, verwijder uit Timerlijst EN verwijder de opname"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21718,7 +21724,7 @@ msgstr "Favorietenlijst bewerken afsluiten"
 msgid "abort favourites edit"
 msgstr "Favorieten bewerken afsluiten"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "start zodadelijk"
 
 msgid "ac3"
@@ -22370,9 +22376,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "Verberg"
-
 msgid "highest Resolution"
 msgstr "hoogste resolutie"
 
@@ -22947,9 +22950,6 @@ msgstr "Share:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "Toon"
-
 msgid "show DVD main menu"
 msgstr "DVD hoofdmenu weergeven"
 
@@ -23378,7 +23378,7 @@ msgstr "ja (bewaar feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voordat u uw %s %s herstart."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "zapte"
 
 msgid "zapping"
@@ -23387,8 +23387,8 @@ msgstr "zappen"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Image verwijderen"
+#~ msgid "show"
+#~ msgstr "Toon"
 
 #, python-format
 #~ msgid ""

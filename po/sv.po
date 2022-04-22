@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -2213,7 +2213,7 @@ msgid "<Last timer location>"
 msgstr "<Timerns senaste plats>"
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<okänd>"
 
 #
@@ -6563,6 +6563,9 @@ msgstr "Konfirmera Borttagning"
 msgid "Delete EPG"
 msgstr "Ta bort"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -7293,7 +7296,7 @@ msgid "Don't show default"
 msgstr "Sortera efter standard"
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Avsluta inte pågående program men avaktivera kommande program"
 
 msgid ""
@@ -7565,6 +7568,16 @@ msgstr "Ändra"
 
 #
 #, fuzzy
+msgid "Edit Mode Off"
+msgstr "Ändra timer"
+
+#
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Ändra timer"
+
+#
+#, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "Ändra ny post"
 
@@ -7592,17 +7605,7 @@ msgid "Edit line "
 msgstr "Ändra timer"
 
 #
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Ändra timer"
-
-#
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Ändra timer"
-
-#
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Ändra ny post"
 
 #
@@ -9706,6 +9709,9 @@ msgstr "Dolda nätverk"
 
 msgid "Hidden network"
 msgstr "Dolt nätverk"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -12133,6 +12139,16 @@ msgstr "Förflyttning"
 msgid "Move Left/Right"
 msgstr "Flytta Vänster/Höger"
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[flyttläge]"
+
+#
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Förflyttning"
+
 msgid "Move PIP"
 msgstr "Flytta BiB"
 
@@ -12203,16 +12219,6 @@ msgstr "Flytta till en annan katalog"
 #, fuzzy
 msgid "Move folder"
 msgstr "Välj mappar"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[flyttläge]"
-
-#
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Förflyttning"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -19071,11 +19077,11 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Tyvärr, MiniDLNA Config Saknas"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Tyvärr, feeds är nere för underhåll"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Tyvärr, feeds är nere för underåll, v.v. försök igen senare."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Tyvärr, feeds är nere för underhåll"
 
 msgid "Sorry no backups found!"
 msgstr ""
@@ -19413,11 +19419,11 @@ msgid "Stop Streams"
 msgstr "Stoppa test"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Avsluta nuvarande och avaktivera kommande program"
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Avsluta nuvarande program men inte kommande"
 
 #
@@ -21078,7 +21084,7 @@ msgstr ""
 "Vänligen kontrollera igen!"
 
 #
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Översikt av timer(s)"
 
 #
@@ -21086,7 +21092,7 @@ msgid "Timer recording location"
 msgstr "Timerinspelningens plats"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Timerfel"
 
 #
@@ -23238,10 +23244,10 @@ msgstr "Ja, men spara timeshift som film och fortsätt inspelning"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, men spara timeshift som film och stoppa inspelning"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 #
@@ -23817,7 +23823,7 @@ msgid "abort favourites edit"
 msgstr "avbryt editera favoriter"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "håller på att starta"
 
 msgid "ac3"
@@ -24557,9 +24563,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -25231,10 +25234,6 @@ msgstr "dela:"
 msgid "shell"
 msgstr ""
 
-#, fuzzy
-msgid "show"
-msgstr "talk show"
-
 #
 msgid "show DVD main menu"
 msgstr "visa DVD huvudmeny"
@@ -25717,7 +25716,7 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr ""
 
 #
-msgid "zapped"
+msgid "Zapped"
 msgstr "zappad"
 
 #
@@ -25727,6 +25726,10 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "talk show"
 
 #, fuzzy
 #~ msgid "MultiBoot Image Manager"

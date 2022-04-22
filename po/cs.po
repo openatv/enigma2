@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -2171,7 +2171,7 @@ msgstr "<Výchozí umístění>"
 msgid "<Last timer location>"
 msgstr "<Poslední umístění časovače>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<neznámý>"
 
 #, fuzzy
@@ -6340,6 +6340,9 @@ msgstr "Smazat potvrzení"
 msgid "Delete EPG"
 msgstr "Smazat"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr "Smazat jazyk"
 
@@ -7033,7 +7036,7 @@ msgstr "Neukládat"
 msgid "Don't show default"
 msgstr "Výchozí nastavení"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nezastavovat aktuální pořad, ale zakázat následující pořad"
 
 msgid ""
@@ -7292,6 +7295,14 @@ msgid "Edit"
 msgstr "Upravit"
 
 #, fuzzy
+msgid "Edit Mode Off"
+msgstr "Seznam"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Seznam"
+
+#, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "Úprava nové položky"
 
@@ -7315,15 +7326,7 @@ msgstr "Zastavit aktuální video"
 msgid "Edit line "
 msgstr "Upravit řádek "
 
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Seznam"
-
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Seznam"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Úprava nové položky"
 
 #, fuzzy
@@ -9345,6 +9348,9 @@ msgstr "Skrytá síť"
 
 msgid "Hidden network"
 msgstr "Skrytá síť"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -11636,6 +11642,14 @@ msgstr "Natáčení"
 msgid "Move Left/Right"
 msgstr "Přesun Vlevo/Vpravo"
 
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[PŘESUN]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Dolu"
+
 msgid "Move PIP"
 msgstr "Umístit PIP"
 
@@ -11702,14 +11716,6 @@ msgstr "Přesunout do jiné složky"
 #, fuzzy
 msgid "Move folder"
 msgstr "Přesun vlevo"
-
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[PŘESUN]"
-
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Dolu"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -18162,11 +18168,11 @@ msgstr "Bohužel, %s nebyl nainstalován!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Promiňte, ale MiniDLNA Config je ztracen"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Promiňte, ale zdroje pro údržbu jsou nedostupné"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Je nám líto, zdroje prochází údržbou, zkuste to prosím později."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Promiňte, ale zdroje pro údržbu jsou nedostupné"
 
 #, fuzzy
 msgid "Sorry no backups found!"
@@ -18485,10 +18491,10 @@ msgstr "Ukončit PiP"
 msgid "Stop Streams"
 msgstr "Zastavit test"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zastavit aktuální pořad a zakázat následující pořad"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zastavit aktuální pořad, ale nezakazovat následující pořad"
 
 msgid "Stop entry"
@@ -20096,13 +20102,13 @@ msgstr ""
 "Zjištěno překrývání časovačů v timers.xml!\n"
 "Zkontrolujte to, prosím!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Přehled časovačů"
 
 msgid "Timer recording location"
 msgstr "Umístění nahrávek časovače"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Nelogické časování"
 
 msgid "Timer selection"
@@ -22152,10 +22158,10 @@ msgstr "Uložit Timeshift jako film a pokračovat v záznamu"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Uložit Timeshift jako film a zastavit záznam"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ano, odstranit z časovače"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ano, odstranit z časovače a smazat nahrávku"
 
 #, fuzzy
@@ -22723,7 +22729,7 @@ msgstr "Zrušit úpravu přehledu"
 msgid "abort favourites edit"
 msgstr "Zrušit úpravu oblíbených"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "Aktivuji"
 
 msgid "ac3"
@@ -23413,9 +23419,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "Rozlišení"
@@ -24021,10 +24024,6 @@ msgstr "Sdílet:"
 msgid "shell"
 msgstr ""
 
-#, fuzzy
-msgid "show"
-msgstr "showip (Zobrazit stav IP LCD displeji)"
-
 msgid "show DVD main menu"
 msgstr "Zobrazit DVD hlavní menu"
 
@@ -24474,7 +24473,7 @@ msgstr "Ano (uchovat zdroje)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Váš %s %s může být nyní nepoužitelný. Prosím, konzultujte s manuálem další pomoc před restartováním Vačeho %s %s."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "Přepnutý"
 
 #, fuzzy
@@ -24483,6 +24482,10 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "showip (Zobrazit stav IP LCD displeji)"
 
 #, fuzzy, python-format
 #~ msgid ""

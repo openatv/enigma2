@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2016-04-02 23:16+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: jurica@dream-multimedia.eu\n"
@@ -2144,7 +2144,7 @@ msgid "<Last timer location>"
 msgstr ""
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<nepoznato>"
 
 #
@@ -6444,6 +6444,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Obriši"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -7160,7 +7163,7 @@ msgid "Don't show default"
 msgstr ""
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ne zaustavljaj trenutni događaj ali onemogući nadolazeće događaje"
 
 msgid ""
@@ -7424,6 +7427,16 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "Završno vrijeme"
+
+#
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Završno vrijeme"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7450,17 +7463,7 @@ msgstr ""
 msgid "Edit line "
 msgstr "Završno vrijeme"
 
-#
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Završno vrijeme"
-
-#
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Završno vrijeme"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #
@@ -9529,6 +9532,9 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
+msgstr ""
+
+msgid "Hide"
 msgstr ""
 
 msgid "Hide VBI line for this service"
@@ -11933,6 +11939,16 @@ msgstr "Pokreći na istok"
 msgid "Move Left/Right"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[mod premjestanja]"
+
+#
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Pokreći na istok"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -12006,16 +12022,6 @@ msgstr ""
 #, fuzzy
 msgid "Move folder"
 msgstr "[mod premjestanja]"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[mod premjestanja]"
-
-#
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Pokreći na istok"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -18801,10 +18807,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -19137,11 +19143,11 @@ msgid "Stop Streams"
 msgstr "zaustavi unos"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zaustavi trenutni događaj i ostale dolazeće također."
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zaustavi trenutni događaj ali ne i ostale dolazeće"
 
 #
@@ -20704,7 +20710,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Unos Tajmera"
 
 #
@@ -20713,7 +20719,7 @@ msgid "Timer recording location"
 msgstr "Korekcija vremena "
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Greška nerazumnog tajmera"
 
 #
@@ -22841,10 +22847,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -23380,7 +23386,7 @@ msgid "abort favourites edit"
 msgstr "odustani od editiranja favorita"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "spremni za početak"
 
 msgid "ac3"
@@ -24100,9 +24106,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -24770,9 +24773,6 @@ msgstr ""
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr ""
-
 #
 msgid "show DVD main menu"
 msgstr ""
@@ -25250,7 +25250,7 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr ""
 
 #
-msgid "zapped"
+msgid "Zapped"
 msgstr "prebačen"
 
 #

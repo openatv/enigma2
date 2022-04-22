@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2063,7 +2063,7 @@ msgstr "<Felvételek helye>"
 msgid "<Last timer location>"
 msgstr "<Időzítés utolsó helye>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<ismeretlen>"
 
 msgid "?"
@@ -6031,6 +6031,9 @@ msgstr "Törlés megerősítése"
 msgid "Delete EPG"
 msgstr "EPG törlése"
 
+msgid "Delete Image"
+msgstr "Kép törlése"
+
 msgid "Delete Language"
 msgstr "Nyelv törlése"
 
@@ -6695,7 +6698,7 @@ msgstr "Ne mentse"
 msgid "Don't show default"
 msgstr "Ne jelenítse meg az alapértelmezettet"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ne állítsa le a futó eseményt, inkább kapcsolja le a következőt"
 
 msgid ""
@@ -6951,6 +6954,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Szerkesztés"
 
+msgid "Edit Mode Off"
+msgstr "Szerkesztési mód ki"
+
+msgid "Edit Mode On"
+msgstr "Szerkesztési mód be"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Quad csatorna elem szerkesztése"
 
@@ -6972,13 +6981,7 @@ msgstr "Aktuális sor szerkesztése"
 msgid "Edit line "
 msgstr "Sor szerkesztése "
 
-msgid "Edit Mode Off"
-msgstr "Szerkesztési mód ki"
-
-msgid "Edit Mode On"
-msgstr "Szerkesztési mód be"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Új elem hozzáadása"
 
 msgid "Edit position is the line end"
@@ -8919,6 +8922,9 @@ msgstr "Rejtett / Üres"
 
 msgid "Hidden network"
 msgstr "Rejtett hálózat"
+
+msgid "Hide"
+msgstr "elrejt"
 
 msgid "Hide VBI line for this service"
 msgstr "A VBI vonal elrejtése ennél a csatornánál"
@@ -11121,6 +11127,12 @@ msgstr "1 elem áthelyezése"
 msgid "Move Left/Right"
 msgstr "Mozgat Bal/Jobb"
 
+msgid "Move Mode Off"
+msgstr "Mozgatási mód ki"
+
+msgid "Move Mode On"
+msgstr "Mozgatási mód be"
+
 msgid "Move PIP"
 msgstr "Kép-A-Képben mozgatása"
 
@@ -11181,12 +11193,6 @@ msgstr "Fájlok/könyvtárak áthelyezése a célkönyvtárba"
 
 msgid "Move folder"
 msgstr "Mappa áthelyezése"
-
-msgid "Move Mode Off"
-msgstr "Mozgatási mód ki"
-
-msgid "Move Mode On"
-msgstr "Mozgatási mód be"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -17369,11 +17375,11 @@ msgstr "Sajnálom, de a MediaScanner nincs telepítve!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Sajnálom, de a MiniDLNA Config hiányzik"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt"
 
 msgid "Sorry no backups found!"
 msgstr "Sajnáljuk, mentések nem találhatók!"
@@ -17673,10 +17679,10 @@ msgstr "Kép-a-Képben leállítása"
 msgid "Stop Streams"
 msgstr "Streams leállítása"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Futó időzítés és a soron következők leállítása"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Futó időzítés leállítása de a soron következők futtatása"
 
 msgid "Stop entry"
@@ -19218,13 +19224,13 @@ msgstr ""
 "Időzítési átfedést találtam a timers.xml fájlban!\n"
 "Kérem, ellenőrizze!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Időzítések áttekintése"
 
 msgid "Timer recording location"
 msgstr "Időzített felvételek helye"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Időzítési logikai hiba"
 
 msgid "Timer selection"
@@ -21185,10 +21191,10 @@ msgstr "Igen, de mentse a Timeshift-et felvételként és folytassa a Timeshift-
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Igen, de mentse a Timeshift-et felvételként és a Timeshift-t álljon le"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Igen, törölje az Időzítő listából"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Igen, törölje az Időzítő listáról és törölje a felvételt"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21739,7 +21745,7 @@ msgstr "csatornacsomag szerkesztés megszakítása"
 msgid "abort favourites edit"
 msgstr "kedvencek módosításának megszakítása"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "az indításról"
 
 msgid "ac3"
@@ -22393,9 +22399,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "elrejt"
-
 msgid "highest Resolution"
 msgstr "magasabb felbontás"
 
@@ -22975,9 +22978,6 @@ msgstr "megosztás:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "mutat"
-
 msgid "show DVD main menu"
 msgstr "a DVD Főmenü megjelenítése"
 
@@ -23405,7 +23405,7 @@ msgstr "igen (állapotok megtartása)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z) %s %s készülék újraindítása előtt olvassa el a kézikönyvet további segítségért."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "ugrott"
 
 msgid "zapping"
@@ -23414,8 +23414,8 @@ msgstr "ugrás folyamatban"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Kép törlése"
+#~ msgid "show"
+#~ msgstr "mutat"
 
 #, python-format
 #~ msgid ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-12-30 16:18+0000\n"
 "Last-Translator: Jaime Flores Gil <jaime.flores.gil@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2297,7 +2297,7 @@ msgid "<Last timer location>"
 msgstr "<Ubicación de la última grabación>"
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<Desconocido>"
 
 #, fuzzy
@@ -6653,6 +6653,9 @@ msgstr "Confirmación de borrado"
 msgid "Delete EPG"
 msgstr "Borrar"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr "Borrar idioma"
 
@@ -7390,7 +7393,7 @@ msgid "Don't show default"
 msgstr "Ordenar por defecto"
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "No detener el programa actual; desactivar los siguientes."
 
 msgid ""
@@ -7664,6 +7667,14 @@ msgid "Edit"
 msgstr "Editar"
 
 #, fuzzy
+msgid "Edit Mode Off"
+msgstr "Modo de lista"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Modo de lista"
+
+#, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "Editar nueva entrada"
 
@@ -7691,15 +7702,7 @@ msgstr "Saltar a la hora actual"
 msgid "Edit line "
 msgstr "Editar título"
 
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Modo de lista"
-
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Modo de lista"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Editar nueva entrada"
 
 #, fuzzy
@@ -9835,6 +9838,9 @@ msgstr "Red oculta"
 
 msgid "Hidden network"
 msgstr "Red oculta"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -12274,6 +12280,15 @@ msgstr "Movimiento"
 msgid "Move Left/Right"
 msgstr "Mover izquierda/derecha"
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[modo mover]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Movimiento"
+
 msgid "Move PIP"
 msgstr "Mover PiP"
 
@@ -12344,15 +12359,6 @@ msgstr "Ir a otro directorio"
 #, fuzzy
 msgid "Move folder"
 msgstr "Seleccionar carpetas"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[modo mover]"
-
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Movimiento"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -19235,11 +19241,11 @@ msgstr "MediaScanner no está instalado."
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Falta la configuración de MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Se pierden las alimentaciones para mantenimiento"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Fuentes fuera de servicio por mantenimiento. Inténtalo más tarde."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Se pierden las alimentaciones para mantenimiento"
 
 #
 msgid "Sorry no backups found!"
@@ -19574,11 +19580,11 @@ msgid "Stop Streams"
 msgstr "Detener prueba"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Detener el evento actual y desactivar los siguientes"
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Detener el evento actual pero no los siguientes"
 
 msgid "Stop entry"
@@ -21272,7 +21278,7 @@ msgstr ""
 "Por favor, compruébalo."
 
 #
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Vista de temporizadores"
 
 #
@@ -21280,7 +21286,7 @@ msgid "Timer recording location"
 msgstr "Ruta de grabación del temporizador"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Error de temporizador"
 
 msgid "Timer selection"
@@ -23484,10 +23490,10 @@ msgstr "Sí, pero guarda Timeshift como película y sigue grabando"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Sí, pero guarda Timeshift como película y detén la grabación"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Sí, borrar de la lista de temporizadores"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Sí, borrar de la lista de temporizadores y borrar grabación"
 
 # InfoBar.py
@@ -24082,7 +24088,7 @@ msgid "abort favourites edit"
 msgstr "Abortar la edición de favoritos"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "A punto de comenzar"
 
 msgid "ac3"
@@ -24828,9 +24834,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -25511,10 +25514,6 @@ msgstr "Compartir:"
 msgid "shell"
 msgstr ""
 
-#, fuzzy
-msgid "show"
-msgstr "programa de entrevistas"
-
 #
 msgid "show DVD main menu"
 msgstr "Mostrar el menú principal de DVD"
@@ -26009,7 +26008,7 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr "Tu %s %s podría estar inutilizable. Consulta el manual antes de reiniciar tu %s %s."
 
 #
-msgid "zapped"
+msgid "Zapped"
 msgstr "Zapping"
 
 #
@@ -26019,6 +26018,10 @@ msgstr "Zapping"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "programa de entrevistas"
 
 #, python-format
 #~ msgid ""

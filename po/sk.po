@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2041,7 +2041,7 @@ msgstr "<Predvolené umiestnenie filmov>"
 msgid "<Last timer location>"
 msgstr "<Umiestnenie posledného časovača>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<neznámy>"
 
 msgid "?"
@@ -5991,6 +5991,9 @@ msgstr "Vymazať potvrdenie"
 msgid "Delete EPG"
 msgstr "Vymazať EPG"
 
+msgid "Delete Image"
+msgstr "Vymazať image"
+
 msgid "Delete Language"
 msgstr "Vymazať jazyk"
 
@@ -6655,7 +6658,7 @@ msgstr "Neukladať"
 msgid "Don't show default"
 msgstr "Nezobrazovať predvolené"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nezastaviť aktuálnu udalosť ale vypnúť nasledujúce udalosti"
 
 msgid ""
@@ -6910,6 +6913,12 @@ msgstr "Ekvádor"
 msgid "Edit"
 msgstr "Upraviť"
 
+msgid "Edit Mode Off"
+msgstr "Režim úprav vyp."
+
+msgid "Edit Mode On"
+msgstr "Režim úprav zap."
+
 msgid "Edit Quad Channel Entry"
 msgstr "Upraviť záznam pre Quad-kanál"
 
@@ -6931,13 +6940,7 @@ msgstr "Upraviť aktuálny riadok"
 msgid "Edit line "
 msgstr "Upraviť riadok "
 
-msgid "Edit Mode Off"
-msgstr "Režim úprav vyp."
-
-msgid "Edit Mode On"
-msgstr "Režim úprav zap."
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Upraviť nový záznam"
 
 msgid "Edit position is the line end"
@@ -8863,6 +8866,9 @@ msgstr "Skryté/prázdne"
 
 msgid "Hidden network"
 msgstr "Skrytá sieť"
+
+msgid "Hide"
+msgstr "skryť"
 
 msgid "Hide VBI line for this service"
 msgstr "Skryť riadok VBI pre túto stanicu"
@@ -11022,6 +11028,12 @@ msgstr "Presunúť 1 prvok"
 msgid "Move Left/Right"
 msgstr "Pohyb doľava/doprava"
 
+msgid "Move Mode Off"
+msgstr "Režim presúvania vyp."
+
+msgid "Move Mode On"
+msgstr "Režim presúvania zap."
+
 msgid "Move PIP"
 msgstr "Presunúť PIP"
 
@@ -11078,12 +11090,6 @@ msgstr "Presunúť súbory/priečinky do cieľového priečinka"
 
 msgid "Move folder"
 msgstr "Presunúť priečinok"
-
-msgid "Move Mode Off"
-msgstr "Režim presúvania vyp."
-
-msgid "Move Mode On"
-msgstr "Režim presúvania zap."
 
 msgid "Move the current DNS entry down one line"
 msgstr "Presunúť aktuálny záznam DNS o jeden riadok nižšie"
@@ -17193,11 +17199,11 @@ msgstr "Prepáčte, nie je nainštalovaný vyhľadávač médií!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Prepáčte, zdroje softvéru nie sú teraz dostupné, prebieha údržba"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Prepáčte, zdroje softvéru nie sú dostupné z dôvodu údržby. Skúste to prosím neskôr."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Prepáčte, zdroje softvéru nie sú teraz dostupné, prebieha údržba"
 
 msgid "Sorry no backups found!"
 msgstr "Prepáčte, nenašli sa žiadne zálohy!"
@@ -17493,10 +17499,10 @@ msgstr "Ukončiť PIP"
 msgid "Stop Streams"
 msgstr "Zastaviť streamy"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zastaviť aktuálnu udalosť a zrušiť nasledujúce udalosti"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zastaviť aktuálnu udalosť, ale nezrušiť nasledujúce udalosti"
 
 msgid "Stop entry"
@@ -19018,13 +19024,13 @@ msgstr ""
 "Bolo zistené prekrývanie časovačov v súbore timers.xml!\n"
 "Prosím o kontrolu!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Prehľad časovačov"
 
 msgid "Timer recording location"
 msgstr "Umiestnenie nahrávok časovača"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Nerozumné časovanie"
 
 msgid "Timer selection"
@@ -20963,10 +20969,10 @@ msgstr "Áno, ale uložiť timeshift ako film a pokračovať v nahrávaní"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Áno, ale uložiť timeshift ako film a zastaviť nahrávanie"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Áno, vymazať zo zoznamu časovačov"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Áno, vymazať zo zoznamu časovačov a vymazať nahrávku"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21513,7 +21519,7 @@ msgstr "prerušiť úpravu prehľadu"
 msgid "abort favourites edit"
 msgstr "prerušiť úpravu obľúbených"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "hneď začne"
 
 msgid "ac3"
@@ -22165,9 +22171,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "skryť"
-
 msgid "highest Resolution"
 msgstr "najvyššie rozlíšenie"
 
@@ -22744,9 +22747,6 @@ msgstr "zdieľanie:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "zobraziť"
-
 msgid "show DVD main menu"
 msgstr "zobraziť hlavné menu DVD"
 
@@ -23174,7 +23174,7 @@ msgstr "áno (zachovať zdroje softvéru)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si prečítajte návod, prosím."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "prepnuté"
 
 msgid "zapping"
@@ -23183,8 +23183,8 @@ msgstr "prepínanie"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Vymazať image"
+#~ msgid "show"
+#~ msgstr "zobraziť"
 
 #, python-format
 #~ msgid ""

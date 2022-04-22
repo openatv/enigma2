@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-13 15:03+0000\n"
 "Last-Translator: it's Me KaRim <itsmekarim44@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -2199,7 +2199,7 @@ msgstr "<مكان الافلام الإفتراضي>"
 msgid "<Last timer location>"
 msgstr "<مكان المؤقت الأخير>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<مجهول>"
 
 #, fuzzy
@@ -6366,6 +6366,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "أمسح"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -7035,7 +7038,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "لا توقف الحدث الحالى لكن قم بتعطيل الاحداث القادمه"
 
 msgid ""
@@ -7295,6 +7298,14 @@ msgstr "الإكوادور"
 msgid "Edit"
 msgstr "تعديل"
 
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "تحرير العنوان"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "تحرير العنوان"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7318,15 +7329,7 @@ msgstr "تحرير الفصول والعنوان الحالى"
 msgid "Edit line "
 msgstr "تحرير العنوان"
 
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "تحرير العنوان"
-
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "تحرير العنوان"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #, fuzzy
@@ -9321,6 +9324,9 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "إخفاء الشبكة"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -11630,6 +11636,15 @@ msgstr "تحرك شرقا"
 msgid "Move Left/Right"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "وضع التحريك"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "تحرك شرقا"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11695,15 +11710,6 @@ msgstr ""
 #, fuzzy
 msgid "Move folder"
 msgstr "وضع التحريك"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "وضع التحريك"
-
-#, fuzzy
-msgid "Move Mode On"
-msgstr "تحرك شرقا"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -18202,10 +18208,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18526,11 +18532,11 @@ msgid "Stop Streams"
 msgstr "إيقاف الاختبار"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "إيقاف الحدث الحالى وتعطيل الاحداث القادمه"
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "إقاف الحدث الحالى فقط وليس الاحداث القادمه"
 
 #
@@ -20094,7 +20100,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "إدخال المؤقت"
 
 #
@@ -20102,7 +20108,7 @@ msgid "Timer recording location"
 msgstr "مكان المؤقتات المسجلة"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "خطأ إستقامة المؤقت"
 
 #
@@ -22155,10 +22161,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22681,7 +22687,7 @@ msgstr "الغاء تحرير الباقه"
 msgid "abort favourites edit"
 msgstr "الغاء تحرير المفضله"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "على وشك البدأ"
 
 msgid "ac3"
@@ -23361,9 +23367,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "مكان الفيلم"
@@ -23976,9 +23979,6 @@ msgstr ""
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr ""
-
 #
 msgid "show DVD main menu"
 msgstr "أعرض قائمة قارئ الأقراص الرئيسية"
@@ -24432,7 +24432,7 @@ msgstr "نعم (الاحتفاظ بها)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "تم الانتقال"
 
 #, fuzzy

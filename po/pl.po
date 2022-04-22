@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-18 15:08+0000\n"
 "Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
@@ -2050,7 +2050,7 @@ msgstr "<Domyślna lokalizacja nagrań>"
 msgid "<Last timer location>"
 msgstr "<Ostatnia lokalizacja timera>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<nieznany>"
 
 msgid "?"
@@ -5999,6 +5999,9 @@ msgstr "Potwierdzenie Usuwania"
 msgid "Delete EPG"
 msgstr "Usuń EPG"
 
+msgid "Delete Image"
+msgstr "Usuń system"
+
 msgid "Delete Language"
 msgstr "Usuń Język"
 
@@ -6663,7 +6666,7 @@ msgstr "Nie zapisuj"
 msgid "Don't show default"
 msgstr "Nie pokazuj domyślnych ustawień"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz nadchodzące wydarzenia"
 
 msgid ""
@@ -6918,6 +6921,12 @@ msgstr "Ekwador"
 msgid "Edit"
 msgstr "Edytuj"
 
+msgid "Edit Mode Off"
+msgstr "Zakończ edycję"
+
+msgid "Edit Mode On"
+msgstr "Edytuj"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Edycja nowego wpisu Kanału Quad"
 
@@ -6939,13 +6948,7 @@ msgstr "Edytuj bieżącą linię"
 msgid "Edit line "
 msgstr "Edytuj linię "
 
-msgid "Edit Mode Off"
-msgstr "Zakończ edycję"
-
-msgid "Edit Mode On"
-msgstr "Edytuj"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Edycja nowego wpisu"
 
 msgid "Edit position is the line end"
@@ -8871,6 +8874,9 @@ msgstr "Ukryty / Pusty"
 
 msgid "Hidden network"
 msgstr "Sieć ukryta"
+
+msgid "Hide"
+msgstr "Ukryj"
 
 msgid "Hide VBI line for this service"
 msgstr "Ukryj linię VBI dla tego kanału"
@@ -11032,6 +11038,12 @@ msgstr "Przenieś 1 element"
 msgid "Move Left/Right"
 msgstr "Przesuń Lewo/Prawo"
 
+msgid "Move Mode Off"
+msgstr "Zakończ przenoszenie"
+
+msgid "Move Mode On"
+msgstr "Przenieś"
+
 msgid "Move PIP"
 msgstr "Przesuń PIP"
 
@@ -11088,12 +11100,6 @@ msgstr "Przenieś pliki/katalogi do katalogu docelowego"
 
 msgid "Move folder"
 msgstr "Przenieś folder"
-
-msgid "Move Mode Off"
-msgstr "Zakończ przenoszenie"
-
-msgid "Move Mode On"
-msgstr "Przenieś"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Przesuń bieżący wpis DNS o jeden wiersz w dół"
@@ -17205,11 +17211,11 @@ msgstr "Niestety Media Skaner nie jest zainstalowany!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Przepraszamy brak Konfig. MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponownie później."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych"
 
 msgid "Sorry no backups found!"
 msgstr "Nie znaleziono kopii zapasowej!"
@@ -17505,10 +17511,10 @@ msgstr "Zatrzymaj PiP"
 msgid "Stop Streams"
 msgstr "Zatrzymaj"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zatrzymaj bieżące wydarzenie i wyłącz nadchodzące wydarzenie"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zatrzymaj bieżące wydarzenie, ale nie nadchodzące"
 
 msgid "Stop entry"
@@ -19027,13 +19033,13 @@ msgstr ""
 "W pliku timer.xml wykryto 'nakładanie się' timera!\n"
 "Sprawdź to!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Przegląd timerów"
 
 msgid "Timer recording location"
 msgstr "Lokalizacja nagrań z timera"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Błąd timera"
 
 msgid "Timer selection"
@@ -20972,10 +20978,10 @@ msgstr "Tak, zapisz timeshift i kontynuuj nagrywanie"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Tak, zapisz timeshift i zatrzymaj nagrywanie"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Tak, usuń z listy timera"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Tak, usuń z listy timera i usuń nagranie"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21522,7 +21528,7 @@ msgstr "Przerwij edycję listy ulubionych"
 msgid "abort favourites edit"
 msgstr "Przerwij edycję ulubionych"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "zaraz się rozpocznie"
 
 msgid "ac3"
@@ -22174,9 +22180,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "Ukryj"
-
 msgid "highest Resolution"
 msgstr "najwyższa Rozdzielczość"
 
@@ -22753,9 +22756,6 @@ msgstr "udział:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "Pokaż"
-
 msgid "show DVD main menu"
 msgstr "pokaż główne menu DVD"
 
@@ -23183,7 +23183,7 @@ msgstr "tak (zachować kanały)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s, należy zapoznać się z instrukcją w celu uzyskania pomocy."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "przełączony"
 
 msgid "zapping"
@@ -23192,8 +23192,8 @@ msgstr "przełączanie"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Usuń system"
+#~ msgid "show"
+#~ msgstr "Pokaż"
 
 #, python-format
 #~ msgid ""

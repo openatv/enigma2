@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2042,7 +2042,7 @@ msgstr "<Расположение записей по умолчанию>"
 msgid "<Last timer location>"
 msgstr "<Расположение последнего таймера>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<Неизвестно>"
 
 msgid "?"
@@ -5995,6 +5995,9 @@ msgstr "Подтверждение удаления"
 msgid "Delete EPG"
 msgstr "Удалить ТВ-гид"
 
+msgid "Delete Image"
+msgstr "Удалить имидж"
+
 msgid "Delete Language"
 msgstr "Удалить языковой пакет"
 
@@ -6659,7 +6662,7 @@ msgstr "Не сохранять"
 msgid "Don't show default"
 msgstr "Не показывать по умолчанию"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Не останавливать текущее событие, но отключить ближайшие событие"
 
 msgid ""
@@ -6914,6 +6917,12 @@ msgstr "Эквадор"
 msgid "Edit"
 msgstr "Редактировать"
 
+msgid "Edit Mode Off"
+msgstr "Режим редактирования выключен"
+
+msgid "Edit Mode On"
+msgstr "Режим редактирования включен"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Изменить 4X канал"
 
@@ -6935,13 +6944,7 @@ msgstr "Редактировать текущую строку"
 msgid "Edit line "
 msgstr "Измените строку "
 
-msgid "Edit Mode Off"
-msgstr "Режим редактирования выключен"
-
-msgid "Edit Mode On"
-msgstr "Режим редактирования включен"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Редактировать новый пункт"
 
 msgid "Edit position is the line end"
@@ -8867,6 +8870,9 @@ msgstr "Скрытый / Пустой"
 
 msgid "Hidden network"
 msgstr "Скрытая сеть"
+
+msgid "Hide"
+msgstr "Скрыть"
 
 msgid "Hide VBI line for this service"
 msgstr "Скрыть линию VBI на этом канале"
@@ -11026,6 +11032,12 @@ msgstr "Переместить 1 элемент"
 msgid "Move Left/Right"
 msgstr "Влево/Вправо"
 
+msgid "Move Mode Off"
+msgstr "Отключение режима перемещения"
+
+msgid "Move Mode On"
+msgstr "Перемещение вкл"
+
 msgid "Move PIP"
 msgstr "Переместить PiP"
 
@@ -11082,12 +11094,6 @@ msgstr "Переместить файлы/каталоги в целевой к�
 
 msgid "Move folder"
 msgstr "Переместить папку"
-
-msgid "Move Mode Off"
-msgstr "Отключение режима перемещения"
-
-msgid "Move Mode On"
-msgstr "Перемещение вкл"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Переместить текущую запись DNS на одну строку вниз"
@@ -17197,11 +17203,11 @@ msgstr "Медиасканнер не установлен!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Не найдена конфигурация MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "К сожалению фид закрыт на техническое обслуживание."
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "К сожалению фид закрыт на техническое обслуживание."
 
 msgid "Sorry no backups found!"
 msgstr "Не найдены резервные копии!"
@@ -17497,10 +17503,10 @@ msgstr "Отключить PiP"
 msgid "Stop Streams"
 msgstr "Остановить потоки"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Остановить текущее событие и отключить ближайшие"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Остановить текущее событие, но не отключать наступающие"
 
 msgid "Stop entry"
@@ -19025,13 +19031,13 @@ msgstr ""
 "Обнаружено дублирование таймера в timers.xml!\n"
 "Проверьте его!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Обзор таймеров"
 
 msgid "Timer recording location"
 msgstr "Расположение записей таймера"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Ошибка состояния таймера"
 
 msgid "Timer selection"
@@ -20970,10 +20976,10 @@ msgstr "Да, но сохранить таймшифт как фильм и пр
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Да, но сохранить таймшифт как фильм и прервать запись"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Да, удалить из списка таймеров"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Да, удалить из списка таймеров, удалить запись"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21520,7 +21526,7 @@ msgstr "Отменить редактирование"
 msgid "abort favourites edit"
 msgstr "Отменить редактирование"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "Начать"
 
 msgid "ac3"
@@ -22172,9 +22178,6 @@ msgstr "чч:ммАМ/PМ"
 msgid "hh:mmam/pm"
 msgstr "чч:ммaм/pm"
 
-msgid "Hide"
-msgstr "Скрыть"
-
 msgid "highest Resolution"
 msgstr "максимальное разрешение"
 
@@ -22751,9 +22754,6 @@ msgstr "Сетевая папка"
 msgid "shell"
 msgstr "оболочка"
 
-msgid "show"
-msgstr "Показать"
-
 msgid "show DVD main menu"
 msgstr "Показать главное меню DVD"
 
@@ -23181,7 +23181,7 @@ msgstr "Да (оставить фиды)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Ваш %s %s может стать непригодным теперь. Пожалуйста, почитайте руководство по использованию прежде, чем перезагрузить Ваш %s %s."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "Переключено"
 
 msgid "zapping"
@@ -23190,8 +23190,8 @@ msgstr "Переключение"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Удалить имидж"
+#~ msgid "show"
+#~ msgstr "Показать"
 
 #, python-format
 #~ msgid ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2022,7 +2022,7 @@ msgstr "<Oletushakemisto>"
 msgid "<Last timer location>"
 msgstr "<Viimeisin ajastushakemisto>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<tuntematon>"
 
 msgid "?"
@@ -5984,6 +5984,9 @@ msgstr "Poistamisen vahvistuskysely"
 msgid "Delete EPG"
 msgstr "Poista ohjelmaopas"
 
+msgid "Delete Image"
+msgstr "Poista image"
+
 msgid "Delete Language"
 msgstr "Poista kieli"
 
@@ -6648,7 +6651,7 @@ msgstr "Älä tallenna"
 msgid "Don't show default"
 msgstr "Älä näytä oletusta"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Älä pysäytä tallennusta, mutta estä tulevat ajastukset"
 
 msgid ""
@@ -6902,6 +6905,12 @@ msgstr "Ecuadori"
 msgid "Edit"
 msgstr "Muokkaa"
 
+msgid "Edit Mode Off"
+msgstr "Muokkaustila ei"
+
+msgid "Edit Mode On"
+msgstr "Muokkaustila on"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Muokkaa 4 kanava paikkaa"
 
@@ -6923,13 +6932,7 @@ msgstr "Muokkaa nykyistä riviä"
 msgid "Edit line "
 msgstr "Muokkaa riviä "
 
-msgid "Edit Mode Off"
-msgstr "Muokkaustila ei"
-
-msgid "Edit Mode On"
-msgstr "Muokkaustila on"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Syötä uusi tallennus"
 
 msgid "Edit position is the line end"
@@ -8853,6 +8856,9 @@ msgstr "Piilotettu / tyhjä"
 
 msgid "Hidden network"
 msgstr "Piilotettu verkko"
+
+msgid "Hide"
+msgstr "Piilota"
 
 msgid "Hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
@@ -11016,6 +11022,12 @@ msgstr "1 siirrä elementti"
 msgid "Move Left/Right"
 msgstr "Siirrä vasemmalle/oikealle"
 
+msgid "Move Mode Off"
+msgstr "Siirrä tila pois päältä"
+
+msgid "Move Mode On"
+msgstr "Siirto tila on"
+
 msgid "Move PIP"
 msgstr "Siirrä PiP"
 
@@ -11074,12 +11086,6 @@ msgstr "Siirrä tiedostot / hakemistot kohdehakemistoon"
 
 msgid "Move folder"
 msgstr "Siirrä kansio"
-
-msgid "Move Mode Off"
-msgstr "Siirrä tila pois päältä"
-
-msgid "Move Mode On"
-msgstr "Siirto tila on"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Siirrä nykyistä DNS merkintää yhden rivin alaspäin"
@@ -17209,11 +17215,11 @@ msgstr "MediaScanneria ei ole asennettu!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA määritystiedosto puuttuu"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Syötteet ovat pois käytöstä huollon vuoksi"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Syötteet eivät ole käytössä huollon takia, yritä myöhemmin uudelleen."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Syötteet ovat pois käytöstä huollon vuoksi"
 
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
@@ -17509,10 +17515,10 @@ msgstr "Sulje PiP"
 msgid "Stop Streams"
 msgstr "Pysäytä streamit"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Pysäytä tallennus ja estä tulevat ajastukset"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Pysäytä tallennus, mutta älä estä tulevia ajastuksia"
 
 msgid "Stop entry"
@@ -19041,13 +19047,13 @@ msgstr ""
 "Ajastusten päällekkäisyys havaittu!\n"
 "Tarkista ajastusasetukset!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Ajastetut ohjelmat"
 
 msgid "Timer recording location"
 msgstr "Ajastuksien tallennushakemisto"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Päällekkäinen ajastus"
 
 msgid "Timer selection"
@@ -20991,10 +20997,10 @@ msgstr "Kyllä, mutta muunna ajansiirto tallenteeksi ja jatka tallentamista"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Kyllä, mutta muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Kyllä, poista ajastusluettelosta"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Kyllä, poista ajastusluettelosta ja poista tallennus"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21547,7 +21553,7 @@ msgstr "peruuta muutokset ja poistu"
 msgid "abort favourites edit"
 msgstr "peruuta muutokset ja poistu"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "alkaa juuri"
 
 msgid "ac3"
@@ -22199,9 +22205,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "Piilota"
-
 msgid "highest Resolution"
 msgstr "suurin Resolution"
 
@@ -22778,9 +22781,6 @@ msgstr "jaa:"
 msgid "shell"
 msgstr "shell"
 
-msgid "show"
-msgstr "Näytä"
-
 msgid "show DVD main menu"
 msgstr "näytä DVD:n päävalikko"
 
@@ -23207,7 +23207,7 @@ msgstr "kyllä (pidä syötteet)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "vaihdettu"
 
 msgid "zapping"
@@ -23216,8 +23216,8 @@ msgstr "vaihtaa"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Poista image"
+#~ msgid "show"
+#~ msgstr "Näytä"
 
 #, python-format
 #~ msgid ""

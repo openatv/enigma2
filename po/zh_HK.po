@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2077,7 +2077,7 @@ msgstr "<預設錄影位置>"
 msgid "<Last timer location>"
 msgstr "<最近一次定時錄影位置>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<未知>"
 
 #, fuzzy
@@ -6298,6 +6298,9 @@ msgstr "LT 配置"
 msgid "Delete EPG"
 msgstr "刪除"
 
+msgid "Delete Image"
+msgstr ""
+
 #, fuzzy
 msgid "Delete Language"
 msgstr "語言"
@@ -6987,7 +6990,7 @@ msgstr "不保存"
 msgid "Don't show default"
 msgstr "按日期排序"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "不能停止當前事件, 不過可以禁用下一個事件."
 
 msgid ""
@@ -7252,6 +7255,13 @@ msgstr ""
 msgid "Edit"
 msgstr "修改"
 
+msgid "Edit Mode Off"
+msgstr ""
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "模組初始化"
+
 #, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "編輯專案"
@@ -7277,15 +7287,8 @@ msgstr "編輯章節當前標題"
 msgid "Edit line "
 msgstr "編輯中"
 
-msgid "Edit Mode Off"
-msgstr ""
-
 #, fuzzy
-msgid "Edit Mode On"
-msgstr "模組初始化"
-
-#, fuzzy
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "編輯專案"
 
 msgid "Edit position is the line end"
@@ -9312,6 +9315,9 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
+msgstr ""
+
+msgid "Hide"
 msgstr ""
 
 msgid "Hide VBI line for this service"
@@ -11645,6 +11651,14 @@ msgid "Move Left/Right"
 msgstr ""
 
 #, fuzzy
+msgid "Move Mode Off"
+msgstr "[移動模式]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "[移動模式]"
+
+#, fuzzy
 msgid "Move PIP"
 msgstr "移動"
 
@@ -11709,14 +11723,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Move folder"
-msgstr "[移動模式]"
-
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[移動模式]"
-
-#, fuzzy
-msgid "Move Mode On"
 msgstr "[移動模式]"
 
 msgid "Move the current DNS entry down one line"
@@ -18365,10 +18371,10 @@ msgstr "抱歉, 媒體掃描未安裝！"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18694,10 +18700,10 @@ msgstr ""
 msgid "Stop Streams"
 msgstr "停止測驗"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "停止當前事件並禁用下一個事件"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "停止當前事件但不禁用下一個事件"
 
 msgid "Stop entry"
@@ -20275,13 +20281,13 @@ msgstr ""
 "測驗timers.xml有重疊部分！\n"
 "請重新檢視它!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr ""
 
 msgid "Timer recording location"
 msgstr ""
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "計時器測驗中的錯誤"
 
 msgid "Timer selection"
@@ -22341,10 +22347,10 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
 #, fuzzy
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "確實要刪除計時器?"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 #, fuzzy
@@ -22873,7 +22879,7 @@ msgstr "取消自定義組編輯"
 msgid "abort favourites edit"
 msgstr "取消喜愛頻道編輯"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "立即開始"
 
 msgid "ac3"
@@ -23559,9 +23565,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "解析度"
@@ -24180,10 +24183,6 @@ msgstr "共用"
 msgid "shell"
 msgstr ""
 
-#, fuzzy
-msgid "show"
-msgstr "顯示所有"
-
 msgid "show DVD main menu"
 msgstr "顯示DVD主功能表"
 
@@ -24632,7 +24631,7 @@ msgstr "是 (保留)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "轉自"
 
 #, fuzzy
@@ -24641,6 +24640,10 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "顯示所有"
 
 #, fuzzy, python-format
 #~ msgid ""

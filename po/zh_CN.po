@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2022,7 +2022,7 @@ msgstr "<默认录像位置>"
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<未知>"
 
 msgid "?"
@@ -5970,6 +5970,9 @@ msgstr "确认删除"
 msgid "Delete EPG"
 msgstr "删除EPG"
 
+msgid "Delete Image"
+msgstr "删除镜像"
+
 msgid "Delete Language"
 msgstr "删除语言"
 
@@ -6634,7 +6637,7 @@ msgstr "不保存"
 msgid "Don't show default"
 msgstr "不显示默认值"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "不停止当前事件但禁用接下来的事件"
 
 msgid ""
@@ -6888,6 +6891,12 @@ msgstr "厄瓜多尔"
 msgid "Edit"
 msgstr "编辑"
 
+msgid "Edit Mode Off"
+msgstr "关闭编辑模式"
+
+msgid "Edit Mode On"
+msgstr "打开编辑模式"
+
 msgid "Edit Quad Channel Entry"
 msgstr "编辑四画面频道条目"
 
@@ -6909,13 +6918,7 @@ msgstr "编辑当前行"
 msgid "Edit line "
 msgstr "编辑行 "
 
-msgid "Edit Mode Off"
-msgstr "关闭编辑模式"
-
-msgid "Edit Mode On"
-msgstr "打开编辑模式"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "编辑新条目"
 
 msgid "Edit position is the line end"
@@ -8839,6 +8842,9 @@ msgstr "隐藏/空白"
 
 msgid "Hidden network"
 msgstr "隐藏网络"
+
+msgid "Hide"
+msgstr "隐藏"
 
 msgid "Hide VBI line for this service"
 msgstr "隐藏此服务的VBI行"
@@ -10997,6 +11003,12 @@ msgstr "移动1元素"
 msgid "Move Left/Right"
 msgstr "左/右 移动"
 
+msgid "Move Mode Off"
+msgstr "关闭移动模式"
+
+msgid "Move Mode On"
+msgstr "开启移动模式"
+
 msgid "Move PIP"
 msgstr "移动画中画"
 
@@ -11053,12 +11065,6 @@ msgstr "将文件/目录移动到目标目录"
 
 msgid "Move folder"
 msgstr "移动文件夹"
-
-msgid "Move Mode Off"
-msgstr "关闭移动模式"
-
-msgid "Move Mode On"
-msgstr "开启移动模式"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -17162,11 +17168,11 @@ msgstr "抱歉, 媒体扫描未安装！"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "抱歉,MiniDLNA配置丢失"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "抱歉,订阅源因维护而关闭"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "抱歉,订阅源因维护而关闭,请稍后再试."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "抱歉,订阅源因维护而关闭"
 
 msgid "Sorry no backups found!"
 msgstr "抱歉, 没有发现备份!"
@@ -17462,10 +17468,10 @@ msgstr "停止画中画"
 msgid "Stop Streams"
 msgstr "停止数据流"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "停止当前事件并禁用下一个事件"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "停止当前事件但不禁用下一个事件"
 
 msgid "Stop entry"
@@ -18984,13 +18990,13 @@ msgstr ""
 "检测到 timers.xml 中定时器重叠!\n"
 "请重新检查！"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "定时器预览"
 
 msgid "Timer recording location"
 msgstr "录制定时器位置"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "定时器完整性错误"
 
 msgid "Timer selection"
@@ -20929,10 +20935,10 @@ msgstr "是,但保存时移为影片并继续录制"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "是,但保存时移为影片并停止录制"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "是,从定时器列表中删除"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "是,从定时器列表中删除和删除录制"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21479,7 +21485,7 @@ msgstr "取消自定义组编辑"
 msgid "abort favourites edit"
 msgstr "取消喜爱频道编辑"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "即将开始"
 
 msgid "ac3"
@@ -22131,9 +22137,6 @@ msgstr "时:分 上午/下午"
 msgid "hh:mmam/pm"
 msgstr "时:分 上午/下午"
 
-msgid "Hide"
-msgstr "隐藏"
-
 msgid "highest Resolution"
 msgstr "最高分辨率"
 
@@ -22710,9 +22713,6 @@ msgstr "共享:"
 msgid "shell"
 msgstr "终端"
 
-msgid "show"
-msgstr "显示"
-
 msgid "show DVD main menu"
 msgstr "显示DVD主菜单"
 
@@ -23139,7 +23139,7 @@ msgstr "是(保持订阅源)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参阅手册以获得进一步帮助."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "切换"
 
 msgid "zapping"
@@ -23148,8 +23148,8 @@ msgstr "切换中"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "删除镜像"
+#~ msgid "show"
+#~ msgstr "显示"
 
 #, python-format
 #~ msgid ""

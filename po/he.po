@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -2096,7 +2096,7 @@ msgstr "<מיקום רשימת סרטים ברירת מחדל>"
 msgid "<Last timer location>"
 msgstr "<מיקום אחרון לטיימר>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<לא ידוע>"
 
 #, fuzzy
@@ -6288,6 +6288,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "מחק"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -6966,7 +6969,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "אל תפסיק אירוע נוכחי אך בטל את כל הבאים בתור"
 
 msgid ""
@@ -7224,6 +7227,14 @@ msgstr ""
 msgid "Edit"
 msgstr "ערוך"
 
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "ערוך כותרת"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "ערוך כותרת"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7248,15 +7259,7 @@ msgstr "ערוך פרקים של הכותרת הנוכחית"
 msgid "Edit line "
 msgstr "ערוך כותרת"
 
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "ערוך כותרת"
-
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "ערוך כותרת"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #, fuzzy
@@ -8925,7 +8928,7 @@ msgstr "Go to standby"
 
 #, fuzzy
 msgid "Go to start of file"
-msgstr "about to start"
+msgstr "About to start"
 
 msgid "Go up the list"
 msgstr ""
@@ -9267,6 +9270,9 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
+msgstr ""
+
+msgid "Hide"
 msgstr ""
 
 msgid "Hide VBI line for this service"
@@ -11609,6 +11615,15 @@ msgstr "Move east"
 msgid "Move Left/Right"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[move mode]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Move east"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11675,15 +11690,6 @@ msgstr ""
 #, fuzzy
 msgid "Move folder"
 msgstr "[move mode]"
-
-#
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[move mode]"
-
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Move east"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -18242,10 +18248,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18568,12 +18574,12 @@ msgid "Stop Streams"
 msgstr "עצור בדיקה"
 
 #
-msgid "Stop current event and disable coming events"
-msgstr "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
+msgstr "Stop current event and disable future events"
 
 #
-msgid "Stop current event but not coming events"
-msgstr "Stop current event but not coming events"
+msgid "Stop current event but not future events"
+msgstr "Stop current event but not future events"
 
 #
 #, fuzzy
@@ -20146,7 +20152,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "רשומת טיימר"
 
 #
@@ -20155,8 +20161,8 @@ msgid "Timer recording location"
 msgstr "מיקום הקלטה לטיימר"
 
 #
-msgid "Timer sanity error"
-msgstr "Timer sanity error"
+msgid "Timer Sanity Error"
+msgstr "Timer Sanity Error"
 
 #
 msgid "Timer selection"
@@ -22228,10 +22234,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22751,8 +22757,8 @@ msgstr "abort bouquet edit"
 msgid "abort favourites edit"
 msgstr "abort favourites edit"
 
-msgid "about to start"
-msgstr "about to start"
+msgid "About to start"
+msgstr "About to start"
 
 msgid "ac3"
 msgstr ""
@@ -23432,9 +23438,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "מיקום סרטים"
@@ -24047,9 +24050,6 @@ msgstr ""
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr ""
-
 #
 msgid "show DVD main menu"
 msgstr "show DVD main menu"
@@ -24499,7 +24499,7 @@ msgstr "כן (שמור פידים)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "זופזפ"
 
 #, fuzzy

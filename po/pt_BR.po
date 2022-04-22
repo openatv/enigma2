@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -2144,7 +2144,7 @@ msgstr "<Diretório padrão das gravações>"
 msgid "<Last timer location>"
 msgstr "<Último diretório de gravação>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<Desconhecido>"
 
 #, fuzzy
@@ -6319,6 +6319,9 @@ msgstr "Configuração da lista de gravações"
 msgid "Delete EPG"
 msgstr "Apagar"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -6990,7 +6993,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Não parar o programa atual mas desativar novos eventos"
 
 msgid ""
@@ -7250,6 +7253,14 @@ msgstr ""
 msgid "Edit"
 msgstr "Editar"
 
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "Editar o título"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Editar o título"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7274,15 +7285,7 @@ msgstr "Propriedades do título atual"
 msgid "Edit line "
 msgstr "Editar o título"
 
-#, fuzzy
-msgid "Edit Mode Off"
-msgstr "Editar o título"
-
-#, fuzzy
-msgid "Edit Mode On"
-msgstr "Editar o título"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #, fuzzy
@@ -9269,6 +9272,9 @@ msgstr "Rede oculta"
 
 msgid "Hidden network"
 msgstr "Rede oculta"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -11549,6 +11555,14 @@ msgstr "Mover 'leste'"
 msgid "Move Left/Right"
 msgstr ""
 
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[modo deslocar]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Mover 'leste'"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11616,14 +11630,6 @@ msgstr "Mover para outra pasta"
 #, fuzzy
 msgid "Move folder"
 msgstr "Selecione a pasta"
-
-#, fuzzy
-msgid "Move Mode Off"
-msgstr "[modo deslocar]"
-
-#, fuzzy
-msgid "Move Mode On"
-msgstr "Mover 'leste'"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -16884,7 +16890,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Shopping"
-msgstr "zapped"
+msgstr "Zapped"
 
 #, fuzzy
 msgid "Short Film"
@@ -18044,12 +18050,12 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
-msgstr ""
-
 #, fuzzy
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Sem atualizações disponíveis. Por favor tente mais tarde."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr ""
 
 msgid "Sorry no backups found!"
 msgstr ""
@@ -18356,10 +18362,10 @@ msgstr "Parar PiP"
 msgid "Stop Streams"
 msgstr "Parar teste"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Parar programa atual e desativar novos eventos"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Parar programa atual, mas não desativar novos eventos"
 
 msgid "Stop entry"
@@ -19933,13 +19939,13 @@ msgstr ""
 "Sobreposição de temporizadores em timers.xml detectada!\n"
 "Verifique os temporizadores conflitantes."
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Temporizador"
 
 msgid "Timer recording location"
 msgstr "Diretório das gravações agendadas"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Erro do temporizador"
 
 msgid "Timer selection"
@@ -21973,10 +21979,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22504,7 +22510,7 @@ msgstr "cancelar a edição"
 msgid "abort favourites edit"
 msgstr "cancelar a edição"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "iniciando em breve"
 
 msgid "ac3"
@@ -23189,9 +23195,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "Resolução"
@@ -23796,10 +23799,6 @@ msgstr ""
 msgid "shell"
 msgstr ""
 
-#, fuzzy
-msgid "show"
-msgstr "talk show"
-
 msgid "show DVD main menu"
 msgstr "Exibir menu de DVD"
 
@@ -24247,15 +24246,19 @@ msgstr "Sim (manter os feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
-msgstr "zapped"
+msgid "Zapped"
+msgstr "Zapped"
 
 #, fuzzy
 msgid "zapping"
-msgstr "zapped"
+msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "talk show"
 
 #, fuzzy
 #~ msgid "MultiBoot Image Manager"

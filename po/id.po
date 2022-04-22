@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -2189,7 +2189,7 @@ msgstr "<Lokasi film bawaan>"
 msgid "<Last timer location>"
 msgstr "<Lokasi pewaktu terakhir>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<tak dikenal>"
 
 msgid "?"
@@ -6250,6 +6250,9 @@ msgstr "Delete Confirmation"
 msgid "Delete EPG"
 msgstr "Delete EPG"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr "Delete Language"
 
@@ -6922,8 +6925,8 @@ msgstr "Don't save"
 msgid "Don't show default"
 msgstr "Sort by default"
 
-msgid "Don't stop current event but disable coming events"
-msgstr "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
+msgstr "Don't stop current event but disable future events"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7185,6 +7188,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Edit"
 
+msgid "Edit Mode Off"
+msgstr "Edit Mode Off"
+
+msgid "Edit Mode On"
+msgstr "Edit Mode On"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Edit Quad Channel Entry"
 
@@ -7208,14 +7217,8 @@ msgstr "Jump to current time"
 msgid "Edit line "
 msgstr "Ubah pewaktu"
 
-msgid "Edit Mode Off"
-msgstr "Edit Mode Off"
-
-msgid "Edit Mode On"
-msgstr "Edit Mode On"
-
-msgid "Edit new entry"
-msgstr "Edit new entry"
+msgid "Edit New Entry"
+msgstr "Edit New Entry"
 
 #, fuzzy
 msgid "Edit position is the line end"
@@ -9201,6 +9204,9 @@ msgstr "Hidden network"
 
 msgid "Hidden network"
 msgstr "Hidden network"
+
+msgid "Hide"
+msgstr "Hide"
 
 msgid "Hide VBI line for this service"
 msgstr "Hide VBI line for this service"
@@ -11461,6 +11467,12 @@ msgstr "Movement"
 msgid "Move Left/Right"
 msgstr "Move Left/Right"
 
+msgid "Move Mode Off"
+msgstr "Move Mode Off"
+
+msgid "Move Mode On"
+msgstr "Move Mode On"
+
 msgid "Move PIP"
 msgstr "Move PIP"
 
@@ -11524,12 +11536,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Move folder"
-msgstr "Move Mode On"
-
-msgid "Move Mode Off"
-msgstr "Move Mode Off"
-
-msgid "Move Mode On"
 msgstr "Move Mode On"
 
 msgid "Move the current DNS entry down one line"
@@ -17866,11 +17872,11 @@ msgstr "Sorry MediaScanner is not installed!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Sorry MiniDLNA Config is Missing"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Sorry feeds are down for maintenance."
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Sorry feeds are down for maintenance, please try again later."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Sorry feeds are down for maintenance."
 
 msgid "Sorry no backups found!"
 msgstr "Sorry no backups found!"
@@ -18177,11 +18183,11 @@ msgstr "Stop PiP"
 msgid "Stop Streams"
 msgstr "Stop Streams"
 
-msgid "Stop current event and disable coming events"
-msgstr "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
+msgstr "Stop current event and disable future events"
 
-msgid "Stop current event but not coming events"
-msgstr "Stop current event but not coming events"
+msgid "Stop current event but not future events"
+msgstr "Stop current event but not future events"
 
 msgid "Stop entry"
 msgstr "Stop entry"
@@ -19751,13 +19757,13 @@ msgstr ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Tinjau pewaktu"
 
 msgid "Timer recording location"
 msgstr "Lokasi perekaman pewaktu"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Kesalahan tak wajar pewaktu"
 
 msgid "Timer selection"
@@ -21754,10 +21760,10 @@ msgstr "Yes, but save timeshift as movie and continue recording"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Yes, but save timeshift as movie and stop recording"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ya, hapus dari Daftar Pewaktu"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ya, hapus dari Daftar Pewaktu dan hapus rekaman"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22315,7 +22321,7 @@ msgstr "batalkan perubahan buket"
 msgid "abort favourites edit"
 msgstr "batalkan perubahan pavorit"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "hampir mulai"
 
 msgid "ac3"
@@ -22991,9 +22997,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "Hide"
-msgstr "Hide"
-
 msgid "highest Resolution"
 msgstr "highest Resolution"
 
@@ -23590,9 +23593,6 @@ msgstr "share:"
 msgid "shell"
 msgstr ""
 
-msgid "show"
-msgstr "show"
-
 msgid "show DVD main menu"
 msgstr "show DVD main menu"
 
@@ -24032,14 +24032,17 @@ msgstr "yes (keep feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 
-msgid "zapped"
-msgstr "zapped"
+msgid "Zapped"
+msgstr "Zapped"
 
 msgid "zapping"
 msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "show"
+#~ msgstr "show"
 
 #, python-format
 #~ msgid ""

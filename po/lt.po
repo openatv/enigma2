@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2046,7 +2046,7 @@ msgstr "<Numatyta filmų vieta>"
 msgid "<Last timer location>"
 msgstr "<Paskutinio laikmačio vieta>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<nežinomas>"
 
 msgid "?"
@@ -6008,6 +6008,9 @@ msgstr "Pašalinimo patvirtinimas"
 msgid "Delete EPG"
 msgstr "Trinti EPG"
 
+msgid "Delete Image"
+msgstr "Ištrinti atvaizdą"
+
 msgid "Delete Language"
 msgstr "Trinti kalbą"
 
@@ -6672,7 +6675,7 @@ msgstr "Neišsaugoti"
 msgid "Don't show default"
 msgstr "Nerodyti numatytojo"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nestabdyti dabartinio įvykio, bet išjungti sekančius"
 
 msgid ""
@@ -6927,6 +6930,12 @@ msgstr "Ekvadoras"
 msgid "Edit"
 msgstr "Redaguoti"
 
+msgid "Edit Mode Off"
+msgstr "Redagavimas išjungtas"
+
+msgid "Edit Mode On"
+msgstr "Redagavimas įjungtas"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Redaguoti Quad kanalo įrašą"
 
@@ -6948,13 +6957,7 @@ msgstr "Redaguoti dabartinę eilutę"
 msgid "Edit line "
 msgstr "Redaguokite eilutę "
 
-msgid "Edit Mode Off"
-msgstr "Redagavimas išjungtas"
-
-msgid "Edit Mode On"
-msgstr "Redagavimas įjungtas"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Redaguoti naują įrašą"
 
 msgid "Edit position is the line end"
@@ -8880,6 +8883,9 @@ msgstr "Paslėpta/tuščia"
 
 msgid "Hidden network"
 msgstr "Paslėptas tinklas"
+
+msgid "Hide"
+msgstr "Paslėpti"
 
 msgid "Hide VBI line for this service"
 msgstr "Slėpti VBI liniją šiam kanalui"
@@ -11039,6 +11045,12 @@ msgstr "Perkelti 1 elementą"
 msgid "Move Left/Right"
 msgstr "Perkelti kairėn/dešinėn"
 
+msgid "Move Mode Off"
+msgstr "Perkėlimas išjungtas"
+
+msgid "Move Mode On"
+msgstr "Perkėlimas įjungtas"
+
 msgid "Move PIP"
 msgstr "Perkelti PiP"
 
@@ -11095,12 +11107,6 @@ msgstr "Perkelkite failus/katalogus į taikomą katalogą"
 
 msgid "Move folder"
 msgstr "Perkelti aplanką"
-
-msgid "Move Mode Off"
-msgstr "Perkėlimas išjungtas"
-
-msgid "Move Mode On"
-msgstr "Perkėlimas įjungtas"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Perkelti dabartinį DNS įrašą viena eilute žemyn"
@@ -17210,11 +17216,11 @@ msgstr "Gaila, medijos skeneris neįdiegtas!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Atsiprašome MiniDLNA konfigūracijos nėra"
 
-msgid "Sorry feeds are down for maintenance."
-msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, prašome pabandyti vėliau."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Atsiprašome šaltiniai neveikia dėl priežiūros darbų"
 
 msgid "Sorry no backups found!"
 msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
@@ -17510,10 +17516,10 @@ msgstr "Stabdyti PiP"
 msgid "Stop Streams"
 msgstr "Sustabdyti srautus"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Stabdyti dabartinę užduotį ir išjungti sekančią užduotį"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Stabdyti dabartinę užduotį, nevykdant sekančių užduočių"
 
 msgid "Stop entry"
@@ -19036,13 +19042,13 @@ msgstr ""
 "Aptiktas laikmačio timers.xml sutapimas! \n"
 " prašome iš naujo tikrinti tai!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Laikmačio apžvalga"
 
 msgid "Timer recording location"
 msgstr "Laikmačio įrašymo vieta"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Laikmačio padėties klaida"
 
 msgid "Timer selection"
@@ -20981,10 +20987,10 @@ msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą t
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Taip, šalinti iš laikmačių sąrašo"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Taip, šalinti iš laikmačių sąrašo ir ištrinti įrašą"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21530,7 +21536,7 @@ msgstr "nutraukti paketo redagavimą"
 msgid "abort favourites edit"
 msgstr "nutraukti mėgstamiausių redagavimą"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "apie pradžią"
 
 msgid "ac3"
@@ -22182,9 +22188,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "Hide"
-msgstr "Paslėpti"
-
 msgid "highest Resolution"
 msgstr "didžiausia skiriamoji geba"
 
@@ -22761,9 +22764,6 @@ msgstr "bendrinimas:"
 msgid "shell"
 msgstr "apvalkalas"
 
-msgid "show"
-msgstr "rodyti"
-
 msgid "show DVD main menu"
 msgstr "rodyti DVD pagrindinį meniu"
 
@@ -23192,7 +23192,7 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo vadovu, prieš paleisdami %s %s iš naujo."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "įjungta"
 
 msgid "zapping"
@@ -23201,8 +23201,8 @@ msgstr "perjungimas"
 msgid "®"
 msgstr "®"
 
-msgid "Delete Image"
-msgstr "Ištrinti atvaizdą"
+#~ msgid "show"
+#~ msgstr "rodyti"
 
 #, python-format
 #~ msgid ""

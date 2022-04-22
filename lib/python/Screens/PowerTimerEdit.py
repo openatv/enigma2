@@ -92,9 +92,9 @@ class PowerTimerEditList(Screen):
 				if t.isRunning():
 					if t.repeated:
 						list = (
-							(_("Stop current event but not coming events"), "stoponlycurrent"),
-							(_("Stop current event and disable coming events"), "stopall"),
-							(_("Don't stop current event but disable coming events"), "stoponlycoming")
+							(_("Stop current event but not future events"), "stoponlycurrent"),
+							(_("Stop current event and disable future events"), "stopall"),
+							(_("Don't stop current event but disable future events"), "stoponlycoming")
 						)
 						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
 				else:
@@ -179,15 +179,15 @@ class PowerTimerEditList(Screen):
 			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 
 			if timer.state == RealTimerEntry.StateWaiting:
-				state = _("waiting")
+				state = _("Waiting")
 			elif timer.state == RealTimerEntry.StatePrepared:
-				state = _("about to start")
+				state = _("About to start")
 			elif timer.state == RealTimerEntry.StateRunning:
-				state = _("running...")
+				state = _("Running")
 			elif timer.state == RealTimerEntry.StateEnded:
-				state = _("done!")
+				state = _("Done")
 			else:
-				state = _("<unknown>")
+				state = _("<Unknown>")
 		else:
 			name = ""
 			after = ""
