@@ -80,6 +80,7 @@ class MultiBootManager(Screen, HelpableScreen):
 
 	def getSlotImageListCallback(self, slotImages):
 		imageList = []
+		index = 0
 		if slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(slotImages.keys())
@@ -103,7 +104,7 @@ class MultiBootManager(Screen, HelpableScreen):
 				self.initialize = False
 				for index, item in enumerate(imageList):
 					if item[0][1] and item[0][1][4]:
-						break;
+						break
 			else:
 				index = self["slotlist"].getSelectedIndex()
 		else:
