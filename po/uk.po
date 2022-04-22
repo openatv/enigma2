@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 12:35+0000\n"
-"PO-Revision-Date: 2022-04-10 19:53+0000\n"
+"PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1358,11 +1358,11 @@ msgstr "%s додатки до скіну"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "%s активовано."
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "%s вимкнено."
 
 #, python-format
 msgid "%s information"
@@ -2147,6 +2147,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
+"Таймер запису, запис, або таймер живлення працює, або включиться протягом 15 хвилин. %s продовжено до 30 хвилин. Ваш %s %s перейде в режим глибокого очікування після події запису, або таймера живлення.\n"
+"\n"
+"Перейти в режим глибокого очікування?"
 
 msgid "A repeating timer or just once?"
 msgstr "Повторюваний таймер або тільки один раз?"
@@ -2797,10 +2800,10 @@ msgid "Andorra"
 msgstr "Андора"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Android Linux SE"
-msgstr ""
+msgstr "Android Linux SE"
 
 msgid "Angola"
 msgstr "Ангола"
@@ -2896,7 +2899,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Ви дійсно бажаєте видалити дані ЕПГ з:\n"
 
 msgid "Are you sure you want to delete this image?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити цей імідж?"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Ви дійсно бажаєте видалити цей лог:\n"
@@ -3027,7 +3030,7 @@ msgid "At End:"
 msgstr "На кінець:"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "В кінці поточної програми"
 
 msgid "Athletics"
 msgstr "Легка атлетика"
@@ -3602,7 +3605,7 @@ msgstr "Інформація загрузчика"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr ""
+msgstr "Інформація про слот завантажування для %s %s"
 
 msgid "Boot time"
 msgstr "Час завантаження"
@@ -4084,10 +4087,10 @@ msgid "Cancel selection"
 msgstr "Скасувати вибір"
 
 msgid "Cancel the slot selection and exit"
-msgstr ""
+msgstr "Скасувати вибір слота та вийти"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr ""
+msgstr "Скасуйте вибір слота та вийдіть з усіх меню"
 
 msgid "Cancel the update"
 msgstr "Скасувати оновлення"
@@ -4891,10 +4894,10 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Через якийсь час показувати заставку."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
-msgstr ""
+msgstr "Налаштуйте у хвилинах тривалість до активації таймера енергозбереження."
 
 msgid "Configure the duration, in minutes, before the sleep timer activates."
-msgstr ""
+msgstr "Налаштуйте у хвилинах тривалість до активації таймера сну."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Налаштування кінцевої координати Х відображення телетексту."
@@ -5444,7 +5447,7 @@ msgid "Currency"
 msgstr "Валюта"
 
 msgid "Current"
-msgstr ""
+msgstr "Поточний"
 
 msgid "Current Affairs"
 msgstr "Поточні справи"
@@ -5505,7 +5508,7 @@ msgid "Customize"
 msgstr "Додаткові Налаштування"
 
 msgid "Customize System Settings"
-msgstr "Налаштувати параметри системи"
+msgstr "Налаштування параметрів системи"
 
 msgid "Customize enigma2 personal settings"
 msgstr "Персональні налаштування користувача enigma2"
@@ -6047,7 +6050,7 @@ msgid "Delete logfile"
 msgstr "Видалити файл журналу збоїв"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr ""
+msgstr "Видаліть, або затріть виділений слот"
 
 msgid "Delete playlist entry"
 msgstr "Видалити запис з списку відтворення"
@@ -6998,7 +7001,7 @@ msgid "Embedded"
 msgstr "Вбудований"
 
 msgid "Empty"
-msgstr ""
+msgstr "Порожній"
 
 msgid "Enable"
 msgstr "Ввімкнути"
@@ -7219,33 +7222,33 @@ msgid "Energie"
 msgstr "Енергія"
 
 msgid "Energy Timer"
-msgstr ""
+msgstr "Таймер Енергозбереження"
 
 msgid "Energy saver action"
-msgstr ""
+msgstr "Енергозберігаючі дії"
 
 msgid "Energy saver activation delay"
-msgstr ""
+msgstr "Затримка активації енергозбереження"
 
 msgid "Energy timer"
-msgstr ""
+msgstr "Таймер енергозбереження"
 
 #, python-format
 msgid "Energy timer: %d minute remains."
 msgid_plural "Energy timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер енергозбереження: залишилося %d хвилина."
+msgstr[1] "Таймер енергозбереження: залишилося %d хвилини."
+msgstr[2] "Таймер енергозбереження: залишилося %d хвилин."
 
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер енергозбереження: залишилося %d секунда."
+msgstr[1] "Таймер енергозбереження: залишилося %d секунди."
+msgstr[2] "Таймер енергозбереження: залишилося %d секунд."
 
 msgid "Energy timer: Inactive."
-msgstr ""
+msgstr "Таймер енергозбереження: неактивний."
 
 msgid "English"
 msgstr "Англійська"
@@ -8791,7 +8794,7 @@ msgid "Harddisk Setup"
 msgstr "Налаштування жорсткого диску"
 
 msgid "Hardware MultiBoot device"
-msgstr ""
+msgstr "Апаратний пристрій MultiBoot"
 
 msgid "Hardware information"
 msgstr "Інформація про обладнання"
@@ -9359,7 +9362,7 @@ msgid "In the Standby Record on the LCD Display"
 msgstr "Показати у режимі очікування значок Запис на LCD дисплеї"
 
 msgid "Inaccessible"
-msgstr ""
+msgstr "Недоступний"
 
 msgid "Inactive"
 msgstr "Неактивний"
@@ -9678,11 +9681,11 @@ msgstr "Внутрішня пам’ять"
 
 #, python-format
 msgid "Internal flash:  %s %s "
-msgstr ""
+msgstr "Внутрішня пам’ять: %s %s"
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
+msgstr "Внутрішній пам’ять: %s %s як USB Recovery"
 
 msgid "Internal hdd only"
 msgstr "Тільки внутрішній жорсткий диск"
@@ -10341,7 +10344,7 @@ msgid "Loading information, please wait..."
 msgstr "Завантаження інформації, зачекайте..."
 
 msgid "Loading slot information, please wait..."
-msgstr ""
+msgstr "Завантаження інформації про слот, зачекайте..."
 
 msgid "Local box"
 msgstr "Локальний приймач"
@@ -10904,10 +10907,10 @@ msgid "Mode 1"
 msgstr "Режим 1"
 
 msgid "Mode 12: Supports PiP but Kodi may not work"
-msgstr ""
+msgstr "Режим 12: підтримує PiP, але Kodi може не працювати"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
-msgstr ""
+msgstr "Режим 1: підтримує Kodi, але PiP може не працювати"
 
 msgid "Mode 2"
 msgstr "Режим 2"
@@ -11228,22 +11231,22 @@ msgid "Multi EPG"
 msgstr "Мульти ЕПГ"
 
 msgid "MultiBoot"
-msgstr ""
+msgstr "MultiBoot"
 
 msgid "MultiBoot Information"
-msgstr ""
+msgstr "Інформація про MultiBoot"
 
 msgid "MultiBoot Manager"
-msgstr ""
+msgstr "Мененджер MultiBoot"
 
 msgid "MultiBoot Manager Actions"
-msgstr ""
+msgstr "Дії менеджера MultiBoot"
 
 msgid "MultiBoot boot mode"
-msgstr ""
+msgstr "Режим завантаження MultiBoot"
 
 msgid "MultiBoot startup file"
-msgstr ""
+msgstr "Файл запуску MultiBoot"
 
 msgid "MultiEPG Settings"
 msgstr "Налаштування Мульти ЕПГ"
@@ -11718,7 +11721,7 @@ msgid "No services/providers selected"
 msgstr "Не вибрані канали/провайдери"
 
 msgid "No slot images found"
-msgstr ""
+msgstr "Слотів з іміджами не знайдено"
 
 msgid "No standby"
 msgstr "Не переходити в режим очікування"
@@ -11852,7 +11855,7 @@ msgid "Normal - Standard image"
 msgstr "Звичайно- Стандартний імідж"
 
 msgid "Normal: No boot modes required."
-msgstr ""
+msgstr "Звичайний: режими завантаження не потрібні."
 
 msgid "North"
 msgstr "Північ"
@@ -13376,7 +13379,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Натисніть OK, щоб використовувати цей регіон.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
+msgstr "Натисніть кнопки ВГОРУ/ВНИЗ, щоб вибрати слот і натисніть OK, або ЗЕЛЕНУ, щоб 'Перезавантажити' це зображення. Якщо доступний, ЖОВТА буде 'Видалити', або 'Стерти' імідж. 'Видалений' імідж можна 'відновити' за допомогою СИНЬОЇ кнопки. Повністю вилучений імідж НЕМОЖЛИВО відновити!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby."
@@ -13999,7 +14002,7 @@ msgid "Records"
 msgstr "Записи"
 
 msgid "Recovery"
-msgstr ""
+msgstr "Recovery"
 
 msgid "Recovery Mode"
 msgstr "Режим Відновлення"
@@ -14132,7 +14135,7 @@ msgid "Remote Control"
 msgstr "Пульт"
 
 msgid "Remote Control Button Settings"
-msgstr "Налаштування кнопки дистанційного керування"
+msgstr "Налаштування кнопок пульта"
 
 msgid "Remote Control Code"
 msgstr "Код дистанційного керування"
@@ -14437,7 +14440,7 @@ msgid "Restore system settings"
 msgstr "Відновлення системних налаштувань"
 
 msgid "Restore the highlighted slot"
-msgstr ""
+msgstr "Відновити виділений слот"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Відновлення настройок з резервної копії. Після відновлення приймач буде перезавантажений для активації нових налаштувань"
@@ -14466,7 +14469,7 @@ msgid "Retrieving %s commit log, please wait..."
 msgstr "Отримання журналу записів %s, зачекайте..."
 
 msgid "Retrieving boot slot information..."
-msgstr ""
+msgstr "Отримання інформації про слот завантаження..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Отримання списку іміджів. Прохання зачекати..."
@@ -14648,7 +14651,7 @@ msgstr "SD"
 
 #, python-format
 msgid "SDcard slot %s%s"
-msgstr ""
+msgstr "Слот для SD-картки %s%s"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "ПОМИЛКА перемикача SDcard! - root файли H9 не передаються на SD-карту"
@@ -15361,7 +15364,7 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Виберіть виділений слот і перезавантажтеся"
 
 msgid "Select the locale from a menu"
 msgstr "Виберіть мову клавіатури в меню"
@@ -15439,10 +15442,10 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Виберіть тип пристрою прийому, який ви використовуєте."
 
 msgid "Select the type of shutdown desired when the energy timer activates."
-msgstr ""
+msgstr "Виберіть потрібний тип вимкнення, коли активується таймер енергозбереження."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
+msgstr "Виберіть потрібний тип вимкнення, коли активується таймер вимкнення."
 
 msgid "Select upgrade source"
 msgstr "Вибер джерела оновлення"
@@ -16967,7 +16970,7 @@ msgid "Sleep Timer"
 msgstr "Таймер Cну"
 
 msgid "Sleep Timer Settings"
-msgstr ""
+msgstr "Налаштування Таймера Вимкнення"
 
 msgid "Sleep delay"
 msgstr "Затримка перед вимиканням"
@@ -16976,30 +16979,30 @@ msgid "Sleep long"
 msgstr "Очікування довге натискання"
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Таймер вимкнення"
 
 msgid "Sleep timer action"
-msgstr ""
+msgstr "Дія таймера вимкнення"
 
 msgid "Sleep timer activation delay"
-msgstr ""
+msgstr "Затримка активації таймера вимкнення"
 
 #, python-format
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер вимкнення: залишилося %d хвилина."
+msgstr[1] "Таймер вимкнення: залишилося %d хвилини."
+msgstr[2] "Таймер вимкнення: залишилося %d хвилин."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
 msgid_plural "Sleep timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер вимкнення: залишилося %d секунда."
+msgstr[1] "Таймер вимкнення: залишилося %d секунди."
+msgstr[2] "Таймер вимкнення: залишилося %d секунд."
 
 msgid "Sleep timer: Inactive."
-msgstr ""
+msgstr "Таймер вимкнення: неактивний."
 
 msgid "SleepTimer"
 msgstr "Таймер Cну"
@@ -17034,23 +17037,23 @@ msgstr "Слот %d"
 
 #, python-format
 msgid "Slot %s: %s"
-msgstr ""
+msgstr "Слот %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr ""
+msgstr "Слот %s: %s (Поточний імідж)"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
-msgstr ""
+msgstr "Слот %s: %s як USB Recovery"
 
 #, python-format
 msgid "Slot '%s'"
-msgstr ""
+msgstr "Слот '%s'"
 
 #, python-format
 msgid "Slot '%s': %s%s"
-msgstr ""
+msgstr "Слот '%s': %s%s"
 
 msgid "Slovak"
 msgstr "Словацька"
@@ -17134,7 +17137,7 @@ msgid "Software Manager Setup"
 msgstr "Налаштування Менеджера ПЗ"
 
 msgid "Software MultiBoot"
-msgstr ""
+msgstr "Програмне забезпечення MultiBoot"
 
 msgid "Software Update"
 msgstr "Оновлення ПЗ"
@@ -17198,7 +17201,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Не знайдено налаштувань MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance."
-msgstr "На жаль фіди на технічному обслуговуванні"
+msgstr "На жаль фіди на технічному обслуговуванні."
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "На жаль фіди на технічному обслуговувані, будь ласка, спробуйте пізніше."
@@ -17928,7 +17931,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад:  kvinto - 10.04.2022"
+msgstr "Переклад:  kvinto - 19.04.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18311,6 +18314,9 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+"Таймер енергії хоче встановити %s %s на %s.\n"
+"\n"
+"Натисніть OK, щоб продовжити використання %s %s."
 
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
@@ -18367,6 +18373,9 @@ msgid ""
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
+"Таймер вимкнення хоче встановити %s %s на %s.\n"
+"\n"
+"Зробити це зараз чи подовжити таймер?"
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -20802,7 +20811,7 @@ msgid "Wintersport"
 msgstr "Зимовий спорт"
 
 msgid "Wipe"
-msgstr ""
+msgstr "Витерти"
 
 msgid "Wireless LAN"
 msgstr "Безпровідний адаптер"
@@ -21878,7 +21887,7 @@ msgstr "eMMC"
 
 #, python-format
 msgid "eMMC slot %s%s"
-msgstr ""
+msgstr "eMMC слот %s%s"
 
 msgid "eSATA"
 msgstr "eSATA"

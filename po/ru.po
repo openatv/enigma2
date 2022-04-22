@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 12:35+0000\n"
-"PO-Revision-Date: 2022-04-17 09:29+0000\n"
+"PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -1355,11 +1355,11 @@ msgstr "%s дополнительные экраны"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "%s активирован."
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "%s отключён."
 
 #, python-format
 msgid "%s information"
@@ -2144,6 +2144,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
+"Запись, таймер записи или таймер питания работает или начнётся в течение 15 минут. %s продлён до 30 минут. Ваш %s %s перейдёт в режим глубокого ожидания после записи или таймера питания.\n"
+"\n"
+"Перейти в режим глубокого ожидания сейчас?"
 
 msgid "A repeating timer or just once?"
 msgstr "Записать лишь однажды или периодически?"
@@ -3024,7 +3027,7 @@ msgid "At End:"
 msgstr "В конце"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "В конце текущей программы"
 
 msgid "Athletics"
 msgstr "Легкая атлетика"
@@ -4888,10 +4891,10 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Настройте продолжительность заставки в минутах."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
-msgstr ""
+msgstr "Настройте продолжительность в минутах до активации таймера энергосбережения."
 
 msgid "Configure the duration, in minutes, before the sleep timer activates."
-msgstr ""
+msgstr "Настройте продолжительность в минутах до активации таймера сна."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Установите конечную координату по X области отображения телетекста."
@@ -7216,33 +7219,33 @@ msgid "Energie"
 msgstr "Энергия"
 
 msgid "Energy Timer"
-msgstr ""
+msgstr "Таймер питания"
 
 msgid "Energy saver action"
-msgstr ""
+msgstr "Действие по энергосбережению"
 
 msgid "Energy saver activation delay"
-msgstr ""
+msgstr "Задержка активации энергосбережения"
 
 msgid "Energy timer"
-msgstr ""
+msgstr "Таймер питания"
 
 #, python-format
 msgid "Energy timer: %d minute remains."
 msgid_plural "Energy timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер энергии: осталось %d минута."
+msgstr[1] "Таймер энергии: осталось %d минуты."
+msgstr[2] "Таймер энергии: осталось %d минут."
 
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер энергии: осталось %d секунда."
+msgstr[1] "Таймер энергии: осталось %d секунды."
+msgstr[2] "Таймер энергии: осталось %d секунд."
 
 msgid "Energy timer: Inactive."
-msgstr ""
+msgstr "Таймер питания: неактивен."
 
 msgid "English"
 msgstr "Английский"
@@ -8788,7 +8791,7 @@ msgid "Harddisk Setup"
 msgstr "Настройки жёсткого диска"
 
 msgid "Hardware MultiBoot device"
-msgstr "Аппаратное мультизагрузочное устройство"
+msgstr "Устройство MultiBoot"
 
 msgid "Hardware information"
 msgstr "Информация ПО"
@@ -15436,10 +15439,10 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Выберите тип используемого устройства однокабельного приёма."
 
 msgid "Select the type of shutdown desired when the energy timer activates."
-msgstr ""
+msgstr "Выберите желаемый тип выключения при активации таймера питания."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
+msgstr "Выберите желаемый тип выключения при срабатывании таймера крутого отсчета."
 
 msgid "Select upgrade source"
 msgstr "Выбор источника обновления"
@@ -16964,7 +16967,7 @@ msgid "Sleep Timer"
 msgstr "Таймер сна"
 
 msgid "Sleep Timer Settings"
-msgstr ""
+msgstr "Настройки таймера сна"
 
 msgid "Sleep delay"
 msgstr "Задержка перед выключением"
@@ -16973,30 +16976,30 @@ msgid "Sleep long"
 msgstr "Долгий сон"
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Таймер сна"
 
 msgid "Sleep timer action"
-msgstr ""
+msgstr "Действия таймера сна"
 
 msgid "Sleep timer activation delay"
-msgstr ""
+msgstr "Задержка активации таймера сна"
 
 #, python-format
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер сна: осталось %d минута."
+msgstr[1] "Таймер сна: осталось %d минуты."
+msgstr[2] "Таймер сна: осталось %d минут."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
 msgid_plural "Sleep timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Таймер сна: осталось %d секунда."
+msgstr[1] "Таймер сна: осталось %d секунды."
+msgstr[2] "Таймер сна: осталось %d секунд."
 
 msgid "Sleep timer: Inactive."
-msgstr ""
+msgstr "Таймер сна: неактивен."
 
 msgid "SleepTimer"
 msgstr "Таймер сна"
@@ -17195,7 +17198,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Не найдена конфигурация MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance."
-msgstr "К сожалению фид закрыт на техническое обслуживание"
+msgstr "К сожалению фид закрыт на техническое обслуживание."
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
@@ -17925,7 +17928,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 17.04.2022"
+msgstr "Коррекция перевода Monja 20.04.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18308,6 +18311,9 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+"Таймер питания хочет установить %s %s на %s.\n"
+"\n"
+"Нажмите OK, чтобы продолжить использование %s %s."
 
 msgid "The following files were found..."
 msgstr "Следующие файлы были найдены..."
@@ -18364,6 +18370,9 @@ msgid ""
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
+"Таймер сна хочет установить %s %s на %s.\n"
+"\n"
+"Сделать это сейчас или продлить таймер?"
 
 msgid ""
 "The software management extension is not installed!\n"
