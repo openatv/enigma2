@@ -13,7 +13,6 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
-from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
@@ -624,10 +623,10 @@ class TimerLog(Screen):
 		self["logentry"] = Label()
 		self["summary_description"] = StaticText("")
 
-		self["key_red"] = Button(_("Delete entry"))
-		self["key_green"] = Button()
-		self["key_yellow"] = Button()
-		self["key_blue"] = Button(_("Clear log"))
+		self["key_red"] = StaticText(_("Delete entry"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText(_("Clear log"))
 
 		self.onShown.append(self.updateText)
 
