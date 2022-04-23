@@ -80,7 +80,6 @@ class MultiBootManager(Screen, HelpableScreen):
 
 	def getSlotImageListCallback(self, slotImages):
 		imageList = []
-		index = 0
 		if slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(slotImages.keys())
