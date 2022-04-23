@@ -42,7 +42,7 @@ class TimerEditList(Screen):
 		self.onChangedEntry = []
 		self.list = []
 		self.fillTimerList()
-		self["timerlist"] = TimerList([])
+		self["timerlist"] = TimerList(self.list)
 		self.key_red_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
