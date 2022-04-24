@@ -323,8 +323,9 @@ class TimerEditList(Screen):
 			if file.startswith(f):
 				onhdd = True
 				break
+		curname = "'%s'" % cur.name
 		if onhdd:
-			message = (_("Do you really want to delete '%s'?") % (cur.name))
+			message = (_("Do you really want to delete %s?") % (curname))
 			choices = [
 				(_("No"), "no"),
 				(_("Yes, delete from timer list"), "yes"),
@@ -332,7 +333,7 @@ class TimerEditList(Screen):
 			]
 			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
 		else:
-			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete '%s'?") % (cur.name), default=False)
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (curname), default=False)
 
 	def startDelete(self, answer):
 		if not answer or not answer[1]:
