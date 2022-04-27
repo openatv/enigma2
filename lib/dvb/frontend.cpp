@@ -1409,6 +1409,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = snr*10;
 	}
+	else if (!strcmp(m_description, "Hi3716 Internal S2")) // SFX6008 S2
+	{
+		ret = snr;
+	}
 	else if (!strcmp(m_description, "ATBM7821 DVB-T2/C")) //SF8008
 	{
 		ret = snr*10;
