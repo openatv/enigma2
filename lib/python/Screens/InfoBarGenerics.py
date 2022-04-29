@@ -5115,7 +5115,7 @@ class InfoBarSleepTimer:
 			timer.startLongTimer(delay)
 			delay = int(time()) + delay
 		else:
-			message = _("%s has been disabled." % name)
+			message = _("%s has been disabled.") % name
 			timer.stop()
 			delay = 0
 		if showMessage and delay != previous:
