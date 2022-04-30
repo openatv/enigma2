@@ -574,8 +574,10 @@
 	<setup key="SleepTimer" title="Sleep Timer Settings" showOpenWebIf="1">
 		<item text="Sleep timer activation delay" description="Configure the duration, in minutes, before the sleep timer activates.">config.usage.sleepTimer</item>
 		<item text="Sleep timer action" description="Select the type of shutdown desired when the steep timer activates.">config.usage.sleepTimerAction</item>
-		<item text="Energy saver activation delay" description="Configure the duration, in minutes, before the energy saver timer activates.">config.usage.energyTimer</item>
-		<item text="Energy saver action" description="Select the type of shutdown desired when the energy timer activates.">config.usage.energyTimerAction</item>
+		<if conditional="self.setupMode">
+			<item text="Energy saver activation delay" description="Configure the duration, in minutes, before the energy saver timer activates.">config.usage.energyTimer</item>
+			<item text="Energy saver action" description="Select the type of shutdown desired when the energy timer activates.">config.usage.energyTimerAction</item>
+		</if>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebIf="1">
 		<item level="0" text="Select softcam" description="Select a softcam from the available list.">config.misc.softcams</item>

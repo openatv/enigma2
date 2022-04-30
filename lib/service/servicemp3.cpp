@@ -569,8 +569,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	else
 		filename = m_ref.path.c_str();
 
-	if(!m_ref.url.empty())
-		filename = m_ref.url.c_str();
+	if(!m_ref.alternativeurl.empty())
+		filename = m_ref.alternativeurl.c_str();
 
 	const char *ext = strrchr(filename, '.');
 	if (!ext)

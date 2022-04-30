@@ -277,8 +277,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSleepTimer(self):
-		from Screens.SleepTimer import SleepTimer
-		self.session.open(SleepTimer)
+		from Screens.SleepTimer import SleepTimerButton
+		self.session.open(SleepTimerButton)
 
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
