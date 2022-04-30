@@ -8,9 +8,10 @@ from Screens.Setup import Setup
 
 
 class SleepTimer(Setup):
-	def __init__(self, session):
+	def __init__(self, session, setupMode=True):
 		if not InfoBar and not InfoBar.instance:
 			self.close()
+		self.setupMode = setupMode
 		Setup.__init__(self, session=session, setup="SleepTimer")
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
@@ -70,3 +71,11 @@ class SleepTimer(Setup):
 	def clearTimer(self):
 		self.timer.stop()
 		self.timer.callback.remove(self.timeout)
+
+
+class SleepTimerButton(SleepTimer):
+	def __init__(self, session):
+		SleepTimer.__init__(self, session, setupMode=False)
+
+	def keySelect(self):
+		SleepTimer.keySave(self)
