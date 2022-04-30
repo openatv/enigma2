@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -1345,6 +1345,14 @@ msgid "%s additional screens"
 msgstr "ค้นหา additional SR"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2043,7 +2051,7 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr ""
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<ไม่ทราบ>"
 
 #, fuzzy
@@ -2055,13 +2063,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
@@ -2146,6 +2147,13 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "กำลังบันทึกรายอยู่ หยุดการบันทึกก่อนค้นหาดาวเทียม"
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr ""
 
@@ -2170,12 +2178,6 @@ msgstr ""
 "เครื่องดรีมบอกซ์กำลังจะ Standby\n"
 "ต้องการ Standby ตอนนี้หรือไม่?"
 
-#, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
@@ -2183,12 +2185,6 @@ msgid ""
 msgstr ""
 "เครื่องดรีมบอกซ์กำลังจะปิด (Shutdown)\n"
 "ต้องการปิดตอนนี้หรือไม่?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
 
 msgid "A small overview of the available icon states and actions."
 msgstr "ไอคอนแสดงสถานะและการทำงานต่างๆ"
@@ -3057,6 +3053,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -4132,13 +4131,11 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "เลือกช่องรายการ"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "เลือกช่องรายการ"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "เลือกช่องรายการ"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4975,7 +4972,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6121,6 +6121,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "ลบ"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -6173,14 +6176,10 @@ msgstr ""
 msgid "Delete folder"
 msgstr "ลบไฟล์"
 
-#, fuzzy
-msgid "Delete image"
-msgstr "ลบไฟล์"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 #, fuzzy
@@ -6786,7 +6785,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "คงรายการปัจจุบันไว้ แต่ให้ยกเลิกรายการต่อไปแทน"
 
 msgid ""
@@ -7037,6 +7036,14 @@ msgstr ""
 msgid "Edit"
 msgstr "แก้ไข"
 
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "แก้ไขชื่อเรื่อง"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "แก้ไขชื่อเรื่อง"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7061,15 +7068,7 @@ msgstr "แก้ไขตอนที่ของเรื่องปัจจ
 msgid "Edit line "
 msgstr "แก้ไขชื่อเรื่อง"
 
-#, fuzzy
-msgid "Edit mode off"
-msgstr "แก้ไขชื่อเรื่อง"
-
-#, fuzzy
-msgid "Edit mode on"
-msgstr "แก้ไขชื่อเรื่อง"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #, fuzzy
@@ -7354,6 +7353,33 @@ msgid "End time"
 msgstr "เวลาสิ้นสุด"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7727,12 +7753,6 @@ msgid "Exceeds Bludisc medium!"
 msgstr ""
 
 msgid "Exceeds dual layer medium!"
-msgstr ""
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
 msgstr ""
 
 msgid "Execution condition"
@@ -8999,6 +9019,9 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
+msgstr ""
+
+msgid "Hide"
 msgstr ""
 
 msgid "Hide VBI line for this service"
@@ -10534,10 +10557,10 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr ""
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11252,6 +11275,14 @@ msgstr "เคลื่อนไปทางทิศตะวันออก"
 msgid "Move Left/Right"
 msgstr ""
 
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[โหมดย้าย]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "เคลื่อนไปทางทิศตะวันออก"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11317,14 +11348,6 @@ msgstr ""
 #, fuzzy
 msgid "Move folder"
 msgstr "[โหมดย้าย]"
-
-#, fuzzy
-msgid "Move mode off"
-msgstr "[โหมดย้าย]"
-
-#, fuzzy
-msgid "Move mode on"
-msgstr "เคลื่อนไปทางทิศตะวันออก"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11482,22 +11505,16 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "ผังรายการแบบหลากหลาย"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11968,10 +11985,6 @@ msgid "No hash calculations configured"
 msgstr ""
 
 #, fuzzy
-msgid "No images found"
-msgstr "ไม่พบเครือข่าย"
-
-#, fuzzy
 msgid "No matching place names found"
 msgstr "ไม่พบเครือข่าย"
 
@@ -12006,6 +12019,9 @@ msgstr "เพิ่มบริการ"
 #, fuzzy
 msgid "No services/providers selected"
 msgstr "ยังไม่ได้เลือกบริการหรือผู้ให้บริการ"
+
+msgid "No slot images found"
+msgstr ""
 
 #, fuzzy
 msgid "No standby"
@@ -13700,7 +13716,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14790,7 +14806,7 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15751,7 +15767,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15805,9 +15821,6 @@ msgstr "เลือกพาธของภาพยนต์"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15833,6 +15846,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 #, fuzzy
@@ -17419,6 +17438,9 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Sleep delay"
 msgstr "ตั้งเวลาปิดเครื่อง"
@@ -17426,6 +17448,30 @@ msgstr "ตั้งเวลาปิดเครื่อง"
 #, fuzzy
 msgid "Sleep long"
 msgstr "ตั้งเวลาปิดเครื่อง"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr ""
@@ -17629,10 +17675,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -17937,10 +17983,10 @@ msgstr "ยกเลิกภาพซ้อนภาพ"
 msgid "Stop Streams"
 msgstr "หยุดทดสอบ"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "หยุดรายการปัจจุบัน และไม่ให้รายการต่อไปทำงาน"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "หยุดรายการปัจจุบัน แต่ไม่หยุดกับรายการต่อไป"
 
 #, fuzzy
@@ -18740,6 +18786,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "พบไฟล์เหล่านี้..."
 
@@ -18786,11 +18839,12 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr "เวลาปิดเครื่องเริ่มทำงานแล้ว"
-
-msgid "The sleep timer has been disabled."
-msgstr "เวลาปิดเครื่องถูกยกเลิกแล้ว"
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 #, fuzzy
 msgid ""
@@ -19420,9 +19474,6 @@ msgstr "เลือกการตั้งเวลา"
 msgid "Timer List"
 msgstr ""
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr ""
 
@@ -19431,13 +19482,6 @@ msgstr ""
 
 msgid "Timer entry"
 msgstr "ตั้งเวลา"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
-msgstr ""
 
 msgid "Timer log"
 msgstr "ข้อมูลการตั้งเวลา"
@@ -19458,14 +19502,14 @@ msgstr ""
 "กรุณาตรวจสอบ!"
 
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "ตั้งเวลา"
 
 #, fuzzy
 msgid "Timer recording location"
 msgstr "เลือกการตั้งเวลา"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "การตั้งเวลามีปัญหา"
 
 msgid "Timer selection"
@@ -21450,10 +21494,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21965,7 +22009,7 @@ msgstr "ยกเลิกการแก้ไขกลุ่มรายกา
 msgid "abort favourites edit"
 msgstr "ยกเลิกการแก้ไขรายการโปรด"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "กำลังจะเริ่ม"
 
 msgid "ac3"
@@ -22624,9 +22668,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "ความละเอียดจอ"
@@ -22900,9 +22941,6 @@ msgstr ""
 #, fuzzy
 msgid "not"
 msgstr "ไม่"
-
-msgid "not activated"
-msgstr ""
 
 msgid "not configured"
 msgstr ""
@@ -23219,9 +23257,6 @@ msgid "share:"
 msgstr ""
 
 msgid "shell"
-msgstr ""
-
-msgid "show"
 msgstr ""
 
 msgid "show DVD main menu"
@@ -23658,7 +23693,7 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "เปลี่ยนช่องแล้ว"
 
 #, fuzzy
@@ -23667,6 +23702,24 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "เวลาปิดเครื่องเริ่มทำงานแล้ว"
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "เวลาปิดเครื่องถูกยกเลิกแล้ว"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "เลือกช่องรายการ"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "เลือกช่องรายการ"
+
+#, fuzzy
+#~ msgid "No images found"
+#~ msgstr "ไม่พบเครือข่าย"
 
 #, fuzzy
 #~ msgid "(current image)"

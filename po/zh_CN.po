@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1334,6 +1334,14 @@ msgid "%s additional screens"
 msgstr "%s 个附加屏幕"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s 信息"
 
@@ -2014,7 +2022,7 @@ msgstr "<默认录像位置>"
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<未知>"
 
 msgid "?"
@@ -2025,16 +2033,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"由于有正在进行中的录制任务或者在未来15分钟内有录制定时器任务或电源定时器任务将要执行\n"
-"为此将延长 %s %s 睡眠定时器30分钟\n"
-"你的接收机将在这些任务完成后再次执行睡眠定时器,是否现在就进入待机状态？"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
@@ -2120,6 +2118,13 @@ msgstr "当前正在运行录制. 在尝试扫描前请停止录像."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "当前正在运行录制.请在设置寻星之前停止录像."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "是否重复定时器或只运行一次？"
 
@@ -2149,27 +2154,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"睡眠定时器要设置您的 %s %s 到待机状态.\n"
-"是否马上执行或延长几分钟后再执行？"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "睡眠计时器要设置 %s %s 关机\n"
 "是否现在关机？"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"睡眠定时器要关闭 %s %s .\n"
-"是否马上执行或延长几分钟再执行？"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "可用的图标状态和执行情况概述."
@@ -3009,6 +2998,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "结束位置:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "田径"
@@ -4064,11 +4056,11 @@ msgstr "取消保存时移为电影"
 msgid "Cancel selection"
 msgstr "取消选择"
 
-msgid "Cancel the image selection and exit"
-msgstr "取消固件选择并退出"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "取消镜像选择并退出所有菜单"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "取消更新"
@@ -4873,8 +4865,11 @@ msgstr "配置用于图文电视的显示分辨率和字体."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "配置屏幕保护程序的持续时间(分钟)."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "配置睡眠计时器的持续时间."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "配置图文电视显示区域的x端坐标."
@@ -5975,6 +5970,9 @@ msgstr "确认删除"
 msgid "Delete EPG"
 msgstr "删除EPG"
 
+msgid "Delete Image"
+msgstr "删除镜像"
+
 msgid "Delete Language"
 msgstr "删除语言"
 
@@ -6023,13 +6021,10 @@ msgstr "删除文件或目录(及其所有内容)"
 msgid "Delete folder"
 msgstr "删除文件夹"
 
-msgid "Delete image"
-msgstr "删除镜像"
-
 msgid "Delete logfile"
 msgstr "删除日志文件"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6642,7 +6637,7 @@ msgstr "不保存"
 msgid "Don't show default"
 msgstr "不显示默认值"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "不停止当前事件但禁用接下来的事件"
 
 msgid ""
@@ -6896,6 +6891,12 @@ msgstr "厄瓜多尔"
 msgid "Edit"
 msgstr "编辑"
 
+msgid "Edit Mode Off"
+msgstr "关闭编辑模式"
+
+msgid "Edit Mode On"
+msgstr "打开编辑模式"
+
 msgid "Edit Quad Channel Entry"
 msgstr "编辑四画面频道条目"
 
@@ -6917,13 +6918,7 @@ msgstr "编辑当前行"
 msgid "Edit line "
 msgstr "编辑行 "
 
-msgid "Edit mode off"
-msgstr "关闭编辑模式"
-
-msgid "Edit mode on"
-msgstr "打开编辑模式"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "编辑新条目"
 
 msgid "Edit position is the line end"
@@ -7199,6 +7194,33 @@ msgstr "结束时间"
 
 msgid "Energie"
 msgstr "能量"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "英语"
@@ -7601,12 +7623,6 @@ msgstr "超过蓝光介质！"
 
 msgid "Exceeds dual layer medium!"
 msgstr "超过双层介质!"
-
-msgid "Execute after current event"
-msgstr "当前事件后执行"
-
-msgid "Execute in "
-msgstr "在此执行 "
 
 msgid "Execution condition"
 msgstr "执行条件"
@@ -8826,6 +8842,9 @@ msgstr "隐藏/空白"
 
 msgid "Hidden network"
 msgstr "隐藏网络"
+
+msgid "Hide"
+msgstr "隐藏"
 
 msgid "Hide VBI line for this service"
 msgstr "隐藏此服务的VBI行"
@@ -10295,11 +10314,11 @@ msgstr "载入未链接的用户自定义频道组"
 msgid "Load/Save/Delete"
 msgstr "加载/保存/删除"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "正在加载信息,请稍候..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "本地机顶盒"
@@ -10984,6 +11003,12 @@ msgstr "移动1元素"
 msgid "Move Left/Right"
 msgstr "左/右 移动"
 
+msgid "Move Mode Off"
+msgstr "关闭移动模式"
+
+msgid "Move Mode On"
+msgstr "开启移动模式"
+
 msgid "Move PIP"
 msgstr "移动画中画"
 
@@ -11040,12 +11065,6 @@ msgstr "将文件/目录移动到目标目录"
 
 msgid "Move folder"
 msgstr "移动文件夹"
-
-msgid "Move mode off"
-msgstr "关闭移动模式"
-
-msgid "Move mode on"
-msgstr "开启移动模式"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11185,22 +11204,16 @@ msgstr "莫桑比克"
 msgid "Multi EPG"
 msgstr "多重EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "多引导镜像管理器"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11648,9 +11661,6 @@ msgstr "未检测到硬盘."
 msgid "No hash calculations configured"
 msgstr "未配置哈希计算"
 
-msgid "No images found"
-msgstr "没有找到镜像"
-
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
 
@@ -11683,6 +11693,9 @@ msgstr "无频道"
 
 msgid "No services/providers selected"
 msgstr "未选择 频道/供应商"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "不待机"
@@ -13339,7 +13352,7 @@ msgstr "按OK键使用该语言.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "按OK键使用此语言环境.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14400,7 +14413,7 @@ msgstr "从备份恢复设置"
 msgid "Restore system settings"
 msgstr "恢复系统设置"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15322,8 +15335,8 @@ msgstr "为用户界面选择当前突出显示的区域设置/语言"
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "按OK关联所需的功能.使用 \"CH+/-\" 列表翻页.关联的功能再按OK将取消关联.使用 \"Next/Previous\"键对关联功能进行排序."
 
-msgid "Select the highlighted image and reboot"
-msgstr "选择镜像并重新启动"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "从菜单中选择区域设置"
@@ -15373,9 +15386,6 @@ msgstr "选择转换后的字符集"
 msgid "Select the shifted character set for the next character only"
 msgstr "仅为下一个字符选择移位字符集"
 
-msgid "Select the sleep timer action."
-msgstr "选择睡眠定时器操作."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15402,6 +15412,12 @@ msgstr "选择要使用的LNB/设备类型(通常为'通用').如果您的LNB类
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "选择正在使用的单电缆接收设备的类型."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "选择升级源"
@@ -16922,11 +16938,38 @@ msgstr "睡眠"
 msgid "Sleep Timer"
 msgstr "睡眠定时器"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "睡眠延迟"
 
 msgid "Sleep long"
 msgstr "Sleep键 长按"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "休眠定时器"
@@ -17125,11 +17168,11 @@ msgstr "抱歉, 媒体扫描未安装！"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "抱歉,MiniDLNA配置丢失"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "抱歉,订阅源因维护而关闭"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "抱歉,订阅源因维护而关闭,请稍后再试."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "抱歉,订阅源因维护而关闭"
 
 msgid "Sorry no backups found!"
 msgstr "抱歉, 没有发现备份!"
@@ -17425,10 +17468,10 @@ msgstr "停止画中画"
 msgid "Stop Streams"
 msgstr "停止数据流"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "停止当前事件并禁用下一个事件"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "停止当前事件但不禁用下一个事件"
 
 msgid "Stop entry"
@@ -18233,6 +18276,13 @@ msgstr "默认设置为唤醒时间-5分钟和定时器开始时间+5分钟.此�
 msgid "The detailed information is intended for developers only."
 msgstr "详细信息仅供开发人员使用."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "找到以下文件..."
 
@@ -18282,11 +18332,12 @@ msgstr "频道列表已重新加载."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "没有额外的确认查询,设置'没有查询'与'标准'相同.所有其他的依赖关系(如录制,时间范围)保持持续."
 
-msgid "The sleep timer has been activated."
-msgstr "睡眠定时器已激活."
-
-msgid "The sleep timer has been disabled."
-msgstr "睡眠定时器已禁用."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18913,9 +18964,6 @@ msgstr "定时器操作"
 msgid "Timer List"
 msgstr "定时器列表"
 
-msgid "Timer action"
-msgstr "定时器动作"
-
 msgid "Timer edit"
 msgstr "定时器编辑"
 
@@ -18924,13 +18972,6 @@ msgstr "定时器编辑器"
 
 msgid "Timer entry"
 msgstr "定时器条目"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "定时器已激活:+%d 分钟"
-
-msgid "Timer is not activated"
-msgstr "定时器未激活"
 
 msgid "Timer log"
 msgstr "定时器日志"
@@ -18949,13 +18990,13 @@ msgstr ""
 "检测到 timers.xml 中定时器重叠!\n"
 "请重新检查！"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "定时器预览"
 
 msgid "Timer recording location"
 msgstr "录制定时器位置"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "定时器完整性错误"
 
 msgid "Timer selection"
@@ -20894,10 +20935,10 @@ msgstr "是,但保存时移为影片并继续录制"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "是,但保存时移为影片并停止录制"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "是,从定时器列表中删除"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "是,从定时器列表中删除和删除录制"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21444,7 +21485,7 @@ msgstr "取消自定义组编辑"
 msgid "abort favourites edit"
 msgstr "取消喜爱频道编辑"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "即将开始"
 
 msgid "ac3"
@@ -22096,9 +22137,6 @@ msgstr "时:分 上午/下午"
 msgid "hh:mmam/pm"
 msgstr "时:分 上午/下午"
 
-msgid "hide"
-msgstr "隐藏"
-
 msgid "highest Resolution"
 msgstr "最高分辨率"
 
@@ -22359,9 +22397,6 @@ msgstr "正常"
 
 msgid "not"
 msgstr "否"
-
-msgid "not activated"
-msgstr "未激活"
 
 msgid "not configured"
 msgstr "未配置"
@@ -22677,9 +22712,6 @@ msgstr "共享:"
 
 msgid "shell"
 msgstr "终端"
-
-msgid "show"
-msgstr "显示"
 
 msgid "show DVD main menu"
 msgstr "显示DVD主菜单"
@@ -23107,7 +23139,7 @@ msgstr "是(保持订阅源)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参阅手册以获得进一步帮助."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "切换"
 
 msgid "zapping"
@@ -23115,6 +23147,81 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "显示"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "由于有正在进行中的录制任务或者在未来15分钟内有录制定时器任务或电源定时器任务将要执行\n"
+#~ "为此将延长 %s %s 睡眠定时器30分钟\n"
+#~ "你的接收机将在这些任务完成后再次执行睡眠定时器,是否现在就进入待机状态？"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠定时器要设置您的 %s %s 到待机状态.\n"
+#~ "是否马上执行或延长几分钟后再执行？"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠定时器要关闭 %s %s .\n"
+#~ "是否马上执行或延长几分钟再执行？"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "配置睡眠计时器的持续时间."
+
+#~ msgid "Execute after current event"
+#~ msgstr "当前事件后执行"
+
+#~ msgid "Execute in "
+#~ msgstr "在此执行 "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "多引导镜像管理器"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "选择睡眠定时器操作."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "睡眠定时器已激活."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "睡眠定时器已禁用."
+
+#~ msgid "Timer action"
+#~ msgstr "定时器动作"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "定时器已激活:+%d 分钟"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "定时器未激活"
+
+#~ msgid "not activated"
+#~ msgstr "未激活"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "取消固件选择并退出"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "取消镜像选择并退出所有菜单"
+
+#~ msgid "No images found"
+#~ msgstr "没有找到镜像"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "选择镜像并重新启动"
 
 #, python-format
 #~ msgid " bootmode = %s"

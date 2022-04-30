@@ -113,6 +113,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
 
+		if config.usage.energyTimer.value:
+			self.setEnergyTimer(config.usage.energyTimer.value, showMessage=False)
+
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.showMenu)
 
@@ -274,8 +277,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSleepTimer(self):
-		from Screens.SleepTimerEdit import SleepTimerEdit
-		self.session.open(SleepTimerEdit)
+		from Screens.SleepTimer import SleepTimerButton
+		self.session.open(SleepTimerButton)
 
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList

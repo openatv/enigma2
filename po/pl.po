@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
-"PO-Revision-Date: 2022-04-14 18:01+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
+"PO-Revision-Date: 2022-04-26 10:12+0000\n"
+"Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1361,6 +1361,14 @@ msgid "%s additional screens"
 msgstr "%s dodatkowe ekrany"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s info"
 
@@ -2042,7 +2050,7 @@ msgstr "<Domyślna lokalizacja nagrań>"
 msgid "<Last timer location>"
 msgstr "<Ostatnia lokalizacja timera>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<nieznany>"
 
 msgid "?"
@@ -2053,16 +2061,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Nagrywanie, timer nagrywania lub zasilania działa lub zaczyna się za 15 minut.\n"
-"Wydłuż czas czuwania 30 minut. Twój %s %s\n"
-"wyłączy się po zakończeniu timera. Przejść do trybu czuwania?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Trwa sprawdzanie aktualizacji w tle, poczekaj kilka minut i spróbuj ponownie."
@@ -2087,7 +2085,7 @@ msgid ""
 "Do that now?"
 msgstr ""
 "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika.\n"
-"Zróbić to teraz?"
+"Czy chcesz to zrobić teraz?"
 
 #, python-format
 msgid ""
@@ -2148,6 +2146,13 @@ msgstr "Trwa nagrywanie. Zatrzymaj nagrywanie zanim rozpoczniesz skanowanie."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Nagrywanie w toku. Zatrzymaj nagrywanie przed uruchomieniem miernika sygnału."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Powtarzanie timera lub tylko raz?"
 
@@ -2177,27 +2182,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Timer chce przełączyć %s %s w tryb czuwania.\n"
-"Zrobić to teraz czy ustawić dodatkowy czas?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Timer chce wyłączyć %s %s.\n"
 "Wyłączyć teraz?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Timer chce wyłączyć %s %s.\n"
-"Zrobić to teraz czy ustawić dodatkowy czas?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Mały przegląd dostępnych stanów ikon i ich działań."
@@ -3039,6 +3028,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Na Koniec:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Lekkoatletyka"
@@ -4094,11 +4086,11 @@ msgstr "Anuluj zapis timeshiftu jako film"
 msgid "Cancel selection"
 msgstr "Anuluj wybór"
 
-msgid "Cancel the image selection and exit"
-msgstr "Anuluj wybór obrazu i wyjdź"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "Anuluj aktualizację"
@@ -4902,8 +4894,11 @@ msgstr "Skonfiguruj rozdzielczość wyświetlania i czcionkę używaną do teleg
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Skonfiguruj czas trwania timera w minutach."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Skonfiguruj współrzędną końcową w x obszaru wyświetlania telegazety."
@@ -6004,6 +5999,9 @@ msgstr "Potwierdzenie Usuwania"
 msgid "Delete EPG"
 msgstr "Usuń EPG"
 
+msgid "Delete Image"
+msgstr "Usuń system"
+
 msgid "Delete Language"
 msgstr "Usuń Język"
 
@@ -6052,14 +6050,11 @@ msgstr "Usuń plik lub katalog (i całą jego zawartość)"
 msgid "Delete folder"
 msgstr "Usuń folder"
 
-msgid "Delete image"
-msgstr "Usuń system"
-
 msgid "Delete logfile"
 msgstr "Usuń plik logu"
 
-msgid "Delete or Wipe the highlighted image slot"
-msgstr "Usuń lub wyczyść podświetlone miejsce na system"
+msgid "Delete or Wipe the highlighted slot"
+msgstr ""
 
 msgid "Delete playlist entry"
 msgstr "Usuń pozycję z listy"
@@ -6340,7 +6335,7 @@ msgid "Display Setup"
 msgstr "Ustawienia wyświetlacza"
 
 msgid "Display and user interface"
-msgstr "Wyświetlacz i interfejs użytkownika"
+msgstr "Ekran i interfejs użytkownika"
 
 msgid "Display message before playing next movie"
 msgstr "Wyświetlanie wiadomości przed rozpoczęciem kolejnego filmu"
@@ -6671,7 +6666,7 @@ msgstr "Nie zapisuj"
 msgid "Don't show default"
 msgstr "Nie pokazuj domyślnych ustawień"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz nadchodzące wydarzenia"
 
 msgid ""
@@ -6926,6 +6921,12 @@ msgstr "Ekwador"
 msgid "Edit"
 msgstr "Edytuj"
 
+msgid "Edit Mode Off"
+msgstr "Zakończ edycję"
+
+msgid "Edit Mode On"
+msgstr "Edytuj"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Edycja nowego wpisu Kanału Quad"
 
@@ -6947,13 +6948,7 @@ msgstr "Edytuj bieżącą linię"
 msgid "Edit line "
 msgstr "Edytuj linię "
 
-msgid "Edit mode off"
-msgstr "Zakończ edycję"
-
-msgid "Edit mode on"
-msgstr "Edytuj"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Edycja nowego wpisu"
 
 msgid "Edit position is the line end"
@@ -7229,6 +7224,35 @@ msgstr "Zakończenie"
 
 msgid "Energie"
 msgstr "Energia"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "Angielski"
@@ -7632,12 +7656,6 @@ msgstr "Przewyższa średnie Bludisc!"
 msgid "Exceeds dual layer medium!"
 msgstr "Przekroczona pojemność dwuwarstwowego nośnika!"
 
-msgid "Execute after current event"
-msgstr "Wykonaj po bieżącym zdarzeniu"
-
-msgid "Execute in "
-msgstr "Wykonaj po "
-
 msgid "Execution condition"
 msgstr "Warunek wykonania"
 
@@ -7696,7 +7714,7 @@ msgid "Exit nameserver configuration"
 msgstr "Wyjdź z konfiguracji DNS"
 
 msgid "Exit network interface list"
-msgstr "Opuść listę interfejsu sieciowego"
+msgstr "Opuść listę interfejsów sieciowych"
 
 msgid "Exit network wizard"
 msgstr "Wyjdź z konfiguracji sieci"
@@ -7735,7 +7753,7 @@ msgid "Extended"
 msgstr "Rozszerzony"
 
 msgid "Extended GUI"
-msgstr "Rozszerzone GUI"
+msgstr "Rozszerzenia interfejsu"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "Wtyczka rozszerzonej konfiguracji sieci..."
@@ -8376,21 +8394,21 @@ msgid ""
 "Do you want to restart the GUI now?"
 msgstr ""
 "Interfejs musi zostać zresetowany, aby zastosować nowy język.\n"
-"Czy chcesz go zrestartować teraz?"
+"Czy chcesz to zrobić teraz?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Interfejs wymaga ponownego uruchomienia odbiornika aby zastosować nową skórę\n"
-"Czy chcesz go zrestartować teraz?"
+"Czy chcesz to zrobić teraz?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
 "Interfejs musi zostać zrestartowany, aby zastosować nową skórę\n"
-"Czy chcesz go zrestartować teraz?"
+"Czy chcesz to zrobić teraz?"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -8856,6 +8874,9 @@ msgstr "Ukryty / Pusty"
 
 msgid "Hidden network"
 msgstr "Sieć ukryta"
+
+msgid "Hide"
+msgstr "Ukryj"
 
 msgid "Hide VBI line for this service"
 msgstr "Ukryj linię VBI dla tego kanału"
@@ -10328,11 +10349,11 @@ msgstr "Załaduj niepołączone listy ulubionych"
 msgid "Load/Save/Delete"
 msgstr "Załaduj, zapisz, usuń EPG"
 
-msgid "Loading image slot information, please wait..."
-msgstr "Ładowanie informacji o slocie systemu, proszę czekać..."
-
 msgid "Loading information, please wait..."
 msgstr "Ładowanie informacji, proszę czekać..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Odbiornik lokalny"
@@ -11017,6 +11038,12 @@ msgstr "Przenieś 1 element"
 msgid "Move Left/Right"
 msgstr "Przesuń Lewo/Prawo"
 
+msgid "Move Mode Off"
+msgstr "Zakończ przenoszenie"
+
+msgid "Move Mode On"
+msgstr "Przenieś"
+
 msgid "Move PIP"
 msgstr "Przesuń PIP"
 
@@ -11073,12 +11100,6 @@ msgstr "Przenieś pliki/katalogi do katalogu docelowego"
 
 msgid "Move folder"
 msgstr "Przenieś folder"
-
-msgid "Move mode off"
-msgstr "Zakończ przenoszenie"
-
-msgid "Move mode on"
-msgstr "Przenieś"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Przesuń bieżący wpis DNS o jeden wiersz w dół"
@@ -11218,23 +11239,17 @@ msgstr "Mozambik"
 msgid "Multi EPG"
 msgstr "EPG wielu kanałów"
 
-msgid "Multi-Boot Image Manager"
-msgstr "Menedżer systemów multi-boot"
-
-msgid "Multi-Boot Manager Actions"
-msgstr "Akcje multi-Bootów"
-
 msgid "MultiBoot"
 msgstr "MultiBoot"
-
-msgid "MultiBoot Image Manager"
-msgstr "Menadżer systemów"
 
 msgid "MultiBoot Information"
 msgstr "Informacje o MultiBoot"
 
 msgid "MultiBoot Manager"
 msgstr "Menedżer MultiBoot"
+
+msgid "MultiBoot Manager Actions"
+msgstr ""
 
 msgid "MultiBoot boot mode"
 msgstr "Tryb startowy MultiBoot"
@@ -11425,7 +11440,7 @@ msgid "Network Information Actions"
 msgstr "Działania dotyczące informacji o sieci"
 
 msgid "Network Interface"
-msgstr "Interfejs sieci"
+msgstr "Interfejs sieciowy"
 
 msgid "Network MAC settings"
 msgstr "Ustawienia adresu MAC"
@@ -11681,9 +11696,6 @@ msgstr "Nie wykryto twardych dysków."
 msgid "No hash calculations configured"
 msgstr "Nie skonfigurowano obliczeń skrótu"
 
-msgid "No images found"
-msgstr "Nie znaleziono systemów"
-
 msgid "No matching place names found"
 msgstr "Nie znaleziono pasujących nazw miejsc"
 
@@ -11716,6 +11728,9 @@ msgstr "Brak usługi"
 
 msgid "No services/providers selected"
 msgstr "Brak wybranych kanałów/dostawców"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Brak czuwania"
@@ -13026,7 +13041,7 @@ msgid ""
 "When you are ready press green to continue."
 msgstr ""
 "Ustaw pozycję interfejsu użytkownika. Krawędzie w czerwonej strefie powinny dotykać krawędzi ekranu telewizora.\n"
-"Następnie naciśnij zielony."
+"Następnie naciśnij zielony przycisk."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13373,8 +13388,8 @@ msgstr "Naciśnij OK aby użyć tego języka. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Naciśnij OK aby użyć tego regionu. [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr "Naciśnij przyciski GÓRA/DÓŁ, aby wybrać system i naciśnij OK lub ZIELONY, aby „Uruchomić ponownie” ten obraz. Jeśli to możliwe, ŻÓŁTY „Usuwa” lub „Wyczyści” system. „Usunięty” system można „Przywrócić” za pomocą NIEBIESKIEGO przycisku. Całkowicie usunięty system „Wyczyszczony” NIE może zostać przywrócony!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Naciśnij przycisk menu, aby ustawić ogólne przesunięcie AC3/Dolby."
@@ -14366,7 +14381,7 @@ msgid "Restart %s %s."
 msgstr "Uruchom ponownie %s %s."
 
 msgid "Restart Enigma2 to apply the changes?"
-msgstr "Uruchom ponownie interfejs, aby zastosować zmiany?"
+msgstr "Czy chcesz zrestartować system, aby zastosować zmiany?"
 
 msgid "Restart GUI"
 msgstr "Restart interfejsu"
@@ -14375,7 +14390,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Uruchom ponownie interfejs po x błędach"
 
 msgid "Restart GUI now?"
-msgstr "Uruchomić ponownie interfejs teraz?"
+msgstr "Czy chcesz zrestartować system?"
 
 msgid "Restart Network"
 msgstr "Restart sieci"
@@ -14390,10 +14405,10 @@ msgid "Restart cardserver"
 msgstr "Uruchom ponownie cardserver"
 
 msgid "Restart enigma"
-msgstr "Uruchom ponownie interfejs"
+msgstr "Uruchom ponownie system"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "Wymagane ponowne uruchomienie, uruchomić ponownie interfejs teraz?"
+msgstr "Wymagane ponowne uruchomienie, czy chcesz to zrobić teraz?"
 
 msgid "Restart network"
 msgstr "Uruchom ponownie sieć"
@@ -14434,8 +14449,8 @@ msgstr "Przywróć ustawienia z kopii zapasowej"
 msgid "Restore system settings"
 msgstr "Przywróć ustawienia systemowe"
 
-msgid "Restore the highlighted image slot"
-msgstr "Przywróć podświetlone miejsce na system"
+msgid "Restore the highlighted slot"
+msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Przywrócić ustawienia z kopii zapasowej? Po przywróceniu odbiornik zostanie ponownie uruchomiony, aby zastosować nowe ustawienia"
@@ -15358,8 +15373,8 @@ msgstr "Wybierz aktualny region/język"
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ', aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Wybierz zaznaczony system i uruchom ponownie"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Wybierz ustawienia regionalne z menu"
@@ -15409,9 +15424,6 @@ msgstr "Wybierz przesunięty zestaw znaków"
 msgid "Select the shifted character set for the next character only"
 msgstr "Wybierz przesunięty zestaw znaków tylko dla następnego znaku"
 
-msgid "Select the sleep timer action."
-msgstr "Akcja dla timera czuwania."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Wybierz źródło domyślnych ustawień DNS."
 
@@ -15438,6 +15450,12 @@ msgstr "Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Je�
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Źródło aktualizacji"
@@ -16961,11 +16979,40 @@ msgstr "Uśpienie"
 msgid "Sleep Timer"
 msgstr "Timer czuwania"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Opóźnienie wykonania (w minutach)"
 
 msgid "Sleep long"
 msgstr "Uśpienie (długo)"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Timer czuwania"
@@ -17164,11 +17211,11 @@ msgstr "Niestety Media Skaner nie jest zainstalowany!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Przepraszamy brak Konfig. MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponownie później."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych"
 
 msgid "Sorry no backups found!"
 msgstr "Nie znaleziono kopii zapasowej!"
@@ -17464,10 +17511,10 @@ msgstr "Zatrzymaj PiP"
 msgid "Stop Streams"
 msgstr "Zatrzymaj"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zatrzymaj bieżące wydarzenie i wyłącz nadchodzące wydarzenie"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zatrzymaj bieżące wydarzenie, ale nie nadchodzące"
 
 msgid "Stop entry"
@@ -18272,6 +18319,13 @@ msgstr "Domyślne ustawienia to czas budzenia - 5 minut i czas rozpoczęcia time
 msgid "The detailed information is intended for developers only."
 msgstr "Szczegółowe informacje przeznaczone są wyłącznie dla deweloperów."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Następujące pliki zostały wykryte..."
 
@@ -18321,11 +18375,12 @@ msgstr "Listy kanałów została przeładowana."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Ustawienie „bez warunku” jest takie samo jak „standardowe” bez dodatkowego zapytania potwierdzającego. Wszystkie inne zależności (np. nagrania, zakres czasowy) pozostają bez zmian."
 
-msgid "The sleep timer has been activated."
-msgstr "Timer został aktywowany."
-
-msgid "The sleep timer has been disabled."
-msgstr "Timer został wyłączony."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18362,7 +18417,7 @@ msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
 msgstr ""
-"Trwa ponowne uruchamianie interfejsu %s %s\n"
+"Interfejs %s %s jest restartowany\n"
 "z powodu błędu w StartEnigma.py"
 
 msgid "The width of the picture. The input will be scaled to match this value."
@@ -18952,9 +19007,6 @@ msgstr "Akcje timera"
 msgid "Timer List"
 msgstr "Lista timera"
 
-msgid "Timer action"
-msgstr "Akcja timera"
-
 msgid "Timer edit"
 msgstr "Edycja timera"
 
@@ -18963,13 +19015,6 @@ msgstr "Edytor timera"
 
 msgid "Timer entry"
 msgstr "Wpis timera"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Timer aktywny: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Timer nieaktywny"
 
 msgid "Timer log"
 msgstr "Log timera"
@@ -18988,13 +19033,13 @@ msgstr ""
 "W pliku timer.xml wykryto 'nakładanie się' timera!\n"
 "Sprawdź to!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Przegląd timerów"
 
 msgid "Timer recording location"
 msgstr "Lokalizacja nagrań z timera"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Błąd timera"
 
 msgid "Timer selection"
@@ -19874,7 +19919,7 @@ msgid "Use the Left/Right buttons on your remote to move the user interface left
 msgstr "Użyj klawiszy w lewo/prawo, aby przesunąć pozycję menu OSD w lewo/prawo"
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr "Użyj przycisków LEWO/PRAWO na pilocie, aby przejść do interfejsu użytkownika w górę/dół"
+msgstr "Użyj przycisków LEWO/PRAWO na pilocie, aby przenieść interfejs użytkownika w górę/dół"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Użyj kreatora sieci, aby skonfigurować swoją sieć. Kreator pomoże ci w jej konfiguracji"
@@ -20933,10 +20978,10 @@ msgstr "Tak, zapisz timeshift i kontynuuj nagrywanie"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Tak, zapisz timeshift i zatrzymaj nagrywanie"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Tak, usuń z listy timera"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Tak, usuń z listy timera i usuń nagranie"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21221,7 +21266,7 @@ msgid "Your Receiver has a Software problem detected. Since the last reboot it h
 msgstr "Odbiornik wykrył problem z oprogramowaniem. Od ostatniego ponownego uruchomienia wystąpił %d razy.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Odbiornik uruchomi się ponownie po naciśnięciu przycisku 'OK' na pilocie zdalnego sterowania."
+msgstr "Odbiornik uruchomi się ponownie po naciśnięciu przycisku 'OK' na pilocie."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Twoja kopia została utworzona. Będziemy kontynuować proces aktualizacji."
@@ -21483,7 +21528,7 @@ msgstr "Przerwij edycję listy ulubionych"
 msgid "abort favourites edit"
 msgstr "Przerwij edycję ulubionych"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "zaraz się rozpocznie"
 
 msgid "ac3"
@@ -22135,9 +22180,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "Ukryj"
-
 msgid "highest Resolution"
 msgstr "najwyższa Rozdzielczość"
 
@@ -22398,9 +22440,6 @@ msgstr "normalny"
 
 msgid "not"
 msgstr "nie"
-
-msgid "not activated"
-msgstr "nie aktywowany"
 
 msgid "not configured"
 msgstr "nie skonfigurowano"
@@ -22716,9 +22755,6 @@ msgstr "udział:"
 
 msgid "shell"
 msgstr "shell"
-
-msgid "show"
-msgstr "Pokaż"
 
 msgid "show DVD main menu"
 msgstr "pokaż główne menu DVD"
@@ -23147,7 +23183,7 @@ msgstr "tak (zachować kanały)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s, należy zapoznać się z instrukcją w celu uzyskania pomocy."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "przełączony"
 
 msgid "zapping"
@@ -23155,6 +23191,99 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "Pokaż"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Nagrywanie, timer nagrywania lub zasilania działa lub zaczyna się za 15 minut.\n"
+#~ "Wydłuż czas czuwania 30 minut. Twój %s %s\n"
+#~ "wyłączy się po zakończeniu timera. Przejść do trybu czuwania?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Timer chce przełączyć %s %s w tryb czuwania.\n"
+#~ "Zrobić to teraz czy ustawić dodatkowy czas?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Timer chce wyłączyć %s %s.\n"
+#~ "Zrobić to teraz czy ustawić dodatkowy czas?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Skonfiguruj czas trwania timera w minutach."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Wykonaj po bieżącym zdarzeniu"
+
+#~ msgid "Execute in "
+#~ msgstr "Wykonaj po "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Menadżer systemów"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Akcja dla timera czuwania."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Timer został aktywowany."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Timer został wyłączony."
+
+#~ msgid "Timer action"
+#~ msgstr "Akcja timera"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Timer aktywny: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Timer nieaktywny"
+
+#~ msgid "not activated"
+#~ msgstr "nie aktywowany"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Anuluj wybór obrazu i wyjdź"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
+
+#~ msgid "Delete or Wipe the highlighted image slot"
+#~ msgstr "Usuń lub wyczyść podświetlone miejsce na system"
+
+#~ msgid "Loading image slot information, please wait..."
+#~ msgstr "Ładowanie informacji o slocie systemu, proszę czekać..."
+
+#~ msgid "Multi-Boot Image Manager"
+#~ msgstr "Menedżer systemów multi-boot"
+
+#~ msgid "Multi-Boot Manager Actions"
+#~ msgstr "Akcje multi-Bootów"
+
+#~ msgid "No images found"
+#~ msgstr "Nie znaleziono systemów"
+
+#~ msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+#~ msgstr "Naciśnij przyciski GÓRA/DÓŁ, aby wybrać system i naciśnij OK lub ZIELONY, aby „Uruchomić ponownie” ten obraz. Jeśli to możliwe, ŻÓŁTY „Usuwa” lub „Wyczyści” system. „Usunięty” system można „Przywrócić” za pomocą NIEBIESKIEGO przycisku. Całkowicie usunięty system „Wyczyszczony” NIE może zostać przywrócony!"
+
+#~ msgid "Restore the highlighted image slot"
+#~ msgstr "Przywróć podświetlone miejsce na system"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Wybierz zaznaczony system i uruchom ponownie"
 
 #, python-format
 #~ msgid " bootmode = %s"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1418,6 +1418,14 @@ msgid "%s additional screens"
 msgstr "Escanejar SR addicional"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2153,7 +2161,7 @@ msgid "<Last timer location>"
 msgstr "<Ubicació del darrer temporitzador>"
 
 #
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<desconegut>"
 
 #
@@ -2168,13 +2176,6 @@ msgstr "??"
 #
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
@@ -2268,6 +2269,13 @@ msgstr "Actualment s'està executant una gravació. Atureu la gravació abans d'
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "En aquests moments s'està realitzant una gravació. Si us plau, atureu-la abans de posar en marxa el satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr ""
 
@@ -2299,12 +2307,6 @@ msgstr ""
 "Una programació d'apagada vol posar\n"
 "la %s %s en repòs. Vols fer-ho ara?"
 
-#, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid ""
@@ -2313,12 +2315,6 @@ msgid ""
 msgstr ""
 "Una programació d'apagada vol apagar\n"
 "la %s %s ara mateix. Vols fer-ho?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -3233,6 +3229,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -4374,15 +4373,11 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Selecció de canal"
 
-#
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Selecció de canal"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Selecció de canal"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -5262,7 +5257,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configureu la durada en minuts per al protector de pantalla."
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6451,6 +6449,10 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Esborrar"
 
+#
+msgid "Delete Image"
+msgstr "Ha fallat l'eliminació"
+
 msgid "Delete Language"
 msgstr ""
 
@@ -6507,14 +6509,10 @@ msgstr ""
 msgid "Delete folder"
 msgstr "Ha fallat l'eliminació!"
 
-#
-msgid "Delete image"
-msgstr "Ha fallat l'eliminació"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 #
@@ -7163,7 +7161,7 @@ msgid "Don't show default"
 msgstr ""
 
 #
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "No aturar el programa en curs, però deshabilitar els següents"
 
 msgid ""
@@ -7426,6 +7424,16 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Edita"
 
+#
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "Hora final"
+
+#
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "Hora final"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7451,17 +7459,7 @@ msgstr ""
 msgid "Edit line "
 msgstr "Hora final"
 
-#
-#, fuzzy
-msgid "Edit mode off"
-msgstr "Hora final"
-
-#
-#, fuzzy
-msgid "Edit mode on"
-msgstr "Hora final"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #
@@ -7765,6 +7763,33 @@ msgid "End time"
 msgstr "Hora final"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 #
@@ -8157,12 +8182,6 @@ msgstr ""
 #
 msgid "Exceeds dual layer medium!"
 msgstr "Excedeix el medi de doble capa!"
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
-msgstr ""
 
 msgid "Execution condition"
 msgstr ""
@@ -9491,6 +9510,9 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Xarxa oculta"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -11101,10 +11123,10 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr ""
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11858,6 +11880,16 @@ msgstr "Moure a l'est"
 msgid "Move Left/Right"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[mode moure]"
+
+#
+#, fuzzy
+msgid "Move Mode On"
+msgstr "Moure a l'est"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11930,16 +11962,6 @@ msgstr ""
 #, fuzzy
 msgid "Move folder"
 msgstr "[mode moure]"
-
-#
-#, fuzzy
-msgid "Move mode off"
-msgstr "[mode moure]"
-
-#
-#, fuzzy
-msgid "Move mode on"
-msgstr "Moure a l'est"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -12104,22 +12126,16 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12632,10 +12648,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
-#
-msgid "No images found"
-msgstr "No s'han trobat imatges"
-
 msgid "No matching place names found"
 msgstr ""
 
@@ -12672,6 +12684,9 @@ msgstr "No servei"
 
 msgid "No services/providers selected"
 msgstr "No s’han seleccionat serveis / proveïdors"
+
+msgid "No slot images found"
+msgstr ""
 
 #
 msgid "No standby"
@@ -14499,7 +14514,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -15666,7 +15681,7 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "Restaura la configuració del sistema"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -16681,7 +16696,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #
@@ -16735,9 +16750,6 @@ msgstr "Seleccioneu el joc de caràcters desplaçat"
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleccioneu el conjunt de caràcters desplaçat només per al següent personatge"
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16764,6 +16776,12 @@ msgstr "Seleccioneu el tipus de LNB / dispositiu que s’utilitza (normalment �
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Seleccioneu el tipus de dispositiu de recepció d’un cable únic que feu servir."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 #
 #, fuzzy
@@ -18416,6 +18434,9 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Sleep delay"
@@ -18425,6 +18446,30 @@ msgstr "Programació d'apagada"
 #, fuzzy
 msgid "Sleep long"
 msgstr "Programació d'apagada"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr ""
@@ -18630,10 +18675,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18962,11 +19007,11 @@ msgid "Stop Streams"
 msgstr "aturar entrada"
 
 #
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Aturar el programa actual i deshabilitar els següents"
 
 #
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Aturar el programa actual però no els següents"
 
 #
@@ -19800,6 +19845,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "S’han trobat els fitxers següents …"
@@ -19851,11 +19903,12 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr "S'ha activat la programació d'aturada."
-
-msgid "The sleep timer has been disabled."
-msgstr "S'ha desactivat la programació d'aturada."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -20503,9 +20556,6 @@ msgstr "Selecció de gravació"
 msgid "Timer List"
 msgstr ""
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr "Edició del temporitzador"
 
@@ -20515,13 +20565,6 @@ msgstr ""
 #
 msgid "Timer entry"
 msgstr "Gravació"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
-msgstr ""
 
 #
 msgid "Timer log"
@@ -20541,7 +20584,7 @@ msgstr ""
 "Torneu-ho a comprovar."
 
 #
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Visió general del temporitzador"
 
 #
@@ -20549,7 +20592,7 @@ msgid "Timer recording location"
 msgstr "Canviar la gravació (durada)"
 
 #
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Error de programació"
 
 #
@@ -22664,10 +22707,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -23211,7 +23254,7 @@ msgid "abort favourites edit"
 msgstr "cancel·lar l'edició de preferits"
 
 #
-msgid "about to start"
+msgid "About to start"
 msgstr "per a començar"
 
 msgid "ac3"
@@ -23930,9 +23973,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -24241,9 +24281,6 @@ msgstr ""
 #, fuzzy
 msgid "not"
 msgstr "no"
-
-msgid "not activated"
-msgstr ""
 
 #
 msgid "not configured"
@@ -24599,9 +24636,6 @@ msgid "share:"
 msgstr ""
 
 msgid "shell"
-msgstr ""
-
-msgid "show"
 msgstr ""
 
 #
@@ -25078,7 +25112,7 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr ""
 
 #
-msgid "zapped"
+msgid "Zapped"
 msgstr "zappejat"
 
 #
@@ -25088,6 +25122,26 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "S'ha activat la programació d'aturada."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "S'ha desactivat la programació d'aturada."
+
+#
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Selecció de canal"
+
+#
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Selecció de canal"
+
+#
+#~ msgid "No images found"
+#~ msgstr "No s'han trobat imatges"
 
 #
 #, fuzzy

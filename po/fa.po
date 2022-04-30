@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1392,6 +1392,14 @@ msgid "%s additional screens"
 msgstr ""
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2094,7 +2102,7 @@ msgstr "<محل پیش فرض فیلم>"
 msgid "<Last timer location>"
 msgstr "<آخرین مکان زمان>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<نامشخص>"
 
 #, fuzzy
@@ -2106,13 +2114,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
@@ -2199,6 +2200,13 @@ msgstr "ضبط کردن در حال اجرا است ، لطفا قبل از اس
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "یک عمل ضبط کردن در حال اجرا است ، لطفا قبل از اجرای ماهواره یاب عمل ضبط را متوقف کنید"
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr ""
 
@@ -2226,12 +2234,6 @@ msgstr ""
 "یک زمان خاموشی میخواهد دستگاه شما را\n"
 "به طور موقت خاموش کند ، انجام شود ؟"
 
-#, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
@@ -2239,12 +2241,6 @@ msgid ""
 msgstr ""
 "یک زمان خاموشی میخواهد دستگاه شما را\n"
 "به طور کامل خاموش کند ، انجام شود ؟"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
 
 msgid "A small overview of the available icon states and actions."
 msgstr ""
@@ -3125,6 +3121,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -4210,13 +4209,11 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "انتخاب کانال"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "انتخاب کانال"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "انتخاب کانال"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -5054,7 +5051,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6212,6 +6212,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "حذف"
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -6264,14 +6267,10 @@ msgstr ""
 msgid "Delete folder"
 msgstr "حذف فایل"
 
-#, fuzzy
-msgid "Delete image"
-msgstr "حذف فایل"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 #, fuzzy
@@ -6878,7 +6877,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "رخداد فعلی متوقف نشود اما رخداد های بعدی غیر فعال شوند"
 
 msgid ""
@@ -7129,6 +7128,14 @@ msgstr ""
 msgid "Edit"
 msgstr "ویرایش"
 
+#, fuzzy
+msgid "Edit Mode Off"
+msgstr "ویرایش عنوان"
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "ویرایش عنوان"
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7153,15 +7160,7 @@ msgstr "ویرایش فصل های عنوان فعلی"
 msgid "Edit line "
 msgstr "ویرایش عنوان"
 
-#, fuzzy
-msgid "Edit mode off"
-msgstr "ویرایش عنوان"
-
-#, fuzzy
-msgid "Edit mode on"
-msgstr "ویرایش عنوان"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 #, fuzzy
@@ -7446,6 +7445,31 @@ msgid "End time"
 msgstr "زمان پایان"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7822,12 +7846,6 @@ msgstr ""
 
 msgid "Exceeds dual layer medium!"
 msgstr "بیش از رسانه دو لایه"
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
-msgstr ""
 
 msgid "Execution condition"
 msgstr ""
@@ -9099,6 +9117,9 @@ msgstr "شبکه مخفی"
 
 msgid "Hidden network"
 msgstr "شبکه مخفی"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -10636,10 +10657,10 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr ""
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11356,6 +11377,14 @@ msgstr "جابجایی به شرق"
 msgid "Move Left/Right"
 msgstr ""
 
+#, fuzzy
+msgid "Move Mode Off"
+msgstr "[حالت حرکت]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "جابجایی به شرق"
+
 msgid "Move PIP"
 msgstr ""
 
@@ -11425,14 +11454,6 @@ msgstr "انتقال به پوشه دیگر"
 #, fuzzy
 msgid "Move folder"
 msgstr "[حالت حرکت]"
-
-#, fuzzy
-msgid "Move mode off"
-msgstr "[حالت حرکت]"
-
-#, fuzzy
-msgid "Move mode on"
-msgstr "جابجایی به شرق"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11587,22 +11608,16 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "EPG چندگانه"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12082,10 +12097,6 @@ msgid "No hash calculations configured"
 msgstr ""
 
 #, fuzzy
-msgid "No images found"
-msgstr "هیچ شبکه ای یافت نشد"
-
-#, fuzzy
 msgid "No matching place names found"
 msgstr "هیچ شبکه ای یافت نشد"
 
@@ -12122,6 +12133,9 @@ msgstr "اضافه کردن کانال"
 #, fuzzy
 msgid "No services/providers selected"
 msgstr "هیچ کانال و یا ارائه کننده ای انتخاب نشده است"
+
+msgid "No slot images found"
+msgstr ""
 
 #, fuzzy
 msgid "No standby"
@@ -13822,7 +13836,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14926,7 +14940,7 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "بازگردانی تنظیمات سیستم"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15889,7 +15903,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15943,9 +15957,6 @@ msgstr "انتخاب مسیر فیلم"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15972,6 +15983,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 #, fuzzy
@@ -17567,6 +17584,9 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Sleep delay"
 msgstr "زمان خواب"
@@ -17574,6 +17594,28 @@ msgstr "زمان خواب"
 #, fuzzy
 msgid "Sleep long"
 msgstr "زمان خواب"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr ""
@@ -17776,10 +17818,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18082,10 +18124,10 @@ msgstr "توقف تصویر در تصویر"
 msgid "Stop Streams"
 msgstr "توقف تست"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "توقف رخداد فعلی و غیر فعال کردن رخداد های بعدی"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "توقف رخداد فعلی بدون توجه به رخداد های بعدی"
 
 #, fuzzy
@@ -18897,6 +18939,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "فایل های زیر یافت شدند"
@@ -18946,10 +18995,11 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr ""
-
-msgid "The sleep timer has been disabled."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
 msgstr ""
 
 #, fuzzy
@@ -19575,9 +19625,6 @@ msgstr "انتخاب زمان"
 msgid "Timer List"
 msgstr ""
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr ""
 
@@ -19586,13 +19633,6 @@ msgstr ""
 
 msgid "Timer entry"
 msgstr "مورد زمان"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
-msgstr ""
 
 msgid "Timer log"
 msgstr "گزارش زمان"
@@ -19608,14 +19648,14 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "مورد زمان"
 
 #, fuzzy
 msgid "Timer recording location"
 msgstr "محل زمان ضبط"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr ""
 
 msgid "Timer selection"
@@ -21618,10 +21658,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22137,7 +22177,7 @@ msgstr "انصراف از ویرایش لیست"
 msgid "abort favourites edit"
 msgstr "انصراف از ویرایش مورد علاقه"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "نزدیک به شروع شدن"
 
 msgid "ac3"
@@ -22799,9 +22839,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "تفکیک پذیری و دقت"
@@ -23080,9 +23117,6 @@ msgstr ""
 #, fuzzy
 msgid "not"
 msgstr "خیر"
-
-msgid "not activated"
-msgstr ""
 
 msgid "not configured"
 msgstr "پیکربندی نشده"
@@ -23400,9 +23434,6 @@ msgid "share:"
 msgstr ""
 
 msgid "shell"
-msgstr ""
-
-msgid "show"
 msgstr ""
 
 msgid "show DVD main menu"
@@ -23836,7 +23867,7 @@ msgstr "بله نگه داشتن feeds"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "حذف شد"
 
 #, fuzzy
@@ -23845,6 +23876,18 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "انتخاب کانال"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "انتخاب کانال"
+
+#, fuzzy
+#~ msgid "No images found"
+#~ msgstr "هیچ شبکه ای یافت نشد"
 
 #, fuzzy
 #~ msgid "(current image)"

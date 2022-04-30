@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -1285,6 +1285,14 @@ msgid "%s additional screens"
 msgstr ""
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -1965,7 +1973,7 @@ msgstr "<Standard opptaksmappe>"
 msgid "<Last timer location>"
 msgstr "<Siste timer mappe>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<ukjent>"
 
 msgid "?"
@@ -1976,13 +1984,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
@@ -2054,6 +2055,13 @@ msgstr "Et opptak pågår. Vennligst stopp opptaket før kanalsøk kan utføres.
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr ""
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr ""
 
@@ -2081,20 +2089,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
 msgstr ""
 
 msgid "A small overview of the available icon states and actions."
@@ -2928,6 +2924,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -3972,10 +3971,10 @@ msgstr ""
 msgid "Cancel selection"
 msgstr ""
 
-msgid "Cancel the image selection and exit"
+msgid "Cancel the slot selection and exit"
 msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
+msgid "Cancel the slot selection and exit all menus"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4778,7 +4777,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Still inn tid i minutter før skjermspareren starter."
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -5878,6 +5880,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr ""
 
+msgid "Delete Image"
+msgstr "Slett programvare"
+
 msgid "Delete Language"
 msgstr ""
 
@@ -5926,13 +5931,10 @@ msgstr ""
 msgid "Delete folder"
 msgstr ""
 
-msgid "Delete image"
-msgstr "Slett programvare"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6522,7 +6524,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ikke stopp dette program men deaktiver neste program"
 
 msgid ""
@@ -6766,6 +6768,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Rediger"
 
+msgid "Edit Mode Off"
+msgstr ""
+
+msgid "Edit Mode On"
+msgstr ""
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -6787,13 +6795,7 @@ msgstr ""
 msgid "Edit line "
 msgstr ""
 
-msgid "Edit mode off"
-msgstr ""
-
-msgid "Edit mode on"
-msgstr ""
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 msgid "Edit position is the line end"
@@ -7068,6 +7070,33 @@ msgid "End time"
 msgstr "Slutt tid"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7440,12 +7469,6 @@ msgstr ""
 
 msgid "Exceeds dual layer medium!"
 msgstr "Overgår to lags medium!"
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
-msgstr ""
 
 msgid "Execution condition"
 msgstr ""
@@ -8659,6 +8682,9 @@ msgstr ""
 
 msgid "Hidden network"
 msgstr "Skjult nettverk"
+
+msgid "Hide"
+msgstr ""
 
 msgid "Hide VBI line for this service"
 msgstr ""
@@ -10120,10 +10146,10 @@ msgstr "Last kanallister som ikke er tilknyttet"
 msgid "Load/Save/Delete"
 msgstr ""
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -10807,6 +10833,12 @@ msgstr ""
 msgid "Move Left/Right"
 msgstr ""
 
+msgid "Move Mode Off"
+msgstr ""
+
+msgid "Move Mode On"
+msgstr ""
+
 msgid "Move PIP"
 msgstr ""
 
@@ -10862,12 +10894,6 @@ msgid "Move files/directories to target directory"
 msgstr ""
 
 msgid "Move folder"
-msgstr ""
-
-msgid "Move mode off"
-msgstr ""
-
-msgid "Move mode on"
 msgstr ""
 
 msgid "Move the current DNS entry down one line"
@@ -11008,22 +11034,16 @@ msgstr "Mosambik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11468,9 +11488,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
-msgid "No images found"
-msgstr "Ingen programvare ble funnet"
-
 msgid "No matching place names found"
 msgstr ""
 
@@ -11503,6 +11520,9 @@ msgstr "Ingen tjeneste"
 
 msgid "No services/providers selected"
 msgstr "Ingen kanaler/distributører er valgt"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Ikke slå av"
@@ -13115,7 +13135,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14161,7 +14181,7 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "Gjenopprett systeminnstillingene"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15081,7 +15101,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the locale from a menu"
@@ -15132,9 +15152,6 @@ msgstr "Velg shift tegnsett"
 msgid "Select the shifted character set for the next character only"
 msgstr "Velg shift tegnsettet bare for neste tegn"
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15161,6 +15178,12 @@ msgstr "Velg LNB type/enhet som blir brukt (normalt 'Universal'). Hvis din LNB t
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Velg typen av enkeltkablet mottaksenhet du bruker."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr ""
@@ -16667,10 +16690,37 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
+msgstr ""
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
 msgstr ""
 
 msgid "SleepTimer"
@@ -16867,10 +16917,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -17164,10 +17214,10 @@ msgstr "Stopp PiP"
 msgid "Stop Streams"
 msgstr ""
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Stopp nåværende og kommende program"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Stopp nåværende program men ikke stopp kommende"
 
 msgid "Stop entry"
@@ -17938,6 +17988,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Følgende filer ble funnet..."
 
@@ -17985,11 +18042,12 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr "Dvale timer har blitt aktivert."
-
-msgid "The sleep timer has been disabled."
-msgstr "Dvale timer har blitt deaktivert."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18604,9 +18662,6 @@ msgstr ""
 msgid "Timer List"
 msgstr ""
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr "Timer redigering"
 
@@ -18615,13 +18670,6 @@ msgstr ""
 
 msgid "Timer entry"
 msgstr "Timer oppføring"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
-msgstr ""
 
 msgid "Timer log"
 msgstr "Timer logg"
@@ -18638,13 +18686,13 @@ msgstr ""
 "Timer overlapp i timers.xml oppdaget!\n"
 "Vennligst kontroller det på nytt!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Timer oversikt"
 
 msgid "Timer recording location"
 msgstr "Timer opptakssted"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Timer feil"
 
 msgid "Timer selection"
@@ -20545,10 +20593,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21047,7 +21095,7 @@ msgstr ""
 msgid "abort favourites edit"
 msgstr ""
 
-msgid "about to start"
+msgid "About to start"
 msgstr "starter opp"
 
 msgid "ac3"
@@ -21695,9 +21743,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 msgid "highest Resolution"
 msgstr ""
 
@@ -21957,9 +22002,6 @@ msgid "normal"
 msgstr ""
 
 msgid "not"
-msgstr ""
-
-msgid "not activated"
 msgstr ""
 
 msgid "not configured"
@@ -22271,9 +22313,6 @@ msgid "share:"
 msgstr ""
 
 msgid "shell"
-msgstr ""
-
-msgid "show"
 msgstr ""
 
 msgid "show DVD main menu"
@@ -22699,7 +22738,7 @@ msgstr "ja (behold feeder)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "gått til"
 
 msgid "zapping"
@@ -22707,6 +22746,15 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Dvale timer har blitt aktivert."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Dvale timer har blitt deaktivert."
+
+#~ msgid "No images found"
+#~ msgstr "Ingen programvare ble funnet"
 
 #~ msgid "Empty slot"
 #~ msgstr "Tom"

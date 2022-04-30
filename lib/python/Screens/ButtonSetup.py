@@ -240,7 +240,7 @@ def getButtonSetupFunctions():
 	if BoxInfo.getItem("LcdLiveTV"):
 		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	if BoxInfo.getItem("canMultiBoot"):
-		ButtonSetupFunctions.append((_("MultiBoot Image Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
+		ButtonSetupFunctions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if getHaveCI() == 'True':
@@ -268,7 +268,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	ButtonSetupFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
-	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Power"))
+	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", "Power"))
 	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Power"))
 	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", "Setup"))
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", "Setup"))

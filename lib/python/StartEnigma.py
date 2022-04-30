@@ -289,8 +289,8 @@ class PowerKey:
 			self.session.open(Screens.Standby.Standby)
 
 	def openSleepTimer(self):
-		from Screens.SleepTimerEdit import SleepTimerEdit
-		self.session.open(SleepTimerEdit)
+		from Screens.SleepTimer import SleepTimerButton
+		self.session.open(SleepTimerButton)
 
 	def setSleepTimer(self, val):
 		from PowerTimer import PowerTimerEntry

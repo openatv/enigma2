@@ -175,7 +175,7 @@ def InitUsageConfig():
 	choicelist = []
 	for i in list(range(10, 310, 10)):
 		choicelist.append(("%d" % i, "%d " % i + _("seconds")))
-	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="180", choices=choicelist)
+	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="120", choices=choicelist)
 
 	choicelist = []
 	for i in list(range(1, 21)):
@@ -375,14 +375,23 @@ def InitUsageConfig():
 		("50", _("Very slow"))
 	])
 
-	choicelist = [("standby", _("Standby")), ("deepstandby", _("Deep Standby"))]
-	config.usage.sleep_timer_action = ConfigSelection(default="deepstandby", choices=choicelist)
-	choicelist = [("0", _("Disabled")), ("event_standby", _("Execute after current event"))]
-	for i in list(range(900, 14401, 900)):
-		m = abs(i / 60)
-		m = ngettext("%d minute", "%d minutes", m) % m
-		choicelist.append((str(i), _("Execute in ") + m))
-	config.usage.sleep_timer = ConfigSelection(default="0", choices=choicelist)
+	choiceList = [
+		(0, _("Disabled")),
+		(-1, _("At end of current program"))
+	]
+	for minutes in range(15, 241, 15):
+		choiceList.append((minutes * 60, _("%d minutes") % minutes))
+	config.usage.sleepTimer = ConfigSelection(default=0, choices=choiceList)
+	choiceList = [(0, _("Disabled"))]
+	for hours in range(1, 4):
+		choiceList.append((hours * 3600, ngettext("%d hour", "%d hours", hours) % hours))
+	config.usage.energyTimer = ConfigSelection(default=0, choices=choiceList)
+	choiceList = [
+		("standby", _("Standby")),
+		("deepstandby", _("Deep Standby"))
+	]
+	config.usage.sleepTimerAction = ConfigSelection(default="deepstandby", choices=choiceList)
+	config.usage.energyTimerAction = ConfigSelection(default="deepstandby", choices=choiceList)
 
 	choicelist = [("show_menu", _("Show shutdown menu")), ("shutdown", _("Immediate shutdown")), ("standby", _("Standby")), ("standby_noTVshutdown", _("Standby without TV shutdown")), ("sleeptimer", _("SleepTimer")), ("powertimerStandby", _("PowerTimer Standby")), ("powertimerDeepStandby", _("PowerTimer DeepStandby"))]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choicelist)
@@ -516,19 +525,9 @@ def InitUsageConfig():
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices=[
 					("0", _("Just change channels")),
 					("1", _("Channel List"))])
-	if isPluginInstalled("CoolTVGuide"):
-		config.usage.okbutton_mode = ConfigSelection(default="0", choices=[
-						("0", _("InfoBar")),
-						("1", _("Channel List")),
-						("2", _("Show CoolInfoGuide")),
-						("3", _("Show CoolSingleGuide")),
-						("4", _("Show CoolTVGuide")),
-						("5", _("Show CoolEasyGuide")),
-						("6", _("Show CoolChannelGuide"))])
-	else:
-		config.usage.okbutton_mode = ConfigSelection(default="0", choices=[
-						("0", _("InfoBar")),
-						("1", _("Channel List"))])
+	config.usage.okbutton_mode = ConfigSelection(default="0", choices=[
+					("0", _("InfoBar")),
+					("1", _("Channel List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default=False)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default='barright', choices=[
 		('barleft', _("Progress bar left")),
@@ -1482,34 +1481,17 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-	if isPluginInstalled("CoolTVGuide"):
-		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices=[
-					("pliepg", _("Show Graphical EPG")),
-					("single", _("Show Single EPG")),
-					("multi", _("Show Multi EPG")),
-					("vertical", _("Show Vertical EPG")),
-					("eventview", _("Show Eventview")),
-#					("merlinepgcenter", _("Show Merlin EPG Center")),
-					("cooltvguide", _("Show CoolTVGuide"))])
-		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices=[
-					("eventview", _("Show Eventview")),
-					("epgpress", _("Show EPG")),
-					("single", _("Show Single EPG")),
-					("coolsingleguide", _("Show CoolSingleGuide")),
-					("coolinfoguide", _("Show CoolInfoGuide")),
-					("cooltvguide", _("Show CoolTVGuide"))])
-	else:
-		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices=[
-					("pliepg", _("Show Graphical EPG")),
-					("single", _("Show Single EPG")),
-					("multi", _("Show Multi EPG")),
-					("vertical", _("Show Vertical EPG")),
-					("eventview", _("Show Eventview")),
-					("merlinepgcenter", _("Show Merlin EPG Center"))])
-		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices=[
-					("eventview", _("Show Eventview")),
-					("epgpress", _("Show EPG")),
-					("single", _("Show Single EPG"))])
+	config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices=[
+				("pliepg", _("Show Graphical EPG")),
+				("single", _("Show Single EPG")),
+				("multi", _("Show Multi EPG")),
+				("vertical", _("Show Vertical EPG")),
+				("eventview", _("Show Eventview")),
+				("merlinepgcenter", _("Show Merlin EPG Center"))])
+	config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices=[
+				("eventview", _("Show Eventview")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG"))])
 
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices=[("0", _("Time")), ("1", _("Alphanumeric"))])
@@ -1585,7 +1567,7 @@ def InitUsageConfig():
 	config.epgselection.graph_servicewidth = ConfigSelectionNumber(default=250, stepwidth=1, min=70, max=500, wraparound=True)
 	config.epgselection.graph_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default=25, stepwidth=25, min=0, max=150, wraparound=True)
-	config.epgselection.graph_rec_icon_height = ConfigSelection(choices=[("bottom", _("bottom")), ("top", _("top")), ("middle", _("middle")), ("hide", _("hide"))], default="bottom")
+	config.epgselection.graph_rec_icon_height = ConfigSelection(choices=[("bottom", _("bottom")), ("top", _("top")), ("middle", _("middle")), ("hide", _("Hide"))], default="bottom")
 
 	epg_colorkeys = [('24minus', _('24- Hours')),
 					('prevpage', _('Previous page')),

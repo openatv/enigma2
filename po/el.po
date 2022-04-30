@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1369,6 +1369,14 @@ msgid "%s additional screens"
 msgstr "%s πρόσθετες οθόνες"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2052,7 +2060,7 @@ msgstr "<Προεπιλεγμένη τοποθεσία ταινιών>"
 msgid "<Last timer location>"
 msgstr "<Τελευταία τοποθεσία χρονοδιακόπτη>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<άγνωστο>"
 
 msgid "?"
@@ -2063,16 +2071,6 @@ msgstr ";;"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Μία εγγραφή, χρονοδιακόπτης ή χρονοδιακόπτης ενέργειας είναι σε ισχύ ή θα ξεκινήσει σε 15 λεπτά.\n"
-"Κάντε επέκταση του χρονοδιακόπτη ύπνου σε 30 λεπτά. Ο %s %s σας\n"
-"θα κλείσει μετά την εγγραφή ή τον χρονοδιακόπτη ενέργειας. Να γίνει μετάβαση σε αναμονή τώρα;"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Εκτελείται έλεγχος για ενημερώσεις στο παρασκήνιο, περιμένετε μερικά λεπτά και ξαναδοκιμάστε."
@@ -2158,6 +2156,13 @@ msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Μία εγγραφή βρίσκεται σε εξέλιξη. Σταματήστε την εγγραφή πριν ξεκινήσετε την εύρεση σήματος."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Επαναλαμβανόμενος χρονοδιακόπτης ή μία φορά;"
 
@@ -2187,27 +2192,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Ένας χρονοδιακόπτης ύπνου θέλει να θέσει τον %s %s σας σε αναμονή.\n"
-"Να γίνει τώρα ή να οριστεί πρόσθετος χρόνος σε λεπτά;"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Ένας χρονοδιακόπτης ύπνου θέλει να \n"
 "τερματίσει τον %s %s σας. Να γίνει τώρα;"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Ένας χρονοδιακόπτης ύπνου θέλει να τερματίσει τον %s %s σας .\n"
-"Να γίνει τώρα ή να οριστεί πρόσθετος χρόνος σε λεπτά;"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Επισκόπηση των διαθέσιμων εικονιδίων κατάστασης και ενεργειών."
@@ -3051,6 +3040,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Στο τέλος:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Αθλητικά"
@@ -4102,13 +4094,11 @@ msgstr "Ακύρωση αποθήκευσης της χρονομετατόπι�
 msgid "Cancel selection"
 msgstr "Επιλογή καναλιού"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Ακύρωση της επιλογής"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Ακύρωση της επιλογής"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4919,8 +4909,11 @@ msgstr "Ρύθμιση της ανάλυσης της οθόνης και της
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Ρύθμιση της διάρκειας της προστασίας οθόνης σε λεπτά."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Ρύθμιση του διάρκειας του χρονοδιακόπτη ύπνου σε λεπτά."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Ρύθμιση της τελευταίας συντεταγμένης x της περιοχής προβολής του τηλεκειμένου."
@@ -6036,6 +6029,9 @@ msgstr "Επιβεβαίωση διαγραφής"
 msgid "Delete EPG"
 msgstr "Διαγραφή EPG"
 
+msgid "Delete Image"
+msgstr "Διαγραφή image"
+
 msgid "Delete Language"
 msgstr "Διαγραφή γλωσσών"
 
@@ -6084,13 +6080,10 @@ msgstr "Διαγραφή φακέλου ή καταλόγου (και όλων �
 msgid "Delete folder"
 msgstr "Διαγραφή φακέλου"
 
-msgid "Delete image"
-msgstr "Διαγραφή image"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6706,7 +6699,7 @@ msgstr "Να μη γίνει αποθήκευση"
 msgid "Don't show default"
 msgstr "Ταξινόμηση από προεπιλογή"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Χωρίς παύση του τρέχοντος προγράμματος, αλλά με απενεργοποίηση των επερχόμενων"
 
 msgid ""
@@ -6965,6 +6958,12 @@ msgstr "Ισημερινός"
 msgid "Edit"
 msgstr "Επεξεργασία"
 
+msgid "Edit Mode Off"
+msgstr "Μετακίνηση ανενεργή"
+
+msgid "Edit Mode On"
+msgstr "Επεξεργασία ενεργή"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Επεξεργασία στοιχείου τετραπλού καναλιού"
 
@@ -6986,13 +6985,7 @@ msgstr "Επεξεργασία τρέχουσας γραμμής"
 msgid "Edit line "
 msgstr "Επεξεργασία γραμμής "
 
-msgid "Edit mode off"
-msgstr "Μετακίνηση ανενεργή"
-
-msgid "Edit mode on"
-msgstr "Επεξεργασία ενεργή"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Επεξεργασία νέου στοιχείου"
 
 msgid "Edit position is the line end"
@@ -7269,6 +7262,33 @@ msgstr "Ώρα τερματισμού"
 
 msgid "Energie"
 msgstr "Ενέργεια"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "Αγγλικά"
@@ -7666,12 +7686,6 @@ msgstr "Υπέρβαση μέσου Bludisc!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Υπέρβαση μεγέθους διπλής στρώσης του μέσου!"
-
-msgid "Execute after current event"
-msgstr "Εκτέλεση μετά το τρέχον πρόγραμμα"
-
-msgid "Execute in "
-msgstr "Εκτέλεση σε "
 
 msgid "Execution condition"
 msgstr "Κατάσταση εκτέλεσης"
@@ -8910,6 +8924,9 @@ msgstr "Κρυφό / Κενό"
 
 msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
+
+msgid "Hide"
+msgstr "απόκρυψη"
 
 msgid "Hide VBI line for this service"
 msgstr "Απόκρυψη της γραμμής VBI για αυτή την υπηρεσία"
@@ -10404,10 +10421,10 @@ msgstr "Φόρτωση ασύνδετων μπουκέτων χρήστη"
 msgid "Load/Save/Delete"
 msgstr "Φόρτωση/Αποθήκευση/Διαγραφή"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11115,6 +11132,12 @@ msgstr "Μετακίνηση 1 στοιχείου"
 msgid "Move Left/Right"
 msgstr "Μετακίνηση Αριστερά/Δεξιά"
 
+msgid "Move Mode Off"
+msgstr "Μετακίνηση ανενεργή"
+
+msgid "Move Mode On"
+msgstr "Μετακίνηση ενεργή"
+
 msgid "Move PIP"
 msgstr "Μετακίνηση PIP"
 
@@ -11175,12 +11198,6 @@ msgstr "Μετακίνηση αρχείων/καταλόγων στον φάκε
 
 msgid "Move folder"
 msgstr "Μετακίνηση φακέλου"
-
-msgid "Move mode off"
-msgstr "Μετακίνηση ανενεργή"
-
-msgid "Move mode on"
-msgstr "Μετακίνηση ενεργή"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11334,22 +11351,16 @@ msgstr "Μοζαμβίκη"
 msgid "Multi EPG"
 msgstr "Πολλαπλός EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Διαχείριση image πολλαπλής εκκίνησης"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11804,9 +11815,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Δεν έχουν παραμετροποιηθεί οι υπολογισμοί των ψηφιακών υπογραφών"
 
-msgid "No images found"
-msgstr "Δεν βρέθηκαν εικόνες"
-
 msgid "No matching place names found"
 msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
 
@@ -11839,6 +11847,9 @@ msgstr "Καμία υπηρεσία"
 
 msgid "No services/providers selected"
 msgstr "Δεν έχουν επιλεγεί υπηρεσίες/πάροχοι"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Χωρίς αναμονή"
@@ -13511,7 +13522,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14576,7 +14587,7 @@ msgstr "Επαναφορά ρυθμίσεων από αντίγραφο ασφα
 msgid "Restore system settings"
 msgstr "Επαναφορά ρυθμίσεων συστήματος"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15512,7 +15523,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Επιλέξτε την επιθυμητή λειτουργία και πιέστε το \"OK\" για ανάθεση. Χρήση των \"CH+/-\" για εναλλαγή μεταξύ λιστών. Επιλέξτε μία ανατεθειμένη λειτουργία και πιέστε το \"OK\" για να την ακυρώσετε. Χρήση των \"Next/Previous\" για αλλαγή σειράς των ανατιθέμενων λειτουργιών."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15566,9 +15577,6 @@ msgstr "Επιλογή του σετ χαρακτήρων με shift"
 msgid "Select the shifted character set for the next character only"
 msgstr "Επιλογή του σετ χαρακτήρων με shift του εικονικού πληκτρολογίου μόνο για τον επόμενο χαρακτήρα"
 
-msgid "Select the sleep timer action."
-msgstr "Επιλογή ενέργειας χρονοδιακόπτη ύπνου."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15596,6 +15604,12 @@ msgstr "Επιλέξτε τον τύπο του LNB/συσκευής που χρ
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Επιλέξτε τον τύπο της συσκευής μονής καλωδιακής λήψης που χρησιμοποιείτε."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Επιλογή πηγής αναβαθμίσεων"
@@ -17144,11 +17158,38 @@ msgstr "Ύπνος"
 msgid "Sleep Timer"
 msgstr "Χρονοδιακόπτης ύπνου"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Καθυστέρηση ύπνου"
 
 msgid "Sleep long"
 msgstr "Sleep παρατεταμένο"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Χρονοδιακόπτης ύπνου"
@@ -17347,11 +17388,11 @@ msgstr "Λυπούμαστε, το MediaScanner δεν είναι εγκατεσ
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Λυπούμαστε, απουσιάζει το αρχείο ρυθμίσεων του MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης, δοκιμάστε αργότερα."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Λυπούμαστε, οι πηγές δεν είναι διαθέσιμες λόγω συντήρησης"
 
 msgid "Sorry no backups found!"
 msgstr "Λυπούμαστε, δεν βρέθηκαν αντίγραφα ασφαλείας!"
@@ -17651,10 +17692,10 @@ msgstr "Τερματισμός PiP"
 msgid "Stop Streams"
 msgstr "Διακοπή ροών"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Τερματισμός τρέχοντος προγράμματος και ακύρωση των επερχόμενων"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Τερματισμός τρέχοντος προγράμματος αλλά όχι των επερχόμενων"
 
 msgid "Stop entry"
@@ -18476,6 +18517,13 @@ msgstr "Η προεπιλεγμένες ρυθμίσεις είναι: χρόν�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Βρέθηκαν τα παρακάτω αρχεία..."
 
@@ -18525,11 +18573,12 @@ msgstr "Η λίστα υπηρεσιών επαναφορτώθηκε."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Η ρύθμιση 'χωρίς ερώτηση είναι ίδια με τη 'στάνταρ' χωρίς πρόσθετη ερώτηση επιβεβαίωσης. Όλες οι άλλες εξαρτήσεις (π.χ. εγγραφές, κλίμακα χρόνου) παραμένουν σταθερές."
 
-msgid "The sleep timer has been activated."
-msgstr "Ο χρονοδιακόπτης απενεργοποίησης ενεργοποιήθηκε."
-
-msgid "The sleep timer has been disabled."
-msgstr "Ο χρονοδιακόπτης απενεργοποίησης απενεργοποιήθηκε."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19160,9 +19209,6 @@ msgstr "Ενέργεια χρονοδιακόπτη"
 msgid "Timer List"
 msgstr "Λίστα χρονοδιακοπτών"
 
-msgid "Timer action"
-msgstr "Ενέργεια χρονοδιακόπτη"
-
 msgid "Timer edit"
 msgstr "Επεξεργασία χρονοδιακόπτη"
 
@@ -19171,13 +19217,6 @@ msgstr "Επεξεργασία χρονοδιακοπτών"
 
 msgid "Timer entry"
 msgstr "Στοιχείο χρονοδιακόπτη"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Ο χρονοδιακόπτης ενεργοποιήθηκε: +%d λεπτά"
-
-msgid "Timer is not activated"
-msgstr "Χρονοδιακόπτης ανενεργός"
 
 msgid "Timer log"
 msgstr "Καταγραφή χρονοδιακόπτη"
@@ -19196,13 +19235,13 @@ msgstr ""
 "Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο timers.xml!\n"
 "Παρακαλώ ελέγξτε ξανά!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Επισκόπηση χρονοδιακόπτη"
 
 msgid "Timer recording location"
 msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Σφάλμα χρονοδιακόπτη"
 
 msgid "Timer selection"
@@ -21163,10 +21202,10 @@ msgstr "Ναι, αποθήκευση χρονομετατόπισης ως τα�
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ναι, αποθήκευση χρονομετατόπισης ως ταινία και τερματισμός εγγραφής"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ναι, διαγραφή από τη λίστα χρονομετατόπισης"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ναι, διαγραφή από τη λίστα χρονομετατόπισης και διαγραφή εγγραφής"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21715,7 +21754,7 @@ msgstr "ακύρωση επεξεργασίας μπουκέτου"
 msgid "abort favourites edit"
 msgstr "ακύρωση επεξεργασίας αγαπημένων"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "έτοιμο για εκκίνηση"
 
 msgid "ac3"
@@ -22369,9 +22408,6 @@ msgstr "ωω:λλΠΜ/ΜΜ"
 msgid "hh:mmam/pm"
 msgstr "ωω:λλπμ/μμ"
 
-msgid "hide"
-msgstr "απόκρυψη"
-
 msgid "highest Resolution"
 msgstr "υψηλότερη ανάλυση"
 
@@ -22635,9 +22671,6 @@ msgstr ""
 
 msgid "not"
 msgstr "όχι"
-
-msgid "not activated"
-msgstr "μη ενεργό"
 
 msgid "not configured"
 msgstr "μη ρυθμισμένο"
@@ -22954,9 +22987,6 @@ msgstr "κοινόχρηστο στοιχείο:"
 
 msgid "shell"
 msgstr "κέλυφος"
-
-msgid "show"
-msgstr "εμφάνιση"
 
 msgid "show DVD main menu"
 msgstr "εμφάνιση κύριου μενού DVD"
@@ -23385,7 +23415,7 @@ msgstr "ναι (διατήρηση των feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησιμοποιηθεί τώρα. Παρακαλώ συμβουλευτείτε το εγχειρίδιο για περισσότερη βοήθεια πριν επανεκκινήσετε τον %s %s σας."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "έγινε μετάβαση"
 
 msgid "zapping"
@@ -23393,6 +23423,80 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "show"
+#~ msgstr "εμφάνιση"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Μία εγγραφή, χρονοδιακόπτης ή χρονοδιακόπτης ενέργειας είναι σε ισχύ ή θα ξεκινήσει σε 15 λεπτά.\n"
+#~ "Κάντε επέκταση του χρονοδιακόπτη ύπνου σε 30 λεπτά. Ο %s %s σας\n"
+#~ "θα κλείσει μετά την εγγραφή ή τον χρονοδιακόπτη ενέργειας. Να γίνει μετάβαση σε αναμονή τώρα;"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Ένας χρονοδιακόπτης ύπνου θέλει να θέσει τον %s %s σας σε αναμονή.\n"
+#~ "Να γίνει τώρα ή να οριστεί πρόσθετος χρόνος σε λεπτά;"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Ένας χρονοδιακόπτης ύπνου θέλει να τερματίσει τον %s %s σας .\n"
+#~ "Να γίνει τώρα ή να οριστεί πρόσθετος χρόνος σε λεπτά;"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Ρύθμιση του διάρκειας του χρονοδιακόπτη ύπνου σε λεπτά."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Εκτέλεση μετά το τρέχον πρόγραμμα"
+
+#~ msgid "Execute in "
+#~ msgstr "Εκτέλεση σε "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Διαχείριση image πολλαπλής εκκίνησης"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Επιλογή ενέργειας χρονοδιακόπτη ύπνου."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Ο χρονοδιακόπτης απενεργοποίησης ενεργοποιήθηκε."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Ο χρονοδιακόπτης απενεργοποίησης απενεργοποιήθηκε."
+
+#~ msgid "Timer action"
+#~ msgstr "Ενέργεια χρονοδιακόπτη"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Ο χρονοδιακόπτης ενεργοποιήθηκε: +%d λεπτά"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Χρονοδιακόπτης ανενεργός"
+
+#~ msgid "not activated"
+#~ msgstr "μη ενεργό"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Ακύρωση της επιλογής"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Ακύρωση της επιλογής"
+
+#~ msgid "No images found"
+#~ msgstr "Δεν βρέθηκαν εικόνες"
 
 #, python-format
 #~ msgid " bootmode = %s"

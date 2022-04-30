@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1339,6 +1339,14 @@ msgid "%s additional screens"
 msgstr "%s täiendavad ekraanimenüüd"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2037,7 +2045,7 @@ msgstr "<Salvestuste tavaasukoht >"
 msgid "<Last timer location>"
 msgstr "<Viimase taimeri asukoht>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<tundmatu>"
 
 msgid "?"
@@ -2048,16 +2056,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Salvestus, salvestustaimer või toitetaimer on töös või alustab 15 minuti jooksul.\n"
-"Pikenda unetaimerit 30 minutit. %s %s seisatakse\n"
-"pärast salvestus- või toitetaimerit. Kas minna ooteseisundisse kohe?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
@@ -2143,6 +2141,13 @@ msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Toimub salvestamine. Peata salvestamine enne signaalimõõdiku kasutamist."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Kas korduv taimer või ainult üks kord?"
 
@@ -2172,27 +2177,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Unetaimer tahab %s %s viia ooteseisundisse.\n"
-"Kas nõustud või määrata lisaminutid?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Unetaimer soovib %s %s välja lülitada.\n"
 "Kas nõustud?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Unetaimer tahab %s %s välja lülitada.\n"
-"Kas teha seda kohe või määrata lisaminutid?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kasutatavate ikoonide olekute ja tegevuste lühiülevaade."
@@ -3055,6 +3044,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Lõpus:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "kergejõustik"
@@ -4126,13 +4118,11 @@ msgstr "Tühista ajanihke salvestuseks muutmine"
 msgid "Cancel selection"
 msgstr "Kanalivalik"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Kanalivalik"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Kanalivalik"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4958,8 +4948,11 @@ msgstr "Seadista teleteksti lahutust ja kirjatüüpi."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Määra aeg unetaimeri käivitamiseni (min)."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Määra x-koordinaadi lõpp teleteksti kuvaalas."
@@ -6091,6 +6084,9 @@ msgstr "Kustutamise kinnitus"
 msgid "Delete EPG"
 msgstr "Kustuta EPG"
 
+msgid "Delete Image"
+msgstr "Kustuta püsivara"
+
 msgid "Delete Language"
 msgstr "Kustuta keel"
 
@@ -6139,13 +6135,10 @@ msgstr "Kustuta fail ja kataloog (kogu sisuga)"
 msgid "Delete folder"
 msgstr "Kustuta kataloog"
 
-msgid "Delete image"
-msgstr "Kustuta püsivara"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6773,7 +6766,7 @@ msgstr "Ära talleta"
 msgid "Don't show default"
 msgstr "Vaikejärjestus"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
 
 msgid ""
@@ -7038,6 +7031,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Muuda"
 
+msgid "Edit Mode Off"
+msgstr "Keela muutmine"
+
+msgid "Edit Mode On"
+msgstr "Luba muutmine"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Muuda Quad PiP kanalit"
 
@@ -7060,13 +7059,7 @@ msgstr "Muuda käesolev rida"
 msgid "Edit line "
 msgstr "Muuda rida "
 
-msgid "Edit mode off"
-msgstr "Keela muutmine"
-
-msgid "Edit mode on"
-msgstr "Luba muutmine"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Muuda uut kirjet"
 
 msgid "Edit position is the line end"
@@ -7355,6 +7348,33 @@ msgid "End time"
 msgstr "Lõpuaeg"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7763,12 +7783,6 @@ msgstr "Liiga suur bluray ketta jaoks!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Liiga suur kahekihilise ketta jaoks!"
-
-msgid "Execute after current event"
-msgstr "Teosta pärast praegust saadet"
-
-msgid "Execute in "
-msgstr "Käivita  "
 
 msgid "Execution condition"
 msgstr "Täitmise tingimused"
@@ -9032,6 +9046,9 @@ msgstr "Varjatud / tühi"
 
 msgid "Hidden network"
 msgstr "Varjatud võrk"
+
+msgid "Hide"
+msgstr "Peida"
 
 msgid "Hide VBI line for this service"
 msgstr "Peida punktiirjoon ekraani ülaservas"
@@ -10559,10 +10576,10 @@ msgstr "Sidumata lemmiknimekirjad kuvatakse"
 msgid "Load/Save/Delete"
 msgstr "Laadi/talleta/kustuta"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11298,6 +11315,12 @@ msgstr "Liiguta 1 üksus"
 msgid "Move Left/Right"
 msgstr "Liiguta vasakule/paremale"
 
+msgid "Move Mode Off"
+msgstr "Keela liigutamine"
+
+msgid "Move Mode On"
+msgstr "Luba liigutamine"
+
 msgid "Move PIP"
 msgstr "Liiguta PiP-akent"
 
@@ -11359,12 +11382,6 @@ msgstr "Liiguta failid/kataloogid sihtkohta"
 
 msgid "Move folder"
 msgstr "Liiguta kataloog"
-
-msgid "Move mode off"
-msgstr "Keela liigutamine"
-
-msgid "Move mode on"
-msgstr "Luba liigutamine"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11519,22 +11536,16 @@ msgstr "Mosambiik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Multibuut püsivara haldur"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12016,9 +12027,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Ühtegi räsi arvutust ei ole seadistatud"
 
-msgid "No images found"
-msgstr "Püsivara ei leitud"
-
 msgid "No matching place names found"
 msgstr "Asukoha vastet ei leitud"
 
@@ -12054,6 +12062,9 @@ msgstr "Kanal puudub"
 #
 msgid "No services/providers selected"
 msgstr "Kanalit/levitajat pole valitud"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Ooteseisundita"
@@ -13779,7 +13790,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14877,7 +14888,7 @@ msgstr "Taasta seadistused varukoopiast"
 msgid "Restore system settings"
 msgstr "Seadistuste taastamine"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15835,7 +15846,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vali soovitud toiming ja vajuta selle määramiseks 'OK'. Nimekirjade vahetamiseks kasuta 'CH+/-' nuppe. Toimingu eemaldamiseks vali määratud toiming ja vajuta 'OK'. Toimingute järjekorra muutmiseks kasuta 'Eelmine/Järgmine' nuppe."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15889,9 +15900,6 @@ msgstr "Vali unetaimeri tegevus."
 msgid "Select the shifted character set for the next character only"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
-msgid "Select the sleep timer action."
-msgstr "Vali unetaimeri tegevus."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15919,6 +15927,12 @@ msgstr "Vali kasutatava LNB/seadme tüüp (tavaliselt 'universaalne'). Kui pole 
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vali kasutatava Single Cable Reception (SCR) seadme tüüp."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Vali uuenduste allikas"
@@ -17504,11 +17518,38 @@ msgstr "Unetaimer"
 msgid "Sleep Timer"
 msgstr "Unetaimer"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Sulgemise viiteaeg"
 
 msgid "Sleep long"
 msgstr "Sleep - pikk"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Unetaimer"
@@ -17712,11 +17753,11 @@ msgstr "Meediaotsing ei ole paigaldatud!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA on seadistamata"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Käivad hoidlate hooldustööd"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Käivad hoidlate hooldustööd"
 
 #
 msgid "Sorry no backups found!"
@@ -18026,10 +18067,10 @@ msgstr "Sulge PiP"
 msgid "Stop Streams"
 msgstr "Peata voogesitused"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Peata aktiivne salvestus ja keela tulevad"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Peata aktiivne salvestus, aga ära keela tulevaid"
 
 msgid "Stop entry"
@@ -18863,6 +18904,13 @@ msgstr "Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 m
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
 
@@ -18913,13 +18961,12 @@ msgstr "Kanalinimekiri on värskendatud."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Valik 'päringuta' on sama kui 'vaikimisi', ainult lisakinnitust ei küsita. Kõik muud tingimused (salvestused, ajavaru) jäävad samaks."
 
-#
-msgid "The sleep timer has been activated."
-msgstr "Unetaimer aktiveeriti."
-
-#
-msgid "The sleep timer has been disabled."
-msgstr "Unetaimer keelati."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19580,9 +19627,6 @@ msgstr "Taimeri tegevus"
 msgid "Timer List"
 msgstr "Taimerid"
 
-msgid "Timer action"
-msgstr "Taimeri tegevus"
-
 msgid "Timer edit"
 msgstr "Taimeri muutmine"
 
@@ -19591,13 +19635,6 @@ msgstr "Taimerid"
 
 msgid "Timer entry"
 msgstr "Taimer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Taimer aktiveeritud: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Taimer aktiveerimata"
 
 msgid "Timer log"
 msgstr "Taimeri logi"
@@ -19616,13 +19653,13 @@ msgstr ""
 "Taimerite ajad kattuvad!\n"
 "Kontrolli ajad üle!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Taimeri ülevaade"
 
 msgid "Timer recording location"
 msgstr "Taimeriga salvestuse asukoht"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Taimeri viga"
 
 #
@@ -21644,10 +21681,10 @@ msgstr "Jah, aga talleta ajanihe ja jätka salvestamist"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Jah, aga talleta ajanihe ja lõpeta salvestamine"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Jah, kustuta taimeriloendist"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Jah, kustuta taimeriloendist ja kustuta salvestus"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22210,7 +22247,7 @@ msgstr "Tühista muudatused"
 msgid "abort favourites edit"
 msgstr "Tühista muudatused"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "algamas"
 
 msgid "ac3"
@@ -22884,9 +22921,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "Peida"
-
 msgid "highest Resolution"
 msgstr "Kõrgeim lahutus"
 
@@ -23160,9 +23194,6 @@ msgstr ""
 
 msgid "not"
 msgstr "mitte"
-
-msgid "not activated"
-msgstr "aktiveerimata"
 
 msgid "not configured"
 msgstr "ei ole häälestatud"
@@ -23484,9 +23515,6 @@ msgstr "jagu:"
 
 msgid "shell"
 msgstr ""
-
-msgid "show"
-msgstr "Näita"
 
 msgid "show DVD main menu"
 msgstr "Kuva DVD peamenüü"
@@ -23920,7 +23948,7 @@ msgstr "Jah (säilita fiidid)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne %s %s taaskäivitamist."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "vahetatud"
 
 msgid "zapping"
@@ -23928,6 +23956,82 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "show"
+#~ msgstr "Näita"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Salvestus, salvestustaimer või toitetaimer on töös või alustab 15 minuti jooksul.\n"
+#~ "Pikenda unetaimerit 30 minutit. %s %s seisatakse\n"
+#~ "pärast salvestus- või toitetaimerit. Kas minna ooteseisundisse kohe?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Unetaimer tahab %s %s viia ooteseisundisse.\n"
+#~ "Kas nõustud või määrata lisaminutid?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Unetaimer tahab %s %s välja lülitada.\n"
+#~ "Kas teha seda kohe või määrata lisaminutid?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Määra aeg unetaimeri käivitamiseni (min)."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Teosta pärast praegust saadet"
+
+#~ msgid "Execute in "
+#~ msgstr "Käivita  "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Multibuut püsivara haldur"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vali unetaimeri tegevus."
+
+#
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Unetaimer aktiveeriti."
+
+#
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Unetaimer keelati."
+
+#~ msgid "Timer action"
+#~ msgstr "Taimeri tegevus"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Taimer aktiveeritud: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Taimer aktiveerimata"
+
+#~ msgid "not activated"
+#~ msgstr "aktiveerimata"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Kanalivalik"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Kanalivalik"
+
+#~ msgid "No images found"
+#~ msgstr "Püsivara ei leitud"
 
 #~ msgid "(current image)"
 #~ msgstr "(praegune püsivara)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1368,6 +1368,14 @@ msgid "%s additional screens"
 msgstr "%s további képernyők"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s információ"
 
@@ -2055,7 +2063,7 @@ msgstr "<Felvételek helye>"
 msgid "<Last timer location>"
 msgstr "<Időzítés utolsó helye>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<ismeretlen>"
 
 msgid "?"
@@ -2066,16 +2074,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"A felvétel, a Felvétel időzítő vagy a Kikapcsolás időzítő 15 percen belül elindul vagy elkezdődik.\n"
-"Az elalvási időzítőt 30 percig növelje. A(z) %s %s készülék\n"
-"a felvétel vagy Kikapcsolás időzítő esemény után leáll. Most állj készenléti állapotba?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
@@ -2161,6 +2159,13 @@ msgstr "Egy felvétel folyamatban van. A keresés elindítása előtt állítsa 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt megpróbálná elindítani a műhold keresést."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Ismétlődő időzítés vagy csak egyszeri?"
 
@@ -2190,27 +2195,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Az elalvás időzítő készenléti állapotba akarja helyezni a(z) %s %s készüléket.\n"
-"Tegye meg most vagy további perceket ad az időzítéshez?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Az alvás időzítő le akarja állítani\n"
 " a(z) %s %s készüléket. Leállítsa most?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Az elalvás időzítő le akarja állítani a(z) %s %s készüléket.\n"
-"Tegye meg most vagy további perceket ad az időzítéshez?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Egy gyors áttekintés az elérhető ikonokról és állapotokról."
@@ -3060,6 +3049,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Vége:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atlétika"
@@ -4108,13 +4100,11 @@ msgstr "Timeshift felvételének megszakítása"
 msgid "Cancel selection"
 msgstr "Csatorna választás"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Kijelölés visszavonása"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Kijelölés visszavonása"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4923,8 +4913,11 @@ msgstr "Beállíthatja, hogy a teletexthez milyen betűtípust milyen felbontás
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Állítsa be az Elalvás időzítésének időtartamát percekben."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Állítsa be a teletext kijelzési területének \"x\" befejezési koordinátáját."
@@ -6038,6 +6031,9 @@ msgstr "Törlés megerősítése"
 msgid "Delete EPG"
 msgstr "EPG törlése"
 
+msgid "Delete Image"
+msgstr "Kép törlése"
+
 msgid "Delete Language"
 msgstr "Nyelv törlése"
 
@@ -6086,13 +6082,10 @@ msgstr "Fájl vagy könyvtár törlése (és annak tartalma)"
 msgid "Delete folder"
 msgstr "Mappa törlése"
 
-msgid "Delete image"
-msgstr "Kép törlése"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6705,7 +6698,7 @@ msgstr "Ne mentse"
 msgid "Don't show default"
 msgstr "Ne jelenítse meg az alapértelmezettet"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Ne állítsa le a futó eseményt, inkább kapcsolja le a következőt"
 
 msgid ""
@@ -6961,6 +6954,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Szerkesztés"
 
+msgid "Edit Mode Off"
+msgstr "Szerkesztési mód ki"
+
+msgid "Edit Mode On"
+msgstr "Szerkesztési mód be"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Quad csatorna elem szerkesztése"
 
@@ -6982,13 +6981,7 @@ msgstr "Aktuális sor szerkesztése"
 msgid "Edit line "
 msgstr "Sor szerkesztése "
 
-msgid "Edit mode off"
-msgstr "Szerkesztési mód ki"
-
-msgid "Edit mode on"
-msgstr "Szerkesztési mód be"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Új elem hozzáadása"
 
 msgid "Edit position is the line end"
@@ -7265,6 +7258,33 @@ msgstr "Befejezési időpont"
 
 msgid "Energie"
 msgstr "Energetika"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "Angol"
@@ -7662,12 +7682,6 @@ msgstr "Meghaladja a Bluedisc kapacitását!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Meghaladja a kétrétegű hordozó kapacitását!"
-
-msgid "Execute after current event"
-msgstr "Végrehajtás a beállítást követően"
-
-msgid "Execute in "
-msgstr "Végrehajtás "
 
 msgid "Execution condition"
 msgstr "Végrehajtási állapot"
@@ -8908,6 +8922,9 @@ msgstr "Rejtett / Üres"
 
 msgid "Hidden network"
 msgstr "Rejtett hálózat"
+
+msgid "Hide"
+msgstr "elrejt"
 
 msgid "Hide VBI line for this service"
 msgstr "A VBI vonal elrejtése ennél a csatornánál"
@@ -10400,10 +10417,10 @@ msgstr "Leválasztott felhasználói csatornacsomagok betöltése"
 msgid "Load/Save/Delete"
 msgstr "Betöltés/Mentés/Törlés"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11110,6 +11127,12 @@ msgstr "1 elem áthelyezése"
 msgid "Move Left/Right"
 msgstr "Mozgat Bal/Jobb"
 
+msgid "Move Mode Off"
+msgstr "Mozgatási mód ki"
+
+msgid "Move Mode On"
+msgstr "Mozgatási mód be"
+
 msgid "Move PIP"
 msgstr "Kép-A-Képben mozgatása"
 
@@ -11170,12 +11193,6 @@ msgstr "Fájlok/könyvtárak áthelyezése a célkönyvtárba"
 
 msgid "Move folder"
 msgstr "Mappa áthelyezése"
-
-msgid "Move mode off"
-msgstr "Mozgatási mód ki"
-
-msgid "Move mode on"
-msgstr "Mozgatási mód be"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11329,22 +11346,16 @@ msgstr "Mozambik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Lemezkép Kezelő"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11797,9 +11808,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Nincs Hash kalkuláció konfigurálva"
 
-msgid "No images found"
-msgstr "Nem található lemezkép"
-
 msgid "No matching place names found"
 msgstr "Nem található megfelelő helynév"
 
@@ -11832,6 +11840,9 @@ msgstr "Nincs csatorna"
 
 msgid "No services/providers selected"
 msgstr "Nincs szolgáltató kiválasztva"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Nincs kikapcsolás"
@@ -13504,7 +13515,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14567,7 +14578,7 @@ msgstr "Beállítások visszaállítása mentésből"
 msgid "Restore system settings"
 msgstr "Rendszerbeállítások visszaállítása"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15502,7 +15513,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Válassza ki a kívánt funkciót, és kattintson rá az \"OK\" gombra. Használja a \"CH +/-\" billentyűt a listák közötti váltáshoz. Válasszon ki egy hozzárendelt függvényt, és kattintson az \"OK\" gombra annak hozzárendeléséhez. Használja a \"Next / Previous\" gombot a hozzárendelt funkciók sorrendjének megváltoztatásához."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15556,9 +15567,6 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletét"
 msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
-msgid "Select the sleep timer action."
-msgstr "Válassza ki az Elalvás időzítésének műveletét."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15585,6 +15593,12 @@ msgstr "Válassza ki a használt LNB/eszköz típusát (általában 'Univerzáli
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Válassza ki a használt egy kábeles vételi eszköz típusát."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Válasszon szerkesztendő frissítési forrást"
@@ -17131,11 +17145,38 @@ msgstr "Elalvás"
 msgid "Sleep Timer"
 msgstr "Elalvás időzítő"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Elalvás késleltetése"
 
 msgid "Sleep long"
 msgstr "Elalvás hosszan"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Elalvás időzítő"
@@ -17334,11 +17375,11 @@ msgstr "Sajnálom, de a MediaScanner nincs telepítve!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Sajnálom, de a MiniDLNA Config hiányzik"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt"
 
 msgid "Sorry no backups found!"
 msgstr "Sajnáljuk, mentések nem találhatók!"
@@ -17638,10 +17679,10 @@ msgstr "Kép-a-Képben leállítása"
 msgid "Stop Streams"
 msgstr "Streams leállítása"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Futó időzítés és a soron következők leállítása"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Futó időzítés leállítása de a soron következők futtatása"
 
 msgid "Stop entry"
@@ -18467,6 +18508,13 @@ msgstr "Az alapértelmezett beállítás: az ébresztési idő - 5 perc és az i
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Az alábbi fájlokat találta a rendszer..."
 
@@ -18516,11 +18564,12 @@ msgstr "A csatornalista újra van töltve."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "A 'query nélkül' lekérdezés ugyanaz, mint a 'standard' lekérdezés. Az összes többi függőség (például felvételek, időtartomány) továbbra is fennmarad."
 
-msgid "The sleep timer has been activated."
-msgstr "Az elalvás időzítő aktiválva lett."
-
-msgid "The sleep timer has been disabled."
-msgstr "Az elalvásidőzítő ki lett kapcsolva."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19149,9 +19198,6 @@ msgstr "Időzítő művelete"
 msgid "Timer List"
 msgstr "Időzítő lista"
 
-msgid "Timer action"
-msgstr "Időzítő művelete"
-
 msgid "Timer edit"
 msgstr "Időzítő módosítása"
 
@@ -19160,13 +19206,6 @@ msgstr "Időzítések"
 
 msgid "Timer entry"
 msgstr "Időzítés megadása"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Időzítés aktiválva: +%d perc"
-
-msgid "Timer is not activated"
-msgstr "Elalvás időzítése"
 
 msgid "Timer log"
 msgstr "Időzítő lognapló"
@@ -19185,13 +19224,13 @@ msgstr ""
 "Időzítési átfedést találtam a timers.xml fájlban!\n"
 "Kérem, ellenőrizze!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Időzítések áttekintése"
 
 msgid "Timer recording location"
 msgstr "Időzített felvételek helye"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Időzítési logikai hiba"
 
 msgid "Timer selection"
@@ -21152,10 +21191,10 @@ msgstr "Igen, de mentse a Timeshift-et felvételként és folytassa a Timeshift-
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Igen, de mentse a Timeshift-et felvételként és a Timeshift-t álljon le"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Igen, törölje az Időzítő listából"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Igen, törölje az Időzítő listáról és törölje a felvételt"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21706,7 +21745,7 @@ msgstr "csatornacsomag szerkesztés megszakítása"
 msgid "abort favourites edit"
 msgstr "kedvencek módosításának megszakítása"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "az indításról"
 
 msgid "ac3"
@@ -22360,9 +22399,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "elrejt"
-
 msgid "highest Resolution"
 msgstr "magasabb felbontás"
 
@@ -22626,9 +22662,6 @@ msgstr ""
 
 msgid "not"
 msgstr "nem"
-
-msgid "not activated"
-msgstr "nincs aktiválva"
 
 msgid "not configured"
 msgstr "nem konfigurált"
@@ -22944,9 +22977,6 @@ msgstr "megosztás:"
 
 msgid "shell"
 msgstr "shell"
-
-msgid "show"
-msgstr "mutat"
 
 msgid "show DVD main menu"
 msgstr "a DVD Főmenü megjelenítése"
@@ -23375,7 +23405,7 @@ msgstr "igen (állapotok megtartása)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z) %s %s készülék újraindítása előtt olvassa el a kézikönyvet további segítségért."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "ugrott"
 
 msgid "zapping"
@@ -23383,6 +23413,80 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "mutat"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "A felvétel, a Felvétel időzítő vagy a Kikapcsolás időzítő 15 percen belül elindul vagy elkezdődik.\n"
+#~ "Az elalvási időzítőt 30 percig növelje. A(z) %s %s készülék\n"
+#~ "a felvétel vagy Kikapcsolás időzítő esemény után leáll. Most állj készenléti állapotba?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Az elalvás időzítő készenléti állapotba akarja helyezni a(z) %s %s készüléket.\n"
+#~ "Tegye meg most vagy további perceket ad az időzítéshez?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Az elalvás időzítő le akarja állítani a(z) %s %s készüléket.\n"
+#~ "Tegye meg most vagy további perceket ad az időzítéshez?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Állítsa be az Elalvás időzítésének időtartamát percekben."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Végrehajtás a beállítást követően"
+
+#~ msgid "Execute in "
+#~ msgstr "Végrehajtás "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot Lemezkép Kezelő"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Válassza ki az Elalvás időzítésének műveletét."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Az elalvás időzítő aktiválva lett."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Az elalvásidőzítő ki lett kapcsolva."
+
+#~ msgid "Timer action"
+#~ msgstr "Időzítő művelete"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Időzítés aktiválva: +%d perc"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Elalvás időzítése"
+
+#~ msgid "not activated"
+#~ msgstr "nincs aktiválva"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Kijelölés visszavonása"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Kijelölés visszavonása"
+
+#~ msgid "No images found"
+#~ msgstr "Nem található lemezkép"
 
 #, python-format
 #~ msgid " bootmode = %s"

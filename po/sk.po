@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1353,6 +1353,14 @@ msgid "%s additional screens"
 msgstr "%s prídavné obrazovky"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s informácia"
 
@@ -2033,7 +2041,7 @@ msgstr "<Predvolené umiestnenie filmov>"
 msgid "<Last timer location>"
 msgstr "<Umiestnenie posledného časovača>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<neznámy>"
 
 msgid "?"
@@ -2044,16 +2052,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Práve je aktívne alebo do 15 minút začne nahrávanie, časovač nahrávania alebo časovač napájania.\n"
-"Časovač pre uspanie bude rozšírený o 30 minút. Prijímači %s %s\n"
-"sa po nahrávaní alebo udalosti napájania vypne. Chcete teraz prejsť do pohotovostného režimu?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Prebieha kontrola aktualizácie na pozadí. Prosím, počkajte pár minút, alebo to skúste znova."
@@ -2139,6 +2137,13 @@ msgstr "Práve sa nahráva. Zastavte nahrávanie pred skenovaním."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Práve sa nahráva. Pred spustením vyhľadávača družíc zastavte nahrávanie."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Opakovaný časovač alebo iba jedenkrát?"
 
@@ -2168,27 +2173,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Časovač uspania chce prepnúť %s %s do pohotov. režimu.\n"
-"Vykonať teraz alebo rozšíriť o ďalšie minúty?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Časovač uspania chce vypnúť\n"
 "%s %s. Vypnúť teraz?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Časovač uspania chce vypnúť %s %s.\n"
-"Vykonať teraz alebo rozšíriť o ďalšie minúty?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Malý prehľad dostupných ikon stavov a akcií."
@@ -3032,6 +3021,9 @@ msgstr "Astra 3 23,5 E"
 
 msgid "At End:"
 msgstr "Na koniec:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atletika"
@@ -4087,11 +4079,11 @@ msgstr "Zrušiť ukladanie timeshiftu ako filmu"
 msgid "Cancel selection"
 msgstr "Zrušiť výber"
 
-msgid "Cancel the image selection and exit"
-msgstr "Zrušiť výber image a ukončiť"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Zrušiť výber image a ukončiť všetky menu"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "Zrušiť aktualizáciu"
@@ -4894,8 +4886,11 @@ msgstr "Nastavte rozlíšenie zobrazovacieho panela a písmo používané pre te
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Nastavte čas v minútach pre šetrič obrazovky."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Nastavte trvanie pre časovač uspania (v minútach)."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Nastavte koncovú súradnicu v osi X oblasti zobrazovania teletextu."
@@ -5996,6 +5991,9 @@ msgstr "Vymazať potvrdenie"
 msgid "Delete EPG"
 msgstr "Vymazať EPG"
 
+msgid "Delete Image"
+msgstr "Vymazať image"
+
 msgid "Delete Language"
 msgstr "Vymazať jazyk"
 
@@ -6044,13 +6042,10 @@ msgstr "Vymazať súbor alebo priečinok (a všetok jeho obsah)"
 msgid "Delete folder"
 msgstr "Vymazať priečinok"
 
-msgid "Delete image"
-msgstr "Vymazať image"
-
 msgid "Delete logfile"
 msgstr "Vymazať súbor so záznamom"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6663,7 +6658,7 @@ msgstr "Neukladať"
 msgid "Don't show default"
 msgstr "Nezobrazovať predvolené"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Nezastaviť aktuálnu udalosť ale vypnúť nasledujúce udalosti"
 
 msgid ""
@@ -6918,6 +6913,12 @@ msgstr "Ekvádor"
 msgid "Edit"
 msgstr "Upraviť"
 
+msgid "Edit Mode Off"
+msgstr "Režim úprav vyp."
+
+msgid "Edit Mode On"
+msgstr "Režim úprav zap."
+
 msgid "Edit Quad Channel Entry"
 msgstr "Upraviť záznam pre Quad-kanál"
 
@@ -6939,13 +6940,7 @@ msgstr "Upraviť aktuálny riadok"
 msgid "Edit line "
 msgstr "Upraviť riadok "
 
-msgid "Edit mode off"
-msgstr "Režim úprav vyp."
-
-msgid "Edit mode on"
-msgstr "Režim úprav zap."
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Upraviť nový záznam"
 
 msgid "Edit position is the line end"
@@ -7221,6 +7216,35 @@ msgstr "Čas ukončenia"
 
 msgid "Energie"
 msgstr "Energia"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "Anglicky"
@@ -7623,12 +7647,6 @@ msgstr "Presahuje kapacitu média Bludisc!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Presahuje kapacitu dvojvrstvového DVD!"
-
-msgid "Execute after current event"
-msgstr "Vyvolať po aktuálnej udalosti"
-
-msgid "Execute in "
-msgstr "Spustiť o "
 
 msgid "Execution condition"
 msgstr "Podmienka spustenia"
@@ -8848,6 +8866,9 @@ msgstr "Skryté/prázdne"
 
 msgid "Hidden network"
 msgstr "Skrytá sieť"
+
+msgid "Hide"
+msgstr "skryť"
 
 msgid "Hide VBI line for this service"
 msgstr "Skryť riadok VBI pre túto stanicu"
@@ -10318,11 +10339,11 @@ msgstr "Načítať neprepojené používateľské prehľady"
 msgid "Load/Save/Delete"
 msgstr "Načítať/Uložiť/Vymazať"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Informácia sa načítava, prosím čakajte..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Lokálny box"
@@ -11007,6 +11028,12 @@ msgstr "Presunúť 1 prvok"
 msgid "Move Left/Right"
 msgstr "Pohyb doľava/doprava"
 
+msgid "Move Mode Off"
+msgstr "Režim presúvania vyp."
+
+msgid "Move Mode On"
+msgstr "Režim presúvania zap."
+
 msgid "Move PIP"
 msgstr "Presunúť PIP"
 
@@ -11063,12 +11090,6 @@ msgstr "Presunúť súbory/priečinky do cieľového priečinka"
 
 msgid "Move folder"
 msgstr "Presunúť priečinok"
-
-msgid "Move mode off"
-msgstr "Režim presúvania vyp."
-
-msgid "Move mode on"
-msgstr "Režim presúvania zap."
 
 msgid "Move the current DNS entry down one line"
 msgstr "Presunúť aktuálny záznam DNS o jeden riadok nižšie"
@@ -11208,22 +11229,16 @@ msgstr "Mozambik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Správca image pre multiboot"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11671,9 +11686,6 @@ msgstr "Neboli zistené žiadne pevné disky."
 msgid "No hash calculations configured"
 msgstr "Nie sú nakonfigurované žiadne výpočty pre hash"
 
-msgid "No images found"
-msgstr "Nenašli sa žiadne image"
-
 msgid "No matching place names found"
 msgstr "Nenašlo sa žiadne zodpovedajúce umiestnenie"
 
@@ -11706,6 +11718,9 @@ msgstr "Žiadna stanica"
 
 msgid "No services/providers selected"
 msgstr "Nie sú vybrané žiadne stanice, služby alebo poskytovatelia"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Žiadny pohotovostný režim"
@@ -13362,7 +13377,7 @@ msgstr "Stlačte OK pre použitie tohto jazyka:  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Stlačte OK pre použitie tejto lokalizácie:  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14423,7 +14438,7 @@ msgstr "Obnoviť nastavenia zo zálohy"
 msgid "Restore system settings"
 msgstr "Obnoviť systémové nastavenia"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15347,8 +15362,8 @@ msgstr "Vybrať aktuálne zvýraznené miestne nastavenie alebo jazyk pre použ�
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vyberte požadovanú funkciu a kliknite na \"OK\" pre pridelenie. Na prepnutie medzi zoznamami použite tlačidlá \"CH+/-\". Vybraním pridelenej funkcie a následným stlačením \"OK\" dôjde k odobratiu funkciu. Pre zmenu poradia pridelených funkcií použite tlačidlá \"Ďalej/Predchádzajúce\"."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Vybrať zvýraznený image a reštartovať"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Vybrať lokalizáciu z menu"
@@ -15398,9 +15413,6 @@ msgstr "Vybrať súpravu veľkých písmen"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vybrať súpravu veľkých písmen len pre ďalšie písmeno"
 
-msgid "Select the sleep timer action."
-msgstr "Vyberte akciu pre časovač uspania."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Vyberte zdroj predvolených nastavení DNS."
 
@@ -15427,6 +15439,12 @@ msgstr "Vyberte typ používaného LNB/zariadenia (obvykle 'Univerzálne'). Ak n
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vyberte typ zariadenia na príjem pomocou jedného kábla, ktoré používate."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Vyberte zdroje pre aktualizáciu"
@@ -16950,11 +16968,40 @@ msgstr "Uspať"
 msgid "Sleep Timer"
 msgstr "Časovač uspania"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Oneskorenie uspania"
 
 msgid "Sleep long"
 msgstr "Uspanie - dlho"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Časovač uspania"
@@ -17152,11 +17199,11 @@ msgstr "Prepáčte, nie je nainštalovaný vyhľadávač médií!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Prepáčte, zdroje softvéru nie sú teraz dostupné, prebieha údržba"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Prepáčte, zdroje softvéru nie sú dostupné z dôvodu údržby. Skúste to prosím neskôr."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Prepáčte, zdroje softvéru nie sú teraz dostupné, prebieha údržba"
 
 msgid "Sorry no backups found!"
 msgstr "Prepáčte, nenašli sa žiadne zálohy!"
@@ -17452,10 +17499,10 @@ msgstr "Ukončiť PIP"
 msgid "Stop Streams"
 msgstr "Zastaviť streamy"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Zastaviť aktuálnu udalosť a zrušiť nasledujúce udalosti"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Zastaviť aktuálnu udalosť, ale nezrušiť nasledujúce udalosti"
 
 msgid "Stop entry"
@@ -18263,6 +18310,13 @@ msgstr "Predvolené nastavenie je: čas prebudenia - 5 minút a časovač v čas
 msgid "The detailed information is intended for developers only."
 msgstr "Podrobná informácia je určená len pre vývojárov."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Boli nájdené tieto súbory..."
 
@@ -18312,11 +18366,12 @@ msgstr "Zoznam staníc je načítaný."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Nastavenie 'bez dopytu' je rovnaké ako nastavenie 'štandard' bez doplnkového potvrdzovacieho dopytu. Všetky ostatné závislosti (napríklad nahrávanie, časový rozsah) zostanú zachované."
 
-msgid "The sleep timer has been activated."
-msgstr "Časovač uspania bol zapnutý."
-
-msgid "The sleep timer has been disabled."
-msgstr "Časovač uspania bol vypnutý."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18943,9 +18998,6 @@ msgstr "Akcie časovača"
 msgid "Timer List"
 msgstr "Zoznam časovačov"
 
-msgid "Timer action"
-msgstr "Akcia časovača"
-
 msgid "Timer edit"
 msgstr "Upraviť časovač"
 
@@ -18954,13 +19006,6 @@ msgstr "Úprava časovača"
 
 msgid "Timer entry"
 msgstr "Zadanie časovača"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Časovač je aktivovaný: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Časovač neaktívny"
 
 msgid "Timer log"
 msgstr "Záznam časovača"
@@ -18979,13 +19024,13 @@ msgstr ""
 "Bolo zistené prekrývanie časovačov v súbore timers.xml!\n"
 "Prosím o kontrolu!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Prehľad časovačov"
 
 msgid "Timer recording location"
 msgstr "Umiestnenie nahrávok časovača"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Nerozumné časovanie"
 
 msgid "Timer selection"
@@ -20924,10 +20969,10 @@ msgstr "Áno, ale uložiť timeshift ako film a pokračovať v nahrávaní"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Áno, ale uložiť timeshift ako film a zastaviť nahrávanie"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Áno, vymazať zo zoznamu časovačov"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Áno, vymazať zo zoznamu časovačov a vymazať nahrávku"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21474,7 +21519,7 @@ msgstr "prerušiť úpravu prehľadu"
 msgid "abort favourites edit"
 msgstr "prerušiť úpravu obľúbených"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "hneď začne"
 
 msgid "ac3"
@@ -22126,9 +22171,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "skryť"
-
 msgid "highest Resolution"
 msgstr "najvyššie rozlíšenie"
 
@@ -22389,9 +22431,6 @@ msgstr "normálne"
 
 msgid "not"
 msgstr "nie"
-
-msgid "not activated"
-msgstr "neaktivované"
 
 msgid "not configured"
 msgstr "nenakonfigurované"
@@ -22707,9 +22746,6 @@ msgstr "zdieľanie:"
 
 msgid "shell"
 msgstr "shell"
-
-msgid "show"
-msgstr "zobraziť"
 
 msgid "show DVD main menu"
 msgstr "zobraziť hlavné menu DVD"
@@ -23138,7 +23174,7 @@ msgstr "áno (zachovať zdroje softvéru)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si prečítajte návod, prosím."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "prepnuté"
 
 msgid "zapping"
@@ -23146,6 +23182,81 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "zobraziť"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Práve je aktívne alebo do 15 minút začne nahrávanie, časovač nahrávania alebo časovač napájania.\n"
+#~ "Časovač pre uspanie bude rozšírený o 30 minút. Prijímači %s %s\n"
+#~ "sa po nahrávaní alebo udalosti napájania vypne. Chcete teraz prejsť do pohotovostného režimu?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Časovač uspania chce prepnúť %s %s do pohotov. režimu.\n"
+#~ "Vykonať teraz alebo rozšíriť o ďalšie minúty?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Časovač uspania chce vypnúť %s %s.\n"
+#~ "Vykonať teraz alebo rozšíriť o ďalšie minúty?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Nastavte trvanie pre časovač uspania (v minútach)."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Vyvolať po aktuálnej udalosti"
+
+#~ msgid "Execute in "
+#~ msgstr "Spustiť o "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Správca image pre multiboot"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vyberte akciu pre časovač uspania."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Časovač uspania bol zapnutý."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Časovač uspania bol vypnutý."
+
+#~ msgid "Timer action"
+#~ msgstr "Akcia časovača"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Časovač je aktivovaný: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Časovač neaktívny"
+
+#~ msgid "not activated"
+#~ msgstr "neaktivované"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Zrušiť výber image a ukončiť"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Zrušiť výber image a ukončiť všetky menu"
+
+#~ msgid "No images found"
+#~ msgstr "Nenašli sa žiadne image"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Vybrať zvýraznený image a reštartovať"
 
 #, python-format
 #~ msgid " bootmode = %s"

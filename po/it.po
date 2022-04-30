@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -1364,6 +1364,14 @@ msgid "%s additional screens"
 msgstr "%s schermi aggiuntivi"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2060,7 +2068,7 @@ msgstr "<Percorso registrazioni predefinito>"
 msgid "<Last timer location>"
 msgstr "<Ultimo percorso timer>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<sconosciuto>"
 
 msgid "?"
@@ -2071,16 +2079,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Una registrazione, recTimer o powerTimer è in esecuzione o inizia in 15 minuti.\n"
-"Estendere il timer di sleep di 30 minuti. Il tuo %s %s\n"
-"si spegnerà dopo l'evento di Registrazione o il PowerTimer. Attivare lo Standby ora ?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Un aggiornamento in background è in corso, attendi qualche minuto e riprova."
@@ -2166,6 +2164,13 @@ msgstr "Una registrazione è in esecuzione. Interrompi la registrazione prima di
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Registrazioni in corso! Prima di avviare una ricerca satelliti, è necessario arrestarle."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Impostare se avviare il timer solo una volta o più volte?"
 
@@ -2195,27 +2200,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Un timer di spegnimento prevede di porre in standby il tuo %s %s\n"
-"Farlo adesso o ritardarlo di alcuni minuti?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Un timer di spegnimento prevede\n"
 "l'arresto del %s %s. Farlo ora?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Un timer di spegnimento prevede l'arresto del tuo %s %s\n"
-"Farlo adesso o ritardarlo di alcuni minuti?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Rapida panoramica delle icone di stato e delle azioni disponibili."
@@ -3072,6 +3061,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Alla fine:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -4134,13 +4126,11 @@ msgstr "Annullare salvataggio registrazione timeshift"
 msgid "Cancel selection"
 msgstr "Lista canali"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Lista canali"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Lista canali"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4970,8 +4960,11 @@ msgstr "Configurare la risoluzione del display e il carattere usato per il telev
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configurare la durata in minuti per il salvaschermo."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Configura tra quanto minuti spegnere il decoder."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configura la coordinata finale x dell'area display per il televideo."
@@ -6101,6 +6094,9 @@ msgstr "Conferma cancellazione"
 msgid "Delete EPG"
 msgstr "Cancella l'EPG"
 
+msgid "Delete Image"
+msgstr "Cancella immagine"
+
 msgid "Delete Language"
 msgstr "Cancella lingua"
 
@@ -6149,13 +6145,10 @@ msgstr "Elimina file o directory (e tutti i suoi contenuti)"
 msgid "Delete folder"
 msgstr "Cancella cartella"
 
-msgid "Delete image"
-msgstr "Cancella immagine"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6773,7 +6766,7 @@ msgstr "Non salvare"
 msgid "Don't show default"
 msgstr "Ordina per predefinito"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Non interrompere l'evento attuale ma annullare i futuri"
 
 msgid ""
@@ -7033,6 +7026,12 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Modifica"
 
+msgid "Edit Mode Off"
+msgstr "Modo Edit off"
+
+msgid "Edit Mode On"
+msgstr "Modo Edit on"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Modifica il canale quad"
 
@@ -7054,13 +7053,7 @@ msgstr "Modifica la linea corrente"
 msgid "Edit line "
 msgstr "Modifica linea"
 
-msgid "Edit mode off"
-msgstr "Modo Edit off"
-
-msgid "Edit mode on"
-msgstr "Modo Edit on"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Modifica la nuova voce"
 
 msgid "Edit position is the line end"
@@ -7342,6 +7335,33 @@ msgid "End time"
 msgstr "Orario fine"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7747,12 +7767,6 @@ msgstr "Contenuti eccedono il supporto ottico!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Supera la capacità di supporto doppio strato!"
-
-msgid "Execute after current event"
-msgstr "Spegni dopo l'attuale evento"
-
-msgid "Execute in "
-msgstr "Esegui in "
 
 msgid "Execution condition"
 msgstr "Condizione di esecuzione"
@@ -9002,6 +9016,9 @@ msgstr "Nascosto / Vuoto"
 
 msgid "Hidden network"
 msgstr "Rete nascosta"
+
+msgid "Hide"
+msgstr "nascondi"
 
 msgid "Hide VBI line for this service"
 msgstr "Nascondi la linea VBI da questo canale"
@@ -10513,10 +10530,10 @@ msgstr "Carica bouquet utente orfani"
 msgid "Load/Save/Delete"
 msgstr "Carica / Salva / Cancella"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11232,6 +11249,12 @@ msgstr "Sposta 1 elemento"
 msgid "Move Left/Right"
 msgstr "Sposta a sinistra / a destra"
 
+msgid "Move Mode Off"
+msgstr "Modalità spostamento off"
+
+msgid "Move Mode On"
+msgstr "Modalità spostamento on"
+
 msgid "Move PIP"
 msgstr "Sposta PiP"
 
@@ -11293,12 +11316,6 @@ msgstr "Sposta file/cartelle nella cartella di destinazione"
 
 msgid "Move folder"
 msgstr "Sposta la cartella"
-
-msgid "Move mode off"
-msgstr "Modalità spostamento off"
-
-msgid "Move mode on"
-msgstr "Modalità spostamento on"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11453,22 +11470,16 @@ msgstr "Mozambico"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Gestore immagini multiboot"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11938,9 +11949,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Nessun calcolo hash configurato"
 
-msgid "No images found"
-msgstr "Nessuna immagine trovata"
-
 msgid "No matching place names found"
 msgstr "Non è stato trovato nessun nome di luogo"
 
@@ -11973,6 +11981,9 @@ msgstr "Nessun canale"
 
 msgid "No services/providers selected"
 msgstr "Nessun canale/provider selezionato"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Sempre attivo"
@@ -13654,7 +13665,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14741,7 +14752,7 @@ msgstr "Ripristina la configurazione da un backup"
 msgid "Restore system settings"
 msgstr "Ripristino configurazione del sistema"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15680,7 +15691,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Scegli la funzione desiderata e premi \"OK\" per assegnarla. Usa \"CH+/-\" per spostarti fra le liste. Se la funzione è già stata assegnata, il tasto \"OK\" la toglie. Usa \"Prossimo/precedente\" per cambiare l'ordine delle funzioni assegnate."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15734,9 +15745,6 @@ msgstr "Seleziona il set di caratteri della tastiera virtuale."
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleziona il set di caratteri secondario della tastiera virtuale solo per il carattere successivo."
 
-msgid "Select the sleep timer action."
-msgstr "Seleziona l'azione del timer di sospensione."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15764,6 +15772,12 @@ msgstr "Seleziona il tipo di LNB utilizzato (di solito ‘Universale’ o Unicab
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Seleziona il tipo di dispositivo per la ricezione con cavo singolo."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Seleziona la sorgente aggiornamenti"
@@ -17332,11 +17346,38 @@ msgstr "Timer spegnimento"
 msgid "Sleep Timer"
 msgstr "Timer spegnimento"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Timer di spegnimento"
 
 msgid "Sleep long"
 msgstr "Sleep lungo"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Timer di spegnimento"
@@ -17535,11 +17576,11 @@ msgstr "Spiacente, MediaScanner non è installato!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Spiacente, MiniDLNA non configurato"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Spiacente, i feed sono giù per manutenzione"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Spiacente, i feed sono giù per manutenzione, riprova più tardi."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Spiacente, i feed sono giù per manutenzione"
 
 msgid "Sorry no backups found!"
 msgstr "Spiacente, nessun Backup trovato!"
@@ -17843,10 +17884,10 @@ msgstr "Chiudere PiP"
 msgid "Stop Streams"
 msgstr "Ferma gli stream"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Arrestare l'evento attuale e disabilitare i futuri"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Arrestare l'evento attuale ma non i futuri"
 
 msgid "Stop entry"
@@ -18666,6 +18707,13 @@ msgstr "Le impostazioni predefinite sono: tempo di risveglio 5 minuti prima e in
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Trovati i seguenti file..."
 
@@ -18715,11 +18763,12 @@ msgstr "L’elenco dei canali è stata ricaricato."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "L'impostazione 'senza consultazione' è uguale a 'standard' senza richiesta di conferma aggiuntiva. Tutte le altre dipendenze (registrazioni, intervalli di tempo) rimangono mantenute"
 
-msgid "The sleep timer has been activated."
-msgstr "Timer di spegnimento attivato!"
-
-msgid "The sleep timer has been disabled."
-msgstr "Timer di spegnimento disattivato!"
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19355,9 +19404,6 @@ msgstr "Azione timer"
 msgid "Timer List"
 msgstr "Elenco timer"
 
-msgid "Timer action"
-msgstr "Azione timer"
-
 msgid "Timer edit"
 msgstr "Modifica timer"
 
@@ -19366,13 +19412,6 @@ msgstr "Modifica timer"
 
 msgid "Timer entry"
 msgstr "Voce timer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Il timer è attivato: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Il timer non è attivato"
 
 msgid "Timer log"
 msgstr "Log timer"
@@ -19391,13 +19430,13 @@ msgstr ""
 "Sovrapposizione timer rilevata in timers.xml!\n"
 "Ricontrollare!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Sommario timer"
 
 msgid "Timer recording location"
 msgstr "Percorso registrazione timer"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Errore di integrità del timer"
 
 msgid "Timer selection"
@@ -21379,10 +21418,10 @@ msgstr "Sì, ma salva il timeshift come registrazione e continua"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Sì, ma salva il timeshift come registrazione e arrestala"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Si, cancella dalla lista dei timer"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Si, cancella dalla lista dei timer e cancella la registrazione"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21938,7 +21977,7 @@ msgstr "annullare modifica bouquet"
 msgid "abort favourites edit"
 msgstr "annullare modifica preferiti"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "avvio a breve"
 
 msgid "ac3"
@@ -22600,9 +22639,6 @@ msgstr "OO:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "OO:mmam/pm"
 
-msgid "hide"
-msgstr "nascondi"
-
 msgid "highest Resolution"
 msgstr "risoluzione massima"
 
@@ -22871,9 +22907,6 @@ msgstr "normale"
 
 msgid "not"
 msgstr "non"
-
-msgid "not activated"
-msgstr "non attivato"
 
 msgid "not configured"
 msgstr "non configurato"
@@ -23190,9 +23223,6 @@ msgstr "condividi:"
 
 msgid "shell"
 msgstr "shell"
-
-msgid "show"
-msgstr "mostra"
 
 msgid "show DVD main menu"
 msgstr "mostra il Menu principale DVD"
@@ -23624,7 +23654,7 @@ msgstr "sì (mantenere feed)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "il tuo %s %s potrebbe essere inutilizzabile. Sei invitato a leggere il manuale per ricevere assistenza prima di riavviare il tuo %s %s."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "zap eseguito"
 
 msgid "zapping"
@@ -23632,6 +23662,80 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "mostra"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Una registrazione, recTimer o powerTimer è in esecuzione o inizia in 15 minuti.\n"
+#~ "Estendere il timer di sleep di 30 minuti. Il tuo %s %s\n"
+#~ "si spegnerà dopo l'evento di Registrazione o il PowerTimer. Attivare lo Standby ora ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Un timer di spegnimento prevede di porre in standby il tuo %s %s\n"
+#~ "Farlo adesso o ritardarlo di alcuni minuti?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Un timer di spegnimento prevede l'arresto del tuo %s %s\n"
+#~ "Farlo adesso o ritardarlo di alcuni minuti?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Configura tra quanto minuti spegnere il decoder."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Spegni dopo l'attuale evento"
+
+#~ msgid "Execute in "
+#~ msgstr "Esegui in "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Gestore immagini multiboot"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Seleziona l'azione del timer di sospensione."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Timer di spegnimento attivato!"
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Timer di spegnimento disattivato!"
+
+#~ msgid "Timer action"
+#~ msgstr "Azione timer"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Il timer è attivato: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Il timer non è attivato"
+
+#~ msgid "not activated"
+#~ msgstr "non attivato"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Lista canali"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Lista canali"
+
+#~ msgid "No images found"
+#~ msgstr "Nessuna immagine trovata"
 
 #, fuzzy
 #~ msgid "(current image)"

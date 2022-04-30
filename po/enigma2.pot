@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1274,6 +1274,14 @@ msgid "%s additional screens"
 msgstr ""
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -1954,7 +1962,7 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr ""
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr ""
 
 msgid "?"
@@ -1964,13 +1972,6 @@ msgid "??"
 msgstr ""
 
 msgid "A"
-msgstr ""
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
@@ -2041,6 +2042,13 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr ""
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr ""
 
@@ -2065,20 +2073,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
 msgstr ""
 
 msgid "A small overview of the available icon states and actions."
@@ -2898,6 +2894,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -4730,7 +4729,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -5830,6 +5832,9 @@ msgstr ""
 msgid "Delete EPG"
 msgstr ""
 
+msgid "Delete Image"
+msgstr ""
+
 msgid "Delete Language"
 msgstr ""
 
@@ -5876,9 +5881,6 @@ msgid "Delete file or directory (and all its contents)"
 msgstr ""
 
 msgid "Delete folder"
-msgstr ""
-
-msgid "Delete image"
 msgstr ""
 
 msgid "Delete logfile"
@@ -6470,7 +6472,7 @@ msgstr ""
 msgid "Don't show default"
 msgstr ""
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr ""
 
 msgid ""
@@ -6714,6 +6716,12 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+msgid "Edit Mode Off"
+msgstr ""
+
+msgid "Edit Mode On"
+msgstr ""
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -6735,13 +6743,7 @@ msgstr ""
 msgid "Edit line "
 msgstr ""
 
-msgid "Edit mode off"
-msgstr ""
-
-msgid "Edit mode on"
-msgstr ""
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr ""
 
 msgid "Edit position is the line end"
@@ -7016,6 +7018,33 @@ msgid "End time"
 msgstr ""
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7380,12 +7409,6 @@ msgid "Exceeds Bludisc medium!"
 msgstr ""
 
 msgid "Exceeds dual layer medium!"
-msgstr ""
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
 msgstr ""
 
 msgid "Execution condition"
@@ -8595,6 +8618,9 @@ msgid "Hidden / Blank"
 msgstr ""
 
 msgid "Hidden network"
+msgstr ""
+
+msgid "Hide"
 msgstr ""
 
 msgid "Hide VBI line for this service"
@@ -10736,6 +10762,12 @@ msgstr ""
 msgid "Move Left/Right"
 msgstr ""
 
+msgid "Move Mode Off"
+msgstr ""
+
+msgid "Move Mode On"
+msgstr ""
+
 msgid "Move PIP"
 msgstr ""
 
@@ -10791,12 +10823,6 @@ msgid "Move files/directories to target directory"
 msgstr ""
 
 msgid "Move folder"
-msgstr ""
-
-msgid "Move mode off"
-msgstr ""
-
-msgid "Move mode on"
 msgstr ""
 
 msgid "Move the current DNS entry down one line"
@@ -10938,9 +10964,6 @@ msgid "Multi EPG"
 msgstr ""
 
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
@@ -15033,9 +15056,6 @@ msgstr ""
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15061,6 +15081,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 msgid "Select upgrade source"
@@ -16562,10 +16588,37 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
+msgstr ""
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
 msgstr ""
 
 msgid "SleepTimer"
@@ -16762,10 +16815,10 @@ msgstr ""
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -17057,10 +17110,10 @@ msgstr ""
 msgid "Stop Streams"
 msgstr ""
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr ""
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr ""
 
 msgid "Stop entry"
@@ -17829,6 +17882,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr ""
 
@@ -17874,10 +17934,11 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr ""
-
-msgid "The sleep timer has been disabled."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
 msgstr ""
 
 msgid ""
@@ -18473,9 +18534,6 @@ msgstr ""
 msgid "Timer List"
 msgstr ""
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr ""
 
@@ -18483,13 +18541,6 @@ msgid "Timer editor"
 msgstr ""
 
 msgid "Timer entry"
-msgstr ""
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
 msgstr ""
 
 msgid "Timer log"
@@ -18505,13 +18556,13 @@ msgid ""
 "Please recheck it!"
 msgstr ""
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr ""
 
 msgid "Timer recording location"
 msgstr ""
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr ""
 
 msgid "Timer selection"
@@ -20412,10 +20463,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr ""
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 msgid "Yes, delete this movie and return to movie list"
@@ -20905,7 +20956,7 @@ msgstr ""
 msgid "abort favourites edit"
 msgstr ""
 
-msgid "about to start"
+msgid "About to start"
 msgstr ""
 
 msgid "ac3"
@@ -21553,9 +21604,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 msgid "highest Resolution"
 msgstr ""
 
@@ -21815,9 +21863,6 @@ msgid "normal"
 msgstr ""
 
 msgid "not"
-msgstr ""
-
-msgid "not activated"
 msgstr ""
 
 msgid "not configured"
@@ -22129,9 +22174,6 @@ msgid "share:"
 msgstr ""
 
 msgid "shell"
-msgstr ""
-
-msgid "show"
 msgstr ""
 
 msgid "show DVD main menu"
@@ -22557,7 +22599,7 @@ msgstr ""
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zapped"
+msgid "Zapped"
 msgstr ""
 
 msgid "zapping"

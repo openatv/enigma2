@@ -606,14 +606,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.moveToFirstMovie()
 
 	def keyNumberGlobal(self, number):
-		unichar = self.numericalTextInput.getKey(number)
-		charstr = unichar.encode("utf-8")
+		charstr = self.numericalTextInput.getKey(number)
 		if len(charstr) == 1:
 			self.list.moveToChar(charstr[0], self["chosenletter"])
 
 	def keyAsciiCode(self):
-		unichar = chr(getPrevAsciiCode())
-		charstr = unichar.encode("utf-8")
+		charstr = chr(getPrevAsciiCode())
 		if len(charstr) == 1:
 			self.list.moveToString(charstr[0], self["chosenletter"])
 

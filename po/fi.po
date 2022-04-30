@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
-"PO-Revision-Date: 2022-04-13 15:03+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
+"PO-Revision-Date: 2022-04-26 10:12+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 msgid ""
 "\n"
@@ -1334,6 +1334,14 @@ msgid "%s additional screens"
 msgstr "%s lisä näyttöjä"
 
 #, python-format
+msgid "%s has been activated."
+msgstr "%s on aktivoitu."
+
+#, python-format
+msgid "%s has been disabled."
+msgstr "%s on poistettu käytöstä."
+
+#, python-format
 msgid "%s information"
 msgstr "%s tiedot"
 
@@ -2014,7 +2022,7 @@ msgstr "<Oletushakemisto>"
 msgid "<Last timer location>"
 msgstr "<Viimeisin ajastushakemisto>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<tuntematon>"
 
 msgid "?"
@@ -2025,16 +2033,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Tallennus, tallennusajastin tai Virta ajastin on aktiivinen tai alkaa 15 minuutissa.\n"
-"Sammutusajastinta pidennetään 30 minuutilla sinun %s %s\n"
-"sammuttaa tallennuksen tai Virta ajastin tapahtuman jälkeen. Mennäänkö nyt valmiustilaan?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
@@ -2120,6 +2118,16 @@ msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+"Tallennus, tallennusajastin tai virran ajastin on käynnissä tai alkaa 15 minuutin kuluessa. %s pidennetään 30 minuuttiin. %s %s siirtyy syvään valmiustilaan tallennuksen tai virran ajastustapahtuman jälkeen.\n"
+"\n"
+"Siirry syvään valmiustilaan nyt?"
+
 msgid "A repeating timer or just once?"
 msgstr "Tehdäänkö toistuva vai kerta ajastus?"
 
@@ -2149,27 +2157,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
-"Tehdäänkö se nyt vai haluatko lisätä aikaa?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Uniajastimeen asetettu aika on kulunut umpeen.\n"
 "Sammutetaanko %s %s virransäästötilaan?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
-"Tehdäänkö se nyt vai haluatko lisätä aikaa?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -2793,10 +2785,10 @@ msgid "Andorra"
 msgstr "Andorra"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Android Linux SE"
-msgstr ""
+msgstr "Android Linux SE"
 
 msgid "Angola"
 msgstr "Angola"
@@ -2892,7 +2884,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Haluatko varmasti poistaa EPG-tiedot täältä:\n"
 
 msgid "Are you sure you want to delete this image?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa tämän imagen?"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Haluatko varmasti poistaa tämän lokin:\n"
@@ -3021,6 +3013,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Lopussa:"
+
+msgid "At end of current program"
+msgstr "Nykyisen ohjelman lopussa"
 
 msgid "Athletics"
 msgstr "Yleisurheilu"
@@ -3162,7 +3157,7 @@ msgid "Automatic"
 msgstr "Automaattinen"
 
 msgid "Automatic Scan"
-msgstr "Automaattihaku"
+msgstr "Automaattinen haku"
 
 msgid "Automatic Service Searching"
 msgstr "Automaattinen kanavahaku"
@@ -3595,7 +3590,7 @@ msgstr "Käynnistystiedot"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr ""
+msgstr "Käynnistyspaikan tiedot %s %s"
 
 msgid "Boot time"
 msgstr "Käynnistysaika"
@@ -3680,7 +3675,7 @@ msgid "Buffers"
 msgstr "Puskurit"
 
 msgid "Build Brand"
-msgstr "Ohjelmisto"
+msgstr "Valmistaja"
 
 msgid "Build Information"
 msgstr "Ohjelmisto tiedot"
@@ -4077,11 +4072,11 @@ msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 msgid "Cancel selection"
 msgstr "Peruuta valinta"
 
-msgid "Cancel the image selection and exit"
-msgstr "Peruuta image valinta ja poistu"
+msgid "Cancel the slot selection and exit"
+msgstr "Peruuta paikka valinta ja poistu"
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Peruuta image valinta ja poistu kaikista valikoista"
+msgid "Cancel the slot selection and exit all menus"
+msgstr "Peruuta paikka valinta ja poistu kaikista valikoista"
 
 msgid "Cancel the update"
 msgstr "Peruuta päivitys"
@@ -4723,7 +4718,7 @@ msgid "Comoros"
 msgstr "Comoros"
 
 msgid "Compiled by"
-msgstr "Koonnut"
+msgstr "Luonut"
 
 msgid "Complete"
 msgstr "Täysi"
@@ -4884,8 +4879,11 @@ msgstr "Määritä näytön resoluutio ja teksti-tv:lle käytetty fontti."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Monenko minuutin päästä uniajastin aktivoidaan."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr "Määritä kesto minuutteina ennen kuin energian säästöajastin aktivoituu."
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr "Määritä kesto minuutteina, ennen kuin uniajastin aktivoituu."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Määritä loppukoordinaatti tekstitv:een X leveys."
@@ -5205,7 +5203,7 @@ msgid "Continue playing"
 msgstr "Jatka toistoa"
 
 msgid "Continue with the on-line update"
-msgstr "Jatka internet päivitystä"
+msgstr "Jatka päivittämistä"
 
 msgid "Continues"
 msgstr "Jatkuva"
@@ -5435,7 +5433,7 @@ msgid "Currency"
 msgstr "Valuutta"
 
 msgid "Current"
-msgstr ""
+msgstr "Nykyinen"
 
 msgid "Current Affairs"
 msgstr "Ajankohtaisohjelmat"
@@ -5496,7 +5494,7 @@ msgid "Customize"
 msgstr "Toimintojen muokkaus"
 
 msgid "Customize System Settings"
-msgstr "Järjestelmä Asetusten mukauttaminen"
+msgstr "Järjestelmä Mukauttaminen"
 
 msgid "Customize enigma2 personal settings"
 msgstr "Mukauta käyttöliittymän asetuksia"
@@ -5986,6 +5984,9 @@ msgstr "Poistamisen vahvistuskysely"
 msgid "Delete EPG"
 msgstr "Poista ohjelmaopas"
 
+msgid "Delete Image"
+msgstr "Poista image"
+
 msgid "Delete Language"
 msgstr "Poista kieli"
 
@@ -6034,14 +6035,11 @@ msgstr "Poista tiedosto / hakemisto (koko sisältö)"
 msgid "Delete folder"
 msgstr "Poista kansio"
 
-msgid "Delete image"
-msgstr "Poista image"
-
 msgid "Delete logfile"
 msgstr "Poista lokitiedosto"
 
-msgid "Delete or Wipe the highlighted image slot"
-msgstr ""
+msgid "Delete or Wipe the highlighted slot"
+msgstr "Poista tai pyyhi nykyinen image paikka"
 
 msgid "Delete playlist entry"
 msgstr "Poista soittolistan valittu kohde"
@@ -6361,7 +6359,7 @@ msgid "Display type"
 msgstr "Näytön tyyppi"
 
 msgid "Distribution"
-msgstr "Jakelu"
+msgstr "Ohjelmisto"
 
 msgid "Distribution architecture"
 msgstr "Jakeluarkkitehtuuri"
@@ -6376,7 +6374,7 @@ msgid "Distribution file system"
 msgstr "Tiedostojärjestelmä"
 
 msgid "Distribution folder"
-msgstr "Jakelukansio"
+msgstr "Ohjelmisto kansio"
 
 msgid "Distribution language"
 msgstr "Kieli versio"
@@ -6394,7 +6392,7 @@ msgid "Djibouti"
 msgstr "Djibouti"
 
 msgid "Do center DVB subs on this service"
-msgstr "Keskitä DVB tekstitykset tässä palvelussa"
+msgstr "Keskitä DVB tekstitykset tällä kanavalla"
 
 msgid "Do not center DVB subs on this service"
 msgstr "Älä keskitä DVB tekstityksiä tässä palvelussa"
@@ -6653,7 +6651,7 @@ msgstr "Älä tallenna"
 msgid "Don't show default"
 msgstr "Älä näytä oletusta"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Älä pysäytä tallennusta, mutta estä tulevat ajastukset"
 
 msgid ""
@@ -6907,6 +6905,12 @@ msgstr "Ecuadori"
 msgid "Edit"
 msgstr "Muokkaa"
 
+msgid "Edit Mode Off"
+msgstr "Muokkaustila ei"
+
+msgid "Edit Mode On"
+msgstr "Muokkaustila on"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Muokkaa 4 kanava paikkaa"
 
@@ -6928,13 +6932,7 @@ msgstr "Muokkaa nykyistä riviä"
 msgid "Edit line "
 msgstr "Muokkaa riviä "
 
-msgid "Edit mode off"
-msgstr "Muokkaustila ei"
-
-msgid "Edit mode on"
-msgstr "Muokkaustila on"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Syötä uusi tallennus"
 
 msgid "Edit position is the line end"
@@ -6991,7 +6989,7 @@ msgid "Embedded"
 msgstr "Upotettu"
 
 msgid "Empty"
-msgstr ""
+msgstr "Tyhjä"
 
 msgid "Enable"
 msgstr "Ota käyttöön"
@@ -7210,6 +7208,33 @@ msgstr "Lopetusaika"
 
 msgid "Energie"
 msgstr "Energia"
+
+msgid "Energy Timer"
+msgstr "Energia ajastin"
+
+msgid "Energy saver action"
+msgstr "Energiansäästö toiminto"
+
+msgid "Energy saver activation delay"
+msgstr "Energiansäästäjän aktivoinnin viive"
+
+msgid "Energy timer"
+msgstr "Energia ajastin"
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] "Energia ajastin: %d minuutti jäljellä."
+msgstr[1] "Energia ajastin: %d minuuttia jäljellä."
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] "Energia-ajastin: %d sekuntia jäljellä."
+msgstr[1] "Energia-ajastin: %d sekuntia jäljellä."
+
+msgid "Energy timer: Inactive."
+msgstr "Energia-ajastin: Ei käytössä."
 
 msgid "English"
 msgstr "Englanti"
@@ -7613,12 +7638,6 @@ msgstr "Ylittää kaksikerroslevyn tilavuuden!"
 msgid "Exceeds dual layer medium!"
 msgstr "Ylittää kaksikerroslevyn tilavuuden!"
 
-msgid "Execute after current event"
-msgstr "Aktivoi nykyisen ohjelman jälkeen"
-
-msgid "Execute in "
-msgstr "Aktivointiviive "
-
 msgid "Execution condition"
 msgstr "Suoritustila"
 
@@ -7928,7 +7947,7 @@ msgid "Favourites"
 msgstr "Suosikit"
 
 msgid "Feed URL"
-msgstr "Päivitys URL"
+msgstr "Päivitys nettisivu"
 
 msgid "Feed disabled!"
 msgstr "Syöttö pois käytöstä!"
@@ -8761,7 +8780,7 @@ msgid "Harddisk Setup"
 msgstr "Kiintolevyn asetukset"
 
 msgid "Hardware MultiBoot device"
-msgstr ""
+msgstr "Laitteisto MultiBoot laite"
 
 msgid "Hardware information"
 msgstr "Laitteen tiedot"
@@ -8837,6 +8856,9 @@ msgstr "Piilotettu / tyhjä"
 
 msgid "Hidden network"
 msgstr "Piilotettu verkko"
+
+msgid "Hide"
+msgstr "Piilota"
 
 msgid "Hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
@@ -9334,7 +9356,7 @@ msgid "In the Standby Record on the LCD Display"
 msgstr "Jos 'Kyllä' Tallennus symboli vilkkuu laitteen näytössä valmiustilassa (kaikki vastaanottimet eivät tue tätä)"
 
 msgid "Inaccessible"
-msgstr ""
+msgstr "Pääsy kielletty"
 
 msgid "Inactive"
 msgstr "Ei käytössä"
@@ -9421,7 +9443,7 @@ msgid "Info button (short)"
 msgstr "Info näppäin (lyhyt)"
 
 msgid "Info file checksum"
-msgstr "Info tiedoston tarkistussumma"
+msgstr "Tiedot tarkistussumma"
 
 msgid "Info file override"
 msgstr "Infotiedoston ohitus"
@@ -9653,11 +9675,11 @@ msgstr "Sisäinen muisti"
 
 #, python-format
 msgid "Internal flash:  %s %s "
-msgstr ""
+msgstr "Sisäinen muisti:  %s %s "
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
+msgstr "Sisäinen muisti: %s %s USB Palautuksena"
 
 msgid "Internal hdd only"
 msgstr "Vain sisäinen kiintolevy"
@@ -10311,11 +10333,11 @@ msgstr "Lataa linkittämättömät suosikkilistat"
 msgid "Load/Save/Delete"
 msgstr "Lataa/Tallenna/Poista EPG"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Ladataan tietoja, odota..."
+
+msgid "Loading slot information, please wait..."
+msgstr "Ladataan image paikka tietoja, odota..."
 
 msgid "Local box"
 msgstr "Paikallinen laite"
@@ -10615,7 +10637,7 @@ msgid "Manual"
 msgstr "Manuaalinen"
 
 msgid "Manual Scan"
-msgstr "Manuaalihaku"
+msgstr "Manuaalinen haku"
 
 msgid "Manual Service Searching"
 msgstr "Manuaalinen kanavahaku"
@@ -10878,10 +10900,10 @@ msgid "Mode 1"
 msgstr "Tila 1"
 
 msgid "Mode 12: Supports PiP but Kodi may not work"
-msgstr ""
+msgstr "Tila 12: Tukee PiP:tä, mutta Kodi ei ehkä toimi"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
-msgstr ""
+msgstr "Tila 1: Tukee Kodia, mutta PiP ei välttämättä toimi"
 
 msgid "Mode 2"
 msgstr "Tila 2"
@@ -11000,6 +11022,12 @@ msgstr "1 siirrä elementti"
 msgid "Move Left/Right"
 msgstr "Siirrä vasemmalle/oikealle"
 
+msgid "Move Mode Off"
+msgstr "Siirrä tila pois päältä"
+
+msgid "Move Mode On"
+msgstr "Siirto tila on"
+
 msgid "Move PIP"
 msgstr "Siirrä PiP"
 
@@ -11058,12 +11086,6 @@ msgstr "Siirrä tiedostot / hakemistot kohdehakemistoon"
 
 msgid "Move folder"
 msgstr "Siirrä kansio"
-
-msgid "Move mode off"
-msgstr "Siirrä tila pois päältä"
-
-msgid "Move mode on"
-msgstr "Siirto tila on"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Siirrä nykyistä DNS merkintää yhden rivin alaspäin"
@@ -11203,29 +11225,23 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Kanavaopas"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Image Hallinta"
+msgstr "Multiboot"
 
 msgid "MultiBoot Information"
-msgstr ""
+msgstr "MultiBoot tiedot"
 
 msgid "MultiBoot Manager"
-msgstr ""
+msgstr "MultiBoot Hallinta"
+
+msgid "MultiBoot Manager Actions"
+msgstr "MultiBoot Managerin toiminnot"
 
 msgid "MultiBoot boot mode"
-msgstr ""
+msgstr "MultiBoot bootti tila"
 
 msgid "MultiBoot startup file"
-msgstr ""
+msgstr "MultiBoot käynnistystiedosto"
 
 msgid "MultiEPG Settings"
 msgstr "Ohjelmaopas"
@@ -11670,9 +11686,6 @@ msgstr "Kiintolevyjä ei havaittu."
 msgid "No hash calculations configured"
 msgstr "Ei hash laskelmia määritetty"
 
-msgid "No images found"
-msgstr "Imagea ei löytynyt"
-
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
 
@@ -11707,6 +11720,9 @@ msgstr "Ei kanavaa"
 
 msgid "No services/providers selected"
 msgstr "Palveluja/palveluntarjoajia ei valittu"
+
+msgid "No slot images found"
+msgstr "Image paikkoja ei löytynyt"
 
 msgid "No standby"
 msgstr "Ei valmiustilaa"
@@ -11842,7 +11858,7 @@ msgid "Normal - Standard image"
 msgstr "Normaali - standardi kuva"
 
 msgid "Normal: No boot modes required."
-msgstr ""
+msgstr "Normaali: Ei boot ei tarvita."
 
 msgid "North"
 msgstr "Pohjoista leveyttä"
@@ -12566,7 +12582,7 @@ msgid "Percentage/Progress bar right"
 msgstr "Etenemispalkki oikealla"
 
 msgid "Perform an on-line flash instead"
-msgstr "Suorita sen sijaan internet päivitys"
+msgstr "Suorita sen sijaan uuden ohjelmiston lataus internetistä"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
@@ -13369,8 +13385,8 @@ msgstr "Paina OK käyttääksesi tätä kieltä. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Käytä tätä aluetta painamalla OK.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr "Paina YLÖS/ALAS painikkeita valitaksesi image paikan ja paina OK tai VIHREÄ 'Uudelleenkäynnistys' käynnistääksesi kyseiseen image paikan, jos on käytettävissä, KELTAINEN joko 'Poista' tai 'Pyyhi' image paikka. 'Pyyhitty' image voidaan palauttaa sinisellä painikkeella. 'Poistettua ohjelmistoa ei voi palauttaa!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Paina MENU näppäintä muuttaaksesi yleisiä AC3/Dolby asetuksia."
@@ -13993,7 +14009,7 @@ msgid "Records"
 msgstr "Tallenukset"
 
 msgid "Recovery"
-msgstr ""
+msgstr "Palautus"
 
 msgid "Recovery Mode"
 msgstr "Palautus tila"
@@ -14030,7 +14046,7 @@ msgstr ""
 "Tämä saattaa kestää muutaman minuutin"
 
 msgid "Refresh"
-msgstr "Päivitä"
+msgstr "Virkistä"
 
 msgid "Refresh every (in hours)"
 msgstr "Päivitä joka (tunti)"
@@ -14126,7 +14142,7 @@ msgid "Remote Control"
 msgstr "Kaukosäädin"
 
 msgid "Remote Control Button Settings"
-msgstr "Kaukosäätimen painikkeiden asetukset"
+msgstr "Kaukosäädin Näppäinten asetukset"
 
 msgid "Remote Control Code"
 msgstr "Kaukosäätimen koodi"
@@ -14355,7 +14371,7 @@ msgid "Resolution"
 msgstr "Resoluutio"
 
 msgid "Restart"
-msgstr "Käynnistä laite uudelleen"
+msgstr "Käynnistä vastaanotin uudelleen"
 
 #, python-format
 msgid "Restart %s %s."
@@ -14365,7 +14381,7 @@ msgid "Restart Enigma2 to apply the changes?"
 msgstr "Käynnistä järjestelmä uudelleen asetusten soveltamiseksi?"
 
 msgid "Restart GUI"
-msgstr "Käynnistä käyttöjärjestelmä uudelleen"
+msgstr "Käynnistä järjestelmä uudelleen"
 
 msgid "Restart GUI after x crashes"
 msgstr "Käynnistä käyttöjärjestelmä uudelleen kaatumisen jälkeen"
@@ -14430,8 +14446,8 @@ msgstr "Palauta asetukset varmuuskopiosta"
 msgid "Restore system settings"
 msgstr "Palauta järjestelmäasetukset"
 
-msgid "Restore the highlighted image slot"
-msgstr ""
+msgid "Restore the highlighted slot"
+msgstr "Palauta korostettu image paikka"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Palauta asetukset takaisin varmuuskopiosta. Käynnistä vastaanotin uudelleen aktivoidaksesi uudet asetukset"
@@ -14460,7 +14476,7 @@ msgid "Retrieving %s commit log, please wait..."
 msgstr "Haetaan %s lokeja, odota..."
 
 msgid "Retrieving boot slot information..."
-msgstr ""
+msgstr "Käynnistyspaikan tietojen hakeminen..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Haetaan ohjelmisto listaa - odota hetki..."
@@ -14642,7 +14658,7 @@ msgstr "SD"
 
 #, python-format
 msgid "SDcard slot %s%s"
-msgstr ""
+msgstr "SD muistikortti paikka %s%s"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "SD kortin kytkin VIRHE! - H9 root tiedostoja ei ole siirretty SD-kortille"
@@ -15362,8 +15378,8 @@ msgstr "Valitse kieli, jota käyttöliittymän tulisi käyttää oletuksena"
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Valitse haluamasi toiminto ja napsauta OK vaihda listoja painamalla \"CH+/-\" siirtyäksesi luetteloiden välillä. Valitse määritetty toiminto ja paina OK määrittää sen \"Seuraava / Edellinen\" näppäimiä vaihtaaksesi toimintojen järjestystä."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Valitse korostettu image ja käynnistä uudelleen"
+msgid "Select the highlighted slot and reboot"
+msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
@@ -15413,9 +15429,6 @@ msgstr "Käytä siirtymää seuraaville merkeille"
 msgid "Select the shifted character set for the next character only"
 msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 
-msgid "Select the sleep timer action."
-msgstr "Valitse toimenpide, joka suoritetaan ajastuksen loputtua."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Valitse lähde oletus DNS asetuksille."
 
@@ -15442,6 +15455,12 @@ msgstr "\"Valitse käytetyn LNB:n / laitteen tyyppi (yleensä\" Universal \"). J
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Valitse käyttämäsi laitteen tyyppi."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr "Valitse haluamasi sammutus tyyppi, kun energia ajastin aktivoituu."
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
 msgid "Select upgrade source"
 msgstr "Valitse päivityksen lähdeosoite"
@@ -16967,11 +16986,38 @@ msgstr "Uniajastin"
 msgid "Sleep Timer"
 msgstr "Uniajastin"
 
+msgid "Sleep Timer Settings"
+msgstr "Uniajastimen asetukset"
+
 msgid "Sleep delay"
 msgstr "Sammumisen viive"
 
 msgid "Sleep long"
 msgstr "Nuku pitkään"
+
+msgid "Sleep timer"
+msgstr "Uniajastin"
+
+msgid "Sleep timer action"
+msgstr "Uniajastimen toiminnot"
+
+msgid "Sleep timer activation delay"
+msgstr "Uniajastimen aktivointi viive"
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] "Uniajastin: %d minuutti jäljellä."
+msgstr[1] "Uniajastin: %d minuuttia jäljellä."
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] "Uniajastin: %d sekuntia jäljellä."
+msgstr[1] "Uniajastin: %d sekuntia jäljellä."
+
+msgid "Sleep timer: Inactive."
+msgstr "Uniajastin: Ei käytössä."
 
 msgid "SleepTimer"
 msgstr "Uniajastin"
@@ -17006,23 +17052,23 @@ msgstr "Portti %d"
 
 #, python-format
 msgid "Slot %s: %s"
-msgstr ""
+msgstr "Paikka %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr ""
+msgstr "Paikka %s: %s (Nykyinen ohjelmisto)"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
-msgstr ""
+msgstr "Paikka %s: %s USB palautuksena"
 
 #, python-format
 msgid "Slot '%s'"
-msgstr ""
+msgstr "Paikka '%s'"
 
 #, python-format
 msgid "Slot '%s': %s%s"
-msgstr ""
+msgstr "Paikka '%s': %s%s"
 
 msgid "Slovak"
 msgstr "Slovakia"
@@ -17106,7 +17152,7 @@ msgid "Software Manager Setup"
 msgstr "Ohjelmiston hallinnan asetukset"
 
 msgid "Software MultiBoot"
-msgstr ""
+msgstr "Ohjelmisto MultiBoot"
 
 msgid "Software Update"
 msgstr "Ohjelmistopäivitykset"
@@ -17169,11 +17215,11 @@ msgstr "MediaScanneria ei ole asennettu!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "MiniDLNA määritystiedosto puuttuu"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Syötteet ovat pois käytöstä huollon vuoksi"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Syötteet eivät ole käytössä huollon takia, yritä myöhemmin uudelleen."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Syötteet ovat pois käytöstä huollon vuoksi."
 
 msgid "Sorry no backups found!"
 msgstr "Varmuuskopioita ei löydy!"
@@ -17469,10 +17515,10 @@ msgstr "Sulje PiP"
 msgid "Stop Streams"
 msgstr "Pysäytä streamit"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Pysäytä tallennus ja estä tulevat ajastukset"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Pysäytä tallennus, mutta älä estä tulevia ajastuksia"
 
 msgid "Stop entry"
@@ -17901,7 +17947,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 30.03.2022\n"
+"Suomenkielinen käännös: 15.04.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18279,6 +18325,16 @@ msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys 
 msgid "The detailed information is intended for developers only."
 msgstr "Yksityiskohtaiset tiedot on tarkoitettu vain kehittäjille."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+"Energia ajastin haluaa asettaa %s %s arvoon %s.\n"
+"\n"
+"Paina OK jatkaaksesi %s %s."
+
 msgid "The following files were found..."
 msgstr "Seuraavat tiedostot löytyi..."
 
@@ -18328,11 +18384,15 @@ msgstr "Kanavalista ladattu uudelleen."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Asetus \"ilman vahvistusta\" on sama kuin \"vakio\" ilman uutta vahvistuspyyntöä. Kaikki muut riippuvuudet (esim. Tallennukset, aikaväli) pysyvät."
 
-msgid "The sleep timer has been activated."
-msgstr "Uniajastin on käytössä."
-
-msgid "The sleep timer has been disabled."
-msgstr "Uniajastin on poistettu käytöstä."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
+"Uniajastin haluaa asettaa %s %s:n %s:een.\n"
+"\n"
+"Tehdäänkö se nyt vai jatketaanko ajastinta?"
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18416,7 +18476,7 @@ msgstr "Päivityksiä ei ole saatavilla."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
-msgstr "On olemassa vaara, että %s %s ei käynnisty tai siinä voi esiintyä toiminta häiriöitä näin suuren päivityksen jälkeen."
+msgstr "Voi olla, että %s %s ei käynnisty tai siinä voi esiintyä toiminta häiriöitä näin suuren päivityksen jälkeen (epätodennäköistä)."
 
 msgid "There is no signal to lock on !"
 msgstr "Ei signaalia johon voisi lukittua!"
@@ -18961,9 +19021,6 @@ msgstr "Ajastin Toiminnot"
 msgid "Timer List"
 msgstr "Ajastusluettelo"
 
-msgid "Timer action"
-msgstr "Ajastimen toimenpide"
-
 msgid "Timer edit"
 msgstr "Ajastuksen muokkaus"
 
@@ -18972,13 +19029,6 @@ msgstr "Ajastuksen editori"
 
 msgid "Timer entry"
 msgstr "Ajastettava ohjelma"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Ajastin on aktivoitu: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Ajastinta ei ole aktivoitu"
 
 msgid "Timer log"
 msgstr "Ajastin loki"
@@ -18997,13 +19047,13 @@ msgstr ""
 "Ajastusten päällekkäisyys havaittu!\n"
 "Tarkista ajastusasetukset!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Ajastetut ohjelmat"
 
 msgid "Timer recording location"
 msgstr "Ajastuksien tallennushakemisto"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr "Päällekkäinen ajastus"
 
 msgid "Timer selection"
@@ -20578,7 +20628,7 @@ msgid "What do you want to scan?"
 msgstr "Mitä haluat skannata?"
 
 msgid "What would you like to do?"
-msgstr "Mitä haluaisit tehdä?"
+msgstr "Mitä haluat tehdä?"
 
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kun päällä, Enigma2 näyttää piilotetut suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
@@ -20785,7 +20835,7 @@ msgid "Wintersport"
 msgstr "Talviurheilu"
 
 msgid "Wipe"
-msgstr ""
+msgstr "Pyyhi"
 
 msgid "Wireless LAN"
 msgstr "WLAN-verkko"
@@ -20947,10 +20997,10 @@ msgstr "Kyllä, mutta muunna ajansiirto tallenteeksi ja jatka tallentamista"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Kyllä, mutta muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Kyllä, poista ajastusluettelosta"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Kyllä, poista ajastusluettelosta ja poista tallennus"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21115,7 +21165,7 @@ msgid "You seem to be in timeshift, the service will briefly stop as timeshift s
 msgstr "Sinulla on ajansiirto päällä. Kanavan katselu pysähtyy hetkeksi ajansiirron pysähtyessä."
 
 msgid "You should flash a new image!"
-msgstr "Sinun pitäisi päivittää uusi ohjelmisto!"
+msgstr "Sinun kannattaa silti päivittää uusi ohjelmisto!"
 
 msgid "YouTube"
 msgstr "YouTube"
@@ -21503,7 +21553,7 @@ msgstr "peruuta muutokset ja poistu"
 msgid "abort favourites edit"
 msgstr "peruuta muutokset ja poistu"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "alkaa juuri"
 
 msgid "ac3"
@@ -21867,7 +21917,7 @@ msgstr "eMMC"
 
 #, python-format
 msgid "eMMC slot %s%s"
-msgstr ""
+msgstr "eMMC muistipaikka %s%s"
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -22155,9 +22205,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "Piilota"
-
 msgid "highest Resolution"
 msgstr "suurin Resolution"
 
@@ -22418,9 +22465,6 @@ msgstr "normaali"
 
 msgid "not"
 msgstr "ei"
-
-msgid "not activated"
-msgstr "ei käytössä"
 
 msgid "not configured"
 msgstr "ei määritetty"
@@ -22736,9 +22780,6 @@ msgstr "jaa:"
 
 msgid "shell"
 msgstr "shell"
-
-msgid "show"
-msgstr "Näytä"
 
 msgid "show DVD main menu"
 msgstr "näytä DVD:n päävalikko"
@@ -23166,7 +23207,7 @@ msgstr "kyllä (pidä syötteet)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "vaihdettu"
 
 msgid "zapping"
@@ -23174,6 +23215,81 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "show"
+#~ msgstr "Näytä"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Tallennus, tallennusajastin tai Virta ajastin on aktiivinen tai alkaa 15 minuutissa.\n"
+#~ "Sammutusajastinta pidennetään 30 minuutilla sinun %s %s\n"
+#~ "sammuttaa tallennuksen tai Virta ajastin tapahtuman jälkeen. Mennäänkö nyt valmiustilaan?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
+#~ "Tehdäänkö se nyt vai haluatko lisätä aikaa?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
+#~ "Tehdäänkö se nyt vai haluatko lisätä aikaa?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Monenko minuutin päästä uniajastin aktivoidaan."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Aktivoi nykyisen ohjelman jälkeen"
+
+#~ msgid "Execute in "
+#~ msgstr "Aktivointiviive "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot Image Hallinta"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Valitse toimenpide, joka suoritetaan ajastuksen loputtua."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Uniajastin on käytössä."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Uniajastin on poistettu käytöstä."
+
+#~ msgid "Timer action"
+#~ msgstr "Ajastimen toimenpide"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Ajastin on aktivoitu: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Ajastinta ei ole aktivoitu"
+
+#~ msgid "not activated"
+#~ msgstr "ei käytössä"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Peruuta image valinta ja poistu"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Peruuta image valinta ja poistu kaikista valikoista"
+
+#~ msgid "No images found"
+#~ msgstr "Imagea ei löytynyt"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Valitse korostettu image ja käynnistä uudelleen"
 
 #, python-format
 #~ msgid " bootmode = %s"

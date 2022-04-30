@@ -76,11 +76,7 @@ seek_withjumps_muted = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
-
-if isPluginInstalled("CoolTVGuide"):
-	COOLTVGUIDE = True
-else:
-	COOLTVGUIDE = False
+energyTimerCallBack = None
 
 
 def isStandardInfoBar(self):
@@ -302,6 +298,8 @@ class InfoBarUnhandledKey:
 
 	def actionA(self, key, flag):  # This function is called on every keypress!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
+		if energyTimerCallBack and str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
+			energyTimerCallBack(config.usage.energyTimer.value, showMessage=False)
 # TODO : TEST
 #		if flag != 2: # Don't hide on repeat.
 		self.unhandledKeyDialog.hide()
@@ -708,17 +706,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.openServiceList()
 			except:
 				self.toggleShow()
-		elif config.usage.okbutton_mode.value == "2" and COOLTVGUIDE:
-				self.showCoolInfoGuide()
-		elif config.usage.okbutton_mode.value == "3" and COOLTVGUIDE:
-				self.showCoolSingleGuide()
-		elif config.usage.okbutton_mode.value == "4" and COOLTVGUIDE:
-				if self.isInfo:
-					self.showCoolTVGuide()
-		elif config.usage.okbutton_mode.value == "5" and COOLTVGUIDE:
-				self.showCoolEasyGuide()
-		elif config.usage.okbutton_mode.value == "6" and COOLTVGUIDE:
-				self.showCoolChannelGuide()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
@@ -1016,61 +1003,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			epglist[0] = epglist[1]
 			epglist[1] = tmp
 			setEvent(epglist[0])
-
-	def showCoolInfoGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Info Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolSingleGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Single Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolTVGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool TV Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolEasyGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Easy Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolChannelGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Channel Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def checkHideVBI(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1937,13 +1869,6 @@ class InfoBarEPG:
 				self.EPGPressed()
 			elif config.plisettings.PLIINFO_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIINFO_mode.value == "coolinfoguide" and COOLTVGUIDE:
-				self.showCoolInfoGuide()
-			elif config.plisettings.PLIINFO_mode.value == "coolsingleguide" and COOLTVGUIDE:
-				self.showCoolSingleGuide()
-			elif config.plisettings.PLIINFO_mode.value == "cooltvguide" and COOLTVGUIDE:
-				if self.isInfo:
-					self.showCoolTVGuide()
 			else:
 				if config.plisettings.PLIINFO_mode.value != "infobar":
 					self.EPGPressed()
@@ -1964,9 +1889,6 @@ class InfoBarEPG:
 				self.openVerticalEPG()
 			#elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
 			#	self.openMerlinEPGCenter()
-			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
-				if self.isInfo:
-					self.showCoolTVGuide()
 			elif config.plisettings.PLIEPG_mode.value == "eventview":
 				self.openEventView()
 			else:
@@ -2099,17 +2021,6 @@ class InfoBarEPG:
 			self.EPGtype = "infobargraph"
 			self.MultiServiceEPG()
 
-	def showCoolTVGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool TV Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
 		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -2158,28 +2069,6 @@ class InfoBarEPG:
 					break
 		else:
 			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolInfoGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Info Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showCoolSingleGuide(self):
-		if self.servicelist is None:
-			return
-		if COOLTVGUIDE:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				if plugin.name == _("Cool Single Guide"):
-					self.runPlugin(plugin)
-					break
-		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
@@ -5193,72 +5082,118 @@ class InfoBarHdmi:
 
 class InfoBarSleepTimer:
 	def __init__(self):
+		global energyTimerCallBack
 		self.sleepTimer = eTimer()
 		self.sleepStartTime = 0
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
+		self.energyTimer = eTimer()
+		self.energyStartTime = 0
+		self.energyTimer.callback.append(self.energyTimerTimeout)
+		energyTimerCallBack = self.setEnergyTimer
 
 	def sleepTimerState(self):
-		if self.sleepTimer.isActive():
-			return (self.sleepStartTime - time()) / 60
+		return self.getTimerRemaining(self.sleepTimer, self.sleepStartTime)
+
+	def energyTimerState(self):
+		return self.getTimerRemaining(self.energyTimer, self.energyStartTime)
+
+	def getTimerRemaining(self, timer, startTime):
+		if timer.isActive():
+			return (startTime - time())
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage=True):
-		print("[InfoBarSleepTimer] set sleeptimer", sleepTime)
-		if sleepTime:
-			m = abs(sleepTime / 60)
-			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
-			self.sleepTimer.startLongTimer(sleepTime)
-			self.sleepStartTime = time() + sleepTime
+		self.sleepStartTime = self.setTimer(sleepTime, self.sleepStartTime, self.sleepTimer, _("Sleep timer"), showMessage=showMessage)
+
+	def setEnergyTimer(self, energyTime, showMessage=True):
+		self.energyStartTime = self.setTimer(energyTime, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=showMessage)
+
+	def setTimer(self, delay, previous, timer, name, showMessage):
+		minutes = delay // 60
+		if delay:
+			message = "%s\n%s %s" % (_("%s has been activated.") % name, _("Delay:"), _("%d minutes") % minutes)
+			timer.startLongTimer(delay)
+			delay = int(time()) + delay
 		else:
-			message = _("The sleep timer has been disabled.")
-			self.sleepTimer.stop()
-		if showMessage:
+			message = _("%s has been disabled.") % name
+			timer.stop()
+			delay = 0
+		if showMessage and delay != previous:
+			print("[InfoBarGenerics] InfoBarSleepTimer: %s set to %d minutes." % (name, minutes))
 			Notifications.AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
+		return delay
 
 	def sleepTimerTimeout(self):
-		if config.usage.sleep_timer_action.value != "standby":
-			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
-			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer=0)
-			if isRecordTime or isPowerTime:
-				self.setSleepTimer(1800, False)
-				if not Screens.Standby.inStandby:
-					message = _("A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?") % (getMachineBrand(), getMachineName())
-					self.session.openWithCallback(self.goStandby, MessageBox, message, MessageBox.TYPE_YESNO, timeout=int(config.usage.shutdown_msgbox_timeout.value), default=True)
-				return
-		if not Screens.Standby.inStandby:
-			list = [(_("Yes"), True),
+		action = config.usage.sleepTimerAction.value
+		brand, model, timeout = self.timerTimeout(action, self.setSleepTimer, _("Sleep Timer"))
+		if brand:
+			if not Screens.Standby.inStandby:
+				optionList = [
+					(_("Yes"), True),
 					(_("No"), False),
-					(_("Extend"), "extend")]
-			if config.usage.sleep_timer_action.value == "standby":
-				message = _("A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
+					(_("Extend"), "extend")
+				]
+				state = _("Standby") if action == "standby" else _("Deep Standby")
+				message = _("The sleep timer wants to set the %s %s to %s.\n\nDo that now or extend the timer?") % (brand, model, state)
+				self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=timeout, list=optionList, default=True, windowTitle=_("Sleep Timer"))  # , simple=True
 			else:
-				message = _("A sleep timer wants to shut down your %s %s.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=int(config.usage.shutdown_msgbox_timeout.value), simple=True, list=list, default=True)
-		else:
-			self.goStandby()
+				self.timerStandby(action)
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
-			from Screens.SleepTimerEdit import SleepTimerEdit
-			self.session.open(SleepTimerEdit)
+			from Screens.SleepTimer import SleepTimer
+			self.session.open(SleepTimer)
 		elif answer:
-			self.goStandby()
+			self.timerStandby(config.usage.sleepTimerAction.value)
 		else:
-			self.setSleepTimer(0)
+			self.setSleepTimer(0, showMessage=False)
 
-	def goStandby(self, answer=None):
-		if config.usage.sleep_timer_action.value == "standby" or answer:
+	def energyTimerTimeout(self):
+		action = config.usage.energyTimerAction.value
+		brand, model, timeout = self.timerTimeout(action, self.setEnergyTimer, _("Energy Timer"))
+		if brand:
 			if not Screens.Standby.inStandby:
-				print("[InfoBarSleepTimer] goto standby")
+				state = _("Standby") if action == "standby" else _("Deep Standby")
+				message = _("The energy timer wants to set the %s %s to %s.\n\nPress OK to continue using the %s %s.") % (brand, model, state, brand, model)
+				self.session.openWithCallback(self.energyTimerTimeoutCallback, MessageBox, message, type=MessageBox.TYPE_WARNING, timeout=timeout, default=True, timeoutDefault=False, windowTitle=_("Energy Timer"))  # , simple=True
+			else:
+				self.timerStandby(action)
+
+	def energyTimerTimeoutCallback(self, answer):
+		if answer:
+			self.setEnergyTimer(0, showMessage=False)
+		else:
+			self.timerStandby(config.usage.energyTimerAction.value)
+
+	def timerTimeout(self, action, timerMethod, name):
+		brand = BoxInfo.getItem("displaybrand")
+		model = BoxInfo.getItem("displaymodel")
+		timeout = int(config.usage.shutdown_msgbox_timeout.value)
+		if action != "standby":
+			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
+			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer=0)
+			if isRecordTime or isPowerTime:
+				timerMethod(1800, showMessage=False)  # 1800 = 30 minutes.
+				if not Screens.Standby.inStandby:
+					message = _("A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n\nGo to Deep Standby now?") % (name, brand, model)
+					self.session.openWithCallback(boundFunction(self.timerStandby, action), MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True, windowTitle=name)
+				return None, None, None
+		return brand, model, timeout
+
+	def timerStandby(self, action, answer=None):
+		if action == "standby" or answer:
+			if not Screens.Standby.inStandby:
+				print("[InfoBarGenerics] InfoBarSleepTimer: Going to Standby.")
 				self.session.open(Screens.Standby.Standby)
 		elif answer is None:
 			if not Screens.Standby.inStandby:
 				if not Screens.Standby.inTryQuitMainloop:
-					print("[InfoBarSleepTimer] goto deep standby")
+					print("[InfoBarGenerics] InfoBarSleepTimer: Going to Deep Standby.")
 					self.session.open(Screens.Standby.TryQuitMainloop, 1)
 			else:
-				print("[InfoBarSleepTimer] goto deep standby")
+				print("[InfoBarGenerics] InfoBarSleepTimer: Going to Deep Standby.")
 				quitMainloop(1)
+
 
 #########################################################################################
 # for displayed power or record timer messages in foreground and for callback execution #

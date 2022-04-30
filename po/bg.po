@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-18 17:33+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -1332,6 +1332,14 @@ msgid "%s additional screens"
 msgstr "%s допълнителни екрани"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s информация"
 
@@ -2012,7 +2020,7 @@ msgstr "<Местоположението на филмите по подраз�
 msgid "<Last timer location>"
 msgstr "<Местоположение на последния таймер>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<неизвестен>"
 
 msgid "?"
@@ -2023,16 +2031,6 @@ msgstr ""
 
 msgid "A"
 msgstr ""
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Таймер за запис, запис или таймер за захранване работи или започва след 15 минути.\n"
-"Удължете таймера за заспиване с 30 минути. Вашият %s %s\n"
-"ще се изключи след събитие за запис или таймер за захранване. Влезате ли в режим на готовност сега?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Извършва се проверка на фоновата актуализация. Моля, изчакайте няколко минути и опитайте отново."
@@ -2118,6 +2116,13 @@ msgstr "Записът в момента върви. Моля спрете за�
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Записът в момента върви. Моля спрете записа преди да опитате да стартирате satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Повторяне на таймер или само веднъж?"
 
@@ -2147,27 +2152,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Таймерът за сън иска да настрои вашия %s %s в standby.\n"
-"Да го направи ли сега или задайте допълнителни минути?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Таймерът за сън иска да изключи вашия \n"
 "%s %s. Да изключи ли сега?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Таймерът за сън иска да изключи вашия %s %s.\n"
-"Да го направи ли сега или задайте допълнителни минути?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Малък преглед на наличните състояния и действия на иконите."
@@ -3011,6 +3000,9 @@ msgstr ""
 
 msgid "At End:"
 msgstr "В края:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Атлетика"
@@ -4062,11 +4054,11 @@ msgstr "Отказ за запазване на времевото измест�
 msgid "Cancel selection"
 msgstr "Отмяна на избора"
 
-msgid "Cancel the image selection and exit"
-msgstr "Отменете избора на изображение и излезте"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Отменете избора на изображение и излезте от всички менюта"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "Отменете актуализацията"
@@ -4871,8 +4863,11 @@ msgstr "Конфигуриране на разделителната спосо�
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Конфигуриране на продължителността в минути за скрийнсейвъра."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Конфигуриране на продължителността в минути за таймера за заспиване."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Конфигуриране на края на координа х на зоната на телетекст дисплей."
@@ -5973,6 +5968,9 @@ msgstr "Изтриване на потвърждението"
 msgid "Delete EPG"
 msgstr "Изтриване на EPG"
 
+msgid "Delete Image"
+msgstr "Изтриване на изображение"
+
 msgid "Delete Language"
 msgstr "Изтриване на език"
 
@@ -6021,13 +6019,10 @@ msgstr "Изтриване на файл или директория (и цял�
 msgid "Delete folder"
 msgstr "Изтриване на папка"
 
-msgid "Delete image"
-msgstr "Изтриване на изображение"
-
 msgid "Delete logfile"
 msgstr "Изтриване на регистрационния файл"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6640,7 +6635,7 @@ msgstr "Да не се запазва"
 msgid "Don't show default"
 msgstr "Да не се показва по подразбиране"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Не спирайте текущото събитие, но забранете идващите събития"
 
 msgid ""
@@ -6894,6 +6889,12 @@ msgstr ""
 msgid "Edit"
 msgstr "Редактиране"
 
+msgid "Edit Mode Off"
+msgstr "Режим на редактиране изключен"
+
+msgid "Edit Mode On"
+msgstr "Режим на редактиране включен"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Редактиране на запис за четири канала"
 
@@ -6915,13 +6916,7 @@ msgstr "Редактиране на текущия ред"
 msgid "Edit line "
 msgstr "Редактиране на реда "
 
-msgid "Edit mode off"
-msgstr "Режим на редактиране изключен"
-
-msgid "Edit mode on"
-msgstr "Режим на редактиране включен"
-
-msgid "Edit new entry"
+msgid "Edit New Entry"
 msgstr "Редактиране на нов запис"
 
 msgid "Edit position is the line end"
@@ -7197,6 +7192,33 @@ msgstr "Време за край"
 
 msgid "Energie"
 msgstr "Енергия"
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
 
 msgid "English"
 msgstr "Английски"
@@ -7599,12 +7621,6 @@ msgstr ""
 
 msgid "Exceeds dual layer medium!"
 msgstr ""
-
-msgid "Execute after current event"
-msgstr "Изпълнение след текущото събитие"
-
-msgid "Execute in "
-msgstr "Изпълнение в "
 
 msgid "Execution condition"
 msgstr "Състояние изпълнение"
@@ -8824,6 +8840,9 @@ msgstr "Скрит / Празен"
 
 msgid "Hidden network"
 msgstr "Скрита мрежа"
+
+msgid "Hide"
+msgstr "скриване"
 
 msgid "Hide VBI line for this service"
 msgstr "Скрийте VBI линията за този сервиз"
@@ -10291,11 +10310,11 @@ msgstr "Зареждане на необвързани потребителск�
 msgid "Load/Save/Delete"
 msgstr "Зареждане/Запазване/Изтриване"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Информацията се зарежда, моля изчакайте..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Местен приемник"
@@ -10980,6 +10999,12 @@ msgstr "Премести 1 елемент"
 msgid "Move Left/Right"
 msgstr "Премести наляво/надясно"
 
+msgid "Move Mode Off"
+msgstr "Режим на движение изключен"
+
+msgid "Move Mode On"
+msgstr "Режим на движение включен"
+
 msgid "Move PIP"
 msgstr "Премести PiP"
 
@@ -11036,12 +11061,6 @@ msgstr "Преместване на файлове/директории в це�
 
 msgid "Move folder"
 msgstr "Преместване на папка"
-
-msgid "Move mode off"
-msgstr "Режим на движение изключен"
-
-msgid "Move mode on"
-msgstr "Режим на движение включен"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Премести текущия DNS запис надолу с един ред"
@@ -11181,22 +11200,16 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Мулти EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Мениджър на изображения за много стартиране"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11644,9 +11657,6 @@ msgstr "Не са открити твърди дискове."
 msgid "No hash calculations configured"
 msgstr "Няма конфигурирани хеш изчисления"
 
-msgid "No images found"
-msgstr "Няма намерени изображения"
-
 msgid "No matching place names found"
 msgstr "Няма намерени съответстващи имена на места"
 
@@ -11679,6 +11689,9 @@ msgstr "Няма сервизи"
 
 msgid "No services/providers selected"
 msgstr "Няма избрани сервизи/провайдери"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Няма режим на готовност"
@@ -13335,7 +13348,7 @@ msgstr "Натиснете OK, за да използвате този език.
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Натиснете OK, за да използвате този локал  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14396,7 +14409,7 @@ msgstr "Възстановяване на настройките  от архи�
 msgid "Restore system settings"
 msgstr "Възстановяване на системни настройки"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15318,8 +15331,8 @@ msgstr "Изберете текущо подчертания локал/език
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Изберете желаната функция и кликнете върху „OK“, за да я зададете. Използвайте \"CH+/-\", за да превключвате между списъците. Изберете назначена функция и щракнете върху „OK“, за да я отмените. Използвайте \"Напред/Назад\", за да промените реда на назначените функции."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Изберете маркираното изображение и рестартирайте"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Изберете локала от меню"
@@ -15369,9 +15382,6 @@ msgstr "Изберете изместения набор от знаци"
 msgid "Select the shifted character set for the next character only"
 msgstr "Изберете изместения набор от знаци само за следващия знак"
 
-msgid "Select the sleep timer action."
-msgstr "Изберете действието на таймера за сън."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Изберете източника на DNS настройките по подразбиране."
 
@@ -15398,6 +15408,12 @@ msgstr "Изберете типа конвертор/устройство, ко�
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Изберете типа на устройството за приемане на единичен кабел, което използвате."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Изберете източник за надстройване"
@@ -16921,11 +16937,38 @@ msgstr "Заспиване"
 msgid "Sleep Timer"
 msgstr "Таймер за заспиване"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Отлагане заспиване"
 
 msgid "Sleep long"
 msgstr "Дълго заспиване"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Таймер за заспиване"
@@ -17123,11 +17166,11 @@ msgstr "За съжаление MediaScanner не е инсталиран!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "За съжаление MiniDLNA Config липсва"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Съжаляваме, че емисиите са намалени за поддръжка"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Съжаляваме, че емисиите са за поддръжка, моля, опитайте отново по-късно."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Съжаляваме, че емисиите са намалени за поддръжка"
 
 msgid "Sorry no backups found!"
 msgstr "За съжаление не са намерени резервни копия!"
@@ -17423,10 +17466,10 @@ msgstr "Стоп на PiP"
 msgid "Stop Streams"
 msgstr "Спиране на потоци"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Стоп на текущото събитие и деактивиране на следващите събития"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Стоп на текущото събитие, но не и следващите събития"
 
 msgid "Stop entry"
@@ -18231,6 +18274,13 @@ msgstr "Настройките по подразбиране са времето
 msgid "The detailed information is intended for developers only."
 msgstr "Подробната информация е предназначена само за разработчици."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Следните файлове бяха открити..."
 
@@ -18280,11 +18330,12 @@ msgstr "Сервизният списък се презарежда."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Настройката 'без заявка' е същото като 'стандартна' без допълнителна заявка за потвърждение. Всички останали зависимости (например записи, времеви обхват) остават."
 
-msgid "The sleep timer has been activated."
-msgstr "Таймерът за заспиване е активиран."
-
-msgid "The sleep timer has been disabled."
-msgstr "Таймерът за заспиване е деактивиран."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18911,9 +18962,6 @@ msgstr "Действия на таймера"
 msgid "Timer List"
 msgstr "Списък с таймер"
 
-msgid "Timer action"
-msgstr "Действие с таймер"
-
 msgid "Timer edit"
 msgstr "Редактиране на таймера"
 
@@ -18922,13 +18970,6 @@ msgstr "Редактор на таймер"
 
 msgid "Timer entry"
 msgstr "Въвеждане на таймер"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Таймерът се активира: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Таймерът не се активира"
 
 msgid "Timer log"
 msgstr "Дневник на таймера"
@@ -18947,13 +18988,13 @@ msgstr ""
 "Открит таймер припокриване в timers.xml!\n"
 "Моля, проверете го отново!"
 
-msgid "Timer overview"
+msgid "Timer Overview"
 msgstr "Общ преглед на таймера"
 
 msgid "Timer recording location"
 msgstr "Местопол. за записване на таймера"
 
-msgid "Timer sanity error"
+msgid "Timer Sanity Error"
 msgstr ""
 
 msgid "Timer selection"
@@ -20892,10 +20933,10 @@ msgstr "Да, но запази TimeShift като филм и продължи 
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Да, но запази TimeShift като филм и стоп запис"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Да, изтрий от Timerlist"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Да, изтрий от Timerlist и изтрий запис"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21442,7 +21483,7 @@ msgstr "прекратяване на редактиране на букет"
 msgid "abort favourites edit"
 msgstr "прекратяване на редактирането на любимите"
 
-msgid "about to start"
+msgid "About to start"
 msgstr "на път да започне"
 
 msgid "ac3"
@@ -22094,9 +22135,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr "скриване"
-
 msgid "highest Resolution"
 msgstr "най-висока резолюция"
 
@@ -22357,9 +22395,6 @@ msgstr "нормален"
 
 msgid "not"
 msgstr "не"
-
-msgid "not activated"
-msgstr "не е активиран"
 
 msgid "not configured"
 msgstr "не е конфигуриран"
@@ -22675,9 +22710,6 @@ msgstr "дял:"
 
 msgid "shell"
 msgstr ""
-
-msgid "show"
-msgstr "шоу"
 
 msgid "show DVD main menu"
 msgstr "показване на основното DVD mеню"
@@ -23105,7 +23137,7 @@ msgstr "да (запази фийдове)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с ръководството за допълнителна помощ преди рестартиране на вашият %s %s."
 
-msgid "zapped"
+msgid "Zapped"
 msgstr "превключено"
 
 msgid "zapping"
@@ -23113,6 +23145,81 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "show"
+#~ msgstr "шоу"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Таймер за запис, запис или таймер за захранване работи или започва след 15 минути.\n"
+#~ "Удължете таймера за заспиване с 30 минути. Вашият %s %s\n"
+#~ "ще се изключи след събитие за запис или таймер за захранване. Влезате ли в режим на готовност сега?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Таймерът за сън иска да настрои вашия %s %s в standby.\n"
+#~ "Да го направи ли сега или задайте допълнителни минути?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Таймерът за сън иска да изключи вашия %s %s.\n"
+#~ "Да го направи ли сега или задайте допълнителни минути?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Конфигуриране на продължителността в минути за таймера за заспиване."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Изпълнение след текущото събитие"
+
+#~ msgid "Execute in "
+#~ msgstr "Изпълнение в "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Мениджър на изображения за много стартиране"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Изберете действието на таймера за сън."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Таймерът за заспиване е активиран."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Таймерът за заспиване е деактивиран."
+
+#~ msgid "Timer action"
+#~ msgstr "Действие с таймер"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Таймерът се активира: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Таймерът не се активира"
+
+#~ msgid "not activated"
+#~ msgstr "не е активиран"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Отменете избора на изображение и излезте"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Отменете избора на изображение и излезте от всички менюта"
+
+#~ msgid "No images found"
+#~ msgstr "Няма намерени изображения"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Изберете маркираното изображение и рестартирайте"
 
 #~ msgid "(current image)"
 #~ msgstr "(текущо изображение)"

@@ -24,7 +24,7 @@ class Console(Screen):
 		self.errorOcurred = False
 
 		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("hide"))
+		self["key_green"] = Label(_("Hide"))
 
 		self["text"] = ScrollLabel("")
 		self["summary_description"] = StaticText("")
