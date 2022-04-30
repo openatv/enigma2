@@ -2365,7 +2365,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
 			newurl = p(session=self.session, service=nref)
 			if newurl:
-				nref.setUrl(newurl)
+				nref.setAlternativeUrl(newurl)
 				break
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
