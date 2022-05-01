@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-18 17:33+0000\n"
-"PO-Revision-Date: 2022-04-26 10:12+0000\n"
+"PO-Revision-Date: 2022-04-29 11:08+0000\n"
 "Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1362,11 +1362,11 @@ msgstr "%s dodatkowe ekrany"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "%s został aktywowany."
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "%s został wyłączony."
 
 #, python-format
 msgid "%s information"
@@ -2152,6 +2152,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
+"Nagranie, timer nagrywania lub timer zasilania trwa lub rozpocznie się w ciągu 15 minut. %s przedłużony do 30 minut. Urządzenie %s %s przejdzie w stan głębokiego czuwania po zdarzeniu związanym z nagrywaniem lub timerem zasilania.\n"
+"\n"
+"Przejść teraz do trybu głębokiej gotowości?"
 
 msgid "A repeating timer or just once?"
 msgstr "Powtarzanie timera lub tylko raz?"
@@ -3030,7 +3033,7 @@ msgid "At End:"
 msgstr "Na Koniec:"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "Po zakończeniu bieżącego programu"
 
 msgid "Athletics"
 msgstr "Lekkoatletyka"
@@ -4087,10 +4090,10 @@ msgid "Cancel selection"
 msgstr "Anuluj wybór"
 
 msgid "Cancel the slot selection and exit"
-msgstr ""
+msgstr "Anuluj wybór slotu i wyjdź"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr ""
+msgstr "Anuluj wybór slotu i wyjdź ze wszystkich menu"
 
 msgid "Cancel the update"
 msgstr "Anuluj aktualizację"
@@ -4895,10 +4898,10 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
-msgstr ""
+msgstr "Skonfiguruj czas trwania (w minutach) przed aktywacją licznika czasu oszczędzania energii."
 
 msgid "Configure the duration, in minutes, before the sleep timer activates."
-msgstr ""
+msgstr "Skonfiguruj czas trwania (w minutach) przed aktywacją wyłącznika czasowego."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Skonfiguruj współrzędną końcową w x obszaru wyświetlania telegazety."
@@ -6054,7 +6057,7 @@ msgid "Delete logfile"
 msgstr "Usuń plik logu"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr ""
+msgstr "Usuń lub wyczyść zaznaczony slot"
 
 msgid "Delete playlist entry"
 msgstr "Usuń pozycję z listy"
@@ -7226,33 +7229,33 @@ msgid "Energie"
 msgstr "Energia"
 
 msgid "Energy Timer"
-msgstr ""
+msgstr "Timer Zasilania"
 
 msgid "Energy saver action"
-msgstr ""
+msgstr "Akcja oszczędzania energii"
 
 msgid "Energy saver activation delay"
-msgstr ""
+msgstr "Opóźnienie aktywacji oszczędzania energii"
 
 msgid "Energy timer"
-msgstr ""
+msgstr "Timer zasilania"
 
 #, python-format
 msgid "Energy timer: %d minute remains."
 msgid_plural "Energy timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Licznik energii: %d pozostała minuta."
+msgstr[1] "Licznik energii: %d pozostały minuty."
+msgstr[2] "Licznik energii: %d pozostała minuta."
 
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Licznik energii: %d pozostała sekunda."
+msgstr[1] "Licznik energii: %d pozostały sekundy."
+msgstr[2] "Licznik energii: %d pozostała sekunda."
 
 msgid "Energy timer: Inactive."
-msgstr ""
+msgstr "Zegar zasilania: nieaktywny."
 
 msgid "English"
 msgstr "Angielski"
@@ -10353,7 +10356,7 @@ msgid "Loading information, please wait..."
 msgstr "Ładowanie informacji, proszę czekać..."
 
 msgid "Loading slot information, please wait..."
-msgstr ""
+msgstr "Ładowanie informacji o slotach, proszę czekać..."
 
 msgid "Local box"
 msgstr "Odbiornik lokalny"
@@ -11026,7 +11029,7 @@ msgid "Mounts Settings"
 msgstr "Ustawienia montowania"
 
 msgid "Move"
-msgstr "Przesuń"
+msgstr "Przenieś"
 
 #, python-format
 msgid "Move %d elements"
@@ -11249,7 +11252,7 @@ msgid "MultiBoot Manager"
 msgstr "Menedżer MultiBoot"
 
 msgid "MultiBoot Manager Actions"
-msgstr ""
+msgstr "Akcje MultiBoot Managera"
 
 msgid "MultiBoot boot mode"
 msgstr "Tryb startowy MultiBoot"
@@ -11730,7 +11733,7 @@ msgid "No services/providers selected"
 msgstr "Brak wybranych kanałów/dostawców"
 
 msgid "No slot images found"
-msgstr ""
+msgstr "Nie znaleziono systemow w slocie"
 
 msgid "No standby"
 msgstr "Brak czuwania"
@@ -13389,7 +13392,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Naciśnij OK aby użyć tego regionu. [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
+msgstr "Naciśnij przyciski GÓRA/DÓŁ, aby wybrać slot i naciśnij OK lub ZIELONY, aby 'Uruchom ponownie' ten system. Jeśli jest dostępny, ŻÓŁTY spowoduje 'Skasowanie' lub ✧Wymazanie' systemu. Obraz 'Usunięty' można ɲrzywrócić' za pomocą NIEBIESKIEGO przycisku. Obrazu 'Wymazany', który został całkowicie usunięty, NIE DA SIĘ przywrócić!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Naciśnij przycisk menu, aby ustawić ogólne przesunięcie AC3/Dolby."
@@ -14450,7 +14453,7 @@ msgid "Restore system settings"
 msgstr "Przywróć ustawienia systemowe"
 
 msgid "Restore the highlighted slot"
-msgstr ""
+msgstr "Przywróć podświetlony slot"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Przywrócić ustawienia z kopii zapasowej? Po przywróceniu odbiornik zostanie ponownie uruchomiony, aby zastosować nowe ustawienia"
@@ -15374,7 +15377,7 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ', aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Wybierz podświetlony slot i uruchom ponownie"
 
 msgid "Select the locale from a menu"
 msgstr "Wybierz ustawienia regionalne z menu"
@@ -15452,10 +15455,10 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
 
 msgid "Select the type of shutdown desired when the energy timer activates."
-msgstr ""
+msgstr "Wybierz żądany typ wyłączenia, gdy włącza się timer oszczędzania."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
+msgstr "Wybierz żądany typ wyłączenia, gdy włącza się timer uśpienia."
 
 msgid "Select upgrade source"
 msgstr "Źródło aktualizacji"
@@ -16980,7 +16983,7 @@ msgid "Sleep Timer"
 msgstr "Timer czuwania"
 
 msgid "Sleep Timer Settings"
-msgstr ""
+msgstr "Ustawienia timera uśpienia"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie wykonania (w minutach)"
@@ -16989,30 +16992,30 @@ msgid "Sleep long"
 msgstr "Uśpienie (długo)"
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Timer Uśpienia"
 
 msgid "Sleep timer action"
-msgstr ""
+msgstr "Akcje timera uśpienia"
 
 msgid "Sleep timer activation delay"
-msgstr ""
+msgstr "Opóźnienie aktywacji timera uśpienia"
 
 #, python-format
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Timer uśpienia: %d pozostała minuta."
+msgstr[1] "Timer uśpienia: %d pozostały minuty."
+msgstr[2] "Timer uśpienia: %d pozostaje minuta."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
 msgid_plural "Sleep timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Timer uśpienia: %d pozostała sekunda."
+msgstr[1] "Timer uśpienia: %d pozostały sekundy."
+msgstr[2] "Timer uśpienia: %d pozostały sekundy."
 
 msgid "Sleep timer: Inactive."
-msgstr ""
+msgstr "Timer uśpienia: Nieaktywny."
 
 msgid "SleepTimer"
 msgstr "Timer czuwania"
@@ -17215,7 +17218,7 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponownie później."
 
 msgid "Sorry feeds are down for maintenance."
-msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych"
+msgstr "Przepraszamy, feeds jest w trakcie prac konserwacyjnych."
 
 msgid "Sorry no backups found!"
 msgstr "Nie znaleziono kopii zapasowej!"
@@ -18325,6 +18328,9 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+"Zegar oszczędzania energii chce ustawić %s %s na %s.\n"
+"\n"
+"Naciśnij przycisk OK, aby kontynuować korzystanie z %s %s."
 
 msgid "The following files were found..."
 msgstr "Następujące pliki zostały wykryte..."
@@ -18381,6 +18387,9 @@ msgid ""
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
+"Timer uśpienia chce ustawić %s %s na %s.\n"
+"\n"
+"Zrobić to teraz czy przedłużyć działanie timera?"
 
 msgid ""
 "The software management extension is not installed!\n"

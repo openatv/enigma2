@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-18 17:33+0000\n"
-"PO-Revision-Date: 2022-03-28 08:07+0000\n"
+"PO-Revision-Date: 2022-05-01 07:49+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -1338,11 +1338,11 @@ msgstr "%s extra schermen"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "%s is geactiveerd."
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "%s is uitgeschakeld."
 
 #, python-format
 msgid "%s information"
@@ -2127,6 +2127,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
+"Een opname, timer of power timer is actief of begint binnen 15 minuten. %s verlengt naar 30 minuten. Uw %s %s schakelt uit na de opname of de power timer.\n"
+"\n"
+"De ontvanger nu uitschakelen?"
 
 msgid "A repeating timer or just once?"
 msgstr "Een herhalende timer of eenmalig?"
@@ -2152,7 +2155,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Een slaap timer wil uw\n"
+"Een Slaaptimer wil uw\n"
 "%s %s in stand-by zetten. Dat nu doen?"
 
 #, python-format
@@ -2160,7 +2163,7 @@ msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Een slaap timer wil uw\n"
+"Een Slaaptimer wil uw\n"
 "%s %s uitschakelen. Dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
@@ -2777,10 +2780,10 @@ msgid "Andorra"
 msgstr "Andorra"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Android Linux SE"
-msgstr ""
+msgstr "Android Linux SE"
 
 msgid "Angola"
 msgstr "Angola"
@@ -2876,7 +2879,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Weet u zeker dat u alle EPG-gegevens wilt verwijderen van:\n"
 
 msgid "Are you sure you want to delete this image?"
-msgstr ""
+msgstr "Weet u zeker dat u deze image wilt verwijderen?"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Weet u zeker dat u dit log wilt verwijderen:\n"
@@ -3006,7 +3009,7 @@ msgid "At End:"
 msgstr "Aan het einde:"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "Aan het eind van het huidige programma"
 
 msgid "Athletics"
 msgstr "Atletiek"
@@ -3581,7 +3584,7 @@ msgstr "Boot informatie"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr ""
+msgstr "Boot slot informatie voor %s %s"
 
 msgid "Boot time"
 msgstr "Opstart snelheid"
@@ -3893,7 +3896,7 @@ msgid "Calculate"
 msgstr "Bereken"
 
 msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr ""
+msgstr "Bereken en toon de grootte van de map. Opmerking: Hierdoor kan de UI trager worden!"
 
 msgid "Calculate file checksums"
 msgstr "Bereken bestand checksums"
@@ -4063,10 +4066,10 @@ msgid "Cancel selection"
 msgstr "Annuleer selectie"
 
 msgid "Cancel the slot selection and exit"
-msgstr ""
+msgstr "Annuleer de selectie en exit"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr ""
+msgstr "Annuleer de selectie en exit uit alle menu's"
 
 msgid "Cancel the update"
 msgstr "De update annuleren"
@@ -4912,10 +4915,10 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
-msgstr ""
+msgstr "Stel de tijdsduur in minuten in, voordat de Energie spaar timer wordt geactiveerd."
 
 msgid "Configure the duration, in minutes, before the sleep timer activates."
-msgstr ""
+msgstr "Stel de tijdsduur in minuten in, voordat de Slaaptimer wordt geactiveerd."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configureer de eind-coördinaat in x van het weergavegebied van Teletekst."
@@ -5526,7 +5529,7 @@ msgid "Currency"
 msgstr "Munteenheid"
 
 msgid "Current"
-msgstr ""
+msgstr "Huidige"
 
 msgid "Current Affairs"
 msgstr "Nieuws/Actualiteiten"
@@ -6140,7 +6143,7 @@ msgid "Delete logfile"
 msgstr "Verwijder log-bestand"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr ""
+msgstr "Verwijder of wis het actuele slot"
 
 msgid "Delete playlist entry"
 msgstr "Verwijder een item uit de afspeellijst"
@@ -7092,7 +7095,7 @@ msgid "Embedded"
 msgstr "Insluiten"
 
 msgid "Empty"
-msgstr ""
+msgstr "Leeg"
 
 msgid "Enable"
 msgstr "Aan"
@@ -7318,31 +7321,31 @@ msgid "Energie"
 msgstr "Energie"
 
 msgid "Energy Timer"
-msgstr ""
+msgstr "Energie spaar timer"
 
 msgid "Energy saver action"
-msgstr ""
+msgstr "Energie spaar timer actie"
 
 msgid "Energy saver activation delay"
-msgstr ""
+msgstr "Energie spaar timer tijdsduur"
 
 msgid "Energy timer"
-msgstr ""
+msgstr "Energie spaar timer"
 
 #, python-format
 msgid "Energy timer: %d minute remains."
 msgid_plural "Energy timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Energie spaar timer: %d minuut resterend."
+msgstr[1] "Energie spaar timer: %d minuten resterend."
 
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Energie spaar timer: %d seconde resterend."
+msgstr[1] "Energie spaar timer: %d seconden resterend."
 
 msgid "Energy timer: Inactive."
-msgstr ""
+msgstr "Energie spaar timer: Gedeactiveerd."
 
 msgid "English"
 msgstr "Engels"
@@ -8888,7 +8891,7 @@ msgid "Harddisk Setup"
 msgstr "Harde schijf configureren"
 
 msgid "Hardware MultiBoot device"
-msgstr ""
+msgstr "Hardware MultiBoot-apparaat"
 
 msgid "Hardware information"
 msgstr "Hardware informatie"
@@ -9265,7 +9268,7 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
 
 msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
-msgstr ""
+msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
@@ -9468,7 +9471,7 @@ msgid "In the Standby Record on the LCD Display"
 msgstr "Toon tijdens stand-by een REC-symbool op het display."
 
 msgid "Inaccessible"
-msgstr ""
+msgstr "Ontoegankelijk"
 
 msgid "Inactive"
 msgstr "Inactief"
@@ -9787,11 +9790,11 @@ msgstr "Intern geheugen"
 
 #, python-format
 msgid "Internal flash:  %s %s "
-msgstr ""
+msgstr "Interne flash:  %s %s "
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
+msgstr "Interne flash: %s %s als USB back-up"
 
 msgid "Internal hdd only"
 msgstr "Alleen interne HDD"
@@ -10449,7 +10452,7 @@ msgid "Loading information, please wait..."
 msgstr "Informatie laden, een moment geduld..."
 
 msgid "Loading slot information, please wait..."
-msgstr ""
+msgstr "Slot informatie laden, even wachten a.u.b."
 
 msgid "Local box"
 msgstr "Lokale box"
@@ -11012,10 +11015,10 @@ msgid "Mode 1"
 msgstr "Modus 1"
 
 msgid "Mode 12: Supports PiP but Kodi may not work"
-msgstr ""
+msgstr "Modus 12: Ondersteund PiP maar Kodi zal waarschijnlijk niet functioneren"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
-msgstr ""
+msgstr "Modus 1: Ondersteund Kodi maar PiP zal waarschijnlijk niet functioneren"
 
 msgid "Mode 2"
 msgstr "Modus 2"
@@ -11336,22 +11339,22 @@ msgid "Multi EPG"
 msgstr "Multi-EPG"
 
 msgid "MultiBoot"
-msgstr ""
+msgstr "MultiBoot"
 
 msgid "MultiBoot Information"
-msgstr ""
+msgstr "MultiBoot informatie"
 
 msgid "MultiBoot Manager"
-msgstr ""
+msgstr "MultiBoot Manager"
 
 msgid "MultiBoot Manager Actions"
-msgstr ""
+msgstr "MultiBoot Manager Acties"
 
 msgid "MultiBoot boot mode"
-msgstr ""
+msgstr "MultiBoot boot modus"
 
 msgid "MultiBoot startup file"
-msgstr ""
+msgstr "MultiBoot opstartbestand"
 
 msgid "MultiEPG Settings"
 msgstr "Multi-EPG"
@@ -11826,7 +11829,7 @@ msgid "No services/providers selected"
 msgstr "Geen zender / provider gekozen"
 
 msgid "No slot images found"
-msgstr ""
+msgstr "Geen slot images gevonden"
 
 msgid "No standby"
 msgstr "Geen stand-by"
@@ -11960,7 +11963,7 @@ msgid "Normal - Standard image"
 msgstr "Normaal - Standaard image"
 
 msgid "Normal: No boot modes required."
-msgstr ""
+msgstr "Normaal: Geen boot modi noodzakelijk."
 
 msgid "North"
 msgstr "Noord"
@@ -13489,6 +13492,8 @@ msgstr "Druk op OK om deze locale te gebruiken.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
+"Druk op UP/DOWN knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
+"Een \"verwijderde\" image kan hersteld worden met de BLAUWE knop. Een \"gewiste\" image is compleet verwijderd en kan NIET hersteld worden!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Druk op de MENU-knop voor het instellen van een algemene AC3/Dolby compensatie."
@@ -14111,7 +14116,7 @@ msgid "Records"
 msgstr "Opnames"
 
 msgid "Recovery"
-msgstr ""
+msgstr "Back-up"
 
 msgid "Recovery Mode"
 msgstr "Recovery modus"
@@ -14549,7 +14554,7 @@ msgid "Restore system settings"
 msgstr "Herstel uw instellingen"
 
 msgid "Restore the highlighted slot"
-msgstr ""
+msgstr "Herstel het actuele slot"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Herstel de instellingen uit een back-up. De ontvanger moet herstart worden om de nieuwe instellingen te activeren."
@@ -14578,7 +14583,7 @@ msgid "Retrieving %s commit log, please wait..."
 msgstr "Ontvangen van %s commit log, een moment geduld..."
 
 msgid "Retrieving boot slot information..."
-msgstr ""
+msgstr "Boot slot informatie opvragen..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Image lijst word opgehaald. Een ogenblik geduld ..."
@@ -14760,7 +14765,7 @@ msgstr "SD"
 
 #, python-format
 msgid "SDcard slot %s%s"
-msgstr ""
+msgstr "SDcard slot %s%s"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "SD kaart switch FOUT! - H9 root bestanden niet overgezet naar SD kaart"
@@ -15477,7 +15482,7 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Selecteer het actuele slot en herstarten"
 
 msgid "Select the locale from a menu"
 msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
@@ -15555,10 +15560,10 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Selecteer het type enkele kabel ontvangst apparaat dat u gebruikt."
 
 msgid "Select the type of shutdown desired when the energy timer activates."
-msgstr ""
+msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie spaar timer actief wordt."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
+msgstr "Hoe wilt u de ontvanger afsluiten wanneer de Slaaptimer actief wordt."
 
 msgid "Select upgrade source"
 msgstr "Selecteer de update bron"
@@ -15985,7 +15990,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Stel de tijd in waarna de tweede informatiebalk verdwijnt. Door op OK te drukken verdwijnt de informatiebalk."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
-msgstr "Stel de vertraging in voor het uitschakelen, inschakelen van stand-by, of het herstarten van uw ontvanger. Deze tijdvertraging wordt o.a. gebruikt in Timer, PowerTimer en Sleeptimer."
+msgstr "Stel de tijdsduur in voor het uitschakelen, inschakelen van Stand-by, of het herstarten van uw ontvanger. Deze tijdsduur wordt o.a. gebruikt voor een Timer, PowerTimer en Slaaptimer."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
@@ -16352,7 +16357,7 @@ msgid "Show CoolTVGuide"
 msgstr "Toon CoolTVGuide"
 
 msgid "Show Directory size"
-msgstr ""
+msgstr "Toon map grootte"
 
 msgid "Show Display Icons"
 msgstr "Toon LCD picons"
@@ -16833,7 +16838,7 @@ msgid "Show the Power Timer"
 msgstr "Toon de PowerTimer"
 
 msgid "Show the Sleep Timer"
-msgstr "Toon de SlaapTimer"
+msgstr "Toon de Slaaptimer"
 
 msgid "Show the information on current event."
 msgstr "Toon de informatie van huidig programma."
@@ -16887,7 +16892,7 @@ msgid "Show two lines per entry"
 msgstr "Toon twee regels per zender"
 
 msgid "Show underscore characters in filenames"
-msgstr ""
+msgstr "Toon underscore tekens in bestandsnamen"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
@@ -17102,10 +17107,10 @@ msgid "Sleep"
 msgstr "Slaap"
 
 msgid "Sleep Timer"
-msgstr "Slaap timer"
+msgstr "Slaaptimer"
 
 msgid "Sleep Timer Settings"
-msgstr ""
+msgstr "Slaaptimer instellingen"
 
 msgid "Sleep delay"
 msgstr "Slaap vertraging"
@@ -17114,34 +17119,34 @@ msgid "Sleep long"
 msgstr "Sleep lang"
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Slaaptimer"
 
 msgid "Sleep timer action"
-msgstr ""
+msgstr "Slaaptimer actie"
 
 msgid "Sleep timer activation delay"
-msgstr ""
+msgstr "Slaaptimer tijdsduur"
 
 #, python-format
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Slaaptimer: %d minuut resterend."
+msgstr[1] "Slaaptimer: %d minuten resterend."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
 msgid_plural "Sleep timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Slaaptimer: %d seconde resterend."
+msgstr[1] "Slaaptimer: %d seconden resterend."
 
 msgid "Sleep timer: Inactive."
-msgstr ""
+msgstr "Slaaptimer: Gedeactiveerd."
 
 msgid "SleepTimer"
-msgstr "Slaap Timer"
+msgstr "SlaapTimer"
 
 msgid "Sleeping"
-msgstr "Stand-by"
+msgstr "Slapen"
 
 msgid "Slide drop"
 msgstr "Schuiven boven>beneden"
@@ -17170,23 +17175,23 @@ msgstr "Slot %d"
 
 #, python-format
 msgid "Slot %s: %s"
-msgstr ""
+msgstr "Slot %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr ""
+msgstr "Slot %s: %s (Huidige image)"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
-msgstr ""
+msgstr "Slot %s: %s als USB back-up"
 
 #, python-format
 msgid "Slot '%s'"
-msgstr ""
+msgstr "Slot '%s'"
 
 #, python-format
 msgid "Slot '%s': %s%s"
-msgstr ""
+msgstr "Slot '%s': %s%s"
 
 msgid "Slovak"
 msgstr "Slovaaks"
@@ -17270,7 +17275,7 @@ msgid "Software Manager Setup"
 msgstr "Online update instellingen"
 
 msgid "Software MultiBoot"
-msgstr ""
+msgstr "Software MultiBoot"
 
 msgid "Software Update"
 msgstr "Software update"
@@ -18448,6 +18453,9 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+"De Energie spaar timer wil de %s %s instellen op %s.\n"
+"\n"
+"Druk op OK om de %s %s te blijven gebruiken."
 
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
@@ -18504,6 +18512,9 @@ msgid ""
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
+"De Slaaptimer wil de %s %s instellen op %s.\n"
+"\n"
+"Wilt u dat nu doen of de timer verlengen?"
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -21006,7 +21017,7 @@ msgid "Wintersport"
 msgstr "Wintersport"
 
 msgid "Wipe"
-msgstr ""
+msgstr "Wissen"
 
 msgid "Wireless LAN"
 msgstr "Draadloos netwerk"
@@ -22088,7 +22099,7 @@ msgstr "eMMC"
 
 #, python-format
 msgid "eMMC slot %s%s"
-msgstr ""
+msgstr "eMMC slot %s%s"
 
 msgid "eSATA"
 msgstr "eSATA"
