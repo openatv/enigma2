@@ -96,7 +96,7 @@ class PowerTimerEditList(Screen):
 							(_("Stop current event and disable future events"), "stopall"),
 							(_("Don't stop current event but disable future events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording. What do you want to do?"), list=list)
 				else:
 					t.disable()
 			self.session.nav.PowerTimer.timeChanged(t)
