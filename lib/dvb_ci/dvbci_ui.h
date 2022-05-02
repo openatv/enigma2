@@ -28,6 +28,7 @@ public:
 	int answerEnq(int slot, char *val);
 	int cancelEnq(int slot);
 	int setClockRate(int slot, int rate);
+	int setEnabled(int slot, bool enabled);
 };
 
 #endif
