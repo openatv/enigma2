@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 17:33+0000\n"
-"PO-Revision-Date: 2022-04-29 11:08+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2022-05-01 14:08+0000\n"
+"PO-Revision-Date: 2022-05-02 10:49+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1496,9 +1496,6 @@ msgstr "* Dostępne tylko wtedy gdy więcej niż jeden interfejs jest aktywny."
 msgid "* current animation"
 msgstr "* obecna animacja"
 
-msgid "+/-"
-msgstr "+/-"
-
 msgid "+24"
 msgstr "+24"
 
@@ -2240,9 +2237,6 @@ msgstr "AC3 downmix"
 msgid "AC3 plus transcoding"
 msgstr "AC3 plus transkodowanie"
 
-msgid "AC3/Dolby offset"
-msgstr "Przesunięcie AC3/Dolby"
-
 msgid "AC3plus transcoding"
 msgstr "Transkodowanie AC3plus"
 
@@ -2300,6 +2294,9 @@ msgstr "Przerywanie postępu aktualizacji"
 
 msgid "About"
 msgstr "System"
+
+msgid "About to start"
+msgstr "zaraz się rozpocznie"
 
 msgid "About..."
 msgstr "Info o..."
@@ -2398,9 +2395,6 @@ msgstr "Dodaj nowy wpis czterokanałowy"
 msgid "Add Record Timer"
 msgstr "Dodaj timer nagrywania"
 
-msgid "Add Service"
-msgstr "Dodaj kanał"
-
 msgid "Add Timer"
 msgstr "Dodaj timer"
 
@@ -2427,6 +2421,9 @@ msgstr "Dodaj timer nagrywania"
 
 msgid "Add a record timer for current event"
 msgstr "Dodaj timer nagrywania dla bieżącego wydarzenia"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr "Dodaj usługę do listy Przesunięć głośności"
 
 msgid "Add a timer for the current event"
 msgstr "Dodaj timer dla aktualnego wydarzenia"
@@ -2484,6 +2481,9 @@ msgstr "Dodaj wybrany folder do zakładek"
 
 msgid "Add service"
 msgstr "Dodaj kanał"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr "Dodaj bieżącą usługę do listy Przesunięcia głośności"
 
 msgid "Add timer"
 msgstr "Dodaj timer"
@@ -4089,6 +4089,9 @@ msgstr "Anuluj zapis timeshiftu jako film"
 msgid "Cancel selection"
 msgstr "Anuluj wybór"
 
+msgid "Cancel the service selection"
+msgstr "Anuluj wybór usługi"
+
 msgid "Cancel the slot selection and exit"
 msgstr "Anuluj wybór slotu i wyjdź"
 
@@ -4181,9 +4184,6 @@ msgstr "Czad"
 msgid "Chamorro"
 msgstr "Chamorro"
 
-msgid "Change"
-msgstr "Zmiana"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Zmień tryb odbiornika, aby kontrolować sprzętowe tryby*"
 
@@ -4195,9 +4195,6 @@ msgstr "Zmień PIN"
 
 msgid "Change Timer"
 msgstr "Zmień timer"
-
-msgid "Change Volume offset"
-msgstr "Zmiana Natężenia Głosu"
 
 msgid "Change bouquets in quickzap"
 msgstr "Automatycznie przejdź do następnej listy ulubionych"
@@ -4242,9 +4239,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanał"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kanał \t\t\tGłośność +"
 
 msgid "Channel +/- button mode"
 msgstr "Akcja dla przycisku 'Kanał +/-'"
@@ -5265,21 +5259,6 @@ msgstr "Wyspy Cooka"
 msgid "Cooking"
 msgstr "Gotowanie"
 
-msgid "Cool Channel Guide"
-msgstr "Przewodnik po kanałach"
-
-msgid "Cool Easy Guide"
-msgstr "Łatwy Przewodnik"
-
-msgid "Cool Info Guide"
-msgstr "Przewodnik Informacyjny"
-
-msgid "Cool Single Guide"
-msgstr "Pojedynczy Przewodnik"
-
-msgid "Cool TV Guide"
-msgstr "Przewodnik TV"
-
 msgid "Copy"
 msgstr "Kopiuj"
 
@@ -5495,6 +5474,9 @@ msgstr "Aktualna wersja nieznana"
 
 msgid "Current version:"
 msgstr "Aktualna wersja:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr "Aktualnie zdefiniowane Przesunięcia głośności:"
 
 msgid "Custom"
 msgstr "Zwykły"
@@ -5840,6 +5822,9 @@ msgstr "Domyślny 'tryb timera' *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Domyślny priorytet procesora (miły) dla wykonywanych skryptów. Może to zmniejszyć obciążenie, aby skrypty nie kolidowały z resztą systemu. (wyższe wartości = niższy priorytet)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr "Domyślne przesunięcie Dolby Digital / Dolby AC-3"
+
 msgid "Default Folder"
 msgstr "Domyślny folder"
 
@@ -5887,6 +5872,9 @@ msgstr "Domyślna metoda sortowania plików po lewej stronie."
 
 msgid "Default sorting method for files on the right side."
 msgstr "Domyślna metoda sortowania plików po prawej stronie."
+
+msgid "Default volume offset"
+msgstr "Domyślne przesunięcie głośności"
 
 #, python-format
 msgid "Default: '%s'."
@@ -6076,6 +6064,9 @@ msgstr "Usuń bieżący bufor i ponownie uruchom timeshift"
 
 msgid "Delete the currently displayed log file"
 msgstr "Usuń aktualnie wyświetlany plik logu"
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr "Usuń aktualnie podświetloną usługę z listy Przesunięć głośności"
 
 msgid "Delete the selected files or directories"
 msgstr "Usuń wybrane pliki lub katalogi"
@@ -6930,6 +6921,9 @@ msgstr "Zakończ edycję"
 msgid "Edit Mode On"
 msgstr "Edytuj"
 
+msgid "Edit New Entry"
+msgstr "Edycja nowego wpisu"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Edycja nowego wpisu Kanału Quad"
 
@@ -6950,9 +6944,6 @@ msgstr "Edytuj bieżącą linię"
 
 msgid "Edit line "
 msgstr "Edytuj linię "
-
-msgid "Edit New Entry"
-msgstr "Edycja nowego wpisu"
 
 msgid "Edit position is the line end"
 msgstr "Edytuj pozycję to koniec linii"
@@ -7020,9 +7011,6 @@ msgstr "Włącz %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
-msgid "Enable AC3/Dolby"
-msgstr "Włącz AC3/Dolby"
-
 msgid "Enable BT Audio"
 msgstr "Włącz BT Audio"
 
@@ -7031,6 +7019,9 @@ msgstr "Włącz CIHelper dla SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Włącz CIHelper dla SLOT CI1"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr "Włącz przesunięcia Dolby Digital / Dolby AC-3"
 
 msgid "Enable EIT EPG"
 msgstr "Włącz EIT EPG"
@@ -12066,9 +12057,6 @@ msgstr "Opóźnienie dekodowania off-line (ms)"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
-msgid "Ok"
-msgstr "Ok"
-
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Stare pliki timeshiftu będą usuwane automatycznie po upływie określonego czasu."
 
@@ -13257,9 +13245,6 @@ msgstr "Timery zasilania"
 msgid "PowerTimer Standby"
 msgstr "Timer czuwania"
 
-msgid "PowerTimer list"
-msgstr "Lista timerów"
-
 msgid "PowerTimers"
 msgstr "Timery zasilania"
 
@@ -13393,9 +13378,6 @@ msgstr "Naciśnij OK aby użyć tego regionu. [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr "Naciśnij przyciski GÓRA/DÓŁ, aby wybrać slot i naciśnij OK lub ZIELONY, aby 'Uruchom ponownie' ten system. Jeśli jest dostępny, ŻÓŁTY spowoduje 'Skasowanie' lub ✧Wymazanie' systemu. Obraz 'Usunięty' można ɲrzywrócić' za pomocą NIEBIESKIEGO przycisku. Obrazu 'Wymazany', który został całkowicie usunięty, NIE DA SIĘ przywrócić!"
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "Naciśnij przycisk menu, aby ustawić ogólne przesunięcie AC3/Dolby."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Naciśnij ten przycisk, aby emulować długie naciśnięcie przycisku (to zastąpi wszelkie inne czynności przypisane do tego przycisku)."
@@ -15093,6 +15075,9 @@ msgstr "Wybierz \"1.0\" dla standardowych przełączników zatwierdzonych, \"1.1
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Wybierz \"A\" lub \"B\", jeśli wymaga tego system antenowy, w przeciwnym razie wybierz \"brak\". Jeśli nie masz pewności, wybierz \"brak\"."
 
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr "Wybierz opcję 'Tak', jeśli regulacja głośności ma być stosowana do ścieżek dźwiękowych Dolby."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby przywrócić domyślne ustawienia urządzenia."
 
@@ -15247,9 +15232,6 @@ msgstr "Wybierz kanał dźwięku"
 msgid "Select channel to record from"
 msgstr "Wybierz kanał z którego nagrywać"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "Wybierz kanał, aby dodać przesunięcie głośności."
-
 msgid "Select commit log"
 msgstr "Wybierz dziennik "
 
@@ -15372,6 +15354,9 @@ msgstr "Zaznacz aktualny element menu"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Wybierz aktualny region/język"
+
+msgid "Select the currently highlighted service"
+msgstr "Wybierz aktualnie podświetloną usługę"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ', aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
@@ -15638,6 +15623,18 @@ msgstr "Kanał"
 msgid "Service & PIDs"
 msgstr "Usługa & PIDy"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr "Usługa '%s' dodana."
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr "Usługa '%s' usunięta."
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr "Usługa '%s' jest już zdefiniowana."
+
 msgid "Service ID"
 msgstr "ID nadawcy"
 
@@ -15735,6 +15732,9 @@ msgstr "Referencje"
 
 msgid "Service scan"
 msgstr "Skanowanie kanałów"
+
+msgid "Service selection canceled."
+msgstr "Anulowano wybór usługi."
 
 msgid ""
 "Service unavailable!\n"
@@ -15887,6 +15887,10 @@ msgstr "Ustaw czas oczekiwania na wykonanie domyślnej akcji w powiadomieniach d
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ustaw typ postępu na ekranie wyboru kanału."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr "Ustaw przesunięcie głośności dla usługi '%s'."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Ustaw żądany najlepszy czas (godziny)."
@@ -16221,21 +16225,6 @@ msgstr "Pokaż wiadomości CI"
 
 msgid "Show Clients"
 msgstr "Pokaż klientów"
-
-msgid "Show CoolChannelGuide"
-msgstr "Pokaż CoolChannelGuide"
-
-msgid "Show CoolEasyGuide"
-msgstr "Pokaż CoolEasyGuide"
-
-msgid "Show CoolInfoGuide"
-msgstr "Pokaż CoolInfoGuide"
-
-msgid "Show CoolSingleGuide"
-msgstr "Pokaż CoolSingleGuide"
-
-msgid "Show CoolTVGuide"
-msgstr "Pokaż TV Super Przewodnik"
 
 msgid "Show Directory size"
 msgstr "Pokaż rozmiar katalogu"
@@ -17854,6 +17843,12 @@ msgstr "Przełącz na poprzedni podserwis"
 msgid "Switch to radio mode"
 msgstr "Przełącz w tryb radio"
 
+msgid "Switch to the available RADIO services"
+msgstr "Przełącz się na dostępne usługi RADIO"
+
+msgid "Switch to the available TV services"
+msgstr "Przełącz się na dostępne usługi telewizyjne"
+
 msgid "Switchable tuner types:"
 msgstr "Wymienne typy tunerów:"
 
@@ -18169,13 +18164,6 @@ msgid ""
 msgstr ""
 "Wtyczka auto timer nie jest zainstalowana!\n"
 "Proszę ją zainstalować."
-
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Wtyczka Cool TV Guide nie jest zainstalowana!\n"
-"Proszę zainstalować."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Standard DVD nie obsługuje strumieni wideo H.264 (HDTV)."
@@ -18582,14 +18570,17 @@ msgstr "To jest obecnie wybrany język. [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "To jest obecnie wybrany region. [%s]"
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr "Jest to początkowe / domyślne przesunięcie woluminu zastosowane do wszystkich usług dodanych do listy regulacji głośności."
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Jest to kolejność wysyłania poleceń DiSEqC do systemu antenowego. Kolejność musi dokładnie odpowiadać kolejności, w jakiej urządzenia fizyczne są ułożone wzdłuż kabla sygnałowego (zaczynając od końca odbiornika)."
 
 msgid "This line is not editable!"
 msgstr "Ta linia nie jest edytowalna!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "Przesunięcie to będzie stosowane tylko wtedy, gdy kanał nie posiada własnej wielkość przesunięcia."
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr "To przesunięcie będzie używane tylko wtedy, gdy kanał nie ma własnego przesunięcia głośności."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ta opcja pozwala na zmniejszenie bloku szumu w obrazie. Jest to kosztem ostrości obrazu."
@@ -19013,8 +19004,11 @@ msgstr "Timer"
 msgid "Timer Actions"
 msgstr "Akcje timera"
 
-msgid "Timer List"
-msgstr "Lista timera"
+msgid "Timer Overview"
+msgstr "Przegląd timerów"
+
+msgid "Timer Sanity Error"
+msgstr "Błąd timera"
 
 msgid "Timer edit"
 msgstr "Edycja timera"
@@ -19042,14 +19036,8 @@ msgstr ""
 "W pliku timer.xml wykryto 'nakładanie się' timera!\n"
 "Sprawdź to!"
 
-msgid "Timer Overview"
-msgstr "Przegląd timerów"
-
 msgid "Timer recording location"
 msgstr "Lokalizacja nagrań z timera"
-
-msgid "Timer Sanity Error"
-msgstr "Błąd timera"
 
 msgid "Timer selection"
 msgstr "Wybór timera"
@@ -20362,8 +20350,14 @@ msgstr "Głośność"
 msgid "Volume Adjust"
 msgstr "Dostosowanie głośności"
 
-msgid "Volume Config"
-msgstr "Konfig.Głośność"
+msgid "Volume Adjust Actions"
+msgstr "Akcje regulacji głośności"
+
+msgid "Volume Adjust Service Selection"
+msgstr "Regulacja głośności Wybór usługi"
+
+msgid "Volume Adjust Settings"
+msgstr "Ustawienia regulacji głośności"
 
 msgid "Volume down"
 msgstr "Ciszej"
@@ -21459,6 +21453,9 @@ msgstr "Przełącz w górę"
 msgid "Zap+Record next"
 msgstr "Przełącz+Następne nagranie"
 
+msgid "Zapped"
+msgstr "przełączony"
+
 msgid "Zeichentrick"
 msgstr "Ożywienie"
 
@@ -21536,9 +21533,6 @@ msgstr "Przerwij edycję listy ulubionych"
 
 msgid "abort favourites edit"
 msgstr "Przerwij edycję ulubionych"
-
-msgid "About to start"
-msgstr "zaraz się rozpocznie"
 
 msgid "ac3"
 msgstr "ac3"
@@ -21883,9 +21877,6 @@ msgstr "dokumentalny (ogólnie)"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "done!"
-msgstr "gotowe!"
 
 msgid "drama (general)"
 msgstr "dramat (ogólnie)"
@@ -22592,9 +22583,6 @@ msgstr "reboot systemu"
 msgid "record time changed, start prepare is now: %s"
 msgstr "zmieniono czas nagrywania, przygotowanie do rozpoczęcia wynosi teraz: %s"
 
-msgid "recording..."
-msgstr "nagrywanie..."
-
 msgid "red"
 msgstr "czerwony"
 
@@ -22690,9 +22678,6 @@ msgstr "rock/pop"
 
 msgid "romance"
 msgstr "romans"
-
-msgid "running..."
-msgstr "uruchomiony..."
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -23100,9 +23085,6 @@ msgstr "vix"
 msgid "wait for mmi..."
 msgstr "czekaj na MMI..."
 
-msgid "waiting"
-msgstr "oczekiwanie"
-
 msgid "wakeup"
 msgstr "wybudzenie"
 
@@ -23192,14 +23174,102 @@ msgstr "tak (zachować kanały)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s, należy zapoznać się z instrukcją w celu uzyskania pomocy."
 
-msgid "Zapped"
-msgstr "przełączony"
-
 msgid "zapping"
 msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "Przesunięcie AC3/Dolby"
+
+#~ msgid "Add Service"
+#~ msgstr "Dodaj kanał"
+
+#~ msgid "Change"
+#~ msgstr "Zmiana"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Zmiana Natężenia Głosu"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kanał \t\t\tGłośność +"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Przewodnik po kanałach"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Łatwy Przewodnik"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Przewodnik Informacyjny"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Pojedynczy Przewodnik"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Przewodnik TV"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Włącz AC3/Dolby"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "Lista timerów"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "Naciśnij przycisk menu, aby ustawić ogólne przesunięcie AC3/Dolby."
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "Wybierz kanał, aby dodać przesunięcie głośności."
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Pokaż CoolChannelGuide"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Pokaż CoolEasyGuide"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Pokaż CoolInfoGuide"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Pokaż CoolSingleGuide"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Pokaż TV Super Przewodnik"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Wtyczka Cool TV Guide nie jest zainstalowana!\n"
+#~ "Proszę zainstalować."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "Przesunięcie to będzie stosowane tylko wtedy, gdy kanał nie posiada własnej wielkość przesunięcia."
+
+#~ msgid "Timer List"
+#~ msgstr "Lista timera"
+
+#~ msgid "Volume Config"
+#~ msgstr "Konfig.Głośność"
+
+#~ msgid "done!"
+#~ msgstr "gotowe!"
+
+#~ msgid "recording..."
+#~ msgstr "nagrywanie..."
+
+#~ msgid "running..."
+#~ msgstr "uruchomiony..."
+
+#~ msgid "waiting"
+#~ msgstr "oczekiwanie"
 
 #~ msgid "show"
 #~ msgstr "Pokaż"

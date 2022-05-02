@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 17:33+0000\n"
-"PO-Revision-Date: 2022-04-23 22:08+0000\n"
+"POT-Creation-Date: 2022-05-01 14:08+0000\n"
+"PO-Revision-Date: 2022-05-02 10:49+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1493,9 +1493,6 @@ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
 msgid "* current animation"
 msgstr "* dabartinė animacija"
 
-msgid "+/-"
-msgstr "+/-"
-
 msgid "+24"
 msgstr "+24"
 
@@ -2236,9 +2233,6 @@ msgstr "AC3 kanalų suliejimas"
 msgid "AC3 plus transcoding"
 msgstr "AC3 plus perkodavimas"
 
-msgid "AC3/Dolby offset"
-msgstr "AC3/Dolby poslinkis"
-
 msgid "AC3plus transcoding"
 msgstr "AC3plus perkodavimas"
 
@@ -2296,6 +2290,9 @@ msgstr "Atnaujinimas nutraukiamas"
 
 msgid "About"
 msgstr "Apie"
+
+msgid "About to start"
+msgstr "Netrukus prasidės"
 
 msgid "About..."
 msgstr "Apie..."
@@ -2394,9 +2391,6 @@ msgstr "Pridėti naują Quad kanalo įrašą"
 msgid "Add Record Timer"
 msgstr "Pridėti įrašymo laikmatį"
 
-msgid "Add Service"
-msgstr "Pridėti paslaugą"
-
 msgid "Add Timer"
 msgstr "Pridėti laikmatį"
 
@@ -2423,6 +2417,9 @@ msgstr "Pridėti įrašymo laikmatį"
 
 msgid "Add a record timer for current event"
 msgstr "Pridėti įrašymo laikmatį šiam įvykiui"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr "Įtraukti paslaugą į garsumo poslinkių sąrašą"
 
 msgid "Add a timer for the current event"
 msgstr "Įtraukti dabartinio įvykio laikmatį"
@@ -2480,6 +2477,9 @@ msgstr "Pridėti pasirinktą aplanką į žymes"
 
 msgid "Add service"
 msgstr "Pridėti kanalą"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr "Įtraukti dabartinę paslaugą į garsumo poslinkių sąrašą"
 
 msgid "Add timer"
 msgstr "Pridėti laikmatį"
@@ -4089,6 +4089,9 @@ msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
 
+msgid "Cancel the service selection"
+msgstr "Atšaukite paslaugos pasirinkimą"
+
 msgid "Cancel the slot selection and exit"
 msgstr "Atšaukti lizdų pasirinkimą ir išeiti"
 
@@ -4181,9 +4184,6 @@ msgstr "Čadas"
 msgid "Chamorro"
 msgstr "Chamorro"
 
-msgid "Change"
-msgstr "Keisti"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto režimus*"
 
@@ -4195,9 +4195,6 @@ msgstr "Keisti PIN kodą"
 
 msgid "Change Timer"
 msgstr "Keisti laikmatį"
-
-msgid "Change Volume offset"
-msgstr "Keisti garsumą"
 
 msgid "Change bouquets in quickzap"
 msgstr "Keisti paketus greitai perjungiant"
@@ -4242,9 +4239,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanalas"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kanalas \t\t\tGarsumas +"
 
 msgid "Channel +/- button mode"
 msgstr "Kanalo +/-mygtukų režimas"
@@ -5271,21 +5265,6 @@ msgstr "Kuko salos"
 msgid "Cooking"
 msgstr "Maisto gamyba"
 
-msgid "Cool Channel Guide"
-msgstr "Cool Channel vadovas"
-
-msgid "Cool Easy Guide"
-msgstr "Cool Easy vadovas"
-
-msgid "Cool Info Guide"
-msgstr "Cool Info vadovas"
-
-msgid "Cool Single Guide"
-msgstr "Cool Single vadovas"
-
-msgid "Cool TV Guide"
-msgstr "Cool TV vadovas"
-
 msgid "Copy"
 msgstr "Kopijuoti"
 
@@ -5501,6 +5480,9 @@ msgstr "Dabartinė versija nežinoma"
 
 msgid "Current version:"
 msgstr "Dabartinė versija:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr "Šiuo metu nustatyti apimties poslinkiai:"
 
 msgid "Custom"
 msgstr "Pasirinktinis"
@@ -5846,6 +5828,9 @@ msgstr "Numatytasis 'Laikmačio tipas' *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Numatytasis CPU prioritetas (puikus) vykdomiems scenarijus. Tai gali sumažinti apkrovą, kad scenarijai netrukdytų likusiai sistemos daliai. (aukštesnės vertės = žemesnis prioritetas)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr "Numatytasis Dolby Digital / Dolby AC-3 poslinkis"
+
 msgid "Default Folder"
 msgstr "Numatytasis aplankas"
 
@@ -5893,6 +5878,9 @@ msgstr "Numatytasis failų rūšiavimo būdas kairėje pusėje."
 
 msgid "Default sorting method for files on the right side."
 msgstr "Numatytasis failų rūšiavimo būdas dešinėje pusėje."
+
+msgid "Default volume offset"
+msgstr "Numatytasis garsumo poslinkis"
 
 #, python-format
 msgid "Default: '%s'."
@@ -6082,6 +6070,9 @@ msgstr "Valyti šio laiko poslinkio atmintinę ir laiko poslinkį paleisti iš n
 
 msgid "Delete the currently displayed log file"
 msgstr "Naikinti šiuo metu rodomą žurnalo failą"
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr "Ištrinkite šiuo metu paryškintą paslaugą iš garsumo išjungimo rinkinių sąrašo"
 
 msgid "Delete the selected files or directories"
 msgstr "Ištrinkite pasirinktus failus ar katalogus"
@@ -6936,6 +6927,9 @@ msgstr "Redagavimas išjungtas"
 msgid "Edit Mode On"
 msgstr "Redagavimas įjungtas"
 
+msgid "Edit New Entry"
+msgstr "Redaguoti naują įrašą"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Redaguoti Quad kanalo įrašą"
 
@@ -6956,9 +6950,6 @@ msgstr "Redaguoti dabartinę eilutę"
 
 msgid "Edit line "
 msgstr "Redaguokite eilutę "
-
-msgid "Edit New Entry"
-msgstr "Redaguoti naują įrašą"
 
 msgid "Edit position is the line end"
 msgstr "Redagavimo pozicija yra linijos pabaiga"
@@ -7026,9 +7017,6 @@ msgstr "Įjungti %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
-msgid "Enable AC3/Dolby"
-msgstr "Įjungti AC3/Dolby"
-
 msgid "Enable BT Audio"
 msgstr "Įjungti BT garsą"
 
@@ -7037,6 +7025,9 @@ msgstr "Įjungti CI padėjėją lizdui CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Įjungti CI padėjėją lizdui CI1"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr "Įjunkite Dolby Digital / Dolby AC-3 poslinkius"
 
 msgid "Enable EIT EPG"
 msgstr "Įjungti EIT EPG"
@@ -12070,9 +12061,6 @@ msgstr "Dekodavimo delsa neprisijungus (ms)"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
-msgid "Ok"
-msgstr "OK"
-
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Senesni failai iš laiko poslinkio katalogo pašalinami kiekvienam įvykiui pasikeitus."
 
@@ -13260,9 +13248,6 @@ msgstr "Įjungimo laikmačio apžvalga"
 msgid "PowerTimer Standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
 
-msgid "PowerTimer list"
-msgstr "Įjungimo laikmačio sąrašas"
-
 msgid "PowerTimers"
 msgstr "Įjungimo laikmačiai"
 
@@ -13396,9 +13381,6 @@ msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte atvaizdą, ir paspauskite OK arba ŽALIĄ, kad 'Perkrauti' į tą atvaizdą. Jei įmanoma, GELTONU bus arba 'Ištrinti' arba 'Išvalyti' atvaizdą. 'Ištrintas' atvaizdas gali būti 'atkurtas'  MĖLYNU mygtuku. Visiškai pašalintas 'išvalytas' atvaizdas negali būti atkurtas!"
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "Paspauskite meniu mygtuką, kad nustatytumėte bendrą AC3/Dolby poslinkio galimybę."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Paspauskite šį mygtuką, kad emuliuoti ilgą mygtuko paspaudimą vėliau (tai yra viršiau už visas kitas, jam pavestus mygtuko emuliacijos veiksmus)."
@@ -14309,7 +14291,7 @@ msgid "Repeat type"
 msgstr "Kartojimo tipas"
 
 msgid "Repeating event currently recording. What do you want to do?"
-msgstr "Kartojama užduotis dabar įrašinėjama... Jūs norite tai padaryti?"
+msgstr "Pasikartojantis įvykis, kuris šiuo metu įrašomas. Ką tu nori daryti?"
 
 msgid "Repeats"
 msgstr "Pakartojimai"
@@ -15096,6 +15078,9 @@ msgstr "Pasirinkite '1.0' standartiniams įvykdytiems jungikliams, '1.1' nepriju
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Pasirinkite 'A' arba 'B', jei jūsų antenos sistema reikalauja to, kitaip pasirinkite \"nė vieno\". Jei nesate tikri, pasirinkite \"nė vieno\"."
 
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr "Pasirinkite 'Taip', jei Dolby garso takeliams turėtų būti taikomi garsumo koregavimai."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Pasirinkite 'Taip', kad įgalintumėte šio įrenginio nustatymų redagavimą. Pasirinkus 'Ne', įrenginių nustatymai iš naujo nustato numatytąsias reikšmes."
 
@@ -15250,9 +15235,6 @@ msgstr "Pasirinkite kanalo garsą"
 msgid "Select channel to record from"
 msgstr "Išsirinkite kanalą įrašymui"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "Pasirinkite kanalus garsumo kompensacijai"
-
 msgid "Select commit log"
 msgstr "Pasirinkti naujinimo žurnalą"
 
@@ -15375,6 +15357,9 @@ msgstr "Pasirinkti dabartinę meniu komandą"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Pasirinkti šiuo metu paryškintą vartotojo sąsajos lokalę / kalbą"
+
+msgid "Select the currently highlighted service"
+msgstr "Pasirinkite šiuo metu pažymėtą paslaugą"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
@@ -15641,6 +15626,18 @@ msgstr "Kanalas"
 msgid "Service & PIDs"
 msgstr "Kanalai ir PIDs"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr "Paslauga \"%s\" pridėta."
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr "Paslauga '%s' ištrinta."
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr "Paslauga '%s' jau apibrėžta."
+
 msgid "Service ID"
 msgstr "Kanalo ID"
 
@@ -15738,6 +15735,9 @@ msgstr "Kanalo nuoroda"
 
 msgid "Service scan"
 msgstr "Kanalų paieška"
+
+msgid "Service selection canceled."
+msgstr "Paslaugos pasirinkimas atšauktas."
 
 msgid ""
 "Service unavailable!\n"
@@ -15890,6 +15890,10 @@ msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjun
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nustatykite pasirinkto kanalo veiksmo eigos indikaciją kanalų pasirinkimo lange."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr "Nustatykite paslaugos '%s' garsumo poslinkį."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Nustatykite norimą žiūrimiausią laiką (valanda)."
@@ -16224,21 +16228,6 @@ msgstr "Rodyti CI pranešimus"
 
 msgid "Show Clients"
 msgstr "Klientai"
-
-msgid "Show CoolChannelGuide"
-msgstr "Rodyti CoolChannel vadovą"
-
-msgid "Show CoolEasyGuide"
-msgstr "Rodyti CoolEasy vadovą"
-
-msgid "Show CoolInfoGuide"
-msgstr "Rodyti Coolinfo vadovą"
-
-msgid "Show CoolSingleGuide"
-msgstr "Rodyti CoolSingle vadovą"
-
-msgid "Show CoolTVGuide"
-msgstr "Rodyti CoolTV vadovą"
 
 msgid "Show Directory size"
 msgstr "Rodyti katalogo dydį"
@@ -17856,6 +17845,12 @@ msgstr "Įjungti ankstesnį subkanalą"
 msgid "Switch to radio mode"
 msgstr "Perjungti į radijo režimą"
 
+msgid "Switch to the available RADIO services"
+msgstr "Perjunkite į galimas RADIJO paslaugas"
+
+msgid "Switch to the available TV services"
+msgstr "Perjungti į galimas TV paslaugas"
+
 msgid "Switchable tuner types:"
 msgstr "Perjungiamų imtuvų tipai:"
 
@@ -17947,7 +17942,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-04-23 adga45@gmail.com"
+msgstr "2022-05-01 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18171,13 +18166,6 @@ msgid ""
 msgstr ""
 "Auto laikmatis neįdiegtas!\n"
 "Prašome jį įdiegti."
-
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Cool TV vadovo priedas neįdiegtas!\n"
-"Įdiekite jį."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "DVD standartas nepalaiko H.264 (HDTV) vaizdo srautų."
@@ -18582,14 +18570,17 @@ msgstr "Tai šiuo metu pasirinkta kalba.  [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Tai šiuo metu pasirinkta lokalė.  [%s]"
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr "Tai yra pradinis / numatytasis apimties poslinkis, taikomas visoms paslaugoms, įtrauktoms į garsumo koregavimo sąrašą."
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Tai yra tvarka, kuria DiSEqC komandos siunčiamos į antenos sistemą. Užsakymas turi tiksliai atitikti tvarką, pagal kurią fiziniai įrenginiai išdėstomi palei signalo kabelį (pradedant imtuvo pabaigos)."
 
 msgid "This line is not editable!"
 msgstr "Ši eilutė yra neredaguojama!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "Ši kompensacija bus naudojama tik tuo atveju, jei kanalas neturi savo tūrio kompensavimo."
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr "Šis poslinkis bus naudojamas tik tuo atveju, jei kanalas neturi savo garsumo poslinkio."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ši parinktis leidžia sumažinti matomo vaizdo \"kvadratavimosi\" triukšmus. Žinoma, tai pasiekiama bendro vaizdo ryškumo sumažėjimo kaina."
@@ -19013,8 +19004,11 @@ msgstr "Laikmatis"
 msgid "Timer Actions"
 msgstr "Laikmačio veiksmai"
 
-msgid "Timer List"
-msgstr "Laikmačių sąrašas"
+msgid "Timer Overview"
+msgstr "Laikmačio apžvalga"
+
+msgid "Timer Sanity Error"
+msgstr "Laikmačio padėties klaida"
 
 msgid "Timer edit"
 msgstr "Redaguoti laikmatį"
@@ -19042,14 +19036,8 @@ msgstr ""
 "Aptiktas laikmačio timers.xml sutapimas! \n"
 " prašome iš naujo tikrinti tai!"
 
-msgid "Timer Overview"
-msgstr "Laikmačio apžvalga"
-
 msgid "Timer recording location"
 msgstr "Laikmačio įrašymo vieta"
-
-msgid "Timer Sanity Error"
-msgstr "Laikmačio padėties klaida"
 
 msgid "Timer selection"
 msgstr "Laikmačio pasirinkimas"
@@ -20362,8 +20350,14 @@ msgstr "Garsumas"
 msgid "Volume Adjust"
 msgstr "Garsumo reguliavimas"
 
-msgid "Volume Config"
-msgstr "Garsumo konfigūracija"
+msgid "Volume Adjust Actions"
+msgstr "Garsumo reguliavimo veiksmai"
+
+msgid "Volume Adjust Service Selection"
+msgstr "Garsumo reguliavimo paslaugos pasirinkimas"
+
+msgid "Volume Adjust Settings"
+msgstr "Garsumo reguliavimo nustatymai"
 
 msgid "Volume down"
 msgstr "Sumažinti garsumą"
@@ -21458,6 +21452,9 @@ msgstr "Perjungti aukštyn"
 msgid "Zap+Record next"
 msgstr "Jungti ir įrašyti toliau"
 
+msgid "Zapped"
+msgstr "Perjungta"
+
 msgid "Zeichentrick"
 msgstr "Animacija"
 
@@ -21535,9 +21532,6 @@ msgstr "nutraukti paketo redagavimą"
 
 msgid "abort favourites edit"
 msgstr "nutraukti mėgstamiausių redagavimą"
-
-msgid "About to start"
-msgstr "Netrukus prasidės"
 
 msgid "ac3"
 msgstr "ac3"
@@ -21882,9 +21876,6 @@ msgstr "dokumentika (bendrai)"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "done!"
-msgstr "baigta!"
 
 msgid "drama (general)"
 msgstr "dramos (bendrai)"
@@ -22591,9 +22582,6 @@ msgstr "perkraukite sistemą"
 msgid "record time changed, start prepare is now: %s"
 msgstr "įrašymo laikas pasikeitė, dabar ruošiamas paleidimas: %s"
 
-msgid "recording..."
-msgstr "įrašoma..."
-
 msgid "red"
 msgstr "raudonas"
 
@@ -22689,9 +22677,6 @@ msgstr "rokas, popmuzika"
 
 msgid "romance"
 msgstr "romansas"
-
-msgid "running..."
-msgstr "veikiantis..."
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -23099,9 +23084,6 @@ msgstr "vix"
 msgid "wait for mmi..."
 msgstr "laukite atsakymo iš mmi..."
 
-msgid "waiting"
-msgstr "laukiama"
-
 msgid "wakeup"
 msgstr "pabusti"
 
@@ -23192,14 +23174,102 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo vadovu, prieš paleisdami %s %s iš naujo."
 
-msgid "Zapped"
-msgstr "Perjungta"
-
 msgid "zapping"
 msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "AC3/Dolby poslinkis"
+
+#~ msgid "Add Service"
+#~ msgstr "Pridėti paslaugą"
+
+#~ msgid "Change"
+#~ msgstr "Keisti"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Keisti garsumą"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kanalas \t\t\tGarsumas +"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Cool Channel vadovas"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Cool Easy vadovas"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Cool Info vadovas"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Cool Single vadovas"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Cool TV vadovas"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Įjungti AC3/Dolby"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "Įjungimo laikmačio sąrašas"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "Paspauskite meniu mygtuką, kad nustatytumėte bendrą AC3/Dolby poslinkio galimybę."
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "Pasirinkite kanalus garsumo kompensacijai"
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Rodyti CoolChannel vadovą"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Rodyti CoolEasy vadovą"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Rodyti Coolinfo vadovą"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Rodyti CoolSingle vadovą"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Rodyti CoolTV vadovą"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Cool TV vadovo priedas neįdiegtas!\n"
+#~ "Įdiekite jį."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "Ši kompensacija bus naudojama tik tuo atveju, jei kanalas neturi savo tūrio kompensavimo."
+
+#~ msgid "Timer List"
+#~ msgstr "Laikmačių sąrašas"
+
+#~ msgid "Volume Config"
+#~ msgstr "Garsumo konfigūracija"
+
+#~ msgid "done!"
+#~ msgstr "baigta!"
+
+#~ msgid "recording..."
+#~ msgstr "įrašoma..."
+
+#~ msgid "running..."
+#~ msgstr "veikiantis..."
+
+#~ msgid "waiting"
+#~ msgstr "laukiama"
 
 #~ msgid "show"
 #~ msgstr "rodyti"
