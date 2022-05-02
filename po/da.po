@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 17:33+0000\n"
+"POT-Creation-Date: 2022-05-01 14:08+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1469,9 +1469,6 @@ msgstr "* Kun tilgængelig hvis mere end en grænseflade er aktiv."
 msgid "* current animation"
 msgstr "* nuværende animation"
 
-msgid "+/-"
-msgstr "+/-"
-
 msgid "+24"
 msgstr "+24"
 
@@ -2209,9 +2206,6 @@ msgstr "AC3 downmix"
 msgid "AC3 plus transcoding"
 msgstr "AC3 Plus omkodning"
 
-msgid "AC3/Dolby offset"
-msgstr "AC3/Dolby forskydning"
-
 msgid "AC3plus transcoding"
 msgstr "AC3 Plus omkodning"
 
@@ -2269,6 +2263,9 @@ msgstr "Afbryder opdateringsfremgang"
 
 msgid "About"
 msgstr "Om"
+
+msgid "About to start"
+msgstr "er ved at starte"
 
 msgid "About..."
 msgstr "Om..."
@@ -2367,9 +2364,6 @@ msgstr "Tilføj ny firedobbel Kanalpost"
 msgid "Add Record Timer"
 msgstr "Tilføj Optagetimer"
 
-msgid "Add Service"
-msgstr "Tilføj kanal"
-
 msgid "Add Timer"
 msgstr "Tilføj Timer"
 
@@ -2396,6 +2390,9 @@ msgstr "Tilføj en optagetimer"
 
 msgid "Add a record timer for current event"
 msgstr "Tilføj en optagetimer for nuværende begivenhed"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
@@ -2453,6 +2450,9 @@ msgstr "Tilføj valgte mappe til bogmærker"
 
 msgid "Add service"
 msgstr "Tilføj kanal"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Tilføj timer"
@@ -3749,7 +3749,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr ""
 
 msgid "CCcam Client Info"
@@ -4064,6 +4064,9 @@ msgstr "Afbryd gem Timeshift som film"
 msgid "Cancel selection"
 msgstr "Kanalvalg"
 
+msgid "Cancel the service selection"
+msgstr ""
+
 msgid "Cancel the slot selection and exit"
 msgstr ""
 
@@ -4156,9 +4159,6 @@ msgstr "Tchad"
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change"
-msgstr "Ændre"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Skift bokstilstand for at kontrollere hardware chip-tilstande*"
 
@@ -4170,9 +4170,6 @@ msgstr "Skift PIN"
 
 msgid "Change Timer"
 msgstr "Ænder Timer"
-
-msgid "Change Volume offset"
-msgstr "Skift lydstyrkeforskydning"
 
 msgid "Change bouquets in quickzap"
 msgstr "Skift Buket i KvikZap"
@@ -4217,9 +4214,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kanal \t\t\tLydstyrke +"
 
 msgid "Channel +/- button mode"
 msgstr "Kanal +/- knap tilstand"
@@ -5243,21 +5237,6 @@ msgstr "Cookøerne"
 msgid "Cooking"
 msgstr "Madlavning"
 
-msgid "Cool Channel Guide"
-msgstr "Cool Kanal Guide"
-
-msgid "Cool Easy Guide"
-msgstr "Cool Simpel Guide"
-
-msgid "Cool Info Guide"
-msgstr "Cool Info Guide"
-
-msgid "Cool Single Guide"
-msgstr "Cool Enkelt Guide"
-
-msgid "Cool TV Guide"
-msgstr "Cool TV Guide"
-
 msgid "Copy"
 msgstr "Kopier"
 
@@ -5414,7 +5393,7 @@ msgstr "Kroatisk"
 msgid "Cron Manager"
 msgstr "Cron-håndtering"
 
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "CronTimere"
 
 msgid "Cuba"
@@ -5474,6 +5453,9 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Nuværende Version:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -5819,6 +5801,9 @@ msgstr "Standard 'Timertype' *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Standard CPU prioritet (nice) for eksekverede skripts. Dette kan reducere belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = lavere prioritet)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr ""
+
 msgid "Default Folder"
 msgstr "Standardmappe"
 
@@ -5866,6 +5851,9 @@ msgstr "Standard sorteringsmåde for mapper i venstre side."
 
 msgid "Default sorting method for files on the right side."
 msgstr "Standard sorteringsmåde for mapper i højre side."
+
+msgid "Default volume offset"
+msgstr ""
 
 #, python-format
 msgid "Default: '%s'."
@@ -6054,6 +6042,9 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Slet nuværende Timeshift buffer og genstart Timeshift"
 
 msgid "Delete the currently displayed log file"
+msgstr ""
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6904,6 +6895,9 @@ msgstr "Sluk redigering"
 msgid "Edit Mode On"
 msgstr "Tænd redigering"
 
+msgid "Edit New Entry"
+msgstr "Rediger ny post"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Rediger Firedobbelt Kanalpost"
 
@@ -6924,9 +6918,6 @@ msgstr "Rediger aktuel linje"
 
 msgid "Edit line "
 msgstr "Rediger linje "
-
-msgid "Edit New Entry"
-msgstr "Rediger ny post"
 
 msgid "Edit position is the line end"
 msgstr "Redigeringsposition er linjeslutning"
@@ -6994,9 +6985,6 @@ msgstr "Aktiver %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Aktiver 5V til aktiv antenne"
 
-msgid "Enable AC3/Dolby"
-msgstr "Aktiver AC3/Dolby"
-
 msgid "Enable BT Audio"
 msgstr "Aktiver BT Lyd"
 
@@ -7005,6 +6993,9 @@ msgstr "AKtiver CIHjælper for SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "AKtiver CIHjælper for SLOT CI1"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Aktiver EIT EPG"
@@ -8715,7 +8706,7 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN handlinger"
 
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN Optagelsesindstillinger"
 
 msgid "HDMIin"
@@ -8996,7 +8987,7 @@ msgstr "Hotbird 13.0e"
 msgid "Hotkey"
 msgstr "Hurtigtast"
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "Hurtigtast opsætning"
 
 msgid "Hotkey Setup for"
@@ -9542,7 +9533,7 @@ msgstr "Angiv kanalnavn."
 msgid "Input config file name:"
 msgstr "Indtast navn på konfigfil:"
 
-msgid "Input devices"
+msgid "Input Devices Settings"
 msgstr "Inddata enheder"
 
 #, fuzzy
@@ -10046,7 +10037,7 @@ msgstr "LAN forbindelse"
 msgid "LAN long"
 msgstr "LAN lang"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "LCD Tema opsætning"
 
 msgid "LCD SkinSelector"
@@ -12076,7 +12067,7 @@ msgstr "OSD 3D Opsætning"
 msgid "OSD Adjustment"
 msgstr "OSD Justering"
 
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "OSD Placering"
 
 msgid "OSD Settings"
@@ -12094,8 +12085,8 @@ msgstr "OScam Information"
 msgid "OScam webif disabled"
 msgstr "OScam WebIF deaktiveret"
 
-msgid "OScamInfo"
-msgstr "OScam Info"
+msgid "OScam Information"
+msgstr "OScam Information"
 
 msgid "OTT Model"
 msgstr ""
@@ -12114,9 +12105,6 @@ msgstr "Offline afkodningsforsinkelse (ms)"
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Ok"
-msgstr "Ok"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ældre filer i Timeshift mappen bliver fjernet ved hver begivenhedsændring."
@@ -13323,10 +13311,7 @@ msgstr "StrømTimer overblik"
 msgid "PowerTimer Standby"
 msgstr "StrømTimer Standby"
 
-msgid "PowerTimer list"
-msgstr "StrømTimer liste"
-
-msgid "PowerTimers"
+msgid "Power Timers"
 msgstr "StrømTimere"
 
 msgid "Predefined"
@@ -13461,9 +13446,6 @@ msgstr "Tryk OK for at bruge denne lokalitet.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "tryk MENU knappen for at sætte generelt AC3/Dolby forskydning"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Tryk på denne knap for at efterligne et langt tryk på den efterfølgende knap (dette tilsidesætter alle andre handlinger tildelt til emuleringsknappen)."
@@ -15178,6 +15160,9 @@ msgstr "Vælg '1,0' for standardtildelte switches, '1,1' for utildelte switches,
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Vælg 'A' eller 'B' hvis dit antennesystem kræver dette, ellers vælges 'ingen'. Vælg 'ingen' hvis du er usikker."
 
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
@@ -15332,9 +15317,6 @@ msgstr "Vælg lydkanal"
 msgid "Select channel to record from"
 msgstr "Vælg kanal der skal optages fra"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "vælg kanaler for at tilføjes en forskydning af lydstyrken"
-
 msgid "Select commit log"
 msgstr ""
 
@@ -15457,6 +15439,9 @@ msgstr ""
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Vælg det aktuelt fremhævede område/sprog af brugergrænsefladen"
+
+msgid "Select the currently highlighted service"
+msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vælg den ønskede funktion og klik på \"OK\" for at tildele den. Brug \"CH+/-\" for at skifte mellem listerne. Vælg en tildelt funktion og klik på \"OK\" for at fjerne tildelingen. Brug \"Næste/Forrige\" for at ændre rækkefølgen på de tildelte funktioner."
@@ -15725,6 +15710,18 @@ msgstr "Kanal"
 msgid "Service & PIDs"
 msgstr "Kanaler"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr ""
+
 #, fuzzy
 msgid "Service ID"
 msgstr "Kanal"
@@ -15831,6 +15828,9 @@ msgstr "Kanalreference"
 
 msgid "Service scan"
 msgstr "Kanalsøgning"
+
+msgid "Service selection canceled."
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -15984,6 +15984,10 @@ msgstr "Sæt tiden der ventes før udførelse af standardhandling i nedluknings-
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Sæt typen af fremgangsindikation i kanalvalgsskærm."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Sæt til ønsket Primetime (timetal)."
@@ -16320,21 +16324,6 @@ msgstr "Vis CI beskeder"
 
 msgid "Show Clients"
 msgstr "Vis klienter"
-
-msgid "Show CoolChannelGuide"
-msgstr "Vis CoolChannelGuide"
-
-msgid "Show CoolEasyGuide"
-msgstr "Vis CoolEasyGuide"
-
-msgid "Show CoolInfoGuide"
-msgstr "Vis CoolInfoGuide"
-
-msgid "Show CoolSingleGuide"
-msgstr "Vis CoolSingleGuide"
-
-msgid "Show CoolTVGuide"
-msgstr "Vis CoolTVGuide"
 
 msgid "Show Directory size"
 msgstr ""
@@ -17059,7 +17048,7 @@ msgstr "Tema-vælger"
 msgid "Skin Setting"
 msgstr "Tema indstillinger"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Tema opsætning"
 
 msgid "Skin setup"
@@ -17981,6 +17970,12 @@ msgstr "Skift til forrige underkanal"
 msgid "Switch to radio mode"
 msgstr "Skift til Radio-tilstand"
 
+msgid "Switch to the available RADIO services"
+msgstr ""
+
+msgid "Switch to the available TV services"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "Udskiftelig Tuner typer:"
 
@@ -18300,13 +18295,6 @@ msgid ""
 "Please install it."
 msgstr ""
 "AutoTimer Pluginet er ikke installeret!\n"
-"Installer den venligst."
-
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Cool TV Guide Pluginet er ikke installeret!\n"
 "Installer den venligst."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
@@ -18708,14 +18696,17 @@ msgstr "Dette er det nuværende valgte sprog.  [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Dette er det nuværende valgte område.  [%s]"
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr ""
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Dette er rækkefølgen i hvilken DiSEqC kommandoer sendes til antennesystemet. Rækkefølgen skal svare præcis til den rækkefølge de fysiske enheder er arrangeret langs signalkablet (startende fra modtageren)."
 
 msgid "This line is not editable!"
 msgstr "Denne linje er ikke redigerbar!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "denne forskydning bruges kun hvis kanalen ikke har sin egen lydstyrkeforskydning"
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Denne mulighed tillader at reducere block-støj i billedet. Dette er naturligvis på bekostning af billedets skarphed."
@@ -19141,8 +19132,11 @@ msgstr "Timer"
 msgid "Timer Actions"
 msgstr "Timer handlinger"
 
-msgid "Timer List"
-msgstr "Timerliste"
+msgid "Timer Overview"
+msgstr "Timer overblik"
+
+msgid "Timer Sanity Error"
+msgstr "Timer sanity fejl"
 
 msgid "Timer edit"
 msgstr "Timer redigering"
@@ -19170,14 +19164,8 @@ msgstr ""
 "Timer overlap i timers.xml opdaget!\n"
 "Undersøg det venligst igen!"
 
-msgid "Timer Overview"
-msgstr "Timer overblik"
-
 msgid "Timer recording location"
 msgstr "Timeroptagelse placering"
-
-msgid "Timer Sanity Error"
-msgstr "Timer sanity fejl"
 
 msgid "Timer selection"
 msgstr "Timer valg"
@@ -20194,7 +20182,7 @@ msgstr "Usbekistan"
 msgid "Uzbekistan"
 msgstr "Usbekistan"
 
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "VCR Scart"
 
 msgid "VLAN connection"
@@ -20505,8 +20493,14 @@ msgstr "Lydstyrke"
 msgid "Volume Adjust"
 msgstr "Lydstyrkejustering"
 
-msgid "Volume Config"
-msgstr "Lydstyrke konfig"
+msgid "Volume Adjust Actions"
+msgstr ""
+
+msgid "Volume Adjust Service Selection"
+msgstr ""
+
+msgid "Volume Adjust Settings"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Lydstyrke ned"
@@ -21604,6 +21598,9 @@ msgstr "Zap op"
 msgid "Zap+Record next"
 msgstr "Zap+Optag næste"
 
+msgid "Zapped"
+msgstr "Zappet"
+
 msgid "Zeichentrick"
 msgstr ""
 
@@ -21681,9 +21678,6 @@ msgstr "Afbryd Buket-redigering"
 
 msgid "abort favourites edit"
 msgstr "afbryd favorit-redigering"
-
-msgid "About to start"
-msgstr "er ved at starte"
 
 msgid "ac3"
 msgstr "ac3"
@@ -22030,9 +22024,6 @@ msgstr "Dokumentar (generelt)"
 
 msgid "dolby"
 msgstr "Dolby"
-
-msgid "done!"
-msgstr "Udført!"
 
 msgid "drama (general)"
 msgstr "Drama (Generelt"
@@ -22746,9 +22737,6 @@ msgstr "Genstart system"
 msgid "record time changed, start prepare is now: %s"
 msgstr "Optagelsestid ændret, planlagt start er nu: %s"
 
-msgid "recording..."
-msgstr "Optager..."
-
 msgid "red"
 msgstr "Rød"
 
@@ -22844,9 +22832,6 @@ msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "Romantik"
-
-msgid "running..."
-msgstr "kører..."
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -23265,9 +23250,6 @@ msgstr "ViX"
 msgid "wait for mmi..."
 msgstr "vent på mmi..."
 
-msgid "waiting"
-msgstr "Afventer"
-
 msgid "wakeup"
 msgstr "Væk"
 
@@ -23356,14 +23338,102 @@ msgstr "ja (behold feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yderligere hjælp inden du genstarter din %s %s."
 
-msgid "Zapped"
-msgstr "Zappet"
-
 msgid "zapping"
 msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "AC3/Dolby forskydning"
+
+#~ msgid "Add Service"
+#~ msgstr "Tilføj kanal"
+
+#~ msgid "Change"
+#~ msgstr "Ændre"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Skift lydstyrkeforskydning"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kanal \t\t\tLydstyrke +"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Cool Kanal Guide"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Cool Simpel Guide"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Cool Info Guide"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Cool Enkelt Guide"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Cool TV Guide"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Aktiver AC3/Dolby"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "StrømTimer liste"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "tryk MENU knappen for at sætte generelt AC3/Dolby forskydning"
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "vælg kanaler for at tilføjes en forskydning af lydstyrken"
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Vis CoolChannelGuide"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Vis CoolEasyGuide"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Vis CoolInfoGuide"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Vis CoolSingleGuide"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Vis CoolTVGuide"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Cool TV Guide Pluginet er ikke installeret!\n"
+#~ "Installer den venligst."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "denne forskydning bruges kun hvis kanalen ikke har sin egen lydstyrkeforskydning"
+
+#~ msgid "Timer List"
+#~ msgstr "Timerliste"
+
+#~ msgid "Volume Config"
+#~ msgstr "Lydstyrke konfig"
+
+#~ msgid "done!"
+#~ msgstr "Udført!"
+
+#~ msgid "recording..."
+#~ msgstr "Optager..."
+
+#~ msgid "running..."
+#~ msgstr "kører..."
+
+#~ msgid "waiting"
+#~ msgstr "Afventer"
 
 #~ msgid "show"
 #~ msgstr "Vis"
