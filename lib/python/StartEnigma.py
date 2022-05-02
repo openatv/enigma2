@@ -419,6 +419,9 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
+	profile("Init:VolumeAdjust")
+	import Screens.VolumeAdjust
+	Screens.VolumeAdjust.autostart(session)
 	profile("RunReactor")
 	profile_final()
 	if boxtype in ("sf8", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo"):

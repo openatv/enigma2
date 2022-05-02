@@ -335,6 +335,15 @@
 		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
 	</map>
 
+	<map context="VolumeAdjustActions">
+		<key id="KEY_YELLOW" mapto="addCurrentService" flags="m" />
+		<key id="KEY_BLUE" mapto="deleteService" flags="m" />
+		<key id="KEY_FAVORITES" mapto="addService" flags="m" />
+		<key id="KEY_TV" mapto="addService" flags="m" />
+		<key id="KEY_RADIO" mapto="addService" flags="m" />
+		<key id="KEY_EPG" mapto="debug" flags="m" />
+	</map>
+
 	<!--
 		These key maps are yet to be checked / updated.
 	-->
