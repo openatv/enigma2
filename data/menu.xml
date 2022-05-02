@@ -58,6 +58,7 @@
 		<menu entryID="audio_menu" level="1" text="Audio" weight="5">
 			<id val="audio_menu" />
 			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="Audio" /></item>
+			<item entryID="volume_adjust" level="1" text="Volume Adjust" weight="5"><screen module="VolumeAdjust" screen="VolumeAdjust" /></item>
 			<item entryID="subtitle_setup" level="2" text="Subtitle Settings" weight="10"><setup id="Subtitle" /></item>
 			<item entryID="autolanguage_setup" level="1" text="Auto Language Settings" weight="15"><setup id="AutoLanguage" /></item>
 		</menu>

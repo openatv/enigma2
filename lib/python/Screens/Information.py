@@ -545,15 +545,15 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Distribution language"), BoxInfo.getItem("imglanguage")))
 		info.append(formatLine("P1", _("OEM Model"), getMachineBuild()))
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
-		device = MultiBoot.getBootDevice()
-		if BoxInfo.getItem("HasHiSi") and "sda" in device:
-			slotCode = int(slotCode)
-			image = slotCode - 4 if slotCode > 4 else slotCode - 1
-			device = _("SDcard slot %s%s") % (image, "  -  %s" % device if device else "")
-		else:
-			device = _("eMMC slot %s%s") % (slotCode, "  -  %s" % device if device else "")
-		info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
 		if MultiBoot.canMultiBoot():
+			device = MultiBoot.getBootDevice()
+			if BoxInfo.getItem("HasHiSi") and "sda" in device:
+				slotCode = int(slotCode)
+				image = slotCode - 4 if slotCode > 4 else slotCode - 1
+				device = _("SDcard slot %s%s") % (image, "  -  %s" % device if device else "")
+			else:
+				device = _("eMMC slot %s%s") % (slotCode, "  -  %s" % device if device else "")
+			info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
 			info.append(formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
 		if bootCode:
 			info.append(formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
