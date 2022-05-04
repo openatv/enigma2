@@ -71,7 +71,6 @@ class DirectoryBrowser(Screen, HelpableScreen):
 class MediaPlayerSetup(Setup):
 	def __init__(self, session, parent):
 		Setup.__init__(self, session, setup="MediaPlayer", plugin="Extensions/MediaPlayer")
-		self.setTitle(_("Edit settings"))
 		self.parent = parent
 
 	def keySelect(self):
