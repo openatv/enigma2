@@ -33,6 +33,8 @@ def setCIBitrate(configElement):
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+def setCIEnabled(configElement):
+    eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
 
 def setdvbCiDelay(configElement):
 	f = open("/proc/stb/tsmux/rmx_delay", "w")
@@ -53,6 +55,9 @@ def InitCiConfig():
 	config.cimisc = ConfigSubsection()
 	for slot in list(range(MAX_NUM_CI)):
 		config.ci.append(ConfigSubsection())
+		config.ci[slot].enabled = ConfigYesNo(default=True)
+		config.ci[slot].enabled.slotid = slot
+		config.ci[slot].enabled.addNotifier(setCIEnabled)
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default="auto")
 		config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 		config.ci[slot].static_pin = ConfigPIN(default=0)
@@ -561,6 +566,9 @@ class CiSelection(Screen):
 		self.list = []
 		self.entryData = []
 		for slot in self.slots:
+			self.addToList(getConfigListEntry(_("CI %s enabled" % slot), config.ci[slot].enabled), -1, slot)
+			if self.state[slot] == 3:  # module disabled by the user
+				continue
 			self.addToList((_("Reset"), ConfigNothing()), 0, slot)
 			self.addToList((_("Init"), ConfigNothing()), 1, slot)
 
