@@ -1540,7 +1540,6 @@ RESULT eTSMPEGDecoder::fccUpdatePids(int fe_id, int vpid, int vtype, int pcrpid)
 
 	if ((fe_id != m_fcc_feid) || (vpid != m_fcc_vpid) || (vtype != m_fcc_vtype) || (pcrpid != m_fcc_pcrpid))
 	{
-		int cur_fcc_state = m_fcc_state;
 		fccStop();
 		if (prepareFCC(fe_id, vpid, vtype, pcrpid))
 		{

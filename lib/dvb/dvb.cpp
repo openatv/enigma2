@@ -102,7 +102,6 @@ eDVBResourceManager::eDVBResourceManager()
 		num_adapter++;
 	}
 
-	setUsbTuner();
 
 	if (eDVBAdapterLinux::exist(0))
 	{
@@ -110,6 +109,8 @@ eDVBResourceManager::eDVBResourceManager()
 		adapter->scanDevices();
 		addAdapter(adapter, true);
 	}
+
+	setUsbTuner();
 
 	int fd = open("/proc/stb/info/model", O_RDONLY);
 	char tmp[16];
@@ -802,7 +803,7 @@ void eDVBResourceManager::setUsbTuner()
 			if ((res = sscanf(line.c_str(), "NIM Socket %d:", &fe_idx)) == 1)
 				continue;
 
-			if ((fe_idx != -1) && (line.find("\tName: ") == 0) && (line.find("VTUNER") != -1))
+			if ((fe_idx != -1) && (line.find("\tName: ") == 0) && (line.find("VTUNER") != std::string::npos))
 				usbtuner_idx[usbtuner_count++] = fe_idx;
 		}
 		in.close();
