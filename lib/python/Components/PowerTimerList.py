@@ -72,7 +72,7 @@ class PowerTimerList(GUIComponent):
 				autosleepwindow = _("Time range:") + " " + FuzzyTime(timer.autosleepbegin)[1] + " ... " + FuzzyTime(timer.autosleepend)[1] + ", "
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, width - self.satPosLeft, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT | RT_VALIGN_TOP, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + " (" + _("mins") + ")"))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, 0, width - self.satPosLeft, self.rowSplit, 2, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, 0, width - self.satPosLeft, self.rowSplit, 2, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _("At End:") + ' ' + getafterEvent(timer)))
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
 				days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
@@ -83,11 +83,11 @@ class PowerTimerList(GUIComponent):
 						repeatedtext.append(days[x])
 					flags >>= 1
 				if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-					repeatedtext = _('Everyday')
+					repeatedtext = _("Everyday")
 				elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
-					repeatedtext = _('Weekday')
+					repeatedtext = _("Weekday")
 				elif repeatedtext == [_("Sat"), _("Sun")]:
-					repeatedtext = _('Weekend')
+					repeatedtext = _("Weekend")
 				else:
 					repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:

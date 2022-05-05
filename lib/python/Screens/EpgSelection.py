@@ -366,16 +366,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self["bouquetokactions"].csel = self
 			self["bouquetokactions"].setEnabled(False)
 			self["input_actions"] = HelpableNumberActionMap(self, ["NumberActions"], {
-					'1': (self.keyNumberGlobal, _('goto first channel')),
-					'2': (self.keyNumberGlobal, _('all events up')),
-					'3': (self.keyNumberGlobal, _('goto last channel')),
-					'4': (self.keyNumberGlobal, _('previous channel page')),
-					'0': (self.keyNumberGlobal, _('goto current channel and now')),
-					'6': (self.keyNumberGlobal, _('next channel page')),
-					'7': (self.keyNumberGlobal, _('goto now')),
-					'8': (self.keyNumberGlobal, _('all events down')),
-					'9': (self.keyNumberGlobal, _('Goto Primetime')),
-					'5': (self.keyNumberGlobal, _('Set Basetime'))
+					"1": (self.keyNumberGlobal, _("goto first channel")),
+					"2": (self.keyNumberGlobal, _("all events up")),
+					"3": (self.keyNumberGlobal, _("goto last channel")),
+					"4": (self.keyNumberGlobal, _("previous channel page")),
+					"0": (self.keyNumberGlobal, _("goto current channel and now")),
+					"6": (self.keyNumberGlobal, _("next channel page")),
+					"7": (self.keyNumberGlobal, _("goto now")),
+					"8": (self.keyNumberGlobal, _("all events down")),
+					"9": (self.keyNumberGlobal, _("Goto Primetime")),
+					"5": (self.keyNumberGlobal, _("Set Basetime"))
 			}, prio=-1, description=_("EPG Other Actions"))
 
 		if self.type == EPG_TYPE_GRAPH:

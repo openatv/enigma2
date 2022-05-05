@@ -343,7 +343,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.createSetup("config")
 
 	def KeyText(self):
-		if self['config'].getCurrent()[0] in (_('Name'), _("Description")):
+		if self["config"].getCurrent()[0] in (_("Name"), _("Description")):
 			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text=self["config"].getCurrent()[1].value, visible_width=50, currPos=0)
 
 	def keyLeft(self):

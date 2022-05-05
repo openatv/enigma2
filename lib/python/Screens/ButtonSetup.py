@@ -301,14 +301,14 @@ def getButtonSetupFunctions():
 class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self['description'] = Label(_('Click on your remote on the button you want to change'))
+		self["description"] = Label(_("Click on your remote on the button you want to change"))
 		self.setTitle(_("Hotkey Settings"))
 		self["key_red"] = Button(_("Exit"))
 		self.list = []
 		self.ButtonSetupKeys = getButtonSetupKeys()
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in self.ButtonSetupKeys:
-			self.list.append(ChoiceEntryComponent('dummy', (_(x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent("dummy", (_(x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
