@@ -16,18 +16,19 @@ def zap(session, service, **kwargs):
 				url = url.replace("YT-DLP%3a//", "")
 				url = url.replace("%3a", ":")
 				try:
-					ydl = YoutubeDL({'format': 'best'})
+					ydl = YoutubeDL({"format": "b"})
 					result = ydl.extract_info(url, download=False)
-					if result and hasattr(result, "url"):
-						url = result['url']
-						print("[ChannelSelection] zap / YT-DLP result url %s" % url)
+					result = ydl.sanitize_info(result)
+					if result and result.get("url"):
+						url = result["url"]
+						print("[ChannelSelection] zap / YoutubeDLP result url %s" % url)
 						return (url, errormsg)
 					else:
 						errormsg = "No Link found!"
-						print("[ChannelSelection] zap / YT-DLP no streams")
+						print("[ChannelSelection] zap / YoutubeDLP no streams")
 				except Exception as e:
 					errormsg = str(e)
-					print("[ChannelSelection] zap / YT-DLP failed %s" % str(e))
+					print("[ChannelSelection] zap / YoutubeDLP failed %s" % str(e))
 					pass
 	return (None, errormsg)
 
