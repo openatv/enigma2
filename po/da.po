@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2724,9 +2724,6 @@ msgstr "Alternativ Tuner-kanaler prioritet"
 msgid "Always ask"
 msgstr "Spørg altid"
 
-msgid "Hide InfoBar"
-msgstr "Skjul altid Infobjælke"
-
 msgid "Always include ECM in recordings"
 msgstr "Inkluder altid ECM i optagelser"
 
@@ -3818,6 +3815,10 @@ msgstr "SKIFT BUKET"
 
 msgid "CHANNEL +/-"
 msgstr "Kanal +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) opsætning"
@@ -8859,6 +8860,9 @@ msgstr "Skjult netværk"
 msgid "Hide"
 msgstr "Skjul"
 
+msgid "Hide InfoBar"
+msgstr "Skjul altid Infobjælke"
+
 msgid "Hide VBI line for this service"
 msgstr "Skjul VBI-linje for denne kanal"
 
@@ -10784,6 +10788,9 @@ msgstr "Mediecnter"
 
 msgid "Media Player"
 msgstr "Medieafspiller"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Medieportal"
@@ -14371,6 +14378,9 @@ msgstr "Gentag"
 msgid "Repeat Display Message"
 msgstr "Gentag skærmbesked"
 
+msgid "Repeat playlist"
+msgstr "Gentag afspilningsliste"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Gentag sendte Standby og vågn op kommandoer"
 
@@ -14916,11 +14926,17 @@ msgstr "Gem og Optag"
 msgid "Save and stop"
 msgstr "Gem og Stop"
 
+msgid "Save directory on EXIT"
+msgstr "Gem sidste mappe ved afslutning"
+
 msgid "Save every (in hours)"
 msgstr "Gem hver (i timer)"
 
 msgid "Save left folder on exit"
 msgstr "Gem venstre mappe ved afslut"
+
+msgid "Save playlist on EXIT"
+msgstr "Gem afspilningsliste ved afslutning"
 
 msgid "Save playlist"
 msgstr "Gem afspilningslist"
@@ -16010,6 +16026,24 @@ msgstr "Sæt typen af fremgangsindikation i kanalvalgsskærm."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Sæt til ønsket Primetime (timetal)."
 
@@ -16400,6 +16434,9 @@ msgstr "Vis Loghåndtering i udvidelser ?"
 
 msgid "Show Main Menu as"
 msgstr "Vis Hovedmenu som"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Vis medieafspiller på hovedmenu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Vis medieafspilning resterende/forløbet som"
@@ -17426,6 +17463,9 @@ msgstr "Sorteringsrækkefølge for menuposter"
 msgid "Sort order for the language list."
 msgstr "Sorteringsrækkefølge for menuposter"
 
+msgid "Sort playlists"
+msgstr "Sortering af afspilningsliste"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sorter Plugin browser-poster"
 
@@ -17489,6 +17529,9 @@ msgstr "Speciel 2"
 
 msgid "Special Features Settings"
 msgstr "Specielle egenskaber"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17592,6 +17635,9 @@ msgstr "StartAssistent"
 
 msgid "Starting Softcam"
 msgstr "Starter Softcam"
+
+msgid "Starting directory"
+msgstr "Startmappe"
 
 msgid "Starting on"
 msgstr "Starter den"
@@ -22824,9 +22870,6 @@ msgstr "Omdøb"
 msgid "rename entry"
 msgstr "Omdøb post"
 
-msgid "Repeat play list"
-msgstr "Gentag afspilningsliste"
-
 msgid "repeated"
 msgstr "Gentaget"
 
@@ -22867,9 +22910,6 @@ msgstr ""
 "Det er mulig at se TV,\n"
 "men det er ikke mulig at søge efter nye TV kanaler\n"
 "eller at konfigurere Tuner-indstillinger"
-
-msgid "Save play list on EXIT"
-msgstr "Gem afspilningsliste ved afslutning"
 
 msgid "scan state"
 msgstr "søgestatus"
@@ -22980,9 +23020,6 @@ msgstr "show cards with uphop 9"
 msgid "show event details"
 msgstr "Vis begivenhedsdetaljer"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Vis medieafspiller på hovedmenu"
-
 msgid "show picons in quickzap"
 msgstr "Vis Pikoner i KvikZap"
 
@@ -23039,9 +23076,6 @@ msgstr "Social/Åndsvidenskab"
 msgid "softcam"
 msgstr "SoftCAM"
 
-msgid "Sort play lists"
-msgstr "Sortering af afspilningsliste"
-
 msgid "special (general)"
 msgstr "Særligt (Generelt)"
 
@@ -23062,9 +23096,6 @@ msgstr "Standard"
 
 msgid "start cut here"
 msgstr "Start klip her"
-
-msgid "Starting directory"
-msgstr "Startmappe"
 
 msgid "start recording"
 msgstr "Start optagelse"
@@ -24725,9 +24756,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zap til valgte kanal eller vis detaljeret begivenhedsinfo (afhængig af konfiguration)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Gem sidste mappe ved afslutning"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Når dette aktiveres, vil længden af optagelsen blive vist i Filmlisten (dette kan medføre en lidt længere opstartstid)."

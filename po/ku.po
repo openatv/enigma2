@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -2894,9 +2894,6 @@ msgstr "Alternative services tuner priority"
 msgid "Always ask"
 msgstr "Always ask"
 
-msgid "Hide InfoBar"
-msgstr ""
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4046,6 +4043,10 @@ msgstr ""
 msgid "CHANNEL +/-"
 msgstr "Qanal"
 
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
+
 msgid "CI (Common Interface) Setup"
 msgstr ""
 
@@ -4851,7 +4852,7 @@ msgstr "Veqeti"
 
 #, fuzzy
 msgid "Close PiP on exit"
-msgstr "Save play list on EXIT"
+msgstr "Save playlist on EXIT"
 
 msgid "Close bouquet list"
 msgstr ""
@@ -9287,6 +9288,9 @@ msgstr "Hidden network"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr ""
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11279,6 +11283,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Media player"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -14995,6 +15002,9 @@ msgstr "Repeats"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr "Repeat playlist"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -15559,12 +15569,18 @@ msgstr "Descramble and record ecm"
 msgid "Save and stop"
 msgstr "Save playlist"
 
+msgid "Save directory on EXIT"
+msgstr "Save directory on EXIT"
+
 msgid "Save every (in hours)"
 msgstr ""
 
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "Save directory on EXIT"
+
+msgid "Save playlist on EXIT"
+msgstr "Save playlist on EXIT"
 
 msgid "Save playlist"
 msgstr "Save playlist"
@@ -16683,6 +16699,24 @@ msgstr "Set the type of the progress indication in the channel selection screen.
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -17087,6 +17121,9 @@ msgstr "Manage extensions"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Show tag menu"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Show Media Player in Main Menu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18165,6 +18202,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr "Sort playlists"
+
 #, fuzzy
 msgid "Sort plug-in browser entries"
 msgstr "Plugin browser"
@@ -18232,6 +18272,9 @@ msgid "Special 2"
 msgstr "special events"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -18342,6 +18385,9 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+msgid "Starting directory"
+msgstr "Starting directory"
 
 msgid "Starting on"
 msgstr "Starting on"
@@ -23716,9 +23762,6 @@ msgstr "Rename"
 msgid "rename entry"
 msgstr "remove entry"
 
-msgid "Repeat play list"
-msgstr "Repeat play list"
-
 msgid "repeated"
 msgstr "repeated"
 
@@ -23755,9 +23798,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-msgid "Save play list on EXIT"
-msgstr "Save play list on EXIT"
 
 msgid "scan state"
 msgstr "scan state"
@@ -23860,9 +23900,6 @@ msgstr ""
 msgid "show event details"
 msgstr "show event details"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Show Media Player in Main Menu"
-
 #, fuzzy
 msgid "show picons in quickzap"
 msgstr "Show status icons in movie list"
@@ -23924,9 +23961,6 @@ msgstr "social/spiritual science"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "Sort play lists"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sports (general)"
@@ -23949,9 +23983,6 @@ msgstr "standard"
 
 msgid "start cut here"
 msgstr "start cut here"
-
-msgid "Starting directory"
-msgstr "Starting directory"
 
 #, fuzzy
 msgid "start recording"
@@ -24957,9 +24988,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zap to selected channel, or show detailed event info (depends on configuration)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Save directory on EXIT"
 
 #, fuzzy
 #~ msgid "Delete Lang"

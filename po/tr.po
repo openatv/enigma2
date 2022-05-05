@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2902,9 +2902,6 @@ msgstr "Alternatifli kanallarda tuner önceliği"
 msgid "Always ask"
 msgstr "Herzaman sor"
 
-msgid "Hide InfoBar"
-msgstr "Bilgi çubuğunu hep gizle"
-
 msgid "Always include ECM in recordings"
 msgstr "ECM'yi her zaman kayıtlara dahil et"
 
@@ -4063,6 +4060,10 @@ msgstr "BUKET DEĞİŞTIR"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanal 1"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Ortak Arayüz) Kurulumu"
@@ -9483,6 +9484,9 @@ msgstr "Gizlenmiş ağ"
 msgid "Hide"
 msgstr "gizlemek"
 
+msgid "Hide InfoBar"
+msgstr "Bilgi çubuğunu hep gizle"
+
 msgid "Hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
 
@@ -11542,6 +11546,9 @@ msgstr "Medya Merkezi"
 
 msgid "Media Player"
 msgstr "Medya oynatıcı"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Medya Portalı"
@@ -15462,6 +15469,10 @@ msgstr "Tekrarlar"
 msgid "Repeat Display Message"
 msgstr "Mesaj görüntülemeyi tekrarla"
 
+#
+msgid "Repeat playlist"
+msgstr "oynatma listesini tekrarla"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Gönderilen bekleme ve uyandırma komutlarını tekrarlayın"
 
@@ -16055,12 +16066,20 @@ msgstr "Sakla ve kaydet"
 msgid "Save and stop"
 msgstr "Sakla ve durdur"
 
+#
+msgid "Save directory on EXIT"
+msgstr "çıkarken, son klasörü kaydet"
+
 msgid "Save every (in hours)"
 msgstr "Her (saatte) sakla"
 
 #
 msgid "Save left folder on exit"
 msgstr "Çıkışta soldaki klasörü kaydet"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "çıkarken, oynatma listesini kaydet"
 
 #
 msgid "Save playlist"
@@ -17212,6 +17231,24 @@ msgstr "Kanal seçim ekranındaki ilerleme işaretinin tipini belirleyin."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "İstenilen seçkin zamanı ayarla (saat)."
 
@@ -17614,6 +17651,9 @@ msgstr "Log Manager'ı uzantı listesinde göster?"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Filmleri göster"
+
+msgid "Show Media Player in Main Menu"
+msgstr "ana menüde ortam oynatıcıyı göster"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Ortam oynatımında Kalan/Geçen süreyi göster"
@@ -18699,6 +18739,9 @@ msgstr "Menü girişleri için sıralama düzeni"
 msgid "Sort order for the language list."
 msgstr "Menü girişleri için sıralama düzeni"
 
+msgid "Sort playlists"
+msgstr "çalma liste sıralaması"
+
 msgid "Sort plug-in browser entries"
 msgstr "Eklenti tarayıcı girişlerini sırala"
 
@@ -18769,6 +18812,9 @@ msgstr "Özel 2"
 
 msgid "Special Features Settings"
 msgstr "Özel özellikler"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -18881,6 +18927,10 @@ msgstr "Başlatma sihirbazı"
 
 msgid "Starting Softcam"
 msgstr "Softcami Başlat"
+
+#
+msgid "Starting directory"
+msgstr "başlangıç klasörü"
 
 #
 msgid "Starting on"
@@ -24552,10 +24602,6 @@ msgid "rename entry"
 msgstr "yeniden adlandır"
 
 #
-msgid "Repeat play list"
-msgstr "oynatma listesini tekrarla"
-
-#
 msgid "repeated"
 msgstr "tekrarlandı"
 
@@ -24599,10 +24645,6 @@ msgstr ""
 "TV seyretmek mümkündür\n"
 "ancak yeni TV kanalları aramak mümkün değil\n"
 "veya tuner ayarlarını yapılandırmak için"
-
-#
-msgid "Save play list on EXIT"
-msgstr "çıkarken, oynatma listesini kaydet"
 
 #
 msgid "scan state"
@@ -24712,9 +24754,6 @@ msgstr "kartları göster uphop 9"
 msgid "show event details"
 msgstr "etkinlik detaylarını göster"
 
-msgid "Show Media Player in Main Menu"
-msgstr "ana menüde ortam oynatıcıyı göster"
-
 msgid "show picons in quickzap"
 msgstr "quickzap içinde picons göster"
 
@@ -24777,9 +24816,6 @@ msgstr "sosyal/manevi bilimler"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "çalma liste sıralaması"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "spor (genel)"
@@ -24804,10 +24840,6 @@ msgstr "standard"
 #
 msgid "start cut here"
 msgstr "kesmeye buradan başla"
-
-#
-msgid "Starting directory"
-msgstr "başlangıç klasörü"
 
 msgid "start recording"
 msgstr "kayda başla"
@@ -26544,10 +26576,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Seçilen kanala git veya ayrıntılı olay bilgisini göster (yapılandırmaya göre değişir)"
-
-#
-#~ msgid "Save directory on EXIT"
-#~ msgstr "çıkarken, son klasörü kaydet"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Etkinleştirildiğinde, her bir kaydın uzunluğu movieliste gösterilecektir (bu, bazı ek yükleme sürelerine neden olabilir)."

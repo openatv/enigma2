@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
-"PO-Revision-Date: 2022-05-04 17:17+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"PO-Revision-Date: 2022-05-05 15:07+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2862,10 +2862,6 @@ msgstr "Tuner-Priorität bei alternativen Services"
 msgid "Always ask"
 msgstr "Immer nachfragen"
 
-# MediaPlayer/settings.py
-msgid "Hide InfoBar"
-msgstr "Infoleiste immer ausblenden"
-
 msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
 
@@ -4020,6 +4016,10 @@ msgstr "Bouquet wechseln"
 #
 msgid "CHANNEL +/-"
 msgstr "Kanal +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr "CI %s aktiviert"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-Einstellungen"
@@ -9381,6 +9381,10 @@ msgstr "Verstecktes Netzwerk"
 msgid "Hide"
 msgstr "Verstecken"
 
+# MediaPlayer/settings.py
+msgid "Hide InfoBar"
+msgstr "Infoleiste immer ausblenden"
+
 msgid "Hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal verstecken"
 
@@ -11389,6 +11393,9 @@ msgstr "Mediacenter"
 
 msgid "Media Player"
 msgstr "Mediaplayer"
+
+msgid "Media Player Settings"
+msgstr "Media Player Einstellungen"
 
 msgid "Media Portal"
 msgstr "Mediaportal"
@@ -15279,6 +15286,10 @@ msgstr "Wiederholen"
 msgid "Repeat Display Message"
 msgstr "Display-Nachricht wiederholen"
 
+#
+msgid "Repeat playlist"
+msgstr "Playlist wiederholen"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Sende wiederholende Aufwach- und Standby-Befehle"
 
@@ -15869,11 +15880,19 @@ msgstr "Speichern und aufnehmen"
 msgid "Save and stop"
 msgstr "Speichern und beenden"
 
+#
+msgid "Save directory on EXIT"
+msgstr "Anfangsverzeichnis beim Beenden merken"
+
 msgid "Save every (in hours)"
 msgstr "Sicherungsintervall (in Stunden)"
 
 msgid "Save left folder on exit"
 msgstr "Linken Ordner beim Beenden speichern"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "Playlist beim Beenden speichern"
 
 # Mediaplayer playlist Menue
 msgid "Save playlist"
@@ -17042,6 +17061,24 @@ msgstr "Die Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
 msgid "Set the volume offset for the '%s' service."
 msgstr "Legen Sie den Lautstärke-Offset für den Sender '%s' fest."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
 
@@ -17453,6 +17490,10 @@ msgstr "Logverwaltung in Erweiterungen anzeigen"
 #
 msgid "Show Main Menu as"
 msgstr "Hauptmenü-Ansicht"
+
+# Mediaplayer Setup
+msgid "Show Media Player in Main Menu"
+msgstr "Mediaplayer im Hauptmenü anzeigen"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Medienwiedergabe verbleibende/verstrichene Zeit in"
@@ -18534,6 +18575,9 @@ msgstr "Sortierung der Menüeinträge"
 msgid "Sort order for the language list."
 msgstr "Sortierung der Sprachenliste"
 
+msgid "Sort playlists"
+msgstr "Sortierung der Playlisten"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sortierung der Einträge im Plugin-Manager"
 
@@ -18601,6 +18645,9 @@ msgstr "Spezial 2"
 
 msgid "Special Features Settings"
 msgstr "Spezielle Einstellungen"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Geschwindigkeit"
@@ -18711,6 +18758,10 @@ msgstr "Grundkonfiguration"
 
 msgid "Starting Softcam"
 msgstr "Starte Softcam"
+
+#
+msgid "Starting directory"
+msgstr "Anfangsverzeichnis auswählen mit OK"
 
 #
 msgid "Starting on"
@@ -24423,10 +24474,6 @@ msgid "rename entry"
 msgstr "Eintrag umbenennen"
 
 #
-msgid "Repeat play list"
-msgstr "Playlist wiederholen"
-
-#
 msgid "repeated"
 msgstr "Wiederholend"
 
@@ -24468,10 +24515,6 @@ msgid ""
 msgstr ""
 "'satellites.xml' nicht gefunden oder beschädigt!\n"
 "Es ist möglich, TV zu schauen, aber es ist nicht möglich, nach neuen TV-Sendern zu suchen oder die Tuner-Einstellungen zu konfigurieren."
-
-#
-msgid "Save play list on EXIT"
-msgstr "Playlist beim Beenden speichern"
 
 #
 msgid "scan state"
@@ -24580,10 +24623,6 @@ msgstr "Cards mit Uphop 9 anzeigen"
 msgid "show event details"
 msgstr "Sendungsdetails anzeigen"
 
-# Mediaplayer Setup
-msgid "Show Media Player in Main Menu"
-msgstr "Mediaplayer im Hauptmenü anzeigen"
-
 msgid "show picons in quickzap"
 msgstr "Senderlogos (Picons) falls vorhanden beim Quickzap anzeigen"
 
@@ -24646,9 +24685,6 @@ msgstr "Sozial/Geisteswissenschaft"
 msgid "softcam"
 msgstr "Softcam"
 
-msgid "Sort play lists"
-msgstr "Sortierung der Playlisten"
-
 #
 msgid "special (general)"
 msgstr "Spezial (allgemein)"
@@ -24673,10 +24709,6 @@ msgstr "Standard"
 #
 msgid "start cut here"
 msgstr "Schnitt hier starten"
-
-#
-msgid "Starting directory"
-msgstr "Anfangsverzeichnis auswählen mit OK"
 
 msgid "start recording"
 msgstr "Aufnahme starten"
@@ -26495,10 +26527,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zum ausgewählten Sender umschalten oder detaillierte Ereignisinformationen anzeigen (abhängig von der Konfiguration)."
-
-#
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Anfangsverzeichnis beim Beenden merken"
 
 #
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."

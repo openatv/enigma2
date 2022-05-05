@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -2651,9 +2651,6 @@ msgstr "Alternativt tunervalg for kanaler"
 msgid "Always ask"
 msgstr "Spør først"
 
-msgid "Hide InfoBar"
-msgstr "Skjul infobar"
-
 msgid "Always include ECM in recordings"
 msgstr "Lagre ECM data i opptakene"
 
@@ -3730,6 +3727,10 @@ msgid "CHANGE BOUQUET"
 msgstr ""
 
 msgid "CHANNEL +/-"
+msgstr ""
+
+#, python-format
+msgid "CI %s enabled"
 msgstr ""
 
 msgid "CI (Common Interface) Setup"
@@ -8683,6 +8684,9 @@ msgstr "Skjult nettverk"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "Skjul infobar"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -10553,6 +10557,9 @@ msgid "Media Center"
 msgstr ""
 
 msgid "Media Player"
+msgstr ""
+
+msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
@@ -14027,6 +14034,9 @@ msgstr "Gjenta"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr ""
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -14563,10 +14573,16 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+msgid "Save directory on EXIT"
+msgstr ""
+
 msgid "Save every (in hours)"
 msgstr ""
 
 msgid "Save left folder on exit"
+msgstr ""
+
+msgid "Save playlist on EXIT"
 msgstr ""
 
 msgid "Save playlist"
@@ -15623,6 +15639,24 @@ msgstr "Velg hvis du ønsker at programbasert framgang skal vises i kanallisten.
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -16007,6 +16041,9 @@ msgid "Show Log Manager in extensions list"
 msgstr ""
 
 msgid "Show Main Menu as"
+msgstr ""
+
+msgid "Show Media Player in Main Menu"
 msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
@@ -17010,6 +17047,9 @@ msgstr "Sorteringsrekkefølge for menylinjer"
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -17071,6 +17111,9 @@ msgid "Special 2"
 msgstr "Spesial 2"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -17173,6 +17216,9 @@ msgid "StartWizard"
 msgstr ""
 
 msgid "Starting Softcam"
+msgstr ""
+
+msgid "Starting directory"
 msgstr ""
 
 msgid "Starting on"
@@ -22226,9 +22272,6 @@ msgstr ""
 msgid "rename entry"
 msgstr ""
 
-msgid "Repeat play list"
-msgstr ""
-
 msgid "repeated"
 msgstr "gjentatt"
 
@@ -22264,9 +22307,6 @@ msgid ""
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
-msgstr ""
-
-msgid "Save play list on EXIT"
 msgstr ""
 
 msgid "scan state"
@@ -22368,9 +22408,6 @@ msgstr ""
 msgid "show event details"
 msgstr "vis hendelsesdetaljene"
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 msgid "show picons in quickzap"
 msgstr ""
 
@@ -22427,9 +22464,6 @@ msgstr "sosialt/åndsvitenskap"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -22450,9 +22484,6 @@ msgstr "standard"
 
 msgid "start cut here"
 msgstr "start klipp her"
-
-msgid "Starting directory"
-msgstr ""
 
 msgid "start recording"
 msgstr ""

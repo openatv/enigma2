@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2743,9 +2743,6 @@ msgstr "Priorita tunera pri alternatívnych staniciach"
 msgid "Always ask"
 msgstr "Vždy sa spýtať"
 
-msgid "Hide InfoBar"
-msgstr "Vždy skryť info-panel"
-
 msgid "Always include ECM in recordings"
 msgstr "Vždy zahrnúť ECM do nahrávok"
 
@@ -3833,6 +3830,10 @@ msgstr "ZMENIŤ PREHĽAD"
 
 msgid "CHANNEL +/-"
 msgstr "Kanál +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Nastavenie CI (Common Interface)"
@@ -8867,6 +8868,9 @@ msgstr "Skrytá sieť"
 msgid "Hide"
 msgstr "skryť"
 
+msgid "Hide InfoBar"
+msgstr "Vždy skryť info-panel"
+
 msgid "Hide VBI line for this service"
 msgstr "Skryť riadok VBI pre túto stanicu"
 
@@ -10747,6 +10751,9 @@ msgstr "Centrum médií"
 
 msgid "Media Player"
 msgstr "Prehrávač médií"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Mediálny portál"
@@ -14282,6 +14289,9 @@ msgstr "Opakovať"
 msgid "Repeat Display Message"
 msgstr "Opakovať správu na displeji"
 
+msgid "Repeat playlist"
+msgstr "zopakovať zoznam nahrávok"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Zopakovať odoslané príkazy pre pohotov. režim a prebudenie"
 
@@ -14820,11 +14830,17 @@ msgstr "Uložiť a nahrať"
 msgid "Save and stop"
 msgstr "Uložiť a stop"
 
+msgid "Save directory on EXIT"
+msgstr "pri ukončení uložiť posledný priečinok"
+
 msgid "Save every (in hours)"
 msgstr "Uložiť každých (v hodinách)"
 
 msgid "Save left folder on exit"
 msgstr "Pri ukončení uložiť priečinok vľavo"
+
+msgid "Save playlist on EXIT"
+msgstr "pri ukončení uložiť zoznam nahrávok"
 
 msgid "Save playlist"
 msgstr "Uložiť playlist"
@@ -15899,6 +15915,24 @@ msgstr "Nastavte typ indikátora priebehu na obrazovke pre výber kanála."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Nastavte požadovaný hlavný čas (hod)."
 
@@ -16286,6 +16320,9 @@ msgstr "Zobraziť správcu záznamov v zozname rozšírení"
 
 msgid "Show Main Menu as"
 msgstr "Zobraziť hlavné menu ako"
+
+msgid "Show Media Player in Main Menu"
+msgstr "zobraziť prehrávač médií v hlavnom menu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Zobraziť prehrávanie média - zostávajúce/Uplynulé ako"
@@ -17295,6 +17332,9 @@ msgstr "Zoradiť položky menu"
 msgid "Sort order for the language list."
 msgstr "Poradie zoraďovania zoznamu jazykov."
 
+msgid "Sort playlists"
+msgstr "triedenie playlistov"
+
 msgid "Sort plug-in browser entries"
 msgstr "Zoradiť položky v prehliadači pluginov"
 
@@ -17357,6 +17397,9 @@ msgstr "Špeciálne 2"
 
 msgid "Special Features Settings"
 msgstr "Osobitné nastavenia"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Rýchlosť"
@@ -17459,6 +17502,9 @@ msgstr "Sprievodca spustením"
 
 msgid "Starting Softcam"
 msgstr "Spustenie softcamu"
+
+msgid "Starting directory"
+msgstr "počiatočný priečinok"
 
 msgid "Starting on"
 msgstr "Spustenie o"
@@ -22652,9 +22698,6 @@ msgstr "premenovať"
 msgid "rename entry"
 msgstr "premenovať záznam"
 
-msgid "Repeat play list"
-msgstr "zopakovať zoznam nahrávok"
-
 msgid "repeated"
 msgstr "opakované"
 
@@ -22695,9 +22738,6 @@ msgstr ""
 "Sledovanie TV je možné,\n"
 "ale nie je možné vyhľadávať nové TV kanály\n"
 "alebo konfigurovať nastavenia tunera"
-
-msgid "Save play list on EXIT"
-msgstr "pri ukončení uložiť zoznam nahrávok"
 
 msgid "scan state"
 msgstr "stav vyhľadávania"
@@ -22798,9 +22838,6 @@ msgstr "zobraziť karty s uphop 9"
 msgid "show event details"
 msgstr "zobraziť podrobnosti udalosti"
 
-msgid "Show Media Player in Main Menu"
-msgstr "zobraziť prehrávač médií v hlavnom menu"
-
 msgid "show picons in quickzap"
 msgstr "zobraziť prog. ikony pri rýchlom prepnutí"
 
@@ -22857,9 +22894,6 @@ msgstr "sociálne/duchovné vedy"
 msgid "softcam"
 msgstr "softcam"
 
-msgid "Sort play lists"
-msgstr "triedenie playlistov"
-
 msgid "special (general)"
 msgstr "špeciálne (všeobecne)"
 
@@ -22880,9 +22914,6 @@ msgstr "štandard"
 
 msgid "start cut here"
 msgstr "začiatok strihu tu"
-
-msgid "Starting directory"
-msgstr "počiatočný priečinok"
 
 msgid "start recording"
 msgstr "spustiť nahrávanie"
@@ -24562,9 +24593,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Prepnúť na vybraný kanál alebo zobraziť detailné informácie o udalosti (v závislosti na nastavení)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "pri ukončení uložiť posledný priečinok"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Ak je povolené, zobrazí sa dĺžka každej nahrávky v zozname filmov (môže to však predlžiť čas načítania)."

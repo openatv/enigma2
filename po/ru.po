@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-05-03 16:35+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2747,9 +2747,6 @@ msgstr "Приоритет используемых тюнеров"
 msgid "Always ask"
 msgstr "Всегда спрашивать"
 
-msgid "Hide InfoBar"
-msgstr "Всегда скрывать инфобар"
-
 msgid "Always include ECM in recordings"
 msgstr "Всегда включать ECM в записи"
 
@@ -3837,6 +3834,10 @@ msgstr "Изменить фаворит"
 
 msgid "CHANNEL +/-"
 msgstr "Канал +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Настройки CI"
@@ -8871,6 +8872,9 @@ msgstr "Скрытая сеть"
 msgid "Hide"
 msgstr "Скрыть"
 
+msgid "Hide InfoBar"
+msgstr "Всегда скрывать инфобар"
+
 msgid "Hide VBI line for this service"
 msgstr "Скрыть линию VBI на этом канале"
 
@@ -10751,6 +10755,9 @@ msgstr "Медиа центр"
 
 msgid "Media Player"
 msgstr "Медиа плеер"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Медиа портал"
@@ -14286,6 +14293,9 @@ msgstr "Повторить"
 msgid "Repeat Display Message"
 msgstr "Повторять сообщения дисплея"
 
+msgid "Repeat playlist"
+msgstr "Повторить плейлист"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Повтор отправленны[ команд режима ожидания и пробуждения"
 
@@ -14824,11 +14834,17 @@ msgstr "Сохранить и записать"
 msgid "Save and stop"
 msgstr "Сохранить и остановить"
 
+msgid "Save directory on EXIT"
+msgstr "Сохранить последний каталог при выходе"
+
 msgid "Save every (in hours)"
 msgstr "Сохранять каждые (В часах)"
 
 msgid "Save left folder on exit"
 msgstr "Сохранить последний каталог при выходе"
+
+msgid "Save playlist on EXIT"
+msgstr "Сохранить плейлист при выходе"
 
 msgid "Save playlist"
 msgstr "Сохранить плейлист"
@@ -15903,6 +15919,24 @@ msgstr "Установите тип отображения прогресса в
 msgid "Set the volume offset for the '%s' service."
 msgstr "Отключить громкость для канала '%s'."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Выберите нужный прайм-тайм (вчасах)."
 
@@ -16290,6 +16324,9 @@ msgstr "Показать менеджер журналов в меню допо�
 
 msgid "Show Main Menu as"
 msgstr "Показать главное меню как"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Показать медиаплеер в главном меню"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Показать при воспроизведении оставшееся/прошедшее как"
@@ -17299,6 +17336,9 @@ msgstr "Порядок сортировки пунктов меню"
 msgid "Sort order for the language list."
 msgstr "Порядок сортировки списка языков."
 
+msgid "Sort playlists"
+msgstr "Сортировка плей-листов"
+
 msgid "Sort plug-in browser entries"
 msgstr "Сортировать плагины"
 
@@ -17361,6 +17401,9 @@ msgstr "Спец. 2"
 
 msgid "Special Features Settings"
 msgstr "Особые настройки"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Скорость"
@@ -17463,6 +17506,9 @@ msgstr "Мастер запуска"
 
 msgid "Starting Softcam"
 msgstr "Запускается эмулятор"
+
+msgid "Starting directory"
+msgstr "Начальный каталог"
 
 msgid "Starting on"
 msgstr "Начиная с"
@@ -22659,9 +22705,6 @@ msgstr "Переименовать"
 msgid "rename entry"
 msgstr "Переименовать выбранное"
 
-msgid "Repeat play list"
-msgstr "Повторить плейлист"
-
 msgid "repeated"
 msgstr "Повторять"
 
@@ -22702,9 +22745,6 @@ msgstr ""
 "При этом возможен просмотр ТВ,\n"
 "но невозможно выполнить поиск новых каналов\n"
 "или выполнить настройки тюнера"
-
-msgid "Save play list on EXIT"
-msgstr "Сохранить плейлист при выходе"
 
 msgid "scan state"
 msgstr "Состояние поиска"
@@ -22805,9 +22845,6 @@ msgstr "Показать карточки с uphop 9 "
 msgid "show event details"
 msgstr "Показать детали события"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Показать медиаплеер в главном меню"
-
 msgid "show picons in quickzap"
 msgstr "Показать пиконы при быстром переключении"
 
@@ -22864,9 +22901,6 @@ msgstr "Социальная/Духовная наука"
 msgid "softcam"
 msgstr "ЭМУ"
 
-msgid "Sort play lists"
-msgstr "Сортировка плей-листов"
-
 msgid "special (general)"
 msgstr "специальный (общий)"
 
@@ -22887,9 +22921,6 @@ msgstr "Стандарт"
 
 msgid "start cut here"
 msgstr "Начало редактирования"
-
-msgid "Starting directory"
-msgstr "Начальный каталог"
 
 msgid "start recording"
 msgstr "Начать запись"
@@ -24593,9 +24624,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Переключить на выбранный канал или показать подробный ТВ-гид (Зависит от конфигурации)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Сохранить последний каталог при выходе"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Если эта функция включена, продолжительность каждой записи будет отображаться в списке фильмов (это может вызвать дополнительное время загрузки)."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2764,9 +2764,6 @@ msgstr "Ưu tiên dịch vụ thay thế tuner"
 msgid "Always ask"
 msgstr "Luôn luôn hỏi"
 
-msgid "Hide InfoBar"
-msgstr "Luôn ẩn infobar"
-
 msgid "Always include ECM in recordings"
 msgstr "Luôn bao gồm ECM trong bản ghi"
 
@@ -3865,6 +3862,10 @@ msgstr "THAY ĐỔI GÓI KÊNH"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kênh 1"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Cài đặt CI (Giao diện chung)"
@@ -8989,6 +8990,9 @@ msgstr "Mạng ẩn"
 msgid "Hide"
 msgstr "ẩn giấu"
 
+msgid "Hide InfoBar"
+msgstr "Luôn ẩn infobar"
+
 msgid "Hide VBI line for this service"
 msgstr "Ẩn dòng VBI cho dịch vụ này"
 
@@ -10924,6 +10928,9 @@ msgstr "Trung tâm Truyền thông"
 
 msgid "Media Player"
 msgstr "Phương tiện truyền thông"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Cổng thông tin truyền thông"
@@ -14559,6 +14566,9 @@ msgstr "Nói lại"
 msgid "Repeat Display Message"
 msgstr "Lặp lại tin nhắn hiển thị"
 
+msgid "Repeat playlist"
+msgstr "phát lại danh sách"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Lặp lại các lệnh chờ và đã gửi"
 
@@ -15107,11 +15117,17 @@ msgstr "Lưu và ghi lại"
 msgid "Save and stop"
 msgstr "Lưu và dừng lại"
 
+msgid "Save directory on EXIT"
+msgstr "lưu thư mục cuối cùng khi thoát"
+
 msgid "Save every (in hours)"
 msgstr "Tiết kiệm mỗi (tính theo giờ)"
 
 msgid "Save left folder on exit"
 msgstr "Lưu thư mục bên trái khi thoát"
+
+msgid "Save playlist on EXIT"
+msgstr "lưu danh sách phát khi thoát"
 
 msgid "Save playlist"
 msgstr "Lưu danh sách phát"
@@ -16201,6 +16217,24 @@ msgstr "Đặt loại chỉ báo tiến trình trong màn hình chọn kênh."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Đặt thời gian gốc mong muốn (giờ)."
 
@@ -16596,6 +16630,9 @@ msgstr "Hiển thị Trình quản lý nhật ký trong danh sách tiện ích m
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Hiển thị phim"
+
+msgid "Show Media Player in Main Menu"
+msgstr "hiển thị trình phát đa phương tiện trên menu chính"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Hiển thị phát lại phương tiện còn lại / trôi qua như"
@@ -17620,6 +17657,9 @@ msgstr "Sắp xếp thứ tự cho các mục menu"
 msgid "Sort order for the language list."
 msgstr "Sắp xếp thứ tự cho các mục menu"
 
+msgid "Sort playlists"
+msgstr "sắp xếp danh sách phát"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sắp xếp các mục trình duyệt bổ trợ"
 
@@ -17684,6 +17724,9 @@ msgstr "Đặc biệt 2"
 
 msgid "Special Features Settings"
 msgstr "Tính năng đặc biệt"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17789,6 +17832,9 @@ msgstr "Thuật sĩ bắt đầu"
 
 msgid "Starting Softcam"
 msgstr "Khởi động Softcam"
+
+msgid "Starting directory"
+msgstr "bắt đầu thư mục"
 
 msgid "Starting on"
 msgstr "Bắt đầu vào"
@@ -23071,9 +23117,6 @@ msgstr "đổi tên"
 msgid "rename entry"
 msgstr "đổi tên mục nhập"
 
-msgid "Repeat play list"
-msgstr "phát lại danh sách"
-
 msgid "repeated"
 msgstr "lặp đi lặp lại"
 
@@ -23114,9 +23157,6 @@ msgstr ""
 "Có thể xem TV,\n"
 "nhưng không thể tìm kiếm các kênh truyền hình mới\n"
 "hoặc để định cấu hình cài đặt bộ chỉnh tần số"
-
-msgid "Save play list on EXIT"
-msgstr "lưu danh sách phát khi thoát"
 
 msgid "scan state"
 msgstr "trạng thái quét"
@@ -23217,9 +23257,6 @@ msgstr "xuất trình thẻ với uphop 9"
 msgid "show event details"
 msgstr "hiển thị chi tiết sự kiện"
 
-msgid "Show Media Player in Main Menu"
-msgstr "hiển thị trình phát đa phương tiện trên menu chính"
-
 msgid "show picons in quickzap"
 msgstr "hiển thị picons trong quickzap"
 
@@ -23276,9 +23313,6 @@ msgstr "khoa học xã hội / tâm linh"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "sắp xếp danh sách phát"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "thể thao (nói chung)"
@@ -23301,9 +23335,6 @@ msgstr "tiêu chuẩn"
 
 msgid "start cut here"
 msgstr "bắt đầu cắt ở đây"
-
-msgid "Starting directory"
-msgstr "bắt đầu thư mục"
 
 msgid "start recording"
 msgstr "bắt đầu ghi âm"
@@ -24944,9 +24975,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Chuyển đến kênh đã chọn hoặc hiển thị thông tin sự kiện chi tiết (tùy thuộc vào cấu hình)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "lưu thư mục cuối cùng khi thoát"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Khi được bật, độ dài của mỗi bản ghi sẽ được hiển thị trong danh sách phim (điều này có thể gây ra một số thời gian tải bổ sung)."

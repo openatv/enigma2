@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -2974,9 +2974,6 @@ msgstr "Alternatīvo uztvērēju prioritātes"
 msgid "Always ask"
 msgstr "Vienmēr jautāt"
 
-msgid "Hide InfoBar"
-msgstr ""
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4156,6 +4153,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanāls"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -9670,6 +9671,9 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr ""
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11792,6 +11796,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Mediju atskaņotājs"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -15799,6 +15806,10 @@ msgstr "Atkārto"
 msgid "Repeat Display Message"
 msgstr ""
 
+#
+msgid "Repeat playlist"
+msgstr "atkārtot repertuāru"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -16412,6 +16423,10 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+#
+msgid "Save directory on EXIT"
+msgstr "saglabāt pēdējo mapi, izejot"
+
 msgid "Save every (in hours)"
 msgstr ""
 
@@ -16419,6 +16434,10 @@ msgstr ""
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "saglabāt pēdējo mapi, izejot"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "saglabāt repertuāru, izejot"
 
 #
 #, fuzzy
@@ -17597,6 +17616,24 @@ msgstr ""
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -18010,6 +18047,9 @@ msgstr "skatīt paplašinājumus..."
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "rādīt etiķetes izvēlni"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -19147,6 +19187,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -19217,6 +19260,9 @@ msgid "Special 2"
 msgstr ""
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -19340,6 +19386,10 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+#
+msgid "Starting directory"
+msgstr "sākuma mape"
 
 #
 msgid "Starting on"
@@ -25000,10 +25050,6 @@ msgid "rename entry"
 msgstr "dzēst ierakstu"
 
 #
-msgid "Repeat play list"
-msgstr "atkārtot repertuāru"
-
-#
 msgid "repeated"
 msgstr "atkārtots"
 
@@ -25042,10 +25088,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-#
-msgid "Save play list on EXIT"
-msgstr "saglabāt repertuāru, izejot"
 
 #
 msgid "scan state"
@@ -25155,9 +25197,6 @@ msgstr ""
 msgid "show event details"
 msgstr "rādīt notikuma detaļas"
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -25224,9 +25263,6 @@ msgstr ""
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -25249,10 +25285,6 @@ msgstr "standarta"
 #
 msgid "start cut here"
 msgstr "sākt griešanu šeit"
-
-#
-msgid "Starting directory"
-msgstr "sākuma mape"
 
 #
 #, fuzzy
@@ -25956,10 +25988,6 @@ msgstr ""
 #~ "Ejiet uz fragmenta, kuru jūs vēlaties izgriezt, sākumu. Spiediet OK, lai izvēlētos 'griezuma sākumu'.\n"
 #~ "\n"
 #~ "Tad ejiet uz beigām, spiediet OK, izvēlieties 'griezuma beigas'. Tas arī viss."
-
-#
-#~ msgid "Save directory on EXIT"
-#~ msgstr "saglabāt pēdējo mapi, izejot"
 
 #
 #, fuzzy

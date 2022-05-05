@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2016-04-02 23:16+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: jurica@dream-multimedia.eu\n"
@@ -2930,9 +2930,6 @@ msgstr "Prioritet alternativnih usluga tunera"
 msgid "Always ask"
 msgstr ""
 
-msgid "Hide InfoBar"
-msgstr ""
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4089,6 +4086,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanal"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -9535,6 +9536,9 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr ""
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11632,6 +11636,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Preglednik Medija"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -15586,6 +15593,10 @@ msgstr "ponavljam"
 msgid "Repeat Display Message"
 msgstr ""
 
+#
+msgid "Repeat playlist"
+msgstr ""
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -16195,10 +16206,17 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+msgid "Save directory on EXIT"
+msgstr ""
+
 msgid "Save every (in hours)"
 msgstr ""
 
 msgid "Save left folder on exit"
+msgstr ""
+
+#
+msgid "Save playlist on EXIT"
 msgstr ""
 
 #
@@ -17373,6 +17391,24 @@ msgstr ""
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -17784,6 +17820,9 @@ msgstr "gledaj ekstenzije..."
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "prikaži citat menia"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18896,6 +18935,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -18966,6 +19008,9 @@ msgid "Special 2"
 msgstr ""
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -19087,6 +19132,10 @@ msgid "StartWizard"
 msgstr ""
 
 msgid "Starting Softcam"
+msgstr ""
+
+#
+msgid "Starting directory"
 msgstr ""
 
 #
@@ -24668,10 +24717,6 @@ msgid "rename entry"
 msgstr "obriši unos"
 
 #
-msgid "Repeat play list"
-msgstr ""
-
-#
 msgid "repeated"
 msgstr "ponavljam"
 
@@ -24709,10 +24754,6 @@ msgid ""
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
-msgstr ""
-
-#
-msgid "Save play list on EXIT"
 msgstr ""
 
 #
@@ -24823,9 +24864,6 @@ msgstr ""
 msgid "show event details"
 msgstr "prikaži proširene infor. "
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -24892,9 +24930,6 @@ msgstr ""
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -24917,10 +24952,6 @@ msgstr "standardno"
 #
 msgid "start cut here"
 msgstr "počni rez ovdje"
-
-#
-msgid "Starting directory"
-msgstr ""
 
 #
 #, fuzzy

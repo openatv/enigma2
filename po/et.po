@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2759,9 +2759,6 @@ msgstr "Tuuneri eelistus asenduskanalitel"
 msgid "Always ask"
 msgstr "Küsitakse iga kord"
 
-msgid "Hide InfoBar"
-msgstr "Inforiba alati varjatud"
-
 msgid "Always include ECM in recordings"
 msgstr "Kaasa alati salvestistele ECM"
 
@@ -3871,6 +3868,10 @@ msgstr "LEMMIKNIMEKIRJA VAHETUS"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanal 1"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI seadistamine"
@@ -9046,6 +9047,9 @@ msgstr "Varjatud võrk"
 msgid "Hide"
 msgstr "Peida"
 
+msgid "Hide InfoBar"
+msgstr "Inforiba alati varjatud"
+
 msgid "Hide VBI line for this service"
 msgstr "Peida punktiirjoon ekraani ülaservas"
 
@@ -11015,6 +11019,9 @@ msgstr "Meediakeskus"
 
 msgid "Media Player"
 msgstr "Meediamängija"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
@@ -14729,6 +14736,9 @@ msgstr "Korda"
 msgid "Repeat Display Message"
 msgstr "Korda teadet ekraanil"
 
+msgid "Repeat playlist"
+msgstr "Pleilisti kordamine"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Korda saadetud ooteseisundi ja äratuse käsud"
 
@@ -15287,11 +15297,17 @@ msgstr "Talleta ja salvesta"
 msgid "Save and stop"
 msgstr "Talleta ja peata"
 
+msgid "Save directory on EXIT"
+msgstr "Pea väljumisel asukoht meeles"
+
 msgid "Save every (in hours)"
 msgstr "Talleta iga (tundides)"
 
 msgid "Save left folder on exit"
 msgstr "Salvesta väljumisel vasak kaust"
+
+msgid "Save playlist on EXIT"
+msgstr "Väljumisel talleta pleilist"
 
 msgid "Save playlist"
 msgstr "Talleta pleilist"
@@ -16400,6 +16416,24 @@ msgstr "Määra saate edenemise näit kanalinimekirjas."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Määra tippajaks (tunnid)."
 
@@ -16806,6 +16840,9 @@ msgstr "Kuva logihaldur laienduste menüüs"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Järjesta peamenüü"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Kuva meediapleier peamenüüs"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Jäänud/kulunud näit meedia esitusel"
@@ -17852,6 +17889,9 @@ msgstr "Menüü kirjete järjestus"
 msgid "Sort order for the language list."
 msgstr "Menüü kirjete järjestus"
 
+msgid "Sort playlists"
+msgstr "Pleilistide järjestamine"
+
 msgid "Sort plug-in browser entries"
 msgstr "Pluginate menüü kirjete järjestus"
 
@@ -17916,6 +17956,9 @@ msgstr "Erimärgid 2"
 
 msgid "Special Features Settings"
 msgstr "Eriomadused"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -18022,6 +18065,9 @@ msgstr "Käivitusabiline"
 
 msgid "Starting Softcam"
 msgstr "EMU käivitamine"
+
+msgid "Starting directory"
+msgstr "Avakataloog"
 
 msgid "Starting on"
 msgstr "Alates"
@@ -23417,9 +23463,6 @@ msgstr "Nimeta ümber"
 msgid "rename entry"
 msgstr "Nimeta ümber"
 
-msgid "Repeat play list"
-msgstr "Pleilisti kordamine"
-
 msgid "repeated"
 msgstr "Korduv"
 
@@ -23461,9 +23504,6 @@ msgstr ""
 "Kanaleid saab vaadata,\n"
 "aga kanaliotsing ja tuunerite seadistamine \n"
 "ei ole võimalik"
-
-msgid "Save play list on EXIT"
-msgstr "Väljumisel talleta pleilist"
 
 msgid "scan state"
 msgstr "otsingu seis"
@@ -23564,9 +23604,6 @@ msgstr "kuva uphop 9 kaardid"
 msgid "show event details"
 msgstr "Kuva saateinfo"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Kuva meediapleier peamenüüs"
-
 msgid "show picons in quickzap"
 msgstr "Pikonid kanalivahetusel"
 
@@ -23623,9 +23660,6 @@ msgstr "sotsiaalteemad/hingeteadus"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "Pleilistide järjestamine"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport"
@@ -23648,9 +23682,6 @@ msgstr "vaikimisi"
 
 msgid "start cut here"
 msgstr "Alusta lõiget siit"
-
-msgid "Starting directory"
-msgstr "Avakataloog"
 
 msgid "start recording"
 msgstr "Käivita salvestamine"
@@ -25314,9 +25345,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Mine valitud kanalile või näita saateinfot (sõltub seadistusest)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Pea väljumisel asukoht meeles"
 
 #
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."

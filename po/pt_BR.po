@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -2887,9 +2887,6 @@ msgstr "Prioridade dos serviços do tuner"
 msgid "Always ask"
 msgstr "Perguntar sempre"
 
-msgid "Hide InfoBar"
-msgstr "Sempre esconder barra de informações"
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4034,6 +4031,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Canal"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -9273,6 +9274,9 @@ msgstr "Rede oculta"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "Sempre esconder barra de informações"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11264,6 +11268,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Reprodutor de mídia"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -14976,6 +14983,9 @@ msgstr "Repetir"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr "repetir lista de reprodução"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -15539,12 +15549,18 @@ msgstr "desencriptar e gravar ecm"
 msgid "Save and stop"
 msgstr "Guardar lista"
 
+msgid "Save directory on EXIT"
+msgstr "memorizar última pasta ao sair"
+
 msgid "Save every (in hours)"
 msgstr ""
 
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "memorizar última pasta ao sair"
+
+msgid "Save playlist on EXIT"
+msgstr "memorizar lista de reprodução ao sair"
 
 msgid "Save playlist"
 msgstr "Salvar lista de reprodução"
@@ -16664,6 +16680,24 @@ msgstr "Progresso dos eventos na lista de canais."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -17068,6 +17102,9 @@ msgstr "Gerenciar extensões"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Mostrar menu de marcas"
+
+msgid "Show Media Player in Main Menu"
+msgstr "mostrar reprodutor de mídia no menu principal"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18143,6 +18180,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr "ordenar listas de reprodução"
+
 #, fuzzy
 msgid "Sort plug-in browser entries"
 msgstr "Plugins instalados"
@@ -18210,6 +18250,9 @@ msgid "Special 2"
 msgstr "eventos especiais"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -18319,6 +18362,9 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+msgid "Starting directory"
+msgstr "pasta inicial"
 
 msgid "Starting on"
 msgstr "Iniciar em"
@@ -23704,9 +23750,6 @@ msgstr "Renomear"
 msgid "rename entry"
 msgstr "remover entrada"
 
-msgid "Repeat play list"
-msgstr "repetir lista de reprodução"
-
 msgid "repeated"
 msgstr "Repetir"
 
@@ -23743,9 +23786,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-msgid "Save play list on EXIT"
-msgstr "memorizar lista de reprodução ao sair"
 
 msgid "scan state"
 msgstr "Estado da busca"
@@ -23848,9 +23888,6 @@ msgstr ""
 msgid "show event details"
 msgstr "Exibir detalhes do evento"
 
-msgid "Show Media Player in Main Menu"
-msgstr "mostrar reprodutor de mídia no menu principal"
-
 #, fuzzy
 msgid "show picons in quickzap"
 msgstr "Mostrar ícones de estado na lista de gravações"
@@ -23912,9 +23949,6 @@ msgstr "Ciência social/espiritual"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "ordenar listas de reprodução"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "esportes (geral)"
@@ -23937,9 +23971,6 @@ msgstr "Padrão"
 
 msgid "start cut here"
 msgstr "Iniciar corte aqui"
-
-msgid "Starting directory"
-msgstr "pasta inicial"
 
 #, fuzzy
 msgid "start recording"
@@ -24960,9 +24991,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Assiste o canal selecionado, ou exibe informações detalhadas do evento (depende da configuração)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "memorizar última pasta ao sair"
 
 #, fuzzy
 #~ msgid "Delete Lang"

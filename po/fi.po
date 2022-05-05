@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-05-04 17:13+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2735,9 +2735,6 @@ msgstr "Virittimien prioriteetti"
 msgid "Always ask"
 msgstr "Kysy aina"
 
-msgid "Hide InfoBar"
-msgstr "Piilota tietopalkki aina"
-
 msgid "Always include ECM in recordings"
 msgstr "Sisällytä aina ECM nauhoituksiin"
 
@@ -3825,6 +3822,10 @@ msgstr "VAIHDA SUOSIKKILISTAA"
 
 msgid "CHANNEL +/-"
 msgstr "Kanava vaihtonäppäimen +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-liitäntä/CAM"
@@ -8857,6 +8858,9 @@ msgstr "Piilotettu verkko"
 msgid "Hide"
 msgstr "Piilota"
 
+msgid "Hide InfoBar"
+msgstr "Piilota tietopalkki aina"
+
 msgid "Hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
@@ -10741,6 +10745,9 @@ msgstr "Mediakeskus"
 
 msgid "Media Player"
 msgstr "Mediasoitin"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "MediaPortaali"
@@ -14290,6 +14297,9 @@ msgstr "Toistokerrat"
 msgid "Repeat Display Message"
 msgstr "Toista kuvaruutu viesti"
 
+msgid "Repeat playlist"
+msgstr "toista soittolista"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Toista uudelleen valmiustila ja herätys komennot"
 
@@ -14828,11 +14838,17 @@ msgstr "Tallenna ja jatka tallennusta"
 msgid "Save and stop"
 msgstr "Tallenna ja pysäytä"
 
+msgid "Save directory on EXIT"
+msgstr "tallenna viimeisin hakemisto suljettaessa"
+
 msgid "Save every (in hours)"
 msgstr "Tallenna joka (tunti)"
 
 msgid "Save left folder on exit"
 msgstr "Tallenna vasen kansio poistuttaessa"
+
+msgid "Save playlist on EXIT"
+msgstr "tallenna soittolista suljettaessa"
 
 msgid "Save playlist"
 msgstr "Tallenna soittolista"
@@ -15917,6 +15933,24 @@ msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistass
 msgid "Set the volume offset for the '%s' service."
 msgstr "Aseta äänenvoimakkuuden siirtymä '%s' kanavalle."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Aseta paras katseluaika (tunti)."
 
@@ -16304,6 +16338,9 @@ msgstr "Näytä lokien hallinta laajennus listassa"
 
 msgid "Show Main Menu as"
 msgstr "Päävalikko näkyvä"
+
+msgid "Show Media Player in Main Menu"
+msgstr "näytä mediatoistin päävalikossa"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika muodossa"
@@ -17311,6 +17348,9 @@ msgstr "Lajittelujärjestys valikko merkinnät"
 msgid "Sort order for the language list."
 msgstr "Kieliluettelon lajittelujärjestys."
 
+msgid "Sort playlists"
+msgstr "soittolistojen järjestys"
+
 msgid "Sort plug-in browser entries"
 msgstr "Lisäosavalikko merkinnät"
 
@@ -17373,6 +17413,9 @@ msgstr "Erikois 2"
 
 msgid "Special Features Settings"
 msgstr "Erikois ominaisuudet"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Nopeus"
@@ -17475,6 +17518,9 @@ msgstr "Aloitus Avustaja"
 
 msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
+
+msgid "Starting directory"
+msgstr "aloitushakemisto"
 
 msgid "Starting on"
 msgstr "Alkaen"
@@ -22686,9 +22732,6 @@ msgstr "Uudelleen nimeä"
 msgid "rename entry"
 msgstr "Uudelleennimeä"
 
-msgid "Repeat play list"
-msgstr "toista soittolista"
-
 msgid "repeated"
 msgstr "useita kertoja"
 
@@ -22729,9 +22772,6 @@ msgstr ""
 "On mahdollista katsella televisiota,\n"
 "mutta uusia TV-kanavia ei ole mahdollista etsiä\n"
 "tai määrittää virittimen asetuksia"
-
-msgid "Save play list on EXIT"
-msgstr "tallenna soittolista suljettaessa"
 
 msgid "scan state"
 msgstr "haun tila"
@@ -22832,9 +22872,6 @@ msgstr "näytä kortit jossa ylöshyppy 9"
 msgid "show event details"
 msgstr "näytä ohjelman tarkemmat tiedot"
 
-msgid "Show Media Player in Main Menu"
-msgstr "näytä mediatoistin päävalikossa"
-
 msgid "show picons in quickzap"
 msgstr "Näytä kanavalogot pikavaihdossa"
 
@@ -22891,9 +22928,6 @@ msgstr "sosiaalinen/hengellinen tiede"
 msgid "softcam"
 msgstr "Softcam"
 
-msgid "Sort play lists"
-msgstr "soittolistojen järjestys"
-
 msgid "special (general)"
 msgstr "erikois (yleinen)"
 
@@ -22914,9 +22948,6 @@ msgstr "vakio"
 
 msgid "start cut here"
 msgstr "Aloita leikkaus tästä"
-
-msgid "Starting directory"
-msgstr "aloitushakemisto"
 
 msgid "start recording"
 msgstr "aloita tallennus"
@@ -24599,9 +24630,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Vaihda valitulle kanavalle tai tarkastele tapahtuman yksityiskohtaisia tietoja (kokoonpanosta riippuen)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "tallenna viimeisin hakemisto suljettaessa"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."

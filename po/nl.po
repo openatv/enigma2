@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-05-01 07:49+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2730,9 +2730,6 @@ msgstr "Alternatieve tunerprioriteit"
 msgid "Always ask"
 msgstr "Altijd vragen"
 
-msgid "Hide InfoBar"
-msgstr "Informatiebalk altijd verbergen"
-
 msgid "Always include ECM in recordings"
 msgstr "ECM altijd toevoegen aan opnames"
 
@@ -3819,6 +3816,10 @@ msgstr "VERANDER FAVORIETENLIJST"
 
 msgid "CHANNEL +/-"
 msgstr "Zender +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) Instellen"
@@ -8971,6 +8972,9 @@ msgstr "Verborgen netwerk"
 msgid "Hide"
 msgstr "Verberg"
 
+msgid "Hide InfoBar"
+msgstr "Informatiebalk altijd verbergen"
+
 msgid "Hide VBI line for this service"
 msgstr "Verberg VBI regel voor deze zender"
 
@@ -10856,6 +10860,9 @@ msgstr "Media centrum"
 
 msgid "Media Player"
 msgstr "Mediaspeler"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portaal"
@@ -14397,6 +14404,9 @@ msgstr "Herhaal"
 msgid "Repeat Display Message"
 msgstr "Herhaal OSD-bericht"
 
+msgid "Repeat playlist"
+msgstr "Herhaal afspeellijst"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Herhaal de stand-by en ontwaak commando's"
 
@@ -14935,11 +14945,17 @@ msgstr "Opslaan en opnemen"
 msgid "Save and stop"
 msgstr "Opslaan en stop"
 
+msgid "Save directory on EXIT"
+msgstr "Bewaar laatste map bij het beëindigen"
+
 msgid "Save every (in hours)"
 msgstr "Bewaar elke (in uren)"
 
 msgid "Save left folder on exit"
 msgstr "Linker map opslaan bij verlaten"
+
+msgid "Save playlist on EXIT"
+msgstr "Bewaar afspeellijst bij het beëindigen"
 
 msgid "Save playlist"
 msgstr "Bewaar afspeellijst"
@@ -16023,6 +16039,24 @@ msgstr ""
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Stel de gewenste primetime in (uur)."
 
@@ -16419,6 +16453,9 @@ msgstr "Toon de Log-manager in het Extensiemenu"
 
 msgid "Show Main Menu as"
 msgstr "Toon het hoofdmenu als"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Mediaspeler in het hoofdmenu tonen"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Toon de resterende/verstreken media afspeeltijd als"
@@ -17433,6 +17470,9 @@ msgstr "Sorteervolgorde voor menu-items"
 msgid "Sort order for the language list."
 msgstr "Sorteervolgorde voor het taaloverzicht."
 
+msgid "Sort playlists"
+msgstr "Sorteren van afspeellijsten"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sorteer het Applicatie overzicht"
 
@@ -17495,6 +17535,9 @@ msgstr "Speciaal 2"
 
 msgid "Special Features Settings"
 msgstr "Speciale functies"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Snelheid"
@@ -17597,6 +17640,9 @@ msgstr "StartWizard"
 
 msgid "Starting Softcam"
 msgstr "Starten Softcam"
+
+msgid "Starting directory"
+msgstr "Start map"
 
 msgid "Starting on"
 msgstr "Start op"
@@ -22868,9 +22914,6 @@ msgstr "hernoem"
 msgid "rename entry"
 msgstr "Zender hernoemen"
 
-msgid "Repeat play list"
-msgstr "Herhaal afspeellijst"
-
 msgid "repeated"
 msgstr "herhalen"
 
@@ -22909,9 +22952,6 @@ msgid ""
 msgstr ""
 "Satellites.xml is niet gevonden of beschadigd!\n"
 "U kunt TV kijken, maar het is niet mogelijk om nieuwe zenders te zoeken of tuner-instellingen te wijzigen."
-
-msgid "Save play list on EXIT"
-msgstr "Bewaar afspeellijst bij het beëindigen"
 
 msgid "scan state"
 msgstr "zoekstatus"
@@ -23012,9 +23052,6 @@ msgstr "Toon kaarten met uphop 9"
 msgid "show event details"
 msgstr "EPG informatie weergeven"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Mediaspeler in het hoofdmenu tonen"
-
 msgid "show picons in quickzap"
 msgstr "Toon Picons tijdens Quickzap"
 
@@ -23071,9 +23108,6 @@ msgstr "sociale/spirituele wetenschap"
 msgid "softcam"
 msgstr "softcam"
 
-msgid "Sort play lists"
-msgstr "Sorteren van afspeellijsten"
-
 msgid "special (general)"
 msgstr "special (algemeen)"
 
@@ -23094,9 +23128,6 @@ msgstr "Standaard"
 
 msgid "start cut here"
 msgstr "Start knippen hier"
-
-msgid "Starting directory"
-msgstr "Start map"
 
 msgid "start recording"
 msgstr "Opname starten"
@@ -24789,9 +24820,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zap naar de gekozen zender of toon gedetailleerde programmainformatie (dit hangt van de configuratie af)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "Bewaar laatste map bij het beëindigen"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Indien geactiveerd, dan wordt de lengte van iedere opname weergegeven in de opnamelijst. (Hierdoor kan de laadtijd van de opnamelijst toenemen)."

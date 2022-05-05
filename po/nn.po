@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -3032,9 +3032,6 @@ msgstr "Alternativ tuner prioritet for kanaler"
 msgid "Always ask"
 msgstr "Alltid spør først "
 
-msgid "Hide InfoBar"
-msgstr "Skjul alltid linfovinduet"
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4218,6 +4215,10 @@ msgstr "BYTT KANALLISTE"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanal"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -9743,6 +9744,9 @@ msgstr "Skjult nettverk"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "Skjul alltid linfovinduet"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11851,6 +11855,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Media Avspiller"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -15826,6 +15833,10 @@ msgstr "Gjentagelse"
 msgid "Repeat Display Message"
 msgstr "Gjenta display melding"
 
+#
+msgid "Repeat playlist"
+msgstr "gjenta spilleliste"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -16434,6 +16445,10 @@ msgstr "Lagre og spille inn"
 msgid "Save and stop"
 msgstr "Lagre og stopp"
 
+#
+msgid "Save directory on EXIT"
+msgstr "lagre siste katalog ved avslutt"
+
 msgid "Save every (in hours)"
 msgstr "Lagre hver (i timer)"
 
@@ -16441,6 +16456,10 @@ msgstr "Lagre hver (i timer)"
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "lagre siste katalog ved avslutt"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "lagre spilleliste ved avslutt"
 
 #
 msgid "Save playlist"
@@ -17610,6 +17629,24 @@ msgstr "Angi typen for fremdriftsindikatoren i kanalvalg-skjermen."
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Angir ønsket primetime (time)."
 
@@ -18021,6 +18058,9 @@ msgstr "Vis logg behandling i utvidelser listen?"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Vis info linjen "
+
+msgid "Show Media Player in Main Menu"
+msgstr "vise mediaplayer i hovedmeny"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Vis medieavspillingstid gjenværende/medgått som"
@@ -19142,6 +19182,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr "sortering av spillelister"
+
 #, fuzzy
 msgid "Sort plug-in browser entries"
 msgstr "Sorter plugin alfabetisk"
@@ -19215,6 +19258,9 @@ msgid "Special 2"
 msgstr "Serial No"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -19334,6 +19380,10 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+#
+msgid "Starting directory"
+msgstr "start katalog"
 
 #
 msgid "Starting on"
@@ -25081,10 +25131,6 @@ msgid "rename entry"
 msgstr "Endre navn på oppføring"
 
 #
-msgid "Repeat play list"
-msgstr "gjenta spilleliste"
-
-#
 msgid "repeated"
 msgstr "gjentatt"
 
@@ -25123,10 +25169,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-#
-msgid "Save play list on EXIT"
-msgstr "lagre spilleliste ved avslutt"
 
 #
 msgid "scan state"
@@ -25236,9 +25278,6 @@ msgstr "vise kortene med uphop 9"
 msgid "show event details"
 msgstr "vis program detaljer"
 
-msgid "Show Media Player in Main Menu"
-msgstr "vise mediaplayer i hovedmeny"
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -25304,9 +25343,6 @@ msgstr "sosial/åndsvitenskap"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "sortering av spillelister"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport (generelt)"
@@ -25331,10 +25367,6 @@ msgstr "standard"
 #
 msgid "start cut here"
 msgstr "start klipp her"
-
-#
-msgid "Starting directory"
-msgstr "start katalog"
 
 #
 #, fuzzy
@@ -26481,10 +26513,6 @@ msgstr ""
 #~ "Gå til starten av det du vil klippe vekk, trykk OK, velg 'start klipp her'.\n"
 #~ "\n"
 #~ "Så går du til slutten av det du vil klippe vekk, trykk OK, velg 'avslutt klipp her'. Det er alt!"
-
-#
-#~ msgid "Save directory on EXIT"
-#~ msgstr "lagre siste katalog ved avslutt"
 
 #
 #, fuzzy

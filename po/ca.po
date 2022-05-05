@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -2939,9 +2939,6 @@ msgstr "Prioritat del sintonitzador de serveis alternatius"
 msgid "Always ask"
 msgstr "Pregunteu sempre"
 
-msgid "Hide InfoBar"
-msgstr "Amaga sempre l’infobar"
-
 msgid "Always include ECM in recordings"
 msgstr "Incloeu sempre l’ECM als enregistraments"
 
@@ -4104,6 +4101,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Canal"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Configuració de CI (Interfície comuna)"
@@ -9512,6 +9513,9 @@ msgstr "Xarxa oculta"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "Amaga sempre l’infobar"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11575,6 +11579,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Reproductor"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -15501,6 +15508,10 @@ msgstr "Repetir"
 msgid "Repeat Display Message"
 msgstr ""
 
+#
+msgid "Repeat playlist"
+msgstr ""
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -16103,10 +16114,17 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+msgid "Save directory on EXIT"
+msgstr ""
+
 msgid "Save every (in hours)"
 msgstr ""
 
 msgid "Save left folder on exit"
+msgstr ""
+
+#
+msgid "Save playlist on EXIT"
 msgstr ""
 
 #
@@ -17262,6 +17280,24 @@ msgstr "Definiu el tipus d’indicació de progrés a la pantalla de selecció d
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -17668,6 +17704,9 @@ msgstr "veure extensions..."
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Començar el"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18766,6 +18805,9 @@ msgstr "Ordena l’ordre per a les entrades del menú"
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -18835,6 +18877,9 @@ msgid "Special 2"
 msgstr "Especial 2"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -18954,6 +18999,10 @@ msgid "StartWizard"
 msgstr ""
 
 msgid "Starting Softcam"
+msgstr ""
+
+#
+msgid "Starting directory"
 msgstr ""
 
 #
@@ -24533,10 +24582,6 @@ msgid "rename entry"
 msgstr "eliminar entrada"
 
 #
-msgid "Repeat play list"
-msgstr ""
-
-#
 msgid "repeated"
 msgstr "repetit"
 
@@ -24574,10 +24619,6 @@ msgid ""
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
-msgstr ""
-
-#
-msgid "Save play list on EXIT"
 msgstr ""
 
 #
@@ -24688,9 +24729,6 @@ msgstr ""
 msgid "show event details"
 msgstr "mostrar detalls del programa"
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -24757,9 +24795,6 @@ msgstr "ciències socials / espirituals"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -24782,10 +24817,6 @@ msgstr "estàndard"
 #
 msgid "start cut here"
 msgstr "començar tall aquí"
-
-#
-msgid "Starting directory"
-msgstr ""
 
 #
 #, fuzzy

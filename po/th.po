@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -2780,9 +2780,6 @@ msgstr "ลำดับของ Tuner เพื่อใช้งาน"
 msgid "Always ask"
 msgstr ""
 
-msgid "Hide InfoBar"
-msgstr ""
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -3892,6 +3889,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "ช่อง"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -9021,6 +9022,9 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr ""
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -10986,6 +10990,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "เล่นไฟล์"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -14645,6 +14652,9 @@ msgstr "ทำซ้ำ"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr "กลับไปที่สารบัญ"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -15201,12 +15211,18 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+msgid "Save directory on EXIT"
+msgstr "บันทึกโฟล์เดอร์ปัจจุบันเมื่อออก"
+
 msgid "Save every (in hours)"
 msgstr ""
 
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "บันทึกโฟล์เดอร์ปัจจุบันเมื่อออก"
+
+msgid "Save playlist on EXIT"
+msgstr "บันทึกสารบัญเมื่อออก"
 
 #, fuzzy
 msgid "Save playlist"
@@ -16307,6 +16323,24 @@ msgstr ""
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -16704,6 +16738,9 @@ msgstr "ดูส่วนเพิ่มเติม..."
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "แสดงเมนูป้าย"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -17765,6 +17802,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -17829,6 +17869,9 @@ msgid "Special 2"
 msgstr ""
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -17938,6 +17981,9 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+msgid "Starting directory"
+msgstr "โฟล์เดอร์เริ่มต้น"
 
 msgid "Starting on"
 msgstr "เริ่มตอน"
@@ -23168,9 +23214,6 @@ msgstr ""
 msgid "rename entry"
 msgstr "ลบรายการนี้ออก"
 
-msgid "Repeat play list"
-msgstr "กลับไปที่สารบัญ"
-
 msgid "repeated"
 msgstr "เล่นซ้ำ"
 
@@ -23207,9 +23250,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-msgid "Save play list on EXIT"
-msgstr "บันทึกสารบัญเมื่อออก"
 
 msgid "scan state"
 msgstr "สถานะการค้นหา"
@@ -23310,9 +23350,6 @@ msgstr ""
 msgid "show event details"
 msgstr "แสดงรายละเอียดรายการ"
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 #, fuzzy
 msgid "show picons in quickzap"
 msgstr "ช่องนี้ไม่มีการให้บริการ"
@@ -23371,9 +23408,6 @@ msgstr ""
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -23394,9 +23428,6 @@ msgstr "มาตรฐาน"
 
 msgid "start cut here"
 msgstr "ตัดตรงนี้"
-
-msgid "Starting directory"
-msgstr "โฟล์เดอร์เริ่มต้น"
 
 #, fuzzy
 msgid "start recording"
@@ -24025,9 +24056,6 @@ msgstr ""
 #~ "ทำการค้นหาจุดที่ท่านต้องการที่จะตัดทิ้งแล้วกดปุ่ม OK เพื่อเริ่มตัด('start cut')\n"
 #~ "\n"
 #~ "จากนั้นทำค้นหาจุดสุดท้ายแล้วกดปุ่ม OK เพื่อกำหนดจุดสุดท้าย ('end cut') เท่านั้นเอง (That's it)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "บันทึกโฟล์เดอร์ปัจจุบันเมื่อออก"
 
 #, fuzzy
 #~ msgid "Delete Lang"

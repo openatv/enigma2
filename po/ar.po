@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-04-13 15:03+0000\n"
 "Last-Translator: it's Me KaRim <itsmekarim44@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -2959,9 +2959,6 @@ msgstr "أولوية المؤالف للقنوات البديله"
 msgid "Always ask"
 msgstr "أسال دائما"
 
-msgid "Hide InfoBar"
-msgstr "دائما إخفاء شريط المعلومات"
-
 msgid "Always include ECM in recordings"
 msgstr ""
 
@@ -4097,6 +4094,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "قناه"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "ضبط الكامة الداخلية (واجهة المستخدم)"
@@ -9325,6 +9326,9 @@ msgstr "إخفاء الشبكة"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "دائما إخفاء شريط المعلومات"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -11335,6 +11339,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "مشغل الوسائط"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -15096,6 +15103,9 @@ msgstr "إعاده"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr "إعادة قائمة الاغانى"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -15671,12 +15681,18 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
+msgid "Save directory on EXIT"
+msgstr "حفظ الدليل عند الخروج"
+
 msgid "Save every (in hours)"
 msgstr ""
 
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "حفظ الدليل عند الخروج"
+
+msgid "Save playlist on EXIT"
+msgstr "حفظ قائمة العرض عند الخروج"
 
 msgid "Save playlist"
 msgstr "حفظ قائمة التشغيل"
@@ -16798,6 +16814,24 @@ msgstr "تعيين نوع من دلالة التقدم في شاشة اختيا�
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -17201,6 +17235,9 @@ msgstr "مشاهدة الاضافات..."
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "أعرض قائمة دى فى دى الرئيسيه"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18298,6 +18335,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr ""
+
 msgid "Sort plug-in browser entries"
 msgstr ""
 
@@ -18367,6 +18407,9 @@ msgid "Special 2"
 msgstr ""
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -18481,6 +18524,9 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+msgid "Starting directory"
+msgstr "دليل البدايه"
 
 msgid "Starting on"
 msgstr "يشتغل فى"
@@ -23881,9 +23927,6 @@ msgstr ""
 msgid "rename entry"
 msgstr "حذف"
 
-msgid "Repeat play list"
-msgstr "إعادة قائمة الاغانى"
-
 #
 msgid "repeated"
 msgstr "متكرر"
@@ -23921,9 +23964,6 @@ msgid ""
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-msgid "Save play list on EXIT"
-msgstr "حفظ قائمة العرض عند الخروج"
 
 #
 msgid "scan state"
@@ -24029,9 +24069,6 @@ msgstr ""
 msgid "show event details"
 msgstr "عرض تفاصيل الحدث"
 
-msgid "Show Media Player in Main Menu"
-msgstr ""
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -24092,9 +24129,6 @@ msgstr "العلوم الاجتماعية/الروحية"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -24115,9 +24149,6 @@ msgstr "قياسي"
 
 msgid "start cut here"
 msgstr "أبدأ القطع هنا"
-
-msgid "Starting directory"
-msgstr "دليل البدايه"
 
 #, fuzzy
 msgid "start recording"
@@ -24787,9 +24818,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "OSD position setup"
 #~ msgstr "ضبط الموتور"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "حفظ الدليل عند الخروج"
 
 #, fuzzy
 #~ msgid "Delete Lang"

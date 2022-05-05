@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2725,9 +2725,6 @@ msgstr "Priorité tuner services alternatifs"
 msgid "Always ask"
 msgstr "Toujours demander"
 
-msgid "Hide InfoBar"
-msgstr "Toujours cacher la barre d'infos"
-
 msgid "Always include ECM in recordings"
 msgstr "Toujours inclure ECM dans les enregistrements"
 
@@ -3811,6 +3808,10 @@ msgstr "CHANGER BOUQUET"
 
 msgid "CHANNEL +/-"
 msgstr "Canal +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Configuration CI (Interface Commune)"
@@ -8854,6 +8855,9 @@ msgstr "Réseau caché"
 msgid "Hide"
 msgstr "cacher"
 
+msgid "Hide InfoBar"
+msgstr "Toujours cacher la barre d'infos"
+
 msgid "Hide VBI line for this service"
 msgstr "Cacher ligne blanche VBI pour ce service"
 
@@ -10733,6 +10737,9 @@ msgstr "Centre Multimédia"
 
 msgid "Media Player"
 msgstr "Media Player"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
@@ -14281,6 +14288,9 @@ msgstr "Répéter"
 msgid "Repeat Display Message"
 msgstr "Répéter les messages affichés"
 
+msgid "Repeat playlist"
+msgstr "répéter liste lecture"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Répétez les commandes de veille et de réveil envoyées"
 
@@ -14820,11 +14830,17 @@ msgstr "Sauvegarder et enregistrer"
 msgid "Save and stop"
 msgstr "Sauvegarder et arrêter"
 
+msgid "Save directory on EXIT"
+msgstr "sauver dernier répertoire en sortant"
+
 msgid "Save every (in hours)"
 msgstr "Sauvegarder chaque (en heures)"
 
 msgid "Save left folder on exit"
 msgstr "Enregistrer le dossier de gauche à la sortie"
+
+msgid "Save playlist on EXIT"
+msgstr "sauver liste lecture en sortant"
 
 msgid "Save playlist"
 msgstr "Sauvegarder la liste de lecture"
@@ -15895,6 +15911,24 @@ msgstr "Défini le type et la localisation de l'indicateur de progression des é
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Définir le temps du primetime (heure)."
 
@@ -16282,6 +16316,9 @@ msgstr "Afficher le gestionnaire de log dans la liste des extensions ?"
 
 msgid "Show Main Menu as"
 msgstr "Afficher le menu principal en tant que"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Afficher le lecteur de média dans le menu principal"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Afficher le lecteur de média écoulé/restant comme"
@@ -17293,6 +17330,9 @@ msgstr "Trier l’ordre des entrées des menus"
 msgid "Sort order for the language list."
 msgstr "Ordre de tri de la liste des langues."
 
+msgid "Sort playlists"
+msgstr "tri des listes de lecture"
+
 msgid "Sort plug-in browser entries"
 msgstr "Ordre de tri pour les entrées du navigateur de plug-in"
 
@@ -17355,6 +17395,9 @@ msgstr "Spécial 2"
 
 msgid "Special Features Settings"
 msgstr "Fonctions spéciales"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17457,6 +17500,9 @@ msgstr "Assistant de démarrage"
 
 msgid "Starting Softcam"
 msgstr "Démarrer Softcam"
+
+msgid "Starting directory"
+msgstr "répertoire départ"
 
 msgid "Starting on"
 msgstr "Démarre sur"
@@ -22675,9 +22721,6 @@ msgstr "renommer"
 msgid "rename entry"
 msgstr "Renommer l'entrée"
 
-msgid "Repeat play list"
-msgstr "répéter liste lecture"
-
 msgid "repeated"
 msgstr "Répété"
 
@@ -22718,9 +22761,6 @@ msgstr ""
 "Il est possible de regarder la TV,\n"
 "mais il n'est pas possible de rechercher de nouvelles chaînes\n"
 "ou de configurer les paramètres du tuner"
-
-msgid "Save play list on EXIT"
-msgstr "sauver liste lecture en sortant"
 
 msgid "scan state"
 msgstr "Etat de la recherche"
@@ -22821,9 +22861,6 @@ msgstr "afficher les cartes jusqu'à 9 hops"
 msgid "show event details"
 msgstr "Afficher détails événement"
 
-msgid "Show Media Player in Main Menu"
-msgstr "Afficher le lecteur de média dans le menu principal"
-
 msgid "show picons in quickzap"
 msgstr "Afficher picons en zapping rapide"
 
@@ -22880,9 +22917,6 @@ msgstr "Science sociale/Spirituelle"
 msgid "softcam"
 msgstr "softcam"
 
-msgid "Sort play lists"
-msgstr "tri des listes de lecture"
-
 msgid "special (general)"
 msgstr "spécial (général)"
 
@@ -22903,9 +22937,6 @@ msgstr "Standard"
 
 msgid "start cut here"
 msgstr "Départ de coupe ici"
-
-msgid "Starting directory"
-msgstr "répertoire départ"
 
 msgid "start recording"
 msgstr "démarrer enregistrement"
@@ -24577,9 +24608,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zapper sur la chaîne sélectionnée, ou afficher l'information d'événement détaillée (selon la configuration)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "sauver dernier répertoire en sortant"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Lorsqu'activé, la longueur de chaque enregistrement sera affiché dans la liste des films (cela peut causer un temps de chargement additionnel)."

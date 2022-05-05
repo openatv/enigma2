@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2022-05-05 10:49+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2751,9 +2751,6 @@ msgstr "Kitų kanalų imtuvo pirmenybė"
 msgid "Always ask"
 msgstr "Visada klausti"
 
-msgid "Hide InfoBar"
-msgstr "Visada paslėpti info juostą"
-
 msgid "Always include ECM in recordings"
 msgstr "Į įrašus visada įtraukti ECM"
 
@@ -3843,6 +3840,10 @@ msgstr "KEISTI PAKETĄ"
 
 msgid "CHANNEL +/-"
 msgstr "KANALAS +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
@@ -8884,6 +8885,9 @@ msgstr "Paslėptas tinklas"
 msgid "Hide"
 msgstr "Paslėpti"
 
+msgid "Hide InfoBar"
+msgstr "Visada paslėpti info juostą"
+
 msgid "Hide VBI line for this service"
 msgstr "Slėpti VBI liniją šiam kanalui"
 
@@ -10764,6 +10768,9 @@ msgstr "Medija centras"
 
 msgid "Media Player"
 msgstr "Media grotuvas"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Atverti Medija Portalą"
@@ -14299,6 +14306,9 @@ msgstr "Pakartoti"
 msgid "Repeat Display Message"
 msgstr "Pakartokite ekrano pranešimą"
 
+msgid "Repeat playlist"
+msgstr "pakartoti grojaraštį"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Pakartokite siunčiamas budėjimo ir pabudimo komandas"
 
@@ -14837,11 +14847,17 @@ msgstr "Išsaugoti ir įrašyti"
 msgid "Save and stop"
 msgstr "Išsaugoti ir sustabdyti"
 
+msgid "Save directory on EXIT"
+msgstr "uždarant, išsaugoti paskutinį katalogą"
+
 msgid "Save every (in hours)"
 msgstr "Išsaugoti kiekvieną (valandomis)"
 
 msgid "Save left folder on exit"
 msgstr "Išsaugoti kairįjį aplanką"
+
+msgid "Save playlist on EXIT"
+msgstr "uždarant, išsaugoti grojaraštį"
 
 msgid "Save playlist"
 msgstr "Išsaugoti grojaraštį"
@@ -15916,6 +15932,24 @@ msgstr "Nustatykite pasirinkto kanalo veiksmo eigos indikaciją kanalų pasirink
 msgid "Set the volume offset for the '%s' service."
 msgstr "Nustatykite paslaugos '%s' garsumo poslinkį."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Nustatykite norimą žiūrimiausią laiką (valanda)."
 
@@ -16303,6 +16337,9 @@ msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše"
 
 msgid "Show Main Menu as"
 msgstr "Rodyti pagrindinį meniu kaip"
+
+msgid "Show Media Player in Main Menu"
+msgstr "rodyti medijos grotuvą pagrindiniame meniu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti liko/praėjo medijos atkūrime, kaip"
@@ -17312,6 +17349,9 @@ msgstr "Meniu rūšiavimo tvarka"
 msgid "Sort order for the language list."
 msgstr "Kalbų sąrašo rūšiavimo tvarka."
 
+msgid "Sort playlists"
+msgstr "grojaraščių rūšiavimas"
+
 msgid "Sort plug-in browser entries"
 msgstr "Rūšiuoti priedus įrašų naršyklėje"
 
@@ -17374,6 +17414,9 @@ msgstr "Simboliai 2"
 
 msgid "Special Features Settings"
 msgstr "Specialiųjų funkcijų parametrai"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Greitis"
@@ -17476,6 +17519,9 @@ msgstr "Paleiskite vedlį"
 
 msgid "Starting Softcam"
 msgstr "Paleidžiamas emuliatorius"
+
+msgid "Starting directory"
+msgstr "pradžios katalogas"
 
 msgid "Starting on"
 msgstr "Paleidžiama"
@@ -22669,9 +22715,6 @@ msgstr "pervardinti"
 msgid "rename entry"
 msgstr "pervardinti įrašą"
 
-msgid "Repeat play list"
-msgstr "pakartoti grojaraštį"
-
 msgid "repeated"
 msgstr "pakartotinis"
 
@@ -22712,9 +22755,6 @@ msgstr ""
 "Galite žiūrėti TV,\n"
 "bet neįmanoma ieškoti naujų TV kanalų,\n"
 "arba konfigūruoti imtuvo parametrų"
-
-msgid "Save play list on EXIT"
-msgstr "uždarant, išsaugoti grojaraštį"
 
 msgid "scan state"
 msgstr "skenavimo eiga"
@@ -22815,9 +22855,6 @@ msgstr "rodyti korteles su uphop 9"
 msgid "show event details"
 msgstr "rodyti užduočių detales"
 
-msgid "Show Media Player in Main Menu"
-msgstr "rodyti medijos grotuvą pagrindiniame meniu"
-
 msgid "show picons in quickzap"
 msgstr "rodyti logotipus greitame jungime"
 
@@ -22874,9 +22911,6 @@ msgstr "socialinis/dvasinis mokslas"
 msgid "softcam"
 msgstr "Emuliatorius"
 
-msgid "Sort play lists"
-msgstr "grojaraščių rūšiavimas"
-
 msgid "special (general)"
 msgstr "specialusis (bendrai)"
 
@@ -22897,9 +22931,6 @@ msgstr "standartinis"
 
 msgid "start cut here"
 msgstr "pradėkite iškirpimą čia"
-
-msgid "Starting directory"
-msgstr "pradžios katalogas"
 
 msgid "start recording"
 msgstr "pradėti įrašymą"
@@ -24630,9 +24661,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Perjungti į pasirinktą kanalą, arba rodyti išsamią įvykio informaciją (priklauso nuo konfigūracijos)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "uždarant, išsaugoti paskutinį katalogą"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Įjungus kiekvieno įrašo ilgį, jis bus rodomas sąraše (tai gali sukelti papildomą įkėlimo laiką)."

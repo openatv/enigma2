@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-03 16:51+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -2777,9 +2777,6 @@ msgstr "Priorità tuner per canali alternativi"
 msgid "Always ask"
 msgstr "Chiedere sempre"
 
-msgid "Hide InfoBar"
-msgstr "Nascondi sempre infobar"
-
 msgid "Always include ECM in recordings"
 msgstr "Includi sempre gli ECM nelle registrazioni"
 
@@ -3883,6 +3880,10 @@ msgstr "Cambia bouquet"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Canale 1"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI - Impostazioni"
@@ -9017,6 +9018,9 @@ msgstr "Rete nascosta"
 msgid "Hide"
 msgstr "nascondi"
 
+msgid "Hide InfoBar"
+msgstr "Nascondi sempre infobar"
+
 msgid "Hide VBI line for this service"
 msgstr "Nascondi la linea VBI da questo canale"
 
@@ -10956,6 +10960,9 @@ msgstr "Media Center"
 
 msgid "Media Player"
 msgstr "Media Player"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
@@ -14595,6 +14602,9 @@ msgstr "Ripeti"
 msgid "Repeat Display Message"
 msgstr "Ripetizione messaggio sul display"
 
+msgid "Repeat playlist"
+msgstr "ripetere playlist"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Ripeto i comandi “Standby” e “Riattiva”"
 
@@ -15145,11 +15155,17 @@ msgstr "Salva e registra"
 msgid "Save and stop"
 msgstr "Salva e arresta"
 
+msgid "Save directory on EXIT"
+msgstr "salvare l'ultima cartella all’uscita"
+
 msgid "Save every (in hours)"
 msgstr "Salva ogni (in ore)"
 
 msgid "Save left folder on exit"
 msgstr "In uscita, salvare la cartella sinistra"
+
+msgid "Save playlist on EXIT"
+msgstr "salvare la playlist all’uscita"
 
 msgid "Save playlist"
 msgstr "Salvare la playlist"
@@ -16251,6 +16267,24 @@ msgstr "Imposta il tipo di progressione evento nella schermata della lista canal
 msgid "Set the volume offset for the '%s' service."
 msgstr ""
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Impostare come ora di Prima serata."
 
@@ -16648,6 +16682,9 @@ msgstr "Mostra gestione estensioni nelle estensioni?"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Mostra film"
+
+msgid "Show Media Player in Main Menu"
+msgstr "mostra mediaplayer nel menu principale"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Mostra riproduzione media rimanente/trascorso come"
@@ -17674,6 +17711,9 @@ msgstr "Ordine per le voci del menu"
 msgid "Sort order for the language list."
 msgstr "Ordine per le voci del menu"
 
+msgid "Sort playlists"
+msgstr "ordinamento della playlist"
+
 msgid "Sort plug-in browser entries"
 msgstr "Ordine plugin nel menu"
 
@@ -17738,6 +17778,9 @@ msgstr "SPECIALE 2"
 
 msgid "Special Features Settings"
 msgstr "Caratteristiche speciali"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17843,6 +17886,9 @@ msgstr "StartWizard"
 
 msgid "Starting Softcam"
 msgstr "Avvio Softcam"
+
+msgid "Starting directory"
+msgstr "cartella di avvio"
 
 msgid "Starting on"
 msgstr "Avviare il"
@@ -23129,9 +23175,6 @@ msgstr "rinomina"
 msgid "rename entry"
 msgstr "rinomina voce"
 
-msgid "Repeat play list"
-msgstr "ripetere playlist"
-
 msgid "repeated"
 msgstr "ricorrente"
 
@@ -23172,9 +23215,6 @@ msgstr ""
 "E' possibile guardare la TV ,\n"
 "ma non è possibile ricercare nuovi canali\n"
 "o configurare sintonizzatori"
-
-msgid "Save play list on EXIT"
-msgstr "salvare la playlist all’uscita"
 
 msgid "scan state"
 msgstr "stato ricerca"
@@ -23275,9 +23315,6 @@ msgstr "mostra le schede con uphop 9"
 msgid "show event details"
 msgstr "mostra dettagli evento"
 
-msgid "Show Media Player in Main Menu"
-msgstr "mostra mediaplayer nel menu principale"
-
 msgid "show picons in quickzap"
 msgstr "Mostra le picon in quickzap"
 
@@ -23334,9 +23371,6 @@ msgstr "scienza sociale / spirituale"
 msgid "softcam"
 msgstr ""
 
-msgid "Sort play lists"
-msgstr "ordinamento della playlist"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport (generale)"
@@ -23359,9 +23393,6 @@ msgstr "standard"
 
 msgid "start cut here"
 msgstr "qui INIZIO taglio"
-
-msgid "Starting directory"
-msgstr "cartella di avvio"
 
 msgid "start recording"
 msgstr "avvia la registrazione"
@@ -25003,9 +25034,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Vai al canale selezionato, o mostra le informazioni dettagliate dell'evento (dipende dalla configurazione)"
-
-#~ msgid "Save directory on EXIT"
-#~ msgstr "salvare l'ultima cartella all’uscita"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Se abilitata, la lunghezza di ogni registrazione verrà mostrata nella Movielist (questo potrebbe causare maggior tempo di ricarica)."
