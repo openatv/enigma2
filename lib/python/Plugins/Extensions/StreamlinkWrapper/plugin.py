@@ -7,6 +7,7 @@ except ImportError:
 	Streamlink = False
 
 def zap(session, service, **kwargs):
+	errormsg = None
 	if service and "http" in service.toString():
 		url = service.toString()
 		url = url.split(":")
@@ -20,13 +21,15 @@ def zap(session, service, **kwargs):
 					if streams:
 						url = streams["best"].to_url()
 						print("[ChannelSelection] zap / streamlink result url %s" % url)
-						return url
+						return (url, errormsg)
 					else:
+						errormsg = "No Link found!"
 						print("[ChannelSelection] zap / streamlink no streams")
 				except Exception as e:
+					errormsg = str(e)
 					print("[ChannelSelection] zap / streamlink failed %s" % str(e))
 					pass
-	return None
+	return (None, errormsg)
 
 
 def Plugins(**kwargs):

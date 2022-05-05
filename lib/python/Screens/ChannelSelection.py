@@ -2363,8 +2363,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
-			newurl = p(session=self.session, service=nref)
-			if newurl:
+			(newurl, errormsg) = p(session=self.session, service=nref)
+			if errormsg:
+				self.session.open(MessageBox, _("Error getting link via %s/n%s") % (p.name, errormsg), MessageBox.TYPE_ERROR)
+				break
+			elif newurl:
 				nref.setAlternativeUrl(newurl)
 				break
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
