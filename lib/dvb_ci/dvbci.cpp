@@ -14,6 +14,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h> // access to python config
+#include <lib/base/esimpleconfig.h> // access to startup config
 #include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb_ci/dvbci.h>
@@ -1564,11 +1565,11 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	m_context = context;
 	state = stateDisabled;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
-	std::string str = eConfigManager::getConfigValue(configStr);
-	if (strcasecmp(str.c_str(), "false"))
+	bool enabled = eSimpleConfig::getBool(configStr, true);
+	if (enabled)
 		openDevice();
 	else
-		eDVBCI_UI::getInstance()->setState(getSlotID(), 3);
+		eDVBCI_UI::getInstance()->setState(getSlotID(), 3); // state disabled
 }
 
 void eDVBCISlot::openDevice()
@@ -1916,7 +1917,7 @@ int eDVBCISlot::setEnabled(bool enabled)
 		openDevice();
 	else {
 		closeDevice();
-		eDVBCI_UI::getInstance()->setState(getSlotID(), 3);
+		eDVBCI_UI::getInstance()->setState(getSlotID(), 3); // state disabled
 	}
 	return 0;
 }
