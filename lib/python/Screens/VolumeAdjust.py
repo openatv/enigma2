@@ -5,15 +5,13 @@ from os.path import isfile
 from enigma import eDVBVolumecontrol, eServiceReference, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
-from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.config import ConfigNothing, ConfigNumber, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
+from Components.ActionMap import HelpableActionMap
+from Components.config import ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
-from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import ChannelSelectionBase, OFF
-from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, moveFiles, resolveFilename
 
@@ -154,7 +152,7 @@ class VolumeAdjust(Setup):
 		return -1
 
 
-class SmallChannelSelection(ChannelSelectionBase):
+class SmallChannelSelection(ChannelSelectionBase, HelpableScreen):
 	skin = """
 	<screen name="SmallChannelSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430">
 		<widget name="list" position="0,0" size="e,e-50" scrollbarMode="showOnDemand" />
@@ -166,6 +164,7 @@ class SmallChannelSelection(ChannelSelectionBase):
 
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.skinName = ["SmallChannelSelection", "mySmallChannelSelection"]  # The screen "mySmallChannelSelection" is for legacy support only.
 		self.setTitle(_("Volume Adjust Service Selection"))
 		self.onShown.append(self.__onExecCallback)

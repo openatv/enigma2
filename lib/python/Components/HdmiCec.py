@@ -24,7 +24,7 @@ config.hdmicec.report_active_menu = ConfigYesNo(default=True)  # Query from this
 choicelist = [
 	("disabled", _("Disabled")),
 	("standby", _("Standby")),
-	("deepstandby", _("Deep standby"))
+	("deepstandby", _("Deep Standby"))
 ]
 config.hdmicec.handle_tv_standby = ConfigSelection(default="standby", choices=choicelist)
 config.hdmicec.handle_tv_input = ConfigSelection(default="disabled", choices=choicelist)

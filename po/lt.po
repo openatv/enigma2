@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-01 14:08+0000\n"
-"PO-Revision-Date: 2022-05-02 10:49+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"PO-Revision-Date: 2022-05-05 10:49+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -2291,6 +2291,9 @@ msgstr "Atnaujinimas nutraukiamas"
 msgid "About"
 msgstr "Apie"
 
+msgid "About openATV"
+msgstr "Apie openATV"
+
 msgid "About to start"
 msgstr "Netrukus prasidės"
 
@@ -2747,9 +2750,6 @@ msgstr "Kitų kanalų imtuvo pirmenybė"
 
 msgid "Always ask"
 msgstr "Visada klausti"
-
-msgid "Always hide infobar"
-msgstr "Visada paslėpti info juostą"
 
 msgid "Always include ECM in recordings"
 msgstr "Į įrašus visada įtraukti ECM"
@@ -3774,7 +3774,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr "CCCam informacija"
 
 msgid "CCcam Client Info"
@@ -3840,6 +3840,10 @@ msgstr "KEISTI PAKETĄ"
 
 msgid "CHANNEL +/-"
 msgstr "KANALAS +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
@@ -5420,8 +5424,8 @@ msgstr "Kroatų"
 msgid "Cron Manager"
 msgstr "Kron valdymas"
 
-msgid "CronTimers"
-msgstr "Kron laikmačiai"
+msgid "Cron Timers"
+msgstr "Cron laikmačiai"
 
 msgid "Cuba"
 msgstr "Kuba"
@@ -6319,6 +6323,9 @@ msgstr "Įrašams rezervuota disko apimtis (GB)"
 msgid "Disk was not found!"
 msgstr "Diskas nerastas!"
 
+msgid "Display"
+msgstr "Ekranas"
+
 msgid "Display 16:9 content as"
 msgstr "16:9 turinį rodyti, kaip"
 
@@ -6744,15 +6751,15 @@ msgstr "Dreambox formato duomenų DVD (neveiks kituose DVD grotuvuose)"
 msgid "Driver and kernel information"
 msgstr "Tvarkyklės ir branduolio informacija"
 
+msgid "Drivers"
+msgstr "Tvarkyklės"
+
 msgid "Drivers version"
 msgstr "Tvarkyklių versija"
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Tvarkyklės:\t%s"
-
-msgid "Drives"
-msgstr "Diskų informacija"
 
 msgid "Drives Information"
 msgstr "Diskų informacija"
@@ -8731,8 +8738,8 @@ msgstr "HDMI-CEC adresas"
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN veiksmai"
 
-msgid "HDMI-IN Recording settings"
-msgstr "HDMI-IN įrašymo nustatymai"
+msgid "HDMI-In Recording Settings"
+msgstr "HDMI įrašymo parametrai"
 
 msgid "HDMIin"
 msgstr "HDMI įvestis"
@@ -8878,6 +8885,9 @@ msgstr "Paslėptas tinklas"
 msgid "Hide"
 msgstr "Paslėpti"
 
+msgid "Hide InfoBar"
+msgstr "Visada paslėpti info juostą"
+
 msgid "Hide VBI line for this service"
 msgstr "Slėpti VBI liniją šiam kanalui"
 
@@ -9010,8 +9020,8 @@ msgstr "Hotbird 13.0e"
 msgid "Hotkey"
 msgstr "Spartusis klavišas"
 
-msgid "Hotkey Setup"
-msgstr "Sparčiųjų klavišų valdymas"
+msgid "Hotkey Settings"
+msgstr "Sparčiojo klavišo parametrai"
 
 msgid "Hotkey Setup for"
 msgstr "Sparčiųjų klavišų sąranka"
@@ -9539,6 +9549,9 @@ msgstr "Įvestis "
 msgid "Input Device Settings"
 msgstr "Įvesties įrenginio parametrai"
 
+msgid "Input Devices Settings"
+msgstr "Įvesties įrenginių parametrai"
+
 msgid "Input Stream ID"
 msgstr "Srauto įvesties ID"
 
@@ -9547,9 +9560,6 @@ msgstr "Įveskite kanalo pavadinimą."
 
 msgid "Input config file name:"
 msgstr "Įrašykite konfigūracijos failo pavadinimą:"
-
-msgid "Input devices"
-msgstr "Įvesties įrenginiai"
 
 msgid "Input scroll position"
 msgstr "Įvesties slinkties padėtis"
@@ -9918,6 +9928,9 @@ msgstr "Išlaikys filmų sąrašą atvertą ir grojant garsinius failus."
 msgid "Kenya"
 msgstr "Kenija"
 
+msgid "Kernel Modules"
+msgstr "Branduolio moduliai"
+
 msgid "Kernel file"
 msgstr "Branduolio failas"
 
@@ -10041,8 +10054,8 @@ msgstr "Laidinis tinklas"
 msgid "LAN long"
 msgstr "LAN (ilgai spausti)"
 
-msgid "LCD Skin Setup"
-msgstr "LCD išdėstymo valdymas"
+msgid "LCD Skin Settings"
+msgstr "LCD temos parametrai"
 
 msgid "LCD SkinSelector"
 msgstr "LCD išdėstymo parinkimas"
@@ -10517,6 +10530,9 @@ msgstr "Liuksemburgiečių"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Liuksemburgiečių"
 
+msgid "M2k"
+msgstr "M2k"
+
 msgid "MAC"
 msgstr "MAC adresas"
 
@@ -10579,9 +10595,6 @@ msgstr "Magija ilgai"
 
 msgid "Main Menu"
 msgstr "Pagrindinis Meniu"
-
-msgid "Mainmenu"
-msgstr "Pagrindinis meniu"
 
 msgid "Maintain old EPG data for"
 msgstr "Senus EPG duomenis saugoti"
@@ -10755,6 +10768,9 @@ msgstr "Medija centras"
 
 msgid "Media Player"
 msgstr "Media grotuvas"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Atverti Medija Portalą"
@@ -12022,8 +12038,8 @@ msgstr "OSD 3D nustatymas"
 msgid "OSD Adjustment"
 msgstr "OSD reguliavimas"
 
-msgid "OSD Position"
-msgstr "OSD pozicija"
+msgid "OSD Position Settings"
+msgstr "OSD padėties parametrai"
 
 msgid "OSD Settings"
 msgstr "OSD nustatymai"
@@ -12037,11 +12053,11 @@ msgstr "OSD pavadinimo užklausa"
 msgid "OScam Info"
 msgstr "OScam informacija"
 
+msgid "OScam Information"
+msgstr "OScam informacija"
+
 msgid "OScam webif disabled"
 msgstr "OScam webif išjungtas"
-
-msgid "OScamInfo"
-msgstr "OScam Informacija"
 
 msgid "OTT Model"
 msgstr "OTT modelis"
@@ -12205,6 +12221,9 @@ msgstr "OpenDNS Šeimos Skydas"
 msgid "OpenDNS Home"
 msgstr "OpenDNS pagrindinis puslapis"
 
+msgid "OpenPLi"
+msgstr "OpenPLi"
+
 msgid "OpenSSL version"
 msgstr "OpenSSL versija"
 
@@ -12213,6 +12232,9 @@ msgstr "OpenVPN"
 
 msgid "OpenVPN Settings"
 msgstr "OpenVPN parametrai"
+
+msgid "OpenViX"
+msgstr "OpenVix"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn loginis žurnalas"
@@ -12627,6 +12649,9 @@ msgstr "Piktograma ir kanalo pavadinimas"
 
 msgid "Picon width"
 msgstr "Piktogramos plotis"
+
+msgid "Picons"
+msgstr "Logotipai"
 
 msgid "Picture in EPG"
 msgstr "Vaizdas EPG"
@@ -13218,6 +13243,9 @@ msgstr "Maitinimo šviesos diodo būsena budėjimo režime."
 msgid "Power On Display"
 msgstr "Įjungimo ekranas"
 
+msgid "Power Timers"
+msgstr "Maitinimo laikmačiai"
+
 msgid "Power long"
 msgstr "Įtampa ilgai"
 
@@ -13247,9 +13275,6 @@ msgstr "Įjungimo laikmačio apžvalga"
 
 msgid "PowerTimer Standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
-
-msgid "PowerTimers"
-msgstr "Įjungimo laikmačiai"
 
 msgid "Predefined"
 msgstr "Pageidautinas"
@@ -14281,6 +14306,9 @@ msgstr "Pakartoti"
 msgid "Repeat Display Message"
 msgstr "Pakartokite ekrano pranešimą"
 
+msgid "Repeat playlist"
+msgstr "pakartoti grojaraštį"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Pakartokite siunčiamas budėjimo ir pabudimo komandas"
 
@@ -14819,11 +14847,17 @@ msgstr "Išsaugoti ir įrašyti"
 msgid "Save and stop"
 msgstr "Išsaugoti ir sustabdyti"
 
+msgid "Save directory on EXIT"
+msgstr "uždarant, išsaugoti paskutinį katalogą"
+
 msgid "Save every (in hours)"
 msgstr "Išsaugoti kiekvieną (valandomis)"
 
 msgid "Save left folder on exit"
 msgstr "Išsaugoti kairįjį aplanką"
+
+msgid "Save playlist on EXIT"
+msgstr "uždarant, išsaugoti grojaraštį"
 
 msgid "Save playlist"
 msgstr "Išsaugoti grojaraštį"
@@ -15032,6 +15066,9 @@ msgstr "Antrinis DNS"
 
 msgid "Secondinfobar:"
 msgstr "Antroji info juosta:"
+
+msgid "Security"
+msgstr "Saugumas"
 
 msgid "Seek"
 msgstr "Ieškoti"
@@ -15895,6 +15932,24 @@ msgstr "Nustatykite pasirinkto kanalo veiksmo eigos indikaciją kanalų pasirink
 msgid "Set the volume offset for the '%s' service."
 msgstr "Nustatykite paslaugos '%s' garsumo poslinkį."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Nustatykite norimą žiūrimiausią laiką (valanda)."
 
@@ -16282,6 +16337,9 @@ msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše"
 
 msgid "Show Main Menu as"
 msgstr "Rodyti pagrindinį meniu kaip"
+
+msgid "Show Media Player in Main Menu"
+msgstr "rodyti medijos grotuvą pagrindiniame meniu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti liko/praėjo medijos atkūrime, kaip"
@@ -16935,8 +16993,8 @@ msgstr "Temos parinkėjas"
 msgid "Skin Setting"
 msgstr "Temos nustatyme"
 
-msgid "Skin Setup"
-msgstr "Temos pasirinkimas"
+msgid "Skin Settings"
+msgstr "Temos parametrai"
 
 msgid "Skin setup"
 msgstr "Pasirinkite temą"
@@ -16976,6 +17034,9 @@ msgstr "Miego laikmatis"
 
 msgid "Sleep Timer Settings"
 msgstr "Miego laikmačio parametrai"
+
+msgid "Sleep Timers"
+msgstr "Miego laikmačiai"
 
 msgid "Sleep delay"
 msgstr "Miego būsenos delsa"
@@ -17132,6 +17193,9 @@ msgstr "Emuliatoriaus nustatymai"
 msgid "Softcam Settings"
 msgstr "Emuliatoriaus nustatymai"
 
+msgid "Softcams"
+msgstr "Emuliatoriai"
+
 msgid "Software"
 msgstr "Programinė įranga"
 
@@ -17285,6 +17349,9 @@ msgstr "Meniu rūšiavimo tvarka"
 msgid "Sort order for the language list."
 msgstr "Kalbų sąrašo rūšiavimo tvarka."
 
+msgid "Sort playlists"
+msgstr "grojaraščių rūšiavimas"
+
 msgid "Sort plug-in browser entries"
 msgstr "Rūšiuoti priedus įrašų naršyklėje"
 
@@ -17347,6 +17414,9 @@ msgstr "Simboliai 2"
 
 msgid "Special Features Settings"
 msgstr "Specialiųjų funkcijų parametrai"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Greitis"
@@ -17449,6 +17519,9 @@ msgstr "Paleiskite vedlį"
 
 msgid "Starting Softcam"
 msgstr "Paleidžiamas emuliatorius"
+
+msgid "Starting directory"
+msgstr "pradžios katalogas"
 
 msgid "Starting on"
 msgstr "Paleidžiama"
@@ -17567,6 +17640,9 @@ msgstr "Stabdomas emuliatorius"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
+
+msgid "Storage / Disks"
+msgstr "Saugykla / diskai"
 
 msgid "Storage Devices"
 msgstr "Saugojimo įrenginiai"
@@ -17905,6 +17981,9 @@ msgstr "Sistemos informacijos veiksmai"
 msgid "System Message Check"
 msgstr "Sistemos pranešimų tikrinimas"
 
+msgid "System Plugins"
+msgstr "Sistemos priedai"
+
 msgid "System Setup"
 msgstr "Sistemos nustatymai"
 
@@ -17942,7 +18021,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-05-01 adga45@gmail.com"
+msgstr "2022-05-04 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18578,6 +18657,9 @@ msgstr "Tai yra tvarka, kuria DiSEqC komandos siunčiamos į antenos sistemą. U
 
 msgid "This line is not editable!"
 msgstr "Ši eilutė yra neredaguojama!"
+
+msgid "This menu contains selections to display information about the receiver."
+msgstr "Šiame meniu yra pasirinkimai, rodantys informaciją apie imtuvą."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Šis poslinkis bus naudojamas tik tuo atveju, jei kanalas neturi savo garsumo poslinkio."
@@ -19392,6 +19474,9 @@ msgstr "Imtuvo būsena NEŽINOMA"
 msgid "Tuner type %s"
 msgstr "Imtuvo tipas %s"
 
+msgid "Tuners"
+msgstr "Imtuvai"
+
 msgid "Tuning algorithm"
 msgstr "Derinimo algoritmas"
 
@@ -19990,6 +20075,9 @@ msgstr "Vartotojas (keymap.usr)"
 msgid "User - bouquets"
 msgstr "Vartotojas - paketai"
 
+msgid "User Feed URL"
+msgstr "Vartotojo šaltinių URL"
+
 msgid "User defined"
 msgstr "Pasirinktas vartotojo"
 
@@ -20042,8 +20130,8 @@ msgstr "Uzbekų"
 msgid "Uzbekistan"
 msgstr "Uzbekistanas"
 
-msgid "VCR scart"
-msgstr "VCR skartas"
+msgid "VCR Scart Settings"
+msgstr "VCR scart parametrai"
 
 msgid "VLAN connection"
 msgstr "VLAN prisijungimas"
@@ -20504,6 +20592,9 @@ msgstr "Orų prognozė"
 
 msgid "Web Interface"
 msgstr "Internetinė sąsaja"
+
+msgid "Web Links"
+msgstr "Žiniatinklio saitai"
 
 msgid "Web browser base visibility"
 msgstr "Interneto naršyklės bazinis matomumas"
@@ -21865,9 +21956,6 @@ msgstr "atjungtas"
 msgid "discussion/interview/debate"
 msgstr "diskusijos/interviu/debatai"
 
-msgid "display"
-msgstr "parodoma"
-
 msgid "documentary"
 msgstr "dokumentinis"
 
@@ -21879,9 +21967,6 @@ msgstr "dolby"
 
 msgid "drama (general)"
 msgstr "dramos (bendrai)"
-
-msgid "drivers"
-msgstr "tarkyklės"
 
 msgid "dts"
 msgstr "dts"
@@ -21994,9 +22079,6 @@ msgstr "užverti tinklo adapterio nuostatų meniu"
 
 msgid "experimental film/video"
 msgstr "eksperimentinis filmas/vaidzas"
-
-msgid "extensions"
-msgstr "plėtiniai"
 
 msgid "extensions."
 msgstr "plėtiniai."
@@ -22248,9 +22330,6 @@ msgstr "nutraukti, rodyti pranešimą"
 msgid "just boot"
 msgstr "tiesiog įkrova"
 
-msgid "kernel modules"
-msgstr "branduolio moduliai"
-
 msgid "languages"
 msgstr "kalbos"
 
@@ -22283,9 +22362,6 @@ msgstr "ilgas spaudimas"
 
 msgid "loopthrough to"
 msgstr "kilpa į"
-
-msgid "m2k"
-msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "žurnalai/reportažai/dokumentika"
@@ -22506,9 +22582,6 @@ msgstr "perduoti"
 msgid "performing arts"
 msgstr "scenos menas"
 
-msgid "picons"
-msgstr "logotipai"
-
 msgid "pid:"
 msgstr "pid:"
 
@@ -22532,9 +22605,6 @@ msgstr "palaukite, įkeliamas paveikslėlis..."
 
 msgid "please wait..."
 msgstr "palaukite..."
-
-msgid "pli"
-msgstr "pli"
 
 msgid "pm"
 msgstr "popiet"
@@ -22645,9 +22715,6 @@ msgstr "pervardinti"
 msgid "rename entry"
 msgstr "pervardinti įrašą"
 
-msgid "repeat playlist"
-msgstr "pakartoti grojaraštį"
-
 msgid "repeated"
 msgstr "pakartotinis"
 
@@ -22689,9 +22756,6 @@ msgstr ""
 "bet neįmanoma ieškoti naujų TV kanalų,\n"
 "arba konfigūruoti imtuvo parametrų"
 
-msgid "save playlist on exit"
-msgstr "uždarant, išsaugoti grojaraštį"
-
 msgid "scan state"
 msgstr "skenavimo eiga"
 
@@ -22716,9 +22780,6 @@ msgstr "antras kabelis nuo motorizuotos LNB"
 msgid "seconds"
 msgstr "sekundžių"
 
-msgid "security"
-msgstr "saugumas"
-
 msgid "select"
 msgstr "pasirinkti"
 
@@ -22739,9 +22800,6 @@ msgstr "kanalo PIN"
 
 msgid "set as startup service"
 msgstr "nustatyti, kaip pradinį kanalą"
-
-msgid "settings"
-msgstr "nustatymai"
 
 msgid "share:"
 msgstr "bendrinimas:"
@@ -22797,9 +22855,6 @@ msgstr "rodyti korteles su uphop 9"
 msgid "show event details"
 msgstr "rodyti užduočių detales"
 
-msgid "show mediaplayer on mainmenu"
-msgstr "rodyti medijos grotuvą pagrindiniame meniu"
-
 msgid "show picons in quickzap"
 msgstr "rodyti logotipus greitame jungime"
 
@@ -22820,9 +22875,6 @@ msgstr "sumaišyti"
 
 msgid "simple"
 msgstr "paprastas"
-
-msgid "skin"
-msgstr "tema"
 
 msgid "skip backward"
 msgstr "praleisti atgal"
@@ -22859,12 +22911,6 @@ msgstr "socialinis/dvasinis mokslas"
 msgid "softcam"
 msgstr "Emuliatorius"
 
-msgid "softcams"
-msgstr "emuliatoriai"
-
-msgid "sorting of playlists"
-msgstr "grojaraščių rūšiavimas"
-
 msgid "special (general)"
 msgstr "specialusis (bendrai)"
 
@@ -22885,9 +22931,6 @@ msgstr "standartinis"
 
 msgid "start cut here"
 msgstr "pradėkite iškirpimą čia"
-
-msgid "start directory"
-msgstr "pradžios katalogas"
 
 msgid "start recording"
 msgstr "pradėti įrašymą"
@@ -22930,9 +22973,6 @@ msgstr "perjungti į kitą subtitrų kalbą"
 
 msgid "system:"
 msgstr "systema:"
-
-msgid "systemplugins"
-msgstr "sistemos priedai"
 
 msgid "talk show"
 msgstr "pokalbių šou"
@@ -23054,9 +23094,6 @@ msgstr "naudoti_hdmi_cacenter"
 msgid "user defined"
 msgstr "pasirinktas vartotojo"
 
-msgid "user feed url"
-msgstr "vartotojo šaltinių internetinis adresas"
-
 msgid "userdefined"
 msgstr "vartotojo nustatytas"
 
@@ -23078,9 +23115,6 @@ msgstr "žiūrėti išplėtimus..."
 msgid "violet"
 msgstr "violetinė"
 
-msgid "vix"
-msgstr "vix"
-
 msgid "wait for mmi..."
 msgstr "laukite atsakymo iš mmi..."
 
@@ -23092,9 +23126,6 @@ msgstr "pažadinti į budėjimo režimą"
 
 msgid "water sport"
 msgstr "vandens sportas"
-
-msgid "weblinks"
-msgstr "internetinės nuorodos"
 
 msgid "weekly"
 msgstr "kas savaitę"
@@ -23179,6 +23210,21 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "extensions"
+#~ msgstr "plėtiniai"
+
+#~ msgid "settings"
+#~ msgstr "nustatymai"
+
+#~ msgid "skin"
+#~ msgstr "tema"
+
+#~ msgid "Drives"
+#~ msgstr "Diskų informacija"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Pagrindinis meniu"
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
@@ -24615,9 +24661,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Perjungti į pasirinktą kanalą, arba rodyti išsamią įvykio informaciją (priklauso nuo konfigūracijos)"
-
-#~ msgid "save last directory on exit"
-#~ msgstr "uždarant, išsaugoti paskutinį katalogą"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Įjungus kiekvieno įrašo ilgį, jis bus rodomas sąraše (tai gali sukelti papildomą įkėlimo laiką)."

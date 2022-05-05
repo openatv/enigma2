@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-01 14:08+0000\n"
-"PO-Revision-Date: 2022-05-02 10:49+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"PO-Revision-Date: 2022-05-05 15:07+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2370,6 +2370,9 @@ msgstr "Update wurde abgebrochen"
 msgid "About"
 msgstr "Über"
 
+msgid "About openATV"
+msgstr "Über openATV"
+
 #
 msgid "About to start"
 msgstr "Startet gleich"
@@ -2858,10 +2861,6 @@ msgstr "Tuner-Priorität bei alternativen Services"
 
 msgid "Always ask"
 msgstr "Immer nachfragen"
-
-# MediaPlayer/settings.py
-msgid "Always hide infobar"
-msgstr "Infoleiste immer ausblenden"
 
 msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
@@ -3950,8 +3949,8 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
-msgid "CCCam Info"
-msgstr "CCCam Info"
+msgid "CCCam Information"
+msgstr "CCCam-Info"
 
 msgid "CCcam Client Info"
 msgstr "CCcam-Clientinfo"
@@ -4017,6 +4016,10 @@ msgstr "Bouquet wechseln"
 #
 msgid "CHANNEL +/-"
 msgstr "Kanal +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr "CI %s aktiviert"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-Einstellungen"
@@ -5711,7 +5714,7 @@ msgstr "Kroatisch"
 msgid "Cron Manager"
 msgstr "Cronverwaltung"
 
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "CronTimer"
 
 msgid "Cuba"
@@ -6659,6 +6662,9 @@ msgstr "Für Aufnahmen reservierter Speicher (in GB)"
 msgid "Disk was not found!"
 msgstr "Festplatte wurde nicht gefunden!"
 
+msgid "Display"
+msgstr "Anzeige"
+
 #
 msgid "Display 16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
@@ -7121,15 +7127,15 @@ msgstr "Daten-DVD im Dreambox-Format (funktioniert nicht in anderen DVD-Playern)
 msgid "Driver and kernel information"
 msgstr "Treiber- und Kernel-Informationen"
 
+msgid "Drivers"
+msgstr "Treiber"
+
 msgid "Drivers version"
 msgstr "Treiberversion"
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Treiber:\t%s"
-
-msgid "Drives"
-msgstr "Laufwerke"
 
 msgid "Drives Information"
 msgstr "Laufwerks-Informationen"
@@ -9227,7 +9233,7 @@ msgstr "HDMI-CEC Adresse"
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN-Aktionen"
 
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN-Aufnahmen"
 
 msgid "HDMIin"
@@ -9375,6 +9381,10 @@ msgstr "Verstecktes Netzwerk"
 msgid "Hide"
 msgstr "Verstecken"
 
+# MediaPlayer/settings.py
+msgid "Hide InfoBar"
+msgstr "Infoleiste immer ausblenden"
+
 msgid "Hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal verstecken"
 
@@ -9514,7 +9524,7 @@ msgstr "Hotbird 13,0O"
 msgid "Hotkey"
 msgstr "Hotkey"
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "Hotkey"
 
 msgid "Hotkey Setup for"
@@ -10067,6 +10077,9 @@ msgstr "Eingabe "
 msgid "Input Device Settings"
 msgstr "Eingabegeräte Einstellungen"
 
+msgid "Input Devices Settings"
+msgstr "Eingabegeräte"
+
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
 
@@ -10075,9 +10088,6 @@ msgstr "Einen Sendernamen eingeben."
 
 msgid "Input config file name:"
 msgstr "Name der Konfigurationsdatei:"
-
-msgid "Input devices"
-msgstr "Eingabegeräte"
 
 msgid "Input scroll position"
 msgstr "Scrollposition eingeben"
@@ -10472,6 +10482,9 @@ msgstr "Filmauswahl offen lassen, wenn Audiodateien abgespielt werden?"
 msgid "Kenya"
 msgstr "Kenia"
 
+msgid "Kernel Modules"
+msgstr "Kernel-Module"
+
 msgid "Kernel file"
 msgstr "Kernel-Datei"
 
@@ -10603,7 +10616,7 @@ msgstr "LAN-Verbindung"
 msgid "LAN long"
 msgstr "LAN lang"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "Display-Skineinstellungen"
 
 msgid "LCD SkinSelector"
@@ -11126,6 +11139,9 @@ msgstr "Luxemburgisch"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxemburgisch"
 
+msgid "M2k"
+msgstr "M2k"
+
 msgid "MAC"
 msgstr "MAC"
 
@@ -11191,10 +11207,6 @@ msgid "Magic long"
 msgstr "Magic lang"
 
 msgid "Main Menu"
-msgstr "Hauptmenü"
-
-#
-msgid "Mainmenu"
 msgstr "Hauptmenü"
 
 msgid "Maintain old EPG data for"
@@ -11381,6 +11393,9 @@ msgstr "Mediacenter"
 
 msgid "Media Player"
 msgstr "Mediaplayer"
+
+msgid "Media Player Settings"
+msgstr "Media Player Einstellungen"
 
 msgid "Media Portal"
 msgstr "Mediaportal"
@@ -12795,7 +12810,7 @@ msgid "OSD Adjustment"
 msgstr "OSD Overscan"
 
 #
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "OSD Kalibrieren"
 
 msgid "OSD Settings"
@@ -12811,11 +12826,11 @@ msgstr "OSD-Sprache"
 msgid "OScam Info"
 msgstr "OSCam-Info"
 
+msgid "OScam Information"
+msgstr "OSCam-Info"
+
 msgid "OScam webif disabled"
 msgstr "OSCam-Weboberfläche deaktiviert"
-
-msgid "OScamInfo"
-msgstr "OSCam-Info"
 
 msgid "OTT Model"
 msgstr "OTT-Modell"
@@ -12993,6 +13008,9 @@ msgstr "OpenDNS-FamilyShield"
 msgid "OpenDNS Home"
 msgstr "OpenDNS-Startseite"
 
+msgid "OpenPLi"
+msgstr "OpenPLi"
+
 msgid "OpenSSL version"
 msgstr "OpenSSL-Version"
 
@@ -13001,6 +13019,9 @@ msgstr "OpenVPN"
 
 msgid "OpenVPN Settings"
 msgstr "OpenVPN"
+
+msgid "OpenViX"
+msgstr "OpenViX"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN-Log"
@@ -13447,6 +13468,9 @@ msgstr "Picon und Sendername"
 #
 msgid "Picon width"
 msgstr "Picon Breite"
+
+msgid "Picons"
+msgstr "Picons"
 
 msgid "Picture in EPG"
 msgstr "MiniTV im vertikalen EPG anzeigen"
@@ -14117,6 +14141,9 @@ msgstr "Die Anzeige der Power-LED im Standby einstellen."
 msgid "Power On Display"
 msgstr "Display einschalten"
 
+msgid "Power Timers"
+msgstr "PowerTimer"
+
 msgid "Power long"
 msgstr "Ausschalttaste lang"
 
@@ -14150,9 +14177,6 @@ msgstr "PowerTimer-Übersicht"
 
 msgid "PowerTimer Standby"
 msgstr "PowerTimer-Standby"
-
-msgid "PowerTimers"
-msgstr "PowerTimer"
 
 msgid "Predefined"
 msgstr "Vordefiniert"
@@ -15262,6 +15286,10 @@ msgstr "Wiederholen"
 msgid "Repeat Display Message"
 msgstr "Display-Nachricht wiederholen"
 
+#
+msgid "Repeat playlist"
+msgstr "Playlist wiederholen"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Sende wiederholende Aufwach- und Standby-Befehle"
 
@@ -15852,11 +15880,19 @@ msgstr "Speichern und aufnehmen"
 msgid "Save and stop"
 msgstr "Speichern und beenden"
 
+#
+msgid "Save directory on EXIT"
+msgstr "Anfangsverzeichnis beim Beenden merken"
+
 msgid "Save every (in hours)"
 msgstr "Sicherungsintervall (in Stunden)"
 
 msgid "Save left folder on exit"
 msgstr "Linken Ordner beim Beenden speichern"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "Playlist beim Beenden speichern"
 
 # Mediaplayer playlist Menue
 msgid "Save playlist"
@@ -16080,6 +16116,9 @@ msgstr "Sekundärer DNS"
 
 msgid "Secondinfobar:"
 msgstr "Zweite Infoleiste:"
+
+msgid "Security"
+msgstr "Sicherheit"
 
 #
 msgid "Seek"
@@ -17022,6 +17061,24 @@ msgstr "Die Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
 msgid "Set the volume offset for the '%s' service."
 msgstr "Legen Sie den Lautstärke-Offset für den Sender '%s' fest."
 
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
 
@@ -17433,6 +17490,10 @@ msgstr "Logverwaltung in Erweiterungen anzeigen"
 #
 msgid "Show Main Menu as"
 msgstr "Hauptmenü-Ansicht"
+
+# Mediaplayer Setup
+msgid "Show Media Player in Main Menu"
+msgstr "Mediaplayer im Hauptmenü anzeigen"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Medienwiedergabe verbleibende/verstrichene Zeit in"
@@ -18133,7 +18194,7 @@ msgstr "Skinauswahl"
 msgid "Skin Setting"
 msgstr "Skin-Einstellungen"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Skinauswahl"
 
 msgid "Skin setup"
@@ -18178,6 +18239,9 @@ msgstr "Ausschalttimer"
 
 msgid "Sleep Timer Settings"
 msgstr "Ausschalttimer-Einstellungen"
+
+msgid "Sleep Timers"
+msgstr "SleepTimer"
 
 #
 msgid "Sleep delay"
@@ -18337,6 +18401,9 @@ msgstr "Softcam-Aktionen"
 
 msgid "Softcam Settings"
 msgstr "Softcam-Einrichtung"
+
+msgid "Softcams"
+msgstr "Softcams"
 
 #
 msgid "Software"
@@ -18508,6 +18575,9 @@ msgstr "Sortierung der Menüeinträge"
 msgid "Sort order for the language list."
 msgstr "Sortierung der Sprachenliste"
 
+msgid "Sort playlists"
+msgstr "Sortierung der Playlisten"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sortierung der Einträge im Plugin-Manager"
 
@@ -18575,6 +18645,9 @@ msgstr "Spezial 2"
 
 msgid "Special Features Settings"
 msgstr "Spezielle Einstellungen"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Geschwindigkeit"
@@ -18685,6 +18758,10 @@ msgstr "Grundkonfiguration"
 
 msgid "Starting Softcam"
 msgstr "Starte Softcam"
+
+#
+msgid "Starting directory"
+msgstr "Anfangsverzeichnis auswählen mit OK"
 
 #
 msgid "Starting on"
@@ -18811,6 +18888,9 @@ msgstr "Stoppe Softcam"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Beendet Timeshift, wenn eine Aufnahme läuft. Ratsam bei der Verwendung eines USB-Sticks."
+
+msgid "Storage / Disks"
+msgstr "Laufwerke"
 
 #
 msgid "Storage Devices"
@@ -19178,6 +19258,9 @@ msgstr "Systeminformationen Aktionen"
 
 msgid "System Message Check"
 msgstr "Überprüfung der Systemnachrichten"
+
+msgid "System Plugins"
+msgstr "Systemplugins"
 
 # Quick Menue
 msgid "System Setup"
@@ -19896,6 +19979,9 @@ msgstr "In dieser Reihenfolge werden DiSEqC-Befehle an das Antennensystem gesend
 
 msgid "This line is not editable!"
 msgstr "Diese Zeile kann nicht bearbeitet werden!"
+
+msgid "This menu contains selections to display information about the receiver."
+msgstr "Dieses Menü enthält eine Auswahl von Informationen über den Receiver."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Dieser Offset wird nur verwendet, wenn der Sender keinen eigenen Lautstärke-Offset hat."
@@ -20791,6 +20877,9 @@ msgstr "Tuner-Status UNBEKANNT"
 msgid "Tuner type %s"
 msgstr "Tuner-Art %s"
 
+msgid "Tuners"
+msgstr "Tuner"
+
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
 
@@ -21452,6 +21541,9 @@ msgstr "Benutzer ('keymap.usr')"
 msgid "User - bouquets"
 msgstr "Benutzerbouquets"
 
+msgid "User Feed URL"
+msgstr "Eigene Feed-URL"
+
 #
 msgid "User defined"
 msgstr "Benutzerdefiniert"
@@ -21512,7 +21604,7 @@ msgid "Uzbekistan"
 msgstr "Usbekistan"
 
 #
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "VCR-Scartbuchse"
 
 msgid "VLAN connection"
@@ -22026,6 +22118,9 @@ msgstr "Wetter"
 
 msgid "Web Interface"
 msgstr "Weboberfläche"
+
+msgid "Web Links"
+msgstr "Web-Links"
 
 # UserInterfacePositioner
 msgid "Web browser base visibility"
@@ -23525,9 +23620,6 @@ msgstr "Getrennt"
 msgid "discussion/interview/debate"
 msgstr "Diskussion/Interview/Debatte"
 
-msgid "display"
-msgstr "Anzeige"
-
 msgid "documentary"
 msgstr "Dokumentation"
 
@@ -23541,9 +23633,6 @@ msgstr "Dolby"
 #
 msgid "drama (general)"
 msgstr "Drama (allgemein)"
-
-msgid "drivers"
-msgstr "Treiber"
 
 msgid "dts"
 msgstr "DTS"
@@ -23671,9 +23760,6 @@ msgstr "Netzwerkadaptermenü verlassen"
 
 msgid "experimental film/video"
 msgstr "experimenteller Film/Video"
-
-msgid "extensions"
-msgstr "Erweiterungen"
 
 msgid "extensions."
 msgstr "Erweiterungen."
@@ -23949,9 +24035,6 @@ msgstr "Abbrechen, zeige Hinweis"
 msgid "just boot"
 msgstr "Normal starten"
 
-msgid "kernel modules"
-msgstr "Kernel-Module"
-
 msgid "languages"
 msgstr "Sprachen"
 
@@ -23988,9 +24071,6 @@ msgstr "lang"
 
 msgid "loopthrough to"
 msgstr "durchschleifen an"
-
-msgid "m2k"
-msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "Magazine/Berichte/Dokumentationen"
@@ -24241,9 +24321,6 @@ msgstr "Durchgang"
 msgid "performing arts"
 msgstr "Darstellende Künste"
 
-msgid "picons"
-msgstr "Picons"
-
 msgid "pid:"
 msgstr "PID:"
 
@@ -24269,9 +24346,6 @@ msgstr "Bild wird geladen. Bitte warten..."
 
 msgid "please wait..."
 msgstr "Bitte warten..."
-
-msgid "pli"
-msgstr "pli"
 
 msgid "pm"
 msgstr "pm"
@@ -24400,10 +24474,6 @@ msgid "rename entry"
 msgstr "Eintrag umbenennen"
 
 #
-msgid "repeat playlist"
-msgstr "Playlist wiederholen"
-
-#
 msgid "repeated"
 msgstr "Wiederholend"
 
@@ -24447,10 +24517,6 @@ msgstr ""
 "Es ist möglich, TV zu schauen, aber es ist nicht möglich, nach neuen TV-Sendern zu suchen oder die Tuner-Einstellungen zu konfigurieren."
 
 #
-msgid "save playlist on exit"
-msgstr "Playlist beim Beenden speichern"
-
-#
 msgid "scan state"
 msgstr "Status Suchlauf"
 
@@ -24476,9 +24542,6 @@ msgstr "Zweites Kabel für motorisiertes LNB"
 msgid "seconds"
 msgstr "Sekunden"
 
-msgid "security"
-msgstr "Sicherheit"
-
 #
 msgid "select"
 msgstr "Wähle"
@@ -24502,9 +24565,6 @@ msgstr "Service-PIN"
 
 msgid "set as startup service"
 msgstr "Kanal als Startkanal auswählen"
-
-msgid "settings"
-msgstr "Einstellungen"
 
 msgid "share:"
 msgstr "Freigabe:"
@@ -24563,10 +24623,6 @@ msgstr "Cards mit Uphop 9 anzeigen"
 msgid "show event details"
 msgstr "Sendungsdetails anzeigen"
 
-# Mediaplayer Setup
-msgid "show mediaplayer on mainmenu"
-msgstr "Mediaplayer im Hauptmenü anzeigen"
-
 msgid "show picons in quickzap"
 msgstr "Senderlogos (Picons) falls vorhanden beim Quickzap anzeigen"
 
@@ -24589,9 +24645,6 @@ msgstr "Zufällig"
 #
 msgid "simple"
 msgstr "Einfach"
-
-msgid "skin"
-msgstr "Skin"
 
 #
 msgid "skip backward"
@@ -24632,12 +24685,6 @@ msgstr "Sozial/Geisteswissenschaft"
 msgid "softcam"
 msgstr "Softcam"
 
-msgid "softcams"
-msgstr "Softcams"
-
-msgid "sorting of playlists"
-msgstr "Sortierung der Playlisten"
-
 #
 msgid "special (general)"
 msgstr "Spezial (allgemein)"
@@ -24662,10 +24709,6 @@ msgstr "Standard"
 #
 msgid "start cut here"
 msgstr "Schnitt hier starten"
-
-#
-msgid "start directory"
-msgstr "Anfangsverzeichnis auswählen mit OK"
 
 msgid "start recording"
 msgstr "Aufnahme starten"
@@ -24715,9 +24758,6 @@ msgstr "Zur nächsten Untertitel-Sprache wechseln"
 
 msgid "system:"
 msgstr "System:"
-
-msgid "systemplugins"
-msgstr "Systemplugins"
 
 msgid "talk show"
 msgstr "Talkshow"
@@ -24850,9 +24890,6 @@ msgstr "use_hdmi_cacenter"
 msgid "user defined"
 msgstr "Benutzerdefiniert"
 
-msgid "user feed url"
-msgstr "Eigene Feed-URL"
-
 msgid "userdefined"
 msgstr "benutzerdefiniert"
 
@@ -24876,9 +24913,6 @@ msgstr "Erweiterungen anzeigen"
 msgid "violet"
 msgstr "Violett"
 
-msgid "vix"
-msgstr "vix"
-
 #
 msgid "wait for mmi..."
 msgstr "Warte auf MMI..."
@@ -24891,9 +24925,6 @@ msgstr "Aufwachen und in den Standby gehen"
 
 msgid "water sport"
 msgstr "Wassersport"
-
-msgid "weblinks"
-msgstr "Web-Links"
 
 #
 msgid "weekly"
@@ -24985,6 +25016,22 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "extensions"
+#~ msgstr "Erweiterungen"
+
+#~ msgid "settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "skin"
+#~ msgstr "Skin"
+
+#~ msgid "Drives"
+#~ msgstr "Laufwerke"
+
+#
+#~ msgid "Mainmenu"
+#~ msgstr "Hauptmenü"
 
 #~ msgid "+/-"
 #~ msgstr "+/-"
@@ -26480,10 +26527,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zum ausgewählten Sender umschalten oder detaillierte Ereignisinformationen anzeigen (abhängig von der Konfiguration)."
-
-#
-#~ msgid "save last directory on exit"
-#~ msgstr "Anfangsverzeichnis beim Beenden merken"
 
 #
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."

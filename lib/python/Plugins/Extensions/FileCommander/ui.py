@@ -138,7 +138,7 @@ class FileCommanderConfigScreen(Setup):
 
 	def keyOK(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
-			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
+			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
 		else:
 			Setup.keyOK(self)
 

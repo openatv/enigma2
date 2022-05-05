@@ -190,7 +190,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			self.list.append(self.buildInterfaceList(x[1], _(x[0]), default_int, active_int))
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			self["key_blue"].setText(_("Network wizard"))
+			self["key_blue"].setText(_("Network Wizard"))
 		self["list"].setList(self.list)
 
 	def setDefaultInterface(self):
@@ -1120,7 +1120,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					menu.append((menuEntryName, self.extendedSetup))
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			menu.append((_("Network wizard"), "openwizard"))
+			menu.append((_("Network Wizard"), "openwizard"))
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
 		if BoxInfo.getItem("model") not in ('DUMMY',) and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))

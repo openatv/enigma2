@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 17:33+0000\n"
-"PO-Revision-Date: 2022-04-26 10:12+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"PO-Revision-Date: 2022-05-04 17:13+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 msgid ""
 "\n"
@@ -1469,9 +1469,6 @@ msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
 msgid "* current animation"
 msgstr "* nykyinen animaatio"
 
-msgid "+/-"
-msgstr "+/-"
-
 msgid "+24"
 msgstr "Seuraavat 24h"
 
@@ -2216,9 +2213,6 @@ msgstr "AC3 muunto stereoksi"
 msgid "AC3 plus transcoding"
 msgstr "AC3 + uudelleenpakkaus"
 
-msgid "AC3/Dolby offset"
-msgstr "AC3/Dolby hienosäätö"
-
 msgid "AC3plus transcoding"
 msgstr "AC3+ uudelleenpakkaus"
 
@@ -2276,6 +2270,12 @@ msgstr "Keskeytetään päivitys"
 
 msgid "About"
 msgstr "Tietoja"
+
+msgid "About openATV"
+msgstr "Tietoja OpenATV:stä"
+
+msgid "About to start"
+msgstr "alkaa juuri"
 
 msgid "About..."
 msgstr "Tietoja..."
@@ -2374,9 +2374,6 @@ msgstr "Lisää uusi lähetin ryhmä"
 msgid "Add Record Timer"
 msgstr "Lisää ajastus"
 
-msgid "Add Service"
-msgstr "Lisää kanava"
-
 msgid "Add Timer"
 msgstr "Lisää ajastus"
 
@@ -2403,6 +2400,9 @@ msgstr "Lisää ajastus"
 
 msgid "Add a record timer for current event"
 msgstr "Lisää tallennusajastus tähän ohjelmaan"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr "Lisää kanavan Äänen voimakkuuden Offsetti listalle"
 
 msgid "Add a timer for the current event"
 msgstr "Lisää ajastin nykyiselle ohjelmalle"
@@ -2460,6 +2460,9 @@ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 
 msgid "Add service"
 msgstr "Lisää kanava"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr "Lisää nykyinen kanava Äänen voimakkuuden Offsetti listalle"
 
 msgid "Add timer"
 msgstr "Lisää ajastus"
@@ -2731,9 +2734,6 @@ msgstr "Virittimien prioriteetti"
 
 msgid "Always ask"
 msgstr "Kysy aina"
-
-msgid "Always hide infobar"
-msgstr "Piilota tietopalkki aina"
 
 msgid "Always include ECM in recordings"
 msgstr "Sisällytä aina ECM nauhoituksiin"
@@ -3756,7 +3756,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr "CCCam tiedot"
 
 msgid "CCcam Client Info"
@@ -3822,6 +3822,10 @@ msgstr "VAIHDA SUOSIKKILISTAA"
 
 msgid "CHANNEL +/-"
 msgstr "Kanava vaihtonäppäimen +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-liitäntä/CAM"
@@ -4072,6 +4076,9 @@ msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 msgid "Cancel selection"
 msgstr "Peruuta valinta"
 
+msgid "Cancel the service selection"
+msgstr "Peruuta kanava valinta"
+
 msgid "Cancel the slot selection and exit"
 msgstr "Peruuta paikka valinta ja poistu"
 
@@ -4164,9 +4171,6 @@ msgstr "Chad"
 msgid "Chamorro"
 msgstr "Chamorro"
 
-msgid "Change"
-msgstr "Muuta"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Video sirun tila*"
 
@@ -4178,9 +4182,6 @@ msgstr "Muuta PIN koodi"
 
 msgid "Change Timer"
 msgstr "Muuta ajastusta"
-
-msgid "Change Volume offset"
-msgstr "Äänenvoimakkuuden säätö"
 
 msgid "Change bouquets in quickzap"
 msgstr "Suosikkilistan vaihto listan lopussa"
@@ -4225,9 +4226,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanava"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kanava \t\t\tÄänenvoimakkuus +"
 
 msgid "Channel +/- button mode"
 msgstr "Kanavanäppäimien (+/-) toiminto"
@@ -5247,21 +5245,6 @@ msgstr "Kokkaus saari"
 msgid "Cooking"
 msgstr "Kokkaus"
 
-msgid "Cool Channel Guide"
-msgstr "Cool kanava Opas"
-
-msgid "Cool Easy Guide"
-msgstr "Cool Helppo Opas"
-
-msgid "Cool Info Guide"
-msgstr "Cool Info Opas"
-
-msgid "Cool Single Guide"
-msgstr "Cool yhden kanavan Opas"
-
-msgid "Cool TV Guide"
-msgstr "Cool TV Opas"
-
 msgid "Copy"
 msgstr "Kopioi"
 
@@ -5417,7 +5400,7 @@ msgstr "Kroatia"
 msgid "Cron Manager"
 msgstr "Cron manageri"
 
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "Cron Ajastukset"
 
 msgid "Cuba"
@@ -5477,6 +5460,9 @@ msgstr "Nykyinen versio tuntematon"
 
 msgid "Current version:"
 msgstr "Versio:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr "Tällä hetkellä määritellyt Äänen voimakkuuden poikkeamat"
 
 msgid "Custom"
 msgstr "Muokattu"
@@ -5822,6 +5808,9 @@ msgstr "Oletus: Ajastuksen tyyppi *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Normaali suorittimen prioriteetti (mukava) suoritetuille komento sarjoille. Tämä voi vähentää kuormaa, jotta skriptit eivät vaikuta muuhun järjestelmään. (korkeammat arvot = matalampi prioriteetti)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr "Oletus Dolby Digital / Dolby AC-3 offsetti"
+
 msgid "Default Folder"
 msgstr "Oletus Kansio"
 
@@ -5869,6 +5858,9 @@ msgstr "Oletuslajittelu vasemmalla oleville tiedostoille."
 
 msgid "Default sorting method for files on the right side."
 msgstr "Oikealla olevien tiedostojen oletuslajittelu."
+
+msgid "Default volume offset"
+msgstr "Oletus äänenvoimakkuuden offsetti"
 
 #, python-format
 msgid "Default: '%s'."
@@ -6058,6 +6050,9 @@ msgstr "Poista nykyinen aikasiirtopuskuri ja käynnistä ajansiirto uudelleen"
 
 msgid "Delete the currently displayed log file"
 msgstr "Poista näkyvissä oleva lokitiedosto"
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta"
 
 msgid "Delete the selected files or directories"
 msgstr "Poista valitut tiedostot tai hakemistot"
@@ -6303,6 +6298,9 @@ msgstr "Tallennuksille varattu levytila (GB)"
 
 msgid "Disk was not found!"
 msgstr "Levyä ei löytynyt!"
+
+msgid "Display"
+msgstr "näyttö"
 
 msgid "Display 16:9 content as"
 msgstr "Näytä 16:9 sisältö näin"
@@ -6728,15 +6726,15 @@ msgstr "Dreambox muotoinen data DVD (ei toimi muissa DVD soittimissa)"
 msgid "Driver and kernel information"
 msgstr "Ajurien ja kernelin tiedot"
 
+msgid "Drivers"
+msgstr "ajurit"
+
 msgid "Drivers version"
 msgstr "Ajurien versio"
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Ajurit:\t%s"
-
-msgid "Drives"
-msgstr "Asemat"
 
 msgid "Drives Information"
 msgstr "Asemien tiedot"
@@ -6911,6 +6909,9 @@ msgstr "Muokkaustila ei"
 msgid "Edit Mode On"
 msgstr "Muokkaustila on"
 
+msgid "Edit New Entry"
+msgstr "Syötä uusi tallennus"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Muokkaa 4 kanava paikkaa"
 
@@ -6931,9 +6932,6 @@ msgstr "Muokkaa nykyistä riviä"
 
 msgid "Edit line "
 msgstr "Muokkaa riviä "
-
-msgid "Edit New Entry"
-msgstr "Syötä uusi tallennus"
 
 msgid "Edit position is the line end"
 msgstr "Muokkaa sijaintia on rivin loppussa"
@@ -7001,9 +6999,6 @@ msgstr "Aktivoi %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
 
-msgid "Enable AC3/Dolby"
-msgstr "Aktivoi AC3/Dolby äänenvoimakkuuden poikkeama"
-
 msgid "Enable BT Audio"
 msgstr "Aktivoi Bluetooth Ääni"
 
@@ -7012,6 +7007,9 @@ msgstr "Aktivoi CIHelper korttipaikkaan CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Aktivoi CIHelper korttipaikkaan CI0"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr "Ota Dolby Digital / Dolby AC-3 offsetti käyttöön"
 
 msgid "Enable EIT EPG"
 msgstr "Ota käyttöön EIT EPG"
@@ -8713,7 +8711,7 @@ msgstr "HDMI-CEC osoite"
 msgid "HDMI-IN Actions"
 msgstr "HDMI Sisään Toiminnot"
 
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "HDMI Sisään tallennus asetukset"
 
 msgid "HDMIin"
@@ -8860,6 +8858,9 @@ msgstr "Piilotettu verkko"
 msgid "Hide"
 msgstr "Piilota"
 
+msgid "Hide InfoBar"
+msgstr "Piilota tietopalkki aina"
+
 msgid "Hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
@@ -8992,7 +8993,7 @@ msgstr "Hotbird 13.0e"
 msgid "Hotkey"
 msgstr "Pikanäppäin"
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
 
 msgid "Hotkey Setup for"
@@ -9526,6 +9527,9 @@ msgstr "Tulo "
 msgid "Input Device Settings"
 msgstr "Syöttölaite Asetukset"
 
+msgid "Input Devices Settings"
+msgstr "Syöttölaitteet"
+
 msgid "Input Stream ID"
 msgstr "Tulo Streami ID"
 
@@ -9534,9 +9538,6 @@ msgstr "Kanavan nimi."
 
 msgid "Input config file name:"
 msgstr "Syötä määritystiedoston nimi:"
-
-msgid "Input devices"
-msgstr "Syöttölaitteet"
 
 msgid "Input scroll position"
 msgstr "Syötä vierityskohta"
@@ -9905,6 +9906,9 @@ msgstr "Pidä tallenneluettelo auki äänitiedostojen toiston aikana."
 msgid "Kenya"
 msgstr "Kenia"
 
+msgid "Kernel Modules"
+msgstr "kernel modulit"
+
 msgid "Kernel file"
 msgstr "Kerneli tiedosto"
 
@@ -10028,7 +10032,7 @@ msgstr "LAN yhteys"
 msgid "LAN long"
 msgstr "Lähiverkko pitkä"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "Näyttöpaneeli Teema"
 
 msgid "LCD SkinSelector"
@@ -10503,6 +10507,9 @@ msgstr "Luxemburg"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxemburg"
 
+msgid "M2k"
+msgstr "M2k"
+
 msgid "MAC"
 msgstr "MAC"
 
@@ -10564,9 +10571,6 @@ msgid "Magic long"
 msgstr "Taika pitkä"
 
 msgid "Main Menu"
-msgstr "Päävalikko"
-
-msgid "Mainmenu"
 msgstr "Päävalikko"
 
 msgid "Maintain old EPG data for"
@@ -10741,6 +10745,9 @@ msgstr "Mediakeskus"
 
 msgid "Media Player"
 msgstr "Mediasoitin"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "MediaPortaali"
@@ -12018,7 +12025,7 @@ msgstr "Kuvaruudun 3D Asetukset"
 msgid "OSD Adjustment"
 msgstr "Kuvaruudun Säätö"
 
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "Kuvaruudun kohdistus"
 
 msgid "OSD Settings"
@@ -12033,11 +12040,11 @@ msgstr "Kuvaruudun nimipyyntö"
 msgid "OScam Info"
 msgstr "OScam tiedot"
 
+msgid "OScam Information"
+msgstr "OScam tiedot"
+
 msgid "OScam webif disabled"
 msgstr "Oscam netti käyttöliittymä poistettu käytöstä"
-
-msgid "OScamInfo"
-msgstr "OScam tiedot"
 
 msgid "OTT Model"
 msgstr "OTT malli"
@@ -12056,9 +12063,6 @@ msgstr "Offline purkamisen viive (ms)"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
-
-msgid "Ok"
-msgstr "OK"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Vanhat tiedostot ajansiirto kansiossa tiedostot poistetaan jokaisesta muutoksen jälkeen."
@@ -12206,6 +12210,9 @@ msgstr "OpenDNS Perhesuojaus"
 msgid "OpenDNS Home"
 msgstr "OpenDNS Koti"
 
+msgid "OpenPLi"
+msgstr "OpenPLi"
+
 msgid "OpenSSL version"
 msgstr "OpenSSL versio"
 
@@ -12214,6 +12221,9 @@ msgstr "OpenVPN"
 
 msgid "OpenVPN Settings"
 msgstr "OpenVPN asetukset"
+
+msgid "OpenViX"
+msgstr "OpenViX"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Loki"
@@ -12628,6 +12638,9 @@ msgstr "Kanavan logo ja nimi"
 
 msgid "Picon width"
 msgstr "Kanavalogon leveys"
+
+msgid "Picons"
+msgstr "kanavalogot"
 
 msgid "Picture in EPG"
 msgstr "TV-kuva EPG:essä"
@@ -13221,6 +13234,9 @@ msgstr "Virta LED tila valmiustilan aikana."
 msgid "Power On Display"
 msgstr "Etupaneeli Näyttö päällä"
 
+msgid "Power Timers"
+msgstr "Virta ajastukset"
+
 msgid "Power long"
 msgstr "Virta pitkä"
 
@@ -13250,12 +13266,6 @@ msgstr "Virta ajastukset Yhteenveto"
 
 msgid "PowerTimer Standby"
 msgstr "Virta ajastukset Valmistila"
-
-msgid "PowerTimer list"
-msgstr "Virta ajastukset lista"
-
-msgid "PowerTimers"
-msgstr "Virta ajastukset"
 
 msgid "Predefined"
 msgstr "Esiasetettu"
@@ -13387,9 +13397,6 @@ msgstr "Käytä tätä aluetta painamalla OK.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr "Paina YLÖS/ALAS painikkeita valitaksesi image paikan ja paina OK tai VIHREÄ 'Uudelleenkäynnistys' käynnistääksesi kyseiseen image paikan, jos on käytettävissä, KELTAINEN joko 'Poista' tai 'Pyyhi' image paikka. 'Pyyhitty' image voidaan palauttaa sinisellä painikkeella. 'Poistettua ohjelmistoa ei voi palauttaa!"
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "Paina MENU näppäintä muuttaaksesi yleisiä AC3/Dolby asetuksia."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Painamalla tätä painiketta voit jäljitellä pitkään painettua painiketta myöhemmin (tämä myös ohitetaan kaikki muut emulointipainikkeelle määritetyt toiminnot)."
@@ -14290,6 +14297,9 @@ msgstr "Toistokerrat"
 msgid "Repeat Display Message"
 msgstr "Toista kuvaruutu viesti"
 
+msgid "Repeat playlist"
+msgstr "toista soittolista"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Toista uudelleen valmiustila ja herätys komennot"
 
@@ -14828,11 +14838,17 @@ msgstr "Tallenna ja jatka tallennusta"
 msgid "Save and stop"
 msgstr "Tallenna ja pysäytä"
 
+msgid "Save directory on EXIT"
+msgstr "tallenna viimeisin hakemisto suljettaessa"
+
 msgid "Save every (in hours)"
 msgstr "Tallenna joka (tunti)"
 
 msgid "Save left folder on exit"
 msgstr "Tallenna vasen kansio poistuttaessa"
+
+msgid "Save playlist on EXIT"
+msgstr "tallenna soittolista suljettaessa"
 
 msgid "Save playlist"
 msgstr "Tallenna soittolista"
@@ -15040,6 +15056,9 @@ msgstr "Toissijainen DNS"
 msgid "Secondinfobar:"
 msgstr "2. tietopalkki:"
 
+msgid "Security"
+msgstr "turvallisuus"
+
 msgid "Seek"
 msgstr "Etsi"
 
@@ -15084,6 +15103,9 @@ msgstr "Valitse '1.0' standardeille kytkimille, '1.1' muille kytkimille ja '1.2'
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Valitse 'A' tai 'B', jos antennijärjestelmäsi sitä vaatii, muuten valitse 'ei mitään'. Jos olet epävarma, valitse 'ei mitään'."
+
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr "Valitse 'Kyllä' jos äänenvoimakkuuden säätöjä tulee soveltaa Dolby ääni raitoihin."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Valitse Kyllä, jos haluat ottaa tämän laitteen asetusten muokkaamisen käyttöön. Jos valitset Ei, laiteasetukset palautetaan oletusarvoihinsa."
@@ -15247,9 +15269,6 @@ msgstr "Valitse kanavan ääni"
 msgid "Select channel to record from"
 msgstr "Valitse tallennettava kanava"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "Valitse kanavat lisätäksesi äänenvoimakkuuden poikkeama."
-
 msgid "Select commit log"
 msgstr "Valitse loki"
 
@@ -15374,6 +15393,9 @@ msgstr "Valitse nykyinen valikko kohta"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Valitse kieli, jota käyttöliittymän tulisi käyttää oletuksena"
+
+msgid "Select the currently highlighted service"
+msgstr "Valitse parhaillaan korostettu kanava"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Valitse haluamasi toiminto ja napsauta OK vaihda listoja painamalla \"CH+/-\" siirtyäksesi luetteloiden välillä. Valitse määritetty toiminto ja paina OK määrittää sen \"Seuraava / Edellinen\" näppäimiä vaihtaaksesi toimintojen järjestystä."
@@ -15640,6 +15662,18 @@ msgstr "Kanava"
 msgid "Service & PIDs"
 msgstr "Kanava & PIDs"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr "Kanava '%s' lisätty."
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr "Kanava '%s' poistettu."
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr "Kanava '%s' on jo määritelty."
+
 msgid "Service ID"
 msgstr "Kanavan ID"
 
@@ -15739,6 +15773,9 @@ msgstr "Referenssi"
 
 msgid "Service scan"
 msgstr "Kanavahaku"
+
+msgid "Service selection canceled."
+msgstr "Kanavan valinta peruutettu."
 
 msgid ""
 "Service unavailable!\n"
@@ -15891,6 +15928,28 @@ msgstr "Aseta aika joka odotettaan ennen kuin suoritettaan oletustoiminto sammut
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistassa."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr "Aseta äänenvoimakkuuden siirtymä '%s' kanavalle."
+
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Aseta paras katseluaika (tunti)."
@@ -16226,21 +16285,6 @@ msgstr "Näytä CI-viestit"
 msgid "Show Clients"
 msgstr "Näytä asiakkaat"
 
-msgid "Show CoolChannelGuide"
-msgstr "Näytä CoolkanavaOpas"
-
-msgid "Show CoolEasyGuide"
-msgstr "Näytä CoolHelppoOpas"
-
-msgid "Show CoolInfoGuide"
-msgstr "Näytä CoolTiedotOpas"
-
-msgid "Show CoolSingleGuide"
-msgstr "Näytä yhden kanavan EPG"
-
-msgid "Show CoolTVGuide"
-msgstr "Näytä CoolTVOpas"
-
 msgid "Show Directory size"
 msgstr "Näytä Kansion koko"
 
@@ -16294,6 +16338,9 @@ msgstr "Näytä lokien hallinta laajennus listassa"
 
 msgid "Show Main Menu as"
 msgstr "Päävalikko näkyvä"
+
+msgid "Show Media Player in Main Menu"
+msgstr "näytä mediatoistin päävalikossa"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika muodossa"
@@ -16947,7 +16994,7 @@ msgstr "Teeman valinta"
 msgid "Skin Setting"
 msgstr "Teeman asetus"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Teema asetukset"
 
 msgid "Skin setup"
@@ -16988,6 +17035,9 @@ msgstr "Uniajastin"
 
 msgid "Sleep Timer Settings"
 msgstr "Uniajastimen asetukset"
+
+msgid "Sleep Timers"
+msgstr "Uniajastimet"
 
 msgid "Sleep delay"
 msgstr "Sammumisen viive"
@@ -17142,6 +17192,9 @@ msgstr "Softcam Toiminnot"
 msgid "Softcam Settings"
 msgstr "Softcam Asetukset"
 
+msgid "Softcams"
+msgstr "softcammit"
+
 msgid "Software"
 msgstr "Valmistaja"
 
@@ -17295,6 +17348,9 @@ msgstr "Lajittelujärjestys valikko merkinnät"
 msgid "Sort order for the language list."
 msgstr "Kieliluettelon lajittelujärjestys."
 
+msgid "Sort playlists"
+msgstr "soittolistojen järjestys"
+
 msgid "Sort plug-in browser entries"
 msgstr "Lisäosavalikko merkinnät"
 
@@ -17357,6 +17413,9 @@ msgstr "Erikois 2"
 
 msgid "Special Features Settings"
 msgstr "Erikois ominaisuudet"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr "Nopeus"
@@ -17459,6 +17518,9 @@ msgstr "Aloitus Avustaja"
 
 msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
+
+msgid "Starting directory"
+msgstr "aloitushakemisto"
 
 msgid "Starting on"
 msgstr "Alkaen"
@@ -17577,6 +17639,9 @@ msgstr "Pysäytä Softcam"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
+
+msgid "Storage / Disks"
+msgstr "Tallennustila / Asemat"
 
 msgid "Storage Devices"
 msgstr "Tallennusvälineet"
@@ -17855,6 +17920,12 @@ msgstr "Vaihda edelliseen tv kanavaan"
 msgid "Switch to radio mode"
 msgstr "Vaihda radiotilaan"
 
+msgid "Switch to the available RADIO services"
+msgstr "Vaihda käytettävissä oleviin RADIO kanaviin"
+
+msgid "Switch to the available TV services"
+msgstr "Vaihda käytettävissä oleviin TV kanaviin"
+
 msgid "Switchable tuner types:"
 msgstr "Vaihtoehtoiset viritintyypit:"
 
@@ -17909,6 +17980,9 @@ msgstr "Järjestelmätiedot Toiminnot"
 msgid "System Message Check"
 msgstr "Järjestelmä viestien tarkistus"
 
+msgid "System Plugins"
+msgstr "järjestelmälisäosat"
+
 msgid "System Setup"
 msgstr "Järjestelmän asetukset"
 
@@ -17947,7 +18021,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 15.04.2022\n"
+"Suomenkielinen käännös: 05.05.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18171,13 +18245,6 @@ msgid ""
 "Please install it."
 msgstr ""
 "AutoTimer-lisäosaa ei ole asennettu!\n"
-"Asenna se."
-
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Cool TV Guide -lisäosaa ei ole asennettu!\n"
 "Asenna se."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
@@ -18526,10 +18593,10 @@ msgid "This allows you to set the number of digits to 5, if you have more than 9
 msgstr "Määrittää, näytetäänkö kanavanumerossa maksimissaan 4 vai 5 numeroa (tapauksessa, jossa kanavia on enemmän kuin 9999)."
 
 msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Näytä valinta pli lisäosien latauksissa"
+msgstr "Näytä valinta OpenPLi lisäosien latauksissa"
 
 msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Näytä valinta vix lisäosien latauksissa"
+msgstr "Näytä valinta OpenViX lisäosien latauksissa"
 
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Näytä valinta 'ajurit' lisäosien latauksissa"
@@ -18585,14 +18652,20 @@ msgstr "Tämä on nykyinen valittu kieli. [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Tämä on nykyinen valittu alue.  [%s]"
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr "Tämä on alkuperäinen / oletusarvoinen äänenvoimakkuuden, jota sovelletaan kaikkiin listaan lisättyihin kanaviin."
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Tämä on järjestys missä DiSEqC komennot lähetetään antennijärjestelmälle. Järjestyksen täytyy olla täsmälleen sama kuin fyysisten laitteiden järjestys signaalikaapelissa (alkaen vastaanottimen päästä)."
 
 msgid "This line is not editable!"
 msgstr "Tätä riviä ei voi muokata!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "Tätä yleistä äänenvoimakkuuden hienosäätöä käytetään vain jos kanavalle ei ole erikseen määriteltyä hienosäätöä."
+msgid "This menu contains selections to display information about the receiver."
+msgstr "Tämä valikko sisältää valintoja vastaanottimen tietojen näyttämiseksi."
+
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr "Tätä offsetia käytetään vain, jos kanavalla ei ole omaa äänenvoimakkuuden offsetia."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Tämä asetus vähentää pakkausneliöiden näkymistä kuvassa. Tämä tietysti tapahtuu kuvaterävyyden kustannuksella."
@@ -19018,8 +19091,11 @@ msgstr "Lisää ajastus"
 msgid "Timer Actions"
 msgstr "Ajastin Toiminnot"
 
-msgid "Timer List"
-msgstr "Ajastusluettelo"
+msgid "Timer Overview"
+msgstr "Ajastetut ohjelmat"
+
+msgid "Timer Sanity Error"
+msgstr "Päällekkäinen ajastus"
 
 msgid "Timer edit"
 msgstr "Ajastuksen muokkaus"
@@ -19047,14 +19123,8 @@ msgstr ""
 "Ajastusten päällekkäisyys havaittu!\n"
 "Tarkista ajastusasetukset!"
 
-msgid "Timer Overview"
-msgstr "Ajastetut ohjelmat"
-
 msgid "Timer recording location"
 msgstr "Ajastuksien tallennushakemisto"
-
-msgid "Timer Sanity Error"
-msgstr "Päällekkäinen ajastus"
 
 msgid "Timer selection"
 msgstr "Ajastinvalinta"
@@ -19408,6 +19478,9 @@ msgstr "Virittimen tila tuntematon"
 #, python-format
 msgid "Tuner type %s"
 msgstr "Virittimen tyyppi %s"
+
+msgid "Tuners"
+msgstr "Virittimet"
 
 msgid "Tuning algorithm"
 msgstr "Viritys alkometria"
@@ -20010,6 +20083,9 @@ msgstr "Käyttäjä  (keymap.usr)"
 msgid "User - bouquets"
 msgstr "Käyttäjä - Suosikit"
 
+msgid "User Feed URL"
+msgstr "käyttäjän määrittämä syöteosoite"
+
 msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
 
@@ -20062,7 +20138,7 @@ msgstr "Uzbek"
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "SCART läpivienti"
 
 msgid "VLAN connection"
@@ -20370,8 +20446,14 @@ msgstr "Äänenvoimakkuus"
 msgid "Volume Adjust"
 msgstr "Äänenvoimakkuuden säätö"
 
-msgid "Volume Config"
-msgstr "Äänenvoimakkuus asetukset"
+msgid "Volume Adjust Actions"
+msgstr "Äänenvoimakkuuden säätötoiminnot"
+
+msgid "Volume Adjust Service Selection"
+msgstr "Äänenvoimakkuuden säätö valinta palvelu"
+
+msgid "Volume Adjust Settings"
+msgstr "Äänenvoimakkuuden säätö asetukset"
 
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
@@ -20518,6 +20600,9 @@ msgstr "Sää"
 
 msgid "Web Interface"
 msgstr "Web Liittymä"
+
+msgid "Web Links"
+msgstr "nettilinkit"
 
 msgid "Web browser base visibility"
 msgstr "Netti selaimen pohjanäkyvyys"
@@ -21475,6 +21560,9 @@ msgstr "Kanava ylös"
 msgid "Zap+Record next"
 msgstr "Vaihda kanavaa ja tallenna"
 
+msgid "Zapped"
+msgstr "vaihdettu"
+
 msgid "Zeichentrick"
 msgstr "Animaatio"
 
@@ -21552,9 +21640,6 @@ msgstr "peruuta muutokset ja poistu"
 
 msgid "abort favourites edit"
 msgstr "peruuta muutokset ja poistu"
-
-msgid "About to start"
-msgstr "alkaa juuri"
 
 msgid "ac3"
 msgstr "ac3"
@@ -21888,9 +21973,6 @@ msgstr "ei kytketty"
 msgid "discussion/interview/debate"
 msgstr "keskustelu/haastattelu/väittely"
 
-msgid "display"
-msgstr "näyttö"
-
 msgid "documentary"
 msgstr "dokumentti"
 
@@ -21900,14 +21982,8 @@ msgstr "dokumentti (yleiset)"
 msgid "dolby"
 msgstr "dolby"
 
-msgid "done!"
-msgstr "valmis!"
-
 msgid "drama (general)"
 msgstr "draama (yleinen)"
-
-msgid "drivers"
-msgstr "ajurit"
 
 msgid "dts"
 msgstr "DTS"
@@ -22020,9 +22096,6 @@ msgstr "poistu verkkosovittimen asetusvalikosta"
 
 msgid "experimental film/video"
 msgstr "kokeellinen elokuva/video"
-
-msgid "extensions"
-msgstr "laajennukset"
 
 msgid "extensions."
 msgstr "laajennusta."
@@ -22274,9 +22347,6 @@ msgstr "keskeytä, näytä viesti"
 msgid "just boot"
 msgstr "käynnistä uudelleen"
 
-msgid "kernel modules"
-msgstr "kernel modulit"
-
 msgid "languages"
 msgstr "kielet"
 
@@ -22309,9 +22379,6 @@ msgstr "pitkä"
 
 msgid "loopthrough to"
 msgstr "läpisyöttö"
-
-msgid "m2k"
-msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "makasiini/raportti/dokumentti"
@@ -22532,9 +22599,6 @@ msgstr "hyväksytty"
 msgid "performing arts"
 msgstr "esittävä taide"
 
-msgid "picons"
-msgstr "kanavalogot"
-
 msgid "pid:"
 msgstr "pid:"
 
@@ -22558,9 +22622,6 @@ msgstr "odota, kuvaa ladataan..."
 
 msgid "please wait..."
 msgstr "odota..."
-
-msgid "pli"
-msgstr "pli"
 
 msgid "pm"
 msgstr "ilta"
@@ -22607,9 +22668,6 @@ msgstr "käynnistä uudelleen"
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "Tallennusaika muutettu, alkaa: %s"
-
-msgid "recording..."
-msgstr "tallennetaan..."
 
 msgid "red"
 msgstr "punainen"
@@ -22674,9 +22732,6 @@ msgstr "Uudelleen nimeä"
 msgid "rename entry"
 msgstr "Uudelleennimeä"
 
-msgid "repeat playlist"
-msgstr "toista soittolista"
-
 msgid "repeated"
 msgstr "useita kertoja"
 
@@ -22707,9 +22762,6 @@ msgstr "rock/pop"
 msgid "romance"
 msgstr "romantiikka"
 
-msgid "running..."
-msgstr "käynnissä..."
-
 msgid ""
 "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
@@ -22720,9 +22772,6 @@ msgstr ""
 "On mahdollista katsella televisiota,\n"
 "mutta uusia TV-kanavia ei ole mahdollista etsiä\n"
 "tai määrittää virittimen asetuksia"
-
-msgid "save playlist on exit"
-msgstr "tallenna soittolista suljettaessa"
 
 msgid "scan state"
 msgstr "haun tila"
@@ -22748,9 +22797,6 @@ msgstr "Kääntyvän antennin LNB:n toinen kaapeli"
 msgid "seconds"
 msgstr "sekuntia"
 
-msgid "security"
-msgstr "turvallisuus"
-
 msgid "select"
 msgstr "valitse"
 
@@ -22771,9 +22817,6 @@ msgstr "kanavan PIN"
 
 msgid "set as startup service"
 msgstr "Valitse käynnistyskanavaksi"
-
-msgid "settings"
-msgstr "asetukset"
 
 msgid "share:"
 msgstr "jaa:"
@@ -22829,9 +22872,6 @@ msgstr "näytä kortit jossa ylöshyppy 9"
 msgid "show event details"
 msgstr "näytä ohjelman tarkemmat tiedot"
 
-msgid "show mediaplayer on mainmenu"
-msgstr "näytä mediatoistin päävalikossa"
-
 msgid "show picons in quickzap"
 msgstr "Näytä kanavalogot pikavaihdossa"
 
@@ -22852,9 +22892,6 @@ msgstr "satunnaisjärjestys"
 
 msgid "simple"
 msgstr "suppea"
-
-msgid "skin"
-msgstr "teemat"
 
 msgid "skip backward"
 msgstr "siirry taaksepäin"
@@ -22891,12 +22928,6 @@ msgstr "sosiaalinen/hengellinen tiede"
 msgid "softcam"
 msgstr "Softcam"
 
-msgid "softcams"
-msgstr "softcammit"
-
-msgid "sorting of playlists"
-msgstr "soittolistojen järjestys"
-
 msgid "special (general)"
 msgstr "erikois (yleinen)"
 
@@ -22917,9 +22948,6 @@ msgstr "vakio"
 
 msgid "start cut here"
 msgstr "Aloita leikkaus tästä"
-
-msgid "start directory"
-msgstr "aloitushakemisto"
 
 msgid "start recording"
 msgstr "aloita tallennus"
@@ -22962,9 +22990,6 @@ msgstr "vaihda seuraavalle tekstityskielelle"
 
 msgid "system:"
 msgstr "järjestelmä:"
-
-msgid "systemplugins"
-msgstr "järjestelmälisäosat"
 
 msgid "talk show"
 msgstr "keskustelu Show"
@@ -23086,9 +23111,6 @@ msgstr "use_hdmi_cacenter"
 msgid "user defined"
 msgstr "käyttäjän määrittelemä"
 
-msgid "user feed url"
-msgstr "käyttäjän määrittämä syöteosoite"
-
 msgid "userdefined"
 msgstr "käyttäjän määrittelemä"
 
@@ -23110,14 +23132,8 @@ msgstr "Näytä Lisäosat"
 msgid "violet"
 msgstr "violetti"
 
-msgid "vix"
-msgstr "vix"
-
 msgid "wait for mmi..."
 msgstr "odotetaan mmi:tä..."
-
-msgid "waiting"
-msgstr "odottaa"
 
 msgid "wakeup"
 msgstr "käynnisty"
@@ -23127,9 +23143,6 @@ msgstr "herätys valmiustilaan"
 
 msgid "water sport"
 msgstr "vesiurheilu"
-
-msgid "weblinks"
-msgstr "nettilinkit"
 
 msgid "weekly"
 msgstr "viikoittain"
@@ -23207,14 +23220,117 @@ msgstr "kyllä (pidä syötteet)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
 
-msgid "Zapped"
-msgstr "vaihdettu"
-
 msgid "zapping"
 msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "extensions"
+#~ msgstr "laajennukset"
+
+#~ msgid "settings"
+#~ msgstr "asetukset"
+
+#~ msgid "skin"
+#~ msgstr "teemat"
+
+#~ msgid "Drives"
+#~ msgstr "Asemat"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Päävalikko"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "AC3/Dolby hienosäätö"
+
+#~ msgid "Add Service"
+#~ msgstr "Lisää kanava"
+
+#~ msgid "Change"
+#~ msgstr "Muuta"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Äänenvoimakkuuden säätö"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kanava \t\t\tÄänenvoimakkuus +"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Cool kanava Opas"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Cool Helppo Opas"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Cool Info Opas"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Cool yhden kanavan Opas"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Cool TV Opas"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Aktivoi AC3/Dolby äänenvoimakkuuden poikkeama"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "Virta ajastukset lista"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "Paina MENU näppäintä muuttaaksesi yleisiä AC3/Dolby asetuksia."
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "Valitse kanavat lisätäksesi äänenvoimakkuuden poikkeama."
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Näytä CoolkanavaOpas"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Näytä CoolHelppoOpas"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Näytä CoolTiedotOpas"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Näytä yhden kanavan EPG"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Näytä CoolTVOpas"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Cool TV Guide -lisäosaa ei ole asennettu!\n"
+#~ "Asenna se."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "Tätä yleistä äänenvoimakkuuden hienosäätöä käytetään vain jos kanavalle ei ole erikseen määriteltyä hienosäätöä."
+
+#~ msgid "Timer List"
+#~ msgstr "Ajastusluettelo"
+
+#~ msgid "Volume Config"
+#~ msgstr "Äänenvoimakkuus asetukset"
+
+#~ msgid "done!"
+#~ msgstr "valmis!"
+
+#~ msgid "recording..."
+#~ msgstr "tallennetaan..."
+
+#~ msgid "running..."
+#~ msgstr "käynnissä..."
+
+#~ msgid "waiting"
+#~ msgstr "odottaa"
 
 #~ msgid "show"
 #~ msgstr "Näytä"
@@ -24514,9 +24630,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Vaihda valitulle kanavalle tai tarkastele tapahtuman yksityiskohtaisia tietoja (kokoonpanosta riippuen)"
-
-#~ msgid "save last directory on exit"
-#~ msgstr "tallenna viimeisin hakemisto suljettaessa"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."

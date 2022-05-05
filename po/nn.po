@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 17:33+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1623,9 +1623,6 @@ msgstr "* Bare tilgjengelig hvis mer enn et grensesnitt er aktivt."
 msgid "* current animation"
 msgstr ""
 
-msgid "+/-"
-msgstr ""
-
 #
 #, fuzzy
 msgid "+24"
@@ -2446,9 +2443,6 @@ msgstr "AAC downmix"
 msgid "AC3 plus transcoding"
 msgstr "AAC omkoding"
 
-msgid "AC3/Dolby offset"
-msgstr ""
-
 #, fuzzy
 msgid "AC3plus transcoding"
 msgstr "AAC omkoding"
@@ -2516,6 +2510,13 @@ msgstr ""
 #
 msgid "About"
 msgstr "Om"
+
+msgid "About openATV"
+msgstr ""
+
+#
+msgid "About to start"
+msgstr "starter snart"
 
 #
 msgid "About..."
@@ -2628,9 +2629,6 @@ msgstr ""
 msgid "Add Record Timer"
 msgstr "Legge til timer"
 
-msgid "Add Service"
-msgstr ""
-
 msgid "Add Timer"
 msgstr "Legg til Timer"
 
@@ -2663,6 +2661,9 @@ msgstr "Legge til timer"
 
 msgid "Add a record timer for current event"
 msgstr "Lag en timer for aktuelle program"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
@@ -2728,6 +2729,9 @@ msgstr "Velg filer/mapper for sikkerhetskopi."
 #
 msgid "Add service"
 msgstr "Legg til kanal"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr ""
 
 #
 msgid "Add timer"
@@ -3027,9 +3031,6 @@ msgstr "Alternativ tuner prioritet for kanaler"
 
 msgid "Always ask"
 msgstr "Alltid spør først "
-
-msgid "Always hide infobar"
-msgstr "Skjul alltid linfovinduet"
 
 msgid "Always include ECM in recordings"
 msgstr ""
@@ -4150,7 +4151,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr ""
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr ""
 
 msgid "CCcam Client Info"
@@ -4214,6 +4215,10 @@ msgstr "BYTT KANALLISTE"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kanal"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4469,6 +4474,9 @@ msgstr "Avbryt å lagre timeshift som film"
 msgid "Cancel selection"
 msgstr "Kanalvalg"
 
+msgid "Cancel the service selection"
+msgstr ""
+
 msgid "Cancel the slot selection and exit"
 msgstr ""
 
@@ -4567,9 +4575,6 @@ msgstr ""
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change"
-msgstr ""
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 
@@ -4584,9 +4589,6 @@ msgstr ""
 #
 msgid "Change Timer"
 msgstr "Endre timer"
-
-msgid "Change Volume offset"
-msgstr ""
 
 #
 msgid "Change bouquets in quickzap"
@@ -4636,9 +4638,6 @@ msgstr ""
 #
 msgid "Channel"
 msgstr "Kanal"
-
-msgid "Channel \t\t\tVolume +"
-msgstr ""
 
 msgid "Channel +/- button mode"
 msgstr "Kanal +/- knappe modus"
@@ -5765,21 +5764,6 @@ msgstr ""
 msgid "Cooking"
 msgstr "matlaging"
 
-msgid "Cool Channel Guide"
-msgstr ""
-
-msgid "Cool Easy Guide"
-msgstr ""
-
-msgid "Cool Info Guide"
-msgstr ""
-
-msgid "Cool Single Guide"
-msgstr ""
-
-msgid "Cool TV Guide"
-msgstr "Cool TV Guide"
-
 msgid "Copy"
 msgstr "Kopier"
 
@@ -5959,7 +5943,7 @@ msgstr "Kroatisk"
 msgid "Cron Manager"
 msgstr "Cron behandling"
 
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "CronTimer"
 
 msgid "Cuba"
@@ -6025,6 +6009,9 @@ msgstr ""
 #
 msgid "Current version:"
 msgstr "Aktuell Versjon:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr ""
 
 #
 msgid "Custom"
@@ -6411,6 +6398,9 @@ msgstr "Standard opptakstype"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Default Folder"
@@ -6473,6 +6463,9 @@ msgid "Default sorting method for files on the left side."
 msgstr ""
 
 msgid "Default sorting method for files on the right side."
+msgstr ""
+
+msgid "Default volume offset"
 msgstr ""
 
 #, python-format
@@ -6678,6 +6671,9 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
 
 msgid "Delete the currently displayed log file"
+msgstr ""
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6953,6 +6949,9 @@ msgstr "Diskplass som skal reserveres for opptak(i GB)"
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "ingen CI plasser funnet"
+
+msgid "Display"
+msgstr ""
 
 #
 msgid "Display 16:9 content as"
@@ -7412,15 +7411,15 @@ msgstr ""
 msgid "Driver and kernel information"
 msgstr ""
 
+msgid "Drivers"
+msgstr ""
+
 msgid "Drivers version"
 msgstr ""
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Drivere:\t%s"
-
-msgid "Drives"
-msgstr ""
 
 msgid "Drives Information"
 msgstr ""
@@ -7606,6 +7605,9 @@ msgstr "Endre timer"
 msgid "Edit Mode On"
 msgstr "Endre timer"
 
+msgid "Edit New Entry"
+msgstr ""
+
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
@@ -7631,9 +7633,6 @@ msgstr "Gå til nåværende tidspunkt"
 #, fuzzy
 msgid "Edit line "
 msgstr "Endre timer"
-
-msgid "Edit New Entry"
-msgstr ""
 
 #
 #, fuzzy
@@ -7718,9 +7717,6 @@ msgstr "Aktiver"
 msgid "Enable 5V for active antenna"
 msgstr "Aktiver 5V for aktiv antenne"
 
-msgid "Enable AC3/Dolby"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Enable BT Audio"
@@ -7730,6 +7726,9 @@ msgid "Enable CIHelper for SLOT CI0"
 msgstr ""
 
 msgid "Enable CIHelper for SLOT CI1"
+msgstr ""
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -9589,7 +9588,7 @@ msgid "HDMI-IN Actions"
 msgstr "Opptaksinnstillinger"
 
 #, fuzzy
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "Opptaksinnstillinger"
 
 msgid "HDMIin"
@@ -9745,6 +9744,9 @@ msgstr "Skjult nettverk"
 msgid "Hide"
 msgstr ""
 
+msgid "Hide InfoBar"
+msgstr "Skjul alltid linfovinduet"
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -9896,7 +9898,7 @@ msgstr ""
 msgid "Hotkey"
 msgstr ""
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr ""
 
 msgid "Hotkey Setup for"
@@ -10464,6 +10466,9 @@ msgstr "Input"
 msgid "Input Device Settings"
 msgstr ""
 
+msgid "Input Devices Settings"
+msgstr "Inndata enheter"
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10474,9 +10479,6 @@ msgstr "Bruk rask søk kanalnavn"
 #, fuzzy
 msgid "Input config file name:"
 msgstr "Langt filnavn"
-
-msgid "Input devices"
-msgstr "Inndata enheter"
 
 msgid "Input scroll position"
 msgstr ""
@@ -10893,6 +10895,9 @@ msgstr "Holder filmlisten åpne mens avspilling av lydfiler."
 msgid "Kenya"
 msgstr ""
 
+msgid "Kernel Modules"
+msgstr ""
+
 msgid "Kernel file"
 msgstr ""
 
@@ -11034,7 +11039,7 @@ msgstr "LAN forbindelse"
 msgid "LAN long"
 msgstr "Lang rød"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr ""
 
 msgid "LCD SkinSelector"
@@ -11583,6 +11588,9 @@ msgstr "Luxembourgsk"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxembourgsk"
 
+msgid "M2k"
+msgstr ""
+
 #, fuzzy
 msgid "MAC"
 msgstr "MAC:"
@@ -11650,10 +11658,6 @@ msgstr "Lang rød"
 
 #
 msgid "Main Menu"
-msgstr "Hovedmeny"
-
-#
-msgid "Mainmenu"
 msgstr "Hovedmeny"
 
 msgid "Maintain old EPG data for"
@@ -11851,6 +11855,9 @@ msgstr ""
 #, fuzzy
 msgid "Media Player"
 msgstr "Media Avspiller"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr ""
@@ -13297,7 +13304,7 @@ msgstr "OSD 3D Oppsett"
 msgid "OSD Adjustment"
 msgstr ""
 
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr ""
 
 msgid "OSD Settings"
@@ -13313,12 +13320,12 @@ msgstr "OSD navne forespørsel"
 msgid "OScam Info"
 msgstr "OScam Info"
 
+#, fuzzy
+msgid "OScam Information"
+msgstr "OScam Info"
+
 msgid "OScam webif disabled"
 msgstr ""
-
-#, fuzzy
-msgid "OScamInfo"
-msgstr "OScam Info"
 
 msgid "OTT Model"
 msgstr ""
@@ -13337,9 +13344,6 @@ msgid "Offline decode delay (ms)"
 msgstr "Frakoblet dekodings forsinkelse (ms)"
 
 msgid "Ojibwa"
-msgstr ""
-
-msgid "Ok"
 msgstr ""
 
 msgid "Older files in the timeshift directory are removed on every event change."
@@ -13499,6 +13503,9 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr ""
 
+msgid "OpenPLi"
+msgstr ""
+
 msgid "OpenSSL version"
 msgstr ""
 
@@ -13506,6 +13513,9 @@ msgid "OpenVPN"
 msgstr ""
 
 msgid "OpenVPN Settings"
+msgstr ""
+
+msgid "OpenViX"
 msgstr ""
 
 msgid "OpenVpn Log"
@@ -13967,6 +13977,9 @@ msgstr "Picons og Kanal Navn"
 
 msgid "Picon width"
 msgstr "Picon bredde"
+
+msgid "Picons"
+msgstr ""
 
 #
 #, fuzzy
@@ -14638,6 +14651,9 @@ msgstr "LED lysstyrke under dvalemodus."
 msgid "Power On Display"
 msgstr ""
 
+msgid "Power Timers"
+msgstr "StrømTimer"
+
 msgid "Power long"
 msgstr ""
 
@@ -14668,13 +14684,6 @@ msgstr "StrømTimer Oversikt"
 
 msgid "PowerTimer Standby"
 msgstr ""
-
-#
-msgid "PowerTimer list"
-msgstr "StrømTimerliste"
-
-msgid "PowerTimers"
-msgstr "StrømTimer"
 
 #
 msgid "Predefined"
@@ -14825,9 +14834,6 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15827,6 +15833,10 @@ msgstr "Gjentagelse"
 msgid "Repeat Display Message"
 msgstr "Gjenta display melding"
 
+#
+msgid "Repeat playlist"
+msgstr "gjenta spilleliste"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -16435,6 +16445,10 @@ msgstr "Lagre og spille inn"
 msgid "Save and stop"
 msgstr "Lagre og stopp"
 
+#
+msgid "Save directory on EXIT"
+msgstr "lagre siste katalog ved avslutt"
+
 msgid "Save every (in hours)"
 msgstr "Lagre hver (i timer)"
 
@@ -16442,6 +16456,10 @@ msgstr "Lagre hver (i timer)"
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "lagre siste katalog ved avslutt"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "lagre spilleliste ved avslutt"
 
 #
 msgid "Save playlist"
@@ -16671,6 +16689,9 @@ msgstr "Sekundær DNS"
 msgid "Secondinfobar:"
 msgstr "Vis sekundær infolinje"
 
+msgid "Security"
+msgstr ""
+
 #
 msgid "Seek"
 msgstr "Søk"
@@ -16722,6 +16743,9 @@ msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switc
 msgstr ""
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgstr ""
+
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
@@ -16893,9 +16917,6 @@ msgstr "Velg kanal å ta opp fra"
 msgid "Select channel to record from"
 msgstr "Velg kanal å ta opp fra"
 
-msgid "Select channels to add an offset to the volume."
-msgstr ""
-
 msgid "Select commit log"
 msgstr ""
 
@@ -17025,6 +17046,9 @@ msgid "Select the current menu item"
 msgstr ""
 
 msgid "Select the currently highlighted locale/language for the user interface"
+msgstr ""
+
+msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
@@ -17304,6 +17328,18 @@ msgstr "Kanal"
 msgid "Service & PIDs"
 msgstr "Kanaler"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Service ID"
@@ -17424,6 +17460,9 @@ msgstr "Kanal referanse"
 #
 msgid "Service scan"
 msgstr "Kanalsøk"
+
+msgid "Service selection canceled."
+msgstr ""
 
 #
 msgid ""
@@ -17585,6 +17624,28 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Angi typen for fremdriftsindikatoren i kanalvalg-skjermen."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr ""
+
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Angir ønsket primetime (time)."
@@ -17937,21 +17998,6 @@ msgstr ""
 msgid "Show Clients"
 msgstr "Vis Klienter"
 
-msgid "Show CoolChannelGuide"
-msgstr ""
-
-msgid "Show CoolEasyGuide"
-msgstr ""
-
-msgid "Show CoolInfoGuide"
-msgstr ""
-
-msgid "Show CoolSingleGuide"
-msgstr ""
-
-msgid "Show CoolTVGuide"
-msgstr ""
-
 msgid "Show Directory size"
 msgstr ""
 
@@ -18012,6 +18058,9 @@ msgstr "Vis logg behandling i utvidelser listen?"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Vis info linjen "
+
+msgid "Show Media Player in Main Menu"
+msgstr "vise mediaplayer i hovedmeny"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Vis medieavspillingstid gjenværende/medgått som"
@@ -18758,7 +18807,7 @@ msgstr ""
 msgid "Skin Setting"
 msgstr "Skin Innstilling"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr ""
 
 msgid "Skin setup"
@@ -18804,6 +18853,9 @@ msgid "Sleep Timer"
 msgstr ""
 
 msgid "Sleep Timer Settings"
+msgstr ""
+
+msgid "Sleep Timers"
 msgstr ""
 
 #
@@ -18973,6 +19025,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr ""
 
+msgid "Softcams"
+msgstr ""
+
 #
 msgid "Software"
 msgstr "Programvare"
@@ -19127,6 +19182,9 @@ msgstr ""
 msgid "Sort order for the language list."
 msgstr ""
 
+msgid "Sort playlists"
+msgstr "sortering av spillelister"
+
 #, fuzzy
 msgid "Sort plug-in browser entries"
 msgstr "Sorter plugin alfabetisk"
@@ -19200,6 +19258,9 @@ msgid "Special 2"
 msgstr "Serial No"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
@@ -19319,6 +19380,10 @@ msgstr ""
 
 msgid "Starting Softcam"
 msgstr ""
+
+#
+msgid "Starting directory"
+msgstr "start katalog"
 
 #
 msgid "Starting on"
@@ -19455,6 +19520,9 @@ msgid "Stopping Softcam"
 msgstr ""
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr ""
+
+msgid "Storage / Disks"
 msgstr ""
 
 #
@@ -19771,6 +19839,12 @@ msgstr "Bytt til forrige underkanal"
 msgid "Switch to radio mode"
 msgstr ""
 
+msgid "Switch to the available RADIO services"
+msgstr ""
+
+msgid "Switch to the available TV services"
+msgstr ""
+
 #
 msgid "Switchable tuner types:"
 msgstr "Byttbar tuner typer:"
@@ -19831,6 +19905,9 @@ msgstr ""
 #, fuzzy
 msgid "System Message Check"
 msgstr "Filsystem Sjekk"
+
+msgid "System Plugins"
+msgstr ""
 
 msgid "System Setup"
 msgstr ""
@@ -20118,13 +20195,6 @@ msgid ""
 "Please install it."
 msgstr ""
 "AutoTimer plugin er ikke installert!\n"
-"Vennligst installer den."
-
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Cool TV Guide plugin er ikke installert!\n"
 "Vennligst installer den."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
@@ -20526,6 +20596,9 @@ msgstr ""
 msgid "This is the currently selected locale.  [%s]"
 msgstr ""
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr ""
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
@@ -20534,7 +20607,10 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr "Denne plugin er ikke installert."
 
-msgid "This offset will only be used if the channel has not its own volume offset."
+msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -21007,8 +21083,13 @@ msgstr ""
 msgid "Timer Actions"
 msgstr "Timer valg"
 
-msgid "Timer List"
-msgstr "Timer Listen"
+#
+msgid "Timer Overview"
+msgstr "Timer oversikt"
+
+#
+msgid "Timer Sanity Error"
+msgstr "Timer feil"
 
 msgid "Timer edit"
 msgstr ""
@@ -21040,16 +21121,8 @@ msgstr ""
 "Vennligst sjekk!"
 
 #
-msgid "Timer Overview"
-msgstr "Timer oversikt"
-
-#
 msgid "Timer recording location"
 msgstr "Timeropptak plassering"
-
-#
-msgid "Timer Sanity Error"
-msgstr "Timer feil"
 
 #
 msgid "Timer selection"
@@ -21460,6 +21533,9 @@ msgstr "Tuner status"
 #, fuzzy, python-format
 msgid "Tuner type %s"
 msgstr "Tuner type"
+
+msgid "Tuners"
+msgstr ""
 
 msgid "Tuning algorithm"
 msgstr ""
@@ -22106,6 +22182,9 @@ msgstr ""
 msgid "User - bouquets"
 msgstr "Bruker - favoritter"
 
+msgid "User Feed URL"
+msgstr ""
+
 #
 msgid "User defined"
 msgstr "Brukerdefinert"
@@ -22163,7 +22242,7 @@ msgid "Uzbekistan"
 msgstr ""
 
 #
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
 msgid "VLAN connection"
@@ -22528,7 +22607,13 @@ msgstr ""
 msgid "Volume Adjust"
 msgstr ""
 
-msgid "Volume Config"
+msgid "Volume Adjust Actions"
+msgstr ""
+
+msgid "Volume Adjust Service Selection"
+msgstr ""
+
+msgid "Volume Adjust Settings"
 msgstr ""
 
 msgid "Volume down"
@@ -22688,6 +22773,9 @@ msgstr "Andre"
 
 msgid "Web Interface"
 msgstr "Web Interface"
+
+msgid "Web Links"
+msgstr ""
 
 msgid "Web browser base visibility"
 msgstr ""
@@ -23690,6 +23778,10 @@ msgstr ""
 msgid "Zap+Record next"
 msgstr "Spille inn neste"
 
+#
+msgid "Zapped"
+msgstr "Zapped"
+
 msgid "Zeichentrick"
 msgstr ""
 
@@ -23780,10 +23872,6 @@ msgstr "avbryt favoritt editering"
 #
 msgid "abort favourites edit"
 msgstr "avbryt favoritt editering"
-
-#
-msgid "About to start"
-msgstr "starter snart"
 
 msgid "ac3"
 msgstr ""
@@ -24162,9 +24250,6 @@ msgstr "frakoblet"
 msgid "discussion/interview/debate"
 msgstr "diskusjon/intervju/debatt"
 
-msgid "display"
-msgstr ""
-
 msgid "documentary"
 msgstr "dokumentar"
 
@@ -24175,16 +24260,9 @@ msgstr "dokumentar"
 msgid "dolby"
 msgstr ""
 
-#
-msgid "done!"
-msgstr "ferdig!"
-
 #, fuzzy
 msgid "drama (general)"
 msgstr "film/drama (generelt)"
-
-msgid "drivers"
-msgstr ""
 
 msgid "dts"
 msgstr ""
@@ -24314,9 +24392,6 @@ msgstr "avslutt nettverksadapter oppsetts meny"
 
 msgid "experimental film/video"
 msgstr "eksperimentell film/video"
-
-msgid "extensions"
-msgstr ""
 
 msgid "extensions."
 msgstr "utvidelser."
@@ -24595,9 +24670,6 @@ msgstr ""
 msgid "just boot"
 msgstr ""
 
-msgid "kernel modules"
-msgstr ""
-
 msgid "languages"
 msgstr "språk"
 
@@ -24636,9 +24708,6 @@ msgstr ""
 #
 msgid "loopthrough to"
 msgstr "intern gjennomføring til"
-
-msgid "m2k"
-msgstr ""
 
 msgid "magazines/reports/documentary"
 msgstr "magasiner/rapporter/dokumentar"
@@ -24907,9 +24976,6 @@ msgstr "klart"
 msgid "performing arts"
 msgstr "scenekunst"
 
-msgid "picons"
-msgstr ""
-
 msgid "pid:"
 msgstr "pid:"
 
@@ -24937,9 +25003,6 @@ msgstr "Vennligst vent, henter bilde"
 
 msgid "please wait..."
 msgstr "vennligst vent..."
-
-msgid "pli"
-msgstr ""
 
 msgid "pm"
 msgstr "pm"
@@ -24988,10 +25051,6 @@ msgstr "start på nytt"
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr ""
-
-#
-msgid "recording..."
-msgstr "spiller inn..."
 
 #
 msgid "red"
@@ -25072,10 +25131,6 @@ msgid "rename entry"
 msgstr "Endre navn på oppføring"
 
 #
-msgid "repeat playlist"
-msgstr "gjenta spilleliste"
-
-#
 msgid "repeated"
 msgstr "gjentatt"
 
@@ -25108,20 +25163,12 @@ msgstr "rock/pop"
 msgid "romance"
 msgstr "romantikk"
 
-#
-msgid "running..."
-msgstr "kjører..."
-
 msgid ""
 "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-#
-msgid "save playlist on exit"
-msgstr "lagre spilleliste ved avslutt"
 
 #
 msgid "scan state"
@@ -25150,9 +25197,6 @@ msgstr "sekundær kabel i motorisert LNB"
 msgid "seconds"
 msgstr "sekunder"
 
-msgid "security"
-msgstr ""
-
 #
 msgid "select"
 msgstr "velg"
@@ -25176,9 +25220,6 @@ msgstr "kanal PIN"
 
 msgid "set as startup service"
 msgstr "Sett som oppstart kanal"
-
-msgid "settings"
-msgstr ""
 
 msgid "share:"
 msgstr "del:"
@@ -25237,9 +25278,6 @@ msgstr "vise kortene med uphop 9"
 msgid "show event details"
 msgstr "vis program detaljer"
 
-msgid "show mediaplayer on mainmenu"
-msgstr "vise mediaplayer i hovedmeny"
-
 #
 #, fuzzy
 msgid "show picons in quickzap"
@@ -25265,9 +25303,6 @@ msgstr "blande "
 #
 msgid "simple"
 msgstr "enkel"
-
-msgid "skin"
-msgstr ""
 
 #
 msgid "skip backward"
@@ -25308,12 +25343,6 @@ msgstr "sosial/åndsvitenskap"
 msgid "softcam"
 msgstr ""
 
-msgid "softcams"
-msgstr ""
-
-msgid "sorting of playlists"
-msgstr "sortering av spillelister"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "sport (generelt)"
@@ -25338,10 +25367,6 @@ msgstr "standard"
 #
 msgid "start cut here"
 msgstr "start klipp her"
-
-#
-msgid "start directory"
-msgstr "start katalog"
 
 #
 #, fuzzy
@@ -25393,9 +25418,6 @@ msgstr "bytt til neste tekstspråk"
 
 msgid "system:"
 msgstr "system:"
-
-msgid "systemplugins"
-msgstr ""
 
 msgid "talk show"
 msgstr "talkshow"
@@ -25535,9 +25557,6 @@ msgstr ""
 msgid "user defined"
 msgstr "Brukerdefinert"
 
-msgid "user feed url"
-msgstr ""
-
 #
 #, fuzzy
 msgid "userdefined"
@@ -25563,16 +25582,9 @@ msgstr "Vis utvidelser..."
 msgid "violet"
 msgstr ""
 
-msgid "vix"
-msgstr ""
-
 #
 msgid "wait for mmi..."
 msgstr "venter på mmi..."
-
-#
-msgid "waiting"
-msgstr "venter"
 
 msgid "wakeup"
 msgstr "våkne opp"
@@ -25583,9 +25595,6 @@ msgstr "våkn opp til dvalemodus"
 
 msgid "water sport"
 msgstr "vann sport"
-
-msgid "weblinks"
-msgstr ""
 
 #
 msgid "weekly"
@@ -25672,16 +25681,49 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr ""
 
 #
-msgid "Zapped"
-msgstr "Zapped"
-
-#
 #, fuzzy
 msgid "zapping"
 msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Mainmenu"
+#~ msgstr "Hovedmeny"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Cool TV Guide"
+
+#
+#~ msgid "PowerTimer list"
+#~ msgstr "StrømTimerliste"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Cool TV Guide plugin er ikke installert!\n"
+#~ "Vennligst installer den."
+
+#~ msgid "Timer List"
+#~ msgstr "Timer Listen"
+
+#
+#~ msgid "done!"
+#~ msgstr "ferdig!"
+
+#
+#~ msgid "recording..."
+#~ msgstr "spiller inn..."
+
+#
+#~ msgid "running..."
+#~ msgstr "kjører..."
+
+#
+#~ msgid "waiting"
+#~ msgstr "venter"
 
 #, fuzzy
 #~ msgid "show"
@@ -26471,10 +26513,6 @@ msgstr ""
 #~ "Gå til starten av det du vil klippe vekk, trykk OK, velg 'start klipp her'.\n"
 #~ "\n"
 #~ "Så går du til slutten av det du vil klippe vekk, trykk OK, velg 'avslutt klipp her'. Det er alt!"
-
-#
-#~ msgid "save last directory on exit"
-#~ msgstr "lagre siste katalog ved avslutt"
 
 #
 #, fuzzy
