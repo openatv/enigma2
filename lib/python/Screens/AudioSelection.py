@@ -138,7 +138,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 				self.settings.downmix_aacplus = ConfigSelection(choices=choice_list, default=config.av.downmix_aacplus.value)
 				self.settings.downmix_aacplus.addNotifier(self.changeAACDownmixPlus, initial_call=False)
-				conflist.append(getConfigListEntry(_("AAC Plus downmix"), self.settings.downmix_aacplus, None))
+				conflist.append(getConfigListEntry(_("AAC plus downmix"), self.settings.downmix_aacplus, None))
 
 			if BoxInfo.getItem("CanAACTranscode"):
 				choice_list = BoxInfo.getItem("CanAACTranscode")

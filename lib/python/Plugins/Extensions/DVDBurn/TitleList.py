@@ -91,7 +91,7 @@ class TitleList(Screen, HelpableScreen):
 		self["title_label"] = StaticText()
 		self["error_label"] = StaticText()
 		self["space_label"] = StaticText()
-		self["hint"] = StaticText(_("Advanced Options"))
+		self["hint"] = StaticText(_("Advanced options"))
 		self["medium_label"] = MultiColorLabel()
 		self["space_bar_single"] = Progress()
 		self["space_bar_dual"] = Progress()

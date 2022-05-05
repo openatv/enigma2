@@ -82,7 +82,7 @@ class TitleProperties(Screen, ConfigListScreen):
 						self.list.append(getConfigListEntry(_("audio track (%s) format") % DVB_aud, audiotrack.format))
 						self.list.append(getConfigListEntry(_("audio track (%s) language") % DVB_aud, audiotrack.language))
 
-				self.list.append(getConfigListEntry("DVD " + _("Aspect Ratio"), self.properties.aspect))
+				self.list.append(getConfigListEntry("DVD " + _("Aspect ratio"), self.properties.aspect))
 				if self.properties.aspect.getValue() == "16:9":
 					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
 				else:
