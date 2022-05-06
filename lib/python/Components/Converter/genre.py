@@ -417,193 +417,193 @@ class GenresDEUIceTV:
 	subtype = {
 		# Miscellaneous
 		0: (
-			'',  # 0x00
-			_('Abenteuer'),  # 0x01
-			_('Zirkus'),  # 0x02 remapped from 0x01
-			_('Zeichentrick'),  # 0x03 remapped from 0x01
-			_('Wissenschaft'),  # 0x04 remapped from 0x01
-			_('Wirtschaft'),  # 0x05 remapped from 0x01
-			_('Wintersport'),  # 0x06 remapped from 0x01
-			_('Wetter'),  # 0x07 remapped from 0x01
-			_('Wettbewerb'),  # 0x08 remapped from 0x01
-			_('Western'),  # 0x09 remapped from 0x01
-			_('Werbung'),  # 0x0a remapped from 0x01
-			_('Wassersport'),  # 0x0b remapped from 0x01
-			_('Waffen'),  # 0x0c remapped from 0x01
-			_('Vorschau'),  # 0x0d remapped from 0x01
-			_('Videoclip'),  # 0x0e remapped from 0x01
-			_('Verschiedenes'),  # 0x0f remapped from 0x01
+			"",  # 0x00
+			_("Abenteuer"),  # 0x01
+			_("Zirkus"),  # 0x02 remapped from 0x01
+			_("Zeichentrick"),  # 0x03 remapped from 0x01
+			_("Wissenschaft"),  # 0x04 remapped from 0x01
+			_("Wirtschaft"),  # 0x05 remapped from 0x01
+			_("Wintersport"),  # 0x06 remapped from 0x01
+			_("Wetter"),  # 0x07 remapped from 0x01
+			_("Wettbewerb"),  # 0x08 remapped from 0x01
+			_("Western"),  # 0x09 remapped from 0x01
+			_("Werbung"),  # 0x0a remapped from 0x01
+			_("Wassersport"),  # 0x0b remapped from 0x01
+			_("Waffen"),  # 0x0c remapped from 0x01
+			_("Vorschau"),  # 0x0d remapped from 0x01
+			_("Videoclip"),  # 0x0e remapped from 0x01
+			_("Verschiedenes"),  # 0x0f remapped from 0x01
 		),
 		# Movie/Drama
 		1: (
-			_('Kunst'),  # 0x10 remapped from 0x01
-			_('Kultur'),  # 0x11 remapped from 0x01
-			_('Kriminalit\xc3\xa4t'),  # 0x12 remapped from 0x01
-			_('Krimi'),  # 0x13 remapped from 0x01
-			_('Comedy'),  # 0x14
-			_('Krieg'),  # 0x15 remapped from 0x01
-			_('Kraftsport'),  # 0x16 remapped from 0x01
-			_('Kom\xc3\xb6die'),  # 0x17 remapped from 0x01
-			_('Kneipensport'),  # 0x18 remapped from 0x01
-			_('Klassiker'),  # 0x19 remapped from 0x01
-			_('Kinder'),  # 0x1a remapped from 0x01
-			_('Katastrophe'),  # 0x1b remapped from 0x01
-			_('Kampfsport'),  # 0x1c remapped from 0x01
-			_('Justiz'),  # 0x1d remapped from 0x01
-			_('Jugend'),  # 0x1e remapped from 0x01
-			_('International'),  # 0x1f remapped from 0x01
+			_("Kunst"),  # 0x10 remapped from 0x01
+			_("Kultur"),  # 0x11 remapped from 0x01
+			_("Kriminalit\xc3\xa4t"),  # 0x12 remapped from 0x01
+			_("Krimi"),  # 0x13 remapped from 0x01
+			_("Comedy"),  # 0x14
+			_("Krieg"),  # 0x15 remapped from 0x01
+			_("Kraftsport"),  # 0x16 remapped from 0x01
+			_("Kom\xc3\xb6die"),  # 0x17 remapped from 0x01
+			_("Kneipensport"),  # 0x18 remapped from 0x01
+			_("Klassiker"),  # 0x19 remapped from 0x01
+			_("Kinder"),  # 0x1a remapped from 0x01
+			_("Katastrophe"),  # 0x1b remapped from 0x01
+			_("Kampfsport"),  # 0x1c remapped from 0x01
+			_("Justiz"),  # 0x1d remapped from 0x01
+			_("Jugend"),  # 0x1e remapped from 0x01
+			_("International"),  # 0x1f remapped from 0x01
 		),
 		# News/Current Affairs
 		2: (
-			_('Information'),  # 0x20 remapped from 0x01
-			_('Independent'),  # 0x21 remapped from 0x01
-			_('Horror'),  # 0x22 remapped from 0x01
-			_('Hobbys'),  # 0x23 remapped from 0x01
-			_('Heimwerker'),  # 0x24 remapped from 0x01
-			_('Heimat'),  # 0x25 remapped from 0x01
-			_('Handball'),  # 0x26 remapped from 0x01
-			_('Gesundheit'),  # 0x27 remapped from 0x01
-			_('Gesellschaft'),  # 0x28 remapped from 0x01
-			_('Geschichte'),  # 0x29 remapped from 0x01
-			_('Garten'),  # 0x2a remapped from 0x01
-			_('Gangster'),  # 0x2b remapped from 0x01
-			_('F\xc3\xbcr Kinder'),  # 0x2c remapped from 0x01
-			_('Fu\xc3\x9fball'),  # 0x2d remapped from 0x01
-			_('Frauen'),  # 0x2e remapped from 0x01
-			_('Fantasy'),  # 0x2f remapped from 0x01
+			_("Information"),  # 0x20 remapped from 0x01
+			_("Independent"),  # 0x21 remapped from 0x01
+			_("Horror"),  # 0x22 remapped from 0x01
+			_("Hobbys"),  # 0x23 remapped from 0x01
+			_("Heimwerker"),  # 0x24 remapped from 0x01
+			_("Heimat"),  # 0x25 remapped from 0x01
+			_("Handball"),  # 0x26 remapped from 0x01
+			_("Gesundheit"),  # 0x27 remapped from 0x01
+			_("Gesellschaft"),  # 0x28 remapped from 0x01
+			_("Geschichte"),  # 0x29 remapped from 0x01
+			_("Garten"),  # 0x2a remapped from 0x01
+			_("Gangster"),  # 0x2b remapped from 0x01
+			_("F\xc3\xbcr Kinder"),  # 0x2c remapped from 0x01
+			_("Fu\xc3\x9fball"),  # 0x2d remapped from 0x01
+			_("Frauen"),  # 0x2e remapped from 0x01
+			_("Fantasy"),  # 0x2f remapped from 0x01
 		),
 		# Show/Games show
 		3: (
-			_('Familie'),  # 0x30 remapped from 0x01
-			_('Extremsport'),  # 0x31 remapped from 0x01
-			_('Event'),  # 0x32 remapped from 0x01
-			_('Essen'),  # 0x33 remapped from 0x01
-			_('Esoterik'),  # 0x34 remapped from 0x01
-			_('Erotik'),  # 0x35 remapped from 0x01
-			_('Epos'),  # 0x36 remapped from 0x01
-			_('Energie'),  # 0x37 remapped from 0x01
-			_('Einzelsportart'),  # 0x38 remapped from 0x01
-			_('Eastern'),  # 0x39 remapped from 0x01
-			_('Drogen'),  # 0x3a remapped from 0x01
-			_('Drama'),  # 0x3b remapped from 0x01
-			_('Dokumentation'),  # 0x3c remapped from 0x01
-			_('Detektiv'),  # 0x3d remapped from 0x01
-			_('Dating'),  # 0x3e remapped from 0x01
-			_('Computer'),  # 0x3f remapped from 0x01
+			_("Familie"),  # 0x30 remapped from 0x01
+			_("Extremsport"),  # 0x31 remapped from 0x01
+			_("Event"),  # 0x32 remapped from 0x01
+			_("Essen"),  # 0x33 remapped from 0x01
+			_("Esoterik"),  # 0x34 remapped from 0x01
+			_("Erotik"),  # 0x35 remapped from 0x01
+			_("Epos"),  # 0x36 remapped from 0x01
+			_("Energie"),  # 0x37 remapped from 0x01
+			_("Einzelsportart"),  # 0x38 remapped from 0x01
+			_("Eastern"),  # 0x39 remapped from 0x01
+			_("Drogen"),  # 0x3a remapped from 0x01
+			_("Drama"),  # 0x3b remapped from 0x01
+			_("Dokumentation"),  # 0x3c remapped from 0x01
+			_("Detektiv"),  # 0x3d remapped from 0x01
+			_("Dating"),  # 0x3e remapped from 0x01
+			_("Computer"),  # 0x3f remapped from 0x01
 		),
 		# Sports
 		4: (
-			_('Sport'),  # 0x40
-			_('Comic'),  # 0x41 remapped from 0x01
-			_('Chronik'),  # 0x42 remapped from 0x01
-			_('Casting'),  # 0x43 remapped from 0x01
-			_('Call-in'),  # 0x44 remapped from 0x01
-			_('Boxen'),  # 0x45 remapped from 0x01
-			_('Boulevard'),  # 0x46 remapped from 0x01
-			_('Bollywood'),  # 0x47 remapped from 0x01
-			_('Biografie'),  # 0x48 remapped from 0x01
-			_('Bildung'),  # 0x49 remapped from 0x01
-			_('Beziehung'),  # 0x4a remapped from 0x01
-			_('Berufe'),  # 0x4b remapped from 0x01
-			_('Bericht'),  # 0x4c remapped from 0x01
-			_('B-Movie'),  # 0x4d remapped from 0x01
-			_('Automobil'),  # 0x4e remapped from 0x01
-			_('Arzt'),  # 0x4f remapped from 0x01
+			_("Sport"),  # 0x40
+			_("Comic"),  # 0x41 remapped from 0x01
+			_("Chronik"),  # 0x42 remapped from 0x01
+			_("Casting"),  # 0x43 remapped from 0x01
+			_("Call-in"),  # 0x44 remapped from 0x01
+			_("Boxen"),  # 0x45 remapped from 0x01
+			_("Boulevard"),  # 0x46 remapped from 0x01
+			_("Bollywood"),  # 0x47 remapped from 0x01
+			_("Biografie"),  # 0x48 remapped from 0x01
+			_("Bildung"),  # 0x49 remapped from 0x01
+			_("Beziehung"),  # 0x4a remapped from 0x01
+			_("Berufe"),  # 0x4b remapped from 0x01
+			_("Bericht"),  # 0x4c remapped from 0x01
+			_("B-Movie"),  # 0x4d remapped from 0x01
+			_("Automobil"),  # 0x4e remapped from 0x01
+			_("Arzt"),  # 0x4f remapped from 0x01
 		),
 		# Children/Youth
 		5: (
-			_('Architektur'),  # 0x50 remapped from 0x01
-			_('Anime'),  # 0x51 remapped from 0x01
-			_('American Sports'),  # 0x52 remapped from 0x01
-			_('Agenten'),  # 0x53 remapped from 0x01
-			_('Adel'),  # 0x54 remapped from 0x01
-			_('Animation'),  # 0x55
-			_('Action'),  # 0x56 remapped from 0x01
+			_("Architektur"),  # 0x50 remapped from 0x01
+			_("Anime"),  # 0x51 remapped from 0x01
+			_("American Sports"),  # 0x52 remapped from 0x01
+			_("Agenten"),  # 0x53 remapped from 0x01
+			_("Adel"),  # 0x54 remapped from 0x01
+			_("Animation"),  # 0x55
+			_("Action"),  # 0x56 remapped from 0x01
 		),
 		# Social/Political/Economics
 		8: (
-			_('Unused 0x80'),  # 0x80
-			_('Current Affairs'),  # 0x81
+			_("Unused 0x80"),  # 0x80
+			_("Current Affairs"),  # 0x81
 		),
 		# Special
 		11: (
-			_('Special'),  # 0xb0
+			_("Special"),  # 0xb0
 		),
 		# Comedy
 		12: (
-			_('Comedy'),  # 0xc0
-			_('Show'),  # 0xc1 remapped from 0x01
-			_('Serie'),  # 0xc2 remapped from 0x01
-			_('Science-Fiction'),  # 0xc3 remapped from 0x01
-			_('Satire'),  # 0xc4 remapped from 0x01
-			_('Saga'),  # 0xc5 remapped from 0x01
-			_('Romantik'),  # 0xc6 remapped from 0x01
-			_('Revue'),  # 0xc7 remapped from 0x01
-			_('Reportage'),  # 0xc8 remapped from 0x01
-			_('Religion'),  # 0xc9 remapped from 0x01
-			_('Reiten'),  # 0xca remapped from 0x01
-			_('Reisen'),  # 0xcb remapped from 0x01
-			_('Regional'),  # 0xcc remapped from 0x01
-			_('Reality'),  # 0xcd remapped from 0x01
-			_('Radsport'),  # 0xce remapped from 0x01
-			_('Quiz'),  # 0xcf remapped from 0x01
+			_("Comedy"),  # 0xc0
+			_("Show"),  # 0xc1 remapped from 0x01
+			_("Serie"),  # 0xc2 remapped from 0x01
+			_("Science-Fiction"),  # 0xc3 remapped from 0x01
+			_("Satire"),  # 0xc4 remapped from 0x01
+			_("Saga"),  # 0xc5 remapped from 0x01
+			_("Romantik"),  # 0xc6 remapped from 0x01
+			_("Revue"),  # 0xc7 remapped from 0x01
+			_("Reportage"),  # 0xc8 remapped from 0x01
+			_("Religion"),  # 0xc9 remapped from 0x01
+			_("Reiten"),  # 0xca remapped from 0x01
+			_("Reisen"),  # 0xcb remapped from 0x01
+			_("Regional"),  # 0xcc remapped from 0x01
+			_("Reality"),  # 0xcd remapped from 0x01
+			_("Radsport"),  # 0xce remapped from 0x01
+			_("Quiz"),  # 0xcf remapped from 0x01
 		),
 		# Drama
 		13: (
-			_('Drama'),  # 0xd0
-			_('Puppentrick'),  # 0xd1 remapped from 0x01
-			_('Psychologie'),  # 0xd2 remapped from 0x01
-			_('Prominent'),  # 0xd3 remapped from 0x01
-			_('Portr\xc3\xa4t'),  # 0xd4 remapped from 0x01
-			_('Politik'),  # 0xd5 remapped from 0x01
-			_('Poker'),  # 0xd6 remapped from 0x01
-			_('Parodie'),  # 0xd7 remapped from 0x01
-			_('Parabel'),  # 0xd8 remapped from 0x01
-			_('Outdoor'),  # 0xd9 remapped from 0x01
-			_('Olympia'),  # 0xda remapped from 0x01
-			_('Neue Medien'),  # 0xdb remapped from 0x01
-			_('Natur'),  # 0xdc remapped from 0x01
-			_('National'),  # 0xdd remapped from 0x01
-			_('Nachrichten'),  # 0xde remapped from 0x01
-			_('M\xc3\xa4rchen'),  # 0xdf remapped from 0x01
+			_("Drama"),  # 0xd0
+			_("Puppentrick"),  # 0xd1 remapped from 0x01
+			_("Psychologie"),  # 0xd2 remapped from 0x01
+			_("Prominent"),  # 0xd3 remapped from 0x01
+			_("Portr\xc3\xa4t"),  # 0xd4 remapped from 0x01
+			_("Politik"),  # 0xd5 remapped from 0x01
+			_("Poker"),  # 0xd6 remapped from 0x01
+			_("Parodie"),  # 0xd7 remapped from 0x01
+			_("Parabel"),  # 0xd8 remapped from 0x01
+			_("Outdoor"),  # 0xd9 remapped from 0x01
+			_("Olympia"),  # 0xda remapped from 0x01
+			_("Neue Medien"),  # 0xdb remapped from 0x01
+			_("Natur"),  # 0xdc remapped from 0x01
+			_("National"),  # 0xdd remapped from 0x01
+			_("Nachrichten"),  # 0xde remapped from 0x01
+			_("M\xc3\xa4rchen"),  # 0xdf remapped from 0x01
 		),
 		# Documentary
 		14: (
-			_('Documentary'),  # 0xe0
-			_('Mystery'),  # 0xe1 remapped from 0x01
-			_('Musik'),  # 0xe2 remapped from 0x01
-			_('Musical'),  # 0xe3 remapped from 0x01
-			_('Motorsport'),  # 0xe4 remapped from 0x01
-			_('Mode'),  # 0xe5 remapped from 0x01
-			_('Medien'),  # 0xe6 remapped from 0x01
-			_('Mannschaftssport'),  # 0xe7 remapped from 0x01
-			_('Magazin'),  # 0xe8 remapped from 0x01
-			_('Literaturverfilmung'),  # 0xe9 remapped from 0x01
-			_('Literatur'),  # 0xea remapped from 0x01
-			_('Lifestyle'),  # 0xeb remapped from 0x01
-			_('Leichtathletik'),  # 0xec remapped from 0x01
-			_('Late Night'),  # 0xed remapped from 0x01
-			_('Landestypisch'),  # 0xee remapped from 0x01
-			_('Kurzfilm'),  # 0xef remapped from 0x01
+			_("Documentary"),  # 0xe0
+			_("Mystery"),  # 0xe1 remapped from 0x01
+			_("Musik"),  # 0xe2 remapped from 0x01
+			_("Musical"),  # 0xe3 remapped from 0x01
+			_("Motorsport"),  # 0xe4 remapped from 0x01
+			_("Mode"),  # 0xe5 remapped from 0x01
+			_("Medien"),  # 0xe6 remapped from 0x01
+			_("Mannschaftssport"),  # 0xe7 remapped from 0x01
+			_("Magazin"),  # 0xe8 remapped from 0x01
+			_("Literaturverfilmung"),  # 0xe9 remapped from 0x01
+			_("Literatur"),  # 0xea remapped from 0x01
+			_("Lifestyle"),  # 0xeb remapped from 0x01
+			_("Leichtathletik"),  # 0xec remapped from 0x01
+			_("Late Night"),  # 0xed remapped from 0x01
+			_("Landestypisch"),  # 0xee remapped from 0x01
+			_("Kurzfilm"),  # 0xef remapped from 0x01
 		),
 		# Real Life
 		15: (
-			_('Verkehr'),  # 0xf0 remapped from 0x01
-			_('Unterhaltung'),  # 0xf1 remapped from 0x01
-			_('Umweltbewusstsein'),  # 0xf2 remapped from 0x01
-			_('Trag\xc3\xb6die'),  # 0xf3 remapped from 0x01
-			_('Tiere'),  # 0xf4 remapped from 0x01
-			_('Thriller'),  # 0xf5 remapped from 0x01
-			_('Theater'),  # 0xf6 remapped from 0x01
-			_('Technik'),  # 0xf7 remapped from 0x01
-			_('Tanz'),  # 0xf8 remapped from 0x01
-			_('Talk'),  # 0xf9 remapped from 0x01
-			_('Stumm'),  # 0xfa remapped from 0x01
-			_('Sprache'),  # 0xfb remapped from 0x01
-			_('Spielfilm'),  # 0xfc remapped from 0x01
-			_('Spiele'),  # 0xfd remapped from 0x01
-			_('Soap'),  # 0xfe remapped from 0x01
-			_('Slapstick'),  # 0xff remapped from 0x01
+			_("Verkehr"),  # 0xf0 remapped from 0x01
+			_("Unterhaltung"),  # 0xf1 remapped from 0x01
+			_("Umweltbewusstsein"),  # 0xf2 remapped from 0x01
+			_("Trag\xc3\xb6die"),  # 0xf3 remapped from 0x01
+			_("Tiere"),  # 0xf4 remapped from 0x01
+			_("Thriller"),  # 0xf5 remapped from 0x01
+			_("Theater"),  # 0xf6 remapped from 0x01
+			_("Technik"),  # 0xf7 remapped from 0x01
+			_("Tanz"),  # 0xf8 remapped from 0x01
+			_("Talk"),  # 0xf9 remapped from 0x01
+			_("Stumm"),  # 0xfa remapped from 0x01
+			_("Sprache"),  # 0xfb remapped from 0x01
+			_("Spielfilm"),  # 0xfc remapped from 0x01
+			_("Spiele"),  # 0xfd remapped from 0x01
+			_("Soap"),  # 0xfe remapped from 0x01
+			_("Slapstick"),  # 0xff remapped from 0x01
 		),
 	}
 

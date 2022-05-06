@@ -88,10 +88,10 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.sort_mode = False
 		self.selected_plugin = None
 
-		self["key_red"] = self["red"] = Label(_("Remove plugins"))
-		self["key_green"] = self["green"] = Label(_("Download plugins"))
-		self["key_yellow"] = self["yellow"] = Label("")
-		self["key_blue"] = self["blue"] = Label("")
+		self["key_red"] = StaticText(_("Remove Plugins"))
+		self["key_green"] = StaticText(_("Download Plugins"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -167,17 +167,14 @@ class PluginBrowser(Screen, ProtectedScreen):
 			desc = p.description
 			if self.sort_mode:
 				if config.usage.plugin_sort_weight.getConfigValue(name.lower(), "hidden"):
-					self["key_yellow"].setText(_("show"))
-					self["yellow"].setText(_("show"))
+					self["key_yellow"].setText(_("Show"))
 				else:
-					self["key_yellow"].setText(_("hide"))
-					self["yellow"].setText(_("hide"))
+					self["key_yellow"].setText(_("Hide"))
 		else:
 			name = "-"
 			desc = ""
 			if self.sort_mode:
 				self["key_yellow"].setText("")
-				self["yellow"].setText("")
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 
@@ -232,12 +229,10 @@ class PluginBrowser(Screen, ProtectedScreen):
 			hidden = config.usage.plugin_sort_weight.getConfigValue(plugin.name.lower(), "hidden") or 0
 			if hidden:
 				config.usage.plugin_sort_weight.removeConfigValue(plugin.name.lower(), "hidden")
-				self["key_yellow"].setText(_("hide"))
-				self["yellow"].setText(_("hide"))
+				self["key_yellow"].setText(_("Hide"))
 			else:
 				config.usage.plugin_sort_weight.changeConfigValue(plugin.name.lower(), "hidden", 1)
-				self["key_yellow"].setText(_("show"))
-				self["yellow"].setText(_("show"))
+				self["key_yellow"].setText(_("Show"))
 
 	def keyBlue(self):
 		if config.usage.plugins_sort_mode.value == "user":
@@ -279,11 +274,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 					break
 				idx += 1
 			if self.selected_plugin is not None:
-				self["key_green"].setText(_("Move mode off"))
-				self["green"].setText(_("Move mode off"))
+				self["key_green"].setText(_("Move Mode Off"))
 			else:
-				self["key_green"].setText(_("Move mode on"))
-				self["green"].setText(_("Move mode on"))
+				self["key_green"].setText(_("Move Mode On"))
 			self["list"].l.setList(self.list)
 		elif len(self.list):
 			self.save()
@@ -329,35 +322,25 @@ class PluginBrowser(Screen, ProtectedScreen):
 			self.list.sort(key=lambda listweight: listweight[0].listweight)
 		self["list"].l.setList(self.list)
 		if self.sort_mode:
-			self["key_blue"].setText(_("Edit mode off"))
-			self["blue"].setText(_("Edit mode off"))
-			self["key_green"].setText(_("Move mode off"))
-			self["green"].setText(_("Move mode off"))
+			self["key_blue"].setText(_("Edit Mode Off"))
+			self["key_green"].setText(_("Move Mode Off"))
 			self["key_red"].setText("")
-			self["red"].setText("")
 			self["SoftwareActions"].setEnabled(True)
 			self["PluginDownloadActions"].setEnabled(False)
 			if self.selected_plugin:
-				self["key_green"].setText(_("Move mode off"))
-				self["green"].setText(_("Move mode off"))
+				self["key_green"].setText(_("Move Mode Off"))
 			else:
-				self["key_green"].setText(_("Move mode on"))
-				self["green"].setText(_("Move mode on"))
+				self["key_green"].setText(_("Move Mode On"))
 		else:
 			if config.usage.plugins_sort_mode.value == "user":
-				self["key_blue"].setText(_("Edit mode on"))
-				self["blue"].setText(_("Edit mode on"))
+				self["key_blue"].setText(_("Edit Mode On"))
 			else:
 				self["key_blue"].setText("")
-				self["blue"].setText("")
 			self["SoftwareActions"].setEnabled(False)
 			self["PluginDownloadActions"].setEnabled(True)
 			self["key_yellow"].setText("")
-			self["yellow"].setText("")
-			self["key_red"].setText(_("Remove plugins"))
-			self["red"].setText(_("Remove plugins"))
-			self["key_green"].setText(_("Download plugins"))
-			self["green"].setText(_("Download plugins"))
+			self["key_red"].setText(_("Remove Plugins"))
+			self["key_green"].setText(_("Download Plugins"))
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
@@ -390,7 +373,7 @@ class PluginDownloadBrowser(Screen):
 
 	def __init__(self, session, type=0, needupdate=True):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Download plugins"))
+		Screen.setTitle(self, _("Download Plugins"))
 
 		self.type = type
 		self.needupdate = needupdate
@@ -502,10 +485,10 @@ class PluginDownloadBrowser(Screen):
 		else:
 			if self.type == self.DOWNLOAD:
 				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
-				mbox.setTitle(_("Download plugins"))
+				mbox.setTitle(_("Download Plugins"))
 			elif self.type == self.REMOVE:
 				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
-				mbox.setTitle(_("Remove plugins"))
+				mbox.setTitle(_("Remove Plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -609,9 +592,9 @@ class PluginDownloadBrowser(Screen):
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
-			self.setTitle(_("Install plugins"))
+			self.setTitle(_("Install Plugins"))
 		elif self.type == self.REMOVE:
-			self.setTitle(_("Remove plugins"))
+			self.setTitle(_("Remove Plugins"))
 
 	def startOpkg(self, command):
 		extra = []
@@ -686,12 +669,12 @@ class PluginDownloadBrowser(Screen):
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
-					self["text"].setText(_("Sorry feeds are down for maintenance"))
+					self["text"].setText(_("Sorry feeds are down for maintenance."))
 
 	def dataAvail(self, str):
 		str = six.ensure_str(str)
 		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
-			self["text"].setText(_("Sorry feeds are down for maintenance"))
+			self["text"].setText(_("Sorry feeds are down for maintenance."))
 			self.run = 3
 			return
 		#prepend any remaining data from the previous call

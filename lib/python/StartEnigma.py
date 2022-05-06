@@ -289,8 +289,8 @@ class PowerKey:
 			self.session.open(Screens.Standby.Standby)
 
 	def openSleepTimer(self):
-		from Screens.SleepTimerEdit import SleepTimerEdit
-		self.session.open(SleepTimerEdit)
+		from Screens.SleepTimer import SleepTimerButton
+		self.session.open(SleepTimerButton)
 
 	def setSleepTimer(self, val):
 		from PowerTimer import PowerTimerEntry
@@ -419,6 +419,9 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
+	profile("Init:VolumeAdjust")
+	import Screens.VolumeAdjust
+	Screens.VolumeAdjust.autostart(session)
 	profile("RunReactor")
 	profile_final()
 	if boxtype in ("sf8", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo"):

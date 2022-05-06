@@ -146,6 +146,7 @@ private:
 	int m_timeoutCount; // needed for timeout
 	int m_retryCount; // diseqc retry for rotor
 	int m_configRetuneNoPatEntry;
+	int m_debuglevel;
 
 	void feEvent(int);
 	void timeout();

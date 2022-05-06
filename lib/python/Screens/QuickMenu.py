@@ -215,8 +215,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings", _("Display Setup"), _("Setup your display")))
 		if BoxInfo.getItem("LCDSKINSetup"):
-			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup", _("Select LCD Skin"), _("Setup your LCD")))
-		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup", _("Select Enigma2 Skin"), _("Setup your Skin")))
+			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Settings", _("Select Enigma2 Skin"), _("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG Settings", _("EPG Setup"), _("Setup your EPG config")))
@@ -266,9 +266,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("SoftCam"): # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Settings", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 			if BoxInfo.getItem("ShowOscamInfo"): # show only when oscam or ncam is active
-				self.sublist.append(QuickSubMenuEntryComponent("OScamInfo", _("Show OScam Info"), _("Show the OScamInfo Screen")))
+				self.sublist.append(QuickSubMenuEntryComponent("OScam Information", _("Show OScam Info"), _("Show the OScamInfo Screen")))
 			if BoxInfo.getItem("ShowCCCamInfo"): # show only when CCcam is active
-				self.sublist.append(QuickSubMenuEntryComponent("CCcam Info", _("Show CCcam Info"), _("Show the CCcam Info Screen")))
+				self.sublist.append(QuickSubMenuEntryComponent("CCcam Information", _("Show CCcam Info"), _("Show the CCcam Info Screen")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -429,9 +429,9 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openSetup("RemoteButton")
 		elif item[0] == _("Display Settings"):
 			self.openSetup("Display")
-		elif item[0] == _("LCD Skin Setup"):
+		elif item[0] == _("LCD Skin Settings"):
 			self.session.open(LcdSkinSelector)
-		elif item[0] == _("Skin Setup"):
+		elif item[0] == _("Skin Settings"):
 			self.session.open(SkinSelector)
 		elif item[0] == _("OSD Settings"):
 			self.openSetup("UserInterface")
@@ -455,7 +455,7 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Select Softcam Menu ##############################
 		elif item[0] == _("Softcam Settings"):
 			self.session.open(SoftcamSetup)
-		elif item[0] == _("OScamInfo"):
+		elif item[0] == _("OScam Information"):
 			self.session.open(OscamInfoMenu)
 		elif item[0] == _("CCcam Info"):
 			self.session.open(CCcamInfoMain)

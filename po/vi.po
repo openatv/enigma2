@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1350,6 +1350,14 @@ msgid "%s additional screens"
 msgstr "%s màn hình bổ sung"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -1477,9 +1485,6 @@ msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt
 
 msgid "* current animation"
 msgstr "* hoạt hình hiện tại"
-
-msgid "+/-"
-msgstr "+/-"
 
 msgid "+24"
 msgstr "+24"
@@ -2046,7 +2051,7 @@ msgstr "<Vị trí phim mặc định>"
 msgid "<Last timer location>"
 msgstr "<Vị trí hẹn giờ cuối>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<không rõ>"
 
 msgid "?"
@@ -2057,16 +2062,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Ghi âm, RecordTimer hoặc PowerTimer đang chạy hoặc bắt đầu sau 15 phút.\n"
-"Kéo dài thời gian ngủ 30 phút. % s% s của bạn\n"
-"sẽ tắt sau sự kiện Ghi hoặc Powertimer. Nhận trong chế độ chờ ngay bây giờ?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
@@ -2152,6 +2147,13 @@ msgstr "Một bản ghi hiện đang chạy. Hãy dừng ghi âm trước khi th
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Một bản ghi hiện đang chạy. Vui lòng dừng ghi âm trước khi thử khởi động satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Một bộ đếm thời gian lặp lại hoặc chỉ một lần?"
 
@@ -2181,27 +2183,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Đồng hồ ngủ muốn đặt%s%s của bạn ở chế độ chờ.\n"
-"Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Hẹn giờ ngủ muốn tắt\n"
 "%s%s của bạn. Tắt máy bây giờ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Đồng hồ ngủ muốn tắt%s%s của bạn.\n"
-"Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Một tổng quan nhỏ về các trạng thái và hành động biểu tượng có sẵn."
@@ -2251,9 +2237,6 @@ msgstr "AC3 kết hợp"
 
 msgid "AC3 plus transcoding"
 msgstr "AC3 cộng với chuyển mã"
-
-msgid "AC3/Dolby offset"
-msgstr "Độ lệch AC3 / Dolby"
 
 msgid "AC3plus transcoding"
 msgstr "Chuyển mã AC3plus"
@@ -2314,6 +2297,12 @@ msgstr "Hủy bỏ cập nhật"
 
 msgid "About"
 msgstr "Thông tin phần mền"
+
+msgid "About openATV"
+msgstr ""
+
+msgid "About to start"
+msgstr "về để bắt đầu"
 
 msgid "About..."
 msgstr "Thông tin phần mền..."
@@ -2413,9 +2402,6 @@ msgstr "Thêm mục nhập kênh Quad mới"
 msgid "Add Record Timer"
 msgstr "Thêm bộ đếm thời gian"
 
-msgid "Add Service"
-msgstr "thêm dịch vụ"
-
 msgid "Add Timer"
 msgstr "Thêm thời gian"
 
@@ -2442,6 +2428,9 @@ msgstr "Thêm bộ đếm thời gian"
 
 msgid "Add a record timer for current event"
 msgstr "Thêm một bộ đếm thời gian cho sự kiện hiện tại"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
@@ -2499,6 +2488,9 @@ msgstr "Thêm thư mục đã chọn vào bookmark"
 
 msgid "Add service"
 msgstr "Thêm dịch vụ"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Thêm bộ đếm thời gian"
@@ -2771,9 +2763,6 @@ msgstr "Ưu tiên dịch vụ thay thế tuner"
 
 msgid "Always ask"
 msgstr "Luôn luôn hỏi"
-
-msgid "Always hide infobar"
-msgstr "Luôn ẩn infobar"
 
 msgid "Always include ECM in recordings"
 msgstr "Luôn bao gồm ECM trong bản ghi"
@@ -3055,6 +3044,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Cuối cùng:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -3807,7 +3799,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID: SrvID"
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr ""
 
 msgid "CCcam Client Info"
@@ -3870,6 +3862,10 @@ msgstr "THAY ĐỔI GÓI KÊNH"
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "Kênh 1"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Cài đặt CI (Giao diện chung)"
@@ -4116,13 +4112,14 @@ msgstr "Hủy lưu timeshift như phim"
 msgid "Cancel selection"
 msgstr "Chọn kênh"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Chọn kênh"
+msgid "Cancel the service selection"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Chọn kênh"
+msgid "Cancel the slot selection and exit"
+msgstr ""
+
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4212,9 +4209,6 @@ msgstr "Chad"
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change"
-msgstr "thay đổi"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Thay đổi Boxmode để kiểm soát Chế độ Chip Phần cứng *"
 
@@ -4227,9 +4221,6 @@ msgstr "Thay đổi pin"
 
 msgid "Change Timer"
 msgstr "Thay đổi bộ đếm thời gian"
-
-msgid "Change Volume offset"
-msgstr "Thay đổi âm lượng bù"
 
 msgid "Change bouquets in quickzap"
 msgstr "Thay đổi bó hoa trong quickzap"
@@ -4274,9 +4265,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kênh"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kênh Âm lượng"
 
 msgid "Channel +/- button mode"
 msgstr "Chế độ nút +/-kênh"
@@ -4940,8 +4928,11 @@ msgstr "Định cấu hình độ phân giải màn hình và phông chữ đư�
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Cấu hình thời lượng tính bằng phút cho bộ đếm thời gian ngủ."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Định cấu hình tọa độ kết thúc theo x của vùng hiển thị teletext."
@@ -5309,21 +5300,6 @@ msgstr "Quần đảo Cook"
 msgid "Cooking"
 msgstr "nấu ăn"
 
-msgid "Cool Channel Guide"
-msgstr "Hướng dẫn chương trình điện tử"
-
-msgid "Cool Easy Guide"
-msgstr "Hướng dẫn dễ dàng"
-
-msgid "Cool Info Guide"
-msgstr "Hướng dẫn thông tin"
-
-msgid "Cool Single Guide"
-msgstr "Hướng dẫn đơn"
-
-msgid "Cool TV Guide"
-msgstr "Hướng dẫn truyền hình"
-
 msgid "Copy"
 msgstr "Sao chép"
 
@@ -5484,8 +5460,8 @@ msgstr "Tiếng Croatia"
 msgid "Cron Manager"
 msgstr "Quản lý cron"
 
-msgid "CronTimers"
-msgstr "CronTimers"
+msgid "Cron Timers"
+msgstr "Cron Timers"
 
 msgid "Cuba"
 msgstr "Cuba"
@@ -5545,6 +5521,9 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Phiên bản hiện tại:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Tập quán"
@@ -5901,6 +5880,9 @@ msgstr "Mặc định 'Kiểu hẹn giờ' *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Ưu tiên CPU mặc định (đẹp) cho các tập lệnh được thực thi. Điều này có thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá trị cao hơn = mức độ ưu tiên thấp hơn)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr ""
+
 msgid "Default Folder"
 msgstr "Thư mục mặc định"
 
@@ -5948,6 +5930,9 @@ msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía b�
 
 msgid "Default sorting method for files on the right side."
 msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên phải."
+
+msgid "Default volume offset"
+msgstr ""
 
 #, python-format
 msgid "Default: '%s'."
@@ -6063,6 +6048,9 @@ msgstr "Xóa xác nhận"
 msgid "Delete EPG"
 msgstr "Xóa EPG"
 
+msgid "Delete Image"
+msgstr "Xóa hình ảnh"
+
 msgid "Delete Language"
 msgstr "Xóa ngôn ngữ"
 
@@ -6111,13 +6099,10 @@ msgstr "Xóa tập tin hoặc thư mục (và tất cả nội dung của nó)"
 msgid "Delete folder"
 msgstr "Xóa thư mục"
 
-msgid "Delete image"
-msgstr "Xóa hình ảnh"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6138,6 +6123,9 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Xóa bộ đệm timeshift hiện tại và khởi động lại timeshift"
 
 msgid "Delete the currently displayed log file"
+msgstr ""
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6391,6 +6379,9 @@ msgstr "Dung lượng đĩa để dự trữ cho bản ghi (tính bằng GB)"
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "không tìm thấy!"
+
+msgid "Display"
+msgstr "trưng bày"
 
 msgid "Display 16:9 content as"
 msgstr "Hiển thị hình ảnh chuẩn 16: 9"
@@ -6743,7 +6734,7 @@ msgstr "Đừng tiết kiệm"
 msgid "Don't show default"
 msgstr "Sắp xếp theo mặc định"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Đừng dừng sự kiện hiện tại mà vô hiệu hóa các sự kiện sắp tới"
 
 msgid ""
@@ -6820,15 +6811,15 @@ msgstr "DVD dữ liệu định dạng Dreambox (sẽ không hoạt động tron
 msgid "Driver and kernel information"
 msgstr ""
 
+msgid "Drivers"
+msgstr "lái xe"
+
 msgid "Drivers version"
 msgstr ""
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Trình điều khiển:%s"
-
-msgid "Drives"
-msgstr ""
 
 msgid "Drives Information"
 msgstr ""
@@ -7002,6 +6993,15 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Chỉnh sửa"
 
+msgid "Edit Mode Off"
+msgstr "Chỉnh sửa chế độ tắt"
+
+msgid "Edit Mode On"
+msgstr "Chỉnh sửa chế độ trên"
+
+msgid "Edit New Entry"
+msgstr "Chỉnh sửa mục mới"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Chỉnh sửa mục nhập kênh Quad"
 
@@ -7022,15 +7022,6 @@ msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 
 msgid "Edit line "
 msgstr "Chỉnh sửa dòng "
-
-msgid "Edit mode off"
-msgstr "Chỉnh sửa chế độ tắt"
-
-msgid "Edit mode on"
-msgstr "Chỉnh sửa chế độ trên"
-
-msgid "Edit new entry"
-msgstr "Chỉnh sửa mục mới"
 
 msgid "Edit position is the line end"
 msgstr "Chỉnh sửa vị trí là cuối dòng"
@@ -7106,9 +7097,6 @@ msgstr "Kích hoạt%s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Kích hoạt 5V cho ăng ten hoạt động"
 
-msgid "Enable AC3/Dolby"
-msgstr "Kích hoạt AC3 / Dolby"
-
 msgid "Enable BT Audio"
 msgstr "Kích hoạt âm thanh BT"
 
@@ -7117,6 +7105,9 @@ msgstr "Kích hoạt CIHelper cho SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Kích hoạt CIHelper cho SLOT CI1"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Kích hoạt EIT EPG"
@@ -7316,6 +7307,31 @@ msgid "End time"
 msgstr "Thời gian kết thúc"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7721,12 +7737,6 @@ msgstr "Vượt quá Bludisc vừa!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Vượt quá hai lớp vừa!"
-
-msgid "Execute after current event"
-msgstr "Thực hiện sau sự kiện hiện tại"
-
-msgid "Execute in "
-msgstr "Thực hiện trong "
 
 msgid "Execution condition"
 msgstr "Điều kiện thực hiện"
@@ -8832,7 +8842,7 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr "Cài đặt ghi HDMI-IN"
 
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "Cài đặt ghi HDMI-IN"
 
 msgid "HDMIin"
@@ -8977,6 +8987,12 @@ msgstr "Ẩn / Trống"
 msgid "Hidden network"
 msgstr "Mạng ẩn"
 
+msgid "Hide"
+msgstr "ẩn giấu"
+
+msgid "Hide InfoBar"
+msgstr "Luôn ẩn infobar"
+
 msgid "Hide VBI line for this service"
 msgstr "Ẩn dòng VBI cho dịch vụ này"
 
@@ -9116,7 +9132,7 @@ msgstr "Hotbird 13.0e"
 msgid "Hotkey"
 msgstr "Phím nóng"
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
 
 msgid "Hotkey Setup for"
@@ -9652,6 +9668,9 @@ msgstr "Đầu vào "
 msgid "Input Device Settings"
 msgstr ""
 
+msgid "Input Devices Settings"
+msgstr "Thiết bị đầu vào"
+
 msgid "Input Stream ID"
 msgstr "ID luồng đầu vào"
 
@@ -9660,9 +9679,6 @@ msgstr "Tên kênh đầu vào."
 
 msgid "Input config file name:"
 msgstr "Tên tập tin cấu hình đầu vào:"
-
-msgid "Input devices"
-msgstr "Thiết bị đầu vào"
 
 msgid "Input scroll position"
 msgstr ""
@@ -10040,6 +10056,9 @@ msgstr "Giữ MovieList mở trong khi phát tệp âm thanh."
 msgid "Kenya"
 msgstr "Nước Kenya"
 
+msgid "Kernel Modules"
+msgstr "mô-đun hạt nhân"
+
 msgid "Kernel file"
 msgstr ""
 
@@ -10169,7 +10188,7 @@ msgstr "Kết nối mạng nội bộ"
 msgid "LAN long"
 msgstr "LAN dài"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "Thiết lập da LCD"
 
 msgid "LCD SkinSelector"
@@ -10483,10 +10502,10 @@ msgstr "Tải các tập tin người dùng không liên kết"
 msgid "Load/Save/Delete"
 msgstr "Tải / lưu / xóa"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -10659,6 +10678,9 @@ msgstr "Tiếng Luxembourg"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Tiếng Luxembourg"
 
+msgid "M2k"
+msgstr "M2k"
+
 msgid "MAC"
 msgstr "MAC"
 
@@ -10724,9 +10746,6 @@ msgid "Magic long"
 msgstr "Truyền thông"
 
 msgid "Main Menu"
-msgstr "Menu chính"
-
-msgid "Mainmenu"
 msgstr "Menu chính"
 
 msgid "Maintain old EPG data for"
@@ -10909,6 +10928,9 @@ msgstr "Trung tâm Truyền thông"
 
 msgid "Media Player"
 msgstr "Phương tiện truyền thông"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Cổng thông tin truyền thông"
@@ -11202,6 +11224,12 @@ msgstr "Di chuyển 1 yếu tố"
 msgid "Move Left/Right"
 msgstr "Di chuyển sang trái / phải"
 
+msgid "Move Mode Off"
+msgstr "Di chuyển chế độ tắt"
+
+msgid "Move Mode On"
+msgstr "Chế độ di chuyển trên"
+
 msgid "Move PIP"
 msgstr "Di chuyển PIP"
 
@@ -11263,12 +11291,6 @@ msgstr "Di chuyển tệp / thư mục vào thư mục đích"
 
 msgid "Move folder"
 msgstr "Di chuyển thư mục"
-
-msgid "Move mode off"
-msgstr "Di chuyển chế độ tắt"
-
-msgid "Move mode on"
-msgstr "Chế độ di chuyển trên"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11423,22 +11445,16 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Đa EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Trình quản lý đa khởi động"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11906,9 +11922,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Không có tính toán băm được cấu hình"
 
-msgid "No images found"
-msgstr "Không tìm thấy hình ảnh"
-
 msgid "No matching place names found"
 msgstr "Không tìm thấy tên địa điểm phù hợp"
 
@@ -11941,6 +11954,9 @@ msgstr "Không dịch vụ"
 
 msgid "No services/providers selected"
 msgstr "Không có dịch vụ / nhà cung cấp nào được chọn"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Không có chế độ chờ"
@@ -12238,7 +12254,7 @@ msgstr "Cài đặt OSD 3D"
 msgid "OSD Adjustment"
 msgstr "Điều chỉnh OSD"
 
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "Vị trí OSD"
 
 msgid "OSD Settings"
@@ -12253,11 +12269,11 @@ msgstr "Yêu cầu tên OSD"
 msgid "OScam Info"
 msgstr "Thông tin OScam"
 
+msgid "OScam Information"
+msgstr "Thông tin OScam"
+
 msgid "OScam webif disabled"
 msgstr "oscam webif bị vô hiệu hóa"
-
-msgid "OScamInfo"
-msgstr "Thông tin OScam"
 
 msgid "OTT Model"
 msgstr ""
@@ -12276,9 +12292,6 @@ msgstr "Độ trễ giải mã ngoại tuyến (ms)"
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Ok"
-msgstr "Đồng ý"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Các tệp cũ hơn trong thư mục timeshift được xóa trên mỗi thay đổi sự kiện."
@@ -12432,6 +12445,9 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr "Mở AutoTimer"
 
+msgid "OpenPLi"
+msgstr "OpenPLi"
+
 msgid "OpenSSL version"
 msgstr ""
 
@@ -12440,6 +12456,9 @@ msgstr "OpenVPN"
 
 msgid "OpenVPN Settings"
 msgstr "Cài đặt OpenVPN"
+
+msgid "OpenViX"
+msgstr "OpenViX"
 
 msgid "OpenVpn Log"
 msgstr "Nhật ký OpenVpn"
@@ -12864,6 +12883,9 @@ msgstr "Tên dịch vụ và Picon"
 
 msgid "Picon width"
 msgstr "Chiều rộng Picon"
+
+msgid "Picons"
+msgstr "Picons"
 
 msgid "Picture in EPG"
 msgstr "Hình ảnh trong EPG"
@@ -13455,6 +13477,9 @@ msgstr "Trạng thái LED nguồn trong chế độ chờ."
 msgid "Power On Display"
 msgstr "Năng lượng hiển thị"
 
+msgid "Power Timers"
+msgstr "Bộ đếm thời gian"
+
 msgid "Power long"
 msgstr "Sức mạnh lâu"
 
@@ -13484,12 +13509,6 @@ msgstr "Tổng quan về PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Chế độ chờ PowerTimer"
-
-msgid "PowerTimer list"
-msgstr "Danh sách PowerTimer"
-
-msgid "PowerTimers"
-msgstr "Bộ đếm thời gian"
 
 msgid "Predefined"
 msgstr "Được xác định trước"
@@ -13620,11 +13639,8 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "nhấn nút menu để đặt bù AC3 / Dolby chung"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Nhấn nút này để mô phỏng nhấn lâu vào nút được nhấn sau đó (thao tác này cũng ghi đè mọi hành động khác được gán cho nút mô phỏng)."
@@ -14550,6 +14566,9 @@ msgstr "Nói lại"
 msgid "Repeat Display Message"
 msgstr "Lặp lại tin nhắn hiển thị"
 
+msgid "Repeat playlist"
+msgstr "phát lại danh sách"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Lặp lại các lệnh chờ và đã gửi"
 
@@ -14559,7 +14578,7 @@ msgstr "Lặp lại các lệnh chờ?"
 msgid "Repeat type"
 msgstr "Lặp lại kiểu"
 
-msgid "Repeating event currently recording... What do you want to do?"
+msgid "Repeating event currently recording. What do you want to do?"
 msgstr "Lặp lại sự kiện hiện đang ghi ... Bạn muốn làm gì?"
 
 msgid "Repeats"
@@ -14705,7 +14724,7 @@ msgstr "Khôi phục cài đặt từ bản sao lưu"
 msgid "Restore system settings"
 msgstr "Khôi phục cài đặt hệ thống"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15098,11 +15117,17 @@ msgstr "Lưu và ghi lại"
 msgid "Save and stop"
 msgstr "Lưu và dừng lại"
 
+msgid "Save directory on EXIT"
+msgstr "lưu thư mục cuối cùng khi thoát"
+
 msgid "Save every (in hours)"
 msgstr "Tiết kiệm mỗi (tính theo giờ)"
 
 msgid "Save left folder on exit"
 msgstr "Lưu thư mục bên trái khi thoát"
+
+msgid "Save playlist on EXIT"
+msgstr "lưu danh sách phát khi thoát"
 
 msgid "Save playlist"
 msgstr "Lưu danh sách phát"
@@ -15309,6 +15334,9 @@ msgstr "DNS phụ"
 msgid "Secondinfobar:"
 msgstr "Nhiễm trùng thứ hai:"
 
+msgid "Security"
+msgstr "bảo vệ"
+
 msgid "Seek"
 msgstr "Tìm kiếm"
 
@@ -15357,6 +15385,9 @@ msgstr "Chọn '1.0' cho các công tắc được cam kết tiêu chuẩn, '1.1
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Chọn 'A' hoặc 'B' nếu hệ thống trên không của bạn yêu cầu điều này, nếu không thì chọn 'không'. Nếu bạn không chắc chắn, hãy chọn 'không'."
+
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
@@ -15512,9 +15543,6 @@ msgstr "Chọn kênh audio"
 msgid "Select channel to record from"
 msgstr "Chọn kênh để ghi từ"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "chọn kênh để thêm phần bù vào Âm lượng"
-
 msgid "Select commit log"
 msgstr ""
 
@@ -15639,10 +15667,13 @@ msgstr ""
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
+msgid "Select the currently highlighted service"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Chọn chức năng mong muốn và nhấp vào \"OK\" để gán nó. Sử dụng \"CH +/-\" để chuyển đổi giữa các danh sách. Chọn một chức năng được chỉ định và nhấp vào \"OK\" để hủy gán nó. Sử dụng \"Tiếp theo / Trước\" để thay đổi thứ tự của các chức năng được gán."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -15696,9 +15727,6 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
-msgid "Select the sleep timer action."
-msgstr "Chọn hẹn giờ ngủ."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15726,6 +15754,12 @@ msgstr "Chọn loại LNB / thiết bị đang được sử dụng (thông thư
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Chọn loại thiết bị Tiếp nhận cáp đơn bạn đang sử dụng."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Chọn nguồn nâng cấp"
@@ -15905,6 +15939,18 @@ msgstr "Dịch vụ"
 msgid "Service & PIDs"
 msgstr "Dịch vụ"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr ""
+
 #, fuzzy
 msgid "Service ID"
 msgstr "Dịch vụ"
@@ -16011,6 +16057,9 @@ msgstr "Tham khảo dịch vụ"
 
 msgid "Service scan"
 msgstr "Quét dịch vụ"
+
+msgid "Service selection canceled."
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -16163,6 +16212,28 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Đặt loại chỉ báo tiến trình trong màn hình chọn kênh."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr ""
+
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Đặt thời gian gốc mong muốn (giờ)."
@@ -16503,21 +16574,6 @@ msgstr "Hiển thị tin nhắn CI"
 msgid "Show Clients"
 msgstr "Hiển thị khách hàng"
 
-msgid "Show CoolChannelGuide"
-msgstr "Hiển thị CoolChannelGuide"
-
-msgid "Show CoolEasyGuide"
-msgstr "Hiển thị hướng dẫn dễ dàng"
-
-msgid "Show CoolInfoGuide"
-msgstr "Hiển thị thông tin tuyệt vời"
-
-msgid "Show CoolSingleGuide"
-msgstr "Hiển thị Hướng dẫn CoolSingel"
-
-msgid "Show CoolTVGuide"
-msgstr "Hiển thị hướng dẫn truyền hình"
-
 msgid "Show Directory size"
 msgstr ""
 
@@ -16574,6 +16630,9 @@ msgstr "Hiển thị Trình quản lý nhật ký trong danh sách tiện ích m
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "Hiển thị phim"
+
+msgid "Show Media Player in Main Menu"
+msgstr "hiển thị trình phát đa phương tiện trên menu chính"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Hiển thị phát lại phương tiện còn lại / trôi qua như"
@@ -17243,7 +17302,7 @@ msgstr "Chọn da"
 msgid "Skin Setting"
 msgstr "Thiết lập da"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Thiết lập giao diện"
 
 msgid "Skin setup"
@@ -17282,11 +17341,39 @@ msgstr "Ngủ"
 msgid "Sleep Timer"
 msgstr "Hẹn giờ ngủ"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
+msgid "Sleep Timers"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Ngủ muộn"
 
 msgid "Sleep long"
 msgstr "Ngủ lâu"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Hẹn giờ ngủ"
@@ -17412,6 +17499,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "Softcam cài đặt"
 
+msgid "Softcams"
+msgstr "Softcams"
+
 msgid "Software"
 msgstr "Phần mềm"
 
@@ -17485,11 +17575,11 @@ msgstr "Xin lỗi MediaScanner chưa được cài đặt!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Xin lỗi, cấu hình MiniDLNA bị thiếu"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
 
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
@@ -17567,6 +17657,9 @@ msgstr "Sắp xếp thứ tự cho các mục menu"
 msgid "Sort order for the language list."
 msgstr "Sắp xếp thứ tự cho các mục menu"
 
+msgid "Sort playlists"
+msgstr "sắp xếp danh sách phát"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sắp xếp các mục trình duyệt bổ trợ"
 
@@ -17631,6 +17724,9 @@ msgstr "Đặc biệt 2"
 
 msgid "Special Features Settings"
 msgstr "Tính năng đặc biệt"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17737,6 +17833,9 @@ msgstr "Thuật sĩ bắt đầu"
 msgid "Starting Softcam"
 msgstr "Khởi động Softcam"
 
+msgid "Starting directory"
+msgstr "bắt đầu thư mục"
+
 msgid "Starting on"
 msgstr "Bắt đầu vào"
 
@@ -17793,10 +17892,10 @@ msgstr "Dừng PiP"
 msgid "Stop Streams"
 msgstr "Dừng tất cả các luồng"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Dừng sự kiện hiện tại và vô hiệu hóa các sự kiện sắp tới"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Sự kiện hàng đầu hiện tại nhưng không đến"
 
 msgid "Stop entry"
@@ -17856,6 +17955,9 @@ msgstr "Dừng Softcam"
 #, fuzzy
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Mốc timeshift trong khi ghi âm?"
+
+msgid "Storage / Disks"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Thiết bị lưu trữ"
@@ -18141,6 +18243,12 @@ msgstr "Chuyển sang dịch vụ phụ trước"
 msgid "Switch to radio mode"
 msgstr "Chuyển sang chế độ radio"
 
+msgid "Switch to the available RADIO services"
+msgstr ""
+
+msgid "Switch to the available TV services"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "Các loại tuner có thể chuyển đổi:"
 
@@ -18196,6 +18304,9 @@ msgstr ""
 
 msgid "System Message Check"
 msgstr "Kiểm tra tin nhắn hệ thống"
+
+msgid "System Plugins"
+msgstr "hệ thống"
 
 msgid "System Setup"
 msgstr "Thiết lập hệ thống"
@@ -18467,13 +18578,6 @@ msgstr ""
 "Plugin AutoTimer chưa được cài đặt!\n"
 "Vui lòng cài đặt nó."
 
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin Cool TV Guide chưa được cài đặt!\n"
-"Vui lòng cài đặt nó."
-
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Chuẩn DVD không hỗ trợ luồng video H.264 (HDTV)."
 
@@ -18617,6 +18721,13 @@ msgstr "Cài đặt mặc định là thời gian thức dậy - 5 phút và th�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
 
@@ -18666,11 +18777,12 @@ msgstr "Người phục vụ được tải lại."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Cài đặt 'không có truy vấn' giống như 'tiêu chuẩn' mà không có truy vấn xác nhận bổ sung. Tất cả các phụ thuộc khác (ví dụ: bản ghi, phạm vi thời gian) vẫn tồn tại."
 
-msgid "The sleep timer has been activated."
-msgstr "Đồng hồ ngủ đã được kích hoạt."
-
-msgid "The sleep timer has been disabled."
-msgstr "Đồng hồ ngủ đã bị vô hiệu hóa."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18808,10 +18920,10 @@ msgid "This allows you to set the number of digits to 5, if you have more than 9
 msgstr "Điều này cho phép bạn đặt số chữ số thành 5, nếu bạn có nhiều hơn 9999 kênh."
 
 msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun pli trong tải xuống"
+msgstr "Điều này cho phép bạn hiển thị các mô-đun OpenPLi trong tải xuống"
 
 msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Điều này cho phép bạn hiển thị các mô-đun vix trong tải xuống"
+msgstr "Điều này cho phép bạn hiển thị các mô-đun OpenViX trong tải xuống"
 
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Điều này cho phép bạn hiển thị các mô-đun trình điều khiển trong tải xuống"
@@ -18867,14 +18979,20 @@ msgstr ""
 msgid "This is the currently selected locale.  [%s]"
 msgstr ""
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr ""
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Đây là thứ tự mà các lệnh DiSEqC được gửi đến hệ thống trên không. Thứ tự phải tương ứng chính xác với thứ tự các thiết bị vật lý được sắp xếp dọc theo cáp tín hiệu (bắt đầu từ đầu thu)."
 
 msgid "This line is not editable!"
 msgstr "Dòng này không thể chỉnh sửa!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "phần bù này sẽ chỉ được sử dụng nếu kênh không có phần bù âm lượng riêng"
+msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Tùy chọn này cho phép giảm nhiễu khối trong ảnh. Rõ ràng đây là cái giá của độ sắc nét của hình ảnh."
@@ -19305,11 +19423,11 @@ msgstr "Hẹn giờ"
 msgid "Timer Actions"
 msgstr "Hành động hẹn giờ"
 
-msgid "Timer List"
-msgstr "Danh sách hẹn giờ"
+msgid "Timer Overview"
+msgstr "Tổng quan về bộ đếm thời gian"
 
-msgid "Timer action"
-msgstr "Hành động hẹn giờ"
+msgid "Timer Sanity Error"
+msgstr "Lỗi hẹn giờ"
 
 msgid "Timer edit"
 msgstr "Chỉnh sửa hẹn giờ"
@@ -19319,13 +19437,6 @@ msgstr "Trình chỉnh sửa hẹn giờ"
 
 msgid "Timer entry"
 msgstr "Nhập giờ"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Hẹn giờ được kích hoạt: +% d min"
-
-msgid "Timer is not activated"
-msgstr "Hẹn giờ không được kích hoạt"
 
 msgid "Timer log"
 msgstr "Nhật ký hẹn giờ"
@@ -19344,14 +19455,8 @@ msgstr ""
 "Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
 "Vui lòng kiểm tra lại!"
 
-msgid "Timer overview"
-msgstr "Tổng quan về bộ đếm thời gian"
-
 msgid "Timer recording location"
 msgstr "Vị trí ghi thời gian"
-
-msgid "Timer sanity error"
-msgstr "Lỗi hẹn giờ"
 
 msgid "Timer selection"
 msgstr "Lựa chọn hẹn giờ"
@@ -19715,6 +19820,9 @@ msgstr "Trạng thái bộ chỉnh UNKNOWN"
 #, python-format
 msgid "Tuner type %s"
 msgstr "Bộ chỉnh tần số % s"
+
+msgid "Tuners"
+msgstr ""
 
 msgid "Tuning algorithm"
 msgstr "Thuật toán điều chỉnh"
@@ -20322,6 +20430,9 @@ msgstr "Người dùng  (keymap.usr)"
 msgid "User - bouquets"
 msgstr "Người dùng - gói kênh"
 
+msgid "User Feed URL"
+msgstr "url nguồn cấp dữ liệu người dùng"
+
 msgid "User defined"
 msgstr "Đã xác định người dùng"
 
@@ -20375,7 +20486,7 @@ msgstr "Uzbekistan"
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "VCR scart"
 
 msgid "VLAN connection"
@@ -20694,8 +20805,14 @@ msgstr "Âm lượng"
 msgid "Volume Adjust"
 msgstr "Điều chỉnh âm lượng"
 
-msgid "Volume Config"
-msgstr "Cấu hình âm lượng"
+msgid "Volume Adjust Actions"
+msgstr ""
+
+msgid "Volume Adjust Service Selection"
+msgstr ""
+
+msgid "Volume Adjust Settings"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Giảm âm lượng"
@@ -20846,6 +20963,9 @@ msgstr "Khác"
 
 msgid "Web Interface"
 msgstr "Giao diện web"
+
+msgid "Web Links"
+msgstr "liên kết web"
 
 msgid "Web browser base visibility"
 msgstr "Khả năng hiển thị cơ sở trình duyệt web"
@@ -21329,10 +21449,10 @@ msgstr "Có, nhưng lưu timeshift như phim và tiếp tục ghi"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Có, nhưng lưu timeshift dưới dạng phim và dừng ghi"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Có, xóa khỏi Danh sách thời gian"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Có, xóa khỏi Danh sách thời gian và xóa ghi âm"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21802,6 +21922,9 @@ msgstr "Chuyển lên"
 msgid "Zap+Record next"
 msgstr "Ghi lại + Ghi tiếp"
 
+msgid "Zapped"
+msgstr "hạ gục"
+
 msgid "Zeichentrick"
 msgstr ""
 
@@ -21883,9 +22006,6 @@ msgstr "hủy bỏ gói kênh"
 
 msgid "abort favourites edit"
 msgstr "hủy bỏ yêu thích chỉnh sửa"
-
-msgid "about to start"
-msgstr "về để bắt đầu"
 
 msgid "ac3"
 msgstr ""
@@ -22225,9 +22345,6 @@ msgstr "ngắt kết nối"
 msgid "discussion/interview/debate"
 msgstr "thảo luận / phỏng vấn / tranh luận"
 
-msgid "display"
-msgstr "trưng bày"
-
 msgid "documentary"
 msgstr "phim tài liệu"
 
@@ -22238,15 +22355,9 @@ msgstr "phim tài liệu"
 msgid "dolby"
 msgstr "dolby"
 
-msgid "done!"
-msgstr "làm xong!"
-
 #, fuzzy
 msgid "drama (general)"
 msgstr "phim / kịch (nói chung)"
-
-msgid "drivers"
-msgstr "lái xe"
 
 msgid "dts"
 msgstr ""
@@ -22361,9 +22472,6 @@ msgstr "thoát khỏi menu cài đặt bộ điều hợp mạng"
 
 msgid "experimental film/video"
 msgstr "phim / video thử nghiệm"
-
-msgid "extensions"
-msgstr "tiện ích mở rộng"
 
 msgid "extensions."
 msgstr "phần mở rộng."
@@ -22546,9 +22654,6 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-msgid "hide"
-msgstr "ẩn giấu"
-
 msgid "highest Resolution"
 msgstr "độ phân giải cao nhất"
 
@@ -22621,9 +22726,6 @@ msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
 msgid "just boot"
 msgstr "chỉ khởi động"
 
-msgid "kernel modules"
-msgstr "mô-đun hạt nhân"
-
 msgid "languages"
 msgstr "ngôn ngữ"
 
@@ -22657,9 +22759,6 @@ msgstr "dài"
 
 msgid "loopthrough to"
 msgstr "lặp qua"
-
-msgid "m2k"
-msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "tạp chí / báo cáo / phim tài liệu"
@@ -22818,9 +22917,6 @@ msgstr ""
 msgid "not"
 msgstr "không có gì"
 
-msgid "not activated"
-msgstr "chưa kích hoạt"
-
 msgid "not configured"
 msgstr "không được cấu hình"
 
@@ -22887,9 +22983,6 @@ msgstr "vượt qua"
 msgid "performing arts"
 msgstr "biểu diễn nghệ thuật"
 
-msgid "picons"
-msgstr "picons"
-
 msgid "pid:"
 msgstr "pid:"
 
@@ -22913,9 +23006,6 @@ msgstr "vui lòng đợi, tải hình ảnh ..."
 
 msgid "please wait..."
 msgstr "xin vui lòng chờ ..."
-
-msgid "pli"
-msgstr "pli"
 
 msgid "pm"
 msgstr "pm"
@@ -22963,9 +23053,6 @@ msgstr "hệ thống khởi động lại"
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "thời gian thay đổi kỷ lục, bắt đầu chuẩn bị ngay bây giờ:% s"
-
-msgid "recording..."
-msgstr "ghi âm..."
 
 msgid "red"
 msgstr "màu đỏ"
@@ -23030,9 +23117,6 @@ msgstr "đổi tên"
 msgid "rename entry"
 msgstr "đổi tên mục nhập"
 
-msgid "repeat playlist"
-msgstr "phát lại danh sách"
-
 msgid "repeated"
 msgstr "lặp đi lặp lại"
 
@@ -23063,9 +23147,6 @@ msgstr "nhạc rock / pop"
 msgid "romance"
 msgstr "lãng mạn"
 
-msgid "running..."
-msgstr "đang chạy..."
-
 msgid ""
 "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
@@ -23076,9 +23157,6 @@ msgstr ""
 "Có thể xem TV,\n"
 "nhưng không thể tìm kiếm các kênh truyền hình mới\n"
 "hoặc để định cấu hình cài đặt bộ chỉnh tần số"
-
-msgid "save playlist on exit"
-msgstr "lưu danh sách phát khi thoát"
 
 msgid "scan state"
 msgstr "trạng thái quét"
@@ -23104,9 +23182,6 @@ msgstr "cáp thứ hai của LNB"
 msgid "seconds"
 msgstr "giây"
 
-msgid "security"
-msgstr "bảo vệ"
-
 msgid "select"
 msgstr "lựa chọn"
 
@@ -23128,17 +23203,11 @@ msgstr "mã PIN dịch vụ"
 msgid "set as startup service"
 msgstr "đặt làm dịch vụ khởi động"
 
-msgid "settings"
-msgstr "cài đặt"
-
 msgid "share:"
 msgstr "chia sẻ:"
 
 msgid "shell"
 msgstr "vỏ"
-
-msgid "show"
-msgstr "hiển thị"
 
 msgid "show DVD main menu"
 msgstr "hiển thị menu chính DVD"
@@ -23188,9 +23257,6 @@ msgstr "xuất trình thẻ với uphop 9"
 msgid "show event details"
 msgstr "hiển thị chi tiết sự kiện"
 
-msgid "show mediaplayer on mainmenu"
-msgstr "hiển thị trình phát đa phương tiện trên menu chính"
-
 msgid "show picons in quickzap"
 msgstr "hiển thị picons trong quickzap"
 
@@ -23211,9 +23277,6 @@ msgstr "xáo trộn"
 
 msgid "simple"
 msgstr "đơn giản"
-
-msgid "skin"
-msgstr "da"
 
 msgid "skip backward"
 msgstr "bỏ qua lạc hậu"
@@ -23250,12 +23313,6 @@ msgstr "khoa học xã hội / tâm linh"
 msgid "softcam"
 msgstr ""
 
-msgid "softcams"
-msgstr "softcams"
-
-msgid "sorting of playlists"
-msgstr "sắp xếp danh sách phát"
-
 #, fuzzy
 msgid "special (general)"
 msgstr "thể thao (nói chung)"
@@ -23278,9 +23335,6 @@ msgstr "tiêu chuẩn"
 
 msgid "start cut here"
 msgstr "bắt đầu cắt ở đây"
-
-msgid "start directory"
-msgstr "bắt đầu thư mục"
 
 msgid "start recording"
 msgstr "bắt đầu ghi âm"
@@ -23323,9 +23377,6 @@ msgstr "chuyển sang ngôn ngữ phụ đề tiếp theo"
 
 msgid "system:"
 msgstr "hệ thống:"
-
-msgid "systemplugins"
-msgstr "hệ thống"
 
 msgid "talk show"
 msgstr "tọa đàm"
@@ -23449,9 +23500,6 @@ msgstr "sử dụng_hdmi_cacenter"
 msgid "user defined"
 msgstr "đã xác định người dùng"
 
-msgid "user feed url"
-msgstr "url nguồn cấp dữ liệu người dùng"
-
 msgid "userdefined"
 msgstr "đã xác định người dùng"
 
@@ -23473,14 +23521,8 @@ msgstr "xem tiện ích mở rộng ..."
 msgid "violet"
 msgstr "màu tím"
 
-msgid "vix"
-msgstr "vix"
-
 msgid "wait for mmi..."
 msgstr "chờ mmi ..."
-
-msgid "waiting"
-msgstr "đang chờ đợi"
 
 msgid "wakeup"
 msgstr "thức dậy"
@@ -23490,9 +23532,6 @@ msgstr "thức dậy để chế độ chờ"
 
 msgid "water sport"
 msgstr "thể thao dưới nước"
-
-msgid "weblinks"
-msgstr "liên kết web"
 
 msgid "weekly"
 msgstr "hàng tuần"
@@ -23569,14 +23608,188 @@ msgstr "có (giữ thức ăn)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng dẫn để được hỗ trợ thêm trước khi khởi động lại% s% s của bạn."
 
-msgid "zapped"
-msgstr "hạ gục"
-
 msgid "zapping"
 msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "extensions"
+#~ msgstr "tiện ích mở rộng"
+
+#~ msgid "settings"
+#~ msgstr "cài đặt"
+
+#~ msgid "skin"
+#~ msgstr "da"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Menu chính"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "Độ lệch AC3 / Dolby"
+
+#~ msgid "Add Service"
+#~ msgstr "thêm dịch vụ"
+
+#~ msgid "Change"
+#~ msgstr "thay đổi"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Thay đổi âm lượng bù"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kênh Âm lượng"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Hướng dẫn chương trình điện tử"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Hướng dẫn dễ dàng"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Hướng dẫn thông tin"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Hướng dẫn đơn"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Hướng dẫn truyền hình"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Kích hoạt AC3 / Dolby"
+
+#~ msgid "Ok"
+#~ msgstr "Đồng ý"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "Danh sách PowerTimer"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "nhấn nút menu để đặt bù AC3 / Dolby chung"
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "chọn kênh để thêm phần bù vào Âm lượng"
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Hiển thị CoolChannelGuide"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Hiển thị hướng dẫn dễ dàng"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Hiển thị thông tin tuyệt vời"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Hiển thị Hướng dẫn CoolSingel"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Hiển thị hướng dẫn truyền hình"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Plugin Cool TV Guide chưa được cài đặt!\n"
+#~ "Vui lòng cài đặt nó."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "phần bù này sẽ chỉ được sử dụng nếu kênh không có phần bù âm lượng riêng"
+
+#~ msgid "Timer List"
+#~ msgstr "Danh sách hẹn giờ"
+
+#~ msgid "Volume Config"
+#~ msgstr "Cấu hình âm lượng"
+
+#~ msgid "done!"
+#~ msgstr "làm xong!"
+
+#~ msgid "recording..."
+#~ msgstr "ghi âm..."
+
+#~ msgid "running..."
+#~ msgstr "đang chạy..."
+
+#~ msgid "waiting"
+#~ msgstr "đang chờ đợi"
+
+#~ msgid "show"
+#~ msgstr "hiển thị"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Ghi âm, RecordTimer hoặc PowerTimer đang chạy hoặc bắt đầu sau 15 phút.\n"
+#~ "Kéo dài thời gian ngủ 30 phút. % s% s của bạn\n"
+#~ "sẽ tắt sau sự kiện Ghi hoặc Powertimer. Nhận trong chế độ chờ ngay bây giờ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Đồng hồ ngủ muốn đặt%s%s của bạn ở chế độ chờ.\n"
+#~ "Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Đồng hồ ngủ muốn tắt%s%s của bạn.\n"
+#~ "Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Cấu hình thời lượng tính bằng phút cho bộ đếm thời gian ngủ."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Thực hiện sau sự kiện hiện tại"
+
+#~ msgid "Execute in "
+#~ msgstr "Thực hiện trong "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Trình quản lý đa khởi động"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Chọn hẹn giờ ngủ."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Đồng hồ ngủ đã được kích hoạt."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Đồng hồ ngủ đã bị vô hiệu hóa."
+
+#~ msgid "Timer action"
+#~ msgstr "Hành động hẹn giờ"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Hẹn giờ được kích hoạt: +% d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Hẹn giờ không được kích hoạt"
+
+#~ msgid "not activated"
+#~ msgstr "chưa kích hoạt"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Chọn kênh"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Chọn kênh"
+
+#~ msgid "No images found"
+#~ msgstr "Không tìm thấy hình ảnh"
 
 #, fuzzy
 #~ msgid "(current image)"
@@ -24762,9 +24975,6 @@ msgstr ""
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Chuyển đến kênh đã chọn hoặc hiển thị thông tin sự kiện chi tiết (tùy thuộc vào cấu hình)"
-
-#~ msgid "save last directory on exit"
-#~ msgstr "lưu thư mục cuối cùng khi thoát"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Khi được bật, độ dài của mỗi bản ghi sẽ được hiển thị trong danh sách phim (điều này có thể gây ra một số thời gian tải bổ sung)."

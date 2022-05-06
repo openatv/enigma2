@@ -598,7 +598,7 @@ def InitLcd():
 				("10000", "10 %s" % _("seconds")),
 				("20000", "20 %s" % _("seconds")),
 				("30000", "30 %s" % _("seconds")),
-				("0", _("no delay"))
+				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback=False)
 		else:
@@ -618,7 +618,7 @@ def InitLcd():
 				("10000", "10 %s" % _("seconds")),
 				("20000", "20 %s" % _("seconds")),
 				("30000", "30 %s" % _("seconds")),
-				("0", _("no delay"))
+				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
 		else:

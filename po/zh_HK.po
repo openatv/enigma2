@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1342,6 +1342,14 @@ msgid "%s additional screens"
 msgstr "掃描更多 SR"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -1472,9 +1480,6 @@ msgstr "* 僅在一個或多個網卡啟動才有效."
 #, fuzzy
 msgid "* current animation"
 msgstr "啟動當前配置"
-
-msgid "+/-"
-msgstr ""
 
 msgid "+24"
 msgstr ""
@@ -2069,7 +2074,7 @@ msgstr "<預設錄影位置>"
 msgid "<Last timer location>"
 msgstr "<最近一次定時錄影位置>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<未知>"
 
 #, fuzzy
@@ -2081,13 +2086,6 @@ msgstr "更新! 立即重啟dreambox嗎？"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
@@ -2174,6 +2172,13 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "錄製正在進行中. 請在啟動satfinder之前停止錄製."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 #, fuzzy
 msgid "A repeating timer or just once?"
 msgstr "所有非重複計時器"
@@ -2204,24 +2209,8 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"睡眠計時器要設定Dreambox待機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
-msgstr ""
-"睡眠計時器要設定Dreambox關機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
 msgstr ""
 "睡眠計時器要設定Dreambox關機.\n"
 "確定嗎?"
@@ -2280,10 +2269,6 @@ msgstr "AC3 縮減混音"
 
 msgid "AC3 plus transcoding"
 msgstr ""
-
-#, fuzzy
-msgid "AC3/Dolby offset"
-msgstr "自定義偏移"
 
 msgid "AC3plus transcoding"
 msgstr ""
@@ -2348,6 +2333,12 @@ msgstr ""
 
 msgid "About"
 msgstr "關於"
+
+msgid "About openATV"
+msgstr ""
+
+msgid "About to start"
+msgstr "立即開始"
 
 msgid "About..."
 msgstr "關於..."
@@ -2455,9 +2446,6 @@ msgstr ""
 msgid "Add Record Timer"
 msgstr "添加新的自動計時器"
 
-msgid "Add Service"
-msgstr "添加頻道"
-
 #, fuzzy
 msgid "Add Timer"
 msgstr "添加到計時器"
@@ -2488,6 +2476,9 @@ msgstr "添加到計時器"
 #, fuzzy
 msgid "Add a record timer for current event"
 msgstr "添加錄影 (當前事件停止後)"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
@@ -2548,6 +2539,9 @@ msgid "Add selected folder to bookmarks"
 msgstr "選擇要備份的檔/目錄"
 
 msgid "Add service"
+msgstr ""
+
+msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 msgid "Add timer"
@@ -2840,9 +2834,6 @@ msgid "Alternative services tuner priority"
 msgstr "可選調諧器優先順序"
 
 msgid "Always ask"
-msgstr ""
-
-msgid "Always hide infobar"
 msgstr ""
 
 msgid "Always include ECM in recordings"
@@ -3139,6 +3130,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -3945,7 +3939,7 @@ msgstr ""
 msgid "CAID:SrvID"
 msgstr ""
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr ""
 
 #, fuzzy
@@ -4019,6 +4013,10 @@ msgstr ""
 #, fuzzy
 msgid "CHANNEL +/-"
 msgstr "頻道"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 #, fuzzy
 msgid "CI (Common Interface) Setup"
@@ -4264,13 +4262,14 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "頻道選擇"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "頻道選擇"
+msgid "Cancel the service selection"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "頻道選擇"
+msgid "Cancel the slot selection and exit"
+msgstr ""
+
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4367,10 +4366,6 @@ msgstr ""
 msgid "Chamorro"
 msgstr ""
 
-#, fuzzy
-msgid "Change"
-msgstr "改變"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 
@@ -4385,10 +4380,6 @@ msgstr "更改目錄."
 #, fuzzy
 msgid "Change Timer"
 msgstr "更改目錄."
-
-#, fuzzy
-msgid "Change Volume offset"
-msgstr "更改預設錄製偏移"
 
 msgid "Change bouquets in quickzap"
 msgstr "快速切換自定義組"
@@ -4434,9 +4425,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "頻道"
-
-msgid "Channel \t\t\tVolume +"
-msgstr ""
 
 msgid "Channel +/- button mode"
 msgstr ""
@@ -5132,7 +5120,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -5508,22 +5499,6 @@ msgstr ""
 msgid "Cooking"
 msgstr ""
 
-#, fuzzy
-msgid "Cool Channel Guide"
-msgstr "頻道聲道:"
-
-msgid "Cool Easy Guide"
-msgstr ""
-
-msgid "Cool Info Guide"
-msgstr ""
-
-msgid "Cool Single Guide"
-msgstr ""
-
-msgid "Cool TV Guide"
-msgstr ""
-
 msgid "Copy"
 msgstr "複製"
 
@@ -5694,7 +5669,7 @@ msgid "Cron Manager"
 msgstr "插件管理"
 
 #, fuzzy
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "計時器"
 
 msgid "Cuba"
@@ -5760,6 +5735,9 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "當前版本:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr ""
 
 #, fuzzy
 msgid "Custom"
@@ -6124,6 +6102,9 @@ msgstr "定時類型"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr ""
+
 #, fuzzy
 msgid "Default Folder"
 msgstr "預設"
@@ -6179,6 +6160,9 @@ msgid "Default sorting method for files on the left side."
 msgstr ""
 
 msgid "Default sorting method for files on the right side."
+msgstr ""
+
+msgid "Default volume offset"
 msgstr ""
 
 #, python-format
@@ -6302,6 +6286,9 @@ msgstr "LT 配置"
 msgid "Delete EPG"
 msgstr "刪除"
 
+msgid "Delete Image"
+msgstr ""
+
 #, fuzzy
 msgid "Delete Language"
 msgstr "語言"
@@ -6355,14 +6342,10 @@ msgstr ""
 msgid "Delete folder"
 msgstr "刪除檔"
 
-#, fuzzy
-msgid "Delete image"
-msgstr "選擇Image"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6381,6 +6364,9 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
 
 msgid "Delete the currently displayed log file"
+msgstr ""
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6644,6 +6630,10 @@ msgstr ""
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "未找到!"
+
+#, fuzzy
+msgid "Display"
+msgstr "反向顯示"
 
 msgid "Display 16:9 content as"
 msgstr "顯示16:9內容"
@@ -6995,7 +6985,7 @@ msgstr "不保存"
 msgid "Don't show default"
 msgstr "按日期排序"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "不能停止當前事件, 不過可以禁用下一個事件."
 
 msgid ""
@@ -7078,14 +7068,14 @@ msgstr "Dreambox資料格式的DVD （HDTV相容）"
 msgid "Driver and kernel information"
 msgstr ""
 
+msgid "Drivers"
+msgstr ""
+
 msgid "Drivers version"
 msgstr ""
 
 #, python-format
 msgid "Drivers:\t%s"
-msgstr ""
-
-msgid "Drives"
 msgstr ""
 
 msgid "Drives Information"
@@ -7260,6 +7250,17 @@ msgstr ""
 msgid "Edit"
 msgstr "修改"
 
+msgid "Edit Mode Off"
+msgstr ""
+
+#, fuzzy
+msgid "Edit Mode On"
+msgstr "模組初始化"
+
+#, fuzzy
+msgid "Edit New Entry"
+msgstr "編輯專案"
+
 #, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "編輯專案"
@@ -7284,17 +7285,6 @@ msgstr "編輯章節當前標題"
 #, fuzzy
 msgid "Edit line "
 msgstr "編輯中"
-
-msgid "Edit mode off"
-msgstr ""
-
-#, fuzzy
-msgid "Edit mode on"
-msgstr "模組初始化"
-
-#, fuzzy
-msgid "Edit new entry"
-msgstr "編輯專案"
 
 msgid "Edit position is the line end"
 msgstr ""
@@ -7364,10 +7354,6 @@ msgid "Enable 5V for active antenna"
 msgstr "為有源天線啟用5V供電"
 
 #, fuzzy
-msgid "Enable AC3/Dolby"
-msgstr "AC3 延遲"
-
-#, fuzzy
 msgid "Enable BT Audio"
 msgstr "啟用 /媒體"
 
@@ -7375,6 +7361,9 @@ msgid "Enable CIHelper for SLOT CI0"
 msgstr ""
 
 msgid "Enable CIHelper for SLOT CI1"
+msgstr ""
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -7585,6 +7574,31 @@ msgid "End time"
 msgstr "結束時間"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7976,14 +7990,6 @@ msgstr "超過雙層介質！"
 
 msgid "Exceeds dual layer medium!"
 msgstr "超過雙層介質！"
-
-#, fuzzy
-msgid "Execute after current event"
-msgstr "為當前事件定制"
-
-#, fuzzy
-msgid "Execute in "
-msgstr "執行"
 
 #, fuzzy
 msgid "Execution condition"
@@ -9154,7 +9160,7 @@ msgid "HDMI-IN Actions"
 msgstr "錄影位置設定"
 
 #, fuzzy
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "錄影位置設定"
 
 msgid "HDMIin"
@@ -9305,6 +9311,12 @@ msgstr ""
 msgid "Hidden network"
 msgstr ""
 
+msgid "Hide"
+msgstr ""
+
+msgid "Hide InfoBar"
+msgstr ""
+
 msgid "Hide VBI line for this service"
 msgstr ""
 
@@ -9453,7 +9465,7 @@ msgid "Hotkey"
 msgstr ""
 
 #, fuzzy
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "網路設定"
 
 msgid "Hotkey Setup for"
@@ -10009,6 +10021,9 @@ msgstr "輸入 1"
 msgid "Input Device Settings"
 msgstr ""
 
+msgid "Input Devices Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10017,9 +10032,6 @@ msgid "Input channel name."
 msgstr "下一個頻道"
 
 msgid "Input config file name:"
-msgstr ""
-
-msgid "Input devices"
 msgstr ""
 
 msgid "Input scroll position"
@@ -10425,6 +10437,10 @@ msgstr ""
 msgid "Kenya"
 msgstr ""
 
+#, fuzzy
+msgid "Kernel Modules"
+msgstr "內核模組"
+
 msgid "Kernel file"
 msgstr ""
 
@@ -10559,7 +10575,7 @@ msgid "LAN long"
 msgstr ""
 
 #, fuzzy
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "Gemini 設定"
 
 #, fuzzy
@@ -10887,10 +10903,10 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr ""
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 #, fuzzy
@@ -11074,6 +11090,9 @@ msgstr ""
 msgid "Luxembourgish / Letzeburgesch"
 msgstr ""
 
+msgid "M2k"
+msgstr ""
+
 msgid "MAC"
 msgstr ""
 
@@ -11139,9 +11158,6 @@ msgid "Magic long"
 msgstr "媒體播放器"
 
 msgid "Main Menu"
-msgstr "主功能表"
-
-msgid "Mainmenu"
 msgstr "主功能表"
 
 msgid "Maintain old EPG data for"
@@ -11328,6 +11344,9 @@ msgstr "LT 媒體中心"
 #, fuzzy
 msgid "Media Player"
 msgstr "媒體播放器"
+
+msgid "Media Player Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Media Portal"
@@ -11636,6 +11655,14 @@ msgid "Move Left/Right"
 msgstr ""
 
 #, fuzzy
+msgid "Move Mode Off"
+msgstr "[移動模式]"
+
+#, fuzzy
+msgid "Move Mode On"
+msgstr "[移動模式]"
+
+#, fuzzy
 msgid "Move PIP"
 msgstr "移動"
 
@@ -11700,14 +11727,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Move folder"
-msgstr "[移動模式]"
-
-#, fuzzy
-msgid "Move mode off"
-msgstr "[移動模式]"
-
-#, fuzzy
-msgid "Move mode on"
 msgstr "[移動模式]"
 
 msgid "Move the current DNS entry down one line"
@@ -11868,22 +11887,16 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "多路 EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12378,10 +12391,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
-#, fuzzy
-msgid "No images found"
-msgstr "找不到網路"
-
 msgid "No matching place names found"
 msgstr ""
 
@@ -12414,6 +12423,9 @@ msgid "No service"
 msgstr "頻道"
 
 msgid "No services/providers selected"
+msgstr ""
+
+msgid "No slot images found"
 msgstr ""
 
 msgid "No standby"
@@ -12723,7 +12735,7 @@ msgid "OSD Adjustment"
 msgstr ""
 
 #, fuzzy
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "調整資訊條顯示位置"
 
 msgid "OSD Settings"
@@ -12740,12 +12752,12 @@ msgstr ""
 msgid "OScam Info"
 msgstr "CCcam資訊"
 
+#, fuzzy
+msgid "OScam Information"
+msgstr "CCcam資訊"
+
 msgid "OScam webif disabled"
 msgstr ""
-
-#, fuzzy
-msgid "OScamInfo"
-msgstr "CCcam資訊"
 
 msgid "OTT Model"
 msgstr ""
@@ -12763,9 +12775,6 @@ msgid "Offline decode delay (ms)"
 msgstr ""
 
 msgid "Ojibwa"
-msgstr ""
-
-msgid "Ok"
 msgstr ""
 
 msgid "Older files in the timeshift directory are removed on every event change."
@@ -12928,6 +12937,10 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr "導入自動計時器"
 
+#, fuzzy
+msgid "OpenPLi"
+msgstr "公開"
+
 msgid "OpenSSL version"
 msgstr ""
 
@@ -12937,6 +12950,9 @@ msgstr ""
 #, fuzzy
 msgid "OpenVPN Settings"
 msgstr "Gemini 設定"
+
+msgid "OpenViX"
+msgstr ""
 
 msgid "OpenVpn Log"
 msgstr ""
@@ -13391,6 +13407,9 @@ msgstr "在所有頻道"
 #, fuzzy
 msgid "Picon width"
 msgstr "Picon 大小:"
+
+msgid "Picons"
+msgstr ""
 
 #, fuzzy
 msgid "Picture in EPG"
@@ -14005,6 +14024,10 @@ msgid "Power On Display"
 msgstr "反向顯示"
 
 #, fuzzy
+msgid "Power Timers"
+msgstr "計時器"
+
+#, fuzzy
 msgid "Power long"
 msgstr "計時器日誌"
 
@@ -14040,14 +14063,6 @@ msgstr "自動計時器概要"
 #, fuzzy
 msgid "PowerTimer Standby"
 msgstr "深度休眠"
-
-#, fuzzy
-msgid "PowerTimer list"
-msgstr "計時器編輯"
-
-#, fuzzy
-msgid "PowerTimers"
-msgstr "計時器"
 
 #, fuzzy
 msgid "Predefined"
@@ -14186,10 +14201,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -15168,6 +15180,9 @@ msgstr "重複"
 msgid "Repeat Display Message"
 msgstr ""
 
+msgid "Repeat playlist"
+msgstr "重複播放列表"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
@@ -15177,7 +15192,7 @@ msgstr ""
 msgid "Repeat type"
 msgstr ""
 
-msgid "Repeating event currently recording... What do you want to do?"
+msgid "Repeating event currently recording. What do you want to do?"
 msgstr ""
 "重複的定時錄製事件...\n"
 "您準備怎麼辦?"
@@ -15337,7 +15352,7 @@ msgstr "恢復備份"
 msgid "Restore system settings"
 msgstr "恢復系統設定"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15749,6 +15764,9 @@ msgstr "即時記錄"
 msgid "Save and stop"
 msgstr "保存播放列表"
 
+msgid "Save directory on EXIT"
+msgstr "退出時保存目錄"
+
 #, fuzzy
 msgid "Save every (in hours)"
 msgstr "每小時"
@@ -15756,6 +15774,9 @@ msgstr "每小時"
 #, fuzzy
 msgid "Save left folder on exit"
 msgstr "退出時保存目錄"
+
+msgid "Save playlist on EXIT"
+msgstr "退出時保存播放列表"
 
 msgid "Save playlist"
 msgstr ""
@@ -15977,6 +15998,9 @@ msgstr "副 DNS"
 msgid "Secondinfobar:"
 msgstr "第二資訊條 ..."
 
+msgid "Security"
+msgstr ""
+
 msgid "Seek"
 msgstr "跳過"
 
@@ -16027,6 +16051,9 @@ msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switc
 msgstr ""
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgstr ""
+
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
@@ -16195,9 +16222,6 @@ msgstr "選擇要錄製的頻道"
 msgid "Select channel to record from"
 msgstr "選擇要記錄的頻道"
 
-msgid "Select channels to add an offset to the volume."
-msgstr ""
-
 msgid "Select commit log"
 msgstr ""
 
@@ -16331,10 +16355,13 @@ msgstr ""
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
+msgid "Select the currently highlighted service"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -16387,10 +16414,6 @@ msgstr "定時休眠:"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-#, fuzzy
-msgid "Select the sleep timer action."
-msgstr "定時休眠:"
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16417,6 +16440,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 msgid "Select upgrade source"
@@ -16597,6 +16626,18 @@ msgstr "頻道"
 msgid "Service & PIDs"
 msgstr "頻道"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr ""
+
 #, fuzzy
 msgid "Service ID"
 msgstr "頻道"
@@ -16710,6 +16751,9 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "頻道掃描"
+
+msgid "Service selection canceled."
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -16877,6 +16921,28 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
+msgstr ""
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr ""
+
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
 msgid "Set to the desired primetime (hour)."
@@ -17262,22 +17328,6 @@ msgstr "顯示Softcam名稱"
 msgid "Show Clients"
 msgstr "顯示Gemini專案"
 
-msgid "Show CoolChannelGuide"
-msgstr ""
-
-msgid "Show CoolEasyGuide"
-msgstr ""
-
-#, fuzzy
-msgid "Show CoolInfoGuide"
-msgstr "顯示資訊"
-
-msgid "Show CoolSingleGuide"
-msgstr ""
-
-msgid "Show CoolTVGuide"
-msgstr ""
-
 msgid "Show Directory size"
 msgstr ""
 
@@ -17341,6 +17391,9 @@ msgstr "附件管理"
 #, fuzzy
 msgid "Show Main Menu as"
 msgstr "以列表形式顯示主功能表"
+
+msgid "Show Media Player in Main Menu"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr ""
@@ -18079,7 +18132,7 @@ msgid "Skin Setting"
 msgstr "OSD 設定"
 
 #, fuzzy
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Gemini 設定"
 
 #, fuzzy
@@ -18125,11 +18178,39 @@ msgstr "休眠時間"
 msgid "Sleep Timer"
 msgstr "休眠時間"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
+msgid "Sleep Timers"
+msgstr ""
+
 #, fuzzy
 msgid "Sleep delay"
 msgstr "頻道延遲"
 
 msgid "Sleep long"
+msgstr ""
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
 msgstr ""
 
 #, fuzzy
@@ -18261,6 +18342,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "保護設定"
 
+msgid "Softcams"
+msgstr ""
+
 msgid "Software"
 msgstr ""
 
@@ -18336,10 +18420,10 @@ msgstr "抱歉, 媒體掃描未安裝！"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance"
+msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance, please try again later."
+msgid "Sorry feeds are down for maintenance."
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18422,6 +18506,9 @@ msgstr "更多的視頻作品."
 msgid "Sort order for the language list."
 msgstr "更多的視頻作品."
 
+msgid "Sort playlists"
+msgstr ""
+
 #, fuzzy
 msgid "Sort plug-in browser entries"
 msgstr "流覽插件"
@@ -18492,6 +18579,9 @@ msgstr "最近精選"
 #, fuzzy
 msgid "Special Features Settings"
 msgstr "最近精選"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -18607,6 +18697,9 @@ msgstr "嚮導"
 msgid "Starting Softcam"
 msgstr "開始"
 
+msgid "Starting directory"
+msgstr "開始目錄"
+
 msgid "Starting on"
 msgstr "開始"
 
@@ -18665,10 +18758,10 @@ msgstr ""
 msgid "Stop Streams"
 msgstr "停止測驗"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "停止當前事件並禁用下一個事件"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "停止當前事件但不禁用下一個事件"
 
 msgid "Stop entry"
@@ -18730,6 +18823,9 @@ msgid "Stopping Softcam"
 msgstr ""
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr ""
+
+msgid "Storage / Disks"
 msgstr ""
 
 #, fuzzy
@@ -19035,6 +19131,12 @@ msgstr ""
 msgid "Switch to radio mode"
 msgstr "選擇音頻模式"
 
+msgid "Switch to the available RADIO services"
+msgstr ""
+
+msgid "Switch to the available TV services"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr ""
 
@@ -19093,6 +19195,10 @@ msgstr ""
 #, fuzzy
 msgid "System Message Check"
 msgstr "檔系統檢視"
+
+#, fuzzy
+msgid "System Plugins"
+msgstr "移除插件"
 
 #, fuzzy
 msgid "System Setup"
@@ -19376,14 +19482,6 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
-#, fuzzy
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN插件未安裝!\n"
-"請先安裝."
-
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
@@ -19531,6 +19629,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "下列文件被發現..."
 
@@ -19576,11 +19681,12 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr "定時休眠已被啟動."
-
-msgid "The sleep timer has been disabled."
-msgstr "定時休眠已被禁用."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19775,6 +19881,9 @@ msgstr ""
 msgid "This is the currently selected locale.  [%s]"
 msgstr ""
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr ""
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
@@ -19782,7 +19891,10 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr "這個插件未安裝."
 
-msgid "This offset will only be used if the channel has not its own volume offset."
+msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -20207,13 +20319,11 @@ msgstr "計時器"
 msgid "Timer Actions"
 msgstr "計時器選擇"
 
-#, fuzzy
-msgid "Timer List"
-msgstr "計時器編輯"
+msgid "Timer Overview"
+msgstr ""
 
-#, fuzzy
-msgid "Timer action"
-msgstr "計時器選擇"
+msgid "Timer Sanity Error"
+msgstr "計時器測驗中的錯誤"
 
 msgid "Timer edit"
 msgstr ""
@@ -20223,14 +20333,6 @@ msgstr ""
 
 msgid "Timer entry"
 msgstr "計時器項目"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-#, fuzzy
-msgid "Timer is not activated"
-msgstr "定時休眠已被啟動."
 
 msgid "Timer log"
 msgstr "計時器日誌"
@@ -20250,14 +20352,8 @@ msgstr ""
 "測驗timers.xml有重疊部分！\n"
 "請重新檢視它!"
 
-msgid "Timer overview"
-msgstr ""
-
 msgid "Timer recording location"
 msgstr ""
-
-msgid "Timer sanity error"
-msgstr "計時器測驗中的錯誤"
 
 msgid "Timer selection"
 msgstr "計時器選擇"
@@ -20643,6 +20739,9 @@ msgstr "調諧器資訊"
 #, fuzzy, python-format
 msgid "Tuner type %s"
 msgstr "定時類型"
+
+msgid "Tuners"
+msgstr ""
 
 msgid "Tuning algorithm"
 msgstr ""
@@ -21275,6 +21374,10 @@ msgstr ""
 msgid "User - bouquets"
 msgstr "自定義組"
 
+#, fuzzy
+msgid "User Feed URL"
+msgstr "用戶定義"
+
 msgid "User defined"
 msgstr "用戶定義"
 
@@ -21330,7 +21433,7 @@ msgstr ""
 msgid "Uzbekistan"
 msgstr ""
 
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "錄影機"
 
 #, fuzzy
@@ -21672,9 +21775,14 @@ msgstr "音量"
 msgid "Volume Adjust"
 msgstr "音量"
 
-#, fuzzy
-msgid "Volume Config"
-msgstr "用戶設定"
+msgid "Volume Adjust Actions"
+msgstr ""
+
+msgid "Volume Adjust Service Selection"
+msgstr ""
+
+msgid "Volume Adjust Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Volume down"
@@ -21829,6 +21937,10 @@ msgstr "天氣預報"
 #, fuzzy
 msgid "Web Interface"
 msgstr "Webinterface"
+
+#, fuzzy
+msgid "Web Links"
+msgstr "閃爍"
 
 msgid "Web browser base visibility"
 msgstr ""
@@ -22316,10 +22428,10 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
 #, fuzzy
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "確實要刪除計時器?"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr ""
 
 #, fuzzy
@@ -22767,6 +22879,9 @@ msgstr ""
 msgid "Zap+Record next"
 msgstr "錄製"
 
+msgid "Zapped"
+msgstr "轉自"
+
 msgid "Zeichentrick"
 msgstr ""
 
@@ -22847,9 +22962,6 @@ msgstr "取消自定義組編輯"
 
 msgid "abort favourites edit"
 msgstr "取消喜愛頻道編輯"
-
-msgid "about to start"
-msgstr "立即開始"
 
 msgid "ac3"
 msgstr ""
@@ -23199,10 +23311,6 @@ msgstr "斷開"
 msgid "discussion/interview/debate"
 msgstr ""
 
-#, fuzzy
-msgid "display"
-msgstr "反向顯示"
-
 msgid "documentary"
 msgstr ""
 
@@ -23212,13 +23320,7 @@ msgstr ""
 msgid "dolby"
 msgstr ""
 
-msgid "done!"
-msgstr "完成!"
-
 msgid "drama (general)"
-msgstr ""
-
-msgid "drivers"
 msgstr ""
 
 msgid "dts"
@@ -23336,10 +23438,6 @@ msgstr "退出網卡設定功能表"
 
 msgid "experimental film/video"
 msgstr ""
-
-#, fuzzy
-msgid "extensions"
-msgstr " 擴展."
 
 #, fuzzy
 msgid "extensions."
@@ -23534,9 +23632,6 @@ msgstr ""
 msgid "hh:mmam/pm"
 msgstr ""
 
-msgid "hide"
-msgstr ""
-
 #, fuzzy
 msgid "highest Resolution"
 msgstr "解析度"
@@ -23611,10 +23706,6 @@ msgstr ""
 msgid "just boot"
 msgstr "藍色增強"
 
-#, fuzzy
-msgid "kernel modules"
-msgstr "內核模組"
-
 msgid "languages"
 msgstr ""
 
@@ -23648,9 +23739,6 @@ msgstr ""
 
 msgid "loopthrough to"
 msgstr "聯繫"
-
-msgid "m2k"
-msgstr ""
 
 msgid "magazines/reports/documentary"
 msgstr ""
@@ -23816,10 +23904,6 @@ msgstr ""
 msgid "not"
 msgstr "否"
 
-#, fuzzy
-msgid "not activated"
-msgstr "啟動交換檔"
-
 msgid "not configured"
 msgstr ""
 
@@ -23891,9 +23975,6 @@ msgstr "通過"
 msgid "performing arts"
 msgstr ""
 
-msgid "picons"
-msgstr ""
-
 msgid "pid:"
 msgstr ""
 
@@ -23920,10 +24001,6 @@ msgstr "請稍候，正在載入圖片..."
 #, fuzzy
 msgid "please wait..."
 msgstr "請稍候..."
-
-#, fuzzy
-msgid "pli"
-msgstr "公開"
 
 msgid "pm"
 msgstr ""
@@ -23979,9 +24056,6 @@ msgstr "選擇檔系統"
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr ""
-
-msgid "recording..."
-msgstr "正在錄影..."
 
 msgid "red"
 msgstr "紅色"
@@ -24051,9 +24125,6 @@ msgstr "重命名"
 msgid "rename entry"
 msgstr "移除項目"
 
-msgid "repeat playlist"
-msgstr "重複播放列表"
-
 msgid "repeated"
 msgstr "重複"
 
@@ -24084,19 +24155,12 @@ msgstr ""
 msgid "romance"
 msgstr ""
 
-#, fuzzy
-msgid "running..."
-msgstr "正在備份..."
-
 msgid ""
 "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
 msgstr ""
-
-msgid "save playlist on exit"
-msgstr "退出時保存播放列表"
 
 msgid "scan state"
 msgstr "掃描狀態"
@@ -24123,9 +24187,6 @@ msgstr "第二條線纜連接Rotor"
 msgid "seconds"
 msgstr "秒"
 
-msgid "security"
-msgstr ""
-
 msgid "select"
 msgstr "選擇"
 
@@ -24149,19 +24210,11 @@ msgid "set as startup service"
 msgstr ""
 
 #, fuzzy
-msgid "settings"
-msgstr "設定"
-
-#, fuzzy
 msgid "share:"
 msgstr "共用"
 
 msgid "shell"
 msgstr ""
-
-#, fuzzy
-msgid "show"
-msgstr "顯示所有"
 
 msgid "show DVD main menu"
 msgstr "顯示DVD主功能表"
@@ -24212,9 +24265,6 @@ msgstr ""
 msgid "show event details"
 msgstr "顯示事件詳細內容"
 
-msgid "show mediaplayer on mainmenu"
-msgstr ""
-
 #, fuzzy
 msgid "show picons in quickzap"
 msgstr "快速切換自定義組"
@@ -24238,9 +24288,6 @@ msgstr ""
 
 msgid "simple"
 msgstr "簡單"
-
-msgid "skin"
-msgstr ""
 
 msgid "skip backward"
 msgstr "快倒"
@@ -24277,12 +24324,6 @@ msgstr ""
 msgid "softcam"
 msgstr ""
 
-msgid "softcams"
-msgstr ""
-
-msgid "sorting of playlists"
-msgstr ""
-
 msgid "special (general)"
 msgstr ""
 
@@ -24303,9 +24344,6 @@ msgstr "標準"
 
 msgid "start cut here"
 msgstr "從這裏開始剪輯"
-
-msgid "start directory"
-msgstr "開始目錄"
 
 #, fuzzy
 msgid "start recording"
@@ -24351,10 +24389,6 @@ msgstr "切換到下一個語種字幕"
 #, fuzzy
 msgid "system:"
 msgstr "系統:"
-
-#, fuzzy
-msgid "systemplugins"
-msgstr "移除插件"
 
 msgid "talk show"
 msgstr ""
@@ -24488,10 +24522,6 @@ msgid "user defined"
 msgstr "用戶定義"
 
 #, fuzzy
-msgid "user feed url"
-msgstr "用戶定義"
-
-#, fuzzy
 msgid "userdefined"
 msgstr "用戶定義"
 
@@ -24513,14 +24543,8 @@ msgstr "檢視增加部分..."
 msgid "violet"
 msgstr ""
 
-msgid "vix"
-msgstr ""
-
 msgid "wait for mmi..."
 msgstr "等待mmi..."
-
-msgid "waiting"
-msgstr "等待"
 
 msgid "wakeup"
 msgstr ""
@@ -24531,10 +24555,6 @@ msgstr "待機"
 
 msgid "water sport"
 msgstr ""
-
-#, fuzzy
-msgid "weblinks"
-msgstr "閃爍"
 
 msgid "weekly"
 msgstr "每週"
@@ -24611,15 +24631,145 @@ msgstr "是 (保留)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
 
-msgid "zapped"
-msgstr "轉自"
-
 #, fuzzy
 msgid "zapping"
 msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "extensions"
+#~ msgstr " 擴展."
+
+#, fuzzy
+#~ msgid "settings"
+#~ msgstr "設定"
+
+#~ msgid "Mainmenu"
+#~ msgstr "主功能表"
+
+#, fuzzy
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "自定義偏移"
+
+#~ msgid "Add Service"
+#~ msgstr "添加頻道"
+
+#, fuzzy
+#~ msgid "Change"
+#~ msgstr "改變"
+
+#, fuzzy
+#~ msgid "Change Volume offset"
+#~ msgstr "更改預設錄製偏移"
+
+#, fuzzy
+#~ msgid "Cool Channel Guide"
+#~ msgstr "頻道聲道:"
+
+#, fuzzy
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "AC3 延遲"
+
+#, fuzzy
+#~ msgid "PowerTimer list"
+#~ msgstr "計時器編輯"
+
+#, fuzzy
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "顯示資訊"
+
+#, fuzzy
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "WLAN插件未安裝!\n"
+#~ "請先安裝."
+
+#, fuzzy
+#~ msgid "Timer List"
+#~ msgstr "計時器編輯"
+
+#, fuzzy
+#~ msgid "Volume Config"
+#~ msgstr "用戶設定"
+
+#~ msgid "done!"
+#~ msgstr "完成!"
+
+#~ msgid "recording..."
+#~ msgstr "正在錄影..."
+
+#, fuzzy
+#~ msgid "running..."
+#~ msgstr "正在備份..."
+
+#~ msgid "waiting"
+#~ msgstr "等待"
+
+#, fuzzy
+#~ msgid "show"
+#~ msgstr "顯示所有"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox待機.\n"
+#~ "確定嗎?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox關機.\n"
+#~ "確定嗎?"
+
+#, fuzzy
+#~ msgid "Execute after current event"
+#~ msgstr "為當前事件定制"
+
+#, fuzzy
+#~ msgid "Execute in "
+#~ msgstr "執行"
+
+#, fuzzy
+#~ msgid "Select the sleep timer action."
+#~ msgstr "定時休眠:"
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "定時休眠已被啟動."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "定時休眠已被禁用."
+
+#, fuzzy
+#~ msgid "Timer action"
+#~ msgstr "計時器選擇"
+
+#, fuzzy
+#~ msgid "Timer is not activated"
+#~ msgstr "定時休眠已被啟動."
+
+#, fuzzy
+#~ msgid "not activated"
+#~ msgstr "啟動交換檔"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "頻道選擇"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "頻道選擇"
+
+#, fuzzy
+#~ msgid "No images found"
+#~ msgstr "找不到網路"
 
 #, fuzzy
 #~ msgid "(current image)"
@@ -25302,9 +25452,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "OSD position setup"
 #~ msgstr "極軸設定(DiSEqC 1.2)"
-
-#~ msgid "save last directory on exit"
-#~ msgstr "退出時保存目錄"
 
 #, fuzzy
 #~ msgid "Delete Lang"

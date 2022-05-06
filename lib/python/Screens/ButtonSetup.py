@@ -240,8 +240,8 @@ def getButtonSetupFunctions():
 	if BoxInfo.getItem("LcdLiveTV"):
 		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	if BoxInfo.getItem("canMultiBoot"):
-		ButtonSetupFunctions.append((_("MultiBoot Image Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
-	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
+		ButtonSetupFunctions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
+	ButtonSetupFunctions.append((_("Hotkey Settings"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if getHaveCI() == 'True':
 		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
@@ -267,8 +267,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
-	ButtonSetupFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
-	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Power"))
+	ButtonSetupFunctions.append((_("Deep Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", "Power"))
 	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Power"))
 	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", "Setup"))
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", "Setup"))
@@ -301,14 +301,14 @@ def getButtonSetupFunctions():
 class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self['description'] = Label(_('Click on your remote on the button you want to change'))
-		self.setTitle(_("Hotkey Setup"))
+		self["description"] = Label(_("Click on your remote on the button you want to change"))
+		self.setTitle(_("Hotkey Settings"))
 		self["key_red"] = Button(_("Exit"))
 		self.list = []
 		self.ButtonSetupKeys = getButtonSetupKeys()
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in self.ButtonSetupKeys:
-			self.list.append(ChoiceEntryComponent('dummy', (_(x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent("dummy", (_(x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()

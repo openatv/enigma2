@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-05-05 11:02+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1333,6 +1333,14 @@ msgid "%s additional screens"
 msgstr "%s flere skærme"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -1460,9 +1468,6 @@ msgstr "* Kun tilgængelig hvis mere end en grænseflade er aktiv."
 
 msgid "* current animation"
 msgstr "* nuværende animation"
-
-msgid "+/-"
-msgstr "+/-"
 
 msgid "+24"
 msgstr "+24"
@@ -2014,7 +2019,7 @@ msgstr "<Standardplacering af film>"
 msgid "<Last timer location>"
 msgstr "<Sidste timerplacering>"
 
-msgid "<unknown>"
+msgid "<Unknown>"
 msgstr "<ukendt>"
 
 msgid "?"
@@ -2025,16 +2030,6 @@ msgstr "??"
 
 msgid "A"
 msgstr "A"
-
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"En Optagelse, OptagelsesTimer eller StrømTimer kører eller starter om 15 minutter.\n"
-"Udvid DvaleTimer med 30 minutter. Din %s %s\n"
-"vil lukke ned efter Optagelse eller StrømTimer begivenhed. Gå i Standby nu ?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "En opdateringskontrol er i gang i baggrund, vent venligst nogle minutter og prøv igen."
@@ -2120,6 +2115,13 @@ msgstr "En optagelse er lige nu i gang. Stop venligst denne optagelse før fors�
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "En optagelse er lige nu i gang. Stop venligst denne optagelse før forsøg på start af satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Skal Timer gentages eller kun en gang ?"
 
@@ -2149,27 +2151,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"En DvaleTimer ønsker at sætte din %s %s i Standby\n"
-"Gør det nu eller udvid med ekstra minutter ?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "En DvaleTimer ønsker at slukke\n"
 "din %s %s. Sluk nu ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"En DvaleTimer ønsker at slukke din %s %s.\n"
-"Gør det nu eller udvid med ekstra minutter ?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "En lille oversigt over tilgængelige ikon-tilstande og handlinger."
@@ -2219,9 +2205,6 @@ msgstr "AC3 downmix"
 
 msgid "AC3 plus transcoding"
 msgstr "AC3 Plus omkodning"
-
-msgid "AC3/Dolby offset"
-msgstr "AC3/Dolby forskydning"
 
 msgid "AC3plus transcoding"
 msgstr "AC3 Plus omkodning"
@@ -2280,6 +2263,12 @@ msgstr "Afbryder opdateringsfremgang"
 
 msgid "About"
 msgstr "Om"
+
+msgid "About openATV"
+msgstr ""
+
+msgid "About to start"
+msgstr "er ved at starte"
 
 msgid "About..."
 msgstr "Om..."
@@ -2378,9 +2367,6 @@ msgstr "Tilføj ny firedobbel Kanalpost"
 msgid "Add Record Timer"
 msgstr "Tilføj Optagetimer"
 
-msgid "Add Service"
-msgstr "Tilføj kanal"
-
 msgid "Add Timer"
 msgstr "Tilføj Timer"
 
@@ -2407,6 +2393,9 @@ msgstr "Tilføj en optagetimer"
 
 msgid "Add a record timer for current event"
 msgstr "Tilføj en optagetimer for nuværende begivenhed"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
@@ -2464,6 +2453,9 @@ msgstr "Tilføj valgte mappe til bogmærker"
 
 msgid "Add service"
 msgstr "Tilføj kanal"
+
+msgid "Add the current service to the Volume Offsets list"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Tilføj timer"
@@ -2731,9 +2723,6 @@ msgstr "Alternativ Tuner-kanaler prioritet"
 
 msgid "Always ask"
 msgstr "Spørg altid"
-
-msgid "Always hide infobar"
-msgstr "Skjul altid Infobjælke"
 
 msgid "Always include ECM in recordings"
 msgstr "Inkluder altid ECM i optagelser"
@@ -3013,6 +3002,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Ved slutning:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atletik"
@@ -3757,7 +3749,7 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
-msgid "CCCam Info"
+msgid "CCCam Information"
 msgstr ""
 
 msgid "CCcam Client Info"
@@ -3823,6 +3815,10 @@ msgstr "SKIFT BUKET"
 
 msgid "CHANNEL +/-"
 msgstr "Kanal +/-"
+
+#, python-format
+msgid "CI %s enabled"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) opsætning"
@@ -4072,11 +4068,14 @@ msgstr "Afbryd gem Timeshift som film"
 msgid "Cancel selection"
 msgstr "Kanalvalg"
 
-msgid "Cancel the image selection and exit"
-msgstr "Afbryd Image valg og afslut"
+msgid "Cancel the service selection"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Afbryd Image valg og afslut alle menuer"
+msgid "Cancel the slot selection and exit"
+msgstr ""
+
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4164,9 +4163,6 @@ msgstr "Tchad"
 msgid "Chamorro"
 msgstr ""
 
-msgid "Change"
-msgstr "Ændre"
-
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Skift bokstilstand for at kontrollere hardware chip-tilstande*"
 
@@ -4178,9 +4174,6 @@ msgstr "Skift PIN"
 
 msgid "Change Timer"
 msgstr "Ænder Timer"
-
-msgid "Change Volume offset"
-msgstr "Skift lydstyrkeforskydning"
 
 msgid "Change bouquets in quickzap"
 msgstr "Skift Buket i KvikZap"
@@ -4225,9 +4218,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
-
-msgid "Channel \t\t\tVolume +"
-msgstr "Kanal \t\t\tLydstyrke +"
 
 msgid "Channel +/- button mode"
 msgstr "Kanal +/- knap tilstand"
@@ -4883,8 +4873,11 @@ msgstr "Konfigurer den skærmopløsning og skrifttype der skal bruges til Tekst-
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfigurer varigheden i minutter for pauseskærm."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Konfigurer varigheden i minutter for DvaleTimer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Konfigurer slutkoordinat i X af Tekst-TVs visningsområde."
@@ -5248,21 +5241,6 @@ msgstr "Cookøerne"
 msgid "Cooking"
 msgstr "Madlavning"
 
-msgid "Cool Channel Guide"
-msgstr "Cool Kanal Guide"
-
-msgid "Cool Easy Guide"
-msgstr "Cool Simpel Guide"
-
-msgid "Cool Info Guide"
-msgstr "Cool Info Guide"
-
-msgid "Cool Single Guide"
-msgstr "Cool Enkelt Guide"
-
-msgid "Cool TV Guide"
-msgstr "Cool TV Guide"
-
 msgid "Copy"
 msgstr "Kopier"
 
@@ -5419,7 +5397,7 @@ msgstr "Kroatisk"
 msgid "Cron Manager"
 msgstr "Cron-håndtering"
 
-msgid "CronTimers"
+msgid "Cron Timers"
 msgstr "CronTimere"
 
 msgid "Cuba"
@@ -5479,6 +5457,9 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Nuværende Version:"
+
+msgid "Currently Defined Volume Offsets:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -5824,6 +5805,9 @@ msgstr "Standard 'Timertype' *"
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Standard CPU prioritet (nice) for eksekverede skripts. Dette kan reducere belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = lavere prioritet)"
 
+msgid "Default Dolby Digital / Dolby AC-3 offset"
+msgstr ""
+
 msgid "Default Folder"
 msgstr "Standardmappe"
 
@@ -5871,6 +5855,9 @@ msgstr "Standard sorteringsmåde for mapper i venstre side."
 
 msgid "Default sorting method for files on the right side."
 msgstr "Standard sorteringsmåde for mapper i højre side."
+
+msgid "Default volume offset"
+msgstr ""
 
 #, python-format
 msgid "Default: '%s'."
@@ -5986,6 +5973,9 @@ msgstr "Bekræft sletning"
 msgid "Delete EPG"
 msgstr "Slet EPG"
 
+msgid "Delete Image"
+msgstr "Slet Image"
+
 msgid "Delete Language"
 msgstr "Slet sprog"
 
@@ -6034,13 +6024,10 @@ msgstr "Slet fil eller mappe (og hele dens indhold)"
 msgid "Delete folder"
 msgstr "Slet mappe"
 
-msgid "Delete image"
-msgstr "Slet Image"
-
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6059,6 +6046,9 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Slet nuværende Timeshift buffer og genstart Timeshift"
 
 msgid "Delete the currently displayed log file"
+msgstr ""
+
+msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6305,6 +6295,9 @@ msgstr "Plads der skal reseveres til optagelser (i GB)"
 
 msgid "Disk was not found!"
 msgstr "Disk blev ikke fundet!"
+
+msgid "Display"
+msgstr "Display"
 
 msgid "Display 16:9 content as"
 msgstr "Vis 16:9 indhold som"
@@ -6649,7 +6642,7 @@ msgstr "Gem ikke"
 msgid "Don't show default"
 msgstr "Vis ikke standard"
 
-msgid "Don't stop current event but disable coming events"
+msgid "Don't stop current event but disable future events"
 msgstr "Stop ikke nuværende udsendelse men deaktiver kommende udsendelser"
 
 msgid ""
@@ -6726,15 +6719,15 @@ msgstr "Dreambox data DVD format (vil ikke virke i andre DVD afspillere)"
 msgid "Driver and kernel information"
 msgstr ""
 
+msgid "Drivers"
+msgstr "Drivere"
+
 msgid "Drivers version"
 msgstr ""
 
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Drivere:\t\t%s"
-
-msgid "Drives"
-msgstr ""
 
 msgid "Drives Information"
 msgstr ""
@@ -6903,6 +6896,15 @@ msgstr "Ecuador"
 msgid "Edit"
 msgstr "Rediger"
 
+msgid "Edit Mode Off"
+msgstr "Sluk redigering"
+
+msgid "Edit Mode On"
+msgstr "Tænd redigering"
+
+msgid "Edit New Entry"
+msgstr "Rediger ny post"
+
 msgid "Edit Quad Channel Entry"
 msgstr "Rediger Firedobbelt Kanalpost"
 
@@ -6923,15 +6925,6 @@ msgstr "Rediger aktuel linje"
 
 msgid "Edit line "
 msgstr "Rediger linje "
-
-msgid "Edit mode off"
-msgstr "Sluk redigering"
-
-msgid "Edit mode on"
-msgstr "Tænd redigering"
-
-msgid "Edit new entry"
-msgstr "Rediger ny post"
 
 msgid "Edit position is the line end"
 msgstr "Redigeringsposition er linjeslutning"
@@ -6999,9 +6992,6 @@ msgstr "Aktiver %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Aktiver 5V til aktiv antenne"
 
-msgid "Enable AC3/Dolby"
-msgstr "Aktiver AC3/Dolby"
-
 msgid "Enable BT Audio"
 msgstr "Aktiver BT Lyd"
 
@@ -7010,6 +7000,9 @@ msgstr "AKtiver CIHjælper for SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "AKtiver CIHjælper for SLOT CI1"
+
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Aktiver EIT EPG"
@@ -7205,6 +7198,33 @@ msgid "End time"
 msgstr "Sluttid"
 
 msgid "Energie"
+msgstr ""
+
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
 msgstr ""
 
 msgid "English"
@@ -7609,12 +7629,6 @@ msgstr "Overskrider Bluedisk medie!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Overskrider dobbeltlags medie!"
-
-msgid "Execute after current event"
-msgstr "Udfør efter aktuel begivenhed"
-
-msgid "Execute in "
-msgstr "Udfør om "
 
 msgid "Execution condition"
 msgstr "Udførelsesbetingelse"
@@ -8699,7 +8713,7 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN handlinger"
 
-msgid "HDMI-IN Recording settings"
+msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN Optagelsesindstillinger"
 
 msgid "HDMIin"
@@ -8843,6 +8857,12 @@ msgstr "Skjult / Blank"
 msgid "Hidden network"
 msgstr "Skjult netværk"
 
+msgid "Hide"
+msgstr "Skjul"
+
+msgid "Hide InfoBar"
+msgstr "Skjul altid Infobjælke"
+
 msgid "Hide VBI line for this service"
 msgstr "Skjul VBI-linje for denne kanal"
 
@@ -8977,7 +8997,7 @@ msgstr "Hotbird 13.0e"
 msgid "Hotkey"
 msgstr "Hurtigtast"
 
-msgid "Hotkey Setup"
+msgid "Hotkey Settings"
 msgstr "Hurtigtast opsætning"
 
 msgid "Hotkey Setup for"
@@ -9513,6 +9533,9 @@ msgstr "Indgang "
 msgid "Input Device Settings"
 msgstr ""
 
+msgid "Input Devices Settings"
+msgstr "Inddata enheder"
+
 #, fuzzy
 msgid "Input Stream ID"
 msgstr "Indgående Stream ID"
@@ -9522,9 +9545,6 @@ msgstr "Angiv kanalnavn."
 
 msgid "Input config file name:"
 msgstr "Indtast navn på konfigfil:"
-
-msgid "Input devices"
-msgstr "Inddata enheder"
 
 #, fuzzy
 msgid "Input scroll position"
@@ -9901,6 +9921,9 @@ msgstr "Hold Filmliste åben imens lydfiler afspilles."
 msgid "Kenya"
 msgstr "Kenya"
 
+msgid "Kernel Modules"
+msgstr "Kernemoduler"
+
 msgid "Kernel file"
 msgstr ""
 
@@ -10027,7 +10050,7 @@ msgstr "LAN forbindelse"
 msgid "LAN long"
 msgstr "LAN lang"
 
-msgid "LCD Skin Setup"
+msgid "LCD Skin Settings"
 msgstr "LCD Tema opsætning"
 
 msgid "LCD SkinSelector"
@@ -10337,10 +10360,10 @@ msgstr "Hent ulænket brugerbuketter"
 msgid "Load/Save/Delete"
 msgstr "Indlæs/Gem/Slet"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -10512,6 +10535,9 @@ msgstr "Luxembourgsk"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxembourgsk"
 
+msgid "M2k"
+msgstr "M2k"
+
 msgid "MAC"
 msgstr "MAC"
 
@@ -10575,9 +10601,6 @@ msgid "Magic long"
 msgstr "Magisk lang"
 
 msgid "Main Menu"
-msgstr "Hovedmenu"
-
-msgid "Mainmenu"
 msgstr "Hovedmenu"
 
 msgid "Maintain old EPG data for"
@@ -10765,6 +10788,9 @@ msgstr "Mediecnter"
 
 msgid "Media Player"
 msgstr "Medieafspiller"
+
+msgid "Media Player Settings"
+msgstr ""
 
 msgid "Media Portal"
 msgstr "Medieportal"
@@ -11052,6 +11078,12 @@ msgstr "Flyt 1 element"
 msgid "Move Left/Right"
 msgstr "Flyt venstre/højre"
 
+msgid "Move Mode Off"
+msgstr "Omflytningstilstand fra"
+
+msgid "Move Mode On"
+msgstr "Omflytningstilstand til"
+
 msgid "Move PIP"
 msgstr "Flyt PiP"
 
@@ -11112,12 +11144,6 @@ msgstr "Flyt filer/mapper til destinationsmappe"
 
 msgid "Move folder"
 msgstr "Flyt mapppe"
-
-msgid "Move mode off"
-msgstr "Omflytningstilstand fra"
-
-msgid "Move mode on"
-msgstr "Omflytningstilstand til"
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11263,22 +11289,16 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Multiboot Image håndtering"
 
 msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11732,9 +11752,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Ingen hash-beregninger konfigureret"
 
-msgid "No images found"
-msgstr "Ingen Images fundet"
-
 msgid "No matching place names found"
 msgstr "Ingen identiske stednavne fundet"
 
@@ -11767,6 +11784,9 @@ msgstr "Ingen kanal"
 
 msgid "No services/providers selected"
 msgstr "Ingen kanaler/udbydere valgt"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Ingen Standby"
@@ -12063,7 +12083,7 @@ msgstr "OSD 3D Opsætning"
 msgid "OSD Adjustment"
 msgstr "OSD Justering"
 
-msgid "OSD Position"
+msgid "OSD Position Settings"
 msgstr "OSD Placering"
 
 msgid "OSD Settings"
@@ -12078,11 +12098,11 @@ msgstr "OSD navneanmodning"
 msgid "OScam Info"
 msgstr "OScam Information"
 
+msgid "OScam Information"
+msgstr "OScam Information"
+
 msgid "OScam webif disabled"
 msgstr "OScam WebIF deaktiveret"
-
-msgid "OScamInfo"
-msgstr "OScam Info"
 
 msgid "OTT Model"
 msgstr ""
@@ -12101,9 +12121,6 @@ msgstr "Offline afkodningsforsinkelse (ms)"
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Ok"
-msgstr "Ok"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ældre filer i Timeshift mappen bliver fjernet ved hver begivenhedsændring."
@@ -12257,6 +12274,9 @@ msgstr "OpenDNS FamilyShield"
 msgid "OpenDNS Home"
 msgstr "Åben AutoTimer"
 
+msgid "OpenPLi"
+msgstr "PLi"
+
 msgid "OpenSSL version"
 msgstr ""
 
@@ -12265,6 +12285,9 @@ msgstr "OpenVPN"
 
 msgid "OpenVPN Settings"
 msgstr "OpenVPN opsætning"
+
+msgid "OpenViX"
+msgstr "ViX"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN log"
@@ -12686,6 +12709,9 @@ msgstr "Pikon og Kanalnavn"
 
 msgid "Picon width"
 msgstr "Pikon bredde"
+
+msgid "Picons"
+msgstr "Pikoner"
 
 msgid "Picture in EPG"
 msgstr "Billede i EPG"
@@ -13280,6 +13306,9 @@ msgstr "Strøm LED tilstand i Standby."
 msgid "Power On Display"
 msgstr "Tænd skærm"
 
+msgid "Power Timers"
+msgstr "StrømTimere"
+
 msgid "Power long"
 msgstr "Tænd lang"
 
@@ -13309,12 +13338,6 @@ msgstr "StrømTimer overblik"
 
 msgid "PowerTimer Standby"
 msgstr "StrømTimer Standby"
-
-msgid "PowerTimer list"
-msgstr "StrømTimer liste"
-
-msgid "PowerTimers"
-msgstr "StrømTimere"
 
 msgid "Predefined"
 msgstr "Foruddefineret"
@@ -13446,11 +13469,8 @@ msgstr "Tryk OK for at bruge dette sprog.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Tryk OK for at bruge denne lokalitet.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
-
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "tryk MENU knappen for at sætte generelt AC3/Dolby forskydning"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Tryk på denne knap for at efterligne et langt tryk på den efterfølgende knap (dette tilsidesætter alle andre handlinger tildelt til emuleringsknappen)."
@@ -14358,6 +14378,9 @@ msgstr "Gentag"
 msgid "Repeat Display Message"
 msgstr "Gentag skærmbesked"
 
+msgid "Repeat playlist"
+msgstr "Gentag afspilningsliste"
+
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Gentag sendte Standby og vågn op kommandoer"
 
@@ -14367,7 +14390,7 @@ msgstr "Gentag Standby kommandoer ?"
 msgid "Repeat type"
 msgstr "Gentagelsestype"
 
-msgid "Repeating event currently recording... What do you want to do?"
+msgid "Repeating event currently recording. What do you want to do?"
 msgstr "Gentagende begivenhed der optages i øjeblikket ... Hvad vil du gøre ?"
 
 msgid "Repeats"
@@ -14513,7 +14536,7 @@ msgstr "Gendan indstillinger fra en sikkerhedskopi"
 msgid "Restore system settings"
 msgstr "Gendan systemopsætning"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -14903,11 +14926,17 @@ msgstr "Gem og Optag"
 msgid "Save and stop"
 msgstr "Gem og Stop"
 
+msgid "Save directory on EXIT"
+msgstr "Gem sidste mappe ved afslutning"
+
 msgid "Save every (in hours)"
 msgstr "Gem hver (i timer)"
 
 msgid "Save left folder on exit"
 msgstr "Gem venstre mappe ved afslut"
+
+msgid "Save playlist on EXIT"
+msgstr "Gem afspilningsliste ved afslutning"
 
 msgid "Save playlist"
 msgstr "Gem afspilningslist"
@@ -15116,6 +15145,9 @@ msgstr "Sekundær DNS"
 msgid "Secondinfobar:"
 msgstr "Sekundær Infobjælke:"
 
+msgid "Security"
+msgstr "Sikkerhed"
+
 msgid "Seek"
 msgstr "Søg"
 
@@ -15164,6 +15196,9 @@ msgstr "Vælg '1,0' for standardtildelte switches, '1,1' for utildelte switches,
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Vælg 'A' eller 'B' hvis dit antennesystem kræver dette, ellers vælges 'ingen'. Vælg 'ingen' hvis du er usikker."
+
+msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
@@ -15319,9 +15354,6 @@ msgstr "Vælg lydkanal"
 msgid "Select channel to record from"
 msgstr "Vælg kanal der skal optages fra"
 
-msgid "Select channels to add an offset to the volume."
-msgstr "vælg kanaler for at tilføjes en forskydning af lydstyrken"
-
 msgid "Select commit log"
 msgstr ""
 
@@ -15445,11 +15477,14 @@ msgstr ""
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Vælg det aktuelt fremhævede område/sprog af brugergrænsefladen"
 
+msgid "Select the currently highlighted service"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vælg den ønskede funktion og klik på \"OK\" for at tildele den. Brug \"CH+/-\" for at skifte mellem listerne. Vælg en tildelt funktion og klik på \"OK\" for at fjerne tildelingen. Brug \"Næste/Forrige\" for at ændre rækkefølgen på de tildelte funktioner."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Vælg det markerede Image og genstart"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 #, fuzzy
 msgid "Select the locale from a menu"
@@ -15502,9 +15537,6 @@ msgstr "Vælg det skiftet tegnsæt"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vælg kun skiftet tegnsæt for det næste tegn"
 
-msgid "Select the sleep timer action."
-msgstr "Vælg handling for DvaleTimer."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15531,6 +15563,12 @@ msgstr "Vælg den type af LNB/enhed der bruges (normalt 'Universal'). Vælg 'bru
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vælg den type af enkeltkabel modtagelsesenhed du bruger."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Vælg opgraderingskilde"
@@ -15709,6 +15747,18 @@ msgstr "Kanal"
 msgid "Service & PIDs"
 msgstr "Kanaler"
 
+#, python-format
+msgid "Service '%s' added."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Service '%s' is already defined."
+msgstr ""
+
 #, fuzzy
 msgid "Service ID"
 msgstr "Kanal"
@@ -15815,6 +15865,9 @@ msgstr "Kanalreference"
 
 msgid "Service scan"
 msgstr "Kanalsøgning"
+
+msgid "Service selection canceled."
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -15968,6 +16021,28 @@ msgstr "Sæt tiden der ventes før udførelse af standardhandling i nedluknings-
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Sæt typen af fremgangsindikation i kanalvalgsskærm."
+
+#, python-format
+msgid "Set the volume offset for the '%s' service."
+msgstr ""
+
+msgid "Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen."
+msgstr ""
+
+msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
+msgstr ""
+
+msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgstr ""
+
+msgid "Set this to 'Yes' to sort the playlists alphabetically."
+msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Sæt til ønsket Primetime (timetal)."
@@ -16305,21 +16380,6 @@ msgstr "Vis CI beskeder"
 msgid "Show Clients"
 msgstr "Vis klienter"
 
-msgid "Show CoolChannelGuide"
-msgstr "Vis CoolChannelGuide"
-
-msgid "Show CoolEasyGuide"
-msgstr "Vis CoolEasyGuide"
-
-msgid "Show CoolInfoGuide"
-msgstr "Vis CoolInfoGuide"
-
-msgid "Show CoolSingleGuide"
-msgstr "Vis CoolSingleGuide"
-
-msgid "Show CoolTVGuide"
-msgstr "Vis CoolTVGuide"
-
 msgid "Show Directory size"
 msgstr ""
 
@@ -16374,6 +16434,9 @@ msgstr "Vis Loghåndtering i udvidelser ?"
 
 msgid "Show Main Menu as"
 msgstr "Vis Hovedmenu som"
+
+msgid "Show Media Player in Main Menu"
+msgstr "Vis medieafspiller på hovedmenu"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Vis medieafspilning resterende/forløbet som"
@@ -17043,7 +17106,7 @@ msgstr "Tema-vælger"
 msgid "Skin Setting"
 msgstr "Tema indstillinger"
 
-msgid "Skin Setup"
+msgid "Skin Settings"
 msgstr "Tema opsætning"
 
 msgid "Skin setup"
@@ -17082,11 +17145,41 @@ msgstr "Dvale"
 msgid "Sleep Timer"
 msgstr "DvaleTimer"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
+msgid "Sleep Timers"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Dvale forsinkelse"
 
 msgid "Sleep long"
 msgstr "Dvale lang"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "DvaleTmer"
@@ -17212,6 +17305,9 @@ msgstr "SoftCAM handlinger"
 msgid "Softcam Settings"
 msgstr "Softcam opsætning"
 
+msgid "Softcams"
+msgstr "Softcams"
+
 msgid "Software"
 msgstr "Software"
 
@@ -17285,11 +17381,11 @@ msgstr "Desværre, MediaScanner er ikke installeret!"
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Desværre, MiniDLNA konfiguration mangler"
 
-msgid "Sorry feeds are down for maintenance"
-msgstr "Desværre, Feeds er nede for Vedligeholdelse"
-
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Desværre, Feeds er nede for Vedligeholdelse, prøv venligst igen senere."
+
+msgid "Sorry feeds are down for maintenance."
+msgstr "Desværre, Feeds er nede for Vedligeholdelse"
 
 msgid "Sorry no backups found!"
 msgstr "Desværre, ingen sikkerhedskopier fundet!"
@@ -17367,6 +17463,9 @@ msgstr "Sorteringsrækkefølge for menuposter"
 msgid "Sort order for the language list."
 msgstr "Sorteringsrækkefølge for menuposter"
 
+msgid "Sort playlists"
+msgstr "Sortering af afspilningsliste"
+
 msgid "Sort plug-in browser entries"
 msgstr "Sorter Plugin browser-poster"
 
@@ -17430,6 +17529,9 @@ msgstr "Speciel 2"
 
 msgid "Special Features Settings"
 msgstr "Specielle egenskaber"
+
+msgid "Specify the directory to use when starting Media Player."
+msgstr ""
 
 msgid "Speed"
 msgstr ""
@@ -17534,6 +17636,9 @@ msgstr "StartAssistent"
 msgid "Starting Softcam"
 msgstr "Starter Softcam"
 
+msgid "Starting directory"
+msgstr "Startmappe"
+
 msgid "Starting on"
 msgstr "Starter den"
 
@@ -17589,10 +17694,10 @@ msgstr "Stop PiP"
 msgid "Stop Streams"
 msgstr "Stop steams"
 
-msgid "Stop current event and disable coming events"
+msgid "Stop current event and disable future events"
 msgstr "Stop nuværende program og slå kommende programmer fra"
 
-msgid "Stop current event but not coming events"
+msgid "Stop current event but not future events"
 msgstr "Stop nuværende program men ikke kommende programmer"
 
 msgid "Stop entry"
@@ -17651,6 +17756,9 @@ msgstr "Stopper Softcam"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
+
+msgid "Storage / Disks"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Lagerenheder"
@@ -17938,6 +18046,12 @@ msgstr "Skift til forrige underkanal"
 msgid "Switch to radio mode"
 msgstr "Skift til Radio-tilstand"
 
+msgid "Switch to the available RADIO services"
+msgstr ""
+
+msgid "Switch to the available TV services"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "Udskiftelig Tuner typer:"
 
@@ -17991,6 +18105,9 @@ msgstr ""
 
 msgid "System Message Check"
 msgstr "System beskedkontrold"
+
+msgid "System Plugins"
+msgstr "System Plugins"
 
 msgid "System Setup"
 msgstr "System opsætning"
@@ -18259,13 +18376,6 @@ msgstr ""
 "AutoTimer Pluginet er ikke installeret!\n"
 "Installer den venligst."
 
-msgid ""
-"The Cool TV Guide plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Cool TV Guide Pluginet er ikke installeret!\n"
-"Installer den venligst."
-
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "DVD standarden understøtter ikke H.264 (HDTV) video streams."
 
@@ -18411,6 +18521,13 @@ msgstr "Standardindstillingerne er opvågningstid - 5 minutter og Timer starttid
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
 
@@ -18460,11 +18577,12 @@ msgstr "Kanallisten er genindlæst."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Indstillingen 'Uden forespørgsel' er det samme som 'Standard' uden yderligere bekræftelsesspørgsmål. Alle andre afhængighed (f.eks. optagelser, tidsområde) gælder stadig."
 
-msgid "The sleep timer has been activated."
-msgstr "DvaleTimer er blevet aktiveret."
-
-msgid "The sleep timer has been disabled."
-msgstr "DvaleTimer er blevet deaktiveret."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18657,14 +18775,20 @@ msgstr "Dette er det nuværende valgte sprog.  [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Dette er det nuværende valgte område.  [%s]"
 
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr ""
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Dette er rækkefølgen i hvilken DiSEqC kommandoer sendes til antennesystemet. Rækkefølgen skal svare præcis til den rækkefølge de fysiske enheder er arrangeret langs signalkablet (startende fra modtageren)."
 
 msgid "This line is not editable!"
 msgstr "Denne linje er ikke redigerbar!"
 
-msgid "This offset will only be used if the channel has not its own volume offset."
-msgstr "denne forskydning bruges kun hvis kanalen ikke har sin egen lydstyrkeforskydning"
+msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Denne mulighed tillader at reducere block-støj i billedet. Dette er naturligvis på bekostning af billedets skarphed."
@@ -19090,11 +19214,11 @@ msgstr "Timer"
 msgid "Timer Actions"
 msgstr "Timer handlinger"
 
-msgid "Timer List"
-msgstr "Timerliste"
+msgid "Timer Overview"
+msgstr "Timer overblik"
 
-msgid "Timer action"
-msgstr "Timer handling"
+msgid "Timer Sanity Error"
+msgstr "Timer sanity fejl"
 
 msgid "Timer edit"
 msgstr "Timer redigering"
@@ -19104,13 +19228,6 @@ msgstr "Timer redigering"
 
 msgid "Timer entry"
 msgstr "Indstil Timer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Timer er aktiveret: +%d min."
-
-msgid "Timer is not activated"
-msgstr "Timer er ikke aktiveret"
 
 msgid "Timer log"
 msgstr "Timer log"
@@ -19129,14 +19246,8 @@ msgstr ""
 "Timer overlap i timers.xml opdaget!\n"
 "Undersøg det venligst igen!"
 
-msgid "Timer overview"
-msgstr "Timer overblik"
-
 msgid "Timer recording location"
 msgstr "Timeroptagelse placering"
-
-msgid "Timer sanity error"
-msgstr "Timer sanity fejl"
 
 msgid "Timer selection"
 msgstr "Timer valg"
@@ -19496,6 +19607,9 @@ msgstr "Tuner-status UKENDT"
 #, python-format
 msgid "Tuner type %s"
 msgstr "Tuner-type %s"
+
+msgid "Tuners"
+msgstr ""
 
 msgid "Tuning algorithm"
 msgstr "Dreje-algoritme"
@@ -20100,6 +20214,9 @@ msgstr "Bruger  (keymap.usr)"
 msgid "User - bouquets"
 msgstr "Bruger kanallister"
 
+msgid "User Feed URL"
+msgstr "Bruger Feed URL"
+
 msgid "User defined"
 msgstr "Brugerdefineret"
 
@@ -20153,7 +20270,7 @@ msgstr "Usbekistan"
 msgid "Uzbekistan"
 msgstr "Usbekistan"
 
-msgid "VCR scart"
+msgid "VCR Scart Settings"
 msgstr "VCR Scart"
 
 msgid "VLAN connection"
@@ -20464,8 +20581,14 @@ msgstr "Lydstyrke"
 msgid "Volume Adjust"
 msgstr "Lydstyrkejustering"
 
-msgid "Volume Config"
-msgstr "Lydstyrke konfig"
+msgid "Volume Adjust Actions"
+msgstr ""
+
+msgid "Volume Adjust Service Selection"
+msgstr ""
+
+msgid "Volume Adjust Settings"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Lydstyrke ned"
@@ -20612,6 +20735,9 @@ msgstr "Vejr"
 
 msgid "Web Interface"
 msgstr "Webgrænseflade"
+
+msgid "Web Links"
+msgstr "Web Links"
 
 msgid "Web browser base visibility"
 msgstr "Webbrowser grundsynlighed"
@@ -21090,10 +21216,10 @@ msgstr "Ja, men gem Timeshift som film og fortsæt optagelse"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, men gem Timeshift som film og stop optagelse"
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from timer list"
 msgstr "Ja, slet fra Timerliste"
 
-msgid "Yes, delete from Timerlist and delete recording"
+msgid "Yes, delete from timer list and delete recording"
 msgstr "Ja, slet fra Timerliste og slet optagelse"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21563,6 +21689,9 @@ msgstr "Zap op"
 msgid "Zap+Record next"
 msgstr "Zap+Optag næste"
 
+msgid "Zapped"
+msgstr "Zappet"
+
 msgid "Zeichentrick"
 msgstr ""
 
@@ -21640,9 +21769,6 @@ msgstr "Afbryd Buket-redigering"
 
 msgid "abort favourites edit"
 msgstr "afbryd favorit-redigering"
-
-msgid "about to start"
-msgstr "er ved at starte"
 
 msgid "ac3"
 msgstr "ac3"
@@ -21978,9 +22104,6 @@ msgstr "afbrudt"
 msgid "discussion/interview/debate"
 msgstr "Diskussion/interview/debat"
 
-msgid "display"
-msgstr "Display"
-
 msgid "documentary"
 msgstr "Dokumentar"
 
@@ -21990,14 +22113,8 @@ msgstr "Dokumentar (generelt)"
 msgid "dolby"
 msgstr "Dolby"
 
-msgid "done!"
-msgstr "Udført!"
-
 msgid "drama (general)"
 msgstr "Drama (Generelt"
-
-msgid "drivers"
-msgstr "Drivere"
 
 msgid "dts"
 msgstr ""
@@ -22111,9 +22228,6 @@ msgstr "Afslut netværksadapter opsætningsmenu"
 
 msgid "experimental film/video"
 msgstr "Eksperimentel film/video"
-
-msgid "extensions"
-msgstr "Udvidelser"
 
 msgid "extensions."
 msgstr "Udvidelser."
@@ -22300,9 +22414,6 @@ msgstr "tt:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "tt:mmam/pm"
 
-msgid "hide"
-msgstr "Skjul"
-
 msgid "highest Resolution"
 msgstr "Højeste opløsning"
 
@@ -22374,9 +22485,6 @@ msgstr "Afbryd bare, vis besked"
 msgid "just boot"
 msgstr "Kun boot"
 
-msgid "kernel modules"
-msgstr "Kernemoduler"
-
 msgid "languages"
 msgstr "Sprog"
 
@@ -22409,9 +22517,6 @@ msgstr "lang"
 
 msgid "loopthrough to"
 msgstr "gennemløb til"
-
-msgid "m2k"
-msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "Magasiner/Beretninger/Dokumentar"
@@ -22566,9 +22671,6 @@ msgstr ""
 msgid "not"
 msgstr "ikke"
 
-msgid "not activated"
-msgstr "ikke aktiveret"
-
 msgid "not configured"
 msgstr "ikke konfigureret"
 
@@ -22635,9 +22737,6 @@ msgstr "OK"
 msgid "performing arts"
 msgstr "Udøvende kunst"
 
-msgid "picons"
-msgstr "Pikoner"
-
 msgid "pid:"
 msgstr "PID:"
 
@@ -22661,9 +22760,6 @@ msgstr "vent venligst, henter billede..."
 
 msgid "please wait..."
 msgstr "vent venligst..."
-
-msgid "pli"
-msgstr "PLi"
 
 msgid "pm"
 msgstr "PM"
@@ -22710,9 +22806,6 @@ msgstr "Genstart system"
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "Optagelsestid ændret, planlagt start er nu: %s"
-
-msgid "recording..."
-msgstr "Optager..."
 
 msgid "red"
 msgstr "Rød"
@@ -22777,9 +22870,6 @@ msgstr "Omdøb"
 msgid "rename entry"
 msgstr "Omdøb post"
 
-msgid "repeat playlist"
-msgstr "Gentag afspilningsliste"
-
 msgid "repeated"
 msgstr "Gentaget"
 
@@ -22810,9 +22900,6 @@ msgstr "Rock/Pop"
 msgid "romance"
 msgstr "Romantik"
 
-msgid "running..."
-msgstr "kører..."
-
 msgid ""
 "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
@@ -22823,9 +22910,6 @@ msgstr ""
 "Det er mulig at se TV,\n"
 "men det er ikke mulig at søge efter nye TV kanaler\n"
 "eller at konfigurere Tuner-indstillinger"
-
-msgid "save playlist on exit"
-msgstr "Gem afspilningsliste ved afslutning"
 
 msgid "scan state"
 msgstr "søgestatus"
@@ -22851,9 +22935,6 @@ msgstr "Sekundær kabel fra motor LNB"
 msgid "seconds"
 msgstr "sekunder"
 
-msgid "security"
-msgstr "Sikkerhed"
-
 msgid "select"
 msgstr "vælg"
 
@@ -22875,17 +22956,11 @@ msgstr "kanal PIN"
 msgid "set as startup service"
 msgstr "Sæt som startkanal"
 
-msgid "settings"
-msgstr "Indstillinger"
-
 msgid "share:"
 msgstr "Deling:"
 
 msgid "shell"
 msgstr "skal"
-
-msgid "show"
-msgstr "Vis"
 
 msgid "show DVD main menu"
 msgstr "vis DVD hoved menu"
@@ -22945,9 +23020,6 @@ msgstr "show cards with uphop 9"
 msgid "show event details"
 msgstr "Vis begivenhedsdetaljer"
 
-msgid "show mediaplayer on mainmenu"
-msgstr "Vis medieafspiller på hovedmenu"
-
 msgid "show picons in quickzap"
 msgstr "Vis Pikoner i KvikZap"
 
@@ -22968,9 +23040,6 @@ msgstr "Bland"
 
 msgid "simple"
 msgstr "enkel"
-
-msgid "skin"
-msgstr "Tema"
 
 msgid "skip backward"
 msgstr "Hop tilbage"
@@ -23007,12 +23076,6 @@ msgstr "Social/Åndsvidenskab"
 msgid "softcam"
 msgstr "SoftCAM"
 
-msgid "softcams"
-msgstr "softcams"
-
-msgid "sorting of playlists"
-msgstr "Sortering af afspilningsliste"
-
 msgid "special (general)"
 msgstr "Særligt (Generelt)"
 
@@ -23033,9 +23096,6 @@ msgstr "Standard"
 
 msgid "start cut here"
 msgstr "Start klip her"
-
-msgid "start directory"
-msgstr "Startmappe"
 
 msgid "start recording"
 msgstr "Start optagelse"
@@ -23078,9 +23138,6 @@ msgstr "skift til næste undertekstsprog"
 
 msgid "system:"
 msgstr "system:"
-
-msgid "systemplugins"
-msgstr "System Plugins"
 
 msgid "talk show"
 msgstr "Underholdningsprogram"
@@ -23203,9 +23260,6 @@ msgstr "use_hdmi_cacenter"
 msgid "user defined"
 msgstr "Brugertilpasset"
 
-msgid "user feed url"
-msgstr "Bruger Feed URL"
-
 msgid "userdefined"
 msgstr "brugerdefineret"
 
@@ -23227,14 +23281,8 @@ msgstr "Se udvidelser..."
 msgid "violet"
 msgstr "violet"
 
-msgid "vix"
-msgstr "ViX"
-
 msgid "wait for mmi..."
 msgstr "vent på mmi..."
-
-msgid "waiting"
-msgstr "Afventer"
 
 msgid "wakeup"
 msgstr "Væk"
@@ -23244,9 +23292,6 @@ msgstr "Væk til Standby"
 
 msgid "water sport"
 msgstr "Vandsport"
-
-msgid "weblinks"
-msgstr "Weblinks"
 
 msgid "weekly"
 msgstr "Ugentlig"
@@ -23324,14 +23369,189 @@ msgstr "ja (behold feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yderligere hjælp inden du genstarter din %s %s."
 
-msgid "zapped"
-msgstr "Zappet"
-
 msgid "zapping"
 msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "extensions"
+#~ msgstr "Udvidelser"
+
+#~ msgid "settings"
+#~ msgstr "Indstillinger"
+
+#~ msgid "skin"
+#~ msgstr "Tema"
+
+#~ msgid "Mainmenu"
+#~ msgstr "Hovedmenu"
+
+#~ msgid "+/-"
+#~ msgstr "+/-"
+
+#~ msgid "AC3/Dolby offset"
+#~ msgstr "AC3/Dolby forskydning"
+
+#~ msgid "Add Service"
+#~ msgstr "Tilføj kanal"
+
+#~ msgid "Change"
+#~ msgstr "Ændre"
+
+#~ msgid "Change Volume offset"
+#~ msgstr "Skift lydstyrkeforskydning"
+
+#~ msgid "Channel \t\t\tVolume +"
+#~ msgstr "Kanal \t\t\tLydstyrke +"
+
+#~ msgid "Cool Channel Guide"
+#~ msgstr "Cool Kanal Guide"
+
+#~ msgid "Cool Easy Guide"
+#~ msgstr "Cool Simpel Guide"
+
+#~ msgid "Cool Info Guide"
+#~ msgstr "Cool Info Guide"
+
+#~ msgid "Cool Single Guide"
+#~ msgstr "Cool Enkelt Guide"
+
+#~ msgid "Cool TV Guide"
+#~ msgstr "Cool TV Guide"
+
+#~ msgid "Enable AC3/Dolby"
+#~ msgstr "Aktiver AC3/Dolby"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "PowerTimer list"
+#~ msgstr "StrømTimer liste"
+
+#~ msgid "Press the menu button to set a general AC3/Dolby offset."
+#~ msgstr "tryk MENU knappen for at sætte generelt AC3/Dolby forskydning"
+
+#~ msgid "Select channels to add an offset to the volume."
+#~ msgstr "vælg kanaler for at tilføjes en forskydning af lydstyrken"
+
+#~ msgid "Show CoolChannelGuide"
+#~ msgstr "Vis CoolChannelGuide"
+
+#~ msgid "Show CoolEasyGuide"
+#~ msgstr "Vis CoolEasyGuide"
+
+#~ msgid "Show CoolInfoGuide"
+#~ msgstr "Vis CoolInfoGuide"
+
+#~ msgid "Show CoolSingleGuide"
+#~ msgstr "Vis CoolSingleGuide"
+
+#~ msgid "Show CoolTVGuide"
+#~ msgstr "Vis CoolTVGuide"
+
+#~ msgid ""
+#~ "The Cool TV Guide plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Cool TV Guide Pluginet er ikke installeret!\n"
+#~ "Installer den venligst."
+
+#~ msgid "This offset will only be used if the channel has not its own volume offset."
+#~ msgstr "denne forskydning bruges kun hvis kanalen ikke har sin egen lydstyrkeforskydning"
+
+#~ msgid "Timer List"
+#~ msgstr "Timerliste"
+
+#~ msgid "Volume Config"
+#~ msgstr "Lydstyrke konfig"
+
+#~ msgid "done!"
+#~ msgstr "Udført!"
+
+#~ msgid "recording..."
+#~ msgstr "Optager..."
+
+#~ msgid "running..."
+#~ msgstr "kører..."
+
+#~ msgid "waiting"
+#~ msgstr "Afventer"
+
+#~ msgid "show"
+#~ msgstr "Vis"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "En Optagelse, OptagelsesTimer eller StrømTimer kører eller starter om 15 minutter.\n"
+#~ "Udvid DvaleTimer med 30 minutter. Din %s %s\n"
+#~ "vil lukke ned efter Optagelse eller StrømTimer begivenhed. Gå i Standby nu ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at sætte din %s %s i Standby\n"
+#~ "Gør det nu eller udvid med ekstra minutter ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at slukke din %s %s.\n"
+#~ "Gør det nu eller udvid med ekstra minutter ?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Konfigurer varigheden i minutter for DvaleTimer."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Udfør efter aktuel begivenhed"
+
+#~ msgid "Execute in "
+#~ msgstr "Udfør om "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Multiboot Image håndtering"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vælg handling for DvaleTimer."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "DvaleTimer er blevet aktiveret."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "DvaleTimer er blevet deaktiveret."
+
+#~ msgid "Timer action"
+#~ msgstr "Timer handling"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Timer er aktiveret: +%d min."
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Timer er ikke aktiveret"
+
+#~ msgid "not activated"
+#~ msgstr "ikke aktiveret"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Afbryd Image valg og afslut"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Afbryd Image valg og afslut alle menuer"
+
+#~ msgid "No images found"
+#~ msgstr "Ingen Images fundet"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Vælg det markerede Image og genstart"
 
 #, python-format
 #~ msgid " bootmode = %s"
@@ -24536,9 +24756,6 @@ msgstr "®"
 
 #~ msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
 #~ msgstr "Zap til valgte kanal eller vis detaljeret begivenhedsinfo (afhængig af konfiguration)"
-
-#~ msgid "save last directory on exit"
-#~ msgstr "Gem sidste mappe ved afslutning"
 
 #~ msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 #~ msgstr "Når dette aktiveres, vil længden af optagelsen blive vist i Filmlisten (dette kan medføre en lidt længere opstartstid)."

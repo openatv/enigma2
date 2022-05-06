@@ -1134,7 +1134,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 class MediaPlayerLCDScreen(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["text1"] = Label("Media player")
+		self["text1"] = Label("Media Player")
 		self["text3"] = Label("")
 		self["text4"] = Label("")
 
@@ -1164,7 +1164,7 @@ def main(session, **kwargs):
 def menu(menuid, **kwargs):
 	try:
 		if menuid == "mainmenu" and config.mediaplayer.onMainMenu.value:
-			return [(_("Media player"), main, "media_player", 45)]
+			return [(_("Media Player"), main, "media_player", 45)]
 	except:
 		pass
 	return []
@@ -1303,8 +1303,8 @@ from Plugins.Plugin import PluginDescriptor
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=_("Media player"), description=_("Play back media files"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="MediaPlayer.png", needsRestart=False, fnc=main),
-		#PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name=_("Media player"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=audiocdscan),
-		PluginDescriptor(name=_("Media player"), description=_("Play back media files"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)
+		PluginDescriptor(name=_("Media Player"), description=_("Play back media files"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="MediaPlayer.png", needsRestart=False, fnc=main),
+		#PluginDescriptor(name = _("Media Player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		PluginDescriptor(name=_("Media Player"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=audiocdscan),
+		PluginDescriptor(name=_("Media Player"), description=_("Play back media files"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)
 	]

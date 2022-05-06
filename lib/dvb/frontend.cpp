@@ -22,14 +22,15 @@
 #define ioctlMeasureStart \
 	struct timeval start, end; \
 	int duration; \
-	gettimeofday(&start, NULL);
+	if (m_debuglevel==5) { gettimeofday(&start, NULL); }
 
 #define ioctlMeasureEval(x) \
 	do { \
-		gettimeofday(&end, NULL); \
-		duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000; \
-		if (duration>35) \
-			eWarning("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); \
+		if (m_debuglevel==5) { \
+			gettimeofday(&end, NULL); \
+			duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000; \
+			if (duration>35) { eWarning("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); } \
+		} \
 	} while(0)
 
 #define eDebugNoSimulateNoNewLineEnd(x...) \
@@ -597,6 +598,7 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	,m_looptimeout(100)
 #endif
 {
+	m_debuglevel = eGetEnigmaDebugLvl();
 	m_DebugOptions = (1ULL << static_cast<int>(enumDebugOptions::DEBUG_DELIVERY_SYSTEM));
 	m_filename = devicenodename;
 
@@ -1408,6 +1410,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "ATBM781x"))
 	{
 		ret = snr*10;
+	}
+	else if (!strcmp(m_description, "Hi3716 Internal S2")) // SFX6008 S2
+	{
+		ret = snr;
 	}
 	else if (!strcmp(m_description, "ATBM7821 DVB-T2/C")) //SF8008
 	{

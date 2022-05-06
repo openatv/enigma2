@@ -53,26 +53,26 @@ class PowerTimerList(GUIComponent):
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
-					state = _("waiting")
+					state = _("Waiting")
 					icon = self.iconWait
 				elif timer.state == TimerEntry.StatePrepared or timer.state == TimerEntry.StateRunning:
-					state = _("running...")
+					state = _("Running")
 					icon = self.iconZapped
 				elif timer.state == TimerEntry.StateEnded:
-					state = _("done!")
+					state = _("Done")
 					icon = self.iconDone
 				else:
-					state = _("<unknown>")
+					state = _("<Unknown>")
 					icon = None
 			else:
-				state = _("done!")
+				state = _("Done")
 				icon = self.iconDone
 			autosleepwindow = ""
 			if timer.autosleepwindow == 'yes':
 				autosleepwindow = _("Time range:") + " " + FuzzyTime(timer.autosleepbegin)[1] + " ... " + FuzzyTime(timer.autosleepend)[1] + ", "
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, width - self.satPosLeft, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT | RT_VALIGN_TOP, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + " (" + _("mins") + ")"))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, 0, width - self.satPosLeft, self.rowSplit, 2, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, 0, width - self.satPosLeft, self.rowSplit, 2, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _("At End:") + ' ' + getafterEvent(timer)))
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
 				days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
@@ -83,11 +83,11 @@ class PowerTimerList(GUIComponent):
 						repeatedtext.append(days[x])
 					flags >>= 1
 				if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-					repeatedtext = _('Everyday')
+					repeatedtext = _("Everyday")
 				elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
-					repeatedtext = _('Weekday')
+					repeatedtext = _("Weekday")
 				elif repeatedtext == [_("Sat"), _("Sun")]:
-					repeatedtext = _('Weekend')
+					repeatedtext = _("Weekend")
 				else:
 					repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:
@@ -99,30 +99,30 @@ class PowerTimerList(GUIComponent):
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
-					state = _("waiting")
+					state = _("Waiting")
 					icon = self.iconWait
 				elif timer.state == TimerEntry.StatePrepared:
-					state = _("about to start")
+					state = _("About to start")
 					icon = self.iconPrepared
 				elif timer.state == TimerEntry.StateRunning:
-					state = _("running...")
+					state = _("Running")
 					icon = self.iconZapped
 				elif timer.state == TimerEntry.StateEnded:
-					state = _("done!")
+					state = _("Done")
 					icon = self.iconDone
 				else:
-					state = _("<unknown>")
+					state = _("<Unknown>")
 					icon = None
 			else:
-				state = _("done!")
+				state = _("Done")
 				icon = self.iconDone
 
 		if timer.disabled:
-			state = _("disabled")
+			state = _("Disabled")
 			icon = self.iconDisabled
 
 		if timer.failed:
-			state = _("failed")
+			state = _("Failed")
 			icon = self.iconFailed
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT | RT_VALIGN_TOP, state))

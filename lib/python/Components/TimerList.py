@@ -41,11 +41,11 @@ class TimerList(GUIComponent):
 					repeatedtext.append(days[x])
 				flags >>= 1
 			if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-				repeatedtext = _('Everyday')
+				repeatedtext = _("Everyday")
 			elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
-				repeatedtext = _('Weekday')
+				repeatedtext = _("Weekday")
 			elif repeatedtext == [_("Sat"), _("Sun")]:
-				repeatedtext = _('Weekend')
+				repeatedtext = _("Weekend")
 			else:
 					repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
@@ -63,7 +63,7 @@ class TimerList(GUIComponent):
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
-				state = _("waiting")
+				state = _("Waiting")
 				if timer.isAutoTimer:
 					icon = self.iconAutoTimer
 				elif timer.ice_timer_id is not None:
@@ -71,29 +71,29 @@ class TimerList(GUIComponent):
 				else:
 					icon = self.iconWait
 			elif timer.state == TimerEntry.StatePrepared:
-				state = _("about to start")
+				state = _("About to start")
 				icon = self.iconPrepared
 			elif timer.state == TimerEntry.StateRunning:
 				if timer.justplay:
-					state = _("zapped")
+					state = _("Zapped")
 					icon = self.iconZapped
 				else:
-					state = _("recording...")
+					state = _("Recording")
 					icon = self.iconRecording
 			elif timer.state == TimerEntry.StateEnded:
-				state = _("done!")
+				state = _("Done")
 				icon = self.iconDone
 			else:
-				state = _("<unknown>")
+				state = _("<Unknown>")
 				icon = None
 		elif timer.disabled:
-			state = _("disabled")
+			state = _("Disabled")
 			icon = self.iconDisabled
 		elif timer.failed:
-			state = _("failed")
+			state = _("Failed")
 			icon = self.iconFailed
 		else:
-			state = _("done!")
+			state = _("Done")
 			icon = self.iconDone
 
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))

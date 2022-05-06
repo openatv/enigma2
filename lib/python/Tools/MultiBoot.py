@@ -229,6 +229,9 @@ class MultiBootClass():
 	def getCurrentBootMode(self):
 		return self.bootCode
 
+	def hasRecovery(self):
+		return "R" in self.bootSlots
+
 	def getBootCodeDescription(self, bootCode=None):
 		bootCodeDescriptions = {
 			"": _("Normal: No boot modes required."),

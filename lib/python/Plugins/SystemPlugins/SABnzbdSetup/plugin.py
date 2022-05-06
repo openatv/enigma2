@@ -72,7 +72,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Installing Service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
@@ -98,7 +98,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def doRemove(self, callback, pkgname):
 		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
 

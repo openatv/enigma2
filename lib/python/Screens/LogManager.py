@@ -481,15 +481,15 @@ class LogManager(Screen):
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log\n\nA copy has been sent to yourself.'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + " " + _("has been sent to the SVN team team.\nplease quote") + " " + str(ref) + " " + _("when asking question about this log\n\nA copy has been sent to yourself."), MessageBox.TYPE_INFO)
 				else:
 					s.sendmail(fromlogman, tocrashlogs, msg.as_string())
 					s.quit()
-					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, sentfiles + " " + _("has been sent to the SVN team team.\nplease quote") + " " + str(ref) + " " + _("when asking question about this log"), MessageBox.TYPE_INFO)
 			except Exception as e:
 				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again"), MessageBox.TYPE_INFO, timeout=10)
 
 	def myclose(self):
 		self.close()

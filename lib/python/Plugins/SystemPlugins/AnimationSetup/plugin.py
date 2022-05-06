@@ -73,7 +73,7 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_('Animation Setup'))
+		self.setTitle(_("Animation Setup"))
 
 	def keyGreen(self):
 		config.misc.window_animation_speed.save()

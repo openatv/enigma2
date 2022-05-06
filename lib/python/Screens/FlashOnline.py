@@ -166,7 +166,7 @@ class FlashOnline(Screen):
 		if "://" in currentSelected[0][1] or currentSelected[0][1] in ["Expander", "Waiter"]:
 			self["key_yellow"].setText("")
 		else:
-			self["key_yellow"].setText(_("Delete image"))
+			self["key_yellow"].setText(_("Delete Image"))
 		if currentSelected[0][1] == "Waiter":
 			self["key_green"].setText("")
 		else:
@@ -210,7 +210,7 @@ class FlashImage(Screen):
 		self.source = source
 		self.imagename = imagename
 
-		self["header"] = Label(_("Backup settings"))
+		self["header"] = Label(_("Backup Settings"))
 		self["info"] = Label(_("Save settings and EPG data"))
 		self["summary_header"] = StaticText(self["header"].getText())
 		self["progress"] = ProgressBar()
@@ -262,7 +262,7 @@ class FlashImage(Screen):
 			if not 'backup' in str(retval):
 				if MultiBoot.canMultiBoot():
 					self.multibootslot = retval[0]
-				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Backup Settings') + '?', default=True, timeout=10)
+				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _("Backup Settings") + "?", default=True, timeout=10)
 				return
 
 			def findmedia(paths):

@@ -3,7 +3,6 @@ from time import time
 from timer import TimerEntry as RealTimerEntry
 from PowerTimer import PowerTimerEntry, AFTEREVENT
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.config import config
 from Components.Label import Label
 from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
@@ -28,7 +27,6 @@ class PowerTimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "TimerEditList"
-		Screen.setTitle(self, _("PowerTimer list"))
 
 		self.onChangedEntry = []
 		list = []
@@ -41,10 +39,10 @@ class PowerTimerEditList(Screen):
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
 
-		self["key_red"] = Button(" ")
-		self["key_green"] = Button(_("Add"))
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self["key_red"] = StaticText("")
+		self["key_green"] = StaticText(_("Add"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["description"] = Label()
 		self["ServiceEvent"] = ServiceEvent()
@@ -94,11 +92,11 @@ class PowerTimerEditList(Screen):
 				if t.isRunning():
 					if t.repeated:
 						list = (
-							(_("Stop current event but not coming events"), "stoponlycurrent"),
-							(_("Stop current event and disable coming events"), "stopall"),
-							(_("Don't stop current event but disable coming events"), "stoponlycoming")
+							(_("Stop current event but not future events"), "stoponlycurrent"),
+							(_("Stop current event and disable future events"), "stopall"),
+							(_("Don't stop current event but disable future events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording. What do you want to do?"), list=list)
 				else:
 					t.disable()
 			self.session.nav.PowerTimer.timeChanged(t)
@@ -181,15 +179,15 @@ class PowerTimerEditList(Screen):
 			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 
 			if timer.state == RealTimerEntry.StateWaiting:
-				state = _("waiting")
+				state = _("Waiting")
 			elif timer.state == RealTimerEntry.StatePrepared:
-				state = _("about to start")
+				state = _("About to start")
 			elif timer.state == RealTimerEntry.StateRunning:
-				state = _("running...")
+				state = _("Running")
 			elif timer.state == RealTimerEntry.StateEnded:
-				state = _("done!")
+				state = _("Done")
 			else:
-				state = _("<unknown>")
+				state = _("<Unknown>")
 		else:
 			name = ""
 			after = ""
