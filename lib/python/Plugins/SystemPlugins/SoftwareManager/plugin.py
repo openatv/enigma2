@@ -26,7 +26,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-from Screens.FlashOnline import FlashOnline
+from Screens.FlashManager import FlashManager
 from Screens.SoftwareUpdate import SoftwareUpdate
 from Components.PackageInfo import PackageInfoHandler
 from Components.International import international
@@ -336,7 +336,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
-					self.session.open(FlashOnline)
+					self.session.open(FlashManager)
 				elif (currentEntry == "multiboot-manager"):
 					self.session.open(MultiBootManager)
 				elif (currentEntry == "backup-image"):
