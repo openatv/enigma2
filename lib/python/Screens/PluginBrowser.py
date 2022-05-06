@@ -373,7 +373,7 @@ class PluginDownloadBrowser(Screen):
 
 	def __init__(self, session, type=0, needupdate=True):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Download plugins"))
+		Screen.setTitle(self, _("Download Plugins"))
 
 		self.type = type
 		self.needupdate = needupdate
@@ -485,10 +485,10 @@ class PluginDownloadBrowser(Screen):
 		else:
 			if self.type == self.DOWNLOAD:
 				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
-				mbox.setTitle(_("Download plugins"))
+				mbox.setTitle(_("Download Plugins"))
 			elif self.type == self.REMOVE:
 				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
-				mbox.setTitle(_("Remove plugins"))
+				mbox.setTitle(_("Remove Plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -592,9 +592,9 @@ class PluginDownloadBrowser(Screen):
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
-			self.setTitle(_("Install plugins"))
+			self.setTitle(_("Install Plugins"))
 		elif self.type == self.REMOVE:
-			self.setTitle(_("Remove plugins"))
+			self.setTitle(_("Remove Plugins"))
 
 	def startOpkg(self, command):
 		extra = []

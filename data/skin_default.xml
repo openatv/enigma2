@@ -479,7 +479,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget font="Enigma;20" name="textbook" position="5,310" size="550,28"/>
 		<widget name="booklist" position="5,340" scrollbarMode="showOnDemand" size="550,95" zPosition="2"/>
 	</screen>
-	<screen name="FileBrowser" position="center,center" size="560,460" title="DVD file browser" >
+	<screen name="FileBrowser" position="center,center" size="560,460" title="DVD File Browser" >
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />
 		<panel name="Green2Panel" />
@@ -987,7 +987,7 @@ self.autoResize()
 		<widget name="text" position="10,20" size="550,25" font="Regular;23" />
 		<widget name="input" position="10,55" size="550,25" font="Regular;20" />
 	</screen>
-	<screen name="Opkg" position="center,center" size="550,460" title="Installing software...">
+	<screen name="Opkg" position="center,center" size="550,460" title="Installing Software...">
 		<panel name="BasicTemplate" />
 		<widget name="activityslider" position="10,10" size="540,5" pixmap="skin_default/progress_small.png" />
 		<widget name="package" position="10,30" size="540,20" font="Regular;18" />

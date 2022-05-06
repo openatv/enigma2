@@ -41,11 +41,11 @@ class TimerList(GUIComponent):
 					repeatedtext.append(days[x])
 				flags >>= 1
 			if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-				repeatedtext = _('Everyday')
+				repeatedtext = _("Everyday")
 			elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
-				repeatedtext = _('Weekday')
+				repeatedtext = _("Weekday")
 			elif repeatedtext == [_("Sat"), _("Sun")]:
-				repeatedtext = _('Weekend')
+				repeatedtext = _("Weekend")
 			else:
 					repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:

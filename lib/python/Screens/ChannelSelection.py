@@ -785,13 +785,13 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
-				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
+				"LongRecord": (self.doZapTimer, _("Add a zap timer for next event"))
 			}, -1)
-		self['dialogactions'] = ActionMap(['SetupActions'],
+		self["dialogactions"] = ActionMap(["SetupActions"],
 			{
-				'cancel': self.closeChoiceBoxDialog,
+				"cancel": self.closeChoiceBoxDialog,
 			})
-		self['dialogactions'].execEnd()
+		self["dialogactions"].execEnd()
 
 	def getKeyFunctions(self, key):
 		selection = eval("config.misc.ButtonSetup." + key + ".value.split(',')")
@@ -1637,7 +1637,7 @@ class ChannelSelectionBase(Screen):
 #		pos = title.find(" (")
 #		if pos != -1:
 #			title = title[:pos]
-		title = _(' (TV)')
+		title = _(" (TV)")
 		self.setTitle(title)
 
 	def setRadioMode(self):
@@ -1648,7 +1648,7 @@ class ChannelSelectionBase(Screen):
 #		pos = title.find(" (")
 #		if pos != -1:
 #			title = title[:pos]
-		title = _(' (Radio)')
+		title = _(" (Radio)")
 		self.setTitle(title)
 
 	def setRoot(self, root, justSet=False):
@@ -1667,25 +1667,25 @@ class ChannelSelectionBase(Screen):
 
 	def removeModeStr(self, str):
 		if self.mode == MODE_TV:
-			pos = str.find(_(' (TV)'))
+			pos = str.find(_(" (TV)"))
 		else:
-			pos = str.find(_(' (Radio)'))
+			pos = str.find(_(" (Radio)"))
 		if pos != -1:
 			return str[:pos]
 		return str
 
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
-		if 'User - bouquets' in str:
-			return _('User - bouquets')
+		if "User - bouquets" in str:
+			return _("User - bouquets")
 		if not str:
 			pathstr = ref.getPath()
-			if 'FROM PROVIDERS' in pathstr:
-				return _('Provider')
-			if 'FROM SATELLITES' in pathstr:
-				return _('Reception lists')
-			if ') ORDER BY name' in pathstr:
-				return _('All')
+			if "FROM PROVIDERS" in pathstr:
+				return _("Provider")
+			if "FROM SATELLITES" in pathstr:
+				return _("Reception lists")
+			if ") ORDER BY name" in pathstr:
+				return _("All")
 		return str
 
 	def buildTitleString(self):
@@ -2332,7 +2332,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:
 				self.setCurrentSelection(lastservice)
 
-			title += _(' (TV)')
+			title += _(" (TV)")
 		else:
 			# Mark PiP as active and effectively active pipzap
 			self.showPipzapMessage()
@@ -2341,7 +2341,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# Move to service playing in pip (will not work with subservices)
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
-			title += _(' (PiP)')
+			title += _(" (PiP)")
 		self.setTitle(title)
 		self.buildTitleString()
 

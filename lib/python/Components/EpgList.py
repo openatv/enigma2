@@ -1784,9 +1784,9 @@ class TimelineText(GUIComponent):
 					timetext = strftime("%H:%M", localtime(time_base + x * timeStepsCalc))
 				else:
 					if int(strftime("%H", ttime)) > 12:
-						timetext = strftime("%-I:%M", ttime) + _('pm')
+						timetext = strftime("%-I:%M", ttime) + _("pm")
 					else:
-						timetext = strftime("%-I:%M", ttime) + _('am')
+						timetext = strftime("%-I:%M", ttime) + _("am")
 				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos, 0),
 					size=(incWidth, self.listHeight),

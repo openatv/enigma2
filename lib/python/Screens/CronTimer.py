@@ -55,8 +55,8 @@ class CronTimers(Screen):
 	def checkNetworkState(self, str, retval, extra_args):
 		str = six.ensure_str(str)
 		if not str:
-			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input=False)
-			self.feedscheck.setTitle(_('Checking Feeds'))
+			self.feedscheck = self.session.open(MessageBox, _("Please wait whilst feeds state is checked."), MessageBox.TYPE_INFO, enable_input=False)
+			self.feedscheck.setTitle(_("Checking Feeds"))
 			cmd1 = "opkg update"
 			self.CheckConsole = Console()
 			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
@@ -84,9 +84,9 @@ class CronTimers(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
-		self.message.setTitle(_('Installing Service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+		self.message.setTitle(_("Installing Service"))
+		self.Console.ePopen("/usr/bin/opkg install " + pkgname, callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
 		self.message.close()
@@ -113,9 +113,9 @@ class CronTimers(Screen):
 			self.close()
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
-		self.message.setTitle(_('Removing Service'))
-		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+		self.message.setTitle(_("Removing Service"))
+		self.Console.ePopen("/usr/bin/opkg remove " + pkgname + " --force-remove --autoremove", callback)
 
 	def removeComplete(self, result=None, retval=None, extra_args=None):
 		self.message.close()

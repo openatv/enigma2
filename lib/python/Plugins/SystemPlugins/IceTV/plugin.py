@@ -1231,7 +1231,7 @@ class IceTVMain(ChoiceBox):
         text = IceTVUIBase._banner % config.plugins.icetv.server.name.value.replace("api.", "www.")
 
         menu = [
-                (_("Show log"), "CALLFUNC", self.showLog),
+                (_("Show Log"), "CALLFUNC", self.showLog),
                 (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),
                 (_("IceTV setup wizard"), "CALLFUNC", self.configure),
                 (_("Login to IceTV server"), "CALLFUNC", self.login),

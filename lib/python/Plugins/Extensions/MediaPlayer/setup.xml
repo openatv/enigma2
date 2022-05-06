@@ -1,10 +1,11 @@
 <setupxml>
-	<setup key="MediaPlayer" title="Edit settings">
-		<item level="0" text="repeat playlist" description="repeat playlist">config.mediaplayer.repeat</item>
-		<item level="0" text="save playlist on exit" description="save playlist on exit">config.mediaplayer.saveDirOnExit</item>
-		<item level="0" text="start directory" description="start directory" conditional="not config.mediaplayer.saveDirOnExit.value">config.mediaplayer.defaultDir</item>
-		<item level="0" text="sorting of playlists" description="sorting of playlists">config.mediaplayer.sortPlaylists</item>
-		<item level="0" text="Always hide infobar" description="Always hide infobar">config.mediaplayer.alwaysHideInfoBar</item>
-		<item level="0" text="show mediaplayer on mainmenu" description="show mediaplayer on mainmenu">config.mediaplayer.onMainMenu</item>
+	<setup key="MediaPlayer" title="Media Player Settings">
+		<item level="0" text="Repeat playlist" description="Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once.">config.mediaplayer.repeat</item>
+		<item level="0" text="Save playlist on EXIT" description="Set this to 'Yes' to save the current playlist when exiting the Media Player.">config.mediaplayer.savePlaylistOnExit</item>
+		<item level="0" text="Save directory on EXIT" description="Set this to 'Yes' to save the current directory when exiting the Media Player.">config.mediaplayer.saveDirOnExit</item>
+		<item level="0" text="Starting directory" description="Specify the directory to use when starting Media Player." conditional="not config.mediaplayer.saveDirOnExit.value">config.mediaplayer.defaultDir</item>
+		<item level="0" text="Sort playlists" description="Set this to 'Yes' to sort the playlists alphabetically.">config.mediaplayer.sortPlaylists</item>
+		<item level="0" text="Hide InfoBar" description="Set this to 'Yes' to automatically hide the InfoBar when the media starts playing. If set to 'No' the InfoBar will remain on screen.">config.mediaplayer.alwaysHideInfoBar</item>
+		<item level="0" text="Show Media Player in Main Menu" description="Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list.">config.mediaplayer.onMainMenu</item>
 	</setup>
 </setupxml>

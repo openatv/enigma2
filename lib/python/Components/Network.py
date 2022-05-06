@@ -294,7 +294,7 @@ class Network:
 
 	def getFriendlyAdapterDescription(self, iface):
 		if not self.isWirelessInterface(iface):
-			return _('Ethernet network interface')
+			return _("Ethernet network interface")
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
@@ -312,9 +312,9 @@ class Network:
 			elif name == 'wlan':
 				name = name.upper()
 		else:
-			name = _('Unknown')
+			name = _("Unknown")
 
-		return name + ' ' + _('wireless network interface')
+		return name + " " + _("wireless network interface")
 
 	def getAdapterName(self, iface):
 		return iface

@@ -459,22 +459,22 @@
 	<setup key="PluginFilter" title="Plugin Filter Settings" showOpenWebIf="1">
 		<item level="0" text="Show development packages in opkg" description="When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list.">config.misc.extraopkgpackages</item>
 		<item level="0" text="OPKG clean mode" description="When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online.">config.misc.opkgcleanmode</item>
-		<item level="0" text="drivers" description="This allows you to show drivers modules in downloads">config.pluginfilter.drivers</item>
-		<item level="0" text="extensions" description="This allows you to show extensions modules in downloads">config.pluginfilter.extensions</item>
-		<item level="0" text="languages" description="This allows you to show languages in downloads">config.pluginfilter.po</item>
-		<item level="0" text="systemplugins" description="This allows you to show system plugin modules in downloads">config.pluginfilter.systemplugins</item>
-		<item level="0" text="softcams" description="This allows you to show softcams modules in downloads" requires="SoftCam">config.pluginfilter.softcams</item>
-		<item level="0" text="skin" description="This allows you to show skin modules in downloads">config.pluginfilter.skin</item>
-		<item level="0" text="display" description="This allows you to show lcd skins in downloads">config.pluginfilter.display</item>
-		<item level="0" text="picons" description="This allows you to show picons modules in downloads">config.pluginfilter.picons</item>
-		<item level="0" text="settings" description="This allows you to show settings modules in downloads">config.pluginfilter.settings</item>
-		<item level="0" text="m2k" description="This allows you to show m2k modules in downloads">config.pluginfilter.m2k</item>
-		<item level="0" text="weblinks" description="This allows you to show weblinks modules in downloads">config.pluginfilter.weblinks</item>
-		<item level="0" text="pli" description="This allows you to show OpenPLi modules in downloads">config.pluginfilter.pli</item>
-		<item level="0" text="vix" description="This allows you to show OpenViX modules in downloads">config.pluginfilter.vix</item>
-		<item level="0" text="security" description="This allows you to show security modules in downloads">config.pluginfilter.security</item>
-		<item level="0" text="kernel modules" description="This allows you to show kernel modules in downloads">config.pluginfilter.kernel</item>
-		<item level="0" text="user feed url" description="Please enter your personal feed URL">config.pluginfilter.userfeed</item>
+		<item level="0" text="Drivers" description="This allows you to show drivers modules in downloads">config.pluginfilter.drivers</item>
+		<item level="0" text="Extensions" description="This allows you to show extensions modules in downloads">config.pluginfilter.extensions</item>
+		<item level="0" text="Languages" description="This allows you to show languages in downloads">config.pluginfilter.po</item>
+		<item level="0" text="System Plugins" description="This allows you to show system plugin modules in downloads">config.pluginfilter.systemplugins</item>
+		<item level="0" text="Softcams" description="This allows you to show softcams modules in downloads" requires="SoftCam">config.pluginfilter.softcams</item>
+		<item level="0" text="Skin" description="This allows you to show skin modules in downloads">config.pluginfilter.skin</item>
+		<item level="0" text="Display" description="This allows you to show lcd skins in downloads">config.pluginfilter.display</item>
+		<item level="0" text="Picons" description="This allows you to show picons modules in downloads">config.pluginfilter.picons</item>
+		<item level="0" text="Settings" description="This allows you to show settings modules in downloads">config.pluginfilter.settings</item>
+		<item level="0" text="M2k" description="This allows you to show m2k modules in downloads">config.pluginfilter.m2k</item>
+		<item level="0" text="Web Links" description="This allows you to show weblinks modules in downloads">config.pluginfilter.weblinks</item>
+		<item level="0" text="OpenPLi" description="This allows you to show OpenPLi modules in downloads">config.pluginfilter.pli</item>
+		<item level="0" text="OpenViX" description="This allows you to show OpenViX modules in downloads">config.pluginfilter.vix</item>
+		<item level="0" text="Security" description="This allows you to show security modules in downloads">config.pluginfilter.security</item>
+		<item level="0" text="Kernel Modules" description="This allows you to show kernel modules in downloads">config.pluginfilter.kernel</item>
+		<item level="0" text="User Feed URL" description="Please enter your personal feed URL">config.pluginfilter.userfeed</item>
 	</setup>
 	<setup key="Recording" title="Recording Settings" showOpenWebIf="1">
 		<item level="0" text="Default movie location" description="Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.default_path</item>
@@ -743,5 +743,10 @@
 	</setup>
 	<setup key="video_setup" title="Video Settings">
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
+	</setup>
+	<setup key="VolumeAdjust" title="Volume Adjust Settings">
+		<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added the the volume adjust list.">config.volume.defaultOffset</item>
+		<item level="0" text="Enable Dolby Digital / Dolby AC-3 offsets" description="Select 'Yes' if volume adjustments should be applied to Dolby sound tracks.">config.volume.dolbyEnabled</item>
+		<item level="0" text="Default Dolby Digital / Dolby AC-3 offset" description="This offset will only be used if the channel does not have its own volume offset.">config.volume.dolbyOffset</item>
 	</setup>
 </setupxml>

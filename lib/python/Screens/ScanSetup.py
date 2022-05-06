@@ -2061,7 +2061,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								break
 		self.list.sort()
 		ConfigListScreen.__init__(self, self.list)
-		self["header"] = Label(_("Automatic scan"))
+		self["header"] = Label(_("Automatic Scan"))
 		self["footer"] = Label(_("Press OK to scan"))
 
 	def runAsync(self, finished_cb):

@@ -21,7 +21,7 @@ def get_woeid_from_yahoo(search_string):
 	try:
 		handler = urlopen(url, timeout=10)
 	except URLError:
-		return {'error': _('Could not connect to server')}
+		return {"error": _("Could not connect to server")}
 
 	content_type = handler.info().dict['content-type']
 	try:
@@ -40,7 +40,7 @@ def get_woeid_from_yahoo(search_string):
 	except KeyError:
 		return yahoo_woeid_result
 	except TypeError:
-		return {'error': _('No matching place names found')}
+		return {"error": _("No matching place names found")}
 
 	woeid_data = {}
 	woeid_data['count'] = yahoo_woeid_result['query']['count']

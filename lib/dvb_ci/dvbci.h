@@ -100,6 +100,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool user_mapped;
 	void data(int);
 	bool plugged;
+	eMainloop *m_context;
 #ifdef __sh__
 	//dagobert
 	char connection_id;
@@ -108,9 +109,11 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	unsigned char* receivedData;
 #endif
 public:
-	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
+	enum {stateRemoved, stateInserted, stateInvalid, stateResetted, stateDisabled};
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
+    void closeDevice();
+	void openDevice();
 
 	int send(const unsigned char *data, size_t len);
 
@@ -136,6 +139,7 @@ public:
 	int getNumOfServices() { return running_services.size(); }
 	int setSource(const std::string &source);
 	int setClockRate(int);
+	int setEnabled(bool);
 	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
 #ifdef __sh__
 	bool checkQueueSize();
@@ -208,6 +212,7 @@ public:
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 
+	int setCIEnabled(int slot, bool enabled);
 	int reset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);
