@@ -136,4 +136,4 @@ def SkinSelSetup(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)
+	return PluginDescriptor(name=_("SkinSelector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)
