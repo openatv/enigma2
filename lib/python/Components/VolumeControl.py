@@ -49,6 +49,9 @@ class VolumeControl:
 		self.volctrl.setVolume(vol, vol)
 		self.last_vol = vol
 
+		self.tempMuteTimer = eTimer()
+		self.tempMuteTimer.callback.append(self.tempMuteDone)
+
 	def volSave(self):
 		if self.volctrl.isMuted():
 			config.audio.volume.setValue(0)
@@ -158,6 +161,11 @@ class VolumeControl:
 			self.muteDialog.show()
 			self.hideVolTimer.start(3000, True)
 
+	def tempMuteDone(self):
+		self.volctrl.volumeUnMute()
+		self.muteDialog.hide()
+
+
 	def volMute(self, showMuteSymbol=True, force=False):
 		vol = self.volctrl.getVolume()
 		if vol or force:
@@ -170,5 +178,7 @@ class VolumeControl:
 				self.muteDialog.hide()
 				self.volumeDialog.setValue(vol)
 
+	# TODO: make the duration user configurable
 	def volMuteLong(self):
-		self.muteDialog.hide()
+		muteDuration = 30000
+		self.tempMuteTimer.start(muteDuration - self.repeat, True)
