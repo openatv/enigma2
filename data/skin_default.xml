@@ -857,7 +857,7 @@ self.autoResize()
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="EventView" position="center,center" size="560,450" title="Event view">
+	<screen name="EventView" position="center,center" size="560,450" title="Event View">
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
@@ -868,7 +868,7 @@ self.autoResize()
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
 	</screen>
-	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event view">
+	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event View">
 		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
@@ -1149,7 +1149,7 @@ self.autoResize()
 			</convert>
 		</widget>
 	</screen>
-	<screen name="NimSetup" position="center,center" size="560,460" title="Reception settings">
+	<screen name="NimSetup" position="center,center" size="560,460" title="Reception Settings">
 		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,410" scrollbarMode="showOnDemand" />
 	</screen>

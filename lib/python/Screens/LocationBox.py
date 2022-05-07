@@ -36,7 +36,7 @@ defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin",
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
 
-	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select Location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
 		# Init parents
 		if not inhibitDirs:
 			inhibitDirs = []
@@ -138,7 +138,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
 			{
 				"prevService": (self.switchToBookList, _("switch to bookmarks")),
-				"nextService": (self.switchToFileList, _("switch to filelist")),
+				"nextService": (self.switchToFileList, _("Switch to filelist")),
 			}, -2)
 
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
@@ -405,16 +405,16 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if self.currList == "filelist":
 				menu = [
 					(_("switch to bookmarks"), self.switchToBookList),
-					(_("add bookmark"), self.addRemoveBookmark)
+					(_("Add bookmark"), self.addRemoveBookmark)
 				]
 				if self.editDir:
 					menu.extend((
-						(_("create directory"), self.createDir),
+						(_("Create directory"), self.createDir),
 						(_("remove directory"), self.removeDir)
 					))
 			else:
 				menu = (
-					(_("switch to filelist"), self.switchToFileList),
+					(_("Switch to filelist"), self.switchToFileList),
 					(_("remove bookmark"), self.addRemoveBookmark)
 				)
 
