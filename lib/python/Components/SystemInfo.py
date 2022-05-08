@@ -395,4 +395,5 @@ SystemInfo["AmlogicFamily"] = socfamily.startswith(("aml", "meson")) or fileAcce
 SystemInfo["ArchIsARM64"] = architecture == "aarch64" or "64" in architecture
 SystemInfo["ArchIsARM"] = architecture.startswith(("arm", "cortex"))
 SystemInfo["STi"] = socfamily.startswith("sti")
+SystemInfo["BoxName"] = GetBoxName()
 Refresh_SysSoftCam()

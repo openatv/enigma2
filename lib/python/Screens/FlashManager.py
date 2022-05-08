@@ -27,7 +27,7 @@ from Tools.MultiBoot import MultiBoot
 
 FEED_URLS = {
 	"EGAMI": ("https://image.egami-image.com/10.1/json/%s", "machinebuild"),
-	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "machinebuild"),
+	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
 	"Open Vision": ("https://images.openvision.dedyn.io/json/%s", "model"),
@@ -112,7 +112,7 @@ class FlashManager(Screen, HelpableScreen):
 
 		if not self.imagesList:
 			try:
-				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "model"))
+				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"))
 				# self.box = GetBoxName()
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
