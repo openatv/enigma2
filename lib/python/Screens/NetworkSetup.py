@@ -3,7 +3,6 @@ from glob import glob
 from os import environ, remove, rename, strerror, system, unlink
 from os.path import exists
 from random import Random
-import six
 import sys
 import time
 
@@ -1179,7 +1178,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("Finished restarting your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
+		data = data.decode("UTF-8")
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -2264,25 +2263,6 @@ class NetworkOpenvpn(NetworkBaseScreen):
 			self['labconfigfilename'].setText(self.config_file)
 
 
-class NetworkVpnLog(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("OpenVpn Log"))
-		self.skinName = "NetworkInadynLog"
-		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
-		strview = ''
-		self.Console.ePopen('tail /etc/openvpn/openvpn.log > /etc/openvpn/tmp.log')
-		time.sleep(1)
-		if fileExists('/etc/openvpn/tmp.log'):
-			f = open('/etc/openvpn/tmp.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-			remove('/etc/openvpn/tmp.log')
-		self['infotext'].setText(strview)
-
-
 class NetworkSamba(NetworkBaseScreen):
 	def __init__(self, session):
 		NetworkBaseScreen.__init__(self, session)
@@ -2388,25 +2368,6 @@ class NetworkSamba(NetworkBaseScreen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
-
-class NetworkSambaLog(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.setTitle(_("Samba Log"))
-		self.skinName = "NetworkInadynLog"
-		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
-		strview = ''
-		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
-		time.sleep(1)
-		if fileExists('/tmp/tmp.log'):
-			f = open('/tmp/tmp.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-			remove('/tmp/tmp.log')
-		self['infotext'].setText(strview)
 
 
 class NetworkTelnet(NetworkBaseScreen):
@@ -2736,24 +2697,6 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 
 	def myStop(self):
 		self.close()
-
-
-class NetworkInadynLog(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.setTitle(_("Inadyn Log"))
-		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
-		 'back': self.close,
-		 'up': self['infotext'].pageUp,
-		 'down': self['infotext'].pageDown})
-		strview = ''
-		if fileExists('/var/log/inadyn.log'):
-			f = open('/var/log/inadyn.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-		self['infotext'].setText(strview)
 
 
 config.networkushare = ConfigSubsection()
@@ -3165,25 +3108,6 @@ class uShareSelection(Screen):
 			self.filelist.descent()
 
 
-class NetworkuShareLog(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.skinName = "NetworkInadynLog"
-		self.setTitle(_("uShare Log"))
-		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
-		strview = ''
-		self.Console.ePopen('tail /tmp/uShare.log > /tmp/tmp.log')
-		time.sleep(1)
-		if fileExists('/tmp/tmp.log'):
-			f = open('/tmp/tmp.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-			remove('/tmp/tmp.log')
-		self['infotext'].setText(strview)
-
-
 config.networkminidlna = ConfigSubsection()
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=None))
 
@@ -3567,25 +3491,6 @@ class MiniDLNASelection(Screen):
 			self.filelist.descent()
 
 
-class NetworkMiniDLNALog(NetworkBaseScreen):
-	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
-		self.skinName = "NetworkInadynLog"
-		self.setTitle(_("MiniDLNA Log"))
-		self['infotext'] = ScrollLabel('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
-		strview = ''
-		self.Console.ePopen('tail /var/volatile/log/minidlna.log > /tmp/tmp.log')
-		time.sleep(1)
-		if fileExists('/tmp/tmp.log'):
-			f = open('/tmp/tmp.log', 'r')
-			for line in f.readlines():
-				strview += line
-			f.close()
-			remove('/tmp/tmp.log')
-		self['infotext'].setText(strview)
-
-
 class NetworkServicesSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -3764,3 +3669,76 @@ class NetworkSATPI(NetworkBaseScreen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
+
+# TODO "NetworkInadynLog" skin ?
+class NetworkLogScreen(Screen):
+	def __init__(self, session, title="", skinName="NetworkInadynLog", logPath="", tailLog=True):
+		Screen.__init__(self, session)
+		self.setTitle(title)
+		self.skinName = ["NetworkLogScreen", skinName]
+		self.tailLog = tailLog
+		self.console = Console()
+		self["infotext"] = ScrollLabel("")
+		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "NavigationActions"], {
+			"cancel": (self.keyCancel, _("Close the screen")),
+			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
+			"ok": (self.keyCancel, _("Close the screen")),
+			"top": (self["infotext"].moveTop, _("Move to first line / screen")),
+			"pageUp": (self["infotext"].pageUp, _("Move up a screen")),
+			"left": (self["infotext"].pageUp, _("Move up a screen")),
+			"right": (self["infotext"].pageDown, _("Move down a screen")),
+			"up": (self["infotext"].moveUp, _("Move up a line")),
+			"down": (self["infotext"].moveDown, _("Move down a line")),
+			"pageDown": (self["infotext"].pageDown, _("Move down a screen")),
+			"bottom": (self["infotext"].moveBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("Network Log Screen Actions"))
+		strview = ""
+		self.tmpfile = "/tmp/networktmp.log"
+		if self.tailLog:
+			self.console.ePopen(("tail", logPath, ">" , self.tmpfile), self.showLog)
+		else:
+			self.tmpfile = logPath
+			self.showLog()
+
+	def showLog(self):
+		if fileExists(self.tmpfile):
+			f = open(self.tmpfile, "r")
+			for line in f.readlines():
+				strview += line
+			f.close()
+			if self.tailLog:
+				remove(self.tmpfile)
+		self["infotext"].setText(strview)
+
+	def keyCancel(self):
+		self.console.killAll()
+		self.close()
+
+	def closeRecursive(self):
+		self.console.killAll()
+		self.close(True)
+
+class NetworkVpnLog(NetworkLogScreen):
+	def __init__(self, session):
+		NetworkLogScreen.__init__(self, session, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
+
+
+class NetworkSambaLog(NetworkLogScreen):
+	def __init__(self, session):
+		NetworkLogScreen.__init__(self, session, title=_("Samba Log"), logPath="/tmp/smb.log")
+
+
+class NetworkInadynLog(NetworkLogScreen):
+	def __init__(self, session):
+		NetworkLogScreen.__init__(self, session, title=_("Inadyn Log"), logPath="/var/log/inadyn.log", tailLog=False)
+
+
+class NetworkuShareLog(NetworkLogScreen):
+	def __init__(self, session):
+		NetworkLogScreen.__init__(self, session, title=_("uShare Log"), logPath="/tmp/uShare.log")
+
+
+class NetworkMiniDLNALog(NetworkLogScreen):
+	def __init__(self, session):
+		NetworkLogScreen.__init__(self, session, title=_("MiniDLNA Log"), logPath="/var/volatile/log/minidlna.log")
