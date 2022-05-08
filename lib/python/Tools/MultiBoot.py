@@ -211,6 +211,9 @@ class MultiBootClass():
 						return slotCode, bootCode
 		return None, ""
 
+	def canDualBoot(self):
+		return exists(DUAL_BOOT_FILE)
+
 	def canMultiBoot(self):
 		return self.bootSlots != {}
 
