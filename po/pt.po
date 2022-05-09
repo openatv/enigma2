@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -1815,14 +1815,14 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
 msgstr "Duração da barra Info principal"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1925,9 +1925,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr "Infobar secundária ECM"
 
@@ -2006,14 +2003,10 @@ msgstr ""
 msgid "3D Surround Speaker Position"
 msgstr "Posição de Altifalantes 3D Surround"
 
-msgid "3X"
+msgid "3s"
 msgstr ""
 
-#
-msgid "3d mode"
-msgstr "modo 3D"
-
-msgid "3s"
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2052,10 +2045,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2381,9 +2374,6 @@ msgstr ""
 "Uma gravação agendada falhou!\n"
 "Desactivar a TV e tentar de novo?\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr ""
 
@@ -2693,10 +2683,6 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 #
-msgid "Add timer"
-msgstr "Adicionar agendamento"
-
-#
 msgid "Add title"
 msgstr "Adicionar título"
 
@@ -2750,9 +2736,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Avançado"
-
-msgid "Advanced Options"
-msgstr "Opções Avançadas"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -3257,9 +3240,6 @@ msgstr "Perguntar ao utilizador (predefinido como 'sim')"
 msgid "Aspect"
 msgstr "Proporção do Ecrã"
 
-msgid "Aspect Ratio"
-msgstr "Proporção do Ecrã"
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Proporção do Ecrã"
@@ -3483,9 +3463,6 @@ msgstr "Resolução automática"
 #
 msgid "Automatic resolution label"
 msgstr "Nome resolução automática"
-
-msgid "Automatic scan"
-msgstr "Pesquisa automática"
 
 msgid "Automatic scan for services"
 msgstr "Pesquisa automática de canais"
@@ -3711,10 +3688,6 @@ msgid ""
 msgstr ""
 "Encontrado backup de plugins.\n"
 "Pretende instalá-los agora?"
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "Definições de backup"
 
 #
 msgid "Backup system settings"
@@ -5142,10 +5115,6 @@ msgstr "Interface Comum"
 msgid "Common Interface Assignment"
 msgstr "Escolha do Common Interface"
 
-#
-msgid "Common Interface assignment"
-msgstr "escolha do Common Interface"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -6127,10 +6096,6 @@ msgid "DVD Titlelist"
 msgstr ""
 
 #
-msgid "DVD file browser"
-msgstr "Explorador de ficheiros do DVD"
-
-#
 #, fuzzy
 msgid "DVD player"
 msgstr "Sair do Reprodutor de DVD?"
@@ -6334,9 +6299,6 @@ msgstr "Controlo parental"
 msgid "Deep Standby"
 msgstr "Desligar"
 
-msgid "Deep standby"
-msgstr ""
-
 #
 msgid "Default"
 msgstr "Padrão"
@@ -6358,11 +6320,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Default Folder"
-msgstr "Padrão"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7313,9 +7270,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "Plugins para descarregar"
 
@@ -7495,13 +7449,6 @@ msgstr "Idioma de Guia de Programação 2"
 msgid "EPG location"
 msgstr ""
 
-#, fuzzy
-msgid "EPG search"
-msgstr "Selecção EPG"
-
-msgid "EPG selection"
-msgstr "Selecção EPG"
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7592,10 +7539,6 @@ msgstr "Edite a configuração do servidor DNS do seu %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Edite as configurações de rede de %s %s.\n"
-
-#
-msgid "Edit title"
-msgstr "Editar o título"
 
 #
 msgid "Edit upgrade source url."
@@ -8133,6 +8076,10 @@ msgstr ""
 #
 msgid "Error executing plugin"
 msgstr "Erro ao executar o plugin"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10468,9 +10415,6 @@ msgstr "Instalação ou desinstalação terminou."
 msgid "Install picons on"
 msgstr "Instalar picons em"
 
-msgid "Install plugins"
-msgstr "Instalar plugins"
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10512,9 +10456,6 @@ msgstr "Instalar plugins"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Instalar plugins"
-
-msgid "Installing software..."
-msgstr "A instalar Software"
 
 msgid "Instant record"
 msgstr ""
@@ -11799,10 +11740,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
 #
-msgid "Media player"
-msgstr "Leitor multimédia"
-
-#
 msgid "Media scanner"
 msgstr ""
 
@@ -12627,10 +12564,6 @@ msgstr "Teste de rede..."
 
 msgid "Network test: "
 msgstr "Teste de rede: "
-
-#
-msgid "Network wizard"
-msgstr "Assistente de rede"
 
 #
 msgid "Network:"
@@ -15709,10 +15642,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-#
-msgid "Remove plugins"
-msgstr "Remover Plugins"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -15918,10 +15847,6 @@ msgstr "Reiniciar o enigma"
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Reiniciar agora?"
-
-#
-msgid "Restart network"
-msgstr "Reiniciar a rede"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16405,13 +16330,13 @@ msgid "Save left folder on exit"
 msgstr "memorizar ultima pasta ao sair"
 
 #
-msgid "Save playlist on EXIT"
-msgstr "memorizar lista de reprodução ao sair"
-
-#
 #, fuzzy
 msgid "Save playlist"
 msgstr "guardar lista"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "memorizar lista de reprodução ao sair"
 
 #
 #, fuzzy
@@ -18067,13 +17992,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -18286,10 +18205,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#, fuzzy
-msgid "Show log"
-msgstr "Mostrar registo de E2"
 
 msgid "Show logs"
 msgstr ""
@@ -18634,10 +18549,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "Lado a Lado"
 
-#, fuzzy
-msgid "Side by side"
-msgstr "Lado a Lado"
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18778,10 +18689,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr "Temas"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "Selecção de skin"
 
 msgid "Skip back"
 msgstr ""
@@ -24744,10 +24651,6 @@ msgstr "musica/ballet/dança"
 msgid "musical/opera"
 msgstr "musical/opera"
 
-#, fuzzy
-msgid "n/A"
-msgstr "N/D"
-
 msgid "n/a"
 msgstr ""
 
@@ -24794,9 +24697,6 @@ msgid "no CI slots found"
 msgstr "slots CI não encontrados"
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 #
@@ -24927,9 +24827,6 @@ msgstr "pressione OK quando terminar"
 #
 msgid "please wait, loading picture..."
 msgstr "por favor aguarde, carregamento da imagem em curso..."
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -25607,6 +25504,89 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "3d mode"
+#~ msgstr "modo 3D"
+
+#
+#~ msgid "Add timer"
+#~ msgstr "Adicionar agendamento"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Opções Avançadas"
+
+#~ msgid "Aspect Ratio"
+#~ msgstr "Proporção do Ecrã"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Pesquisa automática"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Definições de backup"
+
+#
+#~ msgid "Common Interface assignment"
+#~ msgstr "escolha do Common Interface"
+
+#
+#~ msgid "DVD file browser"
+#~ msgstr "Explorador de ficheiros do DVD"
+
+#
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Padrão"
+
+#, fuzzy
+#~ msgid "EPG search"
+#~ msgstr "Selecção EPG"
+
+#~ msgid "EPG selection"
+#~ msgstr "Selecção EPG"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Editar o título"
+
+#~ msgid "Install plugins"
+#~ msgstr "Instalar plugins"
+
+#~ msgid "Installing software..."
+#~ msgstr "A instalar Software"
+
+#
+#~ msgid "Media player"
+#~ msgstr "Leitor multimédia"
+
+#
+#~ msgid "Network wizard"
+#~ msgstr "Assistente de rede"
+
+#
+#~ msgid "Remove plugins"
+#~ msgstr "Remover Plugins"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Reiniciar a rede"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Mostrar registo de E2"
+
+#, fuzzy
+#~ msgid "Side by side"
+#~ msgstr "Lado a Lado"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Selecção de skin"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/D"
 
 #~ msgid "extensions"
 #~ msgstr "extensões"

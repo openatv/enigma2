@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -1792,13 +1792,13 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1905,9 +1905,6 @@ msgstr ""
 msgid "29.97"
 msgstr ""
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1989,13 +1986,10 @@ msgstr "Skaņa"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
-msgstr ""
-
-msgid "3d mode"
-msgstr ""
-
 msgid "3s"
+msgstr ""
+
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2034,10 +2028,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2350,9 +2344,6 @@ msgid ""
 msgstr ""
 "Taimerim neizdevās uzsākt ierakstu!\n"
 "Izslēgt TV un mēģināt vēl?\n"
-
-msgid "AAC Plus downmix"
-msgstr ""
 
 msgid "AAC downmix"
 msgstr ""
@@ -2667,10 +2658,6 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 #
-msgid "Add timer"
-msgstr "Pievienot taimeri"
-
-#
 msgid "Add title"
 msgstr "Pievienot nosaukumu"
 
@@ -2724,9 +2711,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Papildus"
-
-msgid "Advanced Options"
-msgstr "Papildus opcijas"
 
 #
 #, fuzzy
@@ -3223,9 +3207,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Aspect Ratio Actions"
@@ -3447,9 +3428,6 @@ msgstr "Automātiskā meklēšana"
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "Automātiskā meklēšana"
-
-msgid "Automatic scan"
-msgstr ""
 
 msgid "Automatic scan for services"
 msgstr ""
@@ -3676,11 +3654,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Backup settings"
-msgstr "Veidot sistēmas iestatījumu dublējumkopiju"
 
 #
 msgid "Backup system settings"
@@ -5120,11 +5093,6 @@ msgstr "Common Interface"
 msgid "Common Interface Assignment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Common Interface assignment"
-msgstr "Common Interface"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -6113,11 +6081,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "DVD file browser"
-msgstr "Spraudņu pārlūks"
-
-#
-#, fuzzy
 msgid "DVD player"
 msgstr "slēpt atskaņotāju"
 
@@ -6318,9 +6281,6 @@ msgstr "Vecāku kontrole"
 msgid "Deep Standby"
 msgstr "Dziļā gaidstāve"
 
-msgid "Deep standby"
-msgstr ""
-
 #
 msgid "Default"
 msgstr ""
@@ -6343,11 +6303,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Default Folder"
-msgstr "šis ieraksts"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7307,9 +7262,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr ""
 
@@ -7494,12 +7446,6 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7593,10 +7539,6 @@ msgstr "Rediģēt %s %s domēna vārdu servera konfigurāciju.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Rediģēt %s %s tīkla konfigurāciju.\n"
-
-#
-msgid "Edit title"
-msgstr "Rediģēt nosaukumu"
 
 #
 msgid "Edit upgrade source url."
@@ -8134,6 +8076,10 @@ msgstr ""
 #
 msgid "Error executing plugin"
 msgstr "Kļūda, palaižot spraudni"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10465,9 +10411,6 @@ msgstr ""
 msgid "Install picons on"
 msgstr ""
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10514,9 +10457,6 @@ msgstr "Uzstādīšana"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Uzstādīšana"
-
-msgid "Installing software..."
-msgstr ""
 
 msgid "Instant record"
 msgstr ""
@@ -11810,10 +11750,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
 #
-msgid "Media player"
-msgstr "Mediju atskaņotājs"
-
-#
 #, fuzzy
 msgid "Media scanner"
 msgstr "Mediju atskaņotājs"
@@ -12661,11 +12597,6 @@ msgstr ""
 
 msgid "Network test: "
 msgstr ""
-
-#
-#, fuzzy
-msgid "Network wizard"
-msgstr "Tīkla vednis"
 
 #
 msgid "Network:"
@@ -15733,10 +15664,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-#
-msgid "Remove plugins"
-msgstr "Dzēst spraudņus"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -15944,10 +15871,6 @@ msgstr ""
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Vai tiešām restartēt tagad?"
-
-#
-msgid "Restart network"
-msgstr "Restartēt tīklu"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16436,13 +16359,13 @@ msgid "Save left folder on exit"
 msgstr "saglabāt pēdējo mapi, izejot"
 
 #
-msgid "Save playlist on EXIT"
-msgstr "saglabāt repertuāru, izejot"
-
-#
 #, fuzzy
 msgid "Save playlist"
 msgstr "saglabāt repertuāru"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "saglabāt repertuāru, izejot"
 
 #
 #, fuzzy
@@ -18112,13 +18035,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -18335,11 +18252,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show log"
-msgstr "Rādīt informāciju"
 
 msgid "Show logs"
 msgstr ""
@@ -18685,9 +18597,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr ""
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18824,11 +18733,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Skinselector"
-msgstr "Taimeru izvēle"
 
 msgid "Skip back"
 msgstr ""
@@ -24734,11 +24638,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#
-#, fuzzy
-msgid "n/A"
-msgstr "N/A"
-
 msgid "n/a"
 msgstr ""
 
@@ -24786,9 +24685,6 @@ msgid "no CI slots found"
 msgstr ""
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 #
@@ -24920,9 +24816,6 @@ msgstr "lūdzu spiediet OK, kad esiet gatavs"
 #
 msgid "please wait, loading picture..."
 msgstr "lūdzu gaiidiet, ielādē attēlu..."
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -25600,6 +25493,69 @@ msgstr "pārslēgts"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Add timer"
+#~ msgstr "Pievienot taimeri"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Papildus opcijas"
+
+#
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Veidot sistēmas iestatījumu dublējumkopiju"
+
+#
+#, fuzzy
+#~ msgid "Common Interface assignment"
+#~ msgstr "Common Interface"
+
+#
+#, fuzzy
+#~ msgid "DVD file browser"
+#~ msgstr "Spraudņu pārlūks"
+
+#
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "šis ieraksts"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Rediģēt nosaukumu"
+
+#
+#~ msgid "Media player"
+#~ msgstr "Mediju atskaņotājs"
+
+#
+#, fuzzy
+#~ msgid "Network wizard"
+#~ msgstr "Tīkla vednis"
+
+#
+#~ msgid "Remove plugins"
+#~ msgstr "Dzēst spraudņus"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Restartēt tīklu"
+
+#
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Rādīt informāciju"
+
+#
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Taimeru izvēle"
+
+#
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/A"
 
 #
 #~ msgid "Mainmenu"

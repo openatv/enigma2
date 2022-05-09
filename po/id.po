@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -1800,14 +1800,14 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr "1X"
-
 msgid "1s"
 msgstr "1s"
 
 msgid "1st Infobar timeout"
 msgstr "Waktu habis Infobar ke-1"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1918,9 +1918,6 @@ msgstr "24p/60p"
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr "2X"
-
 msgid "2nd Infobar ECM"
 msgstr "ECM Infobar ke-2"
 
@@ -2002,14 +1999,11 @@ msgstr "Surround 3D"
 msgid "3D Surround Speaker Position"
 msgstr "Posisi pengeras suara Surround 3D"
 
-msgid "3X"
-msgstr "3X"
-
-msgid "3d mode"
-msgstr "mode 3d"
-
 msgid "3s"
 msgstr "3d"
+
+msgid "3x"
+msgstr ""
 
 msgid "4"
 msgstr "4"
@@ -2045,11 +2039,11 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
-msgstr "4X"
-
 msgid "4s"
 msgstr "4d"
+
+msgid "4x"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -2355,10 +2349,6 @@ msgstr ""
 "Pewaktu gagal merekam!\n"
 "Matikan TV dan coba lagi?\n"
 
-#, fuzzy
-msgid "AAC Plus downmix"
-msgstr "AAC downmix"
-
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2634,9 +2624,6 @@ msgstr "Tambah layanan"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "Tambah pewaktu"
-
 msgid "Add title"
 msgstr "Tambah judul"
 
@@ -2687,9 +2674,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Mahir"
-
-msgid "Advanced Options"
-msgstr "Pilihan Mahir"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -3159,9 +3143,6 @@ msgstr "Ask user (with default as 'yes')"
 msgid "Aspect"
 msgstr "Aspect"
 
-msgid "Aspect Ratio"
-msgstr "Aspect Ratio"
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Aspect Ratio"
@@ -3357,9 +3338,6 @@ msgstr "Automatic resolution"
 
 msgid "Automatic resolution label"
 msgstr "Automatic resolution label"
-
-msgid "Automatic scan"
-msgstr "Automatic scan"
 
 msgid "Automatic scan for services"
 msgstr "Automatic scan for services"
@@ -3575,10 +3553,6 @@ msgid ""
 msgstr ""
 "Backup plugins found\n"
 "do you want to install now?"
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "Backup Settings"
 
 msgid "Backup system settings"
 msgstr "Backup system settings"
@@ -4924,9 +4898,6 @@ msgstr "Antarmuka Umum"
 msgid "Common Interface Assignment"
 msgstr "Common Interface Assignment"
 
-msgid "Common Interface assignment"
-msgstr "Common Interface assignment"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5853,9 +5824,6 @@ msgstr "DVD Menu"
 msgid "DVD Titlelist"
 msgstr "DVD Titlelist"
 
-msgid "DVD file browser"
-msgstr "DVD file browser"
-
 msgid "DVD player"
 msgstr "DVD player"
 
@@ -6048,9 +6016,6 @@ msgstr "Pengawasan Orangtua"
 msgid "Deep Standby"
 msgstr "Deep Standby"
 
-msgid "Deep standby"
-msgstr "Deep standby"
-
 msgid "Default"
 msgstr "Default"
 
@@ -6069,10 +6034,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "Default"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -6964,9 +6925,6 @@ msgstr "Download and install cam"
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr "Download plugins"
-
 msgid "Downloadable plugins"
 msgstr "Downloadable plugins"
 
@@ -7153,12 +7111,6 @@ msgstr "EPG language selection 2"
 msgid "EPG location"
 msgstr "EPG location"
 
-msgid "EPG search"
-msgstr "EPG search"
-
-msgid "EPG selection"
-msgstr "EPG selection"
-
 msgid "EPGSearch"
 msgstr "EPGSearch"
 
@@ -7232,9 +7184,6 @@ msgstr "Edit the Nameserver configuration of your %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Edit the network configuration of your %s %s.\n"
-
-msgid "Edit title"
-msgstr "Edit title"
 
 msgid "Edit upgrade source url."
 msgstr "Edit upgrade source url."
@@ -7762,6 +7711,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Error executing plugin"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9957,9 +9910,6 @@ msgstr "Install or remove finished."
 msgid "Install picons on"
 msgstr "Install picons on"
 
-msgid "Install plugins"
-msgstr "Install plugins"
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -9999,9 +9949,6 @@ msgstr "Installing plugins..."
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Installing plugins..."
-
-msgid "Installing software..."
-msgstr "Installing software..."
 
 msgid "Instant record"
 msgstr "Instant record"
@@ -11190,9 +11137,6 @@ msgstr "Media long"
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Media playback Remaining/Elapsed as"
 
-msgid "Media player"
-msgstr "Media player"
-
 msgid "Media scanner"
 msgstr "Media scanner"
 
@@ -11957,9 +11901,6 @@ msgstr "Tes jaringan..."
 
 msgid "Network test: "
 msgstr "Tes jaringan: "
-
-msgid "Network wizard"
-msgstr "Wizard jaringan"
 
 msgid "Network:"
 msgstr "Jaringan:"
@@ -14806,9 +14747,6 @@ msgstr "Remove hide VBI line for this service"
 msgid "Remove items from trash can after (days)"
 msgstr "Remove items from trash can after (days)"
 
-msgid "Remove plugins"
-msgstr "Remove plugins"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -14987,9 +14925,6 @@ msgstr "Restart enigma"
 
 msgid "Restart necessary, restart GUI now?"
 msgstr "Restart necessary, restart GUI now?"
-
-msgid "Restart network"
-msgstr "Restart network"
 
 msgid "Restart network and remount connections"
 msgstr "Restart network and remount connections"
@@ -15440,11 +15375,11 @@ msgstr "Save every (in hours)"
 msgid "Save left folder on exit"
 msgstr "Save directory on EXIT"
 
-msgid "Save playlist on EXIT"
-msgstr "Save playlist on EXIT"
-
 msgid "Save playlist"
 msgstr "Save playlist"
+
+msgid "Save playlist on EXIT"
+msgstr "Save playlist on EXIT"
 
 #, fuzzy
 msgid "Save right folder on exit"
@@ -17017,14 +16952,8 @@ msgstr "Show Single EPG"
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr "Show Time Remaining/Elapsed"
-
 msgid "Show Timer List"
 msgstr "Show Timer List"
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Show Transponder Remaining/Elapsed as"
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -17215,10 +17144,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr "Show live tv when movie stopped"
-
-#, fuzzy
-msgid "Show log"
-msgstr "Show Log"
 
 msgid "Show logs"
 msgstr ""
@@ -17533,9 +17458,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "Side by Side"
 
-msgid "Side by side"
-msgstr "Side by side"
-
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
@@ -17658,10 +17580,6 @@ msgstr "SkinSelector"
 
 msgid "Skins"
 msgstr "Skins"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "SkinSelector"
 
 msgid "Skip back"
 msgstr "Skip back"
@@ -23265,9 +23183,6 @@ msgstr "music/ballet/dance (general)"
 msgid "musical/opera"
 msgstr "musical/opera"
 
-msgid "n/A"
-msgstr "n/A"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -23311,9 +23226,6 @@ msgstr "no CI slots found"
 
 msgid "no channel list"
 msgstr "no channel list"
-
-msgid "no delay"
-msgstr "no delay"
 
 msgid "no module found"
 msgstr "no module found"
@@ -23427,9 +23339,6 @@ msgstr "please press OK when ready"
 
 msgid "please wait, loading picture..."
 msgstr "please wait, loading picture..."
-
-msgid "please wait..."
-msgstr "please wait..."
 
 msgid "pm"
 msgstr "pm"
@@ -24049,6 +23958,110 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1X"
+#~ msgstr "1X"
+
+#~ msgid "2X"
+#~ msgstr "2X"
+
+#~ msgid "3X"
+#~ msgstr "3X"
+
+#~ msgid "3d mode"
+#~ msgstr "mode 3d"
+
+#~ msgid "4X"
+#~ msgstr "4X"
+
+#, fuzzy
+#~ msgid "AAC Plus downmix"
+#~ msgstr "AAC downmix"
+
+#~ msgid "Add timer"
+#~ msgstr "Tambah pewaktu"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Pilihan Mahir"
+
+#~ msgid "Aspect Ratio"
+#~ msgstr "Aspect Ratio"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Automatic scan"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Backup Settings"
+
+#~ msgid "Common Interface assignment"
+#~ msgstr "Common Interface assignment"
+
+#~ msgid "DVD file browser"
+#~ msgstr "DVD file browser"
+
+#~ msgid "Deep standby"
+#~ msgstr "Deep standby"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Default"
+
+#~ msgid "Download plugins"
+#~ msgstr "Download plugins"
+
+#~ msgid "EPG search"
+#~ msgstr "EPG search"
+
+#~ msgid "EPG selection"
+#~ msgstr "EPG selection"
+
+#~ msgid "Edit title"
+#~ msgstr "Edit title"
+
+#~ msgid "Install plugins"
+#~ msgstr "Install plugins"
+
+#~ msgid "Installing software..."
+#~ msgstr "Installing software..."
+
+#~ msgid "Media player"
+#~ msgstr "Media player"
+
+#~ msgid "Network wizard"
+#~ msgstr "Wizard jaringan"
+
+#~ msgid "Remove plugins"
+#~ msgstr "Remove plugins"
+
+#~ msgid "Restart network"
+#~ msgstr "Restart network"
+
+#~ msgid "Show Time Remaining/Elapsed"
+#~ msgstr "Show Time Remaining/Elapsed"
+
+#~ msgid "Show Transponder Remaining/Elapsed as"
+#~ msgstr "Show Transponder Remaining/Elapsed as"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Show Log"
+
+#~ msgid "Side by side"
+#~ msgstr "Side by side"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "SkinSelector"
+
+#~ msgid "n/A"
+#~ msgstr "n/A"
+
+#~ msgid "no delay"
+#~ msgstr "no delay"
+
+#~ msgid "please wait..."
+#~ msgstr "please wait..."
 
 #~ msgid "extensions"
 #~ msgstr "extensions"

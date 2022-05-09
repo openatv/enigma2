@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -1791,13 +1791,13 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1904,9 +1904,6 @@ msgstr ""
 msgid "29.97"
 msgstr ""
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1988,13 +1985,10 @@ msgstr "Hljóð"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
-msgstr ""
-
-msgid "3d mode"
-msgstr ""
-
 msgid "3s"
+msgstr ""
+
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2033,10 +2027,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2344,9 +2338,6 @@ msgid ""
 msgstr ""
 "Tímastillt upptaka mistókst!\n"
 "Hætta og reyna aftur?\n"
-
-msgid "AAC Plus downmix"
-msgstr ""
 
 msgid "AAC downmix"
 msgstr ""
@@ -2657,9 +2648,6 @@ msgstr "bæta við rás"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "Taka upp"
-
 msgid "Add title"
 msgstr "Bæta við titli"
 
@@ -2711,9 +2699,6 @@ msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
 msgid "Advanced"
-msgstr ""
-
-msgid "Advanced Options"
 msgstr ""
 
 #, fuzzy
@@ -3191,9 +3176,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Aspect Ratio Actions"
@@ -3410,9 +3392,6 @@ msgstr "Sjálfvirk leit"
 msgid "Automatic resolution label"
 msgstr "Sjálfvirk leit"
 
-msgid "Automatic scan"
-msgstr ""
-
 msgid "Automatic scan for services"
 msgstr ""
 
@@ -3625,10 +3604,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "Afrita kerfis stillingar"
 
 msgid "Backup system settings"
 msgstr "Afrita kerfis stillingar"
@@ -4992,10 +4967,6 @@ msgstr "Afruglara tengi"
 msgid "Common Interface Assignment"
 msgstr "Stillingar afruglara tengis"
 
-#, fuzzy
-msgid "Common Interface assignment"
-msgstr "Stillingar afruglara tengis"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5935,10 +5906,6 @@ msgstr "Valmynd"
 msgid "DVD Titlelist"
 msgstr ""
 
-#, fuzzy
-msgid "DVD file browser"
-msgstr "DVD skráar stjóri"
-
 #
 #, fuzzy
 msgid "DVD player"
@@ -6142,9 +6109,6 @@ msgstr "Foreldrastýring"
 msgid "Deep Standby"
 msgstr "Djúp biðstaða"
 
-msgid "Deep standby"
-msgstr ""
-
 #
 msgid "Default"
 msgstr "Venjulegt"
@@ -6166,11 +6130,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Default Folder"
-msgstr "Venjulegt"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7120,9 +7079,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "Niðurhalanleg íforrit"
 
@@ -7304,12 +7260,6 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7398,10 +7348,6 @@ msgstr "Breyta nafnaþjóns stillingum %s %sins.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Breyta stillingum netkorts í %s %sinu.\n"
-
-#
-msgid "Edit title"
-msgstr "Breyta titili"
 
 msgid "Edit upgrade source url."
 msgstr "Breyta uppfærslu uppruna slóð."
@@ -7929,6 +7875,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Villa við keyrslu íforrits"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10230,9 +10180,6 @@ msgstr "Innsetning eða fjarlæging tókst."
 msgid "Install picons on"
 msgstr ""
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10279,9 +10226,6 @@ msgstr "Set inn"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Set inn"
-
-msgid "Installing software..."
-msgstr ""
 
 msgid "Instant record"
 msgstr ""
@@ -11570,10 +11514,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
 #
-msgid "Media player"
-msgstr "Spilari"
-
-#
 #, fuzzy
 msgid "Media scanner"
 msgstr "Spilari"
@@ -12418,10 +12358,6 @@ msgstr "Prufa nettengingu..."
 
 msgid "Network test: "
 msgstr "Prufa nettengingu:"
-
-#, fuzzy
-msgid "Network wizard"
-msgstr "Netkerfis ráðgjafi"
 
 #
 msgid "Network:"
@@ -15477,9 +15413,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-msgid "Remove plugins"
-msgstr "Taka út íforrit"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -15685,10 +15618,6 @@ msgstr ""
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Viltu örugglega endurræsa núna?"
-
-#
-msgid "Restart network"
-msgstr "Endurræsi netkort"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16168,13 +16097,13 @@ msgid "Save left folder on exit"
 msgstr "vista síðustu möppu þegar hætt er"
 
 #
-msgid "Save playlist on EXIT"
-msgstr "vista spilunarlista þegar hætt er"
-
-#
 #, fuzzy
 msgid "Save playlist"
 msgstr "vista spilunarlista"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "vista spilunarlista þegar hætt er"
 
 #
 #, fuzzy
@@ -17833,13 +17762,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -18052,11 +17975,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show log"
-msgstr "Sýna upplýsingar"
 
 msgid "Show logs"
 msgstr ""
@@ -18393,9 +18311,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr ""
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18535,10 +18450,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr "Skinn"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "Staðsetning bíómynda"
 
 msgid "Skip back"
 msgstr ""
@@ -24443,11 +24354,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#
-#, fuzzy
-msgid "n/A"
-msgstr "Ekki til"
-
 msgid "n/a"
 msgstr ""
 
@@ -24495,9 +24401,6 @@ msgid "no CI slots found"
 msgstr "fann engin CI tengi"
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 #
@@ -24627,9 +24530,6 @@ msgstr "vinsamlega ýtið á OK þegar tilbúið"
 #
 msgid "please wait, loading picture..."
 msgstr "hleð inn mynd, vinsamlegast bíðið.."
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -25302,6 +25202,59 @@ msgstr "stokkið"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add timer"
+#~ msgstr "Taka upp"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Afrita kerfis stillingar"
+
+#, fuzzy
+#~ msgid "Common Interface assignment"
+#~ msgstr "Stillingar afruglara tengis"
+
+#, fuzzy
+#~ msgid "DVD file browser"
+#~ msgstr "DVD skráar stjóri"
+
+#
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Venjulegt"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Breyta titili"
+
+#
+#~ msgid "Media player"
+#~ msgstr "Spilari"
+
+#, fuzzy
+#~ msgid "Network wizard"
+#~ msgstr "Netkerfis ráðgjafi"
+
+#~ msgid "Remove plugins"
+#~ msgstr "Taka út íforrit"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Endurræsi netkort"
+
+#
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Sýna upplýsingar"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Staðsetning bíómynda"
+
+#
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "Ekki til"
 
 #
 #~ msgid "Mainmenu"

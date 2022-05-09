@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -1784,15 +1784,15 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr "1X"
-
 #, fuzzy
 msgid "1s"
 msgstr "1"
 
 msgid "1st Infobar timeout"
 msgstr "První Infobar skrýt"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1896,9 +1896,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr "2X"
-
 msgid "2nd Infobar ECM"
 msgstr "Druhý Infobar ECM"
 
@@ -1980,15 +1977,12 @@ msgstr "3D Surround (prostorový zvuk)"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround (prostorový zvuk) umístění reproduktoru"
 
-msgid "3X"
-msgstr "3X"
-
-msgid "3d mode"
-msgstr "Režim 3D"
-
 #, fuzzy
 msgid "3s"
 msgstr "3"
+
+msgid "3x"
+msgstr ""
 
 msgid "4"
 msgstr "4"
@@ -2024,12 +2018,12 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
-msgstr "4X"
-
 #, fuzzy
 msgid "4s"
 msgstr "4"
+
+msgid "4x"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -2341,10 +2335,6 @@ msgstr ""
 "Nahrávání z časovače selhalo!\n"
 "Zakázat TV a zkusit to znovu?\n"
 
-#, fuzzy
-msgid "AAC Plus downmix"
-msgstr "AAC downmix (převod do sterea)"
-
 msgid "AAC downmix"
 msgstr "AAC downmix (převod do sterea)"
 
@@ -2631,9 +2621,6 @@ msgstr "Přidat program"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "Přidat časovač"
-
 msgid "Add title"
 msgstr "Přidat titul"
 
@@ -2686,10 +2673,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Rozšířený"
-
-#, fuzzy
-msgid "Advanced Options"
-msgstr "Pokročilé volby"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -3177,10 +3160,6 @@ msgid "Aspect"
 msgstr "Poměr stran"
 
 #, fuzzy
-msgid "Aspect Ratio"
-msgstr "Poměr stran"
-
-#, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Poměr stran"
 
@@ -3383,9 +3362,6 @@ msgstr "Automatické rozlišení"
 
 msgid "Automatic resolution label"
 msgstr "Zobrazovat nastavené rozlišení"
-
-msgid "Automatic scan"
-msgstr "Automatické ladění programů"
 
 msgid "Automatic scan for services"
 msgstr "Autonaticky vyhledá dostupné programy"
@@ -3604,10 +3580,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "Záloha nastavení"
 
 msgid "Backup system settings"
 msgstr "Záloha nastavení"
@@ -4978,9 +4950,6 @@ msgstr "CI rozhraní"
 msgid "Common Interface Assignment"
 msgstr "Konfigurace CI slotů"
 
-msgid "Common Interface assignment"
-msgstr "Konfigurace CI slotů"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5933,9 +5902,6 @@ msgstr "Menu"
 msgid "DVD Titlelist"
 msgstr "DVD seznam titulů"
 
-msgid "DVD file browser"
-msgstr "DVD prohlížeč souborů"
-
 msgid "DVD player"
 msgstr "DVD přehrávač"
 
@@ -6129,9 +6095,6 @@ msgstr "Dekódování a rodičovská ochrana"
 msgid "Deep Standby"
 msgstr "Vypnout přijímač"
 
-msgid "Deep standby"
-msgstr "Vypnout přijímač"
-
 msgid "Default"
 msgstr "Výchozí"
 
@@ -6151,10 +6114,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "Výchozí "
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7069,9 +7028,6 @@ msgstr "Stáhnout a instalovat CAMy"
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr "Stáhnout pluginy"
-
 msgid "Downloadable plugins"
 msgstr "Nahrát pluginy"
 
@@ -7254,13 +7210,6 @@ msgid "EPG location"
 msgstr "Umístění EPG"
 
 #, fuzzy
-msgid "EPG search"
-msgstr "Prohledat EPG"
-
-msgid "EPG selection"
-msgstr "Výběr EPG"
-
-#, fuzzy
 msgid "EPGSearch"
 msgstr "Prohledat EPG"
 
@@ -7337,9 +7286,6 @@ msgstr "Upravuje nastavení DNS Vašeho %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Upravuje nastavení sítě Vašeho %s %s.\n"
-
-msgid "Edit title"
-msgstr "Upravit titul"
 
 msgid "Edit upgrade source url."
 msgstr "Upravit url zdroje aktualizací."
@@ -7874,6 +7820,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Chyba při provádění pluginu"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -10107,9 +10057,6 @@ msgstr "Instalace nebo odstranění dokončeno."
 msgid "Install picons on"
 msgstr "Instalovat picony do"
 
-msgid "Install plugins"
-msgstr "Instalovat pluginy"
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10148,9 +10095,6 @@ msgstr "Instalovat pluginy"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Instalovat pluginy"
-
-msgid "Installing software..."
-msgstr "Instalace software..."
 
 msgid "Instant record"
 msgstr "Volby okamžitého nahrávání"
@@ -11356,9 +11300,6 @@ msgstr "Media - dlouhý stisk"
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Zobrazit čas přehrávání Zbývající/Uplynulý"
 
-msgid "Media player"
-msgstr "Přehrávač médií"
-
 msgid "Media scanner"
 msgstr "Prohledávání médií"
 
@@ -12141,9 +12082,6 @@ msgstr "Test sítě"
 
 msgid "Network test: "
 msgstr "Test sítě: "
-
-msgid "Network wizard"
-msgstr "Pomocník sítě"
 
 msgid "Network:"
 msgstr "Síť:"
@@ -15041,9 +14979,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr "Položky z koše odstraňovat po (dnech)"
 
-msgid "Remove plugins"
-msgstr "Odstranit pluginy"
-
 #, fuzzy
 msgid "Remove selected folder from bookmarks"
 msgstr "Odstranit adresář ze záložek"
@@ -15226,9 +15161,6 @@ msgstr "Restartovat (GUI)"
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Opravdu nyní restartovat? "
-
-msgid "Restart network"
-msgstr "Restartovat síť"
 
 msgid "Restart network and remount connections"
 msgstr "Restartujte síť a obnoví připojení s aktuálním nastavením"
@@ -15685,11 +15617,11 @@ msgstr "Uložit každých (v hod.)"
 msgid "Save left folder on exit"
 msgstr "Uložit poslední adresář při ukončení"
 
-msgid "Save playlist on EXIT"
-msgstr "Při ukončení uložit playlist"
-
 msgid "Save playlist"
 msgstr "Uložit playlist"
+
+msgid "Save playlist on EXIT"
+msgstr "Při ukončení uložit playlist"
 
 #, fuzzy
 msgid "Save right folder on exit"
@@ -17287,14 +17219,8 @@ msgstr "Zobrazit EPG programu"
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr "Zobrazit čas Zbývající/Uplynulý"
-
 msgid "Show Timer List"
 msgstr "Zobrazí seznam časovačů"
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Zobrazit čas události Zbývající/Uplynulý"
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -17487,10 +17413,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr "Zobrazit TV vysílání po zastavení filmu"
-
-#, fuzzy
-msgid "Show log"
-msgstr "Zobrazit zprávu"
 
 msgid "Show logs"
 msgstr ""
@@ -17813,9 +17735,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "Vedle sebe"
 
-msgid "Side by side"
-msgstr "Vedle sebe"
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -17940,10 +17859,6 @@ msgstr "Výběr Skinu"
 
 msgid "Skins"
 msgstr "Skiny"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "Výběr Skinu"
 
 msgid "Skip back"
 msgstr "Přeskočit zpět"
@@ -23686,10 +23601,6 @@ msgstr "hudba/balet/tanec (obecně)"
 msgid "musical/opera"
 msgstr "muzikál/opera"
 
-#, fuzzy
-msgid "n/A"
-msgstr "Není k dispozici"
-
 msgid "n/a"
 msgstr ""
 
@@ -23735,10 +23646,6 @@ msgstr "Nenalezen CI slot"
 #, fuzzy
 msgid "no channel list"
 msgstr "Instalovat seznam programů"
-
-#, fuzzy
-msgid "no delay"
-msgstr "Žádné"
 
 msgid "no module found"
 msgstr "Žádný modul nenalezen"
@@ -23852,9 +23759,6 @@ msgstr "Stiskněte OK až budete připraveni"
 
 msgid "please wait, loading picture..."
 msgstr "Prosím čekejte... náčítám obrázek..."
-
-msgid "please wait..."
-msgstr "Čekejte..."
 
 msgid "pm"
 msgstr ""
@@ -24482,6 +24386,115 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1X"
+#~ msgstr "1X"
+
+#~ msgid "2X"
+#~ msgstr "2X"
+
+#~ msgid "3X"
+#~ msgstr "3X"
+
+#~ msgid "3d mode"
+#~ msgstr "Režim 3D"
+
+#~ msgid "4X"
+#~ msgstr "4X"
+
+#, fuzzy
+#~ msgid "AAC Plus downmix"
+#~ msgstr "AAC downmix (převod do sterea)"
+
+#~ msgid "Add timer"
+#~ msgstr "Přidat časovač"
+
+#, fuzzy
+#~ msgid "Advanced Options"
+#~ msgstr "Pokročilé volby"
+
+#, fuzzy
+#~ msgid "Aspect Ratio"
+#~ msgstr "Poměr stran"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Automatické ladění programů"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Záloha nastavení"
+
+#~ msgid "Common Interface assignment"
+#~ msgstr "Konfigurace CI slotů"
+
+#~ msgid "DVD file browser"
+#~ msgstr "DVD prohlížeč souborů"
+
+#~ msgid "Deep standby"
+#~ msgstr "Vypnout přijímač"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Výchozí "
+
+#~ msgid "Download plugins"
+#~ msgstr "Stáhnout pluginy"
+
+#, fuzzy
+#~ msgid "EPG search"
+#~ msgstr "Prohledat EPG"
+
+#~ msgid "EPG selection"
+#~ msgstr "Výběr EPG"
+
+#~ msgid "Edit title"
+#~ msgstr "Upravit titul"
+
+#~ msgid "Install plugins"
+#~ msgstr "Instalovat pluginy"
+
+#~ msgid "Installing software..."
+#~ msgstr "Instalace software..."
+
+#~ msgid "Media player"
+#~ msgstr "Přehrávač médií"
+
+#~ msgid "Network wizard"
+#~ msgstr "Pomocník sítě"
+
+#~ msgid "Remove plugins"
+#~ msgstr "Odstranit pluginy"
+
+#~ msgid "Restart network"
+#~ msgstr "Restartovat síť"
+
+#~ msgid "Show Time Remaining/Elapsed"
+#~ msgstr "Zobrazit čas Zbývající/Uplynulý"
+
+#~ msgid "Show Transponder Remaining/Elapsed as"
+#~ msgstr "Zobrazit čas události Zbývající/Uplynulý"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Zobrazit zprávu"
+
+#~ msgid "Side by side"
+#~ msgstr "Vedle sebe"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Výběr Skinu"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "Není k dispozici"
+
+#, fuzzy
+#~ msgid "no delay"
+#~ msgstr "Žádné"
+
+#~ msgid "please wait..."
+#~ msgstr "Čekejte..."
 
 #, fuzzy
 #~ msgid "extensions"

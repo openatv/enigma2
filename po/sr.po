@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -1826,13 +1826,13 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1939,9 +1939,6 @@ msgstr ""
 msgid "29.97"
 msgstr ""
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -2023,13 +2020,10 @@ msgstr "Zvuk"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
-msgstr ""
-
-msgid "3d mode"
-msgstr ""
-
 msgid "3s"
+msgstr ""
+
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2068,10 +2062,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2392,9 +2386,6 @@ msgstr ""
 "Tajmer je neuspešno pokušao snimiti!\n"
 "Onemogućite TV i pokušajte ponovo?\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr ""
 
@@ -2711,10 +2702,6 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 #
-msgid "Add timer"
-msgstr "Dodaj Tajmer"
-
-#
 msgid "Add title"
 msgstr "Dodaj naslov"
 
@@ -2767,9 +2754,6 @@ msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
 msgid "Advanced"
-msgstr ""
-
-msgid "Advanced Options"
 msgstr ""
 
 #
@@ -3269,9 +3253,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Aspect Ratio Actions"
@@ -3503,9 +3484,6 @@ msgstr "Automatsko skeniranje "
 msgid "Automatic resolution label"
 msgstr "Automatsko skeniranje "
 
-msgid "Automatic scan"
-msgstr ""
-
 msgid "Automatic scan for services"
 msgstr ""
 
@@ -3729,11 +3707,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Backup settings"
-msgstr "Snimanje sistemskih postavki"
 
 #
 msgid "Backup system settings"
@@ -5174,11 +5147,6 @@ msgstr "Opšti interfejs"
 msgid "Common Interface Assignment"
 msgstr "Dodeljivanje opšteg interfejsa"
 
-#
-#, fuzzy
-msgid "Common Interface assignment"
-msgstr "Dodeljivanje opšteg interfejsa"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -6170,11 +6138,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "DVD file browser"
-msgstr "DVD pretraživač datoteka"
-
-#
-#, fuzzy
 msgid "DVD player"
 msgstr "sakrij plejer"
 
@@ -6377,9 +6340,6 @@ msgstr "Roditeljska zaštita"
 msgid "Deep Standby"
 msgstr "Isključi Drimbox"
 
-msgid "Deep standby"
-msgstr ""
-
 msgid "Default"
 msgstr "Standardno"
 
@@ -6401,10 +6361,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "Standardno"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7363,9 +7319,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "Dodaci koji se mogu skidati"
 
@@ -7552,12 +7505,6 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7649,10 +7596,6 @@ msgstr "Urediti konfiguraciju nejmservera vašeg Drimboxa.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Urediti mrežnu konfiguraciju vašeg Drimboxa.\n"
-
-#
-msgid "Edit title"
-msgstr "Urediti naslov"
 
 #
 msgid "Edit upgrade source url."
@@ -8192,6 +8135,10 @@ msgstr ""
 #
 msgid "Error executing plugin"
 msgstr "Greška u izvršenju dodatka"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10524,9 +10471,6 @@ msgstr "Instalacija ili uklanjanje završeno."
 msgid "Install picons on"
 msgstr ""
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10573,9 +10517,6 @@ msgstr "Instaliram"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Instaliram"
-
-msgid "Installing software..."
-msgstr ""
 
 msgid "Instant record"
 msgstr ""
@@ -11878,10 +11819,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
 #
-msgid "Media player"
-msgstr "Medija plejer"
-
-#
 #, fuzzy
 msgid "Media scanner"
 msgstr "Medija plejer"
@@ -12731,11 +12668,6 @@ msgstr "Test mreže..."
 
 msgid "Network test: "
 msgstr "Test mreže:"
-
-#
-#, fuzzy
-msgid "Network wizard"
-msgstr "Mrežni čarobnjak"
 
 #
 msgid "Network:"
@@ -15816,10 +15748,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-#
-msgid "Remove plugins"
-msgstr "Obriši dodatke"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -16027,10 +15955,6 @@ msgstr ""
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Stvarno restartovati sada?"
-
-#
-msgid "Restart network"
-msgstr "Restartujte mrežu"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16519,13 +16443,13 @@ msgid "Save left folder on exit"
 msgstr "Sačuvajte poslednji direktorijum kod izlaska"
 
 #
-msgid "Save playlist on EXIT"
-msgstr "Sačuvajte listu za reprodukciju kod izlaska "
-
-#
 #, fuzzy
 msgid "Save playlist"
 msgstr "sačuvaj plejlistu"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "Sačuvajte listu za reprodukciju kod izlaska "
 
 #
 #, fuzzy
@@ -18203,13 +18127,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -18424,11 +18342,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show log"
-msgstr "Prikaži info"
 
 msgid "Show logs"
 msgstr ""
@@ -18773,9 +18686,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr ""
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18916,11 +18826,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr "Maska"
-
-#
-#, fuzzy
-msgid "Skinselector"
-msgstr "Lokacija filmova"
 
 msgid "Skip back"
 msgstr ""
@@ -24870,11 +24775,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#
-#, fuzzy
-msgid "n/A"
-msgstr "N/A"
-
 msgid "n/a"
 msgstr ""
 
@@ -24922,9 +24822,6 @@ msgid "no CI slots found"
 msgstr "CI otvor nije nađen"
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 #
@@ -25055,9 +24952,6 @@ msgstr "pritisni OK kada si spreman"
 #
 msgid "please wait, loading picture..."
 msgstr "molim pričekajte, učitavam sliku..."
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -25735,6 +25629,65 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Add timer"
+#~ msgstr "Dodaj Tajmer"
+
+#
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Snimanje sistemskih postavki"
+
+#
+#, fuzzy
+#~ msgid "Common Interface assignment"
+#~ msgstr "Dodeljivanje opšteg interfejsa"
+
+#
+#, fuzzy
+#~ msgid "DVD file browser"
+#~ msgstr "DVD pretraživač datoteka"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Standardno"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Urediti naslov"
+
+#
+#~ msgid "Media player"
+#~ msgstr "Medija plejer"
+
+#
+#, fuzzy
+#~ msgid "Network wizard"
+#~ msgstr "Mrežni čarobnjak"
+
+#
+#~ msgid "Remove plugins"
+#~ msgstr "Obriši dodatke"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Restartujte mrežu"
+
+#
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Prikaži info"
+
+#
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Lokacija filmova"
+
+#
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/A"
 
 #
 #~ msgid "Mainmenu"

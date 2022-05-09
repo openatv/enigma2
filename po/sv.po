@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1818,14 +1818,14 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr "1X"
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
 msgstr "1:a Infofältets tidsgäns"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1938,9 +1938,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr "2X"
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -2021,13 +2018,10 @@ msgstr "3D Surround"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround Högtalare position"
 
-msgid "3X"
-msgstr "3X"
-
-msgid "3d mode"
-msgstr "3d läge"
-
 msgid "3s"
+msgstr ""
+
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2067,10 +2061,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
-msgstr "4X"
-
 msgid "4s"
+msgstr ""
+
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2393,10 +2387,6 @@ msgstr ""
 "En timerinspelning misslyckades!\n"
 "Inaktivera TV och försök igen?\n"
 
-#, fuzzy
-msgid "AAC Plus downmix"
-msgstr "AAC nedmixning"
-
 msgid "AAC downmix"
 msgstr "AAC nedmixning"
 
@@ -2702,10 +2692,6 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 #
-msgid "Add timer"
-msgstr "Lägg till timer"
-
-#
 msgid "Add title"
 msgstr "Lägg till titel"
 
@@ -2761,9 +2747,6 @@ msgstr ""
 #
 msgid "Advanced"
 msgstr "Avancerad"
-
-msgid "Advanced Options"
-msgstr ""
 
 #
 #, fuzzy
@@ -3263,9 +3246,6 @@ msgstr ""
 msgid "Aspect"
 msgstr "Bildförhållande/upplösning"
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Bildförhållande/upplösning"
@@ -3486,9 +3466,6 @@ msgstr "Automatisk upplösning"
 
 msgid "Automatic resolution label"
 msgstr "Automatisk upplösning etikett"
-
-msgid "Automatic scan"
-msgstr "Automatisk sökning"
 
 msgid "Automatic scan for services"
 msgstr ""
@@ -3711,11 +3688,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Backup settings"
-msgstr "Backup av systeminställningar"
 
 #
 msgid "Backup system settings"
@@ -5144,10 +5116,6 @@ msgstr "Common Interface"
 msgid "Common Interface Assignment"
 msgstr "Common Interface tilldelning"
 
-#
-msgid "Common Interface assignment"
-msgstr "Common Interface tilldelning"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -6141,10 +6109,6 @@ msgid "DVD Titlelist"
 msgstr ""
 
 #
-msgid "DVD file browser"
-msgstr "DVD Filutforskare"
-
-#
 msgid "DVD player"
 msgstr "DVD Spelare"
 
@@ -6347,9 +6311,6 @@ msgstr "Föräldrakontroll"
 msgid "Deep Standby"
 msgstr "Avstängd"
 
-msgid "Deep standby"
-msgstr "Stäng av"
-
 #
 msgid "Default"
 msgstr "Grund"
@@ -6371,11 +6332,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Default Folder"
-msgstr "Grund"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7336,9 +7292,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr "Ladda ner plugins"
-
 msgid "Downloadable plugins"
 msgstr "Nerladdningsbara plugins"
 
@@ -7526,13 +7479,6 @@ msgstr "Val av EPG språk 2"
 msgid "EPG location"
 msgstr "EPG plats"
 
-#, fuzzy
-msgid "EPG search"
-msgstr "EPG Sökning"
-
-msgid "EPG selection"
-msgstr "EPG val"
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7625,10 +7571,6 @@ msgstr "Ändra Namnserver konfiguration för din %s %s.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Ändra nätverks konfiguration för din %s %s.\n"
-
-#
-msgid "Edit title"
-msgstr "Ändra titel"
 
 msgid "Edit upgrade source url."
 msgstr "Ändra url till uppgraderingskälla."
@@ -8169,6 +8111,10 @@ msgstr ""
 #
 msgid "Error executing plugin"
 msgstr "Fel vid körning av plugin"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10514,9 +10460,6 @@ msgstr "Installation eller borttagning klar."
 msgid "Install picons on"
 msgstr "Installera picons på"
 
-msgid "Install plugins"
-msgstr "Installera plugins"
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10557,9 +10500,6 @@ msgstr "Installera plugins"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Installera plugins"
-
-msgid "Installing software..."
-msgstr "Installerar mjukvara..."
 
 #
 msgid "Instant record"
@@ -11846,10 +11786,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr "Mediauppspelning återstående/förfluten "
 
 #
-msgid "Media player"
-msgstr "Mediaspelare"
-
-#
 msgid "Media scanner"
 msgstr "Mediaspelare"
 
@@ -12680,10 +12616,6 @@ msgstr "Nätverktest..."
 
 msgid "Network test: "
 msgstr "Nätverkstest : "
-
-#
-msgid "Network wizard"
-msgstr "Nätverksguide"
 
 #
 msgid "Network:"
@@ -15770,10 +15702,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr "Ta bort objekt från papperskorgen efter (dagar)"
 
-#
-msgid "Remove plugins"
-msgstr "Ta bort plugins"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -15978,10 +15906,6 @@ msgstr "Starta om enigma"
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Verkligen starta om nu?"
-
-#
-msgid "Restart network"
-msgstr "Startar om nätverk"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16469,12 +16393,12 @@ msgid "Save left folder on exit"
 msgstr "spara sista biblioteket vid avslut"
 
 #
-msgid "Save playlist on EXIT"
-msgstr "spara spellista vid avslut"
-
-#
 msgid "Save playlist"
 msgstr "Spara spellista"
+
+#
+msgid "Save playlist on EXIT"
+msgstr "spara spellista vid avslut"
 
 #
 #, fuzzy
@@ -18141,14 +18065,8 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr "Visa Tid Återstående/Förfluten"
-
 msgid "Show Timer List"
 msgstr "Visa Timerlista"
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Visa Transponder Återstående/Förfluten som"
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -18360,10 +18278,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr "Visa live tv när film är stoppad"
-
-#, fuzzy
-msgid "Show log"
-msgstr "Visa Logg"
 
 msgid "Show logs"
 msgstr ""
@@ -18701,9 +18615,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "Sida vid Sida"
 
-msgid "Side by side"
-msgstr "Sida vid sida"
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18841,11 +18752,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr "Utseenden"
-
-#
-#, fuzzy
-msgid "Skinselector"
-msgstr "Filmval"
 
 #
 msgid "Skip back"
@@ -24863,10 +24769,6 @@ msgstr "musik / balett / dans (allmänt)"
 msgid "musical/opera"
 msgstr "musikal / opera"
 
-#, fuzzy
-msgid "n/A"
-msgstr "N/A"
-
 msgid "n/a"
 msgstr ""
 
@@ -24915,9 +24817,6 @@ msgstr "ingen CI slot hittad"
 
 msgid "no channel list"
 msgstr "ingen kanallista"
-
-msgid "no delay"
-msgstr ""
 
 #
 msgid "no module found"
@@ -25047,9 +24946,6 @@ msgstr "tryck OK när du är klar"
 #
 msgid "please wait, loading picture..."
 msgstr "vänligen vänta, laddar bild..."
-
-msgid "please wait..."
-msgstr "vänligen vänta..."
 
 msgid "pm"
 msgstr "em"
@@ -25731,6 +25627,114 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1X"
+#~ msgstr "1X"
+
+#~ msgid "2X"
+#~ msgstr "2X"
+
+#~ msgid "3X"
+#~ msgstr "3X"
+
+#~ msgid "3d mode"
+#~ msgstr "3d läge"
+
+#~ msgid "4X"
+#~ msgstr "4X"
+
+#, fuzzy
+#~ msgid "AAC Plus downmix"
+#~ msgstr "AAC nedmixning"
+
+#
+#~ msgid "Add timer"
+#~ msgstr "Lägg till timer"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Automatisk sökning"
+
+#
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Backup av systeminställningar"
+
+#
+#~ msgid "Common Interface assignment"
+#~ msgstr "Common Interface tilldelning"
+
+#
+#~ msgid "DVD file browser"
+#~ msgstr "DVD Filutforskare"
+
+#~ msgid "Deep standby"
+#~ msgstr "Stäng av"
+
+#
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "Grund"
+
+#~ msgid "Download plugins"
+#~ msgstr "Ladda ner plugins"
+
+#, fuzzy
+#~ msgid "EPG search"
+#~ msgstr "EPG Sökning"
+
+#~ msgid "EPG selection"
+#~ msgstr "EPG val"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Ändra titel"
+
+#~ msgid "Install plugins"
+#~ msgstr "Installera plugins"
+
+#~ msgid "Installing software..."
+#~ msgstr "Installerar mjukvara..."
+
+#
+#~ msgid "Media player"
+#~ msgstr "Mediaspelare"
+
+#
+#~ msgid "Network wizard"
+#~ msgstr "Nätverksguide"
+
+#
+#~ msgid "Remove plugins"
+#~ msgstr "Ta bort plugins"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Startar om nätverk"
+
+#~ msgid "Show Time Remaining/Elapsed"
+#~ msgstr "Visa Tid Återstående/Förfluten"
+
+#~ msgid "Show Transponder Remaining/Elapsed as"
+#~ msgstr "Visa Transponder Återstående/Förfluten som"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Visa Logg"
+
+#~ msgid "Side by side"
+#~ msgstr "Sida vid sida"
+
+#
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Filmval"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/A"
+
+#~ msgid "please wait..."
+#~ msgstr "vänligen vänta..."
 
 #
 #~ msgid "Mainmenu"

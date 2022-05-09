@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1662,14 +1662,14 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18V"
 
-msgid "1X"
-msgstr "1X"
-
 msgid "1s"
 msgstr "1秒"
 
 msgid "1st Infobar timeout"
 msgstr "第一信息栏超时"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1767,9 +1767,6 @@ msgstr "25p/60p"
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr "2X"
-
 msgid "2nd Infobar ECM"
 msgstr "第二信息栏ECM"
 
@@ -1845,14 +1842,11 @@ msgstr "3D环绕"
 msgid "3D Surround Speaker Position"
 msgstr "3D环绕扬声器位置"
 
-msgid "3X"
-msgstr "3X"
-
-msgid "3d mode"
-msgstr "3d模式"
-
 msgid "3s"
 msgstr "3秒"
+
+msgid "3x"
+msgstr ""
 
 msgid "4"
 msgstr "4"
@@ -1887,11 +1881,11 @@ msgstr "4:3全景模式"
 msgid "4K"
 msgstr "4K"
 
-msgid "4X"
-msgstr "4X"
-
 msgid "4s"
 msgstr "4秒"
+
+msgid "4x"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -2188,9 +2182,6 @@ msgstr ""
 "定时录制失败!\n"
 "是否关闭电视并再试一次？\n"
 
-msgid "AAC Plus downmix"
-msgstr "AAC+缩混"
-
 msgid "AAC downmix"
 msgstr "AAC缩混"
 
@@ -2457,9 +2448,6 @@ msgstr "添加频道"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "添加定时器"
-
 msgid "Add title"
 msgstr "添加标题"
 
@@ -2510,9 +2498,6 @@ msgstr "成人节目, 强暴力等级15+"
 
 msgid "Advanced"
 msgstr "高级"
-
-msgid "Advanced Options"
-msgstr "高级选项"
 
 msgid "Advanced Settings"
 msgstr "高级设置"
@@ -2963,9 +2948,6 @@ msgstr "询问用户(默认为'是')"
 msgid "Aspect"
 msgstr "高宽比"
 
-msgid "Aspect Ratio"
-msgstr "屏幕比例"
-
 msgid "Aspect Ratio Actions"
 msgstr "屏幕比例操作"
 
@@ -3152,9 +3134,6 @@ msgstr "自动分辨率"
 
 msgid "Automatic resolution label"
 msgstr "自动分辨率标签"
-
-msgid "Automatic scan"
-msgstr "自动扫描"
 
 msgid "Automatic scan for services"
 msgstr "频道自动扫描"
@@ -3361,9 +3340,6 @@ msgid ""
 msgstr ""
 "找到的备份插件\n"
 "是否要立即安装？"
-
-msgid "Backup settings"
-msgstr "备份设置"
 
 msgid "Backup system settings"
 msgstr "备份系统设置"
@@ -4684,9 +4660,6 @@ msgstr "通用接口"
 msgid "Common Interface Assignment"
 msgstr "公共接口分配"
 
-msgid "Common Interface assignment"
-msgstr "公共接口分配"
-
 msgid "Common Menu Actions"
 msgstr "常用菜单操作"
 
@@ -5586,9 +5559,6 @@ msgstr "DVD菜单"
 msgid "DVD Titlelist"
 msgstr "DVD标题列表"
 
-msgid "DVD file browser"
-msgstr "DVD文件浏览器"
-
 msgid "DVD player"
 msgstr "DVD播放器"
 
@@ -5776,9 +5746,6 @@ msgstr "解密/家长控制"
 msgid "Deep Standby"
 msgstr "深度待机"
 
-msgid "Deep standby"
-msgstr "深度待机"
-
 msgid "Default"
 msgstr "默认值"
 
@@ -5796,9 +5763,6 @@ msgstr "执行脚本的默认CPU优先级(nice).这可以减少负载, 这样脚
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-msgid "Default Folder"
-msgstr "默认文件夹"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "执行脚本的默认I/O优先级(ionice).这可以减少负载, 这样脚本就不会干扰系统的其他部分.(较高的值=较低的优先级)"
@@ -6676,9 +6640,6 @@ msgstr "下载并安装cam"
 msgid "Download error"
 msgstr "下载错误"
 
-msgid "Download plugins"
-msgstr "下载插件"
-
 msgid "Downloadable plugins"
 msgstr "可下载插件"
 
@@ -6858,12 +6819,6 @@ msgstr "EPG语言选择2"
 msgid "EPG location"
 msgstr "EPG位置"
 
-msgid "EPG search"
-msgstr "EPG搜索"
-
-msgid "EPG selection"
-msgstr "EPG选择"
-
 msgid "EPGSearch"
 msgstr "EPG搜索"
 
@@ -6932,9 +6887,6 @@ msgstr "编辑 %s %s 的DNS服务器配置.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "编辑您的 %s %s 的网络配置.\n"
-
-msgid "Edit title"
-msgstr "编辑标题"
 
 msgid "Edit upgrade source url."
 msgstr "编辑升级源地址."
@@ -7451,6 +7403,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "执行插件时出错"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9572,9 +9528,6 @@ msgstr "安装或删除完成."
 msgid "Install picons on"
 msgstr "将picons安装到"
 
-msgid "Install plugins"
-msgstr "安装插件"
-
 msgid "Install/Remove plugin"
 msgstr "安装/删除插件"
 
@@ -9608,9 +9561,6 @@ msgstr "正在从IPK包安装插件..."
 
 msgid "Installing plugins from feed ..."
 msgstr "正在从数据源中安装插件..."
-
-msgid "Installing software..."
-msgstr "正在安装软件..."
 
 msgid "Instant record"
 msgstr "即时录像"
@@ -10739,9 +10689,6 @@ msgstr "Media键 长按"
 msgid "Media playback Remaining/Elapsed as"
 msgstr "媒体播放 剩余/已使用"
 
-msgid "Media player"
-msgstr "媒体播放器"
-
 msgid "Media scanner"
 msgstr "媒体扫描器"
 
@@ -11464,9 +11411,6 @@ msgstr "网络测试..."
 
 msgid "Network test: "
 msgstr "网络测试: "
-
-msgid "Network wizard"
-msgstr "网络安装向导"
 
 msgid "Network:"
 msgstr "网络:"
@@ -14205,9 +14149,6 @@ msgstr "删除此服务的隐藏 VBI 行"
 msgid "Remove items from trash can after (days)"
 msgstr "设置从垃圾桶删除项目的时间（天）"
 
-msgid "Remove plugins"
-msgstr "删除插件"
-
 msgid "Remove selected folder from bookmarks"
 msgstr "从书签中删除选定的文件夹"
 
@@ -14383,9 +14324,6 @@ msgstr "重启Enigma"
 
 msgid "Restart necessary, restart GUI now?"
 msgstr "需要重新启动,是否现在重新启动GUI?"
-
-msgid "Restart network"
-msgstr "重启网络"
 
 msgid "Restart network and remount connections"
 msgstr "重启网络并重新挂载连接"
@@ -14814,11 +14752,11 @@ msgstr "保存每一个(小时)"
 msgid "Save left folder on exit"
 msgstr "退出时保存左侧文件夹"
 
-msgid "Save playlist on EXIT"
-msgstr "退出时保存播放列表"
-
 msgid "Save playlist"
 msgstr "保存播放列表"
+
+msgid "Save playlist on EXIT"
+msgstr "退出时保存播放列表"
 
 msgid "Save right folder on exit"
 msgstr "退出时保存右侧文件夹"
@@ -16351,14 +16289,8 @@ msgstr "显示单个EPG"
 msgid "Show Task's completed message"
 msgstr "显示任务的完成消息"
 
-msgid "Show Time Remaining/Elapsed"
-msgstr "显示剩余时间/已使用"
-
 msgid "Show Timer List"
 msgstr "显示定时器列表"
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr "将转发器 剩余/已使用 显示为"
 
 msgid "Show True/False as graphical switch"
 msgstr "将是/否显示为图形开关"
@@ -16540,9 +16472,6 @@ msgstr "显示最新的提交日志信息"
 
 msgid "Show live tv when movie stopped"
 msgstr "电影停止时显示电视直播"
-
-msgid "Show log"
-msgstr "显示日志"
 
 msgid "Show logs"
 msgstr "显示日志"
@@ -16838,9 +16767,6 @@ msgstr "四川彝族/糯苏"
 msgid "Side by Side"
 msgstr "并排"
 
-msgid "Side by side"
-msgstr "并排"
-
 msgid "Sierra Leone"
 msgstr "塞拉利昂"
 
@@ -16957,9 +16883,6 @@ msgstr "皮肤选择器"
 
 msgid "Skins"
 msgstr "皮肤"
-
-msgid "Skinselector"
-msgstr "皮肤选择器"
 
 msgid "Skip back"
 msgstr "向后快退"
@@ -22396,9 +22319,6 @@ msgstr "音乐/芭蕾/舞蹈(一般)"
 msgid "musical/opera"
 msgstr "音乐/音乐剧"
 
-msgid "n/A"
-msgstr "无数据"
-
 msgid "n/a"
 msgstr "无网络"
 
@@ -22440,9 +22360,6 @@ msgstr "没有找到CI插槽"
 
 msgid "no channel list"
 msgstr "无频道列表"
-
-msgid "no delay"
-msgstr "无延迟"
 
 msgid "no module found"
 msgstr "未找到模块"
@@ -22551,9 +22468,6 @@ msgstr "准备好后,按OK键"
 
 msgid "please wait, loading picture..."
 msgstr "请稍候,正在加载图片..."
-
-msgid "please wait..."
-msgstr "请稍候..."
 
 msgid "pm"
 msgstr "下午"
@@ -23157,6 +23071,105 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "1X"
+#~ msgstr "1X"
+
+#~ msgid "2X"
+#~ msgstr "2X"
+
+#~ msgid "3X"
+#~ msgstr "3X"
+
+#~ msgid "3d mode"
+#~ msgstr "3d模式"
+
+#~ msgid "4X"
+#~ msgstr "4X"
+
+#~ msgid "AAC Plus downmix"
+#~ msgstr "AAC+缩混"
+
+#~ msgid "Add timer"
+#~ msgstr "添加定时器"
+
+#~ msgid "Advanced Options"
+#~ msgstr "高级选项"
+
+#~ msgid "Aspect Ratio"
+#~ msgstr "屏幕比例"
+
+#~ msgid "Automatic scan"
+#~ msgstr "自动扫描"
+
+#~ msgid "Backup settings"
+#~ msgstr "备份设置"
+
+#~ msgid "Common Interface assignment"
+#~ msgstr "公共接口分配"
+
+#~ msgid "DVD file browser"
+#~ msgstr "DVD文件浏览器"
+
+#~ msgid "Deep standby"
+#~ msgstr "深度待机"
+
+#~ msgid "Default Folder"
+#~ msgstr "默认文件夹"
+
+#~ msgid "Download plugins"
+#~ msgstr "下载插件"
+
+#~ msgid "EPG search"
+#~ msgstr "EPG搜索"
+
+#~ msgid "EPG selection"
+#~ msgstr "EPG选择"
+
+#~ msgid "Edit title"
+#~ msgstr "编辑标题"
+
+#~ msgid "Install plugins"
+#~ msgstr "安装插件"
+
+#~ msgid "Installing software..."
+#~ msgstr "正在安装软件..."
+
+#~ msgid "Media player"
+#~ msgstr "媒体播放器"
+
+#~ msgid "Network wizard"
+#~ msgstr "网络安装向导"
+
+#~ msgid "Remove plugins"
+#~ msgstr "删除插件"
+
+#~ msgid "Restart network"
+#~ msgstr "重启网络"
+
+#~ msgid "Show Time Remaining/Elapsed"
+#~ msgstr "显示剩余时间/已使用"
+
+#~ msgid "Show Transponder Remaining/Elapsed as"
+#~ msgstr "将转发器 剩余/已使用 显示为"
+
+#~ msgid "Show log"
+#~ msgstr "显示日志"
+
+#~ msgid "Side by side"
+#~ msgstr "并排"
+
+#~ msgid "Skinselector"
+#~ msgstr "皮肤选择器"
+
+#~ msgid "n/A"
+#~ msgstr "无数据"
+
+#~ msgid "no delay"
+#~ msgstr "无延迟"
+
+#~ msgid "please wait..."
+#~ msgstr "请稍候..."
 
 #~ msgid "extensions"
 #~ msgstr "扩展"

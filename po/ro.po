@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ro/>\n"
@@ -1631,13 +1631,13 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1737,9 +1737,6 @@ msgstr ""
 msgid "29.97"
 msgstr ""
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1817,13 +1814,10 @@ msgstr "Sunet"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
-msgstr ""
-
-msgid "3d mode"
-msgstr ""
-
 msgid "3s"
+msgstr ""
+
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -1859,10 +1853,10 @@ msgstr ""
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2147,9 +2141,6 @@ msgstr ""
 "Un timer a esuat sa registreze!\n"
 "Dezactiveaza TV si incearca din nou?\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr ""
 
@@ -2433,9 +2424,6 @@ msgstr "adauga Serviciu"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "Adauga timer "
-
 msgid "Add title"
 msgstr "adauga un titlu"
 
@@ -2486,9 +2474,6 @@ msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
 msgid "Advanced"
-msgstr ""
-
-msgid "Advanced Options"
 msgstr ""
 
 #, fuzzy
@@ -2951,9 +2936,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Alege locatia"
@@ -3155,9 +3137,6 @@ msgstr "Scanare automata"
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "Scanare automata"
-
-msgid "Automatic scan"
-msgstr ""
 
 msgid "Automatic scan for services"
 msgstr ""
@@ -3369,10 +3348,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "Copie de siguranta a setarilor de sistem"
 
 msgid "Backup system settings"
 msgstr "Copie de siguranta a setarilor de sistem"
@@ -4714,10 +4689,6 @@ msgstr "Common Interface"
 msgid "Common Interface Assignment"
 msgstr "Atribuirea pentru Common Interface"
 
-#, fuzzy
-msgid "Common Interface assignment"
-msgstr "Atribuirea pentru Common Interface"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5644,10 +5615,6 @@ msgid "DVD Titlelist"
 msgstr ""
 
 #, fuzzy
-msgid "DVD file browser"
-msgstr "Browser-ul plugin"
-
-#, fuzzy
 msgid "DVD player"
 msgstr "ascunde player"
 
@@ -5841,9 +5808,6 @@ msgstr "Control parental"
 msgid "Deep Standby"
 msgstr "Oprire completa"
 
-msgid "Deep standby"
-msgstr ""
-
 msgid "Default"
 msgstr ""
 
@@ -5863,10 +5827,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "aceasta inregistrare"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -6749,9 +6709,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "Pluginuri disponibile pentru descarcare"
 
@@ -6927,12 +6884,6 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7010,9 +6961,6 @@ msgstr "Editati configuratia Nameserver al Dreamboxului dvs.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Editati setarile de retea ale Dreaboxului dvs.\n"
-
-msgid "Edit title"
-msgstr "Editare titlu"
 
 msgid "Edit upgrade source url."
 msgstr ""
@@ -7519,6 +7467,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Eroare la executia pluginului"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9684,9 +9636,6 @@ msgstr "Instaleaza sau elimina fisierele terminate"
 msgid "Install picons on"
 msgstr ""
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -9725,9 +9674,6 @@ msgstr "Instaleaza"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Instaleaza"
-
-msgid "Installing software..."
-msgstr ""
 
 msgid "Instant record"
 msgstr ""
@@ -10918,9 +10864,6 @@ msgstr ""
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
-msgid "Media player"
-msgstr "Media player"
-
 #, fuzzy
 msgid "Media scanner"
 msgstr "Media player"
@@ -11691,10 +11634,6 @@ msgstr "Test retea..."
 
 msgid "Network test: "
 msgstr ""
-
-#, fuzzy
-msgid "Network wizard"
-msgstr "Wizard de retea"
 
 msgid "Network:"
 msgstr "Retea"
@@ -14490,9 +14429,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-msgid "Remove plugins"
-msgstr "Eliminare plugin-uri"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -14675,9 +14611,6 @@ msgstr ""
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Restartati acum?"
-
-msgid "Restart network"
-msgstr "Restart retea"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -15122,12 +15055,12 @@ msgstr ""
 msgid "Save left folder on exit"
 msgstr "salveaza ultimul director la iesire"
 
-msgid "Save playlist on EXIT"
-msgstr "salveaza playlist la iesire"
-
 #, fuzzy
 msgid "Save playlist"
 msgstr "salveaza playlist"
+
+msgid "Save playlist on EXIT"
+msgstr "salveaza playlist la iesire"
 
 #, fuzzy
 msgid "Save right folder on exit"
@@ -16701,13 +16634,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -16905,10 +16832,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#, fuzzy
-msgid "Show log"
-msgstr "Arata Informatii"
 
 msgid "Show logs"
 msgstr ""
@@ -17227,9 +17150,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr ""
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -17351,10 +17271,6 @@ msgstr ""
 
 msgid "Skins"
 msgstr "Skinuri"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "Selectare timer"
 
 msgid "Skip back"
 msgstr ""
@@ -22809,10 +22725,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#, fuzzy
-msgid "n/A"
-msgstr "N/A"
-
 msgid "n/a"
 msgstr ""
 
@@ -22855,9 +22767,6 @@ msgid "no CI slots found"
 msgstr "niciun slot CI gasit"
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 msgid "no module found"
@@ -22971,9 +22880,6 @@ msgstr "te rog apasa OK cand esti gata"
 
 msgid "please wait, loading picture..."
 msgstr "te rog asteapta, se incarca imagine"
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -23584,6 +23490,53 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add timer"
+#~ msgstr "Adauga timer "
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Copie de siguranta a setarilor de sistem"
+
+#, fuzzy
+#~ msgid "Common Interface assignment"
+#~ msgstr "Atribuirea pentru Common Interface"
+
+#, fuzzy
+#~ msgid "DVD file browser"
+#~ msgstr "Browser-ul plugin"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "aceasta inregistrare"
+
+#~ msgid "Edit title"
+#~ msgstr "Editare titlu"
+
+#~ msgid "Media player"
+#~ msgstr "Media player"
+
+#, fuzzy
+#~ msgid "Network wizard"
+#~ msgstr "Wizard de retea"
+
+#~ msgid "Remove plugins"
+#~ msgstr "Eliminare plugin-uri"
+
+#~ msgid "Restart network"
+#~ msgstr "Restart retea"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "Arata Informatii"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Selectare timer"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/A"
 
 #~ msgid "Mainmenu"
 #~ msgstr "Meniu principal"

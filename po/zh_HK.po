@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1682,16 +1682,15 @@ msgid "18 V"
 msgstr "18 V"
 
 #, fuzzy
-msgid "1X"
-msgstr "1"
-
-#, fuzzy
 msgid "1s"
 msgstr "1"
 
 #, fuzzy
 msgid "1st Infobar timeout"
 msgstr "資訊條超時"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr "2"
@@ -1796,10 +1795,6 @@ msgid "29.97"
 msgstr ""
 
 #, fuzzy
-msgid "2X"
-msgstr "2"
-
-#, fuzzy
 msgid "2nd Infobar ECM"
 msgstr "資訊條"
 
@@ -1887,15 +1882,11 @@ msgid "3D Surround Speaker Position"
 msgstr ""
 
 #, fuzzy
-msgid "3X"
-msgstr "3"
-
-msgid "3d mode"
-msgstr ""
-
-#, fuzzy
 msgid "3s"
 msgstr "3"
+
+msgid "3x"
+msgstr ""
 
 msgid "4"
 msgstr "4"
@@ -1931,12 +1922,11 @@ msgid "4K"
 msgstr ""
 
 #, fuzzy
-msgid "4X"
-msgstr "4"
-
-#, fuzzy
 msgid "4s"
 msgstr "4"
+
+msgid "4x"
+msgstr ""
 
 msgid "5"
 msgstr "5"
@@ -2250,10 +2240,6 @@ msgstr ""
 "禁用電視輸出並重試?\n"
 
 #, fuzzy
-msgid "AAC Plus downmix"
-msgstr "AC3 縮減混音"
-
-#, fuzzy
 msgid "AAC downmix"
 msgstr "AC3 縮減混音"
 
@@ -2544,9 +2530,6 @@ msgstr ""
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "添加到計時器"
-
 msgid "Add title"
 msgstr "添加標題"
 
@@ -2602,9 +2585,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "高級"
-
-msgid "Advanced Options"
-msgstr "高級選項"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -3093,9 +3073,6 @@ msgstr ""
 msgid "Aspect"
 msgstr "螢幕寬高比"
 
-msgid "Aspect Ratio"
-msgstr "螢幕寬高比"
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "螢幕寬高比"
@@ -3307,9 +3284,6 @@ msgstr "自動解析度..."
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "自動解析度..."
-
-msgid "Automatic scan"
-msgstr ""
 
 #, fuzzy
 msgid "Automatic scan for services"
@@ -3530,10 +3504,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "備份系統設定"
 
 msgid "Backup system settings"
 msgstr "備份系統設定"
@@ -4935,9 +4905,6 @@ msgstr "通用介面 (CI)"
 msgid "Common Interface Assignment"
 msgstr "通用介面分配"
 
-msgid "Common Interface assignment"
-msgstr ""
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5884,9 +5851,6 @@ msgstr "藍色面板功能表"
 msgid "DVD Titlelist"
 msgstr "DVD 標題"
 
-msgid "DVD file browser"
-msgstr ""
-
 msgid "DVD player"
 msgstr ""
 
@@ -6082,9 +6046,6 @@ msgstr "家長控制"
 msgid "Deep Standby"
 msgstr "深度休眠"
 
-msgid "Deep standby"
-msgstr ""
-
 msgid "Default"
 msgstr "預設"
 
@@ -6104,10 +6065,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "預設"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7028,9 +6985,6 @@ msgstr "下載並安裝"
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "可下載的插件"
 
@@ -7216,13 +7170,6 @@ msgid "EPG location"
 msgstr "EPG 選擇"
 
 #, fuzzy
-msgid "EPG search"
-msgstr "EPG 搜索"
-
-msgid "EPG selection"
-msgstr ""
-
-#, fuzzy
 msgid "EPGSearch"
 msgstr "EPG 搜索"
 
@@ -7299,9 +7246,6 @@ msgstr "修改Dreambox的DNS配置.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "修改Dreambox的網路配置.\n"
-
-msgid "Edit title"
-msgstr "修改標題"
 
 msgid "Edit upgrade source url."
 msgstr "編輯升級源地址."
@@ -7822,6 +7766,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "執行插件發生錯誤"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -10093,10 +10041,6 @@ msgstr "安裝或刪除完成."
 msgid "Install picons on"
 msgstr ""
 
-#, fuzzy
-msgid "Install plugins"
-msgstr "正在安裝"
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10136,9 +10080,6 @@ msgstr "正在安裝..."
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "正在安裝..."
-
-msgid "Installing software..."
-msgstr ""
 
 #, fuzzy
 msgid "Instant record"
@@ -11359,9 +11300,6 @@ msgstr "媒體播放器"
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
-msgid "Media player"
-msgstr "媒體播放器"
-
 msgid "Media scanner"
 msgstr ""
 
@@ -12165,9 +12103,6 @@ msgid "Network test..."
 msgstr "網路測驗..."
 
 msgid "Network test: "
-msgstr ""
-
-msgid "Network wizard"
 msgstr ""
 
 msgid "Network:"
@@ -15114,9 +15049,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr ""
 
-msgid "Remove plugins"
-msgstr "移除插件"
-
 #, fuzzy
 msgid "Remove selected folder from bookmarks"
 msgstr "移除選定的自動計時器"
@@ -15306,9 +15238,6 @@ msgstr ""
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "立即重啟(Restart)?"
-
-msgid "Restart network"
-msgstr "重啟網路"
 
 #, fuzzy
 msgid "Restart network and remount connections"
@@ -15775,11 +15704,11 @@ msgstr "每小時"
 msgid "Save left folder on exit"
 msgstr "退出時保存目錄"
 
-msgid "Save playlist on EXIT"
-msgstr "退出時保存播放列表"
-
 msgid "Save playlist"
 msgstr ""
+
+msgid "Save playlist on EXIT"
+msgstr "退出時保存播放列表"
 
 #, fuzzy
 msgid "Save right folder on exit"
@@ -17460,15 +17389,9 @@ msgstr "單個-EPG"
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 #, fuzzy
 msgid "Show Timer List"
 msgstr "顯示剩餘時間"
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr ""
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -17670,10 +17593,6 @@ msgstr ""
 #, fuzzy
 msgid "Show live tv when movie stopped"
 msgstr "當電影結束時"
-
-#, fuzzy
-msgid "Show log"
-msgstr "RS Log"
 
 msgid "Show logs"
 msgstr ""
@@ -18015,9 +17934,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "按大小按序"
 
-msgid "Side by side"
-msgstr ""
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -18145,10 +18061,6 @@ msgstr "皮膚選擇"
 
 msgid "Skins"
 msgstr ""
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "皮膚選擇"
 
 #, fuzzy
 msgid "Skip back"
@@ -23827,10 +23739,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#, fuzzy
-msgid "n/A"
-msgstr "N/A"
-
 msgid "n/a"
 msgstr ""
 
@@ -23876,10 +23784,6 @@ msgstr "未找到CI插座"
 #, fuzzy
 msgid "no channel list"
 msgstr "歷史記錄裏的下一個頻道"
-
-#, fuzzy
-msgid "no delay"
-msgstr "全球延遲"
 
 msgid "no module found"
 msgstr "未找到模組"
@@ -23997,10 +23901,6 @@ msgstr "準備好後，按OK鍵"
 
 msgid "please wait, loading picture..."
 msgstr "請稍候，正在載入圖片..."
-
-#, fuzzy
-msgid "please wait..."
-msgstr "請稍候..."
 
 msgid "pm"
 msgstr ""
@@ -24637,6 +24537,83 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "1X"
+#~ msgstr "1"
+
+#, fuzzy
+#~ msgid "2X"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "3X"
+#~ msgstr "3"
+
+#, fuzzy
+#~ msgid "4X"
+#~ msgstr "4"
+
+#, fuzzy
+#~ msgid "AAC Plus downmix"
+#~ msgstr "AC3 縮減混音"
+
+#~ msgid "Add timer"
+#~ msgstr "添加到計時器"
+
+#~ msgid "Advanced Options"
+#~ msgstr "高級選項"
+
+#~ msgid "Aspect Ratio"
+#~ msgstr "螢幕寬高比"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "備份系統設定"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "預設"
+
+#, fuzzy
+#~ msgid "EPG search"
+#~ msgstr "EPG 搜索"
+
+#~ msgid "Edit title"
+#~ msgstr "修改標題"
+
+#, fuzzy
+#~ msgid "Install plugins"
+#~ msgstr "正在安裝"
+
+#~ msgid "Media player"
+#~ msgstr "媒體播放器"
+
+#~ msgid "Remove plugins"
+#~ msgstr "移除插件"
+
+#~ msgid "Restart network"
+#~ msgstr "重啟網路"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "RS Log"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "皮膚選擇"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/A"
+
+#, fuzzy
+#~ msgid "no delay"
+#~ msgstr "全球延遲"
+
+#, fuzzy
+#~ msgid "please wait..."
+#~ msgstr "請稍候..."
 
 #, fuzzy
 #~ msgid "extensions"

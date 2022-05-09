@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1781,13 +1781,13 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1892,9 +1892,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1975,13 +1972,10 @@ msgstr "So"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
+msgid "3s"
 msgstr ""
 
-msgid "3d mode"
-msgstr "mode 3D"
-
-msgid "3s"
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -2020,10 +2014,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2340,9 +2334,6 @@ msgstr ""
 "Ha fallat la gravació!\n"
 "Voleu desactivar la TV i tornar-ho a provar?\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2643,10 +2634,6 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
 #
-msgid "Add timer"
-msgstr "Afegeix temporitzador"
-
-#
 msgid "Add title"
 msgstr "Afegeix títol"
 
@@ -2700,9 +2687,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Avançat"
-
-msgid "Advanced Options"
-msgstr ""
 
 #
 #, fuzzy
@@ -3194,9 +3178,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Aspect Ratio Actions"
@@ -3416,9 +3397,6 @@ msgstr "Recerca automàtica"
 msgid "Automatic resolution label"
 msgstr "Recerca automàtica"
 
-msgid "Automatic scan"
-msgstr "Escaneig automàtic"
-
 msgid "Automatic scan for services"
 msgstr ""
 
@@ -3630,10 +3608,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#
-msgid "Backup settings"
-msgstr "Sí, fes un backup de la configuració"
 
 #
 msgid "Backup system settings"
@@ -5064,10 +5038,6 @@ msgstr "Interfície comuna"
 msgid "Common Interface Assignment"
 msgstr ""
 
-#
-msgid "Common Interface assignment"
-msgstr "Assignació d’interfície comuna"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -6025,10 +5995,6 @@ msgid "DVD Titlelist"
 msgstr ""
 
 #
-msgid "DVD file browser"
-msgstr "Explorador d’arxius DVD"
-
-#
 msgid "DVD player"
 msgstr "Reproductor de DVD"
 
@@ -6228,9 +6194,6 @@ msgstr "Control parental"
 msgid "Deep Standby"
 msgstr "Apagat complet"
 
-msgid "Deep standby"
-msgstr "Espera profunda"
-
 #
 msgid "Default"
 msgstr "Per defecte"
@@ -6253,11 +6216,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Default Folder"
-msgstr "aquesta gravació"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -7199,9 +7157,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr "Descarrega plugins"
-
 msgid "Downloadable plugins"
 msgstr "Plugins descarregables"
 
@@ -7385,12 +7340,6 @@ msgstr "Selecció d’idioma EPG 2"
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr "Selecció  epg"
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7479,10 +7428,6 @@ msgstr "Configuració del sintonitzador"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Configuració del sintonitzador"
-
-#
-msgid "Edit title"
-msgstr "Edita titol"
 
 #
 msgid "Edit upgrade source url."
@@ -8016,6 +7961,10 @@ msgstr ""
 
 #
 msgid "Error executing plugin"
+msgstr ""
+
+#, python-format
+msgid "Error getting link via %s/n%s"
 msgstr ""
 
 #, python-format
@@ -10294,9 +10243,6 @@ msgstr ""
 msgid "Install picons on"
 msgstr "Instal·leu picons a"
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -10343,9 +10289,6 @@ msgstr "Instal·lant"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "Instal·lant"
-
-msgid "Installing software..."
-msgstr "S’està instal·lant el programari …"
 
 msgid "Instant record"
 msgstr "Registre instantani"
@@ -11593,10 +11536,6 @@ msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
 #
-msgid "Media player"
-msgstr "Reproductor"
-
-#
 msgid "Media scanner"
 msgstr "Escàner multimèdia"
 
@@ -12418,10 +12357,6 @@ msgstr "Prova de xarxa:"
 
 msgid "Network test: "
 msgstr "Prova de xarxa: "
-
-#
-msgid "Network wizard"
-msgstr "Assistent de xarxa"
 
 #
 msgid "Network:"
@@ -15437,10 +15372,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr "Elimineu els elements de la paperera després de (dies)"
 
-#
-msgid "Remove plugins"
-msgstr "Esborrar plugins"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -15643,10 +15574,6 @@ msgstr "Reinicieu l’enigma"
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "Reengegar la IGU ara?"
-
-#
-msgid "Restart network"
-msgstr "Reinicieu la xarxa"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -16124,12 +16051,12 @@ msgid "Save left folder on exit"
 msgstr ""
 
 #
-msgid "Save playlist on EXIT"
-msgstr ""
-
-#
 msgid "Save playlist"
 msgstr "Grava llista"
+
+#
+msgid "Save playlist on EXIT"
+msgstr ""
 
 msgid "Save right folder on exit"
 msgstr ""
@@ -17765,13 +17692,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -17973,9 +17894,6 @@ msgid "Show latest commit log information"
 msgstr ""
 
 msgid "Show live tv when movie stopped"
-msgstr ""
-
-msgid "Show log"
 msgstr ""
 
 msgid "Show logs"
@@ -18314,9 +18232,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr "Cota a costat"
-
 msgid "Sierra Leone"
 msgstr "Sierra Leona"
 
@@ -18448,11 +18363,6 @@ msgstr ""
 #
 msgid "Skins"
 msgstr "Pells"
-
-#
-#, fuzzy
-msgid "Skinselector"
-msgstr "Selecció de gravació"
 
 msgid "Skip back"
 msgstr ""
@@ -24271,11 +24181,6 @@ msgstr "música / ballet / ball (general)"
 msgid "musical/opera"
 msgstr "musical / òpera"
 
-#
-#, fuzzy
-msgid "n/A"
-msgstr "N/D"
-
 msgid "n/a"
 msgstr ""
 
@@ -24322,9 +24227,6 @@ msgstr "no s’han trobat cap ranura CI"
 
 msgid "no channel list"
 msgstr "no canal a la llista"
-
-msgid "no delay"
-msgstr ""
 
 #
 msgid "no module found"
@@ -24452,9 +24354,6 @@ msgstr "prem OK quan estiguis a punt"
 #
 msgid "please wait, loading picture..."
 msgstr "sisplau espera, carregant imatge..."
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -25126,6 +25025,78 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "3d mode"
+#~ msgstr "mode 3D"
+
+#
+#~ msgid "Add timer"
+#~ msgstr "Afegeix temporitzador"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Escaneig automàtic"
+
+#
+#~ msgid "Backup settings"
+#~ msgstr "Sí, fes un backup de la configuració"
+
+#
+#~ msgid "Common Interface assignment"
+#~ msgstr "Assignació d’interfície comuna"
+
+#
+#~ msgid "DVD file browser"
+#~ msgstr "Explorador d’arxius DVD"
+
+#~ msgid "Deep standby"
+#~ msgstr "Espera profunda"
+
+#
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "aquesta gravació"
+
+#~ msgid "Download plugins"
+#~ msgstr "Descarrega plugins"
+
+#~ msgid "EPG selection"
+#~ msgstr "Selecció  epg"
+
+#
+#~ msgid "Edit title"
+#~ msgstr "Edita titol"
+
+#~ msgid "Installing software..."
+#~ msgstr "S’està instal·lant el programari …"
+
+#
+#~ msgid "Media player"
+#~ msgstr "Reproductor"
+
+#
+#~ msgid "Network wizard"
+#~ msgstr "Assistent de xarxa"
+
+#
+#~ msgid "Remove plugins"
+#~ msgstr "Esborrar plugins"
+
+#
+#~ msgid "Restart network"
+#~ msgstr "Reinicieu la xarxa"
+
+#~ msgid "Side by side"
+#~ msgstr "Cota a costat"
+
+#
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "Selecció de gravació"
+
+#
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "N/D"
 
 #
 #~ msgid "Mainmenu"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1735,13 +1735,13 @@ msgstr ""
 msgid "18 V"
 msgstr "18 ولت"
 
-msgid "1X"
-msgstr ""
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
+msgstr ""
+
+msgid "1x"
 msgstr ""
 
 msgid "2"
@@ -1842,9 +1842,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr ""
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1922,13 +1919,10 @@ msgstr "صدا"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3X"
+msgid "3s"
 msgstr ""
 
-msgid "3d mode"
-msgstr "حالت 3 بعدی"
-
-msgid "3s"
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -1964,10 +1958,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
+msgid "4s"
 msgstr ""
 
-msgid "4s"
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2264,9 +2258,6 @@ msgstr ""
 "زمان برای ضبط ناموفق بود\n"
 "غیر فعال کردن تلوزیون و سعی مجدد ؟\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr ""
 
@@ -2556,9 +2547,6 @@ msgstr "اضافه کردن کانال"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "اضافه کردن زمان"
-
 msgid "Add title"
 msgstr "اضافه کردن عنوان"
 
@@ -2609,9 +2597,6 @@ msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
 msgid "Advanced"
-msgstr ""
-
-msgid "Advanced Options"
 msgstr ""
 
 #, fuzzy
@@ -3082,9 +3067,6 @@ msgstr ""
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "انتخاب محل"
@@ -3295,9 +3277,6 @@ msgstr "اسکن خودکار"
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "اسکن خودکار"
-
-msgid "Automatic scan"
-msgstr ""
 
 msgid "Automatic scan for services"
 msgstr ""
@@ -3511,10 +3490,6 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
-
-#, fuzzy
-msgid "Backup settings"
-msgstr "تهیه نسخه پشتیبان از تنظیمات"
 
 msgid "Backup system settings"
 msgstr "تهیه نسخه پشتیبان از تنظیمات"
@@ -4860,10 +4835,6 @@ msgstr "رابط مشترک"
 msgid "Common Interface Assignment"
 msgstr "تخصیص رابط مشترک"
 
-#, fuzzy
-msgid "Common Interface assignment"
-msgstr "تخصیص رابط مشترک"
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5804,11 +5775,6 @@ msgstr "منو"
 msgid "DVD Titlelist"
 msgstr ""
 
-#
-#, fuzzy
-msgid "DVD file browser"
-msgstr "مرورگر فایل DVD"
-
 #, fuzzy
 msgid "DVD player"
 msgstr "مخفی کردن پخش کننده"
@@ -6004,9 +5970,6 @@ msgstr "کنترل والدین"
 msgid "Deep Standby"
 msgstr "خاموشی کامل"
 
-msgid "Deep standby"
-msgstr ""
-
 msgid "Default"
 msgstr "پیش فرض"
 
@@ -6026,10 +5989,6 @@ msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
-
-#, fuzzy
-msgid "Default Folder"
-msgstr "پیش فرض"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
@@ -6913,9 +6872,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr ""
-
 msgid "Downloadable plugins"
 msgstr "پلاگین های قابل دانلود"
 
@@ -7093,12 +7049,6 @@ msgstr "انتخاب زبان EPG 2"
 msgid "EPG location"
 msgstr ""
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr "EPG انتخاب"
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7175,9 +7125,6 @@ msgstr "ویرایش پیکربندی نام سرور دستگاه شما\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "ویرایش پیکربندی شبکه دستگاه شما\n"
-
-msgid "Edit title"
-msgstr "ویرایش عنوان"
 
 #
 msgid "Edit upgrade source url."
@@ -7682,6 +7629,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "خطا هنگام اجرای پلاگین"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9870,9 +9821,6 @@ msgstr "نصب یا حذف پایان یافت"
 msgid "Install picons on"
 msgstr "نصب پیکون ها در"
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -9911,9 +9859,6 @@ msgstr "در حال نصب"
 #, fuzzy
 msgid "Installing plugins from feed ..."
 msgstr "در حال نصب"
-
-msgid "Installing software..."
-msgstr "در حال نصب نرم افزار..."
 
 msgid "Instant record"
 msgstr ""
@@ -11102,9 +11047,6 @@ msgstr ""
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
-msgid "Media player"
-msgstr "پخش کننده صوتی و تصویری"
-
 #, fuzzy
 msgid "Media scanner"
 msgstr "پخش کننده صوتی و تصویری"
@@ -11881,10 +11823,6 @@ msgstr "تست شبکه..."
 
 msgid "Network test: "
 msgstr "تست شبکه:"
-
-#, fuzzy
-msgid "Network wizard"
-msgstr "هدایتگر شبکه"
 
 msgid "Network:"
 msgstr "شبکه:"
@@ -14720,9 +14658,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr "حذف موارد از سطل زباله بعد از (روز)"
 
-msgid "Remove plugins"
-msgstr "حذف پلاگین ها"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -14908,9 +14843,6 @@ msgstr "راه اندازی مجدد انیگما"
 #, fuzzy
 msgid "Restart necessary, restart GUI now?"
 msgstr "راه اندازی مجدد هم اکنون؟"
-
-msgid "Restart network"
-msgstr "راه اندازی دوباره شبکه"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -15361,12 +15293,12 @@ msgstr ""
 msgid "Save left folder on exit"
 msgstr "ذخیره آخرین شاخه هنگام خروج"
 
-msgid "Save playlist on EXIT"
-msgstr "ذخیره لیست پخش هنگام خروج"
-
 #, fuzzy
 msgid "Save playlist"
 msgstr "ذخیره لیست پخش"
+
+msgid "Save playlist on EXIT"
+msgstr "ذخیره لیست پخش هنگام خروج"
 
 #, fuzzy
 msgid "Save right folder on exit"
@@ -16945,13 +16877,7 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr ""
-
 msgid "Show Timer List"
-msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show True/False as graphical switch"
@@ -17149,10 +17075,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr ""
-
-#, fuzzy
-msgid "Show log"
-msgstr "نمایش اطلاعات"
 
 msgid "Show logs"
 msgstr ""
@@ -17471,9 +17393,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr ""
 
-msgid "Side by side"
-msgstr "پهلو به پهلو"
-
 msgid "Sierra Leone"
 msgstr "سیرا لئون"
 
@@ -17600,10 +17519,6 @@ msgstr ""
 
 msgid "Skins"
 msgstr "پوسته"
-
-#, fuzzy
-msgid "Skinselector"
-msgstr "محل فیلم"
 
 msgid "Skip back"
 msgstr ""
@@ -23112,10 +23027,6 @@ msgstr ""
 msgid "musical/opera"
 msgstr ""
 
-#, fuzzy
-msgid "n/A"
-msgstr "در دسترس نیست"
-
 msgid "n/a"
 msgstr ""
 
@@ -23159,9 +23070,6 @@ msgid "no CI slots found"
 msgstr "هیچ شکاف CI یافت نشد"
 
 msgid "no channel list"
-msgstr ""
-
-msgid "no delay"
 msgstr ""
 
 msgid "no module found"
@@ -23275,9 +23183,6 @@ msgstr "هنگامی که آماده بودید دکمه OK را فشار دهی
 
 msgid "please wait, loading picture..."
 msgstr "در حال آماده سازی عکس ، لطفا صبر کنید"
-
-msgid "please wait..."
-msgstr ""
 
 msgid "pm"
 msgstr ""
@@ -23886,6 +23791,66 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "3d mode"
+#~ msgstr "حالت 3 بعدی"
+
+#~ msgid "Add timer"
+#~ msgstr "اضافه کردن زمان"
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "تهیه نسخه پشتیبان از تنظیمات"
+
+#, fuzzy
+#~ msgid "Common Interface assignment"
+#~ msgstr "تخصیص رابط مشترک"
+
+#
+#, fuzzy
+#~ msgid "DVD file browser"
+#~ msgstr "مرورگر فایل DVD"
+
+#, fuzzy
+#~ msgid "Default Folder"
+#~ msgstr "پیش فرض"
+
+#~ msgid "EPG selection"
+#~ msgstr "EPG انتخاب"
+
+#~ msgid "Edit title"
+#~ msgstr "ویرایش عنوان"
+
+#~ msgid "Installing software..."
+#~ msgstr "در حال نصب نرم افزار..."
+
+#~ msgid "Media player"
+#~ msgstr "پخش کننده صوتی و تصویری"
+
+#, fuzzy
+#~ msgid "Network wizard"
+#~ msgstr "هدایتگر شبکه"
+
+#~ msgid "Remove plugins"
+#~ msgstr "حذف پلاگین ها"
+
+#~ msgid "Restart network"
+#~ msgstr "راه اندازی دوباره شبکه"
+
+#, fuzzy
+#~ msgid "Show log"
+#~ msgstr "نمایش اطلاعات"
+
+#~ msgid "Side by side"
+#~ msgstr "پهلو به پهلو"
+
+#, fuzzy
+#~ msgid "Skinselector"
+#~ msgstr "محل فیلم"
+
+#, fuzzy
+#~ msgid "n/A"
+#~ msgstr "در دسترس نیست"
 
 #~ msgid "Mainmenu"
 #~ msgstr "منوی اصلی"

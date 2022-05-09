@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 11:02+0000\n"
+"POT-Creation-Date: 2022-05-07 11:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_GB/>\n"
@@ -1635,14 +1635,14 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1X"
-msgstr "1X"
-
 msgid "1s"
 msgstr ""
 
 msgid "1st Infobar timeout"
 msgstr "1st Infobar timeout"
+
+msgid "1x"
+msgstr ""
 
 msgid "2"
 msgstr ""
@@ -1740,9 +1740,6 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
-msgid "2X"
-msgstr "2X"
-
 msgid "2nd Infobar ECM"
 msgstr ""
 
@@ -1818,13 +1815,10 @@ msgstr "3D Surround"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround Speaker Position"
 
-msgid "3X"
-msgstr "3X"
-
-msgid "3d mode"
+msgid "3s"
 msgstr ""
 
-msgid "3s"
+msgid "3x"
 msgstr ""
 
 msgid "4"
@@ -1860,10 +1854,10 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4X"
-msgstr "4X"
-
 msgid "4s"
+msgstr ""
+
+msgid "4x"
 msgstr ""
 
 msgid "5"
@@ -2149,9 +2143,6 @@ msgstr ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 
-msgid "AAC Plus downmix"
-msgstr ""
-
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2418,9 +2409,6 @@ msgstr "Add service"
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
-msgid "Add timer"
-msgstr "Add timer"
-
 msgid "Add title"
 msgstr "Add title"
 
@@ -2471,9 +2459,6 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "Advanced"
-
-msgid "Advanced Options"
-msgstr ""
 
 msgid "Advanced Settings"
 msgstr ""
@@ -2926,9 +2911,6 @@ msgstr "Ask user (with default as 'yes')"
 msgid "Aspect"
 msgstr ""
 
-msgid "Aspect Ratio"
-msgstr ""
-
 msgid "Aspect Ratio Actions"
 msgstr ""
 
@@ -3115,9 +3097,6 @@ msgstr "Automatic resolution"
 
 msgid "Automatic resolution label"
 msgstr "Automatic resolution label"
-
-msgid "Automatic scan"
-msgstr "Automatic scan"
 
 msgid "Automatic scan for services"
 msgstr ""
@@ -3321,9 +3300,6 @@ msgstr "Backup is running..."
 msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
-msgstr ""
-
-msgid "Backup settings"
 msgstr ""
 
 msgid "Backup system settings"
@@ -4632,9 +4608,6 @@ msgstr "Common Interface"
 msgid "Common Interface Assignment"
 msgstr ""
 
-msgid "Common Interface assignment"
-msgstr ""
-
 msgid "Common Menu Actions"
 msgstr ""
 
@@ -5533,9 +5506,6 @@ msgstr ""
 msgid "DVD Titlelist"
 msgstr ""
 
-msgid "DVD file browser"
-msgstr "DVD file browser"
-
 msgid "DVD player"
 msgstr "DVD player"
 
@@ -5723,9 +5693,6 @@ msgstr ""
 msgid "Deep Standby"
 msgstr "Deep Standby"
 
-msgid "Deep standby"
-msgstr "Deep standby"
-
 msgid "Default"
 msgstr "Default"
 
@@ -5742,9 +5709,6 @@ msgid "Default CPU priority (nice) for executed scripts. This can reduce the loa
 msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
-msgstr ""
-
-msgid "Default Folder"
 msgstr ""
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
@@ -6596,9 +6560,6 @@ msgstr ""
 msgid "Download error"
 msgstr ""
 
-msgid "Download plugins"
-msgstr "Download plugins"
-
 msgid "Downloadable plugins"
 msgstr ""
 
@@ -6771,12 +6732,6 @@ msgstr "EPG language selection 2"
 msgid "EPG location"
 msgstr "EPG location"
 
-msgid "EPG search"
-msgstr ""
-
-msgid "EPG selection"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -6845,9 +6800,6 @@ msgstr "Edit the Nameserver configuration of your %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Edit the network configuration of your %s %s.\n"
-
-msgid "Edit title"
-msgstr "Edit title"
 
 msgid "Edit upgrade source url."
 msgstr "Edit upgrade source url."
@@ -7341,6 +7293,10 @@ msgstr ""
 
 msgid "Error executing plugin"
 msgstr "Error executing plugin"
+
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -9433,9 +9389,6 @@ msgstr "Install or remove finished."
 msgid "Install picons on"
 msgstr "Install picons on"
 
-msgid "Install plugins"
-msgstr ""
-
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -9468,9 +9421,6 @@ msgid "Installing plugins from IPK ..."
 msgstr ""
 
 msgid "Installing plugins from feed ..."
-msgstr ""
-
-msgid "Installing software..."
 msgstr ""
 
 msgid "Instant record"
@@ -10601,9 +10551,6 @@ msgstr ""
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Media playback Remaining/Elapsed as"
 
-msgid "Media player"
-msgstr "Media player"
-
 msgid "Media scanner"
 msgstr "Media scanner"
 
@@ -11324,9 +11271,6 @@ msgstr ""
 
 msgid "Network test: "
 msgstr ""
-
-msgid "Network wizard"
-msgstr "Network wizard"
 
 msgid "Network:"
 msgstr "Network:"
@@ -14018,9 +13962,6 @@ msgstr ""
 msgid "Remove items from trash can after (days)"
 msgstr "Remove items from trash can after (days)"
 
-msgid "Remove plugins"
-msgstr "Remove plugins"
-
 msgid "Remove selected folder from bookmarks"
 msgstr ""
 
@@ -14194,9 +14135,6 @@ msgstr ""
 
 msgid "Restart necessary, restart GUI now?"
 msgstr ""
-
-msgid "Restart network"
-msgstr "Restart network"
 
 msgid "Restart network and remount connections"
 msgstr ""
@@ -14626,11 +14564,11 @@ msgstr "Save every (in hours)"
 msgid "Save left folder on exit"
 msgstr ""
 
-msgid "Save playlist on EXIT"
-msgstr "Save playlist on EXIT"
-
 msgid "Save playlist"
 msgstr "Save playlist"
+
+msgid "Save playlist on EXIT"
+msgstr "Save playlist on EXIT"
 
 msgid "Save right folder on exit"
 msgstr ""
@@ -16153,14 +16091,8 @@ msgstr ""
 msgid "Show Task's completed message"
 msgstr ""
 
-msgid "Show Time Remaining/Elapsed"
-msgstr "Show Time Remaining/Elapsed"
-
 msgid "Show Timer List"
 msgstr ""
-
-msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Show Transponder Remaining/Elapsed as"
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -16342,9 +16274,6 @@ msgstr ""
 
 msgid "Show live tv when movie stopped"
 msgstr "Show live tv when movie stopped"
-
-msgid "Show log"
-msgstr ""
 
 msgid "Show logs"
 msgstr ""
@@ -16640,9 +16569,6 @@ msgstr ""
 msgid "Side by Side"
 msgstr "Side by Side"
 
-msgid "Side by side"
-msgstr "Side by side"
-
 msgid "Sierra Leone"
 msgstr ""
 
@@ -16759,9 +16685,6 @@ msgstr ""
 
 msgid "Skins"
 msgstr "Skins"
-
-msgid "Skinselector"
-msgstr ""
 
 msgid "Skip back"
 msgstr "Skip back"
@@ -22110,9 +22033,6 @@ msgstr "music/ballet/dance (general)"
 msgid "musical/opera"
 msgstr "musical/opera"
 
-msgid "n/A"
-msgstr ""
-
 msgid "n/a"
 msgstr ""
 
@@ -22154,9 +22074,6 @@ msgstr "no CI slots found"
 
 msgid "no channel list"
 msgstr "no channel list"
-
-msgid "no delay"
-msgstr "no delay"
 
 msgid "no module found"
 msgstr "no module found"
@@ -22266,9 +22183,6 @@ msgstr ""
 
 msgid "please wait, loading picture..."
 msgstr "please wait, loading picture..."
-
-msgid "please wait..."
-msgstr "please wait..."
 
 msgid "pm"
 msgstr "pm"
@@ -22865,6 +22779,63 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#~ msgid "1X"
+#~ msgstr "1X"
+
+#~ msgid "2X"
+#~ msgstr "2X"
+
+#~ msgid "3X"
+#~ msgstr "3X"
+
+#~ msgid "4X"
+#~ msgstr "4X"
+
+#~ msgid "Add timer"
+#~ msgstr "Add timer"
+
+#~ msgid "Automatic scan"
+#~ msgstr "Automatic scan"
+
+#~ msgid "DVD file browser"
+#~ msgstr "DVD file browser"
+
+#~ msgid "Deep standby"
+#~ msgstr "Deep standby"
+
+#~ msgid "Download plugins"
+#~ msgstr "Download plugins"
+
+#~ msgid "Edit title"
+#~ msgstr "Edit title"
+
+#~ msgid "Media player"
+#~ msgstr "Media player"
+
+#~ msgid "Network wizard"
+#~ msgstr "Network wizard"
+
+#~ msgid "Remove plugins"
+#~ msgstr "Remove plugins"
+
+#~ msgid "Restart network"
+#~ msgstr "Restart network"
+
+#~ msgid "Show Time Remaining/Elapsed"
+#~ msgstr "Show Time Remaining/Elapsed"
+
+#~ msgid "Show Transponder Remaining/Elapsed as"
+#~ msgstr "Show Transponder Remaining/Elapsed as"
+
+#~ msgid "Side by side"
+#~ msgstr "Side by side"
+
+#~ msgid "no delay"
+#~ msgstr "no delay"
+
+#~ msgid "please wait..."
+#~ msgstr "please wait..."
 
 #~ msgid "Timer List"
 #~ msgstr "Timer List"
