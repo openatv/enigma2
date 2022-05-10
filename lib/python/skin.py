@@ -1074,7 +1074,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for scrollbar in tag.findall("scrollbar"):
 			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
 			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
-			setListBoxScrollbarStyle(width, offset)
+			borderwidth = int(scrollbar.attrib.get("scrollbarBorderWidth", 1))
+			setListBoxScrollbarStyle(width, offset, borderwidth)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):

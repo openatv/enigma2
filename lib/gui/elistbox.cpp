@@ -6,8 +6,9 @@
 #include "vuplus_gles.h"
 #endif
 
-int eListbox::Defaultwidth = 10;
-int eListbox::Defaultoffset = 5;
+int eListbox::DefaultWidth = 10;
+int eListbox::DefaultOffset = 5;
+int eListbox::DefaultBorderWidth = 1;
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
@@ -15,8 +16,9 @@ eListbox::eListbox(eWidget *parent) :
 	m_top(0), m_selected(0), m_itemheight(25),
 	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false)
 {
-	m_scrollbar_width = eListbox::getDefaultwidth();
-	m_scrollbar_offset = eListbox::getDefaultoffset();
+	m_scrollbar_width = eListbox::getDefaultWidth();
+	m_scrollbar_offset = eListbox::getDefaultOffset();
+	m_scrollbar_border_width = eListbox::getDefaultBorderWidth();
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
@@ -48,7 +50,7 @@ void eListbox::setScrollbarMode(int mode)
 	{
 		m_scrollbar = new eSlider(this);
 		m_scrollbar->hide();
-		m_scrollbar->setBorderWidth(1);
+		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
 		m_scrollbar->setRange(0,100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);

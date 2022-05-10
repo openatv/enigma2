@@ -166,16 +166,19 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setScrollbarStyle(int width = -1, int offset = -1) { 
+	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwith = -1) { 
 			if (width != -1)
-				Defaultwidth = width; 
+				DefaultWidth = width; 
 			if (offset != -1)
-				Defaultoffset = offset; 
+				DefaultOffset = offset; 
+			if (borderwith != -1)
+				DefaultBorderWidth = borderwith; 
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
 	int getScrollbarWidth() { return m_scrollbar_width; }
 	int getScrollbarOffset() { return m_scrollbar_offset; }
+	int getScrollbarBorderWidth() { return m_scrollbar_border_width; }
 	int getItemHeight() { return m_itemheight; }
 	bool getSelectionEnable() {return m_selection_enabled; }
 	gFont* getFont() {return m_style.m_font; }
@@ -202,11 +205,13 @@ protected:
 	void recalcSize();
 
 private:
-	static int getDefaultwidth() { return Defaultwidth; }
-	static int getDefaultoffset() { return Defaultoffset; }
+	static int getDefaultWidth() { return DefaultWidth; }
+	static int getDefaultOffset() { return DefaultOffset; }
+	static int getDefaultBorderWidth() { return DefaultBorderWidth; }
 
-	static int Defaultwidth;
-	static int Defaultoffset;
+	static int DefaultWidth;
+	static int DefaultOffset;
+	static int DefaultBorderWidth;
 
 	int m_scrollbar_mode, m_prev_scrollbar_page;
 	bool m_content_changed;
@@ -214,6 +219,7 @@ private:
 
 	int m_scrollbar_width;
 	int m_scrollbar_offset;
+	int m_scrollbar_border_width;
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
