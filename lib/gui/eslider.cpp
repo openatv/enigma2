@@ -49,28 +49,6 @@ void eSlider::setForegroundColor(const gRGB &color)
 	invalidate();
 }
 
-void eSlider::setScrollbarSliderPicture(ePtr<gPixmap> &pixmap)
-{
-	setScrollbarSliderPicture(pixmap.operator->());
-}
-
-void eSlider::setScrollbarSliderPicture(gPixmap *pixmap)
-{
-	m_pixmap = pixmap;
-	event(evtChangedSlider);
-}
-
-void eSlider::setScrollbarBackgroundPicture(ePtr<gPixmap> &pixmap)
-{
-	setScrollbarBackgroundPicture(pixmap.operator->());
-}
-
-void eSlider::setScrollbarBackgroundPicture(gPixmap *pixmap)
-{
-	m_backgroundpixmap = pixmap;
-	invalidate();
-}
-
 void eSlider::setAlphatest(int alphatest)
 {
 	m_alphatest = alphatest;
