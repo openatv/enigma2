@@ -2,7 +2,6 @@
 
 eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false),
-	m_have_sliderborder_width(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
 	m_border_width(0)
 {
