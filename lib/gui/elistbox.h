@@ -166,13 +166,13 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwith = -1) { 
+	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwidth = -1) { 
 			if (width != -1)
-				DefaultWidth = width; 
+				DefaultScrollBarWidth = width; 
 			if (offset != -1)
-				DefaultOffset = offset; 
+				DefaultScrollBarOffset = offset; 
 			if (borderwith != -1)
-				DefaultBorderWidth = borderwith; 
+				DefaultScrollBarBorderWidth = borderwidth; 
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
@@ -205,13 +205,13 @@ protected:
 	void recalcSize();
 
 private:
-	static int getDefaultWidth() { return DefaultWidth; }
-	static int getDefaultOffset() { return DefaultOffset; }
-	static int getDefaultBorderWidth() { return DefaultBorderWidth; }
+	static int getDefaultScrollBarWidth() { return DefaultScrollBarWidth; }
+	static int getDefaultScrollBarOffset() { return DefaultScrollBarOffset; }
+	static int getDefaultScrollBarBorderWidth() { return DefaultScrollBarBorderWidth; }
 
-	static int DefaultWidth;
-	static int DefaultOffset;
-	static int DefaultBorderWidth;
+	static int DefaultScrollBarWidth;
+	static int DefaultScrollBarOffset;
+	static int DefaultScrollBarBorderWidth;
 
 	int m_scrollbar_mode, m_prev_scrollbar_page;
 	bool m_content_changed;
