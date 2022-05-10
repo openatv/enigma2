@@ -4,7 +4,7 @@ eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false),
 	m_have_sliderborder_color(false), m_have_sliderforeground_color(false), m_have_sliderborder_width(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
-	m_border_width(0), m_sliderborder_width(0)
+	m_border_width(0)
 {
 }
 
@@ -47,13 +47,6 @@ void eSlider::setForegroundColor(const gRGB &color)
 {
 	m_foreground_color = color;
 	m_have_foreground_color = true;
-	invalidate();
-}
-
-void eSlider::setSliderBorderWidth(int pixel)
-{
-	m_sliderborder_width = pixel;
-	m_have_sliderborder_width = true;
 	invalidate();
 }
 
@@ -139,15 +132,10 @@ int eSlider::event(int event, void *data, void *data2)
 		else if (m_have_border_color)
 			painter.setForegroundColor(m_border_color);
 
-		int border_width;
-		if(m_have_sliderborder_width)
-			border_width = m_sliderborder_width;
-		else
-			border_width = m_border_width;
-		painter.fill(eRect(0, 0, s.width(), border_width));
-		painter.fill(eRect(0, border_width, border_width, s.height() - border_width));
-		painter.fill(eRect(border_width, s.height() - border_width, s.width() - border_width, border_width));
-		painter.fill(eRect(s.width() - border_width, border_width, border_width, s.height() - border_width));
+		painter.fill(eRect(0, 0, s.width(), m_border_width));
+		painter.fill(eRect(0, m_border_width, m_border_width, s.height() - m_border_width));
+		painter.fill(eRect(m_border_width, s.height() - m_border_width, s.width() - m_border_width, m_border_width));
+		painter.fill(eRect(s.width() - m_border_width, m_border_width, m_border_width, s.height() - m_border_width));
 
 		return 0;
 	}
