@@ -697,7 +697,7 @@ void eListbox::setSliderForegroundColor(gRGB &col)
 {
 	m_style.m_sliderforeground_color = col;
 	m_style.m_sliderforeground_color_set = 1;
-	if (m_scrollbar) m_scrollbar->setSliderForegroundColor(col);
+	if (m_scrollbar) m_scrollbar->setForegroundColor(col);
 }
 
 void eListbox::setSliderBorderColor(const gRGB &col)

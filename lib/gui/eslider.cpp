@@ -2,7 +2,7 @@
 
 eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false),
-	m_have_sliderforeground_color(false), m_have_sliderborder_width(false),
+	m_have_sliderborder_width(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
 	m_border_width(0)
 {
@@ -72,13 +72,6 @@ void eSlider::setScrollbarBackgroundPicture(gPixmap *pixmap)
 	invalidate();
 }
 
-void eSlider::setSliderForegroundColor(const gRGB &color)
-{
-	m_sliderforeground_color = color;
-	m_have_sliderforeground_color = true;
-	invalidate();
-}
-
 void eSlider::setAlphatest(int alphatest)
 {
 	m_alphatest = alphatest;
@@ -109,9 +102,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		if (!m_pixmap)
 		{
-			if (m_have_sliderforeground_color)
-				painter.setForegroundColor(m_sliderforeground_color);
-			else if (m_have_foreground_color)
+			if (m_have_foreground_color)
 				painter.setForegroundColor(m_foreground_color);
 			painter.fill(m_currently_filled);
 		}
