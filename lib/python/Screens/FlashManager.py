@@ -3,7 +3,7 @@ from os import W_OK, access, listdir, major, makedirs, minor, mkdir, remove, sep
 from os.path import exists, isdir, isfile, islink, ismount, splitext, join as pathjoin
 from shutil import rmtree
 from time import time
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from zipfile import ZipFile
 
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
@@ -24,9 +24,10 @@ from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
 from Tools.MultiBoot import MultiBoot
 
+machinebuild = BoxInfo.getItem("machinebuild")
 
 FEED_URLS = {
-	"EGAMI": ("https://image.egami-image.com/10.1/json/%s", "machinebuild"),
+	"EGAMI": ("https://image.egami-image.com/json/%s", "machinebuild"),
 	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
@@ -116,7 +117,8 @@ class FlashManager(Screen, HelpableScreen):
 				# self.box = GetBoxName()
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
-				self.imagesList = dict(load(urlopen(url)))
+				req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, self.box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))
