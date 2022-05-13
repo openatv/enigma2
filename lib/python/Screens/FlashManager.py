@@ -326,6 +326,7 @@ class FlashImage(Screen):
 							return (fs.f_bavail * fs.f_frsize) / (1 << 20)
 						except:
 							pass
+					return 0
 
 				def checkIfDevice(path, diskstats):
 					st_dev = stat(path).st_dev
