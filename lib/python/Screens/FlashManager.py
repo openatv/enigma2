@@ -27,7 +27,7 @@ from Tools.MultiBoot import MultiBoot
 machinebuild = BoxInfo.getItem("machinebuild")
 
 FEED_URLS = {
-	"EGAMI": ("https://image.egami-image.com/json/%s", "machinebuild"),
+	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild"),
 	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
@@ -117,7 +117,7 @@ class FlashManager(Screen, HelpableScreen):
 				# self.box = GetBoxName()
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
-				req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+				req = Request(url, None, {'User-agent' : 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5'})
 				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, self.box)
@@ -191,7 +191,7 @@ class FlashManager(Screen, HelpableScreen):
 			if distribution == self.imageFeed:
 				default = index
 		message = _("Please select a distribution from which you would like to flash an image:")
-		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, message, type=MessageBox.TYPE_YESNO, default=default, list=distributionList, windowTitle=_("Flash Manager"))
+		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, message, default=default, list=distributionList, windowTitle=_("Flash Manager"), simple=True)
 
 	def keyDistributionCallback(self, distribution):
 		self.imageFeed = distribution
