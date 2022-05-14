@@ -7,7 +7,7 @@ from urllib.request import urlopen, Request
 from zipfile import ZipFile
 
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
-from enigma import fbClass
+from enigma import eTimer, fbClass
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -31,7 +31,7 @@ FEED_URLS = {
 	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
-	"OpenVision": ("https://images.openvision.dedyn.io/json/%s", "model"),
+	"OpenVisionE2": ("https://images.openvision.dedyn.io/json/%s", "model"),
 	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild"),
 	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
 	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild")
@@ -282,7 +282,9 @@ class FlashImage(Screen):
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
 		self["progress"].setValue(0)
-		self.callLater(self.confirmation)
+		self.delay = eTimer()
+		self.delay.callback.append(self.confirmation)
+		self.delay.start(0, True)
 		self.hide()
 
 	def confirmation(self):
