@@ -32,7 +32,8 @@ FEED_URLS = {
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
 	"Open Vision": ("https://images.openvision.dedyn.io/json/%s", "model"),
-	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild")
+	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild"),
+	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild")
 }
 
 
