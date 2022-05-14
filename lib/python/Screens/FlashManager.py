@@ -31,9 +31,10 @@ FEED_URLS = {
 	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
-	"Open Vision": ("https://images.openvision.dedyn.io/json/%s", "model"),
+	"OpenVision": ("https://images.openvision.dedyn.io/json/%s", "model"),
 	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild"),
-	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild")
+	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
+	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild")
 }
 
 
