@@ -49,7 +49,7 @@ if config.plugins.icetv.last_update_time.value != 0:
     config.plugins.icetv.last_update_time.value = 0
     config.plugins.icetv.last_update_time.save()
     configfile.save()
-config.plugins.icetv.last_update_time.disableSave()
+config.plugins.icetv.last_update_time.saveDisabled = True
 
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
