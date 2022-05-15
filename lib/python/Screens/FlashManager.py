@@ -6,7 +6,6 @@ from time import time
 from urllib.request import urlopen, Request
 from zipfile import ZipFile
 
-from boxbranding import getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
 from enigma import eTimer, fbClass
 
 from Components.ActionMap import HelpableActionMap
@@ -15,7 +14,7 @@ from Components.config import config
 from Components.Console import Console
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
-from Components.SystemInfo import BoxInfo, GetBoxName
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
@@ -26,9 +25,11 @@ from Tools.MultiBoot import MultiBoot
 
 machinebuild = BoxInfo.getItem("machinebuild")
 
+OFGWRITE = "/usr/bin/ofgwrite"
+
 FEED_URLS = {
 	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild"),
-	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
+	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "machinebuild"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
 	"OpenVisionE2": ("https://images.openvision.dedyn.io/json/%s", "model"),
@@ -115,8 +116,7 @@ class FlashManager(Screen, HelpableScreen):
 
 		if not self.imagesList:
 			try:
-				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"))
-				# self.box = GetBoxName()
+				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "machinebuild"))
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
 				req = Request(url, None, {'User-agent' : 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5'})
@@ -423,7 +423,7 @@ class FlashImage(Screen):
 				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 				if rec or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 					self.answer = answer
-					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + "\n" + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
+					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + "\n" + _("Really reflash your %s %s and reboot now?") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")), default=False)
 					return
 			restoreSettings = ("restoresettings" in answer[1])
 			restoreSettingsnoPlugin = (answer[1] == "restoresettingsnoplugin")
@@ -544,19 +544,26 @@ class FlashImage(Screen):
 				if MultiBoot.hasRootSubdir():
 					self.ROOTFSSUBDIR = bootSlots[self.multibootslot]["rootsubdir"]
 			else:
-				self.MTDKERNEL = getMachineMtdKernel()
-				self.MTDROOTFS = getMachineMtdRoot()
-			if getMachineBuild() in ("dm820", "dm7080"): # temp solution ofgwrite autodetection not ready
-				CMD = "/usr/bin/ofgwrite -rmmcblk0p1 '%s'" % imagefiles
+				self.MTDKERNEL = BoxInfo.getItem("mtdkernel")
+				self.MTDROOTFS = BoxInfo.getItem("mtdrootfs")
+			CMD = [OFGWRITE, OFGWRITE]
+			if BoxInfo.getItem("model") in ("dm820", "dm7080"): # temp solution ofgwrite autodetection not ready
+				CMD.append("-rmmcblk0p1")
 			elif self.MTDKERNEL == self.MTDROOTFS:	# receiver with kernel and rootfs on one partition
-				CMD = "/usr/bin/ofgwrite -r '%s'" % imagefiles
-			else:
-				CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
+				CMD.append("-r")
+			else: # normal non multiboot receiver
+				CMD.append("-r")
+				CMD.append("-k")
 			if MultiBoot.canMultiBoot():
 				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
-					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+					CMD.append("-r%s" % self.MTDROOTFS)
+					CMD.append("-k%s" % self.MTDKERNEL)
+					CMD.append("-m0")
 				else:
-					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
+					CMD.append("-r")
+					CMD.append("-k")
+					CMD.append("-m%s" % self.multibootslot)
+			CMD.append("'%s'" % imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(CMD, self.flashImageDone)
 			fbClass.getInstance().lock()
