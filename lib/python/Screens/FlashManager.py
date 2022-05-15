@@ -35,7 +35,8 @@ FEED_URLS = {
 	"OpenVisionE2": ("https://images.openvision.dedyn.io/json/%s", "model"),
 	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild"),
 	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
-	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild")
+	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild"),
+	"Open8eIGHT": ("http://openeight.de/json/%s", "machinebuild")
 }
 
 
