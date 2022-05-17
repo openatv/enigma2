@@ -229,7 +229,7 @@ class FlashManager(Screen, HelpableScreen):
 				self["key_green"].setText(_("Collapse") if currentSelection[0] in self.expanded else _("Expand"))
 				self["description"].setText("")
 			else:
-				self["key_green"].setText(_("Flash Image "))
+				self["key_green"].setText(_("Flash Image"))
 				self["description"].setText(_("Location: %s") % currentSelection[1][:currentSelection[1].rfind(sep) + 1])
 
 	def keyTop(self):
