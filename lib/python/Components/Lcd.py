@@ -564,7 +564,7 @@ def InitLcd():
 		if BoxInfo.getItem("VFD_scroll_repeats") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
 			def scroll_repeats(el):
 				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
-			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
+			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 		else:

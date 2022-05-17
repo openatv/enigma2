@@ -109,9 +109,9 @@ class ShowSoftcamPackages(Screen):
 		if cur:
 			self.installpackage = cur[0]
 			if cur[3] == "installable":
-				self.session.openWithCallback(self.runInstall, MessageBox, "%s%s - %s\n%s" % (_("Do you want to install the package:\n"), cur[0], cur[1], _("\nPress OK on your remote control to continue.")))
+				self.session.openWithCallback(self.runInstall, MessageBox, "%s%s - %s\n\n%s" % (_("Do you want to install the package:\n"), cur[0], cur[1], _("Press OK on your remote control to continue.")))
 			else:
-				self.session.openWithCallback(self.runUnInstall, MessageBox, "%s%s - %s\n%s" % (_("Do you want to remove the package:\n"), cur[0], cur[1], _("\nPress OK on your remote control to continue.")))
+				self.session.openWithCallback(self.runUnInstall, MessageBox, "%s%s - %s\n\n%s" % (_("Do you want to remove the package:\n"), cur[0], cur[1], _("Press OK on your remote control to continue.")))
 
 	def runInstall(self, result):
 		if result and self.installpackage:

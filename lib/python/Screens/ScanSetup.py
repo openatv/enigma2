@@ -1152,10 +1152,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			(eDVBFrontendParametersSatellite.Inversion_Unknown, _("Auto"))])
 		self.scan_sat.symbolrate = ConfigInteger(default=defaultSat["symbolrate"], limits=(1, 99999))
 		self.scan_sat.polarization = ConfigSelection(default=defaultSat["polarization"], choices=[
-			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("horizontal")),
-			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("vertical")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("circular left")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("circular right"))])
+			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("Horizontal")),
+			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("Vertical")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("Circular left")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("Circular right"))])
 		self.scan_sat.fec = ConfigSelection(default=defaultSat["fec"], choices=[
 			(eDVBFrontendParametersSatellite.FEC_Auto, _("Auto")),
 			(eDVBFrontendParametersSatellite.FEC_1_2, "1/2"),

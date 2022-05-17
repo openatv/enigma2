@@ -1107,11 +1107,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					if "menuEntryName" in p.__call__:
 						menuEntryName = p.__call__["menuEntryName"](self.iface)
 					else:
-						menuEntryName = _('Extended setup...')
+						menuEntryName = _('Extended Setup...')
 					if "menuEntryDescription" in p.__call__:
 						menuEntryDescription = p.__call__["menuEntryDescription"](self.iface)
 					else:
-						menuEntryDescription = _('Extended network setup plugin...')
+						menuEntryDescription = _('Extended Networksetup Plugin...')
 					self.extendedSetup = ('extendedSetup', menuEntryDescription, self.extended)
 					menu.append((menuEntryName, self.extendedSetup))
 
