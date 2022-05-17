@@ -2362,6 +2362,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
+			(newurl, errormsg) = p(session=self.session, service=nref)
+			if errormsg:
+				self.session.open(MessageBox, _("Error getting link via %s/n%s") % (p.name, errormsg), MessageBox.TYPE_ERROR)
+				break
+			elif newurl:
+				nref.setAlternativeUrl(newurl)
+				break
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()

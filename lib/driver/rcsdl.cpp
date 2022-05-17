@@ -122,12 +122,12 @@ int eSDLInputDevice::translateKey(SDL_Keycode key)
 	P(COLON);
 #endif
 	P(SEMICOLON);
-#if 0
-	P(LESS);
+#if 1
+	P2(LESS,BACK);
 #endif
 	P2(EQUALS,EQUAL);
-#if 0
-	P(GREATER);
+#if 1
+	P2(GREATER,NEXT);
 #endif
 	P(QUESTION);
 #if 0
@@ -290,18 +290,18 @@ int eSDLInputDevice::translateKey(SDL_Keycode key)
 	P(INSERT);
 	P(HOME);
 	P(END);
-	P(PAGEUP);
-	P(PAGEDOWN);
-	P(F1);
-	P(F2);
-	P(F3);
-	P(F4);
-	P(F5);
-	P(F6);
-	P(F7);
-	P(F8);
+	P2(PAGEUP,CHANNELUP);
+	P2(PAGEDOWN,CHANNELDOWN);
+	P2(F1,RED);
+	P2(F2,GREEN);
+	P2(F3,YELLOW);
+	P2(F4,BLUE);
+	P2(F5,INFO);
+	P2(F6,TV);
+	P2(F7,VIDEO);
+	P2(F8,AUDIO);
 	P(F9);
-	P(F10);
+	P2(F10,POWER);
 	P(F11);
 	P(F12);
 	P(F13);

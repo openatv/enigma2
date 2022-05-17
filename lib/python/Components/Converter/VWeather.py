@@ -16,13 +16,14 @@
 
 
 from __future__ import print_function
+import requests
+from xml.dom.minidom import parseString
+
+from enigma import eTimer
+
+from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSelection
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSelection
-from twisted.web.client import getPage
-from xml.dom.minidom import parseString
-from enigma import eTimer
-import six
 
 config.plugins.AtileHD = ConfigSubsection()
 config.plugins.AtileHD.refreshInterval = ConfigNumber(default="10")
@@ -180,8 +181,13 @@ class WeatherData:
 			self.timer.start(timeout, True)
 			print("[VWeather] lookup for ID " + str(config.plugins.AtileHD.woeid.value))
 			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22" + str(config.plugins.AtileHD.woeid.value) + "%22&format=xml"
-			url = six.ensure_binary(url)
-			getPage(url, method='GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
+			try:
+				response = requests.get(url)
+				response.raise_for_status()
+			except requests.exceptions.RequestException as error:
+				self.downloadError(error)
+			else:
+				self.GotWeatherData(response.content)
 
 	def GotWeatherData(self, data=None):
 		if data is not None:
