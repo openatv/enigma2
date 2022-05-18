@@ -1075,7 +1075,13 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
 			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
 			borderwidth = int(scrollbar.attrib.get("scrollbarBorderWidth", 1))
-			setListBoxScrollbarStyle(width, offset, borderwidth)
+			pixmap = scrollbar.attrib.get("scrollbarPixmap", None)
+			if pixmap:
+				pixmap = LoadPixmap(pixmap)
+			backgroundpixmap = scrollbar.attrib.get("scrollbarBackgroundPixmap", None)
+			if backgroundpixmap:
+				backgroundpixmap = LoadPixmap(backgroundpixmap)
+			setListBoxScrollbarStyle(width, offset, borderwidth, pixmap, backgroundpixmap)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
