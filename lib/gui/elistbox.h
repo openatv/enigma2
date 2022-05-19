@@ -171,7 +171,7 @@ public:
 				DefaultScrollBarWidth = width; 
 			if (offset != -1)
 				DefaultScrollBarOffset = offset; 
-			if (borderwith != -1)
+			if (borderwidth != -1)
 				DefaultScrollBarBorderWidth = borderwidth; 
 			if (pixmap)
 				DefaultScrollBarPixmap = pixmap; 
