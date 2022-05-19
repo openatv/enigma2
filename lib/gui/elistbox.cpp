@@ -10,8 +10,8 @@ int eListbox::DefaultScrollBarWidth = 10;
 int eListbox::DefaultScrollBarOffset = 5;
 int eListbox::DefaultScrollBarBorderWidth = 1;
 
-ePtr<gPixmap> eListbox::DefaultScrollBarPixmap = nullptr;
-ePtr<gPixmap> eListbox::DefaultScrollBarBackgroundPixmap = nullptr;
+ePtr<gPixmap> eListbox::DefaultScrollBarPixmap = NULL;
+ePtr<gPixmap> eListbox::DefaultScrollBarBackgroundPixmap = NULL;
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
