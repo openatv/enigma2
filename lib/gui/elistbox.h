@@ -166,7 +166,7 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwidth = -1, ePtr<gPixmap> &pixmap = NULL, ePtr<gPixmap> &backgroundpixmap = NULL) { 
+	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwidth = -1, const ePtr<gPixmap> &pixmap = NULL,const ePtr<gPixmap> &backgroundpixmap = NULL) { 
 			if (width != -1)
 				DefaultScrollBarWidth = width; 
 			if (offset != -1)
