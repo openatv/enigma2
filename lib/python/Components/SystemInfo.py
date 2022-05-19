@@ -151,7 +151,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return True
 
 	def deleteItem(self, item):
-		if item in self.immutableListor or item in self.procList:
+		if item in self.immutableList or item in self.procList:
 			print("[BoxInfo] Error: Item '%s' is immutable and can not be deleted!" % item)
 		elif item in self.boxInfo:
 			del self.boxInfo[item]
