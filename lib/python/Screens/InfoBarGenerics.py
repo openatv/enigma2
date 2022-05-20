@@ -3740,6 +3740,9 @@ class InfoBarInstantRecord:
 				self.session.open(MessageBox, _("Could not record due to invalid service %s") % serviceref, MessageBox.TYPE_INFO)
 			recording.autoincrease = False
 
+	def startRecordingCurrentEvent(self):
+		self.startInstantRecording(True)
+
 	def isInstantRecordRunning(self):
 #		print "self.recording:", self.recording
 		if self.recording:
