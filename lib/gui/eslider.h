@@ -22,7 +22,7 @@ public:
 	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 
-	static void setDefaultBorderWidth(borderwidth) { 
+	static void setDefaultBorderWidth(int borderwidth) { 
 			DefaultSliderBorderWidth = borderwidth; 
 		}
 
