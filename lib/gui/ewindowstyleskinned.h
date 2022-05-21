@@ -72,6 +72,7 @@ public:
 
 		colScrollbarForeground,
 		colScrollbarBorderderForeground,
+		colScrollbarBackground,
 
 		colMax
 	};
