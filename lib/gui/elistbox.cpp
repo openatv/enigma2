@@ -9,16 +9,18 @@
 int eListbox::DefaultScrollBarWidth = 10;
 int eListbox::DefaultScrollBarOffset = 5;
 int eListbox::DefaultScrollBarBorderWidth = 1;
+int eListbox::DefaultScrollBarType = pageMode;
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false)
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_type(pageMode)
 {
 	m_scrollbar_width = eListbox::DefaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::DefaultScrollBarOffset;
 	m_scrollbar_border_width = eListbox::DefaultScrollBarBorderWidth;
+	m_scrollbar_type = eListbox::DefaultScrollBarType;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
@@ -57,6 +59,18 @@ void eListbox::setScrollbarMode(int mode)
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
 		if (m_style.m_sliderborder_color_set) m_scrollbar->setBorderColor(m_style.m_sliderborder_color);
 	}
+}
+
+
+void eListbox::setScrollbarType(int type)
+{
+	if (m_scrollbar && m_scrollbar_type != type)
+	{
+		m_scrollbar_type = type;
+		updateScrollBar();
+		return;
+	}
+	m_scrollbar_type = type;
 }
 
 void eListbox::setWrapAround(bool state)
@@ -353,6 +367,9 @@ void eListbox::updateScrollBar()
 	}
 	if (m_items_per_page && entries)
 	{
+
+		eDebug("[eListbox] updateScrollBar m_items_per_page:%d entries:%d top:%d",m_items_per_page,entries,m_top); 
+
 		int curVisiblePage = m_top / m_items_per_page;
 		if (m_prev_scrollbar_page != curVisiblePage)
 		{
@@ -364,6 +381,7 @@ void eListbox::updateScrollBar()
 			int vis=(m_items_per_page*100+pages*m_items_per_page-1)/(pages*m_items_per_page);
 			if (vis < 3)
 				vis=3;
+			eDebug("[eListbox] updateScrollBar start:%d end:%d",start,start+vis); 
 			m_scrollbar->setStartEnd(start,start+vis);
 		}
 	}

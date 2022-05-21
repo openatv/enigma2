@@ -104,6 +104,13 @@ public:
 		showNever,
 		showLeft
 	};
+
+	enum {
+		pageMode,
+		lineMode
+	};
+
+	void setScrollbarType(int type);
 	void setScrollbarMode(int mode);
 	void setWrapAround(bool);
 
@@ -166,10 +173,11 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth) { 
+	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int type) { 
 			DefaultScrollBarWidth = width; 
 			DefaultScrollBarOffset = offset; 
 			DefaultScrollBarBorderWidth = borderwidth; 
+			DefaultScrollBarType = type; 
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
@@ -205,10 +213,11 @@ private:
 	static int DefaultScrollBarWidth;
 	static int DefaultScrollBarOffset;
 	static int DefaultScrollBarBorderWidth;
+	static int DefaultScrollBarType;
 	static ePtr<gPixmap> DefaultScrollBarPixmap;
 	static ePtr<gPixmap> DefaultScrollBarBackgroundPixmap;
 
-	int m_scrollbar_mode, m_prev_scrollbar_page;
+	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_type;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 

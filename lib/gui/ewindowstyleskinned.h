@@ -70,8 +70,8 @@ public:
 		colWindowTitleForeground,
 		colWindowTitleBackground,
 
-		colSliderForeground,
-		colSliderBorderForeground,
+		colScrollbarForeground,
+		colScrollbarBorderderForeground,
 
 		colMax
 	};

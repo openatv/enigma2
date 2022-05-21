@@ -20,8 +20,8 @@ public:
 		styleListboxNormal,
 		styleListboxMarked,
 		styleListboxMarkedAndSelected,
-		styleSlider,
-		styleSliderBorder
+		styleScollbar,
+		styleScollbarBorder
 	};
 
 	enum {

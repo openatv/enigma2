@@ -73,7 +73,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter*)data2;
 
-		style->setStyle(painter, eWindowStyle::styleSlider);
+		style->setStyle(painter, eWindowStyle::styleScollbar);
 
 		if (m_backgroundpixmap)
 		{
@@ -91,7 +91,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 // border
 
-		style->setStyle(painter, eWindowStyle::styleSliderBorder);
+		style->setStyle(painter, eWindowStyle::styleScollbarBorder);
 
 		if (m_have_border_color)
 			painter.setForegroundColor(m_border_color);

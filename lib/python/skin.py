@@ -1070,15 +1070,17 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
 			except Exception:
 				raise SkinError("Unknown color type '%s'" % colorType)
-			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
-		for slider in tag.findall("slider"):
-			borderwidth = int(slider.attrib.get("sliderBorderWidth", 0))
+			# print("[Skin] DEBUG: WindowStyle color type %s , color - %s" % (colorType, str(color)))
+		for scrollbar in tag.findall("scrollbar"):
+			borderwidth = int(scrollbar.attrib.get("borderWidth", 0))
 			eSlider.setDefaultBorderWidth(borderwidth)
 		for listbox in tag.findall("listbox"):
 			offset = int(listbox.attrib.get("scrollbarOffset", 5))
 			width = int(listbox.attrib.get("scrollbarWidth", 20))
 			borderwidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
-			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth)
+			scrollbarType = listbox.attrib.get("scrollbarType", "pageMode")
+			scrollbarType = 1 if scrollbarType == "lineMode" else 0
+			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth, scrollbarType)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
