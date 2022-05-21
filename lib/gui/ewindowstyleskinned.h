@@ -71,7 +71,7 @@ public:
 		colWindowTitleBackground,
 
 		colScrollbarForeground,
-		colScrollbarBorderderForeground,
+		colScrollbarBorderForeground,
 		colScrollbarBackground,
 
 		colMax

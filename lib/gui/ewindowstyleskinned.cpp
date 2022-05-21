@@ -79,7 +79,7 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		painter.setBackgroundColor(m_color[colScrollbarBackground]);
 		break;
 	case styleScollbarBorder:
-		painter.setForegroundColor(m_color[colScrollbarBorderderForeground]);
+		painter.setForegroundColor(m_color[colScrollbarBorderForeground]);
 		break;
 	}
 
