@@ -41,6 +41,9 @@ private:
 
 	gRegion m_currently_filled;
 	gRGB m_border_color, m_foreground_color;
+
+	static int DefaultSliderBorderWidth;
+
 };
 
 #endif
