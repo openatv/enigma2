@@ -1,10 +1,13 @@
 #include <lib/gui/eslider.h>
 
+int eSlider::DefaultSliderBorderWidth = 0;
+
 eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
 	m_border_width(0)
 {
+	m_border_width = eSlider::DefaultSliderBorderWidth;
 }
 
 void eSlider::setPixmap(ePtr<gPixmap> &pixmap)
@@ -70,7 +73,7 @@ int eSlider::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter*)data2;
 
-		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
+		style->setStyle(painter, eWindowStyle::styleSlider);
 
 		if (m_backgroundpixmap)
 		{
@@ -87,6 +90,8 @@ int eSlider::event(int event, void *data, void *data2)
 			painter.blit(m_pixmap, ePoint(0, 0), m_currently_filled.extends, isTransparent() ? gPainter::BT_ALPHATEST : 0);
 
 // border
+
+		style->setStyle(painter, eWindowStyle::styleSliderBorder);
 
 		if (m_have_border_color)
 			painter.setForegroundColor(m_border_color);

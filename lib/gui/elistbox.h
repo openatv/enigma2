@@ -166,17 +166,10 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setScrollbarStyle(int width = -1, int offset = -1, int borderwidth = -1, const ePtr<gPixmap> &pixmap = NULL,const ePtr<gPixmap> &backgroundpixmap = NULL) { 
-			if (width != -1)
-				DefaultScrollBarWidth = width; 
-			if (offset != -1)
-				DefaultScrollBarOffset = offset; 
-			if (borderwidth != -1)
-				DefaultScrollBarBorderWidth = borderwidth; 
-			if (pixmap)
-				DefaultScrollBarPixmap = pixmap; 
-			if (backgroundpixmap)
-				DefaultScrollBarBackgroundPixmap = backgroundpixmap; 
+	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth) { 
+			DefaultScrollBarWidth = width; 
+			DefaultScrollBarOffset = offset; 
+			DefaultScrollBarBorderWidth = borderwidth; 
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }

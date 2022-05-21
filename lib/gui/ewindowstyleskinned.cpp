@@ -74,7 +74,14 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		painter.setForegroundColor(m_color[colListboxMarkedAndSelectedForeground]);
 		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
 		break;
+	case styleSlider:
+		painter.setForegroundColor(m_color[colSliderForeground]);
+		break;
+	case styleSliderBorder:
+		painter.setForegroundColor(m_color[colSliderBorderForeground]);
+		break;
 	}
+
 }
 
 void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)

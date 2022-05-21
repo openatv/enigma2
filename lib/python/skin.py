@@ -3,7 +3,7 @@ from os.path import basename, dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB, setListBoxScrollbarStyle
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eSize, eSlider, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -1071,17 +1071,14 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			except Exception:
 				raise SkinError("Unknown color type '%s'" % colorType)
 			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
-		for scrollbar in tag.findall("scrollbar"):
-			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
-			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
-			borderwidth = int(scrollbar.attrib.get("scrollbarBorderWidth", 1))
-			pixmap = scrollbar.attrib.get("scrollbarPixmap", None)
-			if pixmap:
-				pixmap = LoadPixmap(pixmap)
-			backgroundpixmap = scrollbar.attrib.get("scrollbarBackgroundPixmap", None)
-			if backgroundpixmap:
-				backgroundpixmap = LoadPixmap(backgroundpixmap)
-			setListBoxScrollbarStyle(width, offset, borderwidth, pixmap, backgroundpixmap)
+		for slider in tag.findall("slider"):
+			borderwidth = int(slider.attrib.get("sliderBorderWidth", 0))
+			eSlider.setDefaultBorderWidth(borderwidth)
+		for listbox in tag.findall("listbox"):
+			offset = int(listbox.attrib.get("scrollbarOffset", 5))
+			width = int(listbox.attrib.get("scrollbarWidth", 20))
+			borderwidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
+			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):

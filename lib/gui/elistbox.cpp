@@ -10,9 +10,6 @@ int eListbox::DefaultScrollBarWidth = 10;
 int eListbox::DefaultScrollBarOffset = 5;
 int eListbox::DefaultScrollBarBorderWidth = 1;
 
-ePtr<gPixmap> eListbox::DefaultScrollBarPixmap = NULL;
-ePtr<gPixmap> eListbox::DefaultScrollBarBackgroundPixmap = NULL;
-
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
@@ -22,14 +19,6 @@ eListbox::eListbox(eWidget *parent) :
 	m_scrollbar_width = eListbox::DefaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::DefaultScrollBarOffset;
 	m_scrollbar_border_width = eListbox::DefaultScrollBarBorderWidth;
-
-	if(eListbox::DefaultScrollBarPixmap) {
-		m_scrollbarpixmap = eListbox::DefaultScrollBarPixmap;
-	}
-
-	if(eListbox::DefaultScrollBarBackgroundPixmap) {
-		m_scrollbarbackgroundpixmap = eListbox::DefaultScrollBarBackgroundPixmap;
-	}
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);

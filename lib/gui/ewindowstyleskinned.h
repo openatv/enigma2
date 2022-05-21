@@ -69,6 +69,10 @@ public:
 
 		colWindowTitleForeground,
 		colWindowTitleBackground,
+
+		colSliderForeground,
+		colSliderBorderForeground,
+
 		colMax
 	};
 
