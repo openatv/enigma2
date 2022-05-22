@@ -37,7 +37,7 @@ FEED_URLS = {
 	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
 	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild"),
 	"Open8eIGHT": ("http://openeight.de/json/%s", "machinebuild"),
-	"OpenDROID": ("https://opendroid.org/json/%s", "model")
+	"OpenDROID": ("https://opendroid.org/json/%s", "machinebuild")
 }
 
 
