@@ -54,7 +54,7 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->hide();
 		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
-		m_scrollbar->setRange(0,100);
+		m_scrollbar->setRange(0,(m_scrollbar_type == lineMode) ? 1000 : 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
 		if (m_style.m_sliderborder_color_set) m_scrollbar->setBorderColor(m_style.m_sliderborder_color);
@@ -368,9 +368,25 @@ void eListbox::updateScrollBar()
 	if (m_items_per_page && entries)
 	{
 
-		eDebug("[eListbox] updateScrollBar m_items_per_page:%d entries:%d top:%d",m_items_per_page,entries,m_top); 
+		if(m_scrollbar_type == lineMode) {
+
+			if(m_prev_scrollbar_page != m_selected) {
+				m_prev_scrollbar_page = m_selected;
+				int thumb = 1000 / entries;
+				int start=(m_selected*thumb);
+				int visblethumb = thumb < 4 ? 4 : thumb;
+				int end = start+visblethumb;
+				if (end>1000) {
+					end = 1000;
+					start = 996;
+				}
+				m_scrollbar->setStartEnd(start,end);
+			} 
+			return;
+		}
 
 		int curVisiblePage = m_top / m_items_per_page;
+
 		if (m_prev_scrollbar_page != curVisiblePage)
 		{
 			m_prev_scrollbar_page = curVisiblePage;
@@ -381,7 +397,6 @@ void eListbox::updateScrollBar()
 			int vis=(m_items_per_page*100+pages*m_items_per_page-1)/(pages*m_items_per_page);
 			if (vis < 3)
 				vis=3;
-			eDebug("[eListbox] updateScrollBar start:%d end:%d",start,start+vis); 
 			m_scrollbar->setStartEnd(start,start+vis);
 		}
 	}

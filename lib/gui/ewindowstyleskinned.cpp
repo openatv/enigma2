@@ -75,7 +75,6 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
 		break;
 	case styleScollbar:
-//		painter.setBackgroundColor(m_color[colScrollbarBackground]);
 		painter.setForegroundColor(m_color[colScrollbarForeground]);
 		break;
 	case styleScollbarBorder:

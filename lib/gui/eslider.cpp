@@ -73,12 +73,13 @@ int eSlider::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter*)data2;
 
-		style->setStyle(painter, eWindowStyle::styleScollbar);
 
 		if (m_backgroundpixmap)
 		{
 			painter.blit(m_backgroundpixmap, ePoint(0, 0), eRect(), isTransparent() ? gPainter::BT_ALPHATEST : 0);
 		}
+
+		style->setStyle(painter, eWindowStyle::styleScollbar);
 
 		if (!m_pixmap)
 		{
