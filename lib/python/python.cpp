@@ -137,9 +137,9 @@ ePython::ePython()
 #endif
 
 	Py_Initialize();
-	PyEval_InitThreads();
 
 #if PY_MAJOR_VERSION < 3
+	PyEval_InitThreads();
 	init_enigma();
 	eBaseInit();
 	eConsoleInit();
