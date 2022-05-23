@@ -532,7 +532,10 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	memset(pidList, 0xff, sizeof(pidList));
 
 	mappedFrontendName[virtualFrontendName] = usbFrontendName;
-	pipe(pipeFd);
+	if (pipe(pipeFd) == -1)
+	{
+		eDebug("[eDVBUsbAdapter] failed to create pipe (%m)");
+	}
 	running = true;
 	pthread_create(&pumpThread, NULL, threadproc, (void*)this);
 	return;
