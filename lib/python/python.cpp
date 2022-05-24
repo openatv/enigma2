@@ -2,15 +2,9 @@
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#if PY_MAJOR_VERSION >= 3
 extern "C" PyObject* PyInit__enigma(void);
 extern "C" PyObject* PyInit_eBaseImpl(void);
 extern "C" PyObject* PyInit_eConsoleImpl(void);
-#else
-extern "C" void init_enigma(void);
-extern "C" void eBaseInit(void);
-extern "C" void eConsoleInit(void);
-#endif
 extern void quitMainloop(int exitCode);
 extern void bsodFatal(const char *component);
 extern bool bsodRestart();
@@ -130,20 +124,12 @@ ePython::ePython()
 
 //	Py_OptimizeFlag = 1;
 
-#if PY_MAJOR_VERSION >= 3
 	PyImport_AppendInittab("_enigma", PyInit__enigma);
 	PyImport_AppendInittab("eBaseImpl", PyInit_eBaseImpl);
 	PyImport_AppendInittab("eConsoleImpl", PyInit_eConsoleImpl);
-#endif
 
 	Py_Initialize();
-	PyEval_InitThreads();
 
-#if PY_MAJOR_VERSION < 3
-	init_enigma();
-	eBaseInit();
-	eConsoleInit();
-#endif
 }
 
 ePython::~ePython()

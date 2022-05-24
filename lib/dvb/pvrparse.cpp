@@ -440,7 +440,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		int num = moveCache(i);
 		if ((num < structure_cache_size) && (structureCacheOffset(num - 1) <= offset))
 		{
-			eDebug("[eMPEGStreamInformation] offset %lld is past EOF of structure file", offset);
+			eDebug("[eMPEGStreamInformation] offset %jd is past EOF of structure file", (intmax_t)offset);
 			data = 0;
 			return 1;
 		}

@@ -277,7 +277,7 @@ sync:
 		if (tmp[4] != 0x47)
 		{
 			if (rd > 0) {
-				eDebug("[eM2TSFile] short read at pos %lld async!!", m_current_offset);
+				eDebug("[eM2TSFile] short read at pos %jd async!!", (intmax_t)m_current_offset);
 				return rd;
 			}
 			else {
