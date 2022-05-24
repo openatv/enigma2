@@ -311,167 +311,166 @@ eSocketMMIHandler::~eSocketMMIHandler()
 
 extern "C" {
 
-static PyObject *
-socketmmi_get_socket_state_changed_cb_list(PyObject *self)
-{
-	return eSocket_UI::getInstance()->socketStateChanged.get();
-}
+	static PyObject *
+	socketmmi_get_socket_state_changed_cb_list(PyObject *self)
+	{
+		return eSocket_UI::getInstance()->socketStateChanged.get();
+	}
 
-static PyObject *
-socketmmi_set_init(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	eSocket_UI::getInstance()->setInit(slot);
-	Py_RETURN_NONE;
-}
+	static PyObject *
+	socketmmi_set_init(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		eSocket_UI::getInstance()->setInit(slot);
+		Py_RETURN_NONE;
+	}
 
-static PyObject *
-socketmmi_set_reset(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	eSocket_UI::getInstance()->setReset(slot);
-	Py_RETURN_NONE;
-}
+	static PyObject *
+	socketmmi_set_reset(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		eSocket_UI::getInstance()->setReset(slot);
+		Py_RETURN_NONE;
+	}
 
-static PyObject *
-socketmmi_available_mmi(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->availableMMI(slot));
-}
+	static PyObject *
+	socketmmi_available_mmi(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->availableMMI(slot));
+	}
 
-static PyObject *
-socketmmi_get_mmi_screen(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return eSocket_UI::getInstance()->getMMIScreen(slot);
-}
+	static PyObject *
+	socketmmi_get_mmi_screen(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return eSocket_UI::getInstance()->getMMIScreen(slot);
+	}
 
-static PyObject *
-socketmmi_start_mmi(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->startMMI(slot));
-}
+	static PyObject *
+	socketmmi_start_mmi(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->startMMI(slot));
+	}
 
-static PyObject *
-socketmmi_stop_mmi(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->stopMMI(slot));
-}
+	static PyObject *
+	socketmmi_stop_mmi(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->stopMMI(slot));
+	}
 
-static PyObject *
-socketmmi_answer_menu(PyObject *self, PyObject *args)
-{
-	int slot, answer;
-	if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "ii", &slot, &answer))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->answerMenu(slot, answer));
-}
+	static PyObject *
+	socketmmi_answer_menu(PyObject *self, PyObject *args)
+	{
+		int slot, answer;
+		if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "ii", &slot, &answer))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->answerMenu(slot, answer));
+	}
 
-static PyObject *
-socketmmi_answer_enq(PyObject *self, PyObject *args)
-{
-	int slot;
-	char *answer;
-	if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "is", &slot, &answer))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->answerEnq(slot, answer));
-}
+	static PyObject *
+	socketmmi_answer_enq(PyObject *self, PyObject *args)
+	{
+		int slot;
+		char *answer;
+		if (PyTuple_Size(args) != 2 || !PyArg_ParseTuple(args, "is", &slot, &answer))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->answerEnq(slot, answer));
+	}
 
-static PyObject *
-socketmmi_cancel_enq(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->cancelEnq(slot));
-}
+	static PyObject *
+	socketmmi_cancel_enq(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->cancelEnq(slot));
+	}
 
-static PyObject *
-socketmmi_get_state(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->getState(slot));
-}
+	static PyObject *
+	socketmmi_get_state(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->getState(slot));
+	}
 
-static PyObject *
-socketmmi_get_mmi_state(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyInt_FromLong(eSocket_UI::getInstance()->getMMIState(slot));
-}
+	static PyObject *
+	socketmmi_get_mmi_state(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyInt_FromLong(eSocket_UI::getInstance()->getMMIState(slot));
+	}
 
-static PyObject *
-socketmmi_get_name(PyObject *self, PyObject *args)
-{
-	int slot;
-	if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
-		return NULL;
-	return PyString_FromString(eSocket_UI::getInstance()->getName(slot));
-}
+	static PyObject *
+	socketmmi_get_name(PyObject *self, PyObject *args)
+	{
+		int slot;
+		if (PyTuple_Size(args) != 1 || !PyArg_ParseTuple(args, "i", &slot))
+			return NULL;
+		return PyString_FromString(eSocket_UI::getInstance()->getName(slot));
+	}
 
-static PyMethodDef module_methods[] = {
-	{"getSocketStateChangedCallbackList", (PyCFunction)socketmmi_get_socket_state_changed_cb_list, METH_NOARGS,
-	 "get socket state change callback list"
-	},
-	{"setInit", (PyCFunction)socketmmi_set_init, METH_VARARGS,
-	 "set init"
-	},
-	{"setReset", (PyCFunction)socketmmi_set_reset, METH_VARARGS,
-	 "set reset"
-	},
-	{"availableMMI", (PyCFunction)socketmmi_available_mmi, METH_VARARGS,
-	 "available mmi"
-	},
-	{"getMMIScreen", (PyCFunction)socketmmi_get_mmi_screen, METH_VARARGS,
-	 "get mmi screen"
-	},
-	{"startMMI", (PyCFunction)socketmmi_start_mmi, METH_VARARGS,
-	 "start mmi"
-	},
-	{"stopMMI", (PyCFunction)socketmmi_stop_mmi, METH_VARARGS,
-	 "start mmi"
-	},
-	{"answerMenu", (PyCFunction)socketmmi_answer_menu, METH_VARARGS,
-	 "answer menu"
-	},
-	{"answerEnq", (PyCFunction)socketmmi_answer_enq, METH_VARARGS,
-	 "answer enq"
-	},
-	{"cancelEnq", (PyCFunction)socketmmi_cancel_enq, METH_VARARGS,
-	 "cancel enq"
-	},
-	{"getState", (PyCFunction)socketmmi_get_state, METH_VARARGS,
-	 "get state of socket"
-	},
-	{"getMMIState", (PyCFunction)socketmmi_get_mmi_state, METH_VARARGS,
-	 "get state of mmi"
-	},
-	{"getName", (PyCFunction)socketmmi_get_name, METH_VARARGS,
-	 "get name of socket user"
-	},
-	{NULL, NULL, 0, NULL}   /* Sentinel */
-};
+	static PyMethodDef module_methods[] = {
+		{"getSocketStateChangedCallbackList", (PyCFunction)socketmmi_get_socket_state_changed_cb_list, METH_NOARGS,
+		"get socket state change callback list"
+		},
+		{"setInit", (PyCFunction)socketmmi_set_init, METH_VARARGS,
+		"set init"
+		},
+		{"setReset", (PyCFunction)socketmmi_set_reset, METH_VARARGS,
+		"set reset"
+		},
+		{"availableMMI", (PyCFunction)socketmmi_available_mmi, METH_VARARGS,
+		"available mmi"
+		},
+		{"getMMIScreen", (PyCFunction)socketmmi_get_mmi_screen, METH_VARARGS,
+		"get mmi screen"
+		},
+		{"startMMI", (PyCFunction)socketmmi_start_mmi, METH_VARARGS,
+		"start mmi"
+		},
+		{"stopMMI", (PyCFunction)socketmmi_stop_mmi, METH_VARARGS,
+		"start mmi"
+		},
+		{"answerMenu", (PyCFunction)socketmmi_answer_menu, METH_VARARGS,
+		"answer menu"
+		},
+		{"answerEnq", (PyCFunction)socketmmi_answer_enq, METH_VARARGS,
+		"answer enq"
+		},
+		{"cancelEnq", (PyCFunction)socketmmi_cancel_enq, METH_VARARGS,
+		"cancel enq"
+		},
+		{"getState", (PyCFunction)socketmmi_get_state, METH_VARARGS,
+		"get state of socket"
+		},
+		{"getMMIState", (PyCFunction)socketmmi_get_mmi_state, METH_VARARGS,
+		"get state of mmi"
+		},
+		{"getName", (PyCFunction)socketmmi_get_name, METH_VARARGS,
+		"get name of socket user"
+		},
+		{NULL, NULL, 0, NULL}   /* Sentinel */
+	};
 
-#if PY_MAJOR_VERSION >= 3
 	static struct PyModuleDef moduledef = {
 		PyModuleDef_HEAD_INIT,
 		"socketmmi",											/* m_name */
@@ -484,17 +483,9 @@ static PyMethodDef module_methods[] = {
 		NULL,													/* m_free */
 	};
 
-PyMODINIT_FUNC PyInit_socketmmi(void)
-{
-    return PyModule_Create(&moduledef);
-}
+	PyMODINIT_FUNC PyInit_socketmmi(void)
+	{
+		return PyModule_Create(&moduledef);
+	}
 
-#else
-PyMODINIT_FUNC
-initsocketmmi(void)
-{
-	Py_InitModule3("socketmmi", module_methods,
-		"Module that implements mmi via unix domain socket.");
-}
-#endif
 };

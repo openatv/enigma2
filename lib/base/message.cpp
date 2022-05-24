@@ -5,7 +5,10 @@
 eMessagePumpMT::eMessagePumpMT():
 	content(1024*1024)
 {
-	pipe(fd);
+	if (pipe(fd) == -1)
+	{
+		eDebug("[eMessagePumpMT] failed to create pipe (%m)");
+	}
 }
 
 eMessagePumpMT::~eMessagePumpMT()

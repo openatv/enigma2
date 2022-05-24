@@ -83,14 +83,20 @@ public:
 	}
 	eFixedMessagePump(eMainloop *context, int mt)
 	{
-		pipe(m_pipe);
+		if (pipe(m_pipe) == -1)
+		{
+			eDebug("[eFixedMessagePump] failed to create pipe (%m)");
+		}
 		sn = eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read, false);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
 		sn->start();
 	}
 	eFixedMessagePump(eMainloop *context, int mt, const char *name)
 	{
-		pipe(m_pipe);
+		if (pipe(m_pipe) == -1)
+		{
+			eDebug("[eFixedMessagePump] failed to create pipe (%m)");
+		}
 		name = name;
 		sn = eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read, false);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
