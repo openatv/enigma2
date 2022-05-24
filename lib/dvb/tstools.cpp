@@ -413,7 +413,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					continue;
 				}
 
-				eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %lld:%lld", l->first, u->first, l->second, u->second);
+				eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %jd:%jd", l->first, u->first, (intmax_t)l->second, (intmax_t)u->second);
 
 				int bitrate;
 
@@ -689,8 +689,8 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 			{
 				if ((l->second > off) || (u->second < off))
 				{
-					eDebug("[eDVBTSTools] takeSample ignoring sample %lld %jd %lld (%llu %llu %llu)",
-						l->second, (intmax_t)off, u->second, l->first, p, u->first);
+					eDebug("[eDVBTSTools] takeSample ignoring sample %jd %jd %jd (%llu %llu %llu)",
+						(intmax_t)l->second, (intmax_t)off, (intmax_t)u->second, l->first, p, u->first);
 					return 1;
 				}
 			}
