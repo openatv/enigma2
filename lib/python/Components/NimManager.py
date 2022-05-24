@@ -2266,7 +2266,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				("simple", _("simple")), ("advanced", _("advanced"))]
 			if len(nimmgr.getNimListOfType(slot.type, exception=x)) > 0:
 				config_mode_choices.append(("equal", _("equal to")))
-				config_mode_choices.append(("satposdepends", _("second cable of motorized LNB")))
+				config_mode_choices.append(("satposdepends", _("Second cable of motorized LNB")))
 			if len(nimmgr.canConnectTo(x)) > 0:
 				config_mode_choices.append(("loopthrough", _("loopthrough to")))
 			nim.advanced = ConfigNothing()

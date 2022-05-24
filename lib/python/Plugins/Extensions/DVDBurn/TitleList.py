@@ -174,7 +174,7 @@ class TitleList(Screen, HelpableScreen):
 				self.skinName = ["MovieSelection"]
 				self["key_red"] = Button(_("Close"))
 				self["key_green"] = Button(_("Add"))
-				self["key_yellow"] = Button(_("Edit title"))
+				self["key_yellow"] = Button(_("Edit Title"))
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 				{
 					"red": (self.close, _("Close title selection")),

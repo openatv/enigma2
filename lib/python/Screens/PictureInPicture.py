@@ -66,7 +66,7 @@ class PictureInPicture(Screen):
 		if BoxInfo.getItem("VideoDestinationConfigurable"):
 			self.choicelist.append(("cascade", _("Cascade PiP")))
 			self.choicelist.append(("split", _("Splitscreen")))
-			self.choicelist.append(("byside", _("Side by side")))
+			self.choicelist.append(("byside", _("Side by Side")))
 		self.choicelist.append(("bigpig", _("Big PiP")))
 		if BoxInfo.getItem("HasExternalPIP"):
 			self.choicelist.append(("external", _("External PiP")))

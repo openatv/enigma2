@@ -18,10 +18,9 @@ SystemInfo = {}
 class BoxInformation:  # To maintain data integrity class variables should not be accessed from outside of this class!
 	def __init__(self):
 		self.immutableList = []
-		self.procList = []
 		self.boxInfo = {}
-		self.enigmaList = []
-		self.enigmaInfo = {}
+		self.enigmaInfoList = []
+		self.enigmaConfList = []
 		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
 		if lines:
 			modified = self.checkChecksum(lines)
@@ -38,9 +37,9 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 					item, value = [x.strip() for x in line.split("=", 1)]
 					if item:
 						self.immutableList.append(item)
-						self.procList.append(item)
+						self.enigmaInfoList.append(item)
 						self.boxInfo[item] = self.processValue(value)
-			self.procList = sorted(self.procList)
+			self.enigmaInfoList = sorted(self.enigmaInfoList)
 			print("[SystemInfo] Enigma information file data loaded into BoxInfo.")
 		else:
 			print("[SystemInfo] ERROR: Enigma information file is not available!  The system is unlikely to boot or operate correctly.")
@@ -54,11 +53,11 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 				if "=" in line:
 					item, value = [x.strip() for x in line.split("=", 1)]
 					if item:
-						self.enigmaList.append(item)
-						self.enigmaInfo[item] = self.processValue(value)
+						self.enigmaConfList.append(item)
 						if item in self.boxInfo:
 							print("[SystemInfo] Note: Enigma information value '%s' with value '%s' being overridden to '%s'." % (item, self.boxInfo[item], value))
-			self.enigmaList = sorted(self.enigmaList)
+						self.boxInfo[item] = self.processValue(value)
+			self.enigmaConfList = sorted(self.enigmaConfList)
 		else:
 			self.boxInfo["overrideactive"] = False
 
@@ -120,19 +119,17 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 				pass
 		return value
 
-	def getProcList(self):
-		return self.procList
+	def getEnigmaInfoList(self):
+		return self.enigmaInfoList
 
-	def getEnigmaList(self):
-		return self.enigmaList
+	def getEnigmaConfList(self):
+		return self.enigmaConfList
 
 	def getItemsList(self):
 		return sorted(list(self.boxInfo.keys()))
 
 	def getItem(self, item, default=None):
-		if item in self.enigmaList:
-			value = self.enigmaInfo[item]
-		elif item in self.boxInfo:
+		if item in self.boxInfo:
 			value = self.boxInfo[item]
 		elif item in SystemInfo:
 			value = SystemInfo[item]
@@ -141,7 +138,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return value
 
 	def setItem(self, item, value, immutable=False):
-		if item in self.immutableList or item in self.procList:
+		if item in self.immutableList:
 			print("[BoxInfo] Error: Item '%s' is immutable and can not be %s!" % (item, "changed" if item in self.boxInfo else "added"))
 			return False
 		if immutable:
@@ -151,7 +148,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return True
 
 	def deleteItem(self, item):
-		if item in self.immutableListor or item in self.procList:
+		if item in self.immutableList:
 			print("[BoxInfo] Error: Item '%s' is immutable and can not be deleted!" % item)
 		elif item in self.boxInfo:
 			del self.boxInfo[item]
@@ -379,6 +376,7 @@ SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
+SystemInfo["canDualBoot"] = MultiBoot.canDualBoot()
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode") or MultiBoot.hasRecovery()
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
