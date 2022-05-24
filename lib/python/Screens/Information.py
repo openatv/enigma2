@@ -1531,7 +1531,7 @@ class SystemInformation(InformationBase):
 			info.append(formatLine("M1", _("Warning: Overrides are currently active!")))
 		if checksum or override:
 			info.append("")
-		for item in BoxInfo.getProcList():
+		for item in BoxInfo.getEnigmaInfoList():
 			info.append(formatLine("P1", item, BoxInfo.getItem(item)))
 		self["information"].setText("\n".join(info))
 

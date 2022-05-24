@@ -187,7 +187,6 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 					if config.crash.debugScreens.value:
 						print("[Skin] This skin has a windowstyle for screen ID='%s'." % scrnID)
 			# Element is not a screen or windowstyle element so no need for it any longer.
-		reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 		print("[Skin] Loading skin file '%s' complete." % filename)
 		if runCallbacks:
 			for method in callbacks:

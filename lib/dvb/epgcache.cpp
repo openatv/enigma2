@@ -1607,9 +1607,8 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 				Py_DECREF(nowTime);
 			Py_DECREF(convertFuncArgs);
 			Py_DECREF(dest_list);
-			PyErr_SetString(PyExc_StandardError,
-				"error in convertFunc execute");
-			eDebug("[eEPGCache] handleEvent: error in convertFunc execute");
+			PyErr_SetString(PyExc_Exception, "[eEPGCache] handleEvent: error in convertFunc execute");
+			//eDebug("[eEPGCache] handleEvent: error in convertFunc execute");
 			return -1;
 		}
 		PyList_Append(dest_list, result);
@@ -1663,18 +1662,16 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	const char *argstring=NULL;
 	if (!PyList_Check(list))
 	{
-		PyErr_SetString(PyExc_StandardError,
-			"type error");
-		eDebug("[eEPGCache] no list");
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] arg 0 is not a list");
+		//eDebug("[eEPGCache] no list");
 		return NULL;
 	}
 	int listIt=0;
 	int listSize=PyList_Size(list);
 	if (!listSize)
 	{
-		PyErr_SetString(PyExc_StandardError,
-			"no params given");
-		eDebug("[eEPGCache] no params given");
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] no params given");
+		//eDebug("[eEPGCache] no params given");
 		return NULL;
 	}
 	else
@@ -1702,9 +1699,8 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	{
 		if (!PyCallable_Check(convertFunc))
 		{
-			PyErr_SetString(PyExc_StandardError,
-				"convertFunc must be callable");
-			eDebug("[eEPGCache] convertFunc is not callable");
+			PyErr_SetString(PyExc_TypeError, "[eEPGCache] convertFunc is not callable");
+			//eDebug("[eEPGCache] convertFunc is not callable");
 			return NULL;
 		}
 		convertFuncArgs = PyTuple_New(argcount);
@@ -2446,15 +2442,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			ePyObject obj = PyTuple_GET_ITEM(arg,0);
 			if (PyString_Check(obj))
 			{
-#if PY_VERSION_HEX < 0x02060000
-				argcount = PyString_GET_SIZE(obj);
-				argstring = PyString_AS_STRING(obj);
-#elif PY_VERSION_HEX < 0x03000000
-				argcount = PyString_Size(obj);
-				argstring = PyString_AS_STRING(obj);
-#else
 				argstring = PyUnicode_AsUTF8AndSize(obj, &argcount);
-#endif
 				for (int i=0; i < argcount; ++i)
 					switch(argstring[i])
 					{
@@ -2480,9 +2468,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 			}
 			else
 			{
-				PyErr_SetString(PyExc_StandardError,
-					"type error");
-				eDebug("[eEPGCache] tuple arg 0 is not a string");
+				PyErr_SetString(PyExc_TypeError, "[eEPGCache] tuple arg 0 is not a string");
+				//eDebug("[eEPGCache] tuple arg 0 is not a string");
 				return NULL;
 			}
 		}
@@ -2531,15 +2518,15 @@ PyObject *eEPGCache::search(ePyObject arg)
 					}
 					else
 					{
-						PyErr_SetString(PyExc_StandardError, "type error");
-						eDebug("[eEPGCache] tuple arg 4 is not a valid service reference string");
+						PyErr_SetString(PyExc_TypeError, "[eEPGCache] tuple arg 4 is not a valid service reference string");
+						//eDebug("[eEPGCache] tuple arg 4 is not a valid service reference string");
 						return NULL;
 					}
 				}
 				else
 				{
-					PyErr_SetString(PyExc_StandardError, "type error");
-					eDebug("[eEPGCache] tuple arg 4 is not a string");
+					PyErr_SetString(PyExc_TypeError, "[eEPGCache] tuple arg 4 is not a string");
+					//eDebug("[eEPGCache] tuple arg 4 is not a string");
 					return NULL;
 				}
 			}
@@ -2549,16 +2536,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 				if (PyString_Check(obj))
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
-#if PY_VERSION_HEX < 0x02060000
-					ssize_t textlen = PyString_GET_SIZE(obj);
-					const char *str = PyString_AS_STRING(obj);
-#elif PY_VERSION_HEX < 0x03000000
-					ssize_t textlen = PyString_Size(obj);
-					const char *str = PyString_AS_STRING(obj);
-#else
 					ssize_t textlen;
 					const char *str = PyUnicode_AsUTF8AndSize(obj, &textlen);
-#endif
 					const char *ctype = casetypestr(casetype);
 					switch (querytype)
 					{
@@ -2661,9 +2640,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 				}
 				else
 				{
-					PyErr_SetString(PyExc_StandardError,
-						"type error");
-					eDebug("[eEPGCache] tuple arg 4 is not a string");
+					PyErr_SetString(PyExc_TypeError, "[eEPGCache] tuple arg 4 is not a string");
+					//eDebug("[eEPGCache] tuple arg 4 is not a string");
 					return NULL;
 				}
 			}
@@ -2673,16 +2651,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 				if (PyString_Check(obj))
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
-#if PY_VERSION_HEX < 0x02060000
-					ssize_t textlen = PyString_GET_SIZE(obj);
-					const char *str = PyString_AS_STRING(obj);
-#elif PY_VERSION_HEX < 0x03000000
-					ssize_t textlen = PyString_Size(obj);
-					const char *str = PyString_AS_STRING(obj);
-#else
 					ssize_t textlen;
 					const char *str = PyUnicode_AsUTF8AndSize(obj, &textlen);
-#endif
 					int lloop=0;
 					const char *ctype = casetypestr(casetype);
 					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
@@ -2783,33 +2753,31 @@ PyObject *eEPGCache::search(ePyObject arg)
 				}
 				else
 				{
-					PyErr_SetString(PyExc_StandardError,
-						"type error");
-					eDebug("[eEPGCache] tuple arg 4 is not a string");
+					PyErr_SetString(PyExc_TypeError, "[eEPGCache] tuple arg 4 is not a string");
+					//eDebug("[eEPGCache] tuple arg 4 is not a string");
 					return NULL;
 				}
 			}
 			else
 			{
-				PyErr_SetString(PyExc_StandardError,
-					"type error");
-				eDebug("[eEPGCache] tuple arg 3(%d) is not a known querytype(0..3)", querytype);
+				char tmp[255];
+				snprintf(tmp, 255, "[eEPGCache] tuple arg 3(%d) is not a known querytype(0..3)", querytype);
+				PyErr_SetString(PyExc_TypeError, tmp);
+				//eDebug("[eEPGCache] tuple arg 3(%d) is not a known querytype(0..3)", querytype);
 				return NULL;
 			}
 		}
 		else
 		{
-			PyErr_SetString(PyExc_StandardError,
-				"type error");
-			eDebug("[eEPGCache] not enough args in tuple");
+			PyErr_SetString(PyExc_TypeError, "[eEPGCache] not enough args in tuple");
+			//eDebug("[eEPGCache] not enough args in tuple");
 			return NULL;
 		}
 	}
 	else
 	{
-		PyErr_SetString(PyExc_StandardError,
-			"type error");
-		eDebug("[eEPGCache] arg 0 is not a tuple");
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] arg 0 is not a tuple");
+		//eDebug("[eEPGCache] arg 0 is not a tuple");
 		return NULL;
 	}
 
