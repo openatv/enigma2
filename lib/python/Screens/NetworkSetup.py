@@ -2201,7 +2201,7 @@ class NetworkOpenvpn(NetworkBaseScreen):
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def Vpnshowlog(self):
-		self.session.open(NetworkVpnLog)
+		self.session.open(NetworkLogScreen, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
 
 	def VpnStartStop(self):
 		if not self.my_vpn_run:
@@ -2311,7 +2311,7 @@ class NetworkSamba(NetworkBaseScreen):
 			self.updateService()
 
 	def Sambashowlog(self):
-		self.session.open(NetworkSambaLog)
+		self.session.open(NetworkLogScreen, title=_("Samba Log"), logPath="/tmp/smb.log")
 
 	def SambaStartStop(self):
 		commands = []
@@ -2565,7 +2565,7 @@ class NetworkInadyn(NetworkBaseScreen):
 		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
 
 	def inaLog(self):
-		self.session.open(NetworkInadynLog)
+		self.session.open(NetworkLogScreen, title=_("Inadyn Log"), logPath="/var/log/inadyn.log", tailLog=False)
 
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
@@ -2855,7 +2855,7 @@ class NetworkuShare(NetworkBaseScreen):
 		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
 
 	def ushareLog(self):
-		self.session.open(NetworkuShareLog)
+		self.session.open(NetworkLogScreen, title=_("uShare Log"), logPath="/tmp/uShare.log")
 
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
@@ -3250,7 +3250,7 @@ class NetworkMiniDLNA(NetworkBaseScreen):
 		self.session.openWithCallback(self.updateService, NetworkMiniDLNASetup)
 
 	def minidlnaLog(self):
-		self.session.open(NetworkMiniDLNALog)
+		self.session.open(NetworkLogScreen, title=_("MiniDLNA Log"), logPath="/var/volatile/log/minidlna.log")
 
 
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
@@ -3718,27 +3718,3 @@ class NetworkLogScreen(Screen):
 	def closeRecursive(self):
 		self.console.killAll()
 		self.close(True)
-
-class NetworkVpnLog(NetworkLogScreen):
-	def __init__(self, session):
-		NetworkLogScreen.__init__(self, session, title=_("OpenVpn Log"), logPath="/etc/openvpn/openvpn.log")
-
-
-class NetworkSambaLog(NetworkLogScreen):
-	def __init__(self, session):
-		NetworkLogScreen.__init__(self, session, title=_("Samba Log"), logPath="/tmp/smb.log")
-
-
-class NetworkInadynLog(NetworkLogScreen):
-	def __init__(self, session):
-		NetworkLogScreen.__init__(self, session, title=_("Inadyn Log"), logPath="/var/log/inadyn.log", tailLog=False)
-
-
-class NetworkuShareLog(NetworkLogScreen):
-	def __init__(self, session):
-		NetworkLogScreen.__init__(self, session, title=_("uShare Log"), logPath="/tmp/uShare.log")
-
-
-class NetworkMiniDLNALog(NetworkLogScreen):
-	def __init__(self, session):
-		NetworkLogScreen.__init__(self, session, title=_("MiniDLNA Log"), logPath="/var/volatile/log/minidlna.log")
