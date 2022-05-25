@@ -3172,6 +3172,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	char aliases_file[dbroot.length()+21];
 	int channels_count, events_count = 0, aliases_groups_count;
 	unsigned char revision;
+	size_t ret; /* dummy value to store fread return values */
 
 	eDebug("[eEPGCache] start crossepg import");
 
@@ -3196,14 +3197,14 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	aliases = fopen(aliases_file, "r");
 	if (!aliases)
 	{
-	eDebug("[eEPGCache] cannot open crossepg aliases db");
+		eDebug("[eEPGCache] cannot open crossepg aliases db");
 		fclose(headers);
 		fclose(descriptors);
 		return;
 	}
 
 	/* read headers */
-	fread (tmp, 13, 1, headers);
+	ret = fread(tmp, 13, 1, headers);
 	if (memcmp (tmp, "_xEPG_HEADERS", 13) != 0)
 	{
 		eDebug("[eEPGCache] crossepg db invalid magic");
@@ -3213,7 +3214,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 		return;
 	}
 
-	fread (&revision, sizeof (unsigned char), 1, headers);
+	ret = fread(&revision, sizeof (unsigned char), 1, headers);
 	if (revision != 0x07)
 	{
 		eDebug("[eEPGCache] crossepg db invalid revision");
@@ -3224,26 +3225,26 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	}
 
 	/* read aliases */
-	fread (tmp, 13, 1, aliases);
+	ret = fread(tmp, 13, 1, aliases);
 	if (memcmp (tmp, "_xEPG_ALIASES", 13) != 0)
 	{
-	eDebug("[eEPGCache] crossepg aliases db invalid magic");
+		eDebug("[eEPGCache] crossepg aliases db invalid magic");
 		fclose(headers);
 		fclose(descriptors);
 		fclose(aliases);
 		return;
 	}
-	fread (&revision, sizeof (unsigned char), 1, aliases);
+	ret = fread(&revision, sizeof (unsigned char), 1, aliases);
 	if (revision != 0x07)
 	{
 		eDebug("[eEPGCache] crossepg aliases db invalid revision");
 		fclose(headers);
 		fclose(descriptors);
-	fclose(aliases);
+		fclose(aliases);
 		return;
 	}
 
-	fread(&aliases_groups_count, sizeof (int), 1, aliases);
+	ret = fread(&aliases_groups_count, sizeof (int), 1, aliases);
 	epgdb_aliases_t all_aliases[aliases_groups_count];
 	for (int i=0; i<aliases_groups_count; i++)
 	{
@@ -3251,17 +3252,17 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 		unsigned char aliases_count;
 		epgdb_channel_t channel;
 
-		fread(&channel, sizeof (epgdb_channel_t), 1, aliases);
+		ret = fread(&channel, sizeof (epgdb_channel_t), 1, aliases);
 		all_aliases[i].nid[0] = channel.nid;
 		all_aliases[i].tsid[0] = channel.tsid;
 		all_aliases[i].sid[0] = channel.sid;
 
-		fread(&aliases_count, sizeof (unsigned char), 1, aliases);
+		ret = fread(&aliases_count, sizeof (unsigned char), 1, aliases);
 
 		for (j=0; j<aliases_count; j++)
 		{
 			epgdb_channel_t alias;
-			fread(&alias, sizeof (epgdb_channel_t), 1, aliases);
+			ret = fread(&alias, sizeof (epgdb_channel_t), 1, aliases);
 
 			if (j < 63) // one lost from the channel
 			{
@@ -3282,21 +3283,21 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 
 	/* import data */
 	fseek(headers, sizeof(time_t)*2, SEEK_CUR);
-	fread (&channels_count, sizeof (int), 1, headers);
+	ret = fread(&channels_count, sizeof (int), 1, headers);
 
 	for (int i=0; i<channels_count; i++)
 	{
 		int titles_count;
 		epgdb_channel_t channel;
 
-		fread(&channel, sizeof(epgdb_channel_t), 1, headers);
-		fread(&titles_count, sizeof (int), 1, headers);
+		ret = fread(&channel, sizeof(epgdb_channel_t), 1, headers);
+		ret = fread(&titles_count, sizeof (int), 1, headers);
 		for (int j=0; j<titles_count; j++)
 		{
 			epgdb_title_t title;
 			uint8_t data[EIT_LENGTH];
 
-			fread(&title, sizeof(epgdb_title_t), 1, headers);
+			ret = fread(&title, sizeof(epgdb_title_t), 1, headers);
 
 			eit_t *data_eit = (eit_t*)data;
 			data_eit->table_id = 0x50;
@@ -3351,7 +3352,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 				data_tmp++;
 			}
 			fseek(descriptors, title.description_seek, SEEK_SET);
-			fread(data_tmp, title.description_length, 1, descriptors);
+			ret = fread(data_tmp, title.description_length, 1, descriptors);
 			data_tmp += title.description_length;
 			*data_tmp = 0;
 			++data_tmp;
@@ -3362,7 +3363,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 			data_tmp[3] = 0;
 			data_tmp += 4;
 
-			fread(data_tmp, title.description_length, 1, descriptors);
+			ret = fread(data_tmp, title.description_length, 1, descriptors);
 
 			int current_loop_length = data_tmp - (uint8_t*)data_eit_short_event;
 			static const int overhead_per_descriptor = 9;
@@ -3373,7 +3374,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 
 			char *ldescription = new char[title.long_description_length];
 			fseek(descriptors, title.long_description_seek, SEEK_SET);
-			fread(ldescription, title.long_description_length, 1, descriptors);
+			ret = fread(ldescription, title.long_description_length, 1, descriptors);
 
 			int last_descriptor_number = (title.long_description_length + MAX_LEN-1) / MAX_LEN - 1;
 			int remaining_text_length = title.long_description_length - last_descriptor_number * MAX_LEN;
