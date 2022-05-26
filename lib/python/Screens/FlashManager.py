@@ -449,24 +449,26 @@ class FlashImage(Screen):
 
 				for fileName in ["settings", "plugins", "noplugins"]:
 					if fileName in filestocreate:
+						path = pathjoin(rootFolder, fileName)
 						try:
-							open("%s/%s" % (rootFolder, fileName), "w").close()
+							open(path, "w").close()
 						except (IOError, OSError) as err:
-							print("[FlashManager] postFlashActionCallback: Error %d: failed to create %s/%s! (%s)" % (err.errno, rootFolder, fileName, err.strerror))
+							print("[FlashManager] postFlashActionCallback: Error %d: failed to create %s! (%s)" % (err.errno, path, err.strerror))
 					else:
-						if exists("%s/%s" % (rootFolder, fileName)):
-							unlink("%s/%s" % (rootFolder, fileName))
+						if exists(path):
+							unlink(path)
 
 				if restoreSettings:
 					if config.plugins.softwaremanager.restoremode.value is not None:
 						try:
 							for fileName in ["slow", "fast", "turbo"]:
+								path = pathjoin(rootFolder, fileName)
 								if fileName == config.plugins.softwaremanager.restoremode.value:
-									if not exists("%s/%s" % (rootFolder, fileName)):
-										open("%s/%s" % (rootFolder, fileName), "w").close()
+									if not exists(path):
+										open(path, "w").close()
 								else:
-									if exists("%s/%s" % (rootFolder, fileName)):
-										unlink("%s/%s" % (rootFolder, fileName))
+									if exists(path):
+										unlink(path)
 						except (IOError, OSError) as err:
 							print("[FlashManager] postFlashActionCallback: Error %d: failed to create restore mode flagfile! (%s)" % (err.errno, err.strerror))
 				self.startDownload()
