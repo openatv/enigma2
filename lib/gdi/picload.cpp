@@ -245,7 +245,11 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			}
 			for (int i = 0; i < *y; i++)
 			{
-				read(fd, tbuffer, (*x) / 2 + *x % 2);
+
+				if (read(fd, tbuffer, (*x) / 2 + *x % 2) != ((*x) / 2 + *x % 2))
+				{
+					eDebug("[ePicLoad] failed to read %d bytes...", ((*x) / 2 + *x % 2));
+				}
 				int j;
 				for (j = 0; j < (*x) / 2; j++)
 				{
@@ -266,7 +270,12 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 					*wr_buffer++ = pallete[c1].blue;
 				}
 				if (skip)
-					read(fd, buff, skip);
+				{
+					if (read(fd, buff, skip) != skip)
+					{
+						eDebug("[ePicLoad] failed to read %d bytes...", skip);
+					}
+				}
 				wr_buffer -= (*x) * 6;
 			}
 			delete [] tbuffer;
@@ -284,7 +293,10 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			}
 			for (int i = 0; i < *y; i++)
 			{
-				read(fd, tbuffer, *x);
+				if (read(fd, tbuffer, *x) != *x)
+				{
+					eDebug("[ePicLoad] failed to read %d bytes...", *x);
+				}
 				for (int j = 0; j < *x; j++)
 				{
 					wr_buffer[j * 3] = pallete[tbuffer[j]].red;
@@ -292,7 +304,12 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 					wr_buffer[j * 3 + 2] = pallete[tbuffer[j]].blue;
 				}
 				if (skip)
-					read(fd, buff, skip);
+				{
+					if (read(fd, buff, skip) != skip)
+					{
+						eDebug("[ePicLoad] failed to read %d bytes...", skip);
+					}
+				}
 				wr_buffer -= (*x) * 3;
 			}
 			delete [] tbuffer;
@@ -312,7 +329,12 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 					wr_buffer[j + 2] = c;
 				}
 				if (skip)
-					read(fd, buff, skip);
+				{
+					if (read(fd, buff, skip) != skip)
+					{
+						eDebug("[ePicLoad] failed to read %d bytes...", skip);
+					}
+				}
 				wr_buffer -= (*x) * 3;
 			}
 			break;

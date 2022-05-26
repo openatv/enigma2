@@ -1351,7 +1351,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					iframe[4] = iframe[5] = 0x00;
 				writeAll(m_video_clip_fd, iframe, s.st_size);
 				if (!seq_end_avail)
-					write(m_video_clip_fd, seq_end, sizeof(seq_end));
+				{
+					ret = write(m_video_clip_fd, seq_end, sizeof(seq_end));
+					if (ret < 0) eDebug("[eTSMPEGDecoder] write failed: %m");
+				}
 				writeAll(m_video_clip_fd, stuffing, 8192);
 #if not defined(__sh__)
 #if HAVE_HISILICON
