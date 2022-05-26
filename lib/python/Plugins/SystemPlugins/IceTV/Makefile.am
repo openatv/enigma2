@@ -7,5 +7,4 @@ install_PYTHON = \
 
 dist_install_DATA = \
 	icon.png \
-	au_qr_code.png \
-	de_qr_code.png
+	au_qr_code.png
