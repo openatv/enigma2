@@ -1,21 +1,21 @@
 from re import compile
-from os import path as os_path
+from os.path import exists
 from wifi.scan import Cell
 
-from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
+from Components.config import ConfigPassword, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Console import Console
 from Components.Network import iNetwork
+from Tools.Directories import fileReadLines, fileWriteLines
 
-
-modelist = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
-
-weplist = ["ASCII", "HEX"]
+MODULE_NAME = __name__.split(".")[-1]
+MODE_LIST = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
+WEP_LIST = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(modelist, default="WPA/WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(MODE_LIST, default="WPA/WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(WEP_LIST, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
@@ -30,32 +30,26 @@ class Wlan:
 	def __init__(self, iface=None):
 		self.iface = iface
 		self.oldInterfaceState = None
-
 		a = ""
 		b = ""
-		for i in list(range(0, 255)):
+		for i in range(0, 255):
 			a += chr(i)
-			if i < 32 or i > 127:
-				b += " "
-			else:
-				b += chr(i)
-		self.asciitrans = str.maketrans(a, b)
+			b += " " if i < 32 or i > 127 else chr(i)
+		self.asciiTrans = str.maketrans(a, b)
 
 	def asciify(self, str):
-		return str.translate(self.asciitrans)
+		return str.translate(self.asciiTrans)
 
 	def getWirelessInterfaces(self):
 		device = compile("[a-z]{2,}[0-9]*:")
-		ifnames = []
-
-		fp = open("/proc/net/wireless", "r")
-		for line in fp:
+		ifNames = []
+		lines = fileReadLines("/proc/net/wireless", default=[], source=MODULE_NAME)
+		for line in lines:
 			try:
-				ifnames.append(device.search(line).group()[:-1])
+				ifNames.append(device.search(line).group()[:-1])
 			except AttributeError:
 				pass
-
-		return ifnames
+		return ifNames
 
 	def setInterface(self, iface=None):
 		self.iface = iface
@@ -73,35 +67,34 @@ class Wlan:
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver == "brcm-wl":
 					Console().ePopen(["/usr/bin/wl", "/usr/bin/wl", "up"])
-
 		try:
-			scanresults = list(Cell.all(self.iface, 5))
-			print("[Wlan] Scan results = %s" % scanresults)
-		except:
-			scanresults = None
-			print("[Wlan] No wireless networks could be found")
+			scanResults = list(Cell.all(self.iface, 5))
+			print("[Wlan] Scan results = '%s'." % scanResults)
+		except Exception:
+			scanResults = None
+			print("[Wlan] No wireless networks could be found.")
 		aps = {}
-		if scanresults:
-			for i in range(len(scanresults)):
-				bssid = scanresults[i].ssid
+		if scanResults:
+			for i in range(len(scanResults)):
+				bssid = scanResults[i].ssid
 				aps[bssid] = {
 					"active": True,
-					"bssid": scanresults[i].ssid,
-					"essid": scanresults[i].ssid,
-					"channel": scanresults[i].channel,
-					"encrypted": scanresults[i].encrypted,
-					"encryption_type": scanresults[i].encryption_type if scanresults[i].encrypted else "none",
+					"bssid": scanResults[i].ssid,
+					"essid": scanResults[i].ssid,
+					"channel": scanResults[i].channel,
+					"encrypted": scanResults[i].encrypted,
+					"encryption_type": scanResults[i].encryption_type if scanResults[i].encrypted else "none",
 					"iface": self.iface,
-					"maxrate": scanresults[i].bitrates,
-					"mode": scanresults[i].mode,
-					"quality": scanresults[i].quality,
-					"signal": scanresults[i].signal,
-					"frequency": scanresults[i].frequency,
-					"frequency_norm": scanresults[i].frequency_norm,
-					"address": scanresults[i].address,
-					"noise": scanresults[i].noise,
-					"pairwise_ciphers": scanresults[i].pairwise_ciphers,
-					"authentication_suites": scanresults[i].authentication_suites,
+					"maxrate": scanResults[i].bitrates,
+					"mode": scanResults[i].mode,
+					"quality": scanResults[i].quality,
+					"signal": scanResults[i].signal,
+					"frequency": scanResults[i].frequency,
+					"frequency_norm": scanResults[i].frequency_norm,
+					"address": scanResults[i].address,
+					"noise": scanResults[i].noise,
+					"pairwise_ciphers": scanResults[i].pairwise_ciphers,
+					"authentication_suites": scanResults[i].authentication_suites,
 				}
 		return aps
 
@@ -130,18 +123,15 @@ class brcmWLConfig:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-
-		fp = open(getWlanConfigName(iface), "w")
-
-		fp.write("ssid=%s\n" % essid)
+		contents = ["ssid=%s\n" % essid]
 		if encryption in ("WPA", "WPA2", "WPA/WPA2", "WEP"):
 			if encryption == "WPA/WPA2":
 				encryption = "WPA2"
-			fp.write("method=%s\n" % encryption.lower())
-		if encryption.lower() == "unencrypted":
-			fp.write("method=None\n")
-		fp.write("key=%s\n" % psk)
-		fp.close()
+			contents.append("method=%s" % encryption.lower())
+			if encryption.lower() == "unencrypted":
+				contents.append("method=None")
+			contents.append("key=%s" % psk)
+		fileWriteLines(getWlanConfigName(iface), lines=contents, source=MODULE_NAME)
 
 	def loadConfig(self, iface):
 		config.plugins.wlan.hiddenessid.value = False
@@ -149,17 +139,14 @@ class brcmWLConfig:
 		config.plugins.wlan.essid.value = ""
 		config.plugins.wlan.encryption.value = "WPA2"
 		config.plugins.wlan.psk.value = ""
-		configfile = getWlanConfigName(iface)
-
-		if os_path.exists(configfile):
-			print("[Wlan] parsing configfile: %s" % configfile)
-			fd = open(configfile, "r")
-			lines = fd.readlines()
-			fd.close()
+		configFile = getWlanConfigName(iface)
+		if exists(configFile):
+			print("[Wlan] Parsing config file '%s'." % configFile)
+			lines = fileReadLines(configFile, default=[], source=MODULE_NAME)
 			for line in lines:
 				try:
 					(key, value) = line.strip().split("=", 1)
-				except:
+				except ValueError:
 					continue
 				if key == "ssid":
 					config.plugins.wlan.essid.value = value.strip()
@@ -189,37 +176,36 @@ class wpaSupplicant:
 		pass
 
 	def writeBcmWifiConfig(self, iface, essid, encryption, psk):
-		contents = ""
-		contents += "ssid=" + essid + "\n"
-		contents += "method=" + encryption + "\n"
-		contents += "key=" + psk + "\n"
-		print("[Wlan] Content = \n%s" % contents)
-
-		fd = open(getWlanConfigName(iface), "w")
-		fd.write(contents)
-		fd.close()
+		contents = ["ssid=%s" % essid]
+		contents.append("method=%s" % encryption)
+		contents.append("key=%s" % psk)
+		print("[Wlan] writeBcmWifiConfig DEBUG: Content:\n%s" % "\n".join(contents))
+		fileWriteLines(getWlanConfigName(iface), lines=contents, source=MODULE_NAME)
 
 	def loadBcmWifiConfig(self, iface):
 		wsconf = {}
 		wsconf["ssid"] = ""
-		wsconf["hiddenessid"] = False # not used
+		wsconf["hiddenessid"] = False  # Not used.
 		wsconf["encryption"] = "WPA2"
-		wsconf["wepkeytype"] = "ASCII" # not used
+		wsconf["wepkeytype"] = "ASCII"  # Not used.
 		wsconf["key"] = ""
-
-		configfile = getWlanConfigName(iface)
-
-		try:
-			fd = open(configfile, "r")
-			lines = fd.readlines()
-			fd.close()
-
+		configFile = getWlanConfigName(iface)
+		lines = fileReadLines(configFile, default=None, source=MODULE_NAME)
+		if lines is None:
+			print("[Wlan] Error: Unable to parse '%s'!" % configFile)
+			wsconfig = {
+				"hiddenessid": False,
+				"ssid": "",
+				"encryption": "WPA2",
+				"wepkeytype": "ASCII",
+				"key": "",
+			}
+		else:
 			for line in lines:
 				try:
 					(key, value) = line.strip().split("=", 1)
-				except:
+				except ValueError:
 					continue
-
 				if key == "ssid":
 					wsconf["ssid"] = value.strip()
 				if key == "method":
@@ -228,19 +214,8 @@ class wpaSupplicant:
 					wsconf["key"] = value.strip()
 				else:
 					continue
-		except:
-			print("[Wlan] Error parsing %s" % configfile)
-			wsconfig = {
-					"hiddenessid": False,
-					"ssid": "",
-					"encryption": "WPA2",
-					"wepkeytype": "ASCII",
-					"key": "",
-				}
-
-		for (k, v) in list(wsconf.items()):
-			print("[Wlan] wsconf [%s] %s" % (k, v))
-
+		for (key, value) in wsconf.items():
+			print("[Wlan] DEBUG: Entry wsconf [%s] = '%s'." % (key, value))
 		return wsconf
 
 	def writeConfig(self, iface):
@@ -249,71 +224,66 @@ class wpaSupplicant:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-
-		fp = open(getWlanConfigName(iface), "w")
-		fp.write("#WPA Supplicant Configuration by enigma2\n")
-		fp.write("ctrl_interface=/var/run/wpa_supplicant\n")
-		fp.write("eapol_version=1\n")
-		fp.write("fast_reauth=1\n")
-		fp.write("ap_scan=1\n")
-		fp.write("network={\n")
-		fp.write("\tssid=\"%s\"\n" % essid)
+		content = ["#WPA Supplicant Configuration by enigma2"]
+		content.append("ctrl_interface=/var/run/wpa_supplicant")
+		content.append("eapol_version=1")
+		content.append("fast_reauth=1")
+		content.append("ap_scan=1")
+		content.append("network={")
+		content.append("\tssid=\"%s\"" % essid)
 		if hiddenessid:
-			fp.write("\tscan_ssid=1\n")
+			content.append("\tscan_ssid=1")
 		else:
-			fp.write("\tscan_ssid=0\n")
+			content.append("\tscan_ssid=0")
 		if encryption in ("WPA", "WPA2", "WPA/WPA2"):
-			fp.write("\tkey_mgmt=WPA-PSK\n")
+			content.append("\tkey_mgmt=WPA-PSK")
 			if encryption == "WPA":
-				fp.write("\tproto=WPA\n")
-				fp.write("\tpairwise=TKIP\n")
-				fp.write("\tgroup=TKIP\n")
+				content.append("\tproto=WPA")
+				content.append("\tpairwise=TKIP")
+				content.append("\tgroup=TKIP")
 			elif encryption == "WPA2":
-				fp.write("\tproto=RSN\n")
-				fp.write("\tpairwise=CCMP\n")
-				fp.write("\tgroup=CCMP\n")
+				content.append("\tproto=RSN")
+				content.append("\tpairwise=CCMP")
+				content.append("\tgroup=CCMP")
 			else:
-				fp.write("\tproto=WPA RSN\n")
-				fp.write("\tpairwise=CCMP TKIP\n")
-				fp.write("\tgroup=CCMP TKIP\n")
-			fp.write("\tpsk=\"%s\"\n" % psk)
+				content.append("\tproto=WPA RSN")
+				content.append("\tpairwise=CCMP TKIP")
+				content.append("\tgroup=CCMP TKIP")
+			content.append("\tpsk=\"%s\"" % psk)
 		elif encryption == "WEP":
-			fp.write("\tkey_mgmt=NONE\n")
+			content.append("\tkey_mgmt=NONE")
 			if wepkeytype == "ASCII":
-				fp.write("\twep_key0=\"%s\"\n" % psk)
+				content.append("\twep_key0=\"%s\"" % psk)
 			else:
-				fp.write("\twep_key0=%s\n" % psk)
+				content.append("\twep_key0=%s" % psk)
 		else:
-			fp.write("\tkey_mgmt=NONE\n")
-		fp.write("}\n")
-		fp.close()
-
+			content.append("\tkey_mgmt=NONE")
+		content.append("}")
+		fileWriteLines(getWlanConfigName(iface), lines=contents, source=MODULE_NAME)
 
 	def loadConfig(self, iface):
-		configfile = getWlanConfigName(iface)
-		if not os_path.exists(configfile):
-			configfile = "/etc/wpa_supplicant.conf"
-		try:
-			#parse the wpasupplicant configfile
-			print("[Wlan] parsing configfile: %s" % configfile)
-			fp = open(configfile, "r")
-			supplicant = fp.readlines()
-			fp.close()
+		configFile = getWlanConfigName(iface)
+		if not exists(configfile):
+			configFile = "/etc/wpa_supplicant.conf"
+		lines = fileReadLines(configFile, default=None, source=MODULE_NAME)
+		if lines is None:
+			print("[Wlan] Error: Unable to parse '%s'!" % configFile)
+			wsconfig = {
+				"hiddenessid": False,
+				"ssid": "",
+				"encryption": "WPA2",
+				"wepkeytype": "ASCII",
+				"key": "",
+			}
+		else:
 			essid = None
 			encryption = "Unencrypted"
-
-			for s in supplicant:
-				split = s.strip().split("=", 1)
+			for line in lines:
+				split = line.strip().split("=", 1)
 				if split[0] == "scan_ssid":
-					if split[1] == "1":
-						config.plugins.wlan.hiddenessid.value = True
-					else:
-						config.plugins.wlan.hiddenessid.value = False
-
+					config.plugins.wlan.hiddenessid.value = split[1] == "1"
 				elif split[0] == "ssid":
-					essid = split[1][1:-1]
-					config.plugins.wlan.essid.value = essid
-
+					config.plugins.wlan.essid.value = split[1][1:-1]
 				elif split[0] == "proto":
 					if split[1] == "WPA":
 						mode = "WPA"
@@ -322,7 +292,6 @@ class wpaSupplicant:
 					if split[1] in ("WPA RSN", "WPA WPA2"):
 						mode = "WPA/WPA2"
 					encryption = mode
-
 				elif split[0] == "wep_key0":
 					encryption = "WEP"
 					if split[1].startswith("\"") and split[1].endswith("\""):
@@ -331,22 +300,18 @@ class wpaSupplicant:
 					else:
 						config.plugins.wlan.wepkeytype.value = "HEX"
 						config.plugins.wlan.psk.value = split[1]
-
 				elif split[0] == "psk":
 					config.plugins.wlan.psk.value = split[1][1:-1]
 				else:
 					pass
-
 			config.plugins.wlan.encryption.value = encryption
-
 			wsconfig = {
-					"hiddenessid": config.plugins.wlan.hiddenessid.value,
-					"ssid": config.plugins.wlan.essid.value,
-					"encryption": config.plugins.wlan.encryption.value,
-					"wepkeytype": config.plugins.wlan.wepkeytype.value,
-					"key": config.plugins.wlan.psk.value,
-				}
-
+				"hiddenessid": config.plugins.wlan.hiddenessid.value,
+				"ssid": config.plugins.wlan.essid.value,
+				"encryption": config.plugins.wlan.encryption.value,
+				"wepkeytype": config.plugins.wlan.wepkeytype.value,
+				"key": config.plugins.wlan.psk.value,
+			}
 			for (key, item) in list(wsconfig.items()):
 				if item == "None" or item == "":
 					if key == "hiddenessid":
@@ -359,42 +324,44 @@ class wpaSupplicant:
 						wsconfig["wepkeytype"] = "ASCII"
 					if key == "key":
 						wsconfig["key"] = ""
-		except Exception as ex:
-			print("[Wlan] Error parsing %s / %s" % (configfile, str(ex)))
-			wsconfig = {
-					"hiddenessid": False,
-					"ssid": "",
-					"encryption": "WPA2",
-					"wepkeytype": "ASCII",
-					"key": "",
-				}
 		return wsconfig
 
 
 class Status:
 	def __init__(self):
-		self.wlaniface = {}
-		self.backupwlaniface = {}
+		self.wlanIface = {}
+		self.backupWlanIface = {}
 		self.statusCallback = None
-		self.WlanConsole = Console()
+		self.wlanConsole = Console()
 
 	def stopWlanConsole(self):
-		if self.WlanConsole is not None:
-			print("[Wlan] killing self.WlanConsole")
-			self.WlanConsole.killAll()
-			self.WlanConsole = None
+		if self.wlanConsole is not None:
+			print("[Wlan] Killing self.wlanConsole.")
+			self.wlanConsole.killAll()
+			self.wlanConsole = None
 
 	def getDataForInterface(self, iface, callback=None):
-		self.WlanConsole = Console()
-		cmd = ["/sbin/iwconfig", "/sbin/iwconfig", iface]
+		self.wlanConsole = Console()
 		if callback is not None:
 			self.statusCallback = callback
-		self.WlanConsole.ePopen(cmd, self.iwconfigFinished, iface)
+		self.wlanConsole.ePopen(["/sbin/iwconfig", "/sbin/iwconfig", iface], self.iwconfigFinished, iface)
 
-	def iwconfigFinished(self, result, retval, extra_args):
-		iface = extra_args
+	def iwconfigFinished(self, result, retVal, extraArgs):
+		iface = extraArgs
 		ssid = "off"
-		data = {"essid": False, "frequency": False, "accesspoint": False, "bitrate": False, "encryption": False, "quality": False, "signal": False, "channel": False, "encryption_type": False, "frequency": False, "frequency_norm": False}
+		data = {
+			"essid": False,
+			"frequency": False,
+			"accesspoint": False,
+			"bitrate": False,
+			"encryption": False,
+			"quality": False,
+			"signal": False,
+			"channel": False,
+			"encryption_type": False,
+			"frequency": False,
+			"frequency_norm": False
+		}
 		for line in result.splitlines():
 			line = line.strip()
 			if "ESSID" in line:
@@ -431,92 +398,89 @@ class Status:
 				if ":off" in line:
 					enc = "off"
 				elif "Security" in line:
-					enc = line[line.index('Encryption key') + 15:line.index('   Security')]
+					enc = line[line.index("Encryption key") + 15:line.index("   Security")]
 					if enc:
 						enc = "on"
 				else:
-					enc = line[line.index('Encryption key') + 15:len(line)]
+					enc = line[line.index("Encryption key") + 15:len(line)]
 					if enc:
 						enc = "on"
 				if enc:
-					data['encryption'] = enc
-			if 'Quality' in line:
+					data["encryption"] = enc
+			if "Quality" in line:
 				if "/100" in line:
-					qual = line[line.index('Quality') + 8:line.index('  Signal')]
+					qual = line[line.index("Quality") + 8:line.index("  Signal")]
 				else:
-					qual = line[line.index('Quality') + 8:line.index('Sig')]
+					qual = line[line.index("Quality") + 8:line.index("Sig")]
 				if qual:
-					data['quality'] = qual
-			if 'Signal level' in line:
+					data["quality"] = qual
+			if "Signal level" in line:
 				if "dBm" in line:
-					signal = line[line.index('Signal level') + 13:line.index(' dBm')] + " dBm"
+					signal = line[line.index("Signal level") + 13:line.index(" dBm")] + " dBm"
 				elif "/100" in line:
 					if "Noise" in line:
-						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
+						signal = line[line.index("Signal level") + 13:line.index("  Noise")]
 					else:
-						signal = line[line.index('Signal level') + 13:len(line)]
+						signal = line[line.index("Signal level") + 13:len(line)]
 				else:
 					if "Noise" in line:
-						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
+						signal = line[line.index("Signal level") + 13:line.index("  Noise")]
 					else:
-						signal = line[line.index('Signal level') + 13:len(line)]
+						signal = line[line.index("Signal level") + 13:len(line)]
 				if signal:
-					data['signal'] = signal
-
+					data["signal"] = signal
 		if ssid != None and ssid != "off" and ssid != "":
 			try:
-				scanresults = list(Cell.all(iface, 5))
-				print("[Wlan] Scan results = %s" % scanresults)
-			except:
-				scanresults = None
-				print("[Wlan] No wireless networks could be found")
+				scanResults = list(Cell.all(iface, 5))
+				print("[Wlan] Scan results = '%s'." % scanResults)
+			except Exception:
+				scanResults = None
+				print("[Wlan] No wireless networks could be found.")
 			aps = {}
-			if scanresults:
-				for i in range(len(scanresults)):
-					bssid = scanresults[i].ssid
+			if scanResults:
+				for i in range(len(scanResults)):
+					bssid = scanResults[i].ssid
 					aps[bssid] = {
 						"active": True,
-						"bssid": scanresults[i].ssid,
-						"essid": scanresults[i].ssid,
-						"channel": scanresults[i].channel,
-						"encrypted": scanresults[i].encrypted,
-						"encryption_type": scanresults[i].encryption_type if scanresults[i].encrypted else "none",
+						"bssid": scanResults[i].ssid,
+						"essid": scanResults[i].ssid,
+						"channel": scanResults[i].channel,
+						"encrypted": scanResults[i].encrypted,
+						"encryption_type": scanResults[i].encryption_type if scanResults[i].encrypted else "none",
 						"iface": iface,
-						"maxrate": scanresults[i].bitrates,
-						"mode": scanresults[i].mode,
-						"quality": scanresults[i].quality,
-						"signal": scanresults[i].signal,
-						"frequency": scanresults[i].frequency,
-						"frequency_norm": scanresults[i].frequency_norm,
-						"address": scanresults[i].address,
-						"noise": scanresults[i].noise,
-						"pairwise_ciphers": scanresults[i].pairwise_ciphers,
-						"authentication_suites": scanresults[i].authentication_suites,
+						"maxrate": scanResults[i].bitrates,
+						"mode": scanResults[i].mode,
+						"quality": scanResults[i].quality,
+						"signal": scanResults[i].signal,
+						"frequency": scanResults[i].frequency,
+						"frequency_norm": scanResults[i].frequency_norm,
+						"address": scanResults[i].address,
+						"noise": scanResults[i].noise,
+						"pairwise_ciphers": scanResults[i].pairwise_ciphers,
+						"authentication_suites": scanResults[i].authentication_suites,
 					}
-				#data["bitrate"] = aps[ssid]["maxrate"]
+				# data["bitrate"] = aps[ssid]["maxrate"]
 				data["encryption"] = aps[ssid]["encrypted"]
 				data["quality"] = aps[ssid]["quality"]
 				data["signal"] = aps[ssid]["signal"]
 				data["channel"] = aps[ssid]["channel"]
 				data["encryption_type"] = aps[ssid]["encryption_type"]
-				#data["frequency"] = aps[ssid]["frequency"]
+				# data["frequency"] = aps[ssid]["frequency"]
 				data["frequency_norm"] = aps[ssid]["frequency_norm"]
-
-		self.wlaniface[iface] = data
-		self.backupwlaniface = self.wlaniface
-
-		if self.WlanConsole is not None:
-			if not self.WlanConsole.appContainers:
-				print("[Wlan] self.wlaniface after loading:%s" % str(self.wlaniface))
+		self.wlanIface[iface] = data
+		self.backupWlanIface = self.wlanIface
+		if self.wlanConsole is not None:
+			if not self.wlanConsole.appContainers:
+				print("[Wlan] self.wlanIface after loading: '%s'." % str(self.wlanIface))
 				if self.statusCallback is not None:
-						self.statusCallback(True, self.wlaniface)
+						self.statusCallback(True, self.wlanIface)
 						self.statusCallback = None
 
 	def getAdapterAttribute(self, iface, attribute):
 		self.iface = iface
-		if self.iface in self.wlaniface:
-			if attribute in self.wlaniface[self.iface]:
-				return self.wlaniface[self.iface][attribute]
+		if self.iface in self.wlanIface:
+			if attribute in self.wlanIface[self.iface]:
+				return self.wlanIface[self.iface][attribute]
 		return None
 
 
