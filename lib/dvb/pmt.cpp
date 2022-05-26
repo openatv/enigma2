@@ -42,6 +42,8 @@ eDVBServicePMTHandler::eDVBServicePMTHandler()
 	m_pmt_pid = -1;
 	m_dsmcc_pid = -1;
 	m_service_type = livetv;
+	m_ca_disabled = false;
+	m_pmt_ready = false;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
 	CONNECT(m_AIT.tableReady, eDVBServicePMTHandler::AITready);
@@ -160,6 +162,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 		serviceEvent(eventNoPMT);
 	else
 	{
+		m_pmt_ready = true;
 		m_have_cached_program = false;
 		serviceEvent(eventNewProgramInfo);
 		switch (m_service_type)
@@ -184,8 +187,11 @@ void eDVBServicePMTHandler::PMTready(int error)
 			{
 				registerCAService();
 			}
-			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
-			eDVBCIInterfaces::getInstance()->gotPMT(this);
+			if (!m_ca_disabled)
+			{
+				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
+				eDVBCIInterfaces::getInstance()->gotPMT(this);
+			}
 		}
 		if (m_ca_servicePtr)
 		{
@@ -843,6 +849,9 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		{
 			program.pmtPid = pmtpid;
 		}
+
+		program.isCached = true;
+
 		if ( vpidtype == -1 )
 			vpidtype = videoStream::vtMPEG2;
 		if ( cached_vpid != -1 )
@@ -1056,11 +1065,14 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		if (!simulate)
 			eDebug("[eDVBServicePMTHandler] allocate Channel: res %d", res);
 
+		if (!res)
+			serviceEvent(eventChannelAllocated);
+
 		ePtr<iDVBChannelList> db;
 		if (!m_resourceManager->getChannelList(db))
 			db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
-		if (!res && !simulate)
+		if (!res && !simulate && !m_ca_disabled)
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	} else if (!simulate) // no simulation of playback services
 	{
@@ -1192,4 +1204,25 @@ void eDVBServicePMTHandler::free()
 	m_channel = 0;
 	m_pvr_channel = 0;
 	m_demux = 0;
+}
+
+void eDVBServicePMTHandler::addCaHandler()
+{
+	m_ca_disabled = false;
+	if (m_channel)
+	{
+		eDVBCIInterfaces::getInstance()->addPMTHandler(this);
+		if (m_pmt_ready)
+		{
+			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
+			eDVBCIInterfaces::getInstance()->gotPMT(this);
+		}
+	}
+}
+
+void eDVBServicePMTHandler::removeCaHandler()
+{
+	m_ca_disabled = true;
+	if (m_channel)
+		eDVBCIInterfaces::getInstance()->removePMTHandler(this);
 }

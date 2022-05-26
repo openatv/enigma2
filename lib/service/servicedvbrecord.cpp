@@ -266,6 +266,11 @@ int eDVBServiceRecord::doPrepare()
 				f->open(m_ref.path.c_str());
 				source = ePtr<iTsSource>(f);
 			}
+			m_event((iRecordableService*)this, evPvrTuneStart);
+		}
+		else
+		{
+			m_event((iRecordableService*)this, evTuneStart);
 		}
 		return m_service_handler.tuneExt(m_ref, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
 	}
