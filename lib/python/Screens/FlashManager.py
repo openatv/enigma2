@@ -29,7 +29,7 @@ OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_URLS = {
 	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild"),
-	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "machinebuild"),
+	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
 	"OpenVisionE2": ("https://images.openvision.dedyn.io/json/%s", "model"),
@@ -118,10 +118,10 @@ class FlashManager(Screen, HelpableScreen):
 
 		if not self.imagesList:
 			try:
-				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "machinebuild"))
+				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"))
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
-				req = Request(url, None, {'User-agent' : 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5'})
+				req = Request(url, None, {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
 				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, self.box)
@@ -195,7 +195,7 @@ class FlashManager(Screen, HelpableScreen):
 			if distribution == self.imageFeed:
 				default = index
 		message = _("Please select a distribution from which you would like to flash an image:")
-		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, message, default=default, list=distributionList, windowTitle=_("Flash Manager"), simple=True)
+		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, message, default=default, list=distributionList, windowTitle=_("Flash Manager"))
 
 	def keyDistributionCallback(self, distribution):
 		self.imageFeed = distribution
@@ -308,7 +308,7 @@ class FlashImage(Screen):
 			print("[FlashManager] Image Slot %s: %s" % (slotCode, str(imagedict)))
 			choices.append(((_("slot%s - %s (current image)") if slotCode == currentimageslot else _("slot%s - %s")) % (slotCode, imagedict[slotCode]["imagename"]), (slotCode, True)))
 		choices.append((_("No, do not flash an image"), False))
-		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot-1, simple=True)
+		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot - 1)
 
 	def backupQuestionCB(self, retval=True):
 		if retval:
@@ -369,11 +369,11 @@ class FlashImage(Screen):
 					if isDevice or "no_backup" == retval:
 						self.startBackupsettings(retval)
 					else:
-						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"), simple=True)
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"))
 				except:
-					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
+					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR)
 			else:
-				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
+				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"), type=MessageBox.TYPE_ERROR)
 		else:
 			self.abort()
 
@@ -396,11 +396,11 @@ class FlashImage(Screen):
 			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
 			(_("Backup, flash and restore settings and selected plugins (ask user)"), "restoresettings"),
 			(_("Do not flash image"), "abort"))
-			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox, title=title, list=choices, selection=self.SelectPrevPostFlashAction())
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox, title=title, list=choices, selection=self.selectPrevPostFlashAction())
 		else:
 			self.abort()
 
-	def SelectPrevPostFlashAction(self):
+	def selectPrevPostFlashAction(self):
 		index = 1
 		if exists("/media/hdd/images/config/settings"):
 			index = 3
@@ -437,8 +437,8 @@ class FlashImage(Screen):
 				try:
 					if not exists(rootFolder):
 						makedirs(rootFolder)
-				except:
-					print("[FlashManager] postFlashActionCallback: failed to create %s folder" % rootFolder)
+				except (IOError, OSError) as err:
+					print("[FlashManager] postFlashActionCallback: Error %d: Failed to create '%s' folder! (%s)" % (err.errno, rootFolder, err.strerror))
 
 				if restoreSettings:
 					filestocreate.append("settings")
@@ -451,8 +451,8 @@ class FlashImage(Screen):
 					if fileName in filestocreate:
 						try:
 							open("%s/%s" % (rootFolder, fileName), "w").close()
-						except:
-							print("[FlashManager] postFlashActionCallback: failed to create %s/%s" % (rootFolder, fileName))
+						except (IOError, OSError) as err:
+							print("[FlashManager] postFlashActionCallback: Error %d: failed to create %s/%s! (%s)" % (err.errno, rootFolder, fileName, err.strerror))
 					else:
 						if exists("%s/%s" % (rootFolder, fileName)):
 							unlink("%s/%s" % (rootFolder, fileName))
@@ -467,8 +467,8 @@ class FlashImage(Screen):
 								else:
 									if exists("%s/%s" % (rootFolder, fileName)):
 										unlink("%s/%s" % (rootFolder, fileName))
-						except:
-							print("[FlashManager] postFlashActionCallback: failed to create restore mode flagfile")
+						except (IOError, OSError) as err:
+							print("[FlashManager] postFlashActionCallback: Error %d: failed to create restore mode flagfile! (%s)" % (err.errno, err.strerror))
 				self.startDownload()
 			else:
 				self.abort()
@@ -503,7 +503,7 @@ class FlashImage(Screen):
 
 	def downloadError(self, reason, status):
 		self.downloader.stop()
-		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
+		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR)
 
 	def downloadEnd(self):
 		self.downloader.stop()
@@ -523,7 +523,7 @@ class FlashImage(Screen):
 			ZipFile(self.zippedimage, "r").extractall(self.unzippedimage)
 			self.doFlashImage()
 		except:
-			self.session.openWithCallback(self.abort, MessageBox, _("Error during unzipping image\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
+			self.session.openWithCallback(self.abort, MessageBox, _("Error during unzipping image\n%s") % self.imagename, type=MessageBox.TYPE_ERROR)
 
 	def doFlashImage(self):
 		self["header"].setText(_("Flashing Image"))
@@ -548,29 +548,24 @@ class FlashImage(Screen):
 			else:
 				self.MTDKERNEL = BoxInfo.getItem("mtdkernel")
 				self.MTDROOTFS = BoxInfo.getItem("mtdrootfs")
-			CMD = [OFGWRITE, OFGWRITE]
-			if BoxInfo.getItem("model") in ("dm820", "dm7080"): # temp solution ofgwrite autodetection not ready
-				CMD.append("-rmmcblk0p1")
-			elif self.MTDKERNEL == self.MTDROOTFS:	# receiver with kernel and rootfs on one partition
-				CMD.append("-r")
-			else: # normal non multiboot receiver
-				CMD.append("-r")
-				CMD.append("-k")
+			cmd = [OFGWRITE, OFGWRITE]
+			if BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite autodetection not ready
+				cmd.append("-rmmcblk0p1")
+			elif self.MTDKERNEL == self.MTDROOTFS:  # Receiver with kernel and rootfs on one partition
+				cmd.append("-r")
+			else:  # Normal non multiboot receiver
+				cmd.extend("-r", "-k")
 			if MultiBoot.canMultiBoot():
-				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
-					CMD.append("-r%s" % self.MTDROOTFS)
-					CMD.append("-k%s" % self.MTDKERNEL)
-					CMD.append("-m0")
+				if (self.ROOTFSSUBDIR) is None:	 # Receiver with SD card multiboot
+					cmd.extend("-r%s" % self.MTDROOTFS, "-k%s" % self.MTDKERNEL, "-m0")
 				else:
-					CMD.append("-r")
-					CMD.append("-k")
-					CMD.append("-m%s" % self.multibootslot)
-			CMD.append("'%s'" % imagefiles)
+					cmd.extend("-r", "-k", "-m%s" % self.multibootslot)
+			cmd.append("'%s'" % imagefiles)
 			self.containerofgwrite = Console()
-			self.containerofgwrite.ePopen(CMD, self.flashImageDone)
+			self.containerofgwrite.ePopen(cmd, self.flashImageDone)
 			fbClass.getInstance().lock()
 		else:
-			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
+			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR)
 
 	def flashImageDone(self, data, retval, extra_args):
 		fbClass.getInstance().unlock()
@@ -580,7 +575,7 @@ class FlashImage(Screen):
 			self["summary_header"].setText(self["header"].getText())
 			self["info"].setText(_("%s\nPress ok for multiboot selection\nPress exit to close") % self.imagename)
 		else:
-			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
+			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR)
 
 	def abort(self, reply=None):
 		if self.getImageList or self.containerofgwrite:
