@@ -156,6 +156,8 @@ def GetBoxName():
 		box = "ustym4kpro"
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
+	elif box == 'sfx6018':
+		box = "sfx6008"
 	return box
 
 
