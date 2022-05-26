@@ -376,7 +376,6 @@ SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
-SystemInfo["canDualBoot"] = MultiBoot.canDualBoot()
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode") or MultiBoot.hasRecovery()
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")

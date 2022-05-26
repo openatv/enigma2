@@ -254,6 +254,5 @@ else:
 		<item entryID="restart" level="0" text="Reboot" weight="25"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 		<item entryID="restart_enigma" level="0" text="Restart GUI" weight="30"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 		<item entryID="maintenance_mode" level="0" text="Recovery Mode" weight="24" requires="RecoveryMode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
-		<item entryID="dual_mode" level="0" text="Dual Mode" weight="24" requires="canDualBoot"><screen module="Standby" screen="DualMode" /></item>
 	</menu>
 </menu>
