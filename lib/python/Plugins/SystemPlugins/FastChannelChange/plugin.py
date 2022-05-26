@@ -508,8 +508,8 @@ def Plugins(**kwargs):
 			fnc=addExtentions))
 
 		list.append(
-			PluginDescriptor(name=_("FCCSetup"),
-			description=_("Fast Channel Change setup"),
+			PluginDescriptor(name="FCCSetup",
+			description=_("Fast Channel Change Setup"),
 			where=[PluginDescriptor.WHERE_MENU],
 			needsRestart=False,
 			fnc=main))
