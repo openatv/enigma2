@@ -224,46 +224,46 @@ class wpaSupplicant:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-		content = ["#WPA Supplicant Configuration by enigma2"]
-		content.append("ctrl_interface=/var/run/wpa_supplicant")
-		content.append("eapol_version=1")
-		content.append("fast_reauth=1")
-		content.append("ap_scan=1")
-		content.append("network={")
-		content.append("\tssid=\"%s\"" % essid)
+		contents = ["#WPA Supplicant Configuration by enigma2"]
+		contents.append("ctrl_interface=/var/run/wpa_supplicant")
+		contents.append("eapol_version=1")
+		contents.append("fast_reauth=1")
+		contents.append("ap_scan=1")
+		contents.append("network={")
+		contents.append("\tssid=\"%s\"" % essid)
 		if hiddenessid:
-			content.append("\tscan_ssid=1")
+			contents.append("\tscan_ssid=1")
 		else:
-			content.append("\tscan_ssid=0")
+			contents.append("\tscan_ssid=0")
 		if encryption in ("WPA", "WPA2", "WPA/WPA2"):
-			content.append("\tkey_mgmt=WPA-PSK")
+			contents.append("\tkey_mgmt=WPA-PSK")
 			if encryption == "WPA":
-				content.append("\tproto=WPA")
-				content.append("\tpairwise=TKIP")
-				content.append("\tgroup=TKIP")
+				contents.append("\tproto=WPA")
+				contents.append("\tpairwise=TKIP")
+				contents.append("\tgroup=TKIP")
 			elif encryption == "WPA2":
-				content.append("\tproto=RSN")
-				content.append("\tpairwise=CCMP")
-				content.append("\tgroup=CCMP")
+				contents.append("\tproto=RSN")
+				contents.append("\tpairwise=CCMP")
+				contents.append("\tgroup=CCMP")
 			else:
-				content.append("\tproto=WPA RSN")
-				content.append("\tpairwise=CCMP TKIP")
-				content.append("\tgroup=CCMP TKIP")
-			content.append("\tpsk=\"%s\"" % psk)
+				contents.append("\tproto=WPA RSN")
+				contents.append("\tpairwise=CCMP TKIP")
+				contents.append("\tgroup=CCMP TKIP")
+			contents.append("\tpsk=\"%s\"" % psk)
 		elif encryption == "WEP":
-			content.append("\tkey_mgmt=NONE")
+			contents.append("\tkey_mgmt=NONE")
 			if wepkeytype == "ASCII":
-				content.append("\twep_key0=\"%s\"" % psk)
+				contents.append("\twep_key0=\"%s\"" % psk)
 			else:
-				content.append("\twep_key0=%s" % psk)
+				contents.append("\twep_key0=%s" % psk)
 		else:
-			content.append("\tkey_mgmt=NONE")
-		content.append("}")
+			contents.append("\tkey_mgmt=NONE")
+		contents.append("}")
 		fileWriteLines(getWlanConfigName(iface), lines=contents, source=MODULE_NAME)
 
 	def loadConfig(self, iface):
 		configFile = getWlanConfigName(iface)
-		if not exists(configfile):
+		if not exists(configFile):
 			configFile = "/etc/wpa_supplicant.conf"
 		lines = fileReadLines(configFile, default=None, source=MODULE_NAME)
 		if lines is None:
