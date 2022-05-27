@@ -109,7 +109,7 @@ class ScrollLabel(GUIComponent):
 				self.lastPage()
 			else:
 				self.setPos(0)
-			if (self. scrollbarmode == "showAlways") or ((self.scrollbarmode == "showOnDemand") and self.showscrollbar and self.TotalTextHeight > self.pageHeight):
+			if (self.scrollbarmode == "showAlways") or ((self.scrollbarmode == "showOnDemand") and self.showscrollbar and self.TotalTextHeight > self.pageHeight):
 				self.scrollbar.show()
 				self.updateScrollbar()
 			else:
