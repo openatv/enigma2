@@ -214,8 +214,6 @@ private:
 	static int DefaultScrollBarOffset;
 	static int DefaultScrollBarBorderWidth;
 	static int DefaultScrollBarType;
-	static ePtr<gPixmap> DefaultScrollBarPixmap;
-	static ePtr<gPixmap> DefaultScrollBarBackgroundPixmap;
 
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_type;
 	bool m_content_changed;
