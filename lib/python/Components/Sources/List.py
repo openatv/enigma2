@@ -35,7 +35,7 @@ to generate HTML."""
 		maxIndex = len(listData) - 1
 		oldIndex = min(self.index, maxIndex)
 		self.disableCallbacks = True
-		self.listData = listData
+		self.setList(listData)
 		self.index = oldIndex
 		self.disableCallbacks = False
 
