@@ -1090,7 +1090,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			borderwidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
 			scrollbarType = listbox.attrib.get("scrollbarType", "pageMode")
 			scrollbarType = 1 if scrollbarType == "lineMode" else 0
-			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth, scrollbarType)
+			enablewraparound = listbox.attrib.get("enableWrapAround", "0")
+			enablewraparound = parseBoolean("enablewraparound", enablewraparound)
+			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth, scrollbarType, enablewraparound)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
