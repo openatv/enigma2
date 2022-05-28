@@ -2430,7 +2430,7 @@ class NetworkInadyn(NetworkBaseScreen):
 		self["labtime"] = Label()
 		self["username"] = Label("%s:" % _("Username"))
 		self["labuser"] = Label()
-		self["password"] = Label(%s"" % _("Password"))
+		self["password"] = Label("%s:" % _("Password"))
 		self["labpass"] = Label()
 		self["alias"] = Label("%s:" % _("Alias"))
 		self["labalias"] = Label()
@@ -3319,7 +3319,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 					minidlna_serialno1 = getConfigListEntry("%s:" % _("Serial No"), self.minidlna_serialno)
 					self.list.append(minidlna_serialno1)
 				elif line.startswith("inotify="):
-					self.minidlna_inotify.value = line[8:] != "no":
+					self.minidlna_inotify.value = line[8:] != "no"
 					minidlna_inotify1 = getConfigListEntry("%s:" % _("Inotify Monitoring"), self.minidlna_inotify)
 					self.list.append(minidlna_inotify1)
 				elif line.startswith("enable_tivo="):
