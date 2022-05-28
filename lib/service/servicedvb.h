@@ -114,7 +114,7 @@ public:
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr);
-	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
+	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = nullptr; return -1; }
 
 		// iStreamedService
 	RESULT streamed(ePtr<iStreamedService> &ptr);
@@ -175,7 +175,7 @@ public:
 	RESULT setNextPlaybackFile(const char *fn);
 	RESULT saveTimeshiftFile();
 	std::string getTimeshiftFilename();
-	void switchToLive();
+	virtual void switchToLive();
 
 		// iTapService
 	bool startTapToFD(int fd, const std::vector<int> &pids, int packetsize = 188);
@@ -201,7 +201,6 @@ public:
 		// iStreamableService
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	ePtr<iStreamData> getStreamingData();
-
 	void setQpipMode(bool value, bool audio);
 
 protected:
@@ -211,6 +210,7 @@ protected:
 	ePtr<eDVBService> m_dvb_service;
 
 	ePtr<iTSMPEGDecoder> m_decoder;
+	int m_is_primary;
 	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
@@ -222,7 +222,7 @@ protected:
 	int m_current_audio_pid;
 	int m_current_video_pid_type;
 
-	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
+	eDVBServicePlay(const eServiceReference &ref, eDVBService *service, bool connect_event=true);
 
 		/* events */
 	void gotNewEvent(int error);

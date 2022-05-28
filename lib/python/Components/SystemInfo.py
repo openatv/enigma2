@@ -245,7 +245,7 @@ def GetBoxName():
 	machinename = getMachineName()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 		box = "ventonhdx"
-	elif box == 'odinm6':
+	elif box == "odinm6":
 		box = getMachineName().lower()
 	elif box == "inihde" and machinename.lower() == "xpeedlx":
 		box = "xpeedlx"
@@ -261,8 +261,8 @@ def GetBoxName():
 		box = "sf8"
 	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
 		box = box[0:3] + 'x00'
-	elif box == 'odinm9':
-		box = 'maram9'
+	elif box == "odinm9":
+		box = "maram9"
 	elif box.startswith('sf8008m'):
 		box = "sf8008m"
 	elif box.startswith('sf8008opt'):
@@ -273,6 +273,8 @@ def GetBoxName():
 		box = "ustym4kpro"
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
+	elif box == "sfx6018":
+		box = "sfx6008"
 	return box
 
 
@@ -364,7 +366,7 @@ SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnb
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
 SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439")
-SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or model in ("spycat4k", "spycat4kcombo", "gbquad4k")
+SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or BoxInfo.getItem("machinebuild") in ("spycat4k", "spycat4kcombo", "gbquad4k")
 SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
 SystemInfo["HaveRCA"] = getHaveRCA() == "True"
 SystemInfo["HaveDVI"] = getHaveDVI() == "True"
@@ -376,9 +378,8 @@ SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
-SystemInfo["canDualBoot"] = MultiBoot.canDualBoot()
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
-SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode") or MultiBoot.hasRecovery()
+SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
 SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in getMachineMtdRoot()
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")

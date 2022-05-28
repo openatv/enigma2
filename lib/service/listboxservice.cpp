@@ -144,6 +144,17 @@ void eListboxServiceContent::getNext(eServiceReference &ref)
 		ref = eServiceReference();
 }
 
+PyObject *eListboxServiceContent::getList()
+{
+	ePyObject result = PyList_New(m_list.size());
+	int pos=0;
+	for (list::iterator it(m_list.begin()); it != m_list.end(); ++it)
+	{
+		PyList_SET_ITEM(result, pos++, NEW_eServiceReference(*it));
+	}
+	return result;
+}
+
 int eListboxServiceContent::getNextBeginningWithChar(char c)
 {
 //	printf("Char: %c\n", c);

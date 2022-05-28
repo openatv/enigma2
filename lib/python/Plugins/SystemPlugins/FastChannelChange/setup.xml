@@ -1,0 +1,14 @@
+<setupxml>
+	<setup key="fcc" title="Fast Channel Change Setup">
+		<item level="0" text="FCC enabled" description="FCC enabled">config.plugins.fccsetup.activate</item>
+		<if conditional="config.plugins.fccsetup.activate.value > 0">
+			<item level="0" text="Max channels" description="Max channels">config.plugins.fccsetup.maxfcc</item>
+			<item level="0" text="Zap Up/Down" description="Zap Up/Down">config.plugins.fccsetup.zapupdown</item>
+			<item level="0" text="History Prev/Next" description="History Prev/Next">config.plugins.fccsetup.history</item>
+			<if conditional="config.plugins.fccsetup.zapupdown.value and config.plugins.fccsetup.history.value">
+				<item level="0" text="Priority" description="Priority">config.plugins.fccsetup.priority</item>
+			</if>
+			<item level="0" text="Disable FCC during recordings" description="Disable FCC during recordings">config.plugins.fccsetup.disableforrec</item>
+		</if>
+	</setup>
+</setupxml>
