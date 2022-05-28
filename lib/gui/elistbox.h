@@ -183,6 +183,7 @@ public:
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
+	int getScrollbarMode() { return m_scrollbar_mode; }
 	int getScrollbarWidth() { return m_scrollbar_width; }
 	int getScrollbarOffset() { return m_scrollbar_offset; }
 	int getScrollbarBorderWidth() { return m_scrollbar_border_width; }

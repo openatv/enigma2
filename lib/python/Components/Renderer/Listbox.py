@@ -18,9 +18,7 @@ class Listbox(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None
-		self.__wrap_around = True
 		self.__selection_enabled = True
-		self.__scrollbarMode = "showOnDemand"
 
 	GUI_WIDGET = eListbox
 
@@ -47,11 +45,13 @@ class Listbox(Renderer):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def setWrapAround(self, wrap_around):
-		self.__wrap_around = wrap_around
 		if self.instance is not None:
-			self.instance.setWrapAround(self.__wrap_around)
+			self.instance.setWrapAround(wrap_around)
+	
+	def getWrapAround(self):
+		return self.instance and self.instance.getWrapAround()
 
-	wrap_around = property(lambda self: self.__wrap_around, setWrapAround)
+	wrap_around = property(getWrapAround, setWrapAround)
 
 	def selectionChanged(self):
 		self.source.selectionChanged(self.index)
@@ -80,16 +80,26 @@ class Listbox(Renderer):
 	selection_enabled = property(lambda self: self.__selection_enabled, setSelectionEnabled)
 
 	def setScrollbarMode(self, mode):
-		self.__scrollbarMode = mode
 		if self.instance is not None:
 			self.instance.setScrollbarMode(int(
 				{
 					"showOnDemand": 0,
 					"showAlways": 1,
 					"showNever": 2,
+					"showLeft": 3,
 				}[mode]))
 
-	scrollbarMode = property(lambda self: self.__scrollbarMode, setScrollbarMode)
+	def getScrollbarMode(self):
+		mode = self.instance and self.instance.getScrollbarMode()
+		mode = {
+				0: "showOnDemand",
+				1: "showAlways",
+				2: "showNever",
+				3: "showLeft",
+			}.get(mode, "showNever")
+		return mode
+
+	scrollbarMode = property(getScrollbarMode, setScrollbarMode)
 
 	def changed(self, what):
 		if hasattr(self.source, "selectionEnabled"):
