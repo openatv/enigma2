@@ -736,8 +736,6 @@ class MultiBootInformation(InformationBase):
 				if count:
 					info.append("")
 				info.append(formatLine("S", MultiBoot.getBootCodeDescription(bootCode), None))
-				if self.extraSpacing:
-					info.append("")
 				info.extend(imageLists[bootCode])
 				count += 1
 			if count:

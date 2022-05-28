@@ -19,6 +19,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
+#include <lib/service/servicedvbfcc.h>
 #include "servicepeer.h"
 
 		/* for subtitles */
@@ -29,6 +30,8 @@
 
 #include <byteswap.h>
 #include <netinet/in.h>
+
+#include <lib/dvb/fcc.h>
 
 #include <iostream>
 #include <fstream>
@@ -934,7 +937,10 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 	if (r)
 		service = 0;
 		// check resources...
-	ptr = new eDVBServicePlay(ref, service);
+	if (eFCCServiceManager::checkAvailable(ref))
+		ptr = new eDVBServiceFCCPlay(ref, service);
+	else
+		ptr = new eDVBServicePlay(ref, service);
 	return 0;
 }
 
@@ -950,7 +956,7 @@ RESULT eServiceFactoryDVB::list(const eServiceReference &ref, ePtr<iListableServ
 	ePtr<eDVBServiceList> list = new eDVBServiceList(ref);
 	if (list->startQuery())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 
@@ -986,7 +992,7 @@ RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &ref, ePtr<
 {
 	if (ref.path.empty())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	} else
 	{
@@ -1024,9 +1030,10 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 	return 0;
 }
 
-eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service):
+eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service, bool connect_event):
 	m_reference(ref),
 	m_dvb_service(service),
+	m_is_primary(1),
 	m_decoder_index(0),
 	m_have_video_pid(0),
 	m_tune_state(-1),
@@ -1049,7 +1056,8 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_subtitle_sync_timer(eTimer::create(eApp)),
 	m_nownext_timer(eTimer::create(eApp))
 {
-	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
+	if (connect_event)
+		CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
@@ -1140,7 +1148,7 @@ void eDVBServicePlay::updateEpgCacheNowNext()
 {
 	bool update = false;
 	ePtr<eServiceEvent> next = 0;
-	ePtr<eServiceEvent> ptr = 0;
+	ePtr<eServiceEvent> ptr = nullptr;
 	eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
 	if (eEPGCache::getInstance() && eEPGCache::getInstance()->lookupEventTime(ref, -1, ptr) >= 0)
 	{
@@ -1458,6 +1466,7 @@ RESULT eDVBServicePlay::stop()
 
 RESULT eDVBServicePlay::setTarget(int target, bool noaudio = false)
 {
+	m_is_primary = !target;
 	m_decoder_index = target;
 	m_noaudio = noaudio;
 	return 0;
@@ -1476,7 +1485,7 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 		   is not active, you should activate it when unpausing */
 	if ((!m_is_pvr) && (!m_timeshift_enabled))
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 
@@ -1585,7 +1594,7 @@ RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 		return 0;
 	}
 
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -1792,7 +1801,7 @@ RESULT eDVBServicePlay::cueSheet(ePtr<iCueSheet> &ptr)
 		ptr = this;
 		return 0;
 	}
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -1821,7 +1830,7 @@ RESULT eDVBServicePlay::streamed(ePtr<iStreamedService> &ptr)
 		ptr = this;
 		return 0;
 	}
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -2223,7 +2232,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
-	if (!m_noaudio && m_decoder->setAudioPID(apid, apidtype))
+	if ((m_is_primary || !m_noaudio) && m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("[eDVBServicePlay] set audio pid %04x failed", apid);
 		return -4;
@@ -2237,8 +2246,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	int rdsPid = apid;
 
-		/* if timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
-	if (!(m_timeshift_active || m_decoder_index || m_have_video_pid))
+	/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
+	if (!(m_timeshift_active || m_decoder_index || m_have_video_pid || !m_is_primary))
 	{
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
