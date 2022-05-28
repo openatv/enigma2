@@ -1032,7 +1032,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		pass
 
 	def genMainMenu(self):
-		menu = [(_("Adapter settings"), "edit"), (_("Nameserver settings"), "dns"), (_("Network test"), "test"), (_("Restart Network"), "lanrestart")]
+		menu = [(_("Adapter Settings"), "edit"), (_("Nameserver settings"), "dns"), (_("Network test"), "test"), (_("Restart Network"), "lanrestart")]
 
 		self.extended = None
 		self.extendedSetup = None
@@ -1438,7 +1438,7 @@ class NetworkAdapterTest(Screen):
 		self.nextStepTimer.stop()
 
 	def layoutFinished(self):
-		self.setTitle(_("Network Test: %s") % iNetwork.getFriendlyAdapterName(self.iface))
+		self.setTitle("%s %s" % (_("Network Test:"), iNetwork.getFriendlyAdapterName(self.iface)))
 		self["shortcutsyellow"].setEnabled(False)
 		self["AdapterInfo_OK"].hide()
 		self["NetworkInfo_Check"].hide()
@@ -2226,7 +2226,7 @@ class NetworkSamba(NetworkBaseScreen):
 
 	def QuestionCallback(self, val):
 		if val:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, "%s\n\n%s" % (_("Do you want to also install samba client?"), _("This allows you to mount your windows shares on this device.")), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Do you want to also install samba client ?\nThis allows you to mount your windows shares on this device."), MessageBox.TYPE_YESNO)
 		else:
 			self.feedscheck.close()
 			self.close()
