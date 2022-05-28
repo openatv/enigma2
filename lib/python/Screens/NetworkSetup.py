@@ -421,7 +421,6 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("MAC-address"), self.getConfigMac))
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def ok(self):
 		MAC = self.getConfigMac.value
@@ -667,7 +666,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 									self.list.append(self.encryptionType)
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def newConfig(self):
 		if self["config"].getCurrent() == self.InterfaceEntry:
@@ -2596,7 +2594,6 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 
 			f.close()
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def KeyText(self):
 		sel = self["config"].getCurrent()
@@ -2913,7 +2910,6 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 					self.list.append(ushare_ps31)
 			f.close()
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def KeyText(self):
 		sel = self["config"].getCurrent()
@@ -3296,7 +3292,6 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 					self.list.append(minidlna_strictdlna1)
 			f.close()
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def KeyText(self):
 		sel = self["config"].getCurrent()
