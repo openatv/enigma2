@@ -1121,7 +1121,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("Finished restarting your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 	def dataAvail(self, data):
-		data = data.decode("UTF-8")
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -1196,23 +1195,23 @@ class NetworkAdapterTest(Screen):
 			"down": lambda: self.updownhandler("down")
 		}, prio=-2, description=_("Network Adapter Text Actions"))
 		self["updown_actions"].setEnabled(False)
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"], {
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
 			"red": self.cancel,
 			"back": self.cancel
 		}, prio=-2, description=_("Network Adapter Text Actions"))
-		self["infoshortcuts"] = ActionMap(["ShortcutActions", "WizardActions"], {
+		self["infoshortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
 			"red": self.closeInfo,
 			"back": self.closeInfo
 		}, prio=-2, description=_("Network Adapter Text Actions"))
 		self["infoshortcuts"].setEnabled(False)
-		self["shortcutsgreen"] = ActionMap(["ShortcutActions"], {
+		self["shortcutsgreen"] = HelpableActionMap(self, ["ShortcutActions"], {
 			"green": self.KeyGreen
 		}, prio=-2, description=_("Network Adapter Text Actions"))
-		self["shortcutsgreen_restart"] = ActionMap(["ShortcutActions"], {
+		self["shortcutsgreen_restart"] = HelpableActionMap(self, ["ShortcutActions"], {
 			"green": self.KeyGreenRestart
 		}, prio=-2, description=_("Network Adapter Text Actions"))
 		self["shortcutsgreen_restart"].setEnabled(False)
-		self["shortcutsyellow"] = ActionMap(["ShortcutActions"], {
+		self["shortcutsyellow"] = HelpableActionMap(self, ["ShortcutActions"], {
 			"yellow": self.KeyYellow,
 		}, prio=-2, description=_("Network Adapter Text Actions"))
 		self.onClose.append(self.delTimer)
@@ -1624,7 +1623,7 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 			"red": (self.close, _("exit networkadapter setup menu")),
 			})
 
-		self["actions"] = NumberActionMap(["WizardActions", "ShortcutActions"], {
+		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "ShortcutActions"], {
 			"ok": self.ok,
 			"back": self.close,
 			"up": self.up,
@@ -2272,7 +2271,7 @@ class NetworkSamba(NetworkBaseScreen):
 			self.updateService()
 
 	def Sambashowlog(self):
-		self.session.open(NetworkLogScreen, title=_("Samba Log"), logPath="/tmp/smb.log")
+		self.session.open(NetworkLogScreen, title=_("Samba Log"), logPath="/var/log/samba/log.smbd")
 
 	def SambaStartStop(self):
 		commands = []
@@ -2345,7 +2344,7 @@ class NetworkTelnet(NetworkBaseScreen):
 		self["key_green"] = Label(_("Start"))
 		self["key_red"] = Label(_("Remove Service"))
 		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
+		self["key_blue"] = Label("")
 		self.my_telnet_active = False
 		self.my_telnet_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -3678,21 +3677,22 @@ class NetworkLogScreen(Screen):
 			"bottom": (self["infotext"].moveBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Network Log Actions"))
 		strview = ""
-		self.tmpfile = "/tmp/networktmp.log"
+		self.logfile = logPath
 		if self.tailLog:
-			self.console.ePopen(("tail", logPath, ">" , self.tmpfile), self.showLog)
+			self.console.ePopen(["/usr/bin/tail", "/usr/bin/tail", logPath], self.showLog)
 		else:
-			self.tmpfile = logPath
 			self.showLog()
 
-	def showLog(self):
-		if fileExists(self.tmpfile):
-			f = open(self.tmpfile, "r")
-			for line in f.readlines():
-				strview += line
-			f.close()
-			if self.tailLog:
-				remove(self.tmpfile)
+	def showLog(self, data=None, retVal=None, extraArgs=None):
+		strview = ""
+		if self.tailLog:
+			strview = data
+		elif self.logfile:
+			if fileExists(self.logfile):
+				f = open(self.logfile, "r")
+				for line in f.readlines():
+					strview += line
+				f.close()
 		self["infotext"].setText(strview)
 
 	def keyCancel(self):
