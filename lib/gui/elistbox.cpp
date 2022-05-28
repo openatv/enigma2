@@ -342,12 +342,12 @@ void eListbox::updateScrollBar()
 		int width = size().width();
 		int height = size().height();
 		m_content_changed = false;
-		if (m_scrollbar_mode == showLeft)
+		if (m_scrollbar_mode == showLeft || m_scrollbar_mode == showLeftAlways)
 		{
 			m_content->setSize(eSize(width-m_scrollbar_width-m_scrollbar_offset, m_itemheight));
 			m_scrollbar->move(ePoint(0, 0));
 			m_scrollbar->resize(eSize(m_scrollbar_width, height));
-			if (entries > m_items_per_page)
+			if (entries > m_items_per_page || m_scrollbar_mode == showLeftAlways)
 			{
 				m_scrollbar->show();
 			}

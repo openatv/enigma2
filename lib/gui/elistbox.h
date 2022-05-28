@@ -102,7 +102,8 @@ public:
 		showOnDemand,
 		showAlways,
 		showNever,
-		showLeft
+		showLeft,
+		showLeftAlways
 	};
 
 	enum {

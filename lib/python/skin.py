@@ -1095,7 +1095,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				"showOnDemand": eListbox.showOnDemand,
 				"showAlways": eListbox.showAlways,
 				"showNever": eListbox.showNever,
-				"showLeft": eListbox.showLeft
+				"showLeft": eListbox.showLeft,
+				"showLeftAlways": eListbox.showLeftAlways
 			}.get(scrollbarMode, eListbox.showNever)
 			enablewraparound = listbox.attrib.get("enableWrapAround", "0")
 			enablewraparound = parseBoolean("enablewraparound", enablewraparound)
