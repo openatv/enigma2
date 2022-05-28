@@ -1062,14 +1062,25 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					except Exception:
 						pass
 				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
+
+		colorNameConversions = {
+			"ListboxSelectedBackground": "ListboxBackgroundSelected",
+			"ListboxSelectedForeground": "ListboxForegroundSelected",
+			"ListboxMarkedBackground": "ListboxBackgroundMarked",
+			"ListboxMarkedForeground": "ListboxForegroundMarked",
+			"ListboxMarkedAndSelectedBackground": "ListboxBackgroundMarkedSelected",
+			"ListboxMarkedAndSelectedForeground": "ListboxForegroundMarkedSelected",
+			"LabelForeground": "Foreground",
+		}
 		for color in tag.findall("color"):
-			colorType = color.attrib.get("name")
+			name = color.attrib.get("name")
+			name = colorNameConversions.get(name, name)
 			color = parseColor(color.attrib.get("color"))
 			try:
-				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
+				style.setColor(eWindowStyleSkinned.__dict__["col%s" % name], color)
 			except Exception:
-				raise SkinError("Unknown color type '%s'" % colorType)
-			# print("[Skin] DEBUG: WindowStyle color type %s , color - %s" % (colorType, str(color)))
+				raise SkinError("Unknown color name '%s'" % name)
+			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
 		for scrollbar in tag.findall("scrollbar"):
 			borderwidth = int(scrollbar.attrib.get("borderWidth", 0))
 			eSlider.setDefaultBorderWidth(borderwidth)
