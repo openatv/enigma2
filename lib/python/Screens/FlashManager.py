@@ -83,7 +83,7 @@ class FlashManager(Screen, HelpableScreen):
 			"green": (self.keyOk, _("Select the highlighted image and proceed to the slot selection")),
 			"yellow": (self.keyDistribution, _("Select a distribution from where images are to be obtained")),
 			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),
-			"top": (self.keyTop, _("Move to first line / screen ")),
+			"top": (self.keyTop, _("Move to first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line")),
