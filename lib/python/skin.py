@@ -3,7 +3,7 @@ from os.path import basename, dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB, setListBoxScrollbarStyle
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eSize, eSlider, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -1062,18 +1062,45 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					except Exception:
 						pass
 				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
+
+		colorNameConversions = {
+			"ListboxSelectedBackground": "ListboxBackgroundSelected",
+			"ListboxSelectedForeground": "ListboxForegroundSelected",
+			"ListboxMarkedBackground": "ListboxBackgroundMarked",
+			"ListboxMarkedForeground": "ListboxForegroundMarked",
+			"ListboxMarkedAndSelectedBackground": "ListboxBackgroundMarkedSelected",
+			"ListboxMarkedAndSelectedForeground": "ListboxForegroundMarkedSelected",
+			"LabelForeground": "Foreground",
+		}
 		for color in tag.findall("color"):
-			colorType = color.attrib.get("name")
+			name = color.attrib.get("name")
+			name = colorNameConversions.get(name, name)
 			color = parseColor(color.attrib.get("color"))
 			try:
-				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
+				style.setColor(eWindowStyleSkinned.__dict__["col%s" % name], color)
 			except Exception:
-				raise SkinError("Unknown color type '%s'" % colorType)
-			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
+				raise SkinError("Unknown color name '%s'" % name)
+			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
 		for scrollbar in tag.findall("scrollbar"):
-			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
-			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
-			setListBoxScrollbarStyle(width, offset)
+			borderwidth = int(scrollbar.attrib.get("borderWidth", 0))
+			eSlider.setDefaultBorderWidth(borderwidth)
+		for listbox in tag.findall("listbox"):
+			offset = int(listbox.attrib.get("scrollbarOffset", 5))
+			width = int(listbox.attrib.get("scrollbarWidth", 20))
+			borderwidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
+			scrollbarType = listbox.attrib.get("scrollbarType", "pageMode")
+			scrollbarType = 1 if scrollbarType == "lineMode" else 0
+			scrollbarMode = listbox.attrib.get("scrollbarMode", "showNever")
+			scrollbarMode = {
+				"showOnDemand": eListbox.showOnDemand,
+				"showAlways": eListbox.showAlways,
+				"showNever": eListbox.showNever,
+				"showLeft": eListbox.showLeft,
+				"showLeftAlways": eListbox.showLeftAlways
+			}.get(scrollbarMode, eListbox.showNever)
+			enablewraparound = listbox.attrib.get("enableWrapAround", "0")
+			enablewraparound = parseBoolean("enablewraparound", enablewraparound)
+			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth, scrollbarType, scrollbarMode, enablewraparound)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):

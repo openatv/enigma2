@@ -18,9 +18,7 @@ class Listbox(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None
-		self.__wrap_around = True
-		self.__selection_enabled = True
-		self.__scrollbarMode = "showOnDemand"
+		self.__selectionEnabled = True  # FIXME: The default is true already.
 
 	GUI_WIDGET = eListbox
 
@@ -38,20 +36,23 @@ class Listbox(Renderer):
 		if self.__content is not None:
 			instance.setContent(self.__content)
 		instance.selectionChanged.get().append(self.selectionChanged)
-		self.wrap_around = self.wrap_around # trigger
-		self.selection_enabled = self.selection_enabled # trigger
-		self.scrollbarMode = self.scrollbarMode # trigger
+		# Trigger property changes
+		self.wrapAround = self.wrapAround
+		self.selectionEnabled = self.selectionEnabled
+		self.scrollbarMode = self.scrollbarMode
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
-	def setWrapAround(self, wrap_around):
-		self.__wrap_around = wrap_around
+	def setWrapAround(self, wrapAround):
 		if self.instance is not None:
-			self.instance.setWrapAround(self.__wrap_around)
+			self.instance.setWrapAround(wrapAround)
+	
+	def getWrapAround(self):
+		return self.instance and self.instance.getWrapAround()
 
-	wrap_around = property(lambda self: self.__wrap_around, setWrapAround)
+	wrapAround = property(getWrapAround, setWrapAround)
 
 	def selectionChanged(self):
 		self.source.selectionChanged(self.index)
@@ -73,27 +74,39 @@ class Listbox(Renderer):
 			self.instance.moveSelection(direction)
 
 	def setSelectionEnabled(self, enabled):
-		self.__selection_enabled = enabled
+		self.__selectionEnabled = enabled
 		if self.instance is not None:
 			self.instance.setSelectionEnable(enabled)
 
-	selection_enabled = property(lambda self: self.__selection_enabled, setSelectionEnabled)
+	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
 
 	def setScrollbarMode(self, mode):
-		self.__scrollbarMode = mode
 		if self.instance is not None:
-			self.instance.setScrollbarMode(int(
+			self.instance.setScrollbarMode(
 				{
-					"showOnDemand": 0,
-					"showAlways": 1,
-					"showNever": 2,
-				}[mode]))
+					"showOnDemand": eListbox.showOnDemand,
+					"showAlways": eListbox.showAlways,
+					"showNever": eListbox.showNever,
+					"showLeft": eListbox.showLeft,
+					"showLeftAlways": eListbox.showLeftAlways,
+				}.get(mode, eListbox.showNever))
 
-	scrollbarMode = property(lambda self: self.__scrollbarMode, setScrollbarMode)
+	def getScrollbarMode(self):
+		mode = self.instance and self.instance.getScrollbarMode()
+		mode = {
+				eListbox.showOnDemand: "showOnDemand",
+				eListbox.showAlways: "showAlways",
+				eListbox.showNever: "showNever",
+				eListbox.showLeft: "showLeft",
+				eListbox.showLeftAlways: "showLeftAlways",
+			}.get(mode, "showNever")
+		return mode
+
+	scrollbarMode = property(getScrollbarMode, setScrollbarMode)
 
 	def changed(self, what):
 		if hasattr(self.source, "selectionEnabled"):
-			self.selection_enabled = self.source.selectionEnabled
+			self.selectionEnabled = self.source.selectionEnabled
 		if hasattr(self.source, "scrollbarMode"):
 			self.scrollbarMode = self.source.scrollbarMode
 		if len(what) > 1 and isinstance(what[1], str) and what[1] == "style":

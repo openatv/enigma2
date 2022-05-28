@@ -56,25 +56,33 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 	switch (what)
 	{
 	case styleLabel:
-		painter.setForegroundColor(m_color[colLabelForeground]);
+		painter.setForegroundColor(m_color[colForeground]);
 		break;
 	case styleListboxSelected:
-		painter.setForegroundColor(m_color[colListboxSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundSelected]);
 		break;
 	case styleListboxNormal:
 		painter.setForegroundColor(m_color[colListboxForeground]);
 		painter.setBackgroundColor(m_color[colListboxBackground]);
 		break;
 	case styleListboxMarked:
-		painter.setForegroundColor(m_color[colListboxMarkedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarked]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarked]);
 		break;
 	case styleListboxMarkedAndSelected:
-		painter.setForegroundColor(m_color[colListboxMarkedAndSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarkedSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarkedSelected]);
+		break;
+	case styleScollbar:
+		painter.setForegroundColor(m_color[colScrollbarForeground]);
+		painter.setBackgroundColor(m_color[colScrollbarBackground]);
+		break;
+	case styleScollbarBorder:
+		painter.setForegroundColor(m_color[colScrollbarBorder]);
 		break;
 	}
+
 }
 
 void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)
