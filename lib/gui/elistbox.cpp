@@ -10,6 +10,7 @@ int eListbox::DefaultScrollBarWidth = 10;
 int eListbox::DefaultScrollBarOffset = 5;
 int eListbox::DefaultScrollBarBorderWidth = 1;
 int eListbox::DefaultScrollBarType = pageMode;
+int eListbox::DefaultScrollBarMode = showNever;
 bool eListbox::DefaultWrapAround = false;
 
 eListbox::eListbox(eWidget *parent) :
@@ -23,6 +24,7 @@ eListbox::eListbox(eWidget *parent) :
 	m_scrollbar_border_width = eListbox::DefaultScrollBarBorderWidth;
 	m_scrollbar_type = eListbox::DefaultScrollBarType;
 	m_enabled_wrap_around = eListbox::DefaultWrapAround;
+	m_scrollbar_mode = eListbox::DefaultScrollBarMode;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
