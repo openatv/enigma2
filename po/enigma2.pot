@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 18:39+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2319,6 +2319,9 @@ msgstr ""
 msgid "Add files to playlist"
 msgstr ""
 
+msgid "Add help text"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3193,12 +3196,18 @@ msgstr ""
 msgid "Backup failed."
 msgstr ""
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr ""
 
 msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
+msgstr ""
+
+msgid "Backup settings"
 msgstr ""
 
 msgid "Backup system settings"
@@ -3844,6 +3853,12 @@ msgstr ""
 msgid "Cancel selection"
 msgstr ""
 
+msgid "Cancel the image selection and exit"
+msgstr ""
+
+msgid "Cancel the image selection and exit all menus"
+msgstr ""
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3862,9 +3877,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr ""
 
-msgid "Cannot delete downloaded image"
-msgstr ""
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -3874,9 +3886,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot find images - please try later"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -5795,6 +5804,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7051,6 +7063,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7162,6 +7178,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -7751,7 +7770,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr ""
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -7952,9 +7975,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Fullbackup Images"
 msgstr ""
 
 msgid "Fullscreen"
@@ -9898,6 +9918,10 @@ msgid "Location information"
 msgstr ""
 
 msgid "Location list"
+msgstr ""
+
+#, python-format
+msgid "Location: %s"
 msgstr ""
 
 msgid "Lock:"
@@ -12292,6 +12316,9 @@ msgstr ""
 msgid "Please select a default EPG type..."
 msgstr ""
 
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
 msgid "Please select a playlist to delete..."
 msgstr ""
 
@@ -14533,6 +14560,9 @@ msgstr ""
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a distribution from where images are to be obtained"
+msgstr ""
+
 msgid "Select a movie"
 msgstr ""
 
@@ -14706,6 +14736,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
