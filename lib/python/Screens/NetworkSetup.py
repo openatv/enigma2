@@ -1693,11 +1693,15 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 
 
 class NetworkBaseScreen(Screen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, showLog=False):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.service_name = ""
 		self.Console = Console()
+		self["key_red"] = StaticText(_("Remove Service"))
+		self["key_green"] = StaticText(_("Start"))
+		self["key_yellow"] = StaticText(_("Autostart"))
+		self["key_blue"] = StaticText(_("Show Log") if showLog else "")
 
 	def InstallCheck(self):
 		if self.service_name:
@@ -1784,10 +1788,6 @@ class NetworkAfp(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label()
 		self["status_summary"] = StaticText()
 		self["autostartstatus_summary"] = StaticText()
 		self.my_afp_active = False
@@ -1875,10 +1875,6 @@ class NetworkSABnzbd(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label()
 		self["status_summary"] = StaticText()
 		self["autostartstatus_summary"] = StaticText()
 		self.my_sabnzbd_active = False
@@ -1964,10 +1960,7 @@ class NetworkFtp(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_green"] = Label(_("Start"))
-		self["key_red"] = Label()
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label()
+		self["key_red"].setText("")
 		self.my_ftp_active = False
 		self.my_ftp_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -2049,10 +2042,6 @@ class NetworkNfs(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_green"] = Label(_("Start"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -2127,7 +2116,7 @@ class NetworkNfs(NetworkBaseScreen):
 
 class NetworkOpenvpn(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
+		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("OpenVPN Settings"))
 		self.skinName = "NetworkOpenvpn"
 		self.onChangedEntry = []
@@ -2139,10 +2128,6 @@ class NetworkOpenvpn(NetworkBaseScreen):
 		self["labconfig"] = Label(_("Config file name (ok to change):"))
 		self["labconfigfilename"] = Label(_("default"))
 		self.config_file = ""
-		self["key_green"] = Label(_("Start"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
 		self.my_vpn_active = False
 		self.my_vpn_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -2219,7 +2204,7 @@ class NetworkOpenvpn(NetworkBaseScreen):
 
 class NetworkSamba(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
+		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("Samba Setup"))
 		self.skinName = "NetworkSamba"
 		self.onChangedEntry = []
@@ -2228,10 +2213,6 @@ class NetworkSamba(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_green"] = Label(_("Start"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -2341,10 +2322,6 @@ class NetworkTelnet(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_green"] = Label(_("Start"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label("")
 		self.my_telnet_active = False
 		self.my_telnet_run = False
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions"], {
@@ -2416,7 +2393,7 @@ class NetworkTelnet(NetworkBaseScreen):
 
 class NetworkInadyn(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
+		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("Inadyn Settings"))
 		self.onChangedEntry = []
 		self["autostart"] = Label(_("Autostart:"))
@@ -2437,10 +2414,6 @@ class NetworkInadyn(NetworkBaseScreen):
 		self["sinactive"] = Pixmap()
 		self["system"] = Label("%s:" % _("System"))
 		self["labsys"] = Label()
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions", "SetupActions"], {
 			"ok": self.setupinadyn,
 			"back": self.close,
@@ -2682,7 +2655,7 @@ config.networkushare.mediafolders = NoSave(ConfigLocations(default=None))
 
 class NetworkuShare(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
+		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("uShare Settings"))
 		self.onChangedEntry = []
 		self["autostart"] = Label(_("Autostart:"))
@@ -2713,10 +2686,6 @@ class NetworkuShare(NetworkBaseScreen):
 		self["dlna"] = Label("%s:" % _("DLNA support"))
 		self["dlnaactive"] = Pixmap()
 		self["dlnainactive"] = Pixmap()
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions", "SetupActions"], {
 			"ok": self.setupushare,
 			"back": self.close,
@@ -3100,7 +3069,7 @@ config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=None))
 
 class NetworkMiniDLNA(NetworkBaseScreen):
 	def __init__(self, session):
-		NetworkBaseScreen.__init__(self, session)
+		NetworkBaseScreen.__init__(self, session, showLog=True)
 		self.setTitle(_("MiniDLNA Settings"))
 		self.onChangedEntry = []
 		self["autostart"] = Label(_("Autostart:"))
@@ -3128,10 +3097,6 @@ class NetworkMiniDLNA(NetworkBaseScreen):
 		self["dlna"] = Label("%s:" % _("Strict DLNA"))
 		self["dlnaactive"] = Pixmap()
 		self["dlnainactive"] = Pixmap()
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label(_("Show Log"))
 		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions", "SetupActions"], {
 			"ok": self.setupminidlna,
 			"back": self.close,
@@ -3569,10 +3534,6 @@ class NetworkSATPI(NetworkBaseScreen):
 		self["lab2"] = Label(_("Current Status:"))
 		self["labstop"] = Label(_("Stopped"))
 		self["labrun"] = Label(_("Running"))
-		self["key_red"] = Label(_("Remove Service"))
-		self["key_green"] = Label(_("Start"))
-		self["key_yellow"] = Label(_("Autostart"))
-		self["key_blue"] = Label()
 		self["status_summary"] = StaticText()
 		self["autostartstatus_summary"] = StaticText()
 		self.my_satpi_active = False
