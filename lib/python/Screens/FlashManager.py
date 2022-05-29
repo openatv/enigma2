@@ -447,8 +447,8 @@ class FlashImage(Screen):
 					filestocreate.append("noplugins")
 
 				for fileName in ["settings", "plugins", "noplugins"]:
+					path = pathjoin(rootFolder, fileName)
 					if fileName in filestocreate:
-						path = pathjoin(rootFolder, fileName)
 						try:
 							open(path, "w").close()
 						except (IOError, OSError) as err:
@@ -550,17 +550,17 @@ class FlashImage(Screen):
 				self.MTDKERNEL = BoxInfo.getItem("mtdkernel")
 				self.MTDROOTFS = BoxInfo.getItem("mtdrootfs")
 			cmd = [OFGWRITE, OFGWRITE]
-			if BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite autodetection not ready
-				cmd.append("-rmmcblk0p1")
-			elif self.MTDKERNEL == self.MTDROOTFS:  # Receiver with kernel and rootfs on one partition
-				cmd.append("-r")
-			else:  # Normal non multiboot receiver
-				cmd.extend(["-r", "-k"])
 			if MultiBoot.canMultiBoot():
 				if (self.ROOTFSSUBDIR) is None:	 # Receiver with SD card multiboot
 					cmd.extend(["-r%s" % self.MTDROOTFS, "-k%s" % self.MTDKERNEL, "-m0"])
 				else:
 					cmd.extend(["-r", "-k", "-m%s" % self.multibootslot])
+			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite autodetection not ready
+				cmd.append("-rmmcblk0p1")
+			elif self.MTDKERNEL == self.MTDROOTFS:  # Receiver with kernel and rootfs on one partition
+				cmd.append("-r")
+			else:  # Normal non multiboot receiver
+				cmd.extend(["-r", "-k"])
 			cmd.append("'%s'" % imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(cmd, self.flashImageDone)
