@@ -21,7 +21,9 @@ public:
 		styleListboxMarked,
 		styleListboxMarkedAndSelected,
 		styleScollbar,
-		styleScollbarBorder
+		styleScollbarBorder,
+		styleSlider,
+		styleSliderBorder
 	};
 
 	enum {

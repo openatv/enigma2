@@ -8,9 +8,15 @@ DEFINE_REF(eWindowStyleSkinned);
 
 eWindowStyleSkinned::eWindowStyleSkinned()
 {
-	// m_background_color = gRGB(0x808080);
-
 	// TODO: initialize colors!!
+
+	m_color[colForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarBorder] = gRGB(0xFFFFFF);
+	m_color[colWindowTitleForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderBorder] = gRGB(0xFFFFFF);
+
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
@@ -76,10 +82,15 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		break;
 	case styleScollbar:
 		painter.setForegroundColor(m_color[colScrollbarForeground]);
-		painter.setBackgroundColor(m_color[colScrollbarBackground]);
 		break;
 	case styleScollbarBorder:
 		painter.setForegroundColor(m_color[colScrollbarBorder]);
+		break;
+	case styleSlider:
+		painter.setForegroundColor(m_color[colSliderForeground]);
+		break;
+	case styleSliderBorder:
+		painter.setForegroundColor(m_color[colSliderBorder]);
 		break;
 	}
 
