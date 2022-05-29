@@ -549,19 +549,19 @@ class FlashImage(Screen):
 			else:
 				self.MTDKERNEL = BoxInfo.getItem("mtdkernel")
 				self.MTDROOTFS = BoxInfo.getItem("mtdrootfs")
-			cmd = [OFGWRITE, OFGWRITE]
+
 			if MultiBoot.canMultiBoot():
 				if (self.ROOTFSSUBDIR) is None:	 # Receiver with SD card multiboot
-					cmd.extend(["-r%s" % self.MTDROOTFS, "-k%s" % self.MTDKERNEL, "-m0"])
+					cmd = "-r%s -k%s -m0" % (self.MTDROOTFS, self.MTDKERNEL)
 				else:
-					cmd.extend(["-r", "-k", "-m%s" % self.multibootslot])
+					cmd = "-r -k -m%s" % self.multibootslot
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite autodetection not ready
-				cmd.append("-rmmcblk0p1")
+				cmd = "-rmmcblk0p1"
 			elif self.MTDKERNEL == self.MTDROOTFS:  # Receiver with kernel and rootfs on one partition
-				cmd.append("-r")
+				cmd = "-r"
 			else:  # Normal non multiboot receiver
-				cmd.extend(["-r", "-k"])
-			cmd.append("'%s'" % imagefiles)
+				cmd = "-r -k"
+			cmd = "%s %s '%s'" % (OFGWRITE, cmd, imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(cmd, self.flashImageDone)
 			fbClass.getInstance().lock()
