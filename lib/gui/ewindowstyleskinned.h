@@ -74,6 +74,10 @@ public:
 		colScrollbarBackground, // Currently not used because it is not working.
 		colScrollbarBorder,
 
+		colSliderForeground,
+		colSliderBackground, // Currently not used because it is not working.
+		colSliderBorder,
+
 		colMax
 	};
 

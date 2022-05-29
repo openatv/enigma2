@@ -1090,8 +1090,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			except Exception:
 				raise SkinError("Unknown color name '%s'" % name)
 			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
-		for scrollbar in tag.findall("scrollbar"):
-			borderWidth = int(scrollbar.attrib.get("borderWidth", 0))
+		for slider in tag.findall("slider"):
+			borderWidth = int(slider.attrib.get("borderWidth", 0))
 			eSlider.setDefaultBorderWidth(borderWidth)
 		for listbox in tag.findall("listbox"):
 			offset = int(listbox.attrib.get("scrollbarOffset", 5))

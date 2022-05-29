@@ -55,6 +55,7 @@ void eListbox::setScrollbarMode(int mode)
 	else
 	{
 		m_scrollbar = new eSlider(this);
+		m_scrollbar->setIsScrollbar();
 		m_scrollbar->hide();
 		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
