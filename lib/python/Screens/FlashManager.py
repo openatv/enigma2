@@ -102,7 +102,7 @@ class FlashManager(Screen, HelpableScreen):
 		def getImages(path, files):
 			for file in [x for x in files if splitext(x)[1] == ".zip" and self.box in x]:
 				try:
-					if checkImageFiles([x.split(sep)[-1] for x in ZipFile(file).namelist()]):
+					if checkImageFiles([x.split(sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
 						imageType = _("Downloaded images")
 						if "backup" in file.split(sep)[-1]:
 							imageType = _("Backup images")
