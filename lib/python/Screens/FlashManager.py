@@ -555,12 +555,12 @@ class FlashImage(Screen):
 			elif self.MTDKERNEL == self.MTDROOTFS:  # Receiver with kernel and rootfs on one partition
 				cmd.append("-r")
 			else:  # Normal non multiboot receiver
-				cmd.extend("-r", "-k")
+				cmd.extend(["-r", "-k"])
 			if MultiBoot.canMultiBoot():
 				if (self.ROOTFSSUBDIR) is None:	 # Receiver with SD card multiboot
-					cmd.extend("-r%s" % self.MTDROOTFS, "-k%s" % self.MTDKERNEL, "-m0")
+					cmd.extend(["-r%s" % self.MTDROOTFS, "-k%s" % self.MTDKERNEL, "-m0"])
 				else:
-					cmd.extend("-r", "-k", "-m%s" % self.multibootslot)
+					cmd.extend(["-r", "-k", "-m%s" % self.multibootslot])
 			cmd.append("'%s'" % imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(cmd, self.flashImageDone)
