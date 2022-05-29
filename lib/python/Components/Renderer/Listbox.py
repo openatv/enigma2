@@ -87,7 +87,8 @@ class Listbox(Renderer):
 					"showOnDemand": eListbox.showOnDemand,
 					"showAlways": eListbox.showAlways,
 					"showNever": eListbox.showNever,
-					"showLeft": eListbox.showLeft,
+					"showLeft": eListbox.showLeftOnDemand,
+					"showLeftOnDemand": eListbox.showLeftOnDemand,
 					"showLeftAlways": eListbox.showLeftAlways,
 				}.get(mode, eListbox.showNever))
 
@@ -97,7 +98,7 @@ class Listbox(Renderer):
 				eListbox.showOnDemand: "showOnDemand",
 				eListbox.showAlways: "showAlways",
 				eListbox.showNever: "showNever",
-				eListbox.showLeft: "showLeft",
+				eListbox.showLeftOnDemand: "showLeftOnDemand",
 				eListbox.showLeftAlways: "showLeftAlways",
 			}.get(mode, "showNever")
 		return mode

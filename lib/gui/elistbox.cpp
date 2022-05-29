@@ -342,7 +342,7 @@ void eListbox::updateScrollBar()
 		int width = size().width();
 		int height = size().height();
 		m_content_changed = false;
-		if (m_scrollbar_mode == showLeft || m_scrollbar_mode == showLeftAlways)
+		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
 		{
 			m_content->setSize(eSize(width-m_scrollbar_width-m_scrollbar_offset, m_itemheight));
 			m_scrollbar->move(ePoint(0, 0));
@@ -437,7 +437,7 @@ int eListbox::event(int event, void *data, void *data2)
 		const gRegion &paint_region = *(gRegion*)data;
 
 		int xoffset = 0;
-		if (m_scrollbar && m_scrollbar_mode == showLeft)
+		if (m_scrollbar && (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways))
 		{
 			xoffset = m_scrollbar->size().width() + m_scrollbar_offset;
 		}
@@ -466,9 +466,9 @@ int eListbox::event(int event, void *data, void *data2)
 		}
 
 		// clear/repaint empty/unused space between scrollbar and listboxentrys
-		if (m_scrollbar_mode == showLeft)
+		if (m_scrollbar)
 		{
-			if (m_scrollbar)
+			if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
 			{
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
 				if (m_scrollbar->isVisible())
@@ -482,16 +482,14 @@ int eListbox::event(int event, void *data, void *data2)
 				painter.clear();
 				painter.clippop();
 			}
-		}
-		else
-		{
-			if (m_scrollbar && m_scrollbar->isVisible())
+			else if (m_scrollbar->isVisible())
 			{
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
 				painter.clip(eRect(m_scrollbar->position() - ePoint(m_scrollbar_offset,0), eSize(m_scrollbar_offset,m_scrollbar->size().height())));
 				painter.clear();
 				painter.clippop();
 			}
+
 		}
 
 		m_content->cursorRestore();

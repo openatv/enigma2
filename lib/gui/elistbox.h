@@ -102,7 +102,7 @@ public:
 		showOnDemand,
 		showAlways,
 		showNever,
-		showLeft,
+		showLeftOnDemand,
 		showLeftAlways
 	};
 

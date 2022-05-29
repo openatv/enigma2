@@ -787,10 +787,12 @@ class AttributeParser:
 				"showOnDemand": self.guiObject.showOnDemand,
 				"showAlways": self.guiObject.showAlways,
 				"showNever": self.guiObject.showNever,
-				"showLeft": self.guiObject.showLeft
+				"showLeft": self.guiObject.showLeftOnDemand,
+				"showLeftOnDemand": self.guiObject.showLeftOnDemand,
+				"showLeftAlways": self.guiObject.showLeftAlways
 			}[value])
 		except KeyError:
-			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever' or 'showLeft'")
+			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever' or 'showLeft' or 'showLeftOnDemand'")
 
 	def scrollbarSliderBorderColor(self, value):
 		self.guiObject.setSliderBorderColor(parseColor(value))
@@ -1039,6 +1041,22 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				borderWidth = int(borderwidth)
 			face = eSubtitleWidget.__dict__[substyle.attrib.get("name")]
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
+	colorNameConversions = {
+		"LabelForeground": "Foreground",
+		"ListboxMarkedBackground": "ListboxBackgroundMarked",
+		"ListboxMarkedForeground": "ListboxForegroundMarked",
+		"ListboxMarkedAndSelectedBackground": "ListboxBackgroundMarkedSelected",
+		"ListboxMarkedAndSelectedForeground": "ListboxForegroundMarkedSelected",
+		"ListboxSelectedBackground": "ListboxBackgroundSelected",
+		"ListboxSelectedForeground": "ListboxForegroundSelected"
+	}
+	scrollbarModes = {
+		"showOnDemand": eListbox.showOnDemand,
+		"showAlways": eListbox.showAlways,
+		"showNever": eListbox.showNever,
+		"showLeftOnDemand": eListbox.showLeftOnDemand,
+		"showLeftAlways": eListbox.showLeftAlways
+	}
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
@@ -1063,15 +1081,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 						pass
 				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
 
-		colorNameConversions = {
-			"ListboxSelectedBackground": "ListboxBackgroundSelected",
-			"ListboxSelectedForeground": "ListboxForegroundSelected",
-			"ListboxMarkedBackground": "ListboxBackgroundMarked",
-			"ListboxMarkedForeground": "ListboxForegroundMarked",
-			"ListboxMarkedAndSelectedBackground": "ListboxBackgroundMarkedSelected",
-			"ListboxMarkedAndSelectedForeground": "ListboxForegroundMarkedSelected",
-			"LabelForeground": "Foreground",
-		}
 		for color in tag.findall("color"):
 			name = color.attrib.get("name")
 			name = colorNameConversions.get(name, name)
@@ -1082,25 +1091,19 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				raise SkinError("Unknown color name '%s'" % name)
 			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
 		for scrollbar in tag.findall("scrollbar"):
-			borderwidth = int(scrollbar.attrib.get("borderWidth", 0))
-			eSlider.setDefaultBorderWidth(borderwidth)
+			borderWidth = int(scrollbar.attrib.get("borderWidth", 0))
+			eSlider.setDefaultBorderWidth(borderWidth)
 		for listbox in tag.findall("listbox"):
 			offset = int(listbox.attrib.get("scrollbarOffset", 5))
 			width = int(listbox.attrib.get("scrollbarWidth", 20))
-			borderwidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
+			borderWidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
 			scrollbarType = listbox.attrib.get("scrollbarType", "pageMode")
 			scrollbarType = 1 if scrollbarType == "lineMode" else 0
 			scrollbarMode = listbox.attrib.get("scrollbarMode", "showNever")
-			scrollbarMode = {
-				"showOnDemand": eListbox.showOnDemand,
-				"showAlways": eListbox.showAlways,
-				"showNever": eListbox.showNever,
-				"showLeft": eListbox.showLeft,
-				"showLeftAlways": eListbox.showLeftAlways
-			}.get(scrollbarMode, eListbox.showNever)
-			enablewraparound = listbox.attrib.get("enableWrapAround", "0")
-			enablewraparound = parseBoolean("enablewraparound", enablewraparound)
-			eListbox.setDefaultScrollbarStyle(width, offset, borderwidth, scrollbarType, scrollbarMode, enablewraparound)
+			scrollbarMode = scrollbarModes.get(scrollbarMode, eListbox.showNever)
+			enableWrapAround = listbox.attrib.get("enableWrapAround", "0")
+			enableWrapAround = parseBoolean("enableWrapAround", enableWrapAround)
+			eListbox.setDefaultScrollbarStyle(width, offset, borderWidth, scrollbarType, scrollbarMode, enableWrapAround)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
