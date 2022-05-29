@@ -107,11 +107,11 @@ public:
 	};
 
 	enum {
-		pageMode,
-		lineMode
+		byPage,
+		byLine
 	};
 
-	void setScrollbarType(int type);
+	void setScrollbarScroll(int scroll);
 	void setScrollbarMode(int mode);
 	void setWrapAround(bool);
 
@@ -174,11 +174,11 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int type, int mode, bool enablewraparound) { 
+	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int scroll, int mode, bool enablewraparound) { 
 			DefaultScrollBarWidth = width; 
 			DefaultScrollBarOffset = offset; 
 			DefaultScrollBarBorderWidth = borderwidth; 
-			DefaultScrollBarType = type; 
+			DefaultScrollBarScroll = scroll; 
 			DefaultWrapAround = enablewraparound;
 			DefaultScrollBarMode = mode;
 		}
@@ -217,11 +217,11 @@ private:
 	static int DefaultScrollBarWidth;
 	static int DefaultScrollBarOffset;
 	static int DefaultScrollBarBorderWidth;
-	static int DefaultScrollBarType;
+	static int DefaultScrollBarScroll;
 	static int DefaultScrollBarMode;
 	static bool DefaultWrapAround;
 
-	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_type;
+	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 

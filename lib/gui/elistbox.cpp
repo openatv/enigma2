@@ -9,7 +9,7 @@
 int eListbox::DefaultScrollBarWidth = 10;
 int eListbox::DefaultScrollBarOffset = 5;
 int eListbox::DefaultScrollBarBorderWidth = 1;
-int eListbox::DefaultScrollBarType = pageMode;
+int eListbox::DefaultScrollBarScroll = byPage;
 int eListbox::DefaultScrollBarMode = showNever;
 bool eListbox::DefaultWrapAround = false;
 
@@ -17,12 +17,12 @@ eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_type(pageMode)
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_scroll(byPage)
 {
 	m_scrollbar_width = eListbox::DefaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::DefaultScrollBarOffset;
 	m_scrollbar_border_width = eListbox::DefaultScrollBarBorderWidth;
-	m_scrollbar_type = eListbox::DefaultScrollBarType;
+	m_scrollbar_scroll = eListbox::DefaultScrollBarScroll;
 	m_enabled_wrap_around = eListbox::DefaultWrapAround;
 	m_scrollbar_mode = eListbox::DefaultScrollBarMode;
 
@@ -58,7 +58,7 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->hide();
 		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
-		m_scrollbar->setRange(0,(m_scrollbar_type == lineMode) ? 1000 : 100);
+		m_scrollbar->setRange(0,(m_scrollbar_scroll == byLine) ? 1000 : 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
 		if (m_style.m_sliderborder_color_set) m_scrollbar->setBorderColor(m_style.m_sliderborder_color);
@@ -66,15 +66,15 @@ void eListbox::setScrollbarMode(int mode)
 }
 
 
-void eListbox::setScrollbarType(int type)
+void eListbox::setScrollbarScroll(int scroll)
 {
-	if (m_scrollbar && m_scrollbar_type != type)
+	if (m_scrollbar && m_scrollbar_scroll != scroll)
 	{
-		m_scrollbar_type = type;
+		m_scrollbar_scroll = scroll;
 		updateScrollBar();
 		return;
 	}
-	m_scrollbar_type = type;
+	m_scrollbar_scroll = scroll;
 }
 
 void eListbox::setWrapAround(bool state)
@@ -372,7 +372,7 @@ void eListbox::updateScrollBar()
 	if (m_items_per_page && entries)
 	{
 
-		if(m_scrollbar_type == lineMode) {
+		if(m_scrollbar_scroll == byLine) {
 
 			if(m_prev_scrollbar_page != m_selected) {
 				m_prev_scrollbar_page = m_selected;
