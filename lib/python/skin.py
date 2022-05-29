@@ -792,7 +792,7 @@ class AttributeParser:
 				"showLeftAlways": self.guiObject.showLeftAlways
 			}[value])
 		except KeyError:
-			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever' or 'showLeft' or 'showLeftOnDemand'")
+			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever', 'showLeftAlways' or 'showLeftOnDemand'")
 
 	def scrollbarSliderBorderColor(self, value):
 		self.guiObject.setSliderBorderColor(parseColor(value))
