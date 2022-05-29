@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2022-05-23 16:27+0000\n"
 "Last-Translator: Bader <fentanyl100@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -2339,6 +2339,9 @@ msgstr "بال"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr ""
 
@@ -2445,14 +2448,14 @@ msgstr "تفعيل صورة داخل صورة"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate current configuration"
-msgstr "تنشيط التشكيل الحالي"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+msgid "Activate network adapter configuration"
+msgstr "تنشيط تكوين محول الشبكه"
 
 #
 msgid "Activate network settings"
@@ -2570,6 +2573,9 @@ msgstr "إضافة ملف إلى قائمة التشغيل"
 
 msgid "Add files to playlist"
 msgstr "إضافة ملفات إلى قائمة التشغيل"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3042,8 +3048,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr ""
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"هل أنت متأكد أنك تريد إعادة تشغيل شبكة الانترنت ؟"
+msgstr "هل أنت متأكد أنك تريد إعادة تشغيل شبكة الانترنت ؟"
 
 #, python-format
 msgid ""
@@ -3514,6 +3519,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr "فشل عمل نسخة إحتياطية."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "جاري عمل نسخة إحتياطية ..."
 
@@ -3521,6 +3529,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "عمل نسخه إحتياطيه  لأعدادات النظام"
 
 msgid "Backup system settings"
 msgstr "عمل نسخة إحتياطية  لأعدادات النظام"
@@ -4214,6 +4226,16 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "إختيار القناه"
 
+#
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "إختيار القناه"
+
+#
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "إختيار القناه"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4233,10 +4255,6 @@ msgstr "إلغاء بناء علي طلب المستخدم"
 msgid "Cannot create backup directory"
 msgstr "إنشاء دليل"
 
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "هل تريد فعلا مسح المؤقتات المعموله ؟"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -4247,9 +4265,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "لا يمكن العثور على أي إشارة ... ، جارٍ الإلغاء !"
-
-msgid "Cannot find images - please try later"
-msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr ""
@@ -6272,6 +6287,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7608,6 +7626,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7724,6 +7746,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -7883,8 +7908,11 @@ msgstr "الخروج من قائمة الأفلام"
 msgid "Exit movie player?"
 msgstr "الخروج من مشغل الأفلام؟"
 
-msgid "Exit nameserver configuration"
-msgstr "الخروج من إعدادات أسم الخادم"
+msgid "Exit network adapter configuration"
+msgstr "الخروج من تهيئة محول الشبكه"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "الخروج من قائمة واجهة الشبكة"
@@ -8051,6 +8079,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -8328,7 +8359,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "شحن"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -8553,10 +8588,6 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
-
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "شحن"
 
 msgid "Fullscreen"
 msgstr ""
@@ -9585,7 +9616,13 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 msgid "Inadyn Settings"
@@ -10642,6 +10679,10 @@ msgstr ""
 msgid "Location list"
 msgstr "مكان"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "القفل:"
 
@@ -10756,15 +10797,18 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MAC-address"
-msgstr "عنوان IP"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "إعدادات المحول"
+
+#
+#, fuzzy
+msgid "MAC-address"
+msgstr "عنوان IP"
 
 msgid "MB"
 msgstr ""
@@ -11099,6 +11143,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11260,7 +11310,13 @@ msgstr "إرتباط"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -11608,6 +11664,9 @@ msgstr ""
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr ""
 
@@ -11702,7 +11761,16 @@ msgstr "إختفاء الشبكة"
 msgid "Network"
 msgstr "الشبكة"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -11718,6 +11786,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -11739,6 +11810,9 @@ msgstr "ضبط الشبكه"
 
 msgid "Network Test"
 msgstr ""
+
+msgid "Network Test:"
+msgstr "إختبار الشبكة: "
 
 msgid "Network Wizard"
 msgstr ""
@@ -11770,9 +11844,6 @@ msgstr "أختبار الشبكة"
 
 msgid "Network test..."
 msgstr ""
-
-msgid "Network Test:"
-msgstr "إختبار الشبكة: "
 
 msgid "Network:"
 msgstr "الشبكة:"
@@ -12550,6 +12621,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -13222,6 +13296,9 @@ msgid "Please select a backup destination"
 msgstr "من فضلك أختار الوسيط الذى سييستخدم كمكان للنسخه الإحتياطيه "
 
 msgid "Please select a default EPG type..."
+msgstr ""
+
+msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -15021,6 +15098,9 @@ msgstr "أفضل فديو"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15034,6 +15114,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -15118,6 +15201,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr "سانت فنسنت وجزر غرينادين"
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -15595,6 +15681,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "أختر دايزك سريع إذا كان نظامك الهوائي يدعم ذلك. إذا كنت غير متأكد ، اختر 'لا'."
 
+msgid "Select Folders"
+msgstr ""
+
 msgid "Select HDD"
 msgstr ""
 
@@ -15622,6 +15711,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15698,9 +15790,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "أختار ملفات/مجلدات النسخة الإحتياطية"
 
-msgid "Select Folders"
-msgstr ""
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "حدد السرعة التي يجب ان يتحرك بها الطبق بين الأقمار الصناعية."
 
@@ -15730,6 +15819,9 @@ msgstr "إختيار الجهاز المدخل."
 
 msgid "Select interface"
 msgstr "أختار الواجهة"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 msgid "Select movie"
@@ -15803,6 +15895,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -16227,9 +16322,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr ""
-
 #, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "اختار ملفات النسخه الإحتياطيه "
@@ -16274,6 +16366,9 @@ msgstr "تعيين تكرار التسلسل إذا كان النظام الهو
 
 msgid "Set startup service"
 msgstr "تعيين قناة بدء التشغيل"
+
+msgid "Set system"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -18711,6 +18806,9 @@ msgstr "لون ترجمة القنوات"
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr ""
 
@@ -19533,9 +19631,6 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr ""
-
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -19600,6 +19695,9 @@ msgid "Time style"
 msgstr "إختيار المؤقت"
 
 msgid "Time to execute command or script"
+msgstr ""
+
+msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
@@ -20626,9 +20724,8 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "استخدام معالج شبكه الاتصال لتكوين محول شبكه الاتصال المحدد"
 
-#, fuzzy
-msgid "Use the network wizard to configure your Network"
-msgstr "أستخدم نافذة الاعدادات لتهيئة الشبكه "
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وحدد إختيارك ثم أضغط موافق"
@@ -21942,6 +22039,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -22211,9 +22320,6 @@ msgstr "الغاء تحرير المفضله"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "تنشيط تكوين محول الشبكه"
 
 msgid "activatePiP"
 msgstr ""
@@ -22654,9 +22760,6 @@ msgstr "الخروج من مشغل الدى فى دى أو العوده الى �
 
 msgid "exit mounts setup menu"
 msgstr ""
-
-msgid "Exit network adapter configuration"
-msgstr "الخروج من تهيئة محول الشبكه"
 
 msgid "exit networkadapter setup menu"
 msgstr "الخروج من قائمه إعداد الشبكه"
@@ -23642,6 +23745,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -23649,6 +23755,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -23839,6 +23951,24 @@ msgstr "تم الانتقال"
 msgid "®"
 msgstr ""
 
+#~ msgid "Activate current configuration"
+#~ msgstr "تنشيط التشكيل الحالي"
+
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "هل تريد فعلا مسح المؤقتات المعموله ؟"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "الخروج من إعدادات أسم الخادم"
+
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "شحن"
+
+#, fuzzy
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "أستخدم نافذة الاعدادات لتهيئة الشبكه "
+
 #~ msgid ""
 #~ "\n"
 #~ " Do you want to switch Enigma2 with Android...?"
@@ -24003,10 +24133,6 @@ msgstr ""
 #~ msgstr "بحث آلـى"
 
 #, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "عمل نسخه إحتياطيه  لأعدادات النظام"
-
-#, fuzzy
 #~ msgid "Common Interface assignment"
 #~ msgstr "تحديد وحدة النفاذ المشروط"
 
@@ -24077,16 +24203,6 @@ msgstr ""
 
 #~ msgid "waiting"
 #~ msgstr "فى الانتظار"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "إختيار القناه"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "إختيار القناه"
 
 #
 #, fuzzy

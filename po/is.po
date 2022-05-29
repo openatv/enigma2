@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -2360,6 +2360,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr ""
 
@@ -2469,16 +2472,14 @@ msgstr "Virkja Mynd í Mynd"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Activate current configuration"
-msgstr "virkja núverandi stillingar"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+msgid "Activate network adapter configuration"
+msgstr "virkja stillingar netkorts"
 
 #
 msgid "Activate network settings"
@@ -2600,6 +2601,9 @@ msgstr "bæta skrá við spilunarlista"
 #, fuzzy
 msgid "Add files to playlist"
 msgstr "bæta rásum við spilunarlista"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3048,8 +3052,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Ertu viss um að þú viljir hætta í ráðgjafanum?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Ertu viss um að þú viljir virkja þessa net stillingu?"
+msgstr "Ertu viss um að þú viljir virkja þessa net stillingu?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3078,8 +3081,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr ""
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Ertu viss um að þú viljir endurræsa netkortið?"
+msgstr "Ertu viss um að þú viljir endurræsa netkortið?"
 
 #, python-format
 msgid ""
@@ -3553,6 +3555,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr "Afritun tókst ekki."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Afritun í vinnslu..."
 
@@ -3560,6 +3565,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "Afrita kerfis stillingar"
 
 msgid "Backup system settings"
 msgstr "Afrita kerfis stillingar"
@@ -4239,6 +4248,14 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Rása val"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Rása val"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Rása val"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4259,11 +4276,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr "búa til möppu"
 
-#
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "Viltu eyða liðnum tímastillingum?"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -4273,9 +4285,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot find images - please try later"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -6320,6 +6329,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7700,6 +7712,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7818,6 +7834,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -7993,9 +8012,11 @@ msgid "Exit movie player?"
 msgstr "hætta í spilara"
 
 #
-#, fuzzy
-msgid "Exit nameserver configuration"
-msgstr "fara úr nafnaþjóns stillingum"
+msgid "Exit network adapter configuration"
+msgstr "fara úr netkorts stillingum"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 #
 #, fuzzy
@@ -8170,6 +8191,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -8459,7 +8483,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Forritun"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -8692,11 +8720,6 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "Forritun"
 
 msgid "Fullscreen"
 msgstr ""
@@ -9760,7 +9783,13 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 msgid "Inadyn Settings"
@@ -10884,6 +10913,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Staðsetning"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lás:"
 
@@ -10999,15 +11032,18 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP Netfang"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Stilling tækis"
+
+#
+#, fuzzy
+msgid "MAC-address"
+msgstr "IP Netfang"
 
 msgid "MB"
 msgstr ""
@@ -11356,6 +11392,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11522,7 +11564,13 @@ msgstr ""
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -11910,6 +11958,9 @@ msgstr "NÆST"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr ""
 
@@ -12008,7 +12059,16 @@ msgstr "Netmaski"
 msgid "Network"
 msgstr "Netkerfi"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -12024,6 +12084,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -12046,6 +12109,9 @@ msgstr "Stillingar netkerfis"
 
 msgid "Network Test"
 msgstr ""
+
+msgid "Network Test:"
+msgstr "Prufa nettengingu:"
 
 msgid "Network Wizard"
 msgstr ""
@@ -12081,9 +12147,6 @@ msgstr "Prufa nettengingu"
 
 msgid "Network test..."
 msgstr "Prufa nettengingu..."
-
-msgid "Network Test:"
-msgstr "Prufa nettengingu:"
 
 #
 msgid "Network:"
@@ -12889,6 +12952,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -13608,6 +13674,9 @@ msgid "Please select a backup destination"
 msgstr "Vinsamlega veljið tæki til að nota sem afritunar stað"
 
 msgid "Please select a default EPG type..."
+msgstr ""
+
+msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
 #
@@ -15519,6 +15588,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15532,6 +15604,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -15618,6 +15693,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -16118,6 +16196,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+msgid "Select Folders"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Veldu harðadisk"
 
@@ -16147,6 +16228,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -16231,9 +16315,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "Veldu skrár/möppur til afritunar"
 
-msgid "Select Folders"
-msgstr ""
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -16264,6 +16345,9 @@ msgstr "Veldu inntaks tæki."
 #
 msgid "Select interface"
 msgstr "Veldu netkort"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 #, fuzzy
@@ -16340,6 +16424,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -16779,9 +16866,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr ""
-
 #, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "Veldu afrits skrár"
@@ -16824,6 +16908,9 @@ msgid "Set sequence repeats if your aerial system requires this. Normally if the
 msgstr ""
 
 msgid "Set startup service"
+msgstr ""
+
+msgid "Set system"
 msgstr ""
 
 #
@@ -19345,6 +19432,9 @@ msgstr ""
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr ""
 
@@ -20188,9 +20278,6 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr ""
-
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -20257,6 +20344,9 @@ msgid "Time style"
 msgstr "Tímastillinga val"
 
 msgid "Time to execute command or script"
+msgstr ""
+
+msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
@@ -21321,10 +21411,8 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Nota ráðgjafa til að stilla valið netkort"
 
-#
-#, fuzzy
-msgid "Use the network wizard to configure your Network"
-msgstr "Nota netkerfis álf til að stilla inn netkerfið"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -22706,6 +22794,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -22983,9 +23083,6 @@ msgstr "hætta við að breyta eftirlætis lista"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "virkja stillingar netkorts"
 
 msgid "activatePiP"
 msgstr ""
@@ -23453,10 +23550,6 @@ msgstr "hætta í DVD spilara og fara til baka í skráarvafra"
 
 msgid "exit mounts setup menu"
 msgstr ""
-
-#
-msgid "Exit network adapter configuration"
-msgstr "fara úr netkorts stillingum"
 
 #
 msgid "exit networkadapter setup menu"
@@ -24515,6 +24608,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -24522,6 +24618,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24715,6 +24817,31 @@ msgstr "stokkið"
 msgid "®"
 msgstr ""
 
+#
+#, fuzzy
+#~ msgid "Activate current configuration"
+#~ msgstr "virkja núverandi stillingar"
+
+#
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Viltu eyða liðnum tímastillingum?"
+
+#
+#, fuzzy
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "fara úr nafnaþjóns stillingum"
+
+#
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "Forritun"
+
+#
+#, fuzzy
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Nota netkerfis álf til að stilla inn netkerfið"
+
 #, fuzzy
 #~ msgid ""
 #~ "Are you sure you want to delete this:\n"
@@ -24891,10 +25018,6 @@ msgstr ""
 #~ msgstr "Taka upp"
 
 #, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "Afrita kerfis stillingar"
-
-#, fuzzy
 #~ msgid "Common Interface assignment"
 #~ msgstr "Stillingar afruglara tengis"
 
@@ -24970,14 +25093,6 @@ msgstr ""
 
 #~ msgid "The sleep timer has been disabled."
 #~ msgstr "Tímastilling til að slökkva er óvirkur."
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Rása val"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Rása val"
 
 #
 #, fuzzy

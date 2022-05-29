@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2197,6 +2197,9 @@ msgstr ""
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr ""
 
@@ -2292,14 +2295,14 @@ msgstr "Активиране на Картина в Картина"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Активиране на начин за изпращане на отделни или специфични вътрешни HDMI-CEC команди от командния ред."
 
-msgid "Activate current configuration"
-msgstr "Активиране на текущата конфигурация"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Активиране на списъка с файлове отляво като източник за избор на множество"
 
 msgid "Activate left-hand file list as source"
 msgstr "Активиране на списъка с файлове отляво като източник"
+
+msgid "Activate network adapter configuration"
+msgstr "активиране на конфигурацията на мрежовия адаптер"
 
 msgid "Activate network settings"
 msgstr "Активиране на мрежовите настройки"
@@ -2402,6 +2405,9 @@ msgstr "Добавяне на файл към плейлиста"
 
 msgid "Add files to playlist"
 msgstr "Добавяне на файлове към плейлиста"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr "Добавяне на нов маркер"
@@ -2811,8 +2817,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Сигурен ли си че искаш да премахнеш този запис?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Сигурен ли си че искаш да активираш тази мрежова конфигурация?"
+msgstr "Сигурен ли си че искаш да активираш тази мрежова конфигурация?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2843,8 +2848,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Сигурен ли си че искаш да се презаредят данните на EPG от:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Сигурен ли си че искаш да рестартираш своите мрежовите интерфейси?"
+msgstr "Сигурен ли си че искаш да рестартираш своите мрежовите интерфейси?"
 
 #, python-format
 msgid ""
@@ -3289,6 +3293,9 @@ msgstr "Архивиране направено."
 msgid "Backup failed."
 msgstr "Архивирането не бе успешно."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Архивирането е в движение..."
 
@@ -3298,6 +3305,9 @@ msgid ""
 msgstr ""
 "Архивирани плъгини са намерени \n"
 "искате ли да се инсталират сега?"
+
+msgid "Backup settings"
+msgstr "Настройки за архивиране"
 
 msgid "Backup system settings"
 msgstr "Архивиране на системни настройки"
@@ -3963,6 +3973,12 @@ msgstr "Отказ за запазване на времевото измест�
 msgid "Cancel selection"
 msgstr "Отмяна на избора"
 
+msgid "Cancel the image selection and exit"
+msgstr "Отменете избора на изображение и излезте"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Отменете избора на изображение и излезте от всички менюта"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -3981,9 +3997,6 @@ msgstr "Отменено по искане на потребителя"
 msgid "Cannot create backup directory"
 msgstr "Не може да се създаде директория за архивиране"
 
-msgid "Cannot delete downloaded image"
-msgstr "Не може да се изтрие изтегленото изображение"
-
 msgid "Cannot delete file"
 msgstr "Не мога да изтрия файла"
 
@@ -3994,9 +4007,6 @@ msgstr "Не може да се определи %s лимит ..., прекра
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Не мога да намеря никакъв сигнал ..., претърпявам неуспех !"
-
-msgid "Cannot find images - please try later"
-msgstr "Не мога да намеря изображения - моля, опитайте по-късно"
 
 msgid "Cannot move to trash can"
 msgstr "Не мога да преместя в коша за боклук"
@@ -5922,6 +5932,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "Изтрийте избраните файлове или директории"
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr "Изтрийте този маркер"
 
@@ -7221,6 +7234,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Грешка %d: Не може да се промени паролата!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Грешка %d: Не може да се стартира командата 'passwd'!"
 
@@ -7358,6 +7375,9 @@ msgstr ""
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Грешка: %s %s не %s!  Моля, опитайте отново по-късно."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr "Грешка: Контролната сума е невалидна!"
@@ -7517,8 +7537,11 @@ msgstr "Изход от филмовия списък"
 msgid "Exit movie player?"
 msgstr "Изход от филмовия плеър?"
 
-msgid "Exit nameserver configuration"
-msgstr "Изход от конфигурацията на сървъра за имена"
+msgid "Exit network adapter configuration"
+msgstr "изход от конфигурацията на мрежовия адаптер"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Изход от списъка с мрежови интерфейси"
@@ -7681,6 +7704,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -7949,8 +7975,12 @@ msgstr "Фиксиран шрифт X11 (SD)"
 msgid "Flash Image"
 msgstr "Флаш изображение"
 
-msgid "Flash On the Fly"
-msgstr "Флаш в движение"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Флаш онлайн"
@@ -8153,9 +8183,6 @@ msgstr "Пълен HD тест"
 
 msgid "FullHD Test"
 msgstr "Full HD тест"
-
-msgid "Fullbackup Images"
-msgstr "Изображения с пълно резервно копие"
 
 msgid "Fullscreen"
 msgstr "Цял екран"
@@ -9149,7 +9176,13 @@ msgstr "Неактивен"
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 msgid "Inadyn Settings"
@@ -10114,6 +10147,10 @@ msgstr "Информация за местоположението"
 msgid "Location list"
 msgstr "Списък с местоположение"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Заключване:"
 
@@ -10222,11 +10259,14 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-msgid "MAC-address"
-msgstr "MAC- адрес"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Настройки за MAС-адрес"
+
+msgid "MAC-address"
+msgstr "MAC- адрес"
 
 msgid "MB"
 msgstr ""
@@ -10539,6 +10579,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr "Средно - олекотено изображение"
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 msgid "Mini Series"
 msgstr "Мини серии"
 
@@ -10689,8 +10735,14 @@ msgstr "Монтиране"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Монтирането „%s“ няма достатъчно свободно място за запис."
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Мениджър за монтиране"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Настройка на монтажа"
@@ -11006,6 +11058,9 @@ msgstr "СЛЕДВАЩ"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "NFS настройка"
 
@@ -11094,8 +11149,17 @@ msgstr "Мрежова маска"
 msgid "Network"
 msgstr "Мрежа"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Избор на мрежов адаптер"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Мрежов браузър"
@@ -11111,6 +11175,9 @@ msgstr "Мрежови информационни действия"
 
 msgid "Network Interface"
 msgstr "Мрежов интерфейс"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Мрежови MAC настройки"
@@ -11129,6 +11196,9 @@ msgstr "Мрежова настройка"
 
 msgid "Network Test"
 msgstr "Тест мрежа"
+
+msgid "Network Test:"
+msgstr "Тест мрежа: "
 
 msgid "Network Wizard"
 msgstr "Мрежов помощник"
@@ -11159,9 +11229,6 @@ msgstr "Тест мрежа"
 
 msgid "Network test..."
 msgstr "Тест мрежа..."
-
-msgid "Network Test:"
-msgstr "Тест мрежа: "
 
 msgid "Network:"
 msgstr "Мрежа:"
@@ -11877,6 +11944,9 @@ msgstr "Отворете SSL версия"
 msgid "OpenVPN"
 msgstr "Отворете VPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "Отворете VPN настройка"
 
@@ -12504,6 +12574,9 @@ msgstr "Моля, изберете дестинация за резервно к
 
 msgid "Please select a default EPG type..."
 msgstr "Моля, изберете тип EPG по подразбиране...."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Моля, изберете плейлист за изтриване..."
@@ -14229,6 +14302,9 @@ msgstr ""
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd настройки"
 
@@ -14242,6 +14318,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 msgid "SATPI Settings"
@@ -14322,6 +14401,9 @@ msgstr ""
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Samba дневник"
@@ -14766,6 +14848,9 @@ msgstr "Изберете Enigma2 кожа"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Изберете Fast DiSEqC, ако вашата антенна система поддържа това. Ако не сте сигурни, изберете „не“."
 
+msgid "Select Folders"
+msgstr "Изберете папки"
+
 msgid "Select HDD"
 msgstr "Изберете HDD"
 
@@ -14792,6 +14877,9 @@ msgstr "Изберете букет"
 
 msgid "Select a cardserver from the available list."
 msgstr "Изберете сървър за карти от наличния списък."
+
+msgid "Select a distribution from where images are to be obtained"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Изберете филм"
@@ -14863,9 +14951,6 @@ msgstr "Изберете файлове, за изключване от архи
 msgid "Select files/folders to backup"
 msgstr "Изберете файлове/папки за архивиране"
 
-msgid "Select Folders"
-msgstr "Изберете папки"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Изберете колко бързо трябва да се движи чинията между сателитите."
 
@@ -14895,6 +14980,9 @@ msgstr "Изберете входно устройство."
 
 msgid "Select interface"
 msgstr "Изберете интерфейс"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Изберете филм"
@@ -14967,6 +15055,9 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Изберете желаната функция и кликнете върху „OK“, за да я зададете. Използвайте \"CH+/-\", за да превключвате между списъците. Изберете назначена функция и щракнете върху „OK“, за да я отмените. Използвайте \"Напред/Назад\", за да промените реда на назначените функции."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr ""
@@ -15374,9 +15465,6 @@ msgstr "Задайте присвояване на CI за откриване н
 msgid "Set Framerate for MiniTV"
 msgstr "Задайте Framerate за MiniTV"
 
-msgid "Set system"
-msgstr "Задайте система"
-
 msgid "Set action for 'Info' key"
 msgstr "Задайте действие за клавиша „Информация“"
 
@@ -15418,6 +15506,9 @@ msgstr "Задайте последователност на повтаряне,
 
 msgid "Set startup service"
 msgstr "Задайте сервиз за стартиране"
+
+msgid "Set system"
+msgstr "Задайте система"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -17678,6 +17769,9 @@ msgstr "Цвят на субтитрите"
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Telnet интерфейс"
 
@@ -18514,9 +18608,6 @@ msgstr "Настройки на времето"
 msgid "Time Setup Actions"
 msgstr "Действия за настройка на времето"
 
-msgid "Time update in minutes"
-msgstr "Актуализация на времето в минути"
-
 msgid "Time Update in Minutes:"
 msgstr "Актуализация на времето в минути:"
 
@@ -18574,6 +18665,9 @@ msgstr "Стил на времето"
 
 msgid "Time to execute command or script"
 msgstr "Време за изпълнение на команда или скрипт"
+
+msgid "Time update in minutes"
+msgstr "Актуализация на времето в минути"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Времеви прозорец за откриване на събуждането от таймер [мин.]"
@@ -19525,8 +19619,8 @@ msgstr "Използване на разширения списък"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Използване на съветника за мрежа, за да конфигурирате избрания мрежов адаптер"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Използване на съветника за мрежа, за да конфигурирате вашата мрежа"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Използване на бутони нагоре/надолу на дистанционно за избор на опция. След това, натиснете ОК."
@@ -20818,6 +20912,18 @@ msgstr ""
 "Вашият %s %s ще бъде рестартиран след отстраняване на сервиза\n"
 "Искате ли да го премахнете сега ?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Вашият хардуер може да открие CI режим или работи само в предишния режим."
 
@@ -21090,9 +21196,6 @@ msgstr "прекратяване на редактирането на любим
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "активиране на конфигурацията на мрежовия адаптер"
 
 msgid "activatePiP"
 msgstr "активиране на PiP"
@@ -21518,9 +21621,6 @@ msgstr "излезте от DVD плейъра или се върнете към
 
 msgid "exit mounts setup menu"
 msgstr "излезте от менюто за настройка"
-
-msgid "Exit network adapter configuration"
-msgstr "изход от конфигурацията на мрежовия адаптер"
 
 msgid "exit networkadapter setup menu"
 msgstr "изход от менюто за настройка на мрежовия адаптер"
@@ -22453,6 +22553,9 @@ msgstr "турбо"
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -22460,6 +22563,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -22633,6 +22742,27 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Активиране на текущата конфигурация"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Не може да се изтрие изтегленото изображение"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Не мога да намеря изображения - моля, опитайте по-късно"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Изход от конфигурацията на сървъра за имена"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Флаш в движение"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Изображения с пълно резервно копие"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Използване на съветника за мрежа, за да конфигурирате вашата мрежа"
 
 #~ msgid ""
 #~ "\n"
@@ -22888,9 +23018,6 @@ msgstr ""
 #~ msgid "Automatic scan"
 #~ msgstr "Автоматично сканиране"
 
-#~ msgid "Backup settings"
-#~ msgstr "Настройки за архивиране"
-
 #~ msgid "DVD file browser"
 #~ msgstr "DVD файлов браузър"
 
@@ -23104,12 +23231,6 @@ msgstr ""
 
 #~ msgid "not activated"
 #~ msgstr "не е активиран"
-
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Отменете избора на изображение и излезте"
-
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Отменете избора на изображение и излезте от всички менюта"
 
 #~ msgid "No images found"
 #~ msgstr "Няма намерени изображения"

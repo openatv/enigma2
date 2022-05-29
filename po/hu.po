@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2240,6 +2240,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "AFP beállítása"
 
@@ -2337,14 +2340,14 @@ msgstr "Kép-a-Képben bekapcsolása"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktiválja az egyéni vagy meghatározott belső HDMI-CEC parancsok parancssorból történő küldésének módját."
 
-msgid "Activate current configuration"
-msgstr "Aktuális konfiguráció aktiválása"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Baloldali fájllista aktiválása több kijelölésű forrásként"
 
 msgid "Activate left-hand file list as source"
 msgstr "Baloldali fájllista aktiválása forrásként"
+
+msgid "Activate network adapter configuration"
+msgstr "hálózati adapter konfiguráció aktiválása"
 
 msgid "Activate network settings"
 msgstr "Hálózati beállítások aktiválása"
@@ -2447,6 +2450,9 @@ msgstr "Fájl hozzáadása a lejátszási listához"
 
 msgid "Add files to playlist"
 msgstr "Fájlok hozzáadása a lejátszási listához"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr "Új címke hozzáadása "
@@ -2858,8 +2864,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Biztos benne, hogy eltávolítja ezt a bejegyzést?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Biztos benne, hogy aktiválni kívánja ezt a hálózati konfigurációt?"
+msgstr "Biztos benne, hogy aktiválni kívánja ezt a hálózati konfigurációt?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2890,8 +2895,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Biztosan újra szeretné tölteni az EPG adatokat innen:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Biztos hogy újra akarja indítani a hálózati interfészt?"
+msgstr "Biztos hogy újra akarja indítani a hálózati interfészt?"
 
 #, python-format
 msgid ""
@@ -3340,6 +3344,9 @@ msgstr "Mentés kész."
 msgid "Backup failed."
 msgstr "Mentés sikertelen."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Mentés folyamatban..."
 
@@ -3349,6 +3356,9 @@ msgid ""
 msgstr ""
 "Mentett bővítményeket talált\n"
 "szeretné telepíteni most?"
+
+msgid "Backup settings"
+msgstr "Beállítások mentése"
 
 msgid "Backup system settings"
 msgstr "Rendszerbeállítások mentése"
@@ -4009,6 +4019,14 @@ msgstr "Timeshift felvételének megszakítása"
 msgid "Cancel selection"
 msgstr "Csatorna választás"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Kijelölés visszavonása"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Kijelölés visszavonása"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4027,9 +4045,6 @@ msgstr "Felhasználói kérésre megszakítva"
 msgid "Cannot create backup directory"
 msgstr "A biztonsági másolat könyvtára nem hozható létre"
 
-msgid "Cannot delete downloaded image"
-msgstr "A letöltött kép nem törölhető"
-
 msgid "Cannot delete file"
 msgstr "Nem lehet törölni a fájlt"
 
@@ -4040,9 +4055,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nem található jel... művelet megszakítva!"
-
-msgid "Cannot find images - please try later"
-msgstr "Nem található kép - próbálkozzon később"
 
 msgid "Cannot move to trash can"
 msgstr "Nem helyezthető a kukába"
@@ -5987,6 +5999,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "A kijelölt fájlok vagy könyvtárak törlése"
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7287,6 +7302,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7424,6 +7443,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Nincs elérhető frissítés. Kérem, próbálja meg később."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr ""
@@ -7579,8 +7601,11 @@ msgstr "Kilépés a Felvételek listájából"
 msgid "Exit movie player?"
 msgstr "Kilépés a filmlejátszóból?"
 
-msgid "Exit nameserver configuration"
-msgstr "Kilépés a névszerver beállításaiból"
+msgid "Exit network adapter configuration"
+msgstr "kliépés a hálózati adapter beállításaiból"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Kilépés a hálózati interfészek listájából"
@@ -7748,6 +7773,9 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "FTP beállítása"
@@ -8019,8 +8047,12 @@ msgstr "Rögzítve X11 betűként (SD)"
 msgid "Flash Image"
 msgstr "Flash lemezkép"
 
-msgid "Flash On the Fly"
-msgstr "Közvetlen Flash"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Flash Online"
@@ -8229,9 +8261,6 @@ msgstr "Teljes képernyő felbontás"
 
 msgid "FullHD Test"
 msgstr "FullHD teszt"
-
-msgid "Fullbackup Images"
-msgstr "Fullbackup lemezképek"
 
 msgid "Fullscreen"
 msgstr "Teljes képernyős"
@@ -9236,8 +9265,14 @@ msgstr "Nem aktív"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Inadyn Napló"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Inadyn beállítása"
@@ -10225,6 +10260,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Helylista"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Hangolás:"
 
@@ -10334,11 +10373,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "MAC-address"
-msgstr "MAC-cím"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "MAC-cím beállítások"
+
+msgid "MAC-address"
+msgstr "MAC-cím"
 
 msgid "MB"
 msgstr "MB"
@@ -10664,6 +10706,12 @@ msgstr "Mikronézia"
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 msgid "Mini Series"
 msgstr "Mini sorozat"
 
@@ -10817,8 +10865,14 @@ msgstr "Csatlakozás"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "A(z) '%s' hegyen nincs elég szabad hely a rögzítéshez."
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Csatlakozás kezelő"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Csatlakozás beállítás"
@@ -11152,6 +11206,9 @@ msgstr "KÖVETKEZŐ"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "NFS beállítása"
 
@@ -11243,8 +11300,17 @@ msgstr "Alhálózati maszk"
 msgid "Network"
 msgstr "Hálózat"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Válasszon hálózati adaptert"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Hálózat kezelő"
@@ -11260,6 +11326,9 @@ msgstr ""
 
 msgid "Network Interface"
 msgstr "Hálózati interfész"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Hálózati MAC beállítások"
@@ -11278,6 +11347,9 @@ msgstr "Hálózati beállítások"
 
 msgid "Network Test"
 msgstr "Hálózat ellenőrzése"
+
+msgid "Network Test:"
+msgstr "Hálózat tesztelése: "
 
 msgid "Network Wizard"
 msgstr "Hálózati Varázsló"
@@ -11308,9 +11380,6 @@ msgstr "Hálózat ellenőrzése"
 
 msgid "Network test..."
 msgstr "Hálózat ellenőrzése..."
-
-msgid "Network Test:"
-msgstr "Hálózat tesztelése: "
 
 msgid "Network:"
 msgstr "Hálózat:"
@@ -12039,6 +12108,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "OpenVPN beállítása"
 
@@ -12672,6 +12744,9 @@ msgstr "Válasszon biztonsági mentés célt"
 
 msgid "Please select a default EPG type..."
 msgstr "Válasszon egy alapértelmezett EPG típust..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Válasszon egy lejátszási listát amit törölni szeretne..."
@@ -14401,6 +14476,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Beállítás"
 
@@ -14414,6 +14492,9 @@ msgid "SATA"
 msgstr "Serial ATA"
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -14496,6 +14577,9 @@ msgstr "Saint Vincent és a Grenadine-szigetek"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Samba Napló"
@@ -14947,6 +15031,9 @@ msgstr "Enigma2 kinézet kiválasztás"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Válassza a Gyors DiSEqC lehetőséget, ha a soros rendszer támogatja ezt. Ha nem biztos benne, válassza a \"nem\" lehetőséget."
 
+msgid "Select Folders"
+msgstr "Válasszon mappákat"
+
 msgid "Select HDD"
 msgstr "Háttértár kiválasztása"
 
@@ -14972,6 +15059,9 @@ msgid "Select a bouquet"
 msgstr "Csatornacsomag kiválasztása"
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15044,9 +15134,6 @@ msgstr "Válassza ki a kizárandó fájlokat a mentésből"
 msgid "Select files/folders to backup"
 msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
 
-msgid "Select Folders"
-msgstr "Válasszon mappákat"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Válassza ki, hogy milyen gyorsan mozogjon az 'dish' a műholdak között."
 
@@ -15076,6 +15163,9 @@ msgstr "Válasszon beviteli eszközt."
 
 msgid "Select interface"
 msgstr "Interfész kiválasztása"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Felvétel kiválasztása"
@@ -15149,6 +15239,9 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Válassza ki a kívánt funkciót, és kattintson rá az \"OK\" gombra. Használja a \"CH +/-\" billentyűt a listák közötti váltáshoz. Válasszon ki egy hozzárendelt függvényt, és kattintson az \"OK\" gombra annak hozzárendeléséhez. Használja a \"Next / Previous\" gombot a hozzárendelt funkciók sorrendjének megváltoztatásához."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr ""
@@ -15566,9 +15659,6 @@ msgstr "Állítsa be a CI hozzárendelést a rendelkezésre álló Csatornák é
 msgid "Set Framerate for MiniTV"
 msgstr "Állítsa be a képarányt a MiniTV számára"
 
-msgid "Set system"
-msgstr "Rendszer beállítása"
-
 msgid "Set action for 'Info' key"
 msgstr "Művelet beállítása ' Info ' kulcshoz"
 
@@ -15610,6 +15700,9 @@ msgstr "Állítsa be a szekvencia ismétlését, ha a laerial rendszer ezt igén
 
 msgid "Set startup service"
 msgstr "Indítási csatorna beállítása"
+
+msgid "Set system"
+msgstr "Rendszer beállítása"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -17912,6 +18005,9 @@ msgstr "Teletext felirat színe"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Telnet interfész"
 
@@ -18749,9 +18845,6 @@ msgstr "Idő beállítása"
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr "Az idő frissítése percekben"
-
 msgid "Time Update in Minutes:"
 msgstr "Az idő frissítése percekben:"
 
@@ -18809,6 +18902,9 @@ msgstr "Idő stílusa"
 
 msgid "Time to execute command or script"
 msgstr "Mikor hajtódjon végre a parancs vagy a parancsfájl"
+
+msgid "Time update in minutes"
+msgstr "Az idő frissítése percekben"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Időintervalluma az ébresztés észlelésének az Időzítő által [perc]"
@@ -19773,8 +19869,8 @@ msgstr "Használja a kiterjesztett listát"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "A fel/le nyílgombokkal változtathatja az opciót. Ez után nyomja meg az OK-t."
@@ -21077,6 +21173,18 @@ msgstr ""
 "A(z) %s %s készülék újraindítása kerül a szolgáltatás törlése után.\n"
 "Szeretné törölni most?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "A készülék észleli a CI üzemmódot, vagy csak a beállított CI módban dolgozik."
 
@@ -21352,9 +21460,6 @@ msgstr "kedvencek módosításának megszakítása"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "hálózati adapter konfiguráció aktiválása"
 
 msgid "activatePiP"
 msgstr "Kép-a-Képben bekapcsolása"
@@ -21780,9 +21885,6 @@ msgstr "a DVD Player bezárása és visszatérés a keresőbe"
 
 msgid "exit mounts setup menu"
 msgstr "kilépés a Csatlakozás Beállítás menüből"
-
-msgid "Exit network adapter configuration"
-msgstr "kliépés a hálózati adapter beállításaiból"
 
 msgid "exit networkadapter setup menu"
 msgstr "kliépés a hálózati adapter beállításaiból"
@@ -22721,6 +22823,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "uShare napló"
 
@@ -22729,6 +22834,12 @@ msgstr "uShare név"
 
 msgid "uShare Port"
 msgstr "uShare port"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "uShare beállítás"
@@ -22901,6 +23012,27 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktuális konfiguráció aktiválása"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "A letöltött kép nem törölhető"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Nem található kép - próbálkozzon később"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Kilépés a névszerver beállításaiból"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Közvetlen Flash"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Fullbackup lemezképek"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
 
 #~ msgid ""
 #~ "\n"
@@ -23414,9 +23546,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Automatikus keresés"
 
-#~ msgid "Backup settings"
-#~ msgstr "Beállítások mentése"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "CI hozzárendelés"
 
@@ -23648,14 +23777,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "nincs aktiválva"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Kijelölés visszavonása"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Kijelölés visszavonása"
 
 #~ msgid "No images found"
 #~ msgstr "Nem található lemezkép"

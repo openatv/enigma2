@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2401,6 +2401,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 #
 msgid "AFP Settings"
 msgstr "AFP nastavitve"
@@ -2514,16 +2517,15 @@ msgstr "Aktivacija Slike v Sliki"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Activate current configuration"
-msgstr "aktiviranje trenutnih nastavitev"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+#
+msgid "Activate network adapter configuration"
+msgstr "aktiviranje omrežnih nastavitev"
 
 #
 msgid "Activate network settings"
@@ -2650,6 +2652,9 @@ msgstr "dodajanje datoteke v seznam za predvajanje"
 #, fuzzy
 msgid "Add files to playlist"
 msgstr "dodajanje datoteke v seznam za predvajanje"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3114,8 +3119,7 @@ msgstr "Ste prepričani, da želite zapreti čarovnik?"
 
 #
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Ste prepričani da želite aktivirati te omrežne nastavitve?"
+msgstr "Ste prepričani da želite aktivirati te omrežne nastavitve?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3146,8 +3150,7 @@ msgstr "Ste prepričani, da želite uporabiti EPG podatke iz:\n"
 
 #
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Ste prepričani, da želite ponovno zagnati vaše omrežne vmesnike?"
+msgstr "Ste prepričani, da želite ponovno zagnati vaše omrežne vmesnike?"
 
 #, python-format
 msgid ""
@@ -3652,6 +3655,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr "Varnostno kopiranje ni uspelo."
 
+msgid "Backup images"
+msgstr ""
+
 #
 msgid "Backup is running..."
 msgstr "Poteka varnostno kopiranje..."
@@ -3660,6 +3666,11 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Backup settings"
+msgstr "Shrani glavne nastavitve"
 
 #
 msgid "Backup system settings"
@@ -4375,6 +4386,16 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Seznam kanalov"
 
+#
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Seznam kanalov"
+
+#
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Seznam kanalov"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4395,11 +4416,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr "Ustvarite mapo"
 
-#
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "Želite izbrisati končane časovnike?"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -4409,9 +4425,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot find images - please try later"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -6573,6 +6586,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -8004,6 +8020,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -8126,6 +8146,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -8304,9 +8327,11 @@ msgid "Exit movie player?"
 msgstr "Izhod iz predvajalnika vsebin"
 
 #
-#, fuzzy
-msgid "Exit nameserver configuration"
-msgstr "izhod iz nastavitev imenskega strežnika"
+msgid "Exit network adapter configuration"
+msgstr "izhod iz nastavitev mrežnega vmesnika"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 #
 #, fuzzy
@@ -8489,6 +8514,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 #
@@ -8787,7 +8815,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Nadgradi"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -9026,11 +9058,6 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "Nadgradi"
 
 msgid "Fullscreen"
 msgstr ""
@@ -10111,7 +10138,13 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 #
@@ -11254,6 +11287,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Lokacija"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr ""
 
@@ -11371,14 +11408,17 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP naslov"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Nastavitve mrežnega vmesnika"
+
+#, fuzzy
+msgid "MAC-address"
+msgstr "IP naslov"
 
 msgid "MB"
 msgstr ""
@@ -11733,6 +11773,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11899,7 +11945,13 @@ msgstr "Pripenjanje"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12294,6 +12346,9 @@ msgstr ""
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 #
 msgid "NFS Settings"
 msgstr "NFS nastavitve"
@@ -12393,7 +12448,16 @@ msgstr "Omrežna maska"
 msgid "Network"
 msgstr "Mreža"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -12409,6 +12473,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -12431,6 +12498,9 @@ msgstr "Omrežne nastavitve "
 
 msgid "Network Test"
 msgstr ""
+
+msgid "Network Test:"
+msgstr "Test mreže:"
 
 msgid "Network Wizard"
 msgstr ""
@@ -12465,9 +12535,6 @@ msgstr "Omrežni test"
 
 msgid "Network test..."
 msgstr ""
-
-msgid "Network Test:"
-msgstr "Test mreže:"
 
 #
 msgid "Network:"
@@ -13289,6 +13356,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -14024,6 +14094,9 @@ msgid "Please select a backup destination"
 msgstr "Izberite ustrezen medij za varnostno kopiranje:"
 
 msgid "Please select a default EPG type..."
+msgstr ""
+
+msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
 #
@@ -15984,6 +16057,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15997,6 +16073,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -16084,6 +16163,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -16597,6 +16679,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+msgid "Select Folders"
+msgstr ""
+
 msgid "Select HDD"
 msgstr ""
 
@@ -16626,6 +16711,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -16713,9 +16801,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "Izberite datoteke za varnostno kopijo"
 
-msgid "Select Folders"
-msgstr ""
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -16748,6 +16833,9 @@ msgstr "Izberite vhodno napravo."
 #
 msgid "Select interface"
 msgstr "Izberite vmesnik"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 #, fuzzy
@@ -16826,6 +16914,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -17273,9 +17364,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Set action for 'Info' key"
@@ -17321,6 +17409,9 @@ msgid "Set sequence repeats if your aerial system requires this. Normally if the
 msgstr ""
 
 msgid "Set startup service"
+msgstr ""
+
+msgid "Set system"
 msgstr ""
 
 #
@@ -19899,6 +19990,9 @@ msgstr "Barva teletekst (TXT) podnapisov"
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr ""
 
@@ -20741,9 +20835,6 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr ""
-
 #
 msgid "Time Update in Minutes:"
 msgstr "Čas obnavljanja (v minutah)"
@@ -20810,6 +20901,9 @@ msgid "Time style"
 msgstr "Izbira časovnika"
 
 msgid "Time to execute command or script"
+msgstr ""
+
+msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
@@ -21888,10 +21982,8 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Za nastavljanje izbranega mrežnega vmesnika, izberite omrežni čarovnik."
 
-#
-#, fuzzy
-msgid "Use the network wizard to configure your Network"
-msgstr "Za nastavljanje vašega omrežja, uporabite omrežni čarovnik."
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -23281,6 +23373,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -23569,10 +23673,6 @@ msgstr "Prekinitev urejanja priljubljenih"
 
 msgid "ac3"
 msgstr ""
-
-#
-msgid "Activate network adapter configuration"
-msgstr "aktiviranje omrežnih nastavitev"
 
 msgid "activatePiP"
 msgstr ""
@@ -24050,10 +24150,6 @@ msgstr "Izhod iz DVD predvajalnika aku vrnitev v pregledovalnik datotek"
 
 msgid "exit mounts setup menu"
 msgstr ""
-
-#
-msgid "Exit network adapter configuration"
-msgstr "izhod iz nastavitev mrežnega vmesnika"
 
 #
 msgid "exit networkadapter setup menu"
@@ -25122,6 +25218,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -25129,6 +25228,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 #
@@ -25334,6 +25439,31 @@ msgstr ""
 
 #
 #, fuzzy
+#~ msgid "Activate current configuration"
+#~ msgstr "aktiviranje trenutnih nastavitev"
+
+#
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Želite izbrisati končane časovnike?"
+
+#
+#, fuzzy
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "izhod iz nastavitev imenskega strežnika"
+
+#
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "Nadgradi"
+
+#
+#, fuzzy
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Za nastavljanje vašega omrežja, uporabite omrežni čarovnik."
+
+#
+#, fuzzy
 #~ msgid "Abenteuer"
 #~ msgstr "na sredini"
 
@@ -25534,11 +25664,6 @@ msgstr ""
 
 #
 #, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "Shrani glavne nastavitve"
-
-#
-#, fuzzy
 #~ msgid "Common Interface assignment"
 #~ msgstr "Stanje CI vmesnika"
 
@@ -25619,16 +25744,6 @@ msgstr ""
 #
 #~ msgid "waiting"
 #~ msgstr "čakam"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Seznam kanalov"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Seznam kanalov"
 
 #
 #, fuzzy

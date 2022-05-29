@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -2355,6 +2355,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr ""
 
@@ -2461,15 +2464,15 @@ msgstr "Activa PiP"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-msgid "Activate current configuration"
-msgstr "Activa configuració del sintonitzador"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+#
+msgid "Activate network adapter configuration"
+msgstr "activa la configuració de l’adaptador de xarxa"
 
 #
 msgid "Activate network settings"
@@ -2589,6 +2592,9 @@ msgstr "Afegeix un fitxer a la llista de reproducció"
 #
 msgid "Add files to playlist"
 msgstr "Afegeix fitxers a la llista de reproducció"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3037,8 +3043,7 @@ msgstr "Segur que suprimiu aquesta entrada?"
 
 #
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Esteu segur que voleu activar aquesta configuració de xarxa?"
+msgstr "Esteu segur que voleu activar aquesta configuració de xarxa?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3071,8 +3076,7 @@ msgstr ""
 
 #
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Segur que voleu reiniciar les interfícies de xarxa?"
+msgstr "Segur que voleu reiniciar les interfícies de xarxa?"
 
 #, python-format
 msgid ""
@@ -3556,6 +3560,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr "Ha fallat la còpia de seguretat."
 
+msgid "Backup images"
+msgstr ""
+
 #
 msgid "Backup is running..."
 msgstr "La còpia de seguretat s’està executant …"
@@ -3564,6 +3571,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#
+msgid "Backup settings"
+msgstr "Sí, fes un backup de la configuració"
 
 #
 msgid "Backup system settings"
@@ -4281,6 +4292,16 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Selecció de canal"
 
+#
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Selecció de canal"
+
+#
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Selecció de canal"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4301,10 +4322,6 @@ msgstr "S’ha cancel·lat per sol·licitud de l’usuari"
 msgid "Cannot create backup directory"
 msgstr "Control parental"
 
-#
-msgid "Cannot delete downloaded image"
-msgstr "Vols esborrar les programacions ja finalitzades"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -4315,9 +4332,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "No trobem cap senyal … avortant!"
-
-msgid "Cannot find images - please try later"
-msgstr "No es poden trobar imatges. Proveu més endavant"
 
 msgid "Cannot move to trash can"
 msgstr "No es pot moure a la paperera"
@@ -6401,6 +6415,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7777,6 +7794,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7901,6 +7922,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -8072,8 +8096,11 @@ msgid "Exit movie player?"
 msgstr "Sortir del reproductor"
 
 #
-msgid "Exit nameserver configuration"
-msgstr "Surt de configuració del servidors"
+msgid "Exit network adapter configuration"
+msgstr "sortida de la configuració de l’adaptador de xarxa"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 #
 msgid "Exit network interface list"
@@ -8253,6 +8280,9 @@ msgid "FTA"
 msgstr "FTA"
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -8538,7 +8568,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Imatge de flaix"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -8770,9 +8804,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Fullbackup Images"
 msgstr ""
 
 msgid "Fullscreen"
@@ -9826,7 +9857,13 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 msgid "Inadyn Settings"
@@ -10910,6 +10947,10 @@ msgstr ""
 msgid "Location list"
 msgstr "carregar llista"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Bloqueig:"
 
@@ -11024,15 +11065,18 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MAC-address"
-msgstr "Adreça IP"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Selecció de canal"
+
+#
+#, fuzzy
+msgid "MAC-address"
+msgstr "Adreça IP"
 
 msgid "MB"
 msgstr ""
@@ -11377,6 +11421,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11537,7 +11587,13 @@ msgstr "Montar"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -11913,6 +11969,9 @@ msgstr "SEGÜENT"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr ""
 
@@ -12011,7 +12070,16 @@ msgstr "Màscara"
 msgid "Network"
 msgstr "Xarxa"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -12027,6 +12095,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -12049,6 +12120,9 @@ msgstr "Configuració de xarxa"
 
 msgid "Network Test"
 msgstr ""
+
+msgid "Network Test:"
+msgstr "Prova de xarxa: "
 
 msgid "Network Wizard"
 msgstr ""
@@ -12083,9 +12157,6 @@ msgstr "Prova de xarxa"
 
 msgid "Network test..."
 msgstr "Prova de xarxa:"
-
-msgid "Network Test:"
-msgstr "Prova de xarxa: "
 
 #
 msgid "Network:"
@@ -12881,6 +12952,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -13587,6 +13661,9 @@ msgid "Please select a backup destination"
 msgstr "Seleccionar una pel·lícula"
 
 msgid "Please select a default EPG type..."
+msgstr ""
+
+msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
 #
@@ -15480,6 +15557,9 @@ msgstr "S-Vídeo"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15493,6 +15573,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -15579,6 +15662,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr "Sant Vicent i les Grenadines"
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -16068,6 +16154,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Seleccioneu Fast DiSEqC si el vostre sistema aeri és compatible. Si no esteu segurs, seleccioneu “no”."
 
+msgid "Select Folders"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Seleccionar disc dur"
 
@@ -16097,6 +16186,9 @@ msgid "Select a bouquet"
 msgstr "Selecciona bouquet"
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -16180,9 +16272,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "Seleccioneu fitxers / carpetes a còpia de seguretat"
 
-msgid "Select Folders"
-msgstr ""
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Seleccioneu la rapidesa amb què s’ha de moure el plat entre els satèl·lits."
 
@@ -16213,6 +16302,9 @@ msgstr "Seleccioneu el dispositiu d’entrada."
 #
 msgid "Select interface"
 msgstr "Selecciona la interfície"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 msgid "Select movie"
@@ -16289,6 +16381,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -16724,9 +16819,6 @@ msgstr "Estableix l’assignació de CI per a la detecció dels serveis disponib
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Set action for 'Info' key"
@@ -16771,6 +16863,9 @@ msgstr "Ajustar la seqüència es repeteix si el sistema aeri requereix això. N
 
 msgid "Set startup service"
 msgstr "Establiu el servei d’inici"
+
+msgid "Set system"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -19231,6 +19326,9 @@ msgstr "Color de subtítols del teletext"
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr ""
 
@@ -20054,9 +20152,6 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr ""
-
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -20122,6 +20217,9 @@ msgid "Time style"
 msgstr "Selecció de gravació"
 
 msgid "Time to execute command or script"
+msgstr ""
+
+msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
@@ -21173,7 +21271,7 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Utilitzeu l’assistent de xarxa per configurar l’adaptador de xarxa seleccionat"
 
-msgid "Use the network wizard to configure your Network"
+msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 #
@@ -22531,6 +22629,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -22812,10 +22922,6 @@ msgstr "cancel·lar l'edició de preferits"
 
 msgid "ac3"
 msgstr ""
-
-#
-msgid "Activate network adapter configuration"
-msgstr "activa la configuració de l’adaptador de xarxa"
 
 msgid "activatePiP"
 msgstr ""
@@ -23285,10 +23391,6 @@ msgstr "sortir del reproductor de DVD o tornar al navegador d’arxius"
 
 msgid "exit mounts setup menu"
 msgstr ""
-
-#
-msgid "Exit network adapter configuration"
-msgstr "sortida de la configuració de l’adaptador de xarxa"
 
 #
 msgid "exit networkadapter setup menu"
@@ -24347,6 +24449,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -24354,6 +24459,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24544,6 +24655,21 @@ msgid "®"
 msgstr ""
 
 #
+#~ msgid "Activate current configuration"
+#~ msgstr "Activa configuració del sintonitzador"
+
+#
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Vols esborrar les programacions ja finalitzades"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "No es poden trobar imatges. Proveu més endavant"
+
+#
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Surt de configuració del servidors"
+
+#
 #, fuzzy
 #~ msgid ""
 #~ "Are you sure you want to delete this:\n"
@@ -24698,10 +24824,6 @@ msgstr ""
 #~ msgstr "Escaneig automàtic"
 
 #
-#~ msgid "Backup settings"
-#~ msgstr "Sí, fes un backup de la configuració"
-
-#
 #~ msgid "Common Interface assignment"
 #~ msgstr "Assignació d’interfície comuna"
 
@@ -24790,16 +24912,6 @@ msgstr ""
 
 #~ msgid "The sleep timer has been disabled."
 #~ msgstr "S'ha desactivat la programació d'aturada."
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Selecció de canal"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Selecció de canal"
 
 #
 #~ msgid "No images found"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -2440,6 +2440,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "AFP Oppsett"
 
@@ -2550,15 +2553,15 @@ msgstr "Aktiver Bilde i Bilde"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-msgid "Activate current configuration"
-msgstr "Aktiver nåværende konfigurasjon"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+#
+msgid "Activate network adapter configuration"
+msgstr "aktiver nettverks adapter konfigurasjon"
 
 #
 msgid "Activate network settings"
@@ -2676,6 +2679,9 @@ msgstr "Legg til fil i spilliste"
 #
 msgid "Add files to playlist"
 msgstr "Legg til filer i spilliste"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3126,8 +3132,7 @@ msgstr "Er du sikker på at du vil fjerne dette innlegget?"
 
 #
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Er du sikker på at du vil aktivere denne nettverkskonfigurasjonen?"
+msgstr "Er du sikker på at du vil aktivere denne nettverkskonfigurasjonen?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3160,8 +3165,7 @@ msgstr "Er du sikker på at du ønsker å omlaste EPG data fra:\n"
 
 #
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Er du sikker på at du vil restarte ditt nettverkskort?"
+msgstr "Er du sikker på at du vil restarte ditt nettverkskort?"
 
 #, python-format
 msgid ""
@@ -3656,6 +3660,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr "Sikkerhetskopiering mislyktes."
 
+msgid "Backup images"
+msgstr ""
+
 #
 msgid "Backup is running..."
 msgstr "Sikkerhetskopi kjører ..."
@@ -3664,6 +3671,11 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Backup settings"
+msgstr "Sikkerhetskopier system oppsett"
 
 #
 msgid "Backup system settings"
@@ -4370,6 +4382,16 @@ msgstr "Avbryt å lagre timeshift som film"
 msgid "Cancel selection"
 msgstr "Kanalvalg"
 
+#
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Kanalvalg"
+
+#
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Kanalvalg"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4390,10 +4412,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr "lag katalog"
 
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "Kan ikke slette fil"
-
 msgid "Cannot delete file"
 msgstr "Kan ikke slette fil"
 
@@ -4404,9 +4422,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan ikke finne noe signal..., avbryter!"
-
-msgid "Cannot find images - please try later"
-msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr "Kan ikke flytte til søppelbøtta"
@@ -6540,6 +6555,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7953,6 +7971,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -8078,6 +8100,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ingen oppdatering tilgjengelig. Vennligst prøv igjen senere."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr ""
@@ -8251,8 +8276,11 @@ msgid "Exit movie player?"
 msgstr "Avslutt mediaspiller?"
 
 #
-msgid "Exit nameserver configuration"
-msgstr "Avslutt nameserver innstilling"
+msgid "Exit network adapter configuration"
+msgstr "avslutt nettverks adapter innstilling"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 #
 msgid "Exit network interface list"
@@ -8436,6 +8464,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -8733,7 +8764,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Flashing"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -8970,10 +9005,6 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
-
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "Flashing"
 
 msgid "Fullscreen"
 msgstr ""
@@ -10056,8 +10087,14 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Inadyn Logg"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Inadyn Oppsett"
@@ -11159,6 +11196,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Plassering"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr ""
 
@@ -11279,12 +11320,15 @@ msgstr ""
 msgid "MAC"
 msgstr "MAC:"
 
-msgid "MAC-address"
-msgstr "MAC-adresse"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 msgid "MAC Address Settings"
 msgstr "MAC-adresse innstillinger"
+
+msgid "MAC-address"
+msgstr "MAC-adresse"
 
 msgid "MB"
 msgstr "MB"
@@ -11632,6 +11676,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11797,7 +11847,13 @@ msgstr "Mount"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12170,6 +12226,9 @@ msgstr ""
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "NFS Oppsett"
 
@@ -12270,7 +12329,16 @@ msgstr "Nettverksmaske"
 msgid "Network"
 msgstr "Nettverk"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -12286,6 +12354,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -12307,6 +12378,9 @@ msgstr "Nettverksinnstillinger"
 
 msgid "Network Test"
 msgstr "Nettverks Test"
+
+msgid "Network Test:"
+msgstr "Nettverks test:"
 
 msgid "Network Wizard"
 msgstr ""
@@ -12340,9 +12414,6 @@ msgstr "Nettverk test"
 
 msgid "Network test..."
 msgstr ""
-
-msgid "Network Test:"
-msgstr "Nettverks test:"
 
 #
 msgid "Network:"
@@ -13147,6 +13218,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -13869,6 +13943,9 @@ msgstr "Velg et medie som skal brukes som sikkerhetskopi plassering"
 
 msgid "Please select a default EPG type..."
 msgstr "Vennligst velg en standard EPG type..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -15779,6 +15856,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd Oppsett"
 
@@ -15792,6 +15872,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -15879,6 +15962,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -16373,6 +16459,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+msgid "Select Folders"
+msgstr "Velg mapper"
+
 msgid "Select HDD"
 msgstr ""
 
@@ -16402,6 +16491,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -16485,9 +16577,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "Velg filer/mapper for sikkerhetskopi."
 
-msgid "Select Folders"
-msgstr "Velg mapper"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -16518,6 +16607,9 @@ msgstr "Velg inn enhet."
 #
 msgid "Select interface"
 msgstr "Velg grensesnitt"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 msgid "Select movie"
@@ -16594,6 +16686,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -17041,9 +17136,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr "Sett System"
-
 #, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "Velg handling for timer %s:"
@@ -17087,6 +17179,9 @@ msgstr ""
 
 msgid "Set startup service"
 msgstr ""
+
+msgid "Set system"
+msgstr "Sett System"
 
 #
 #, python-format
@@ -19594,6 +19689,9 @@ msgstr "Teletekst undertekst farge"
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Telnet grensesnitt"
 
@@ -20473,9 +20571,6 @@ msgstr "Tidsinnstillinger"
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr "Tids oppdatering i Min"
-
 msgid "Time Update in Minutes:"
 msgstr "Tids oppdatering i Min:"
 
@@ -20542,6 +20637,9 @@ msgstr "Tidsskala"
 
 msgid "Time to execute command or script"
 msgstr "Tid til å utføre kommando eller script"
+
+msgid "Time update in minutes"
+msgstr "Tids oppdatering i Min"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr ""
@@ -21603,9 +21701,8 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Bruk nettverks veiviseren for å konfigurere valgte nettverkskortet"
 
-#
-msgid "Use the network wizard to configure your Network"
-msgstr "Bruk nettverks veiviseren for å konfigurere ditt nettverk"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -23015,6 +23112,18 @@ msgstr ""
 "Din %s %s vil bli startet på nytt etter fjerning av kanaler\n"
 "Ønsker du å fjerne de nå?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -23307,10 +23416,6 @@ msgstr "avbryt favoritt editering"
 
 msgid "ac3"
 msgstr ""
-
-#
-msgid "Activate network adapter configuration"
-msgstr "aktiver nettverks adapter konfigurasjon"
 
 msgid "activatePiP"
 msgstr ""
@@ -23788,10 +23893,6 @@ msgstr "avslutt DVD spiller eller returner til filbrowser"
 
 msgid "exit mounts setup menu"
 msgstr "avslutt mounts oppsettsmenyen"
-
-#
-msgid "Exit network adapter configuration"
-msgstr "avslutt nettverks adapter innstilling"
 
 #
 msgid "exit networkadapter setup menu"
@@ -24861,6 +24962,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "uShare Logg"
 
@@ -24869,6 +24973,12 @@ msgstr "uShare Navn"
 
 msgid "uShare Port"
 msgstr "uShare Port"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "uShare Oppsett"
@@ -25067,6 +25177,26 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktiver nåværende konfigurasjon"
+
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Kan ikke slette fil"
+
+#
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Avslutt nameserver innstilling"
+
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "Flashing"
+
+#
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Bruk nettverks veiviseren for å konfigurere ditt nettverk"
 
 #, fuzzy
 #~ msgid "Abenteuer"
@@ -25372,11 +25502,6 @@ msgstr ""
 #~ msgstr "Automatisk søk"
 
 #
-#, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "Sikkerhetskopier system oppsett"
-
-#
 #~ msgid "Common Interface assignment"
 #~ msgstr "Common Interface oppdrag"
 
@@ -25489,16 +25614,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "MultiBoot Image Manager"
 #~ msgstr "Image Behandler"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Kanalvalg"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Kanalvalg"
 
 #
 #, fuzzy

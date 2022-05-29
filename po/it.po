@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -2245,6 +2245,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "Configurazione AFP"
 
@@ -2341,14 +2344,14 @@ msgstr "Attivare Picture in Picture"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate current configuration"
-msgstr "Attivare configurazione attuale"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Attivare la lista di file a sinistra come sorgente a selezione multipla"
 
 msgid "Activate left-hand file list as source"
 msgstr "Attivare la lista di file a sinistra come sorgente"
+
+msgid "Activate network adapter configuration"
+msgstr "Attivare la configurazione interfaccia di rete"
 
 msgid "Activate network settings"
 msgstr "Attivare configurazione di rete"
@@ -2451,6 +2454,9 @@ msgstr "Aggiungere file alla playlist"
 
 msgid "Add files to playlist"
 msgstr "Aggiungere file alla playlist"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -2866,8 +2872,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Sei sicuro di voler eliminare questa voce?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Attivare questa configurazione di rete?"
+msgstr "Attivare questa configurazione di rete?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2898,8 +2903,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Sei sicuro di voler ricaricare i dati EPG da:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Riavviare le interfacce di rete?"
+msgstr "Riavviare le interfacce di rete?"
 
 #, python-format
 msgid ""
@@ -3351,6 +3355,9 @@ msgstr "Backup eseguito."
 msgid "Backup failed."
 msgstr "Backup fallito."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Backup in corso..."
 
@@ -3360,6 +3367,9 @@ msgid ""
 msgstr ""
 "Trovato un backup plugin \n"
 "Vuoi installarlo adesso?"
+
+msgid "Backup settings"
+msgstr "Configurazioni di backup"
 
 msgid "Backup system settings"
 msgstr "Backup configurazione del sistema"
@@ -4030,6 +4040,14 @@ msgstr "Annullare salvataggio registrazione timeshift"
 msgid "Cancel selection"
 msgstr "Lista canali"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Lista canali"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Lista canali"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4048,9 +4066,6 @@ msgstr "Annullato dopo la richiesta all'utente"
 msgid "Cannot create backup directory"
 msgstr "Non è possibile creare la cartella di backup"
 
-msgid "Cannot delete downloaded image"
-msgstr "Non è possibile cancellare l'immagine scaricata"
-
 msgid "Cannot delete file"
 msgstr "Impossibile eliminare il file"
 
@@ -4061,9 +4076,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Impossibile trovare un segnale... abortire !"
-
-msgid "Cannot find images - please try later"
-msgstr "Non trovo immagini - per favore prova più tardi"
 
 msgid "Cannot move to trash can"
 msgstr "Impossibile spostare nel cestino"
@@ -6042,6 +6054,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "Elimina le cartelle o i file selezionati."
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7354,6 +7369,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7496,6 +7515,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Nessun aggiornamento disponibile. Riprova più tardi."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr ""
@@ -7650,8 +7672,11 @@ msgstr "Esci dall'elenco registrazioni"
 msgid "Exit movie player?"
 msgstr "Esci da Mediaplayer?"
 
-msgid "Exit nameserver configuration"
-msgstr "Esci dalla configurazione DNS"
+msgid "Exit network adapter configuration"
+msgstr "Uscire da configurazione interfaccia di rete"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Esci dall'elenco interfacce di rete"
@@ -7819,6 +7844,9 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "Impostazioni FTP"
@@ -8092,8 +8120,12 @@ msgstr "Carattere fisso X11 (SD)"
 msgid "Flash Image"
 msgstr "FLASH dell'immagine"
 
-msgid "Flash On the Fly"
-msgstr "FLASH al volo"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "FLASH online"
@@ -8304,9 +8336,6 @@ msgstr "Risoluzione schermo pieno"
 
 msgid "FullHD Test"
 msgstr "Test FullHD"
-
-msgid "Fullbackup Images"
-msgstr "Immagine di backup completo"
 
 msgid "Fullscreen"
 msgstr "Schermo intero"
@@ -9320,8 +9349,14 @@ msgstr "Inattivo"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Log Inadyn"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Impostazioni Inadyn"
@@ -10313,6 +10348,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Elenco dei percorsi"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Blocco:"
 
@@ -10423,11 +10462,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "MAC-address"
-msgstr "MAC-address"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Configurazioni MAC address"
+
+msgid "MAC-address"
+msgstr "MAC-address"
 
 msgid "MB"
 msgstr "MB"
@@ -10756,6 +10798,12 @@ msgstr "Micronesia (Stati federati di)"
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Mini Series"
 msgstr "Tutti i servizi"
@@ -10911,8 +10959,14 @@ msgstr "Mount"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Il mount '%s' non ha abbastanza spazio libero per registrare."
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Gestione mount"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Impost. mount"
@@ -11250,6 +11304,9 @@ msgstr "PROSSIMO"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "Impostazioni NFS"
 
@@ -11343,8 +11400,17 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "Rete"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Selezione dispositivo di rete"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Risorse di rete"
@@ -11360,6 +11426,9 @@ msgstr ""
 
 msgid "Network Interface"
 msgstr "Interfaccia di rete"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Configurazioni MAC di rete "
@@ -11378,6 +11447,9 @@ msgstr "Impostazioni di rete"
 
 msgid "Network Test"
 msgstr "Test delle rete"
+
+msgid "Network Test:"
+msgstr "Test della rete: "
 
 msgid "Network Wizard"
 msgstr "Procedura guidata della rete"
@@ -11408,9 +11480,6 @@ msgstr "Test della rete"
 
 msgid "Network test..."
 msgstr "Test della rete..."
-
-msgid "Network Test:"
-msgstr "Test della rete: "
 
 msgid "Network:"
 msgstr "Rete:"
@@ -12152,6 +12221,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "Impostazioni OpenVpn"
 
@@ -12787,6 +12859,9 @@ msgstr "Seleziona una destinazione per il backup"
 
 msgid "Please select a default EPG type..."
 msgstr "Seleziona il tipo di EPG predefinito..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Seleziona la playlist da rimuovere..."
@@ -14539,6 +14614,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "Configurazione SABnzbd"
 
@@ -14552,6 +14630,9 @@ msgid "SATA"
 msgstr "SATA"
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -14635,6 +14716,9 @@ msgstr "Saint Vincent e Grenadine"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Log Samba"
@@ -15086,6 +15170,9 @@ msgstr "Seleziona la skin di Enigma2"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Seleziona DiSEqC veloce se il tuo sistema lo supporta. Se non sei sicuro, scegli 'no'."
 
+msgid "Select Folders"
+msgstr "Seleziona le cartelle"
+
 msgid "Select HDD"
 msgstr "Selezionare HDD"
 
@@ -15111,6 +15198,9 @@ msgid "Select a bouquet"
 msgstr "Seleziona un bouquet"
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15183,9 +15273,6 @@ msgstr "Seleziona i file da escludere dal backup"
 msgid "Select files/folders to backup"
 msgstr "Seleziona file/cartelle per il backup."
 
-msgid "Select Folders"
-msgstr "Seleziona le cartelle"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Scegli quanto rapidamente il disco dovrebbe spostarsi tra i satelliti."
 
@@ -15215,6 +15302,9 @@ msgstr "Seleziona il dispositivo di input."
 
 msgid "Select interface"
 msgstr "Seleziona l'interfaccia"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Seleziona una registrazione"
@@ -15288,6 +15378,9 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Scegli la funzione desiderata e premi \"OK\" per assegnarla. Usa \"CH+/-\" per spostarti fra le liste. Se la funzione è già stata assegnata, il tasto \"OK\" la toglie. Usa \"Prossimo/precedente\" per cambiare l'ordine delle funzioni assegnate."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr ""
@@ -15710,9 +15803,6 @@ msgstr "Impostare assegnazione CI per rilevamento servizi disponibili."
 msgid "Set Framerate for MiniTV"
 msgstr "Imposta la frequenza per la MIniTV"
 
-msgid "Set system"
-msgstr "Impostazione sistema"
-
 msgid "Set action for 'Info' key"
 msgstr "Imposta azione per il tasto 'INFO'"
 
@@ -15754,6 +15844,9 @@ msgstr "Imposta la ripetizione della sequenza se il sistema di ricezione lo rich
 
 msgid "Set startup service"
 msgstr "Imposta il canale di avvio"
+
+msgid "Set system"
+msgstr "Impostazione sistema"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -18072,6 +18165,9 @@ msgstr "Colore dei sottotitoli televideo"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Interfaccia Telnet"
 
@@ -18912,9 +19008,6 @@ msgstr "Configurazioni orario"
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr "Tempo di aggiornamento in minuti"
-
 msgid "Time Update in Minutes:"
 msgstr "Tempo di aggiornamento in minuti:"
 
@@ -18972,6 +19065,9 @@ msgstr "Stile dell’orario"
 
 msgid "Time to execute command or script"
 msgstr "Tempo di esecuzione del comando o dello script"
+
+msgid "Time update in minutes"
+msgstr "Tempo di aggiornamento in minuti"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Finestra temporale per riconoscimento del risveglio da parte di un timer [min]"
@@ -19942,8 +20038,8 @@ msgstr "Usa la lista estesa"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Usa NetworkWizard per configurare l'adattatore di rete selezionato"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Usa la configurazione guidata di rete"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Utilizzare i tasti SU/GIÙ del telecomando per selezionare un'opzione, poi premere OK."
@@ -21259,6 +21355,18 @@ msgstr ""
 "Il %s %s verrà riavviato dopo la installazione del servizio\n"
 "Vuoi rimuoverlo?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Il tuo hardware può determinare da solo il modo CI o lavorare solo in modo legacy."
 
@@ -21537,9 +21645,6 @@ msgstr "annullare modifica preferiti"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "Attivare la configurazione interfaccia di rete"
 
 msgid "activatePiP"
 msgstr "attivare PiP"
@@ -21973,9 +22078,6 @@ msgstr "Uscire dal Player DVD e tornare all'elenco file"
 
 msgid "exit mounts setup menu"
 msgstr "esci dalla configurazione dei mount"
-
-msgid "Exit network adapter configuration"
-msgstr "Uscire da configurazione interfaccia di rete"
 
 msgid "exit networkadapter setup menu"
 msgstr "Uscire da menu configurazione interfaccia di rete"
@@ -22922,6 +23024,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "log uShare"
 
@@ -22930,6 +23035,12 @@ msgstr "nome uShare"
 
 msgid "uShare Port"
 msgstr "porta uShare"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "configurazione uShare"
@@ -23103,6 +23214,27 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Attivare configurazione attuale"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Non è possibile cancellare l'immagine scaricata"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Non trovo immagini - per favore prova più tardi"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Esci dalla configurazione DNS"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "FLASH al volo"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Immagine di backup completo"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Usa la configurazione guidata di rete"
 
 #~ msgid ""
 #~ "\n"
@@ -23404,9 +23536,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Scansione automatica"
 
-#~ msgid "Backup settings"
-#~ msgstr "Configurazioni di backup"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Assegnazione Common Interface"
 
@@ -23639,14 +23768,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "non attivato"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Lista canali"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Lista canali"
 
 #~ msgid "No images found"
 #~ msgstr "Nessuna immagine trovata"

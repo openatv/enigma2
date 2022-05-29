@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2260,6 +2260,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 #, fuzzy
 msgid "AFP Settings"
 msgstr "EPG設定"
@@ -2364,14 +2367,14 @@ msgstr "啟用畫中畫"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate current configuration"
-msgstr ""
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+msgid "Activate network adapter configuration"
+msgstr "啟動網卡配置"
 
 msgid "Activate network settings"
 msgstr "啟用網路設定"
@@ -2484,6 +2487,9 @@ msgid "Add file to playlist"
 msgstr ""
 
 msgid "Add files to playlist"
+msgstr ""
+
+msgid "Add help text"
 msgstr ""
 
 msgid "Add new tag"
@@ -2930,8 +2936,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "確定刪除所有專案?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"確定要啟動此網路配置？"
+msgstr "確定要啟動此網路配置？"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2966,8 +2971,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "確定要下載和安裝?\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"您確定要重新啟動網路介面?"
+msgstr "您確定要重新啟動網路介面?"
 
 #, python-format
 msgid ""
@@ -3452,6 +3456,9 @@ msgstr "備份已完成."
 msgid "Backup failed."
 msgstr "備份失敗!!"
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "備份正在運行..."
 
@@ -3459,6 +3466,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "備份系統設定"
 
 msgid "Backup system settings"
 msgstr "備份系統設定"
@@ -4160,6 +4171,14 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "頻道選擇"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "頻道選擇"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "頻道選擇"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4180,10 +4199,6 @@ msgid "Cannot create backup directory"
 msgstr "無法分析傳輸目錄"
 
 #, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "確實要刪除計時器?"
-
-#, fuzzy
 msgid "Cannot delete file"
 msgstr "刪除檔"
 
@@ -4193,9 +4208,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot find images - please try later"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -6241,6 +6253,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7594,6 +7609,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7710,6 +7729,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -7874,7 +7896,10 @@ msgstr ""
 msgid "Exit movie player?"
 msgstr ""
 
-msgid "Exit nameserver configuration"
+msgid "Exit network adapter configuration"
+msgstr "退出網卡配置"
+
+msgid "Exit network adapter setup menu"
 msgstr ""
 
 msgid "Exit network interface list"
@@ -8058,6 +8083,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 #, fuzzy
@@ -8342,7 +8370,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "安裝失敗"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 #, fuzzy
@@ -8565,10 +8597,6 @@ msgstr "啟用解析度自動調整"
 
 msgid "FullHD Test"
 msgstr ""
-
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "備份模式"
 
 msgid "Fullscreen"
 msgstr ""
@@ -9630,9 +9658,15 @@ msgstr "啟動"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Inadyn Log"
 msgstr "Inadyn"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Inadyn Settings"
@@ -10686,6 +10720,10 @@ msgstr ""
 msgid "Location list"
 msgstr "位置"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "鎖定:"
 
@@ -10804,13 +10842,16 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP地址"
+msgid "MAC Address Actions"
+msgstr ""
 
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "網卡設定"
+
+#, fuzzy
+msgid "MAC-address"
+msgstr "IP地址"
 
 #, fuzzy
 msgid "MB"
@@ -11147,6 +11188,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Mini Series"
 msgstr "頻道"
@@ -11305,9 +11352,15 @@ msgstr "安裝(Mount)"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Mount Manager"
 msgstr "安裝(Mount)管理"
+
+msgid "Mount Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Mount Setup"
@@ -11666,6 +11719,9 @@ msgstr "下一個"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 #, fuzzy
 msgid "NFS Settings"
 msgstr "設定"
@@ -11760,9 +11816,18 @@ msgstr "子網路遮罩"
 msgid "Network"
 msgstr "網路設定"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Network Adapter Selection"
 msgstr "網路適配器"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Network Browser"
@@ -11781,6 +11846,9 @@ msgstr ""
 #, fuzzy
 msgid "Network Interface"
 msgstr "啟用網卡"
+
+msgid "Network Log Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Network MAC settings"
@@ -11804,6 +11872,9 @@ msgstr "網路設定"
 #, fuzzy
 msgid "Network Test"
 msgstr "網路測驗"
+
+msgid "Network Test:"
+msgstr ""
 
 msgid "Network Wizard"
 msgstr "網路安裝嚮導"
@@ -11836,9 +11907,6 @@ msgstr "網路測驗"
 
 msgid "Network test..."
 msgstr "網路測驗..."
-
-msgid "Network Test:"
-msgstr ""
 
 msgid "Network:"
 msgstr "網路:"
@@ -12611,6 +12679,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 #, fuzzy
 msgid "OpenVPN Settings"
 msgstr "Gemini 設定"
@@ -13301,6 +13372,9 @@ msgstr "請選擇作為備份的媒介"
 #, fuzzy
 msgid "Please select a default EPG type..."
 msgstr "請選擇要刪除的播放列表..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "請選擇要刪除的播放列表..."
@@ -15143,6 +15217,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15156,6 +15233,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -15240,6 +15320,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 #, fuzzy
@@ -15720,6 +15803,10 @@ msgstr "選擇皮膚"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+#, fuzzy
+msgid "Select Folders"
+msgstr "設定視頻模式"
+
 msgid "Select HDD"
 msgstr "選擇硬碟"
 
@@ -15750,6 +15837,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15830,10 +15920,6 @@ msgstr "選擇要備份的檔/目錄"
 msgid "Select files/folders to backup"
 msgstr "選擇要備份的檔/目錄"
 
-#, fuzzy
-msgid "Select Folders"
-msgstr "設定視頻模式"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -15865,6 +15951,9 @@ msgstr "選擇介面"
 
 msgid "Select interface"
 msgstr "選擇介面"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr ""
@@ -15940,6 +16029,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -16372,10 +16464,6 @@ msgid "Set Framerate for MiniTV"
 msgstr ""
 
 #, fuzzy
-msgid "Set system"
-msgstr "系統設定"
-
-#, fuzzy
 msgid "Set action for 'Info' key"
 msgstr "Step in ms for arrow keys"
 
@@ -16420,6 +16508,10 @@ msgstr ""
 #, fuzzy
 msgid "Set startup service"
 msgstr "在相似頻道"
+
+#, fuzzy
+msgid "Set system"
+msgstr "系統設定"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -18920,6 +19012,9 @@ msgstr ""
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Telnet Interface"
 msgstr "選擇介面"
@@ -19754,10 +19849,6 @@ msgid "Time Setup Actions"
 msgstr ""
 
 #, fuzzy
-msgid "Time update in minutes"
-msgstr "更新IP時間(分鐘):"
-
-#, fuzzy
 msgid "Time Update in Minutes:"
 msgstr "更新IP時間(分鐘):"
 
@@ -19821,6 +19912,10 @@ msgstr "定時類型"
 
 msgid "Time to execute command or script"
 msgstr ""
+
+#, fuzzy
+msgid "Time update in minutes"
+msgstr "更新IP時間(分鐘):"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr ""
@@ -20838,9 +20933,8 @@ msgstr "隱藏說明"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr ""
 
-#, fuzzy
-msgid "Use the network wizard to configure your Network"
-msgstr "使用網路嚮導配置網路"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "使用遙控 上/下 鍵選擇一個選項。在此之後按下 OK 。"
@@ -22174,6 +22268,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -22440,9 +22546,6 @@ msgstr "取消喜愛頻道編輯"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "啟動網卡配置"
 
 #, fuzzy
 msgid "activatePiP"
@@ -22885,9 +22988,6 @@ msgstr "退出DVD播放器或返回檔流覽器"
 #, fuzzy
 msgid "exit mounts setup menu"
 msgstr "退出網卡設定功能表"
-
-msgid "Exit network adapter configuration"
-msgstr "退出網卡配置"
 
 msgid "exit networkadapter setup menu"
 msgstr "退出網卡設定功能表"
@@ -23880,6 +23980,9 @@ msgstr ""
 msgid "uShare"
 msgstr "共用"
 
+msgid "uShare Actions"
+msgstr ""
+
 #, fuzzy
 msgid "uShare Log"
 msgstr "共用"
@@ -23891,6 +23994,12 @@ msgstr "共用"
 #, fuzzy
 msgid "uShare Port"
 msgstr "共用"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 #, fuzzy
 msgid "uShare Settings"
@@ -24069,6 +24178,18 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "確實要刪除計時器?"
+
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "備份模式"
+
+#, fuzzy
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "使用網路嚮導配置網路"
 
 #, fuzzy
 #~ msgid ""
@@ -24278,10 +24399,6 @@ msgstr ""
 #~ msgstr "螢幕寬高比"
 
 #, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "備份系統設定"
-
-#, fuzzy
 #~ msgid "Default Folder"
 #~ msgstr "預設"
 
@@ -24445,14 +24562,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "not activated"
 #~ msgstr "啟動交換檔"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "頻道選擇"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "頻道選擇"
 
 #, fuzzy
 #~ msgid "No images found"

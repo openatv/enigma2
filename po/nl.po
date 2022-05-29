@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2205,6 +2205,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "AFP-Bestandsserver"
 
@@ -2300,14 +2303,14 @@ msgstr "Activeer Picture in Picture"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Activeer een manier om individuele of specifieke interne HDMI-CEC commando's via de command-line te sturen."
 
-msgid "Activate current configuration"
-msgstr "Activeer de huidige configuratie"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Activeer de linker bestandslijst als Multi-selecteer bron"
 
 msgid "Activate left-hand file list as source"
 msgstr "Activeer de linker bestandslijst als bron"
+
+msgid "Activate network adapter configuration"
+msgstr "start de netwerkadapter configuratie"
 
 msgid "Activate network settings"
 msgstr "Activeer de netwerkinstellingen"
@@ -2410,6 +2413,9 @@ msgstr "Bestand toevoegen aan de afspeellijst"
 
 msgid "Add files to playlist"
 msgstr "Bestanden toevoegen aan de afspeellijst"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
@@ -2819,8 +2825,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Weet u zeker dat u dit item wilt verwijderen?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Wilt u deze netwerkconfiguratie nu activeren?"
+msgstr "Wilt u deze netwerkconfiguratie nu activeren?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2851,8 +2856,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Weet u zeker dat u de EPG data wilt herladen van:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Weet u zeker dat u de netwerkinterface wilt herstarten?"
+msgstr "Weet u zeker dat u de netwerkinterface wilt herstarten?"
 
 #, python-format
 msgid ""
@@ -3296,6 +3300,9 @@ msgstr "Back-up is gereed."
 msgid "Backup failed."
 msgstr "De back-up is mislukt."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Back-up wordt uitgevoerd..."
 
@@ -3305,6 +3312,9 @@ msgid ""
 msgstr ""
 "Er is een back-up van plug-ins gevonden\n"
 "wilt u deze nu installeren?"
+
+msgid "Backup settings"
+msgstr "Back-up instellingen"
 
 msgid "Backup system settings"
 msgstr "Back-up uw instellingen"
@@ -3974,6 +3984,12 @@ msgstr "Annuleer het opslaan van Timeshift als opname"
 msgid "Cancel selection"
 msgstr "Annuleer selectie"
 
+msgid "Cancel the image selection and exit"
+msgstr "Annuleer de image selectie en exit"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Annuleer de image selectie en exit alle menu's"
+
 msgid "Cancel the service selection"
 msgstr "Annuleer de zender selectie"
 
@@ -3992,9 +4008,6 @@ msgstr "Geannuleerd door de gebruiker"
 msgid "Cannot create backup directory"
 msgstr "Kan geen map maken voor de back-up"
 
-msgid "Cannot delete downloaded image"
-msgstr "Lokale image kan niet verwijderd worden"
-
 msgid "Cannot delete file"
 msgstr "Kan bestand niet wissen"
 
@@ -4005,9 +4018,6 @@ msgstr "Kan de %s limiet niet bepalen ..., annuleren !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan geen signaal vinden..., gestopt!"
-
-msgid "Cannot find images - please try later"
-msgstr "Kan geen images vinden - probeer het later nogmaals"
 
 msgid "Cannot move to trash can"
 msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
@@ -6042,6 +6052,9 @@ msgstr "Verwijder de nu geselecteerde zender van de lijst met Volume Offsets "
 msgid "Delete the selected files or directories"
 msgstr "Verwijder de geselecteerde bestanden of mappen"
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr "Verwijder deze tag"
 
@@ -7348,6 +7361,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Fout %d: Kan het wachtwoord niet wijzigen!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Fout %d: Kan het 'passwd' commando niet starten!"
 
@@ -7485,6 +7502,9 @@ msgstr ""
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Fout: %s %s niet %s!  A.u.b. later nog een keer proberen."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr "Fout: Checksum is ongeldig!"
@@ -7644,8 +7664,11 @@ msgstr "Opnamelijst afsluiten"
 msgid "Exit movie player?"
 msgstr "Opnamespeler beëindigen?"
 
-msgid "Exit nameserver configuration"
-msgstr "Verlaat de naamserver (DNS) configuratie"
+msgid "Exit network adapter configuration"
+msgstr "verlaat de netwerkadapter configuratie"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Verlaat het netwerkinterfaceoverzicht"
@@ -7809,6 +7832,9 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "FTP-Bestandsserver"
@@ -8076,8 +8102,12 @@ msgstr "Vast X11 lettertype (SD)"
 msgid "Flash Image"
 msgstr "Flash image"
 
-msgid "Flash On the Fly"
-msgstr "Flash online/lokaal"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Flash online/lokaal"
@@ -8280,9 +8310,6 @@ msgstr "Resolutie van de volledige beeldgrootte"
 
 msgid "FullHD Test"
 msgstr "FullHD test"
-
-msgid "Fullbackup Images"
-msgstr "Volledige Back-up images"
 
 msgid "Fullscreen"
 msgstr "Volledig scherm"
@@ -9287,8 +9314,14 @@ msgstr "Inactief"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Inadyn log"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Inadyn (DynDNS)"
@@ -10252,6 +10285,10 @@ msgstr "Locatie informatie"
 msgid "Location list"
 msgstr "Locatie lijst"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lock:"
 
@@ -10360,11 +10397,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "MAC-address"
-msgstr "MAC-adres"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "MAC-adres instellingen"
+
+msgid "MAC-address"
+msgstr "MAC-adres"
 
 msgid "MB"
 msgstr "MB"
@@ -10677,6 +10717,12 @@ msgstr "Micronesië"
 msgid "Middle - Lite image"
 msgstr "Midden- Lite image"
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 msgid "Mini Series"
 msgstr "Mini Series"
 
@@ -10827,8 +10873,14 @@ msgstr "Mount"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Mount '%s' heeft niet voldoende vrije ruimte voor opname."
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Mount beheer"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Mount instellingen"
@@ -11144,6 +11196,9 @@ msgstr "VOLGENDE"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "NFS-Bestandsserver"
 
@@ -11232,8 +11287,17 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "Netwerk"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Netwerk adapter"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Netwerk verkenner"
@@ -11249,6 +11313,9 @@ msgstr "Netwerk Informatie Acties"
 
 msgid "Network Interface"
 msgstr "Netwerk interface"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Netwerk MAC instellingen"
@@ -11267,6 +11334,9 @@ msgstr "Netwerkinstellingen"
 
 msgid "Network Test"
 msgstr "Netwerktest"
+
+msgid "Network Test:"
+msgstr "Netwerktest: "
 
 msgid "Network Wizard"
 msgstr "Netwerk wizard"
@@ -11297,9 +11367,6 @@ msgstr "Netwerktest"
 
 msgid "Network test..."
 msgstr "Netwerktest..."
-
-msgid "Network Test:"
-msgstr "Netwerktest: "
 
 msgid "Network:"
 msgstr "Netwerk:"
@@ -12018,6 +12085,9 @@ msgstr "OpenSSL versie"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "OpenVPN"
 
@@ -12646,6 +12716,9 @@ msgstr "Selecteer een back-up bestemming"
 
 msgid "Please select a default EPG type..."
 msgstr "Selecteer het standaard EPG-type..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Selecteer de afspeellijst die u wilt verwijderen..."
@@ -14373,6 +14446,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd"
 
@@ -14387,6 +14463,9 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
+
+msgid "SATPI Setting Actions"
+msgstr ""
 
 msgid "SATPI Settings"
 msgstr "SATPI (SATIP Server)"
@@ -14466,6 +14545,9 @@ msgstr "Saint Vincent en de Grenadines"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Samba log"
@@ -14914,6 +14996,9 @@ msgstr "Selecteer een Enigma2 skin"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Selecteer 'snelle DiSEqC' als uw antennesysteem dat ondersteunt. Als u er niet zeker va bent, kiest u 'nee'."
 
+msgid "Select Folders"
+msgstr "Selecteer mappen"
+
 msgid "Select HDD"
 msgstr "Selecteer harde schijf"
 
@@ -14940,6 +15025,9 @@ msgstr "Selecteer een favorietenlijst"
 
 msgid "Select a cardserver from the available list."
 msgstr "Kies een cardserver uit de lijst."
+
+msgid "Select a distribution from where images are to be obtained"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Selecteer een opname"
@@ -15011,9 +15099,6 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
 
-msgid "Select Folders"
-msgstr "Selecteer mappen"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Selecteer hoe snel de schotel beweegt tussen satellieten."
 
@@ -15045,6 +15130,9 @@ msgstr "Selecteer invoerapparaat."
 
 msgid "Select interface"
 msgstr "Selecteer interface"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Selecteer opname"
@@ -15117,6 +15205,9 @@ msgstr "Kies de nu geselecteerde zender"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Selecteer het actuele slot en herstarten"
@@ -15526,9 +15617,6 @@ msgstr "Stel CI toewijzing in voor de detectie van beschikbare zenders."
 msgid "Set Framerate for MiniTV"
 msgstr "Stel de MiniTV framesnelheid in"
 
-msgid "Set system"
-msgstr "Systeem instellingen"
-
 msgid "Set action for 'Info' key"
 msgstr "Selecteer actie voor INFO-knop"
 
@@ -15570,6 +15658,9 @@ msgstr "Stel het aantal herhalingen in dat uw antennesysteem vereist. Als het sy
 
 msgid "Set startup service"
 msgstr "Selecteer als opstartzender"
+
+msgid "Set system"
+msgstr "Systeem instellingen"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -17851,6 +17942,9 @@ msgstr "Kleur van de Teletekst-ondertitels"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Telnet interface"
 
@@ -18741,9 +18835,6 @@ msgstr "Tijd instellingen"
 msgid "Time Setup Actions"
 msgstr "Tijd Setup acties"
 
-msgid "Time update in minutes"
-msgstr "Update tijd in minuten"
-
 msgid "Time Update in Minutes:"
 msgstr "Update tijd in minuten:"
 
@@ -18801,6 +18892,9 @@ msgstr "Tijdstijl"
 
 msgid "Time to execute command or script"
 msgstr "Tijdstip van uitvoeren opdracht of script"
+
+msgid "Time update in minutes"
+msgstr "Update tijd in minuten"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Tijdvenster voor detectie van ontwaken van een opname"
@@ -19754,8 +19848,8 @@ msgstr "Gebruik de uitgebreide lijst"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Gebruik de netwerkwizard om de geselecteerde netwerkadapter te configureren"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Gebruik de Netwerkwizard om uw netwerk te configureren"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "U kunt met de omhoog / omlaag knop op uw afstandsbediening een optie kiezen. Druk daarna op OK."
@@ -21070,6 +21164,18 @@ msgstr ""
 "Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
 "Wilt u nu verwijderen?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Uw hardware kan zelf de juiste ci modus detecteren of alleen de standaard modus gebruiken."
 
@@ -21342,9 +21448,6 @@ msgstr "Favorieten bewerken afsluiten"
 
 msgid "ac3"
 msgstr "ac3"
-
-msgid "Activate network adapter configuration"
-msgstr "start de netwerkadapter configuratie"
 
 msgid "activatePiP"
 msgstr "activeer PiP"
@@ -21768,9 +21871,6 @@ msgstr "DVD-speler afsluiten of terug naar bestandslijst"
 
 msgid "exit mounts setup menu"
 msgstr "Verlaat mounts instellingen menu"
-
-msgid "Exit network adapter configuration"
-msgstr "verlaat de netwerkadapter configuratie"
 
 msgid "exit networkadapter setup menu"
 msgstr "verlaat het netwerkadapter instellingenmenu"
@@ -22703,6 +22803,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "uShare log"
 
@@ -22711,6 +22814,12 @@ msgstr "uShare naam"
 
 msgid "uShare Port"
 msgstr "uShare poort"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "uShare-Mediaserver"
@@ -22885,6 +22994,27 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Activeer de huidige configuratie"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Lokale image kan niet verwijderd worden"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Kan geen images vinden - probeer het later nogmaals"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Verlaat de naamserver (DNS) configuratie"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Flash online/lokaal"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Volledige Back-up images"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Gebruik de Netwerkwizard om uw netwerk te configureren"
 
 #~ msgid ""
 #~ "\n"
@@ -23401,9 +23531,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Automatisch zoeken"
 
-#~ msgid "Backup settings"
-#~ msgstr "Back-up instellingen"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Common interface taken"
 
@@ -23638,12 +23765,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "niet geactiveerd"
-
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Annuleer de image selectie en exit"
-
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Annuleer de image selectie en exit alle menu's"
 
 #~ msgid "No images found"
 #~ msgstr "Geen images gevonden"

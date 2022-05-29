@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
-"PO-Revision-Date: 2022-05-28 11:23+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"PO-Revision-Date: 2022-05-29 15:26+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -2206,6 +2206,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr "AFP toiminnot"
+
 msgid "AFP Settings"
 msgstr "AFP asetukset"
 
@@ -2301,14 +2304,14 @@ msgstr "Avaa PiP-kuva"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja komentoriviltä."
 
-msgid "Activate current configuration"
-msgstr "Aktivoi nykyiset asetukset"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Aktivoi vasemman puoleinen tiedostolista monivalinta lähteenä"
 
 msgid "Activate left-hand file list as source"
 msgstr "Aktivoi vasemman puoleinen tiedostolista lähteenä"
+
+msgid "Activate network adapter configuration"
+msgstr "aktivoi verkkosovittimen asetukset"
 
 msgid "Activate network settings"
 msgstr "Ota verkkoasetukset käyttöön"
@@ -2411,6 +2414,9 @@ msgstr "Lisää tiedosto soittolistalle"
 
 msgid "Add files to playlist"
 msgstr "Lisää tiedostot soittolistalle"
+
+msgid "Add help text"
+msgstr "Lisää ohje teksti"
 
 msgid "Add new tag"
 msgstr "Lisää uusi tunniste"
@@ -2824,8 +2830,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Haluatko poistaa tämän kohteen?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Haluatko aktivoida nämä verkkoasetukset?"
+msgstr "Haluatko aktivoida nämä verkkoasetukset?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2856,8 +2861,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Haluatko varmasti tuoda EPG-tiedot täältä:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Haluatko käynnistää verkkosovittimet uudelleen?"
+msgstr "Haluatko käynnistää verkkosovittimet uudelleen?"
 
 #, python-format
 msgid ""
@@ -3302,6 +3306,9 @@ msgstr "Varmuuskopiointi suoritettu."
 msgid "Backup failed."
 msgstr "Varmuuskopiointi epäonnistui."
 
+msgid "Backup images"
+msgstr "Varmuuskopioit ohjelmistosta"
+
 msgid "Backup is running..."
 msgstr "Varmuuskopiointi käynnissä."
 
@@ -3311,6 +3318,9 @@ msgid ""
 msgstr ""
 "Varmuuskopio lisäosat löytyi!\n"
 "Haluatko asentaa ne nyt?"
+
+msgid "Backup settings"
+msgstr "Varmuuskopioi asetukset"
 
 msgid "Backup system settings"
 msgstr "Varmuuskopioi järjestelmäasetukset"
@@ -3981,6 +3991,12 @@ msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 msgid "Cancel selection"
 msgstr "Peruuta valinta"
 
+msgid "Cancel the image selection and exit"
+msgstr "Peruuta image valinta ja poistu"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Peruuta image valinta ja poistu kaikista valikoista"
+
 msgid "Cancel the service selection"
 msgstr "Peruuta kanava valinta"
 
@@ -3999,9 +4015,6 @@ msgstr "Käyttäjä peruutti tehtävän"
 msgid "Cannot create backup directory"
 msgstr "Varmuuskopiohakemistoa ei voi luoda"
 
-msgid "Cannot delete downloaded image"
-msgstr "Ladattua imagea ei voi poistaa"
-
 msgid "Cannot delete file"
 msgstr "Tiedostoa ei voi poistaa"
 
@@ -4012,9 +4025,6 @@ msgstr "Ei voida määrittää %s rajaa ..., keskeytys !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Signaalia ei löydy... keskeytetään!"
-
-msgid "Cannot find images - please try later"
-msgstr "Ohjelmistoja ei löydy - yritä myöhemmin"
 
 msgid "Cannot move to trash can"
 msgstr "Ei voida siirtää roskakoriin"
@@ -4486,7 +4496,7 @@ msgid "Clock:"
 msgstr "Kello:"
 
 msgid "Clone TV screen to LCD"
-msgstr "Kopioi TV-kuva LCD näyttöön"
+msgstr "Kopioi TV kuva LCD näyttöön"
 
 msgid "Close"
 msgstr "Sulje"
@@ -5288,7 +5298,7 @@ msgid "Croatian"
 msgstr "Kroatia"
 
 msgid "Cron Manager"
-msgstr "Cron manageri"
+msgstr "Cron Hallinta"
 
 msgid "Cron Timers"
 msgstr "Cron Ajastukset"
@@ -5937,6 +5947,9 @@ msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta
 
 msgid "Delete the selected files or directories"
 msgstr "Poista valitut tiedostot tai hakemistot"
+
+msgid "Delete the selected locally stored image"
+msgstr "Poista paikallisesti tallennettu ohjelmisto"
 
 msgid "Delete this tag"
 msgstr "Poista tämä tunniste"
@@ -7237,6 +7250,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Virhe %d: Salasanan vaihtaminen ei onnistu!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr "Virhe %d: Ladattua ohjelmistoa ei voida poistaa '%s'!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Virhe %d: Komentoa 'passwd' ei pystytä käynnistämään!"
 
@@ -7374,6 +7391,9 @@ msgstr ""
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ei päivityksiä saatavilla. Yritä myöhemmin uudelleen."
+
+msgid "Error: Cannot find any images!"
+msgstr "Virhe: Yhtään ohjelmistoa ei löydy!"
 
 msgid "Error: Checksum is invalid!"
 msgstr "Virhe: Tarkistussumma on virheellinen!"
@@ -7533,8 +7553,11 @@ msgstr "Poistu tallenneluettelosta"
 msgid "Exit movie player?"
 msgstr "Lopeta tallenteen katselu?"
 
-msgid "Exit nameserver configuration"
-msgstr "Lopeta nimipalvelimen määritys"
+msgid "Exit network adapter configuration"
+msgstr "poistu verkkosovittimen asetuksista"
+
+msgid "Exit network adapter setup menu"
+msgstr "Poistu verkkosovittimen asetus valikosta"
 
 msgid "Exit network interface list"
 msgstr "Poistu verkkosovitinluettelosta"
@@ -7698,6 +7721,9 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr "FTP toiminnot"
 
 msgid "FTP Settings"
 msgstr "FTP asetukset"
@@ -7965,8 +7991,12 @@ msgstr "Kiinteä X11 fontti merkistö (SD)"
 msgid "Flash Image"
 msgstr "Päivitä Image"
 
-msgid "Flash On the Fly"
-msgstr "Ohjelmiston päivitys"
+msgid "Flash Manager"
+msgstr "Ohjelmisto hallinta"
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr "Ohjelmisto hallinta - %s Ohjelmistot"
 
 msgid "Flash Online"
 msgstr "Lataa ohjelmisto image internetin kautta"
@@ -8169,9 +8199,6 @@ msgstr "Kokoruudun resoluutio"
 
 msgid "FullHD Test"
 msgstr "FullHD Testi"
-
-msgid "Fullbackup Images"
-msgstr "Täysi varmuuskopio imaget"
 
 msgid "Fullscreen"
 msgstr "Kokoruutu"
@@ -9172,8 +9199,14 @@ msgstr "Ei käytössä"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr "Inadyn toiminnot"
+
 msgid "Inadyn Log"
 msgstr "Inadyn Loki"
+
+msgid "Inadyn Setting Actions"
+msgstr "Inadyn asetus toiminnot"
 
 msgid "Inadyn Settings"
 msgstr "Inadyn asetukset"
@@ -9372,10 +9405,10 @@ msgid "Install Softcams"
 msgstr "Asenna softcameja"
 
 msgid "Install a new image with a USB stick"
-msgstr "Päivitä uusi image USB-muistitikulta"
+msgstr "Päivitä uusi image USB muistitikulta"
 
 msgid "Install a new image with your web browser"
-msgstr "Päivitä uusi image nettiselaimella"
+msgstr "Päivitä uusi ohjelmisto nettiselaimella"
 
 msgid "Install extensions"
 msgstr "Asenna laajennukset"
@@ -10137,6 +10170,10 @@ msgstr "Sijaintitiedot"
 msgid "Location list"
 msgstr "Kohdehakemisto lista"
 
+#, python-format
+msgid "Location: %s"
+msgstr "Sijainti: %s"
+
 msgid "Lock:"
 msgstr "Lukittu:"
 
@@ -10245,11 +10282,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "MAC-address"
-msgstr "MAC-osoite"
+msgid "MAC Address Actions"
+msgstr "MAC osoite toiminnot"
 
 msgid "MAC Address Settings"
 msgstr "MAC-osoitteen asetukset"
+
+msgid "MAC-address"
+msgstr "MAC-osoite"
 
 msgid "MB"
 msgstr "MB"
@@ -10562,6 +10602,12 @@ msgstr "Micronesia"
 msgid "Middle - Lite image"
 msgstr "Keskimmäinen - Ohjelmisto"
 
+msgid "Mini DLNA Actions"
+msgstr "Mini DLNA toiminnot"
+
+msgid "Mini DLNA Setting Actions"
+msgstr "Mini DLNA asetustoiminnot"
+
 msgid "Mini Series"
 msgstr "Mini Sarja"
 
@@ -10712,8 +10758,14 @@ msgstr "Liitä"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Mount '%s' ei ole tarpeeksi vapaata tallennustilaa."
 
+msgid "Mount Actions"
+msgstr "Liitokset toiminnot"
+
 msgid "Mount Manager"
 msgstr "Liitosten hallinta"
+
+msgid "Mount Settings"
+msgstr "Liitokset Asetukset"
 
 msgid "Mount Setup"
 msgstr "Määritä verkko ja laiteliitokset"
@@ -11031,6 +11083,9 @@ msgstr "Seuraava"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr "NFS toiminnot"
+
 msgid "NFS Settings"
 msgstr "NFS asetukset"
 
@@ -11119,8 +11174,17 @@ msgstr "Aliverkon peite"
 msgid "Network"
 msgstr "Verkko"
 
+msgid "Network Adapter Actions"
+msgstr "Verkkosovittimen toiminnot"
+
 msgid "Network Adapter Selection"
 msgstr "Verkkosovittimen valinta"
+
+msgid "Network Adapter Setting Actions"
+msgstr "Verkkosovittimen asetukset"
+
+msgid "Network Adapter Text Actions"
+msgstr "Verkkosovittimen teksti toiminnot"
 
 msgid "Network Browser"
 msgstr "Verkko Valinta"
@@ -11136,6 +11200,9 @@ msgstr "Verkkotiedot Toiminnot"
 
 msgid "Network Interface"
 msgstr "Verkkosovitin"
+
+msgid "Network Log Actions"
+msgstr "Verkko loki toiminnot"
 
 msgid "Network MAC settings"
 msgstr "Verkon MAC asetukset"
@@ -11154,6 +11221,9 @@ msgstr "Lähiverkon asetukset"
 
 msgid "Network Test"
 msgstr "Verkkoyhteyksien testaus"
+
+msgid "Network Test:"
+msgstr "Lähiverkon testi: "
 
 msgid "Network Wizard"
 msgstr "Ohjattu verkkoasennus"
@@ -11184,9 +11254,6 @@ msgstr "Lähiverkon testi"
 
 msgid "Network test..."
 msgstr "Lähiverkon testi."
-
-msgid "Network Test:"
-msgstr "Lähiverkon testi: "
 
 msgid "Network:"
 msgstr "Sovitin:"
@@ -11912,6 +11979,9 @@ msgstr "OpenSSL versio"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr "OpenVPN toiminnot"
+
 msgid "OpenVPN Settings"
 msgstr "OpenVPN asetukset"
 
@@ -12526,7 +12596,7 @@ msgid "Please note that the previously selected media could not be accessed and 
 msgstr "Huomaa, että oletushakemisto on käytössä, koska aikaisemmin valittua levyä ei voitu ladata."
 
 msgid "Please open Picture in Picture first"
-msgstr "Avaa ensin PiP-kuva"
+msgstr "Avaa ensin PiP kuva"
 
 msgid "Please press OK to continue."
 msgstr "Jatka painamalla OK."
@@ -12540,11 +12610,14 @@ msgstr "Valitse varmuuskopion sijainti"
 msgid "Please select a default EPG type..."
 msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr "Valitse jakelija, jolta haluat päivittää ohjelmiston:"
+
 msgid "Please select a playlist to delete..."
-msgstr "Valitse poistettava soittolista."
+msgstr "Valitse poistettava toistolista."
 
 msgid "Please select a playlist..."
-msgstr "Valitse soittolista."
+msgstr "Valitse toistolista."
 
 msgid "Please select a resolution..."
 msgstr "Valitse kuvaruudun tarkkuus"
@@ -13569,7 +13642,7 @@ msgid "Reception lists"
 msgstr "Kanavalistat"
 
 msgid "Record"
-msgstr "Tallentaa"
+msgstr "Tallenna"
 
 msgid "Record - same as record button"
 msgstr "Tallenna - sama kuin tallennus-näppäin"
@@ -13597,7 +13670,7 @@ msgid "Recordable media toolbox"
 msgstr "Tallennettavan median työkalupakki"
 
 msgid "Recording"
-msgstr "Tallenna"
+msgstr "Tallentaa"
 
 msgid "Recording Actions"
 msgstr "Tallennus toiminnot"
@@ -13857,7 +13930,7 @@ msgid "Remove all skin data"
 msgstr "Poista kaikki teema tiedot"
 
 msgid "Remove all timer data"
-msgstr "Poista kaikki ajastukset tiedot"
+msgstr "Poista kaikki ajastukset"
 
 msgid "Remove all user interface data"
 msgstr "Poista kaikki käyttöliittymän tiedot"
@@ -14008,7 +14081,7 @@ msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Palauta kuvasäädöt aiempiin arvoihin?"
 
 msgid "Reshare"
-msgstr "Re-share"
+msgstr "Reshare"
 
 msgid "Reshare:"
 msgstr "Reshare:"
@@ -14266,6 +14339,9 @@ msgstr "S-video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr "SABnzbd toiminnot"
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd asetukset"
 
@@ -14280,6 +14356,9 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
+
+msgid "SATPI Setting Actions"
+msgstr "SATPI asetukset"
 
 msgid "SATPI Settings"
 msgstr "SATPI asetukset"
@@ -14359,6 +14438,9 @@ msgstr "Saint Vincent and the Grenadines"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr "Samba toiminnot"
 
 msgid "Samba Log"
 msgstr "Samba Loki"
@@ -14779,7 +14861,7 @@ msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelo
 
 msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
 msgstr ""
-"Valitse 'kyllä', jos tämä viritin on kytketty SCR-laitteeseen toisen\n"
+"Valitse 'kyllä', jos tämä viritin on kytketty SCR laitteeseen toisen\n"
 "virittimen läpi, muutoin valitse 'ei'."
 
 #, python-format
@@ -14811,6 +14893,9 @@ msgstr ""
 "Valitse Nopea DiSEqC, jos antennijärjestelmäsi tukee sitä. Jos olet\n"
 "epävarma, valitse 'ei'."
 
+msgid "Select Folders"
+msgstr "Hakemiston valinta"
+
 msgid "Select HDD"
 msgstr "Valitse Kiintolevy"
 
@@ -14837,6 +14922,9 @@ msgstr "Valitse suosikkilista"
 
 msgid "Select a cardserver from the available list."
 msgstr "Valitse korttipalvelin käytettävissä olevasta listasta."
+
+msgid "Select a distribution from where images are to be obtained"
+msgstr "Valitse jakelija, josta ohjelmistot haetaan"
 
 msgid "Select a movie"
 msgstr "Elokuvan valinta"
@@ -14908,9 +14996,6 @@ msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
 
-msgid "Select Folders"
-msgstr "Hakemiston valinta"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Valitse kuinka nopeasti antennin pitäisi liikkua satelliittien välillä."
 
@@ -14942,6 +15027,9 @@ msgstr "Valitse syöttölaite."
 
 msgid "Select interface"
 msgstr "Valitse verkkosovitin"
+
+msgid "Select menu entry"
+msgstr "Valitse valikko kohta"
 
 msgid "Select movie"
 msgstr "Valitse tallenne"
@@ -15014,6 +15102,9 @@ msgstr "Valitse parhaillaan korostettu kanava"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Valitse haluamasi toiminto ja napsauta OK vaihda listoja painamalla \"CH+/-\" siirtyäksesi luetteloiden välillä. Valitse määritetty toiminto ja paina OK määrittää sen \"Seuraava / Edellinen\" näppäimiä vaihtaaksesi toimintojen järjestystä."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr "Valitse korostettu ohjelmisto ja siirry paikka valintaan"
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
@@ -15423,9 +15514,6 @@ msgstr "'Kyllä' valinnalla CI havaitsee käytettävissä olevat palvelut."
 msgid "Set Framerate for MiniTV"
 msgstr "Aseta kuvataajuus MiniTV:lle"
 
-msgid "Set system"
-msgstr "Aseta järjestelmä"
-
 msgid "Set action for 'Info' key"
 msgstr "Valitse toiminto ajastimelle"
 
@@ -15467,6 +15555,9 @@ msgstr "Sekvenssiasetus toistetaan, jos antennijärjestelmä vaatii sitä. Norma
 
 msgid "Set startup service"
 msgstr "Määritä aloituskanavaksi"
+
+msgid "Set system"
+msgstr "Aseta järjestelmä"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -17729,6 +17820,9 @@ msgstr "Teksti-tv tekstityksen väri"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr "Telnet toiminnot"
+
 msgid "Telnet Interface"
 msgstr "Telnet liittymä"
 
@@ -18573,9 +18667,6 @@ msgstr "Aika asetukset"
 msgid "Time Setup Actions"
 msgstr "Aika Asetukset"
 
-msgid "Time update in minutes"
-msgstr "Ajanpäivitys minuutteina"
-
 msgid "Time Update in Minutes:"
 msgstr "Ajanpäivitys minuutteina:"
 
@@ -18633,6 +18724,9 @@ msgstr "Ajan näyttömuoto"
 
 msgid "Time to execute command or script"
 msgstr "Käskyn tai komentojonon suoritusaika"
+
+msgid "Time update in minutes"
+msgstr "Ajanpäivitys minuutteina"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Aikaikkuna herätyksen havaitsemiseksi ajastimella [mins]"
@@ -19587,8 +19681,8 @@ msgstr "Käytä laajennettua listaa"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Muokkaa lähiverkon asetukset verkkoavustajan opastamana"
+msgid "Use the network wizard to configure your Network."
+msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Valitse vaihtoehto kauko ohjaimen ylös/alas -näppäimillä. Paina sen jälkeen OK."
@@ -20884,6 +20978,22 @@ msgstr ""
 "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
 "Poistetaanko palvelu nyt?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+"%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
+"Poistetaanko palvelu nyt?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+"%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
+"Poistetaanko palvelu nyt?"
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Salauksen purku Laitteesi voi tunnistaa CI-tilan itse tai toimia vain vanhassa tilassa."
 
@@ -21160,9 +21270,6 @@ msgstr "peruuta muutokset ja poistu"
 
 msgid "ac3"
 msgstr "ac3"
-
-msgid "Activate network adapter configuration"
-msgstr "aktivoi verkkosovittimen asetukset"
 
 msgid "activatePiP"
 msgstr "aktivoi PiP"
@@ -21586,9 +21693,6 @@ msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
 
 msgid "exit mounts setup menu"
 msgstr "poistu liitosten asetusvalikosta"
-
-msgid "Exit network adapter configuration"
-msgstr "poistu verkkosovittimen asetuksista"
 
 msgid "exit networkadapter setup menu"
 msgstr "poistu verkkosovittimen asetusvalikosta"
@@ -22523,6 +22627,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare asetukset"
 
+msgid "uShare Actions"
+msgstr "uShare toiminnot"
+
 msgid "uShare Log"
 msgstr "uShare loki"
 
@@ -22531,6 +22638,12 @@ msgstr "uShare Nimi"
 
 msgid "uShare Port"
 msgstr "uShare portti"
+
+msgid "uShare Selection Actions"
+msgstr "uShare valinta toiminnot"
+
+msgid "uShare Setting Actions"
+msgstr "uShare asetus toiminnot"
 
 msgid "uShare Settings"
 msgstr "uShare asetukset"
@@ -22703,6 +22816,27 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktivoi nykyiset asetukset"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Ladattua imagea ei voi poistaa"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Ohjelmistoja ei löydy - yritä myöhemmin"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Lopeta nimipalvelimen määritys"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Ohjelmiston päivitys"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Täysi varmuuskopio imaget"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Muokkaa lähiverkon asetukset verkkoavustajan opastamana"
 
 #~ msgid ""
 #~ "\n"
@@ -23219,9 +23353,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Automaattihaku"
 
-#~ msgid "Backup settings"
-#~ msgstr "Varmuuskopioi asetukset"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "CI-määritykset"
 
@@ -23456,12 +23587,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "ei käytössä"
-
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Peruuta image valinta ja poistu"
-
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
 #~ msgid "No images found"
 #~ msgstr "Imagea ei löytynyt"

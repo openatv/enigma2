@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2022-05-28 11:23+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
@@ -2300,6 +2300,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "AFP-Dateiserver"
 
@@ -2403,14 +2406,15 @@ msgstr "Bild im Bild aktivieren"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-CEC-Befehle von der Befehlszeile zu senden."
 
-msgid "Activate current configuration"
-msgstr "Aktuelle Konfiguration aktivieren"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Aktivieren Sie die linke Dateiliste als Mehrfachauswahlquelle"
 
 msgid "Activate left-hand file list as source"
 msgstr "Linke Dateiliste als Quelle aktivieren"
+
+#
+msgid "Activate network adapter configuration"
+msgstr "Einstellungen des Netzwerkadapters aktivieren"
 
 #
 msgid "Activate network settings"
@@ -2521,6 +2525,9 @@ msgstr "Datei zur Playlist hinzufügen"
 
 msgid "Add files to playlist"
 msgstr "Zur Playlist hinzufügen"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr "Neuen Tag hinzufügen"
@@ -2956,8 +2963,7 @@ msgstr "Möchten Sie diesen Eintrag wirklich löschen?"
 
 #
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Möchten Sie wirklich diese Netzwerkkonfiguration aktivieren?"
+msgstr "Möchten Sie wirklich diese Netzwerkkonfiguration aktivieren?"
 
 #
 msgid ""
@@ -2991,8 +2997,7 @@ msgstr "Die EPG-Daten von hier neu laden:\n"
 
 #
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Die Netzwerkschnittstelle neu starten?"
+msgstr "Die Netzwerkschnittstelle neu starten?"
 
 #
 #, python-format
@@ -3471,6 +3476,9 @@ msgstr "Sichern der Einstellungen beendet."
 msgid "Backup failed."
 msgstr "Sicherung fehlgeschlagen!"
 
+msgid "Backup images"
+msgstr ""
+
 # SystemPlugins/SoftwareManager/BackupRestore.py
 msgid "Backup is running..."
 msgstr "Einstellungen werden gesichert..."
@@ -3481,6 +3489,9 @@ msgid ""
 msgstr ""
 "Gesicherte Erweiterungen gefunden!\n"
 "Möchten Sie diese jetzt installieren?"
+
+msgid "Backup settings"
+msgstr "Einstellungen sichern"
 
 #
 msgid "Backup system settings"
@@ -4187,6 +4198,14 @@ msgstr "Timeshift nicht als Film speichern"
 msgid "Cancel selection"
 msgstr "Auswahl abbrechen"
 
+#
+msgid "Cancel the image selection and exit"
+msgstr "Imageauswahl abbrechen und verlassen"
+
+#
+msgid "Cancel the image selection and exit all menus"
+msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
+
 msgid "Cancel the service selection"
 msgstr "Senderauswahl abbrechen"
 
@@ -4206,9 +4225,6 @@ msgstr "Aufgabe durch den Benutzer abgebrochen"
 msgid "Cannot create backup directory"
 msgstr "Sicherungsverzeichnis kann nicht erstellt werden!"
 
-msgid "Cannot delete downloaded image"
-msgstr "Das heruntergeladene Image kann nicht gelöscht werden!"
-
 msgid "Cannot delete file"
 msgstr "Datei kann nicht gelöscht werden!"
 
@@ -4219,11 +4235,6 @@ msgstr "%s kann nicht ermittelt werden ... abbrechen!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kein Signal gefunden! Abbruch!"
-
-msgid "Cannot find images - please try later"
-msgstr ""
-"Images können nicht gefunden werden!\n"
-"Bitte versuchen Sie es später erneut."
 
 msgid "Cannot move to trash can"
 msgstr "Nicht in den Papierkorb verschiebbar!"
@@ -6280,6 +6291,9 @@ msgstr "Löschen des aktuell markierten Senders aus der Liste der Lautstärke-Of
 msgid "Delete the selected files or directories"
 msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr "Diesen Tag löschen"
 
@@ -7670,6 +7684,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Fehler %d: Kennwort kann nicht geändert werden! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Fehler %d: Befehl 'passwd' konnte nicht gestartet werden!"
 
@@ -7811,6 +7829,9 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr ""
 "Fehler: %s %s nicht %s!\n"
 "Bitte versuchen Sie es später erneut."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr "Fehler: Prüfsumme ist ungültig!"
@@ -7977,8 +7998,12 @@ msgstr "Verlasse Filmauswahl"
 msgid "Exit movie player?"
 msgstr "Movieplayer verlassen?"
 
-msgid "Exit nameserver configuration"
-msgstr "Nameserver-Konfiguration verlassen"
+#
+msgid "Exit network adapter configuration"
+msgstr "Netzwerkadapter-Konfiguration verlassen"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 # HelpMenu
 msgid "Exit network interface list"
@@ -8159,6 +8184,9 @@ msgstr "FreeTV (FTA)"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "FTP-Dateiserver"
@@ -8447,9 +8475,12 @@ msgstr "Fester X11 Zeichensatz (SD)"
 msgid "Flash Image"
 msgstr "Image flashen"
 
-# /SoftwareManager/plugin.py
-msgid "Flash On the Fly"
-msgstr "Flashen online/lokal"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Flashen online/lokal"
@@ -8670,9 +8701,6 @@ msgstr "Vollbild-Auflösung"
 
 msgid "FullHD Test"
 msgstr "FullHD-Test"
-
-msgid "Fullbackup Images"
-msgstr "Image-Komplettsicherung"
 
 #
 msgid "Fullscreen"
@@ -9700,8 +9728,14 @@ msgstr "Inaktiv"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Inadyn-Log"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Inadyn (DynDNS)"
@@ -10739,6 +10773,10 @@ msgstr "Standortinformationen"
 msgid "Location list"
 msgstr "Standortliste"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 #
 msgid "Lock:"
 msgstr "Signal:"
@@ -10858,13 +10896,16 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-# NetworkSetup.py
-msgid "MAC-address"
-msgstr "MAC-Adresse"
+msgid "MAC Address Actions"
+msgstr ""
 
 # NetworkSetup.py
 msgid "MAC Address Settings"
 msgstr "MAC-Adresse einstellen"
+
+# NetworkSetup.py
+msgid "MAC-address"
+msgstr "MAC-Adresse"
 
 msgid "MB"
 msgstr "MB"
@@ -11201,6 +11242,12 @@ msgstr "Mikronesien (Föderierte Staaten)"
 msgid "Middle - Lite image"
 msgstr "Mittel - Images max. 256 MB"
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 msgid "Mini Series"
 msgstr "Mini-Serie"
@@ -11363,9 +11410,15 @@ msgstr "Mount"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Zielort '%s' hat nicht genügend freien Speicher."
 
+msgid "Mount Actions"
+msgstr ""
+
 #
 msgid "Mount Manager"
 msgstr "Mount-Verwaltung"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Mount-Einstellungen"
@@ -11713,6 +11766,9 @@ msgstr "NÄCHSTE"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "NFS-Dateiserver"
 
@@ -11811,8 +11867,17 @@ msgstr "Netzmaske"
 msgid "Network"
 msgstr "Netzwerk"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Netzwerkadapter-Auswahl"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 # Quick Menue
 msgid "Network Browser"
@@ -11831,6 +11896,9 @@ msgstr "Netzwerkinformationen Aktionen"
 #
 msgid "Network Interface"
 msgstr "Netzwerkschnittstelle"
+
+msgid "Network Log Actions"
+msgstr ""
 
 # NetworkSetup.py
 msgid "Network MAC settings"
@@ -11853,6 +11921,9 @@ msgstr "Netzwerkeinrichtung"
 
 msgid "Network Test"
 msgstr "Netzwerktest"
+
+msgid "Network Test:"
+msgstr "Netzwerktest: "
 
 #
 msgid "Network Wizard"
@@ -11888,9 +11959,6 @@ msgstr "Netzwerktest"
 #
 msgid "Network test..."
 msgstr "Teste Netzwerk..."
-
-msgid "Network Test:"
-msgstr "Netzwerktest: "
 
 msgid "Network:"
 msgstr "Netzwerk:"
@@ -12684,6 +12752,9 @@ msgstr "OpenSSL-Version"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "OpenVPN"
 
@@ -13377,6 +13448,9 @@ msgstr "Bitte ein Sicherungsziel auswählen"
 
 msgid "Please select a default EPG type..."
 msgstr "Bitte einen Standard-EPG-Typ auswählen..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 #
 msgid "Please select a playlist to delete..."
@@ -15258,6 +15332,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd (Binary News)"
 
@@ -15272,6 +15349,9 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
+
+msgid "SATPI Setting Actions"
+msgstr ""
 
 msgid "SATPI Settings"
 msgstr "SATPI (SATIP-Server)"
@@ -15355,6 +15435,9 @@ msgstr "St. Vincent und die Grenadinen"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Samba-Log"
@@ -15838,6 +15921,9 @@ msgstr "Enigma2-Skin auswählen"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Wählen Sie 'Ja', wenn Ihr Antennensystem dies unterstützt. Wenn Sie unsicher sind, wählen Sie 'Nein'."
 
+msgid "Select Folders"
+msgstr "Ordner auswählen"
+
 msgid "Select HDD"
 msgstr "Festplatte auswählen"
 
@@ -15866,6 +15952,9 @@ msgstr "Bouquet auswählen"
 
 msgid "Select a cardserver from the available list."
 msgstr "Wählen Sie einen Cardserver aus der Liste aus."
+
+msgid "Select a distribution from where images are to be obtained"
+msgstr ""
 
 #
 msgid "Select a movie"
@@ -15943,9 +16032,6 @@ msgstr "Nicht zu sichernde Dateien auswählen"
 msgid "Select files/folders to backup"
 msgstr "Dateien/Ordner auswählen"
 
-msgid "Select Folders"
-msgstr "Ordner auswählen"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Wählen Sie, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
 
@@ -15977,6 +16063,9 @@ msgstr "Eingabegerät auswählen."
 #
 msgid "Select interface"
 msgstr "Netzwerkkarte auswählen"
+
+msgid "Select menu entry"
+msgstr ""
 
 #
 msgid "Select movie"
@@ -16056,6 +16145,9 @@ msgstr "Wählen Sie den aktuell markierten Sender"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Wählen Sie den markierten Slot und starten Sie neu"
@@ -16495,9 +16587,6 @@ msgstr "Bei 'Ja' Ermittlung verfügbarer Sender inklusive Berücksichtigung der 
 msgid "Set Framerate for MiniTV"
 msgstr "Setze Wiederholrate für MiniTV"
 
-msgid "Set system"
-msgstr "System einstellen"
-
 msgid "Set action for 'Info' key"
 msgstr "Aktion der Taste INFO einstellen"
 
@@ -16542,6 +16631,9 @@ msgstr "Die Sequenzeinstellung wird wiederholt, wenn Ihr Antennensystem dies erf
 # ChannelSelection.py
 msgid "Set startup service"
 msgstr "Startkanal auswählen"
+
+msgid "Set system"
+msgstr "System einstellen"
 
 # NetworkSetup.py
 #, python-format
@@ -18976,6 +19068,9 @@ msgstr "Farbe der Videotext-Untertitel"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Telnet"
 
@@ -19882,9 +19977,6 @@ msgstr "Zeit"
 msgid "Time Setup Actions"
 msgstr "Zeiteinstellungs-Aktionen"
 
-msgid "Time update in minutes"
-msgstr "Updatezeit in Minuten"
-
 msgid "Time Update in Minutes:"
 msgstr "Updatezeit in Minuten:"
 
@@ -19949,6 +20041,9 @@ msgstr "Zeitformat"
 
 msgid "Time to execute command or script"
 msgstr "Startzeit für Befehls- / Skript-Ausführung"
+
+msgid "Time update in minutes"
+msgstr "Updatezeit in Minuten"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer (Min)"
@@ -20996,9 +21091,8 @@ msgstr "Die erweiterte Liste verwenden."
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Den Netzwerkassistenten zur Konfiguration des ausgewählten Netzwerkadapters verwenden"
 
-#
-msgid "Use the network wizard to configure your Network"
-msgstr "Den Netzwerkassistenten zur Konfiguration des Netzwerks verwenden"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -22433,6 +22527,18 @@ msgstr ""
 "Ihre %s %s wird nach dem Entfernen des Dienstes neu gestartet.\n"
 "Möchten Sie diesen jetzt entfernen?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Hardware erkennt das CI-Protokoll selbst oder Hardware arbeitet nur im Legacy Mode."
 
@@ -22724,10 +22830,6 @@ msgstr "Favoriten editieren abbrechen"
 
 msgid "ac3"
 msgstr "AC3"
-
-#
-msgid "Activate network adapter configuration"
-msgstr "Einstellungen des Netzwerkadapters aktivieren"
 
 msgid "activatePiP"
 msgstr "Aktiviere Bild im Bild"
@@ -23202,10 +23304,6 @@ msgstr "DVD-Player verlassen oder zurück zum Dateimanager"
 
 msgid "exit mounts setup menu"
 msgstr "Mount-Einstellungen verlassen"
-
-#
-msgid "Exit network adapter configuration"
-msgstr "Netzwerkadapter-Konfiguration verlassen"
 
 #
 msgid "exit networkadapter setup menu"
@@ -24248,6 +24346,9 @@ msgstr "Turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "uShare-Log"
 
@@ -24256,6 +24357,12 @@ msgstr "uShare-Name"
 
 msgid "uShare Port"
 msgstr "uShare-Port"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 #
 msgid "uShare Settings"
@@ -24445,6 +24552,31 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktuelle Konfiguration aktivieren"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Das heruntergeladene Image kann nicht gelöscht werden!"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr ""
+#~ "Images können nicht gefunden werden!\n"
+#~ "Bitte versuchen Sie es später erneut."
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Nameserver-Konfiguration verlassen"
+
+# /SoftwareManager/plugin.py
+#~ msgid "Flash On the Fly"
+#~ msgstr "Flashen online/lokal"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Image-Komplettsicherung"
+
+#
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Den Netzwerkassistenten zur Konfiguration des Netzwerks verwenden"
 
 #
 #~ msgid ""
@@ -25008,9 +25140,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Automatische Suche"
 
-#~ msgid "Backup settings"
-#~ msgstr "Einstellungen sichern"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Common-Interface-Zuordnung"
 
@@ -25261,14 +25390,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "nicht aktiviert"
-
-#
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Imageauswahl abbrechen und verlassen"
-
-#
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
 
 #~ msgid "Delete or Wipe the highlighted image slot"
 #~ msgstr "Löschen oder Schreddern des markierten Image-Slots"

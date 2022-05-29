@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -2347,6 +2347,9 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr ""
 
@@ -2456,15 +2459,14 @@ msgstr "PiP ynskeakelje"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Activate current configuration"
-msgstr "Dizze ynstellingen aktief meitsje"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
+msgstr ""
+
+#
+msgid "Activate network adapter configuration"
 msgstr ""
 
 #
@@ -2591,6 +2593,9 @@ msgstr "triem oan ofspiellyst tafoegje"
 #, fuzzy
 msgid "Add files to playlist"
 msgstr "triemen tafoegje an ôfspiellyst"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3046,8 +3051,7 @@ msgstr "Wolle jo wier %s ferwiderje?"
 
 #
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Wolle jo wier dizze netwurk konfiguraasje aktief meitsje ?"
+msgstr "Wolle jo wier dizze netwurk konfiguraasje aktief meitsje ?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3078,8 +3082,7 @@ msgstr ""
 
 #
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Wolle jo de netwurk interfaces nij starte?"
+msgstr "Wolle jo de netwurk interfaces nij starte?"
 
 #, python-format
 msgid ""
@@ -3571,6 +3574,9 @@ msgstr ""
 msgid "Backup failed."
 msgstr ""
 
+msgid "Backup images"
+msgstr ""
+
 #
 msgid "Backup is running..."
 msgstr ""
@@ -3579,6 +3585,11 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Backup settings"
+msgstr "Ja, myn ynstellingen extra bewarje"
 
 #
 msgid "Backup system settings"
@@ -4285,6 +4296,16 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Kanaal seleksje"
 
+#
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Kanaal seleksje"
+
+#
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Kanaal seleksje"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4305,11 +4326,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr "map meitsje"
 
-#
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "Ferwiderje diene tiidsbarren?"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -4319,9 +4335,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Cannot find images - please try later"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -6450,6 +6463,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7844,6 +7860,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7964,6 +7984,9 @@ msgstr ""
 
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Cannot find any images!"
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
@@ -8141,9 +8164,11 @@ msgid "Exit movie player?"
 msgstr "mediaspieler ferlitte"
 
 #
-#, fuzzy
-msgid "Exit nameserver configuration"
-msgstr "nammeserver ynstellingen ferlitte"
+msgid "Exit network adapter configuration"
+msgstr "netwurk adapter konfiguraasje ferlitte"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 #
 #, fuzzy
@@ -8324,6 +8349,9 @@ msgid "FTA"
 msgstr ""
 
 msgid "FTP"
+msgstr ""
+
+msgid "FTP Actions"
 msgstr ""
 
 msgid "FTP Settings"
@@ -8617,7 +8645,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Flash"
 
-msgid "Flash On the Fly"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
 msgstr ""
 
 msgid "Flash Online"
@@ -8855,11 +8887,6 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "Flash"
 
 msgid "Fullscreen"
 msgstr ""
@@ -9929,7 +9956,13 @@ msgstr ""
 msgid "Inadyn"
 msgstr ""
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
+msgstr ""
+
+msgid "Inadyn Setting Actions"
 msgstr ""
 
 msgid "Inadyn Settings"
@@ -11055,6 +11088,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Doel"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Slot:"
 
@@ -11170,15 +11207,18 @@ msgstr ""
 msgid "MAC"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MAC-address"
-msgstr "IP Adres"
+msgid "MAC Address Actions"
+msgstr ""
 
 #
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Adapter ynstellingen"
+
+#
+#, fuzzy
+msgid "MAC-address"
+msgstr "IP Adres"
 
 msgid "MB"
 msgstr ""
@@ -11528,6 +11568,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Mini Series"
@@ -11691,7 +11737,13 @@ msgstr ""
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
+msgstr ""
+
+msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12080,6 +12132,9 @@ msgstr "Folgende"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr ""
 
@@ -12178,7 +12233,16 @@ msgstr "Netmasker"
 msgid "Network"
 msgstr ""
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
+msgstr ""
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
 msgstr ""
 
 msgid "Network Browser"
@@ -12194,6 +12258,9 @@ msgid "Network Information Actions"
 msgstr ""
 
 msgid "Network Interface"
+msgstr ""
+
+msgid "Network Log Actions"
 msgstr ""
 
 #
@@ -12215,6 +12282,9 @@ msgid "Network Settings"
 msgstr "Netwurk ynstellingen"
 
 msgid "Network Test"
+msgstr ""
+
+msgid "Network Test:"
 msgstr ""
 
 msgid "Network Wizard"
@@ -12250,9 +12320,6 @@ msgstr "Netwurk test"
 
 msgid "Network test..."
 msgstr "Netwurk test..."
-
-msgid "Network Test:"
-msgstr ""
 
 #
 msgid "Network:"
@@ -13058,6 +13125,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr ""
 
@@ -13783,6 +13853,9 @@ msgid "Please select a backup destination"
 msgstr "Kies Lokaasje"
 
 msgid "Please select a default EPG type..."
+msgstr ""
+
+msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
 #
@@ -15705,6 +15778,9 @@ msgstr "S Video"
 msgid "SABnzbd"
 msgstr ""
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr ""
 
@@ -15718,6 +15794,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #
@@ -15805,6 +15884,9 @@ msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
 msgid "Samba"
+msgstr ""
+
+msgid "Samba Actions"
 msgstr ""
 
 msgid "Samba Log"
@@ -16310,6 +16392,9 @@ msgstr ""
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+msgid "Select Folders"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Kies hurde skiif"
 
@@ -16339,6 +16424,9 @@ msgid "Select a bouquet"
 msgstr ""
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -16425,9 +16513,6 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr ""
 
-msgid "Select Folders"
-msgstr ""
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -16457,6 +16542,9 @@ msgstr ""
 
 #
 msgid "Select interface"
+msgstr ""
+
+msgid "Select menu entry"
 msgstr ""
 
 #
@@ -16536,6 +16624,9 @@ msgid "Select the currently highlighted service"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
 
 msgid "Select the highlighted slot and reboot"
@@ -16975,9 +17066,6 @@ msgstr ""
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Set action for 'Info' key"
@@ -17022,6 +17110,9 @@ msgid "Set sequence repeats if your aerial system requires this. Normally if the
 msgstr ""
 
 msgid "Set startup service"
+msgstr ""
+
+msgid "Set system"
 msgstr ""
 
 #
@@ -19541,6 +19632,9 @@ msgstr ""
 msgid "Telnet"
 msgstr ""
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr ""
 
@@ -20381,9 +20475,6 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr ""
-
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -20450,6 +20541,9 @@ msgid "Time style"
 msgstr "Tiidsbarren seleksje"
 
 msgid "Time to execute command or script"
+msgstr ""
+
+msgid "Time update in minutes"
 msgstr ""
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
@@ -21521,10 +21615,8 @@ msgstr ""
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Bruk de netwurk gûcheler om it netwurk yn te stellen\n"
 
-#
-#, fuzzy
-msgid "Use the network wizard to configure your Network"
-msgstr "Bruk de netwurk gûcheler om it netwurk yn te stellen"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
@@ -22890,6 +22982,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -23165,10 +23269,6 @@ msgid "abort favourites edit"
 msgstr "favoriet bewurkje ôfbrekke"
 
 msgid "ac3"
-msgstr ""
-
-#
-msgid "Activate network adapter configuration"
 msgstr ""
 
 msgid "activatePiP"
@@ -23640,10 +23740,6 @@ msgstr "DVD spieler ferlitte en werom nei triem browser"
 
 msgid "exit mounts setup menu"
 msgstr ""
-
-#
-msgid "Exit network adapter configuration"
-msgstr "netwurk adapter konfiguraasje ferlitte"
 
 #
 msgid "exit networkadapter setup menu"
@@ -24706,6 +24802,9 @@ msgstr ""
 msgid "uShare"
 msgstr ""
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr ""
 
@@ -24713,6 +24812,12 @@ msgid "uShare Name"
 msgstr ""
 
 msgid "uShare Port"
+msgstr ""
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
 msgstr ""
 
 msgid "uShare Settings"
@@ -24910,6 +25015,31 @@ msgstr ""
 
 #
 #, fuzzy
+#~ msgid "Activate current configuration"
+#~ msgstr "Dizze ynstellingen aktief meitsje"
+
+#
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Ferwiderje diene tiidsbarren?"
+
+#
+#, fuzzy
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "nammeserver ynstellingen ferlitte"
+
+#
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "Flash"
+
+#
+#, fuzzy
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Bruk de netwurk gûcheler om it netwurk yn te stellen"
+
+#
+#, fuzzy
 #~ msgid ""
 #~ "Are you sure you want to delete this:\n"
 #~ " "
@@ -25083,11 +25213,6 @@ msgstr ""
 
 #
 #, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "Ja, myn ynstellingen extra bewarje"
-
-#
-#, fuzzy
 #~ msgid "Common Interface assignment"
 #~ msgstr "Common Interface"
 
@@ -25168,16 +25293,6 @@ msgstr ""
 
 #~ msgid "The sleep timer has been disabled."
 #~ msgstr "De sliep tiid klok is útskeakele"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Kanaal seleksje"
-
-#
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Kanaal seleksje"
 
 #
 #, fuzzy

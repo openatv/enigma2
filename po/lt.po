@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
-"PO-Revision-Date: 2022-05-09 10:54+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2226,6 +2226,9 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr "AFP veiksmai"
+
 msgid "AFP Settings"
 msgstr "AFP parametrai"
 
@@ -2313,7 +2316,7 @@ msgid "Activate HbbTV (Redbutton)"
 msgstr "Aktyvuokite HbbTV (raudonas mygtukas)"
 
 msgid "Activate MAC address configuration"
-msgstr "Aktyvuokite MAC adreso konfigūraciją"
+msgstr "Aktyvinti MAC adreso konfigūraciją"
 
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
@@ -2321,14 +2324,14 @@ msgstr "Įjungti vaizdą vaizde"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines HDMI-CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > %s' ir tada trumpai perskaitykite failą '%s'."
 
-msgid "Activate current configuration"
-msgstr "Aktyvuokite šią konfigūraciją"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Aktyvuokite kairiojo rinkmenos sąrašą kaip kelių pasirinkimo šaltinį"
 
 msgid "Activate left-hand file list as source"
 msgstr "Aktyvuokite kairiojo failo sąrašą kaip šaltinį"
+
+msgid "Activate network adapter configuration"
+msgstr "Aktyvinti tinklo plokštės konfigūraciją"
 
 msgid "Activate network settings"
 msgstr "Aktyvuoti tinklo nustatymus"
@@ -2358,7 +2361,7 @@ msgid "Active clients"
 msgstr "Aktyvūs klientai"
 
 msgid "Adapter Settings"
-msgstr "Adapterio nustatymai"
+msgstr "Adapterio parametrai"
 
 msgid "Add"
 msgstr "Pridėti"
@@ -2431,6 +2434,9 @@ msgstr "Pridėti failą į grojaraštį"
 
 msgid "Add files to playlist"
 msgstr "Pridėti failus į grojaraštį"
+
+msgid "Add help text"
+msgstr "Įtraukti žinyno tekstą"
 
 msgid "Add new tag"
 msgstr "Pridėti naują žymę"
@@ -2842,8 +2848,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Ar tikrai norite pašalinti šį įrašą?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Ar tikrai norite aktyvuoti šią tinklo konfigūraciją?"
+msgstr "Ar tikrai norite suaktyvinti šią tinklo konfigūraciją?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -2865,7 +2870,7 @@ msgid "Are you sure you want to delete this log:\n"
 msgstr "Ar tikrai norite pašalinti šį žurnalą:\n"
 
 msgid "Are you sure you want to delete this?"
-msgstr ""
+msgstr "Ar tikrai norite tai ištrinti?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Ar tikrai norite išjungti šį vedlį?"
@@ -2874,8 +2879,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Ar tikrai norite iš naujo įkelti EPG duomenis iš:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Ar tikrai norite savo tinklo sąsajas paleisti iš naujo?"
+msgstr "Ar tikrai norite iš naujo paleisti tinklo sąsajas?"
 
 #, python-format
 msgid ""
@@ -3320,6 +3324,9 @@ msgstr "Atsarginė kopija padaryta."
 msgid "Backup failed."
 msgstr "Atsarginė kopija nepavyko."
 
+msgid "Backup images"
+msgstr "Atsarginių kopijų kūrimo atvaizdai"
+
 msgid "Backup is running..."
 msgstr "Kuriama atsarginė kopija..."
 
@@ -3329,6 +3336,9 @@ msgid ""
 msgstr ""
 "Rasti atsarginio kopijavimo priedai,\n"
 "norite juos įdiegti dabar?"
+
+msgid "Backup settings"
+msgstr "Atsarginio kopijavimo nustatymai"
 
 msgid "Backup system settings"
 msgstr "Atsarginė sistemos nustatymų kopija"
@@ -3998,6 +4008,12 @@ msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
 
+msgid "Cancel the image selection and exit"
+msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
+
 msgid "Cancel the service selection"
 msgstr "Atšaukite paslaugos pasirinkimą"
 
@@ -4016,9 +4032,6 @@ msgstr "Atšauktas vartotojo"
 msgid "Cannot create backup directory"
 msgstr "Nepavyko sukurti atsarginių kopijų katalogo"
 
-msgid "Cannot delete downloaded image"
-msgstr "Negalima ištrinti atsisiųsto atvaizdo"
-
 msgid "Cannot delete file"
 msgstr "Failo ištrinti nepavyko"
 
@@ -4029,9 +4042,6 @@ msgstr "Negalima nustatyti %s ribos ..., nutraukiama !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Jokio signalo nerasta …,  nutraukiama !"
-
-msgid "Cannot find images - please try later"
-msgstr "Negalima sukurti atvaizdų sąrašo - bandykite vėliau"
 
 msgid "Cannot move to trash can"
 msgstr "Perkelti į šiukšlinę negalima"
@@ -4590,7 +4600,7 @@ msgid "Command order"
 msgstr "Komandų seka"
 
 msgid "Command to run"
-msgstr ""
+msgstr "Komanda vykdymui"
 
 msgid "Command type"
 msgstr "Komandų tipas"
@@ -5361,7 +5371,7 @@ msgid "Current settings:"
 msgstr "Dabartiniai nustatymai:"
 
 msgid "Current status"
-msgstr ""
+msgstr "Dabartinė būsena"
 
 msgid "Current time"
 msgstr "Dabartinis laikas"
@@ -5962,6 +5972,9 @@ msgstr "Ištrinkite šiuo metu paryškintą paslaugą iš garsumo išjungimo rin
 msgid "Delete the selected files or directories"
 msgstr "Ištrinkite pasirinktus failus ar katalogus"
 
+msgid "Delete the selected locally stored image"
+msgstr "Naikinti pasirinktą vietoje saugomą atvaizdą"
+
 msgid "Delete this tag"
 msgstr "Šalinti šią žymę"
 
@@ -6151,10 +6164,10 @@ msgid "Disable Animations"
 msgstr "Išjungti animacijas"
 
 msgid "Disable FCC during recordings"
-msgstr ""
+msgstr "Išjungti FCC įrašymo metu"
 
 msgid "Disable Fast Channel Change"
-msgstr ""
+msgstr "Išjungti greitąjį kanalų perjungimą"
 
 msgid "Disable IceTV"
 msgstr "Išjungti IceTV"
@@ -6829,11 +6842,11 @@ msgstr "Redaguoti nustatymus"
 
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
-msgstr "Redaguoti %s %s DNS serverių konfigūraciją."
+msgstr "Redaguokite %s %s DNS konfigūraciją."
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
-msgstr "Redaguoti %s %s tinklo konfigūraciją."
+msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
 msgid "Edit upgrade source url."
 msgstr "Redaguoti atnaujinimo šaltinio adresą."
@@ -6897,7 +6910,7 @@ msgid "Enable EIT EPG"
 msgstr "Įjungti EIT EPG"
 
 msgid "Enable Fast Channel Change"
-msgstr ""
+msgstr "Įjungti greitąjį kanalų perjungimą"
 
 msgid "Enable Focus Animation"
 msgstr "Įjungti fokusavimo animaciją"
@@ -7264,6 +7277,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Klaida %d: slaptažodžio keisti neįmanoma!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr "Klaida %d: neįmanoma ištrinti atsisiųsto atvaizdo \"%s\"!  (%s)"
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Klaida %d: Nepavyko paleisti 'passwd' komandos!"
 
@@ -7402,6 +7419,9 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 
+msgid "Error: Cannot find any images!"
+msgstr "Klaida: nepavyksta rasti jokių atvaizdų!"
+
 msgid "Error: Checksum is invalid!"
 msgstr "Klaida: kontrolinė suma neleistina!"
 
@@ -7528,7 +7548,7 @@ msgid "Exit EPG"
 msgstr "Užverti EPG"
 
 msgid "Exit MAC address configuration"
-msgstr "Užverti MAC adreso konfigūravimą"
+msgstr "Išeiti iš MAC adreso konfigūracijos"
 
 msgid "Exit Quad Channel Selection"
 msgstr "Užverti 4 kanalų pasirinkimą"
@@ -7560,8 +7580,11 @@ msgstr "Užverti filmų sąrašą"
 msgid "Exit movie player?"
 msgstr "Užverti filmų grotuvą?"
 
-msgid "Exit nameserver configuration"
-msgstr "Užverti DNS serverio konfigūravimą"
+msgid "Exit network adapter configuration"
+msgstr "Užverti tinklo adapterio konfigūravimą"
+
+msgid "Exit network adapter setup menu"
+msgstr "Užverti tinklo adapterio konfigūravimo meniu"
 
 msgid "Exit network interface list"
 msgstr "Užverti tinklo sąsajų sąrašą"
@@ -7694,7 +7717,7 @@ msgid "FCC 1953"
 msgstr "FCC 1953"
 
 msgid "FCC enabled"
-msgstr ""
+msgstr "FCC įjungta"
 
 msgid "FEC"
 msgstr "FEC"
@@ -7725,6 +7748,9 @@ msgstr "NEKODUOTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr "FTP veiksmai"
 
 msgid "FTP Settings"
 msgstr "FTP parametrai"
@@ -7782,10 +7808,10 @@ msgid "Fast"
 msgstr "Greitas"
 
 msgid "Fast Channel Change"
-msgstr ""
+msgstr "Greitasis kanalų perjungimas"
 
 msgid "Fast Channel Change Setup"
-msgstr ""
+msgstr "Greitojo kanalų perjungimo sąranka"
 
 msgid "Fast DiSEqC"
 msgstr "Greitas DiSEqC"
@@ -7992,8 +8018,12 @@ msgstr "Fiksuotas X11 šriftas (SD)"
 msgid "Flash Image"
 msgstr "Įdiegti atvaizdą"
 
-msgid "Flash On the Fly"
-msgstr "Įdiegti iškart"
+msgid "Flash Manager"
+msgstr "Įdiegimo valdytojas"
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr "Įdiegimo valdytojas – %s atvaizdai"
 
 msgid "Flash Online"
 msgstr "Įdiegti tiesiai iš interneto"
@@ -8196,9 +8226,6 @@ msgstr "Pilno vaizdo rezoliucija"
 
 msgid "FullHD Test"
 msgstr "Pilno HD testas"
-
-msgid "Fullbackup Images"
-msgstr "Pilnos atsarginės kopijos atvaizdai"
 
 msgid "Fullscreen"
 msgstr "Visas ekranas"
@@ -8744,7 +8771,7 @@ msgid "History"
 msgstr "Istorija"
 
 msgid "History Prev/Next"
-msgstr ""
+msgstr "Istorija pirmyn/atgal"
 
 msgid "History back"
 msgstr "Istorija atgal"
@@ -9194,8 +9221,14 @@ msgstr "Neaktyvus"
 msgid "Inadyn"
 msgstr "InaDyn klientas"
 
+msgid "Inadyn Actions"
+msgstr "Inadyn veiksmai"
+
 msgid "Inadyn Log"
 msgstr "Inadyn žurnalas"
+
+msgid "Inadyn Setting Actions"
+msgstr "Inadyn nustatymo veiksmai"
 
 msgid "Inadyn Settings"
 msgstr "Inadyn parametrai"
@@ -10160,6 +10193,10 @@ msgstr "Vietos informacija"
 msgid "Location list"
 msgstr "Vietovių sąrašas"
 
+#, python-format
+msgid "Location: %s"
+msgstr "Vieta: %s"
+
 msgid "Lock:"
 msgstr "Fiksuota:"
 
@@ -10268,11 +10305,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC adresas"
 
-msgid "MAC-address"
-msgstr "MAC adresas"
+msgid "MAC Address Actions"
+msgstr "MAC adreso veiksmai"
 
 msgid "MAC Address Settings"
-msgstr "MAC adreso nustatymai"
+msgstr "MAC adreso parametrai"
+
+msgid "MAC-address"
+msgstr "MAC adresas"
 
 msgid "MB"
 msgstr "MB"
@@ -10456,7 +10496,7 @@ msgid "Mauritius"
 msgstr "Mauricijus"
 
 msgid "Max channels"
-msgstr ""
+msgstr "Maksimalūs kanalai"
 
 msgid "Max memory positions"
 msgstr "Maksimalios atminties pozicijos"
@@ -10584,6 +10624,12 @@ msgstr "Mikronezijos Federacinės Valstijos"
 
 msgid "Middle - Lite image"
 msgstr "Vidutinis - Mažasis atvaizdas"
+
+msgid "Mini DLNA Actions"
+msgstr "Mini DLNA veiksmai"
+
+msgid "Mini DLNA Setting Actions"
+msgstr "Mini DLNA nustatymo veiksmai"
 
 msgid "Mini Series"
 msgstr "Mini serijos"
@@ -10735,8 +10781,14 @@ msgstr "Pajungti"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Pajungtas '%s' neturi pakankamai vietos įrašymui."
 
+msgid "Mount Actions"
+msgstr "Montavimo veiksmai"
+
 msgid "Mount Manager"
 msgstr "Pajungimo tvarkyklė"
+
+msgid "Mount Settings"
+msgstr "Montavimo parametrai"
 
 msgid "Mount Setup"
 msgstr "Pajungimo valdymas"
@@ -11052,6 +11104,9 @@ msgstr "KITAS"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr "NFS veiksmai"
+
 msgid "NFS Settings"
 msgstr "NFS parametrai"
 
@@ -11140,8 +11195,17 @@ msgstr "Potinklio kaukė"
 msgid "Network"
 msgstr "Tinklas"
 
+msgid "Network Adapter Actions"
+msgstr "Tinklo plokštės veiksmai"
+
 msgid "Network Adapter Selection"
 msgstr "Tinklo adapterio pasirinkimas"
+
+msgid "Network Adapter Setting Actions"
+msgstr "Tinklo plokštės nustatymo veiksmai"
+
+msgid "Network Adapter Text Actions"
+msgstr "Tinklo plokštės teksto veiksmai"
 
 msgid "Network Browser"
 msgstr "Tinklo naršyklė"
@@ -11157,6 +11221,9 @@ msgstr "Tinklo informacijos veiksmai"
 
 msgid "Network Interface"
 msgstr "Tinklo sąsaja"
+
+msgid "Network Log Actions"
+msgstr "Tinklo žurnalo veiksmai"
 
 msgid "Network MAC settings"
 msgstr "Tinklo MAC nustatymai"
@@ -11175,6 +11242,9 @@ msgstr "Tinklo parametrai"
 
 msgid "Network Test"
 msgstr "Tinklo testavimas"
+
+msgid "Network Test:"
+msgstr "Tinklo testas:"
 
 msgid "Network Wizard"
 msgstr "Tinklo vedlys"
@@ -11205,9 +11275,6 @@ msgstr "Tinklo testavimas"
 
 msgid "Network test..."
 msgstr "Tinklo testas..."
-
-msgid "Network Test:"
-msgstr "Tinklo testavimas: "
 
 msgid "Network:"
 msgstr "Tinklas:"
@@ -11923,6 +11990,9 @@ msgstr "OpenSSL versija"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr "OpenVPN veiksmai"
+
 msgid "OpenVPN Settings"
 msgstr "OpenVPN parametrai"
 
@@ -12551,6 +12621,9 @@ msgstr "Pasirinkite atsarginės kopijos paskirties vietą"
 msgid "Please select a default EPG type..."
 msgstr "Pasirinkite numatytąjį EPG tipą..."
 
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr "Pasirinkite platintoją, iš kurio norite paleisti vaizdą:"
+
 msgid "Please select a playlist to delete..."
 msgstr "Prašome pasirinkti grojaraštį, kurį norite ištrinti..."
 
@@ -13057,7 +13130,7 @@ msgid "Press OK to select/deselect a CAId."
 msgstr "Paspauskite OK, kad pasirinkti/nepasirinkti CAId."
 
 msgid "Press OK to set the MAC address."
-msgstr "Nurodyti MAC adresui, spauskite 'OK'."
+msgstr "Paspauskite OK, kad nustatytumėte MAC adresą."
 
 msgid "Press OK to start the scan"
 msgstr "Kad pradėti paiešką, spauskite OK"
@@ -13077,7 +13150,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte atvaizdą, ir paspauskite OK arba ŽALIĄ, kad 'Perkrauti' į tą atvaizdą. Jei įmanoma, GELTONU bus arba 'Ištrinti' arba 'Išvalyti' atvaizdą. 'Ištrintas' atvaizdas gali būti 'atkurtas'  MĖLYNU mygtuku. Visiškai pašalintas 'išvalytas' atvaizdas negali būti atkurtas!"
+msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte lizdą, ir paspauskite Gerai arba ŽALIA, kad iš naujo paleistumėte į tą vaizdą. Jei įmanoma, geltona ištrins arba nušluostys vaizdą. Panaikintą vaizdą galima atkurti mygtuku MĖLYNA. Nuvalytas vaizdas visiškai pašalinamas ir jo negalima atkurti!"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Paspauskite šį mygtuką, kad emuliuoti ilgą mygtuko paspaudimą vėliau (tai yra viršiau už visas kitas, jam pavestus mygtuko emuliacijos veiksmus)."
@@ -13481,7 +13554,7 @@ msgstr "Pasirengę įdiegti \"%s\" ?"
 
 #, python-format
 msgid "Ready to install '%s'?"
-msgstr "Pasirengę įdiegti %s ?"
+msgstr "Pasiruošę įdiegti '%s'?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -13489,7 +13562,7 @@ msgstr "Pasirengę pašalinti \"%s\" ?"
 
 #, python-format
 msgid "Ready to remove '%s'?"
-msgstr "Pasirengę pašalinti %s ?"
+msgstr "Pasiruošę pašalinti '%s'?"
 
 msgid "Real Life"
 msgstr "Tikras gyvenimas"
@@ -14075,7 +14148,7 @@ msgid "Restart test"
 msgstr "Kartoti testą"
 
 msgid "Restart your network connection and interfaces."
-msgstr "Paleiskite iš naujo savo tinklą ir sąsajas."
+msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
 
 msgid "Restore"
 msgstr "Atkurti"
@@ -14234,7 +14307,7 @@ msgid "Run Confirmation"
 msgstr "Vykdyti patvirtinimą"
 
 msgid "Run how often?"
-msgstr ""
+msgstr "Kaip dažnai vykdyti ?"
 
 msgid "Run script"
 msgstr "Paleiskite scenarijų"
@@ -14275,6 +14348,9 @@ msgstr "S-Vaizdas"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr "SABnzbd veiksmai"
+
 msgid "SABnzbd Settings"
 msgstr "SABnzbd parametrai"
 
@@ -14289,6 +14365,9 @@ msgstr "SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
+
+msgid "SATPI Setting Actions"
+msgstr "SATPI nustatymo veiksmai"
 
 msgid "SATPI Settings"
 msgstr "SATPI parametrai"
@@ -14368,6 +14447,9 @@ msgstr "Šv. Vincento ir Grenadinų salos"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr "Sambos veiksmai"
 
 msgid "Samba Log"
 msgstr "Samba žurnalas"
@@ -14555,7 +14637,7 @@ msgid "Scan wireless networks"
 msgstr "Ieškoti belaidžių tinklų"
 
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Skenuokite savo tinklą belaidžių prieigos taškų ir junkitės prie jų naudodami jūsų išsirinktą belaidžio tinklo įrenginį."
+msgstr "Nuskaitykite tinkle belaidžio ryšio prieigos taškus ir prisijunkite prie jų naudodami pasirinktą belaidį įrenginį."
 
 #, python-format
 msgid "Scanning %s..."
@@ -14814,6 +14896,9 @@ msgstr "Pasirinkite Enigma2 temą"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Pasirinkite greitą DiSEqC, jei jūsų sistema palaiko tai. Jei jūs nežinote, pasirinkite 'ne'."
 
+msgid "Select Folders"
+msgstr "Pasirinkite katalogus"
+
 msgid "Select HDD"
 msgstr "Pasirinkite kietą diską"
 
@@ -14840,6 +14925,9 @@ msgstr "Pasirinkite paketą"
 
 msgid "Select a cardserver from the available list."
 msgstr "Iš galimų sąrašų pasirinkite kortelių serverį."
+
+msgid "Select a distribution from where images are to be obtained"
+msgstr "Pasirinkite platintoją, iš kurio turi būti gaunami atvaizdai"
 
 msgid "Select a movie"
 msgstr "Pasirinkite filmą"
@@ -14911,9 +14999,6 @@ msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
 msgid "Select files/folders to backup"
 msgstr "Pasirinkite failus ir katalogus atsarginei kopijai"
 
-msgid "Select Folders"
-msgstr "Pasirinkite katalogus"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Pasirinkite, kaip greitai lėkštė turėtų judėti tarp palydovų."
 
@@ -14943,6 +15028,9 @@ msgstr "Pasirinkite įvesties įrenginį."
 
 msgid "Select interface"
 msgstr "Pasrinkite sąsają"
+
+msgid "Select menu entry"
+msgstr "Pasirinkite meniu įrašą"
 
 msgid "Select movie"
 msgstr "Pasirinkti filmą"
@@ -15015,6 +15103,9 @@ msgstr "Pasirinkite šiuo metu pažymėtą paslaugą"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr "Pasirinkite paryškintą atvaizdą ir pereikite prie laiko tarpsnio pasirinkimo"
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Pasirinkite paryškintą lizdą ir perkraukite"
@@ -15422,9 +15513,6 @@ msgstr "Prieinamų kanalų aptikimui, įtraukti ir CI priskyrimą."
 msgid "Set Framerate for MiniTV"
 msgstr "Nustatykite MiniTV kadrų dažnį"
 
-msgid "Set system"
-msgstr "Nustatykite sistemą"
-
 msgid "Set action for 'Info' key"
 msgstr "Pasirinkite veiksmą 'info' mygtukui"
 
@@ -15467,9 +15555,12 @@ msgstr "Nustatyti seka pakartoja, jei jūsų antenos sistema to reikalauja. Papr
 msgid "Set startup service"
 msgstr "Nustatykite kaip paleidimo kanalą"
 
+msgid "Set system"
+msgstr "Nustatyti sistemą"
+
 #, python-format
 msgid "Set the MAC address of your %s %s."
-msgstr "Nustatykite MAC adresą savo %s %s."
+msgstr "Nustatykite savo %s %s MAC adresą."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nustatykite kanalų logotipų proporciją."
@@ -15780,7 +15871,7 @@ msgid "Seychelles"
 msgstr "Seišeliai"
 
 msgid "Share Folders"
-msgstr "Bendrai naudojami aplankai"
+msgstr "Bendrai naudoti aplankus"
 
 msgid "Share View"
 msgstr "Bendrų resursų peržiūra"
@@ -16468,7 +16559,7 @@ msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Rodo piktogramą kai įvykis naujas/nežiūrėtas, jei nenaujas, nerodo."
 
 msgid "Shows the state of your wireless LAN connection."
-msgstr "Rodo prisijungimo prie belaidžio tinklo būklę."
+msgstr "Rodo belaidžio LAN ryšio būseną."
 
 msgid "Shows the watched status of the movie."
 msgstr "Rodo, kad filmas jau žiūrėtas."
@@ -17073,7 +17164,7 @@ msgid "Start offline decode"
 msgstr "Pradėti dekodavimą neprisijungus"
 
 msgid "Start recording current event"
-msgstr ""
+msgstr "Pradėti įrašyti dabartinį įvykį"
 
 msgid "Start recording?"
 msgstr "Pradėti įrašymą?"
@@ -17603,7 +17694,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-05-08 adga45@gmail.com"
+msgstr "2022-05-29 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -17728,6 +17819,9 @@ msgstr "Teleteksto subtitrų spalva"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr "Telnet veiksmai"
+
 msgid "Telnet Interface"
 msgstr "Telnet sąsaja"
 
@@ -17757,7 +17851,7 @@ msgstr "Testuoti"
 
 #, python-format
 msgid "Test the network configuration of your %s %s."
-msgstr "Pasitikrinkite tinklo konfigūraciją jūsų %s%s."
+msgstr "Patikrinkite savo %s %s tinklo konfigūraciją."
 
 msgid "Test type"
 msgstr "Testo tipas"
@@ -18477,10 +18571,10 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Šis testas tikrina sukonfigūruotus DNS serverius.\n"
-"Jei jūs gaunate pranešimą 'nepatvirtinta':\n"
-"- tikrinkite savo DHCP, kabelį ir tinklo adapterio nustatymus\n"
-"- jeigu konfigūravote savo serverių pavadinimus rankiniu būdu, patikrinkite, ką įvedėte 'DNS serverio' konfigūracijoje"
+"Šis testas tikrina sukonfigūruotą DNS.\n"
+"Jei gaunate \"nepatvirtintą\" pranešimą:\n"
+"- patikrinkite savo DHCP, kabelių ir adapterio sąranką\n"
+"- jei sukonfigūravote savo vardų serverius rankiniu būdu, patikrinkite savo įrašus konfigūracijoje \"Nameserver\""
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -18568,9 +18662,6 @@ msgstr "Laiko nustatymai"
 msgid "Time Setup Actions"
 msgstr "Laiko nustatymo veiksmai"
 
-msgid "Time update in minutes"
-msgstr "Laiko atnaujinimas minutėmis"
-
 msgid "Time Update in Minutes:"
 msgstr "Laiko atnaujinimas minutėmis:"
 
@@ -18628,6 +18719,9 @@ msgstr "Laiko stilius"
 
 msgid "Time to execute command or script"
 msgstr "Laikas komandai, ar scenarijui vykdyti"
+
+msgid "Time update in minutes"
+msgstr "Atnaujinimas minutėmis"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Laikinas langas budinimo laikmačių aptikimui [min]"
@@ -19579,8 +19673,8 @@ msgstr "Naudoti išplėstinį sąrašą"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Naudokite tinklo vedlį, kad sukonfigūruoti tinklą"
+msgid "Use the network wizard to configure your Network."
+msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po to spauskite OK."
@@ -20216,10 +20310,10 @@ msgid "What action is required on completion of the timer? 'Auto' lets the box r
 msgstr "Kokie veiksmai reikalingi, laikmačiui baigus darbą? 'Аuto' grąžina imtuvą į būseną, kuri buvo iki laikmačio pradžios. 'Nieko nedaryti', 'Į budėjimo režimą' ir 'Išjungti', daro būtent tai, ką siūlo."
 
 msgid "What day of month?"
-msgstr ""
+msgstr "Kurią mėnesio dieną?"
 
 msgid "What day of week?"
-msgstr ""
+msgstr "Kurią savaitės dieną?"
 
 msgid "What do you want to play?\n"
 msgstr "Ką norite atkurti?\n"
@@ -20735,7 +20829,7 @@ msgid "You have to wait %s!"
 msgstr "Jūs turite laukti %s!"
 
 msgid "You must set at least one command!"
-msgstr ""
+msgstr "Turite nustatyti bent vieną komandą!"
 
 msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
@@ -20775,7 +20869,7 @@ msgstr "Jūsų %s %s eina į WOL"
 
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
-msgstr ""
+msgstr "Jūsų %s %s neprijungtas prie interneto, patikrinkite tinklo parametrus ir bandykite dar kartą."
 
 msgid "Your %s %s is not connected to the internet"
 msgstr "Jūsų %s %s neprijungtas prie interneto"
@@ -20850,8 +20944,8 @@ msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install '%s'?"
 msgstr ""
-"Po paslaugos įdiegimo, jūsų %s %s bus paleistas iš naujo\n"
-"Pasiruošę įdiegti %s ?"
+"Įdiegus paslaugą jūsų %s %s bus paleistas iš naujo\n"
+"Pasiruošę įdiegti \"%s\"?"
 
 #, python-format
 msgid ""
@@ -20870,6 +20964,22 @@ msgid ""
 msgstr ""
 "Po kanalų pašalinimo, jūsų %s %s bus paleistas iš naujo.\n"
 "\n"
+"Ar norite pašalinti dabar?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+"Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo\n"
+"Ar norite pašalinti dabar?"
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+"Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo.\n"
 "Ar norite pašalinti dabar?"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
@@ -21019,7 +21129,7 @@ msgid "Zap + Exit"
 msgstr "Įjungti + uždaryti"
 
 msgid "Zap Up/Down"
-msgstr ""
+msgstr "Perjungti aukštyn/žemyn"
 
 msgid "Zap and record"
 msgstr "Įjungti ir įrašyti"
@@ -21143,9 +21253,6 @@ msgstr "nutraukti mėgstamiausių redagavimą"
 
 msgid "ac3"
 msgstr "ac3"
-
-msgid "Activate network adapter configuration"
-msgstr "aktyvuokite tinklo adapterio konfigūraciją"
 
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
@@ -21569,9 +21676,6 @@ msgstr "užverti DVD grotuvą, arba sugrįžti į failų naršyklę"
 
 msgid "exit mounts setup menu"
 msgstr "užverti pajungimų nustatymų meniu"
-
-msgid "Exit network adapter configuration"
-msgstr "užverti tinklo adapterio konfigūravimą"
 
 msgid "exit networkadapter setup menu"
 msgstr "užverti tinklo adapterio nuostatų meniu"
@@ -22506,6 +22610,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr "uShare veiksmai"
+
 msgid "uShare Log"
 msgstr "uShare žurnalas"
 
@@ -22514,6 +22621,12 @@ msgstr "uShare pavadinimas"
 
 msgid "uShare Port"
 msgstr "uShare jugtis"
+
+msgid "uShare Selection Actions"
+msgstr "uShare pasirinkimo veiksmai"
+
+msgid "uShare Setting Actions"
+msgstr "uShare nustatymo veiksmai"
 
 msgid "uShare Settings"
 msgstr "uShare parametrai"
@@ -22688,6 +22801,27 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktyvuokite šią konfigūraciją"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Negalima ištrinti atsisiųsto atvaizdo"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Negalima sukurti atvaizdų sąrašo - bandykite vėliau"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Užverti DNS serverio konfigūravimą"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Įdiegti iškart"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Pilnos atsarginės kopijos atvaizdai"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Naudokite tinklo vedlį, kad sukonfigūruoti tinklą"
 
 #~ msgid ""
 #~ "\n"
@@ -23204,9 +23338,6 @@ msgstr "®"
 #~ msgid "Automatic scan"
 #~ msgstr "Automatinė paieška"
 
-#~ msgid "Backup settings"
-#~ msgstr "Atsarginio kopijavimo nustatymai"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Įstatomo modulio priskyrimas"
 
@@ -23441,12 +23572,6 @@ msgstr "®"
 
 #~ msgid "not activated"
 #~ msgstr "neaktyvuotas"
-
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
-
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
 
 #~ msgid "Delete or Wipe the highlighted image slot"
 #~ msgstr "Paryškinto atvaizdo lizdo naikinimas arba valymas"

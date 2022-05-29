@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -2357,6 +2357,9 @@ msgstr "AAF"
 msgid "AFP"
 msgstr "AAF"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "Nastavení AFP"
 
@@ -2461,14 +2464,14 @@ msgstr "Aktivovat obraz v obraze"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate current configuration"
-msgstr "Aktivovat aktuální konfiguraci"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
 
 msgid "Activate left-hand file list as source"
 msgstr ""
+
+msgid "Activate network adapter configuration"
+msgstr "Aktivace nastavení síťového adaptéru"
 
 msgid "Activate network settings"
 msgstr "Aktivovat nastavení sítě"
@@ -2575,6 +2578,9 @@ msgstr "Přidat soubor do playlistu"
 
 msgid "Add files to playlist"
 msgstr "Přidat soubory do playlistu"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3013,8 +3019,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Opravdu chcete odstranit tuto položku?"
 
 msgid "Are you sure you want to activate this network configuration?"
-msgstr ""
-"Opravdu chcete aktivovat tuto síťovou konfiguraci?"
+msgstr "Opravdu chcete aktivovat tuto síťovou konfiguraci?"
 
 msgid ""
 "Are you sure you want to delete\n"
@@ -3046,8 +3051,7 @@ msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Opravdu chcete načíst EPG data z:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
-msgstr ""
-"Opravdu chcete  restartovat síťové rozhraní?"
+msgstr "Opravdu chcete  restartovat síťové rozhraní?"
 
 #, python-format
 msgid ""
@@ -3525,6 +3529,9 @@ msgstr "Záloha je hotová."
 msgid "Backup failed."
 msgstr "Záloha selhala."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Zálohování probíhá..."
 
@@ -3532,6 +3539,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "Záloha nastavení"
 
 msgid "Backup system settings"
 msgstr "Záloha nastavení"
@@ -4217,6 +4228,14 @@ msgstr "Zrušit uložení timeshiftu jako filmu"
 msgid "Cancel selection"
 msgstr "Výběr kanálú"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Výběr kanálú"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Výběr kanálú"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4236,10 +4255,6 @@ msgstr ""
 msgid "Cannot create backup directory"
 msgstr "Založit adresář"
 
-#, fuzzy
-msgid "Cannot delete downloaded image"
-msgstr "Soubor nelze smazat"
-
 msgid "Cannot delete file"
 msgstr "Soubor nelze smazat"
 
@@ -4250,9 +4265,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nelze najít žádný signál ..., končím!"
-
-msgid "Cannot find images - please try later"
-msgstr ""
 
 msgid "Cannot move to trash can"
 msgstr "Nelze přesunout do koše"
@@ -6283,6 +6295,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "Vyberte akci časovače vypnutí."
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7629,6 +7644,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7766,6 +7785,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Žádné aktualizace k dispozici. Zkuste to později."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr ""
@@ -7928,8 +7950,11 @@ msgstr "Zavřít seznam filmů"
 msgid "Exit movie player?"
 msgstr "Zavřít přehrávač?"
 
-msgid "Exit nameserver configuration"
-msgstr "Zavřít konfiguraci DNS"
+msgid "Exit network adapter configuration"
+msgstr "Zavřít nastavení síťového adaptéru "
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Zavřít seznam síťových rozhraní"
@@ -8109,6 +8134,9 @@ msgstr ""
 #, fuzzy
 msgid "FTP"
 msgstr "NTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "Nastavení FTP"
@@ -8386,8 +8414,12 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Změna a obnova Image"
 
-msgid "Flash On the Fly"
-msgstr "Flešnutí Online / HDD"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Změna Image ONLINE / DISK"
@@ -8604,10 +8636,6 @@ msgstr "Plné rozlišení"
 
 msgid "FullHD Test"
 msgstr ""
-
-#, fuzzy
-msgid "Fullbackup Images"
-msgstr "Zálohovat Image na HDD / USB"
 
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
@@ -9653,8 +9681,14 @@ msgstr "Neaktivní"
 msgid "Inadyn"
 msgstr "Zpráva o Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Zpráva o Inadyn"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Nastavení Inadyn"
@@ -10681,6 +10715,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Umístění"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Zámek:"
 
@@ -10797,11 +10835,14 @@ msgstr ""
 msgid "MAC"
 msgstr "MAC adresa:"
 
-msgid "MAC-address"
-msgstr "MAC-adresa"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Nastaveni MAC-adresy"
+
+msgid "MAC-address"
+msgstr "MAC-adresa"
 
 msgid "MB"
 msgstr "MB"
@@ -11136,6 +11177,12 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Mini Series"
 msgstr "Mini USB disk"
@@ -11293,8 +11340,14 @@ msgstr "Připojit"
 msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Nastavení připojení"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Správce připojení"
@@ -11645,6 +11698,9 @@ msgstr "DALŠÍ"
 msgid "NFS"
 msgstr ""
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "Nastavení NFS"
 
@@ -11737,9 +11793,18 @@ msgstr "Maska podsítě"
 msgid "Network"
 msgstr "Síť"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Network Adapter Selection"
 msgstr "Zavřít nastavení síťového adaptéru "
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Prohlížení síťě"
@@ -11755,6 +11820,9 @@ msgstr ""
 
 msgid "Network Interface"
 msgstr "Síťové rozhraní"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Nastavení MAC adresy"
@@ -11773,6 +11841,9 @@ msgstr "Nastavení síťového rozhraní"
 
 msgid "Network Test"
 msgstr "Test sítě"
+
+msgid "Network Test:"
+msgstr "Test sítě: "
 
 msgid "Network Wizard"
 msgstr "Průvodce nastavení síťě"
@@ -11803,9 +11874,6 @@ msgstr "Test sítě"
 
 msgid "Network test..."
 msgstr "Test sítě"
-
-msgid "Network Test:"
-msgstr "Test sítě: "
 
 msgid "Network:"
 msgstr "Síť:"
@@ -12579,6 +12647,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "Nastavení OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "Nastavení OpenVPN"
 
@@ -13256,6 +13327,9 @@ msgstr "Nastavení poměru stran obrazu"
 
 msgid "Please select a default EPG type..."
 msgstr "Zvolte preferovaný typ EPG..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Prosím, vyberte playlist ke smazání..."
@@ -15047,6 +15121,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "Nastavení SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "Nastavení SABnzbd"
 
@@ -15060,6 +15137,9 @@ msgid "SATA"
 msgstr ""
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -15146,6 +15226,9 @@ msgstr ""
 #, fuzzy
 msgid "Samba"
 msgstr "Zpráva Samby"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Zpráva Samby"
@@ -15608,6 +15691,9 @@ msgstr "Vyberte skin"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
+msgid "Select Folders"
+msgstr "Vyberte složky"
+
 msgid "Select HDD"
 msgstr "Vyberte disk"
 
@@ -15637,6 +15723,9 @@ msgid "Select a bouquet"
 msgstr "Vyberte přehled"
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15712,9 +15801,6 @@ msgstr "Výběr souborů vyloučených ze zálohování"
 msgid "Select files/folders to backup"
 msgstr "Soubory/složky k zálohování"
 
-msgid "Select Folders"
-msgstr "Vyberte složky"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -15744,6 +15830,9 @@ msgstr "Volba vstupního zařízení"
 
 msgid "Select interface"
 msgstr "Vyberte rozhraní"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Vyberte film"
@@ -15817,6 +15906,9 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Stiskem \"OK\" vyberete a přiřadíte požadovanou funkci. \"CH +/-\" umožňuje přepínat mezi seznamy. Stiskem \"OK\" můžete již přiřazenou funkci také vyřadit. Tlačítkem \"Další / Předchozí\" změňte pořadí přiřazených funkcí."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr ""
@@ -16237,9 +16329,6 @@ msgstr "Nastavit úkoly CI pro detekci dostupných služeb"
 msgid "Set Framerate for MiniTV"
 msgstr ""
 
-msgid "Set system"
-msgstr "Nastavit systém"
-
 msgid "Set action for 'Info' key"
 msgstr ""
 
@@ -16282,6 +16371,9 @@ msgstr ""
 
 msgid "Set startup service"
 msgstr "Nastavit spuštění programu"
+
+msgid "Set system"
+msgstr "Nastavit systém"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -18693,6 +18785,9 @@ msgstr "Barva teletextových titulků"
 msgid "Telnet"
 msgstr "Port Telnetu"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Rozhraní Telnetu"
 
@@ -19568,9 +19663,6 @@ msgstr "Nastavení času"
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr "Aktual. čas v minutách"
-
 msgid "Time Update in Minutes:"
 msgstr "Aktual. čas v minutách:"
 
@@ -19634,6 +19726,9 @@ msgstr "Měřítko času"
 
 msgid "Time to execute command or script"
 msgstr "Čas spuštění příkazu nebo skriptu"
+
+msgid "Time update in minutes"
+msgstr "Aktual. čas v minutách"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr ""
@@ -20633,8 +20728,8 @@ msgstr "Zobrazit rozšířený popis"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Použijte síťového průvodce k nakonfigurování vybraného síťového adaptéru"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Použijte průvodce pro nakonfigurování vaší sítě"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Použijte šipku nahoru / dolu na DO pro výběr volby. Potom stiskněte OK."
@@ -21991,6 +22086,18 @@ msgstr ""
 "Váš %s %s se po odebrání služby restartuje.\n"
 "Chcete odebrat nyní ?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
@@ -22280,9 +22387,6 @@ msgstr "Zrušit úpravu oblíbených"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "Aktivace nastavení síťového adaptéru"
 
 msgid "activatePiP"
 msgstr "Aktivovat PiP"
@@ -22729,9 +22833,6 @@ msgstr "Ukončit DVD přehrávač a vrátit se na prohlížeč souborů"
 
 msgid "exit mounts setup menu"
 msgstr "Ukončit menu připojení"
-
-msgid "Exit network adapter configuration"
-msgstr "Zavřít nastavení síťového adaptéru "
 
 msgid "exit networkadapter setup menu"
 msgstr "Zavřít menu nastavení sítě"
@@ -23709,6 +23810,9 @@ msgstr ""
 msgid "uShare"
 msgstr "Sdílené"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "Zpráva ushare"
 
@@ -23717,6 +23821,12 @@ msgstr "Název uShare"
 
 msgid "uShare Port"
 msgstr "Port uShare"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "Nastavení uShare"
@@ -23901,6 +24011,26 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Aktivovat aktuální konfiguraci"
+
+#, fuzzy
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Soubor nelze smazat"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Zavřít konfiguraci DNS"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Flešnutí Online / HDD"
+
+#, fuzzy
+#~ msgid "Fullbackup Images"
+#~ msgstr "Zálohovat Image na HDD / USB"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Použijte průvodce pro nakonfigurování vaší sítě"
 
 #, fuzzy
 #~ msgid ""
@@ -24211,10 +24341,6 @@ msgstr ""
 #~ msgid "Automatic scan"
 #~ msgstr "Automatické ladění programů"
 
-#, fuzzy
-#~ msgid "Backup settings"
-#~ msgstr "Záloha nastavení"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Konfigurace CI slotů"
 
@@ -24449,14 +24575,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "not activated"
 #~ msgstr "není aktivní"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Výběr kanálú"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Výběr kanálú"
 
 #, fuzzy
 #~ msgid "No images found"

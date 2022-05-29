@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-26 21:02+0000\n"
+"POT-Creation-Date: 2022-05-28 20:45+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2233,6 +2233,9 @@ msgstr "AFP"
 msgid "AFP"
 msgstr "AFP"
 
+msgid "AFP Actions"
+msgstr ""
+
 msgid "AFP Settings"
 msgstr "Cài đặt AFP"
 
@@ -2329,14 +2332,14 @@ msgstr "Kích hoạt hình ảnh trong hình ảnh"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate current configuration"
-msgstr "Kích hoạt cấu hình hiện tại"
-
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn đa lựa chọn"
 
 msgid "Activate left-hand file list as source"
 msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn"
+
+msgid "Activate network adapter configuration"
+msgstr "kích hoạt cấu hình bộ điều hợp mạng"
 
 msgid "Activate network settings"
 msgstr "Kích hoạt cài đặt mạng"
@@ -2439,6 +2442,9 @@ msgstr "Thêm tập tin vào danh sách phát"
 
 msgid "Add files to playlist"
 msgstr "Thêm tệp vào danh sách phát"
+
+msgid "Add help text"
+msgstr ""
 
 msgid "Add new tag"
 msgstr ""
@@ -3338,6 +3344,9 @@ msgstr "Làm xong."
 msgid "Backup failed."
 msgstr "Sao lưu thất bại."
 
+msgid "Backup images"
+msgstr ""
+
 msgid "Backup is running..."
 msgstr "Sao lưu đang chạy ..."
 
@@ -3347,6 +3356,9 @@ msgid ""
 msgstr ""
 "Các plugin sao lưu được tìm thấy\n"
 "Bạn có muốn cài đặt bây giờ?"
+
+msgid "Backup settings"
+msgstr "Cài đặt sao lưu"
 
 msgid "Backup system settings"
 msgstr "Cài đặt hệ thống sao lưu"
@@ -4015,6 +4027,14 @@ msgstr "Hủy lưu timeshift như phim"
 msgid "Cancel selection"
 msgstr "Chọn kênh"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Chọn kênh"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Chọn kênh"
+
 msgid "Cancel the service selection"
 msgstr ""
 
@@ -4033,9 +4053,6 @@ msgstr "Hủy theo yêu cầu của người dùng"
 msgid "Cannot create backup directory"
 msgstr "Không thể tạo thư mục sao lưu"
 
-msgid "Cannot delete downloaded image"
-msgstr "Không thể xóa hình ảnh đã tải xuống"
-
 msgid "Cannot delete file"
 msgstr "Không thể xóa tập tin"
 
@@ -4046,9 +4063,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
-
-msgid "Cannot find images - please try later"
-msgstr "Không thể tìm thấy hình ảnh - vui lòng thử lại sau"
 
 msgid "Cannot move to trash can"
 msgstr "Không thể di chuyển đến thùng rác"
@@ -6007,6 +6021,9 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "Xóa các tập tin hoặc thư mục đã chọn"
 
+msgid "Delete the selected locally stored image"
+msgstr ""
+
 msgid "Delete this tag"
 msgstr ""
 
@@ -7329,6 +7346,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
@@ -7471,6 +7492,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
+
+msgid "Error: Cannot find any images!"
+msgstr ""
 
 msgid "Error: Checksum is invalid!"
 msgstr ""
@@ -7625,8 +7649,11 @@ msgstr "Thoát khỏi danh sách phim"
 msgid "Exit movie player?"
 msgstr "Thoát khỏi trình phát phim?"
 
-msgid "Exit nameserver configuration"
-msgstr "Thoát cấu hình máy chủ tên"
+msgid "Exit network adapter configuration"
+msgstr "thoát cấu hình bộ điều hợp mạng"
+
+msgid "Exit network adapter setup menu"
+msgstr ""
 
 msgid "Exit network interface list"
 msgstr "Thoát khỏi danh sách giao diện mạng"
@@ -7794,6 +7821,9 @@ msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
+
+msgid "FTP Actions"
+msgstr ""
 
 msgid "FTP Settings"
 msgstr "Thiết lập FTP"
@@ -8067,8 +8097,12 @@ msgstr "Đã sửa lỗi phông chữ X11 (SD)"
 msgid "Flash Image"
 msgstr "Hình ảnh flash"
 
-msgid "Flash On the Fly"
-msgstr "Flash khi đang bay"
+msgid "Flash Manager"
+msgstr ""
+
+#, python-format
+msgid "Flash Manager - %s Images"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Flash trực tuyến"
@@ -8279,9 +8313,6 @@ msgstr "Nghị quyết Fulview"
 
 msgid "FullHD Test"
 msgstr "Toàn bộ RGB RGB"
-
-msgid "Fullbackup Images"
-msgstr "Hình ảnh Fullbackup"
 
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
@@ -9294,8 +9325,14 @@ msgstr "Không hoạt động"
 msgid "Inadyn"
 msgstr "Inadyn"
 
+msgid "Inadyn Actions"
+msgstr ""
+
 msgid "Inadyn Log"
 msgstr "Nhật ký đăng nhập"
+
+msgid "Inadyn Setting Actions"
+msgstr ""
 
 msgid "Inadyn Settings"
 msgstr "Cài đặt"
@@ -10284,6 +10321,10 @@ msgstr ""
 msgid "Location list"
 msgstr "Danh sách địa điểm"
 
+#, python-format
+msgid "Location: %s"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Khóa:"
 
@@ -10394,11 +10435,14 @@ msgstr "M2k"
 msgid "MAC"
 msgstr "MAC"
 
-msgid "MAC-address"
-msgstr "Địa chỉ MAC"
+msgid "MAC Address Actions"
+msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Cài đặt địa chỉ MAC"
+
+msgid "MAC-address"
+msgstr "Địa chỉ MAC"
 
 msgid "MB"
 msgstr "MB"
@@ -10727,6 +10771,12 @@ msgstr "Micronesia (Liên bang)"
 msgid "Middle - Lite image"
 msgstr ""
 
+msgid "Mini DLNA Actions"
+msgstr ""
+
+msgid "Mini DLNA Setting Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Mini Series"
 msgstr "Tất cả các nhà cung cấp dịch vụ"
@@ -10882,8 +10932,14 @@ msgstr "Núi"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Mount '% s' không đủ không gian trống để ghi."
 
+msgid "Mount Actions"
+msgstr ""
+
 msgid "Mount Manager"
 msgstr "Quản lý"
+
+msgid "Mount Settings"
+msgstr ""
 
 msgid "Mount Setup"
 msgstr "Cài đặt"
@@ -11221,6 +11277,9 @@ msgstr "KẾ TIẾP"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS Actions"
+msgstr ""
+
 msgid "NFS Settings"
 msgstr "Thiết lập NFS"
 
@@ -11314,8 +11373,17 @@ msgstr "Netmask"
 msgid "Network"
 msgstr "Mạng"
 
+msgid "Network Adapter Actions"
+msgstr ""
+
 msgid "Network Adapter Selection"
 msgstr "Lựa chọn bộ điều hợp mạng"
+
+msgid "Network Adapter Setting Actions"
+msgstr ""
+
+msgid "Network Adapter Text Actions"
+msgstr ""
 
 msgid "Network Browser"
 msgstr "Trình duyệt mạng"
@@ -11331,6 +11399,9 @@ msgstr ""
 
 msgid "Network Interface"
 msgstr "Giao diện mạng"
+
+msgid "Network Log Actions"
+msgstr ""
 
 msgid "Network MAC settings"
 msgstr "Cài đặt MAC mạng"
@@ -11349,6 +11420,9 @@ msgstr "Thiết lập mạng"
 
 msgid "Network Test"
 msgstr "Kiểm tra mạng"
+
+msgid "Network Test:"
+msgstr "Kiểm tra mạng lưới: "
 
 msgid "Network Wizard"
 msgstr "Số dách mạng"
@@ -11379,9 +11453,6 @@ msgstr "Kiểm tra mạng"
 
 msgid "Network test..."
 msgstr "Kiểm tra mạng...."
-
-msgid "Network Test:"
-msgstr "Kiểm tra mạng lưới: "
 
 msgid "Network:"
 msgstr "Mạng:"
@@ -12119,6 +12190,9 @@ msgstr ""
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
+msgid "OpenVPN Actions"
+msgstr ""
+
 msgid "OpenVPN Settings"
 msgstr "Cài đặt OpenVPN"
 
@@ -12754,6 +12828,9 @@ msgstr "Vui lòng chọn một điểm đến dự phòng"
 
 msgid "Please select a default EPG type..."
 msgstr "Vui lòng chọn loại EPG mặc định ..."
+
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Vui lòng chọn danh sách phát để xóa ..."
@@ -14504,6 +14581,9 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
+msgid "SABnzbd Actions"
+msgstr ""
+
 msgid "SABnzbd Settings"
 msgstr "Thiết lập SABnzbd"
 
@@ -14517,6 +14597,9 @@ msgid "SATA"
 msgstr "SATA"
 
 msgid "SATPI"
+msgstr ""
+
+msgid "SATPI Setting Actions"
 msgstr ""
 
 #, fuzzy
@@ -14600,6 +14683,9 @@ msgstr "Thánh vincent và Grenadines"
 
 msgid "Samba"
 msgstr "Samba"
+
+msgid "Samba Actions"
+msgstr ""
 
 msgid "Samba Log"
 msgstr "Nhật ký Samba"
@@ -15049,6 +15135,9 @@ msgstr "Chọn da Enigma2"
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Chọn Fast DiSEqC nếu hệ thống trên không của bạn hỗ trợ điều này. Nếu bạn không chắc chắn, hãy chọn 'không'."
 
+msgid "Select Folders"
+msgstr "Chọn thư mục"
+
 msgid "Select HDD"
 msgstr "Chọn ổ cứng"
 
@@ -15074,6 +15163,9 @@ msgid "Select a bouquet"
 msgstr "Chọn một gói kênh"
 
 msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
 msgid "Select a movie"
@@ -15146,9 +15238,6 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
-msgid "Select Folders"
-msgstr "Chọn thư mục"
-
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Chọn cách nhanh chóng các chảo nên di chuyển giữa các vệ tinh."
 
@@ -15178,6 +15267,9 @@ msgstr "Chọn thiết bị đầu vào."
 
 msgid "Select interface"
 msgstr "Chọn giao diện skin"
+
+msgid "Select menu entry"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Chọn phim"
@@ -15251,6 +15343,9 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Chọn chức năng mong muốn và nhấp vào \"OK\" để gán nó. Sử dụng \"CH +/-\" để chuyển đổi giữa các danh sách. Chọn một chức năng được chỉ định và nhấp vào \"OK\" để hủy gán nó. Sử dụng \"Tiếp theo / Trước\" để thay đổi thứ tự của các chức năng được gán."
+
+msgid "Select the highlighted image and proceed to the slot selection"
+msgstr ""
 
 msgid "Select the highlighted slot and reboot"
 msgstr ""
@@ -15671,9 +15766,6 @@ msgstr "Đặt gán CI để phát hiện các dịch vụ khả dụng."
 msgid "Set Framerate for MiniTV"
 msgstr "Đặt tốc độ khung hình cho MiniTV"
 
-msgid "Set system"
-msgstr "Đặt hệ thống"
-
 msgid "Set action for 'Info' key"
 msgstr "Đặt hành động cho khóa 'Thông tin'"
 
@@ -15715,6 +15807,9 @@ msgstr "Đặt lặp lại trình tự nếu hệ thống trên không của b�
 
 msgid "Set startup service"
 msgstr "Đặt dịch vụ khởi động"
+
+msgid "Set system"
+msgstr "Đặt hệ thống"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -18022,6 +18117,9 @@ msgstr "Màu phụ đề Teletext"
 msgid "Telnet"
 msgstr "Telnet"
 
+msgid "Telnet Actions"
+msgstr ""
+
 msgid "Telnet Interface"
 msgstr "Giao diện Telnet"
 
@@ -18863,9 +18961,6 @@ msgstr "Cài đặt thời gian"
 msgid "Time Setup Actions"
 msgstr ""
 
-msgid "Time update in minutes"
-msgstr "Cập nhật thời gian trong vài phút"
-
 msgid "Time Update in Minutes:"
 msgstr "Cập nhật thời gian trong vài phút:"
 
@@ -18924,6 +19019,9 @@ msgstr "Phong cách thời gian"
 
 msgid "Time to execute command or script"
 msgstr "Thời gian thực hiện lệnh hoặc tập lệnh"
+
+msgid "Time update in minutes"
+msgstr "Cập nhật thời gian trong vài phút"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Cửa sổ thời gian để phát hiện thức dậy bằng đồng hồ bấm giờ [phút]"
@@ -19895,8 +19993,8 @@ msgstr "Sử dụng Danh sách mở rộng"
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
 
-msgid "Use the network wizard to configure your Network"
-msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình Mạng của bạn"
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Sử dụng các phím lên / xuống trên điều khiển từ xa của bạn để chọn một tùy chọn. Sau đó, nhấn OK."
@@ -21203,6 +21301,18 @@ msgid ""
 "Do you want to remove now ?"
 msgstr "Của % s% s bạn sẽ được khởi động lại sau khi xóa dịch vụ?"
 
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service\n"
+"Do you want to remove now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"Your %s %s will be restarted after the removal of service.\n"
+"Do you want to remove now?"
+msgstr ""
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Phần cứng của bạn có thể tự phát hiện chế độ ci hoặc chỉ hoạt động ở chế độ cũ."
 
@@ -21482,9 +21592,6 @@ msgstr "hủy bỏ yêu thích chỉnh sửa"
 
 msgid "ac3"
 msgstr ""
-
-msgid "Activate network adapter configuration"
-msgstr "kích hoạt cấu hình bộ điều hợp mạng"
 
 msgid "activatePiP"
 msgstr "kích hoạtPiP"
@@ -21918,9 +22025,6 @@ msgstr "thoát trình phát DVD hoặc quay lại trình duyệt tệp"
 
 msgid "exit mounts setup menu"
 msgstr "thoát cài đặt menu cài đặt"
-
-msgid "Exit network adapter configuration"
-msgstr "thoát cấu hình bộ điều hợp mạng"
 
 msgid "exit networkadapter setup menu"
 msgstr "thoát khỏi menu cài đặt bộ điều hợp mạng"
@@ -22867,6 +22971,9 @@ msgstr "turbo"
 msgid "uShare"
 msgstr "uShare"
 
+msgid "uShare Actions"
+msgstr ""
+
 msgid "uShare Log"
 msgstr "nhật ký uShare"
 
@@ -22875,6 +22982,12 @@ msgstr "tên uShare"
 
 msgid "uShare Port"
 msgstr "cổng uShare"
+
+msgid "uShare Selection Actions"
+msgstr ""
+
+msgid "uShare Setting Actions"
+msgstr ""
 
 msgid "uShare Settings"
 msgstr "cài đặt uShare"
@@ -23047,6 +23160,27 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Activate current configuration"
+#~ msgstr "Kích hoạt cấu hình hiện tại"
+
+#~ msgid "Cannot delete downloaded image"
+#~ msgstr "Không thể xóa hình ảnh đã tải xuống"
+
+#~ msgid "Cannot find images - please try later"
+#~ msgstr "Không thể tìm thấy hình ảnh - vui lòng thử lại sau"
+
+#~ msgid "Exit nameserver configuration"
+#~ msgstr "Thoát cấu hình máy chủ tên"
+
+#~ msgid "Flash On the Fly"
+#~ msgstr "Flash khi đang bay"
+
+#~ msgid "Fullbackup Images"
+#~ msgstr "Hình ảnh Fullbackup"
+
+#~ msgid "Use the network wizard to configure your Network"
+#~ msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình Mạng của bạn"
 
 #, fuzzy
 #~ msgid ""
@@ -23347,9 +23481,6 @@ msgstr ""
 #~ msgid "Automatic scan"
 #~ msgstr "Quét tự động"
 
-#~ msgid "Backup settings"
-#~ msgstr "Cài đặt sao lưu"
-
 #~ msgid "Common Interface assignment"
 #~ msgstr "Giao diện chung"
 
@@ -23582,14 +23713,6 @@ msgstr ""
 
 #~ msgid "not activated"
 #~ msgstr "chưa kích hoạt"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit"
-#~ msgstr "Chọn kênh"
-
-#, fuzzy
-#~ msgid "Cancel the image selection and exit all menus"
-#~ msgstr "Chọn kênh"
 
 #~ msgid "No images found"
 #~ msgstr "Không tìm thấy hình ảnh"
