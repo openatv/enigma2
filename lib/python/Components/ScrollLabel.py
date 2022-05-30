@@ -164,6 +164,7 @@ class ScrollLabel(GUIComponent):
 	def GUIcreate(self, parent):
 		self.instance = eWidget(parent)
 		self.scrollbar = eSlider(self.instance)
+		self.scrollbar.setIsScrollbar()
 		self.long_text = eLabel(self.instance)
 
 	def GUIdelete(self):
