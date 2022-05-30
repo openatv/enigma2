@@ -31,6 +31,10 @@ eListbox::eListbox(eWidget *parent) :
 //	setContent(new eListboxStringContent());
 
 	allowNativeKeys(true);
+
+	if(m_scrollbar_mode != showNever)
+		setScrollbarMode(m_scrollbar_mode);
+
 }
 
 eListbox::~eListbox()
@@ -335,7 +339,7 @@ int eListbox::getCurrentIndex()
 
 void eListbox::updateScrollBar()
 {
-	if (!m_content || m_scrollbar_mode == showNever )
+	if (!m_scrollbar || !m_content || m_scrollbar_mode == showNever )
 		return;
 	int entries = m_content->size();
 	if (m_content_changed)
