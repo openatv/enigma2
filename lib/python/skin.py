@@ -794,6 +794,15 @@ class AttributeParser:
 		except KeyError:
 			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever', 'showLeftAlways' or 'showLeftOnDemand'")
 
+	def scrollbarScroll(self, value):
+		try:
+			self.guiObject.setScrollbarScroll({
+				"byLine": self.guiObject.byLine,
+				"byPage": self.guiObject.byPage
+			}[value])
+		except KeyError:
+			raise AttribValueError("'byLine' or 'byPage'")
+
 	def scrollbarSliderBorderColor(self, value):
 		self.guiObject.setSliderBorderColor(parseColor(value))
 
