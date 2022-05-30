@@ -305,7 +305,7 @@ class FlashImage(Screen):
 		print("[FlashManager] Current image slot %s." % currentimageslot)
 		for slotCode in imagedict.keys():
 			print("[FlashManager] Image Slot %s: %s" % (slotCode, str(imagedict)))
-			choices.append(((_("slot%s - %s (current image)") if slotCode == currentimageslot else _("slot%s - %s")) % (slotCode, imagedict[slotCode]["imagename"]), (slotCode, True)))
+			choices.append(((_("slot%s - %s (current image)") if int(slotCode) == int(currentimageslot) else _("slot%s - %s")) % (slotCode, imagedict[slotCode]["imagename"]), (slotCode, True)))
 		choices.append((_("No, do not flash an image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot - 1)
 
