@@ -377,13 +377,13 @@ void eListbox::updateScrollBar()
 
 			if(m_prev_scrollbar_page != m_selected) {
 				m_prev_scrollbar_page = m_selected;
-				int thumb = 1000 / entries;
-				int start=(m_selected*thumb);
+			    int thumb = (int)((float)m_items_per_page / (float)entries * 1000);
+				int start = (1000 - thumb) * m_selected / (entries - 1);
 				int visblethumb = thumb < 4 ? 4 : thumb;
-				int end = start+visblethumb;
+				int end = start + visblethumb;
 				if (end>1000) {
 					end = 1000;
-					start = 996;
+					start = 1000 - visblethumb;
 				}
 				m_scrollbar->setStartEnd(start,end);
 			} 
