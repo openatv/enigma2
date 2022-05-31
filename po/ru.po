@@ -3356,7 +3356,7 @@ msgstr "Сохранение текущих настроек, в том числ
 msgid "Backup, flash and restore settings and no plugins"
 msgstr "Резервное копирование, прошивка и восстановление настроек без плагинов"
 
-msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgid "Backup, flash and restore settings and selected plugins (Ask user)"
 msgstr "Резервное копирование, прошивка и восстановление настроек и выбранных плагинов (спросить у пользователя)"
 
 msgid "Bahamas"
@@ -3936,7 +3936,7 @@ msgstr "Невозможно обновить таймеры"
 msgid "Can not upload timer"
 msgstr "Не удаётся загрузить таймер"
 
-msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr "Можно найти только сетевой диск для хранения резервной копии, что означает, что после прошивки автозагрузка не будет работать. В качестве альтернативы можно подключить сетевой диск после прошивки и выполнить сброс настроек производителя для автозагрузки"
 
 msgid "Can't allocate program source (e.g. tuner)"
@@ -5196,7 +5196,7 @@ msgstr "Кот-д'Ивуар / Берег Слоновой Кости"
 msgid "Could not connect to server"
 msgstr "Невозможно подключиться к серверу"
 
-msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr "Не удалось найти подходящий носитель - Пожалуйста, удалите некоторые загруженные изображения или вставьте носитель (например, USB-накопитель) с достаточным количеством свободного места и повторите попытку!"
 
 msgid "Could not load Medium! No disc inserted?"
@@ -11584,7 +11584,7 @@ msgstr "Нет, но начать сначала"
 msgid "No, do not backup a image"
 msgstr "Нет, не делать резервную копию имиджа"
 
-msgid "No, do not flash an image"
+msgid "No, don't flash this image"
 msgstr "Нет, не прошивать имидж"
 
 msgid "No, do nothing."
@@ -14555,7 +14555,7 @@ msgstr "Сохранить плейлист при выходе"
 msgid "Save right folder on exit"
 msgstr "Сохранить нужную папку при выходе"
 
-msgid "Save settings and EPG data"
+msgid "Save settings and EPG data."
 msgstr "Сохранение настроек и данных EPG"
 
 #, python-format
@@ -19247,7 +19247,7 @@ msgstr "Украина"
 msgid "Ukrainian"
 msgstr "Украинский"
 
-msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Невозможно создать необходимые каталоги на носителе (например, USB-накопителе или жёстком диске) - Пожалуйста, проверьте носитель и повторите попытку!"
 
 msgid "Unattended upgrade without GUI"
@@ -19463,7 +19463,7 @@ msgstr "Обновление параметров монтирования."
 msgid "Updating software catalog"
 msgstr "Каталог обновления ПО"
 
-msgid "Upgrade (Backup, Flash & Restore All)"
+msgid "Upgrade (Backup, flash & restore all)"
 msgstr "Обновление (резервное копирование, прошивка и восстановление всех данных)"
 
 msgid "Upgrade finished."

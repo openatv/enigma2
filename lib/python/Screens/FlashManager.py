@@ -113,20 +113,20 @@ class FlashManager(Screen, HelpableScreen):
 							"name": str(file.split(sep)[-1])
 						}
 				except Exception:
-					print("[FlashManager] Error: Unable to extract file list from Zip file '%s'!" % file)
+					print("[FlashManager] getImagesList Error: Unable to extract file list from Zip file '%s'!" % file)
 
 		if not self.imagesList:
 			try:
 				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"))
 				self.box = BoxInfo.getItem(boxInfoField, "")
 				url = feedURL % self.box
-				req = Request(url, None, {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
+				req = Request(url, None, {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
 				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, self.box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))
 			except Exception:
-				print("[FlashManager] Error: Unable to load json data from URL '%s'!" % url)
+				print("[FlashManager] getImagesList Error: Unable to load json data from URL '%s'!" % url)
 				self.imagesList = {}
 			searchFolders = []
 			# Get all folders of /media/ and /media/net/
@@ -145,7 +145,7 @@ class FlashManager(Screen, HelpableScreen):
 									try:
 										rmtree(dir)
 									except (IOError, OSError) as err:
-										print("[FlashManager] Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
+										print("[FlashManager] getImagesList Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
 		imageList = []
 		for catagory in reversed(sorted(self.imagesList.keys())):
 			if catagory in self.expanded:
@@ -273,8 +273,8 @@ class FlashImage(Screen):
 		self.downloader = None
 		self.source = source
 		self.imagename = imagename
-		self["header"] = Label(_("Backup settings"))
-		self["info"] = Label(_("Save settings and EPG data"))
+		self["header"] = Label(_("Backup Settings"))
+		self["info"] = Label(_("Save settings and EPG data."))
 		self["summary_header"] = StaticText(self["header"].getText())
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"cancel": (self.abort, _("Add help text")),
@@ -306,7 +306,7 @@ class FlashImage(Screen):
 		for slotCode in imagedict.keys():
 			print("[FlashManager] Image Slot %s: %s" % (slotCode, str(imagedict)))
 			choices.append(((_("slot%s - %s (current image)") if int(slotCode) == int(currentimageslot) else _("slot%s - %s")) % (slotCode, imagedict[slotCode]["imagename"]), (slotCode, True)))
-		choices.append((_("No, do not flash an image"), False))
+		choices.append((_("No, don't flash this image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot - 1)
 
 	def backupQuestionCB(self, retval=True):
@@ -368,11 +368,11 @@ class FlashImage(Screen):
 					if isDevice or "no_backup" == retval:
 						self.startBackupsettings(retval)
 					else:
-						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"))
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."))
 				except:
-					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR)
+					self.session.openWithCallback(self.abort, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR)
 			else:
-				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"), type=MessageBox.TYPE_ERROR)
+				self.session.openWithCallback(self.abort, MessageBox, _("Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."), type=MessageBox.TYPE_ERROR)
 		else:
 			self.abort()
 
@@ -390,10 +390,10 @@ class FlashImage(Screen):
 		if retval:
 			self.recordcheck = False
 			title = _("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
+			choices = ((_("Upgrade (Backup, flash & restore all)"), "restoresettingsandallplugins"),
 			(_("Clean (Just flash and start clean)"), "wizard"),
 			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-			(_("Backup, flash and restore settings and selected plugins (ask user)"), "restoresettings"),
+			(_("Backup, flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
 			(_("Do not flash image"), "abort"))
 			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox, title=title, list=choices, selection=self.selectPrevPostFlashAction())
 		else:
