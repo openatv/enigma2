@@ -221,7 +221,8 @@ class FlashManager(Screen, HelpableScreen):
 
 	def keyDistributionCallback(self, distribution):
 		self.imageFeed = distribution
-		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)  # TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
+		# TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
+		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
 		self.imagesList = {}
 		self.expanded = []
 		self.setIndex = 0
