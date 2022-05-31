@@ -220,14 +220,15 @@ class FlashManager(Screen, HelpableScreen):
 		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, _("Please select a distribution from which you would like to flash an image:"), list=distributionList, default=default, windowTitle=_("Flash Manager - Distributions"))
 
 	def keyDistributionCallback(self, distribution):
-		self.imageFeed = distribution
-		# TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
-		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
-		self.imagesList = {}
-		self.expanded = []
-		self.setIndex = 0
-		self.getImagesList()
-		self["list"].moveToIndex(self.setIndex)
+		if distribution:
+			self.imageFeed = distribution
+			# TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
+			self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
+			self.imagesList = {}
+			self.expanded = []
+			self.setIndex = 0
+			self.getImagesList()
+			self["list"].moveToIndex(self.setIndex)
 
 	def keyDeleteImage(self):
 		currentSelection = self["list"].getCurrent()[0][1]
