@@ -753,7 +753,7 @@ void eListbox::setSliderBorderWidth(int size)
 	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
 }
 
-void eListbox::setScrollbarBackgroundPicture(ePtr<gPixmap> &pm)
+void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarbackgroundpixmap = pm;
 	if (m_scrollbar && m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(pm);

@@ -158,7 +158,7 @@ public:
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 
 	void setSliderPicture(ePtr<gPixmap> &pm);
-	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
+	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
 	void setScrollbarSliderBorderWidth(int size);
 	void setScrollbarWidth(int size);
 	void setScrollbarOffset(int size);

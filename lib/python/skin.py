@@ -771,7 +771,7 @@ class AttributeParser:
 			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBottom', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBottom', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBottom', 'moveCenterTop', 'moveCenter', 'moveCenterBottom', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
 
 	def scrollbarBackgroundPixmap(self, value):
-		self.guiObject.setScrollbarBackgroundPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setScrollbarBackgroundPixmap(loadPixmap(value, self.desktop))
 
 	def scrollbarBackgroundPicture(self, value):  # For compatibility same as 'scrollbarBackgroundPixmap', use 'scrollbarBackgroundPixmap' instead.
 		self.scrollbarBackgroundPixmap(value)
