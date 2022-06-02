@@ -82,7 +82,7 @@ struct eListboxStyle
 		alignBottom=alignRight,
 		alignBlock
 	};
-	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarborder_width;
+	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_secondfont;
 	ePoint m_text_offset;
 	bool m_use_vti_workaround;
@@ -171,7 +171,6 @@ public:
 	void setUseVTIWorkaround(void);
 
 	void setScrollbarBorderColor(const gRGB &col);
-	void setSliderBorderWidth(int size);
 	void setScrollbarForegroundColor(gRGB &col);
 
 	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int scroll, int mode, bool enablewraparound) { 

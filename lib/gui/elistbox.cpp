@@ -747,12 +747,6 @@ void eListbox::setScrollbarBorderColor(const gRGB &col)
 	if (m_scrollbar) m_scrollbar->setBorderColor(col);
 }
 
-void eListbox::setSliderBorderWidth(int size)
-{
-	m_style.m_sliderborder_size = size;
-	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
-}
-
 void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarbackgroundpixmap = pm;
