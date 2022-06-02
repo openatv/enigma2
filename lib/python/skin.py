@@ -804,7 +804,7 @@ class AttributeParser:
 			raise AttribValueError("'byLine' or 'byPage'")
 
 	def scrollbarSliderBorderColor(self, value):
-		self.guiObject.setSliderBorderColor(parseColor(value))
+		self.guiObject.setScrollbarBorderColor(parseColor(value))
 
 	def scrollbarSliderBorderWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarSliderBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))

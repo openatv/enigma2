@@ -66,7 +66,7 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->setRange(0,(m_scrollbar_scroll == byLine) ? 1000 : 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
-		if (m_style.m_sliderborder_color_set) m_scrollbar->setBorderColor(m_style.m_sliderborder_color);
+		if (m_style.m_scollbarborder_color_set) m_scrollbar->setBorderColor(m_style.m_scollbarborder_color);
 	}
 }
 
@@ -740,10 +740,10 @@ void eListbox::setSliderForegroundColor(gRGB &col)
 	if (m_scrollbar) m_scrollbar->setForegroundColor(col);
 }
 
-void eListbox::setSliderBorderColor(const gRGB &col)
+void eListbox::setScrollbarBorderColor(const gRGB &col)
 {
-	m_style.m_sliderborder_color = col;
-	m_style.m_sliderborder_color_set = 1;
+	m_style.m_scollbarborder_color = col;
+	m_style.m_scollbarborder_color_set = 1;
 	if (m_scrollbar) m_scrollbar->setBorderColor(col);
 }
 
