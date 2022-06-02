@@ -586,7 +586,7 @@ class AttributeParser:
 		self.guiObject.setBackgroundColor(parseColor(value))
 
 	def backgroundPixmap(self, value):
-		self.guiObject.setBackgroundPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setBackgroundPixmap(loadPixmap(value, self.desktop))
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value))
