@@ -849,7 +849,7 @@ class AttributeParser:
 		raise AttribDeprecatedError("selection")
 
 	def selectionPixmap(self, value):
-		self.guiObject.setSelectionPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setSelectionPixmap(loadPixmap(value, self.desktop))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value))

@@ -722,7 +722,7 @@ void eListbox::setBackgroundPixmap(ePtr<gPixmap> &pm)
 	m_style.m_background = pm;
 }
 
-void eListbox::setSelectionPicture(ePtr<gPixmap> &pm)
+void eListbox::setSelectionPixmap(ePtr<gPixmap> &pm)
 {
 	m_style.m_selection = pm;
 }

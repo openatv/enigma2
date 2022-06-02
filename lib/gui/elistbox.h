@@ -155,7 +155,7 @@ public:
 	void setBorderColor(const gRGB &col);
 	void setBorderWidth(int size);
 	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
-	void setSelectionPicture(ePtr<gPixmap> &pixmap);
+	void setSelectionPixmap(ePtr<gPixmap> &pixmap);
 
 	void setScrollbarForegroundPixmap(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
