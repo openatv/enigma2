@@ -727,7 +727,7 @@ void eListbox::setSelectionPicture(ePtr<gPixmap> &pm)
 	m_style.m_selection = pm;
 }
 
-void eListbox::setSliderPicture(ePtr<gPixmap> &pm)
+void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarpixmap = pm;
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);

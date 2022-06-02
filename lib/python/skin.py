@@ -818,7 +818,7 @@ class AttributeParser:
 		raise AttribDeprecatedError("scrollbarSliderPixmap")
 
 	def scrollbarSliderPixmap(self, value):
-		self.guiObject.setSliderPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setScrollbarForegroundPixmap(loadPixmap(value, self.desktop))
 
 	def scrollbarWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
