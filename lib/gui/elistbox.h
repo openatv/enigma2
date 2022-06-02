@@ -63,7 +63,7 @@ struct eListboxStyle
 	int m_transparent_background;
 	gRGB m_background_color, m_background_color_selected,
 	m_foreground_color, m_foreground_color_selected, m_border_color, m_sliderborder_color, m_sliderforeground_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_sliderforeground_color_set, m_sliderborder_color_set, m_scrollbarsliderborder_size_set;
+	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_sliderforeground_color_set, m_sliderborder_color_set, m_scrollbarborder_width_set;
 		/*
 			{m_transparent_background m_background_color_set m_background}
 			{0 0 0} use global background color
@@ -82,7 +82,7 @@ struct eListboxStyle
 		alignBottom=alignRight,
 		alignBlock
 	};
-	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarsliderborder_size;
+	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_secondfont;
 	ePoint m_text_offset;
 	bool m_use_vti_workaround;
@@ -159,7 +159,7 @@ public:
 
 	void setSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
-	void setScrollbarSliderBorderWidth(int size);
+	void setScrollbarBorderWidth(int width);
 	void setScrollbarWidth(int size);
 	void setScrollbarOffset(int size);
 

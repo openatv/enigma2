@@ -808,7 +808,7 @@ class AttributeParser:
 
 	def scrollbarSliderBorderWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarSliderBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
-		self.guiObject.setScrollbarSliderBorderWidth(self.applyHorizontalScale(value))
+		self.guiObject.setScrollbarBorderWidth(self.applyHorizontalScale(value))
 
 	def scrollbarSliderForegroundColor(self, value):
 		self.guiObject.setSliderForegroundColor(parseColor(value))

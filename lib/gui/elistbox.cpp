@@ -700,11 +700,11 @@ void eListbox::setBorderWidth(int size)
 	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
 }
 
-void eListbox::setScrollbarSliderBorderWidth(int size)
+void eListbox::setScrollbarBorderWidth(int width)
 {
-	m_style.m_scrollbarsliderborder_size = size;
-	m_style.m_scrollbarsliderborder_size_set = 1;
-	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
+	m_style.m_scrollbarborder_width = width;
+	m_style.m_scrollbarborder_width_set = 1;
+	if (m_scrollbar) m_scrollbar->setBorderWidth(width);
 }
 
 void eListbox::setScrollbarWidth(int size)
