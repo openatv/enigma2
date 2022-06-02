@@ -733,10 +733,10 @@ void eListbox::setSliderPicture(ePtr<gPixmap> &pm)
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);
 }
 
-void eListbox::setSliderForegroundColor(gRGB &col)
+void eListbox::setScrollbarForegroundColor(gRGB &col)
 {
-	m_style.m_sliderforeground_color = col;
-	m_style.m_sliderforeground_color_set = 1;
+	m_style.m_scrollbarforeground_color = col;
+	m_style.m_scrollbarforeground_color_set = 1;
 	if (m_scrollbar) m_scrollbar->setForegroundColor(col);
 }
 

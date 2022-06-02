@@ -811,7 +811,7 @@ class AttributeParser:
 		self.guiObject.setScrollbarBorderWidth(self.applyHorizontalScale(value))
 
 	def scrollbarSliderForegroundColor(self, value):
-		self.guiObject.setSliderForegroundColor(parseColor(value))
+		self.guiObject.setScrollbarForegroundColor(parseColor(value))
 
 	def scrollbarSliderPicture(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarSliderPixmap' instead.
 		self.scrollbarSliderPixmap(value)
