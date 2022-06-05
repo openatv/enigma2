@@ -586,7 +586,7 @@ class AttributeParser:
 		self.guiObject.setBackgroundColor(parseColor(value))
 
 	def backgroundPixmap(self, value):
-		self.guiObject.setBackgroundPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setBackgroundPixmap(loadPixmap(value, self.desktop))
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value))
@@ -771,7 +771,7 @@ class AttributeParser:
 			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBottom', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBottom', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBottom', 'moveCenterTop', 'moveCenter', 'moveCenterBottom', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
 
 	def scrollbarBackgroundPixmap(self, value):
-		self.guiObject.setScrollbarBackgroundPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setScrollbarBackgroundPixmap(loadPixmap(value, self.desktop))
 
 	def scrollbarBackgroundPicture(self, value):  # For compatibility same as 'scrollbarBackgroundPixmap', use 'scrollbarBackgroundPixmap' instead.
 		self.scrollbarBackgroundPixmap(value)
@@ -804,21 +804,21 @@ class AttributeParser:
 			raise AttribValueError("'byLine' or 'byPage'")
 
 	def scrollbarSliderBorderColor(self, value):
-		self.guiObject.setSliderBorderColor(parseColor(value))
+		self.guiObject.setScrollbarBorderColor(parseColor(value))
 
 	def scrollbarSliderBorderWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarSliderBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
-		self.guiObject.setScrollbarSliderBorderWidth(self.applyHorizontalScale(value))
+		self.guiObject.setScrollbarBorderWidth(self.applyHorizontalScale(value))
 
 	def scrollbarSliderForegroundColor(self, value):
-		self.guiObject.setSliderForegroundColor(parseColor(value))
+		self.guiObject.setScrollbarForegroundColor(parseColor(value))
 
 	def scrollbarSliderPicture(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarSliderPixmap' instead.
 		self.scrollbarSliderPixmap(value)
 		raise AttribDeprecatedError("scrollbarSliderPixmap")
 
 	def scrollbarSliderPixmap(self, value):
-		self.guiObject.setSliderPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setScrollbarForegroundPixmap(loadPixmap(value, self.desktop))
 
 	def scrollbarWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
@@ -849,7 +849,7 @@ class AttributeParser:
 		raise AttribDeprecatedError("selection")
 
 	def selectionPixmap(self, value):
-		self.guiObject.setSelectionPicture(loadPixmap(value, self.desktop))
+		self.guiObject.setSelectionPixmap(loadPixmap(value, self.desktop))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value))
