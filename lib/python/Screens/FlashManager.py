@@ -144,7 +144,7 @@ class FlashManager(Screen, HelpableScreen):
 								for dir in [dir for dir in [pathjoin(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
 									try:
 										rmtree(dir)
-									except (IOError, OSError) as err:
+									except OSError as err:
 										print("[FlashManager] getImagesList Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
 		imageList = []
 		for catagory in sorted(self.imagesList.keys(), reverse=True):
@@ -241,7 +241,7 @@ class FlashManager(Screen, HelpableScreen):
 				self.setIndex = self["list"].getSelectedIndex()
 				self.imagesList = {}
 				self.getImagesList()
-			except (IOError, OSError) as err:
+			except OSError as err:
 				self.session.open(MessageBox, _("Error %d: Unable to delete downloaded image '%s'!  (%s)" % (err.errno, currentSelection, err.strerror)), MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
 	def selectionChanged(self):
@@ -340,7 +340,7 @@ class FlashImage(Screen, HelpableScreen):
 						try:
 							fs = statvfs(path)
 							return (fs.f_bavail * fs.f_frsize) / (1 << 20)
-						except (IOError, OSError) as err:
+						except OSError as err:
 							print("[FlashManager] checkMedia Error %d: Unable to get status for '%s'!  (%s)" % (err.errno, path, err.strerror))
 					return 0
 
@@ -382,7 +382,7 @@ class FlashImage(Screen, HelpableScreen):
 						self.startBackupSettings(choice)
 					else:
 						self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
-				except (IOError, OSError) as err:
+				except OSError as err:
 					self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			else:
 				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
@@ -447,7 +447,7 @@ class FlashImage(Screen, HelpableScreen):
 				try:
 					if not exists(rootFolder):
 						makedirs(rootFolder)
-				except (IOError, OSError) as err:
+				except OSError as err:
 					print("[FlashManager] postFlashActionCallback Error %d: Failed to create '%s' folder!  (%s)" % (err.errno, rootFolder, err.strerror))
 				if restoreSettings:
 					filesToCreate.append("settings")
@@ -460,7 +460,7 @@ class FlashImage(Screen, HelpableScreen):
 					if fileName in filesToCreate:
 						try:
 							open(path, "w").close()
-						except (IOError, OSError) as err:
+						except OSError as err:
 							print("[FlashManager] postFlashActionCallback Error %d: failed to create %s! (%s)" % (err.errno, path, err.strerror))
 					else:
 						if exists(path):
@@ -476,7 +476,7 @@ class FlashImage(Screen, HelpableScreen):
 								else:
 									if exists(path):
 										unlink(path)
-						except (IOError, OSError) as err:
+						except OSError as err:
 							print("[FlashManager] postFlashActionCallback Error %d: Failed to create restore mode flag file '%s'!  (%s)" % (err.errno, path, err.strerror))
 				self.startDownload()
 			else:
