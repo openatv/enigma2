@@ -140,7 +140,7 @@ class ImageBackup(Screen):
 				if not exists(self.DIRECTORY):
 					try:
 						makedirs(self.DIRECTORY)
-					except:
+					except OSError:
 						self.session.open(MessageBox, _("Cannot create backup directory"), MessageBox.TYPE_ERROR, timeout=10)
 						return
 				self.SLOT = str(answer[1])
@@ -253,10 +253,11 @@ class ImageBackup(Screen):
 					mountcmd = "--bind / %s" % (self.backuproot)
 				system("mount %s" % mountcmd)
 
+				cmd1 = None
+				cmd2 = None
+				cmd3 = None
 				if "jffs2" in self.ROOTFSTYPE.split():
 					cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS_JFFS2, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
-					cmd2 = None
-					cmd3 = None
 				elif "ubi" in self.ROOTFSTYPE.split():
 					f = open("%s/ubinize.cfg" % self.WORKDIR, "w")
 					f.write("[ubifs]\n")
@@ -271,16 +272,10 @@ class ImageBackup(Screen):
 					ff.close()
 					cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS_UBI, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
-					cmd3 = None
-				else:
-					if self.RECOVERY:
-						cmd1 = None
-						cmd2 = None
-						cmd3 = None
-					else:
-						cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
-						cmd2 = "sync"
-						cmd3 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
+				elif not self.RECOVERY:
+					cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
+					cmd2 = "sync"
+					cmd3 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 
 				cmdlist = []
 				cmdlist.append(self.message)
@@ -693,7 +688,7 @@ class ImageBackup(Screen):
 						userbouqet = f.readline()
 						AboutText += userbouqet.replace('#NAME ', '')
 						f.close()
-		except:
+		except OSError:
 			AboutText += _("Error reading bouquets.tv")
 
 		AboutText += _("\n[User - bouquets (RADIO)]\n")
@@ -710,7 +705,7 @@ class ImageBackup(Screen):
 						userbouqet = f.readline()
 						AboutText += userbouqet.replace('#NAME ', '')
 						f.close()
-		except:
+		except OSError:
 			AboutText += _("Error reading bouquets.radio")
 
 		AboutText += _("\n[Installed Plugins]\n")
