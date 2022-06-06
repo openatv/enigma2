@@ -289,7 +289,7 @@ class ExtremeInfo(Poll, Converter):
 		try:
 			with open("/tmp/ecm.info", "r") as fd:
 				content = fd.read().split('\n')
-		except (IOError, OSError) as err:
+		except OSError as err:
 			content = []
 		return content
 

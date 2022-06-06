@@ -2215,7 +2215,7 @@ class Config(ConfigSubsection):
 				fd.flush()
 				fsync(fd.fileno())
 			rename("%s.writing" % filename, filename)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[Config] Error %d: Couldn't write '%s'!  (%s)" % (err.errno, filename, err.strerror))
 
 
@@ -2225,7 +2225,7 @@ class ConfigFile:
 	def load(self):
 		try:
 			config.loadFromFile(self.CONFIG_FILE, baseFile=True)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[Config] Error %d: Unable to load config file '%s', assuming defaults.  (%s)" % (err.errno, self.CONFIG_FILE, err.strerror))
 
 	def save(self):

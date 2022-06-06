@@ -64,7 +64,7 @@ def getFPVersion():
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				version = ioctl(fd.fileno(), 0)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[StbHardware] Error %d: Unable to access '/dev/dbox/fp0', getFPVersion failed!  (%s)" % (err.errno, err.strerror))
 	return version
 
@@ -74,7 +74,7 @@ def setFPWakeuptime(wutime):
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				ioctl(fd.fileno(), 6, pack('L', wutime))  # Set wake up time.
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[StbHardware] Error %d: Unable to write to '/dev/dbox/fp0', setFPWakeuptime failed!  (%s)" % (err.errno, err.strerror))
 
 
@@ -93,7 +93,7 @@ def setRTCtime(wutime):
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				ioctl(fd.fileno(), 0x101, pack('L', wutime))  # Set time.
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[StbHardware] Error %d: Unable to write to '/dev/dbox/fp0', setRTCtime failed!  (%s)" % (err.errno, err.strerror))
 
 
@@ -103,7 +103,7 @@ def getFPWakeuptime():
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				wakeup = unpack('L', ioctl(fd.fileno(), 5, '    '))[0]  # Get wakeup time.
-		except (IOError, OSError) as err:
+		except OSError as err:
 			wakeup = 0
 			print("[StbHardware] Error %d: Unable to read '/dev/dbox/fp0', getFPWakeuptime failed!  (%s)" % (err.errno, err.strerror))
 	return int(wakeup)
@@ -123,7 +123,7 @@ def getFPWasTimerWakeup(check=False):
 			try:
 				with open("/dev/dbox/fp0") as fd:
 					wasTimerWakeup = unpack('B', ioctl(fd.fileno(), 9, ' '))[0] and True or False
-			except (IOError, OSError) as err:
+			except OSError as err:
 				isError = True
 				print("[StbHardware] Error %d: Unable to read '/dev/dbox/fp0', getFPWasTimerWakeup failed!  (%s)" % (err.errno, err.strerror))
 	else:
@@ -140,5 +140,5 @@ def clearFPWasTimerWakeup():
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				ioctl(fd.fileno(), 10)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[StbHardware] Error %d: Unable to update '/dev/dbox/fp0', clearFPWasTimerWakeup failed!  (%s)" % (err.errno, err.strerror))
