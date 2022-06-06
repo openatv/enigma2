@@ -157,7 +157,7 @@ class AVSwitch:
 			f = open("/proc/stb/video/videomode_choices")
 			modes = f.read()[:-1]
 			f.close()
-		except IOError:
+		except OSError:
 			print("[AVSwitch] couldn't read available videomodes.")
 			modes = []
 			return modes
@@ -171,7 +171,7 @@ class AVSwitch:
 				f.close()
 				self.modes_preferred = modes.split(' ')
 				print("[AVSwitch] reading edid modes: ", self.modes_preferred)
-			except IOError:
+			except OSError:
 				print("[AVSwitch] reading edid modes failed, using all modes")
 				try:
 					f = open("/proc/stb/video/videomode_preferred")
@@ -179,7 +179,7 @@ class AVSwitch:
 					f.close()
 					self.modes_preferred = modes.split(' ')
 					print("[AVSwitch] reading _preferred modes: ", self.modes_preferred)
-				except IOError:
+				except OSError:
 					print("[AVSwitch] reading preferred modes failed, using all modes")
 					self.modes_preferred = self.readAvailableModes()
 		else:
@@ -197,7 +197,7 @@ class AVSwitch:
 	def is24hzAvailable(self):
 		try:
 			self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
-		except IOError:
+		except OSError:
 			print("[AVSwitch] failed to read video choices 24hz .")
 			self.has24pAvailable = False
 		BoxInfo.setItem("have24hz", self.has24pAvailable)
@@ -250,19 +250,19 @@ class AVSwitch:
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
-		except IOError:
+		except OSError:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
 				f.close()
-			except IOError:
+			except OSError:
 				print("[AVSwitch] setting videomode failed.")
 
 		if BoxInfo.getItem("have24hz"):
 			try:
 				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
-			except IOError:
+			except OSError:
 				print("[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
 
 		if getBrandOEM() in ('gigablue',):
@@ -271,7 +271,7 @@ class AVSwitch:
 				f = open("/etc/videomode", "w")
 				f.write(mode_50)
 				f.close()
-			except IOError:
+			except OSError:
 				print("[AVSwitch] writing initial videomode to /etc/videomode failed.")
 
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
@@ -397,7 +397,7 @@ class AVSwitch:
 			f = open("/proc/stb/video/aspect", "w")
 			f.write(cfgelement.value)
 			f.close()
-		except IOError:
+		except OSError:
 			print("[AVSwitch] setting aspect failed.")
 
 	def setWss(self, cfgelement):
@@ -427,7 +427,7 @@ class AVSwitch:
 				f = open("/proc/stb/video/policy", "w")
 				f.write(cfgelement.value)
 				f.close()
-		except IOError:
+		except OSError:
 			print("[AVSwitch] setting policy43 failed.")
 
 	def setPolicy169(self, cfgelement):
@@ -459,7 +459,7 @@ class AVSwitch:
 					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 					if aspect_str == "1": # 4:3
 						ret = (4, 3)
-				except IOError:
+				except OSError:
 					pass
 			else:  # 4:3
 				ret = (4, 3)
@@ -1279,7 +1279,7 @@ def InitAVSwitch():
 				f = open("/proc/stb/vmpeg/0/pep_apply", "w")
 				f.write("1")
 				f.close()
-			except IOError:
+			except OSError:
 				print("[AVSwitch] couldn't write pep_scaler_sharpness")
 
 		if BoxInfo.getItem("model") in ('gbquad', 'gbquadplus'):

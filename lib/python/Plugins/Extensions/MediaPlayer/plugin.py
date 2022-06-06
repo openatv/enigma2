@@ -310,7 +310,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if self.savePlaylistOnExit:
 				try:
 					self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
-				except IOError:
+				except OSError:
 					print("couldn't save playlist.e2pls")
 			if config.mediaplayer.saveDirOnExit.value:
 				config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
@@ -772,7 +772,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		try:
 			for i in os.listdir(playlistdir):
 				listpath.append((i, playlistdir + i))
-		except IOError as e:
+		except OSError as e:
 			print("Error while scanning subdirs ", e)
 		if config.mediaplayer.sortPlaylists.value:
 			listpath.sort()
@@ -796,7 +796,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		try:
 			for i in os.listdir(playlistdir):
 				listpath.append((i, playlistdir + i))
-		except IOError as e:
+		except OSError as e:
 			print("Error while scanning subdirs ", e)
 		if config.mediaplayer.sortPlaylists.value:
 			listpath.sort()

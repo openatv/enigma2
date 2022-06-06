@@ -151,7 +151,7 @@ class FactoryReset(Setup, ProtectedScreen):
 				else:
 					print("[FactoryReset] Removing file '%s' from '%s'." % (target, self.configDir))
 					remove(target)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				if err.errno != ENOENT:
 					print("[FactoryReset] Error %d: Unable to delete '%s'!  (%s)" % (err.errno, target, err.strerror))
 

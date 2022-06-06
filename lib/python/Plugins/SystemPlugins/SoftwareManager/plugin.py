@@ -1889,7 +1889,7 @@ class IPKGSource(Screen):
 				if sources:
 					text = sources[0]
 				fp.close()
-			except IOError:
+			except OSError:
 				pass
 
 		desk = getDesktop(0)
