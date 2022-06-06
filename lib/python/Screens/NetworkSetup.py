@@ -902,15 +902,19 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		except ImportError:
 			return False
 		else:
+			from wifi.exceptions import InterfaceError
 			try:
 				system("ifconfig %s up" % self.iface)
 				wlanresponse = list(Cell.all(iface))
-			except IOError as xxx_todo_changeme:
+			except InterfaceError as ie:
+				print("[NetworkSetup] queryWirelessDevice InterfaceError: %s" % str(ie))
+				return False
+			except OSError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False
 				else:
-					print("error: ", error_no, error_str)
+					print("[NetworkSetup] queryWirelessDevice OSError: %s '%s'" % (error_no, error_str))
 					return True
 			else:
 				return True
