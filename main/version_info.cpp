@@ -11,9 +11,4 @@ const char *enigma2_date = ENIGMA2_COMMIT_DATE;
 #endif
 const char *enigma2_branch = ENIGMA2_BRANCH;
 
-#ifndef ENIGMA2_REV
-#define ENIGMA2_REV ""
-#endif
-const char *enigma2_rev = ENIGMA2_REV;
-
 const char *enigma2_version = (ENIGMA2_COMMIT_DATE "-" ENIGMA2_BRANCH);
