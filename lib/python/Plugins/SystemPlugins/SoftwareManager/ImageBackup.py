@@ -237,25 +237,21 @@ class ImageBackup(Screen):
 
 				## PREPARING THE BUILDING ENVIRONMENT
 				system("rm -rf %s" % self.WORKDIR)
-				self.backuproot = "/tmp/bi/root"
-				if self.ROOTFSSUBDIR != "none":
-					self.backuproot = "/tmp/bi/RootSubdir/"
+				self.backuproot = "/tmp/bi/RootSubdir" if self.ROOTFSSUBDIR != "none" else "/tmp/bi/root"
 				if not exists(self.WORKDIR):
 					makedirs(self.WORKDIR)
 				if not exists(self.backuproot):
 					makedirs(self.backuproot)
 				system("sync")
 				if MultiBoot.canMultiBoot():
+					mountcmd = "/dev/%s %s" % (self.MTDROOTFS, self.backuproot)
 					if self.ROOTFSSUBDIR != "none":
 						if self.hasMultiBootMDT:
-							system("mount -t ubifs %s /tmp/bi/RootSubdir" % self.MTDROOTFS)
-						else:
-							system("mount /dev/%s /tmp/bi/RootSubdir" % self.MTDROOTFS)
-						self.backuproot = self.backuproot + self.ROOTFSSUBDIR
-					else:
-						system("mount /dev/%s %s" % (self.MTDROOTFS, self.backuproot))
+							mountcmd = "-t ubifs %s %s" % (self.MTDROOTFS, self.backuproot)
+						self.backuproot = "%s/%s" % (self.backuproot, self.ROOTFSSUBDIR)
 				else:
-					system("mount --bind / %s" % (self.backuproot))
+					mountcmd = "--bind / %s" % (self.backuproot)
+				system("mount %s" % mountcmd)
 
 				if "jffs2" in self.ROOTFSTYPE.split():
 					cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS_JFFS2, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
