@@ -8,7 +8,7 @@ def getUpgradeVersion():
 	import os
 	try:
 		r = os.popen("fpupgrade --version").read()
-	except IOError:
+	except OSError:
 		return None
 	if r[:16] != "FP update tool v":
 		return None

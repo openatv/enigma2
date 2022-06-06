@@ -1225,7 +1225,7 @@ class RecordTimer(timer.Timer):
 
 		try:
 			self.loadTimer()
-		except IOError:
+		except OSError:
 			print("unable to load timers from file!")
 
 	def timeChanged(self, entry):
@@ -1317,7 +1317,7 @@ class RecordTimer(timer.Timer):
 			except OSError:
 				print("renaming broken timer failed")
 			return
-		except IOError:
+		except OSError:
 			print("timers.xml not found!")
 			return
 

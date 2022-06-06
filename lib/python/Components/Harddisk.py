@@ -41,7 +41,7 @@ def getProcMounts():
 			item[1] = item[1].replace('\\040', ' ')
 			result.append(item)
 		return result
-	except IOError as ex:
+	except OSError as ex:
 		print("[Harddisk] Failed to open /proc/mounts", ex)
 		return []
 
@@ -317,7 +317,7 @@ class Harddisk:
 			fstab = open("/etc/fstab")
 			lines = fstab.readlines()
 			fstab.close()
-		except IOError:
+		except OSError:
 			return -1
 		for line in lines:
 			parts = line.strip().split(" ")
@@ -841,7 +841,7 @@ class HarddiskManager:
 					media = readFile("/proc/ide/%s/media" % blockdev)
 					if "cdrom" in media:
 						is_cdrom = True
-				except IOError:
+				except OSError:
 					error = True
 			# check for partitions
 			if not is_cdrom and os.path.exists(devpath):
@@ -853,14 +853,14 @@ class HarddiskManager:
 					partitions.append(partition)
 			else:
 				self.cd = blockdev
-		except IOError:
+		except OSError:
 			error = True
 		# check for medium
 		medium_found = True
 		try:
 			if os.path.exists("/dev/" + blockdev):
 				open("/dev/" + blockdev).close()
-		except IOError as err:
+		except OSError as err:
 			if err.errno == 159: # no medium present
 				medium_found = False
 
@@ -1030,7 +1030,7 @@ class HarddiskManager:
 		description = _("External Storage %s") % dev
 		try:
 			description = readFile("/sys" + phys + "/model")
-		except IOError as s:
+		except OSError as s:
 			print("[Harddisk] couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in list(DEVICEDB.get(HardwareInfo().device_name, {}).items()):

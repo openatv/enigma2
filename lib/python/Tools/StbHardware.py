@@ -60,7 +60,7 @@ def getFPVersion():
 			version = open("/proc/stb/fp/version", "r").read()
 		else:
 			version = int(open("/proc/stb/fp/version", "r").read())
-	except IOError:
+	except OSError:
 		try:
 			with open("/dev/dbox/fp0") as fd:
 				version = ioctl(fd.fileno(), 0)

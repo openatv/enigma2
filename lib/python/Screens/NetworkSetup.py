@@ -905,7 +905,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			try:
 				system("ifconfig %s up" % self.iface)
 				wlanresponse = list(Cell.all(iface))
-			except IOError as xxx_todo_changeme:
+			except OSError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False

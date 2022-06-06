@@ -31,7 +31,7 @@ class VtiEmuInfo(VariableText, Renderer):
                 emuversion = file.readline()
                 file.close()
                 return emuversion
-            except IOError:
+            except OSError:
                 return 'not detected Softcam'
 
         else:

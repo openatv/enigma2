@@ -322,7 +322,7 @@ class HddMount(Screen):
 			system('umount ' + mountp)
 			try:
 				mounts = open("/proc/mounts")
-			except IOError:
+			except OSError:
 				return -1
 			mountcheck = mounts.readlines()
 			mounts.close()

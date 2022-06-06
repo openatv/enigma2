@@ -33,7 +33,7 @@ def getPluginParams(file):
 			split = x.split("=")
 			params[split[0]] = split[1]
 		file.close()
-	except IOError:
+	except OSError:
 		print("no tuxbox plugins found")
 
 	return params
