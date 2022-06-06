@@ -346,7 +346,7 @@ def setupDom(setup=None, plugin=None):
 	global domSetups, setupModTimes
 	try:
 		modTime = getmtime(setupFile)
-	except (IOError, OSError) as err:
+	except OSError as err:
 		print("[Setup] Error %d: Unable to get '%s' modified time!  (%s)" % (err.errno, setupFile, err.strerror))
 		if setupFile in domSetups:
 			del domSetups[setupFile]

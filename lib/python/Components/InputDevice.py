@@ -41,7 +41,7 @@ class InputDevices:
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				osclose(self.fd)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				print("[InputDevice] Error: device='%s' getInputDevices <ERROR: ioctl(EVIOCGNAME): '%s'>" % (device, str(err)))
 				self.name = None
 

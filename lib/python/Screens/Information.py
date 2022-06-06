@@ -1380,7 +1380,7 @@ class SystemInformation(InformationBase):
 				args = self.commands[self.commandIndex][1].split()
 				remove(args[-1])
 				self.session.open(MessageBox, _("Log file '%s' deleted.") % args[-1], type=MessageBox.TYPE_INFO, timeout=5, close_on_any_key=True, title=self.baseTitle)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				self.session.open(MessageBox, _("Log file '%s' deleted.") % args[-1], type=MessageBox.TYPE_ERROR, timeout=5, title=self.baseTitle)
 			self.informationTimer.start(25)
 			for callback in self.onInformationUpdated:
@@ -1402,7 +1402,7 @@ class SystemInformation(InformationBase):
 				try:
 					remove(filename)
 					log.append(_("Log file '%s' deleted.") % filename)
-				except (IOError, OSError) as err:
+				except OSError as err:
 					type = MessageBox.TYPE_ERROR
 					close = False
 					log.append(_("Error %d: Log file '%s' wasn't deleted!  (%s)") % (err.errno, filename, err.strerror))
@@ -1464,7 +1464,7 @@ class SystemInformation(InformationBase):
 					data = fd.read()
 				data = data.decode("UTF-8", "ignore")
 				self.log = data
-			except (IOError, OSError) as err:
+			except OSError as err:
 				self.log = _("Error %d: The logfile '%s' could not be opened.  (%s)") % (err.errno, args[1], err.strerror)
 		else:
 			self.commandData = "" #"CUT" if self.commands[self.commandIndex][0] in ["mount", "modules"] else ""
@@ -1477,7 +1477,7 @@ class SystemInformation(InformationBase):
 			# print("[Information] DEBUG: System logs PID=%d." % pid)
 			# try:
 			# 	waitpid(pid, 0)
-			# except (IOError, OSError) as err:
+			# except OSError as err:
 			# 	pass
 		if self.commandIndex >= self.numberOfCommands:
 			self["key_yellow"].text = _("Delete logfile")

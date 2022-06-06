@@ -583,7 +583,7 @@ class EPGFetcher(object):
                     self.postPvrLogs()
                 return res
             res = True  # Reset res ready for a separate timer download
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
                 # Ignore 404s when there are no EPG updates - buggy server
                 self.addLog("No EPG updates")
@@ -892,7 +892,7 @@ class EPGFetcher(object):
                     iceTimer["state"] = "failed"
                     iceTimer["message"] = "No valid service mapping for channel_id %d" % channel_id
                     update_queue.append(iceTimer)
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 print("[IceTV] Can not process iceTimer:", ex)
         # Send back updated timer states
         res = True
@@ -902,7 +902,7 @@ class EPGFetcher(object):
         except KeyError as ex:
             print("[IceTV] ", str(ex))
             res = False
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             _logResponseException(self, _("Can not update timers"), ex)
             res = False
         return res
@@ -1038,14 +1038,14 @@ class EPGFetcher(object):
             req.data["timers"] = [timer]
             res = req.put().json()
             self.addLog("Timer '%s' updated OK" % local_timer.name)
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer"), ex)
 
     def postTimer(self, local_timer):
         if self.channel_service_map is None:
             try:
                 self.makeChanServMap(self.getChannels())
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not retrieve channel map"), ex)
                 return
         if local_timer.ice_timer_id is None:
@@ -1078,7 +1078,7 @@ class EPGFetcher(object):
                 except:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
 
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not upload timer"), ex)
         else:
             # Looks like a timer just added by IceTV, so this is an update
@@ -1090,7 +1090,7 @@ class EPGFetcher(object):
             req = ice.Timer(ice_timer_id)
             req.delete()
             self.addLog("Timer deleted OK")
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not delete timer"), ex)
 
     def postStatus(self, timer, state, message):
@@ -1101,7 +1101,7 @@ class EPGFetcher(object):
             req.data["state"] = state
             # print "[EPGFetcher] postStatus", timer.name, message, state
             res = req.put()
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)
 
@@ -1115,7 +1115,7 @@ class EPGFetcher(object):
             req.data["scans"] = scan_list
             res = req.post()
             print("[EPGFetcher] postScans", res)
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post scan information"), ex)
 
     def postPvrLogs(self):
@@ -1130,7 +1130,7 @@ class EPGFetcher(object):
             print("[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"])
             for l in log_list:
                 l.sent = True
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post PVR log information"), ex)
 
 
@@ -1577,7 +1577,7 @@ class IceTVRegionSetup(Screen, IceTVUIBase):
                     pass
             if rl:
                 self.have_region_list = True
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Can not download list of regions"), ex)
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
@@ -1672,7 +1672,7 @@ class IceTVLogin(Screen, IceTVUIBase):
             config.plugins.icetv.last_update_time.value = 0
             enableIceTV()
             fetcher.createFetchJob(send_scans=True)
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
@@ -1689,7 +1689,7 @@ class IceTVLogin(Screen, IceTVUIBase):
             else:
                 self["instructions"].setText(_("No valid region details were found"))
                 return False
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Can not download current region details"), ex)
             self["instructions"].setText(_("There was an error downloading current region details"))
             self["error"].setText(msg)
@@ -1785,7 +1785,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
             password_requested = False
             fetcher.addLog("Login OK")
             fetcher.createFetchJob()
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR)
 

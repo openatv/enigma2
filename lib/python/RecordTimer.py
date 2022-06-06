@@ -120,7 +120,7 @@ def findSafeRecordPath(dirname):
 	if not isdir(dirname):
 		try:
 			makedirs(dirname)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[RecordTimer] Error %d: Failed to create dir '%s'!  (%s)" % (err.errno, dirname, err.strerror))
 			return None
 	return dirname
@@ -1225,7 +1225,7 @@ class RecordTimer(timer.Timer):
 
 		try:
 			self.loadTimer()
-		except IOError:
+		except OSError:
 			print("unable to load timers from file!")
 
 	def timeChanged(self, entry):
@@ -1314,10 +1314,10 @@ class RecordTimer(timer.Timer):
 			print("timers.xml failed to load!")
 			try:
 				rename(self.Filename, self.Filename + "_old")
-			except (IOError, OSError):
+			except OSError:
 				print("renaming broken timer failed")
 			return
-		except IOError:
+		except OSError:
 			print("timers.xml not found!")
 			return
 

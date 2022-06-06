@@ -317,7 +317,7 @@ class TimerEditList(Screen):
 		path = resolveFilename(SCOPE_HDD)
 		try:
 			files = listdir(path)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			files = ""
 		for file in files:
 			if file.startswith(f):

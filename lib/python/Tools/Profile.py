@@ -30,7 +30,7 @@ else:
 
 try:
 	profileFd = open(profileFile, "w")
-except (IOError, OSError) as err:
+except OSError as err:
 	print("[Profile] Error %d: Couldn't open profile file '%s'!  (%s)" % (err.errno, profileFile, err.strerror))
 
 

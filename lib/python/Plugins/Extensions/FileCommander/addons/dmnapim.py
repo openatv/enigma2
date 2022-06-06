@@ -118,7 +118,7 @@ def get_subtitle(digest, lang="PL"):
             if hasattr(sub, 'getcode'):
                 http_code = sub.getcode()
             sub = sub.read()
-        except (IOError, OSError) as e:
+        except OSError as e:
             error = error + " %s" % (e)
             time.sleep(0.5)
             continue

@@ -66,7 +66,7 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->setRange(0,(m_scrollbar_scroll == byLine) ? 1000 : 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
-		if (m_style.m_sliderborder_color_set) m_scrollbar->setBorderColor(m_style.m_sliderborder_color);
+		if (m_style.m_scollbarborder_color_set) m_scrollbar->setBorderColor(m_style.m_scollbarborder_color);
 	}
 }
 
@@ -700,11 +700,11 @@ void eListbox::setBorderWidth(int size)
 	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
 }
 
-void eListbox::setScrollbarSliderBorderWidth(int size)
+void eListbox::setScrollbarBorderWidth(int width)
 {
-	m_style.m_scrollbarsliderborder_size = size;
-	m_style.m_scrollbarsliderborder_size_set = 1;
-	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
+	m_style.m_scrollbarborder_width = width;
+	m_style.m_scrollbarborder_width_set = 1;
+	if (m_scrollbar) m_scrollbar->setBorderWidth(width);
 }
 
 void eListbox::setScrollbarWidth(int size)
@@ -717,43 +717,37 @@ void eListbox::setScrollbarOffset(int size)
 	m_scrollbar_offset = size;
 }
 
-void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
+void eListbox::setBackgroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_style.m_background = pm;
 }
 
-void eListbox::setSelectionPicture(ePtr<gPixmap> &pm)
+void eListbox::setSelectionPixmap(ePtr<gPixmap> &pm)
 {
 	m_style.m_selection = pm;
 }
 
-void eListbox::setSliderPicture(ePtr<gPixmap> &pm)
+void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarpixmap = pm;
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);
 }
 
-void eListbox::setSliderForegroundColor(gRGB &col)
+void eListbox::setScrollbarForegroundColor(gRGB &col)
 {
-	m_style.m_sliderforeground_color = col;
-	m_style.m_sliderforeground_color_set = 1;
+	m_style.m_scrollbarforeground_color = col;
+	m_style.m_scrollbarforeground_color_set = 1;
 	if (m_scrollbar) m_scrollbar->setForegroundColor(col);
 }
 
-void eListbox::setSliderBorderColor(const gRGB &col)
+void eListbox::setScrollbarBorderColor(const gRGB &col)
 {
-	m_style.m_sliderborder_color = col;
-	m_style.m_sliderborder_color_set = 1;
+	m_style.m_scollbarborder_color = col;
+	m_style.m_scollbarborder_color_set = 1;
 	if (m_scrollbar) m_scrollbar->setBorderColor(col);
 }
 
-void eListbox::setSliderBorderWidth(int size)
-{
-	m_style.m_sliderborder_size = size;
-	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
-}
-
-void eListbox::setScrollbarBackgroundPicture(ePtr<gPixmap> &pm)
+void eListbox::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarbackgroundpixmap = pm;
 	if (m_scrollbar && m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(pm);

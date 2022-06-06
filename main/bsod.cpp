@@ -187,7 +187,7 @@ void bsodFatal(const char *component)
 			getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
 			enigma2_date,
 			enigma2_branch,
-			enigma2_rev,
+			E2REV,
 			component);
 
 		stringFromFile(f, "stbmodel", "/proc/stb/info/boxtype");

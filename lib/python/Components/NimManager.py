@@ -1238,7 +1238,7 @@ class NimManager:
 
 		try:
 			nimfile = open("/proc/bus/nim_sockets")
-		except IOError:
+		except OSError:
 			return
 
 		current_slot = None
