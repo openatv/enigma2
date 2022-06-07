@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-28 20:45+0000\n"
-"PO-Revision-Date: 2022-05-30 20:22+0000\n"
+"PO-Revision-Date: 2022-06-07 09:53+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -2163,7 +2163,7 @@ msgid ""
 "Abort streaming and try again?\n"
 msgstr ""
 "Ajastettu tallennus epäonnistui!\n"
-"Lopetetaanko suoratoisto, että\n"
+"Lopetetaanko suoratoisto, jotta\n"
 "tallennusta voidaan yrittää uudelleen?\n"
 
 msgid ""
@@ -2672,7 +2672,7 @@ msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
 msgstr "Määrittää näytetäänkö Lokien hallinta laajennusvalikossa (sininen näppäin)."
 
 msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Antaa sinun näyttää / piilottaa OScam laajennuksissa (sininen näppäin)."
+msgstr "Näytä/Piilota Oscam laajennuksissa (Sininen painike)."
 
 msgid "Almost there... "
 msgstr "Melkein valmis... "
@@ -3926,7 +3926,7 @@ msgid "Can not upload timer"
 msgstr "Ajastinta ei voi ladata"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Löytää vaub verkkoaseman varmuuskopion tallentamiseksi tämä tarkoittaa, että päivityksen jälkeen automaattinen palautus ei toimi. Vaihtoehtoisesti voit asentaa verkkoaseman päivityksen jälkeen ja palauttaa valmistajan automaattisen palautuksen"
+msgstr "Löytää vaub verkkoaseman varmuuskopion tallentamiseksi tämä tarkoittaa, että päivityksen jälkeen automaattinen palautus ei toimi. Vaihtoehtoisesti voit asentaa verkkoaseman päivityksen jälkeen ja palauttaa valmistajan automaattisen palautuksen."
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Ohjelma lähdettä (esim. Viritintä) ei voida määrittää"
@@ -5186,7 +5186,7 @@ msgid "Could not connect to server"
 msgstr "Palvelimeen ei saatu yhteyttä"
 
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja kuvia tai aseta tietoväline (esim. USB-tikku), jossa on riittävästi vapaata tilaa, ja yritä uudelleen!"
+msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja ohjelmistoja tai aseta tietoväline (esim. USB-tikku), jossa on riittävästi vapaata tilaa, ja yritä uudelleen."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ei voitu ladata! Ei levyä asetettu?"
@@ -7098,7 +7098,7 @@ msgstr[1] "Energia ajastin: %d minuuttia jäljellä."
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] "Energia-ajastin: %d sekuntia jäljellä."
+msgstr[0] "Energia-ajastin: %d sekunti jäljellä."
 msgstr[1] "Energia-ajastin: %d sekuntia jäljellä."
 
 msgid "Energy timer: Inactive."
@@ -7817,10 +7817,10 @@ msgid "Feed disabled!"
 msgstr "Syöttö pois käytöstä!"
 
 msgid "Feed stable."
-msgstr "Vakaa."
+msgstr "Syötteiden Stabiili."
 
 msgid "Feed unstable!"
-msgstr "Syötä epävakaa!"
+msgstr "Syötteet epävakaa!"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Hae EPG ja päivitä ajastukset nyt"
@@ -11368,9 +11368,7 @@ msgid "No ECMPids available"
 msgstr "Ei ECMPids saatavilla"
 
 msgid "No HDD found or HDD not initialized!"
-msgstr ""
-"Kiintolevyä ei löydy tai sitä ei\n"
-"ole alustettu!"
+msgstr "Kiintolevyä ei löydy tai sitä ei ole alustettu!"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -11807,7 +11805,7 @@ msgid "OScam Information"
 msgstr "OScam tiedot"
 
 msgid "OScam webif disabled"
-msgstr "Oscam netti käyttöliittymä poistettu käytöstä"
+msgstr "Oscam webif pois käytöstä"
 
 msgid "OTT Model"
 msgstr "OTT malli"
@@ -14090,7 +14088,7 @@ msgid "Resolution"
 msgstr "Resoluutio"
 
 msgid "Restart"
-msgstr "Käynnistä vastaanotin uudelleen"
+msgstr "Käynnistä uudelleen"
 
 #, python-format
 msgid "Restart %s %s."
@@ -14194,7 +14192,7 @@ msgstr "Haetaan %s lokeja, odota..."
 msgid "Retrieving boot slot information..."
 msgstr "Käynnistyspaikan tietojen hakeminen..."
 
-msgid "Retrieving image list - Please wait..."
+msgid "Retrieving image list, please wait..."
 msgstr "Haetaan ohjelmisto listaa - odota hetki..."
 
 msgid "Retrieving image slots - Please wait..."
@@ -14560,7 +14558,7 @@ msgid "Save right folder on exit"
 msgstr "Tallenna oikea kansio poistuttaessa"
 
 msgid "Save settings and EPG data."
-msgstr "Tallenna asetukset ja EPG data"
+msgstr "Tallenna asetukset ja EPG tiedot."
 
 #, python-format
 msgid ""
@@ -17489,7 +17487,7 @@ msgid "Swap Place:"
 msgstr "Swapin sijainti:"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
-msgstr "Vaihda SNR ja dB keskenään tietopalkissa"
+msgstr "Vaihda tietopalkin SNR '%' ja SNR 'db' keskenään"
 
 msgid "Swap Size:"
 msgstr "Swapin koko:"
@@ -17694,7 +17692,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 30.05.2022\n"
+"Suomenkielinen käännös: 05.06.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18788,7 +18786,7 @@ msgid "Timer selection"
 msgstr "Ajastinvalinta"
 
 msgid "Timer selection..."
-msgstr "Ajastin valinta"
+msgstr "Ajastinvalinta"
 
 msgid "Timer type"
 msgstr "Ajastuksen tyyppi"
@@ -19267,7 +19265,7 @@ msgid "Ukrainian"
 msgstr "Ukraina"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Vaadittavia hakemistoja ei voi luoda tietovälineelle (esim. USB-tikku tai kiintolevy) - Tarkista media ja yritä uudelleen!"
+msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-tikku tai kiintolevy)! Tarkista laite ja yritä uudelleen."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Päivitä järjestelmä taustalla ilman käyttäjän ohjausta"
@@ -20315,9 +20313,7 @@ msgid "Western Sahara"
 msgstr "Länsi-Sahara"
 
 msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr ""
-"Mitä tehdään ajastuksen jälkeen?\n"
-"Asetuksella 'Autom.' laite palaa ajastusta edeltävään tilaan."
+msgstr "Mitä tehdään ajastuksen jälkeen? ('auto' asetuksella laite palaa ennen ajastusta käytettyyn tilaan)."
 
 msgid "What day of month?"
 msgstr "Mikä kuukauden päivä?"
@@ -20847,8 +20843,8 @@ msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Sinulla on oltava tietokone liitettynä %s %s. Jos tarvitset lisäohjeita niitä on verkkosivustolla http: //www.opena.tv\n"
-"Vastaanottimesi kytketään nyt pois päältä. Kun olet suorittanut päivityksen verkkosivustolla kuvatulla tavalla, ohjelmisto kysyy, haluatko palauttaa asetukset."
+"Tarvitset PC:n, joka on yhdistetty %s %s:n. Jos tarvitset lisäohjeita niitä on verkkosivustolla http://www.opena.tv\n"
+"%s %s sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
 
 msgid "You seem to be in timeshift!"
 msgstr "Ajansiirto on päällä!"
@@ -21158,7 +21154,7 @@ msgstr ""
 msgid "Zap back to service before tuner setup?"
 msgstr ""
 "Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
-"ennen viritinasetuksien muutosta?"
+"ennen viritin asetuksien muutosta?"
 
 msgid "Zap down"
 msgstr "Kanava alas"
@@ -22494,11 +22490,11 @@ msgid "skip forward (enter time)"
 msgstr "siirry eteenpäin (syötä aika)"
 
 #, python-format
-msgid "slot%s - %s"
+msgid "Slot '%s':  %s"
 msgstr "paikka%s - %s"
 
 #, python-format
-msgid "slot%s - %s (current image)"
+msgid "Slot '%s':  %s  -  Current"
 msgstr "paikka%s - %s (Nykyinen image)"
 
 msgid "slow"

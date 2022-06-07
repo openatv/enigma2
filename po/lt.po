@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-28 20:45+0000\n"
-"PO-Revision-Date: 2022-05-29 00:20+0000\n"
+"PO-Revision-Date: 2022-06-01 22:33+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -3943,7 +3943,7 @@ msgid "Can not upload timer"
 msgstr "Neįmanoma įkelti laikmačio"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Galite rasti tinklo diską, kad išsaugotumėte atsarginę kopiją, tai reiškia, kad po atvaizdo įdiegimo auto atkūrimas neveiks. Arba galite prijungti tinklo diską po įdiegimo ir atlikti gamintojo atstatymą į auto atkūrimą"
+msgstr "Įspėjimas: atsarginei kopijai saugoti yra tik tinklo diskas. Tai reiškia, kad automatinis atkūrimas neveiks po įdiegimo. Arba sumontuokite tinklo diską po įdiegimo ir atlikite gamintojo atstatymą iš naujo, kad atkurtumėte automatinį atkūrimą."
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Neįmanoma paskirstyti programos šaltinio (pvz., Imtuvo)"
@@ -5210,7 +5210,7 @@ msgid "Could not connect to server"
 msgstr "Prie serverio prisijungti nepavyko"
 
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Nepavyko rasti tinkamos laikmenos - Pašalinkite kai kuriuos atsisiųstus atvaizdus arba įdėkite laikmeną (pvz., USB atmintinę) su pakankama laisva vieta ir bandykite dar kartą!"
+msgstr "Klaida: nepavyko rasti tinkamo įrenginio! Pašalinkite kai kuriuos atsisiųstus atvaizdus arba pridėkite kitą įrenginį (pvz., USB atmintinę) su pakankamai laisvos vietos ir bandykite dar kartą."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nepavyko atverti laikmenos! Neįdėtas diskas?"
@@ -11598,7 +11598,7 @@ msgid "No, do not backup a image"
 msgstr "Ne, nereikia atsarginės atvaizdo kopijos"
 
 msgid "No, don't flash this image"
-msgstr "Ne, atvaizdo neįdiegti"
+msgstr "Ne, nediekite šio atvaizdo"
 
 msgid "No, do nothing."
 msgstr "Ne, nereikia."
@@ -14203,7 +14203,7 @@ msgstr "Nuskaitomas %s žurnalas, palaukite..."
 msgid "Retrieving boot slot information..."
 msgstr "Nuskaitoma įkrovos lizdo informacija..."
 
-msgid "Retrieving image list - Please wait..."
+msgid "Retrieving image list, please wait..."
 msgstr "Gaunamas atvaizdų sąrašas - prašome laukti..."
 
 msgid "Retrieving image slots - Please wait..."
@@ -14569,7 +14569,7 @@ msgid "Save right folder on exit"
 msgstr "Išeiti išsaugant tinkamą aplanką"
 
 msgid "Save settings and EPG data."
-msgstr "Išsaugokite parametrus ir EPG duomenis"
+msgstr "Įrašykite parametrus ir EPG duomenis."
 
 #, python-format
 msgid ""
@@ -17694,7 +17694,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-05-29 adga45@gmail.com"
+msgstr "2022-06-01 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -19259,7 +19259,7 @@ msgid "Ukrainian"
 msgstr "Ukrainiečių"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Nepavyko sukurti reikiamų katalogų laikmenose (pvz., USB atmintinėje arba kietame diske) - patikrinkite laikmeną ir bandykite dar kartą!"
+msgstr "Klaida: neįmanoma sukurti reikiamų katalogų paskirties įrenginyje (pvz., USB atmintinėje arba standžiajame diske)! Patikrinkite įrenginį ir bandykite dar kartą."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Automatinis atnaujinimas be grafinės aplinkos"
@@ -22477,11 +22477,11 @@ msgid "skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
 
 #, python-format
-msgid "slot%s - %s"
+msgid "Slot '%s':  %s"
 msgstr "lizdas%s - %s"
 
 #, python-format
-msgid "slot%s - %s (current image)"
+msgid "Slot '%s':  %s  -  Current"
 msgstr "lizdas%s -%s (dabartinis atvaizdas)"
 
 msgid "slow"

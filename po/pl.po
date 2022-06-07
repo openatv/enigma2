@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-28 20:45+0000\n"
-"PO-Revision-Date: 2022-05-31 10:55+0000\n"
+"PO-Revision-Date: 2022-06-04 09:18+0000\n"
 "Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2643,7 +2643,7 @@ msgid "Allow 12bit"
 msgstr "Pozwól na 12bit"
 
 msgid "Allow quit movieplayer with exit"
-msgstr "Pozwól wyjść z odtwarzacza filmów"
+msgstr "Pozwól wyjść z Odtwarzacza filmów"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Dostosuj język napisów do języka audio"
@@ -3436,7 +3436,7 @@ msgid "Behavior when a movie is stopped"
 msgstr "Zachowanie gdy film jest zatrzymany"
 
 msgid "Behavior when a movie reaches the end"
-msgstr "Zachowanie gdy film osiągną koniec"
+msgstr "Zachowanie gdy film osiągnie koniec"
 
 msgid "Belarus"
 msgstr "Białoruś"
@@ -3947,7 +3947,7 @@ msgid "Can not upload timer"
 msgstr "Nie można załadować timera"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Można tylko znaleźć dysk sieciowy do przechowywania kopii zapasowej, co oznacza, że po flash autorestore nie będzie działać. Alternatywnie możesz zamontować dysk sieciowy po flashowaniu i wykonać reset producenta do autorestore"
+msgstr "Ostrzeżenie: Do przechowywania kopii zapasowych ustawiony jest tylko dysk sieciowy. W przypadku instalacji automatyczne przywracanie nie będzie działać. Alternatywnie możesz zamontować dysk sieciowy po instalacji i wykonać przywrócenie ustawień fabrycznych, aby automatycznie przywrócić."
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nie można przydzielić źródła programu (np. tunera)"
@@ -5208,7 +5208,7 @@ msgid "Could not connect to server"
 msgstr "Nie można połączyć z serwerem"
 
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Nie można znaleźć odpowiedniego nośnika - Usuń niektóre pobrane obrazy lub włóż nośnik (np. Pamięć USB) z wystarczającą ilością wolnego miejsca i spróbuj ponownie!"
+msgstr "Błąd: Nie udało się znaleźć odpowiedniego nośnika! Usuń niektóre pobrane obrazy lub włóż nośnik (np. Pamięć USB) z wystarczającą ilością wolnego miejsca i spróbuj ponownie."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie można załadować nośnika!Brak płyty?"
@@ -7869,7 +7869,7 @@ msgid "File Commander - Addon Mediaplayer"
 msgstr "File Commander - dodatek Mediaplayer"
 
 msgid "File Commander - Addon Movieplayer"
-msgstr "File Commander - dodatek Movieplayer"
+msgstr "File Commander - dodatek Odtwarzacz filmów"
 
 msgid "File Commander - all Task's are completed!"
 msgstr "File Commander - wszystkie zadania zostały zakończone!"
@@ -8017,11 +8017,11 @@ msgid "Flash Image"
 msgstr "Zainstaluj"
 
 msgid "Flash Manager"
-msgstr "Menadżer flashowania"
+msgstr "Menadżer instalowania"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Flash Manager - %s Images"
-msgstr "Menadżer flaszowania - %s obrazów"
+msgstr "Menadżer instalowania - Obrazy %s"
 
 msgid "Flash Online"
 msgstr "Instalacja systemu online"
@@ -9737,7 +9737,7 @@ msgid "Keep service"
 msgstr "Utrzymaj kanał"
 
 msgid "Keeps MovieList open whilst playing audio files."
-msgstr "Utrzymuje otwartą liste filmów podczas odtwarzania plików audio."
+msgstr "Utrzymuje otwartą listę filmów podczas odtwarzania plików audio."
 
 msgid "Kenya"
 msgstr "Kenia"
@@ -10708,7 +10708,7 @@ msgid "Mode 2"
 msgstr "Tryb 2"
 
 msgid "Mode for autorestore"
-msgstr "Tryb autoprzywracania"
+msgstr "Tryb automatycznego przywracania"
 
 msgid "Model"
 msgstr "Model"
@@ -14204,7 +14204,7 @@ msgstr "Pobieranie dziennika %s, proszę czekać..."
 msgid "Retrieving boot slot information..."
 msgstr "Pobieranie informacji o slocie rozruchowym..."
 
-msgid "Retrieving image list - Please wait..."
+msgid "Retrieving image list, please wait..."
 msgstr "Pobieranie listy systemów, proszę czekać..."
 
 msgid "Retrieving image slots - Please wait..."
@@ -16076,7 +16076,7 @@ msgid "Show PIP in the Front Display"
 msgstr "Pokaż PIP na przednim wyświetlaczu"
 
 msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Pokaż status PVR w pasku informacyjnym MoviePlayer"
+msgstr "Pokaż status PVR w pasku informacyjnym Odtwarzacza filmów"
 
 msgid "Show RFmod setup..."
 msgstr "Pokaż ustawienia RFmod..."
@@ -17269,7 +17269,7 @@ msgid "Stop playing this movie?"
 msgstr "Zatrzymać odtwarzanie tego filmu?"
 
 msgid "Stop previous broadcasted service on return to movie list."
-msgstr "Zatrzymaj poprzednio nadawany kanał powrocając do listy filmów."
+msgstr "Zatrzymaj poprzednio nadawany kanał powracając do listy filmów."
 
 msgid "Stop recording"
 msgstr "Zatrzymaj nagrywanie"
@@ -17936,8 +17936,8 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
-"System plików na dysku jest nie obsługiwany ,Timeshift nic nie nagra.\n"
-"Upewnij się, czy dysk jest sformatowany w ext2, ext3 lub ext4!"
+"System plików na dysku jest nie obsługiwany, Timeshift nic nie nagra.\n"
+"Upewnij się, czy dysk jest sformatowany w EXT2, EXT3 lub EXT4!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -18513,7 +18513,7 @@ msgid "This option lets you show the option in the extension screen."
 msgstr "Ta opcja pozwala wyświetlić opcję na ekranie rozszerzenia."
 
 msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
-msgstr "Ta opcja przesuwa stan PVR z oddzielnego okna na pasek informacyjny odtwarzacza filmów."
+msgstr "Opcja przesuwa stan PVR z oddzielnego okna na pasek informacyjny Odtwarzacza filmów."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Ta opcja ustawia poziom tłumienia szumów (Szumy są losowo wygładzane w wyniku silnej kompresji). Oczywiście odbywa się to kosztem szczegółów obrazu."
@@ -19263,7 +19263,7 @@ msgid "Ukrainian"
 msgstr "Ukraiński"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Nie można utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy) - Sprawdź dysk i spróbuj ponownie!"
+msgstr "Błąd: Nie udało się utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy)! Sprawdź dysk i spróbuj ponownie."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
@@ -20410,7 +20410,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Gdy włączone, graficzne napisy DVB będą wyświetlane na żółto zamiast oryginalnego koloru."
 
 msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Gdy jest włączona,możliwe jest opuszczenie odtwarzacz filmów przyciskiem'Exit'."
+msgstr "Gdy jest włączona,możliwe jest opuszczenie Odtwarzacz filmów przyciskiem 'Exit'."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Gdy włączone, pomiar zużycia energii w celu wykrycia, kiedy rotor zatrzymuje obrót (jeśli jest obsługa w tunerze)."
@@ -20800,7 +20800,7 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Wybrałeś przywrócenie swoich ustawień. Interfejs zostanie ponownie uruchomiony po przywróceniu. Wciśnij 'OK' aby rozpocząć."
 
 msgid "You have chosen to save the current timeshift"
-msgstr "Wybrałeś zapisanie aktualnego TimeShift-a"
+msgstr "Wybrałeś zapisanie aktualnego TimeShifta"
 
 msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
@@ -22482,11 +22482,11 @@ msgid "skip forward (enter time)"
 msgstr "Przeskocz do przodu (wprowadź czas)"
 
 #, python-format
-msgid "slot%s - %s"
+msgid "Slot '%s':  %s"
 msgstr "slot %s - %s"
 
 #, python-format
-msgid "slot%s - %s (current image)"
+msgid "Slot '%s':  %s  -  Current"
 msgstr "slot %s - %s (bieżący system)"
 
 msgid "slow"
