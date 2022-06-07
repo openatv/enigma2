@@ -36,7 +36,8 @@ FEED_URLS = {
 	"Open8eIGHT": ("http://openeight.de/json/%s", "machinebuild"),
 	"OpenDROID": ("https://opendroid.org/json/%s", "machinebuild"),
 	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
-	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild")
+	# "EGAMI": ("https://image.egami-image.com/json/%s", "machinebuild")
+	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild")  # This is a temporary patch until Downloader.py is fixed / upgraded.
 }
 
 
@@ -172,7 +173,7 @@ class FlashManager(Screen, HelpableScreen):
 		else:
 			self.session.openWithCallback(self.getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
-	def getImagesListCallback(self, retval=None):
+	def getImagesListCallback(self, retVal=None):  # The retVal argument absorbs the inappropriate return value from MessageBox.
 		self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
 
 	def keyCancel(self):
