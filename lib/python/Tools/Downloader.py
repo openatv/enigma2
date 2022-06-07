@@ -16,6 +16,8 @@ class DownloadWithProgress:
 		self.progressCallback = None
 		self.endCallback = None
 		self.errorCallback = None
+		self.endCallback2 = None
+		self.errorCallback2 = None
 		self.stopFlag = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.reportProgress)
@@ -23,11 +25,13 @@ class DownloadWithProgress:
 	def start(self):
 		request = Request(self.url, None, {"User-agent": self.userAgent})
 		feedFile = urlopen(request)
-		metaData = feedFile.info()
-		self.totalSize = int(metaData["Content-Length"])
+		metaData = feedFile.headers
+		contentLength = metaData["Content-Length"]
+		self.totalSize = int(contentLength) if contentLength else 0
 		# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
 		self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
 		reactor.callInThread(self.run)
+		return self
 
 	def run(self):
 		# requests.Response object = requests.get(url, params=None, allow_redirects=True, auth=None, cert=None, cookies=None, headers=None, proxies=None, stream=False, timeout=None, verify=True)
@@ -47,10 +51,14 @@ class DownloadWithProgress:
 			if self.endCallback:
 				# self.endCallback(self.url, self.outputFile, self.progress)
 				self.endCallback()
+			if self.endCallback2: # Deprecated
+				self.endCallback2(self.outputFile)
 		except OSError as err:
 			if self.errorCallback:
 				# self.errorCallback(self.url, self.outputFile, err.errno, err.strerror)
 				self.errorCallback(err.errno, err.strerror)
+			if self.errorCallback2: # Deprecated
+				self.errorCallback2(err, err.strerror)
 		return False
 
 	def stop(self):
@@ -70,6 +78,17 @@ class DownloadWithProgress:
 
 	def setAgent(self, userAgent):
 		self.userAgent = userAgent
+
+	# Deprecated callbacks
+	def addErrback(self, errorCallback):
+		print("DownloadWithProgress addErrback is deprecated use addError instead")
+		self.errorCallback2 = errorCallback
+		return self
+
+	def addCallback(self, endCallback):
+		print("DownloadWithProgress addCallback is deprecated use addEnd instead")
+		self.endCallback2 = endCallback
+		return self
 
 
 class downloadWithProgress(DownloadWithProgress):  # Class names should start with a Capital letter, this catches old code until that code can be updated.
