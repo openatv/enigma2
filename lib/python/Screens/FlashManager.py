@@ -21,24 +21,27 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
-from Tools.Downloader import downloadWithProgress
+from Tools.Downloader import DownloadWithProgress
 from Tools.MultiBoot import MultiBoot
 
 OFGWRITE = "/usr/bin/ofgwrite"
 
-FEED_URLS = {
-	"openATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
-	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
-	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
-	"Open Vision": ("https://images.openvision.dedyn.io/json/%s", "model"),
-	"OpenViX": ("https://www.openvix.co.uk/json/%s", "machinebuild"),
-	"OpenHDF": ("https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild"),
-	"Open8eIGHT": ("http://openeight.de/json/%s", "machinebuild"),
-	"OpenDROID": ("https://opendroid.org/json/%s", "machinebuild"),
-	"TeamBlue": ("https://images.teamblue.tech/json/%s", "machinebuild"),
-	# "EGAMI": ("https://image.egami-image.com/json/%s", "machinebuild")
-	"EGAMI": ("http://image.egami-image.com/json/%s", "machinebuild")  # This is a temporary patch until Downloader.py is fixed / upgraded.
-}
+FEED_DISTRIBUTION = 0
+FEED_JSON_URL = 1
+FEED_BOX_IDENTIFIER = 2
+
+FEED_URLS = [
+	("openATV", "http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
+	("OpenBH", "https://images.openbh.net/json/%s", "model"),
+	("OpenPLi", "http://downloads.openpli.org/json/%s", "model"),
+	("Open Vision", "https://images.openvision.dedyn.io/json/%s", "model"),
+	("OpenViX", "https://www.openvix.co.uk/json/%s", "machinebuild"),
+	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild"),
+	("Open8eIGHT", "http://openeight.de/json/%s", "machinebuild"),
+	("OpenDROID", "https://opendroid.org/json/%s", "machinebuild"),
+	("TeamBlue", "https://images.teamblue.tech/json/%s", "machinebuild"),
+	("EGAMI", "https://image.egami-image.com/json/%s", "machinebuild")
+]
 
 
 def checkImageFiles(files):
@@ -100,6 +103,10 @@ class FlashManager(Screen, HelpableScreen):
 		self.callLater(self.getImagesList)
 
 	def getImagesList(self):
+		def findInList(item):
+			result = [index for index, data in enumerate(FEED_URLS) if data[FEED_DISTRIBUTION] == item]
+			return result[0] if result else None
+
 		def getImages(path, files):
 			for file in [x for x in files if splitext(x)[1] == ".zip" and self.box in x]:
 				try:
@@ -120,10 +127,16 @@ class FlashManager(Screen, HelpableScreen):
 					print("[FlashManager] getImagesList Error: Unable to extract file list from Zip file '%s'!" % file)
 
 		if not self.imagesList:
+			index = findInList(self.imageFeed)
+			if index is None:
+				feedURL = "http://images.mynonpublic.com/openatv/json/%s"
+				boxInfoField = "BoxName"
+			else:
+				feedURL = FEED_URLS[index][FEED_JSON_URL]
+				boxInfoField = FEED_URLS[index][FEED_BOX_IDENTIFIER]
+			self.box = BoxInfo.getItem(boxInfoField, "")
+			url = feedURL % self.box
 			try:
-				feedURL, boxInfoField = FEED_URLS.get(self.imageFeed, ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"))
-				self.box = BoxInfo.getItem(boxInfoField, "")
-				url = feedURL % self.box
 				req = Request(url, None, {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
 				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
@@ -220,7 +233,8 @@ class FlashManager(Screen, HelpableScreen):
 	def keyDistribution(self):
 		distributionList = []
 		default = 0
-		for index, distribution in enumerate(sorted(FEED_URLS.keys())):
+		for index, feed in enumerate(FEED_URLS):
+			distribution = feed[FEED_DISTRIBUTION]
 			distributionList.append((distribution, distribution))
 			if distribution == self.imageFeed:
 				default = index
@@ -370,7 +384,7 @@ class FlashImage(Screen, HelpableScreen):
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
 
-			if "backup" not in str(choice):
+			if "backup" not in str(choice) and "openatv" in self.imageName:
 				if MultiBoot.canMultiBoot():
 					self.slotCode = choice[0]
 				self.session.openWithCallback(self.backupQuestionCallback, MessageBox, _("Do you want to backup settings?"), default=True, timeout=10, windowTitle=self.getTitle())
@@ -411,15 +425,25 @@ class FlashImage(Screen, HelpableScreen):
 	def flashPostAction(self, retVal=True):
 		if retVal:
 			self.recordCheck = False
-			text = "%s\n%s" % (_("Please select what to do after flashing the image:"), _("(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"))
-			choices = [
-				(_("Upgrade (Backup, flash & restore all)"), "restoresettingsandallplugins"),
-				(_("Clean (Just flash and start clean)"), "wizard"),
-				(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-				(_("Backup, flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
-				(_("Do not flash image"), "abort")
-			]
-			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=self.selectPrevPostFlashAction(), windowTitle=self.getTitle())
+			text = _("Please select what to do:")
+			if "openatv" in self.imageName:
+				if exists("/media/hdd/images/config/myrestore.sh"):
+					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
+				choices = [
+					(_("Upgrade (Backup, flash & restore all)"), "restoresettingsandallplugins"),
+					(_("Clean (Just flash and start clean)"), "wizard"),
+					(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
+					(_("Backup, flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
+					(_("Do not flash image"), "abort")
+				]
+				default = self.selectPrevPostFlashAction()
+			else:
+				choices = [
+					(_("Clean (Just flash and start clean)"), "wizard"),
+					(_("Do not flash image"), "abort")
+				]
+				default = 0
+			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=default, windowTitle=self.getTitle())
 		else:
 			self.keyCancel()
 
@@ -508,7 +532,7 @@ class FlashImage(Screen, HelpableScreen):
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imageName)
 				self["summary_header"].setText(self["header"].getText())
-				self.downloader = downloadWithProgress(self.source, self.zippedImage)
+				self.downloader = DownloadWithProgress(self.source, self.zippedImage)
 				self.downloader.addProgress(self.downloadProgress)
 				self.downloader.addEnd(self.downloadEnd)
 				self.downloader.addError(self.downloadError)
@@ -576,7 +600,7 @@ class FlashImage(Screen, HelpableScreen):
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
 			self.containerOFGWrite = Console()
-			self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], self.flashImageDone)
+			self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], callback=self.flashImageDone)
 			fbClass.getInstance().lock()
 		else:
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Image '%s' to install is invalid!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
