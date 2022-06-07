@@ -94,12 +94,16 @@ class ImageBackup(Screen):
 				if imagedict[slotCode]["status"] == "active":
 					if slotCode == "1" and currentimageslot == 1 and BoxInfo.getItem("canRecovery"):
 						imageList.append(ChoiceEntryComponent("", (_("Slot %s: %s as USB Recovery") % (slotCode, imagedict[slotCode]["imagename"]), slotCode, True)))
-					imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == currentimageslot else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
+					imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentimageslot) else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
 		else:
 			if BoxInfo.getItem("canRecovery"):
 				imageList.append(ChoiceEntryComponent("", (_("Internal flash: %s %s as USB Recovery") % (DISTRO, DISTROVERSION), "slotCode", True)))
 			imageList.append(ChoiceEntryComponent("", (_("Internal flash:  %s %s ") % (DISTRO, DISTROVERSION), "slotCode", False)))
 		self["config"].setList(imageList)
+		for index, item in enumerate(imageList):
+			if item[0][2] == str(currentimageslot):
+				break
+		self["config"].moveToIndex(index)
 
 	def start(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
