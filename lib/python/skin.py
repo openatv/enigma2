@@ -45,6 +45,7 @@ setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
 windowStyles = {}  # Dictionary of window styles for each screen ID.
 resolutions = {}  # Dictionary of screen resolutions for each screen ID.
+scrollLabelStyle = {}  # Dictionary of scrollLabel widget defaults.
 constantWidgets = {}
 variables = {}
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
@@ -448,7 +449,7 @@ def loadPixmap(path, desktop):
 	return pixmap
 
 
-def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarSliderPicture", "scrollbarBackgroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture"))):
+def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
 	size = None
 	pos = None
 	font = None
@@ -651,6 +652,10 @@ class AttributeParser:
 		self.horizontalAlignment(value)
 		raise AttribDeprecatedError("horizontalAlignment")
 
+	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
+		self.horizontalAlignment(value)
+		raise AttribDeprecatedError("horizontalAlignment")
+
 	def horizontalAlignment(self, value):
 		try:
 			self.guiObject.setHAlign({
@@ -803,22 +808,41 @@ class AttributeParser:
 		except KeyError:
 			raise AttribValueError("'byLine' or 'byPage'")
 
-	def scrollbarSliderBorderColor(self, value):
+	def scrollbarBackgroundColor(self, value):
+		self.guiObject.setScrollbarBackgroundColor(parseColor(value))
+
+	def scrollbarBorderColor(self, value):
 		self.guiObject.setScrollbarBorderColor(parseColor(value))
 
-	def scrollbarSliderBorderWidth(self, value):
-		# print("[Skin] DEBUG: Scale scrollbarSliderBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
+	def scrollbarSliderBorderColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderColor' instead!
+		self.scrollbarBorderColor(value)
+		raise AttribDeprecatedError("scrollbarBorderColor")
+
+	def scrollbarBorderWidth(self, value):
+		# print("[Skin] DEBUG: Scale scrollbarBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
 		self.guiObject.setScrollbarBorderWidth(self.applyHorizontalScale(value))
 
-	def scrollbarSliderForegroundColor(self, value):
+	def scrollbarSliderBorderWidth(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderWidth' instead!
+		self.scrollbarBorderWidth(value)
+		raise AttribDeprecatedError("scrollbarBorderWidth")
+
+	def scrollbarForegroundColor(self, value):
 		self.guiObject.setScrollbarForegroundColor(parseColor(value))
 
-	def scrollbarSliderPicture(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarSliderPixmap' instead.
-		self.scrollbarSliderPixmap(value)
-		raise AttribDeprecatedError("scrollbarSliderPixmap")
+	def scrollbarSliderForegroundColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarForegroundColor' instead!
+		self.scrollbarForegroundColor(value)
+		raise AttribDeprecatedError("scrollbarForegroundColor")
 
-	def scrollbarSliderPixmap(self, value):
+	def scrollbarForegroundPixmap(self, value):
 		self.guiObject.setScrollbarForegroundPixmap(loadPixmap(value, self.desktop))
+
+	def scrollbarSliderPicture(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarForegroundPixmap' instead!
+		self.scrollbarForegroundPixmap(value)
+		raise AttribDeprecatedError("scrollbarForegroundPixmap")
+
+	def scrollbarSliderPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarForegroundPixmap' instead!
+		self.scrollbarForegroundPixmap(value)
+		raise AttribDeprecatedError("scrollbarForegroundPixmap")
 
 	def scrollbarWidth(self, value):
 		# print("[Skin] DEBUG: Scale scrollbarWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
@@ -861,9 +885,9 @@ class AttributeParser:
 		# print("[Skin] DEBUG: Size '%s'." % str(value))
 		self.guiObject.resize(eSize(*value) if isinstance(value, tuple) else parseSize(value, self.scaleTuple, self.guiObject, self.desktop))
 
-	def sliderPixmap(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarSliderPixmap' instead.
-		self.scrollbarSliderPixmap(value)
-		raise AttribDeprecatedError("sliderPixmap")
+	def sliderPixmap(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarForegroundPixmap' instead.
+		self.scrollbarForegroundPixmap(value)
+		raise AttribDeprecatedError("scrollbarForegroundPixmap")
 
 	def split(self, value):
 		pass
@@ -884,6 +908,10 @@ class AttributeParser:
 		self.guiObject.setTransparent(1 if parseBoolean("transparent", value) else 0)
 
 	def valign(self, value):  # This legacy definition uses an inconsistent name, use 'verticalAlignment' instead!
+		self.verticalAlignment(value)
+		raise AttribDeprecatedError("verticalAlignment")
+
+	def vAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'verticalAlignment' instead!
 		self.verticalAlignment(value)
 		raise AttribDeprecatedError("verticalAlignment")
 
@@ -1099,20 +1127,28 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			except Exception:
 				raise SkinError("Unknown color name '%s'" % name)
 			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
+		for listBox in tag.findall("listbox"):
+			enableWrapAround = listBox.attrib.get("enableWrapAround", "0")
+			enableWrapAround = parseBoolean("enableWrapAround", enableWrapAround)
+			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", 1))
+			scrollbarMode = listBox.attrib.get("scrollbarMode", "showNever")
+			scrollbarMode = scrollbarModes.get(scrollbarMode, eListbox.showNever)
+			scrollbarOffset = int(listBox.attrib.get("scrollbarOffset", 5))
+			scrollbarScroll = listBox.attrib.get("scrollbarScroll", "byPage")
+			scrollbarScroll = 1 if scrollbarScroll == "byLine" else 0
+			scrollbarWidth = int(listBox.attrib.get("scrollbarWidth", 20))
+			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
+		for scrollLabel in tag.findall("scrolllabel"):
+			scrollLabelStyle["scrollbarBorderWidth"] = int(scrollLabel.attrib.get("scrollbarBorderWidth", 1))
+			scrollbarMode = scrollLabel.attrib.get("scrollbarMode", "showNever")
+			scrollLabelStyle["scrollbarMode"] = scrollbarModes.get(scrollbarMode, eListbox.showNever)
+			scrollLabelStyle["scrollbarOffset"] = int(scrollLabel.attrib.get("scrollbarOffset", 5))
+			scrollbarScroll = scrollLabel.attrib.get("scrollbarScroll", "byPage")
+			scrollLabelStyle["scrollbarScroll"] = 1 if scrollbarScroll == "byLine" else 0
+			scrollLabelStyle["scrollbarWidth"] = int(scrollLabel.attrib.get("scrollbarWidth", 20))
 		for slider in tag.findall("slider"):
 			borderWidth = int(slider.attrib.get("borderWidth", 0))
 			eSlider.setDefaultBorderWidth(borderWidth)
-		for listbox in tag.findall("listbox"):
-			offset = int(listbox.attrib.get("scrollbarOffset", 5))
-			width = int(listbox.attrib.get("scrollbarWidth", 20))
-			borderWidth = int(listbox.attrib.get("scrollbarBorderWidth", 1))
-			scrollbarScroll = listbox.attrib.get("scrollbarScroll", "byPage")
-			scrollbarScroll = 1 if scrollbarScroll == "byLine" else 0
-			scrollbarMode = listbox.attrib.get("scrollbarMode", "showNever")
-			scrollbarMode = scrollbarModes.get(scrollbarMode, eListbox.showNever)
-			enableWrapAround = listbox.attrib.get("enableWrapAround", "0")
-			enableWrapAround = parseBoolean("enableWrapAround", enableWrapAround)
-			eListbox.setDefaultScrollbarStyle(width, offset, borderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
@@ -1532,6 +1568,12 @@ def findWidgets(name):
 				if name:
 					widgetSet.update(findWidgets(name))
 	return widgetSet
+
+
+# This method emulates the C++ methods available to get Scrollbar style elements.
+#
+def getScrollLabelStyle(element):
+	return scrollLabelStyle.get(element)
 
 
 # Return a scaling factor (float) that can be used to rescale screen displays
