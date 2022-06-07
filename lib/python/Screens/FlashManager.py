@@ -167,7 +167,10 @@ class FlashManager(Screen, HelpableScreen):
 				self.setIndex = 0
 			self.selectionChanged()
 		else:
-			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+			self.session.openWithCallback(self.noImageFoundCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+
+	def noImageFoundCallback(self, retval=None):
+		self.keyDistributionCallback("OpenATV")
 
 	def keyCancel(self):
 		self.close()
