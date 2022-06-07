@@ -27,7 +27,7 @@ from Tools.MultiBoot import MultiBoot
 OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_URLS = {
-	"OpenATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
+	"openATV": ("http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	"OpenBH": ("https://images.openbh.net/json/%s", "model"),
 	"OpenPLi": ("http://downloads.openpli.org/json/%s", "model"),
 	"Open Vision": ("https://images.openvision.dedyn.io/json/%s", "model"),
@@ -70,7 +70,7 @@ class FlashManager(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = ["FlashManager", "FlashOnline"]
-		self.imageFeed = "OpenATV"
+		self.imageFeed = "openATV"
 		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
 		self.imagesList = {}
 		self.expanded = []
@@ -102,7 +102,10 @@ class FlashManager(Screen, HelpableScreen):
 		def getImages(path, files):
 			for file in [x for x in files if splitext(x)[1] == ".zip" and self.box in x]:
 				try:
-					if checkImageFiles([x.split(sep)[-1] for x in ZipFile(file).namelist()]):
+					zip = ZipFile(file, mode="r")  # ZipFile.open(name, mode="r", pwd=None, force_zip64=False)
+					zipFiles = zip.namelist()
+					zip.close
+					if checkImageFiles([x.split(sep)[-1] for x in zipFiles]):
 						imageType = _("Downloaded images")
 						if "backup" in file.split(sep)[-1]:
 							imageType = _("Backup images")
@@ -167,10 +170,10 @@ class FlashManager(Screen, HelpableScreen):
 				self.setIndex = 0
 			self.selectionChanged()
 		else:
-			self.session.openWithCallback(self.noImageFoundCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+			self.session.openWithCallback(self.getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
-	def noImageFoundCallback(self, retval=None):
-		self.keyDistributionCallback("OpenATV")
+	def getImagesListCallback(self, retval=None):
+		self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
 
 	def keyCancel(self):
 		self.close()
@@ -536,7 +539,9 @@ class FlashImage(Screen, HelpableScreen):
 
 	def startUnzip(self):
 		try:
-			files = ZipFile(self.zippedImage, "r").extractall(self.unzippedImage)
+			zip = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
+			zip.extractall(self.unzippedImage)  # ZipFile.extractall(path=None, members=None, pwd=None)
+			zip.close()
 			self.flashImage()
 		except:
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
