@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1346,13 +1346,6 @@ msgstr ""
 msgid "%s"
 msgstr "bc%s"
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)\n"
@@ -1576,6 +1569,9 @@ msgstr "Välj film"
 
 msgid "(Show only reader:"
 msgstr "(Visa endast läsare:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 #
 msgid "(empty)"
@@ -2648,9 +2644,6 @@ msgstr "Lägg till fil i spellista"
 msgid "Add files to playlist"
 msgstr "Lägg till filer i spellista"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3649,11 +3642,6 @@ msgid ""
 msgstr ""
 
 #
-#, fuzzy
-msgid "Backup settings"
-msgstr "Backup av systeminställningar"
-
-#
 msgid "Backup system settings"
 msgstr "Säkerhetskopiera systeminställningar"
 
@@ -4282,9 +4270,6 @@ msgstr "Filen kan inte tas bort"
 msgid "Can not upload timer"
 msgstr "Ändra nästa timer"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr ""
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -4354,6 +4339,12 @@ msgstr "Spara inte timeshift som film"
 #, fuzzy
 msgid "Cancel selection"
 msgstr "Kanalval"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #
 #, fuzzy
@@ -5583,6 +5574,9 @@ msgstr "Fortsätt spela"
 msgid "Continue playing"
 msgstr "Fortsätt spela"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5677,9 +5671,6 @@ msgstr ""
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "Kunde inte ansluta till %s %s .NFI image feed server:"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr ""
@@ -7034,6 +7025,9 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 #
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Vill du bränna denna samling till DVD media?"
@@ -7072,11 +7066,9 @@ msgstr "Vill du söka efter kanaler?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vill du göra en ny manuell sökning?"
 
-#, fuzzy, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
-msgstr "Vill du ladda ner image till %s ?"
+#, python-format
+msgid "Do you want to flash the image '%s'?"
+msgstr ""
 
 #
 #, fuzzy
@@ -7999,17 +7991,8 @@ msgid ""
 "%s"
 msgstr "Skapande av katalogen %s misslyckades."
 
-#, fuzzy, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
-msgstr "Fel vid nedladnning av ändringslogg."
-
 #, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
 
 #
@@ -8044,6 +8027,10 @@ msgstr "Fel vid läsning av webbsida!"
 msgid ""
 "Error renaming %s to %s:\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Error unzipping image '%s'!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -8081,10 +8068,20 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr ""
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 #, fuzzy
@@ -8734,11 +8731,15 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Blinkande"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8757,6 +8758,10 @@ msgstr ""
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Blinkande"
 
@@ -8765,13 +8770,11 @@ msgstr "Blinkande"
 msgid "Flashing Image"
 msgstr "Flashningen misslyckades"
 
-msgid "Flashing image successful"
+#, python-format
+msgid "Flashing image '%s' was not successful!"
 msgstr ""
 
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
+msgid "Flashing image successful"
 msgstr ""
 
 #, fuzzy
@@ -9993,6 +9996,9 @@ msgstr ""
 msgid "Image Backup"
 msgstr "Flytta upp en sida"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
@@ -10002,12 +10008,6 @@ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Image creation failed - "
-msgstr ""
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
 msgstr ""
 
 msgid "ImageWizard"
@@ -12770,12 +12770,12 @@ msgid "No, do not backup a image"
 msgstr "Nej, gör inget."
 
 #
-#, fuzzy
-msgid "No, don't flash this image"
+msgid "No, do nothing."
 msgstr "Nej, gör inget."
 
 #
-msgid "No, do nothing."
+#, fuzzy
+msgid "No, don't flash this image"
 msgstr "Nej, gör inget."
 
 #
@@ -14017,9 +14017,7 @@ msgstr ""
 "\n"
 "Vänligen tryck OK för att forsätta."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14422,6 +14420,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
@@ -14436,6 +14437,9 @@ msgstr "Tryck MENU på din fjärrkontroll för ytterligare valmöjligheter."
 #, fuzzy
 msgid "Press MENU to install additional language(s)."
 msgstr "Tryck MENU på din fjärrkontroll för ytterligare valmöjligheter."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 #
 msgid "Press OK on your remote control to continue."
@@ -18581,6 +18585,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr ""
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -21302,9 +21314,6 @@ msgstr "Ukrainsk"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr ""
-
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -22335,6 +22344,9 @@ msgstr ""
 
 #, python-format
 msgid "Warning: There are %d update packages!"
+msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -24858,14 +24870,6 @@ msgstr "hoppa framåt"
 msgid "skip forward (enter time)"
 msgstr "hoppa framåt (ange tid)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr ""
-
 msgid "slow"
 msgstr "långsam"
 
@@ -25224,6 +25228,24 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Backup av systeminställningar"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr "Vill du ladda ner image till %s ?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr "Fel vid nedladnning av ändringslogg."
 
 #
 #~ msgid "Activate current configuration"

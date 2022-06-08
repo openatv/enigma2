@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2016-04-02 23:16+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: jurica@dream-multimedia.eu\n"
@@ -1283,13 +1283,6 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid "%s  (%s)"
@@ -1517,6 +1510,9 @@ msgid "(Selectmode)"
 msgstr "Odaberi film"
 
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
 
 #
@@ -2578,9 +2574,6 @@ msgstr "dodaj datoteku u playlistu"
 msgid "Add files to playlist"
 msgstr "dodaj datoteke u playlistu"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3558,11 +3551,6 @@ msgid ""
 msgstr ""
 
 #
-#, fuzzy
-msgid "Backup settings"
-msgstr "Da, napravi sigurnosnu kopiju mojih postavki."
-
-#
 msgid "Backup system settings"
 msgstr ""
 
@@ -4194,9 +4182,6 @@ msgstr "Promjeni pin kod"
 msgid "Can not upload timer"
 msgstr "Promjeni pin kod"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr ""
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -4266,6 +4251,12 @@ msgstr ""
 #, fuzzy
 msgid "Cancel selection"
 msgstr "Sekcija kanala"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #
 #, fuzzy
@@ -5466,6 +5457,9 @@ msgstr ""
 msgid "Continue playing"
 msgstr ""
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5552,9 +5546,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 msgid "Could not connect to server"
-msgstr ""
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
@@ -6911,6 +6902,9 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 #
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr ""
@@ -6946,12 +6940,9 @@ msgstr "Želite li napraviti skeniranje usluga?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Želite li započeti drugu ručnu pretragu usluga sada?"
 
-#
-#, fuzzy, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
-msgstr "Želite li napraviti skeniranje usluga?"
+#, python-format
+msgid "Do you want to flash the image '%s'?"
+msgstr ""
 
 #
 #, fuzzy
@@ -7853,16 +7844,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
 
 #
@@ -7897,6 +7879,10 @@ msgid ""
 "%s"
 msgstr ""
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr ""
 
@@ -7928,10 +7914,20 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr ""
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8574,11 +8570,15 @@ msgstr ""
 msgid "Flash Image"
 msgstr ""
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8597,19 +8597,21 @@ msgstr ""
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr ""
 
 msgid "Flashing Image"
 msgstr ""
 
-msgid "Flashing image successful"
+#, python-format
+msgid "Flashing image '%s' was not successful!"
 msgstr ""
 
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
+msgid "Flashing image successful"
 msgstr ""
 
 #
@@ -9814,6 +9816,9 @@ msgstr ""
 msgid "Image Backup"
 msgstr ""
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
@@ -9823,12 +9828,6 @@ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Image creation failed - "
-msgstr ""
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
 msgstr ""
 
 msgid "ImageWizard"
@@ -12587,12 +12586,12 @@ msgid "No, do not backup a image"
 msgstr "Ne, ništa ne čini "
 
 #
-#, fuzzy
-msgid "No, don't flash this image"
+msgid "No, do nothing."
 msgstr "Ne, ništa ne čini "
 
 #
-msgid "No, do nothing."
+#, fuzzy
+msgid "No, don't flash this image"
 msgstr "Ne, ništa ne čini "
 
 #
@@ -13808,9 +13807,7 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14213,6 +14210,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
@@ -14225,6 +14225,9 @@ msgid "Press MENU on your remote control for additional options."
 msgstr ""
 
 msgid "Press MENU to install additional language(s)."
+msgstr ""
+
+msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 #
@@ -18341,6 +18344,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr ""
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -20962,9 +20973,6 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr ""
-
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -21977,6 +21985,9 @@ msgstr ""
 
 #, python-format
 msgid "Warning: There are %d update packages!"
+msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -24426,14 +24437,6 @@ msgstr "preskoči unaprijed"
 msgid "skip forward (enter time)"
 msgstr "preskoči naprijed (unesi vrijeme)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr ""
-
 msgid "slow"
 msgstr ""
 
@@ -24784,6 +24787,18 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "Da, napravi sigurnosnu kopiju mojih postavki."
+
+#
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr "Želite li napraviti skeniranje usluga?"
 
 #
 #, fuzzy

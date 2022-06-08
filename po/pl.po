@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-06-04 09:18+0000\n"
 "Last-Translator: Karol Sz <kaolsz@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
@@ -1250,17 +1250,6 @@ msgstr "%m/%d/%Y"
 msgid "%s"
 msgstr "%s"
 
-# normalised
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Naciśnij OK, aby wybrać multiboot\n"
-"Naciśnij EXIT, aby zamknąć"
-
 #, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
@@ -1475,6 +1464,9 @@ msgstr "(Wybierz tryb)"
 
 msgid "(Show only reader:"
 msgstr "(Pokaż tylko czytnik:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(puste)"
@@ -2441,9 +2433,6 @@ msgstr "Dodaj plik do listy odtwarzania"
 msgid "Add files to playlist"
 msgstr "Dodaj pliki do listy odtwarzania"
 
-msgid "Add help text"
-msgstr "Dodaj tekst pomocy"
-
 msgid "Add new tag"
 msgstr "Dodaj nowy znacznik"
 
@@ -3341,9 +3330,6 @@ msgstr ""
 "Znaleziono kopię wtyczek!\n"
 "Czy chcesz teraz zainstalować?"
 
-msgid "Backup settings"
-msgstr "Ustawienia kopii zapasowej"
-
 msgid "Backup system settings"
 msgstr "Wykonaj kopię zapasową ustawień systemu"
 
@@ -3946,9 +3932,6 @@ msgstr "Nie można zaktualizować timerów"
 msgid "Can not upload timer"
 msgstr "Nie można załadować timera"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Ostrzeżenie: Do przechowywania kopii zapasowych ustawiony jest tylko dysk sieciowy. W przypadku instalacji automatyczne przywracanie nie będzie działać. Alternatywnie możesz zamontować dysk sieciowy po instalacji i wykonać przywrócenie ustawień fabrycznych, aby automatycznie przywrócić."
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nie można przydzielić źródła programu (np. tunera)"
 
@@ -4011,6 +3994,12 @@ msgstr "Anuluj zapis timeshiftu jako film"
 
 msgid "Cancel selection"
 msgstr "Anuluj wybór"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "Anuluj wybór obrazu i wyjdź"
@@ -5122,6 +5111,9 @@ msgstr "Kontynuuj odtwarzanie"
 msgid "Continue playing"
 msgstr "Kontynuuj odtwarzanie"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "Kontynuuj aktualizacje z internetu"
 
@@ -5206,9 +5198,6 @@ msgstr "Wybrzeże Kości Słoniowej"
 
 msgid "Could not connect to server"
 msgstr "Nie można połączyć z serwerem"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Błąd: Nie udało się znaleźć odpowiedniego nośnika! Usuń niektóre pobrane obrazy lub włóż nośnik (np. Pamięć USB) z wystarczającą ilością wolnego miejsca i spróbuj ponownie."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie można załadować nośnika!Brak płyty?"
@@ -6439,6 +6428,9 @@ msgstr ""
 "Chcesz teraz utworzyć kopię zapasową?\n"
 "Po naciśnięciu 'OK', proszę czekać!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Nagrać kolekcję na nośniku DVD?"
 
@@ -6477,12 +6469,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Chcesz wykonać kolejne ręczne skanowanie kanałów?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Czy chcesz zainstalować system\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Czy chcesz zainstalować listę kanałów?"
@@ -7339,22 +7327,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Błąd pobierania systemu\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Błąd podczas rozpakowywania systemu\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Błąd podczas uruchamiania wtyczki"
@@ -7391,6 +7365,10 @@ msgstr ""
 "Błąd podczas zmiany nazwy %s na %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Błąd, nieznany wynik!"
 
@@ -7423,11 +7401,21 @@ msgstr "Błąd: Nie można znaleźć żadnych obrazów!"
 msgid "Error: Checksum is invalid!"
 msgstr "Błąd: Suma kontrolna nieprawidłowa!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Błąd: Nie udało się znaleźć odpowiedniego nośnika! Usuń niektóre pobrane obrazy lub włóż nośnik (np. Pamięć USB) z wystarczającą ilością wolnego miejsca i spróbuj ponownie."
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Błąd: nieudana interakcja, nie można zmienić hasła!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Błąd: nowe hasło nie może być puste!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Błąd: Nie udało się utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy)! Sprawdź dysk i spróbuj ponownie."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Błąd: Nie można przetworzyć polecenia!  Spróbuj ponownie później."
@@ -8016,12 +8004,16 @@ msgstr "Naprawiona czcionka X11 (SD)"
 msgid "Flash Image"
 msgstr "Zainstaluj"
 
-msgid "Flash Manager"
-msgstr "Menadżer instalowania"
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
 msgstr "Menadżer instalowania - Obrazy %s"
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Instalacja systemu online"
@@ -8039,22 +8031,22 @@ msgstr "Zainstaluj system z sieci."
 msgid "Flash type"
 msgstr "Typ Flash"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Instalowanie"
 
 msgid "Flashing Image"
 msgstr "Instalowanie systemu"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Instalowanie systemu zakończone pomyślnie"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Instalowanie systemu nie powiodło się\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Płaski alfabetycznie"
@@ -9151,6 +9143,9 @@ msgstr "Ignoruj nieoczekiwane budzenie i pozostań w trybie czuwania"
 msgid "Image Backup"
 msgstr "Kopia systemu"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "System utworzony na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9161,14 +9156,6 @@ msgstr "System utworzony na: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Tworzenie systemu nie powiodło się - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"System do zainstalowania jest nieprawidłowy\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Kreator systemu"
@@ -11597,11 +11584,11 @@ msgstr "Nie, ale rozpocznij od początku"
 msgid "No, do not backup a image"
 msgstr "Nie, nie twórz kopii zapasowej systemu"
 
-msgid "No, don't flash this image"
-msgstr "Nie, nie instaluj systemu"
-
 msgid "No, do nothing."
 msgstr "Nie, nie rób nic."
+
+msgid "No, don't flash this image"
+msgstr "Nie, nie instaluj systemu"
 
 msgid "No, just start my %s %s"
 msgstr "Nie, po prostu włącz %s %s"
@@ -12688,12 +12675,8 @@ msgstr ""
 "\n"
 "Wcisnij 'OK' aby kontynuować."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Co zrobić po zainstalowaniu systemu:\n"
-"(Dodatkowo, jeśli istnieje lokalny skrypt zostanie wykonany /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Skonfiguruj tuner A"
@@ -13073,6 +13056,9 @@ msgstr "Naciśnij <> lub menu, aby wybrać następne logi commitów"
 msgid "Press <> or menu to select the different info screens"
 msgstr "Naciśnij <> lub menu, aby wybrać różne ekrany informacyjne"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr "Naciśnij EXIT, aby powrócić do ekranu pomocy."
 
@@ -13084,6 +13070,9 @@ msgstr "Wciśnij MENU na pilocie, aby mieć dostęp do dodatkowych opcji."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Wciśnij MENU, aby zainstalować dodatkowy język."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Wciśnij 'OK', aby kontynuować."
@@ -16804,6 +16793,14 @@ msgid "Slot '%s'"
 msgstr "Slot '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "slot %s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "slot %s - %s (bieżący system)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
@@ -19262,9 +19259,6 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraiński"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Błąd: Nie udało się utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy)! Sprawdź dysk i spróbuj ponownie."
-
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
 
@@ -20194,6 +20188,9 @@ msgstr "Uwaga: Nadpisywanie jest aktualnie aktywne!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Uwaga: jest %d dostępnych pakietów do aktualizacji!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Ostrzeżenie: Do przechowywania kopii zapasowych ustawiony jest tylko dysk sieciowy. W przypadku instalacji automatyczne przywracanie nie będzie działać. Alternatywnie możesz zamontować dysk sieciowy po instalacji i wykonać przywrócenie ustawień fabrycznych, aby automatycznie przywrócić."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Ostrzeżenie: To jest ostatnia awaria przed automatycznym ponownym uruchomieniem.\n"
@@ -22481,14 +22478,6 @@ msgstr "Przeskocz do przodu"
 msgid "skip forward (enter time)"
 msgstr "Przeskocz do przodu (wprowadź czas)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot %s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot %s - %s (bieżący system)"
-
 msgid "slow"
 msgstr "wolno"
 
@@ -22805,6 +22794,75 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+# normalised
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Naciśnij OK, aby wybrać multiboot\n"
+#~ "Naciśnij EXIT, aby zamknąć"
+
+#~ msgid "Add help text"
+#~ msgstr "Dodaj tekst pomocy"
+
+#~ msgid "Backup settings"
+#~ msgstr "Ustawienia kopii zapasowej"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Czy chcesz zainstalować system\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Błąd pobierania systemu\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Błąd podczas rozpakowywania systemu\n"
+#~ "%s"
+
+#~ msgid "Flash Manager"
+#~ msgstr "Menadżer instalowania"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Instalowanie systemu nie powiodło się\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "System do zainstalowania jest nieprawidłowy\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Co zrobić po zainstalowaniu systemu:\n"
+#~ "(Dodatkowo, jeśli istnieje lokalny skrypt zostanie wykonany /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktywuj bieżącą konfigurację"

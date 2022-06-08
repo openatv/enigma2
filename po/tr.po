@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1240,16 +1240,6 @@ msgstr "%m/%d/%Y"
 msgid "%s"
 msgstr "%s"
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Multiboot seçimi için ok'e basın\n"
-"Çıkmak için exit'e basın"
-
 #
 #, python-format
 msgid "%s  (%s)"
@@ -1476,6 +1466,9 @@ msgstr "(Mod seç)"
 
 msgid "(Show only reader:"
 msgstr "(Sadece bu okuyucuyu göster:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 #
 msgid "(empty)"
@@ -2506,9 +2499,6 @@ msgstr "Dosyayı oynatma listesine ekle"
 msgid "Add files to playlist"
 msgstr "Dosyaları oynatma listesine ekle"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr "Yeni etiket ekle"
 
@@ -3460,9 +3450,6 @@ msgstr ""
 "Yedekleme eklentileri bulundu\n"
 "şimdi kurmak ister misin?"
 
-msgid "Backup settings"
-msgstr "Yedekleme ayarları"
-
 #
 msgid "Backup system settings"
 msgstr "Sistem ayarlarını yedekle"
@@ -4088,9 +4075,6 @@ msgstr "Zamanlayıcılar güncellenemiyor"
 msgid "Can not upload timer"
 msgstr "Zamanlayıcı yüklenemiyor"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Yedeklemeyi depolamak için yalnızca bir ağ sürücüsü bulabilir, bu flaştan sonra otomatik mağazanın çalışmadığı anlamına gelir. Alternatif olarak, ağ sürücüsünü flaştan sonra monte edebilir ve otomatik depoya bir üretici sıfırlama işlemi gerçekleştirebilirsiniz"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Program kaynağı tahsis edilemiyor (ör. tuner)"
 
@@ -4158,6 +4142,12 @@ msgstr "Zaman-kaydırmayı film olarak saklama"
 #
 msgid "Cancel selection"
 msgstr "Seçimi iptal et"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #
 #, fuzzy
@@ -5338,6 +5328,9 @@ msgstr "Playback a devam et"
 msgid "Continue playing"
 msgstr "Oynatmaya devam et"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "Çevrimiçi güncellemeye devam edin"
 
@@ -5425,9 +5418,6 @@ msgstr "Fildişi Sahili"
 #
 msgid "Could not connect to server"
 msgstr "Sunucuya bağlanılamadı"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Uygun medya bulunamadı - Lütfen indirilen bazı resimleri silin veya yeteri kadar boş alana sahip bir medya yerleştirin (örn. USB bellek) ve tekrar deneyin!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Orta yüklenemedi! Disk takılmadı?"
@@ -6737,6 +6727,9 @@ msgstr ""
 "Şimdi yedeklemek istiyor musunuz?\n"
 "Lütfen OK tuşuna bastıktan sonra bekleyin!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 #
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Bu derlemeyi DVD ortamına yazmak istiyor musunuz?"
@@ -6778,12 +6771,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Başka kanal taraması yapacak mısınız?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Görüntü flaş etmek ister misin\n"
-"%s"
 
 #
 msgid "Do you want to install a channel list?"
@@ -7681,22 +7670,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Resim indirilirken hata oluştu\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Sıkıştırılmış görüntü sırasında hata oluştu\n"
-"%s"
 
 #
 msgid "Error executing plugin"
@@ -7734,6 +7709,10 @@ msgstr ""
 "%solarak yeniden adlandırma hatası %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Hata, bilinmeyen Sonuç!"
 
@@ -7768,11 +7747,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr "Hata: Sağlama toplamı geçersiz!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Uygun medya bulunamadı - Lütfen indirilen bazı resimleri silin veya yeteri kadar boş alana sahip bir medya yerleştirin (örn. USB bellek) ve tekrar deneyin!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Hata: Etkileşim hatası, parola değiştirilemiyor!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Hata: Yeni parola boş bırakılamaz!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Medyada gerekli dizinler oluşturulamıyor (örn. USB bellek veya Sabit Disk) - Lütfen medyayı doğrulayın ve tekrar deneyin!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Hata: Komut işlenemiyor! Lütfen daha sonra tekrar deneyiniz."
@@ -8405,11 +8394,15 @@ msgstr "Sabit X11 yazı tipi (SD)"
 msgid "Flash Image"
 msgstr "Flaş Image"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8428,6 +8421,10 @@ msgstr "Uçan Flash'ı, Receiver yazılımınız."
 msgid "Flash type"
 msgstr "Flaş türü"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Flaşlıyor"
 
@@ -8435,16 +8432,12 @@ msgstr "Flaşlıyor"
 msgid "Flashing Image"
 msgstr "Flashing Image"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Flashing image başarılı"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Flashing Image başarılı değildi\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Düz alfabetik"
@@ -9599,6 +9592,9 @@ msgstr "Beklenmedik şekilde uyanmayı ihmal et ve beklemede kal"
 msgid "Image Backup"
 msgstr "Image yedekleme"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Image oluşturuldu:%s /%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9609,14 +9605,6 @@ msgstr "Oluşturulan image: %s /%s-%s-%s-yedekleme-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Image yaratılamadı - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Yüklenecek image geçersiz\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Image Sihirbazı"
@@ -12230,12 +12218,12 @@ msgstr "Hayır, ama baştan başlat"
 msgid "No, do not backup a image"
 msgstr "Hayır, bir Image yedekleme"
 
-msgid "No, don't flash this image"
-msgstr "Hayır,Image flaşlama"
-
 #
 msgid "No, do nothing."
 msgstr "Hayır, hiçbir şey yapma."
+
+msgid "No, don't flash this image"
+msgstr "Hayır,Image flaşlama"
 
 #
 msgid "No, just start my %s %s"
@@ -13403,12 +13391,8 @@ msgstr ""
 "\n"
 "Devam etmek için OK tuşuna basın."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Lütfen resmi yanıp söndükten sonra ne yapacağınızı seçin:\n"
-"(Ayrıca, varsa, /media/hdd/images/config/myrestore.sh adresinde de yerel bir betik yürütülecektir.)"
 
 msgid "Please set up tuner A"
 msgstr "Lütfen tuner A'yi kurun"
@@ -13822,6 +13806,9 @@ msgstr "Farklı kayıt günlüklerini seçmek için <> veya menüye basın"
 msgid "Press <> or menu to select the different info screens"
 msgstr "Farklı bilgi ekranlarını seçmek için <> veya menüye basın"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #
 msgid "Press EXIT to return to the help screen."
 msgstr "Yardım ekranına dönmek için EXIT'e basın."
@@ -13834,6 +13821,9 @@ msgstr "Ek seçenekler için MENU'ye basın."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Ek dil yüklemek için MENÜ tuşuna basın(s)."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 #
 msgid "Press OK on your remote control to continue."
@@ -17775,6 +17765,14 @@ msgid "Slot '%s'"
 msgstr "Yuva '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "yuva%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "yuva%s - %s (geçerli image)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Yuva '%s': %s%s"
 
@@ -20382,9 +20380,6 @@ msgstr "Ukrayna"
 msgid "Ukrainian"
 msgstr "Ukraynaca"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Medyada gerekli dizinler oluşturulamıyor (örn. USB bellek veya Sabit Disk) - Lütfen medyayı doğrulayın ve tekrar deneyin!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "GUI olmadan katılımsız yükseltme"
 
@@ -21382,6 +21377,9 @@ msgstr "Uyarı: Geçersiz kılmalar şu anda etkin!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Uyarı: %d güncelleme paketi var!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Yedeklemeyi depolamak için yalnızca bir ağ sürücüsü bulabilir, bu flaştan sonra otomatik mağazanın çalışmadığı anlamına gelir. Alternatif olarak, ağ sürücüsünü flaştan sonra monte edebilir ve otomatik depoya bir üretici sıfırlama işlemi gerçekleştirebilirsiniz"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Uyarı: Bu otomatik yeniden başlatma yapılmadan önceki son çarpışmadır.\n"
@@ -23858,14 +23856,6 @@ msgstr "ileri atla"
 msgid "skip forward (enter time)"
 msgstr "ileri atla (zaman gir)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "yuva%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "yuva%s - %s (geçerli image)"
-
 msgid "slow"
 msgstr "yavaş"
 
@@ -24205,6 +24195,68 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Multiboot seçimi için ok'e basın\n"
+#~ "Çıkmak için exit'e basın"
+
+#~ msgid "Backup settings"
+#~ msgstr "Yedekleme ayarları"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Görüntü flaş etmek ister misin\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Resim indirilirken hata oluştu\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Sıkıştırılmış görüntü sırasında hata oluştu\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Flashing Image başarılı değildi\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Yüklenecek image geçersiz\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Lütfen resmi yanıp söndükten sonra ne yapacağınızı seçin:\n"
+#~ "(Ayrıca, varsa, /media/hdd/images/config/myrestore.sh adresinde de yerel bir betik yürütülecektir.)"
 
 #~ msgid ""
 #~ "\n"

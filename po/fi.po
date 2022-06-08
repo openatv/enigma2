@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
-"PO-Revision-Date: 2022-06-07 09:53+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"PO-Revision-Date: 2022-06-08 14:14+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1225,16 +1225,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Paina Ok multiboot valitsin\n"
-"Paina Exit poistuaksesi"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1446,6 +1436,9 @@ msgstr "(Valintatila)"
 
 msgid "(Show only reader:"
 msgstr "(Näytä vain lukija:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr "(Tiedosto '/media/hdd/images/config/myrestore.sh' on olemassa, ja se suoritetaan ohjelmisto päivityksen jälkeen.)"
 
 msgid "(empty)"
 msgstr "(tyhjä)"
@@ -2155,16 +2148,14 @@ msgid ""
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 "Ajastettu tallennus epäonnistui!\n"
-"Lopetetaanko näennäistallenteet (esim. EPGRefresh)\n"
-"ja yritetään uudelleen?\n"
+"Lopetetaanko näennäistallenteet (esim. EPGRefresh) ja yritetään uudelleen?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
 "Ajastettu tallennus epäonnistui!\n"
-"Lopetetaanko suoratoisto, jotta\n"
-"tallennusta voidaan yrittää uudelleen?\n"
+"Lopetetaanko suoratoisto, yritettään tallennusta uudelleen?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2414,9 +2405,6 @@ msgstr "Lisää tiedosto soittolistalle"
 
 msgid "Add files to playlist"
 msgstr "Lisää tiedostot soittolistalle"
-
-msgid "Add help text"
-msgstr "Lisää ohje teksti"
 
 msgid "Add new tag"
 msgstr "Lisää uusi tunniste"
@@ -3319,9 +3307,6 @@ msgstr ""
 "Varmuuskopio lisäosat löytyi!\n"
 "Haluatko asentaa ne nyt?"
 
-msgid "Backup settings"
-msgstr "Varmuuskopioi asetukset"
-
 msgid "Backup system settings"
 msgstr "Varmuuskopioi järjestelmäasetukset"
 
@@ -3925,9 +3910,6 @@ msgstr "Ajastimia ei voi päivittää"
 msgid "Can not upload timer"
 msgstr "Ajastinta ei voi ladata"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Löytää vaub verkkoaseman varmuuskopion tallentamiseksi tämä tarkoittaa, että päivityksen jälkeen automaattinen palautus ei toimi. Vaihtoehtoisesti voit asentaa verkkoaseman päivityksen jälkeen ja palauttaa valmistajan automaattisen palautuksen."
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Ohjelma lähdettä (esim. Viritintä) ei voida määrittää"
 
@@ -3990,6 +3972,12 @@ msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 
 msgid "Cancel selection"
 msgstr "Peruuta valinta"
+
+msgid "Cancel the flash process"
+msgstr "Peruuta päivittäminen"
+
+msgid "Cancel the flash process and exit all menus"
+msgstr "Peruuta päivittäminen ja poistu kaikista valikoista"
 
 msgid "Cancel the image selection and exit"
 msgstr "Peruuta image valinta ja poistu"
@@ -5100,6 +5088,9 @@ msgstr "Jatka toistoa"
 msgid "Continue playing"
 msgstr "Jatka toistoa"
 
+msgid "Continue with the flash process"
+msgstr "Jatka päivittämistä"
+
 msgid "Continue with the on-line update"
 msgstr "Jatka päivittämistä"
 
@@ -5184,9 +5175,6 @@ msgstr "Norsunluurannikko"
 
 msgid "Could not connect to server"
 msgstr "Palvelimeen ei saatu yhteyttä"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja ohjelmistoja tai aseta tietoväline (esim. USB-tikku), jossa on riittävästi vapaata tilaa, ja yritä uudelleen."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ei voitu ladata! Ei levyä asetettu?"
@@ -6417,6 +6405,9 @@ msgstr ""
 "Haluatko varmuuskopioida nyt? \n"
 "Paina OK näppäintä ja odota!"
 
+msgid "Do you want to backup settings?"
+msgstr "Haluatko varmuuskopioida asetukset?"
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Haluatko polttaa tämän kokoelman DVD:lle?"
 
@@ -6455,12 +6446,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Haluatko tehdä uuden manuaalihaun?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
-msgstr ""
-"Haluatko päivittää imagen\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
+msgstr "Haluatko asentaa ohjelmiston'%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Haluatko asentaa kanavalistan?"
@@ -7314,22 +7301,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
-msgstr ""
-"Virhe ladattaessa ohjelmisto imagea\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Virhe purkaessa ohjelmisto imagea\n"
-"%s"
+msgid "Error downloading image '%s'!"
+msgstr "Virhe ladattaessa ohjelmisto image'%s'!"
 
 msgid "Error executing plugin"
 msgstr "Virhe plugin lisäosan suorittamisessa"
@@ -7366,6 +7339,10 @@ msgstr ""
 "Virhe uudelleen %s nimeämisessä %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr "Virhe purettaessa ohjelmisto image %s!"
+
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
 
@@ -7398,11 +7375,21 @@ msgstr "Virhe: Yhtään ohjelmistoa ei löydy!"
 msgid "Error: Checksum is invalid!"
 msgstr "Virhe: Tarkistussumma on virheellinen!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja ohjelmistoja tai aseta tietoväline (esim. USB-tikku), jossa on riittävästi vapaata tilaa, ja yritä uudelleen."
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr "Virhe: Asennettava ohjelmisto %s on virheellinen!"
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Virhe: salasanan vaihtaminen ei onnistu!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Virhe: Uusi salasana ei voi olla tyhjä!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-tikku tai kiintolevy)! Tarkista laite ja yritä uudelleen."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Virhe: Komento voidaan suorittaa!  Yritä myöhemmin uudelleen."
@@ -7991,12 +7978,16 @@ msgstr "Kiinteä X11 fontti merkistö (SD)"
 msgid "Flash Image"
 msgstr "Päivitä Image"
 
-msgid "Flash Manager"
-msgstr "Ohjelmisto hallinta"
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
 msgstr "Ohjelmisto hallinta - %s Ohjelmistot"
+
+msgid "Flash Manager - Distributions"
+msgstr "Päivitysten Hallinta"
+
+msgid "Flash Manager Actions"
+msgstr "Päivityksien Hallinta Asetukset"
 
 msgid "Flash Online"
 msgstr "Lataa ohjelmisto image internetin kautta"
@@ -8014,22 +8005,22 @@ msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
 msgid "Flash type"
 msgstr "Flash tyyppi"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr "Päivitetäänkö %s %s ja käynnistä uudelleen?"
+
 msgid "Flashing"
 msgstr "Päivittää"
 
 msgid "Flashing Image"
 msgstr "Päivittää ohjelmistoa"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr "Ohjelmiston '%s' päivitys epäonnistui!"
+
 msgid "Flashing image successful"
 msgstr "Ohjelmiston päivitys onnistui"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Ohjelmiston päivitys epäonnistui\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Aakkosjärjestys, kansionäkymä"
@@ -9131,6 +9122,9 @@ msgstr "Ohita odottamaton herätys ja pysy valmiustilassa"
 msgid "Image Backup"
 msgstr "Ohjelmiston varmuuskopiointi"
 
+msgid "Image Flash Actions"
+msgstr "Ohjelmisto Päivitys Asetukset"
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Image tehty: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9141,14 +9135,6 @@ msgstr "Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Imagen luominen epäonnistui - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Imagen asennus on virheellinen\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Image Avustaja"
@@ -11582,11 +11568,11 @@ msgstr "Ei, aloita alusta"
 msgid "No, do not backup a image"
 msgstr "Ei, älä varmuuskopioi"
 
-msgid "No, don't flash this image"
-msgstr "Ei, älä päivitä imagea"
-
 msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
+
+msgid "No, don't flash this image"
+msgstr "Ei, älä päivitä imagea"
 
 msgid "No, just start my %s %s"
 msgstr "Ei, käynnistä vain %s %s"
@@ -12674,13 +12660,8 @@ msgstr ""
 "\n"
 "Jatka painamalla OK näppäintä."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
-msgstr ""
-"Valitse mitä tehdä päivityksen jälkeen\n"
-"Lisäksi, jos sellainen on olemassa, suoritetaan myös paikallinen komentosarja\n"
-"/media/hdd/images/config/myrestore.sh"
+msgid "Please select what to do:"
+msgstr "Valitse mitä haluat tehdä:"
 
 msgid "Please set up tuner A"
 msgstr "Määritä virittimen A asetukset"
@@ -13061,6 +13042,9 @@ msgstr "Paina <> tai paina menu näppäintä valitaksesi eri loki"
 msgid "Press <> or menu to select the different info screens"
 msgstr "Paina <> tai menu valitaksesi eri tietonäytöt"
 
+msgid "Press EXIT to close."
+msgstr "Sulje painamalla EXIT näppäintä."
+
 msgid "Press EXIT to return to the help screen."
 msgstr "Palaa ohje näyttöön painamalla EXIT."
 
@@ -13072,6 +13056,9 @@ msgstr "Avaa lisäasetukset painamalla MENU-näppäintä."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Paina MENU näppäintä asentaaksesi lisää kieliä."
+
+msgid "Press OK for MultiBoot selection."
+msgstr "Valitse MultiBoot painamalla OK."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Jatka painamalla OK näppäintä."
@@ -16800,6 +16787,14 @@ msgid "Slot '%s'"
 msgstr "Paikka '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "paikka%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "paikka%s - %s (Nykyinen image)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Paikka '%s': %s%s"
 
@@ -17143,7 +17138,7 @@ msgid "Start"
 msgstr "Käynnistä"
 
 msgid "Start Kodi"
-msgstr "Käynnistys Kodi"
+msgstr "Käynnistä Kodi"
 
 msgid "Start RDS interactive"
 msgstr "Avaa interaktiivinen tv (HbbTV)"
@@ -17167,7 +17162,7 @@ msgid "Start recording?"
 msgstr "Aloita tallennus?"
 
 msgid "Start teletext"
-msgstr "Teksti-tv"
+msgstr "Teksti-TV"
 
 msgid "Start test"
 msgstr "Aloita testi"
@@ -17194,7 +17189,7 @@ msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
 
 msgid "Starting directory"
-msgstr "aloitushakemisto"
+msgstr "Avataan hakemistoa"
 
 msgid "Starting on"
 msgstr "Alkaen"
@@ -17692,7 +17687,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 05.06.2022\n"
+"Suomenkielinen käännös: 08.06.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19264,9 +19259,6 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-tikku tai kiintolevy)! Tarkista laite ja yritä uudelleen."
-
 msgid "Unattended upgrade without GUI"
 msgstr "Päivitä järjestelmä taustalla ilman käyttäjän ohjausta"
 
@@ -20196,6 +20188,9 @@ msgstr "Varoitus: Ohitukset ovat tällä hetkellä aktiivisia!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Varoitus: Päivityspaketteja on %d!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Löytää vaub verkkoaseman varmuuskopion tallentamiseksi tämä tarkoittaa, että päivityksen jälkeen automaattinen palautus ei toimi. Vaihtoehtoisesti voit asentaa verkkoaseman päivityksen jälkeen ja palauttaa valmistajan automaattisen palautuksen."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Varoitus: Tämä on viimeinen kaatuminen ennen automaattisen uudelleenkäynnistyksen tekemistä.\n"
@@ -22489,14 +22484,6 @@ msgstr "siirry eteenpäin"
 msgid "skip forward (enter time)"
 msgstr "siirry eteenpäin (syötä aika)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "paikka%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "paikka%s - %s (Nykyinen image)"
-
 msgid "slow"
 msgstr "hidas"
 
@@ -22812,6 +22799,75 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Paina Ok multiboot valitsin\n"
+#~ "Paina Exit poistuaksesi"
+
+#~ msgid "Add help text"
+#~ msgstr "Lisää ohje teksti"
+
+#~ msgid "Backup settings"
+#~ msgstr "Varmuuskopioi asetukset"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Haluatko päivittää imagen\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Virhe ladattaessa ohjelmisto imagea\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Virhe purkaessa ohjelmisto imagea\n"
+#~ "%s"
+
+#~ msgid "Flash Manager"
+#~ msgstr "Ohjelmisto hallinta"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ohjelmiston päivitys epäonnistui\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Imagen asennus on virheellinen\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Valitse mitä tehdä päivityksen jälkeen\n"
+#~ "Lisäksi, jos sellainen on olemassa, suoritetaan myös paikallinen komentosarja\n"
+#~ "/media/hdd/images/config/myrestore.sh"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktivoi nykyiset asetukset"

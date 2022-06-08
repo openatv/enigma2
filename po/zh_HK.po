@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1236,13 +1236,6 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)\n"
@@ -1457,6 +1450,9 @@ msgid "(Selectmode)"
 msgstr "選擇一部電影"
 
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
 
 msgid "(empty)"
@@ -2489,9 +2485,6 @@ msgstr ""
 msgid "Add files to playlist"
 msgstr ""
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3467,10 +3460,6 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-#, fuzzy
-msgid "Backup settings"
-msgstr "備份系統設定"
-
 msgid "Backup system settings"
 msgstr "備份系統設定"
 
@@ -4104,9 +4093,6 @@ msgstr "刪除檔"
 msgid "Can not upload timer"
 msgstr "調整"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr ""
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -4170,6 +4156,12 @@ msgstr ""
 #, fuzzy
 msgid "Cancel selection"
 msgstr "頻道選擇"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #, fuzzy
 msgid "Cancel the image selection and exit"
@@ -5345,6 +5337,9 @@ msgstr ""
 msgid "Continue playing"
 msgstr "繼續播放"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5434,9 +5429,6 @@ msgstr ""
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "不能裝載DVD,沒有放入DVD光碟?"
@@ -6740,6 +6732,9 @@ msgstr ""
 " 是否現在備份?\n"
 "按下 OK鍵後請等待!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr " 是否燒錄這個收藏到DVD光碟?"
 
@@ -6775,11 +6770,9 @@ msgstr " 是否開始頻道掃描?"
 msgid "Do you want to do another manual service scan?"
 msgstr " 是否手動掃描其他頻道?"
 
-#, fuzzy, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
-msgstr " 是否安裝套裝軟體:\n"
+#, python-format
+msgid "Do you want to flash the image '%s'?"
+msgstr ""
 
 msgid "Do you want to install a channel list?"
 msgstr ""
@@ -7662,16 +7655,7 @@ msgid ""
 msgstr "創建目錄%s 失敗."
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
 
 msgid "Error executing plugin"
@@ -7706,6 +7690,10 @@ msgid ""
 "%s"
 msgstr ""
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr ""
 
@@ -7737,10 +7725,20 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr ""
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8370,11 +8368,15 @@ msgstr ""
 msgid "Flash Image"
 msgstr "安裝失敗"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 #, fuzzy
@@ -8396,6 +8398,10 @@ msgstr "管理Dreambox軟體."
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 #, fuzzy
 msgid "Flashing"
 msgstr "安裝失敗"
@@ -8404,15 +8410,13 @@ msgstr "安裝失敗"
 msgid "Flashing Image"
 msgstr "安裝失敗"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 #, fuzzy
 msgid "Flashing image successful"
 msgstr "移除完成"
-
-#, fuzzy, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr "安裝不成功!\n"
 
 #, fuzzy
 msgid "Flat alphabetical"
@@ -9593,6 +9597,9 @@ msgstr ""
 msgid "Image Backup"
 msgstr "備份"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
@@ -9604,12 +9611,6 @@ msgstr ""
 #, fuzzy
 msgid "Image creation failed - "
 msgstr "創建分區失敗"
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
 
 #, fuzzy
 msgid "ImageWizard"
@@ -12250,11 +12251,11 @@ msgstr "否, 重新開始播放這個視頻"
 msgid "No, do not backup a image"
 msgstr "否, 什麼也不做."
 
-#, fuzzy
-msgid "No, don't flash this image"
+msgid "No, do nothing."
 msgstr "否, 什麼也不做."
 
-msgid "No, do nothing."
+#, fuzzy
+msgid "No, don't flash this image"
 msgstr "否, 什麼也不做."
 
 #, fuzzy
@@ -13443,9 +13444,7 @@ msgstr ""
 "\n"
 "按OK鍵確認"
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -13834,6 +13833,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "按OK鍵開始掃描."
@@ -13845,6 +13847,9 @@ msgid "Press MENU on your remote control for additional options."
 msgstr ""
 
 msgid "Press MENU to install additional language(s)."
+msgstr ""
+
+msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 msgid "Press OK on your remote control to continue."
@@ -17913,6 +17918,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr ""
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -20494,9 +20507,6 @@ msgstr "烏克蘭"
 msgid "Ukrainian"
 msgstr "烏克蘭"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr ""
-
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -21495,6 +21505,9 @@ msgstr ""
 
 #, python-format
 msgid "Warning: There are %d update packages!"
+msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -23839,14 +23852,6 @@ msgstr "快進"
 msgid "skip forward (enter time)"
 msgstr "快進 (輸入時間)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr ""
-
 msgid "slow"
 msgstr ""
 
@@ -24178,6 +24183,22 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Backup settings"
+#~ msgstr "備份系統設定"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr " 是否安裝套裝軟體:\n"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr "安裝不成功!\n"
 
 #, fuzzy
 #~ msgid "Cannot delete downloaded image"

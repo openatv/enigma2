@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1228,16 +1228,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Druk op OK voor de multiboot selectie\n"
-"Druk op EXIT om af te sluiten"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1449,6 +1439,9 @@ msgstr "(Selecteermodus)"
 
 msgid "(Show only reader:"
 msgstr "(Toon alleen lezer:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(leeg)"
@@ -2414,9 +2407,6 @@ msgstr "Bestand toevoegen aan de afspeellijst"
 msgid "Add files to playlist"
 msgstr "Bestanden toevoegen aan de afspeellijst"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
 
@@ -3313,9 +3303,6 @@ msgstr ""
 "Er is een back-up van plug-ins gevonden\n"
 "wilt u deze nu installeren?"
 
-msgid "Backup settings"
-msgstr "Back-up instellingen"
-
 msgid "Backup system settings"
 msgstr "Back-up uw instellingen"
 
@@ -3918,9 +3905,6 @@ msgstr "Kan de timers niet actualiseren"
 msgid "Can not upload timer"
 msgstr "Kan deze timer niet verzenden"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Er is alleen een netwerkschijf gevonden om de back-up op te slaan. Dit betekent dat het automatisch herstellen na het flashen niet zal werken. Als alternatief kunt u na het flashen de netwerkschijf handmatig mounten en vervolgens een fabrieksreset uitvoeren, om de instellingen alsnog te herstellen"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Kan geen programma bron vinden (bijvoorbeeld een tuner)"
 
@@ -3983,6 +3967,12 @@ msgstr "Annuleer het opslaan van Timeshift als opname"
 
 msgid "Cancel selection"
 msgstr "Annuleer selectie"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "Annuleer de image selectie en exit"
@@ -5196,6 +5186,9 @@ msgstr "Afspelen wordt hervat"
 msgid "Continue playing"
 msgstr "Afspelen voortzetten"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "Ga verder met de online update"
 
@@ -5280,9 +5273,6 @@ msgstr "Ivoorkust"
 
 msgid "Could not connect to server"
 msgstr "Kan geen verbinding met de server maken"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Kon geen geschikt medium vinden - Verwijder a.u.b. enkele lokale images of plaats een medium (USB stick) met voldoende vrije ruimte en probeer het nog een keer!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Medium kan niet worden geladen! Geen schijf aanwezig?"
@@ -6521,6 +6511,9 @@ msgstr ""
 "Wilt u nu een back-up maken?\n"
 "Even geduld nadat u op OK hebt gedrukt!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Wilt u deze selectie op een DVD branden?"
 
@@ -6559,12 +6552,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Wilt u opnieuw handmatig zoeken?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Wilt u de image flashen?\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Wilt u een zenderlijst installeren?"
@@ -7425,22 +7414,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Fout tijdens het downloaden van de image\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Fout tijdens het uitpakken van de image\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Fout bij uitvoeren applicatie"
@@ -7477,6 +7452,10 @@ msgstr ""
 "Error hernoemen %s naar %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Fout, onbekende uitkomst!"
 
@@ -7509,11 +7488,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr "Fout: Checksum is ongeldig!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Kon geen geschikt medium vinden - Verwijder a.u.b. enkele lokale images of plaats een medium (USB stick) met voldoende vrije ruimte en probeer het nog een keer!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Fout: Interactie mislukt, kan het wachtwoord niet wijzigen!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken. Controleer het medium en probeer het nogmaals!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Fout: Kan het commando niet uitvoeren!  A.u.b. later nog een keer proberen."
@@ -8102,11 +8091,15 @@ msgstr "Vast X11 lettertype (SD)"
 msgid "Flash Image"
 msgstr "Flash image"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8125,22 +8118,22 @@ msgstr "Flash een image online of via usb naar uw ontvanger."
 msgid "Flash type"
 msgstr "Flash type"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Knipperende icon"
 
 msgid "Flashing Image"
 msgstr "De image wordt geflasht"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Image flashen succesvol"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Het flashen van de image is mislukt\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Alfabetisch"
@@ -9246,6 +9239,9 @@ msgstr "Negeer onvoorzien ontwaken en blijf in stand-by"
 msgid "Image Backup"
 msgstr "Image back-up"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9256,14 +9252,6 @@ msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Maken Image mislukt - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"De te installeren image is niet in orde\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Image wizard"
@@ -11689,11 +11677,11 @@ msgstr "Nee, maar herstart vanaf begin"
 msgid "No, do not backup a image"
 msgstr "Nee, back-up geen image"
 
-msgid "No, don't flash this image"
-msgstr "Nee, flash geen image"
-
 msgid "No, do nothing."
 msgstr "Nee, geen actie."
+
+msgid "No, don't flash this image"
+msgstr "Nee, flash geen image"
 
 msgid "No, just start my %s %s"
 msgstr "Nee, uitsluitend %s %s starten"
@@ -12783,12 +12771,8 @@ msgstr ""
 "\n"
 "Druk op OK om verder te gaan."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Selecteer wat te doen na het flashen van de image: \n"
-"(Bovendien, en indien aanwezig, zal een lokaal script worden uitgevoerd /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Tuner A configureren"
@@ -13168,6 +13152,9 @@ msgstr "Druk <> of MENU voor een volgend commit log overzicht"
 msgid "Press <> or menu to select the different info screens"
 msgstr "Druk <> of MENU voor een volgend info-scherm"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk op EXIT om terug te gaan naar het help scherm."
 
@@ -13179,6 +13166,9 @@ msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Druk MENU om een nieuwe taal toe te voegen."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Druk OK op uw afstandsbediening om verder te gaan."
@@ -16925,6 +16915,14 @@ msgid "Slot '%s'"
 msgstr "Slot '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "slot%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "slot%s - %s (huidige image)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
@@ -19431,9 +19429,6 @@ msgstr "Oekraïne"
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken. Controleer het medium en probeer het nogmaals!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "Update zonder toezicht en GUI"
 
@@ -20364,6 +20359,9 @@ msgstr "Waarschuwing: De overschrijvingen zijn nu actief!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Waarschuwing: Er zijn %d update pakketten!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Er is alleen een netwerkschijf gevonden om de back-up op te slaan. Dit betekent dat het automatisch herstellen na het flashen niet zal werken. Als alternatief kunt u na het flashen de netwerkschijf handmatig mounten en vervolgens een fabrieksreset uitvoeren, om de instellingen alsnog te herstellen"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Waarschuwing: dit is de laatste crash voordat een automatische herstart wordt uitgevoerd..\n"
@@ -22669,14 +22667,6 @@ msgstr "Vooruit springen"
 msgid "skip forward (enter time)"
 msgstr "Spring vooruit (tijd invoeren)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot%s - %s (huidige image)"
-
 msgid "slow"
 msgstr "langzaam"
 
@@ -22994,6 +22984,68 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Druk op OK voor de multiboot selectie\n"
+#~ "Druk op EXIT om af te sluiten"
+
+#~ msgid "Backup settings"
+#~ msgstr "Back-up instellingen"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Wilt u de image flashen?\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fout tijdens het downloaden van de image\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fout tijdens het uitpakken van de image\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Het flashen van de image is mislukt\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "De te installeren image is niet in orde\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Selecteer wat te doen na het flashen van de image: \n"
+#~ "(Bovendien, en indien aanwezig, zal een lokaal script worden uitgevoerd /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Activeer de huidige configuratie"

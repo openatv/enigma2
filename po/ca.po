@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1300,16 +1300,6 @@ msgstr ""
 msgid "%s"
 msgstr ""
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Premeu OK per a la selecció multiboot\n"
-"Premeu EXIT per tancar"
-
 #
 #, fuzzy, python-format
 msgid "%s  (%s)"
@@ -1537,6 +1527,9 @@ msgid "(Selectmode)"
 msgstr "Seleccionar una pel·lícula"
 
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
 
 #
@@ -2593,9 +2586,6 @@ msgstr "Afegeix un fitxer a la llista de reproducció"
 msgid "Add files to playlist"
 msgstr "Afegeix fitxers a la llista de reproducció"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3573,10 +3563,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "Backup settings"
-msgstr "Sí, fes un backup de la configuració"
-
-#
 msgid "Backup system settings"
 msgstr "Configuració del sistema de còpia de seguretat"
 
@@ -4220,9 +4206,6 @@ msgstr "Canviar codi pin"
 msgid "Can not upload timer"
 msgstr "Canviar codi pin"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr ""
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -4291,6 +4274,12 @@ msgstr ""
 #, fuzzy
 msgid "Cancel selection"
 msgstr "Selecció de canal"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #
 #, fuzzy
@@ -5484,6 +5473,9 @@ msgstr "Continua la reproducció"
 msgid "Continue playing"
 msgstr "Continuar jugant"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5570,9 +5562,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 msgid "Could not connect to server"
-msgstr ""
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
@@ -6908,6 +6897,9 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 #
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Voleu gravar aquesta col·lecció al suport DVD?"
@@ -6943,14 +6935,9 @@ msgstr "Vols fer una recerca de canals?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vols fer una altra recerca manual?"
 
-#
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Voleu intermitir la imatge\n"
-"% s"
 
 #
 msgid "Do you want to install a channel list?"
@@ -7848,22 +7835,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"S’ha produït un error en descarregar la imatge\n"
-"% s\n"
-"% s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"S’ha produït un error en descomprimir la imatge\n"
-"% s"
 
 #
 msgid "Error executing plugin"
@@ -7895,6 +7868,10 @@ msgstr ""
 msgid ""
 "Error renaming %s to %s:\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Error unzipping image '%s'!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7930,11 +7907,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr ""
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "No es poden crear els directoris obligatoris al suport (per exemple, stick USB o Harddisk). Verifiqueu el material i proveu-ho de nou."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
@@ -8568,11 +8555,15 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Imatge de flaix"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8591,22 +8582,22 @@ msgstr ""
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr ""
 
 msgid "Flashing Image"
 msgstr "Imatge intermitent"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "S’ha obtingut la imatge amb interès"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"La imatge en flaix no ha tingut èxit\n"
-"% s"
 
 #
 #, fuzzy
@@ -9793,6 +9784,9 @@ msgstr ""
 msgid "Image Backup"
 msgstr ""
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
@@ -9803,14 +9797,6 @@ msgstr ""
 
 msgid "Image creation failed - "
 msgstr ""
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"La imatge a instal·lar no és vàlida\n"
-"% s"
 
 msgid "ImageWizard"
 msgstr ""
@@ -12524,12 +12510,12 @@ msgid "No, do not backup a image"
 msgstr "No, no cal."
 
 #
-#, fuzzy
-msgid "No, don't flash this image"
+msgid "No, do nothing."
 msgstr "No, no cal."
 
 #
-msgid "No, do nothing."
+#, fuzzy
+msgid "No, don't flash this image"
 msgstr "No, no cal."
 
 #
@@ -13742,9 +13728,7 @@ msgstr ""
 "\n"
 "Premeu OK per continuar."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14143,6 +14127,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
@@ -14155,6 +14142,9 @@ msgid "Press MENU on your remote control for additional options."
 msgstr "Premeu MENU del comandament remot per obtenir opcions addicionals."
 
 msgid "Press MENU to install additional language(s)."
+msgstr ""
+
+msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 #
@@ -18216,6 +18206,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "ranura% s -% s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "ranura% s -% s (imatge actual)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -20835,9 +20833,6 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "No es poden crear els directoris obligatoris al suport (per exemple, stick USB o Harddisk). Verifiqueu el material i proveu-ho de nou."
-
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -21845,6 +21840,9 @@ msgstr ""
 
 #, python-format
 msgid "Warning: There are %d update packages!"
+msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -24298,14 +24296,6 @@ msgstr "saltar endavant"
 msgid "skip forward (enter time)"
 msgstr "saltar endavant (introduint el temps)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "ranura% s -% s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "ranura% s -% s (imatge actual)"
-
 msgid "slow"
 msgstr ""
 
@@ -24653,6 +24643,63 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Premeu OK per a la selecció multiboot\n"
+#~ "Premeu EXIT per tancar"
+
+#
+#~ msgid "Backup settings"
+#~ msgstr "Sí, fes un backup de la configuració"
+
+#
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Voleu intermitir la imatge\n"
+#~ "% s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "S’ha produït un error en descarregar la imatge\n"
+#~ "% s\n"
+#~ "% s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "S’ha produït un error en descomprimir la imatge\n"
+#~ "% s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "La imatge en flaix no ha tingut èxit\n"
+#~ "% s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "La imatge a instal·lar no és vàlida\n"
+#~ "% s"
 
 #
 #~ msgid "Activate current configuration"

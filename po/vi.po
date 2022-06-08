@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1244,13 +1244,6 @@ msgstr "%m/%d/%Y"
 msgid "%s"
 msgstr "%s"
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-
 #, fuzzy, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)"
@@ -1464,6 +1457,9 @@ msgstr "(Chọn chế độ)"
 
 msgid "(Show only reader:"
 msgstr "(Chỉ hiển thị người đọc:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(trống)"
@@ -2443,9 +2439,6 @@ msgstr "Thêm tập tin vào danh sách phát"
 msgid "Add files to playlist"
 msgstr "Thêm tệp vào danh sách phát"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3357,9 +3350,6 @@ msgstr ""
 "Các plugin sao lưu được tìm thấy\n"
 "Bạn có muốn cài đặt bây giờ?"
 
-msgid "Backup settings"
-msgstr "Cài đặt sao lưu"
-
 msgid "Backup system settings"
 msgstr "Cài đặt hệ thống sao lưu"
 
@@ -3956,9 +3946,6 @@ msgstr "Không thể xóa tập tin"
 msgid "Can not upload timer"
 msgstr "Change next timer"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Chỉ có thể tìm một ổ đĩa mạng để lưu trữ bản sao lưu này có nghĩa là sau khi đèn flash tự động không hoạt động. Alternatively bạn có thể gắn ổ đĩa mạng sau đèn flash và thực hiện thiết lập lại manufacker thành autorestore"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -4026,6 +4013,12 @@ msgstr "Hủy lưu timeshift như phim"
 #, fuzzy
 msgid "Cancel selection"
 msgstr "Chọn kênh"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #, fuzzy
 msgid "Cancel the image selection and exit"
@@ -5153,6 +5146,9 @@ msgstr "Tiếp tục phát lại"
 msgid "Continue playing"
 msgstr "Tiếp tục chơi"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5241,9 +5237,6 @@ msgstr "Bờ biển ngà"
 
 msgid "Could not connect to server"
 msgstr "Không thể kết nối đến máy chủ"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Không thể tìm thấy phương tiện phù hợp - Vui lòng xóa một số hình ảnh đã tải xuống hoặc chèn phương tiện (ví dụ: thẻ nhớ USB) với không gian trống đầy đủ và thử lại!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Không thể tải! Không có đĩa được đưa vào?"
@@ -6499,6 +6492,9 @@ msgstr ""
 "Bạn có muốn sao lưu ngay bây giờ?\n"
 "Sau khi nhấn OK, vui lòng đợi!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Bạn có muốn ghi bộ sưu tập này vào phương tiện DVD không?"
 
@@ -6536,12 +6532,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Bạn có muốn thực hiện quét dịch vụ thủ công khác không?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Bạn có muốn flash hình ảnh\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Bạn có muốn cài đặt một danh sách kênh?"
@@ -7414,22 +7406,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Lỗi trong khi tải hình ảnh\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Lỗi trong khi giải nén hình ảnh\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Lỗi thực thi plugin"
@@ -7467,6 +7445,10 @@ msgstr ""
 "Lỗi đổi tên% s thành% s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Lỗi, chưa biết kết quả!"
 
@@ -7499,11 +7481,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Không thể tìm thấy phương tiện phù hợp - Vui lòng xóa một số hình ảnh đã tải xuống hoặc chèn phương tiện (ví dụ: thẻ nhớ USB) với không gian trống đầy đủ và thử lại!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
 
 #, fuzzy
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8097,11 +8089,15 @@ msgstr "Đã sửa lỗi phông chữ X11 (SD)"
 msgid "Flash Image"
 msgstr "Hình ảnh flash"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8120,22 +8116,22 @@ msgstr "Flash khi đang bay phần mềm Nhận của bạn."
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Hình ảnh nhấp nháy thành công"
 
 msgid "Flashing Image"
 msgstr "Hình ảnh nhấp nháy"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Hình ảnh nhấp nháy thành công"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Hình ảnh nhấp nháy không thành công\n"
-"%s"
 
 #, fuzzy
 msgid "Flat alphabetical"
@@ -9262,6 +9258,9 @@ msgstr "Bỏ qua bất ngờ thức dậy và ở trong chế độ chờ"
 msgid "Image Backup"
 msgstr "Sao lưu hình ảnh"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Hình ảnh được tạo trên:% s /% s-% s-% s-backup-% s_recovery.zip"
@@ -9272,14 +9271,6 @@ msgstr "Hình ảnh trực tuyến của chúng tôi:% s /% s-% s-% s-backup-% s
 
 msgid "Image creation failed - "
 msgstr "Tạo hình ảnh thất bại - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Hình ảnh để cài đặt không hợp lệ\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Hình ảnh"
@@ -11784,11 +11775,11 @@ msgstr "Không, nhưng khởi động lại từ đầu"
 msgid "No, do not backup a image"
 msgstr "Không, không sao lưu ảnh"
 
-msgid "No, don't flash this image"
-msgstr "Không, đừng flash hình ảnh"
-
 msgid "No, do nothing."
 msgstr "Không làm gì cả."
+
+msgid "No, don't flash this image"
+msgstr "Không, đừng flash hình ảnh"
 
 msgid "No, just start my %s %s"
 msgstr "Không, chỉ cần bắt đầu% s% s"
@@ -12896,12 +12887,8 @@ msgstr ""
 "\n"
 "Vui lòng nhấn OK để tiếp tục."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Vui lòng chọn những gì cần làm sau khi flash hình ảnh:\n"
-"(Ngoài ra, nếu nó tồn tại, một tập lệnh cục bộ cũng sẽ được thực thi tại /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Vui lòng thiết lập bộ chỉnh tần số A"
@@ -13279,6 +13266,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Nhấn OK để bắt đầu quét"
@@ -13291,6 +13281,9 @@ msgstr "Nhấn MENU trên điều khiển từ xa của bạn để có thêm t�
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Nhấn MENU để cài đặt (các) ngôn ngữ bổ sung."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Nhấn OK trên điều khiển từ xa của bạn để tiếp tục."
@@ -17075,6 +17068,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "vị trí%s -%s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "vị trí%s -%s (hình ảnh hiện tại)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -19574,9 +19575,6 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Tiếng Ukraina"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "Nâng cấp không giám sát mà không cần GUI"
 
@@ -20521,6 +20519,9 @@ msgstr ""
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Chỉ có thể tìm một ổ đĩa mạng để lưu trữ bản sao lưu này có nghĩa là sau khi đèn flash tự động không hoạt động. Alternatively bạn có thể gắn ổ đĩa mạng sau đèn flash và thực hiện thiết lập lại manufacker thành autorestore"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Cảnh báo: Đây là sự cố cuối cùng trước khi thực hiện khởi động lại tự động.\n"
@@ -22834,14 +22835,6 @@ msgstr "bỏ qua"
 msgid "skip forward (enter time)"
 msgstr "bỏ qua phía trước (nhập thời gian)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "vị trí%s -%s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "vị trí%s -%s (hình ảnh hiện tại)"
-
 msgid "slow"
 msgstr "chậm"
 
@@ -23160,6 +23153,58 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Backup settings"
+#~ msgstr "Cài đặt sao lưu"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Bạn có muốn flash hình ảnh\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi trong khi tải hình ảnh\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi trong khi giải nén hình ảnh\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Hình ảnh nhấp nháy không thành công\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Hình ảnh để cài đặt không hợp lệ\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Vui lòng chọn những gì cần làm sau khi flash hình ảnh:\n"
+#~ "(Ngoài ra, nếu nó tồn tại, một tập lệnh cục bộ cũng sẽ được thực thi tại /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Kích hoạt cấu hình hiện tại"

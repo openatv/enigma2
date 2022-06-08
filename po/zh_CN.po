@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1225,16 +1225,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"按ok键选择多重启动镜像\n"
-"按exit键退出菜单"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1446,6 +1436,9 @@ msgstr "(选择模式)"
 
 msgid "(Show only reader:"
 msgstr "(仅显示读卡器:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(空)"
@@ -2408,9 +2401,6 @@ msgstr "将文件添加到播放列表"
 msgid "Add files to playlist"
 msgstr "将文件添加到播放列表"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr "添加新标签"
 
@@ -3308,9 +3298,6 @@ msgstr ""
 "找到的备份插件\n"
 "是否要立即安装？"
 
-msgid "Backup settings"
-msgstr "备份设置"
-
 msgid "Backup system settings"
 msgstr "备份系统设置"
 
@@ -3913,9 +3900,6 @@ msgstr "无法更新定时器"
 msgid "Can not upload timer"
 msgstr "无法上传定时器"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "只能找到一个网络驱动器来存储备份,这意味着烧录后自动恢复将不起作用. 或者,您可以在烧录后安装网络驱动器并执行自动恢复"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "无法分配程序源(例如调谐器)"
 
@@ -3978,6 +3962,12 @@ msgstr "取消保存时移为电影"
 
 msgid "Cancel selection"
 msgstr "取消选择"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "取消固件选择并退出"
@@ -5090,6 +5080,9 @@ msgstr "继续播放"
 msgid "Continue playing"
 msgstr "继续播放"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "继续在线更新"
 
@@ -5174,9 +5167,6 @@ msgstr "象牙海岸"
 
 msgid "Could not connect to server"
 msgstr "无法连接到服务器"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "找不到合适的媒体-请删除一些下载的镜像或插入一个具有足够可用空间的媒体(如U盘),然后重试!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "无法加载媒体!没有插入光盘?"
@@ -6407,6 +6397,9 @@ msgstr ""
 "是否马上备份?\n"
 "按确定键后,请稍等!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "是否要将这个合集刻录到 DVD 介质中？"
 
@@ -6445,12 +6438,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "是否进行其他手动频道扫描?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"是否刷写镜像\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "是否安装频道列表?"
@@ -7304,22 +7293,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"下载镜像时出错\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"解压缩镜像时出错\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "执行插件时出错"
@@ -7356,6 +7331,10 @@ msgstr ""
 "重命名 %s 到 %s 时出错:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
 
@@ -7388,11 +7367,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr "错误:校验和无效！"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "找不到合适的媒体-请删除一些下载的镜像或插入一个具有足够可用空间的媒体(如U盘),然后重试!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒体并重试!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "错误:无法处理命令.请稍后再试."
@@ -7981,11 +7970,15 @@ msgstr "固定的X11字体(标清)"
 msgid "Flash Image"
 msgstr "刷写镜像"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8004,22 +7997,22 @@ msgstr "在线或从本地来源刷写接收器镜像."
 msgid "Flash type"
 msgstr "闪存类型"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "刷写"
 
 msgid "Flashing Image"
 msgstr "刷写镜像"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "镜像刷写成功"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"镜像刷写失败\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "按字母顺序排列"
@@ -9116,6 +9109,9 @@ msgstr "忽略意外唤醒并保持待机状态"
 msgid "Image Backup"
 msgstr "镜像备份"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9126,14 +9122,6 @@ msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip已创建"
 
 msgid "Image creation failed - "
 msgstr "镜像创建失败 - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"要安装的镜像无效\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "镜像向导"
@@ -11559,11 +11547,11 @@ msgstr "否,但从重新开始启动"
 msgid "No, do not backup a image"
 msgstr "否,不备份映像"
 
-msgid "No, don't flash this image"
-msgstr "否,不刷写镜像"
-
 msgid "No, do nothing."
 msgstr "否,什么也不做."
+
+msgid "No, don't flash this image"
+msgstr "否,不刷写镜像"
 
 msgid "No, just start my %s %s"
 msgstr "否,只需启动我的 %s %s"
@@ -12649,12 +12637,8 @@ msgstr ""
 "\n"
 "请按OK键继续.."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"请选择刷机后的操作:\n"
-"(此外,如果存在,也会在/media/hdd/images/config/myrestore.sh 执行本地脚本)"
 
 msgid "Please set up tuner A"
 msgstr "请设置调谐器 A"
@@ -13034,6 +13018,9 @@ msgstr "按<>键或菜单键选择不同的提交日志"
 msgid "Press <> or menu to select the different info screens"
 msgstr "按<>键或菜单键选择不同的信息屏幕"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr "按EXIT键返回帮助界面."
 
@@ -13045,6 +13032,9 @@ msgstr "按遥控器的MENU键获得更多信息."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "按MENU键安装其他语言."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "按遥控器上的OK键继续."
@@ -16758,6 +16748,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "分区%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "分区%s - %s(当前镜像)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -19210,9 +19208,6 @@ msgstr "乌克兰"
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒体并重试!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级,没有图形用户界面"
 
@@ -20142,6 +20137,9 @@ msgstr "警告:覆盖当前处于活动状态!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "警告:有 %d 个更新包!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "只能找到一个网络驱动器来存储备份,这意味着烧录后自动恢复将不起作用. 或者,您可以在烧录后安装网络驱动器并执行自动恢复"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "警告:这是执行自动重启之前的最后一次崩溃.\n"
@@ -22425,14 +22423,6 @@ msgstr "快进"
 msgid "skip forward (enter time)"
 msgstr "快进(输入时间)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "分区%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "分区%s - %s(当前镜像)"
-
 msgid "slow"
 msgstr "慢"
 
@@ -22748,6 +22738,68 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "按ok键选择多重启动镜像\n"
+#~ "按exit键退出菜单"
+
+#~ msgid "Backup settings"
+#~ msgstr "备份设置"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "是否刷写镜像\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "下载镜像时出错\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "解压缩镜像时出错\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "镜像刷写失败\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "要安装的镜像无效\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "请选择刷机后的操作:\n"
+#~ "(此外,如果存在,也会在/media/hdd/images/config/myrestore.sh 执行本地脚本)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "激活当前配置"

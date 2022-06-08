@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1258,16 +1258,6 @@ msgstr "%m/%d/%Y"
 msgid "%s"
 msgstr "%s"
 
-#, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Nyomja le az OK-t a multiboot választáshoz\n"
-"Nyomja az EXIT-et kilépéshez"
-
 #, fuzzy, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)"
@@ -1481,6 +1471,9 @@ msgstr "(Kiválasztási mód)"
 
 msgid "(Show only reader:"
 msgstr "(Csak olvasó megjelenítése:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(üres)"
@@ -2451,9 +2444,6 @@ msgstr "Fájl hozzáadása a lejátszási listához"
 msgid "Add files to playlist"
 msgstr "Fájlok hozzáadása a lejátszási listához"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr "Új címke hozzáadása "
 
@@ -3357,9 +3347,6 @@ msgstr ""
 "Mentett bővítményeket talált\n"
 "szeretné telepíteni most?"
 
-msgid "Backup settings"
-msgstr "Beállítások mentése"
-
 msgid "Backup system settings"
 msgstr "Rendszerbeállítások mentése"
 
@@ -3948,9 +3935,6 @@ msgstr "Nem lehet frissíteni az időzítőket"
 msgid "Can not upload timer"
 msgstr "Nem lehet feltölteni az időzítőt"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Ha csak egy hálózati meghajtót talál a mentés tárolására, akkor ez azt jelenti, hogy a Flashelés után az automatikus tárolás nem fog működni. Alternatív megoldásként csatlakoztasson egy hálózati meghajtót a Flashelés után, és elvégezheti a gyártó visszaállítását az automatikus tároláshoz"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nem lehet lefoglalni a program forrását (pl. tuner)"
 
@@ -4018,6 +4002,12 @@ msgstr "Timeshift felvételének megszakítása"
 #, fuzzy
 msgid "Cancel selection"
 msgstr "Csatorna választás"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 #, fuzzy
 msgid "Cancel the image selection and exit"
@@ -5137,6 +5127,9 @@ msgstr "Lejátszás folytatása"
 msgid "Continue playing"
 msgstr "Lejátszás folytatása"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5224,9 +5217,6 @@ msgstr "Elefántcsontpart"
 
 msgid "Could not connect to server"
 msgstr "Nem lehet kapcsolódni a kiszolgálóhoz"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Nem találtam megfelelő adathordozót - Kérjük, távolítsa el a letöltött képeket, vagy helyezzen be egy adathordozót (pl. USB drive) elegendő szabad hellyel, és próbálja újra!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nem lehet betölteni a hordozót! Van benne lemez?"
@@ -6466,6 +6456,9 @@ msgstr ""
 "Szeretne menteni most?\n"
 "Az OK gomb lenyomása után kérem, várjon!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Fel szeretné írni ezt a gyűjteményt a DVD lemezre?"
 
@@ -6504,12 +6497,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Szeretne most egy másik kézi keresést lefuttatni?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Szeretné flashelni a lemezképet\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Biztos benne, hogy feltelepíti ezt a csatornalistát?"
@@ -7366,22 +7355,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Hiba a lemezkép letöltése közben\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Hiba a lemezkép kitömörítése közben\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Bővítmény indítási hiba"
@@ -7418,6 +7393,10 @@ msgstr ""
 "Hiba átnevezése %s %s-ra:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Hiba, ismeretlen végeredmény!"
 
@@ -7450,11 +7429,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Nem találtam megfelelő adathordozót - Kérjük, távolítsa el a letöltött képeket, vagy helyezzen be egy adathordozót (pl. USB drive) elegendő szabad hellyel, és próbálja újra!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Nem lehet létrehozni a szükséges könyvtárakat az adathordozón (pl. USB drive vagy Merevlemez) - Ellenőrizze az adathordozót, és próbálja újra!"
 
 #, fuzzy
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8047,11 +8036,15 @@ msgstr "Rögzítve X11 betűként (SD)"
 msgid "Flash Image"
 msgstr "Flash lemezkép"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8070,22 +8063,22 @@ msgstr "A készülék szoftverének Flashelése."
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Flashelés"
 
 msgid "Flashing Image"
 msgstr "Lemezkép Flashelés"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Lemezkép Flashelés sikeres"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Lemezkép Flashelés nem sikerült\n"
-"%s"
 
 #, fuzzy
 msgid "Flat alphabetical"
@@ -9196,6 +9189,9 @@ msgstr "Hagyja figyelmen kívül a váratlan ébredést és maradjon készenlét
 msgid "Image Backup"
 msgstr "Lemezkép Mentés"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_recovery.zip"
@@ -9206,14 +9202,6 @@ msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "A lemezkép létrehozása nem sikerült- "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"A telepítendő lemezkép érvénytelen\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "ImageWizard"
@@ -11703,11 +11691,11 @@ msgstr "Nem, de indítsa elölröl"
 msgid "No, do not backup a image"
 msgstr "Ne készítsen biztonsági másolatot egy lemezképről"
 
-msgid "No, don't flash this image"
-msgstr "Ne Flash-eljen egy lemezképet"
-
 msgid "No, do nothing."
 msgstr "Nem, ne csináljon semmit."
+
+msgid "No, don't flash this image"
+msgstr "Ne Flash-eljen egy lemezképet"
 
 msgid "No, just start my %s %s"
 msgstr "Nem, csak indítsa el %s %s"
@@ -12811,12 +12799,8 @@ msgstr ""
 "\n"
 "Nyomja le az OK gombot a folytatáshoz."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Kérjük, válassza ki, mi a teendő a lemezkép flashelése után:\n"
-"(Ezenkívül, ha létezik, egy helyi szkript is végrehajtásra kerül a /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Állítsa be az A tunert"
@@ -13194,6 +13178,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Az OK gombbal indíthatja a keresést"
@@ -13206,6 +13193,9 @@ msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "További nyelv(ek) telepítéséhez nyomja le a MENU billentyűt."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
@@ -16963,6 +16953,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "bővítőhely%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "bővítőhely%s - %s (aktuális lemezkép)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -19454,9 +19452,6 @@ msgstr "Ukrajna"
 msgid "Ukrainian"
 msgstr "Ukrán"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Nem lehet létrehozni a szükséges könyvtárakat az adathordozón (pl. USB drive vagy Merevlemez) - Ellenőrizze az adathordozót, és próbálja újra!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "Felügyelet nélküli frissítés GUI nélkül"
 
@@ -20394,6 +20389,9 @@ msgstr ""
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Ha csak egy hálózati meghajtót talál a mentés tárolására, akkor ez azt jelenti, hogy a Flashelés után az automatikus tárolás nem fog működni. Alternatív megoldásként csatlakoztasson egy hálózati meghajtót a Flashelés után, és elvégezheti a gyártó visszaállítását az automatikus tároláshoz"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Figyelmeztetés: Ez az utolsó összeomlás az automatikus újraindítás végrehajtása előtt.\n"
@@ -22688,14 +22686,6 @@ msgstr "előre kihagyása"
 msgid "skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "bővítőhely%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "bővítőhely%s - %s (aktuális lemezkép)"
-
 msgid "slow"
 msgstr "lassú"
 
@@ -23012,6 +23002,68 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Nyomja le az OK-t a multiboot választáshoz\n"
+#~ "Nyomja az EXIT-et kilépéshez"
+
+#~ msgid "Backup settings"
+#~ msgstr "Beállítások mentése"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Szeretné flashelni a lemezképet\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Hiba a lemezkép letöltése közben\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Hiba a lemezkép kitömörítése közben\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lemezkép Flashelés nem sikerült\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "A telepítendő lemezkép érvénytelen\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Kérjük, válassza ki, mi a teendő a lemezkép flashelése után:\n"
+#~ "(Ezenkívül, ha létezik, egy helyi szkript is végrehajtásra kerül a /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktuális konfiguráció aktiválása"

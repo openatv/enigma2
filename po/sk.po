@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-05-29 15:26+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1244,16 +1244,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Pre výber multiboot stlačte OK\n"
-"Pre zatvorenie stlačte EXIT"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1465,6 +1455,9 @@ msgstr "(Režim výberu)"
 
 msgid "(Show only reader:"
 msgstr "(Zobraziť iba čítačku:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(prázdne)"
@@ -2430,9 +2423,6 @@ msgstr "Pridať súbor do playlistu"
 msgid "Add files to playlist"
 msgstr "Pridať súbory do playlistu"
 
-msgid "Add help text"
-msgstr "Pridať text pomocníka"
-
 msgid "Add new tag"
 msgstr "Pridať nový tag"
 
@@ -3330,9 +3320,6 @@ msgstr ""
 "Našli sa pluginy pre zálohovanie.\n"
 "Chcete nainštalovať teraz?"
 
-msgid "Backup settings"
-msgstr "Nastavenia zálohovania"
-
 msgid "Backup system settings"
 msgstr "Zálohovať nastavenia systému"
 
@@ -3935,9 +3922,6 @@ msgstr "Nemožno aktualizovať časovače"
 msgid "Can not upload timer"
 msgstr "Nemožno odoslať časovač"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Pre uloženie zálohy je dostupná len sieťová jednotka. Znamená to, že po flashovaní nebude fungovať automatické obnovenie. Alternatívne môžete pripojiť sieťovú jednotku po flashovaní a vykonať výrobný reset na automatické obnovenie"
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nemožno alokovať zdroj programu (napr. tuner)"
 
@@ -4000,6 +3984,12 @@ msgstr "Zrušiť ukladanie timeshiftu ako filmu"
 
 msgid "Cancel selection"
 msgstr "Zrušiť výber"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "Zrušiť výber image a ukončiť"
@@ -5110,6 +5100,9 @@ msgstr "Pokračovať v prehrávaní"
 msgid "Continue playing"
 msgstr "Pokračovať v prehrávaní"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "Pokračovať on-line aktualizáciou"
 
@@ -5194,9 +5187,6 @@ msgstr "Pobrežie Slonoviny"
 
 msgid "Could not connect to server"
 msgstr "Nemožno sa pripojiť na server"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Nenašlo sa vhodné médium - prosím odstráňte niektoré stiahnuté súbory s image alebo vložte médium (napr. USB kľúč) s dostatkom voľného miesta a skúste to znovu!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nemožno prehrať médium! Nie je vložený disk?"
@@ -6427,6 +6417,9 @@ msgstr ""
 "Chcete zálohovať teraz?\n"
 "Po stlačení tlačidla OK, čakajte prosím!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Chcete túto zostavu napáliť na DVD?"
 
@@ -6465,12 +6458,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Chcete urobiť ďalšie ručné vyhľadávanie staníc?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Chcete vykonať flash image\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Chcete nainštalovať zoznam kanálov?"
@@ -7327,22 +7316,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Chyba počas sťahovania image\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Chyba počas rozbaľovania image\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Chyba pri spustení pluginu"
@@ -7379,6 +7354,10 @@ msgstr ""
 "Chyba pri premenovaní %s na %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámy výsledok!"
 
@@ -7411,11 +7390,21 @@ msgstr "Chyba: nepodarilo sa nájsť žiadne image!"
 msgid "Error: Checksum is invalid!"
 msgstr "Chyba: kontrolný súčet je neplatný!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Nenašlo sa vhodné médium - prosím odstráňte niektoré stiahnuté súbory s image alebo vložte médium (napr. USB kľúč) s dostatkom voľného miesta a skúste to znovu!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Chyba: zlyhanie interakcie, nemožno zmeniť heslo!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Chyba: nové heslo nemôže zostať prázdne!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Nemožno vytvoriť požadované priečinky na médiu (disku USB či pevnom disku). Prosím skontrolujte médium a skúste to ešte raz!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Chyba: Príkaz sa nedá spracovať! Skúste neskôr prosím."
@@ -8004,12 +7993,16 @@ msgstr "Písmo Fixed X11 (SD)"
 msgid "Flash Image"
 msgstr "Flashovanie image"
 
-msgid "Flash Manager"
-msgstr "Správca flashovania"
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
 msgstr "Správca flashovania - %s image"
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Flashovanie online"
@@ -8027,22 +8020,22 @@ msgstr "Umožňuje inštaláciu softvéru pre váš prijímač v režime on the 
 msgid "Flash type"
 msgstr "Typ flash"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Flashovanie"
 
 msgid "Flashing Image"
 msgstr "Flashovanie image"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Flashovanie image bolo úspešné"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Flashovanie image bolo neúspešné\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Abecedne"
@@ -9139,6 +9132,9 @@ msgstr "Ignorovať neočakávané prebudenie a zostať v pohotovostnom režime"
 msgid "Image Backup"
 msgstr "Záloha image"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9149,14 +9145,6 @@ msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Vytváranie image bolo neúspešné - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Image určený na inštaláciu je neplatný\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Sprievodca pre image"
@@ -11583,11 +11571,11 @@ msgstr "Nie, ale začať znovu od začiatku"
 msgid "No, do not backup a image"
 msgstr "Nie, nezálohovať image"
 
-msgid "No, don't flash this image"
-msgstr "Nie, neflashovať image"
-
 msgid "No, do nothing."
 msgstr "Nie, nič nerobiť."
+
+msgid "No, don't flash this image"
+msgstr "Nie, neflashovať image"
 
 msgid "No, just start my %s %s"
 msgstr "Nie, iba spustiť môj %s %s"
@@ -12673,12 +12661,8 @@ msgstr ""
 "\n"
 "Pokračujte stlačením OK."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Prosím vyberte, čo chcete robiť po flashovaní image:\n"
-"(Navyše: ak existuje, tak bude spustený lokálny skript na /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Prosím nastavte tuner A"
@@ -13058,6 +13042,9 @@ msgstr "Stlačením <> alebo menu môžete vyberať rôzne záznamy o odoslaní"
 msgid "Press <> or menu to select the different info screens"
 msgstr "Stlačením <> alebo menu si môžete vybrať rôzne informačné obrazovky"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr "Stlačením EXIT sa vrátite na obrazovku pomocníka."
 
@@ -13069,6 +13056,9 @@ msgstr "Stlačením MENU na DO zobrazíte ďalšie možnosti."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Stlačením MENU nainštalujete ďalšie jazyky."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Ak chcete pokračovať, stlačte OK na diaľkovom ovládači."
@@ -16789,6 +16779,14 @@ msgid "Slot '%s'"
 msgstr "Slot '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "slot%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "slot%s - %s (aktuálny image)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
@@ -19249,9 +19247,6 @@ msgstr "Ukrajina"
 msgid "Ukrainian"
 msgstr "Ukrajinsky"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Nemožno vytvoriť požadované priečinky na médiu (disku USB či pevnom disku). Prosím skontrolujte médium a skúste to ešte raz!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužný upgrade bez GUI"
 
@@ -20181,6 +20176,9 @@ msgstr "Výstraha: momentálne je aktívne prepisovanie!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Výstraha: je dostupných %d aktualizačných balíkov!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Pre uloženie zálohy je dostupná len sieťová jednotka. Znamená to, že po flashovaní nebude fungovať automatické obnovenie. Alternatívne môžete pripojiť sieťovú jednotku po flashovaní a vykonať výrobný reset na automatické obnovenie"
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Výstraha: toto môže byť posledné zrútenie pred vykonaním automatického reštartu.\n"
@@ -22464,14 +22462,6 @@ msgstr "preskočiť dopredu"
 msgid "skip forward (enter time)"
 msgstr "skok dopredu (zadajte čas)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot%s - %s (aktuálny image)"
-
 msgid "slow"
 msgstr "pomaly"
 
@@ -22788,6 +22778,74 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Pre výber multiboot stlačte OK\n"
+#~ "Pre zatvorenie stlačte EXIT"
+
+#~ msgid "Add help text"
+#~ msgstr "Pridať text pomocníka"
+
+#~ msgid "Backup settings"
+#~ msgstr "Nastavenia zálohovania"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chcete vykonať flash image\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chyba počas sťahovania image\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chyba počas rozbaľovania image\n"
+#~ "%s"
+
+#~ msgid "Flash Manager"
+#~ msgstr "Správca flashovania"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Flashovanie image bolo neúspešné\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Image určený na inštaláciu je neplatný\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Prosím vyberte, čo chcete robiť po flashovaní image:\n"
+#~ "(Navyše: ak existuje, tak bude spustený lokálny skript na /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktivovať aktuálnu konfiguráciu"

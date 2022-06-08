@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2022-06-01 22:33+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1247,16 +1247,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Spauskite ok, kad pasirinkti daugialypį paleidimą\n"
-"Spauskite exit, kad užverti"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1470,6 +1460,9 @@ msgstr "(Pasirinkimo būsena)"
 
 msgid "(Show only reader:"
 msgstr "(rodyti tik skaitytoją:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(tuščia)"
@@ -2435,9 +2428,6 @@ msgstr "Pridėti failą į grojaraštį"
 msgid "Add files to playlist"
 msgstr "Pridėti failus į grojaraštį"
 
-msgid "Add help text"
-msgstr "Įtraukti žinyno tekstą"
-
 msgid "Add new tag"
 msgstr "Pridėti naują žymę"
 
@@ -3337,9 +3327,6 @@ msgstr ""
 "Rasti atsarginio kopijavimo priedai,\n"
 "norite juos įdiegti dabar?"
 
-msgid "Backup settings"
-msgstr "Atsarginio kopijavimo nustatymai"
-
 msgid "Backup system settings"
 msgstr "Atsarginė sistemos nustatymų kopija"
 
@@ -3942,9 +3929,6 @@ msgstr "Negalima atnaujinti laikmačių"
 msgid "Can not upload timer"
 msgstr "Neįmanoma įkelti laikmačio"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Įspėjimas: atsarginei kopijai saugoti yra tik tinklo diskas. Tai reiškia, kad automatinis atkūrimas neveiks po įdiegimo. Arba sumontuokite tinklo diską po įdiegimo ir atlikite gamintojo atstatymą iš naujo, kad atkurtumėte automatinį atkūrimą."
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Neįmanoma paskirstyti programos šaltinio (pvz., Imtuvo)"
 
@@ -4007,6 +3991,12 @@ msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 
 msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
@@ -5124,6 +5114,9 @@ msgstr "Tęsti atkūrimą"
 msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr "Tęsti internetinį naujinimą"
 
@@ -5208,9 +5201,6 @@ msgstr "Dramblio Kaulo Krantas"
 
 msgid "Could not connect to server"
 msgstr "Prie serverio prisijungti nepavyko"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Klaida: nepavyko rasti tinkamo įrenginio! Pašalinkite kai kuriuos atsisiųstus atvaizdus arba pridėkite kitą įrenginį (pvz., USB atmintinę) su pakankamai laisvos vietos ir bandykite dar kartą."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nepavyko atverti laikmenos! Neįdėtas diskas?"
@@ -6441,6 +6431,9 @@ msgstr ""
 "Ar norite sukurti atsarginę kopiją?\n"
 "Paspaudę 'OK', palaukite!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Jūs norite įrašyti šį rinkinį į DVD laikmeną?"
 
@@ -6479,12 +6472,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Ar norite atlikti kitą rankinę kanalų paiešką?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Ar norite įdiegti šį atvaizdą\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Ar norite įdiegti kanalų sąrašą?"
@@ -7341,22 +7330,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Klaida atsisiunčiant atvaizdą\n"
-" %s\n"
-" %s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Išarchyvuojamo atvaizdo klaida\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Klaida paleidžiant priedą"
@@ -7393,6 +7368,10 @@ msgstr ""
 "Klaida pervadinant %s į %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Klaida, nežinomas rezultatas!"
 
@@ -7425,11 +7404,21 @@ msgstr "Klaida: nepavyksta rasti jokių atvaizdų!"
 msgid "Error: Checksum is invalid!"
 msgstr "Klaida: kontrolinė suma neleistina!"
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Klaida: nepavyko rasti tinkamo įrenginio! Pašalinkite kai kuriuos atsisiųstus atvaizdus arba pridėkite kitą įrenginį (pvz., USB atmintinę) su pakankamai laisvos vietos ir bandykite dar kartą."
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Klaida: veiksmo klaida, slaptažodžio keisti neįmanoma!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Klaida: neįmanoma sukurti reikiamų katalogų paskirties įrenginyje (pvz., USB atmintinėje arba standžiajame diske)! Patikrinkite įrenginį ir bandykite dar kartą."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
@@ -8018,12 +8007,16 @@ msgstr "Fiksuotas X11 šriftas (SD)"
 msgid "Flash Image"
 msgstr "Įdiegti atvaizdą"
 
-msgid "Flash Manager"
-msgstr "Įdiegimo valdytojas"
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
 msgstr "Įdiegimo valdytojas – %s atvaizdai"
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
+msgstr ""
 
 msgid "Flash Online"
 msgstr "Įdiegti tiesiai iš interneto"
@@ -8041,22 +8034,22 @@ msgstr "Įdiegti jūsų imtuvo programinę įrangą."
 msgid "Flash type"
 msgstr "Įdiegimo tipas"
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Įdiegimas"
 
 msgid "Flashing Image"
 msgstr "Įdiegtas atvaizdas"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Atvaizdas įdiegtas sėkmingai"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Atvaizdo įdiegti nepavyko\n"
-"%s"
 
 msgid "Flat alphabetical"
 msgstr "Plokščia abėcėlė"
@@ -9153,6 +9146,9 @@ msgstr "Ignoruokite netikėtą pabudimą ir likite budėjimo režime"
 msgid "Image Backup"
 msgstr "Atsarginė atvaizdo kopija"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9163,14 +9159,6 @@ msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Atvaizdo sukurti nepavyko - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Atvaizdo įdiegimas yra neleistinas\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Atvaizdo vedlys"
@@ -11597,11 +11585,11 @@ msgstr "Ne, bet vėl pradėti nuo pradžių"
 msgid "No, do not backup a image"
 msgstr "Ne, nereikia atsarginės atvaizdo kopijos"
 
-msgid "No, don't flash this image"
-msgstr "Ne, nediekite šio atvaizdo"
-
 msgid "No, do nothing."
 msgstr "Ne, nereikia."
+
+msgid "No, don't flash this image"
+msgstr "Ne, nediekite šio atvaizdo"
 
 msgid "No, just start my %s %s"
 msgstr "Ne, tik įjungti %s %s"
@@ -12687,12 +12675,8 @@ msgstr ""
 "\n"
 "Spauskite 'OK', kad tęsti."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Pasirinkite, ką daryti po atvaizdo įkėlimo:\n"
-"(papildomai bus įvykdytas vietinis scenarijus, jei toks yra, iš /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
 msgstr "Sukonfigūruokite A imtuvą"
@@ -13072,6 +13056,9 @@ msgstr "Paspauskite <> arba meniu, kad pasirinktumėte skirtingus naujinimo žur
 msgid "Press <> or menu to select the different info screens"
 msgstr "Paspauskite <> arba meniu, kad pasirinktumėte skirtingus informacijos ekranus"
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
 
@@ -13083,6 +13070,9 @@ msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinki
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Norėdami įdiegti papildomą (-as) kalbą (-as), paspauskite MENU."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Paspauskite OK savo valdymo pulte ir tęskite."
@@ -16803,6 +16793,14 @@ msgid "Slot '%s'"
 msgstr "Lizdas '%s'"
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "lizdas%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "lizdas%s -%s (dabartinis atvaizdas)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr "Lizdas '%s': %s%s"
 
@@ -19258,9 +19256,6 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Klaida: neįmanoma sukurti reikiamų katalogų paskirties įrenginyje (pvz., USB atmintinėje arba standžiajame diske)! Patikrinkite įrenginį ir bandykite dar kartą."
-
 msgid "Unattended upgrade without GUI"
 msgstr "Automatinis atnaujinimas be grafinės aplinkos"
 
@@ -20190,6 +20185,9 @@ msgstr "Įspėjimas: nepaisymas šiuo metu aktyvus!"
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Įspėjimas: yra %d atnaujinimo paketų!"
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Įspėjimas: atsarginei kopijai saugoti yra tik tinklo diskas. Tai reiškia, kad automatinis atkūrimas neveiks po įdiegimo. Arba sumontuokite tinklo diską po įdiegimo ir atlikite gamintojo atstatymą iš naujo, kad atkurtumėte automatinį atkūrimą."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Įspėjimas: tai paskutinis gedimas prieš atliekant naują automatinį paleidimą.\n"
@@ -22476,14 +22474,6 @@ msgstr "praleisti į priekį"
 msgid "skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "lizdas%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "lizdas%s -%s (dabartinis atvaizdas)"
-
 msgid "slow"
 msgstr "lėtas"
 
@@ -22801,6 +22791,74 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Spauskite ok, kad pasirinkti daugialypį paleidimą\n"
+#~ "Spauskite exit, kad užverti"
+
+#~ msgid "Add help text"
+#~ msgstr "Įtraukti žinyno tekstą"
+
+#~ msgid "Backup settings"
+#~ msgstr "Atsarginio kopijavimo nustatymai"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ar norite įdiegti šį atvaizdą\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Klaida atsisiunčiant atvaizdą\n"
+#~ " %s\n"
+#~ " %s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Išarchyvuojamo atvaizdo klaida\n"
+#~ "%s"
+
+#~ msgid "Flash Manager"
+#~ msgstr "Įdiegimo valdytojas"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Atvaizdo įdiegti nepavyko\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Atvaizdo įdiegimas yra neleistinas\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Pasirinkite, ką daryti po atvaizdo įkėlimo:\n"
+#~ "(papildomai bus įvykdytas vietinis scenarijus, jei toks yra, iš /media/hdd/images/config/myrestore.sh)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktyvuokite šią konfigūraciją"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1224,16 +1224,6 @@ msgid "%s"
 msgstr "%s"
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-"%s\n"
-"Tryk OK for multiboot valg\n"
-"Tryk EXIT for at lukke"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1446,6 +1436,9 @@ msgstr "(Valgtilstand)"
 
 msgid "(Show only reader:"
 msgstr "(Vis kun læser:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(tom)"
@@ -2408,9 +2401,6 @@ msgstr "Tilføj fil til afspilningsliste"
 msgid "Add files to playlist"
 msgstr "Tilføj filer til afspilningsliste"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3310,9 +3300,6 @@ msgstr ""
 "Sikkerhedskopi Plugin fundet\n"
 "Vil du installere det nu ?"
 
-msgid "Backup settings"
-msgstr "Sikkerhedskopieringsindstillinger"
-
 msgid "Backup system settings"
 msgstr "Sikkerhedskopier systemindstillinger"
 
@@ -3917,9 +3904,6 @@ msgstr "Kan ikke opdatere Timere"
 msgid "Can not upload timer"
 msgstr "Kan ikke uploade Timer"
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Kan kun finde et netværksdrev til at gemme sikkerhedskopien på, dette medføre at autorgendan ikke virker efter flash. Du kan alternativt mounte netværksdrevet efter flash og udføre en producent nulstilling for at autogendanne."
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Kan ikke tildele kanalkilde (f.eks. Tuner)"
 
@@ -3982,6 +3966,12 @@ msgstr "Afbryd gem Timeshift som film"
 
 msgid "Cancel selection"
 msgstr "Kanalvalg"
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
+msgstr ""
 
 msgid "Cancel the image selection and exit"
 msgstr "Afbryd Image valg og afslut"
@@ -5096,6 +5086,9 @@ msgstr "Fortsæt afspilning"
 msgid "Continue playing"
 msgstr "Fortsæt afspilning"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5181,9 +5174,6 @@ msgstr "Elfenbenskysten"
 
 msgid "Could not connect to server"
 msgstr "Kunne ikke forbinde til server"
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
-msgstr "Kunne ikke finde passende medie - Fjern venligst nogle downloades Images eller indsæt et medie (f.eks. USB nøgle) med tilstrækkelig fri plads og prøv igen!"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunne ikke indlæse medie! Ingen disk isat ?"
@@ -6410,6 +6400,9 @@ msgstr ""
 "Vil du sikkerhedskopiere nu?\n"
 "Efter tryk på OK, vent venligst!"
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Vil du brænde denne samling til DVD medie ?"
 
@@ -6448,12 +6441,8 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Vil du foretage en ny manuel kanalsøgning ?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
-"Vil du virkelig flashe Image\n"
-"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Vil du installere en kanalliste ?"
@@ -7307,22 +7296,8 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
-"Fejl ved download af Image\n"
-"%s\n"
-"%s"
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
-msgstr ""
-"Vejl ved udpakning af Image\n"
-"%s"
 
 msgid "Error executing plugin"
 msgstr "Fejl ved kørsel af plugin"
@@ -7359,6 +7334,10 @@ msgstr ""
 "Fejl ved omdøbning af %s til %s:\n"
 "%s"
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Fejl, ukendt resultat!"
 
@@ -7391,11 +7370,21 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr "Kunne ikke finde passende medie - Fjern venligst nogle downloades Images eller indsæt et medie (f.eks. USB nøgle) med tilstrækkelig fri plads og prøv igen!"
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgstr "Ikke i stand til at oprette de nødvendige mapper på mediet (f.eks. USB-nøgle eller Harddisk) - Kontroller venligst medie og prøv igen!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Fejl: Kan ikke udføre kommandoen! prøv venligst igen senere."
@@ -7990,11 +7979,15 @@ msgstr "Fast X11 skrifttype (SD)"
 msgid "Flash Image"
 msgstr "Flash Image"
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -8013,22 +8006,22 @@ msgstr "Flash opdater din modtager på farten."
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Blinker"
 
 msgid "Flashing Image"
 msgstr "Flasher Image"
 
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr ""
+
 msgid "Flashing image successful"
 msgstr "Flash af Image lykkedes"
-
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Flash af Image mislykkedes\n"
-"%s"
 
 #, fuzzy
 msgid "Flat alphabetical"
@@ -9134,6 +9127,9 @@ msgstr "Ignorere uventet vågn op og forbliv i Standby"
 msgid "Image Backup"
 msgstr "Image sikkerhedskopi"
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9144,14 +9140,6 @@ msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
 msgstr "Image oprettelse mislykkedes - "
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
-msgstr ""
-"Image der skal installeres er ugyldig\n"
-"%s"
 
 msgid "ImageWizard"
 msgstr "Image assistent"
@@ -11638,11 +11626,11 @@ msgstr "Nej, men start fra begyndelsen igen"
 msgid "No, do not backup a image"
 msgstr "Nej, sikkerhedskopier ikke Image"
 
-msgid "No, don't flash this image"
-msgstr "Nej flash ikke et Image"
-
 msgid "No, do nothing."
 msgstr "Nej, gør intet."
+
+msgid "No, don't flash this image"
+msgstr "Nej flash ikke et Image"
 
 msgid "No, just start my %s %s"
 msgstr "Nej, bare start min %s %s"
@@ -12750,12 +12738,8 @@ msgstr ""
 "\n"
 "Tryk venligst på OK for at fortsætte."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
-"Vælg venligst hvad der skal ske efter flash af Imaget:\n"
-"(Desuden vil et lokal skript ligeledes blive eksekveret fra /media/hdd/images/config/myrestore.sh, hvis fundet)"
 
 msgid "Please set up tuner A"
 msgstr "Indstil venligst Tuner A"
@@ -13136,6 +13120,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Tryk OK for at starte søgningen"
@@ -13148,6 +13135,9 @@ msgstr "Tryk MENU på din fjernbetjening for flere indstillinger."
 
 msgid "Press MENU to install additional language(s)."
 msgstr "Tryk MENU for at installere yderligere sprog."
+
+msgid "Press OK for MultiBoot selection."
+msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Tryk OK på din fjernbetjening for at fortsætte."
@@ -16914,6 +16904,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr "slot%s - %s"
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr "slot%s - %s (aktuelt Image)"
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -19394,9 +19392,6 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainsk"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Ikke i stand til at oprette de nødvendige mapper på mediet (f.eks. USB-nøgle eller Harddisk) - Kontroller venligst medie og prøv igen!"
-
 msgid "Unattended upgrade without GUI"
 msgstr "Ubevogtet opgradering uden GUI"
 
@@ -20333,6 +20328,9 @@ msgstr ""
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
+msgstr "Kan kun finde et netværksdrev til at gemme sikkerhedskopien på, dette medføre at autorgendan ikke virker efter flash. Du kan alternativt mounte netværksdrevet efter flash og udføre en producent nulstilling for at autogendanne."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Advarsel: Dette er sidste nedbrud før der udføres en automatisk genstart.\n"
@@ -22637,14 +22635,6 @@ msgstr "Hop fremad"
 msgid "skip forward (enter time)"
 msgstr "Hop fremad (angiv tid)"
 
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr "slot%s - %s"
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
-msgstr "slot%s - %s (aktuelt Image)"
-
 msgid "slow"
 msgstr "Langsom"
 
@@ -22961,6 +22951,68 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok for multiboot selection\n"
+#~ "Press exit to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Tryk OK for multiboot valg\n"
+#~ "Tryk EXIT for at lukke"
+
+#~ msgid "Backup settings"
+#~ msgstr "Sikkerhedskopieringsindstillinger"
+
+#, python-format
+#~ msgid ""
+#~ "Do you want to flash image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Vil du virkelig flashe Image\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during downloading image\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fejl ved download af Image\n"
+#~ "%s\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error during unzipping image\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Vejl ved udpakning af Image\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Flashing image was not successful\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Flash af Image mislykkedes\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Image to install is invalid\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Image der skal installeres er ugyldig\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Please select what to do after flashing the image:\n"
+#~ "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+#~ msgstr ""
+#~ "Vælg venligst hvad der skal ske efter flash af Imaget:\n"
+#~ "(Desuden vil et lokal skript ligeledes blive eksekveret fra /media/hdd/images/config/myrestore.sh, hvis fundet)"
 
 #~ msgid "Activate current configuration"
 #~ msgstr "Aktiver den aktuelle konfiguration"

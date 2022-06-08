@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 20:45+0000\n"
+"POT-Creation-Date: 2022-06-07 18:35+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_GB/>\n"
@@ -1203,13 +1203,6 @@ msgid "%s"
 msgstr ""
 
 #, python-format
-msgid ""
-"%s\n"
-"Press ok for multiboot selection\n"
-"Press exit to close"
-msgstr ""
-
-#, python-format
 msgid "%s  (%s)"
 msgstr ""
 
@@ -1421,6 +1414,9 @@ msgstr ""
 
 msgid "(Show only reader:"
 msgstr "(Show only reader:"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(empty)"
 msgstr "(empty)"
@@ -2371,9 +2367,6 @@ msgstr "Add file to playlist"
 msgid "Add files to playlist"
 msgstr "Add files to playlist"
 
-msgid "Add help text"
-msgstr ""
-
 msgid "Add new tag"
 msgstr ""
 
@@ -3267,9 +3260,6 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup settings"
-msgstr ""
-
 msgid "Backup system settings"
 msgstr "Backup system settings"
 
@@ -3866,9 +3856,6 @@ msgstr ""
 msgid "Can not upload timer"
 msgstr ""
 
-msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr ""
-
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
@@ -3926,6 +3913,12 @@ msgid "Cancel save timeshift as movie"
 msgstr "Cancel save timeshift as movie"
 
 msgid "Cancel selection"
+msgstr ""
+
+msgid "Cancel the flash process"
+msgstr ""
+
+msgid "Cancel the flash process and exit all menus"
 msgstr ""
 
 msgid "Cancel the image selection and exit"
@@ -5036,6 +5029,9 @@ msgstr "Continue playback"
 msgid "Continue playing"
 msgstr "Continue playing"
 
+msgid "Continue with the flash process"
+msgstr ""
+
 msgid "Continue with the on-line update"
 msgstr ""
 
@@ -5119,9 +5115,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 msgid "Could not connect to server"
-msgstr ""
-
-msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
@@ -6336,6 +6329,9 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 
+msgid "Do you want to backup settings?"
+msgstr ""
+
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Do you want to burn this collection to DVD medium?"
 
@@ -6369,9 +6365,7 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Do you want to do another manual service scan?"
 
 #, python-format
-msgid ""
-"Do you want to flash image\n"
-"%s"
+msgid "Do you want to flash the image '%s'?"
 msgstr ""
 
 msgid "Do you want to install a channel list?"
@@ -7196,16 +7190,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Error during downloading image\n"
-"%s\n"
-"%s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error during unzipping image\n"
-"%s"
+msgid "Error downloading image '%s'!"
 msgstr ""
 
 msgid "Error executing plugin"
@@ -7239,6 +7224,10 @@ msgid ""
 "%s"
 msgstr ""
 
+#, python-format
+msgid "Error unzipping image '%s'!"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr ""
 
@@ -7269,10 +7258,20 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
+msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
+msgstr ""
+
+#, python-format
+msgid "Error: Image '%s' to install is invalid!"
+msgstr ""
+
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
 msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -7856,11 +7855,15 @@ msgstr ""
 msgid "Flash Image"
 msgstr ""
 
-msgid "Flash Manager"
-msgstr ""
-
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
+msgstr ""
+
+msgid "Flash Manager - Distributions"
+msgstr ""
+
+msgid "Flash Manager Actions"
 msgstr ""
 
 msgid "Flash Online"
@@ -7879,19 +7882,21 @@ msgstr ""
 msgid "Flash type"
 msgstr ""
 
+#, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
 msgid "Flashing"
 msgstr "Flashing"
 
 msgid "Flashing Image"
 msgstr ""
 
-msgid "Flashing image successful"
+#, python-format
+msgid "Flashing image '%s' was not successful!"
 msgstr ""
 
-#, python-format
-msgid ""
-"Flashing image was not successful\n"
-"%s"
+msgid "Flashing image successful"
 msgstr ""
 
 msgid "Flat alphabetical"
@@ -8980,6 +8985,9 @@ msgstr ""
 msgid "Image Backup"
 msgstr ""
 
+msgid "Image Flash Actions"
+msgstr ""
+
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
@@ -8989,12 +8997,6 @@ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Image creation failed - "
-msgstr ""
-
-#, python-format
-msgid ""
-"Image to install is invalid\n"
-"%s"
 msgstr ""
 
 # TRANSLATORS: override en_US (en.po)
@@ -11409,11 +11411,11 @@ msgstr ""
 msgid "No, do not backup a image"
 msgstr ""
 
-msgid "No, don't flash this image"
-msgstr ""
-
 msgid "No, do nothing."
 msgstr "No, do nothing."
+
+msgid "No, don't flash this image"
+msgstr ""
 
 msgid "No, just start my %s %s"
 msgstr "No, just start my %s %s"
@@ -12504,9 +12506,7 @@ msgstr ""
 "\n"
 "Please press OK to continue."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -12853,6 +12853,9 @@ msgstr ""
 msgid "Press <> or menu to select the different info screens"
 msgstr ""
 
+msgid "Press EXIT to close."
+msgstr ""
+
 msgid "Press EXIT to return to the help screen."
 msgstr ""
 
@@ -12863,6 +12866,9 @@ msgid "Press MENU on your remote control for additional options."
 msgstr "Press MENU on your remote control for additional options."
 
 msgid "Press MENU to install additional language(s)."
+msgstr ""
+
+msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 msgid "Press OK on your remote control to continue."
@@ -16557,6 +16563,14 @@ msgid "Slot '%s'"
 msgstr ""
 
 #, python-format
+msgid "Slot '%s':  %s"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s':  %s  -  Current"
+msgstr ""
+
+#, python-format
 msgid "Slot '%s': %s%s"
 msgstr ""
 
@@ -18974,9 +18988,6 @@ msgstr ""
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr ""
-
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -19894,6 +19905,9 @@ msgstr ""
 
 #, python-format
 msgid "Warning: There are %d update packages!"
+msgstr ""
+
+msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -22131,14 +22145,6 @@ msgid "skip forward"
 msgstr "skip forward"
 
 msgid "skip forward (enter time)"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s"
-msgstr ""
-
-#, python-format
-msgid "Slot '%s':  %s  -  Current"
 msgstr ""
 
 msgid "slow"
