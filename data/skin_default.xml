@@ -994,43 +994,6 @@ self.autoResize()
 		<widget name="status" position="10,60" size="540,45" font="Regular;18" />
 		<widget name="slider" position="10,100" size="540,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>
-	<screen name="LanguageSelection" position="center,center" size="560,460" title="Language selection">
-		<panel name="BasicTemplate" />
-		<widget source="languages" render="Listbox" position="10,10" size="540,400" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{"template": [
-						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
-						MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
-					],
-				 "fonts": [gFont("Regular", 20)],
-				 "itemHeight": 50
-				}
-			</convert>
-		</widget>
-	</screen>
-	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<panel name="WizardMarginsTemplate"/>
-		<panel position="left" size="110,*">
-			<panel position="top" size="*,50"/>
-		</panel>
-		<panel name="RemoteControlTemplate"/>
-		<panel position="left" size="10,*" />
-		<panel position="right" size="10,*" />
-		<panel position="fill">
-			<widget name="text" position="top" size="*,240" font="Regular;23" valign="center" />
-			<widget source="languages" render="Listbox" position="fill" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
-							MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
-						],
-					"fonts": [gFont("Regular", 20)],
-					"itemHeight": 50
-					}
-				</convert>
-			</widget>
-		</panel>
-	</screen>
 	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
 		<panel name= "MessageBoxTemplate" />
 	</screen>
