@@ -387,43 +387,43 @@
 		<item level="2" text="Enable GStreamer pipeline graphs *" description="Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link.">config.crash.gstdot</item>
 	</setup>
 	<setup key="MovieSelection" title="Movie List Settings" showOpenWebIf="1">
-		<item level="0" text="Use trash can in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="0" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="0" text="Clean network trash cans" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="0" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="0" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
+		<item level="0" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="0" text="Space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="0" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="0" text="Font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.movielist.fontsize</item>
-		<item level="0" text="Number of rows" description="Number of rows to display">config.movielist.itemsperpage</item>
-		<item level="0" text="Use slim screen" description="Use the alternative screen">config.movielist.useslim</item>
+		<item level="0" text="Number of rows" description="Number of rows to display.">config.movielist.itemsperpage</item>
+		<item level="0" text="Use small screen" description="Use an alternative smaller screen.">config.movielist.useslim</item>
 		<item level="0" text="Use extended List" description="Use the extended List">config.movielist.useextlist</item>
 		<item level="0" text="Update delay for Events in List" description="Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !">config.movielist.eventinfo_delay</item>
 		<item level="0" text="Sort" description="Set the default sorting method.">config.movielist.moviesort</item>
 		<item level="0" text="Show extended description" description="Show or hide the extended description, (skin dependent).">config.movielist.description</item>
-		<item level="0" text="Use individual settings for each directory" description="When set each folder will show the previous state used, when off the default values will be shown.">config.movielist.settings_per_directory</item>
-		<item level="0" text="Behavior when a movie reaches the end" description="On reaching the end of a file during playback, you can choose the box's behavior.">config.usage.on_movie_eof</item>
+		<item level="0" text="Use per directory settings" description="When set each folder will show the previous state used, when off the default values will be shown.">config.movielist.settings_per_directory</item>
+		<item level="0" text="Action at end of media" description="Select what action to take when reaching the end of a media file during playback.">config.usage.on_movie_eof</item>
 		<item level="0" text="Stop service on return to movie list" description="Stop previous broadcasted service on return to movie list.">config.movielist.stop_service</item>
-		<item level="0" text="Show status icons in movie list" description="Shows the watched status of the movie.">config.usage.show_icons_in_movielist</item>
+		<item level="0" text="Show watch status" description="Shows the watched status of the media.">config.usage.show_icons_in_movielist</item>
 		<item level="0" text="Show icon for new/unseen items" description="Shows the icons when new/unseen, else will not show an icon." conditional="config.usage.show_icons_in_movielist.value">config.usage.movielist_unseen</item>
 		<item level="0" text="Play audio in background" description="Keeps MovieList open whilst playing audio files.">config.movielist.play_audio_internal</item>
-		<item level="0" text="Root directory" description="Sets the root folder of movie list, to remove the '..' from benign shown in that folder.">config.movielist.root</item>
+		<item level="0" text="Root directory" description="Sets the root directory of media list.  This removes the '..' entry from being shown in that directory.">config.movielist.root</item>
 		<item level="0" text="Hide known extensions" description="Allows you to hide the extensions of known file types.">config.movielist.hide_extensions</item>
-		<item level="0" text="Show underscore characters in filenames" description="If disabled, underscore characters in file and directory names are not shown and are replaced with spaces.">config.movielist.show_underscores</item>
-		<item level="0" text="Show live tv when movie stopped" description="When set the PIG will return to live after a movie has stopped playing.">config.movielist.show_live_tv_in_movielist</item>
-		<item level="0" text="RED button" description="Allows you to assign the selected function to this button.">config.movielist.btn_red</item>
-		<item level="0" text="GREEN button" description="Allows you to assign the selected function to this button.">config.movielist.btn_green</item>
-		<item level="0" text="YELLOW button" description="Allows you to assign the selected function to this button.">config.movielist.btn_yellow</item>
-		<item level="0" text="BLUE button" description="Allows you to assign the selected function to this button.">config.movielist.btn_blue</item>
-		<item level="0" text="RED long" description="Allows you to assign the selected function to this button.">config.movielist.btn_redlong</item>
-		<item level="0" text="GREEN long" description="Allows you to assign the selected function to this button.">config.movielist.btn_greenlong</item>
-		<item level="0" text="YELLOW long" description="Allows you to assign the selected function to this button.">config.movielist.btn_yellowlong</item>
-		<item level="0" text="BLUE long" description="Allows you to assign the selected function to this button.">config.movielist.btn_bluelong</item>
-		<item level="0" text="RADIO" description="Allows you to assign the selected function to this button.">config.movielist.btn_radio</item>
-		<item level="0" text="TV" description="Allows you to assign the selected function to this button.">config.movielist.btn_tv</item>
-		<item level="0" text="TEXT" description="Allows you to assign the selected function to this button.">config.movielist.btn_text</item>
-		<item level="0" text="F1" description="Allows you to assign the selected function to this button.">config.movielist.btn_F1</item>
-		<item level="0" text="F2" description="Allows you to assign the selected function to this button.">config.movielist.btn_F2</item>
-		<item level="0" text="F3" description="Allows you to assign the selected function to this button.">config.movielist.btn_F3</item>
+		<item level="0" text="Show underscore characters" description="Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces.">config.movielist.show_underscores</item>
+		<item level="0" text="Show live TV when movie stopped" description="When set the PIG will return to live after a movie has stopped playing.">config.movielist.show_live_tv_in_movielist</item>
+		<item level="0" text="RED button" description="Select the function to be assigned to this button.">config.movielist.btn_red</item>
+		<item level="0" text="GREEN button" description="Select the function to be assigned to this button.">config.movielist.btn_green</item>
+		<item level="0" text="YELLOW button" description="Select the function to be assigned to this button.">config.movielist.btn_yellow</item>
+		<item level="0" text="BLUE button" description="Select the function to be assigned to this button.">config.movielist.btn_blue</item>
+		<item level="0" text="RED long" description="Select the function to be assigned to this button.">config.movielist.btn_redlong</item>
+		<item level="0" text="GREEN long" description="Select the function to be assigned to this button.">config.movielist.btn_greenlong</item>
+		<item level="0" text="YELLOW long" description="Select the function to be assigned to this button.">config.movielist.btn_yellowlong</item>
+		<item level="0" text="BLUE long" description="Select the function to be assigned to this button.">config.movielist.btn_bluelong</item>
+		<item level="0" text="RADIO" description="Select the function to be assigned to this button.">config.movielist.btn_radio</item>
+		<item level="0" text="TV" description="Select the function to be assigned to this button.">config.movielist.btn_tv</item>
+		<item level="0" text="TEXT" description="Select the function to be assigned to this button.">config.movielist.btn_text</item>
+		<item level="0" text="F1" description="Select the function to be assigned to this button.">config.movielist.btn_F1</item>
+		<item level="0" text="F2" description="Select the function to be assigned to this button.">config.movielist.btn_F2</item>
+		<item level="0" text="F3" description="Select the function to be assigned to this button.">config.movielist.btn_F3</item>
 	</setup>
 	<setup key="Network" title="Network Settings">
 		<item text="Use DHCP" description="When enabled, use DHCP for the IP configuration.">config.network.dhcp</item>
@@ -492,11 +492,11 @@
 		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a pop up message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movie list" description="When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
-		<item level="2" text="Show status icons in movie list" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
+		<item level="2" text="Show watch status" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
 		<item level="2" text="Allow quit movieplayer with exit" description="When enabled, it is possible to leave the movieplayer with exit.">config.usage.leave_movieplayer_onExit</item>
 		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
 		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
-		<item level="2" text="Behavior when a movie reaches the end" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
+		<item level="2" text="Action at end of media" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
 		<item level="2" text="Display message before playing next movie" description="When enabled, a pop up message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
 		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
 		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
@@ -518,10 +518,10 @@
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Use trash can in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="1" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Clean network trash cans" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="1" text="Space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Always include ECM in recordings" description="Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off.">config.recording.always_ecm</item>
