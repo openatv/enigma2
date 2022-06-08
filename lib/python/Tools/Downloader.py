@@ -16,8 +16,8 @@ class DownloadWithProgress:
 		self.progressCallback = None
 		self.endCallback = None
 		self.errorCallback = None
-		self.endCallback2 = None
-		self.errorCallback2 = None
+		self.endCallback2 = None  # Temporary support for deprecated callbacks.
+		self.errorCallback2 = None  # Temporary support for deprecated callbacks.
 		self.stopFlag = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.reportProgress)
@@ -26,8 +26,7 @@ class DownloadWithProgress:
 		request = Request(self.url, None, {"User-agent": self.userAgent})
 		feedFile = urlopen(request)
 		metaData = feedFile.headers
-		contentLength = metaData["Content-Length"]
-		self.totalSize = int(contentLength) if contentLength else 0
+		self.totalSize = int(metaData.get("Content-Length", 0))
 		# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
 		self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
 		reactor.callInThread(self.run)
@@ -79,14 +78,14 @@ class DownloadWithProgress:
 	def setAgent(self, userAgent):
 		self.userAgent = userAgent
 
-	# Deprecated callbacks
+	# Temporary supprt for deprecated callbacks.
 	def addErrback(self, errorCallback):
-		print("DownloadWithProgress addErrback is deprecated use addError instead")
+		print("[Downloader] Warning: DownloadWithProgress 'addErrback' is deprecated use 'addError' instead!")
 		self.errorCallback2 = errorCallback
 		return self
 
 	def addCallback(self, endCallback):
-		print("DownloadWithProgress addCallback is deprecated use addEnd instead")
+		print("[Downloader] Warning: DownloadWithProgress 'addCallback' is deprecated use 'addEnd' instead!")
 		self.endCallback2 = endCallback
 		return self
 
