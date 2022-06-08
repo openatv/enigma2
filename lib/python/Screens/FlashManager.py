@@ -384,10 +384,13 @@ class FlashImage(Screen, HelpableScreen):
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
 
-			if "backup" not in str(choice) and "openatv" in self.imageName:
+			if "backup" not in str(choice):
 				if MultiBoot.canMultiBoot():
 					self.slotCode = choice[0]
-				self.session.openWithCallback(self.backupQuestionCallback, MessageBox, _("Do you want to backup settings?"), default=True, timeout=10, windowTitle=self.getTitle())
+				if BoxInfo.getItem("distro") in self.imageName:
+					self.session.openWithCallback(self.backupQuestionCallback, MessageBox, _("Do you want to backup settings?"), default=True, timeout=10, windowTitle=self.getTitle())
+				else:
+					self.backupQuestionCallback(None)
 				return
 			destination, isDevice = findMedia(["/media/hdd", "/media/usb"])
 			if destination:
@@ -426,7 +429,7 @@ class FlashImage(Screen, HelpableScreen):
 		if retVal:
 			self.recordCheck = False
 			text = _("Please select what to do:")
-			if "openatv" in self.imageName:
+			if BoxInfo.getItem("distro") in self.imageName:
 				if exists("/media/hdd/images/config/myrestore.sh"):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
@@ -568,7 +571,8 @@ class FlashImage(Screen, HelpableScreen):
 			zip.extractall(self.unzippedImage)  # ZipFile.extractall(path=None, members=None, pwd=None)
 			zip.close()
 			self.flashImage()
-		except:
+		except Exception as e:
+			print("[FlashManager] startUnzip Error: %s" % str(e))
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def flashImage(self):
