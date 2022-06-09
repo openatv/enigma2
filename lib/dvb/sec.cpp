@@ -1366,13 +1366,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 		sat.system ? "DVB-S2" : "DVB-S",
 		sat.frequency,
 		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_Horizontal ? "H" :
-			eDVBFrontendParametersSatellite::Polarisation_Vertical ? "V" :
-			eDVBFrontendParametersSatellite::Polarisation_CircularLeft ? "CL" : "CR",
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_Vertical ? "V" :
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_CircularLeft ? "CL" : "CR",
 		sat.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
-			eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
-			eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
-			eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
-			eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
 		sat.orbital_position );
 	return -1;
 }
