@@ -13,7 +13,7 @@ public:
 	void setRange(int min, int max);
 	enum { orHorizontal, orVertical };
 	void setOrientation(int orientation, int swapped = 0);
-	void setBorderWidth(int pixel);
+	void setBorderWidth(int width);
 	void setBorderColor(const gRGB &color);
 	void setForegroundColor(const gRGB &color);
 	void setPixmap(gPixmap *pixmap);
@@ -31,6 +31,16 @@ public:
 	};
 
 	int getBorderWidth() { return m_border_width; }
+
+
+	// Mapping functions to have the same attributes for eListBox and Scrollabel
+	void setScrollbarBorderWidth(int width);
+	void setScrollbarBorderColor(const gRGB &color);
+	void setScrollbarForegroundPixmap(gPixmap *pixmap);
+	void setScrollbarForegroundPixmap(ePtr<gPixmap> &pixmap);
+	void setScrollbarBackgroundPixmap(gPixmap *pixmap);
+	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pixmap);
+	void setScrollbarForegroundColor(const gRGB &color);
 
 protected:
 	int event(int event, void *data=0, void *data2=0);

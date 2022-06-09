@@ -37,9 +37,9 @@ void eSlider::setBackgroundPixmap(gPixmap *pixmap)
 	invalidate();
 }
 
-void eSlider::setBorderWidth(int pixel)
+void eSlider::setBorderWidth(int width)
 {
-	m_border_width=pixel;
+	m_border_width=width;
 	invalidate();
 }
 
@@ -183,4 +183,40 @@ void eSlider::setRange(int min, int max)
 	m_min = min;
 	m_max = max;
 	event(evtChangedSlider);
+}
+
+// Mapping Functions
+void eSlider::setScrollbarForegroundPixmap(ePtr<gPixmap> &pixmap)
+{
+	setPixmap(pixmap.operator->());
+}
+
+void eSlider::setScrollbarForegroundPixmap(gPixmap *pixmap)
+{
+	setPixmap(pixmap);
+}
+
+void eSlider::setScrollbarBackgroundPixmap(ePtr<gPixmap> &pixmap)
+{
+	setBackgroundPixmap(pixmap.operator->());
+}
+
+void eSlider::setScrollbarBackgroundPixmap(gPixmap *pixmap)
+{
+	setBackgroundPixmap(pixmap);
+}
+
+void eSlider::setScrollbarBorderWidth(int width)
+{
+	setBorderWidth(width);
+}
+
+void eSlider::setScrollbarBorderColor(const gRGB &color)
+{
+	setBorderColor(color);
+}
+
+void eSlider::setScrollbarForegroundColor(const gRGB &color)
+{
+	setForegroundColor(color);
 }
