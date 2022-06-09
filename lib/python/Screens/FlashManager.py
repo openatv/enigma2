@@ -571,8 +571,8 @@ class FlashImage(Screen, HelpableScreen):
 			zip.extractall(self.unzippedImage)  # ZipFile.extractall(path=None, members=None, pwd=None)
 			zip.close()
 			self.flashImage()
-		except Exception as e:
-			print("[FlashManager] startUnzip Error: %s" % str(e))
+		except Exception as err:
+			print("[FlashManager] startUnzip Error: %s!" % str(err))
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def flashImage(self):
