@@ -23,9 +23,14 @@ public:
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setIsScrollbar();
 	static void setDefaultBorderWidth(int borderwidth) { 
-			DefaultSliderBorderWidth = borderwidth; 
+			defaultSliderBorderWidth = borderwidth; 
 		}
 
+	enum {
+		DefaultBorderWidth = 0
+	};
+
+	int getBorderWidth() { return m_border_width; }
 
 protected:
 	int event(int event, void *data=0, void *data2=0);
@@ -42,7 +47,7 @@ private:
 	gRegion m_currently_filled;
 	gRGB m_border_color, m_foreground_color;
 
-	static int DefaultSliderBorderWidth;
+	static int defaultSliderBorderWidth;
 
 };
 

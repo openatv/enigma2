@@ -6,12 +6,12 @@
 #include "vuplus_gles.h"
 #endif
 
-int eListbox::DefaultScrollBarWidth = 10;
-int eListbox::DefaultScrollBarOffset = 5;
-int eListbox::DefaultScrollBarBorderWidth = 1;
-int eListbox::DefaultScrollBarScroll = byPage;
-int eListbox::DefaultScrollBarMode = showNever;
-bool eListbox::DefaultWrapAround = false;
+int eListbox::defaultScrollBarWidth = eListbox::DefaultScrollBarWidth;
+int eListbox::defaultScrollBarOffset = eListbox::DefaultScrollBarOffset;
+int eListbox::defaultScrollBarBorderWidth = eListbox::DefaultScrollBarBorderWidth;
+int eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
+int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
+bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
@@ -19,12 +19,12 @@ eListbox::eListbox(eWidget *parent) :
 	m_top(0), m_selected(0), m_itemheight(25),
 	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_scroll(byPage)
 {
-	m_scrollbar_width = eListbox::DefaultScrollBarWidth;
-	m_scrollbar_offset = eListbox::DefaultScrollBarOffset;
-	m_scrollbar_border_width = eListbox::DefaultScrollBarBorderWidth;
-	m_scrollbar_scroll = eListbox::DefaultScrollBarScroll;
-	m_enabled_wrap_around = eListbox::DefaultWrapAround;
-	m_scrollbar_mode = eListbox::DefaultScrollBarMode;
+	m_scrollbar_width = eListbox::defaultScrollBarWidth;
+	m_scrollbar_offset = eListbox::defaultScrollBarOffset;
+	m_scrollbar_border_width = eListbox::defaultScrollBarBorderWidth;
+	m_scrollbar_scroll = eListbox::defaultScrollBarScroll;
+	m_enabled_wrap_around = eListbox::defaultWrapAround;
+	m_scrollbar_mode = eListbox::defaultScrollBarMode;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);

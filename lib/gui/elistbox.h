@@ -111,6 +111,15 @@ public:
 		byLine
 	};
 
+	enum {
+		DefaultScrollBarWidth = 10,
+		DefaultScrollBarOffset = 5,
+		DefaultScrollBarBorderWidth = 1,
+		DefaultScrollBarScroll = eListbox::byPage,
+		DefaultScrollBarMode = eListbox::showNever,
+		DefaultWrapAround = false
+	};
+
 	void setScrollbarScroll(int scroll);
 	void setScrollbarMode(int mode);
 	void setWrapAround(bool);
@@ -174,12 +183,12 @@ public:
 	void setScrollbarForegroundColor(gRGB &col);
 
 	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int scroll, int mode, bool enablewraparound) { 
-			DefaultScrollBarWidth = width; 
-			DefaultScrollBarOffset = offset; 
-			DefaultScrollBarBorderWidth = borderwidth; 
-			DefaultScrollBarScroll = scroll; 
-			DefaultWrapAround = enablewraparound;
-			DefaultScrollBarMode = mode;
+			defaultScrollBarWidth = width; 
+			defaultScrollBarOffset = offset; 
+			defaultScrollBarBorderWidth = borderwidth; 
+			defaultScrollBarScroll = scroll; 
+			defaultWrapAround = enablewraparound;
+			defaultScrollBarMode = mode;
 		}
 
 	bool getWrapAround() { return m_enabled_wrap_around; }
@@ -214,12 +223,12 @@ protected:
 	void recalcSize();
 
 private:
-	static int DefaultScrollBarWidth;
-	static int DefaultScrollBarOffset;
-	static int DefaultScrollBarBorderWidth;
-	static int DefaultScrollBarScroll;
-	static int DefaultScrollBarMode;
-	static bool DefaultWrapAround;
+	static int defaultScrollBarWidth;
+	static int defaultScrollBarOffset;
+	static int defaultScrollBarBorderWidth;
+	static int defaultScrollBarScroll;
+	static int defaultScrollBarMode;
+	static bool defaultWrapAround;
 
 	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
