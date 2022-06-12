@@ -71,11 +71,11 @@ public:
 		colWindowTitleBackground,
 
 		colScrollbarForeground,
-		colScrollbarBackground, // Currently not used because it is not working.
+		colScrollbarBackground,
 		colScrollbarBorder,
 
 		colSliderForeground,
-		colSliderBackground, // Currently not used because it is not working.
+		colSliderBackground,
 		colSliderBorder,
 
 		colMax

@@ -14,10 +14,10 @@ int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
 eListbox::eListbox(eWidget *parent) :
-	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
+	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_scroll(byPage)
+	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::defaultScrollBarOffset;
@@ -67,6 +67,8 @@ void eListbox::setScrollbarMode(int mode)
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
 		if (m_style.m_scollbarborder_color_set) m_scrollbar->setBorderColor(m_style.m_scollbarborder_color);
+		if (m_style.m_scrollbarforeground_color_set) m_scrollbar->setForegroundColor(m_style.m_scrollbarforeground_color);
+		if (m_style.m_scrollbarbackground_color_set) m_scrollbar->setBackgroundColor(m_style.m_scrollbarbackground_color);
 	}
 }
 
@@ -731,6 +733,13 @@ void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarpixmap = pm;
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);
+}
+
+void eListbox::setScrollbarBackgroundColor(gRGB &col)
+{
+	m_style.m_scrollbarbackground_color = col;
+	m_style.m_scrollbarbackground_color_set = 1;
+	if (m_scrollbar) m_scrollbar->setBackgroundColor(col);
 }
 
 void eListbox::setScrollbarForegroundColor(gRGB &col)

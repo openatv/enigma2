@@ -16,7 +16,7 @@ public:
 	void setBorderWidth(int width);
 	void setBorderColor(const gRGB &color);
 	void setForegroundColor(const gRGB &color);
-	void setBackgroundColor(const gRGB &color); // dummy function not implemented yet reserved for future use.
+	void setBackgroundColor(const gRGB &color);
 	void setPixmap(gPixmap *pixmap);
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setBackgroundPixmap(gPixmap *pixmap);

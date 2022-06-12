@@ -3,9 +3,9 @@
 int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
-	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false),
+	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
-	m_border_width(0), m_scrollbar(false)
+	m_border_width(0)
 {
 	m_border_width = eSlider::defaultSliderBorderWidth;
 }
@@ -57,12 +57,11 @@ void eSlider::setForegroundColor(const gRGB &color)
 	invalidate();
 }
 
-// TODO : implement background color support
 void eSlider::setBackgroundColor(const gRGB &color)
 {
-//	m_background_color = color;
-//	m_have_background_color = true;
-//	invalidate();
+	m_background_color = color;
+	m_have_background_color = true;
+	invalidate();
 }
 
 void eSlider::setAlphatest(int alphatest)
@@ -90,12 +89,11 @@ int eSlider::event(int event, void *data, void *data2)
 		{
 			painter.blit(m_backgroundpixmap, ePoint(0, 0), eRect(), isTransparent() ? gPainter::BT_ALPHATEST : 0);
 		}
+		else if(m_have_background_color) {
+			painter.setBackgroundColor(m_background_color);
+			painter.clear();
+		}
 
-
-		// TODO : do we need this here if m_pixmap is not null
-		// TODO : check why background color not working
-		// TODO : add background color support
-		
 		style->setStyle(painter, m_scrollbar ? eWindowStyle::styleScollbar : eWindowStyle::styleSlider );
 
 		if (!m_pixmap)

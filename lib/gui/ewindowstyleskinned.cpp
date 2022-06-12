@@ -81,12 +81,22 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 		painter.setBackgroundColor(m_color[colListboxBackgroundMarkedSelected]);
 		break;
 	case styleScollbar:
+		if (m_color[colScrollbarBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colScrollbarBackground]);
+			painter.clear();
+		}
 		painter.setForegroundColor(m_color[colScrollbarForeground]);
 		break;
 	case styleScollbarBorder:
 		painter.setForegroundColor(m_color[colScrollbarBorder]);
 		break;
 	case styleSlider:
+		if (m_color[colSliderBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colSliderBackground]);
+			painter.clear();
+		}
 		painter.setForegroundColor(m_color[colSliderForeground]);
 		break;
 	case styleSliderBorder:
