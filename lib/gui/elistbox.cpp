@@ -63,6 +63,8 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->hide();
 		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
+		if(m_scrollbar_scroll == byLine)
+			m_scrollbar->setPixelMode();
 		m_scrollbar->setRange(0,(m_scrollbar_scroll == byLine) ? 1000 : 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
@@ -348,6 +350,12 @@ void eListbox::updateScrollBar()
 	{
 		int width = size().width();
 		int height = size().height();
+
+		if (m_scrollbar_scroll == byLine) {
+			m_scrollbar->setRange(1,height-(m_scrollbar_border_width*2));
+//			eDebug("[eListbox] setRange range=%d", height-(m_scrollbar_border_width*2));
+		}
+
 		m_content_changed = false;
 		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
 		{
@@ -382,16 +390,22 @@ void eListbox::updateScrollBar()
 		if(m_scrollbar_scroll == byLine) {
 
 			if(m_prev_scrollbar_page != m_selected) {
+
+				int range = size().height() - (m_scrollbar_border_width*2);
+
 				m_prev_scrollbar_page = m_selected;
-			    int thumb = (int)((float)m_items_per_page / (float)entries * 1000);
-				int start = (1000 - thumb) * m_selected / (entries - 1);
+			    int thumb = (int)((float)m_items_per_page / (float)entries * range);
+				int start = (range - thumb) * m_selected / entries;
 				int visblethumb = thumb < 4 ? 4 : thumb;
 				int end = start + visblethumb;
-				if (end>1000) {
-					end = 1000;
-					start = 1000 - visblethumb;
+				if (end>range) {
+					end = range;
+					start = range - visblethumb;
 				}
 				m_scrollbar->setStartEnd(start,end);
+
+				//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d range=%d", thumb, start, end, m_items_per_page, entries, range);
+
 			} 
 			return;
 		}

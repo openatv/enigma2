@@ -4,10 +4,15 @@ int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
 	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false),
-	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
+	m_pixelmode(false), m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
 	m_border_width(0)
 {
 	m_border_width = eSlider::defaultSliderBorderWidth;
+}
+
+void eSlider::setPixelMode()
+{
+	m_pixelmode = true;
 }
 
 void eSlider::setIsScrollbar()
@@ -127,16 +132,27 @@ int eSlider::event(int event, void *data, void *data2)
 		int num_pix = 0, start_pix = 0;
 		gRegion old_currently_filled = m_currently_filled;
 
-		int pixsize = (m_orientation == orHorizontal) ? size().width() : size().height();
+		int offset = m_pixelmode ? m_border_width*2 : 0;
+		int pixsize = (m_orientation == orHorizontal) ? size().width()-offset : size().height()-offset;
 
 		if (m_min < m_max)
 		{
 			int val_range = m_max - m_min;
-			num_pix = (pixsize * (m_value - m_start) + val_range - 1) / val_range; /* properly round up */
-			start_pix = (pixsize * m_start + val_range - 1) / val_range;
+			if(m_pixelmode) {
+				// don't round
+				start_pix = m_start + m_border_width;
+				num_pix = m_value - m_start + m_border_width;
+
+			}
+			else {
+				num_pix = (pixsize * (m_value - m_start - 1) + val_range) / val_range; /* properly round up */
+				start_pix = (pixsize * m_start + val_range - 1) / val_range;
+
+			}
 
 			if (m_orientation_swapped)
 				start_pix = pixsize - num_pix - start_pix;
+
 		}
 
 		if  (start_pix < 0)
@@ -148,10 +164,15 @@ int eSlider::event(int event, void *data, void *data2)
 		if (num_pix < 0)
 			num_pix = 0;
 
+		int start_offset = m_pixelmode ? m_border_width : 0;
+
 		if (m_orientation == orHorizontal)
-			m_currently_filled = eRect(start_pix, 0, num_pix, pixsize);
+			m_currently_filled = eRect(start_pix, start_offset, num_pix, pixsize);
 		else
-			m_currently_filled = eRect(0, start_pix, pixsize, num_pix);
+			m_currently_filled = eRect(start_offset, start_pix, pixsize, num_pix);
+
+		//if(m_pixelmode)
+		//	eDebug("[eSlider] evtChangedSlider start_offset=%d start_pix=%d pixsize=%d num_pix=%d", start_offset, start_pix, pixsize, num_pix);
 
 		// redraw what *was* filled before and now isn't.
 		invalidate(m_currently_filled - old_currently_filled);
