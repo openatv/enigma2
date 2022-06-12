@@ -61,11 +61,12 @@ def getFPVersion():
 		else:
 			version = int(open("/proc/stb/fp/version", "r").read())
 	except OSError:
-		try:
-			with open("/dev/dbox/fp0") as fd:
-				version = ioctl(fd.fileno(), 0)
-		except OSError as err:
-			print("[StbHardware] Error %d: Unable to access '/dev/dbox/fp0', getFPVersion failed!  (%s)" % (err.errno, err.strerror))
+		if isfile("/dev/dbox/fp0"):
+			try:
+				with open("/dev/dbox/fp0") as fd:
+					version = ioctl(fd.fileno(), 0)
+			except OSError as err:
+				print("[StbHardware] Error %d: Unable to access '/dev/dbox/fp0', getFPVersion failed!  (%s)" % (err.errno, err.strerror))
 	return version
 
 
