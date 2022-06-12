@@ -14,10 +14,10 @@ int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
 eListbox::eListbox(eWidget *parent) :
-	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
+	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false), m_scrollbar_scroll(byPage)
+	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::defaultScrollBarOffset;
@@ -63,10 +63,12 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->hide();
 		m_scrollbar->setBorderWidth(m_scrollbar_border_width);
 		m_scrollbar->setOrientation(eSlider::orVertical);
-		m_scrollbar->setRange(0,(m_scrollbar_scroll == byLine) ? 1000 : 100);
+		m_scrollbar->setRange(0, 100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
 		if (m_style.m_scollbarborder_color_set) m_scrollbar->setBorderColor(m_style.m_scollbarborder_color);
+		if (m_style.m_scrollbarforeground_color_set) m_scrollbar->setForegroundColor(m_style.m_scrollbarforeground_color);
+		if (m_style.m_scrollbarbackground_color_set) m_scrollbar->setBackgroundColor(m_style.m_scrollbarbackground_color);
 	}
 }
 
@@ -346,6 +348,7 @@ void eListbox::updateScrollBar()
 	{
 		int width = size().width();
 		int height = size().height();
+
 		m_content_changed = false;
 		if (m_scrollbar_mode == showLeftOnDemand || m_scrollbar_mode == showLeftAlways)
 		{
@@ -380,16 +383,22 @@ void eListbox::updateScrollBar()
 		if(m_scrollbar_scroll == byLine) {
 
 			if(m_prev_scrollbar_page != m_selected) {
+
+				int range = 100;
+
 				m_prev_scrollbar_page = m_selected;
-			    int thumb = (int)((float)m_items_per_page / (float)entries * 1000);
-				int start = (1000 - thumb) * m_selected / (entries - 1);
+			    int thumb = (int)((float)m_items_per_page / (float)entries * range);
+				int start = (range - thumb) * m_selected / (entries - 1);
 				int visblethumb = thumb < 4 ? 4 : thumb;
 				int end = start + visblethumb;
-				if (end>1000) {
-					end = 1000;
-					start = 1000 - visblethumb;
+				if (end>range) {
+					end = range;
+					start = range - visblethumb;
 				}
 				m_scrollbar->setStartEnd(start,end);
+
+				//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d range=%d", thumb, start, end, m_items_per_page, entries, range);
+
 			} 
 			return;
 		}
@@ -731,6 +740,13 @@ void eListbox::setScrollbarForegroundPixmap(ePtr<gPixmap> &pm)
 {
 	m_scrollbarpixmap = pm;
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);
+}
+
+void eListbox::setScrollbarBackgroundColor(gRGB &col)
+{
+	m_style.m_scrollbarbackground_color = col;
+	m_style.m_scrollbarbackground_color_set = 1;
+	if (m_scrollbar) m_scrollbar->setBackgroundColor(col);
 }
 
 void eListbox::setScrollbarForegroundColor(gRGB &col)
