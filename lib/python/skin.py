@@ -233,14 +233,6 @@ def removeCallback(callback):
 		callbacks.remove(callback)
 
 
-class SkinError(Exception):
-	def __init__(self, message):
-		self.msg = message
-
-	def __str__(self):
-		return "[Skin] {%s}: %s!  Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
-
-
 def getParentSize(object, desktop):
 	if object:
 		parent = object.getParent()
@@ -260,6 +252,48 @@ def getParentSize(object, desktop):
 	return eSize()
 
 
+class SkinError(Exception):
+	def __init__(self, message):
+		self.msg = message
+
+	def __str__(self):
+		return "[Skin] {%s} Error: %s!" % (config.skin.primary_skin.value, self.msg)
+
+
+def parseOptions(options, attribute, value):
+	if options and isinstance(options, dict):
+		if value in options.keys():
+			value = options[value]
+		else:
+			raise SkinError("The '%s' value '%s' is invalid, acceptable options are '%s'" % (attribute, value, "', '".join(options.keys())))
+	else:
+		raise SkinError("The '%s' parser is not correctly initialized")
+	return value
+
+
+def parseAlphaTest(value):
+	options = {
+		"on": BT_ALPHATEST,
+		"off": 0,
+		"blend": BT_ALPHABLEND
+	}
+	return parseOptions(options, "alphaTest", value)
+
+
+def parseAnimationMode(value):
+	options = {
+		"disable": 0x00,
+		"off": 0x00,
+		"offshow": 0x10,
+		"offhide": 0x01,
+		"onshow": 0x01,
+		"onhide": 0x10,
+		"disable_onshow": 0x10,
+		"disable_onhide": 0x01
+	}
+	return parseOptions(options, "animationMode", value)
+
+
 def parseBoolean(attribute, value):
 	return value.lower() in ("1", attribute, "enabled", "on", "true", "yes")
 
@@ -269,7 +303,7 @@ def parseColor(value):
 		try:
 			return colors[value]
 		except KeyError:
-			raise SkinError("Color '%s' must be #aarrggbb or valid named color" % value)
+			raise SkinError("The color '%s' must be #aarrggbb or valid named color" % value)
 	return gRGB(int(value[1:], 0x10))
 
 
@@ -384,6 +418,30 @@ def parseFont(value, scale=((1, 1), (1, 1))):
 	return gFont(name, int(size * scale[1][0] / scale[1][1]))
 
 
+def parseHorizontalAlignment(value):
+	options = {
+		"left": 0,
+		"center": 1,
+		"centre": 1,
+		"right": 2,
+		"block": 3
+	}
+	return parseOptions(options, "horizontalAlignment", value)
+
+
+def parseOrientation(value):
+	options = {
+		"orHorizontal": 0x00,
+		"orLeftToRight": 0x00,
+		"orRightToLeft": 0x01,
+		"orVertical": 0x10,
+		"orTopToBottom": 0x10,
+		"orBottomToTop": 0x11
+	}
+	value = parseOptions(options, "orientation", value)
+	return (value & 0x10, value & 0x01)  # (orHorizontal / orVertical, not swapped / swapped)
+
+
 # Convert a parameter string into a value based on string triggers.  The type
 # and value returned is based on the trigger.
 #
@@ -435,6 +493,84 @@ def parseValuePair(value, scale, object=None, desktop=None, size=None):
 	yValue = parseCoordinate(yValue, parentsize.height(), size and size.height() or 0, None, scale[1])
 	# print("[Skin] parseValuePair DEBUG: Scaled pair X %s -> %d, Y %s -> %d." % (x, xValue, y, yValue))
 	return (xValue, yValue)
+
+
+def parseScaleFlags(value):
+	options = {
+		"none": 0,
+		"scale": BT_SCALE,
+		"scaleKeepAspect": BT_SCALE | BT_KEEP_ASPECT_RATIO,
+		"scaleLeftTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_TOP,
+		"scaleLeftCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"scaleLeftCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"scaleLeftMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"scaleLeftBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+		"scaleCenterTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"scaleCentreTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"scaleMiddleTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"scaleCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"scaleCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"scaleMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"scaleCenterBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"scaleCentreBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"scaleMiddleBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"scaleRightTop": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+		"scaleRightCenter": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"scaleRightCentre": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"scaleRightMiddle": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"scaleRightBottom": BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+		"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
+		"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+		"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+		"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+		"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+		"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"moveMiddleBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+		"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+		"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
+	}
+	return parseOptions(options, "scaleFlags", value)
+
+
+def parseScrollbarMode(value):
+	options = {
+		"showOnDemand": eListbox.showOnDemand,
+		"showAlways": eListbox.showAlways,
+		"showNever": eListbox.showNever,
+		"showLeft": eListbox.showLeftOnDemand,  # This value is deprecated to better allow option symmetry, use "showLeftOnDemand" instead.
+		"showLeftOnDemand": eListbox.showLeftOnDemand,
+		"showLeftAlways": eListbox.showLeftAlways
+	}
+	return parseOptions(options, "scrollbarMode", value)
+
+
+def parseScrollbarScroll(value):
+	options = {
+		"byPage": 0,
+		"byLine": 1
+	}
+	return parseOptions(options, "scrollbarScroll", value)
+
+
+def parseVerticalAlignment(value):
+	options = {
+		"top": 0,
+		"center": 1,
+		"centre": 1,
+		"middle": 1,
+		"bottom": 2
+	}
+	return parseOptions(options, "horizontalAlignment", value)
 
 
 def loadPixmap(path, desktop):
@@ -501,10 +637,6 @@ class AttribElementError(AttribError):
 	pass
 
 
-class AttribValueError(AttribError):
-	pass
-
-
 class AttributeParser:
 	def __init__(self, guiObject, desktop, scale=((1, 1), (1, 1))):
 		self.guiObject = guiObject
@@ -520,16 +652,14 @@ class AttributeParser:
 		try:
 			getattr(self, attribute)(value)
 		except AttribDeprecatedError as err:
-			# print("[Skin] Warning: Attribute '%s' has been deprecated, use '%s' instead!" % (attribute, err))
-			pass  # Don't start reporting deprecated attibutes until there is agreement to deprecate them.
+			print("[Skin] Warning: Attribute '%s' has been deprecated, use '%s' instead!" % (attribute, err))
 		except AttribElementError as err:
 			print("[Skin] Error: Attribute '%s' with value '%s' has invalid element(s) '%s'!" % (attribute, value, err))
-		except AttribValueError as err:
-			print("[Skin] Error: Attribute '%s' with value '%s' is invalid! (Valid values: %s.)" % (attribute, value, err))
 		except AttributeError:
 			print("[Skin] Error: Attribute '%s' with value '%s' in object of type '%s' is not implemented!" % (attribute, value, self.guiObject.__class__.__name__))
 		except SkinError as err:
-			print("[Skin] Error: %s" % err)
+			# print("[Skin] Error: %s" % err)  # Error already reported!
+			pass
 		except Exception as err:
 			print("[Skin] Error: Attribute '%s' with value '%s' in object of type '%s' (Error: '%s')!" % (attribute, value, self.guiObject.__class__.__name__, err))
 
@@ -540,33 +670,14 @@ class AttributeParser:
 		return int(int(value) * self.scaleTuple[1][0] / self.scaleTuple[1][1])
 
 	def alphaTest(self, value):
-		try:
-			self.guiObject.setAlphatest({
-				"on": BT_ALPHATEST,
-				"off": 0,
-				"blend": BT_ALPHABLEND
-			}[value])
-		except KeyError:
-			raise AttribValueError("'on', 'off' or 'blend'")
+		self.guiObject.setAlphatest(parseAlphaTest(value))
 
 	def alphatest(self, value):  # This legacy definition uses an inconsistent name, use 'alphaTest' instead!
 		self.alphaTest(value)
-		raise AttribDeprecatedError("alphaTest")
+		# raise AttribDeprecatedError("alphaTest")
 
 	def animationMode(self, value):
-		try:
-			self.guiObject.setAnimationMode({
-				"disable": 0x00,
-				"off": 0x00,
-				"offshow": 0x10,
-				"offhide": 0x01,
-				"onshow": 0x01,
-				"onhide": 0x10,
-				"disable_onshow": 0x10,
-				"disable_onhide": 0x01
-			}[value])
-		except KeyError:
-			raise AttribValueError("'disable', 'off', 'offshow', 'offhide', 'onshow' or 'onhide'")
+		self.guiObject.setAnimationMode(parseAnimationMode(value))
 
 	def animationPaused(self, value):
 		pass
@@ -593,23 +704,10 @@ class AttributeParser:
 		self.guiObject.setBorderColor(parseColor(value))
 
 	def borderWidth(self, value):
-		# print("[Skin] DEBUG: Scale borderWidth %d -> %d." % (int(value), self.applyVerticalScale(value)))
 		self.guiObject.setBorderWidth(self.applyVerticalScale(value))
-
-	def colPosition(self, value):
-		pass
-
-	def colposition(self, value):
-		raise AttribDeprecatedError("colPosition")
 
 	def conditional(self, value):
 		pass
-
-	def divideChar(self, value):
-		pass
-
-	def dividechar(self, value):
-		raise AttribDeprecatedError("divideChar")
 
 	def enableWrapAround(self, value):
 		self.guiObject.setWrapAround(parseBoolean("enablewraparound", value))
@@ -650,23 +748,14 @@ class AttributeParser:
 
 	def halign(self, value):  # This legacy definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
-		raise AttribDeprecatedError("horizontalAlignment")
+		# raise AttribDeprecatedError("horizontalAlignment")
 
 	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
-		raise AttribDeprecatedError("horizontalAlignment")
+		# raise AttribDeprecatedError("horizontalAlignment")
 
 	def horizontalAlignment(self, value):
-		try:
-			self.guiObject.setHAlign({
-				"left": self.guiObject.alignLeft,
-				"center": self.guiObject.alignCenter,
-				"centre": self.guiObject.alignCenter,
-				"right": self.guiObject.alignRight,
-				"block": self.guiObject.alignBlock
-			}[value])
-		except KeyError:
-			raise AttribValueError("'left', 'center'/'centre', 'right' or 'block'")
+		self.guiObject.setHAlign(parseHorizontalAlignment(value))
 
 	def includes(self, value):  # Same as conditional.  Created to partner new "excludes" attribute.
 		pass
@@ -675,9 +764,6 @@ class AttributeParser:
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
 		self.guiObject.setItemHeight(self.applyVerticalScale(value))
 
-	def leftColAlign(self, value):
-		self.horizontalAlignment(value)
-
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
 
@@ -685,17 +771,7 @@ class AttributeParser:
 		pass
 
 	def orientation(self, value):  # Used by eSlider.
-		try:
-			self.guiObject.setOrientation(*{
-				"orVertical": (self.guiObject.orVertical, False),
-				"orTopToBottom": (self.guiObject.orVertical, False),
-				"orBottomToTop": (self.guiObject.orVertical, True),
-				"orHorizontal": (self.guiObject.orHorizontal, False),
-				"orLeftToRight": (self.guiObject.orHorizontal, False),
-				"orRightToLeft": (self.guiObject.orHorizontal, True)
-			}[value])
-		except KeyError:
-			raise AttribValueError("'orVertical', 'orTopToBottom', 'orBottomToTop', 'orHorizontal', 'orLeftToRight' or 'orRightToLeft'")
+		self.guiObject.setOrientation(*parseOrientation(value))
 
 	def OverScan(self, value):  # This legacy definition uses an inconsistent name, use 'overScan' instead!
 		self.overScan(value)
@@ -714,66 +790,16 @@ class AttributeParser:
 		self.guiObject.setPointer(0, ptr, pos)
 
 	def position(self, value):
-		# print("[Skin] DEBUG: Position '%s'." % str(value))
 		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
 
 	def resolution(self, value):
 		pass
 
-	def rightColAlign(self, value):
-		self.horizontalAlignment(value)
-
 	def scale(self, value):
 		self.guiObject.setScale(1 if parseBoolean("scale", value) else 0)
 
 	def scaleFlags(self, value):
-		base = BT_SCALE | BT_KEEP_ASPECT_RATIO
-		try:
-			self.guiObject.setPixmapScaleFlags({
-				"none": 0,
-				"scale": BT_SCALE,
-				"scaleKeepAspect": base,
-				"scaleLeftTop": base | BT_HALIGN_LEFT | BT_VALIGN_TOP,
-				"scaleLeftCenter": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"scaleLeftCentre": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"scaleLeftMiddle": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"scaleLeftBottom": base | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
-				"scaleCenterTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"scaleCentreTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"scaleMiddleTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"scaleCenter": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"scaleCentre": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"scaleMiddle": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"scaleCenterBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"scaleCentreBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"scaleMiddleBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"scaleRightTop": base | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
-				"scaleRightCenter": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"scaleRightCentre": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"scaleRightMiddle": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"scaleRightBottom": base | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
-				"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
-				"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
-				"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
-				"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"moveMiddleBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
-				"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
-				"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
-			}[value])
-		except KeyError:
-			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBottom', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBottom', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBottom', 'moveCenterTop', 'moveCenter', 'moveCenterBottom', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
+		self.guiObject.setPixmapScaleFlags(parseScaleFlags(value))
 
 	def scrollbarBackgroundPixmap(self, value):
 		self.guiObject.setScrollbarBackgroundPixmap(loadPixmap(value, self.desktop))
@@ -787,26 +813,10 @@ class AttributeParser:
 		raise AttribDeprecatedError("scrollbarBackgroundPixmap")
 
 	def scrollbarMode(self, value):
-		try:
-			self.guiObject.setScrollbarMode({
-				"showOnDemand": self.guiObject.showOnDemand,
-				"showAlways": self.guiObject.showAlways,
-				"showNever": self.guiObject.showNever,
-				"showLeft": self.guiObject.showLeftOnDemand,
-				"showLeftOnDemand": self.guiObject.showLeftOnDemand,
-				"showLeftAlways": self.guiObject.showLeftAlways
-			}[value])
-		except KeyError:
-			raise AttribValueError("'showOnDemand', 'showAlways', 'showNever', 'showLeftAlways' or 'showLeftOnDemand'")
+		self.guiObject.setScrollbarMode(parseScrollbarMode(value))
 
 	def scrollbarScroll(self, value):
-		try:
-			self.guiObject.setScrollbarScroll({
-				"byLine": self.guiObject.byLine,
-				"byPage": self.guiObject.byPage
-			}[value])
-		except KeyError:
-			raise AttribValueError("'byLine' or 'byPage'")
+		self.guiObject.setScrollbarScroll(parseScrollbarScroll(value))
 
 	def scrollbarBackgroundColor(self, value):
 		self.guiObject.setScrollbarBackgroundColor(parseColor(value))
@@ -819,7 +829,6 @@ class AttributeParser:
 		raise AttribDeprecatedError("scrollbarBorderColor")
 
 	def scrollbarBorderWidth(self, value):
-		# print("[Skin] DEBUG: Scale scrollbarBorderWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
 		self.guiObject.setScrollbarBorderWidth(self.applyHorizontalScale(value))
 
 	def scrollbarSliderBorderWidth(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderWidth' instead!
@@ -845,7 +854,6 @@ class AttributeParser:
 		raise AttribDeprecatedError("scrollbarForegroundPixmap")
 
 	def scrollbarWidth(self, value):
-		# print("[Skin] DEBUG: Scale scrollbarWidth %d -> %d." % (int(value), self.applyHorizontalScale(value)))
 		self.guiObject.setScrollbarWidth(self.applyHorizontalScale(value))
 
 	def secondFont(self, value):
@@ -853,11 +861,11 @@ class AttributeParser:
 
 	def secondfont(self, value):  # This legacy definition uses an inconsistent name, use 'secondFont' instead!
 		self.secondFont(value)
-		raise AttribDeprecatedError("secondFont")
+		# raise AttribDeprecatedError("secondFont")
 
 	def seek_pointer(self, value):  # This legacy definition uses an inconsistent name, use 'seekPointer' instead!
 		self.seekPointer(value)
-		raise AttribDeprecatedError("seekPointer")
+		# raise AttribDeprecatedError("seekPointer")
 
 	def seekPointer(self, value):
 		(name, pos) = [x.strip() for x in value.split(":", 1)]
@@ -882,15 +890,11 @@ class AttributeParser:
 		self.guiObject.setShadowOffset(parsePosition(value, self.scaleTuple))
 
 	def size(self, value):
-		# print("[Skin] DEBUG: Size '%s'." % str(value))
 		self.guiObject.resize(eSize(*value) if isinstance(value, tuple) else parseSize(value, self.scaleTuple, self.guiObject, self.desktop))
 
 	def sliderPixmap(self, value):  # For compatibility same as 'scrollbarSliderPixmap', use 'scrollbarForegroundPixmap' instead.
 		self.scrollbarForegroundPixmap(value)
 		raise AttribDeprecatedError("scrollbarForegroundPixmap")
-
-	def split(self, value):
-		pass
 
 	def text(self, value):
 		self.guiObject.setText(_(value))
@@ -909,23 +913,14 @@ class AttributeParser:
 
 	def valign(self, value):  # This legacy definition uses an inconsistent name, use 'verticalAlignment' instead!
 		self.verticalAlignment(value)
-		raise AttribDeprecatedError("verticalAlignment")
+		# raise AttribDeprecatedError("verticalAlignment")
 
 	def vAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'verticalAlignment' instead!
 		self.verticalAlignment(value)
-		raise AttribDeprecatedError("verticalAlignment")
+		# raise AttribDeprecatedError("verticalAlignment")
 
 	def verticalAlignment(self, value):
-		try:
-			self.guiObject.setVAlign({
-				"top": self.guiObject.alignTop,
-				"middle": self.guiObject.alignCenter,
-				"center": self.guiObject.alignCenter,
-				"centre": self.guiObject.alignCenter,
-				"bottom": self.guiObject.alignBottom
-			}[value])
-		except KeyError:
-			raise AttribValueError("'top', 'middle'/'center'/'centre' or 'bottom'")
+		self.guiObject.setVAlign(parseVerticalAlignment(value))
 
 	def zPosition(self, value):
 		self.guiObject.setZPosition(int(value))
@@ -944,7 +939,7 @@ def reloadWindowStyles():
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN):
 	"""Loads skin data like colors, windowstyle etc."""
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
-	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions
+	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions, scrollLabelStyle
 	for tag in domSkin.findall("output"):
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		if scrnID == GUI_SKIN_ID:
@@ -1087,13 +1082,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		"ListboxSelectedBackground": "ListboxBackgroundSelected",
 		"ListboxSelectedForeground": "ListboxForegroundSelected"
 	}
-	scrollbarModes = {
-		"showOnDemand": eListbox.showOnDemand,
-		"showAlways": eListbox.showAlways,
-		"showNever": eListbox.showNever,
-		"showLeftOnDemand": eListbox.showLeftOnDemand,
-		"showLeftAlways": eListbox.showLeftAlways
-	}
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
@@ -1117,7 +1105,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					except Exception:
 						pass
 				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
-
 		for color in tag.findall("color"):
 			name = color.attrib.get("name")
 			name = colorNameConversions.get(name, name)
@@ -1128,26 +1115,31 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				raise SkinError("Unknown color name '%s'" % name)
 			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
 		for listBox in tag.findall("listbox"):
-			enableWrapAround = listBox.attrib.get("enableWrapAround", "0")
-			enableWrapAround = parseBoolean("enableWrapAround", enableWrapAround)
-			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", 1))
-			scrollbarMode = listBox.attrib.get("scrollbarMode", "showNever")
-			scrollbarMode = scrollbarModes.get(scrollbarMode, eListbox.showNever)
-			scrollbarOffset = int(listBox.attrib.get("scrollbarOffset", 5))
-			scrollbarScroll = listBox.attrib.get("scrollbarScroll", "byPage")
-			scrollbarScroll = 1 if scrollbarScroll == "byLine" else 0
-			scrollbarWidth = int(listBox.attrib.get("scrollbarWidth", 20))
+			enableWrapAround = parseBoolean("enableWrapAround", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
+			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
+			if "scrollbarBorderWidth" not in scrollLabelStyle:
+				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
+			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", eListbox.DefaultScrollBarMode))
+			if "scrollbarMode" not in scrollLabelStyle and scrollbarMode != eListbox.showNever:
+				scrollLabelStyle["scrollbarMode"] = scrollbarMode
+			scrollbarOffset = int(listBox.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
+			if "scrollbarOffset" not in scrollLabelStyle:
+				scrollLabelStyle["scrollbarOffset"] = scrollbarOffset
+			scrollbarScroll = parseScrollbarScroll(listBox.attrib.get("scrollbarScroll", eListbox.DefaultScrollBarScroll))
+			if "scrollbarScroll" not in scrollLabelStyle:
+				scrollLabelStyle["scrollbarScroll"] = scrollbarScroll
+			scrollbarWidth = int(listBox.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
+			if "scrollbarWidth" not in scrollLabelStyle:
+				scrollLabelStyle["scrollbarWidth"] = scrollbarWidth
 			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 		for scrollLabel in tag.findall("scrolllabel"):
-			scrollLabelStyle["scrollbarBorderWidth"] = int(scrollLabel.attrib.get("scrollbarBorderWidth", 1))
-			scrollbarMode = scrollLabel.attrib.get("scrollbarMode", "showNever")
-			scrollLabelStyle["scrollbarMode"] = scrollbarModes.get(scrollbarMode, eListbox.showNever)
-			scrollLabelStyle["scrollbarOffset"] = int(scrollLabel.attrib.get("scrollbarOffset", 5))
-			scrollbarScroll = scrollLabel.attrib.get("scrollbarScroll", "byPage")
-			scrollLabelStyle["scrollbarScroll"] = 1 if scrollbarScroll == "byLine" else 0
-			scrollLabelStyle["scrollbarWidth"] = int(scrollLabel.attrib.get("scrollbarWidth", 20))
+			scrollLabelStyle["scrollbarBorderWidth"] = int(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
+			scrollLabelStyle["scrollbarMode"] = parseScrollbarMode(scrollLabel.attrib.get("scrollbarMode", eListbox.showOnDemand))
+			scrollLabelStyle["scrollbarOffset"] = int(scrollLabel.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
+			scrollLabelStyle["scrollbarScroll"] = parseScrollbarScroll(scrollLabel.attrib.get("scrollbarScroll", eListbox.DefaultScrollBarScroll))
+			scrollLabelStyle["scrollbarWidth"] = int(scrollLabel.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
 		for slider in tag.findall("slider"):
-			borderWidth = int(slider.attrib.get("borderWidth", 0))
+			borderWidth = int(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth))
 			eSlider.setDefaultBorderWidth(borderWidth)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
