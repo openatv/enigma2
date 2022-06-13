@@ -303,6 +303,22 @@ void eListbox::moveSelection(long dir)
 	m_selected = m_content->cursorGet();
 	m_top = m_selected - (m_selected % m_items_per_page);
 
+	/*  new scollmode by line  */
+	if(m_scrollbar_scroll == byLine && m_selected != oldsel && oldtop != m_top) {
+		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
+		if (dir == moveDown && m_top<m_content->size())
+		{
+			m_top = oldtop + 1;
+		}
+		if (dir == moveUp)
+		{
+			m_top = oldtop - 1;
+			if(m_top < 0)
+				m_top = 0;
+		}
+		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
+	}
+
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
 	if (m_top != oldtop && m_content)
 		m_content->resetClip();
@@ -397,7 +413,7 @@ void eListbox::updateScrollBar()
 				}
 				m_scrollbar->setStartEnd(start,end);
 
-				//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d range=%d", thumb, start, end, m_items_per_page, entries, range);
+				//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d", thumb, start, end, m_items_per_page, entries);
 
 			} 
 			return;
