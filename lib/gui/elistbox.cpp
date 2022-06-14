@@ -308,13 +308,24 @@ void eListbox::moveSelection(long dir)
 		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
 		if (dir == moveDown && m_top<m_content->size())
 		{
-			m_top = oldtop + 1;
+			// wrap around
+			if(m_top==0 && m_selected==0)
+			{
+				m_top=0;
+			}
+			else
+				m_top = oldtop + 1;
 		}
 		if (dir == moveUp)
 		{
-			m_top = oldtop - 1;
-			if(m_top < 0)
-				m_top = 0;
+			// wrap around
+			if((m_selected + 1) < m_content->size())
+			{
+				m_top = oldtop - 1;
+				if(m_top < 0)
+					m_top = 0;
+			}
+
 		}
 		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
 	}
