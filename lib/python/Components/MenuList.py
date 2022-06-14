@@ -4,10 +4,9 @@ from Components.GUIComponent import GUIComponent
 
 
 class MenuList(GUIComponent):
-	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
+	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
 		self.list = list
-		self.enableWrapAround = enableWrapAround
 		self.l = content()
 		self.l.setList(self.list)
 		self.onSelectionChanged = []
@@ -20,8 +19,6 @@ class MenuList(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
-		if self.enableWrapAround:
-			self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
