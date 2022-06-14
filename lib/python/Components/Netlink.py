@@ -1,9 +1,7 @@
-from __future__ import print_function
 # Listen to hotplug events. Can be used to listen for hotplug events and
 # similar things, like network connections being (un)plugged.
 import os
 import socket
-import six
 
 
 class NetlinkSocket(socket.socket):
@@ -13,7 +11,7 @@ class NetlinkSocket(socket.socket):
 		self.bind((os.getpid(), -1))
 
 	def parse(self):
-		data = six.ensure_str(self.recv(512))
+		data = self.recv(512).decode("utf-8", "ignore")
 		event = {}
 		for item in data.split('\x00'):
 			if not item:
@@ -31,7 +29,7 @@ class NetlinkSocket(socket.socket):
 # Quick unit test (you can run this on any Linux machine)
 if __name__ == '__main__':
 	nls = NetlinkSocket()
-	print("socket no:", nls.fileno())
+	print("socket no: %s" % nls.fileno())
 	while True:
 		for item in nls.parse():
 			print(repr(item))
