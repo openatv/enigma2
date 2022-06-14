@@ -1082,6 +1082,17 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		"ListboxSelectedBackground": "ListboxBackgroundSelected",
 		"ListboxSelectedForeground": "ListboxForegroundSelected"
 	}
+	scrollbarModes = {
+		eListbox.showOnDemand: "showOnDemand",
+		eListbox.showAlways: "showAlways",
+		eListbox.showNever: "showNever",
+		eListbox.showLeftOnDemand: "showLeftOnDemand",
+		eListbox.showLeftAlways: "showLeftAlways"
+	}
+	scrollbarScrolls = {
+		0: "byPage",
+		1: "byLine"
+	}
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
@@ -1119,13 +1130,13 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
-			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", eListbox.DefaultScrollBarMode))
+			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", scrollbarModes[eListbox.DefaultScrollBarMode]))
 			if "scrollbarMode" not in scrollLabelStyle and scrollbarMode != eListbox.showNever:
 				scrollLabelStyle["scrollbarMode"] = scrollbarMode
 			scrollbarOffset = int(listBox.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
 			if "scrollbarOffset" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarOffset"] = scrollbarOffset
-			scrollbarScroll = parseScrollbarScroll(listBox.attrib.get("scrollbarScroll", eListbox.DefaultScrollBarScroll))
+			scrollbarScroll = parseScrollbarScroll(listBox.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
 			if "scrollbarScroll" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarScroll"] = scrollbarScroll
 			scrollbarWidth = int(listBox.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
@@ -1134,9 +1145,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 		for scrollLabel in tag.findall("scrolllabel"):
 			scrollLabelStyle["scrollbarBorderWidth"] = int(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
-			scrollLabelStyle["scrollbarMode"] = parseScrollbarMode(scrollLabel.attrib.get("scrollbarMode", eListbox.showOnDemand))
+			scrollLabelStyle["scrollbarMode"] = parseScrollbarMode(scrollLabel.attrib.get("scrollbarMode", scrollbarModes[eListbox.showOnDemand]))
 			scrollLabelStyle["scrollbarOffset"] = int(scrollLabel.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
-			scrollLabelStyle["scrollbarScroll"] = parseScrollbarScroll(scrollLabel.attrib.get("scrollbarScroll", eListbox.DefaultScrollBarScroll))
+			scrollLabelStyle["scrollbarScroll"] = parseScrollbarScroll(scrollLabel.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
 			scrollLabelStyle["scrollbarWidth"] = int(scrollLabel.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
 		for slider in tag.findall("slider"):
 			borderWidth = int(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth))
