@@ -117,7 +117,7 @@ public:
 		DefaultScrollBarBorderWidth = 1,
 		DefaultScrollBarScroll = eListbox::byPage,
 		DefaultScrollBarMode = eListbox::showNever,
-		DefaultWrapAround = false
+		DefaultWrapAround = true
 	};
 
 	void setScrollbarScroll(int scroll);
