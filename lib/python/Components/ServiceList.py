@@ -353,7 +353,6 @@ class ServiceList(GUIComponent):
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 
 	def postWidgetCreate(self, instance):
-		instance.setWrapAround(True)
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setFontsize()

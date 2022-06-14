@@ -294,7 +294,6 @@ class HelpMenuListOld(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
-		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
