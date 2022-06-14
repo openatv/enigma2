@@ -34,7 +34,8 @@ public:
 	enum {
 		fontStatic,
 		fontButton,
-		fontTitlebar
+		fontTitlebar,
+		fontListbox
 	};
 };
 

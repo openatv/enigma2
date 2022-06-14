@@ -17,6 +17,10 @@ eWindowStyleSkinned::eWindowStyleSkinned()
 	m_color[colSliderForeground] = gRGB(0xFFFFFF);
 	m_color[colSliderBorder] = gRGB(0xFFFFFF);
 
+	m_labelfnt = new gFont("Regular", 12);
+	m_listboxfnt = new gFont("Regular", 20);
+
+
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
@@ -228,8 +232,11 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	fnt = 0;
 	switch (what)
 	{
+	case fontListbox:
+		fnt = m_listboxfnt;
+		break;
 	case fontStatic:
-		fnt = new gFont("Regular", 12);
+		fnt = m_labelfnt;
 		break;
 	case fontButton:
 		fnt = new gFont("Regular", 20);
@@ -307,3 +314,12 @@ void eWindowStyleSkinned::setTitleFont(gFont *fnt)
 	m_fnt = fnt;
 }
 
+void eWindowStyleSkinned::setLabelFont(gFont *fnt)
+{
+	m_labelfnt = fnt;
+}
+
+void eWindowStyleSkinned::setListboxFont(gFont *fnt)
+{
+	m_listboxfnt = fnt;
+}
