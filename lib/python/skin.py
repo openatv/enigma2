@@ -1275,7 +1275,7 @@ class SkinError(Exception):
 		self.errorMessage = errorMessage
 
 	def __str__(self):
-		return "[Skin] Error: %s!" % self.errorMessage)
+		return "[Skin] Error: %s!" % self.errorMessage
 
 
 def readSkin(screen, skin, names, desktop):
