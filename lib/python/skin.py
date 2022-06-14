@@ -952,7 +952,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			color = color.attrib.get("value")
 			if name and color:
 				colors[name] = parseColor(color)
-				# print("[Skin] DEBUG: Color name='%s', color='%s'." % (name, color))
 			else:
 				skinError("Tag 'color' needs a name and color, got name='%s' and color='%s'" % (name, color))
 	for tag in domSkin.findall("fonts"):
@@ -974,8 +973,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
 		if isfile(fallbackFont):
 			addFont(fallbackFont, "Fallback", 100, -1, 0)
-		# else:  # As this is optional don't report an error.
-		# 	skinError("Fallback font '%s' not found" % fallbackFont)
 		for alias in tag.findall("alias"):
 			name = alias.attrib.get("name")
 			font = alias.attrib.get("font")
@@ -1071,15 +1068,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 	}
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
-		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
-		font = gFont("Regular", 20)  # Default
-		offset = eSize(20, 5)  # Default
-		for title in tag.findall("title"):
-			offset = parseSize(title.attrib.get("offset"), ((1, 1), (1, 1)))
-			font = parseFont(title.attrib.get("font"), ((1, 1), (1, 1)))
-		style.setTitleFont(font)
-		style.setTitleOffset(offset)
-		# print("[Skin] DEBUG: WindowStyle font, offset - '%s' '%s'." % (str(font), str(offset)))
 		for borderset in tag.findall("borderset"):
 			bsName = str(borderset.attrib.get("name"))
 			for pixmap in borderset.findall("pixmap"):
@@ -1091,7 +1079,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 						style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 					except Exception as err:
 						skinError("Unknown style borderset name '%s' (%s)" % (bpName, err))
-				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
 		for color in tag.findall("color"):
 			name = color.attrib.get("name")
 			name = colorNameConversions.get(name, name)
@@ -1101,9 +1088,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					style.setColor(eWindowStyleSkinned.__dict__["col%s" % name], color)
 				except Exception as err:
 					skinError("Unknown style color name '%s' (%s)" % (name, err))
-			# print("[Skin] DEBUG: WindowStyle color name %s , color - %s" % (name, str(color)))
+		for label in tag.findall("label"):
+			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
 			enableWrapAround = parseBoolean("enableWrapAround", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
+			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
@@ -1129,10 +1118,12 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for slider in tag.findall("slider"):
 			borderWidth = int(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth))
 			eSlider.setDefaultBorderWidth(borderWidth)
+		for title in tag.findall("title"):
+			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
+			style.setTitleOffset(parseSize(title.attrib.get("offset", "20,5"), ((1, 1), (1, 1))))
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(scrnID, style)
+		x.setStyle(int(tag.attrib.get("id", GUI_SKIN_ID)), style)
 	for tag in domSkin.findall("margin"):
-		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		r = eRect(0, 0, 0, 0)
 		v = tag.attrib.get("left")
 		if v:
@@ -1148,7 +1139,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			r.setBottom(int(v))
 		# The "desktop" parameter is hard-coded to the GUI screen, so we must ask
 		# for the one that this actually applies to.
-		getDesktop(scrnID).setMargins(r)
+		getDesktop(int(tag.attrib.get("id", GUI_SKIN_ID))).setMargins(r)
 
 
 class additionalWidget:
