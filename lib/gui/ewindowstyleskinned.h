@@ -85,7 +85,9 @@ public:
 
 	void setTitleOffset(const eSize &offset);
 	void setTitleFont(gFont *fnt);
-
+	void setLabelFont(gFont *fnt);
+	void setListboxFont(gFont *fnt);
+	
 private:
 	struct borderSet
 	{
@@ -100,6 +102,8 @@ private:
 
 	eSize m_title_offset;
 	ePtr<gFont> m_fnt;
+	ePtr<gFont> m_labelfnt;
+	ePtr<gFont> m_listboxfnt;
 
 	void drawBorder(gPainter &painter, const eRect &size, struct borderSet &border, int where);
 };

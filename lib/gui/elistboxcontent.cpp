@@ -181,7 +181,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
-	if (!fnt) fnt = new gFont("Regular", 20);
+	if (!fnt) {
+		style.getFont(eWindowStyle::fontListbox, fnt);
+	}
 
 	/* if we have no transparent background */
 	if (!local_style || !local_style->m_transparent_background)
