@@ -688,6 +688,9 @@ class AttributeParser:
 	def enableWrapAround(self, value):
 		self.guiObject.setWrapAround(parseBoolean("enablewraparound", value))
 
+	def entryFont(self, value):
+		self.guiObject.setEntryFont(parseFont(value, self.scaleTuple))
+
 	def excludes(self, value):
 		pass
 
@@ -833,11 +836,12 @@ class AttributeParser:
 		self.guiObject.setScrollbarWidth(self.applyHorizontalScale(value))
 
 	def secondFont(self, value):
-		self.guiObject.setSecondFont(parseFont(value, self.scaleTuple))
+		self.valueFont(value)
+		attribDeprecationWarning("secondFont", "valueFont")
 
 	def secondfont(self, value):  # This legacy definition uses an inconsistent name, use 'secondFont' instead!
-		self.secondFont(value)
-		# attribDeprecationWarning("secondfont", "secondFont")
+		self.valueFont(value)
+		attribDeprecationWarning("secondfont", "valueFont")
 
 	def seek_pointer(self, value):  # This legacy definition uses an inconsistent name, use 'seekPointer' instead!
 		self.seekPointer(value)
@@ -894,6 +898,9 @@ class AttributeParser:
 	def vAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'verticalAlignment' instead!
 		self.verticalAlignment(value)
 		# attribDeprecationWarning("vAlign", "verticalAlignment")
+
+	def valueFont(self, value):
+		self.guiObject.setValueFont(parseFont(value, self.scaleTuple))
 
 	def verticalAlignment(self, value):
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
@@ -1088,6 +1095,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					style.setColor(eWindowStyleSkinned.__dict__["col%s" % name], color)
 				except Exception as err:
 					skinError("Unknown style color name '%s' (%s)" % (name, err))
+		for configList in tag.findall("configList"):
+			style.setEntryFont(parseFont(configList.attrib.get("entryFont", "Regular;20"), ((1, 1), (1, 1))))
+			style.setValueFont(parseFont(configList.attrib.get("valueFont", "Regular;20"), ((1, 1), (1, 1))))
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
