@@ -35,7 +35,9 @@ public:
 		fontStatic,
 		fontButton,
 		fontTitlebar,
-		fontListbox
+		fontListbox,
+		fontEntry,
+		fontValue
 	};
 };
 
