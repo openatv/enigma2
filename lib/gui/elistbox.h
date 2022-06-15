@@ -83,7 +83,7 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
-	ePtr<gFont> m_font, m_secondfont;
+	ePtr<gFont> m_font, m_entryfont, m_valuefont;
 	ePoint m_text_offset;
 	bool m_use_vti_workaround;
 };
@@ -173,7 +173,8 @@ public:
 	void setScrollbarOffset(int size);
 
 	void setFont(gFont *font);
-	void setSecondFont(gFont *font);
+	void setEntryFont(gFont *font);
+	void setValueFont(gFont *font);
 	void setVAlign(int align);
 	void setHAlign(int align);
 	void setTextOffset(const ePoint &textoffset);
@@ -201,7 +202,8 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	bool getSelectionEnable() {return m_selection_enabled; }
 	gFont* getFont() {return m_style.m_font; }
-	gFont* getSecondFont() {return m_style.m_secondfont; }
+	gFont* getEntryFont() {return m_style.m_entryfont; }
+	gFont* getValueFont() {return m_style.m_valuefont; }
 
 
 #ifndef SWIG
