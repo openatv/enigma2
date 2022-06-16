@@ -2210,7 +2210,7 @@ class Config(ConfigSubsection):
 
 	def saveToFile(self, filename):
 		try:
-			with open("%s.writing" % filename, "w") as fd:
+			with open("%s.writing" % filename, "w", encoding="UTF-8") as fd:
 				fd.write(self.pickle())
 				fd.flush()
 				fsync(fd.fileno())
