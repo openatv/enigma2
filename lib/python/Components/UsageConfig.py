@@ -56,7 +56,62 @@ def InitUsageConfig():
 
 	config.usage = ConfigSubsection()
 
-	#settings for servicemp3 and handling from cuesheet file
+	# "UserInterface" settings.
+	#
+	config.usage.menuType = ConfigSelection(default="standard", choices=[
+		("horzanim", _("Horizontal menu")),
+		("horzicon", _("Horizontal icons")),
+		("standard", _("Vertical menu"))
+	])
+	config.usage.menuEntryStyle = ConfigSelection(default="text", choices=[
+		("text", _("Entry text only")),
+		("number", _("Entry number and text")),
+		("image", _("Entry image and text")),
+		("both", _("Entry image, number and text")),
+	])
+	config.usage.menuSortOrder = ConfigSelection(default="user", choices=[
+		("alpha", _("Alphabetical")),
+		("default", _("Default")),
+		("user", _("User defined"))
+	])
+	config.usage.showScreenPath = ConfigSelection(default="off", choices=[
+		("off", _("None")),
+		("small", _("Small")),
+		("large", _("Large"))
+	])
+	config.usage.sort_extensionslist = ConfigYesNo(default=False)
+	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
+	config.usage.sort_pluginlist = ConfigYesNo(default=True)
+	config.usage.helpSortOrder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))
+	])
+	config.usage.setupShowDefault = ConfigSelection(default="newline", choices=[
+		("", _("Don't show default")),
+		("spaces", _("Show default after description")),
+		("newline", _("Show default on new line"))
+	])
+	config.usage.helpAnimationSpeed = ConfigSelection(default=10, choices=[
+		(1, _("Very fast")),
+		(5, _("Fast")),
+		(10, _("Default")),
+		(20, _("Slow")),
+		(50, _("Very slow"))
+	])
+	config.usage.show_spinner = ConfigYesNo(default=True)
+	choiceList = [(0, _("Disabled"))]
+	for delay in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
+		if delay < 60:
+			message = ngettext("%d second", "%d seconds", delay) % delay
+		else:
+			message = abs(delay / 60)
+			message = ngettext("%d minute", "%d minutes", message) % message
+		choiceList.append((delay, message))
+	config.usage.screen_saver = ConfigSelection(default="0", choices=choiceList)
+
+	# settings for servicemp3 and handling from cue sheet file.
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)		#use marker for video media file
 	config.usage.useAudioCuesheet = ConfigYesNo(default=True)		#use marker for audio media file
 	config.usage.useChapterInfo = ConfigYesNo(default=True) 		#show chapter positions (gst >= 1 and supported media files)
@@ -75,8 +130,6 @@ def InitUsageConfig():
 	config.usage.use_pig = ConfigYesNo(default=False)
 	config.usage.update_available = NoSave(ConfigYesNo(default=False))
 	config.misc.ecm_info = ConfigYesNo(default=False)
-	config.usage.menu_show_numbers = ConfigYesNo(default=False)
-	config.usage.showScreenPath = ConfigSelection(default="off", choices=[("off", _("None")), ("small", _("Small")), ("large", _("Large"))])
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=[
 		("dhcp-router", _("Router / Gateway")),
 		("custom", _("Static IP / Custom")),
@@ -203,7 +256,6 @@ def InitUsageConfig():
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	config.usage.show_genre_info = ConfigYesNo(default=True)
-	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.enable_tt_caching = ConfigYesNo(default=True)
 
 	config.usage.tuxtxt_font_and_res = ConfigSelection(default="TTF_SD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("expert_mode", _("Expert mode"))])
@@ -244,13 +296,6 @@ def InitUsageConfig():
 		("user", _("user defined")), ])
 	config.usage.plugin_sort_weight = ConfigDictionarySet()
 	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
-	config.usage.menu_sort_mode = ConfigSelection(default="user", choices=[
-		("a_z", _("alphabetical")),
-		("default", _("Default")),
-		("user", _("user defined")), ])
-	config.usage.sort_pluginlist = ConfigYesNo(default=True)
-	config.usage.sort_extensionslist = ConfigYesNo(default=False)
-	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default=False)
 #	config.usage.rc_model = ConfigSelection(default=DefaultRemote, choices=RemoteChoices)
 
@@ -354,27 +399,6 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
 
-	config.usage.setupShowDefault = ConfigSelection(default="newline", choices=[
-		("", _("Don't show default")),
-		("spaces", _("Show default after description")),
-		("newline", _("Show default on new line"))
-	])
-
-	config.usage.helpSortOrder = ConfigSelection(default="headings+alphabetic", choices=[
-		("headings+alphabetic", _("Alphabetical under headings")),
-		("flat+alphabetic", _("Flat alphabetical")),
-		("flat+remotepos", _("Flat by position on remote")),
-		("flat+remotegroups", _("Flat by key group on remote"))
-	])
-
-	config.usage.helpAnimationSpeed = ConfigSelection(default="10", choices=[
-		("1", _("Very fast")),
-		("5", _("Fast")),
-		("10", _("Default")),
-		("20", _("Slow")),
-		("50", _("Very slow"))
-	])
-
 	choiceList = [
 		(0, _("Disabled")),
 		(-1, _("At end of current program"))
@@ -410,16 +434,6 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
 		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))])
-
-	choicelist = [("0", _("Disabled"))]
-	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
-		if i < 60:
-			m = ngettext("%d second", "%d seconds", i) % i
-		else:
-			m = abs(i / 60)
-			m = ngettext("%d minute", "%d minutes", m) % m
-		choicelist.append(("%d" % i, m))
-	config.usage.screen_saver = ConfigSelection(default="0", choices=choicelist)
 
 	config.usage.check_timeshift = ConfigYesNo(default=True)
 
@@ -498,8 +512,6 @@ def InitUsageConfig():
 	config.usage.recording_frontend_priority_strictly = ConfigSelection(default="no", choices=priority_strictly_choices)
 	config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
 	config.misc.disable_background_scan = ConfigYesNo(default=False)
-
-	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
 
 	config.usage.jobtaksextensions = ConfigYesNo(default=True)
 
