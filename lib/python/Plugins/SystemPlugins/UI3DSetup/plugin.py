@@ -49,7 +49,7 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		self.mode = ConfigSelection(choices=modelist, default=mode)
 		self.znorm = ConfigSlider(default=znorm + 50, increment=1, limits=(0, 100))
 		self.setmode = ConfigSelection(choices=setmodelist, default=setmode)
-		self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
+		self.list.append(getConfigListEntry(_("Settings mode"), self.setmode))
 		self.list.append(getConfigListEntry(_("3D Mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
 		self["config"].list = self.list
