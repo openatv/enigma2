@@ -304,28 +304,70 @@ void eListbox::moveSelection(long dir)
 	m_top = m_selected - (m_selected % m_items_per_page);
 
 	/*  new scollmode by line  */
-	if(m_scrollbar_scroll == byLine && m_selected != oldsel && oldtop != m_top) {
-		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
-		if (dir == moveDown && m_top<m_content->size())
-		{
-			// wrap around
-			if(m_top==0 && m_selected==0)
-			{
-				m_top=0;
-			}
-			else
-				m_top = oldtop + 1;
-		}
-		if (dir == moveUp)
-		{
-			// wrap around
-			if((m_selected + 1) < m_content->size())
-			{
-				m_top = oldtop - 1;
-				if(m_top < 0)
-					m_top = 0;
-			}
+	if(m_scrollbar_scroll == byLine)
+	{
+		//eDebug("[eListbox] moveSelection dir=%d old=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d", dir, oldtop, m_top, m_selected, m_items_per_page, m_content->size());
+		switch (dir) {
+			case moveEnd:
+				m_top = m_content->size() - 1;
+				break;
+			case justCheck:
+				{
+					if(oldtop == 0 && m_selected > m_items_per_page)
+					{
+						oldtop = m_content->cursorRestoreTop();
+					}
 
+					// don't jump on entry change
+					if(oldtop < m_content->size())
+						m_top = oldtop;
+					else
+						m_top = m_content->size() - 1;
+
+				}
+				break;
+
+		}
+		//eDebug("[eListbox] moveSelection dir=%d m_top=%d m_selected=%d m_items_per_page=%d", dir, m_top, m_selected, m_items_per_page);
+
+		if(m_selected != oldsel && oldtop != m_top) {
+			int max = m_content->size() - m_items_per_page;
+			//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
+			if (dir == moveDown && m_top < m_content->size())
+			{
+				// wrap around
+				if(m_top==0 && m_selected==0)
+					m_top=0;
+				else
+					m_top = oldtop + 1;
+
+				if(m_content->size() > m_items_per_page) {
+					if(m_selected >= max)
+						m_top = max;
+				}
+
+			}
+			if (dir == moveUp)
+			{
+				// wrap around
+				if((m_selected + 1) < m_content->size())
+				{
+					m_top = oldtop - 1;
+					if(m_top < 0)
+						m_top = 0;
+				}
+
+				//eDebug("[eListbox] moveSelection m_top=%d max=%d",m_top, max);
+				if(m_content->size() > m_items_per_page) {
+					if((m_enabled_wrap_around && oldtop == 0) || (m_selected >= max))
+						m_top = max;
+				}
+
+				if(m_top > m_selected)
+					m_top = m_selected;
+
+			}
+			//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
 		}
 		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
 	}
@@ -348,6 +390,7 @@ void eListbox::moveSelection(long dir)
 		inv |= eRect(0, m_itemheight * (oldsel-m_top), size().width(), m_itemheight);
 		invalidate(inv);
 	}
+
 }
 
 void eListbox::moveSelectionTo(int index)
@@ -472,6 +515,8 @@ int eListbox::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 
 		m_content->cursorSave();
+		if(m_scrollbar_scroll == byLine)
+			m_content->cursorSaveTop(m_top);
 		m_content->cursorMove(m_top - m_selected);
 
 		gRegion entryrect = eRect(0, 0, size().width(), m_itemheight);

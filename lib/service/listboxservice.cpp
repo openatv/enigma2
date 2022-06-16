@@ -326,7 +326,7 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_size(0), m_current_marked(false),
+	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_saved_cursor_top(0), m_size(0), m_current_marked(false),
 	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_progress_view_mode(0), m_progress_text_width(0),
 	m_service_picon_downsize(0), m_service_picon_ratio(167),m_servicetype_icon_mode(0), m_crypto_icon_mode(0),
 	m_record_indicator_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2),
@@ -555,6 +555,16 @@ void eListboxServiceContent::cursorRestore()
 	m_cursor = m_saved_cursor;
 	m_cursor_number = m_saved_cursor_number;
 	m_saved_cursor = m_list.end();
+}
+
+void eListboxServiceContent::cursorSaveTop(int top)
+{
+	m_saved_cursor_top = top;
+}
+
+int eListboxServiceContent::cursorRestoreTop()
+{
+	return m_saved_cursor_top;
 }
 
 int eListboxServiceContent::size()
