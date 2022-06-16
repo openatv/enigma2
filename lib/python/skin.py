@@ -1,9 +1,10 @@
 from errno import ENOENT
+from glob import glob
 from os.path import basename, dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eSize, eSlider, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, ePixmap, ePoint, eRect, eSize, eSlider, eSubtitleWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -29,11 +30,11 @@ DISPLAY_SKIN_ID = 2 if BoxInfo.getItem("model").startswith("dm") else 1  # Front
 domScreens = {}  # Dictionary of skin based screens.
 colors = {  # Dictionary of skin color names.
 	"key_back": gRGB(0x00313131),
-	"key_blue": gRGB(0x0018188b),
-	"key_green": gRGB(0x001f771f),
-	"key_red": gRGB(0x009f1313),
-	"key_text": gRGB(0x00ffffff),
-	"key_yellow": gRGB(0x00a08500)
+	"key_blue": gRGB(0x0018188B),
+	"key_green": gRGB(0x001F771F),
+	"key_red": gRGB(0x009F1313),
+	"key_text": gRGB(0x00FFFFFF),
+	"key_yellow": gRGB(0x00A08500)
 }
 fonts = {  # Dictionary of predefined and skin defined font aliases.
 	"Body": ("Regular", 18, 22, 16),
@@ -78,26 +79,25 @@ runCallbacks = False
 #
 def InitSkins():
 	global currentPrimarySkin, currentDisplaySkin, resolutions
-	##################################################################################################
-	if isfile('/etc/.restore_skins'):
-		unlink('/etc/.restore_skins')
-		import glob
-		lastpath = ''
-		for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
+	# #################################################################################################
+	if isfile("/etc/.restore_skins"):
+		unlink("/etc/.restore_skins")
+		lastPath = ""
+		for skin in sorted(glob("/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*")):
 			try:
-				print('[RESTORE_SKIN] restore skin from "%s" ...' % skin)
-				skinpath, ext = splitext(skin)
-				if skinpath == lastpath or ext not in ('.py', '.pyc', '.pyo'):
-					print('[RESTORE_SKIN] ...skip!')
+				print("[Skin] RESTORE_SKIN: Restore skin from '%s'..." % skin)
+				skinPath, skinExt = splitext(skin)
+				if skinPath == lastPath or skinExt not in (".py", ".pyc", ".pyo"):
+					print("[Skin] RESTORE_SKIN: Skip!")
 					continue
-				lastpath = skinpath
-				if getattr(__import__(skin.replace('/usr/lib/enigma2/python/', '').replace(ext, '').replace('/', '.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
-					print('[RESTORE_SKIN] ... failed!')
+				lastPath = skinPath
+				if getattr(__import__(skin.replace("/usr/lib/enigma2/python/", "").replace(skinExt, "").replace("/", "."), fromlist=["ActivateSkinSettings"]), "ActivateSkinSettings")().WriteSkin(True):
+					print("[Skin] RESTORE_SKIN: Failed!")
 				else:
-					print('[RESTORE_SKIN] ... done!')
+					print("[Skin] RESTORE_SKIN: Done!")
 			except Exception as err:
-				print('[RESTORE_SKIN] ...error occurred: ', err)
-	##################################################################################################
+				print("[Skin] RESTORE_SKIN: Error occurred!  (%s)" % err)
+	# #################################################################################################
 	runCallbacks = False
 	# Add the emergency skin.  This skin should provide enough functionality
 	# to enable basic GUI functions to work.
@@ -174,14 +174,14 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 						if res != "0,0":
 							element.attrib["resolution"] = res
 						if config.crash.debugScreens.value:
-							res = [int(x.strip()) for x in res.split(",")]
+							res = [parseInteger(x.strip()) for x in res.split(",")]
 							msg = ", resolution %dx%d," % (res[0], res[1]) if len(res) == 2 and res[0] and res[1] else ""
 							print("[Skin] Loading screen '%s'%s from '%s'.  (scope=%s)" % (name, msg, filename, scope))
 						domScreens[name] = (element, "%s/" % dirname(filename))
 			elif element.tag == "windowstyle":  # Process the windowstyle element.
 				scrnID = element.attrib.get("id", None)
 				if scrnID is not None:  # Without an scrnID, it is useless!
-					scrnID = int(scrnID)
+					scrnID = parseInteger(scrnID)
 					domStyle = ElementTree(Element("skin"))
 					domStyle.getroot().append(element)
 					windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
@@ -203,11 +203,11 @@ def reloadSkins():
 	colors.clear()
 	colors = {
 		"key_back": gRGB(0x00313131),
-		"key_blue": gRGB(0x0018188b),
-		"key_green": gRGB(0x001f771f),
-		"key_red": gRGB(0x009f1313),
-		"key_text": gRGB(0x00ffffff),
-		"key_yellow": gRGB(0x00a08500)
+		"key_blue": gRGB(0x0018188B),
+		"key_green": gRGB(0x001F771F),
+		"key_red": gRGB(0x009F1313),
+		"key_text": gRGB(0x00FFFFFF),
+		"key_yellow": gRGB(0x00A08500)
 	}
 	fonts.clear()
 	fonts = {
@@ -260,14 +260,16 @@ def attribDeprecationWarning(attribute, replacement):
 	print("[Skin] Warning: Attribute '%s' has been deprecated, use '%s' instead!" % (attribute, replacement))
 
 
-def parseOptions(options, attribute, value):
+def parseOptions(options, attribute, value, default):
 	if options and isinstance(options, dict):
 		if value in options.keys():
 			value = options[value]
 		else:
 			skinError("The '%s' value '%s' is invalid, acceptable options are '%s'" % (attribute, value, "', '".join(options.keys())))
+			value = default
 	else:
 		skinError("The '%s' parser is not correctly initialized")
+		value = default
 	return value
 
 
@@ -277,7 +279,7 @@ def parseAlphaTest(value):
 		"off": 0,
 		"blend": BT_ALPHABLEND
 	}
-	return parseOptions(options, "alphaTest", value)
+	return parseOptions(options, "alphaTest", value, 0)
 
 
 def parseAnimationMode(value):
@@ -291,20 +293,25 @@ def parseAnimationMode(value):
 		"disable_onshow": 0x10,
 		"disable_onhide": 0x01
 	}
-	return parseOptions(options, "animationMode", value)
+	return parseOptions(options, "animationMode", value, 0x00)
 
 
 def parseBoolean(attribute, value):
 	return value.lower() in ("1", attribute, "enabled", "on", "true", "yes")
 
 
-def parseColor(value):
+def parseColor(value, default=0x00FFFFFF):
 	if value[0] == "#":
-		value = gRGB(int(value[1:], 0x10))
+		try:
+			value = gRGB(int(value[1:], 0x10))
+		except ValueError:
+			skinError("The color code '%s' must be #aarrggbb, using #00ffffff (White)" % value)
+			value = gRGB(default)
 	elif value in colors:
 		value = colors[value]
 	else:
-		skinError("The color '%s' must be #aarrggbb or valid named color" % value)
+		skinError("The color '%s' must be #aarrggbb or valid named color, using #00ffffff (White)" % value)
+		value = gRGB(default)
 	return value
 
 
@@ -427,7 +434,16 @@ def parseHorizontalAlignment(value):
 		"right": 2,
 		"block": 3
 	}
-	return parseOptions(options, "horizontalAlignment", value)
+	return parseOptions(options, "horizontalAlignment", value, 0)
+
+
+def parseInteger(value, default=0):
+	try:
+		value = int(value)
+	except (TypeError, ValueError):
+		skinError("The value '%s' is not a valid integer" % value)
+		value = default
+	return value
 
 
 def parseOrientation(value):
@@ -439,7 +455,7 @@ def parseOrientation(value):
 		"orTopToBottom": 0x10,
 		"orBottomToTop": 0x11
 	}
-	value = parseOptions(options, "orientation", value)
+	value = parseOptions(options, "orientation", value, 0x00)
 	return (value & 0x10, value & 0x01)  # (orHorizontal / orVertical, not swapped / swapped)
 
 
@@ -540,7 +556,7 @@ def parseScaleFlags(value):
 		"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 		"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
 	}
-	return parseOptions(options, "scaleFlags", value)
+	return parseOptions(options, "scaleFlags", value, 0)
 
 
 def parseScrollbarMode(value):
@@ -552,7 +568,7 @@ def parseScrollbarMode(value):
 		"showLeftOnDemand": eListbox.showLeftOnDemand,
 		"showLeftAlways": eListbox.showLeftAlways
 	}
-	return parseOptions(options, "scrollbarMode", value)
+	return parseOptions(options, "scrollbarMode", value, eListbox.showOnDemand)
 
 
 def parseScrollbarScroll(value):
@@ -560,7 +576,7 @@ def parseScrollbarScroll(value):
 		"byPage": 0,
 		"byLine": 1
 	}
-	return parseOptions(options, "scrollbarScroll", value)
+	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
 def parseVerticalAlignment(value):
@@ -571,7 +587,7 @@ def parseVerticalAlignment(value):
 		"middle": 1,
 		"bottom": 2
 	}
-	return parseOptions(options, "horizontalAlignment", value)
+	return parseOptions(options, "horizontalAlignment", value, 1)
 
 
 def loadPixmap(path, desktop):
@@ -659,25 +675,25 @@ class AttributeParser:
 		pass
 
 	def backgroundColor(self, value):
-		self.guiObject.setBackgroundColor(parseColor(value))
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
 	def backgroundColorSelected(self, value):
-		self.guiObject.setBackgroundColorSelected(parseColor(value))
+		self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
 	def backgroundCrypted(self, value):
-		self.guiObject.setBackgroundColor(parseColor(value))
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
 	def backgroundEncrypted(self, value):
-		self.guiObject.setBackgroundColor(parseColor(value))
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
 	def backgroundNotCrypted(self, value):
-		self.guiObject.setBackgroundColor(parseColor(value))
+		self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPixmap(loadPixmap(value, self.desktop))
 
 	def borderColor(self, value):
-		self.guiObject.setBorderColor(parseColor(value))
+		self.guiObject.setBorderColor(parseColor(value, 0x00FFFFFF))
 
 	def borderWidth(self, value):
 		self.guiObject.setBorderWidth(self.applyVerticalScale(value))
@@ -711,19 +727,19 @@ class AttributeParser:
 		self.guiObject.setFont(parseFont(value, self.scaleTuple))
 
 	def foregroundColor(self, value):
-		self.guiObject.setForegroundColor(parseColor(value))
+		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
 	def foregroundColorSelected(self, value):
-		self.guiObject.setForegroundColorSelected(parseColor(value))
+		self.guiObject.setForegroundColorSelected(parseColor(value, 0x00FFFFFF))
 
 	def foregroundCrypted(self, value):
-		self.guiObject.setForegroundColor(parseColor(value))
+		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
 	def foregroundEncrypted(self, value):
-		self.guiObject.setForegroundColor(parseColor(value))
+		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
 	def foregroundNotCrypted(self, value):
-		self.guiObject.setForegroundColor(parseColor(value))
+		self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
 
 	def halign(self, value):  # This legacy definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
@@ -798,10 +814,10 @@ class AttributeParser:
 		self.guiObject.setScrollbarScroll(parseScrollbarScroll(value))
 
 	def scrollbarBackgroundColor(self, value):
-		self.guiObject.setScrollbarBackgroundColor(parseColor(value))
+		self.guiObject.setScrollbarBackgroundColor(parseColor(value, 0x00000000))
 
 	def scrollbarBorderColor(self, value):
-		self.guiObject.setScrollbarBorderColor(parseColor(value))
+		self.guiObject.setScrollbarBorderColor(parseColor(value, 0x00FFFFFF))
 
 	def scrollbarSliderBorderColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBorderColor' instead!
 		self.scrollbarBorderColor(value)
@@ -815,7 +831,7 @@ class AttributeParser:
 		attribDeprecationWarning("scrollbarSliderBorderWidth", "scrollbarBorderWidth")
 
 	def scrollbarForegroundColor(self, value):
-		self.guiObject.setScrollbarForegroundColor(parseColor(value))
+		self.guiObject.setScrollbarForegroundColor(parseColor(value, 0x00FFFFFF))
 
 	def scrollbarSliderForegroundColor(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarForegroundColor' instead!
 		self.scrollbarForegroundColor(value)
@@ -864,7 +880,7 @@ class AttributeParser:
 		self.guiObject.setSelectionPixmap(loadPixmap(value, self.desktop))
 
 	def shadowColor(self, value):
-		self.guiObject.setShadowColor(parseColor(value))
+		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
 
 	def shadowOffset(self, value):
 		self.guiObject.setShadowOffset(parsePosition(value, self.scaleTuple))
@@ -906,7 +922,7 @@ class AttributeParser:
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
 
 	def zPosition(self, value):
-		self.guiObject.setZPosition(int(value))
+		self.guiObject.setZPosition(parseInteger(value))
 
 
 def applyAllAttributes(guiObject, desktop, attributes, scale=((1, 1), (1, 1))):
@@ -924,15 +940,12 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
 	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions, scrollLabelStyle
 	for tag in domSkin.findall("output"):
-		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
+		scrnID = parseInteger(tag.attrib.get("id"), GUI_SKIN_ID)
 		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
-				xres = res.attrib.get("xres")
-				xres = int(xres) if xres else 720
-				yres = res.attrib.get("yres")
-				yres = int(yres) if yres else 576
-				bpp = res.attrib.get("bpp")
-				bpp = int(bpp) if bpp else 32
+				xres = parseInteger(res.attrib.get("xres"), 720)
+				yres = parseInteger(res.attrib.get("yres"), 576)
+				bpp = parseInteger(res.attrib.get("bpp"), 32)
 				resolutions[scrnID] = (xres, yres, bpp)
 				if bpp != 32:
 					pass  # Load palette (Not yet implemented!)
@@ -958,7 +971,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			name = color.attrib.get("name")
 			color = color.attrib.get("value")
 			if name and color:
-				colors[name] = parseColor(color)
+				colors[name] = parseColor(color, 0x00FFFFFF)
 			else:
 				skinError("Tag 'color' needs a name and color, got name='%s' and color='%s'" % (name, color))
 	for tag in domSkin.findall("fonts"):
@@ -983,10 +996,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for alias in tag.findall("alias"):
 			name = alias.attrib.get("name")
 			font = alias.attrib.get("font")
-			size = int(alias.attrib.get("size"))
-			# size = int(size) if size and size.isdigit() else 0  # This assumes that the attributes are always strings!
-			height = int(alias.attrib.get("height", size))  # To be calculated some day.
-			width = int(alias.attrib.get("width", size))  # To be calculated some day.
+			size = parseInteger(alias.attrib.get("size"), 20)
+			height = parseInteger(alias.attrib.get("height"), 25)  # To be calculated some day.
+			width = parseInteger(alias.attrib.get("width", 18), 18)  # To be calculated some day.
 			if name and font and size:
 				fonts[name] = (font, size, height, width)
 				# print("[Skin] Add font alias: name='%s', font='%s', size=%d, height=%s, width=%d." % (name, font, size, height, width))
@@ -1031,27 +1043,18 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			if value and name:
 				variables[name] = "%s,%s" % (str(x), str(y))
 	for tag in domSkin.findall("subtitles"):
-		from enigma import eSubtitleWidget
 		for substyle in tag.findall("sub"):
-			font = parseFont(substyle.attrib.get("font"), scale=((1, 1), (1, 1)))
-			col = substyle.attrib.get("foregroundColor")
-			if col:
-				foregroundColor = parseColor(col)
-				haveColor = 1
-			else:
-				foregroundColor = gRGB(0xFFFFFF)
-				haveColor = 0
-			col = substyle.attrib.get("borderColor" and "shadowColor")
-			if col:
-				borderColor = shadowColor = parseColor(col)
-			else:
-				borderColor = shadowColor = gRGB(0)
-			borderwidth = substyle.attrib.get("borderWidth")
-			if borderwidth is None:
-				borderWidth = 3  # Default: Use a subtitle border.
-			else:
-				borderWidth = int(borderwidth)
 			face = eSubtitleWidget.__dict__[substyle.attrib.get("name")]
+			font = parseFont(substyle.attrib.get("font"), scale=((1, 1), (1, 1)))
+			foregroundColor = substyle.attrib.get("foregroundColor")
+			if foregroundColor:
+				haveColor = 1
+				foregroundColor = parseColor(foregroundColor, 0x00FFFFFF)
+			else:
+				haveColor = 0
+				foregroundColor = gRGB(0x00FFFFFF)
+			borderColor = parseColor(substyle.attrib.get("borderColor", substyle.attrib.get("shadowColor")), 0x00000000)
+			borderWidth = parseInteger(substyle.attrib.get("borderWidth"), 3)  # Default: Use a subtitle border.
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
 	colorNameConversions = {
 		"LabelForeground": "Foreground",
@@ -1089,7 +1092,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for color in tag.findall("color"):
 			name = color.attrib.get("name")
 			name = colorNameConversions.get(name, name)
-			color = parseColor(color.attrib.get("color"))
+			color = parseColor(color.attrib.get("color"), 0x00FFFFFF)
 			if not isinstance(color, str):
 				try:
 					style.setColor(eWindowStyleSkinned.__dict__["col%s" % name], color)
@@ -1103,53 +1106,53 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for listBox in tag.findall("listbox"):
 			enableWrapAround = parseBoolean("enableWrapAround", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
 			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
-			scrollbarBorderWidth = int(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
+			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth"), eListbox.DefaultScrollBarBorderWidth)
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
 			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", scrollbarModes[eListbox.DefaultScrollBarMode]))
 			if "scrollbarMode" not in scrollLabelStyle and scrollbarMode != eListbox.showNever:
 				scrollLabelStyle["scrollbarMode"] = scrollbarMode
-			scrollbarOffset = int(listBox.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
+			scrollbarOffset = parseInteger(listBox.attrib.get("scrollbarOffset"), eListbox.DefaultScrollBarOffset)
 			if "scrollbarOffset" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarOffset"] = scrollbarOffset
 			scrollbarScroll = parseScrollbarScroll(listBox.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
 			if "scrollbarScroll" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarScroll"] = scrollbarScroll
-			scrollbarWidth = int(listBox.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
+			scrollbarWidth = parseInteger(listBox.attrib.get("scrollbarWidth"), eListbox.DefaultScrollBarWidth)
 			if "scrollbarWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarWidth"] = scrollbarWidth
 			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 		for scrollLabel in tag.findall("scrolllabel"):
-			scrollLabelStyle["scrollbarBorderWidth"] = int(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth))
+			scrollLabelStyle["scrollbarBorderWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarBorderWidth"), eListbox.DefaultScrollBarBorderWidth)
 			scrollLabelStyle["scrollbarMode"] = parseScrollbarMode(scrollLabel.attrib.get("scrollbarMode", scrollbarModes[eListbox.showOnDemand]))
-			scrollLabelStyle["scrollbarOffset"] = int(scrollLabel.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset))
+			scrollLabelStyle["scrollbarOffset"] = parseInteger(scrollLabel.attrib.get("scrollbarOffset"), eListbox.DefaultScrollBarOffset)
 			scrollLabelStyle["scrollbarScroll"] = parseScrollbarScroll(scrollLabel.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
-			scrollLabelStyle["scrollbarWidth"] = int(scrollLabel.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth))
+			scrollLabelStyle["scrollbarWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarWidth"), eListbox.DefaultScrollBarWidth)
 		for slider in tag.findall("slider"):
-			borderWidth = int(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth))
+			borderWidth = parseInteger(slider.attrib.get("borderWidth"), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			style.setTitleOffset(parseSize(title.attrib.get("offset", "20,5"), ((1, 1), (1, 1))))
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(int(tag.attrib.get("id", GUI_SKIN_ID)), style)
+		x.setStyle(parseInteger(tag.attrib.get("id"), GUI_SKIN_ID), style)
 	for tag in domSkin.findall("margin"):
 		r = eRect(0, 0, 0, 0)
 		v = tag.attrib.get("left")
 		if v:
-			r.setLeft(int(v))
+			r.setLeft(parseInteger(v))
 		v = tag.attrib.get("top")
 		if v:
-			r.setTop(int(v))
+			r.setTop(parseInteger(v))
 		v = tag.attrib.get("right")
 		if v:
-			r.setRight(int(v))
+			r.setRight(parseInteger(v))
 		v = tag.attrib.get("bottom")
 		if v:
-			r.setBottom(int(v))
+			r.setBottom(parseInteger(v))
 		# The "desktop" parameter is hard-coded to the GUI screen, so we must ask
 		# for the one that this actually applies to.
-		getDesktop(int(tag.attrib.get("id", GUI_SKIN_ID))).setMargins(r)
+		getDesktop(parseInteger(tag.attrib.get("id", GUI_SKIN_ID))).setMargins(r)
 
 
 class additionalWidget:
@@ -1311,7 +1314,7 @@ def readSkin(screen, skin, names, desktop):
 				candidate = fromstring(s)
 				if candidate.tag == "screen":
 					screenID = candidate.attrib.get("id", None)
-					if (not screenID) or (int(screenID) == DISPLAY_SKIN_ID):
+					if (not screenID) or (parseInteger(screenID) == DISPLAY_SKIN_ID):
 						myScreen = candidate
 						break
 			else:
@@ -1331,7 +1334,7 @@ def readSkin(screen, skin, names, desktop):
 	context.y = bounds.top()
 	context.w = bounds.width()
 	context.h = bounds.height()
-	resolution = tuple([int(x.strip()) for x in myScreen.attrib.get("resolution", "%d,%d" % (context.w, context.h)).split(",")])
+	resolution = tuple([parseInteger(x.strip()) for x in myScreen.attrib.get("resolution", "%d,%d" % (context.w, context.h)).split(",")])
 	context.scale = ((context.w, resolution[0]), (context.h, resolution[1]))
 	del bounds
 	collectAttributes(screen.skinAttributes, myScreen, context, skinPath, ignore=("name",))
