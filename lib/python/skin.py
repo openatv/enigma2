@@ -1,4 +1,3 @@
-from errno import ENOENT
 from glob import glob
 from os.path import basename, dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
@@ -10,7 +9,7 @@ from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_CONFIG, SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
+from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -1327,7 +1326,7 @@ def readSkin(screen, skin, names, desktop):
 		print("[Skin] No skin to read or screen to display.")
 		myScreen = screen.parsedSkin = fromstring("<screen></screen>")
 	screen.skinAttributes = []
-	skinPath = getattr(screen, "skin_path", path)
+	skinPath = getattr(screen, "skin_path", path)  # TODO: It may be possible for "path" to be undefined!
 	context = SkinContextStack()
 	bounds = desktop.bounds()
 	context.x = bounds.left()
