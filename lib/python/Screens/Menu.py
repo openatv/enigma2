@@ -27,10 +27,11 @@ file.close()
 
 mainmenu = _("Main Menu")
 lastMenuID = None
+noMainMenuPath = not isfile(resolveFilename(SCOPE_GUISKIN, "mainmenu"))
 
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
-	if not isfile(resolveFilename(SCOPE_GUISKIN, "mainmenu")):
+	if noMainMenuPath:
 		return None
 	png = png_cache.get(entryID, None)
 	if png is None:
@@ -119,15 +120,97 @@ t_history = title_History()
 
 class Menu(Screen, HelpableScreen, ProtectedScreen):
 	ALLOW_SUSPEND = True
+
+	skin = ["""
+	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
+		<widget source="menu" render="Listbox" position="0,0" size="730,490">
+			<convert type="TemplatedMultiContent">
+				{
+				"templates":
+					{
+					"default": (%d,
+						[
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0)
+						]),
+					"text": (%d,
+						[
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 4),
+						]),
+					"number": (%d,
+						[
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = 3),
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 4),
+						]),
+					"image": (%d,
+						[
+						MultiContentEntryPixmapAlphaBlend(pos = (%d, %d), size = (%d, %d), png = 6, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO),
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 4),
+						]),
+					"both": (%d,
+						[
+						MultiContentEntryPixmapAlphaBlend(pos = (%d, %d), size = (%d, %d), png = 6, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO),
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = 3),
+						MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 4),
+						])
+					},
+				"fonts": [parseFont("Regular;%d")],
+				"itemHeight": %d
+				}
+			</convert>
+		</widget>
+		<widget name="menuimage" position="780,0" size="200,200" alphatest="blend" conditional="menuimage" scaleFlags="scaleCenter" transparent="1" />
+		<widget source="description" render="Label" position="0,e-110" size="e,50" conditional="description" font="Regular;20" valign="center" />
+		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="200,e-50" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="580,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_menu" render="Label" position="e-300,e-50" size="90,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_info" render="Label" position="e-200,e-50" size="90,40" backgroundColor="key_back" conditional="key_info" font="Regular;20" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-100,e-50" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>""",
+		35,  # Template "default".
+		15, 710, 35,
+		35,  # Template "text".
+		20, 660, 35,
+		35,  # Template "number".
+		15, 30, 35,
+		65, 610, 35,
+		35,  # Template "image".
+		15, 2, 31, 31,
+		65, 610, 35,
+		35,  # Template "both".
+		15, 2, 31, 31,
+		65, 40, 35,
+		125, 550, 35,
+		25,  # Template "fonts".
+		35  # Template "itemHeight".
+	]
 	png_cache = {}
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["description"])
 		HelpableScreen.__init__(self)
 		self.parentMenu = parent
 		self.menuList = []
 		self["menu"] = List(self.menuList)
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.defaultMenuImage = menus.get("default", "")
+		self["menuimage"] = Pixmap()
+		self["description"] = StaticText()
 		self.showNumericHelp = False
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
@@ -140,14 +223,14 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		# For the skin: first try a menu_<menuID>, then Menu.
 		self.skinName = []
 		if self.menuID is not None:
-			if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+			if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
 				self.skinName.append("Animmain")
-			elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+			elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
 				self.skinName.append("Iconmain")
 			else:
 				self.skinName.append("menu_" + self.menuID)
 		self.skinName.append("Menu")
-		if config.usage.menu_sort_mode.value == "user":
+		if config.usage.menuSortOrder.value == "user":
 			self["MoveActions"] = HelpableActionMap(self, ["WizardActions"], {
 				"left": self.keyLeft,
 				"right": self.keyRight,
@@ -159,11 +242,10 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				"yellow": self.keyYellow,
 				"blue": self.keyBlue,
 			}, prio=0)
-		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NumberActions", "MenuActions"], {
+		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NumberActions"], {
 			"ok": (self.okbuttonClick, _("Select the current menu item")),
 			"cancel": (self.closeNonRecursive, _("Exit menu")),
 			"close": (self.closeRecursive, _("Exit all menus")),
-			"menu": (self.closeRecursive, _("Exit all menus")),
 			"1": (self.keyNumberGlobal, _("Direct menu item selection")),
 			"2": (self.keyNumberGlobal, _("Direct menu item selection")),
 			"3": (self.keyNumberGlobal, _("Direct menu item selection")),
@@ -200,14 +282,14 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			t_history.thistory = str(title) + " > "
 		else:
 			t_history.thistory = t_history.thistory + str(title) + " > "
-		if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+		if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
 			self["label1"] = StaticText()
 			self["label2"] = StaticText()
 			self["label3"] = StaticText()
 			self["label4"] = StaticText()
 			self["label5"] = StaticText()
 			self.onShown.append(self.openTestA)
-		elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+		elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
 			self["label1"] = StaticText()
 			self["label2"] = StaticText()
 			self["label3"] = StaticText()
@@ -276,7 +358,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 					self.menuList.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50, description, menupng))
 				else:
 					self.menuList.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, description, menupng))
-		if config.usage.menu_sort_mode.value == "user" and self.menuID == "mainmenu":
+		if config.usage.menuSortOrder.value == "user" and self.menuID == "mainmenu":
 			plugin_list = []
 			id_list = []
 			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
@@ -284,7 +366,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				if l.id not in id_list:
 					id_list.append(l.id)
 					plugin_list.append((l.name, boundFunction(l.__call__, self.session), l.id, 200))
-		if self.menuID is not None and config.usage.menu_sort_mode.value == "user":
+		if self.menuID is not None and config.usage.menuSortOrder.value == "user":
 			self.sub_menu_sort = NoSave(ConfigDictionarySet())
 			self.sub_menu_sort.value = config.usage.menu_sort_weight.getConfigValue(self.menuID, "submenu") or {}
 			idx = 0
@@ -296,23 +378,58 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				self.sub_menu_sort.changeConfigValue(entry[2], "sort", m_weight)
 				idx += 1
 			self.full_list = list(self.menuList)
-		if config.usage.menu_sort_mode.value == "a_z":  # Sort by menu item text.
+		if config.usage.menuSortOrder.value == "alpha":  # Sort by menu item text.
 			self.menuList.sort(key=self.sortByName)
-		elif config.usage.menu_sort_mode.value == "user":  # Sort by user defined sequence.
+		elif config.usage.menuSortOrder.value == "user":  # Sort by user defined sequence.
 			self["key_blue"].setText(_("Edit Mode On"))
 			self.hide_show_entries()
 		else:  # Sort by menu item weight.
 			self.menuList.sort(key=lambda x: int(x[3]))
-		if config.usage.menu_show_numbers.value:
-			self.menuList = [(str(x[0] + 1) + " " + x[1][0], x[1][1], x[1][2]) for x in enumerate(self.menuList)]
-		self["menu"].setList(self.menuList)
+		menu = []
+		for number, item in enumerate(self.menuList):
+			# print("[Menu] DEBUG: Menu item=%s." % str(item))
+			number += 1
+			label = "%d  %s" % (number, item[0]) if config.usage.menuEntryStyle.value in ("Number", "Both") else item[0]  # This is for compatibility with older skins.
+			image = menus.get(item[2], self.defaultMenuImage)
+			# print("[Menu] DEBUG: Key='%s', Image='%s'." % (item[2], image))
+			if image:
+				image = resolveFilename(SCOPE_GUISKIN, image)
+				if isfile(image):
+					image = LoadPixmap(image, cached=True)
+					# if image:
+					# 	print("[Menu] DEBUG: Image found.")
+				else:
+					image = None
+			else:
+				image = None
+			menu.append((label, item[1], item[2], str(number), item[0], item[4], image))
+		self.menuList = menu
+		self["menu"].setList(menu)
 
 	def layoutFinished(self):
+		# self["menu"].allowNativeKeys(False)
+		self["menu"].setStyle(config.usage.menuEntryStyle.value)
 		self.selectionChanged()
 
 	def selectionChanged(self):
+		menuID = self["menu"].getCurrent()[2]
+		menuImage = menus.get(menuID, self.defaultMenuImage)
+		if menuImage:
+			type = "Default" if menuImage == self.defaultMenuImage else "Menu"
+			menuImage = resolveFilename(SCOPE_GUISKIN, menuImage)
+			# print("[Menu] %s image for menu ID '%s' is '%s'." % (type, menuID, menuImage))
+			if isfile(menuImage):
+				self.menuImage = LoadPixmap(menuImage, cached=True)
+				if self.menuImage:
+					self["menuimage"].instance.setPixmap(self.menuImage)
+				else:
+					print("[Menu] Error: Unable to load image '%s'!" % menuImage)
+			else:
+				print("[Menu] Error: Menu image '%s' is not a file!" % menuImage)
+		else:
+			self.menuImage = None
+		self["description"].setText(self["menu"].getCurrent()[5])
 		if self.sort_mode:
-			selection = self["menu"].getCurrent()[2]
 			self["key_yellow"].setText(_("Show") if self.sub_menu_sort.getConfigValue(selection, "hidden") else _("Hide"))
 		else:
 			self["key_yellow"].setText("")
@@ -463,9 +580,9 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 
 	def __onExecBegin(self):
 		self.onExecBegin.remove(self.__onExecBegin)
-		if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+		if config.usage.menuType.value == "horzanim" and findSkinScreen("Animmain"):
 			return
-		elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+		elif config.usage.menuType.value == "horzicon" and findSkinScreen("Iconmain"):
 			return
 		else:
 			self.okbuttonClick()
@@ -496,7 +613,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self.close(True)
 
 	def createSummary(self):
-		if config.usage.menutype.value == "standard":
+		if config.usage.menuType.value == "standard":
 			return MenuSummary
 
 	def isProtected(self):
@@ -511,7 +628,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 				return True
 
 	def keyBlue(self):
-		if config.usage.menu_sort_mode.value == "user":
+		if config.usage.menuSortOrder.value == "user":
 			self.toggleSortMode()
 
 	def updateList(self):

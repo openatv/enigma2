@@ -691,9 +691,9 @@
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebIf="1">
-		<item level="0" text="Show Main Menu as" description="Choose style of main menus">config.usage.menutype</item>
-		<item level="0" text="Show menu numbers" description="This option allows you to show menu number quick links." requires="config.usage.menutype" value="standard">config.usage.menu_show_numbers</item>
-		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden.">config.usage.menu_sort_mode</item>
+		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
+		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
+		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extensions menu" description="Enable to display the Extension menu entries alphabetically.">config.usage.sort_extensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extensions menu.">config.usage.show_restart_network_extensionslist</item>
@@ -702,7 +702,7 @@
 		<item level="1" text="Show setup default value" description="Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description.">config.usage.setupShowDefault</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch.">config.usage.boolean_graphic</item>
 		<item level="2" text="Show additional slider value" description="Enable to display the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>
-		<item level="0" text="Sort order for help screen" description="Choose the order in which items are displayed in Help windows">config.usage.helpSortOrder</item>
+		<item level="0" text="Help screen style" description="Choose the style/order in which items are displayed in help windows.">config.usage.helpSortOrder</item>
 		<item level="0" text="Help animation speed" description="Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons.">config.usage.helpAnimationSpeed</item>
 		<item level="0" text="Show animation while busy" description="Show a spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<item level="2" text="Show screensaver" description="Configure the duration in minutes before the screen saver will be displayed.">config.usage.screen_saver</item>
