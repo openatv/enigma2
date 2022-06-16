@@ -1599,4 +1599,4 @@ def dump(x, i=0):
 		for n in x.childNodes:
 			dump(n, i + 1)
 	except Exception:
-		None
+		pass
