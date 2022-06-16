@@ -37,6 +37,8 @@ protected:
 
 	virtual void cursorSave()=0;
 	virtual void cursorRestore()=0;
+	virtual void cursorSaveTop(int n)=0;
+	virtual int cursorRestoreTop()=0;
 
 	virtual int size()=0;
 
