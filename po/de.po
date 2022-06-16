@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-07 18:35+0000\n"
-"PO-Revision-Date: 2022-06-08 05:04+0000\n"
+"PO-Revision-Date: 2022-06-13 04:00+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -5389,7 +5389,7 @@ msgid "Continue playing"
 msgstr "Weiter abspielen"
 
 msgid "Continue with the flash process"
-msgstr "Flash-Vorgang Fortsetzen"
+msgstr "Flash-Vorgang fortsetzen"
 
 msgid "Continue with the on-line update"
 msgstr "Weiter mit Online-Update"
@@ -6335,7 +6335,9 @@ msgstr "Abwählen"
 
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
-msgstr "Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden Paketen nicht kompatibel sind.  Dies ist meist harmlos, aber es kann sein, dass Ihre %s %s Probleme bekommt."
+msgstr ""
+"Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden Paketen nicht kompatibel sind.\n"
+"Dies ist meist harmlos, aber es kann sein, dass Ihre %s %s Probleme bekommt."
 
 msgid "Detail of GStreamer log"
 msgstr "Umfang des GStreamer-Logs"
@@ -7658,7 +7660,7 @@ msgstr "Fehler"
 
 #, python-format
 msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
-msgstr "Fehler %d: Logdatei '%s' wurde'nicht gelöscht!  (%s)"
+msgstr "Fehler %d: Logdatei '%s' wurde'nicht gelöscht! (%s)"
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
@@ -7670,7 +7672,7 @@ msgstr "Fehler %d: Kennwort kann nicht geändert werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
-msgstr "Fehler %d: Heruntergeladenes Image kann nicht gelöscht werden '%s'!  (%s)"
+msgstr "Fehler %d: Heruntergeladenes Image '%s' kann nicht gelöscht werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
@@ -8473,7 +8475,7 @@ msgid "Flash Manager - Distributions"
 msgstr "Flash Manager - Distributionen"
 
 msgid "Flash Manager Actions"
-msgstr "Flash Manager-Aktionen"
+msgstr "Flash Manager - Aktionen"
 
 msgid "Flash Online"
 msgstr "Flashen online/lokal"
@@ -8810,7 +8812,7 @@ msgid "Geolocation has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr "Standortinformationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
+msgstr "Standort-Informationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
 
 msgid "Geolocation is not available."
 msgstr "Die Standortbestimmung ist nicht verfügbar."
@@ -9511,7 +9513,7 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt angezeigt."
+msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wählen Sie, ob der Cursor beim Bearbeiten einer Datei am Anfang oder Ende der Zeile stehen soll."
@@ -10756,7 +10758,7 @@ msgid "Location"
 msgstr "Zielverzeichnis"
 
 msgid "Location information"
-msgstr "Standortinformationen"
+msgstr "Standort-Informationen"
 
 msgid "Location list"
 msgstr "Standortliste"
@@ -11181,7 +11183,7 @@ msgid "Memory Information"
 msgstr "Speicher-Informationen"
 
 msgid "Memory Information Actions"
-msgstr "Speicherinformationen Aktionen"
+msgstr "Speicher-Informationen Aktionen"
 
 msgid "Memory index"
 msgstr "Index speichern"
@@ -12225,7 +12227,7 @@ msgstr "Keine Tags für diese Filme gesetzt."
 
 # UsageConfig.py
 msgid "No timeout"
-msgstr "Keine Zeitüberschreitung"
+msgstr "Permanent"
 
 #
 msgid "No to all"
@@ -12269,7 +12271,7 @@ msgid "No updates available."
 msgstr "Keine Updates vorhanden."
 
 msgid "No updates were available.  Please try again later."
-msgstr "Keine Updates vorhanden!  Bitte versuchen Sie es später erneut."
+msgstr "Keine Updates vorhanden! Bitte versuchen Sie es später erneut."
 
 msgid "No valid region details were found"
 msgstr "Es wurden keine gültigen Regionsangaben gefunden"
@@ -13315,7 +13317,7 @@ msgstr "Bitte einen CCcam-Reader auswählen"
 
 #
 msgid "Please choose an extension..."
-msgstr "Bitte eine Erweiterung auswählen..."
+msgstr "Eine Erweiterung auswählen"
 
 msgid "Please choose reader"
 msgstr "Bitte einen Reader auswählen"
@@ -13976,11 +13978,15 @@ msgstr "Drücken Sie OK, um weitere Details über %s zu erhalten"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
-msgstr "Drücken Sie OK, um diese Sprache zu installieren und zu verwenden.  [%s]"
+msgstr ""
+"Drücken Sie OK, um diese Sprache zu installieren und zu verwenden:\n"
+"[%s]"
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
-msgstr "Drücken Sie OK, um die Sprachregion zu installieren und zu verwenden.  [%s]"
+msgstr ""
+"Drücken Sie OK, um die Sprachregion zu installieren und zu verwenden:\n"
+"[%s]"
 
 #
 msgid "Press OK to scan"
@@ -14021,11 +14027,15 @@ msgstr "Drücken Sie OK, um die Auswahl zu markieren."
 
 #, python-format
 msgid "Press OK to use this language.  [%s]"
-msgstr "Drücken Sie OK, um diese Sprache zu verwenden.  [%s]"
+msgstr ""
+"Drücken Sie OK, um diese Sprache zu verwenden:\n"
+"[%s]"
 
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
-msgstr "Drücken Sie OK, um die Sprachregion zu verwenden.  [%s]"
+msgstr ""
+"Drücken Sie OK, um die Sprachregion zu verwenden:\n"
+"[%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Mit AUF/AB einen Slot auswählen, dann OK oder GRÜN, um zu diesem Image zu wechseln. Mit GELB ('Löschen' / 'Schreddern' - falls verfügbar) das Image entfernen. Ein gelöschtes Image kann mit BLAU wiederhergestellt werden, ein geschreddertes dagegen NICHT!"
@@ -14276,7 +14286,7 @@ msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Alle löschen außer / Hinzufügen / Löschen der aktuell markierten Sprachregion"
 
 msgid "Purge all but the current and permanent locales/languages.  Add the current locale/language if it is not installed.  Delete the current locale/language if it is installed."
-msgstr "Alle Sprachen mit Ausnahme der aktuellen und permanenten Sprachregionen löschen.  Fügen Sie die aktuelle Sprachregion hinzu, wenn sie nicht installiert ist.  Löschen Sie die aktuelle Sprachregion, wenn sie installiert ist."
+msgstr "Alle Sprachen mit Ausnahme der aktuellen und permanenten Sprachregionen löschen. Fügen Sie die aktuelle Sprachregion hinzu, wenn sie nicht installiert ist. Löschen Sie die aktuelle Sprachregion, wenn sie installiert ist."
 
 msgid "Purging all unused locales/languages..."
 msgstr "Löschen aller nicht verwendeten Sprachregionen..."
@@ -14889,7 +14899,7 @@ msgstr "VBI-Line für diesen Kanal wieder anzeigen"
 
 #
 msgid "Purge 'Trash' after (days)"
-msgstr "Gelöschte Aufnahmen nach x Tagen aus dem Papierkorb entfernen"
+msgstr "Papierkorb nach x Tagen leeren"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
@@ -14931,7 +14941,7 @@ msgid "Rename file/directory"
 msgstr "Datei/Verzeichnis umbenennen"
 
 msgid "Rename name and description for new events"
-msgstr "Ändere für neue Aufnahmen den Namen und die Beschreibung"
+msgstr "Namen und Beschreibung für neue Aufnahmen anpassen"
 
 msgid "Rename this tag"
 msgstr "Tag umbenennen"
@@ -15932,7 +15942,7 @@ msgstr "Sendergruppe auswählen"
 
 #
 msgid "Select Software Update"
-msgstr "Softwareupdate auswählen"
+msgstr "Software-Update auswählen"
 
 msgid "Select Your Skin"
 msgstr "Skin auswählen"
@@ -17349,7 +17359,7 @@ msgid "Show files backed up by default"
 msgstr "Zeigt Dateien, die grundsätzlich gesichert werden"
 
 msgid "Show geolocation information"
-msgstr "Standortinformationen anzeigen"
+msgstr "Standort-Informationen anzeigen"
 
 msgid "Show graphical multi EPG"
 msgstr "Grafischen Multi-EPG anzeigen"
@@ -17637,7 +17647,7 @@ msgid "Show time remaining/elapsed"
 msgstr "Verbleibende/verstrichene Zeit als"
 
 msgid "Show translation information"
-msgstr "Übersetzungsinformationen anzeigen"
+msgstr "Übersetzungs-Informationen anzeigen"
 
 msgid "Show translation packages"
 msgstr "Sprachpakete anzeigen"
@@ -18217,7 +18227,7 @@ msgid "Sort order for menu entries"
 msgstr "Sortierung der Menüeinträge"
 
 msgid "Sort order for the language list."
-msgstr "Sortierung der Sprachenliste"
+msgstr "Sortierung der Sprachregion wählen."
 
 msgid "Sort playlists"
 msgstr "Sortierung der Playlisten"
@@ -19590,11 +19600,15 @@ msgstr "Dies ist ein Workaround für einige Geräte, die nach dem Umschalten in 
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
-msgstr "Dies ist die aktuell ausgewählte Sprache.  [%s]"
+msgstr ""
+"Dies ist die aktuell ausgewählte Sprache:\n"
+"[%s]"
 
 #, python-format
 msgid "This is the currently selected locale.  [%s]"
-msgstr "Dies ist die derzeit ausgewählte Sprachregion.  [%s]"
+msgstr ""
+"Dies ist die derzeit ausgewählte Sprachregion:\n"
+"[%s]"
 
 msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
 msgstr "Dies ist der standardmäßige Lautstärke-Offset, der auf alle Sender angewandt wird, die der Liste hinzugefügt werden."
@@ -20330,7 +20344,7 @@ msgid "Translation Information"
 msgstr "Übersetzungs-Informationen"
 
 msgid "Translation information"
-msgstr "Übersetzungsinformationen"
+msgstr "Übersetzungs-Informationen"
 
 #
 msgid "Transmission mode"
@@ -21043,7 +21057,7 @@ msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
 
 msgid "Use small screen"
-msgstr "Slim-Screen verwenden"
+msgstr "Small-Screen benutzen"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Die Tasten Links/Rechts benutzen, um die Größe der Benutzeroberfläche/OSD anzupassen. Taste Links verkleinert, Taste Rechts vergrößert sie."
@@ -24167,7 +24181,7 @@ msgid "show picons in service list"
 msgstr "Senderlogos (Picons) falls vorhanden anzeigen"
 
 msgid "show program information..."
-msgstr "Programminformationen anzeigen"
+msgstr "Programm-Informationen anzeigen"
 
 #
 msgid "show transponder info"

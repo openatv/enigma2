@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-07 18:35+0000\n"
-"PO-Revision-Date: 2022-06-01 22:33+0000\n"
+"PO-Revision-Date: 2022-06-16 15:49+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -1462,7 +1462,7 @@ msgid "(Show only reader:"
 msgstr "(rodyti tik skaitytoją:"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
-msgstr ""
+msgstr "(Failas \"/media/hdd/images/config/myrestore.sh\" yra ir bus paleistas po to, kai vaizdas mirksės.)"
 
 msgid "(empty)"
 msgstr "(tuščia)"
@@ -2651,7 +2651,7 @@ msgid "Allows you to adjust the amount of time the resolution information displa
 msgstr "Leidžia koreguoti ekrano raiškos informacijos rodymo laiką."
 
 msgid "Select the function to be assigned to this button."
-msgstr "Leidžia šiam mygtukui priskirti pasirinktą funkciją."
+msgstr "Pasirinkite funkciją, kuri bus priskirta šiam mygtukui."
 
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Leidžia įjungti GStreamer derinimo žurnalą. Juose pateikiama labai išsami informacija apie viską, ką daro GStreamer sistema."
@@ -3419,7 +3419,7 @@ msgid "Behavior when a movie is stopped"
 msgstr "Elgsena, kai filmas sustabdytas"
 
 msgid "Action at end of media"
-msgstr "Elgsena, kai filmas pasiekia pabaigą"
+msgstr "Veiksmas medijos pabaigoje"
 
 msgid "Belarus"
 msgstr "Baltarusija"
@@ -3993,10 +3993,10 @@ msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
 
 msgid "Cancel the flash process"
-msgstr ""
+msgstr "Atšaukti įdiegimą"
 
 msgid "Cancel the flash process and exit all menus"
-msgstr ""
+msgstr "Atšaukti atvaizdo įdiegimą ir užverti visus meniu"
 
 msgid "Cancel the image selection and exit"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
@@ -5115,7 +5115,7 @@ msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
 
 msgid "Continue with the flash process"
-msgstr ""
+msgstr "Tęskite įdiegimo procesą"
 
 msgid "Continue with the on-line update"
 msgstr "Tęsti internetinį naujinimą"
@@ -6432,7 +6432,7 @@ msgstr ""
 "Paspaudę 'OK', palaukite!"
 
 msgid "Do you want to backup settings?"
-msgstr ""
+msgstr "Ar norite kurti atsarginių kopijų kūrimo parametrus?"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Jūs norite įrašyti šį rinkinį į DVD laikmeną?"
@@ -6473,7 +6473,7 @@ msgstr "Ar norite atlikti kitą rankinę kanalų paiešką?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
-msgstr ""
+msgstr "Ar norite įdiegti šį atvaizdą '%s'?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Ar norite įdiegti kanalų sąrašą?"
@@ -7331,7 +7331,7 @@ msgstr ""
 
 #, python-format
 msgid "Error downloading image '%s'!"
-msgstr ""
+msgstr "Atsisiunčiant vaizdą \"%s\" įvyko klaida!"
 
 msgid "Error executing plugin"
 msgstr "Klaida paleidžiant priedą"
@@ -7370,7 +7370,7 @@ msgstr ""
 
 #, python-format
 msgid "Error unzipping image '%s'!"
-msgstr ""
+msgstr "Išarchyvuojamo atvaizdo klaida '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Klaida, nežinomas rezultatas!"
@@ -7410,6 +7410,8 @@ msgstr "Klaida: nepavyko rasti tinkamo įrenginio! Pašalinkite kai kuriuos atsi
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
+"Atvaizdo įdiegimas yra neleistinas\n"
+"%s"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Klaida: veiksmo klaida, slaptažodžio keisti neįmanoma!"
@@ -8013,10 +8015,10 @@ msgid "Flash Manager - %s Images"
 msgstr "Įdiegimo valdytojas – %s atvaizdai"
 
 msgid "Flash Manager - Distributions"
-msgstr ""
+msgstr "Įdiegimo valdytojas – p"
 
 msgid "Flash Manager Actions"
-msgstr ""
+msgstr "Įdiegimo valdytoj"
 
 msgid "Flash Online"
 msgstr "Įdiegti tiesiai iš interneto"
@@ -8036,7 +8038,7 @@ msgstr "Įdiegimo tipas"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
+msgstr "Įdiegti %s %s ir paleisti iš naujo dabar?"
 
 msgid "Flashing"
 msgstr "Įdiegimas"
@@ -8046,7 +8048,7 @@ msgstr "Įdiegtas atvaizdas"
 
 #, python-format
 msgid "Flashing image '%s' was not successful!"
-msgstr ""
+msgstr "Atvaizdo '%s' įdiegti nepavyko!"
 
 msgid "Flashing image successful"
 msgstr "Atvaizdas įdiegtas sėkmingai"
@@ -9009,7 +9011,7 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Jei veiksmą galima konfigūruoti vartotojui, jo žinyno įrašas bus pažymėtas priesaga '(C)'."
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Jei išjungta, failų ir katalogų pavadinimų pabraukimo simboliai nerodomi ir pakeičiami tarpais."
+msgstr "Nustatykite į 'Išjungta', kad failų ir katalogų pavadinimuose pabraukimo simbolius \"_\" pakeistumėte tarpais."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Jei redaguojate failą, galite nustatyti žymeklio pradinę padėtį linijos pabaigoje arba pradžioje."
@@ -9147,7 +9149,7 @@ msgid "Image Backup"
 msgstr "Atsarginė atvaizdo kopija"
 
 msgid "Image Flash Actions"
-msgstr ""
+msgstr "Atvaizdo įdiegimo veiksmai"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -11748,7 +11750,7 @@ msgid "Number of rows"
 msgstr "Eilučių skaičius"
 
 msgid "Number of rows to display."
-msgstr "Rodomas eilučių skaičius"
+msgstr "Rodytinų eilučių skaičius."
 
 msgid "Number or SMS style data entry"
 msgstr "Skaičių ar SMS stiliaus duomenų įvedimas"
@@ -11850,7 +11852,7 @@ msgid "On end of movie (as menu)"
 msgstr "Dėl filmo pabaigos (kaip meniu)"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Jūs galite pasirinkti, kas bus daroma, pasiekus atkuriamo failo pabaigą."
+msgstr "Pasirinkite, kokį veiksmą atlikti, kai atkūrimo metu pasiekiate medijos failo pabaigą."
 
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Esant galiojantiems ONID, ignoruokite dažnio potinklio dalį"
@@ -12676,7 +12678,7 @@ msgstr ""
 "Spauskite 'OK', kad tęsti."
 
 msgid "Please select what to do:"
-msgstr ""
+msgstr "Pasirinkite, ką daryti:"
 
 msgid "Please set up tuner A"
 msgstr "Sukonfigūruokite A imtuvą"
@@ -13057,7 +13059,7 @@ msgid "Press <> or menu to select the different info screens"
 msgstr "Paspauskite <> arba meniu, kad pasirinktumėte skirtingus informacijos ekranus"
 
 msgid "Press EXIT to close."
-msgstr ""
+msgstr "Paspauskite EXIT, kad uždarytumėte."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
@@ -13072,7 +13074,7 @@ msgid "Press MENU to install additional language(s)."
 msgstr "Norėdami įdiegti papildomą (-as) kalbą (-as), paspauskite MENU."
 
 msgid "Press OK for MultiBoot selection."
-msgstr ""
+msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Paspauskite OK savo valdymo pulte ir tęskite."
@@ -13950,7 +13952,7 @@ msgid "Remove hide VBI line for this service"
 msgstr "Pašalinti paslėptą VBI liniją šiam kanalui"
 
 msgid "Purge 'Trash' after (days)"
-msgstr "Pašalinti elementus iš šiukšlinę gali po (dienų)"
+msgstr "Išvalyti šiukšliadėžę po (dienų)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Pašalinkite pasirinktą aplanką iš žymių"
@@ -14194,7 +14196,7 @@ msgid "Retrieving boot slot information..."
 msgstr "Nuskaitoma įkrovos lizdo informacija..."
 
 msgid "Retrieving image list, please wait..."
-msgstr "Gaunamas atvaizdų sąrašas - prašome laukti..."
+msgstr "Gaunamas atvaizdų sąrašas prašome laukti..."
 
 msgid "Retrieving image slots - Please wait..."
 msgstr "Gaunami atvaizdo siužetai - prašome laukti..."
@@ -15659,7 +15661,7 @@ msgid "Set voltage and 22KHz"
 msgstr "Nustatykite įtampą ir 22 KHz"
 
 msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
-msgstr "Nustato pagrindiniame aplanke filmų sąrašą, norėdami pašalinti į '..' iš rodymo tame aplanke."
+msgstr "Nustato pagrindinį laikmenų sąrašo katalogą.  Tai pašalina įrašą '..' kad jis nebūtų rodomas tame kataloge."
 
 msgid "Setting Restored "
 msgstr "Nustatymai atkurti "
@@ -16414,7 +16416,7 @@ msgid "Show spinning logo when system is busy."
 msgstr "Rodyti suktuko logotipą, kai sistema yra užimta."
 
 msgid "Show watch status"
-msgstr "Filmų sąraše rodyti būsenos piktogramas"
+msgstr "Rodyti žiūrėjimo būseną"
 
 msgid "Show status messages when switch to live TV"
 msgstr "Perjungiant į tiesioginę TV transliaciją, rodyti žinutę"
@@ -16501,7 +16503,7 @@ msgid "Show two lines per entry"
 msgstr "Rodyti dvi eilutes viename įraše"
 
 msgid "Show underscore characters"
-msgstr "Rodyti pabraukimo simbolius failų pavadinimuose"
+msgstr "Rodyti pabraukimo simbolius"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Rodyti nežinomą vaizdo raišką, kaip kitą didesnę arba kaip didžiausią ekrano raišką."
@@ -16552,7 +16554,7 @@ msgid "Shows the state of your wireless LAN connection."
 msgstr "Rodo belaidžio LAN ryšio būseną."
 
 msgid "Shows the watched status of the media."
-msgstr "Rodo, kad filmas jau žiūrėtas."
+msgstr "Rodo stebimą laikmenos būseną."
 
 msgid "Shuffle playlist"
 msgstr "Sumaišyti grojaraštį"
@@ -16794,11 +16796,11 @@ msgstr "Lizdas '%s'"
 
 #, python-format
 msgid "Slot '%s':  %s"
-msgstr "lizdas%s - %s"
+msgstr "Lizdas '%s':  %s"
 
 #, python-format
 msgid "Slot '%s':  %s  -  Current"
-msgstr "lizdas%s -%s (dabartinis atvaizdas)"
+msgstr "Lizdas '%s':  %s  -  dabartinis"
 
 #, python-format
 msgid "Slot '%s': %s%s"
@@ -17692,7 +17694,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-06-01 adga45@gmail.com"
+msgstr "2022-06-14 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -19612,7 +19614,7 @@ msgid "Use geolocation to set the current time zone location"
 msgstr "Naudoti geografinę vietą norint nustatyti dabartinę laiko juostos vietą"
 
 msgid "Use per directory settings"
-msgstr "Naudokite atskirus nustatymus kiekvienam katalogui"
+msgstr "Naudoti pagal katalogo parametrus"
 
 msgid "Use interface"
 msgstr "Naudoti sąsają"
@@ -19633,7 +19635,7 @@ msgid "Use power measurement"
 msgstr "Naudoti galios matavimą"
 
 msgid "Use small screen"
-msgstr "Naudokite ploną ekraną"
+msgstr "Naudoti mažą ekraną"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Naudokite kairėn/dešinėn mygtukus ant nuotolinio valdymo pulto, kad koreguoti vartotojo sąsajos dydį. Kairysis mygtukas sumažina dydį, dešinys padidina dydį."
@@ -19657,7 +19659,7 @@ msgid "Use the alternative or the conventional radio mode."
 msgstr "Naudokite alternatyvų arba įprastą radijo imtuvo režimą."
 
 msgid "Use an alternative smaller screen."
-msgstr "Naudoti alternatyvų ekraną"
+msgstr "Naudokite alternatyvų mažesnį ekraną."
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Naudokite žymeklio mygtukus, kad pasirinktumėte įdiegtą atvaizdą, o tada - mygtuką Pradėti."
@@ -19693,7 +19695,7 @@ msgid "Use timeshift seekbar while timeshifting"
 msgstr "Naudokite laiko juostą, kai laikas keičiasi"
 
 msgid "Use 'Trash' in movie list"
-msgstr "Naudoti šiukšliadėžę filmų sąraše"
+msgstr "'Šiukšliadėžės' naudojimas filmų sąraše"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Naudoti budinimui iš gilaus budėjimo"
