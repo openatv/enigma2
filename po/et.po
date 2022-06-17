@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2294,6 +2294,9 @@ msgstr "Tugijaam:"
 msgid "Action"
 msgstr ""
 
+msgid "Action at end of media"
+msgstr "Tegevus taasesituse lõppemisel"
+
 msgid "Action on long POWER button press"
 msgstr "Toitenupu pikk vajutus"
 
@@ -2655,9 +2658,6 @@ msgstr ""
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Võimaldab määrata aega, mille jooksul  ekraanilahutuse andmeid ekraanil näidatakse."
 
-msgid "Select the function to be assigned to this button."
-msgstr ""
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
@@ -2690,6 +2690,9 @@ msgstr "Natuke veel... "
 
 msgid "Alpha"
 msgstr "Tähestik"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "Tähestikuline pealkirjade all"
@@ -2788,9 +2791,6 @@ msgstr "Animatsiooni seaded"
 
 msgid "Animation Speed"
 msgstr "Animatsiooni kiirus"
-
-msgid "Help animation speed"
-msgstr "Abiindikaatorite animatsiooni kiirus"
 
 msgid "Animations"
 msgstr "Animatsioonid"
@@ -3440,9 +3440,6 @@ msgstr "Tegevus taasesituse algamisel"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Tegevus taasesituse peatamisel"
-
-msgid "Action at end of media"
-msgstr "Tegevus taasesituse lõppemisel"
 
 msgid "Belarus"
 msgstr "Valgevene"
@@ -4386,10 +4383,6 @@ msgstr "Määra viiteaeg CI vastusele."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
-#, fuzzy
-msgid "Choose style of main menus"
-msgstr "Kuva VCR-SCART valik peamenüüs"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Vali CI või CI mooduli töörežiim."
 
@@ -4414,7 +4407,7 @@ msgstr "Vali asukoht, kuhu %s %s välja lülitamisel EPG andmed salvestatakse. A
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Määra, mis nimega EPG fail %s %s välja lülitamisel salvestatakse. Nii on mugav eristada mitme eri vastuvõtja faile."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5185,9 +5178,6 @@ msgstr "Määra aegunud taimerite asukoht taimerite nimekirjas."
 msgid "Control the Infobar fading speed"
 msgstr "Määra inforiba hajumise kiirus"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
-
 msgid "Control your Softcams"
 msgstr "Juhi EMU"
 
@@ -5955,9 +5945,6 @@ msgstr "Kustuta EPG"
 msgid "Delete Image"
 msgstr "Kustuta püsivara"
 
-msgid "Delete Language"
-msgstr "Kustuta keel"
-
 msgid "Delete Plugins"
 msgstr "Kustuta pluginaid"
 
@@ -6288,9 +6275,6 @@ msgstr ""
 msgid "Disk is not writable!"
 msgstr "pole kirjutatav!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Salvestistele tagatud kettaruum (GB)"
-
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "ei leitud!"
@@ -6525,14 +6509,6 @@ msgstr "Kas jätkata?"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-# python\Screens\LanguageSelection.py
-#, fuzzy
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr "Kas kustutada kõik ülejäänud keeled?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7136,9 +7112,6 @@ msgstr "Luba dvb-t LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Luba liuguri praegune väärtus ligurriba lõpus."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7159,6 +7132,18 @@ msgstr "Luba see, kui välisantenn vajab toidet"
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Kuva valikud 'jah/ei', 'tõene/väär', 'sees/väljas' ja 'luba/keela' graafilise lülitina."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Luba liuguri praegune väärtus ligurriba lõpus."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 # channelselection 5.1
 msgid "Enable unlinked bouquets"
@@ -7341,6 +7326,18 @@ msgstr "Peamenüü."
 
 msgid "Entitlements"
 msgstr "Õigused"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
@@ -8387,13 +8384,6 @@ msgid "GStreamer version"
 msgstr ""
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Uue keele jõustamiseks tuleb kasutajaliides taaskäivitada\n"
-"Kas teha seda kohe?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8815,8 +8805,14 @@ msgstr "Help"
 msgid "Help Screen Information"
 msgstr "Seadmed"
 
+msgid "Help animation speed"
+msgstr "Abiindikaatorite animatsiooni kiirus"
+
 msgid "Help long"
 msgstr "Help - pikk"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Hõlbustab antenni seadistamist"
@@ -9169,9 +9165,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10815,6 +10808,16 @@ msgstr "Kiirtegevused"
 msgid "Menu config"
 msgstr "Seadistusmenüü"
 
+#
+msgid "Menu entry sort order"
+msgstr "Menüü kirjete järjestus"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12156,9 +12159,6 @@ msgstr "Filmi lõpus"
 msgid "On end of movie (as menu)"
 msgstr "Filmi lõpus (menüüna)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Saad määrata vastuvõtja käitumise taasesituse lõppemisel."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Kui ONID kehtib, eiratakse sageduse alamvõrgu osa"
 
@@ -13427,10 +13427,6 @@ msgstr "Lisainfo saamiseks vajuta 'INFO'."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Lisavõimaluste nägemiseks vajuta 'MENU'."
 
-#, fuzzy
-msgid "Press MENU to install additional language(s)."
-msgstr "Lisavõimaluste nägemiseks vajuta 'MENU'."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13741,6 +13737,9 @@ msgstr "Puerto Rico"
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Salvestiste eemaldamine prügikastist pärast (päeva)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14342,9 +14341,6 @@ msgstr "Eemalda valitud nimetus"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Lõpeta punktiirjoone peitmine sellel kanalil"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Salvestiste eemaldamine prügikastist pärast (päeva)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Eemalda valitud kataloog järjehoidjatest"
@@ -15426,6 +15422,12 @@ msgstr "Vali, kuidas käivitada Inforiba EPG:"
 msgid "Select how your box will upgrade."
 msgstr "Vali uuendamise moodus."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Määra, kas ajanihe jätkub pärast selle salvestuseks määramist."
 
@@ -15506,6 +15508,9 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
@@ -15521,6 +15526,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vali soovitud toiming ja vajuta selle määramiseks 'OK'. Nimekirjade vahetamiseks kasuta 'CH+/-' nuppe. Toimingu eemaldamiseks vali määratud toiming ja vajuta 'OK'. Toimingute järjekorra muutmiseks kasuta 'Eelmine/Järgmine' nuppe."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr ""
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15579,6 +15593,12 @@ msgstr "Vali unetaimeri tegevus."
 msgid "Select the shifted character set for the next character only"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15624,6 +15644,9 @@ msgstr "Vali video sisend ÜLES/ALLA nuppudega"
 
 msgid "Select video mode"
 msgstr "Vali videorežiim"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Saad määrata vastuvõtja käitumise taasesituse lõppemisel."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Määra %s %s käitumine alglaadimisel. Tavakasutus või ooteseisund."
@@ -16089,6 +16112,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Määra tippajaks (tunnid)."
 
@@ -16115,6 +16141,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Seaded"
+
+msgid "Settings mode"
+msgstr "Seadistuste tase"
 
 msgid "Settings..."
 msgstr "Seaded"
@@ -16153,10 +16182,6 @@ msgstr "Inadyn seaded"
 
 msgid "Setup InputDevice"
 msgstr "Vali sisendseade"
-
-#
-msgid "Setup Language"
-msgstr "Keele seadistamine"
 
 msgid "Setup MiniDLNA"
 msgstr "MiniDLNA seaded"
@@ -16213,6 +16238,9 @@ msgstr "Kanalivahetuse viiteaja režiimi seadistamine."
 msgid "Setup each tuner for your satellite system"
 msgstr "Seadista oma satelliidisüsteemi tuunerid"
 
+msgid "Setup entry sort"
+msgstr "Seadistusmenüüd tähestikulises järjekorras"
+
 msgid "Setup how to control the channel changing."
 msgstr "Seadista, kuidas kanalivahetus toimub."
 
@@ -16221,9 +16249,6 @@ msgstr "Seadista võrgukaart"
 
 msgid "Setup menu"
 msgstr "Seadistusmenüü"
-
-msgid "Settings mode"
-msgstr "Seadistuste tase"
 
 msgid "Setup network time synchronization interval."
 msgstr "Määra ajavahemik võrguaja sünkroonimiseks."
@@ -16492,10 +16517,6 @@ msgstr "Kuva logi"
 msgid "Show Log Manager in extensions list"
 msgstr "Kuva logihaldur laienduste menüüs"
 
-#, fuzzy
-msgid "Show Main Menu as"
-msgstr "Järjesta peamenüü"
-
 msgid "Show Media Player in Main Menu"
 msgstr "Kuva meediapleier peamenüüs"
 
@@ -16572,6 +16593,10 @@ msgstr "Vertikaalne EPG"
 
 msgid "Show WLAN status"
 msgstr "WLAN oleku näitamine"
+
+# Menue Anpassungen OSD
+msgid "Show a spinning logo when the system is busy."
+msgstr "Näita süsteemi hõivatusel animatsiooni."
 
 msgid "Show additional slider value"
 msgstr "Kuva täiendava liuguri väärtus"
@@ -16760,9 +16785,6 @@ msgstr "Kuva märgitud saated kõigis ridades."
 msgid "Show menu"
 msgstr "Kuva menüü"
 
-msgid "Show menu numbers"
-msgstr "Numbrite kuvamine menüüdes"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Kuva teade, kui failihaldur ei tööta ja kõik ülesanded on täidetud."
 
@@ -16887,13 +16909,6 @@ msgstr "Kanali EPG"
 msgid "Show source packages"
 msgstr "Kuva lähtefailid"
 
-# Menue Anpassungen OSD
-msgid "Show a spinning logo when the system is busy."
-msgstr "Näita süsteemi hõivatusel animatsiooni."
-
-msgid "Show watch status"
-msgstr "Oleku tähistus filmilistis"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Olekuteated otsesaatele lülitudes"
 
@@ -17009,6 +17024,9 @@ msgstr "Hoiatus enne taaskäivitamist"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Teavitus ajanihke lõppemisest"
+
+msgid "Show watch status"
+msgstr "Oleku tähistus filmilistis"
 
 #, fuzzy
 msgid "Show/Games show"
@@ -17501,6 +17519,9 @@ msgstr "Saatekava järjestamine"
 msgid "Sort Extensions menu"
 msgstr "Laiendused tähestikulises järjekorras"
 
+msgid "Sort Plugin Browser"
+msgstr "Pluginate menüü kirjete järjestus"
+
 msgid "Sort by"
 msgstr "Järjestamine"
 
@@ -17518,26 +17539,11 @@ msgstr "Järjesta nimekiri:"
 
 #
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Menüü kirjete järjestus"
-
-#
-msgid "Menu entry sort order"
-msgstr "Menüü kirjete järjestus"
-
-#
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Menüü kirjete järjestus"
 
 msgid "Sort playlists"
 msgstr "Pleilistide järjestamine"
-
-msgid "Sort Plugin Browser"
-msgstr "Pluginate menüü kirjete järjestus"
-
-msgid "Setup entry sort"
-msgstr "Seadistusmenüüd tähestikulises järjekorras"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Vasaku poole sortimine nime, kuupäeva või suuruse järgi"
@@ -17572,6 +17578,9 @@ msgstr ""
 
 msgid "South Sudan"
 msgstr "Lõuna-Sudaan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Salvestistele tagatud kettaruum (GB)"
 
 msgid "Space used:"
 msgstr "Kasutatud ruum:"
@@ -17628,10 +17637,6 @@ msgstr "Vaikimisi (alati)"
 
 msgid "Standard list"
 msgstr "Tavanimekiri"
-
-#, fuzzy
-msgid "Standard menu"
-msgstr "Vaikimisi"
 
 msgid "Standby"
 msgstr "Ooteseisund"
@@ -18984,35 +18989,9 @@ msgstr "See valik määrab, kuhu kursor esimesel nupuvajutusel liigub 'Kiirtegev
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "See valik määrab, kuidas näidatakse kulunud ja allesolevat aega telesaadete esitusel."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Siin saab keelata 'Võrgu taaskäivitus' kuvamise laienduste menüüs."
-
-# Menue Anpassungen OSD
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "See valik määrab laienduste menüü järjestuse."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "See valik määrab seadistusmenüüde järjestuse"
-
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Selles valikus saad lubada väljundile 3D ruumheli."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "See valik võimaldab menüüde varjamise ja järjestamise"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "See valik võimaldab pluginate varjamise ja järjestamise."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-msgid "This option allows you to show menu number quick links."
-msgstr "See valik võimaldab kuvada menüüdes kiirvalikuks numbreid."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "Siin saab võimendada pildi rohelisi toone."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "See valik võimaldab näidata SNR protsentides (kõik vastuvõtjad seda ei toeta)."
@@ -19999,9 +19978,6 @@ msgstr "Üles/Alla nupud on ka 'Kõik üles/alla'"
 msgid "Update"
 msgstr "Uuendus"
 
-msgid "Update Cache"
-msgstr "Uuenda vahemälu"
-
 msgid "Update at your own risk"
 msgstr "Uuenda omal vastutusel"
 
@@ -20054,13 +20030,6 @@ msgstr "Uuendusi leitud:"
 
 msgid "Updating"
 msgstr "Uuendamine"
-
-#, fuzzy
-msgid "Updating cache"
-msgstr "Uuenda vahemälu"
-
-msgid "Updating cache, please wait..."
-msgstr "Vahemälu uuendamine, oota veidi..."
 
 msgid "Updating mount locations."
 msgstr "Haakepunktide uuendamine."
@@ -20124,6 +20093,9 @@ msgstr "Kasutaja eelistused"
 msgid "Use"
 msgstr "Kasuta"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Prügikasti kasutamine filmilistis"
+
 msgid "Use DHCP"
 msgstr "Luba DHCP"
 
@@ -20178,6 +20150,9 @@ msgstr "Kasuta saadavusel Virgin EPG infot."
 msgid "Use a gateway"
 msgstr "Lüüs lubatud"
 
+msgid "Use an alternative smaller screen."
+msgstr "Kasuta alternatiivset vaadet"
+
 msgid "Use as HDD"
 msgstr "Kasuta kõvakettana"
 
@@ -20214,9 +20189,6 @@ msgstr "Kasuta sagedust või kanalit"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Omadused jäetakse iga kataloogi puhul meelde"
-
 msgid "Use interface"
 msgstr "Luba võrguliides"
 
@@ -20231,6 +20203,9 @@ msgstr "DVB subtiitrite asukoht"
 
 msgid "Use original teletext position"
 msgstr "Subtiitrid kasutavad teleteksti asukohta"
+
+msgid "Use per directory settings"
+msgstr "Omadused jäetakse iga kataloogi puhul meelde"
 
 msgid "Use power measurement"
 msgstr "Kasuta voolutarbe mõõtmist"
@@ -20259,9 +20234,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Kasuta alternatiivset või tavapärast raadiovaadet."
-
-msgid "Use an alternative smaller screen."
-msgstr "Kasuta alternatiivset vaadet"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Kasuta kursorinuppe paigaldatud püsivara valikuks ja siis nuppu 'Käivita'."
@@ -20296,9 +20268,6 @@ msgstr "Kasuta edasi/tagasikerimisel ajahüpet"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Otsiriba kasutamine ajanihke ajal"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Prügikasti kasutamine filmilistis"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Erilahendus ooteseisundist käivitumisel"
@@ -20446,6 +20415,9 @@ msgstr ""
 #, fuzzy
 msgid "Vertical alignment for the service number."
 msgstr "Määra kanali nime asukoht."
+
+msgid "Vertical menu"
+msgstr ""
 
 # satconfig.py
 msgid "Vertical turning speed"
@@ -23494,6 +23466,85 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Choose style of main menus"
+#~ msgstr "Kuva VCR-SCART valik peamenüüs"
+
+#, fuzzy
+#~ msgid "Show Main Menu as"
+#~ msgstr "Järjesta peamenüü"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Numbrite kuvamine menüüdes"
+
+#
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Menüü kirjete järjestus"
+
+#, fuzzy
+#~ msgid "Standard menu"
+#~ msgstr "Vaikimisi"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "See valik võimaldab kuvada menüüdes kiirvalikuks numbreid."
+
+#~ msgid "Delete Language"
+#~ msgstr "Kustuta keel"
+
+# python\Screens\LanguageSelection.py
+#, fuzzy
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr "Kas kustutada kõik ülejäänud keeled?"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Uue keele jõustamiseks tuleb kasutajaliides taaskäivitada\n"
+#~ "Kas teha seda kohe?"
+
+#, fuzzy
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Lisavõimaluste nägemiseks vajuta 'MENU'."
+
+#
+#~ msgid "Setup Language"
+#~ msgstr "Keele seadistamine"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Siin saab keelata 'Võrgu taaskäivitus' kuvamise laienduste menüüs."
+
+# Menue Anpassungen OSD
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "See valik määrab laienduste menüü järjestuse."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "See valik määrab seadistusmenüüde järjestuse"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "See valik võimaldab menüüde varjamise ja järjestamise"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "See valik võimaldab pluginate varjamise ja järjestamise."
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Siin saab võimendada pildi rohelisi toone."
+
+#~ msgid "Update Cache"
+#~ msgstr "Uuenda vahemälu"
+
+#, fuzzy
+#~ msgid "Updating cache"
+#~ msgstr "Uuenda vahemälu"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Vahemälu uuendamine, oota veidi..."
 
 #, python-format
 #~ msgid ""

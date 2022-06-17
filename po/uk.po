@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2022-06-13 04:00+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -2295,6 +2295,9 @@ msgstr "Точка доступу:"
 msgid "Action"
 msgstr "Бойовик"
 
+msgid "Action at end of media"
+msgstr "Дія, коли запис доходить до кінця"
+
 msgid "Action on long POWER button press"
 msgstr "Дія при довгому натисканні кнопки вимкнення"
 
@@ -2649,9 +2652,6 @@ msgstr "Дозволяє використовувати пульт дистан�
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Протягом якого часу показувати інформацію про роздільність екрана."
 
-msgid "Select the function to be assigned to this button."
-msgstr "Дозволяє призначити вибрану функцію для цієї кнопки."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Дозволяє ввімкнути журнал налагодження GStreamer. Вони містять дуже детальну інформацію про все, що робить система GStreamer."
 
@@ -2684,6 +2684,9 @@ msgstr "Майже все... "
 
 msgid "Alpha"
 msgstr "Прозорість"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "В алфавітному порядку"
@@ -2781,9 +2784,6 @@ msgstr "Налаштування анімації"
 
 msgid "Animation Speed"
 msgstr "Швидкість анімації"
-
-msgid "Help animation speed"
-msgstr "Швидкість анімації показників допомоги"
 
 msgid "Animations"
 msgstr "Анімації"
@@ -3414,9 +3414,6 @@ msgstr "Дія, коли запис розпочався"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Дія, коли запис закінчився"
-
-msgid "Action at end of media"
-msgstr "Дія, коли запис доходить до кінця"
 
 msgid "Belarus"
 msgstr "Білорусія"
@@ -4348,9 +4345,6 @@ msgstr "Виберіть затримку dvb для очікування від
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Виберіть частоту підключення до сервера IceTV, щоб перевірити наявність оновлень."
 
-msgid "Choose style of main menus"
-msgstr "Виберіть стиль Головного Меню"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Виберіть режим роботи протоколу CI для стандартного CI або CIplus."
 
@@ -4375,8 +4369,8 @@ msgstr "Виберіть каталог для зберігання даних �
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Виберіть ім'я файлу для даних ЕПГ, коли %s %s вимкнений. Це може бути корисно, якщо використовуються кілька приймачів."
 
-msgid "Choose the order in which items are displayed in Help windows"
-msgstr "Виберіть порядок відображення елементів у вікнах довідки"
+msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Вкажіть часовий інтервал, в якому графіка буде відключена."
@@ -5128,9 +5122,6 @@ msgstr "Налаштуйте позицію завершених таймері�
 msgid "Control the Infobar fading speed"
 msgstr "Управління швидкістю згасання Інфобару"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "Керуйте швидкістю анімації індикаторів кнопок на екрані довідки. 'Вимкнено' вимикає анімацію, щоб індикатори переходили між кнопками."
-
 msgid "Control your Softcams"
 msgstr "Керування емуляторами"
 
@@ -5874,9 +5865,6 @@ msgstr "Видалити ЕПГ"
 msgid "Delete Image"
 msgstr "Видалення іміджу"
 
-msgid "Delete Language"
-msgstr "Видалити мови"
-
 msgid "Delete Plugins"
 msgstr "Видалити плагіни"
 
@@ -6194,9 +6182,6 @@ msgstr "Диск заповнений?"
 msgid "Disk is not writable!"
 msgstr "Диск не доступний для запису!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Зарезервувати дисковий простір для записів (у ГБ)"
-
 msgid "Disk was not found!"
 msgstr "Диск не знайдений!"
 
@@ -6432,15 +6417,6 @@ msgstr "Ви хочете продовжити?"
 
 msgid "Do you want to delete all log files?"
 msgstr "Ви хочете видалити всі файли журналу помилок?"
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Ви хочете видалити всі інші мови?\n"
-"Крім англійської, французької, німецької та вашого вибору:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7021,9 +6997,6 @@ msgstr "Включити наземний LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ввімкнути розширені параметри налаштування HDMI-CEC."
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Включити поточне значення повзунка в кінці Sliderbar-у."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Увімкніть цю опцію, щоб додати дані відображення карти дій/віддаленого керування до файлу журналу налагодження."
 
@@ -7044,6 +7017,18 @@ msgstr "Включити цю настройку, якщо Ваша антена
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Увімкнути показ усіх значень типу так/ні, увімкнути/вимкнути та інше як графічний перемикач."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Включити поточне значення повзунка в кінці Sliderbar-у."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Включити нез’язані фаворити"
@@ -7224,6 +7209,18 @@ msgstr "Розваги"
 
 msgid "Entitlements"
 msgstr "Дозволи"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "ЕПГ/Гід"
@@ -8238,13 +8235,6 @@ msgid "GStreamer version"
 msgstr "Версія GStreamer"
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Графічний інтерфейс потребує перезапуску, щоб застосувати нову мову\n"
-"Хочете зробити це зараз?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8657,8 +8647,14 @@ msgstr "Допомога"
 msgid "Help Screen Information"
 msgstr "Інформаційний Екран Допомоги"
 
+msgid "Help animation speed"
+msgstr "Швидкість анімації показників допомоги"
+
 msgid "Help long"
 msgstr "Help довге натискання"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Допомагає налаштовувати Ваш сигнал"
@@ -8997,9 +8993,6 @@ msgstr "Якщо встановлено 'ніколи', буде написан�
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Якщо дію можна налаштувати користувачем, запис про неї буде позначено символом '(C)'."
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Якщо Ви редагуєте файл, Ви можете встановити початкову позицію курсору в кінці або на початку рядка."
@@ -10573,6 +10566,15 @@ msgstr "Дії для Меню"
 msgid "Menu config"
 msgstr "Налаштування меню"
 
+msgid "Menu entry sort order"
+msgstr "Сортування елементів меню"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Об'єднати EPG з трансляцію IceTV"
 
@@ -11839,9 +11841,6 @@ msgstr "На кінець фільму"
 msgid "On end of movie (as menu)"
 msgstr "На кінець фільму (як меню)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Досягнувши кінця файлу під час відтворення, можна вибрати дію пристрою."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "На дійсних ONID, ігноруйте частину частот підмережі"
 
@@ -13058,9 +13057,6 @@ msgstr "Натисніть INFO на пульті ду для отримання
 msgid "Press MENU on your remote control for additional options."
 msgstr "Натисніть MENU на пульті ду для отримання додаткових опцій."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Натисніть MENU, щоб встановити додаткові мови."
-
 msgid "Press OK for MultiBoot selection."
 msgstr "Натисніть OK, щоб вибрати MultiBoot."
 
@@ -13361,6 +13357,9 @@ msgstr "Пуерто Ріко"
 
 msgid "Purge"
 msgstr "Очистити"
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Видаляти записи з кошика через (в днях)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Очистіть усі, крім / Додати / Видалити поточно виділені регіон/мову"
@@ -13938,9 +13937,6 @@ msgstr "Видалити вибрану назву"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Видаляти записи з кошика через (в днях)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Видалити вибрану папку з закладок"
@@ -14991,6 +14987,12 @@ msgstr "Вибір активації режиму швидкого ЕПГ."
 msgid "Select how your box will upgrade."
 msgstr "Вибір способу оновлення."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr "Ця опція дозволяє вибрати, чи відображатиметься значення за замовчуванням для елемента налаштування, і, якщо так, то у якому місці відносно опису."
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Виберіть з варіантів, як слід зберігати буфер йде таймшифта, якщо ви натиснули на запис."
 
@@ -15069,6 +15071,9 @@ msgstr "Виберіть частоту Користувацької Смуги,
 msgid "Select the Yes / True response"
 msgstr "Виберіть відповідь Так/Правда"
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr "Керуйте швидкістю анімації індикаторів кнопок на екрані довідки. 'Вимкнено' вимикає анімацію, щоб індикатори переходили між кнопками."
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
 
@@ -15083,6 +15088,15 @@ msgstr "Виберіть поточний виділений канал"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "Дозволяє призначити вибрану функцію для цієї кнопки."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Виберіть виділений імідж та перейдіть до вибору слоту"
@@ -15138,6 +15152,12 @@ msgstr "Виберіть набір символів клавіатури"
 msgid "Select the shifted character set for the next character only"
 msgstr "Виберіть набір символів клавіатури лише для наступного символу"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
@@ -15182,6 +15202,9 @@ msgstr "Виберіть відео вхід кнопками вверх/вни�
 
 msgid "Select video mode"
 msgstr "Виберіть режим відео"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Досягнувши кінця файлу під час відтворення, можна вибрати дію пристрою."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Виберіть, що зробити в разі завантаження %s %s. Звичайний режим або перехід в режим очікування."
@@ -15633,6 +15656,9 @@ msgstr "Встановіть для цього значення 'Так', щоб
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Встановіть для цього значення 'Так', щоб відсортувати списки відтворення за алфавітом."
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Виберіть бажаний прайм-тайм (у годинах)."
 
@@ -15659,6 +15685,9 @@ msgstr "Настійно рекомендується встановити па�
 
 msgid "Settings"
 msgstr "Налаштування"
+
+msgid "Settings mode"
+msgstr "Режим Налаштування"
 
 msgid "Settings..."
 msgstr "Налаштування..."
@@ -15696,9 +15725,6 @@ msgstr "Налаштування Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Налаштування Пристрій введення"
-
-msgid "Setup Language"
-msgstr "Налаштування мови"
 
 msgid "Setup MiniDLNA"
 msgstr "Налаштування MiniDLNA"
@@ -15754,6 +15780,9 @@ msgstr "Налаштування режиу затримки при перекл
 msgid "Setup each tuner for your satellite system"
 msgstr "Налаштування кожного тюнера Вашого приймача"
 
+msgid "Setup entry sort"
+msgstr "Сортувати пункти налаштувань за алфавітом"
+
 msgid "Setup how to control the channel changing."
 msgstr "Налаштування контролю зміни каналу."
 
@@ -15762,9 +15791,6 @@ msgstr "Налаштування інтерфейсу"
 
 msgid "Setup menu"
 msgstr "Налаштування меню"
-
-msgid "Settings mode"
-msgstr "Режим Налаштування"
 
 msgid "Setup network time synchronization interval."
 msgstr "Встановіть інтервал синхронізації часу з мережі."
@@ -16018,9 +16044,6 @@ msgstr "Див. Лог"
 msgid "Show Log Manager in extensions list"
 msgstr "Показати Менеджер логів в меню розширень"
 
-msgid "Show Main Menu as"
-msgstr "Показати Головне Меню як"
-
 msgid "Show Media Player in Main Menu"
 msgstr "показати медіаплеєр в головному меню"
 
@@ -16095,6 +16118,9 @@ msgstr "Показати Вертикальний телегід"
 
 msgid "Show WLAN status"
 msgstr "Показати статус Wi-Fi мережі"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Показати спіннер, коли система зайнята."
 
 msgid "Show additional slider value"
 msgstr "Показати додаткове значення повзунка"
@@ -16277,9 +16303,6 @@ msgstr "Показати позначені передачі в усіх ряд�
 msgid "Show menu"
 msgstr "Показати меню"
 
-msgid "Show menu numbers"
-msgstr "Показати номери в меню"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Показати повідомлення, якщо File Commander не запущено, і всі завдання виконані."
 
@@ -16400,12 +16423,6 @@ msgstr "Показати одиночний телегід каналу"
 msgid "Show source packages"
 msgstr "Показати вихідні пакети"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Показати спіннер, коли система зайнята."
-
-msgid "Show watch status"
-msgstr "Показати статус іконок у списку записів"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Показати повідомлення при переключені на канал ТВ"
 
@@ -16513,6 +16530,9 @@ msgstr "Показати попередження перед перезаван�
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Показати попередження при зупинці таймшифта"
+
+msgid "Show watch status"
+msgstr "Показати статус іконок у списку записів"
 
 msgid "Show/Games show"
 msgstr "Шоу/шоу-ігри"
@@ -16995,6 +17015,9 @@ msgstr "Сортувати список ЕПГ"
 msgid "Sort Extensions menu"
 msgstr "Сортувати Розширення за алфавітом"
 
+msgid "Sort Plugin Browser"
+msgstr "Сортування плагінів в браузері"
+
 msgid "Sort by"
 msgstr "Сортувати по"
 
@@ -17010,23 +17033,11 @@ msgstr "Сортувати список за умовчанням і вийти?
 msgid "Sort list:"
 msgstr "Сортування списку:"
 
-msgid "Sort order for help screen"
-msgstr "Порядок сортування екрану довідки"
-
-msgid "Menu entry sort order"
-msgstr "Сортування елементів меню"
-
 msgid "Sort order for the language list."
 msgstr "Порядок сортування списку мов."
 
 msgid "Sort playlists"
 msgstr "сортування списків відтворення"
-
-msgid "Sort Plugin Browser"
-msgstr "Сортування плагінів в браузері"
-
-msgid "Setup entry sort"
-msgstr "Сортувати пункти налаштувань за алфавітом"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Сортування зліва файлів за назвою, датою або розміром"
@@ -17060,6 +17071,9 @@ msgstr "Південне Ндебеле"
 
 msgid "South Sudan"
 msgstr "Південний Судан"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Зарезервувати дисковий простір для записів (у ГБ)"
 
 msgid "Space used:"
 msgstr "Зайнято:"
@@ -17114,9 +17128,6 @@ msgstr "Стандарт (завжди)"
 
 msgid "Standard list"
 msgstr "Стандартний список"
-
-msgid "Standard menu"
-msgstr "Стандартне меню"
 
 msgid "Standby"
 msgstr "Режим очікування"
@@ -18429,32 +18440,8 @@ msgstr "Дія при першому натисканні кнопки в спи
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Цей параметр дозволяє Вам вибрати, відображати інформацію про жанр передачі чи ні."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Цей параметр дозволяє Вам показ перезавантаження мережі в меню розширень."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Цей параметр дозволяє Вам відключити сортування в списку розширень."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Цей параметр дозволяє Вам відключити сортування пунктів різних вікон налаштувань"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Цей параметр дозволяє Вам включити підтримку об'ємного звуку 3D."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Цей параметр дозволяє Вам приховати і сортувати інформацію в меню"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Цей параметр дозволяє Вам приховати і сортувати плагіни в браузері."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr "Ця опція дозволяє вибрати, чи відображатиметься значення за замовчуванням для елемента налаштування, і, якщо так, то у якому місці відносно опису."
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Цей параметр дозволяє відображати швидкі посилання номера меню."
-
-msgid "This option allows you to show the screen menu path history."
-msgstr "Цей параметр дозволяє відображати історію шляху до екранного меню."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Цей параметр дозволяє Вам показати SNR в dB (підтримується не всіма приймачами)."
@@ -19394,9 +19381,6 @@ msgstr "Режим кнопок Вгору/Вниз також для 'all up/do
 msgid "Update"
 msgstr "Оновлення"
 
-msgid "Update Cache"
-msgstr "Оновлення кешу"
-
 msgid "Update at your own risk"
 msgstr "Оновлення на свій страх і ризик"
 
@@ -19448,12 +19432,6 @@ msgstr "Доступні оновлення:"
 
 msgid "Updating"
 msgstr "Оновлення"
-
-msgid "Updating cache"
-msgstr "Оновлення кешу"
-
-msgid "Updating cache, please wait..."
-msgstr "Оновлення кешу, будь ласка, зачекайте..."
 
 msgid "Updating mount locations."
 msgstr "Оновлення параметрів підключення."
@@ -19516,6 +19494,9 @@ msgstr "Налаштування інтерфейсу"
 msgid "Use"
 msgstr "Використовувати"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Використання кошика в списку фільмів"
+
 msgid "Use DHCP"
 msgstr "Використовувати DHCP"
 
@@ -19567,6 +19548,9 @@ msgstr "Використовувати інформацію Virgin ЕПГ, ко�
 msgid "Use a gateway"
 msgstr "Використовувати шлюз"
 
+msgid "Use an alternative smaller screen."
+msgstr "Використовувати альтернативне вікно."
+
 msgid "Use as HDD"
 msgstr "Використовувати як HDD"
 
@@ -19603,9 +19587,6 @@ msgstr "Використовувати частоту або канал"
 msgid "Use geolocation to set the current time zone location"
 msgstr "За допомогою геолокації встановіть поточне місце розташування часового поясу"
 
-msgid "Use per directory settings"
-msgstr "Використовуйте окремі налаштування для кожного каталогу"
-
 msgid "Use interface"
 msgstr "Використовувати інтерфейс"
 
@@ -19620,6 +19601,9 @@ msgstr "Використовувати оригінальну позицію DVB
 
 msgid "Use original teletext position"
 msgstr "Використовувати оригінальну позицію телетексту"
+
+msgid "Use per directory settings"
+msgstr "Використовуйте окремі налаштування для кожного каталогу"
 
 msgid "Use power measurement"
 msgstr "Використовувати вимірювання потужності"
@@ -19647,9 +19631,6 @@ msgstr "За допомогою кнопок ВВЕРХ і ВНИЗ вибері
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Можете вибрати альтернативний або нормальний режим Радіо."
-
-msgid "Use an alternative smaller screen."
-msgstr "Використовувати альтернативне вікно."
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Використовуйте кнопки керування курсором, щоб вибрати встановлений імідж, а потім кнопку Старт."
@@ -19683,9 +19664,6 @@ msgstr "Кроки для швидкого перемотування впере
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Використовувати Seekbar під час роботи таймшифта"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Використання кошика в списку фільмів"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Використовувати обхід для включення приймача в режимі виключення"
@@ -19827,6 +19805,9 @@ msgstr "Вирівнювання по вертикалі погрес-бару �
 
 msgid "Vertical alignment for the service number."
 msgstr "Вирівнювання по вертикалі номера каналу."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Швидкість повороту по вертикалі"
@@ -22783,6 +22764,79 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "Виберіть стиль Головного Меню"
+
+#~ msgid "Choose the order in which items are displayed in Help windows"
+#~ msgstr "Виберіть порядок відображення елементів у вікнах довідки"
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "Показати Головне Меню як"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Показати номери в меню"
+
+#~ msgid "Sort order for help screen"
+#~ msgstr "Порядок сортування екрану довідки"
+
+#~ msgid "Standard menu"
+#~ msgstr "Стандартне меню"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Цей параметр дозволяє відображати швидкі посилання номера меню."
+
+#~ msgid "Delete Language"
+#~ msgstr "Видалити мови"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Ви хочете видалити всі інші мови?\n"
+#~ "Крім англійської, французької, німецької та вашого вибору:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Графічний інтерфейс потребує перезапуску, щоб застосувати нову мову\n"
+#~ "Хочете зробити це зараз?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Натисніть MENU, щоб встановити додаткові мови."
+
+#~ msgid "Setup Language"
+#~ msgstr "Налаштування мови"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Цей параметр дозволяє Вам показ перезавантаження мережі в меню розширень."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Цей параметр дозволяє Вам відключити сортування в списку розширень."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Цей параметр дозволяє Вам відключити сортування пунктів різних вікон налаштувань"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Цей параметр дозволяє Вам приховати і сортувати інформацію в меню"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Цей параметр дозволяє Вам приховати і сортувати плагіни в браузері."
+
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Цей параметр дозволяє відображати історію шляху до екранного меню."
+
+#~ msgid "Update Cache"
+#~ msgstr "Оновлення кешу"
+
+#~ msgid "Updating cache"
+#~ msgstr "Оновлення кешу"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Оновлення кешу, будь ласка, зачекайте..."
 
 #, python-format
 #~ msgid ""

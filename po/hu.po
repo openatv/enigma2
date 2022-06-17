@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2312,6 +2312,9 @@ msgstr "Hozzáférési pont:"
 msgid "Action"
 msgstr "Művelet"
 
+msgid "Action at end of media"
+msgstr "Amikor egy lejátszás a végére ér"
+
 msgid "Action on long POWER button press"
 msgstr "Be/Ki gomb hosszan lenyomva"
 
@@ -2668,9 +2671,6 @@ msgstr "Lehetővé teszi a TV távirányítójának használatát e készülék 
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Engedélyezi a felbontási információk megjelenítésének időtartamát a képernyőn."
 
-msgid "Select the function to be assigned to this button."
-msgstr "Lehetővé teszi a kiválasztott funkció hozzárendelését ehhez a gombhoz."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Lehetővé teszi a GStreamer hibakeresési naplójának engedélyezését. Nagyon részletes információt tartalmaz mindarról, ami a GStreamer rendszerben történik."
 
@@ -2703,6 +2703,9 @@ msgstr "Majdnem ott... "
 
 msgid "Alpha"
 msgstr "Betű"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "ABC-sorrendben a fejlécek alatt"
@@ -2800,9 +2803,6 @@ msgstr "Animáció beállítás"
 
 msgid "Animation Speed"
 msgstr "Animáció sebessége"
-
-msgid "Help animation speed"
-msgstr "Súgó ikonok animáció-sebessége"
 
 msgid "Animations"
 msgstr "Animációk"
@@ -3438,9 +3438,6 @@ msgstr "Amikor egy lejátszás elindul"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Amikor egy lejátszás meg van állítva"
-
-msgid "Action at end of media"
-msgstr "Amikor egy lejátszás a végére ér"
 
 msgid "Belarus"
 msgstr "Fehéroroszország"
@@ -4368,9 +4365,6 @@ msgstr "Válaszd a DVB várakozási késleltetést a CI válaszra."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Válassza ki, hogy milyen gyakran szeretne csatlakozni az IceTV kiszolgálóhoz a frissítések kereséséhez."
 
-msgid "Choose style of main menus"
-msgstr "Válassza ki a főmenük stílusát"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Válassza ki a CI protokoll üzemmódot a standard CI vagy CI+ esetén."
 
@@ -4395,7 +4389,7 @@ msgstr "Válassza ki azt a helyet, ahol az EPG adatok tárolásra kerülnek, ami
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Válassza ki az EPG adatokat tartalmazó fájl nevét, ha a %s %s leállt. Ez hasznos lehet másik készülékre másolás esetén."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5152,9 +5146,6 @@ msgstr "A pozíció vezérlése, hogy a befejezett időzítő hogyan jelenik meg
 msgid "Control the Infobar fading speed"
 msgstr "Információs sáv lassú eltűnésének vezérlése"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
-
 msgid "Control your Softcams"
 msgstr "Softcam vezérlése"
 
@@ -5909,9 +5900,6 @@ msgstr "EPG törlése"
 msgid "Delete Image"
 msgstr "Kép törlése"
 
-msgid "Delete Language"
-msgstr "Nyelv törlése"
-
 msgid "Delete Plugins"
 msgstr "Bővítmények törlése"
 
@@ -6233,9 +6221,6 @@ msgstr "Lemez megtelt?"
 msgid "Disk is not writable!"
 msgstr "A lemez nem írható!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Felvételeknek fenntartott tárterület (GB-ban)"
-
 msgid "Disk was not found!"
 msgstr "A lemez nem található!"
 
@@ -6467,15 +6452,6 @@ msgstr "Szeretné folytatni?"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Törli az összes többi nyelvet?\n"
-"Kivéve az angolt, a franciát, a németet és a választásodat\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7057,9 +7033,6 @@ msgstr "A földi LCN engedélyezése:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Engedélyezze a csúszka aktuális értékét a csúszka végén."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7080,6 +7053,18 @@ msgstr "Engedélyezze ezt a beállítást, ha az antennarendszer áramellátást
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Engedélyezze az összes igaz/hamis, igen/nem, be- és kikapcsolási és enged/tilt beállítások grafikus kapcsolóként való megjelenítését."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Engedélyezze a csúszka aktuális értékét a csúszka végén."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Leválasztott csatornacsomagok engedélyezése"
@@ -7259,6 +7244,18 @@ msgstr "Szórakozás"
 
 msgid "Entitlements"
 msgstr "Jogosultságok"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
@@ -8284,13 +8281,6 @@ msgid "GStreamer version"
 msgstr ""
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Az új nyelv betöltéséhez újra kell indítani a grafikus felhasználói felületet (GUI).\n"
-"Újra indítja most?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8708,8 +8698,14 @@ msgstr "Súgó"
 msgid "Help Screen Information"
 msgstr "Eszközinformáció"
 
+msgid "Help animation speed"
+msgstr "Súgó ikonok animáció-sebessége"
+
 msgid "Help long"
 msgstr "Súgó hosszan"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Segít beállítani a jelet"
@@ -9049,9 +9045,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Ha 'soha', akkor az első összeomlás ellenére is beírja az összeomlási naplóba."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10663,6 +10656,15 @@ msgstr "Gyors műveletek"
 msgid "Menu config"
 msgstr "Menü beállítás"
 
+msgid "Menu entry sort order"
+msgstr "Menü bejegyzések rendezése"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11959,9 +11961,6 @@ msgstr "Film végén"
 msgid "On end of movie (as menu)"
 msgstr "Film végén (menü)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Amikor lejátszás közben elér egy fájlt, kiválaszthatja a doboz viselkedését."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Érvényes ONID-k esetén a frekvencia alhálózat-rész figyelmen kívül hagyása"
 
@@ -13191,9 +13190,6 @@ msgstr "Nyomja le az INFO gombot a távírányítón a részletekért."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "További nyelv(ek) telepítéséhez nyomja le a MENU billentyűt."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13494,6 +13490,9 @@ msgstr "Puerto Rico"
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Kuka kiürítése ennyi nap után"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14075,9 +14074,6 @@ msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove hide VBI line for this service"
 msgstr "A kép tetején lévő villogó csík eltakarása ezen csatornánál"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Kuka kiürítése ennyi nap után"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
@@ -15136,6 +15132,12 @@ msgstr "Válassza ki, hogyan aktiválja a Gyors EPG módot:"
 msgid "Select how your box will upgrade."
 msgstr "Válassza ki, hogy a készüléke miként lesz frissítve."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
 
@@ -15214,6 +15216,9 @@ msgstr "Válassza ki a tunerhez hozzárendelni kívánt felhasználói sáv frek
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
@@ -15229,6 +15234,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Válassza ki a kívánt funkciót, és kattintson rá az \"OK\" gombra. Használja a \"CH +/-\" billentyűt a listák közötti váltáshoz. Válasszon ki egy hozzárendelt függvényt, és kattintson az \"OK\" gombra annak hozzárendeléséhez. Használja a \"Next / Previous\" gombot a hozzárendelt funkciók sorrendjének megváltoztatásához."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "Lehetővé teszi a kiválasztott funkció hozzárendelését ehhez a gombhoz."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15287,6 +15301,12 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletét"
 msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15331,6 +15351,9 @@ msgstr "Válasszon videó bemenetet a FEL/LE gombokkal"
 
 msgid "Select video mode"
 msgstr "Válassza ki a video módot"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Amikor lejátszás közben elér egy fájlt, kiválaszthatja a doboz viselkedését."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Válassza ki, hogy mit kell tennie, ha a(z) %s %s készüléknek indítási állapotában amikor indul."
@@ -15789,6 +15812,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
 
@@ -15815,6 +15841,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Beállítások"
+
+msgid "Settings mode"
+msgstr "Beállítás módja"
 
 msgid "Settings..."
 msgstr "Beállítások..."
@@ -15852,9 +15881,6 @@ msgstr "Inadyn beállítása"
 
 msgid "Setup InputDevice"
 msgstr "Bemeneti eszközök beállítása"
-
-msgid "Setup Language"
-msgstr "Nyelv beállítás"
 
 msgid "Setup MiniDLNA"
 msgstr "MiniDLNA Beállítások"
@@ -15911,6 +15937,9 @@ msgstr "A csatornára ugrás késleltetési módját lehet itt beállítani."
 msgid "Setup each tuner for your satellite system"
 msgstr "A műholdrendszer minden tunerének beállítása"
 
+msgid "Setup entry sort"
+msgstr "Rendezési képernyő beállítása betűrendes keresésre"
+
 msgid "Setup how to control the channel changing."
 msgstr "Állítsa be, hogy a Csatornaváltás miként működjön."
 
@@ -15919,9 +15948,6 @@ msgstr "Interfész beállítás"
 
 msgid "Setup menu"
 msgstr "Beállítások menü"
-
-msgid "Settings mode"
-msgstr "Beállítás módja"
 
 msgid "Setup network time synchronization interval."
 msgstr "A hálózati idő szinkronizálási intervallumának beállítása."
@@ -16178,9 +16204,6 @@ msgstr "Napló megjelenítése"
 msgid "Show Log Manager in extensions list"
 msgstr "Megjelenjen a Log Manager a bővítmények listában?"
 
-msgid "Show Main Menu as"
-msgstr "A főmenü megjelenítése mint"
-
 msgid "Show Media Player in Main Menu"
 msgstr "a Médialejátszó megjelenítése a fő menüben"
 
@@ -16255,6 +16278,9 @@ msgstr "Függőleges EPG megjelenítése"
 
 msgid "Show WLAN status"
 msgstr "A vezeték nélküli hálózat állapotának megjelenítése"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "A rendszer foglaltságát jelző logo mutatása."
 
 msgid "Show additional slider value"
 msgstr "További csúszka értékének megjelenítése"
@@ -16439,9 +16465,6 @@ msgstr "Megjelölt események megjelenítése minden sorban."
 msgid "Show menu"
 msgstr "Menü megjelenítése"
 
-msgid "Show menu numbers"
-msgstr "Menü számok mutatása"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Az üzenet megjelenítése, ha a File Commander nem fut és az összes Feladat befejeződött."
 
@@ -16564,12 +16587,6 @@ msgstr "Egy csatorna EPG-jének megjelenítése"
 msgid "Show source packages"
 msgstr "A forráscsomagok megjelenítése"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "A rendszer foglaltságát jelző logo mutatása."
-
-msgid "Show watch status"
-msgstr "Állapotjelző ikonok megjelenítése a felvétel listában"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Állapotüzenetek mutatása az élő TV műsorra történő váltáskor"
 
@@ -16684,6 +16701,9 @@ msgstr "Figyelmeztetés mutatása újraindítás előtt"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Figyelmeztetés Timeshift megállításakor"
+
+msgid "Show watch status"
+msgstr "Állapotjelző ikonok megjelenítése a felvétel listában"
 
 msgid "Show/Games show"
 msgstr "Show/Games show"
@@ -17166,6 +17186,9 @@ msgstr "EPG lista rendezése"
 msgid "Sort Extensions menu"
 msgstr "A bővítmények listájának rendezése betűrendben"
 
+msgid "Sort Plugin Browser"
+msgstr "A bővítmény böngésző bejegyzéseinek rendezése"
+
 msgid "Sort by"
 msgstr "Rendezés"
 
@@ -17182,24 +17205,11 @@ msgid "Sort list:"
 msgstr "Lista rendezése:"
 
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Menü bejegyzések rendezése"
-
-msgid "Menu entry sort order"
-msgstr "Menü bejegyzések rendezése"
-
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Menü bejegyzések rendezése"
 
 msgid "Sort playlists"
 msgstr "lejátszási listák rendezése"
-
-msgid "Sort Plugin Browser"
-msgstr "A bővítmény böngésző bejegyzéseinek rendezése"
-
-msgid "Setup entry sort"
-msgstr "Rendezési képernyő beállítása betűrendes keresésre"
 
 msgid "Sorting left files by name, date or size"
 msgstr "A bal oldali fájlok rendezése név, dátum vagy méret szerint"
@@ -17234,6 +17244,9 @@ msgstr ""
 
 msgid "South Sudan"
 msgstr "Dél-Szudán"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Felvételeknek fenntartott tárterület (GB-ban)"
 
 msgid "Space used:"
 msgstr "A felhasznált hely:"
@@ -17288,9 +17301,6 @@ msgstr "Hagyományos (mindig)"
 
 msgid "Standard list"
 msgstr "Hagyományos lista"
-
-msgid "Standard menu"
-msgstr "Normál menü"
 
 msgid "Standby"
 msgstr "Készenlét"
@@ -18619,33 +18629,8 @@ msgstr "Ezzel az opcióval kiválaszthatja, hogy az első gomb megnyomásakor ho
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ezzel a beállítással megadhatja, hogy megjelenjenek-e az esemény műfajadatai."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Ezzel az opcióval letilthatja a Restart Network (Hálózat újraindítása) megjelenítését a Bővítmények listában."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Ezzel az opcióval letilthatja a Bővítmények listájának rendezését."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Ezzel az opcióval letilthatja a betűrendes keresést a rendezés beállítási képernyőn"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ez az opció lehetővé teszi a 3D Surround hang használatát."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Ez az opció lehetővé teszi a menük elrejtését és rendezését"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Ez az opció lehetővé teszi a Bővítmény kezelő elrejtését és rendezését."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Beállíthatja, hogy a menü számok megjelenjenek-e a menükben."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "Ez az opció lehetővé teszi a zöld tónusok növelését a képen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ez az opció lehetővé teszi, hogy az SNR százalékos arányként jelenjen meg (ezt nem minden vevő egység támogatja)."
@@ -19598,9 +19583,6 @@ msgstr "Fel/Le gombok is hasonlóan az 'összes Fel/Le' használatához?"
 msgid "Update"
 msgstr "Frissítés"
 
-msgid "Update Cache"
-msgstr "Cache frissítése"
-
 msgid "Update at your own risk"
 msgstr "Mindenki a saját felelősségére frissítse"
 
@@ -19652,12 +19634,6 @@ msgstr "Elérhető frissítések:"
 
 msgid "Updating"
 msgstr "Frissítés"
-
-msgid "Updating cache"
-msgstr "Gyorsítótár frissítése"
-
-msgid "Updating cache, please wait..."
-msgstr "Cache frissítése, kérem várjon..."
 
 msgid "Updating mount locations."
 msgstr "Csatlakozási helyek frissítése."
@@ -19720,6 +19696,9 @@ msgstr "Használati beállítás"
 msgid "Use"
 msgstr "Használ"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Kuka használata a Felvétel listában"
+
 msgid "Use DHCP"
 msgstr "DHCP használata"
 
@@ -19771,6 +19750,9 @@ msgstr "Virgin EPG információk beolvasása a jelforrásból."
 msgid "Use a gateway"
 msgstr "Átjáró használata"
 
+msgid "Use an alternative smaller screen."
+msgstr "Használja az alternatív képernyőt"
+
 msgid "Use as HDD"
 msgstr "Használat Merevlemezként"
 
@@ -19807,9 +19789,6 @@ msgstr "Frekvencia vagy csatorna használata"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Beállítások mentése egyedileg mappánként"
-
 msgid "Use interface"
 msgstr "Interfész használata"
 
@@ -19824,6 +19803,9 @@ msgstr "DVB feliratok pozíciójának megtartása"
 
 msgid "Use original teletext position"
 msgstr "Eredeti teletext-elhelyezés megtartása"
+
+msgid "Use per directory settings"
+msgstr "Beállítások mentése egyedileg mappánként"
 
 msgid "Use power measurement"
 msgstr "Teljesítmény-felvétel mérése"
@@ -19851,9 +19833,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Használja az alternatív vagy a hagyományos rádió üzemmódot."
-
-msgid "Use an alternative smaller screen."
-msgstr "Használja az alternatív képernyőt"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
@@ -19887,9 +19866,6 @@ msgstr "Az idő ugrással gyors Előre/Hátra ugrik"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Kuka használata a Felvétel listában"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Használjon megoldást a kikapcsolt állapot ébresztésre?"
@@ -20034,6 +20010,9 @@ msgstr "Az esemény állapotának függőleges igazítása."
 
 msgid "Vertical alignment for the service number."
 msgstr "A csatorna számának függőleges igazítása."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Függőleges fordulási sebesség"
@@ -23002,6 +22981,78 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "Válassza ki a főmenük stílusát"
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "A főmenü megjelenítése mint"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Menü számok mutatása"
+
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Menü bejegyzések rendezése"
+
+#~ msgid "Standard menu"
+#~ msgstr "Normál menü"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Beállíthatja, hogy a menü számok megjelenjenek-e a menükben."
+
+#~ msgid "Delete Language"
+#~ msgstr "Nyelv törlése"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Törli az összes többi nyelvet?\n"
+#~ "Kivéve az angolt, a franciát, a németet és a választásodat\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Az új nyelv betöltéséhez újra kell indítani a grafikus felhasználói felületet (GUI).\n"
+#~ "Újra indítja most?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "További nyelv(ek) telepítéséhez nyomja le a MENU billentyűt."
+
+#~ msgid "Setup Language"
+#~ msgstr "Nyelv beállítás"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Ezzel az opcióval letilthatja a Restart Network (Hálózat újraindítása) megjelenítését a Bővítmények listában."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Ezzel az opcióval letilthatja a Bővítmények listájának rendezését."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Ezzel az opcióval letilthatja a betűrendes keresést a rendezés beállítási képernyőn"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Ez az opció lehetővé teszi a menük elrejtését és rendezését"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Ez az opció lehetővé teszi a Bővítmény kezelő elrejtését és rendezését."
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Ez az opció lehetővé teszi a zöld tónusok növelését a képen."
+
+#~ msgid "Update Cache"
+#~ msgstr "Cache frissítése"
+
+#~ msgid "Updating cache"
+#~ msgstr "Gyorsítótár frissítése"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Cache frissítése, kérem várjon..."
 
 #, python-format
 #~ msgid ""

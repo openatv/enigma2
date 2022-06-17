@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2307,6 +2307,9 @@ msgstr "Điểm truy cập:"
 msgid "Action"
 msgstr "Từ điển"
 
+msgid "Action at end of media"
+msgstr "Hành vi khi một bộ phim đến cuối"
+
 msgid "Action on long POWER button press"
 msgstr "Thao tác nhấn nút nguồn dài"
 
@@ -2665,9 +2668,6 @@ msgstr ""
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Cho phép bạn điều chỉnh lượng thời gian hiển thị thông tin độ phân giải trên màn hình."
 
-msgid "Select the function to be assigned to this button."
-msgstr ""
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
@@ -2700,6 +2700,9 @@ msgstr "Gần đến rồi... "
 
 msgid "Alpha"
 msgstr "Alpha"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr ""
@@ -2799,9 +2802,6 @@ msgstr "Cài đặt hình ảnh động"
 
 msgid "Animation Speed"
 msgstr "Tốc độ  hình"
-
-msgid "Help animation speed"
-msgstr ""
 
 msgid "Animations"
 msgstr "Ảnh động"
@@ -3441,9 +3441,6 @@ msgstr "Hành vi khi một bộ phim được bắt đầu"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Hành vi khi phim bị dừng"
-
-msgid "Action at end of media"
-msgstr "Hành vi khi một bộ phim đến cuối"
 
 msgid "Belarus"
 msgstr "Bêlarut"
@@ -4381,10 +4378,6 @@ msgstr "Chọn độ trễ chờ dvb cho phản hồi ci."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
-#, fuzzy
-msgid "Choose style of main menus"
-msgstr "Hiển thị scart VCR trên menu chính"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Chọn chế độ hoạt động giao thức CI cho ci hoặc ciplus tiêu chuẩn."
 
@@ -4409,7 +4402,7 @@ msgstr "Chọn vị trí lưu trữ dữ liệu EPG khi tắt% s% s. Vị trí p
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Chọn tên của tệp chứa dữ liệu EPG khi tắt% s% s. Điều này có thể thuận tiện để phân biệt giữa một số hộp."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5171,9 +5164,6 @@ msgstr "Kiểm soát vị trí cách bộ hẹn giờ hoàn thành được hi�
 msgid "Control the Infobar fading speed"
 msgstr "Kiểm soát tốc độ mờ dần của Infobar"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
-
 msgid "Control your Softcams"
 msgstr "Điều khiển Softcam của bạn"
 
@@ -5934,9 +5924,6 @@ msgstr "Xóa EPG"
 msgid "Delete Image"
 msgstr "Xóa hình ảnh"
 
-msgid "Delete Language"
-msgstr "Xóa ngôn ngữ"
-
 msgid "Delete Plugins"
 msgstr "Xóa plugin"
 
@@ -6262,9 +6249,6 @@ msgstr "đầy?"
 msgid "Disk is not writable!"
 msgstr "không thể ghi được!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Dung lượng đĩa để dự trữ cho bản ghi (tính bằng GB)"
-
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "không tìm thấy!"
@@ -6503,14 +6487,6 @@ msgstr "Bạn có muốn tiếp tục?"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Bạn có muốn xóa tất cả các ngôn ngữ khác?\n"
-"Ngoại trừ tiếng Anh, tiếng Pháp, tiếng Đức và lựa chọn của bạn:\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7105,9 +7081,6 @@ msgstr "Kích hoạt LCN trên mặt đất:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Kích hoạt giá trị hiện tại của thanh trượt ở cuối thanh trượt."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7128,6 +7101,18 @@ msgstr "Kích hoạt cài đặt này nếu hệ thống trên không của bạ
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Bật để hiển thị tất cả đúng / sai, có / không, bật / tắt và bật / tắt tùy chọn thiết lập dưới dạng chuyển đổi đồ họa."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Kích hoạt giá trị hiện tại của thanh trượt ở cuối thanh trượt."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Cho phép gói kênh không liên kết"
@@ -7306,6 +7291,18 @@ msgstr "Vào menu chính ..."
 
 msgid "Entitlements"
 msgstr "Quyền lợi"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg / Hướng dẫn"
@@ -8339,13 +8336,6 @@ msgid "GStreamer version"
 msgstr ""
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI cần khởi động lại để áp dụng ngôn ngữ mới\n"
-"Bạn có muốn khởi động lại GUI bây giờ không?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8766,8 +8756,14 @@ msgstr "Cứu giúp"
 msgid "Help Screen Information"
 msgstr "Thông tin thiết bị"
 
+msgid "Help animation speed"
+msgstr ""
+
 msgid "Help long"
 msgstr "Giúp lâu"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Giúp thiết lập tín hiệu của bạn"
@@ -9118,9 +9114,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Nếu 'không bao giờ', sẽ viết nhật ký sự cố mặc dù đó là lần đầu tiên."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10730,6 +10723,15 @@ msgstr "Thao tác nhanh"
 msgid "Menu config"
 msgstr "Menu cấu hình"
 
+msgid "Menu entry sort order"
+msgstr "Sắp xếp thứ tự cho các mục menu"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12044,9 +12046,6 @@ msgstr "Cuối phim"
 msgid "On end of movie (as menu)"
 msgstr "Vào cuối phim (dưới dạng menu)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Khi đến cuối tệp trong khi phát lại, bạn có thể chọn hành vi của hộp."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Trên các ONID hợp lệ, bỏ qua phần mạng phụ tần số"
 
@@ -13279,9 +13278,6 @@ msgstr "Nhấn INFO trên điều khiển từ xa để biết thêm thông tin.
 msgid "Press MENU on your remote control for additional options."
 msgstr "Nhấn MENU trên điều khiển từ xa của bạn để có thêm tùy chọn."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Nhấn MENU để cài đặt (các) ngôn ngữ bổ sung."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13589,6 +13585,9 @@ msgstr "Puerto Rico"
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Loại bỏ các mục từ thùng rác sau (ngày)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14181,9 +14180,6 @@ msgstr "Xóa tiêu đề hiện được chọn"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Loại bỏ các mục từ thùng rác sau (ngày)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Xóa thư mục đã chọn khỏi dấu trang"
@@ -15243,6 +15239,12 @@ msgstr "Chọn cách kích hoạt chế độ EPG nhanh:"
 msgid "Select how your box will upgrade."
 msgstr "Chọn cách đầu thu của bạn sẽ nâng cấp."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Chọn nếu timeshift phải tiếp tục khi được đặt thành ghi."
 
@@ -15321,6 +15323,9 @@ msgstr "Chọn tần số  người dùng sẽ được chỉ định cho bộ c
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Chọn nhân vật hoặc hành động dưới con trỏ bàn phím ảo"
@@ -15336,6 +15341,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Chọn chức năng mong muốn và nhấp vào \"OK\" để gán nó. Sử dụng \"CH +/-\" để chuyển đổi giữa các danh sách. Chọn một chức năng được chỉ định và nhấp vào \"OK\" để hủy gán nó. Sử dụng \"Tiếp theo / Trước\" để thay đổi thứ tự của các chức năng được gán."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr ""
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15394,6 +15408,12 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15439,6 +15459,9 @@ msgstr "Chọn đầu vào video với các nút lên / xuống"
 
 msgid "Select video mode"
 msgstr "Chọn chế độ video"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Khi đến cuối tệp trong khi phát lại, bạn có thể chọn hành vi của hộp."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Chọn những gì nên được thực hiện khi % s% s được khởi động, chơi bình thường hoặc ở chế độ chờ goto."
@@ -15899,6 +15922,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Đặt thời gian gốc mong muốn (giờ)."
 
@@ -15925,6 +15951,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Cài đặt"
+
+msgid "Settings mode"
+msgstr "Chế độ cài đặt"
 
 msgid "Settings..."
 msgstr "Cài đặt...."
@@ -15962,9 +15991,6 @@ msgstr "Cài đặt Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Thiết lập InputDevice"
-
-msgid "Setup Language"
-msgstr "Ngôn ngữ cài đặt"
 
 msgid "Setup MiniDLNA"
 msgstr "Cài đặt MiniDLNA"
@@ -16021,6 +16047,9 @@ msgstr "Cài đặt chế độ trễ để zap cho các kênh."
 msgid "Setup each tuner for your satellite system"
 msgstr "Cài đặt từng bộ chỉnh cho hệ thống vệ tinh của bạn"
 
+msgid "Setup entry sort"
+msgstr "Sắp xếp màn hình theo thứ tự bảng chữ cái"
+
 msgid "Setup how to control the channel changing."
 msgstr "Thiết lập cách kiểm soát kênh thay đổi."
 
@@ -16029,9 +16058,6 @@ msgstr "Giao diện cài đặt"
 
 msgid "Setup menu"
 msgstr "Menu cài đặt"
-
-msgid "Settings mode"
-msgstr "Chế độ cài đặt"
 
 msgid "Setup network time synchronization interval."
 msgstr "Thiết lập khoảng thời gian đồng bộ hóa mạng."
@@ -16291,10 +16317,6 @@ msgstr "Hiển thị nhật ký"
 msgid "Show Log Manager in extensions list"
 msgstr "Hiển thị Trình quản lý nhật ký trong danh sách tiện ích mở rộng?"
 
-#, fuzzy
-msgid "Show Main Menu as"
-msgstr "Hiển thị phim"
-
 msgid "Show Media Player in Main Menu"
 msgstr "hiển thị trình phát đa phương tiện trên menu chính"
 
@@ -16369,6 +16391,9 @@ msgstr "Hiển thị EPG dọc"
 
 msgid "Show WLAN status"
 msgstr "Hiển thị trạng thái mạng WLAN"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Hiển thị logo quay khi hệ thống bận."
 
 msgid "Show additional slider value"
 msgstr "Hiển thị giá trị thanh trượt bổ sung"
@@ -16554,9 +16579,6 @@ msgstr "Hiển thị các sự kiện được đánh dấu trong tất cả cá
 msgid "Show menu"
 msgstr "Hiển thị menu"
 
-msgid "Show menu numbers"
-msgstr "Hiển thị số menu"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Hiển thị thông báo nếu File Commander không chạy và tất cả các tác vụ đã hoàn thành."
 
@@ -16679,12 +16701,6 @@ msgstr "Hiển thị EPG dịch vụ duy nhất"
 msgid "Show source packages"
 msgstr "Hiển thị các gói nguồn"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Hiển thị logo quay khi hệ thống bận."
-
-msgid "Show watch status"
-msgstr "Hiển thị biểu tượng trạng thái trong Movielist"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Hiển thị thông báo trạng thái khi chuyển sang truyền hình trực tiếp"
 
@@ -16800,6 +16816,9 @@ msgstr "Hiển thị cảnh báo trước khi khởi động lại"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Hiển thị cảnh báo khi dừng timeshift"
+
+msgid "Show watch status"
+msgstr "Hiển thị biểu tượng trạng thái trong Movielist"
 
 #, fuzzy
 msgid "Show/Games show"
@@ -17281,6 +17300,9 @@ msgstr "Sắp xếp danh sách EPG"
 msgid "Sort Extensions menu"
 msgstr "Sắp xếp danh sách tiện ích mở rộng theo thứ tự abc"
 
+msgid "Sort Plugin Browser"
+msgstr "Sắp xếp các mục trình duyệt bổ trợ"
+
 msgid "Sort by"
 msgstr "Sắp xếp theo"
 
@@ -17297,24 +17319,11 @@ msgid "Sort list:"
 msgstr "Sắp xếp danh sách:"
 
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Sắp xếp thứ tự cho các mục menu"
-
-msgid "Menu entry sort order"
-msgstr "Sắp xếp thứ tự cho các mục menu"
-
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Sắp xếp thứ tự cho các mục menu"
 
 msgid "Sort playlists"
 msgstr "sắp xếp danh sách phát"
-
-msgid "Sort Plugin Browser"
-msgstr "Sắp xếp các mục trình duyệt bổ trợ"
-
-msgid "Setup entry sort"
-msgstr "Sắp xếp màn hình theo thứ tự bảng chữ cái"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Sắp xếp các tập tin bên trái theo tên, ngày hoặc kích thước"
@@ -17349,6 +17358,9 @@ msgstr ""
 
 msgid "South Sudan"
 msgstr "Phía nam Sudan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Dung lượng đĩa để dự trữ cho bản ghi (tính bằng GB)"
 
 msgid "Space used:"
 msgstr "Không gian sử dụng:"
@@ -17405,10 +17417,6 @@ msgstr "Tiêu chuẩn (luôn luôn)"
 
 msgid "Standard list"
 msgstr "Danh sách tiêu chuẩn"
-
-#, fuzzy
-msgid "Standard menu"
-msgstr "Tiêu chuẩn"
 
 msgid "Standby"
 msgstr "Tắt ở chế độ chờ"
@@ -18737,33 +18745,8 @@ msgstr "Tùy chọn này cho phép bạn chọn nút nào đầu tiên nhấn v�
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Tùy chọn này cho phép bạn chọn cách hiển thị thời gian còn lại / trôi qua cho truyền hình trực tiếp."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Tùy chọn này cho phép bạn tắt hiển thị Mạng khởi động lại trong danh sách Tiện ích mở rộng."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Tùy chọn này cho phép bạn vô hiệu hóa việc sắp xếp danh sách Tiện ích mở rộng."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Tùy chọn này cho phép bạn vô hiệu hóa việc sắp xếp tùy chọn trong cài đặt màn hình"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Tùy chọn này cho phép bạn bật Âm thanh vòm 3D."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Tùy chọn này cho phép bạn ẩn và sắp xếp các menu"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Tùy chọn này cho phép bạn ẩn và sắp xếp trình duyệt plugin."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Tùy chọn này cho phép bạn hiển thị số liên kết nhanh menu."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "Tùy chọn này cho phép bạn tăng tông màu xanh lục trong ảnh."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Tùy chọn này cho phép bạn SNR theo tỷ lệ phần trăm (không phải tất cả các máy thu đều hỗ trợ điều này)."
@@ -19724,9 +19707,6 @@ msgstr "Nút lên / xuống cũng cho 'tất cả lên / xuống'?"
 msgid "Update"
 msgstr "Cập nhật"
 
-msgid "Update Cache"
-msgstr "Cập nhật bộ đệm"
-
 msgid "Update at your own risk"
 msgstr "Cập nhật rủi ro của riêng bạn"
 
@@ -19778,12 +19758,6 @@ msgstr "Cập nhật có sẵn:"
 
 msgid "Updating"
 msgstr "Nâng cấp"
-
-msgid "Updating cache"
-msgstr "Cập nhật bộ đệm"
-
-msgid "Updating cache, please wait..."
-msgstr "Đang cập nhật bộ đệm, vui lòng đợi ..."
 
 msgid "Updating mount locations."
 msgstr "Cập nhật vị trí gắn kết."
@@ -19846,6 +19820,9 @@ msgstr "Cài đặt sử dụng"
 msgid "Use"
 msgstr "Sử dụng"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Sử dụng thùng rác trong Movielist"
+
 msgid "Use DHCP"
 msgstr "Sử dụng DHCP"
 
@@ -19898,6 +19875,9 @@ msgstr "Sử dụng thông tin Virgin EPG khi có sẵn."
 msgid "Use a gateway"
 msgstr "Sử dụng cổng"
 
+msgid "Use an alternative smaller screen."
+msgstr "Sử dụng màn hình thay thế"
+
 msgid "Use as HDD"
 msgstr "Sử dụng như ổ cứng"
 
@@ -19934,9 +19914,6 @@ msgstr "Sử dụng tần số hoặc kênh"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Sử dụng các cài đặt riêng cho từng thư mục"
-
 msgid "Use interface"
 msgstr "Sử dụng giao diện"
 
@@ -19951,6 +19928,9 @@ msgstr "Sử dụng vị trí phụ đề DVB ban đầu"
 
 msgid "Use original teletext position"
 msgstr "Sử dụng vị trí teletext gốc"
+
+msgid "Use per directory settings"
+msgstr "Sử dụng các cài đặt riêng cho từng thư mục"
 
 msgid "Use power measurement"
 msgstr "Sử dụng đo năng lượng"
@@ -19978,9 +19958,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Sử dụng thay thế hoặc chế độ radio thông thường."
-
-msgid "Use an alternative smaller screen."
-msgstr "Sử dụng màn hình thay thế"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó là nút Bắt đầu."
@@ -20014,9 +19991,6 @@ msgstr "Sử dụng thời gian để nhảy nhanh / lùi"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Sử dụng thanh tìm kiếm timeshift trong khi timeshifting?"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Sử dụng thùng rác trong Movielist"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Sử dụng cách giải quyết để đánh thức từ chế độ chờ sâu?"
@@ -20163,6 +20137,9 @@ msgstr ""
 #, fuzzy
 msgid "Vertical alignment for the service number."
 msgstr "Cấu hình căn chỉnh tên dịch vụ."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Tốc độ quay dọc"
@@ -23153,6 +23130,80 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Choose style of main menus"
+#~ msgstr "Hiển thị scart VCR trên menu chính"
+
+#, fuzzy
+#~ msgid "Show Main Menu as"
+#~ msgstr "Hiển thị phim"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Hiển thị số menu"
+
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Sắp xếp thứ tự cho các mục menu"
+
+#, fuzzy
+#~ msgid "Standard menu"
+#~ msgstr "Tiêu chuẩn"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Tùy chọn này cho phép bạn hiển thị số liên kết nhanh menu."
+
+#~ msgid "Delete Language"
+#~ msgstr "Xóa ngôn ngữ"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Bạn có muốn xóa tất cả các ngôn ngữ khác?\n"
+#~ "Ngoại trừ tiếng Anh, tiếng Pháp, tiếng Đức và lựa chọn của bạn:\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "GUI cần khởi động lại để áp dụng ngôn ngữ mới\n"
+#~ "Bạn có muốn khởi động lại GUI bây giờ không?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Nhấn MENU để cài đặt (các) ngôn ngữ bổ sung."
+
+#~ msgid "Setup Language"
+#~ msgstr "Ngôn ngữ cài đặt"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Tùy chọn này cho phép bạn tắt hiển thị Mạng khởi động lại trong danh sách Tiện ích mở rộng."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Tùy chọn này cho phép bạn vô hiệu hóa việc sắp xếp danh sách Tiện ích mở rộng."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Tùy chọn này cho phép bạn vô hiệu hóa việc sắp xếp tùy chọn trong cài đặt màn hình"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Tùy chọn này cho phép bạn ẩn và sắp xếp các menu"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Tùy chọn này cho phép bạn ẩn và sắp xếp trình duyệt plugin."
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Tùy chọn này cho phép bạn tăng tông màu xanh lục trong ảnh."
+
+#~ msgid "Update Cache"
+#~ msgstr "Cập nhật bộ đệm"
+
+#~ msgid "Updating cache"
+#~ msgstr "Cập nhật bộ đệm"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Đang cập nhật bộ đệm, vui lòng đợi ..."
 
 #~ msgid "Backup settings"
 #~ msgstr "Cài đặt sao lưu"

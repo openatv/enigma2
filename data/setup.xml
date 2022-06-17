@@ -692,7 +692,7 @@
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebIf="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
-		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
+		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
 		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extensions menu" description="Enable to display the Extension menu entries alphabetically.">config.usage.sort_extensionslist</item>

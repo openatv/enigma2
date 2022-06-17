@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2269,6 +2269,9 @@ msgstr "无线接入点:"
 msgid "Action"
 msgstr "动作"
 
+msgid "Action at end of media"
+msgstr "影片结束时的动作"
+
 msgid "Action on long POWER button press"
 msgstr "长按电源按键操作"
 
@@ -2623,9 +2626,6 @@ msgstr "允许使用电视遥控器控制接收器."
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "允许您调整分辨率信息在屏幕上显示的时间量."
 
-msgid "Select the function to be assigned to this button."
-msgstr "允许您将所选功能分配给此按键."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "允许您启用GStreamer调试日志.它们包含GStreamer系统所做的一切的非常详细的信息."
 
@@ -2658,6 +2658,9 @@ msgstr "即将完成... "
 
 msgid "Alpha"
 msgstr "字母表"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "标题下按字母顺序排列"
@@ -2755,9 +2758,6 @@ msgstr "动画设置"
 
 msgid "Animation Speed"
 msgstr "动画速度"
-
-msgid "Help animation speed"
-msgstr "帮助指示器的动画速度"
 
 msgid "Animations"
 msgstr "动画"
@@ -3388,9 +3388,6 @@ msgstr "影片开始后的动作"
 
 msgid "Behavior when a movie is stopped"
 msgstr "影片停止时的动作"
-
-msgid "Action at end of media"
-msgstr "影片结束时的动作"
 
 msgid "Belarus"
 msgstr "白俄罗斯"
@@ -4322,9 +4319,6 @@ msgstr "为ci响应选择dvb等待延迟."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
 
-msgid "Choose style of main menus"
-msgstr "选择主菜单样式"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "选择标准CI或高级CI的CI协议的运行模式."
 
@@ -4349,8 +4343,8 @@ msgstr "选择关闭%s %s时存储EPG数据的位置.该位置必须在启动时
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "选择在关闭 %s %s 时保存EPG数据的文件名.这可以方便地区分几个机顶盒."
 
-msgid "Choose the order in which items are displayed in Help windows"
-msgstr "选择项目在帮助窗口中的显示顺序"
+msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "选择图形将被四舍五入的时间间隔."
@@ -5104,9 +5098,6 @@ msgstr "定位控制,已结束的定时器在定时器列表中如何显示."
 msgid "Control the Infobar fading speed"
 msgstr "控制信息栏淡出速度"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "控制帮助屏幕中按键指针的动画速度,使用'禁用'关闭动画,以便指针在按键之间切换."
-
 msgid "Control your Softcams"
 msgstr "控制你的Softcam"
 
@@ -5850,9 +5841,6 @@ msgstr "删除EPG"
 msgid "Delete Image"
 msgstr "删除镜像"
 
-msgid "Delete Language"
-msgstr "删除语言"
-
 msgid "Delete Plugins"
 msgstr "删除插件"
 
@@ -6170,9 +6158,6 @@ msgstr "磁盘已满?"
 msgid "Disk is not writable!"
 msgstr "磁盘不可写！"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "预留录制磁盘空间(以GB为单位)"
-
 msgid "Disk was not found!"
 msgstr "未找到磁盘!"
 
@@ -6408,15 +6393,6 @@ msgstr "是否确定继续？"
 
 msgid "Do you want to delete all log files?"
 msgstr "是否要删除所有日志文件？"
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"是否要删除所有其他语言?\n"
-"除了英语,法语,德语和您的选择之外:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -6996,9 +6972,6 @@ msgstr "启用地面波LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级HDMI-CEC设置选项."
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "启用滑块末端滑块的当前值."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "启用此选项可将操作映射/远程控制映射数据添加到调试日志文件."
 
@@ -7019,6 +6992,18 @@ msgstr "如果天线系统需要电源,请启用此设置"
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "启用显示所有开/关和启用/禁用设置选项作为图形开关."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "启用滑块末端滑块的当前值."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "启用未链接的自定义组"
@@ -7197,6 +7182,18 @@ msgstr "娱乐"
 
 msgid "Entitlements"
 msgstr "授权"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide键"
@@ -8211,13 +8208,6 @@ msgid "GStreamer version"
 msgstr "GStreamer版本"
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"需要重新启动GUI才能应用新语言\n"
-"是否要立即重新启动GUI?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8630,8 +8620,14 @@ msgstr "帮助"
 msgid "Help Screen Information"
 msgstr "帮助屏幕信息"
 
+msgid "Help animation speed"
+msgstr "帮助指示器的动画速度"
+
 msgid "Help long"
 msgstr "Help键 长按"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "帮助设置您的信号"
@@ -8970,9 +8966,6 @@ msgstr "如果选择'从不',尽管第一次崩溃,仍会写入崩溃日志."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某选项是用户可配置的,则其帮助条目将被标记为'(C)'后缀."
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "如果编辑一个文件,是否可以将光标开始位置设置在行尾或行首."
@@ -10545,6 +10538,15 @@ msgstr "菜单操作"
 msgid "Menu config"
 msgstr "菜单配置"
 
+msgid "Menu entry sort order"
+msgstr "菜单项的排序顺序"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "将广播EPG与IceTV合并"
 
@@ -11811,9 +11813,6 @@ msgstr "在电影结尾"
 msgid "On end of movie (as menu)"
 msgstr "电影结束时(作为菜单)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "在播放过程中达到文件的结尾时可以选择的行为."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "在有效的ONID上,忽略频率子网络部分"
 
@@ -13030,9 +13029,6 @@ msgstr "按INFO键显示附加的信息."
 msgid "Press MENU on your remote control for additional options."
 msgstr "按遥控器的MENU键获得更多信息."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "按MENU键安装其他语言."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13333,6 +13329,9 @@ msgstr "波多黎各"
 
 msgid "Purge"
 msgstr "清除"
+
+msgid "Purge 'Trash' after (days)"
+msgstr "设置从垃圾桶删除项目的时间（天）"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "清除除/添加/删除当前突出显示的语言环境/语言之外的所有内容"
@@ -13910,9 +13909,6 @@ msgstr "删除当前选择的标题"
 
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "设置从垃圾桶删除项目的时间（天）"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "从书签中删除选定的文件夹"
@@ -14961,6 +14957,12 @@ msgstr "选择如何激活快速EPG模式："
 msgid "Select how your box will upgrade."
 msgstr "如何选择升级你的机顶盒."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr "此选项允许您选择是否显示设置项的默认值,如果显示,则选择与描述相关的显示位置."
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "选择设置为录制时是否必须继续时移."
 
@@ -15039,6 +15041,9 @@ msgstr "选择要分配给此调谐器的用户波段频率.这是SCR开关用�
 msgid "Select the Yes / True response"
 msgstr "选择是/正确答案"
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr "控制帮助屏幕中按键指针的动画速度,使用'禁用'关闭动画,以便指针在按键之间切换."
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
@@ -15053,6 +15058,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "按OK关联所需的功能.使用 \"CH+/-\" 列表翻页.关联的功能再按OK将取消关联.使用 \"Next/Previous\"键对关联功能进行排序."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "允许您将所选功能分配给此按键."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15108,6 +15122,12 @@ msgstr "选择转换后的字符集"
 msgid "Select the shifted character set for the next character only"
 msgstr "仅为下一个字符选择移位字符集"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15152,6 +15172,9 @@ msgstr "使用上/下键选择视频输入"
 
 msgid "Select video mode"
 msgstr "选择视频模式"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "在播放过程中达到文件的结尾时可以选择的行为."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "选择在%s %s启动,正常播放或转到待机状态时应执行的操作."
@@ -15600,6 +15623,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "设置所需的黄金时段(小时)."
 
@@ -15626,6 +15652,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "设置"
+
+msgid "Settings mode"
+msgstr "设置模式"
 
 msgid "Settings..."
 msgstr "设置..."
@@ -15663,9 +15692,6 @@ msgstr "设置inadyn"
 
 msgid "Setup InputDevice"
 msgstr "设置输入设备"
-
-msgid "Setup Language"
-msgstr "设置语言"
 
 msgid "Setup MiniDLNA"
 msgstr "设置MiniDLNA"
@@ -15721,6 +15747,9 @@ msgstr "设置频道切换延迟模式."
 msgid "Setup each tuner for your satellite system"
 msgstr "设置卫星系统的每个调谐器"
 
+msgid "Setup entry sort"
+msgstr "按字母顺序对设置界面进行排序"
+
 msgid "Setup how to control the channel changing."
 msgstr "设置如何控制频道变化."
 
@@ -15729,9 +15758,6 @@ msgstr "设置网络接口"
 
 msgid "Setup menu"
 msgstr "设置菜单"
-
-msgid "Settings mode"
-msgstr "设置模式"
 
 msgid "Setup network time synchronization interval."
 msgstr "设置网络时间同步间隔."
@@ -15985,9 +16011,6 @@ msgstr "显示日志"
 msgid "Show Log Manager in extensions list"
 msgstr "在扩展列表中显示日志管理器？"
 
-msgid "Show Main Menu as"
-msgstr "将主菜单显示为"
-
 msgid "Show Media Player in Main Menu"
 msgstr "在主菜单显示媒体播放器"
 
@@ -16062,6 +16085,9 @@ msgstr "显示垂直EPG"
 
 msgid "Show WLAN status"
 msgstr "显示无线网络状态"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "系统繁忙时显示旋转的徽标."
 
 msgid "Show additional slider value"
 msgstr "显示附加滑块值"
@@ -16244,9 +16270,6 @@ msgstr "在所有行中显示标记的事件."
 msgid "Show menu"
 msgstr "显示菜单"
 
-msgid "Show menu numbers"
-msgstr "显示菜单编号"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "如果文件管理器未运行且所有任务都已完成,则显示消息."
 
@@ -16367,12 +16390,6 @@ msgstr "显示单个频道EPG"
 msgid "Show source packages"
 msgstr "显示源软件包"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "系统繁忙时显示旋转的徽标."
-
-msgid "Show watch status"
-msgstr "在影片列表中显示状态图标"
-
 msgid "Show status messages when switch to live TV"
 msgstr "切换到直播电视时显示信息状态"
 
@@ -16480,6 +16497,9 @@ msgstr "重新启动前显示警告"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "在时移停止时显示警告"
+
+msgid "Show watch status"
+msgstr "在影片列表中显示状态图标"
 
 msgid "Show/Games show"
 msgstr "显示游戏秀"
@@ -16961,6 +16981,9 @@ msgstr "EPG列表排序"
 msgid "Sort Extensions menu"
 msgstr "按字母顺序对扩展列表进行排序"
 
+msgid "Sort Plugin Browser"
+msgstr "插件浏览器排序"
+
 msgid "Sort by"
 msgstr "排序方式"
 
@@ -16976,23 +16999,11 @@ msgstr "是否将列表排序为默认值并退出？"
 msgid "Sort list:"
 msgstr "排序列表:"
 
-msgid "Sort order for help screen"
-msgstr "帮助界面的排序顺序"
-
-msgid "Menu entry sort order"
-msgstr "菜单项的排序顺序"
-
 msgid "Sort order for the language list."
 msgstr "语言列表的排序顺序."
 
 msgid "Sort playlists"
 msgstr "播放列表排序"
-
-msgid "Sort Plugin Browser"
-msgstr "插件浏览器排序"
-
-msgid "Setup entry sort"
-msgstr "按字母顺序对设置界面进行排序"
 
 msgid "Sorting left files by name, date or size"
 msgstr "按名称、日期或大小对左侧文件进行排序"
@@ -17026,6 +17037,9 @@ msgstr "南恩德贝勒"
 
 msgid "South Sudan"
 msgstr "南苏丹"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "预留录制磁盘空间(以GB为单位)"
 
 msgid "Space used:"
 msgstr "使用空间:"
@@ -17080,9 +17094,6 @@ msgstr "标准(总是)"
 
 msgid "Standard list"
 msgstr "标准列表"
-
-msgid "Standard menu"
-msgstr "标准菜单"
 
 msgid "Standby"
 msgstr "待机"
@@ -18389,32 +18400,8 @@ msgstr "使用此选项,您可以选择在执行“快速操作”预设操作�
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "此选项允许您选择是否显示EPG事件的流派信息."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "此选项允许您在附件列表中禁用重新启动网络."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "此选项允许您禁用附件列表排序."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "此选项允许您禁用设置界面中选项排序"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "此选项允许您启用3D环绕音效."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "此选项允许您隐藏和排序菜单"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "此选项允许您隐藏和排序插件浏览器."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr "此选项允许您选择是否显示设置项的默认值,如果显示,则选择与描述相关的显示位置."
-
-msgid "This option allows you to show menu number quick links."
-msgstr "此选项允许您显示菜单号码快速链接."
-
-msgid "This option allows you to show the screen menu path history."
-msgstr "此选项允许您显示屏幕菜单路径历史."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "此选项允许您将信噪比设置为百分比(不是所有的接收器都支持)."
@@ -19354,9 +19341,6 @@ msgstr "向上/向下键同时也用于 '所有上/下'?"
 msgid "Update"
 msgstr "更新"
 
-msgid "Update Cache"
-msgstr "更新缓存"
-
 msgid "Update at your own risk"
 msgstr "更新自行承担风险"
 
@@ -19408,12 +19392,6 @@ msgstr "可用更新:"
 
 msgid "Updating"
 msgstr "正在更新"
-
-msgid "Updating cache"
-msgstr "正在更新缓存"
-
-msgid "Updating cache, please wait..."
-msgstr "正在更新缓存,请稍候..."
 
 msgid "Updating mount locations."
 msgstr "正在更新挂载位置."
@@ -19476,6 +19454,9 @@ msgstr "使用设置"
 msgid "Use"
 msgstr "启用"
 
+msgid "Use 'Trash' in movie list"
+msgstr "在电影列表中使用垃圾桶"
+
 msgid "Use DHCP"
 msgstr "使用DHCP"
 
@@ -19527,6 +19508,9 @@ msgstr "原始EPG信息可用时使用."
 msgid "Use a gateway"
 msgstr "使用网关"
 
+msgid "Use an alternative smaller screen."
+msgstr "使用备选屏幕"
+
 msgid "Use as HDD"
 msgstr "当作硬盘使用"
 
@@ -19563,9 +19547,6 @@ msgstr "使用频率或频道"
 msgid "Use geolocation to set the current time zone location"
 msgstr "使用定位设置当前时区位置"
 
-msgid "Use per directory settings"
-msgstr "为每个目录使用单独的设置"
-
 msgid "Use interface"
 msgstr "使用界面"
 
@@ -19580,6 +19561,9 @@ msgstr "使用原始字幕位置"
 
 msgid "Use original teletext position"
 msgstr "使用原始图文位置"
+
+msgid "Use per directory settings"
+msgstr "为每个目录使用单独的设置"
 
 msgid "Use power measurement"
 msgstr "功率测量"
@@ -19607,9 +19591,6 @@ msgstr "使用向上和向下键选择您的区域设置/语言,然后按OK键�
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备选或传统广播模式."
-
-msgid "Use an alternative smaller screen."
-msgstr "使用备选屏幕"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "使用光标键选择已安装的镜像,然后使用开始键."
@@ -19643,9 +19624,6 @@ msgstr "快进/快退时使用时间跳跃方式"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "时移时是否使用时移搜索栏?"
-
-msgid "Use 'Trash' in movie list"
-msgstr "在电影列表中使用垃圾桶"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "使用解决方案从深度待机状态唤醒？"
@@ -19787,6 +19765,9 @@ msgstr "事件进度的垂直对齐."
 
 msgid "Vertical alignment for the service number."
 msgstr "频道编号的垂直对齐."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "垂直旋转速度"
@@ -22738,6 +22719,79 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "选择主菜单样式"
+
+#~ msgid "Choose the order in which items are displayed in Help windows"
+#~ msgstr "选择项目在帮助窗口中的显示顺序"
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "将主菜单显示为"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "显示菜单编号"
+
+#~ msgid "Sort order for help screen"
+#~ msgstr "帮助界面的排序顺序"
+
+#~ msgid "Standard menu"
+#~ msgstr "标准菜单"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "此选项允许您显示菜单号码快速链接."
+
+#~ msgid "Delete Language"
+#~ msgstr "删除语言"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "是否要删除所有其他语言?\n"
+#~ "除了英语,法语,德语和您的选择之外:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "需要重新启动GUI才能应用新语言\n"
+#~ "是否要立即重新启动GUI?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "按MENU键安装其他语言."
+
+#~ msgid "Setup Language"
+#~ msgstr "设置语言"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "此选项允许您在附件列表中禁用重新启动网络."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "此选项允许您禁用附件列表排序."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "此选项允许您禁用设置界面中选项排序"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "此选项允许您隐藏和排序菜单"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "此选项允许您隐藏和排序插件浏览器."
+
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "此选项允许您显示屏幕菜单路径历史."
+
+#~ msgid "Update Cache"
+#~ msgstr "更新缓存"
+
+#~ msgid "Updating cache"
+#~ msgstr "正在更新缓存"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "正在更新缓存,请稍候..."
 
 #, python-format
 #~ msgid ""

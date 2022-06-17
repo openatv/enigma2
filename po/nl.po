@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2275,6 +2275,9 @@ msgstr "Toegangspunt:"
 msgid "Action"
 msgstr "Actie"
 
+msgid "Action at end of media"
+msgstr "Actie bij het einde van een film"
+
 msgid "Action on long POWER button press"
 msgstr "Power-knop lang indrukken"
 
@@ -2629,9 +2632,6 @@ msgstr "Gebruik de afstandsbediening van de TV voor de het bedienen van de ontva
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Stelt de tijdsduur in dat resolutie-informatie op het tv-scherm getoond wordt."
 
-msgid "Select the function to be assigned to this button."
-msgstr "Wijs de gekozen functie toe aan deze knop."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Hiermee activeert u het GStreamer debug log. Deze bevat gedetailleerde informatie over elke functie van de GStreamer software."
 
@@ -2664,6 +2664,9 @@ msgstr "Bijna klaar... "
 
 msgid "Alpha"
 msgstr "Letter"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "Alfabetisch gesorteerd in rubrieken "
@@ -2761,9 +2764,6 @@ msgstr "Animatie instellingen"
 
 msgid "Animation Speed"
 msgstr "Animatie snelheid"
-
-msgid "Help animation speed"
-msgstr "Animatiesnelheid van help pictogrammen"
 
 msgid "Animations"
 msgstr "Animaties"
@@ -3393,9 +3393,6 @@ msgstr "Gedrag nadat afspelen is gestart"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Gedrag nadat afspelen is gestopt"
-
-msgid "Action at end of media"
-msgstr "Actie bij het einde van een film"
 
 msgid "Belarus"
 msgstr "Wit-Rusland"
@@ -4327,9 +4324,6 @@ msgstr "Selecteer de dvb wachttijd voor CI reactie."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Hoe vaak moet bij de IceTV server gecontroleerd worden op updates."
 
-msgid "Choose style of main menus"
-msgstr "Kies hier de stijl van het hoofdmenu."
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Selecteer het CI protocol voor standaard CI of CI+."
 
@@ -4357,8 +4351,8 @@ msgstr ""
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Kies de naam van het bestand waarin de EPG-data moet worden opgeslagen wanneer uw %s %s wordt uitgeschakeld. Het kan handig zijn om onderscheid te maken tussen de bestandsnamen van verschillende ontvangers."
 
-msgid "Choose the order in which items are displayed in Help windows"
-msgstr "Kies de volgorde van onderwerpen in diverse Help vensters "
+msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
@@ -5210,9 +5204,6 @@ msgstr "Stel in waar voltooide timers in de timerlijst moeten staan."
 msgid "Control the Infobar fading speed"
 msgstr "Stel de snelheid in voor het vervagen van de informatiebalk"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
-
 msgid "Control your Softcams"
 msgstr "Softcams beheren"
 
@@ -5962,9 +5953,6 @@ msgstr "EPG verwijderen"
 msgid "Delete Image"
 msgstr "Image verwijderen"
 
-msgid "Delete Language"
-msgstr "Verwijder taal"
-
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
@@ -6284,9 +6272,6 @@ msgstr "Harde schijf vol?"
 msgid "Disk is not writable!"
 msgstr "Harde schijf is niet beschrijfbaar!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Reserveer schijfruimte voor opnames (in GB)"
-
 msgid "Disk was not found!"
 msgstr "Harde schijf niet gevonden!"
 
@@ -6522,15 +6507,6 @@ msgstr "Wilt u doorgaan?"
 
 msgid "Do you want to delete all log files?"
 msgstr "Wilt u alle log-bestanden verwijderen?"
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Wilt u alle andere talen verwijderen?\n"
-"Uitgezonderd Engels, Frans, Duits en uw keuze:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7112,11 +7088,6 @@ msgstr "Activeer dvb-t LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Activeer de geavanceerde instellingen voor HDMI-CEC."
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr ""
-"Toon rechts van elke schuifregelaar de ingestelde waarde ook als getal.\n"
-"Bijvoorbeeld naast de schuifregelaar voor helderheid van het display."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Activeer deze optie om gebruik van de afstandsbediening mee te nemen in het debug log bestand."
 
@@ -7140,6 +7111,20 @@ msgstr ""
 "Gebruik een grafische schakelaar voor alle opties als waar/onwaar, ja/nee, aan/uit en activeer/deactiveer.\n"
 "\n"
 "Groen is 'Aan' en Rood is 'Uit'."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr ""
+"Toon rechts van elke schuifregelaar de ingestelde waarde ook als getal.\n"
+"Bijvoorbeeld naast de schuifregelaar voor helderheid van het display."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Niet gelinkte favorietenlijsten gebruiken"
@@ -7318,6 +7303,18 @@ msgstr "Entertainment"
 
 msgid "Entitlements"
 msgstr "Kaarten"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
@@ -8332,13 +8329,6 @@ msgid "GStreamer version"
 msgstr "GStreamer versie"
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"De gebruikersinterface moet herstart worden om\n"
-"de nieuwe skin te activeren. Nu herstarten?"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8751,8 +8741,14 @@ msgstr "Help"
 msgid "Help Screen Information"
 msgstr "Help-scherminformatie"
 
+msgid "Help animation speed"
+msgstr "Animatiesnelheid van help pictogrammen"
+
 msgid "Help long"
 msgstr "Help lang"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Helpt u het signaal in te stellen"
@@ -9094,9 +9090,6 @@ msgstr "Bij 'nooit' zal toch een crash log worden opgeslagen bij de eerste crash
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
@@ -10675,6 +10668,15 @@ msgstr "Menu Acties"
 msgid "Menu config"
 msgstr "Menu configuratie"
 
+msgid "Menu entry sort order"
+msgstr "Sorteervolgorde voor menu-items"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Combineer de zender EPG met die van IceTV"
 
@@ -11944,9 +11946,6 @@ msgstr "Op het einde van de opname"
 msgid "On end of movie (as menu)"
 msgstr "Aan het einde van de film (als menu)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Bij 'Ja' worden Sub-netwerk frequenties bij geldige ONIDs genegeerd."
 
@@ -13164,9 +13163,6 @@ msgstr "Druk INFO op uw afstandsbediening voor meer informatie."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Druk MENU om een nieuwe taal toe te voegen."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13469,6 +13465,9 @@ msgstr "Porto Rico"
 
 msgid "Purge"
 msgstr "Opruimen"
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Verwijder opnames uit de prullenbak na X dagen"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Alles verwijderen maar / Installeer / Verwijder de nu geselecteerde taal"
@@ -14046,9 +14045,6 @@ msgstr "De momenteel geselecteerde titel verwijderen"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Verwijder opnames uit de prullenbak na X dagen"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Verwijder geselecteerde map van bookmarks"
@@ -15103,6 +15099,12 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr "Selecteer hoe u de box wilt updaten."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr "Met deze optie kunt u selecteren of de standaardwaarde voor een instellingsitem wordt weergegeven en, wanneer ja, waar deze wordt weergegeven t.o.v. de beschrijving."
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wat moet er met de Timeshift opname gebeuren wanneer u overschakelt naar een andere zender."
 
@@ -15181,6 +15183,9 @@ msgstr "Selecteer het User Band frequentie dat aan deze tuner wordt toegewezen. 
 msgid "Select the Yes / True response"
 msgstr "Selecteer het juiste antwoord"
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Selecteer het karakter of de actie onder de cursor van het virtuele toetsenbord"
 
@@ -15195,6 +15200,15 @@ msgstr "Kies de nu geselecteerde zender"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "Wijs de gekozen functie toe aan deze knop."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15250,6 +15264,12 @@ msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
 msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr "De locatie van de default DNS instellingen selecteren."
 
@@ -15294,6 +15314,9 @@ msgstr "Selecteer video-ingang met de omhoog / omlaag knoppen"
 
 msgid "Select video mode"
 msgstr "Selecteer beeldmodus"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr ""
@@ -15750,6 +15773,9 @@ msgstr "Kies hier 'Ja' om de huidige afspeellijst op te slaan bij het verlaten v
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Kies hier 'Ja' om de afspeellijsten alfabetisch te sorteren."
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Stel de gewenste primetime in (uur)."
 
@@ -15776,6 +15802,9 @@ msgstr "Wij adviseren u een wachtwoord in te stellen wanneer uw ontvanger is ver
 
 msgid "Settings"
 msgstr "Instellingen"
+
+msgid "Settings mode"
+msgstr "Toegangsniveau instellen"
 
 msgid "Settings..."
 msgstr "Instellingen"
@@ -15813,9 +15842,6 @@ msgstr "Inadyn instellen"
 
 msgid "Setup InputDevice"
 msgstr "Invoer apparaat instellen"
-
-msgid "Setup Language"
-msgstr "Taal instellen"
 
 msgid "Setup MiniDLNA"
 msgstr "MiniDLNA instellen"
@@ -15871,6 +15897,9 @@ msgstr "Stel een vertraging in voor het zappen naar een andere zender."
 msgid "Setup each tuner for your satellite system"
 msgstr "Hier kunt u de tuners in uw ontvanger configureren."
 
+msgid "Setup entry sort"
+msgstr "Sorteer alle instellingen alfabetisch"
+
 msgid "Setup how to control the channel changing."
 msgstr ""
 "Hier kunt u instellen welk beeld u 'tussen' de zenders wilt zien tijdens het zappen.\n"
@@ -15882,9 +15911,6 @@ msgstr "Netwerk adapter instellen"
 
 msgid "Setup menu"
 msgstr "Instellingen menu"
-
-msgid "Settings mode"
-msgstr "Toegangsniveau instellen"
 
 msgid "Setup network time synchronization interval."
 msgstr "Stel het netwerk synchronisatie interval in."
@@ -16144,9 +16170,6 @@ msgstr "Toon log"
 msgid "Show Log Manager in extensions list"
 msgstr "Toon de Log-manager in het Extensiemenu"
 
-msgid "Show Main Menu as"
-msgstr "Toon het hoofdmenu als"
-
 msgid "Show Media Player in Main Menu"
 msgstr "Mediaspeler in het hoofdmenu tonen"
 
@@ -16221,6 +16244,11 @@ msgstr "Toon Verticale-EPG"
 
 msgid "Show WLAN status"
 msgstr "WLAN-status weergeven"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr ""
+"Laat een animatie (Spinner) zien wanneer\n"
+"uw %s %s bezig is."
 
 msgid "Show additional slider value"
 msgstr "Toon aanvullend de schuifregelaar-waarde als getal"
@@ -16405,9 +16433,6 @@ msgstr "Toon gemarkeerde programma's in alle rijen."
 msgid "Show menu"
 msgstr "Menu weergeven"
 
-msgid "Show menu numbers"
-msgstr "Toon menu nummers"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Toon bericht als File Commander niet actief is en alle taken zijn voltooid."
 
@@ -16530,14 +16555,6 @@ msgstr "Toon de EPG van een enkel zender"
 msgid "Show source packages"
 msgstr "Toon bron pakketten"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr ""
-"Laat een animatie (Spinner) zien wanneer\n"
-"uw %s %s bezig is."
-
-msgid "Show watch status"
-msgstr "Toon een status icon in de opnamelijst"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Toon statusberichten wanneer u naar live-TV schakelt"
 
@@ -16645,6 +16662,9 @@ msgstr "Toon een waarschuwing voor de ontvanger herstart"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Toon waarschuwing als Timeshift gestopt wordt"
+
+msgid "Show watch status"
+msgstr "Toon een status icon in de opnamelijst"
 
 msgid "Show/Games show"
 msgstr "Show/Quiz"
@@ -17126,6 +17146,9 @@ msgstr "Sorteer EPG-lijst"
 msgid "Sort Extensions menu"
 msgstr "Sorteer het Extensiemenu alfabetisch"
 
+msgid "Sort Plugin Browser"
+msgstr "Sorteer het Applicatie overzicht"
+
 msgid "Sort by"
 msgstr "Sorteren op"
 
@@ -17141,23 +17164,11 @@ msgstr "Sorteer de lijst conform de standaard en stop?"
 msgid "Sort list:"
 msgstr "Sorteren op:"
 
-msgid "Sort order for help screen"
-msgstr "Sorteervolgorde voor het help scherm"
-
-msgid "Menu entry sort order"
-msgstr "Sorteervolgorde voor menu-items"
-
 msgid "Sort order for the language list."
 msgstr "Sorteervolgorde voor het taaloverzicht."
 
 msgid "Sort playlists"
 msgstr "Sorteren van afspeellijsten"
-
-msgid "Sort Plugin Browser"
-msgstr "Sorteer het Applicatie overzicht"
-
-msgid "Setup entry sort"
-msgstr "Sorteer alle instellingen alfabetisch"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Sorteer linker bestanden op naam, datum of grootte"
@@ -17191,6 +17202,9 @@ msgstr "South Ndebele"
 
 msgid "South Sudan"
 msgstr "Zuid Sudan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Reserveer schijfruimte voor opnames (in GB)"
 
 msgid "Space used:"
 msgstr "Gebruikte ruimte:"
@@ -17245,9 +17259,6 @@ msgstr "Standaard (altijd)"
 
 msgid "Standard list"
 msgstr "Standaard lijst"
-
-msgid "Standard menu"
-msgstr "Standaard menu"
 
 msgid "Standby"
 msgstr "Stand-by"
@@ -18577,42 +18588,8 @@ msgstr "Stel hier in wat er moet gebeuren wanneer u op de eerste knop drukt in d
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Hier kunt u instellen of u genre informatie voor het programma wilt zien of niet."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr ""
-"Kies 'Nee' om 'herstart netwerk' in het Extensie-menu te verbergen.\n"
-"Het Extensie-menu is bereikbaar via 'Blauw-lang'."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr ""
-"Wilt u het Extensie-menu alfabetisch sorteren?\n"
-"Het Extensie-menu is bereikbaar via 'Blauw-lang'."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Kies 'Ja' om alle instellingen alfabetisch te sorteren."
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "U kunt deze optie gebruiken om 3D Surround geluid te activeren."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr ""
-"Met deze functie kunt u menu-items\n"
-"verbergen en sorteren.\n"
-"\n"
-"'Door u ingesteld' betekent wijzigen in het menu zelf, met behulp van de 'Wijzig modus' (Blauw)."
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr ""
-"Met deze functie kunt u items verbergen of sorteren in het Applicatie overzicht.\n"
-"'Door u ingesteld' betekent wijzigen in het menu zelf, met behulp van de 'Wijzig modus' (Blauw)."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr "Met deze optie kunt u selecteren of de standaardwaarde voor een instellingsitem wordt weergegeven en, wanneer ja, waar deze wordt weergegeven t.o.v. de beschrijving."
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Toon nummers voor de menu onderdelen, voor snelkeuze via de cijfertoetsen."
-
-msgid "This option allows you to show the screen menu path history."
-msgstr "Met deze optie kunt u de reeds gebruikte menu adressen tonen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Hiermee kiest u of de SNR in dB of in % wordt weergegeven (niet alle ontvangers ondersteunen dit)."
@@ -19575,9 +19552,6 @@ msgstr "Omhoog/Omlaag knoppen ook voor 'alle omhoog/omlaag' functies"
 msgid "Update"
 msgstr "Update"
 
-msgid "Update Cache"
-msgstr "Update cache"
-
 msgid "Update at your own risk"
 msgstr "Update op uw eigen risico"
 
@@ -19629,12 +19603,6 @@ msgstr "Updates beschikbaar:"
 
 msgid "Updating"
 msgstr "Bezig met update"
-
-msgid "Updating cache"
-msgstr "Cache bijwerken, even geduld..."
-
-msgid "Updating cache, please wait..."
-msgstr "Bijwerken cache, even geduld ..."
 
 msgid "Updating mount locations."
 msgstr "Mount locaties vernieuwen."
@@ -19697,6 +19665,9 @@ msgstr "Gebruikersinstellingen"
 msgid "Use"
 msgstr "Gebruik"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Gebruik de prullenbak in de opnamelijst"
+
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
 
@@ -19748,6 +19719,9 @@ msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de Virgin EPG inf
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
+msgid "Use an alternative smaller screen."
+msgstr "Gebruik het alternatieve scherm"
+
 msgid "Use as HDD"
 msgstr "Gebruik als HDD"
 
@@ -19784,9 +19758,6 @@ msgstr "Gebruik frequentie of zender"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Gebruik geolocatie om de huidige tijdzone locatie in te stellen"
 
-msgid "Use per directory settings"
-msgstr "Gebruik afzonderlijke instellingen voor iedere map"
-
 msgid "Use interface"
 msgstr "Netwerk interface inschakelen"
 
@@ -19801,6 +19772,9 @@ msgstr "DVB-ondertitels alleen op de standaard positie weergeven"
 
 msgid "Use original teletext position"
 msgstr "Teletekst-ondertitels alleen op de standaard positie weergeven"
+
+msgid "Use per directory settings"
+msgstr "Gebruik afzonderlijke instellingen voor iedere map"
 
 msgid "Use power measurement"
 msgstr "Meet stroom verbruik"
@@ -19830,9 +19804,6 @@ msgstr "Gebruik de Omhoog/Omlaag knoppen om uw taal te kiezen en druk op OK om d
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Gebruik de alternatieve of de conventionele radio modus."
-
-msgid "Use an alternative smaller screen."
-msgstr "Gebruik het alternatieve scherm"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (groen)."
@@ -19866,9 +19837,6 @@ msgstr "Gebruik tijdssprongen voor snel voor- of achteruit ( << / >> )"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Sta het gebruik van de seekbar toe tijdens Timeshift"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Gebruik de prullenbak in de opnamelijst"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Gebruik de alternatieve methode voor het ontwaken uit deep-standby"
@@ -20010,6 +19978,9 @@ msgstr "Verticaal uitlijnen van de programma voortgang."
 
 msgid "Vertical alignment for the service number."
 msgstr "Verticaal uitlijnen van het zendernummer."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Verticale draaisnelheid"
@@ -22984,6 +22955,89 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "Kies hier de stijl van het hoofdmenu."
+
+#~ msgid "Choose the order in which items are displayed in Help windows"
+#~ msgstr "Kies de volgorde van onderwerpen in diverse Help vensters "
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "Toon het hoofdmenu als"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Toon menu nummers"
+
+#~ msgid "Sort order for help screen"
+#~ msgstr "Sorteervolgorde voor het help scherm"
+
+#~ msgid "Standard menu"
+#~ msgstr "Standaard menu"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Toon nummers voor de menu onderdelen, voor snelkeuze via de cijfertoetsen."
+
+#~ msgid "Delete Language"
+#~ msgstr "Verwijder taal"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Wilt u alle andere talen verwijderen?\n"
+#~ "Uitgezonderd Engels, Frans, Duits en uw keuze:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "De gebruikersinterface moet herstart worden om\n"
+#~ "de nieuwe skin te activeren. Nu herstarten?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Druk MENU om een nieuwe taal toe te voegen."
+
+#~ msgid "Setup Language"
+#~ msgstr "Taal instellen"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr ""
+#~ "Kies 'Nee' om 'herstart netwerk' in het Extensie-menu te verbergen.\n"
+#~ "Het Extensie-menu is bereikbaar via 'Blauw-lang'."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr ""
+#~ "Wilt u het Extensie-menu alfabetisch sorteren?\n"
+#~ "Het Extensie-menu is bereikbaar via 'Blauw-lang'."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Kies 'Ja' om alle instellingen alfabetisch te sorteren."
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr ""
+#~ "Met deze functie kunt u menu-items\n"
+#~ "verbergen en sorteren.\n"
+#~ "\n"
+#~ "'Door u ingesteld' betekent wijzigen in het menu zelf, met behulp van de 'Wijzig modus' (Blauw)."
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr ""
+#~ "Met deze functie kunt u items verbergen of sorteren in het Applicatie overzicht.\n"
+#~ "'Door u ingesteld' betekent wijzigen in het menu zelf, met behulp van de 'Wijzig modus' (Blauw)."
+
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Met deze optie kunt u de reeds gebruikte menu adressen tonen."
+
+#~ msgid "Update Cache"
+#~ msgstr "Update cache"
+
+#~ msgid "Updating cache"
+#~ msgstr "Cache bijwerken, even geduld..."
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Bijwerken cache, even geduld ..."
 
 #, python-format
 #~ msgid ""
