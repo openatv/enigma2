@@ -182,7 +182,6 @@ class UpdatePluginMenu(Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Software management"))
-		self.skin_path = plugin_path
 		self.menu = args
 		self.list = []
 		self.oktext = _("\nPress OK on your remote control to continue.")
@@ -330,11 +329,11 @@ class UpdatePluginMenu(Screen):
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.session.open(SoftwareUpdate, self.skin_path)
+					self.session.open(SoftwareUpdate)
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
-					self.session.open(PluginManager, self.skin_path)
+					self.session.open(PluginManager)
 				elif (currentEntry == "flash-online"):
 					self.session.open(FlashManager)
 				elif (currentEntry == "multiboot-manager"):
@@ -366,7 +365,7 @@ class UpdatePluginMenu(Screen):
 					self.session.open(UpdatePluginMenu, 1)
 			elif self.menu == 1:
 				if (currentEntry == "ipkg-manager"):
-					self.session.open(PacketManager, self.skin_path)
+					self.session.open(PacketManager)
 				elif (currentEntry == "backuplocation"):
 					parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 					for x in parts:
@@ -381,9 +380,9 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "backupfiles_exclude"):
 					self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 				elif (currentEntry == "advancedrestore"):
-					self.session.open(RestoreMenu, self.skin_path)
+					self.session.open(RestoreMenu)
 				elif (currentEntry == "ipkg-source"):
-					self.session.open(IPKGMenu, self.skin_path)
+					self.session.open(IPKGMenu)
 				elif (currentEntry == "advanced-plugin"):
 					self.extended = current[3]
 					self.extended(self.session, None)
@@ -437,11 +436,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			<widget source="introduction" render="Label" position="5,310" size="550,80" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, skin_path=None):
+	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin_path = skin_path
-		if self.skin_path == None:
-			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self.onChangedEntry = []
 		self.setTitle(_("Software manager setup"))
@@ -599,13 +595,10 @@ class SoftwareManagerInfo(Screen):
 			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, skin_path=None, mode=None, submode=None):
+	def __init__(self, session, mode=None, submode=None):
 		Screen.__init__(self, session)
 		self.mode = mode
 		self.submode = submode
-		self.skin_path = skin_path
-		if self.skin_path == None:
-			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self["actions"] = ActionMap(["ShortcutActions", "WizardActions"],
 			{
@@ -678,13 +671,10 @@ class PluginManager(Screen, PackageInfoHandler):
 			<widget source="status" render="Label" position="5,410" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	def __init__(self, session, plugin_path=None, args=None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Extensions management"))
-		self.skin_path = plugin_path
-		if self.skin_path == None:
-			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
-
+			
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions"],
 		{
 			"ok": self.handleCurrent,
@@ -739,13 +729,13 @@ class PluginManager(Screen, PackageInfoHandler):
 			iSoftwareTools.cleanupSoftwareTools()
 			self.prepareInstall()
 			if len(self.cmdList):
-				self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
+				self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.cmdList)
 			else:
 				self.close()
 
 	def handleHelp(self):
 		if self.currList != "status":
-			self.session.open(PluginManagerHelp, self.skin_path)
+			self.session.open(PluginManagerHelp)
 
 	def setState(self, status=None):
 		if status:
@@ -911,13 +901,13 @@ class PluginManager(Screen, PackageInfoHandler):
 					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
 					if (os_path.exists(detailsfile) == True):
 						self.saved_currentSelectedPackage = self.currentSelectedPackage
-						self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
+						self.session.openWithCallback(self.detailsClosed, PluginDetails, current)
 					else:
 						self.session.open(MessageBox, _("Sorry, no details available!"), MessageBox.TYPE_INFO, timeout=10)
 			elif self.currList == "category":
 				self.prepareInstall()
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
+					self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.cmdList)
 
 	def detailsClosed(self, result=None):
 		if result is not None:
@@ -1139,10 +1129,9 @@ class PluginManagerInfo(Screen):
 			<widget source="status" render="Label" position="5,408" zPosition="10" size="550,44" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	def __init__(self, session, plugin_path, cmdlist=None):
+	def __init__(self, session, cmdlist=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin manager activity information"))
-		self.skin_path = plugin_path
 		self.cmdlist = cmdlist
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
@@ -1250,10 +1239,9 @@ class PluginManagerHelp(Screen):
 			<widget source="status" render="Label" position="5,408" zPosition="10" size="550,44" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	def __init__(self, session, plugin_path):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin manager help"))
-		self.skin_path = plugin_path
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
@@ -1327,10 +1315,9 @@ class PluginDetails(Screen, PackageInfoHandler):
 			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, plugin_path, packagedata=None):
+	def __init__(self, session, packagedata=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
-		self.skin_path = plugin_path
 		self.language = international.getLanguage()
 		self.attributes = None
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False)
@@ -1549,7 +1536,6 @@ class UpdatePlugin(Screen):
 		self.error = 0
 		self.processed_packages = []
 		self.total_packages = None
-		self.skin_path = plugin_path
 		self.TrafficCheck = False
 		self.TrafficResult = False
 		self.CheckDateDone = False
@@ -1749,8 +1735,7 @@ class UpdatePlugin(Screen):
 			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		elif answer[1] == "show":
-			global plugin_path
-			self.session.openWithCallback(self.opkgCallback(OpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
+			self.session.openWithCallback(self.opkgCallback(OpkgComponent.EVENT_DONE, None), ShowUpdatePackages)
 		else:
 			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={'test_only': False})
 
@@ -1806,10 +1791,9 @@ class IPKGMenu(Screen):
 			<widget name="filelist" position="5,50" size="550,340" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, plugin_path):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Select upgrade source to edit."))
-		self.skin_path = plugin_path
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
@@ -1990,10 +1974,9 @@ class PacketManager(Screen, NumericalTextInput):
 			</widget>
 		</screen>"""
 
-	def __init__(self, session, plugin_path, args=None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
-		self.skin_path = plugin_path
 
 		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
 
@@ -2399,10 +2382,9 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			</widget>
 		</screen>"""
 
-	def __init__(self, session, plugin_path, args=None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
-		self.skin_path = plugin_path
 
 		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
 
