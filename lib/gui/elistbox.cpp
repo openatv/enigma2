@@ -342,8 +342,20 @@ void eListbox::moveSelection(long dir)
 					m_top = oldtop + 1;
 
 				if(m_content->size() > m_items_per_page) {
-					if(m_selected >= max)
-						m_top = max;
+
+					if(m_selected < m_items_per_page)
+						m_top = 0;
+					else {
+						m_top = m_selected - m_items_per_page + 1;
+						if(m_selected > m_items_per_page && m_top < oldtop && m_top < max)
+						{
+							// fix jump after up
+							m_top = oldtop + 1;
+							if(m_top > max)
+								m_top = max;
+						}
+					}
+
 				}
 
 			}
