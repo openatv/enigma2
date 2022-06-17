@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2358,6 +2358,10 @@ msgstr "Erişim noktası:"
 msgid "Action"
 msgstr "Aksiyon"
 
+#
+msgid "Action at end of media"
+msgstr "Filmin sonuna ulaşıldığında"
+
 msgid "Action on long POWER button press"
 msgstr "Güç düğmesine uzun basıldığında eylem"
 
@@ -2737,9 +2741,6 @@ msgstr "Alıcıyı kontrol etmek için TV uzaktan kumandasının kullanılmasın
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Çözünürlük bilgisinin ekranda görünme süresini ayarlamanıza olanak sağlar."
 
-msgid "Select the function to be assigned to this button."
-msgstr "Seçilen işlevi bu düğmeye atamanızı sağlar."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Hata ayıklama günlüğünü etkinleştirmenizi sağlar. Sistemin yaptığı her şey hakkında çok ayrıntılı bilgiler içerirler."
 
@@ -2773,6 +2774,9 @@ msgstr "Neredeyse... "
 #
 msgid "Alpha"
 msgstr "Alpha"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr "Başlık altında alfabetik sıralı"
@@ -2876,9 +2880,6 @@ msgstr "Animasyon Kurulumu"
 
 msgid "Animation Speed"
 msgstr "Animasyon Hızı"
-
-msgid "Help animation speed"
-msgstr "Yardım göstergelerinin animasyon hızı"
 
 msgid "Animations"
 msgstr "Animasyon"
@@ -3548,10 +3549,6 @@ msgstr "Film başladığında"
 #
 msgid "Behavior when a movie is stopped"
 msgstr "Film durdurulduğu zaman"
-
-#
-msgid "Action at end of media"
-msgstr "Filmin sonuna ulaşıldığında"
 
 msgid "Belarus"
 msgstr "Belarus"
@@ -4527,10 +4524,6 @@ msgstr "Ci yanıtı için dvb bekleme gecikmesini seçin."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Güncellemeleri kontrol etmek için IceTV sunucusuna ne sıklıkla bağlanacağınızı seçin."
 
-#
-msgid "Choose style of main menus"
-msgstr "Ana menülerin stilini seçin"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Standart ci veya ciplus için CI protokolü çalışma modunu seçin."
 
@@ -4555,8 +4548,8 @@ msgstr "%s %s kapandığında EPG bilgisinin saklanacağı yeri seçin. Önyükl
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "%s %s kapandığında EPG bilgisinin saklanacağı dosya adını seçin. Birden çok alıcı kullanıldığında, faydalı olabilir."
 
-msgid "Choose the order in which items are displayed in Help windows"
-msgstr "Yardım pencerelerinde öğelerin görüntülendiği sırayı seçin"
+msgid "Choose the style/order in which items are displayed in help windows."
+msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Grafiklerin tamamlanacağı zaman aralığını seçin."
@@ -5353,9 +5346,6 @@ msgstr "Zamanlayıcının zamanlayıcının Zamanlayıcı Listesinde nasıl gös
 msgid "Control the Infobar fading speed"
 msgstr "Bilgi çubuğu solma hızını kontrol etme"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "Yardım ekranındaki düğme göstergelerinin animasyon hızını kontrol edin. 'Devre Dışı', göstergelerin düğmeler arasında geçiş yapması için animasyonu kapatır."
-
 msgid "Control your Softcams"
 msgstr "Softcam'larınızı kontrol edin"
 
@@ -6142,9 +6132,6 @@ msgstr "EPG'yi sil"
 msgid "Delete Image"
 msgstr "Skin sil"
 
-msgid "Delete Language"
-msgstr "Dilleri Sil"
-
 msgid "Delete Plugins"
 msgstr "Eklentileri Sil"
 
@@ -6487,9 +6474,6 @@ msgstr "Disk dolu?"
 msgid "Disk is not writable!"
 msgstr "Disk yazılabilir değil!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Kayıtlar için ayrılcak disk boyutu (GB)"
-
 #
 msgid "Disk was not found!"
 msgstr "Disk bulunamadı!"
@@ -6739,15 +6723,6 @@ msgstr "Devam etmek istiyor musunz?"
 
 msgid "Do you want to delete all log files?"
 msgstr "Tüm günlük dosyalarını silmek istiyor musunuz?"
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Diğer tüm dilleri silmek istiyor musunuz?\n"
-"İngilizce, Fransızca, Almanca ve seçiminiz hariç:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7361,9 +7336,6 @@ msgstr "Karasal LCN'yi etkinleştir:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Gelişmiş HDMI-CEC ayar seçeneklerini etkinleştirin."
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Kaydırıcı çubuğunun sonundaki kaydırıcının geçerli değerini etkinleştirin."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına eylem haritası / uzaktan kumanda eşleme verileri eklemek için bu seçeneği etkinleştirin."
 
@@ -7384,6 +7356,18 @@ msgstr "Anten sisteminiz güç gerektiriyorsa bu ayarı etkinleştirin"
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını göstermeyi etkinleştir ve ayar seçeneklerini grafiksel anahtar olarak etkinleştir / devre dışı bırak."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Kaydırıcı çubuğunun sonundaki kaydırıcının geçerli değerini etkinleştirin."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Bağlanmamış buketleri etkinleştir"
@@ -7571,6 +7555,18 @@ msgstr "Eğlence"
 
 msgid "Entitlements"
 msgstr "Yetkiler"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg Rehberi"
@@ -8652,14 +8648,6 @@ msgstr "GStreamer hata ayıklama günlüğü düzeyi *"
 msgid "GStreamer version"
 msgstr "Desteklenen video dosyaları için bölüm konumlarını göster. (gstreamer versiyonu 1'den büyük olmalıdır)"
 
-#
-msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI'nin yeni bir dil uygulamak için yeniden başlatılması gerekiyor\n"
-"Şimdi GUI'yi yeniden başlatmak ister misiniz?"
-
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
@@ -9093,8 +9081,14 @@ msgstr "Yardım"
 msgid "Help Screen Information"
 msgstr "Yardım Ekranı Bilgileri"
 
+msgid "Help animation speed"
+msgstr "Yardım göstergelerinin animasyon hızı"
+
 msgid "Help long"
 msgstr "Uzun yardımcı"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Sinyalin ayarlanmasına yardımcı olur"
@@ -9451,9 +9445,6 @@ msgstr "Eğer 'asla' ise, ilk çarpışma için buna rağmen çarpışma günlü
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Bir eylem kullanıcı tarafından yapılandırılabilirse, yardım girişi bir '(C)' soneki ile işaretlenecektir."
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın sonunda veya başında ayarlayabilirsiniz."
@@ -11129,6 +11120,15 @@ msgstr "Menü Eylemleri"
 msgid "Menu config"
 msgstr "Menü Yapılandırma"
 
+msgid "Menu entry sort order"
+msgstr "Menü girişleri için sıralama düzeni"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Yayın EPG'sini IceTV ile birleştirin"
 
@@ -12499,9 +12499,6 @@ msgstr "Film sonunda"
 msgid "On end of movie (as menu)"
 msgstr "Filmin sonunda (menü olarak)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Playback sırasında bir dosyanın sonuna gelince, alıcının tavrını seçebilirsiniz."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Geçerli ONID'lerde, frekans alt ağ bölümünü yoksay"
 
@@ -13819,9 +13816,6 @@ msgstr "Ek bilgi için INFO'ya basın."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Ek seçenekler için MENU'ye basın."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Ek dil yüklemek için MENÜ tuşuna basın(s)."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14141,6 +14135,9 @@ msgstr "Porto Riko"
 
 msgid "Purge"
 msgstr "Tasfiye"
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Çöp kutusunu (gün) sonra boşalt"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Şu anda vurgulanan yerel ayarı/dili / Ekle / Sil hariç hepsini temizle"
@@ -14757,9 +14754,6 @@ msgstr "Seçilen geçerli başlığı kaldır"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Çöp kutusunu (gün) sonra boşalt"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Seçilen klasörü yer işaretlerinden kaldır"
@@ -15887,6 +15881,12 @@ msgstr "Quick EPG kipini nasıl etkinleştireceğinizi seçin."
 msgid "Select how your box will upgrade."
 msgstr "Kutunuzun nasıl yükseltileceğini seçin."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr "Bu seçenek, bir kurulum öğesi için varsayılan değerin gösterilip gösterilmeyeceğini ve gösteriliyorsa, açıklamaya göre nerede görüntüleneceğini seçmenizi sağlar."
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Kayıt için ayarlandığında timeshift'in devam etmesi gerekip gerekmediğini seçin."
 
@@ -15970,6 +15970,9 @@ msgstr "Bu alıcıya atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR an
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr "Yardım ekranındaki düğme göstergelerinin animasyon hızını kontrol edin. 'Devre Dışı', göstergelerin düğmeler arasında geçiş yapması için animasyonu kapatır."
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Klavye imlecinin altındaki karakteri veya eylemi seçin"
 
@@ -15984,6 +15987,15 @@ msgstr "Şu anda vurgulanan hizmeti seçin"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "İstediğiniz işlevi seçin ve atamak için \"Tamam\" a tıklayın. Listeler arasında geçiş yapmak için \"CH +/-\" kullanın. Atanan bir işlevi seçin ve atamayı iptal etmek için \"Tamam\" a tıklayın. Atanan işlevlerin sırasını değiştirmek için \"Sonraki / Önceki\" yi kullanın."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "Seçilen işlevi bu düğmeye atamanızı sağlar."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -16040,6 +16052,12 @@ msgstr "Kaydırılan karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seçin"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr "Varsayılan DNS ayarlarının kaynağını seçin."
 
@@ -16088,6 +16106,9 @@ msgstr "Yukarı/aşağı tuşlarıyla görüntü girişini seçin"
 #
 msgid "Select video mode"
 msgstr "Görüntü kipini seç"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Playback sırasında bir dosyanın sonuna gelince, alıcının tavrını seçebilirsiniz."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Önyükleme %s %s, normal çalma veya bekleme modundayken yapılması gerekenleri seçin."
@@ -16561,6 +16582,9 @@ msgstr "Media Player'dan çıkarken mevcut çalma listesini kaydetmek için bunu
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Çalma listelerini alfabetik olarak sıralamak için bunu 'Evet' olarak ayarlayın."
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
+
 msgid "Set to the desired primetime (hour)."
 msgstr "İstenilen seçkin zamanı ayarla (saat)."
 
@@ -16589,6 +16613,9 @@ msgstr "STB'niz internete açıksa bir şifre belirlemeniz şiddetle tavsiye edi
 #
 msgid "Settings"
 msgstr "Ayarlar"
+
+msgid "Settings mode"
+msgstr "Kurulum tipi"
 
 msgid "Settings..."
 msgstr "Ayarlar..."
@@ -16628,9 +16655,6 @@ msgstr "Inadyn Kurulumu"
 
 msgid "Setup InputDevice"
 msgstr "Giriş Girişini Ayarla"
-
-msgid "Setup Language"
-msgstr "Kurulum dili"
 
 msgid "Setup MiniDLNA"
 msgstr "Kurulum MiniDLNA"
@@ -16686,6 +16710,9 @@ msgstr "Kanallara zap yapmak için gecikme modunu ayarlayın."
 msgid "Setup each tuner for your satellite system"
 msgstr "Uydu sisteminiz için her bir tuneri ayarlayın"
 
+msgid "Setup entry sort"
+msgstr "Ayar ekranını alfabetik olarak sırala"
+
 msgid "Setup how to control the channel changing."
 msgstr "Kanal değiştirilmesinin nasıl yapılacağını ayarlayın."
 
@@ -16694,9 +16721,6 @@ msgstr "Kurulum arayüzü"
 
 msgid "Setup menu"
 msgstr "Kurulum menüsü"
-
-msgid "Settings mode"
-msgstr "Kurulum tipi"
 
 msgid "Setup network time synchronization interval."
 msgstr "Ağ zaman senkronizasyonu aralığını düzenleyin."
@@ -16953,9 +16977,6 @@ msgstr "Günlük göster"
 msgid "Show Log Manager in extensions list"
 msgstr "Log Manager'ı uzantı listesinde göster"
 
-msgid "Show Main Menu as"
-msgstr "Ana Menüyü şu şekilde göster"
-
 msgid "Show Media Player in Main Menu"
 msgstr "Medya oynatıcıyı ana menüde göster"
 
@@ -17034,6 +17055,9 @@ msgstr "Dikey EPG'yi Göster"
 #
 msgid "Show WLAN status"
 msgstr "WLAN durumunu göster"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Sistem meşgul olduğunda dönüş logosunu göster."
 
 msgid "Show additional slider value"
 msgstr "Ek kaydırıcı değerini göster"
@@ -17227,10 +17251,6 @@ msgstr "İşaretli olayları tüm satırlarda göster."
 msgid "Show menu"
 msgstr "Menüyü göster"
 
-#
-msgid "Show menu numbers"
-msgstr "Menü numaralarını göster"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Dosya Komutanı çalışmıyorsa ve tüm Görevler tamamlandıysa mesajı göster."
 
@@ -17356,12 +17376,6 @@ msgstr "Tek servis EPG'yi göster"
 msgid "Show source packages"
 msgstr "Kaynak paketleri göster"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Sistem meşgul olduğunda dönüş logosunu göster."
-
-msgid "Show watch status"
-msgstr "Film listesinde durum simgelerini göster"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 
@@ -17474,6 +17488,9 @@ msgstr "Yeniden başlatmadan önce uyarı göster"
 #
 msgid "Show warning when timeshift is stopped"
 msgstr "Film durdurulduğu zaman uyar"
+
+msgid "Show watch status"
+msgstr "Film listesinde durum simgelerini göster"
 
 msgid "Show/Games show"
 msgstr "Gösteri Oyunlarını göster"
@@ -17988,6 +18005,9 @@ msgstr "EPG listesini sınıflandır"
 msgid "Sort Extensions menu"
 msgstr "Uzantıları alfabetik olarak sırala"
 
+msgid "Sort Plugin Browser"
+msgstr "Eklenti tarayıcı girişlerini sırala"
+
 msgid "Sort by"
 msgstr "Göre sırala"
 
@@ -18003,23 +18023,11 @@ msgstr "Listeyi varsayılana göre sırala ve çık?"
 msgid "Sort list:"
 msgstr "Sıralama listesi:"
 
-msgid "Sort order for help screen"
-msgstr "Yardım ekranı için sıralama düzeni"
-
-msgid "Menu entry sort order"
-msgstr "Menü girişleri için sıralama düzeni"
-
 msgid "Sort order for the language list."
 msgstr "Dil listesi için sıralama düzeni."
 
 msgid "Sort playlists"
 msgstr "Oynatma listelerini sırala"
-
-msgid "Sort Plugin Browser"
-msgstr "Eklenti tarayıcı girişlerini sırala"
-
-msgid "Setup entry sort"
-msgstr "Ayar ekranını alfabetik olarak sırala"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Soldaki dosyaları ada, tarihe veya boyuta göre sıralama"
@@ -18058,6 +18066,9 @@ msgstr "Güney Ndebele Dili"
 #
 msgid "South Sudan"
 msgstr "Güney Sudan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Kayıtlar için ayrılcak disk boyutu (GB)"
 
 msgid "Space used:"
 msgstr "Kullanılan alan:"
@@ -18114,9 +18125,6 @@ msgstr "Standart (her zaman)"
 
 msgid "Standard list"
 msgstr "Standart liste"
-
-msgid "Standard menu"
-msgstr "Standart Menü"
 
 #
 msgid "Standby"
@@ -19504,32 +19512,8 @@ msgstr "Bu seçenek, kanal listesi ekranında ilk tuşa basmanın ne yapacağın
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Bu seçenek, etkinlik için tür bilgilerinin görüntülenip görüntülenmeyeceğini seçmenizi sağlar."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Bu seçenek uzantılar listesindeki  Ağı Yeniden Başlat gösterilmesinin devre dışı bırakılmasını sağlar."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Bu seçenek uzantılar listesindeki sıralamanın kapatılmasını sağlar."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Bu seçenek, ekranın ayarlanmasında seçeneğin sıralamasını devre dışı bırakmanızı sağlar"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Bu seçenek 3B Çepeçevre Sesi etkinleştirmenizi sağlar."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Bu seçenek, menüleri gizlemenizi ve sıralamanızı sağlar"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Bu seçenek, eklenti tarayıcısını gizlemenizi ve sıralamanızı sağlar."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr "Bu seçenek, bir kurulum öğesi için varsayılan değerin gösterilip gösterilmeyeceğini ve gösteriliyorsa, açıklamaya göre nerede görüntüleneceğini seçmenizi sağlar."
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Bu seçenek, menü numarası hızlı bağlantılarını göstermenizi sağlar."
-
-msgid "This option allows you to show the screen menu path history."
-msgstr "Bu seçenek, ekran menüsü yol geçmişini göstermenizi sağlar."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Bu seçenek SNR'ye yüzde olarak izin verir (tüm alıcılar bunu desteklemez)."
@@ -20538,9 +20522,6 @@ msgstr "Yukarı / Aşağı düğmeleri de 'tümü yukarı / aşağı' için mi?"
 msgid "Update"
 msgstr "Güncelle"
 
-msgid "Update Cache"
-msgstr "Önbelleği güncelle"
-
 msgid "Update at your own risk"
 msgstr "Kendi riskinizde güncelleme yapın"
 
@@ -20595,12 +20576,6 @@ msgstr "Güncellemeler Mevcut:"
 #
 msgid "Updating"
 msgstr "Yükseltiliyor"
-
-msgid "Updating cache"
-msgstr "Önbellek güncelleniyor"
-
-msgid "Updating cache, please wait..."
-msgstr "Önbellek güncelleniyor, lütfen bekleyin ..."
 
 msgid "Updating mount locations."
 msgstr "Montaj yerleri güncelleniyor."
@@ -20666,6 +20641,9 @@ msgstr "Kullanım Ayarı"
 msgid "Use"
 msgstr "Kullan"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Filmlistesinde çöp kutusu kullan"
+
 #
 msgid "Use DHCP"
 msgstr "DHCP Kullan"
@@ -20719,6 +20697,9 @@ msgstr "Mevcut olduğunda Virgin EPG bilgilerini kullanın."
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
 
+msgid "Use an alternative smaller screen."
+msgstr "Alternatik ekranı kullan"
+
 msgid "Use as HDD"
 msgstr "HDD olarak kullan"
 
@@ -20755,9 +20736,6 @@ msgstr "Kanal veya frekans kullan"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Geçerli saat dilimi konumunu ayarlamak için coğrafi konumu kullanın"
 
-msgid "Use per directory settings"
-msgstr "Bu ayarları her klasör için uygula"
-
 #
 msgid "Use interface"
 msgstr "Arayüzü Kullan"
@@ -20773,6 +20751,9 @@ msgstr "Orijinal DVB altyazı konumunu kullan"
 
 msgid "Use original teletext position"
 msgstr "Özgün teletext konumu kullan"
+
+msgid "Use per directory settings"
+msgstr "Bu ayarları her klasör için uygula"
 
 #
 msgid "Use power measurement"
@@ -20801,9 +20782,6 @@ msgstr "YUKARI ve AŞAĞI düğmelerini kullanarak yerel ayarınızı/dilinizi s
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternatif veya klasik radyo kipi kullan."
-
-msgid "Use an alternative smaller screen."
-msgstr "Alternatik ekranı kullan"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Yüklenmiş bir görüntüyü seçmek için imleç tuşlarını kullanın ve ardından Başlat düğmesine basın."
@@ -20839,9 +20817,6 @@ msgstr "Hızlı ileri / geri almak için zaman atlamalarını kullanın"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Kayıt yapılırken zaman-kaydırma arama çubuğu kullanılsın mı"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Filmlistesinde çöp kutusu kullan"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Bekleme modundayken uyanmak için geçici çözüm mü kullanıyorsunuz"
@@ -20993,6 +20968,9 @@ msgstr "Olay-ilerleme için dikey hizalama."
 
 msgid "Vertical alignment for the service number."
 msgstr "Servis numarası için dikey hizalama."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Dikey dönüş hızı"
@@ -24195,6 +24173,82 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Choose style of main menus"
+#~ msgstr "Ana menülerin stilini seçin"
+
+#~ msgid "Choose the order in which items are displayed in Help windows"
+#~ msgstr "Yardım pencerelerinde öğelerin görüntülendiği sırayı seçin"
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "Ana Menüyü şu şekilde göster"
+
+#
+#~ msgid "Show menu numbers"
+#~ msgstr "Menü numaralarını göster"
+
+#~ msgid "Sort order for help screen"
+#~ msgstr "Yardım ekranı için sıralama düzeni"
+
+#~ msgid "Standard menu"
+#~ msgstr "Standart Menü"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Bu seçenek, menü numarası hızlı bağlantılarını göstermenizi sağlar."
+
+#~ msgid "Delete Language"
+#~ msgstr "Dilleri Sil"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Diğer tüm dilleri silmek istiyor musunuz?\n"
+#~ "İngilizce, Fransızca, Almanca ve seçiminiz hariç:\n"
+#~ "\n"
+
+#
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "GUI'nin yeni bir dil uygulamak için yeniden başlatılması gerekiyor\n"
+#~ "Şimdi GUI'yi yeniden başlatmak ister misiniz?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Ek dil yüklemek için MENÜ tuşuna basın(s)."
+
+#~ msgid "Setup Language"
+#~ msgstr "Kurulum dili"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Bu seçenek uzantılar listesindeki  Ağı Yeniden Başlat gösterilmesinin devre dışı bırakılmasını sağlar."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Bu seçenek uzantılar listesindeki sıralamanın kapatılmasını sağlar."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Bu seçenek, ekranın ayarlanmasında seçeneğin sıralamasını devre dışı bırakmanızı sağlar"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Bu seçenek, menüleri gizlemenizi ve sıralamanızı sağlar"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Bu seçenek, eklenti tarayıcısını gizlemenizi ve sıralamanızı sağlar."
+
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Bu seçenek, ekran menüsü yol geçmişini göstermenizi sağlar."
+
+#~ msgid "Update Cache"
+#~ msgstr "Önbelleği güncelle"
+
+#~ msgid "Updating cache"
+#~ msgstr "Önbellek güncelleniyor"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Önbellek güncelleniyor, lütfen bekleyin ..."
 
 #, python-format
 #~ msgid ""

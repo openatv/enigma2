@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -2443,6 +2443,9 @@ msgstr "Poin akses:"
 msgid "Action"
 msgstr "Diction"
 
+msgid "Action at end of media"
+msgstr "Action at end of media"
+
 msgid "Action on long POWER button press"
 msgstr "Tindakan pada tekan tombol daya lama"
 
@@ -2807,9 +2810,6 @@ msgstr ""
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Memungkinkan anda menyetel jumlah waktu informasi resolusi tampil pada layar."
 
-msgid "Select the function to be assigned to this button."
-msgstr ""
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
@@ -2842,6 +2842,9 @@ msgstr ""
 
 msgid "Alpha"
 msgstr "Alfa"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr ""
@@ -2943,9 +2946,6 @@ msgstr "Pengaturan Animasi"
 
 msgid "Animation Speed"
 msgstr "Kecepatan Animasi"
-
-msgid "Help animation speed"
-msgstr ""
 
 msgid "Animations"
 msgstr "Animasi"
@@ -3598,9 +3598,6 @@ msgstr "Behavior when a movie is started"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Behavior when a movie is stopped"
-
-msgid "Action at end of media"
-msgstr "Action at end of media"
 
 msgid "Belarus"
 msgstr "Belarus"
@@ -4550,10 +4547,6 @@ msgstr "Choose dvb wait delay for ci response."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
-#, fuzzy
-msgid "Choose style of main menus"
-msgstr "Show VCR scart on main menu"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Choose the CI protocol operation mode for standard ci or ciplus."
 
@@ -4578,7 +4571,7 @@ msgstr "Choose the location where the EPG data will be stored when the %s %s is 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5345,9 +5338,6 @@ msgstr "Control of the position how finished timer are shown in the Timer List."
 
 msgid "Control the Infobar fading speed"
 msgstr "Control the Infobar fading speed"
-
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
 
 msgid "Control your Softcams"
 msgstr "Control your Softcams"
@@ -6119,9 +6109,6 @@ msgstr "Delete EPG"
 msgid "Delete Image"
 msgstr ""
 
-msgid "Delete Language"
-msgstr "Delete Language"
-
 msgid "Delete Plugins"
 msgstr "Delete Plugins"
 
@@ -6449,9 +6436,6 @@ msgstr "full"
 msgid "Disk is not writable!"
 msgstr "Medium is not a writeable DVD!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Space to reserve for recordings (in GB)"
-
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "no CI slots found"
@@ -6685,13 +6669,6 @@ msgstr "Do you want to continue?"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr "Do you want to delete all other languages?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7292,9 +7269,6 @@ msgstr "Enable terrestrial LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr ""
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7314,6 +7288,18 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
+msgstr ""
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr ""
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
 msgstr ""
 
 msgid "Enable unlinked bouquets"
@@ -7498,6 +7484,18 @@ msgstr "Enter main menu..."
 
 msgid "Entitlements"
 msgstr "Entitlements"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
@@ -8541,14 +8539,6 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
@@ -8980,8 +8970,14 @@ msgstr "Help"
 msgid "Help Screen Information"
 msgstr "Device Information"
 
+msgid "Help animation speed"
+msgstr ""
+
 msgid "Help long"
 msgstr "Help long"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Helps setting up your signal"
@@ -9336,9 +9332,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10979,6 +10972,15 @@ msgstr "Quick Actions"
 msgid "Menu config"
 msgstr "Menu config"
 
+msgid "Menu entry sort order"
+msgstr "Menu entry sort order"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12306,9 +12308,6 @@ msgstr "On end of movie"
 msgid "On end of movie (as menu)"
 msgstr "On end of movie (as menu)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Select what action to take when reaching the end of a media file during playback."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
@@ -13575,10 +13574,6 @@ msgstr "Press INFO on your remote control for additional information."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Press MENU on your remote control for additional options."
 
-#, fuzzy
-msgid "Press MENU to install additional language(s)."
-msgstr "Press MENU on your remote control for additional options."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13879,6 +13874,9 @@ msgstr "Puerto Rico"
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Purge 'Trash' after (days)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14480,9 +14478,6 @@ msgstr "Remove currently selected title"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Remove hide VBI line for this service"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Purge 'Trash' after (days)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr ""
@@ -15560,6 +15555,12 @@ msgstr "Select how to activate the Quick EPG mode."
 msgid "Select how your box will upgrade."
 msgstr "Select how your box will upgrade."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Select if timeshift must continue when set to record."
 
@@ -15638,6 +15639,9 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
@@ -15652,6 +15656,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr ""
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15709,6 +15722,12 @@ msgstr "Select the sleep timer action."
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15754,6 +15773,9 @@ msgstr "Select video input with up/down buttons"
 
 msgid "Select video mode"
 msgstr "Select video mode"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Select what action to take when reaching the end of a media file during playback."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -16222,6 +16244,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Set to the desired primetime (hour)."
 
@@ -16248,6 +16273,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
+
+msgid "Settings mode"
+msgstr "Mode pengaturan"
 
 msgid "Settings..."
 msgstr "Settings..."
@@ -16285,9 +16313,6 @@ msgstr "Atur Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Atur Peralatan Input"
-
-msgid "Setup Language"
-msgstr "Atur Bahasa"
 
 msgid "Setup MiniDLNA"
 msgstr "Atur MiniDLNA"
@@ -16344,6 +16369,9 @@ msgstr "Atur mode tunda untuk pergantian kanal."
 msgid "Setup each tuner for your satellite system"
 msgstr "Atur tiap penala pada sistem satelit anda"
 
+msgid "Setup entry sort"
+msgstr "Setup entry sort"
+
 msgid "Setup how to control the channel changing."
 msgstr "Atur bagaimana mengontrol perubahan kanal."
 
@@ -16352,9 +16380,6 @@ msgstr "Atur antarmuka"
 
 msgid "Setup menu"
 msgstr "Atur menu"
-
-msgid "Settings mode"
-msgstr "Mode pengaturan"
 
 msgid "Setup network time synchronization interval."
 msgstr "Atur jangka waktu sinkronisasi waktu jaringan."
@@ -16616,10 +16641,6 @@ msgstr "Show Log"
 msgid "Show Log Manager in extensions list"
 msgstr "Show Log Manager in extensions list"
 
-#, fuzzy
-msgid "Show Main Menu as"
-msgstr "Show Movies"
-
 msgid "Show Media Player in Main Menu"
 msgstr "Show Media Player in Main Menu"
 
@@ -16695,6 +16716,9 @@ msgstr "Show Graphical EPG"
 
 msgid "Show WLAN status"
 msgstr "Show WLAN status"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Show a spinning logo when the system is busy."
 
 #, fuzzy
 msgid "Show additional slider value"
@@ -16887,9 +16911,6 @@ msgstr "Show detailed event info"
 msgid "Show menu"
 msgstr "Show menu"
 
-msgid "Show menu numbers"
-msgstr "Show menu numbers"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr ""
 
@@ -17014,12 +17035,6 @@ msgstr "Show single service EPG"
 msgid "Show source packages"
 msgstr "Show source packages"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Show a spinning logo when the system is busy."
-
-msgid "Show watch status"
-msgstr "Show watch status"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Show status messages when switch to live TV"
 
@@ -17139,6 +17154,9 @@ msgstr "Show warning before restart"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Show warning when timeshift is stopped"
+
+msgid "Show watch status"
+msgstr "Show watch status"
 
 #, fuzzy
 msgid "Show/Games show"
@@ -17629,6 +17647,9 @@ msgstr "Sort EPG List"
 msgid "Sort Extensions menu"
 msgstr "Sort Extensions menu"
 
+msgid "Sort Plugin Browser"
+msgstr "Sort Plugin Browser"
+
 msgid "Sort by"
 msgstr "Sort by"
 
@@ -17645,24 +17666,11 @@ msgid "Sort list:"
 msgstr "Sort list:"
 
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Menu entry sort order"
-
-msgid "Menu entry sort order"
-msgstr "Menu entry sort order"
-
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Menu entry sort order"
 
 msgid "Sort playlists"
 msgstr "Sort playlists"
-
-msgid "Sort Plugin Browser"
-msgstr "Sort Plugin Browser"
-
-msgid "Setup entry sort"
-msgstr "Setup entry sort"
 
 msgid "Sorting left files by name, date or size"
 msgstr ""
@@ -17697,6 +17705,9 @@ msgstr ""
 
 msgid "South Sudan"
 msgstr "South Sudan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Space to reserve for recordings (in GB)"
 
 msgid "Space used:"
 msgstr "Space used:"
@@ -17755,10 +17766,6 @@ msgstr "Standard (always)"
 
 msgid "Standard list"
 msgstr "Standard list"
-
-#, fuzzy
-msgid "Standard menu"
-msgstr "Standard"
 
 msgid "Standby"
 msgstr "Standby"
@@ -19108,33 +19115,8 @@ msgstr "This option allows you to choose what the first button press jumps to in
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "This option allows you choose how to display the remaining/elapsed time for live tv."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "This option allows you to disable show Restart Network in Extensions list."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "This option allows you to disable sorting of the Extensions list."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "This option allows you to disable sorting of the option in setting screen's"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "This option allows you to enable 3D Surround Sound."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "This option allows you to hide and sorting of the menus"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "This option allows you to hide and sorting of the plugin browser."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-msgid "This option allows you to show menu number quick links."
-msgstr "This option allows you to show menu number quick links."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "This option allows you to boost the green tones in the picture."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -20103,9 +20085,6 @@ msgstr ""
 msgid "Update"
 msgstr "Update"
 
-msgid "Update Cache"
-msgstr "Update Cache"
-
 msgid "Update at your own risk"
 msgstr "Update at your own risk"
 
@@ -20157,13 +20136,6 @@ msgstr "Updates available:"
 
 msgid "Updating"
 msgstr "Updating"
-
-#, fuzzy
-msgid "Updating cache"
-msgstr "Update Cache"
-
-msgid "Updating cache, please wait..."
-msgstr "Updating cache, please wait..."
 
 msgid "Updating mount locations."
 msgstr "Updating mount locations."
@@ -20227,6 +20199,9 @@ msgstr "Atur Penggunaan"
 msgid "Use"
 msgstr "Use"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Use 'Trash' in movie list"
+
 msgid "Use DHCP"
 msgstr "Use DHCP"
 
@@ -20280,6 +20255,9 @@ msgstr "Use Virgin EPG information when it is available."
 msgid "Use a gateway"
 msgstr "Use a gateway"
 
+msgid "Use an alternative smaller screen."
+msgstr "Use an alternative smaller screen."
+
 msgid "Use as HDD"
 msgstr "Use as HDD"
 
@@ -20313,9 +20291,6 @@ msgstr "Use frequency or channel"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Use per directory settings"
-
 msgid "Use interface"
 msgstr "Use interface"
 
@@ -20330,6 +20305,9 @@ msgstr "Use original DVB subtitle position"
 
 msgid "Use original teletext position"
 msgstr "Use original teletext position"
+
+msgid "Use per directory settings"
+msgstr "Use per directory settings"
 
 msgid "Use power measurement"
 msgstr "Use power measurement"
@@ -20357,9 +20335,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Use the alternative or the conventional radio mode."
-
-msgid "Use an alternative smaller screen."
-msgstr "Use an alternative smaller screen."
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -20393,9 +20368,6 @@ msgstr "Use time jumps for fast forward/backward"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Use timeshift seekbar while timeshifting"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Use 'Trash' in movie list"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Use workaround for wakeup from deep-standby"
@@ -20547,6 +20519,9 @@ msgstr ""
 #, fuzzy
 msgid "Vertical alignment for the service number."
 msgstr "Configure the alignment of service names."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Vertical turning speed"
@@ -23583,6 +23558,82 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Choose style of main menus"
+#~ msgstr "Show VCR scart on main menu"
+
+#, fuzzy
+#~ msgid "Show Main Menu as"
+#~ msgstr "Show Movies"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Show menu numbers"
+
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Menu entry sort order"
+
+#, fuzzy
+#~ msgid "Standard menu"
+#~ msgstr "Standard"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "This option allows you to show menu number quick links."
+
+#~ msgid "Delete Language"
+#~ msgstr "Delete Language"
+
+#, fuzzy
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr "Do you want to delete all other languages?"
+
+#, fuzzy
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+
+#, fuzzy
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Press MENU on your remote control for additional options."
+
+#~ msgid "Setup Language"
+#~ msgstr "Atur Bahasa"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "This option allows you to disable show Restart Network in Extensions list."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "This option allows you to disable sorting of the Extensions list."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "This option allows you to disable sorting of the option in setting screen's"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "This option allows you to hide and sorting of the menus"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "This option allows you to hide and sorting of the plugin browser."
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "This option allows you to boost the green tones in the picture."
+
+#~ msgid "Update Cache"
+#~ msgstr "Update Cache"
+
+#, fuzzy
+#~ msgid "Updating cache"
+#~ msgstr "Update Cache"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Updating cache, please wait..."
 
 #, fuzzy
 #~ msgid "Backup settings"

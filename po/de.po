@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
-"PO-Revision-Date: 2022-06-13 04:00+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"PO-Revision-Date: 2022-06-17 13:49+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2376,6 +2376,10 @@ msgstr "Access Point MAC:"
 msgid "Action"
 msgstr "Aktion"
 
+#
+msgid "Action at end of media"
+msgstr "Verhalten bei Filmende"
+
 msgid "Action on long POWER button press"
 msgstr "Aktion bei langem Drücken der Ausschalttaste"
 
@@ -2756,9 +2760,6 @@ msgstr "Den Receiver mit der Fernbedienung des Fernsehers steuern."
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Die Anzeige der Bildschirmeinblendung bei Auflösungsänderungen einstellen."
 
-msgid "Select the function to be assigned to this button."
-msgstr "Ausgewählte Funktion der Taste zuweisen."
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr "Ein aktiviertes GStreamer Debug-Log enthält detaillierte Informationen über alles, was das GStreamer-System macht."
 
@@ -2792,6 +2793,9 @@ msgstr "Fast geschafft... "
 
 msgid "Alpha"
 msgstr "Buchstabe"
+
+msgid "Alphabetical"
+msgstr "Alphabetisch"
 
 msgid "Alphabetical under headings"
 msgstr "Alphabetisch unter Überschriften"
@@ -2896,9 +2900,6 @@ msgstr "Animationseinstellungen"
 
 msgid "Animation Speed"
 msgstr "Animationsgeschwindigkeit"
-
-msgid "Help animation speed"
-msgstr "Animationsgeschwindigkeit der Hilfeanzeigen"
 
 msgid "Animations"
 msgstr "Animation"
@@ -3579,10 +3580,6 @@ msgstr "Verhalten beim Start eines Films"
 #
 msgid "Behavior when a movie is stopped"
 msgstr "Verhalten beim Stoppen eines Films"
-
-#
-msgid "Action at end of media"
-msgstr "Verhalten bei Filmende"
 
 msgid "Belarus"
 msgstr "Weißrussland"
@@ -4563,9 +4560,6 @@ msgstr "Wählen Sie die DVB-Warteverzögerung für die CI-Antwort."
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Wählen Sie das Intervall aus, wie oft eine Verbindung zum IceTV-Server hergestellt werden soll, um nach Updates zu suchen."
 
-msgid "Choose style of main menus"
-msgstr "Wählen Sie die Ansicht für das Hauptmenü."
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wählen Sie das CI-Protokoll, für CI-Normal- oder CI-Plus-Module."
 
@@ -4601,8 +4595,8 @@ msgstr ""
 "\n"
 "Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
 
-msgid "Choose the order in which items are displayed in Help windows"
-msgstr "Wählen Sie die Reihenfolge aus, in der Elemente in Hilfefenstern angezeigt werden."
+msgid "Choose the style/order in which items are displayed in help windows."
+msgstr "Wählen Sie, wie Elemente in Hilfefenstern angezeigt werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Das Zeitintervall einstellen, auf welches die Grafiken gerundet werden sollen."
@@ -5413,9 +5407,6 @@ msgstr "Die Anzeigeposition von abgeschlossenen Timern in der Timerliste einstel
 msgid "Control the Infobar fading speed"
 msgstr "Die Ausblendegeschwindigkeit der Infoleiste einstellen."
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr "Steuern Sie die Animationsgeschwindigkeit der Tastenanzeige im Hilfebildschirm. 'Deaktiviert' schaltet die Animation aus, so dass die Anzeigen zwischen den Tasten springen."
-
 msgid "Control your Softcams"
 msgstr "Kontrolle der Softcams"
 
@@ -6191,9 +6182,6 @@ msgstr "EPG löschen"
 msgid "Delete Image"
 msgstr "Image löschen"
 
-msgid "Delete Language"
-msgstr "Sprache löschen"
-
 msgid "Delete Plugins"
 msgstr "Plugins löschen"
 
@@ -6538,9 +6526,6 @@ msgstr "Festplatte voll?"
 msgid "Disk is not writable!"
 msgstr "Festplatte ist nicht beschreibbar!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Für Aufnahmen reservierter Speicher (in GB)"
-
 msgid "Disk was not found!"
 msgstr "Festplatte wurde nicht gefunden!"
 
@@ -6795,16 +6780,6 @@ msgstr "Möchten Sie fortfahren?"
 
 msgid "Do you want to delete all log files?"
 msgstr "Möchten Sie alle Logdateien löschen?"
-
-# python\Screens\LanguageSelection.py
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Möchten Sie alle anderen Sprachen löschen?\n"
-"Außer Englisch, Französisch, Deutsch und Ihrer Auswahl:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7425,9 +7400,6 @@ msgstr "Terrestrisches LCN aktivieren:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
 
@@ -7448,6 +7420,18 @@ msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötig
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Bei 'Ja' werden alle Optionen für 'Wahr/Falsch', 'Ja/Nein', 'Ein/Aus' und 'Einschalten/Ausschalten' als grafischer Schalter dargestellt."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 # channelselection 5.1
 msgid "Enable unlinked bouquets"
@@ -7637,6 +7621,18 @@ msgstr "Unterhaltung"
 
 msgid "Entitlements"
 msgstr "Berechtigungen"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "EPG/INFO"
@@ -8725,14 +8721,6 @@ msgstr "GStreamer Debug-Log Meldungstyp *"
 msgid "GStreamer version"
 msgstr "GStreamer-Version"
 
-#
-msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Zur Übernahme der Sprache muss die Benutzeroberfläche neu gestartet werden.\n"
-"Jetzt neu starten?"
-
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
@@ -9158,8 +9146,14 @@ msgstr "Hilfe"
 msgid "Help Screen Information"
 msgstr "Informationen zum Hilfebildschirm"
 
+msgid "Help animation speed"
+msgstr "Animationsgeschwindigkeit der Hilfeanzeigen"
+
 msgid "Help long"
 msgstr "Hilfe lang"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Hilft bei der Einrichtung Ihres Signals"
@@ -9511,9 +9505,6 @@ msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crash-Log gesch
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wählen Sie, ob der Cursor beim Bearbeiten einer Datei am Anfang oder Ende der Zeile stehen soll."
@@ -11198,6 +11189,15 @@ msgstr "Menüaktionen"
 msgid "Menu config"
 msgstr "Menü-Einstellungen"
 
+msgid "Menu entry sort order"
+msgstr "Sortierung der Menüeinträge"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 #
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Standard-EPG mit IceTV-EPG zusammenführen"
@@ -12602,9 +12602,6 @@ msgstr "Am Ende des Films"
 msgid "On end of movie (as menu)"
 msgstr "Am Ende des Films (als Menü)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Das Verhalten des Receivers beim Ende einer Filmwiedergabe kann hier ausgewählt werden."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Bei 'Ja' werden Subnetzwerk-Frequenzen bei gültigen ONIDs ignoriert."
 
@@ -13946,9 +13943,6 @@ msgstr "Taste INFO (HELP bei manchen Receivern) für zusätzliche Informationen 
 msgid "Press MENU on your remote control for additional options."
 msgstr "MENU drücken für zusätzliche Optionen."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Drücken Sie MENU, um weitere Sprachen zu installieren."
-
 msgid "Press OK for MultiBoot selection."
 msgstr "Drücken Sie OK für die MultiBoot-Auswahl."
 
@@ -14281,6 +14275,10 @@ msgstr "Puerto Rico"
 
 msgid "Purge"
 msgstr "Bereinigen"
+
+#
+msgid "Purge 'Trash' after (days)"
+msgstr "Papierkorb nach x Tagen leeren"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Alle löschen außer / Hinzufügen / Löschen der aktuell markierten Sprachregion"
@@ -14896,10 +14894,6 @@ msgstr "Entferne aktuell ausgewählten Titel"
 
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
-
-#
-msgid "Purge 'Trash' after (days)"
-msgstr "Papierkorb nach x Tagen leeren"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
@@ -16045,6 +16039,12 @@ msgstr "Wählen Sie, wie der grafische Infoleisten-EPG aufgerufen werden soll."
 msgid "Select how your box will upgrade."
 msgstr "Aktualisierungsmodus auswählen."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr "Einstellen, ob der Standardwert angezeigt wird, und wenn ja, wo er im Verhältnis zur Beschreibung angezeigt wird."
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wählen Sie, wie sich Timeshift verhalten bzw. was mit der Timeshift-Datei nach dem Umschalten geschehen soll."
 
@@ -16130,6 +16130,9 @@ msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werd
 msgid "Select the Yes / True response"
 msgstr "Wähle Ja / Positive Antwort"
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr "Steuern Sie die Animationsgeschwindigkeit der Tastenanzeige im Hilfebildschirm. 'Deaktiviert' schaltet die Animation aus, so dass die Anzeigen zwischen den Tasten springen."
+
 #
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
@@ -16145,6 +16148,15 @@ msgstr "Wählen Sie den aktuell markierten Sender"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr "Ausgewählte Funktion der Taste zuweisen."
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr "Das markierte Image wählen und mit der Auswahl des Slots fortfahren."
@@ -16204,6 +16216,12 @@ msgstr "Shift für die kommenden Zeichen benutzen"
 msgid "Select the shifted character set for the next character only"
 msgstr "Shift nur für das nächste Zeichen benutzen"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr "Wählen Sie die Quelle der Standard-DNS-Einstellungen aus."
 
@@ -16251,6 +16269,9 @@ msgstr "Videoeingang mit den Tasten Hoch/Runter auswählen"
 #
 msgid "Select video mode"
 msgstr "Videomodus auswählen"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Das Verhalten des Receivers beim Ende einer Filmwiedergabe kann hier ausgewählt werden."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird."
@@ -16746,6 +16767,9 @@ msgstr "Wählen Sie 'Ja', um die aktuelle Playlist beim Beenden des Mediaplayers
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Wählen Sie 'Ja', um die Playlisten alphabetisch zu sortieren."
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
 
@@ -16773,6 +16797,9 @@ msgstr "Es wird dringend empfohlen, ein Passwort festzulegen, wenn Ihr Receiver 
 
 msgid "Settings"
 msgstr "Einstellungen"
+
+msgid "Settings mode"
+msgstr "Einstellungsansicht"
 
 msgid "Settings..."
 msgstr "Einstellungen..."
@@ -16813,10 +16840,6 @@ msgstr "Inadyn-Einstellungen"
 
 msgid "Setup InputDevice"
 msgstr "Eingabegeräte-Einstellungen"
-
-#
-msgid "Setup Language"
-msgstr "Sprache auswählen"
 
 msgid "Setup MiniDLNA"
 msgstr "MiniDLNA-Einstellungen"
@@ -16872,6 +16895,9 @@ msgstr "Verzögerungsmodus beim Umschalten ein- oder ausstellen."
 msgid "Setup each tuner for your satellite system"
 msgstr "Einstellungen für jeden Tuner"
 
+msgid "Setup entry sort"
+msgstr "Einstellungseinträge alphabetisch sortieren"
+
 msgid "Setup how to control the channel changing."
 msgstr "Das Verhalten beim Umschalten einstellen, bis der nächste Sender verfügbar ist."
 
@@ -16880,9 +16906,6 @@ msgstr "Netzwerkeinstellungen"
 
 msgid "Setup menu"
 msgstr "Konfiguration"
-
-msgid "Settings mode"
-msgstr "Einstellungsansicht"
 
 # Zeitenstellung
 msgid "Setup network time synchronization interval."
@@ -17154,10 +17177,6 @@ msgstr "Log anzeigen"
 msgid "Show Log Manager in extensions list"
 msgstr "Logverwaltung in Erweiterungen anzeigen"
 
-#
-msgid "Show Main Menu as"
-msgstr "Hauptmenü-Ansicht"
-
 # Mediaplayer Setup
 msgid "Show Media Player in Main Menu"
 msgstr "Mediaplayer im Hauptmenü anzeigen"
@@ -17237,6 +17256,10 @@ msgstr "Vertikalen EPG anzeigen"
 #
 msgid "Show WLAN status"
 msgstr "WLAN-Status anzeigen"
+
+# Menue Anpassungen OSD
+msgid "Show a spinning logo when the system is busy."
+msgstr "Bei 'Ja' wird der Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
 
 msgid "Show additional slider value"
 msgstr "Zusätzlichen Schiebereglerwert anzeigen"
@@ -17431,9 +17454,6 @@ msgstr "Bei 'Ja' werden markierte Sendungen in allen Zeilen angezeigt."
 msgid "Show menu"
 msgstr "Historie anzeigen"
 
-msgid "Show menu numbers"
-msgstr "Menüeinträge nummerieren"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Eine Nachricht anzeigen, wenn der File Commander nicht läuft und alle Aufgaben beendet sind."
 
@@ -17563,13 +17583,6 @@ msgstr "Einfachen EPG anzeigen"
 msgid "Show source packages"
 msgstr "Quellpakete anzeigen"
 
-# Menue Anpassungen OSD
-msgid "Show a spinning logo when the system is busy."
-msgstr "Bei 'Ja' wird der Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
-
-msgid "Show watch status"
-msgstr "Statusanzeige in der Filmauswahl anzeigen"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Statusmeldungen beim Umschalten auf Live-TV anzeigen"
 
@@ -17682,6 +17695,9 @@ msgstr "Warnung vor Neustart anzeigen, wenn Aufnahmetyp"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Warnung anzeigen, wenn Timeshift gestoppt wird"
+
+msgid "Show watch status"
+msgstr "Statusanzeige in der Filmauswahl anzeigen"
 
 #
 msgid "Show/Games show"
@@ -18204,6 +18220,9 @@ msgstr "EPG-Liste sortieren"
 msgid "Sort Extensions menu"
 msgstr "Erweiterungsliste alphabetisch sortieren"
 
+msgid "Sort Plugin Browser"
+msgstr "Sortierung der Einträge im Plugin-Manager"
+
 # MovieSelection.py
 msgid "Sort by"
 msgstr "Sortieren nach"
@@ -18220,23 +18239,11 @@ msgstr "Liste nach Standard sortieren und beenden?"
 msgid "Sort list:"
 msgstr "Liste sortieren:"
 
-msgid "Sort order for help screen"
-msgstr "Sortierung des Hilfebildschirms"
-
-msgid "Menu entry sort order"
-msgstr "Sortierung der Menüeinträge"
-
 msgid "Sort order for the language list."
 msgstr "Sortierung der Sprachregion wählen."
 
 msgid "Sort playlists"
 msgstr "Sortierung der Playlisten"
-
-msgid "Sort Plugin Browser"
-msgstr "Sortierung der Einträge im Plugin-Manager"
-
-msgid "Setup entry sort"
-msgstr "Einstellungseinträge alphabetisch sortieren"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Linke Seite Dateien nach Name, Datum oder Größe sortieren"
@@ -18272,6 +18279,9 @@ msgstr "Süd-Ndebele"
 
 msgid "South Sudan"
 msgstr "Südsudan"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Für Aufnahmen reservierter Speicher (in GB)"
 
 msgid "Space used:"
 msgstr "Speicherplatznutzung:"
@@ -18331,9 +18341,6 @@ msgstr "Standard (immer)"
 
 msgid "Standard list"
 msgstr "Standardliste"
-
-msgid "Standard menu"
-msgstr "Standard"
 
 msgid "Standby"
 msgstr "Standby"
@@ -19743,35 +19750,9 @@ msgstr ""
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Bei 'Ja' werden Genreinformationen für die Sendung angezeigt."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Bei 'Ja' wird ein Netzwerk-Neustart im Erweiterungsmenü angezeigt."
-
-# Menue Anpassungen OSD
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Bei 'Ja' wird die alphabetische Sortierung der Erweiterungsliste eingeschaltet."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Bei 'Ja' werden Einstellungseinträge in allen Menüs alphabetisch sortiert."
-
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Die Ausgabe von 3D-Surround-Sound aktivieren."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Die Sortierung und Sichtbarkeit der Menüeinträge einstellen."
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Die Sortierung und Sichtbarkeit der Einträge im Plugin-Manager einstellen."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr "Einstellen, ob der Standardwert angezeigt wird, und wenn ja, wo er im Verhältnis zur Beschreibung angezeigt wird."
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Bei 'Ja' werden Nummern vor Menüeinträgen für die Schnellanwahl angezeigt."
-
-#
-msgid "This option allows you to show the screen menu path history."
-msgstr "Den Bildschirmmenüpfad anzeigen lassen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Den Signalwert SNR in 'dB' anstatt '%' anzeigen lassen (nicht alle Receiver unterstützen diese Funktion)."
@@ -20810,9 +20791,6 @@ msgstr "Tasten Hoch/Runter für 'Alle Hoch/Runter'"
 msgid "Update"
 msgstr "Update"
 
-msgid "Update Cache"
-msgstr "Cache aktualisieren"
-
 msgid "Update at your own risk"
 msgstr "Update auf eigene Gefahr!"
 
@@ -20867,12 +20845,6 @@ msgstr "Verfügbare Updates:"
 #
 msgid "Updating"
 msgstr "Aktualisieren"
-
-msgid "Updating cache"
-msgstr "Cache aktualisieren"
-
-msgid "Updating cache, please wait..."
-msgstr "Cache wird aktualisiert. Bitte warten..."
 
 msgid "Updating mount locations."
 msgstr "Mount-Einstellungen werden aktualisiert."
@@ -20941,6 +20913,10 @@ msgid "Use"
 msgstr "Benutzen"
 
 #
+msgid "Use 'Trash' in movie list"
+msgstr "Papierkorb in der Filmauswahl verwenden"
+
+#
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
@@ -20996,6 +20972,9 @@ msgstr "Virgin-EPG-Informationen verwenden, wenn sie verfügbar sind."
 msgid "Use a gateway"
 msgstr "Ein Gateway verwenden"
 
+msgid "Use an alternative smaller screen."
+msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
+
 msgid "Use as HDD"
 msgstr "Mount HDD"
 
@@ -21033,9 +21012,6 @@ msgstr "Frequenz- oder Kanal-Suchlauf"
 msgid "Use geolocation to set the current time zone location"
 msgstr "Standortbestimmung verwenden, um die aktuelle Zeitzone festzulegen"
 
-msgid "Use per directory settings"
-msgstr "Individuelle Einstellungen für jedes Verzeichnis verwenden"
-
 #
 msgid "Use interface"
 msgstr "Netzwerkadapter aktivieren"
@@ -21051,6 +21027,9 @@ msgstr "Position der DVB-Untertitel"
 
 msgid "Use original teletext position"
 msgstr "Originale Videotextposition verwenden"
+
+msgid "Use per directory settings"
+msgstr "Individuelle Einstellungen für jedes Verzeichnis verwenden"
 
 #
 msgid "Use power measurement"
@@ -21083,9 +21062,6 @@ msgstr ""
 # Menue Anpassungen OSD
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Bei 'Ja' wird der alternative Radiomodus verwendet, ansonsten der normale."
-
-msgid "Use an alternative smaller screen."
-msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
 
 # ImageBackup.py
 msgid "Use the cursor keys to select an installed image and then Start button."
@@ -21127,10 +21103,6 @@ msgstr "Zeitsprünge für schnellen Vorlauf/Rücklauf ('>>'/'<<') benutzen"
 # Timeshift Einstellungen
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Timeshift-Suchleiste bei Timeshift verwenden *"
-
-#
-msgid "Use 'Trash' in movie list"
-msgstr "Papierkorb in der Filmauswahl verwenden"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Workaround für das Aufwachen aus dem Deep-Standby"
@@ -21285,6 +21257,9 @@ msgstr "Vertikale Ausrichtung des Sendungsfortschrittes."
 
 msgid "Vertical alignment for the service number."
 msgstr "Vertikale Ausrichtung der Sendernummer."
+
+msgid "Vertical menu"
+msgstr ""
 
 # satconfig.py
 msgid "Vertical turning speed"
@@ -24560,6 +24535,85 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "Wählen Sie die Ansicht für das Hauptmenü."
+
+#~ msgid "Choose the order in which items are displayed in Help windows"
+#~ msgstr "Wählen Sie die Reihenfolge aus, in der Elemente in Hilfefenstern angezeigt werden."
+
+#
+#~ msgid "Show Main Menu as"
+#~ msgstr "Hauptmenü-Ansicht"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Menüeinträge nummerieren"
+
+#~ msgid "Sort order for help screen"
+#~ msgstr "Sortierung des Hilfebildschirms"
+
+#~ msgid "Standard menu"
+#~ msgstr "Standard"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Bei 'Ja' werden Nummern vor Menüeinträgen für die Schnellanwahl angezeigt."
+
+#~ msgid "Delete Language"
+#~ msgstr "Sprache löschen"
+
+# python\Screens\LanguageSelection.py
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Möchten Sie alle anderen Sprachen löschen?\n"
+#~ "Außer Englisch, Französisch, Deutsch und Ihrer Auswahl:\n"
+#~ "\n"
+
+#
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Zur Übernahme der Sprache muss die Benutzeroberfläche neu gestartet werden.\n"
+#~ "Jetzt neu starten?"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Drücken Sie MENU, um weitere Sprachen zu installieren."
+
+#
+#~ msgid "Setup Language"
+#~ msgstr "Sprache auswählen"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Bei 'Ja' wird ein Netzwerk-Neustart im Erweiterungsmenü angezeigt."
+
+# Menue Anpassungen OSD
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Bei 'Ja' wird die alphabetische Sortierung der Erweiterungsliste eingeschaltet."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Bei 'Ja' werden Einstellungseinträge in allen Menüs alphabetisch sortiert."
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Die Sortierung und Sichtbarkeit der Menüeinträge einstellen."
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Die Sortierung und Sichtbarkeit der Einträge im Plugin-Manager einstellen."
+
+#
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Den Bildschirmmenüpfad anzeigen lassen."
+
+#~ msgid "Update Cache"
+#~ msgstr "Cache aktualisieren"
+
+#~ msgid "Updating cache"
+#~ msgstr "Cache aktualisieren"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Cache wird aktualisiert. Bitte warten..."
 
 #, python-format
 #~ msgid ""

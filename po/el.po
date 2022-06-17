@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2308,6 +2308,9 @@ msgstr "Σημείο πρόσβασης:"
 msgid "Action"
 msgstr "Δράση"
 
+msgid "Action at end of media"
+msgstr "Συμπεριφορά όταν μια ταινία έχει φτάσει στο τέλος"
+
 msgid "Action on long POWER button press"
 msgstr "Ενέργεια σε παρατεταμένη πίεση του πλήκτρου power"
 
@@ -2664,9 +2667,6 @@ msgstr ""
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Σας επιτρέπει τη ρύθμιση του χρόνου εμφάνισης πληροφοριών ανάλυσης στην οθόνη."
 
-msgid "Select the function to be assigned to this button."
-msgstr ""
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
@@ -2699,6 +2699,9 @@ msgstr "Σχεδόν έτοιμο... "
 
 msgid "Alpha"
 msgstr "Άλφα"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr ""
@@ -2796,9 +2799,6 @@ msgstr "Ρυθμίσεις κινούμενων γραφικών"
 
 msgid "Animation Speed"
 msgstr "Ταχύτητα κινούμενων γραφικών"
-
-msgid "Help animation speed"
-msgstr ""
 
 msgid "Animations"
 msgstr "Κινούμενα γραφικά"
@@ -3434,9 +3434,6 @@ msgstr "Συμπεριφορά όταν μια ταινία παίζει"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Συμπεριφορά όταν μια ταινία έχει σταματήσει"
-
-msgid "Action at end of media"
-msgstr "Συμπεριφορά όταν μια ταινία έχει φτάσει στο τέλος"
 
 msgid "Belarus"
 msgstr "Λευκορωσία"
@@ -4366,9 +4363,6 @@ msgstr "Επιλογή καθυστέρησης αναμονής dvb για απ
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Επιλέξτε πόσο συχνά θα γίνεται σύνδεση στον διακομιστή IceTV για έλεγχο ενημερώσεων."
 
-msgid "Choose style of main menus"
-msgstr "Επιλογή του στυλ των κύριων μενού"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Επιλογή τύπου λειτουργίας του πρωτοκόλλου CI για στάνταρ ci ή ciplus."
 
@@ -4393,7 +4387,7 @@ msgstr "Επιλογή της τοποθεσίας όπου θα αποθηκε�
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Επιλογή του ονόματος αρχείου των δεδομένων EPG όταν ο %s %s σας είναι κλειστός. Αυτό αποβαίνει χρήσιμο στη διαφοροποίηση μεταξύ διαφόρων δεκτών."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5152,9 +5146,6 @@ msgstr "Έλεγχος της θέσης του πώς θα εμφανίζοντ
 msgid "Control the Infobar fading speed"
 msgstr "Έλεγχος της ταχύτητας απόκρυψης της μπάρας πληροφοριών"
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
-
 msgid "Control your Softcams"
 msgstr "Έλεγχος των softcam σας"
 
@@ -5911,9 +5902,6 @@ msgstr "Διαγραφή EPG"
 msgid "Delete Image"
 msgstr "Διαγραφή image"
 
-msgid "Delete Language"
-msgstr "Διαγραφή γλωσσών"
-
 msgid "Delete Plugins"
 msgstr "Διαγραφή προσθέτων"
 
@@ -6235,9 +6223,6 @@ msgstr "Δίσκος γεμάτος;"
 msgid "Disk is not writable!"
 msgstr "Ο δίσκος δεν είναι εγγράψιμος!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Χώρος δίσκου που διατίθεται για εγγραφές (σε GB)"
-
 msgid "Disk was not found!"
 msgstr "Ο δίσκος δεν βρέθηκε!"
 
@@ -6470,15 +6455,6 @@ msgstr "Θέλετε να συνεχίσετε;"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr ""
-"Θέλετε να διαγραφούν όλες οι άλλες γλώσσες;\n"
-"Εκτός από τα Αγγλικά, τα Γαλλικά, τα Γερμανικά και την επιλογή σας:\n"
-"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7064,9 +7040,6 @@ msgstr "Ενεργοποίηση επίγειου LCN:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr "Ενεργοποίηση της τρέχουσας τιμής του ολισθητή στο τέλος της μπάρας ολίσθησης."
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7087,6 +7060,18 @@ msgstr "Ενεργοποιήστε αυτή τη ρύθμιση εάν η κερ
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Αν ενεργοποιηθεί θα εμφανίζονται όλες οι επιλογές αληθές/ψευδές, ναι/όχι, ανοικτό/κλειστό ενεργό/ανενεργό ως γραφικοί διακόπτες."
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr "Ενεργοποίηση της τρέχουσας τιμής του ολισθητή στο τέλος της μπάρας ολίσθησης."
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgstr ""
 
 msgid "Enable unlinked bouquets"
 msgstr "Ενεργοποίηση των ασύνδετων μπουκέτων"
@@ -7266,6 +7251,18 @@ msgstr "Ψυχαγωγία"
 
 msgid "Entitlements"
 msgstr "Δικαιώματα κάρτας"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
@@ -8291,13 +8288,6 @@ msgid "GStreamer version"
 msgstr ""
 
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Πρέπει να γίνει επανεκκίνηση της διεπαφής χρήστη για να ενεργοποιηθεί η νέα γλώσσα.\n"
-"Να γίνει τώρα;"
-
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -8713,8 +8703,14 @@ msgstr "Help"
 msgid "Help Screen Information"
 msgstr "Πληροφορίες συσκευής"
 
+msgid "Help animation speed"
+msgstr ""
+
 msgid "Help long"
 msgstr "Help παρατεταμένο"
+
+msgid "Help screen style"
+msgstr ""
 
 msgid "Helps setting up your signal"
 msgstr "Βοηθά στη ρύθμιση του σήματος"
@@ -9056,9 +9052,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Το 'ποτέ' θα εγγράψει το αρχείο καταγραφής για το πρώτο κρασάρισμα."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10670,6 +10663,15 @@ msgstr "Γρήγορες ενέργειες"
 msgid "Menu config"
 msgstr "Ρύθμιση μενού"
 
+msgid "Menu entry sort order"
+msgstr "Ταξινόμηση των στοιχείων του μενού"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -11971,9 +11973,6 @@ msgstr "Στο τέλος της ταινίας"
 msgid "On end of movie (as menu)"
 msgstr "Στο τέλος της ταινίας (ως μενού)"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Επιλογή της συμπεριφοράς του δέκτη, όταν ένα αρχείο φτάνει στο τέλος κατά την αναπαραγωγή."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Σε έγκυρα ONIDs, να αγνοείται το κομμάτι του υπο-δικτύου της συχνότητας"
 
@@ -13201,9 +13200,6 @@ msgstr "Πιέστε INFO στο τηλεχειριστήριο για πρόσ�
 msgid "Press MENU on your remote control for additional options."
 msgstr "Πιέστε MENU στο τηλεχειριστήριο για πρόσθετες επιλογές."
 
-msgid "Press MENU to install additional language(s)."
-msgstr "Πιέστε MENU για να εγκαταστήσετε πρόσθετη γλώσσα(ες)."
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -13506,6 +13502,9 @@ msgstr "Πουέρτο Ρίκο"
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Διαγραφή αντικειμένων από τον κάδο αχρήστων σε (ημέρες)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14087,9 +14086,6 @@ msgstr "Διαγραφή επιλεγμένου τίτλου"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Επανεμφάνιση της γραμμής VBI για αυτή την υπηρεσία"
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Διαγραφή αντικειμένων από τον κάδο αχρήστων σε (ημέρες)"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
@@ -15149,6 +15145,12 @@ msgstr "Επιλογή του τρόπου ενεργοποίησης λειτο
 msgid "Select how your box will upgrade."
 msgstr "Επιλογή του τρόπου αναβάθμισης του δέκτη σας."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Επιλέξτε εάν η χρονομετατόπιση θα πρέπει να συνεχίζει όταν ορίζεται μία εγγραφή."
 
@@ -15227,6 +15229,9 @@ msgstr "Επιλέξτε τη συχνότητα της μπάντας χρήσ�
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Επιλογή του χαρακτήρα ή της εντολής κάτω από τον κέρσορα του εικονικού πληκτρολογίου"
@@ -15242,6 +15247,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Επιλέξτε την επιθυμητή λειτουργία και πιέστε το \"OK\" για ανάθεση. Χρήση των \"CH+/-\" για εναλλαγή μεταξύ λιστών. Επιλέξτε μία ανατεθειμένη λειτουργία και πιέστε το \"OK\" για να την ακυρώσετε. Χρήση των \"Next/Previous\" για αλλαγή σειράς των ανατιθέμενων λειτουργιών."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr ""
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15300,6 +15314,12 @@ msgstr "Επιλογή του σετ χαρακτήρων με shift"
 msgid "Select the shifted character set for the next character only"
 msgstr "Επιλογή του σετ χαρακτήρων με shift του εικονικού πληκτρολογίου μόνο για τον επόμενο χαρακτήρα"
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15345,6 +15365,9 @@ msgstr "Επιλογή εισόδου εικόνας με τα πλήκτρα π
 
 msgid "Select video mode"
 msgstr "Επιλογή λειτουργίας εικόνας"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Επιλογή της συμπεριφοράς του δέκτη, όταν ένα αρχείο φτάνει στο τέλος κατά την αναπαραγωγή."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Επιλέξτε τι θα γίνεται όταν ο %s %s σας εκκινηθεί, σε κανονική λειτουργία ή σε μετάβαση σε αναμονή."
@@ -15805,6 +15828,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Ορισμός επιθυμητής ζώνης αιχμής (ώρα)."
 
@@ -15831,6 +15857,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Ρυθμίσεις"
+
+msgid "Settings mode"
+msgstr "Επίπεδο ρυθμίσεων"
 
 msgid "Settings..."
 msgstr "Ρυθμίσεις..."
@@ -15868,9 +15897,6 @@ msgstr "Ρυθμίσεις Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Ρυθμίσεις συσκευής εισαγωγής"
-
-msgid "Setup Language"
-msgstr "Ρυθμίσεις γλώσσας"
 
 msgid "Setup MiniDLNA"
 msgstr "Ρυθμίσεις MiniDLNA"
@@ -15927,6 +15953,9 @@ msgstr "Ορισμός καθυστέρησης του ζάπινγκ καναλ
 msgid "Setup each tuner for your satellite system"
 msgstr "Ρυθμίστε το κάθε tuner του δορυφορικού σας συστήματος"
 
+msgid "Setup entry sort"
+msgstr "Ταξινόμηση των μενού ρυθμίσεων αλφαβητικά"
+
 msgid "Setup how to control the channel changing."
 msgstr "Ορισμός του τρόπου ελέγχου αλλαγής καναλιών."
 
@@ -15935,9 +15964,6 @@ msgstr "Ρυθμίσεις διεπαφής"
 
 msgid "Setup menu"
 msgstr "Μενού ρυθμίσεων"
-
-msgid "Settings mode"
-msgstr "Επίπεδο ρυθμίσεων"
 
 msgid "Setup network time synchronization interval."
 msgstr "Ρυθμίσεις μεσοδιαστήματος συγχρονισμού ώρας δικτύου."
@@ -16194,9 +16220,6 @@ msgstr "Εμφάνιση καταγραφής"
 msgid "Show Log Manager in extensions list"
 msgstr "Εμφάνιση της διαχείρισης καταγραφών στη λίστα επεκτάσεων ;"
 
-msgid "Show Main Menu as"
-msgstr "Εμφάνιση κύριου μενού ως"
-
 msgid "Show Media Player in Main Menu"
 msgstr "εμφάνιση της αναπαραγωγής πολυμέσων στο κύριο μενού"
 
@@ -16271,6 +16294,9 @@ msgstr "Εμφάνιση κάθετου EPG"
 
 msgid "Show WLAN status"
 msgstr "Εμφάνιση κατάστασης ασύρματου δικτύου"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Εμφάνιση περιστρεφόμενου λογότυπου όταν το σύστημα είναι απασχολημένο."
 
 msgid "Show additional slider value"
 msgstr "Εμφάνιση πρόσθετης τιμής του ολισθητή"
@@ -16455,9 +16481,6 @@ msgstr "Εμφάνιση μαρκαρισμένων προγραμμάτων σ�
 msgid "Show menu"
 msgstr "Εμφάνιση μενού"
 
-msgid "Show menu numbers"
-msgstr "Εμφάνιση αριθμών μενού"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Εμφάνιση μηνύματος αν το File Commander δεν τρέχει ή έχουν ολοκληρωθεί όλες οι εργασίες."
 
@@ -16580,12 +16603,6 @@ msgstr "Εμφάνιση EPG μίας μόνο υπηρεσίας"
 msgid "Show source packages"
 msgstr "Εμφάνιση πακέτων πηγής"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Εμφάνιση περιστρεφόμενου λογότυπου όταν το σύστημα είναι απασχολημένο."
-
-msgid "Show watch status"
-msgstr "Εμφάνιση εικονιδίων κατάστασης στη λίστα ταινιών"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Εμφάνιση μηνυμάτων κατάστασης κατά την αλλαγή σε ζωντανή TV"
 
@@ -16700,6 +16717,9 @@ msgstr "Προειδοποίηση πριν την επανεκκίνηση"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Εμφάνιση προειδοποίησης όταν η χρονομετατόπιση έχει σταματήσει"
+
+msgid "Show watch status"
+msgstr "Εμφάνιση εικονιδίων κατάστασης στη λίστα ταινιών"
 
 msgid "Show/Games show"
 msgstr "Σόου/τηλεπαιχνίδι"
@@ -17182,6 +17202,9 @@ msgstr "Ταξινόμηση της λίστας EPG"
 msgid "Sort Extensions menu"
 msgstr "Ταξινόμηση της λίστας επεκτάσεων αλφαβητικά"
 
+msgid "Sort Plugin Browser"
+msgstr "Ταξινόμηση των στοιχείων στον πλοηγό προσθέτων"
+
 msgid "Sort by"
 msgstr "Ταξινόμηση ανά"
 
@@ -17198,24 +17221,11 @@ msgid "Sort list:"
 msgstr "Ταξινόμηση λίστας:"
 
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Ταξινόμηση των στοιχείων του μενού"
-
-msgid "Menu entry sort order"
-msgstr "Ταξινόμηση των στοιχείων του μενού"
-
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Ταξινόμηση των στοιχείων του μενού"
 
 msgid "Sort playlists"
 msgstr "ταξινόμηση λιστών αναπαραγωγής"
-
-msgid "Sort Plugin Browser"
-msgstr "Ταξινόμηση των στοιχείων στον πλοηγό προσθέτων"
-
-msgid "Setup entry sort"
-msgstr "Ταξινόμηση των μενού ρυθμίσεων αλφαβητικά"
 
 msgid "Sorting left files by name, date or size"
 msgstr "Ταξινόμηση των αρχείων αριστερά κατά όνομα, ημερομηνία ή μέγεθος"
@@ -17250,6 +17260,9 @@ msgstr ""
 
 msgid "South Sudan"
 msgstr "Νότιο Σουδάν"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Χώρος δίσκου που διατίθεται για εγγραφές (σε GB)"
 
 msgid "Space used:"
 msgstr "Χώρος σε χρήση:"
@@ -17304,9 +17317,6 @@ msgstr "Στάνταρ (πάντα)"
 
 msgid "Standard list"
 msgstr "Στάνταρ λίστα"
-
-msgid "Standard menu"
-msgstr "Στάνταρ μενού"
 
 msgid "Standby"
 msgstr "Αναμονή"
@@ -18631,33 +18641,8 @@ msgstr "Αυτή η επιλογή ορίζει σε ποιο κανάλι τη�
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Αυτή η επιλογή επιτρέπει ή όχι την εμφάνιση των πληροφοριών του είδους του προγράμματος."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Αυτή η επιλογή απενεργοποιεί την εμφάνιση της επανεκκίνησης δικτύου στη λίστα επεκτάσεων."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "βΑυτή η επιλογή απενεργοποιεί την ταξινόμηση της λίστας επεκτάσεων."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Αυτή η επιλογή απενεργοποιεί την ταξινόμηση των επιλογών στα μενού ρυθμίσεων"
-
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Αυτή η επιλογή επιτρέπει την ενεργοποίηση του Περιφερειακού ήχου 3D."
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Αυτή η επιλογή επιτρέπει την απόκρυψη και την ταξινόμηση των μενού"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Αυτή η επιλογή επιτρέπει την απόκρυψη και την ταξινόμηση των στοιχείων του πλοηγού προσθέτων."
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-msgid "This option allows you to show menu number quick links."
-msgstr "Αυτή η επιλογή επιτρέπει την εμφάνιση αριθμών δίπλα στα στοιχεία των μενού."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "Αυτή η επιλογή επιτρέπει την ενίσχυση των πράσινων τόνων στην εικόνα."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Αυτή η επιλογή επιτρέπει την εμφάνιση του SNR ως ποσοστό (δεν υποστηρίζεται από όλους τους δέκτες)."
@@ -19612,9 +19597,6 @@ msgstr "Πλήκτρα Επάνω/Κάτω επίσης για το 'όλο επ
 msgid "Update"
 msgstr "Ενημέρωση"
 
-msgid "Update Cache"
-msgstr "Ενημέρωση προσωρινής μνήμης"
-
 msgid "Update at your own risk"
 msgstr "Ενημέρωση με δική σας ευθύνη"
 
@@ -19666,12 +19648,6 @@ msgstr "Διαθέσιμες ενημερώσεις:"
 
 msgid "Updating"
 msgstr "Εκτελείται αναβάθμιση"
-
-msgid "Updating cache"
-msgstr "Ενημέρωση της προσωρινής μνήμης"
-
-msgid "Updating cache, please wait..."
-msgstr "Ενημέρωση προσωρινής μνήμης, παρακαλώ περιμένετε..."
 
 msgid "Updating mount locations."
 msgstr "Ενημέρωση τοποθεσιών προσάρτησης."
@@ -19734,6 +19710,9 @@ msgstr "Ρυθμίσεις χρήσης"
 msgid "Use"
 msgstr "Χρήση"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Χρήση του κάδου αχρήστων στη λίστα ταινιών"
+
 msgid "Use DHCP"
 msgstr "Χρήση DHCP"
 
@@ -19785,6 +19764,9 @@ msgstr "Χρήση πληροφοριών Virgin EPG όταν είναι δια�
 msgid "Use a gateway"
 msgstr "Χρήση πύλης"
 
+msgid "Use an alternative smaller screen."
+msgstr "Χρήση εναλλακτικής εμφάνισης"
+
 msgid "Use as HDD"
 msgstr "Χρήση ως HDD"
 
@@ -19821,9 +19803,6 @@ msgstr "Χρήση συχνότητας ή καναλιού"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Χρήση ξεχωριστών ρυθμίσεων για κάθε φάκελο"
-
 msgid "Use interface"
 msgstr "Χρήση διεπαφής"
 
@@ -19838,6 +19817,9 @@ msgstr "Χρήση αρχικής θέσης υποτίτλων DVB"
 
 msgid "Use original teletext position"
 msgstr "Χρήση αρχικής θέσης τηλεκειμένου"
+
+msgid "Use per directory settings"
+msgstr "Χρήση ξεχωριστών ρυθμίσεων για κάθε φάκελο"
 
 msgid "Use power measurement"
 msgstr "Χρήση μέτρησης ισχύος"
@@ -19865,9 +19847,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Χρήση της εναλλακτικής ή της κλασσικής λειτουργίας ραδιοφώνου."
-
-msgid "Use an alternative smaller screen."
-msgstr "Χρήση εναλλακτικής εμφάνισης"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Εκκίνηση."
@@ -19901,9 +19880,6 @@ msgstr "Χρήση υπερπηδήσεων χρόνου για την προώ�
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Να γίνει χρήση της μπάρας αναζήτησης κατά τη χρονομετατόπιση;"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Χρήση του κάδου αχρήστων στη λίστα ταινιών"
 
 msgid "Use workaround for wakeup from deep-standby"
 msgstr "Χρήση εναλλακτικού τρόπου αφύπνισης από τη βαθιά αναμονή;"
@@ -20048,6 +20024,9 @@ msgstr "Κάθετη στοίχιση για τη χρονική πρόοδο τ
 
 msgid "Vertical alignment for the service number."
 msgstr "Κάθετη στοίχιση για τον αριθμό υπηρεσίας."
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Ταχύτητα περιστροφής σε κάθετη πόλωση"
@@ -23015,6 +22994,78 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Choose style of main menus"
+#~ msgstr "Επιλογή του στυλ των κύριων μενού"
+
+#~ msgid "Show Main Menu as"
+#~ msgstr "Εμφάνιση κύριου μενού ως"
+
+#~ msgid "Show menu numbers"
+#~ msgstr "Εμφάνιση αριθμών μενού"
+
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Ταξινόμηση των στοιχείων του μενού"
+
+#~ msgid "Standard menu"
+#~ msgstr "Στάνταρ μενού"
+
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Αυτή η επιλογή επιτρέπει την εμφάνιση αριθμών δίπλα στα στοιχεία των μενού."
+
+#~ msgid "Delete Language"
+#~ msgstr "Διαγραφή γλωσσών"
+
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Θέλετε να διαγραφούν όλες οι άλλες γλώσσες;\n"
+#~ "Εκτός από τα Αγγλικά, τα Γαλλικά, τα Γερμανικά και την επιλογή σας:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Πρέπει να γίνει επανεκκίνηση της διεπαφής χρήστη για να ενεργοποιηθεί η νέα γλώσσα.\n"
+#~ "Να γίνει τώρα;"
+
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Πιέστε MENU για να εγκαταστήσετε πρόσθετη γλώσσα(ες)."
+
+#~ msgid "Setup Language"
+#~ msgstr "Ρυθμίσεις γλώσσας"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Αυτή η επιλογή απενεργοποιεί την εμφάνιση της επανεκκίνησης δικτύου στη λίστα επεκτάσεων."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "βΑυτή η επιλογή απενεργοποιεί την ταξινόμηση της λίστας επεκτάσεων."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Αυτή η επιλογή απενεργοποιεί την ταξινόμηση των επιλογών στα μενού ρυθμίσεων"
+
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Αυτή η επιλογή επιτρέπει την απόκρυψη και την ταξινόμηση των μενού"
+
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Αυτή η επιλογή επιτρέπει την απόκρυψη και την ταξινόμηση των στοιχείων του πλοηγού προσθέτων."
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Αυτή η επιλογή επιτρέπει την ενίσχυση των πράσινων τόνων στην εικόνα."
+
+#~ msgid "Update Cache"
+#~ msgstr "Ενημέρωση προσωρινής μνήμης"
+
+#~ msgid "Updating cache"
+#~ msgstr "Ενημέρωση της προσωρινής μνήμης"
+
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Ενημέρωση προσωρινής μνήμης, παρακαλώ περιμένετε..."
 
 #, python-format
 #~ msgid ""

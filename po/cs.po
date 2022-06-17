@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-07 18:35+0000\n"
+"POT-Creation-Date: 2022-06-16 20:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -2438,6 +2438,9 @@ msgstr "Přístupový bod:"
 msgid "Action"
 msgstr "Akce:"
 
+msgid "Action at end of media"
+msgstr "Při dosažení konce přehrávaného filmu"
+
 msgid "Action on long POWER button press"
 msgstr "Akce na dlouhý stisk tlačítka 'VYPNOUT'"
 
@@ -2815,9 +2818,6 @@ msgstr ""
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Umožňuje nastavit dobu zobrazení informace o rozlišení na obrazovce."
 
-msgid "Select the function to be assigned to this button."
-msgstr ""
-
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
@@ -2852,6 +2852,9 @@ msgstr "Už to skoro bude... "
 
 msgid "Alpha"
 msgstr "Abecedně"
+
+msgid "Alphabetical"
+msgstr ""
 
 msgid "Alphabetical under headings"
 msgstr ""
@@ -2953,9 +2956,6 @@ msgstr "Nastavení Animace"
 
 msgid "Animation Speed"
 msgstr "Rychlost animace"
-
-msgid "Help animation speed"
-msgstr ""
 
 msgid "Animations"
 msgstr "Animace"
@@ -3626,9 +3626,6 @@ msgstr "Spustit přehrávání filmu od"
 
 msgid "Behavior when a movie is stopped"
 msgstr "Při zastavení přehrávaného filmu"
-
-msgid "Action at end of media"
-msgstr "Při dosažení konce přehrávaného filmu"
 
 msgid "Belarus"
 msgstr ""
@@ -4592,10 +4589,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
-#, fuzzy
-msgid "Choose style of main menus"
-msgstr "Zobrazit VCR scart v hlavním menu"
-
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr ""
 
@@ -4620,7 +4613,7 @@ msgstr "Vyberte místo, kam se uloží EPG data, když je %s %s vypnuto.Umístě
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Vyberte název souboru, kam se uloží EPG data, když je %s %s vypnuto.To může být užitečné pro rozlišení mezi několika stb."
 
-msgid "Choose the order in which items are displayed in Help windows"
+msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
@@ -5415,9 +5408,6 @@ msgstr "Kontrola pozice po skončení časovače, uvede se v seznamu časovačů
 msgid "Control the Infobar fading speed"
 msgstr "Nastavit rychlost mizení Infobaru."
 
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
-
 msgid "Control your Softcams"
 msgstr "Ovládání Softcamů"
 
@@ -6202,9 +6192,6 @@ msgstr "Smazat"
 msgid "Delete Image"
 msgstr ""
 
-msgid "Delete Language"
-msgstr "Smazat jazyk"
-
 msgid "Delete Plugins"
 msgstr "Smaže vybrané pluginy"
 
@@ -6542,9 +6529,6 @@ msgstr "Plný"
 msgid "Disk is not writable!"
 msgstr "Médiem není zapisovatelné DVD!"
 
-msgid "Space to reserve for recordings (in GB)"
-msgstr "Rezerva volného místa pro nahrávání (v GB)"
-
 #, fuzzy
 msgid "Disk was not found!"
 msgstr "%s nebylo nalezeno !!"
@@ -6784,13 +6768,6 @@ msgstr "Chcete nastavit"
 
 msgid "Do you want to delete all log files?"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Do you want to delete all other languages?\n"
-"Except English, French, German and your selection:\n"
-"\n"
-msgstr "Chcete odstranit všechny ostatní jazyky?"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -7401,9 +7378,6 @@ msgstr "Zapnout rodičovskou kontrolu"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
-msgid "Enable to display the current value of the slider at end of the slider bar."
-msgstr ""
-
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
@@ -7423,6 +7397,18 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
+msgstr ""
+
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the Extension menu entries alphabetically."
+msgstr ""
+
+msgid "Enable to display the current value of the slider at end of the slider bar."
+msgstr ""
+
+msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
 msgstr ""
 
 msgid "Enable unlinked bouquets"
@@ -7604,6 +7590,18 @@ msgstr "Vstoupit do hlavního menu..."
 
 msgid "Entitlements"
 msgstr "Zápisy"
+
+msgid "Entry image and text"
+msgstr ""
+
+msgid "Entry image, number and text"
+msgstr ""
+
+msgid "Entry number and text"
+msgstr ""
+
+msgid "Entry text only"
+msgstr ""
 
 #, fuzzy
 msgid "Epg/Guide"
@@ -8672,14 +8670,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"GUI needs a restart to apply a new language\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Pro aktivaci skinu je potřeba restartovat GUI.\n"
-"Chcete nyní restartovat GUI?"
-
-#, fuzzy
-msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
@@ -9118,8 +9108,14 @@ msgstr "Nápověda"
 msgid "Help Screen Information"
 msgstr "Info o zařízení"
 
+msgid "Help animation speed"
+msgstr ""
+
 msgid "Help long"
 msgstr "Nápověda - dlouhý stisk"
+
+msgid "Help screen style"
+msgstr ""
 
 #, fuzzy
 msgid "Helps setting up your signal"
@@ -9478,9 +9474,6 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
-
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -11146,6 +11139,16 @@ msgstr "Rychle"
 msgid "Menu config"
 msgstr "Nastavení menu"
 
+#, fuzzy
+msgid "Menu entry sort order"
+msgstr "Opakování příkazu motoru"
+
+msgid "Menu entry style"
+msgstr ""
+
+msgid "Menu style"
+msgstr ""
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
@@ -12505,9 +12508,6 @@ msgstr "Po skončení filmu"
 msgid "On end of movie (as menu)"
 msgstr "Po skončení filmu"
 
-msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Po dosažení konce souboru během přehrávání, si můžete zvolit chování boxu."
-
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
@@ -13777,10 +13777,6 @@ msgstr "Stiskněte INFO na dálkovém ovladači pro další informace."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Stiskněte MENU na Vašem dálkovém ovladači pro další možnosti."
 
-#, fuzzy
-msgid "Press MENU to install additional language(s)."
-msgstr "Stiskněte tlačítko OK pro instalaci souboru"
-
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -14091,6 +14087,9 @@ msgstr ""
 
 msgid "Purge"
 msgstr ""
+
+msgid "Purge 'Trash' after (days)"
+msgstr "Položky z koše odstraňovat po (dnech)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -14712,9 +14711,6 @@ msgstr "Odstranit vybraný titul"
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
-
-msgid "Purge 'Trash' after (days)"
-msgstr "Položky z koše odstraňovat po (dnech)"
 
 #, fuzzy
 msgid "Remove selected folder from bookmarks"
@@ -15815,6 +15811,12 @@ msgstr "Vyberte způsob aktivace režimu Quick EPG"
 msgid "Select how your box will upgrade."
 msgstr "Nastavte si podrobnosti vašich aktualizací."
 
+msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
+msgstr ""
+
+msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
 msgid "Select if timeshift must continue when set to record."
 msgstr "Vyberte, jak dále pokračovat s Timeshiftem při přepnutí na jiný kanál."
 
@@ -15894,6 +15896,9 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
@@ -15908,6 +15913,15 @@ msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Stiskem \"OK\" vyberete a přiřadíte požadovanou funkci. \"CH +/-\" umožňuje přepínat mezi seznamy. Stiskem \"OK\" můžete již přiřazenou funkci také vyřadit. Tlačítkem \"Další / Předchozí\" změňte pořadí přiřazených funkcí."
+
+msgid "Select the display design for menus."
+msgstr ""
+
+msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgstr ""
+
+msgid "Select the function to be assigned to this button."
+msgstr ""
 
 msgid "Select the highlighted image and proceed to the slot selection"
 msgstr ""
@@ -15965,6 +15979,12 @@ msgstr "Vyberte akci časovače vypnutí."
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgstr ""
+
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16010,6 +16030,9 @@ msgstr "Tlačítky up/down vybere video vstup"
 
 msgid "Select video mode"
 msgstr "Zvolte režim videa"
+
+msgid "Select what action to take when reaching the end of a media file during playback."
+msgstr "Po dosažení konce souboru během přehrávání, si můžete zvolit chování boxu."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Co má Váš %s %s dělat po startu? Normálně zapnout nebo vypnout do pohotovostního režimu."
@@ -16474,6 +16497,9 @@ msgstr ""
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Nastavte požadovaný hlavní čas (hod)."
 
@@ -16501,6 +16527,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Nastavení"
+
+msgid "Settings mode"
+msgstr "Nastavovací režim"
 
 msgid "Settings..."
 msgstr "Nastavení"
@@ -16538,9 +16567,6 @@ msgstr "Nastavení Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Nastavení vstupního zařízení"
-
-msgid "Setup Language"
-msgstr "Jazyk systému"
 
 msgid "Setup MiniDLNA"
 msgstr "Nastavení MiniDLNA"
@@ -16600,6 +16626,9 @@ msgstr "Nastavení režimu zpoždění při přepínání kanálů."
 msgid "Setup each tuner for your satellite system"
 msgstr "Nastavení a aktivace všech tunerů pro satelitní a pozemní příjem"
 
+msgid "Setup entry sort"
+msgstr "Třídit nastavení podle abecedy"
+
 msgid "Setup how to control the channel changing."
 msgstr "Nastavit, jak ovládat změnu kanálu."
 
@@ -16608,9 +16637,6 @@ msgstr "Nastavení síťového rozhraní"
 
 msgid "Setup menu"
 msgstr "Nastavení menu"
-
-msgid "Settings mode"
-msgstr "Nastavovací režim"
 
 msgid "Setup network time synchronization interval."
 msgstr "Nastavení intervalu synchronizace se síťí."
@@ -16877,10 +16903,6 @@ msgstr "Zobrazit zprávu"
 msgid "Show Log Manager in extensions list"
 msgstr "Zobrazit Manažera zpráv v rozšířené nabídce (modré tlačítko)"
 
-#, fuzzy
-msgid "Show Main Menu as"
-msgstr "Zobrazit v Menu"
-
 msgid "Show Media Player in Main Menu"
 msgstr "Zobrazit Mediaplayer v hlavním menu"
 
@@ -16962,6 +16984,9 @@ msgstr "Zobrazit Grafické EPG"
 
 msgid "Show WLAN status"
 msgstr "Zobrazit stav WLAN"
+
+msgid "Show a spinning logo when the system is busy."
+msgstr "Zobrazí pohyblivé LOGO pokud je Váš s% s% zaneprázdněn"
 
 #, fuzzy
 msgid "Show additional slider value"
@@ -17156,10 +17181,6 @@ msgstr "Zobrazit detailní informace o pořadu"
 msgid "Show menu"
 msgstr "Zobrazit menu"
 
-#, fuzzy
-msgid "Show menu numbers"
-msgstr "Zobrazit menu"
-
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr ""
 
@@ -17288,12 +17309,6 @@ msgstr "Zobrazit EPG jednoho kanálu"
 msgid "Show source packages"
 msgstr "Zobrazit zdrojové balíčky"
 
-msgid "Show a spinning logo when the system is busy."
-msgstr "Zobrazí pohyblivé LOGO pokud je Váš s% s% zaneprázdněn"
-
-msgid "Show watch status"
-msgstr "Zobrazit ikony stavu v seznamu filmů"
-
 msgid "Show status messages when switch to live TV"
 msgstr "Zobrazit stavové zprávy při přepnutí na živé vysílání TV"
 
@@ -17415,6 +17430,9 @@ msgstr "Varovat před restartem přijímače při nahrávání"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Při zastavení timeshiftu zobrazit upozornění"
+
+msgid "Show watch status"
+msgstr "Zobrazit ikony stavu v seznamu filmů"
 
 #, fuzzy
 msgid "Show/Games show"
@@ -17920,6 +17938,10 @@ msgstr "Třídit seznam EPG"
 msgid "Sort Extensions menu"
 msgstr "Třídit rozšířenou nabídku podle abecedy"
 
+#, fuzzy
+msgid "Sort Plugin Browser"
+msgstr "Třídit pluginy podle abecedy"
+
 msgid "Sort by"
 msgstr "Řadit podle"
 
@@ -17938,26 +17960,11 @@ msgid "Sort list:"
 msgstr "Seřadit seznam podle"
 
 #, fuzzy
-msgid "Sort order for help screen"
-msgstr "Opakování příkazu motoru"
-
-#, fuzzy
-msgid "Menu entry sort order"
-msgstr "Opakování příkazu motoru"
-
-#, fuzzy
 msgid "Sort order for the language list."
 msgstr "Opakování příkazu motoru"
 
 msgid "Sort playlists"
 msgstr "Třídění playlistů"
-
-#, fuzzy
-msgid "Sort Plugin Browser"
-msgstr "Třídit pluginy podle abecedy"
-
-msgid "Setup entry sort"
-msgstr "Třídit nastavení podle abecedy"
 
 msgid "Sorting left files by name, date or size"
 msgstr ""
@@ -17993,6 +18000,9 @@ msgstr ""
 #, fuzzy
 msgid "South Sudan"
 msgstr "Jižní"
+
+msgid "Space to reserve for recordings (in GB)"
+msgstr "Rezerva volného místa pro nahrávání (v GB)"
 
 msgid "Space used:"
 msgstr "Použito:"
@@ -18052,10 +18062,6 @@ msgstr "Standardní (Pokaždé)"
 #, fuzzy
 msgid "Standard list"
 msgstr "Standartní seznam"
-
-#, fuzzy
-msgid "Standard menu"
-msgstr "Standardní"
 
 msgid "Standby"
 msgstr "Vypnout do pohotovosti"
@@ -19441,37 +19447,9 @@ msgstr "Tato volba vám umožní vybrat si reakci prvního stisku tlačítka na 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Tato volba vám umožní vybrat, jak se zobrazí při živé TV Zbývající/Uplynulý čas."
 
-msgid "This option allows you to disable show Restart Network in Extensions list."
-msgstr "Toto nastavení umožňuje zobrazit volbu Restartovat síť v rozšířené nabídce."
-
-msgid "This option allows you to disable sorting of the Extensions list."
-msgstr "Tato volba seřadí položky rozšířené nabídky podle abecedy."
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Tato volba umožňuje vypnout třídění voleb v okně nastavení obrazovky"
-
 #, fuzzy
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Tato volba umožňuje nastavení zapnutí 3D prostorového zvuku."
-
-#, fuzzy
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Tato volba umožňuje vypnout třídění v menu"
-
-#, fuzzy
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr "Tato volba umožňuje vypnout třídění v pluginu Prohlížeč pluginů"
-
-msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
-
-#, fuzzy
-msgid "This option allows you to show menu number quick links."
-msgstr "Tato volba umožňuje vypnout napájení předního displeje."
-
-#, fuzzy
-msgid "This option allows you to show the screen menu path history."
-msgstr "Tato volby vám umožní zvýraznit zelené tóny v obraze."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Tato volba umožňuje zobrazovat Kvalitu signálu v % (toto nepodporují všechny stb)."
@@ -20462,10 +20440,6 @@ msgid "Update"
 msgstr "Aktualizace"
 
 #, fuzzy
-msgid "Update Cache"
-msgstr "Aktualizace"
-
-#, fuzzy
 msgid "Update at your own risk"
 msgstr "Děláte to na vlastní nebezpečí!"
 
@@ -20517,14 +20491,6 @@ msgstr "Aktualizace k dispozici:"
 
 msgid "Updating"
 msgstr "Aktualizace"
-
-#, fuzzy
-msgid "Updating cache"
-msgstr "Aktualizace"
-
-#, fuzzy
-msgid "Updating cache, please wait..."
-msgstr "Čekejte prosím, rozbaluji soubory ..."
 
 #, fuzzy
 msgid "Updating mount locations."
@@ -20588,6 +20554,9 @@ msgstr "Přizpůsobení"
 msgid "Use"
 msgstr "Použít"
 
+msgid "Use 'Trash' in movie list"
+msgstr "Používat koš v seznamu souborů"
+
 msgid "Use DHCP"
 msgstr "Použít DHCP"
 
@@ -20641,6 +20610,9 @@ msgstr "Používat Virgin EPG informace, jestliže jsou dostupné."
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
 
+msgid "Use an alternative smaller screen."
+msgstr "Použít alternativní obrazovku"
+
 msgid "Use as HDD"
 msgstr "Jako HDD"
 
@@ -20677,9 +20649,6 @@ msgstr "Hledat kanály"
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
-msgid "Use per directory settings"
-msgstr "Používat vlastní nastavení pro každý adresář"
-
 msgid "Use interface"
 msgstr "Použít rozhraní"
 
@@ -20694,6 +20663,9 @@ msgstr "Použít původní pozici DVB titulků"
 
 msgid "Use original teletext position"
 msgstr "Použít původní pozici teletextu"
+
+msgid "Use per directory settings"
+msgstr "Používat vlastní nastavení pro každý adresář"
 
 msgid "Use power measurement"
 msgstr "Použít sílu měření"
@@ -20721,9 +20693,6 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Použít alternativní nebo konvenční režim Rádia."
-
-msgid "Use an alternative smaller screen."
-msgstr "Použít alternativní obrazovku"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -20758,9 +20727,6 @@ msgstr "Použít časové skoky pro posun vpřed/vzad"
 
 msgid "Use timeshift seekbar while timeshifting"
 msgstr "Při timeshiftu použít panel PTS"
-
-msgid "Use 'Trash' in movie list"
-msgstr "Používat koš v seznamu souborů"
 
 #, fuzzy
 msgid "Use workaround for wakeup from deep-standby"
@@ -20915,6 +20881,9 @@ msgstr ""
 #, fuzzy
 msgid "Vertical alignment for the service number."
 msgstr "Sladění názvů služeb"
+
+msgid "Vertical menu"
+msgstr ""
 
 msgid "Vertical turning speed"
 msgstr "Vertikální rychlost otáčení"
@@ -24013,6 +23982,88 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Choose style of main menus"
+#~ msgstr "Zobrazit VCR scart v hlavním menu"
+
+#, fuzzy
+#~ msgid "Show Main Menu as"
+#~ msgstr "Zobrazit v Menu"
+
+#, fuzzy
+#~ msgid "Show menu numbers"
+#~ msgstr "Zobrazit menu"
+
+#, fuzzy
+#~ msgid "Sort order for help screen"
+#~ msgstr "Opakování příkazu motoru"
+
+#, fuzzy
+#~ msgid "Standard menu"
+#~ msgstr "Standardní"
+
+#, fuzzy
+#~ msgid "This option allows you to show menu number quick links."
+#~ msgstr "Tato volba umožňuje vypnout napájení předního displeje."
+
+#~ msgid "Delete Language"
+#~ msgstr "Smazat jazyk"
+
+#, fuzzy
+#~ msgid ""
+#~ "Do you want to delete all other languages?\n"
+#~ "Except English, French, German and your selection:\n"
+#~ "\n"
+#~ msgstr "Chcete odstranit všechny ostatní jazyky?"
+
+#, fuzzy
+#~ msgid ""
+#~ "GUI needs a restart to apply a new language\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Pro aktivaci skinu je potřeba restartovat GUI.\n"
+#~ "Chcete nyní restartovat GUI?"
+
+#, fuzzy
+#~ msgid "Press MENU to install additional language(s)."
+#~ msgstr "Stiskněte tlačítko OK pro instalaci souboru"
+
+#~ msgid "Setup Language"
+#~ msgstr "Jazyk systému"
+
+#~ msgid "This option allows you to disable show Restart Network in Extensions list."
+#~ msgstr "Toto nastavení umožňuje zobrazit volbu Restartovat síť v rozšířené nabídce."
+
+#~ msgid "This option allows you to disable sorting of the Extensions list."
+#~ msgstr "Tato volba seřadí položky rozšířené nabídky podle abecedy."
+
+#~ msgid "This option allows you to disable sorting of the option in setting screen's"
+#~ msgstr "Tato volba umožňuje vypnout třídění voleb v okně nastavení obrazovky"
+
+#, fuzzy
+#~ msgid "This option allows you to hide and sorting of the menus"
+#~ msgstr "Tato volba umožňuje vypnout třídění v menu"
+
+#, fuzzy
+#~ msgid "This option allows you to hide and sorting of the plugin browser."
+#~ msgstr "Tato volba umožňuje vypnout třídění v pluginu Prohlížeč pluginů"
+
+#, fuzzy
+#~ msgid "This option allows you to show the screen menu path history."
+#~ msgstr "Tato volby vám umožní zvýraznit zelené tóny v obraze."
+
+#, fuzzy
+#~ msgid "Update Cache"
+#~ msgstr "Aktualizace"
+
+#, fuzzy
+#~ msgid "Updating cache"
+#~ msgstr "Aktualizace"
+
+#, fuzzy
+#~ msgid "Updating cache, please wait..."
+#~ msgstr "Čekejte prosím, rozbaluji soubory ..."
 
 #, fuzzy
 #~ msgid "Backup settings"
