@@ -389,7 +389,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		for number, item in enumerate(self.menuList):
 			# print("[Menu] DEBUG: Menu item=%s." % str(item))
 			number += 1
-			label = "%d  %s" % (number, item[0]) if config.usage.menuEntryStyle.value in ("Number", "Both") else item[0]  # This is for compatibility with older skins.
+			label = "%d  %s" % (number, item[0]) if config.usage.menuEntryStyle.value in ("number", "both") else item[0]  # This is for compatibility with older skins.
 			image = menus.get(item[2], self.defaultMenuImage)
 			# print("[Menu] DEBUG: Key='%s', Image='%s'." % (item[2], image))
 			if image:
