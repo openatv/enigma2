@@ -324,6 +324,9 @@ void eListbox::moveSelection(long dir)
 					else
 						m_top = m_content->size() - 1;
 
+					if(m_selected==0)
+						m_top=0;
+
 				}
 				break;
 
