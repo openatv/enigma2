@@ -2550,40 +2550,46 @@ class BackupHelper(Screen):
 
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
-
+		self.args = args
 		self.backuppath = getBackupPath()
 		if not os.path.isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
-
-		if args == 1:
+		self.callLater(self.doAction)
+	
+	def doAction(self):
+		doClose = True
+		if self.args == 1:
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-		elif args == 2:
+			doClose = False
+		elif self.args == 2:
 			if os_path.exists(self.fullbackupfilename):
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
+				doClose = False
 			else:
 				self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-		elif args == 3:
+		elif self.args == 3:
 			try:
 				from Plugins.Extensions.MediaScanner.plugin import main
 				main(self.session)
 			except:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
-		elif args == 4:
+		elif self.args == 4:
 			parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 			for x in parts:
 				if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
 					parts.remove(x)
 			if len(parts):
 				self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
-		elif args == 5:
+				doClose = False
+		elif self.args == 5:
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
-		elif args == 6:
+		elif self.args == 6:
 			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
-		elif args == 7:
+		elif self.args == 7:
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
-		else:
+		if doClose:
 			self.close()
 
 	def backuplocation_choosen(self, option):
@@ -2596,6 +2602,8 @@ class BackupHelper(Screen):
 		newpath = config.plugins.configurationbackup.backuplocation.value
 		if newpath != oldpath:
 			self.createBackupfolders()
+		else:
+			self.close()
 
 	def createBackupfolders(self):
 		print("Creating backup folder if not already there...")
@@ -2605,11 +2613,13 @@ class BackupHelper(Screen):
 				makedirs(self.backuppath)
 		except OSError:
 			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+		self.close()
 
 	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
+		self.close()
 
 
 	def backupDone(self, retval=None):
@@ -2617,7 +2627,7 @@ class BackupHelper(Screen):
 			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
 		else:
 			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
-
+		self.close()
 
 
 def Plugins(path, **kwargs):
