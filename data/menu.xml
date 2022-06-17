@@ -184,55 +184,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 
 		<menu entryID="software_manager" level="0" text="Software management" weight="50">
 			<id val="software_manager" />
-
-			<!--
-
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-								self.session.open(PluginManager, self.skin_path)
-
-			self.list.append(("software-update", _("Software Update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-					self.session.open(SoftwareUpdate, self.skin_path)
-
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-					self.session.open(ImageWizard)
-
-			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-					self.session.open(FlashManager)
-
-			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-					if DFLASH == True:
-						self.session.open(dFlash)
-					elif DBACKUP == True:
-						self.session.open(dBackup)
-					else:
-						self.session.open(ImageBackup)
-
-			if BoxInfo.getItem("canMultiBoot"):
-				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multi boot device.") + self.oktext, None))
-					self.session.open(MultiBootManager)
-
-
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
-					self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-
-
-			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-					if os_path.exists(self.fullbackupfilename):
-						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
-					else:
-						self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-
-			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
-					try:
-						from Plugins.Extensions.MediaScanner.plugin import main
-						main(self.session)
-					except:
-						self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
-
-			-->
-
 			<item entryID="software_manager" level="0" text="Manage extensions" description="Manage extensions or plugins." weight="10"><plugin system="SoftwareManager" screen="PluginManager" /></item>
 			<item entryID="software_manager" level="0" text="Software Update" description="Online update of your receiver software." weight="11"><plugin system="SoftwareManager" screen="SoftwareUpdate" /></item>
 			<item entryID="software_manager" level="0" text="Software restore" description="Restore your receiver with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
@@ -241,61 +192,20 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<item entryID="software_manager" level="0" text="Backup Image" description="Backup your running image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
 			<item entryID="software_manager" level="0" text="Backup Image" description="Backup your running image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
 			<item entryID="software_manager" level="0" text="MultiBoot Manager" description="Maintain your multi boot device." weight="15" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
-
-			<!-- TODO
-				<item entryID="software_manager" level="0" text="Backup system settings" description="Backup your receiver settings." weight="16"><plugin system="SoftwareManager" screen="XX" /></item>
-				<item entryID="software_manager" level="0" text="Restore system settings" description="Restore your receiver settings." weight="17"><plugin system="SoftwareManager" screen="XX" /></item>
-				<item entryID="software_manager" level="0" text="Install local extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="XX" /></item>
-			-->
+			<item entryID="software_manager" level="0" text="Backup system settings" description="Backup your receiver settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">system-backup</plugin></item>
+			<item entryID="software_manager" level="0" text="Restore system settings" description="Restore your receiver settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">system-restore</plugin></item>
+			<item entryID="software_manager" level="0" text="Install local extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="BackupHelper">ipkg-install</plugin></item>
 
 			<menu entryID="software_manager" level="2" text="Advanced options" weight="20" description="Advanced options and settings.">
 				<id val="software_manager_advanced" />
 				<item entryID="software_manager" level="2" text="Advanced restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>
-				<!--
-					<item entryID="software_manager" level="2" text="Select backup location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="XX" /></item>
-					<item entryID="software_manager" level="2" text="Show default backup files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="XX" /></item>
-					<item entryID="software_manager" level="2" text="Select additional backup files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="XX" /></item>
-					<item entryID="software_manager" level="2" text="Select excluded backup files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="XX" /></item>
-
-				-->
+				<item entryID="software_manager" level="2" text="Select backup location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backuplocation</plugin></item>
+				<item entryID="software_manager" level="2" text="Show default backup files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles</plugin></item>
+				<item entryID="software_manager" level="2" text="Select additional backup files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles_addon</plugin></item>
+				<item entryID="software_manager" level="2" text="Select excluded backup files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles_exclude</plugin></item>
 				<item entryID="software_manager" level="2" text="Packet management" description="View, install and remove available or installed packages." weight="16"><plugin system="SoftwareManager" screen="PacketManager" /></item>
 				<item entryID="software_manager" level="2" text="Select upgrade source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
-
-			<!--
-
-			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date.") + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Show default backup files"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_addon", _("Select additional backup files"), _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_exclude", _("Select excluded backup files"), _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"), _("\nView, install and remove available or installed packages.") + self.oktext, None))
-			self.list.append(("ipkg-source", _("Select upgrade source"), _("\nEdit the upgrade source address.") + self.oktext, None))
-
-				if (currentEntry == "ipkg-manager"):
-					self.session.open(PacketManager, self.skin_path)
-				elif (currentEntry == "backuplocation"):
-					parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-					for x in parts:
-						if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
-							parts.remove(x)
-					if len(parts):
-						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
-				elif (currentEntry == "backupfiles"):
-					self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
-				elif (currentEntry == "backupfiles_addon"):
-					self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
-				elif (currentEntry == "backupfiles_exclude"):
-					self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
-				elif (currentEntry == "advancedrestore"):
-					self.session.open(RestoreMenu, self.skin_path)
-				elif (currentEntry == "ipkg-source"):
-					self.session.open(IPKGMenu, self.skin_path)
-
-			-->
-
 			</menu>
-
 		</menu>
 
 
