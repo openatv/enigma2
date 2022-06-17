@@ -2545,10 +2545,10 @@ def startSetup(menuid):
 
 class BackupHelper(Screen):
 	skin = """
-		<screen name="BackupHelper" position="center,center" size="530,420" title="SoftwareManager" >
+		<screen name="BackupHelper" position="center,center" size="10,10" title="SoftwareManager">
 		</screen>"""
 
-	def __init__(self, session, args=None):
+	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 
 		self.backuppath = getBackupPath()
@@ -2557,33 +2557,34 @@ class BackupHelper(Screen):
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 
-		if args:
-			if args == "system-backup":
-				self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-			elif args == "system-restore":
-				if os_path.exists(self.fullbackupfilename):
-					self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
-				else:
-					self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-			elif args == "ipkg-install":
-				try:
-					from Plugins.Extensions.MediaScanner.plugin import main
-					main(self.session)
-				except:
-					self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
-			elif args == "backuplocation":
-				parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-				for x in parts:
-					if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
-						parts.remove(x)
-				if len(parts):
-					self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
-			elif args == "backupfiles":
-				self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
-			elif args == "backupfiles_addon":
-				self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
-			elif args == "backupfiles_exclude":
-				self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
+		if args == 1:
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+		elif args == 2:
+			if os_path.exists(self.fullbackupfilename):
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
+			else:
+				self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
+		elif args == 3:
+			try:
+				from Plugins.Extensions.MediaScanner.plugin import main
+				main(self.session)
+			except:
+				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
+		elif args == 4:
+			parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
+			for x in parts:
+				if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
+					parts.remove(x)
+			if len(parts):
+				self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
+		elif args == 5:
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
+		elif args == 6:
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
+		elif args == 7:
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
+		else:
+			self.close()
 
 	def backuplocation_choosen(self, option):
 		oldpath = config.plugins.configurationbackup.backuplocation.value

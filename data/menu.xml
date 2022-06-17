@@ -192,17 +192,17 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<item entryID="software_manager" level="0" text="Backup Image" description="Backup your running image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
 			<item entryID="software_manager" level="0" text="Backup Image" description="Backup your running image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
 			<item entryID="software_manager" level="0" text="MultiBoot Manager" description="Maintain your multi boot device." weight="15" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
-			<item entryID="software_manager" level="0" text="Backup system settings" description="Backup your receiver settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">system-backup</plugin></item>
-			<item entryID="software_manager" level="0" text="Restore system settings" description="Restore your receiver settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">system-restore</plugin></item>
-			<item entryID="software_manager" level="0" text="Install local extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="BackupHelper">ipkg-install</plugin></item>
+			<item entryID="software_manager" level="0" text="Backup system settings" description="Backup your receiver settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">1</plugin></item>
+			<item entryID="software_manager" level="0" text="Restore system settings" description="Restore your receiver settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">2</plugin></item>
+			<item entryID="software_manager" level="0" text="Install local extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="BackupHelper">3</plugin></item>
 
 			<menu entryID="software_manager" level="2" text="Advanced options" weight="20" description="Advanced options and settings.">
 				<id val="software_manager_advanced" />
 				<item entryID="software_manager" level="2" text="Advanced restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>
-				<item entryID="software_manager" level="2" text="Select backup location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backuplocation</plugin></item>
-				<item entryID="software_manager" level="2" text="Show default backup files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles</plugin></item>
-				<item entryID="software_manager" level="2" text="Select additional backup files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles_addon</plugin></item>
-				<item entryID="software_manager" level="2" text="Select excluded backup files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">backupfiles_exclude</plugin></item>
+				<item entryID="software_manager" level="2" text="Select backup location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">4</plugin></item>
+				<item entryID="software_manager" level="2" text="Show default backup files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">5</plugin></item>
+				<item entryID="software_manager" level="2" text="Select additional backup files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
+				<item entryID="software_manager" level="2" text="Select excluded backup files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
 				<item entryID="software_manager" level="2" text="Packet management" description="View, install and remove available or installed packages." weight="16"><plugin system="SoftwareManager" screen="PacketManager" /></item>
 				<item entryID="software_manager" level="2" text="Select upgrade source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
 			</menu>
