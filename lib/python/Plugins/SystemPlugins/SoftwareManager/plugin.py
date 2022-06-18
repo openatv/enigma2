@@ -1,75 +1,55 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from Screens.Console import Console
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.MultiBootManager import MultiBootManager
-from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
-from Screens.Opkg import Opkg
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Input import Input
-from Components.Opkg import OpkgComponent
-from Components.Sources.StaticText import StaticText
-from Components.ScrollLabel import ScrollLabel
-from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
-from Components.Sources.List import List
-from Components.Slider import Slider
-from Components.SystemInfo import BoxInfo
-from Components.Harddisk import harddiskmanager
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
+from datetime import timedelta, date
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat, system
+from os.path import dirname, exists, isdir, isfile
+from stat import ST_MTIME
+from six import ensure_binary
+from pickle import dump, load
+from urllib.request import urlopen
+from socket import getdefaulttimeout, setdefaulttimeout
+from time import time
+from twisted.web import client # FIXME remove twisted
+
+from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eTimer, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
+
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.AVSwitch import AVSwitch
+from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.SelectionList import SelectionList
-from Components.PluginComponent import plugins
-from Screens.FlashManager import FlashManager
-from Screens.SoftwareUpdate import SoftwareUpdate
-from Components.PackageInfo import PackageInfoHandler
+from Components.Harddisk import harddiskmanager
+from Components.Input import Input
 from Components.International import international
-from Components.AVSwitch import AVSwitch
-from Components.Task import job_manager
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR
+from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
+from Components.Opkg import OpkgComponent
+from Components.PackageInfo import PackageInfoHandler
+from Components.Pixmap import Pixmap
+from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
+from Components.SelectionList import SelectionList
+from Components.Slider import Slider
+from Components.SystemInfo import BoxInfo
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.Opkg import Opkg
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
+from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR, SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getEnigmaVersionString
-from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
-from time import time, gmtime, strftime, localtime
-from stat import ST_MTIME
-from datetime import date, timedelta
-from twisted.web import client
-from twisted.internet import reactor
 
-from .ImageBackup import ImageBackup
-from .ImageWizard import ImageWizard
-from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
+from .BackupRestore import BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
-import os
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
-import six
-from six.moves.cPickle import dump, load
-from six.moves import reload_module, range
 
-
-boxtype = BoxInfo.getItem("model")
-brandoem = getBrandOEM()
-
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
-	from Plugins.Extensions.dFlash.plugin import dFlash
-	DFLASH = True
-else:
-	DFLASH = False
-
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"):
-	from Plugins.Extensions.dBackup.plugin import dBackup
-	DBACKUP = True
-else:
-	DBACKUP = False
-
+displayBrand = BoxInfo.getItem("displaybrand")
+displayModel = BoxInfo.getItem("displaymodel")
+boxType = BoxInfo.getItem("model")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 
@@ -81,47 +61,42 @@ def Load_defaults():
 	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
 	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
 	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
-					[
-					("Y", _("Yes, always")),
-					("N", _("No, never")),
-					("ask", _("Always ask"))
-					], "Y")
+	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(default="Y", choices=[
+		("Y", _("Yes, always")),
+		("N", _("No, never")),
+		("ask", _("Always ask"))
+	])
 
-	config.plugins.softwaremanager.updatetype = ConfigSelection(
-					[
-						("hot", _("Upgrade with GUI")),
-						("cold", _("Unattended upgrade without GUI")),
-					], "hot")
-	config.plugins.softwaremanager.restoremode = ConfigSelection(
-					[
-						("turbo", _("turbo")),
-						("fast", _("fast")),
-						("slow", _("slow")),
-					], "turbo")
+	config.plugins.softwaremanager.updatetype = ConfigSelection(default="hot", choices=[
+		("hot", _("Upgrade with GUI")),
+		("cold", _("Unattended upgrade without GUI"))
+	])
+	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
+		("turbo", _("turbo")),
+		("fast", _("fast")),
+		("slow", _("slow"))
+	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
 
 Load_defaults()
 
 
-def write_cache(cache_file, cache_data):
-	#Does a cPickle dump
-	if not os_path.isdir(os_path.dirname(cache_file)):
+def write_cache(cache_file, cache_data):  # Does a cPickle dump.
+	if not isdir(dirname(cache_file)):
 		try:
-			mkdir(os_path.dirname(cache_file))
+			mkdir(dirname(cache_file))
 		except OSError:
-			print(os_path.dirname(cache_file), 'is a file')
-	fd = open(cache_file, 'wb')
+			print("%s is a file" % dirname(cache_file))
+	fd = open(cache_file, "wb")
 	dump(cache_data, fd, -1)
 	fd.close()
 
 
-def valid_cache(cache_file, cache_ttl):
-	#See if the cache file exists and is still living
+def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is still living.
 	try:
 		mtime = stat(cache_file)[ST_MTIME]
-	except:
+	except OSError:
 		return 0
 	curr_time = time()
 	if (curr_time - mtime) > cache_ttl:
@@ -130,9 +105,8 @@ def valid_cache(cache_file, cache_ttl):
 		return 1
 
 
-def load_cache(cache_file):
-	#Does a cPickle load
-	fd = open(cache_file, 'rb')
+def load_cache(cache_file):  # Does a cPickle load.
+	fd = open(cache_file, "rb")
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
@@ -143,284 +117,14 @@ def Check_Softcam_Emu():
 	if fileExists("/etc/enigma2/noemu"):
 		found = False
 	else:
-		for x in os.listdir('/etc'):
-			if x.find('.emu') > -1:
+		for x in listdir("/etc"):
+			if x.find(".emu") > -1:
 				found = True
 				break
 	return found
 
 
-class UpdatePluginMenu(Screen):
-	skin = """
-		<screen name="UpdatePluginMenu" position="center,center" size="610,410" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
-			<widget source="menu" render="Listbox" position="15,60" size="330,290" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (2, 2), size = (330, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
-						],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 25
-					}
-				</convert>
-			</widget>
-			<widget source="menu" render="Listbox" position="360,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
-						],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 300
-					}
-				</convert>
-			</widget>
-			<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>"""
-
-	def __init__(self, session, args=0):
-		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Software management"))
-		self.menu = args
-		self.list = []
-		self.oktext = _("\nPress OK on your remote control to continue.")
-		self.menutext = _("Press MENU on your remote control for additional options.")
-		self.infotext = _("Press INFO on your remote control for additional information.")
-		self.text = ""
-		if self.menu == 0:
-			print("building menu entries")
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("software-update", _("Software Update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if BoxInfo.getItem("canMultiBoot"):
-				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multi boot device.") + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
-				if "SoftwareSupported" in p.__call__:
-					callFnc = p.__call__["SoftwareSupported"](None)
-					if callFnc is not None:
-						if "menuEntryName" in p.__call__:
-							menuEntryName = p.__call__["menuEntryName"](None)
-						else:
-							menuEntryName = _('Extended Software')
-						if "menuEntryDescription" in p.__call__:
-							menuEntryDescription = p.__call__["menuEntryDescription"](None)
-						else:
-							menuEntryDescription = _('Extended Software Plugin')
-						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings.") + self.oktext, None))
-		elif self.menu == 1:
-			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date.") + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Show default backup files"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_addon", _("Select additional backup files"), _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_exclude", _("Select excluded backup files"), _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"), _("\nView, install and remove available or installed packages.") + self.oktext, None))
-			self.list.append(("ipkg-source", _("Select upgrade source"), _("\nEdit the upgrade source address.") + self.oktext, None))
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
-				if "AdvancedSoftwareSupported" in p.__call__:
-					callFnc = p.__call__["AdvancedSoftwareSupported"](None)
-					if callFnc is not None:
-						if "menuEntryName" in p.__call__:
-							menuEntryName = p.__call__["menuEntryName"](None)
-						else:
-							menuEntryName = _('Advanced software')
-						if "menuEntryDescription" in p.__call__:
-							menuEntryDescription = p.__call__["menuEntryDescription"](None)
-						else:
-							menuEntryDescription = _('Advanced software plugin')
-						self.list.append(('advanced-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
-
-		self["menu"] = List(self.list)
-		self["key_red"] = StaticText(_("Close"))
-		self["status"] = StaticText(self.menutext)
-
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "MenuActions", "NumberActions"],
-		{
-			"ok": self.go,
-			"back": self.close,
-			"red": self.close,
-			"menu": self.handleMenu,
-			"info": self.handleInfo,
-			"1": self.go,
-			"2": self.go,
-			"3": self.go,
-			"4": self.go,
-			"5": self.go,
-			"6": self.go,
-			"7": self.go,
-			"8": self.go,
-			"9": self.go,
-		}, -1)
-		self.onLayoutFinish.append(self.layoutFinished)
-		self.backuppath = getBackupPath()
-		if not os.path.isdir(self.backuppath):
-			self.backuppath = getOldBackupPath()
-		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
-		self.onShown.append(self.setWindowTitle)
-		self.onChangedEntry = []
-		self["menu"].onSelectionChanged.append(self.selectionChanged)
-
-	def createSummary(self):
-		from Screens.PluginBrowser import PluginBrowserSummary
-		return PluginBrowserSummary
-
-	def selectionChanged(self):
-		item = self["menu"].getCurrent()
-		if item:
-			name = item[1]
-			desc = item[2]
-		else:
-			name = "-"
-			desc = ""
-		for cb in self.onChangedEntry:
-			cb(name, desc)
-
-	def layoutFinished(self):
-		idx = 0
-		self["menu"].index = idx
-
-	def setWindowTitle(self):
-		self.setTitle(_("Software management"))
-
-	def cleanup(self):
-		iSoftwareTools.cleanupSoftwareTools()
-
-	def getUpdateInfos(self):
-		if iSoftwareTools.NetworkConnectionAvailable is True:
-			if iSoftwareTools.available_updates != 0:
-				self.text = _("There are at least %s updates available.") % (str(iSoftwareTools.available_updates))
-			else:
-				self.text = "" #_("There are no updates available.")
-			if iSoftwareTools.list_updating == True:
-				self.text += "\n" + _("A search for available updates is currently in progress.")
-		else:
-			self.text = _("No network connection available.")
-		self["status"].setText(self.text)
-
-	def handleMenu(self):
-		self.session.open(SoftwareManagerSetup)
-
-	def handleInfo(self):
-		current = self["menu"].getCurrent()
-		if current:
-			currentEntry = current[0]
-			if currentEntry in ("system-backup", "backupfiles", "backupfiles_exclude", "backupfiles_addon"):
-				self.session.open(SoftwareManagerInfo, mode="backupinfo", submode=currentEntry)
-
-	def go(self, num=None):
-		if num is not None:
-			num -= 1
-			if not num < self["menu"].count():
-				return
-			self["menu"].setIndex(num)
-		current = self["menu"].getCurrent()
-		if current:
-			currentEntry = current[0]
-			if self.menu == 0:
-				if (currentEntry == "software-update"):
-					self.session.open(SoftwareUpdate)
-				elif (currentEntry == "software-restore"):
-					self.session.open(ImageWizard)
-				elif (currentEntry == "install-extensions"):
-					self.session.open(PluginManager)
-				elif (currentEntry == "flash-online"):
-					self.session.open(FlashManager)
-				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootManager)
-				elif (currentEntry == "backup-image"):
-					if DFLASH == True:
-						self.session.open(dFlash)
-					elif DBACKUP == True:
-						self.session.open(dBackup)
-					else:
-						self.session.open(ImageBackup)
-				elif (currentEntry == "system-backup"):
-					self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-				elif (currentEntry == "system-restore"):
-					if os_path.exists(self.fullbackupfilename):
-						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
-					else:
-						self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-				elif (currentEntry == "ipkg-install"):
-					try:
-						from Plugins.Extensions.MediaScanner.plugin import main
-						main(self.session)
-					except:
-						self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
-				elif (currentEntry == "default-plugin"):
-					self.extended = current[3]
-					self.extended(self.session, None)
-				elif (currentEntry == "advanced"):
-					self.session.open(UpdatePluginMenu, 1)
-			elif self.menu == 1:
-				if (currentEntry == "ipkg-manager"):
-					self.session.open(PacketManager)
-				elif (currentEntry == "backuplocation"):
-					parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-					for x in parts:
-						if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
-							parts.remove(x)
-					if len(parts):
-						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
-				elif (currentEntry == "backupfiles"):
-					self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
-				elif (currentEntry == "backupfiles_addon"):
-					self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
-				elif (currentEntry == "backupfiles_exclude"):
-					self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
-				elif (currentEntry == "advancedrestore"):
-					self.session.open(RestoreMenu)
-				elif (currentEntry == "ipkg-source"):
-					self.session.open(IPKGMenu)
-				elif (currentEntry == "advanced-plugin"):
-					self.extended = current[3]
-					self.extended(self.session, None)
-
-	def backuplocation_choosen(self, option):
-		oldpath = config.plugins.configurationbackup.backuplocation.value
-		if option is not None:
-			config.plugins.configurationbackup.backuplocation.setValue(str(option[1]))
-		config.plugins.configurationbackup.backuplocation.save()
-		config.plugins.configurationbackup.save()
-		config.save()
-		newpath = config.plugins.configurationbackup.backuplocation.value
-		if newpath != oldpath:
-			self.createBackupfolders()
-
-	def createBackupfolders(self):
-		print("Creating backup folder if not already there...")
-		self.backuppath = getBackupPath()
-		try:
-			if (os_path.exists(self.backuppath) == False):
-				makedirs(self.backuppath)
-		except OSError:
-			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
-
-	def backupDone(self, retval=None):
-		if retval is True:
-			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
-		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
-
-	def startRestore(self, ret=False):
-		if (ret == True):
-			self.exe = True
-			self.session.open(RestoreScreen, runRestore=True)
-
-
 class SoftwareManagerSetup(Screen, ConfigListScreen):
-
 	skin = """
 		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -438,9 +142,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self.onChangedEntry = []
-		self.setTitle(_("Software manager setup"))
+		self.setTitle(_("Software Manager Settings"))
 		self.overwriteConfigfilesEntry = None
 		self.overwriteSettingsfilesEntry = None
 		self.overwriteDriversfilesEntry = None
@@ -450,28 +153,23 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteSpinnerfilesEntry = None
 		self.restoremodeEntry = None
 		self.updatetypeEntry = None
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.apply,
-				"menu": self.closeRecursive,
-			}, -2)
-
+		self.setupList = []
+		ConfigListScreen.__init__(self, self.setupList, session=session, on_change=self.changedEntry)
+		self["actions"] = HelpableActionMap(self, ["SetupActions", "MenuActions"], {
+			"cancel": self.keyCancel,
+			"save": self.apply,
+			"menu": self.closeRecursive,
+		}, prio=-2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
-
 		Load_defaults()
 		self.createSetup()
 
 	def createSetup(self):
-		self.list = []
+		self.setupList = []
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
@@ -481,20 +179,20 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.restoremodeEntry = getConfigListEntry(_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
 		self.updatetypeEntry = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if boxtype.startswith('et'):
-			self.list.append(self.updatetypeEntry)
-		self.list.append(self.overwriteConfigfilesEntry)
-		self.list.append(self.overwriteSettingsfilesEntry)
-		self.list.append(self.overwriteDriversfilesEntry)
+		if boxType.startswith("et"):
+			self.setupList.append(self.updatetypeEntry)
+		self.setupList.append(self.overwriteConfigfilesEntry)
+		self.setupList.append(self.overwriteSettingsfilesEntry)
+		self.setupList.append(self.overwriteDriversfilesEntry)
 		if Check_Softcam_Emu():
-			self.list.append(self.overwriteEmusfilesEntry)
-		self.list.append(self.overwritePiconsfilesEntry)
-		self.list.append(self.overwriteBootlogofilesEntry)
-		self.list.append(self.overwriteSpinnerfilesEntry)
-		self.list.append(self.restoremodeEntry)
-		self["config"].list = self.list
+			self.setupList.append(self.overwriteEmusfilesEntry)
+		self.setupList.append(self.overwritePiconsfilesEntry)
+		self.setupList.append(self.overwriteBootlogofilesEntry)
+		self.setupList.append(self.overwriteSpinnerfilesEntry)
+		self.setupList.append(self.restoremodeEntry)
+		self["config"].list = self.setupList
 		self["config"].l.setSeperation(400)
-		self["config"].l.setList(self.list)
+		self["config"].l.setList(self.setupList)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
@@ -553,7 +251,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		else:
 			self.close()
 
-	# for summary:
+	# For summary.
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
@@ -599,32 +297,27 @@ class SoftwareManagerInfo(Screen):
 		Screen.__init__(self, session)
 		self.mode = mode
 		self.submode = submode
-
-		self["actions"] = ActionMap(["ShortcutActions", "WizardActions"],
-			{
-				"back": self.close,
-				"red": self.close,
-			}, -2)
-
-		self.list = []
-		self["list"] = List(self.list)
-
+		self["actions"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
+			"back": self.close,
+			"red": self.close,
+		}, prio=-2)
+		self.infoList = []
+		self["list"] = List(self.infoList)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
-
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("Softwaremanager information"))
+		self.setTitle(_("Software Manager Information"))
 		if self.mode is not None:
 			self.showInfos()
 
 	def showInfos(self):
 		if self.mode == "backupinfo":
-			self.list = []
+			self.infoList = []
 			if self.submode == "backupfiles_exclude":
 				backupfiles = config.plugins.configurationbackup.backupdirs_exclude.value
 			elif self.submode == "backupfiles_addon":
@@ -632,8 +325,8 @@ class SoftwareManagerInfo(Screen):
 			else:
 				backupfiles = config.plugins.configurationbackup.backupdirs_default.value
 			for entry in backupfiles:
-				self.list.append((entry,))
-			self['list'].setList(self.list)
+				self.infoList.append((entry,))
+			self["list"].setList(self.infoList)
 
 
 class PluginManager(Screen, PackageInfoHandler):
@@ -673,10 +366,8 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Extensions management"))
-			
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions"],
-		{
+		self.setTitle(_("Extensions Management"))
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions"], {
 			"ok": self.handleCurrent,
 			"back": self.exit,
 			"red": self.exit,
@@ -684,44 +375,36 @@ class PluginManager(Screen, PackageInfoHandler):
 			"yellow": self.handleSelected,
 			"showEventInfo": self.handleSelected,
 			"displayHelp": self.handleHelp,
-		}, -1)
-
-		self.list = []
+		}, prio=-1)
+		self.pluginList = []
 		self.statuslist = []
 		self.selectedFiles = []
 		self.categoryList = []
 		self.packetlist = []
-		self["list"] = List(self.list)
+		self["list"] = List(self.pluginList)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
 		self["status"] = StaticText("")
-
 		self.cmdList = []
-		self.oktext = _("\nAfter pressing OK, please wait!")
+		self.okText = _("After pressing OK, please wait!")
 		if not self.selectionChanged in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
-
 		self.currList = ""
 		self.currentSelectedTag = None
 		self.currentSelectedIndex = None
 		self.currentSelectedPackage = None
 		self.saved_currentSelectedPackage = None
 		self.restartRequired = False
-
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.getUpdateInfos)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Extensions management"))
 
 	def exit(self):
 		if self.currList == "packages":
 			self.currList = "category"
 			self.currentSelectedTag = None
 			self["list"].style = "category"
-			self['list'].setList(self.categoryList)
+			self["list"].setList(self.categoryList)
 			self["list"].setIndex(self.currentSelectedIndex)
 			self["list"].updateList(self.categoryList)
 			self.selectionChanged()
@@ -745,46 +428,46 @@ class PluginManager(Screen, PackageInfoHandler):
 			self["key_blue"].setText("")
 			self["key_yellow"].setText("")
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-			if status == 'update':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+			if status == "update":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Updating software catalog"), '', _("Searching for available updates. Please wait..."), '', '', statuspng, divpng, None, ''))
-			elif status == 'sync':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+				self.statuslist.append((_("Updating software catalog"), "", _("Searching for available updates. Please wait..."), "", "", statuspng, divpng, None, ""))
+			elif status == "sync":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), '', _("Searching for new installed or removed packages. Please wait..."), '', '', statuspng, divpng, None, ''))
-			elif status == 'error':
+				self.statuslist.append((_("Package list update"), "", _("Searching for new installed or removed packages. Please wait..."), "", "", statuspng, divpng, None, ""))
+			elif status == "error":
 				self["key_green"].setText(_("Continue"))
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the packetlist. Please try again."), '', '', statuspng, divpng, None, ''))
+				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packetlist. Please try again."), "", "", statuspng, divpng, None, ""))
 			self["list"].style = "default"
-			self['list'].setList(self.statuslist)
+			self["list"].setList(self.statuslist)
 
 	def getUpdateInfos(self):
 		if (iSoftwareTools.lastDownloadDate is not None and iSoftwareTools.NetworkConnectionAvailable is False):
 			self.rebuildList()
 		else:
-			self.setState('update')
+			self.setState("update")
 			iSoftwareTools.startSoftwareTools(self.getUpdateInfosCB)
 
 	def getUpdateInfosCB(self, retval=None):
 		if retval is not None:
 			if retval is True:
 				if iSoftwareTools.available_updates != 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + " " + _("updates available."))
 				else:
 					self["status"].setText(_("There are no updates available."))
 				self.rebuildList()
 			elif retval is False:
 				if iSoftwareTools.lastDownloadDate is None:
-					self.setState('error')
+					self.setState("error")
 					if iSoftwareTools.NetworkConnectionAvailable:
 						self["status"].setText(_("Updatefeed not available."))
 					else:
@@ -792,7 +475,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				else:
 					iSoftwareTools.lastDownloadDate = time()
 					iSoftwareTools.list_updating = True
-					self.setState('update')
+					self.setState("update")
 					iSoftwareTools.getUpdates(self.getUpdateInfosCB)
 
 	def rebuildList(self, retval=None):
@@ -807,24 +490,24 @@ class PluginManager(Screen, PackageInfoHandler):
 		if current:
 			if self.currList == "packages":
 				self["key_red"].setText(_("Back"))
-				if current[4] == 'installed':
+				if current[4] == "installed":
 					self["key_green"].setText(_("Uninstall"))
-				elif current[4] == 'installable':
+				elif current[4] == "installable":
 					self["key_green"].setText(_("Install"))
 					if iSoftwareTools.NetworkConnectionAvailable is False:
 						self["key_green"].setText("")
-				elif current[4] == 'remove':
+				elif current[4] == "remove":
 					self["key_green"].setText(_("Undo uninstall"))
-				elif current[4] == 'install':
+				elif current[4] == "install":
 					self["key_green"].setText(_("Undo install"))
 					if iSoftwareTools.NetworkConnectionAvailable is False:
 						self["key_green"].setText("")
 				self["key_yellow"].setText(_("View details"))
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates != 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + " " + _("updates available."))
 				elif len(self.selectedFiles) != 0:
-					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
+					self["status"].setText(str(len(self.selectedFiles)) + " " + _("packages selected."))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
 			elif self.currList == "category":
@@ -833,10 +516,10 @@ class PluginManager(Screen, PackageInfoHandler):
 				self["key_yellow"].setText("")
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates != 0:
-					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
+					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + " " + _("updates available."))
 					self["key_yellow"].setText(_("Update"))
 				elif len(self.selectedFiles) != 0:
-					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
+					self["status"].setText(str(len(self.selectedFiles)) + " " + _("packages selected."))
 					self["key_yellow"].setText(_("Process"))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
@@ -855,10 +538,10 @@ class PluginManager(Screen, PackageInfoHandler):
 				selectedTag = current[2]
 				self.buildPacketList(selectedTag)
 			elif self.currList == "packages":
-				if current[7] != '':
+				if current[7] != "":
 					idx = self["list"].getIndex()
-					detailsFile = self.list[idx][1]
-					if self.list[idx][7] == True:
+					detailsFile = self.pluginList[idx][1]
+					if self.pluginList[idx][7] == True:
 						for entry in self.selectedFiles:
 							if entry[0] == detailsFile:
 								self.selectedFiles.remove(entry)
@@ -868,38 +551,38 @@ class PluginManager(Screen, PackageInfoHandler):
 							if entry[0] == detailsFile:
 								alreadyinList = True
 						if not alreadyinList:
-							if (iSoftwareTools.NetworkConnectionAvailable is False and current[4] in ('installable', 'install')):
+							if (iSoftwareTools.NetworkConnectionAvailable is False and current[4] in ("installable", "install")):
 								pass
 							else:
 								self.selectedFiles.append((detailsFile, current[4], current[3]))
 								self.currentSelectedPackage = ((detailsFile, current[4], current[3]))
-					if current[4] == 'installed':
-						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'remove', True)
-					elif current[4] == 'installable':
+					if current[4] == "installed":
+						self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "remove", True)
+					elif current[4] == "installable":
 						if iSoftwareTools.NetworkConnectionAvailable:
-							self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'install', True)
-					elif current[4] == 'remove':
-						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installed', False)
-					elif current[4] == 'install':
+							self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "install", True)
+					elif current[4] == "remove":
+						self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installed", False)
+					elif current[4] == "install":
 						if iSoftwareTools.NetworkConnectionAvailable:
-							self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installable', False)
-					self["list"].setList(self.list)
+							self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installable", False)
+					self["list"].setList(self.pluginList)
 					self["list"].setIndex(idx)
-					self["list"].updateList(self.list)
+					self["list"].updateList(self.pluginList)
 					self.selectionChanged()
 			elif self.currList == "status":
 				iSoftwareTools.lastDownloadDate = time()
 				iSoftwareTools.list_updating = True
-				self.setState('update')
+				self.setState("update")
 				iSoftwareTools.getUpdates(self.getUpdateInfosCB)
 
 	def handleSelected(self):
 		current = self["list"].getCurrent()
 		if current:
 			if self.currList == "packages":
-				if current[7] != '':
+				if current[7] != "":
 					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
-					if (os_path.exists(detailsfile) == True):
+					if (exists(detailsfile) == True):
 						self.saved_currentSelectedPackage = self.currentSelectedPackage
 						self.session.openWithCallback(self.detailsClosed, PluginDetails, current)
 					else:
@@ -912,7 +595,7 @@ class PluginManager(Screen, PackageInfoHandler):
 	def detailsClosed(self, result=None):
 		if result is not None:
 			if result is not False:
-				self.setState('sync')
+				self.setState("sync")
 				iSoftwareTools.lastDownloadDate = time()
 				for entry in self.selectedFiles:
 					if entry == self.saved_currentSelectedPackage:
@@ -921,29 +604,29 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected=False):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 		else:
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 		else:
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
 		else:
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
-		if state == 'installed':
+		if state == "installed":
 			return((name, details, description, packagename, state, installedpng, divpng, selected))
-		elif state == 'installable':
+		elif state == "installable":
 			return((name, details, description, packagename, state, installablepng, divpng, selected))
-		elif state == 'remove':
+		elif state == "remove":
 			return((name, details, description, packagename, state, removepng, divpng, selected))
-		elif state == 'install':
+		elif state == "install":
 			return((name, details, description, packagename, state, installpng, divpng, selected))
 
 	def buildPacketList(self, categorytag=None):
@@ -963,7 +646,7 @@ class PluginManager(Screen, PackageInfoHandler):
 								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
 							else:
 								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
-			self.list = []
+			self.packageList = []
 			for x in self.packetlist:
 				status = ""
 				name = x[0].strip()
@@ -978,18 +661,18 @@ class PluginManager(Screen, PackageInfoHandler):
 						status = "remove"
 					else:
 						status = "installed"
-					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
+					self.packageList.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
 				else:
 					if selectState == True:
 						status = "install"
 					else:
 						status = "installable"
-					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
-			if len(self.list):
-				self.list.sort(key=lambda x: x[0])
+					self.packageList.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
+			if len(self.packageList):
+				self.packageList.sort(key=lambda x: x[0])
 			self["list"].style = "default"
-			self['list'].setList(self.list)
-			self["list"].updateList(self.list)
+			self["list"].setList(self.packageList)
+			self["list"].updateList(self.packageList)
 			self.selectionChanged()
 
 	def buildCategoryList(self):
@@ -1006,39 +689,39 @@ class PluginManager(Screen, PackageInfoHandler):
 						self.categoryList.append(self.buildCategoryComponent(foundtag))
 		self.categoryList.sort(key=lambda x: x[0])
 		self["list"].style = "category"
-		self['list'].setList(self.categoryList)
+		self["list"].setList(self.categoryList)
 		self["list"].updateList(self.categoryList)
 		self.selectionChanged()
 
 	def buildCategoryComponent(self, tag=None):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		if tag is not None:
-			if tag == 'System':
+			if tag == "System":
 				return((_("System"), _("View list of available system extensions"), tag, divpng))
-			elif tag == 'Skin':
+			elif tag == "Skin":
 				return((_("Skins"), _("View list of available skins"), tag, divpng))
-			elif tag == 'Recording':
+			elif tag == "Recording":
 				return((_("Recordings"), _("View list of available recording extensions"), tag, divpng))
-			elif tag == 'Network':
+			elif tag == "Network":
 				return((_("Network"), _("View list of available networking extensions"), tag, divpng))
-			elif tag == 'CI':
+			elif tag == "CI":
 				return((_("Common Interface"), _("View list of available CommonInterface extensions"), tag, divpng))
-			elif tag == 'Default':
+			elif tag == "Default":
 				return((_("Default settings"), _("View list of available default settings"), tag, divpng))
-			elif tag == 'SAT':
+			elif tag == "SAT":
 				return((_("Satellite equipment"), _("View list of available Satellite equipment extensions."), tag, divpng))
-			elif tag == 'Software':
+			elif tag == "Software":
 				return((_("Software"), _("View list of available software extensions"), tag, divpng))
-			elif tag == 'Multimedia':
+			elif tag == "Multimedia":
 				return((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
-			elif tag == 'Display':
+			elif tag == "Display":
 				return((_("Display and user interface"), _("View list of available display and userinterface extensions."), tag, divpng))
-			elif tag == 'EPG':
+			elif tag == "EPG":
 				return((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
-			elif tag == 'Communication':
+			elif tag == "Communication":
 				return((_("Communication"), _("View list of available communication extensions."), tag, divpng))
-			else: # dynamically generate non existent tags
-				return((str(tag), _("View list of available ") + str(tag) + ' ' + _("extensions."), tag, divpng))
+			else:  # Dynamically generate non existent tags.
+				return((str(tag), _("View list of available ") + str(tag) + " " + _("extensions."), tag, divpng))
 
 	def prepareInstall(self):
 		self.cmdList = []
@@ -1047,7 +730,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		if self.selectedFiles and len(self.selectedFiles):
 			for plugin in self.selectedFiles:
 				detailsfile = iSoftwareTools.directory[0] + "/" + plugin[0]
-				if (os_path.exists(detailsfile) == True):
+				if (exists(detailsfile) == True):
 					iSoftwareTools.fillPackageDetails(plugin[0])
 					self.package = iSoftwareTools.packageDetails[0]
 					if "attributes" in self.package[0]:
@@ -1056,7 +739,7 @@ class PluginManager(Screen, PackageInfoHandler):
 							self.restartRequired = True
 					if "package" in self.attributes:
 						self.packagefiles = self.attributes["package"]
-					if plugin[1] == 'installed':
+					if plugin[1] == "installed":
 						if self.packagefiles:
 							for package in self.packagefiles[:]:
 								self.cmdList.append((OpkgComponent.CMD_REMOVE, {"package": package["name"]}))
@@ -1069,7 +752,7 @@ class PluginManager(Screen, PackageInfoHandler):
 						else:
 							self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": plugin[2]}))
 				else:
-					if plugin[1] == 'installed':
+					if plugin[1] == "installed":
 						self.cmdList.append((OpkgComponent.CMD_REMOVE, {"package": plugin[2]}))
 					else:
 						self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": plugin[2]}))
@@ -1131,75 +814,65 @@ class PluginManagerInfo(Screen):
 
 	def __init__(self, session, cmdlist=None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Plugin manager activity information"))
+		self.setTitle(_("Plugin Manager Activity Information"))
 		self.cmdlist = cmdlist
-
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
-		{
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
 			"ok": self.process_all,
 			"back": self.exit,
 			"red": self.exit,
 			"green": self.process_extensions,
-		}, -1)
-
-		self.list = []
-		self["list"] = List(self.list)
+		}, prio=-1)
+		self.infoList = []
+		self["list"] = List(self.infoList)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Only extensions."))
 		self["status"] = StaticText(_("Following tasks will be done after you press OK!"))
-
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Plugin manager activity information"))
-
 	def rebuildList(self):
-		self.list = []
+		self.infoList = []
 		if self.cmdlist is not None:
 			for entry in self.cmdlist:
 				action = ""
 				info = ""
 				cmd = entry[0]
 				if cmd == 0:
-					action = 'install'
+					action = "install"
 				elif cmd == 2:
-					action = 'remove'
+					action = "remove"
 				else:
-					action = 'upgrade'
+					action = "upgrade"
 				args = entry[1]
 				if cmd == 0:
-					info = args['package']
+					info = args["package"]
 				elif cmd == 2:
-					info = args['package']
+					info = args["package"]
 				else:
-					info = _("%s %s software because updates are available.") % (getMachineBrand(), getMachineName())
-
-				self.list.append(self.buildEntryComponent(action, info))
-			self['list'].setList(self.list)
-			self['list'].updateList(self.list)
+					info = _("%s %s software because updates are available.") % (displayBrand, displayModel)
+				self.infoList.append(self.buildEntryComponent(action, info))
+			self["list"].setList(self.infoList)
+			self["list"].updateList(self.infoList)
 
 	def buildEntryComponent(self, action, info):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
 			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 		else:
 			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
 		else:
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 		else:
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-
-		if action == 'install':
-			return((_('Installing'), info, installpng, divpng))
-		elif action == 'remove':
-			return((_('Removing'), info, removepng, divpng))
+		if action == "install":
+			return((_("Installing"), info, installpng, divpng))
+		elif action == "remove":
+			return((_("Removing"), info, removepng, divpng))
 		else:
-			return((_('Upgrading'), info, upgradepng, divpng))
+			return((_("Upgrading"), info, upgradepng, divpng))
 
 	def exit(self):
 		self.close()
@@ -1208,13 +881,13 @@ class PluginManagerInfo(Screen):
 		self.close((True, None))
 
 	def process_extensions(self):
-		self.list = []
+		self.infoList = []
 		if self.cmdlist is not None:
 			for entry in self.cmdlist:
 				cmd = entry[0]
 				if entry[0] in (0, 2):
-					self.list.append((entry))
-		self.close((False, self.list))
+					self.infoList.append((entry))
+		self.close((False, self.infoList))
 
 
 class PluginManagerHelp(Screen):
@@ -1241,61 +914,52 @@ class PluginManagerHelp(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Plugin manager help"))
-
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
-		{
+		self.setTitle(_("Plugin Manager Help"))
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
 			"back": self.exit,
 			"red": self.exit,
-		}, -1)
-
-		self.list = []
-		self["list"] = List(self.list)
+		}, prio=-1)
+		self.helpList = []
+		self["list"] = List(self.helpList)
 		self["key_red"] = StaticText(_("Close"))
 		self["status"] = StaticText(_("A small overview of the available icon states and actions."))
-
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Plugin manager help"))
-
 	def rebuildList(self):
-		self.list = []
-		self.list.append(self.buildEntryComponent('install'))
-		self.list.append(self.buildEntryComponent('installable'))
-		self.list.append(self.buildEntryComponent('installed'))
-		self.list.append(self.buildEntryComponent('remove'))
-		self['list'].setList(self.list)
-		self['list'].updateList(self.list)
+		self.helpList = []
+		self.helpList.append(self.buildEntryComponent("install"))
+		self.helpList.append(self.buildEntryComponent("installable"))
+		self.helpList.append(self.buildEntryComponent("installed"))
+		self.helpList.append(self.buildEntryComponent("remove"))
+		self["list"].setList(self.helpList)
+		self["list"].updateList(self.helpList)
 
 	def buildEntryComponent(self, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 		else:
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 		else:
 			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
+		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
 		else:
 			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
-
-		if state == 'installed':
-			return((_('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng))
-		elif state == 'installable':
-			return((_('This plugin is not installed.'), _('You can install this plugin.'), installablepng, divpng))
-		elif state == 'install':
-			return((_('This plugin will be installed.'), _('You can cancel the installation.'), installpng, divpng))
-		elif state == 'remove':
-			return((_('This plugin will be removed.'), _('You can cancel the removal.'), removepng, divpng))
+		if state == "installed":
+			return((_("This plugin is installed."), _("You can remove this plugin."), installedpng, divpng))
+		elif state == "installable":
+			return((_("This plugin is not installed."), _("You can install this plugin."), installablepng, divpng))
+		elif state == "install":
+			return((_("This plugin will be installed."), _("You can cancel the installation."), installpng, divpng))
+		elif state == "remove":
+			return((_("This plugin will be removed."), _("You can cancel the removal."), removepng, divpng))
 
 	def exit(self):
 		self.close()
@@ -1317,7 +981,6 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def __init__(self, session, packagedata=None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Plugin details"))
 		self.language = international.getLanguage()
 		self.attributes = None
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False)
@@ -1329,11 +992,11 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.statuspicinstance = packagedata[5]
 			self.divpicinstance = packagedata[6]
 			self.fillPackageDetails(self.details)
-
+			self.setTitle(_("Plugin Details: %s") % self.pluginname)
+		else:
+			self.setTitle(_("Plugin Details"))
 		self.thumbnail = ""
-
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
-		{
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
 			"back": self.exit,
 			"red": self.exit,
 			"green": self.go,
@@ -1341,8 +1004,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			"down": self.pageDown,
 			"left": self.pageUp,
 			"right": self.pageDown,
-		}, -1)
-
+		}, prio=-1)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText("")
 		self["author"] = StaticText()
@@ -1350,24 +1012,18 @@ class PluginDetails(Screen, PackageInfoHandler):
 		self["divpic"] = Pixmap()
 		self["screenshot"] = Pixmap()
 		self["detailtext"] = ScrollLabel()
-
 		self["statuspic"].hide()
 		self["screenshot"].hide()
 		self["divpic"].hide()
-
 		self.package = self.packageDetails[0]
 		if "attributes" in self.package[0]:
 			self.attributes = self.package[0]["attributes"]
 		self.restartRequired = False
 		self.cmdList = []
-		self.oktext = _("\nAfter pressing OK, please wait!")
+		self.okText = _("After pressing OK, please wait!")
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.paintScreenshotPixmapCB)
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.setInfos)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Details for plugin: ") + self.pluginname)
 
 	def exit(self):
 		self.close(False)
@@ -1389,20 +1045,17 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.pluginname = self.attributes["name"]
 		else:
 			self.pluginname = _("unknown")
-
 		if "author" in self.attributes:
 			self.author = self.attributes["author"]
 		else:
 			self.author = _("unknown")
-
 		if "description" in self.attributes:
 			self.description = _(self.attributes["description"].replace("\\n", "\n"))
 		else:
 			self.description = _("No description available.")
-
 		self["author"].setText(_("Author: ") + self.author)
 		self["detailtext"].setText(_(self.description))
-		if self.pluginstate in ('installable', 'install'):
+		if self.pluginstate in ("installable", "install"):
 			if iSoftwareTools.NetworkConnectionAvailable:
 				self["key_green"].setText(_("Install"))
 			else:
@@ -1417,12 +1070,12 @@ class PluginDetails(Screen, PackageInfoHandler):
 			if self.language == "de":
 				if thumbnailUrl[-7:] == "_en.jpg":
 					thumbnailUrl = thumbnailUrl[:-7] + "_de.jpg"
-
 		if thumbnailUrl is not None:
-			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
-			print("[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail)
+			self.thumbnail = "/tmp/" + thumbnailUrl.split("/")[-1]
+			print("[PluginDetails] downloading screenshot %s to %s" % (thumbnailUrl, self.thumbnail))
 			if iSoftwareTools.NetworkConnectionAvailable:
-				client.downloadPage(six.ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+				# FIXME remove twisted
+				client.downloadPage(ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot=True)
 		else:
@@ -1432,15 +1085,13 @@ class PluginDetails(Screen, PackageInfoHandler):
 		if not noScreenshot:
 			filename = self.thumbnail
 		else:
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "noprev.png")):
+			if isfile(resolveFilename(SCOPE_GUISKIN, "noprev.png")):
 				filename = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "noprev.png"))
 			else:
 				filename = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/noprev.png"))
-
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
 		self.picload.startDecode(filename)
-
 		if self.statuspicinstance != None:
 			self["statuspic"].instance.setPixmap(self.statuspicinstance.__deref__())
 			self["statuspic"].show()
@@ -1462,19 +1113,19 @@ class PluginDetails(Screen, PackageInfoHandler):
 		if "needsRestart" in self.attributes:
 			self.restartRequired = True
 		self.cmdList = []
-		if self.pluginstate in ('installed', 'remove'):
+		if self.pluginstate in ("installed", "remove"):
 			if self.packagefiles:
 				for package in self.packagefiles[:]:
 					self.cmdList.append((OpkgComponent.CMD_REMOVE, {"package": package["name"]}))
 					if len(self.cmdList):
-						self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + self.pluginname + "\n" + self.oktext)
+						self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + self.pluginname + "\n" + self.okText)
 		else:
 			if iSoftwareTools.NetworkConnectionAvailable:
 				if self.packagefiles:
 					for package in self.packagefiles[:]:
 						self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": package["name"]}))
 						if len(self.cmdList):
-							self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + self.pluginname + "\n" + self.oktext)
+							self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + self.pluginname + "\n" + self.okText)
 
 	def runUpgrade(self, result):
 		if result:
@@ -1504,7 +1155,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def fetchFailed(self, string):
 		self.setThumbnail(noScreenshot=True)
-		print("[PluginDetails] fetch failed " + string.getErrorMessage())
+		print("[PluginDetails] fetch failed %s " % string.getErrorMessage())
 
 
 class UpdatePlugin(Screen):
@@ -1518,10 +1169,8 @@ class UpdatePlugin(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Software Update"))
-
+		self.setTitle(_("Software Update"))
 		self.sliderPackages = {"dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3}
-
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -1530,8 +1179,7 @@ class UpdatePlugin(Screen):
 		self["status"] = self.status
 		self.package = StaticText(_("Package list update"))
 		self["package"] = self.package
-		self.oktext = _("Press OK on your remote control to continue.")
-
+		self.okText = _("Press OK on your remote control to continue.")
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
@@ -1539,37 +1187,30 @@ class UpdatePlugin(Screen):
 		self.TrafficCheck = False
 		self.TrafficResult = False
 		self.CheckDateDone = False
-
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
-
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-
 		self.updating = False
-
-		self["actions"] = ActionMap(["WizardActions"],
-		{
+		self["actions"] = HelpableActionMap(self, ["WizardActions"], {
 			"ok": self.exit,
 			"back": self.exit
-		}, -1)
-
+		}, prio=-1)
 		self.activityTimer.start(100, False)
 
-	def CheckDate(self):
-		# Check if image is not to old for update (max 30days)
+	def CheckDate(self):  # Check if image is not to old for update (max 30days).
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate + timedelta(days=30)
 		message = _("Your image is out of date!\n\n"
-				"After such a long time, there is a risk that your %s %s will not\n"
-				"boot after online-update, or will show disfunction in running Image.\n\n"
-				"A new flash will increase the stability\n\n"
-				"An online update is done at your own risk !!\n\n\n"
-				"Do you still want to update?") % (getMachineBrand(), getMachineName())
-
+			"After such a long time, there is a risk that your %s %s will not\n"
+			"boot after online-update, or will show disfunction in running Image.\n\n"
+			"A new flash will increase the stability\n\n"
+			"An online update is done at your own risk !!\n\n\n"
+			"Do you still want to update?"
+		) % (displayBrand, displayModel)
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
@@ -1589,41 +1230,34 @@ class UpdatePlugin(Screen):
 			return
 
 	def checkTrafficLight(self):
-		from six.moves.urllib.request import urlopen
-		import socket
-		currentTimeoutDefault = socket.getdefaulttimeout()
-		socket.setdefaulttimeout(3)
+		currentTimeoutDefault = getdefaulttimeout()
+		setdefaulttimeout(3)
 		message = ""
 		default = True
 		doUpdate = True
-		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
-		# run in parallel to the package update.
+		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can run in parallel to the package update.
 		try:
 			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
 			d = urlopen(urlopenATV)
-			tmpStatus = d.read()
-			tmpStatus = six.ensure_str(tmpStatus)
-			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
-				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see https://www.opena.tv") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+			tmpStatus = d.read().decode("UTF-8")
+			if (exists("/etc/.beta") and "rot.png" in tmpStatus) or "gelb.png" in tmpStatus:
+				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n" + _("For more information see https://www.opena.tv")  # + "\n\n" + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				default = False
-			elif 'rot.png' in tmpStatus:
-				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see https://www.opena.tv")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+			elif "rot.png" in tmpStatus:
+				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n" + _("For more information see https://www.opena.tv")  # + "\n\n" + _("Last Status Date") + ": " + statusDate
 				default = False
 				doUpdate = False
 		except:
 			message = _("The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason") + "\n"
 			default = False
-		socket.setdefaulttimeout(currentTimeoutDefault)
-
+		setdefaulttimeout(currentTimeoutDefault)
 		if default:
-			self.runUpgrade(True)  # We'll ask later
+			self.runUpgrade(True)  # We'll ask later.
 		else:
-			if doUpdate:
-				# Ask for Update,
+			if doUpdate:  # Ask for Update,
 				message += _("Do you want to update your box?") + "\n" + _("After pressing OK, please wait!")
 				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default=default)
-			else:
-				# Don't Update RED LIGHT !!
+			else:  # Don't Update RED LIGHT!
 				self.session.open(MessageBox, message, MessageBox.TYPE_ERROR, timeout=20)
 				self.runUpgrade(False)
 
@@ -1696,17 +1330,17 @@ class UpdatePlugin(Screen):
 					self.checkTrafficLight()
 					return
 				if self.total_packages and self.TrafficCheck and self.TrafficResult:
-					#message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					# message = _("Do you want to update your %s %s?") % (displayBrand, displayModel) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
 					try:
 						if config.plugins.softwaremanager.updatetype.value == "cold":
 							self.startActualUpgrade("cold")
-						#	choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
+							# choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 						else:
 							self.startActualUpgrade("hot")
 					except:
 						self.startActualUpgrade("hot")
-					#	choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
-					#self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+						# choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
+					# self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
@@ -1714,18 +1348,16 @@ class UpdatePlugin(Screen):
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
 				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
-				self.status.setText(self.oktext)
+				self.status.setText(self.okText)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName())
+				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (displayBrand, displayModel)
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your %s %s isn't connected to the internet properly. Please check it and try again.") % (getMachineBrand(), getMachineName())
+					error = _("Your %s %s isn't connected to the Internet properly. Please check it and try again.") % (displayBrand, displayModel)
 				self.status.setText(_("Error") + " - " + error)
-		#print event, "-", param
-		pass
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -1737,20 +1369,19 @@ class UpdatePlugin(Screen):
 		elif answer[1] == "show":
 			self.session.openWithCallback(self.opkgCallback(OpkgComponent.EVENT_DONE, None), ShowUpdatePackages)
 		else:
-			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={'test_only': False})
+			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"test_only": False})
 
 	def modificationCallback(self, res):
 		self.opkg.write(res and "N" or "Y")
 
 	def exit(self):
 		if not self.opkg.isRunning():
-			if self.packages != 0 and self.error == 0:
-				# Check and remove previously removed/deleted languages get re-installed on updating enigma2.
+			if self.packages != 0 and self.error == 0:  # Check and remove previously removed/deleted languages get re-installed on updating enigma2.
 				if fileExists("/etc/enigma2/.removelang"):
 					packages = international.getPurgablePackages(config.osd.language.value)
 					if packages:
 						international.deleteLanguagePackages(packages)
-					os_system("touch /etc/enigma2/.removelang")
+					system("touch /etc/enigma2/.removelang")
 				self.restoreMetrixHD()
 			else:
 				self.close()
@@ -1766,9 +1397,9 @@ class UpdatePlugin(Screen):
 
 	def restoreMetrixHD(self):
 		try:
-			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not os.path.exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
+			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not isfile("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
 				self.session.openWithCallback(self.restoreMetrixHDCallback, RestoreMyMetrixHD)
-			elif config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and config.plugins.MyMetrixLiteOther.EHDenabled.value != '0':
+			elif config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and config.plugins.MyMetrixLiteOther.EHDenabled.value != "0":
 				from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
 				ActivateSkinSettings().RefreshIcons()
 				self.restoreMetrixHDCallback()
@@ -1778,7 +1409,7 @@ class UpdatePlugin(Screen):
 			self.restoreMetrixHDCallback()
 
 	def restoreMetrixHDCallback(self, ret=None):
-		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
+		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (displayBrand, displayModel))
 
 
 class IPKGMenu(Screen):
@@ -1793,48 +1424,34 @@ class IPKGMenu(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Select upgrade source to edit."))
-
+		self.setTitle(_("Select Upgrade Source To Edit"))
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
-
 		self.sel = []
 		self.val = []
 		self.entry = False
 		self.exe = False
-
 		self.path = ""
-
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
+		self["actions"] = HelpableActionMap(self, ["SetupActions"], {
 			"ok": self.KeyOk,
 			"cancel": self.keyCancel
-		}, -1)
-
-		self["shortcuts"] = ActionMap(["ShortcutActions"],
-		{
+		}, prio=-1)
+		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions"], {
 			"red": self.keyCancel,
 			"green": self.KeyOk,
 		})
 		self["filelist"] = MenuList([])
 		self.fill_list()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setWindowTitle()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Select upgrade source to edit."))
 
 	def fill_list(self):
 		flist = []
-		self.path = '/etc/opkg/'
-		if (os_path.exists(self.path) == False):
+		self.path = "/etc/opkg/"
+		if (exists(self.path) == False):
 			self.entry = False
 			return
 		for file in listdir(self.path):
 			if file.endswith(".conf"):
-				if file not in ('arch.conf', 'opkg.conf'):
+				if file not in ("arch.conf", "opkg.conf"):
 					flist.append((file))
 					self.entry = True
 		self["filelist"].l.setList(flist)
@@ -1864,32 +1481,28 @@ class IPKGSource(Screen):
 
 	def __init__(self, session, configfile=None):
 		Screen.__init__(self, session)
+		self.setTitle(_("Edit Upgrade Source URL"))
 		self.configfile = configfile
 		text = ""
 		if self.configfile:
 			try:
-				fp = open(configfile, 'r')
+				fp = open(configfile, "r")
 				sources = fp.readlines()
 				if sources:
 					text = sources[0]
 				fp.close()
 			except OSError:
 				pass
-
 		desk = getDesktop(0)
 		x = int(desk.size().width())
 		y = int(desk.size().height())
-
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-
 		if (y >= 720):
 			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width=55, type=Input.TEXT)
-
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions", "ShortcutActions"],
-		{
+		self["actions"] = HelpableNumberActionMap(self, ["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions", "ShortcutActions"], {
 			"ok": self.go,
 			"back": self.close,
 			"red": self.close,
@@ -1910,21 +1523,16 @@ class IPKGSource(Screen):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, -1)
-
+		}, prio=-1)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setWindowTitle()
 		self["text"].right()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Edit upgrade source url."))
 
 	def go(self):
 		text = self["text"].getText()
 		if text:
-			fp = open(self.configfile, 'w')
+			fp = open(self.configfile, "w")
 			fp.write(text)
 			fp.write("\n")
 			fp.close()
@@ -1977,11 +1585,9 @@ class PacketManager(Screen, NumericalTextInput):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
-
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
-
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
-		{
+		self.setTitle(_("Packet Manager"))
+		self.setUseableChars(u"1234567890abcdefghijklmnopqrstuvwxyz")
+		self["shortcuts"] = HelpableNumberActionMap(self, ["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"], {
 			"ok": self.go,
 			"back": self.exit,
 			"red": self.exit,
@@ -1997,31 +1603,26 @@ class PacketManager(Screen, NumericalTextInput):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, -1)
-
-		self.list = []
+		}, prio=-1)
+		self.packageList = []
 		self.statuslist = []
-		self["list"] = List(self.list)
+		self["list"] = List(self.packageList)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Reload"))
-
-		self.list_updating = True
+		self.packageList_updating = True
 		self.packetlist = []
 		self.installed_packetlist = {}
 		self.upgradeable_packages = {}
 		self.Console = Console()
 		self.cmdList = []
 		self.cachelist = []
-		self.cache_ttl = 86400  #600 is default, 0 disables, Seconds cache is considered valid (24h should be ok for caching ipkgs)
-		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
-		self.oktext = _("\nAfter pressing OK, please wait!")
-		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev', '-src', 'busybox')
-
+		self.cache_ttl = 86400  # 600 is default, 0 disables, Seconds cache is considered valid (24h should be okay for caching ipkgs).
+		self.cache_file = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache")  # Path to cache directory.
+		self.okText = _("After pressing OK, please wait!")
+		self.unwanted_extensions = ("-dbg", "-dev", "-doc", "-staticdev", "-src", "busybox")
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
-
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
 
@@ -2033,7 +1634,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode())
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2061,35 +1662,32 @@ class PacketManager(Screen, NumericalTextInput):
 		self.close()
 
 	def reload(self):
-		if (os_path.exists(self.cache_file) == True):
+		if (exists(self.cache_file) == True):
 			remove(self.cache_file)
-			self.list_updating = True
+			self.packageList_updating = True
 			self.rebuildList()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Packet manager"))
 
 	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-			if status == 'update':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+			if status == "update":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), '', _("Trying to download a new packetlist. Please wait..."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
-			elif status == 'error':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+				self.statuslist.append((_("Package list update"), "", _("Trying to download a new packetlist. Please wait..."), "", statuspng, divpng))
+				self["list"].setList(self.statuslist)
+			elif status == "error":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the packetlist. Please try again."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
+				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packetlist. Please try again."), "", statuspng, divpng))
+				self["list"].setList(self.statuslist)
 
 	def rebuildList(self):
-		self.setStatus('update')
+		self.setStatus("update")
 		self.inv_cache = 0
 		self.vc = valid_cache(self.cache_file, self.cache_ttl)
 		if self.cache_ttl > 0 and self.vc != 0:
@@ -2107,18 +1705,18 @@ class PacketManager(Screen, NumericalTextInput):
 			status = cur[3]
 			package = cur[0]
 			self.cmdList = []
-			if status == 'installed':
+			if status == "installed":
 				self.cmdList.append((OpkgComponent.CMD_REMOVE, {"package": package}))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + package + "\n" + self.oktext)
-			elif status == 'upgradeable':
+					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + package + "\n" + self.okText)
+			elif status == "upgradeable":
 				self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": package}))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n") + package + "\n" + self.oktext)
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n") + package + "\n" + self.okText)
 			elif status == "installable":
 				self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": package}))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + package + "\n" + self.oktext)
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + package + "\n" + self.okText)
 
 	def runRemove(self, result):
 		if result:
@@ -2133,10 +1731,10 @@ class PacketManager(Screen, NumericalTextInput):
 		if result is False:
 			cur = self["list"].getCurrent()
 			if cur:
-				item = self['list'].getIndex()
-				self.list[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], 'installable')
-				self.cachelist[item] = [cur[0], cur[1], cur[2], 'installable']
-				self['list'].setList(self.list)
+				item = self["list"].getIndex()
+				self.packageList[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], "installable")
+				self.cachelist[item] = [cur[0], cur[1], cur[2], "installable"]
+				self["list"].setList(self.packageList)
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
@@ -2155,10 +1753,10 @@ class PacketManager(Screen, NumericalTextInput):
 		if result is False:
 			cur = self["list"].getCurrent()
 			if cur:
-				item = self['list'].getIndex()
-				self.list[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], 'installed')
-				self.cachelist[item] = [cur[0], cur[1], cur[2], 'installed']
-				self['list'].setList(self.list)
+				item = self["list"].getIndex()
+				self.packageList[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], "installed")
+				self.cachelist[item] = [cur[0], cur[1], cur[2], "installed"]
+				self["list"].setList(self.packageList)
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
@@ -2166,28 +1764,25 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def opkgCallback(self, event, param):
 		if event == OpkgComponent.EVENT_ERROR:
-			self.list_updating = False
-			self.setStatus('error')
+			self.packageList_updating = False
+			self.setStatus("error")
 		elif event == OpkgComponent.EVENT_DONE:
-			if self.list_updating:
-				self.list_updating = False
+			if self.packageList_updating:
+				self.packageList_updating = False
 				if not self.Console:
 					self.Console = Console()
 				cmd = self.opkg.opkg + " list"
 				self.Console.ePopen(cmd, self.OpkgList_Finished)
-		#print event, "-", param
-		pass
 
 	def OpkgList_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
-			result = result.replace('\n ', ' - ')
+			result = result.replace("\n ", " - ")
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
-				tokens = x.split(' - ')
+				tokens = x.split(" - ")
 				name = tokens[0].strip()
-				if not any((name.endswith(x) or name.find('locale') != -1) for x in self.unwanted_extensions):
+				if not any((name.endswith(x) or name.find("locale") != -1) for x in self.unwanted_extensions):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
 					descr = l > 3 and tokens[3].strip() or l > 2 and tokens[2].strip() or ""
@@ -2195,7 +1790,6 @@ class PacketManager(Screen, NumericalTextInput):
 						continue
 					last_name = name
 					self.packetlist.append([name, version, descr])
-
 		if not self.Console:
 			self.Console = Console()
 		cmd = self.opkg.opkg + " list_installed"
@@ -2203,10 +1797,9 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListInstalled_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
-				tokens = x.split(' - ')
+				tokens = x.split(" - ")
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
@@ -2219,10 +1812,9 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
 			self.upgradeable_packages = {}
 			for x in result.splitlines():
-				tokens = x.split(' - ')
+				tokens = x.split(" - ")
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
@@ -2234,41 +1826,40 @@ class PacketManager(Screen, NumericalTextInput):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		if not description:
 			description = "No description available."
-		if state == 'installed':
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+		if state == "installed":
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
 				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 			else:
 				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return((name, version, _(description), state, installedpng, divpng))
-		elif state == 'upgradeable':
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png")):
+		elif state == "upgradeable":
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png")):
 				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
 			else:
 				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
 			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
 				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 			else:
 				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
-		self.list = []
+		self.packageList = []
 		self.cachelist = []
 		if self.cache_ttl > 0 and self.vc != 0:
-			print('Loading packagelist cache from ', self.cache_file)
+			print("Loading packagelist cache from %s" % self.cache_file)
 			try:
 				self.cachelist = load_cache(self.cache_file)
 				if len(self.cachelist) > 0:
 					for x in self.cachelist:
-						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
-					self['list'].setList(self.list)
+						self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
+					self["list"].setList(self.packageList)
 			except:
 				self.inv_cache = 1
-
 		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			print('rebuilding fresh package list')
+			print("rebuilding fresh package list")
 			for x in self.packetlist:
 				status = ""
 				if x[0] in self.installed_packetlist:
@@ -2278,10 +1869,10 @@ class PacketManager(Screen, NumericalTextInput):
 						status = "installed"
 				else:
 					status = "installable"
-				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))
+				self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], status))
 				self.cachelist.append([x[0], x[1], x[2], status])
 			write_cache(self.cache_file, self.cachelist)
-			self['list'].setList(self.list)
+			self["list"].setList(self.packageList)
 
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -2305,37 +1896,31 @@ class IpkgInstaller(Screen):
 
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
-
-		self.list = SelectionList()
-		self["list"] = self.list
-
+		self.selectionList = SelectionList()
+		self["list"] = self.selectionList
 		p = 0
 		if len(list):
 			p = list[0].rfind("/")
 			title = list[0][:p]
 			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
-
 		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
-		self.list.sort()
-
+			self.selectionList.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
+		self.selectionList.sort()
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Invert"))
 		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-		{
-			"ok": self.list.toggleSelection,
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"ok": self.selectionList.toggleSelection,
 			"cancel": self.close,
 			"red": self.close,
 			"green": self.install,
-			"blue": self.list.toggleAllSelection
-		}, -1)
+			"blue": self.selectionList.toggleAllSelection
+		}, prio=-1)
 
 	def install(self):
-		list = self.list.getSelectionsList()
+		list = self.selectionList.getSelectionsList()
 		cmdList = []
 		for item in list:
 			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
@@ -2344,20 +1929,15 @@ class IpkgInstaller(Screen):
 
 def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
-	session.open(IpkgInstaller, filelist) # list
+	session.open(IpkgInstaller, filelist)  # List.
 
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
-	return \
-		Scanner(mimetypes=["application/x-debian-package"],
-			paths_to_scan=[
-					ScanPath(path="ipk", with_subdirs=True),
-					ScanPath(path="", with_subdirs=False),
-				],
-			name="Ipkg",
-			description=_("Install extensions."),
-			openfnc=filescan_open, )
+	return Scanner(mimetypes=["application/x-debian-package"], paths_to_scan=[
+		ScanPath(path="ipk", with_subdirs=True),
+		ScanPath(path="", with_subdirs=False),
+	], name="Ipkg", description=_("Install extensions."), openfnc=filescan_open)
 
 
 class ShowUpdatePackages(Screen, NumericalTextInput):
@@ -2385,11 +1965,9 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
-
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
-
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
-		{
+		self.setTitle(_("New Packages"))
+		self.setUseableChars(u"1234567890abcdefghijklmnopqrstuvwxyz")
+		self["shortcuts"] = HelpableNumberActionMap(self, ["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"], {
 			"back": self.exit,
 			"red": self.exit,
 			"ok": self.exit,
@@ -2405,19 +1983,15 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
-		}, -1)
-
-		self.list = []
+		}, prio=-1)
+		self.packageList = []
 		self.statuslist = []
-		self["list"] = List(self.list)
+		self["list"] = List(self.packageList)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Reload"))
-
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
-		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
-
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
 
@@ -2429,7 +2003,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode())
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2452,95 +2026,77 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
 
-	def setWindowTitle(self):
-		self.setTitle(_("New Packages"))
-
 	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
-			if status == 'update':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+			if status == "update":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
-			elif status == 'error':
-				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+				self.statuslist.append((_("Package list update"), "", _("Trying to download a new updatelist. Please wait..."), "", statuspng, divpng))
+				self["list"].setList(self.statuslist)
+			elif status == "error":
+				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
+				self.statuslist.append((_("Error"), "", _("There was an error downloading the updatelist. Please try again."), "", statuspng, divpng))
+				self["list"].setList(self.statuslist)
 
 	def rebuildList(self):
-		self.setStatus('update')
+		self.setStatus("update")
 		self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
 
 	def opkgCallback(self, event, param):
 		if event == OpkgComponent.EVENT_ERROR:
-			self.setStatus('error')
+			self.setStatus("error")
 		elif event == OpkgComponent.EVENT_DONE:
 			self.buildPacketList()
-
-		pass
 
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
 		if not description:
 			description = "No description available."
-		if state == 'installed':
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+		if state == "installed":
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
 				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 			else:
 				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return((name, version, _(description), state, installedpng, divpng))
-		elif state == 'upgradeable':
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgradeablepng.png")):
+		elif state == "upgradeable":
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgradeablepng.png")):
 				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeablepng.png"))
 			else:
 				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeablepng.png"))
 			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
-			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
+			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
 				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 			else:
 				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
-		self.list = []
+		self.packageList = []
 		fetchedList = self.opkg.getFetchedList()
 		excludeList = self.opkg.getExcludeList()
-
 		if len(fetchedList) > 0:
 			for x in fetchedList:
 				try:
-					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
+					self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
 				except:
-					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
+					self.packageList.append(self.buildEntryComponent(x[0], "", "no valid architecture, ignoring !!", "installable"))
 			if len(excludeList) > 0:
 				for x in excludeList:
 					try:
-						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
+						self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
 					except:
-						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
-
-			self['list'].setList(self.list)
-
+						self.packageList.append(self.buildEntryComponent(x[0], "", "no valid architecture, ignoring !!", "installable"))
+			self["list"].setList(self.packageList)
 		else:
-			self.setStatus('error')
-
-
-def UpgradeMain(session, **kwargs):
-	session.open(UpdatePluginMenu)
-
-
-def startSetup(menuid):
-	if menuid != "setup":
-		return []
-	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+			self.setStatus("error")
 
 
 class BackupHelper(Screen):
@@ -2552,7 +2108,7 @@ class BackupHelper(Screen):
 		Screen.__init__(self, session)
 		self.args = args
 		self.backuppath = getBackupPath()
-		if not os.path.isdir(self.backuppath):
+		if not isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
@@ -2564,7 +2120,7 @@ class BackupHelper(Screen):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 			doClose = False
 		elif self.args == 2:
-			if os_path.exists(self.fullbackupfilename):
+			if isfile(self.fullbackupfilename):
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default=False)
 				doClose = False
 			else:
@@ -2609,7 +2165,7 @@ class BackupHelper(Screen):
 		print("Creating backup folder if not already there...")
 		self.backuppath = getBackupPath()
 		try:
-			if (os_path.exists(self.backuppath) == False):
+			if not exists(self.backuppath):
 				makedirs(self.backuppath)
 		except OSError:
 			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
@@ -2623,20 +2179,21 @@ class BackupHelper(Screen):
 
 
 	def backupDone(self, retval=None):
-		if retval is True:
-			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
-		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
+		message = _("Backup completed.") if retval else _("Backup failed.")
+		self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 		self.close()
 
 
+#def keyInfo(self):
+#	current = self["menu"].getCurrent()
+#	if current:
+#		currentEntry = current[0]
+#		if currentEntry in ("system-backup", "backupfiles", "backupfiles_exclude", "backupfiles_addon"):
+#			self.session.open(SoftwareManagerInfo, mode="backupinfo", submode=currentEntry)
+
+
 def Plugins(path, **kwargs):
-	global plugin_path
-	plugin_path = path
 	list = [
-		#PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
 	]
-	#if config.usage.setup_level.index >= 2: # expert+
-	#	list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=UpgradeMain))
 	return list
