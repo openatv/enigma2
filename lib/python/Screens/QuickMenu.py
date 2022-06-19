@@ -308,9 +308,9 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Show default backup files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
-		self.sublist.append(QuickSubMenuEntryComponent("Select additional backup files", _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Select excluded backup files", _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Show Default Backup Files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select Additional Backup Files", _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select Excluded Backup Files", _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup", _("Manage your online update files"), _("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -321,7 +321,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins", _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins", _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter Settings", _("Setup Plugin filter"), _("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
-		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer", _("Install local extension"), _("Scan for local extensions and install them")))
+		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer", _("Install Local Extension"), _("Scan for local extensions and install them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Harddisk Menu ##############################
@@ -507,11 +507,11 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()), default=False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-		elif item[0] == _("Show default backup files"):
+		elif item[0] == _("Show Default Backup Files"):
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
-		elif item[0] == _("Select additional backup files"):
+		elif item[0] == _("Select Additional Backup Files"):
 			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
-		elif item[0] == _("Select excluded backup files"):
+		elif item[0] == _("Select Excluded Backup Files"):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 		elif item[0] == _("Software Manager Setup"):
 			self.session.open(SoftwareManagerSetup)

@@ -191,18 +191,18 @@ class UpdatePluginMenu(Screen):
 		self.text = ""
 		if self.menu == 0:
 			print("building menu entries")
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("install-extensions", _("Manage Extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("software-update", _("Software Update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("software-restore", _("Software Restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if BoxInfo.getItem("canMultiBoot"):
 				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multi boot device.") + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
+			self.list.append(("system-backup", _("Backup System Settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("system-restore", _("Restore System Settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install Local Extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if "SoftwareSupported" in p.__call__:
 					callFnc = p.__call__["SoftwareSupported"](None)
@@ -217,16 +217,16 @@ class UpdatePluginMenu(Screen):
 							menuEntryDescription = _('Extended Software Plugin')
 						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings.") + self.oktext, None))
+				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings.") + self.oktext, None))
 		elif self.menu == 1:
-			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date.") + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Show default backup files"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_addon", _("Select additional backup files"), _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_exclude", _("Select excluded backup files"), _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("advancedrestore", _("Advanced Restore"), _("\nRestore your backups by date.") + self.oktext, None))
+			self.list.append(("backuplocation", _("Select Backup Location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backupfiles", _("Show Default Backup Files"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backupfiles_addon", _("Select Additional Backup Files"), _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backupfiles_exclude", _("Select Excluded Backup Files"), _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"), _("\nView, install and remove available or installed packages.") + self.oktext, None))
-			self.list.append(("ipkg-source", _("Select upgrade source"), _("\nEdit the upgrade source address.") + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Package Manager"), _("\nView, install and remove available or installed packages.") + self.oktext, None))
+			self.list.append(("ipkg-source", _("Select Upgrade Source"), _("\nEdit the upgrade source address.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if "AdvancedSoftwareSupported" in p.__call__:
 					callFnc = p.__call__["AdvancedSoftwareSupported"](None)
