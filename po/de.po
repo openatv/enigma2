@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-17 13:49+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2022-06-19 05:18+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3054,10 +3054,10 @@ msgid "Ask user"
 msgstr "Benutzer fragen"
 
 msgid "Ask user (with default as 'no')"
-msgstr "Benutzer fragen (Standard vorbelegen mit 'Nein')"
+msgstr "Fragen ('Nein' voreingestellt)"
 
 msgid "Ask user (with default as 'yes')"
-msgstr "Benutzer fragen (Standard vorbelegen mit 'Ja')"
+msgstr "Fragen ('Ja' voreingestellt)"
 
 msgid "Aspect"
 msgstr "Aspect"
@@ -5037,7 +5037,7 @@ msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext-Darstellung."
 
 msgid "Configure the duration in minutes before the screen saver will be displayed."
-msgstr "Die Verzögerungszeit des Bildschirmschoners einstellen."
+msgstr "Die Verzögerungszeit des Bildschirmschoners, falls aktiviert, einstellen."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
 msgstr "Legen Sie die Dauer in Minuten fest, bevor die Energiesparfunktion aktiviert wird."
@@ -7422,16 +7422,16 @@ msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup
 msgstr "Bei 'Ja' werden alle Optionen für 'Wahr/Falsch', 'Ja/Nein', 'Ein/Aus' und 'Einschalten/Ausschalten' als grafischer Schalter dargestellt."
 
 msgid "Enable to display setup entries alphabetically."
-msgstr ""
+msgstr "Bei 'Ja' werden Menüpunkte in allen Menüs alphabetisch sortiert dargestellt."
 
 msgid "Enable to display the Extension menu entries alphabetically."
-msgstr ""
+msgstr "Bei 'Ja' werden die Einträge im Erweiterungsmenü alphabetisch sortiert."
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
 
 msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
-msgstr ""
+msgstr "Bei 'Ja' wird 'Netzwerk neu starten' im Erweiterungsmenü angezeigt."
 
 # channelselection 5.1
 msgid "Enable unlinked bouquets"
@@ -7623,16 +7623,16 @@ msgid "Entitlements"
 msgstr "Berechtigungen"
 
 msgid "Entry image and text"
-msgstr ""
+msgstr "Bild und Text"
 
 msgid "Entry image, number and text"
-msgstr ""
+msgstr "Bild, Nummer und Text"
 
 msgid "Entry number and text"
-msgstr ""
+msgstr "Nummer und Text"
 
 msgid "Entry text only"
-msgstr ""
+msgstr "Nur Text"
 
 msgid "Epg/Guide"
 msgstr "EPG/INFO"
@@ -9153,7 +9153,7 @@ msgid "Help long"
 msgstr "Hilfe lang"
 
 msgid "Help screen style"
-msgstr ""
+msgstr "Anzeige in Hilfefenstern"
 
 msgid "Helps setting up your signal"
 msgstr "Hilft bei der Einrichtung Ihres Signals"
@@ -11193,10 +11193,10 @@ msgid "Menu entry sort order"
 msgstr "Sortierung der Menüeinträge"
 
 msgid "Menu entry style"
-msgstr ""
+msgstr "Menüanzeige"
 
 msgid "Menu style"
-msgstr ""
+msgstr "Menüdarstellung"
 
 #
 msgid "Merge broadcast EPG with IceTV"
@@ -16043,7 +16043,7 @@ msgid "Select if the default value for a setup entry is shown and, if so, where 
 msgstr "Einstellen, ob der Standardwert angezeigt wird, und wenn ja, wo er im Verhältnis zur Beschreibung angezeigt wird."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
-msgstr ""
+msgstr "Wählen Sie, ob die Historie des Bildschirmmenüpfades angezeigt wird, und wenn ja, wie."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wählen Sie, wie sich Timeshift verhalten bzw. was mit der Timeshift-Datei nach dem Umschalten geschehen soll."
@@ -16150,10 +16150,12 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
 
 msgid "Select the display design for menus."
-msgstr ""
+msgstr "Wählen Sie die Anzeigeoption für Menüs."
 
-msgid "Select the display options for each menu entry item. If menu numbers are available then the numbers can be used to directly select specific menu entries."
+msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
+"Wählen Sie die Anzeigeoptionen für Menüeinträge.\n"
+"Sind Nummern vorhanden, können diese zur direkten Anwahl von Menüeinträgen verwendet werden."
 
 msgid "Select the function to be assigned to this button."
 msgstr "Ausgewählte Funktion der Taste zuweisen."
@@ -16217,10 +16219,10 @@ msgid "Select the shifted character set for the next character only"
 msgstr "Shift nur für das nächste Zeichen benutzen"
 
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
-msgstr ""
+msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Einträge im Plugin-Manager einstellen."
 
 msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
-msgstr ""
+msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Menüeinträge einstellen."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Wählen Sie die Quelle der Standard-DNS-Einstellungen aus."
@@ -21259,7 +21261,7 @@ msgid "Vertical alignment for the service number."
 msgstr "Vertikale Ausrichtung der Sendernummer."
 
 msgid "Vertical menu"
-msgstr ""
+msgstr "Vertikal"
 
 # satconfig.py
 msgid "Vertical turning speed"
@@ -22886,13 +22888,13 @@ msgid "alphabetic"
 msgstr "Alphabetisch"
 
 msgid "alphabetic reverse"
-msgstr "Umgekehrt Alphabetisch"
+msgstr "Umgekehrt alphabetisch"
 
 msgid "alphabetical"
 msgstr "Alphabetisch"
 
 msgid "alpharev then newest"
-msgstr "Alphabetisch umgekehrt, dann Neueste"
+msgstr "Umgekehrt alphabetisch, dann Neueste"
 
 msgid "alternative"
 msgstr "Alternativ"
@@ -23352,7 +23354,7 @@ msgid "flat alphabetic"
 msgstr "Alphabetisch (inkl. Ordner)"
 
 msgid "flat alphabetic reverse"
-msgstr "Umgekehrt Alphabetisch (inkl. Ordner)"
+msgstr "Umgekehrt alphabetisch (inkl. Ordner)"
 
 msgid "folk/traditional music"
 msgstr "Volksmusik/traditionelle Musik"
