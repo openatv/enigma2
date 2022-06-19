@@ -202,7 +202,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	png_cache = {}
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, mandatoryWidgets=["description"])
+		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.parentMenu = parent
 		self.menuList = []
