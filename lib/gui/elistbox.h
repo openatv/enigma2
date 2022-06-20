@@ -85,7 +85,7 @@ struct eListboxStyle
 		alignBlock
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
-	ePtr<gFont> m_font, m_entryfont, m_valuefont;
+	ePtr<gFont> m_font, m_valuefont;
 	ePoint m_text_offset;
 	bool m_use_vti_workaround;
 };
@@ -204,7 +204,7 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	bool getSelectionEnable() {return m_selection_enabled; }
 	gFont* getFont() {return m_style.m_font; }
-	gFont* getEntryFont() {return m_style.m_entryfont; }
+	gFont* getEntryFont() {return m_style.m_font; }
 	gFont* getValueFont() {return m_style.m_valuefont; }
 
 
