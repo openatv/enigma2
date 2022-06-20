@@ -738,7 +738,7 @@ void eListbox::setFont(gFont *font)
 
 void eListbox::setEntryFont(gFont *font)
 {
-	m_style.m_entryfont = font;
+	m_style.m_font = font;
 }
 
 void eListbox::setValueFont(gFont *font)

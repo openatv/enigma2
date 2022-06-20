@@ -492,7 +492,7 @@ class key_actions(stat_info):
 
 	def progConsoleCB(self):
 		if hasattr(self, "_progConsole") and "text" in self._progConsole:
-			self._progConsole["text"].setPos(0)
+			self._progConsole["text"].setPosition(0)
 			self._progConsole["text"].updateScrollbar()
 
 	def help_run_file(self):

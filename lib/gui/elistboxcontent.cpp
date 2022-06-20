@@ -356,7 +356,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		border_size = local_style->m_border_size;
 		border_color = local_style->m_border_color;
-		fnt = local_style->m_entryfont;
+		fnt = local_style->m_font;
 		fnt2 = local_style->m_valuefont;
 		if (selected)
 		{
