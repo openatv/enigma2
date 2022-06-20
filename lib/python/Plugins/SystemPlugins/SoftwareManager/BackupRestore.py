@@ -1,10 +1,8 @@
-from __future__ import print_function
 from os import popen, makedirs, listdir, stat, rename, remove
 from os.path import exists as pathexists, isdir
 from datetime import date
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
+from boxbranding import getBoxType
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
-from six import ensure_str
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -15,6 +13,7 @@ from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, 
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
+from Components.SystemInfo import BoxInfo
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -22,9 +21,14 @@ from Screens.RestartNetwork import RestartNetwork
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import *
 from . import ShellCompatibleFunctions
+from .plugin import SoftwareManagerInfo
+
+
+displayBrand = BoxInfo.getItem("displaybrand")
+displayModel = BoxInfo.getItem("displaymodel")
+distro = BoxInfo.getItem("distro")
 
 boxtype = getBoxType()
-distro = getImageDistro()
 
 
 def eEnv_resolve_multi(path):
@@ -243,18 +247,15 @@ class BackupSelection(Screen):
 			<widget name="checkList" position="5,50" size="550,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, title=_("Select files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False):
+	def __init__(self, session, title=_("Select files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode=""):
 		Screen.__init__(self, session)
+		self.setTitle(_("Select files/folders to backup"))
+		self.mode = mode
 		self.readOnly = readOnly
 		self.configBackupDirs = configBackupDirs
-		if self.readOnly:
-			self["key_red"] = StaticText(_("Exit"))
-			self["key_green"] = StaticText()
-			self["key_yellow"] = StaticText(_("Info"))
-		else:
-			self["key_red"] = StaticText(_("Cancel"))
-			self["key_green"] = StaticText(_("Save"))
-			self["key_yellow"] = StaticText()
+		self["key_red"] = StaticText(_("Exit") if self.readOnly else _("Cancel"))
+		self["key_green"] = StaticText("" if self.readOnly else _("Save"))
+		self["key_yellow"] = StaticText(_("Info") if self.readOnly else "")
 		self["summary_description"] = StaticText(_("default"))
 		self["title_text"] = StaticText(title)
 
@@ -264,7 +265,7 @@ class BackupSelection(Screen):
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
 
-		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
+		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions", "InfoActions"],
 		{
 			"cancel": self.exit,
 			"red": self.exit,
@@ -274,33 +275,28 @@ class BackupSelection(Screen):
 			"left": self.left,
 			"right": self.right,
 			"down": self.down,
-			"up": self.up
+			"up": self.up,
+			"info": self.keyInfo
 		}, -1)
 		if not self.selectionChanged in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
+	def keyInfo(self):
+		if self.mode in ("backupfiles", "backupfiles_exclude", "backupfiles_addon"):
+			self.session.open(SoftwareManagerInfo, mode="backupinfo", submode=self.mode)
+
 	def layoutFinished(self):
 		idx = 0
 		self["checkList"].moveToIndex(idx)
-		self.setWindowTitle()
 		self.selectionChanged()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Select files/folders to backup"))
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
-		if current[3] == "<Parent directory>":
-			self["summary_description"].text = self["checkList"].getCurrentDirectory() + ".."
-		else:
-			self["summary_description"].text = self["checkList"].getCurrentDirectory() + current[3]
+		self["summary_description"].text = self["checkList"].getCurrentDirectory() + ".." if current[3] == "<Parent directory>" else current[3]
 		if self.readOnly:
 			return
-		if current[2] is True:
-			self["key_yellow"].setText(_("Deselect"))
-		else:
-			self["key_yellow"].setText(_("Select"))
+		self["key_yellow"].setText(_("Deselect") if current[2] else _("Select"))
 
 	def up(self):
 		self["checkList"].up()
@@ -355,6 +351,7 @@ class RestoreMenu(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("Restore backups"))
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Restore"))
@@ -376,7 +373,7 @@ class RestoreMenu(Screen):
 			"down": self.keyDown
 		}, -1)
 
-		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		self["shortcuts"] = ActionMap(["ColorActions"],
 		{
 			"red": self.keyCancel,
 			"green": self.KeyOk,
@@ -388,11 +385,7 @@ class RestoreMenu(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setWindowTitle()
 		self.checkSummary()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Restore backups"))
 
 	def fill_list(self):
 		self.flist = []
@@ -451,7 +444,7 @@ class RestoreMenu(Screen):
 	def startDelete(self, ret=False):
 		if ret == True:
 			self.exe = True
-			print("removing:", self.val)
+			print("removing: %s" % self.val)
 			if pathexists(self.val) == True:
 				remove(self.val)
 			self.exe = False
@@ -470,6 +463,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def __init__(self, session, runRestore=False):
 		Screen.__init__(self, session)
+		self.setTitle(_("Restoring..."))
 		self.runRestore = runRestore
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
@@ -484,15 +478,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
-		self.onLayoutFinish.append(self.layoutFinished)
 		if self.runRestore:
 			self.onShown.append(self.doRestore)
-
-	def layoutFinished(self):
-		self.setWindowTitle()
-
-	def setWindowTitle(self):
-		self.setTitle(_("Restoring..."))
 
 	def doRestore(self):
 		tarcmd = "tar -C / -xzvf " + self.fullbackupfilename
@@ -538,14 +525,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret=None):
-		self.session.open(Console, title=_("Your %s %s will Restart...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
+		self.session.open(Console, title=_("Your %s %s will Restart...") % (displayBrand, displayModel), cmdlist=["killall -9 enigma2"])
 
 	def rebootSYS(self, ret=None):
 		try:
 			f = open("/tmp/rebootSYS.sh", "w")
 			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			f.close()
-			self.session.open(Console, title=_("Your %s %s will Reboot...") % (getMachineBrand(), getMachineName()), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % (displayBrand, displayModel), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
 		except:
 			self.restartGUI()
 
@@ -572,6 +559,7 @@ class RestoreMyMetrixHD(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("Restore MetrixHD Settings"))
 		skin = """
 			<screen name="RestoreMetrixHD" position="center,center" size="600,100" title="Restore MetrixHD Settings">
 			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
@@ -579,15 +567,11 @@ class RestoreMyMetrixHD(Screen):
 		self.skin = skin
 		self["label"] = Label(_("Please wait while your skin setting is restoring..."))
 		self["summary_description"] = StaticText(_("Please wait while your skin setting is restoring..."))
-		self.onShown.append(self.setWindowTitle)
 
 		# if not waiting is bsod possible (RuntimeError: modal open are allowed only from a screen which is modal!)
 		self.restoreSkinTimer = eTimer()
 		self.restoreSkinTimer.callback.append(self.restoreSkin)
 		self.restoreSkinTimer.start(1000, True)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Restore MetrixHD Settings"))
 
 	def restoreSkin(self):
 		try:
@@ -623,7 +607,7 @@ class installedPlugins(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Install Plugins"))
+		self.setTitle(_("Install Plugins"))
 		self["label"] = Label(_("Please wait while we check your installed plugins..."))
 		self["summary_description"] = StaticText(_("Please wait while we check your installed plugins..."))
 		self.type = self.UPDATE
@@ -643,7 +627,8 @@ class installedPlugins(Screen):
 		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
-		strData = ensure_str(strData)
+		if isinstance(strData, bytes):
+			strData = strData.decode("UTF-8", "ignore")
 		if self.type == self.LIST:
 			strData = self.remainingdata + strData
 			lines = strData.split('\n')
@@ -699,7 +684,7 @@ class RestorePlugins(Screen):
 
 	def __init__(self, session, menulist):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Restore Plugins"))
+		self.setTitle(_("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
 		for r in menulist:
@@ -806,7 +791,4 @@ class RestorePlugins(Screen):
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()
-		if res == "":
-			return None
-		else:
-			return res.replace("\n", "")
+		return None if res == "" else res.replace("\n", "")
