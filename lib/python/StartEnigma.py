@@ -215,7 +215,7 @@ class PowerKey:
 		globalActionMap.actions["power_down"] = self.powerdown
 		globalActionMap.actions["power_up"] = self.powerup
 		globalActionMap.actions["power_long"] = self.powerlong
-		globalActionMap.actions["deepstandby"] = self.shutdown # frontpanel long power button press
+		globalActionMap.actions["deepstandby"] = self.shutdown  # Frontpanel long power button press.
 		globalActionMap.actions["discrete_off"] = self.standby
 		globalActionMap.actions["sleeptimer"] = self.openSleepTimer
 		globalActionMap.actions["powertimer_standby"] = self.sleepStandby
@@ -248,16 +248,11 @@ class PowerKey:
 			self.shutdown()
 		elif action == "show_menu":
 			print("[StartEnigma] Show shutdown menu.")
-			root = mdom.getroot()
-			for x in root.findall("menu"):
-				y = x.find("id")
-				if y is not None:
-					id = y.get("val")
-					if id and id == "shutdown":
-						self.session.infobar = self
-						menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, x)
-						menu_screen.setTitle(_("Standby / restart"))
-						return
+			menu = findMenu("shutdown")
+			if menu:
+				self.session.infobar = self
+				self.session.openWithCallback(self.MenuClosed, Menu, menu)
+				return
 		elif action == "standby":
 			Screens.Standby.TVinStandby.skipHdmiCecNow(False)
 			self.standby()
@@ -817,7 +812,7 @@ Screen.globalScreen = Globals()
 
 profile("Standby,PowerKey")
 import Screens.Standby
-from Screens.Menu import MainMenu, mdom
+from Screens.Menu import Menu, findMenu
 from GlobalActions import globalActionMap
 
 profile("Scart")
@@ -935,6 +930,14 @@ Screens.Ci.InitCiConfig()
 
 profile("RcModel")
 import Components.RcModel
+
+# ###############################################################################
+# NOTE: This migration helper can be used to update Enigma2 settings, files etc #
+#       etc that may need to change based on recent code changes.               #
+# ###############################################################################
+#
+from Tools.Migration import migrateSettings  # Migrate settings from older versions of enigma.
+migrateSettings()
 
 # from enigma import dump_malloc_stats
 # t = eTimer()
