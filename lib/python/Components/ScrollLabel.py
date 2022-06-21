@@ -122,6 +122,8 @@ class ScrollLabel(GUIComponent):
 					rightLabelAttributes.append(("transparent", "1"))  # Also, the right column needs to be transparent to allow for left column text overflow.
 				leftLabelAttributes.extend([("horizontalAlignment", leftAlign), ("noWrap", "1")])  # Set "noWrap" to keep lines synchronized.
 				rightLabelAttributes.extend([("horizontalAlignment", rightAlign), ("noWrap", "1")])  # Set "noWrap" to keep lines synchronized.
+			else:
+				rightLabelAttributes.append(("transparent", "1"))  # Right column needs to be transparent if it is not used..
 			applyAllAttributes(self.leftText, desktop, leftLabelAttributes, parent.scale)
 			applyAllAttributes(self.rightText, desktop, rightLabelAttributes, parent.scale)
 			applyAllAttributes(self.slider, desktop, sliderAttributes, parent.scale)
