@@ -67,7 +67,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 
 # hack alert!
-from Screens.Menu import MainMenu, Menu, mdom
+from Screens.Menu import Menu, findMenu
 from Screens.Setup import Setup
 import Screens.Standby
 
@@ -1615,29 +1615,51 @@ class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 
 	def __init__(self):
-		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",{
-			"mainMenu": (self.mainMenu, _("Enter main menu...")),
-			"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
-			"showSystemSetup": (self.showSystemMenu, _("Show network mounts ...")),
+		self["menuActions"] = HelpableActionMap(self, ["InfoBarMenuActions"], {
+			"showMenu": (self.showMainMenu, _("Enter main menu...")),
+			"showSetup": (self.showSetupMenu, _("Show setup menu...")),
+			"showNetworkSetup": (self.showNetworkMenu, _("Show network setup menu...")),
+			"showSystemSetup": (self.showSystemMenu, _("Show usage and GUI menu...")),
+			"showHDMIRecord": (self.showHDMIRecordSetup, _("Show HDMIRecord setup...")),
 			"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
-			"showHDMIRecord": (self.showHDMiRecordSetup, _("Show HDMIRecord setup...")),
 			"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 		}, prio=0, description=_("Menu Actions"))
 		self.session.infobar = None
 
-	def mainMenu(self):
-		# print "loading mainmenu XML..."
-		menu = mdom.getroot()
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
+	def showMainMenu(self):
+		# print("[InfoBarGenerics] Loading menu XML...")
+		menu = findMenu("mainmenu")
+		if menu:
+			self.session.infobar = self
+			# So we can access the currently active InfoBar from screens opened from
+			# within the menu at the moment used from the SubserviceSelection.
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
 
-		self.session.infobar = self
-		# so we can access the currently active infobar from screens opened from within the mainmenu
-		# at the moment used from the SubserviceSelection
-
-		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
-
-	def mainMenuClosed(self, *val):
+	def showMenuCallback(self, *val):
 		self.session.infobar = None
+
+	def showSetupMenu(self):
+		menu = findMenu("setup")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showNetworkMenu(self):
+		menu = findMenu("network")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showSystemMenu(self):
+		menu = findMenu("system")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showHDMIRecordSetup(self):
+		if BoxInfo.getItem("HDMIin"):
+			self.session.openWithCallback(self.showMenuCallback, Setup, "HDMIRecord")
+
+	def showRFSetup(self):
+		if BoxInfo.getItem("RfModulator"):
+			self.session.openWithCallback(self.showMenuCallback, Setup, "RFmod")
 
 	def toggleAspectRatio(self):
 		ASPECT = ["auto", "16:9", "4:3"]
@@ -1648,43 +1670,7 @@ class InfoBarMenu:
 		else:
 			config.av.aspect.value = "auto"
 		config.av.aspect.save()
-		self.session.open(MessageBox, _("AV aspect is %s.") % ASPECT_MSG[config.av.aspect.value], MessageBox.TYPE_INFO, timeout=5)
-
-	def showSystemMenu(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'system_selection':
-						menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
-
-	def showNetworkMounts(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'extended_selection':
-						menulist = item.findall('menu')
-						for item in menulist:
-							if item.attrib['entryID'] == 'network_menu':
-								menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
-
-	def showRFSetup(self):
-		if BoxInfo.getItem("RfModulator"):
-			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
-
-	def showHDMiRecordSetup(self):
-		if BoxInfo.getItem("HDMIin"):
-			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
-
-	def mainMenuClosed(self, *val):
-		self.session.infobar = None
+		self.session.open(MessageBox, _("A/V aspect ratio is '%s'.") % ASPECT_MSG[config.av.aspect.value], MessageBox.TYPE_INFO, timeout=5)
 
 
 class InfoBarSimpleEventView:

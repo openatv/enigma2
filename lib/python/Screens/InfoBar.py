@@ -377,28 +377,20 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
-		from Screens.Menu import MainMenu, mdom
-		root = mdom.getroot()
-		for x in root.findall("menu"):
-			y = x.find("id")
-			if y is not None:
-				id = y.get("val")
-				if id and id == "setup":
-					self.session.infobar = self
-					self.session.open(MainMenu, x)
-					return
+		from Screens.Menu import Menu, findMenu
+		menu = findMenu("setup")
+		if menu:
+			self.session.infobar = self
+			self.session.open(Menu, menu)
+			return
 
 	def showInformation(self):
-		from Screens.Menu import MainMenu, mdom
-		root = mdom.getroot()
-		for x in root.findall("menu"):
-			y = x.find("id")
-			if y is not None:
-				id = y.get("val")
-				if id and id == "information":
-					self.session.infobar = self
-					self.session.open(MainMenu, x)
-					return
+		from Screens.Menu import Menu, findMenu
+		menu = findMenu("information")
+		if menu:
+			self.session.infobar = self
+			self.session.open(Menu, menu)
+			return
 
 	def showFormat(self):
 		try:
