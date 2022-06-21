@@ -574,7 +574,7 @@ class InfoBarButtonSetup():
 		if len(selected) == 1:
 			return selected[0][0]
 		else:
-			return "%s %s" % (_("ButtonSetup"), tuple([x[0] for x in self.ButtonSetupKeys if x[1] == key])[0])
+			return "%s %s" % (_("ButtonSetup"), tuple([x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0])
 
 	def ButtonSetupGlobal(self, key):
 		if self.longKeyPressed:
@@ -588,7 +588,7 @@ class InfoBarButtonSetup():
 					self.longKeyPressed = True
 				return self.execButtonSetup(selected[0])
 			else:
-				key = tuple([x[0] for x in self.ButtonSetupKeys if x[1] == key])[0]
+				key = tuple([x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
 				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, "%s: %s" % (_("Hotkey"), key), selected)
 
 	def execButtonSetup(self, selected):
