@@ -595,7 +595,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 
 	def keyNumberGlobal(self, number):
 		self.number = self.number * 10 + number
-		count = self["menu"].count
+		count = self["menu"].count()
 		if self.number and self.number <= count:
 			self["menu"].setIndex(self.number - 1)
 			if count < 10 or self.number >= 10:
