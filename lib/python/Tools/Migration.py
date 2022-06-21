@@ -11,7 +11,7 @@ menuMappings = {
 	"service_searching_selection": "scan",
 	"cam_setup": "cam",
 	"extended_selection": "extended",
-	"harddisk_selection": "harddisk",
+	"hardisk_selection": "harddisk",
 	"network_menu": "network",
 	"system_selection": "system",
 	"standby_restart_list": "shutdown"
