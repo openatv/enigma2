@@ -191,13 +191,13 @@ class UpdatePluginMenu(Screen):
 		self.text = ""
 		if self.menu == 0:
 			print("building menu entries")
-			self.list.append(("install-extensions", _("Manage Extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("install-extensions", _("Manage Extensions"), "\n" +_("Manage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("software-update", _("Software Update"), "\n" + _("Online update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("software-restore", _("Software Restore"), "\n" + _("Restore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+				self.list.append(("flash-online", _("Flash Online"), "\n" + _("Flash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+				self.list.append(("backup-image", _("Backup Image"), "\n" + _("Backup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if BoxInfo.getItem("canMultiBoot"):
 				self.list.append(("multiboot-manager", _("MultiBoot Manager"), "\n" + _("Maintain your multi boot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup System Settings"), "\n" + _("Backup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
