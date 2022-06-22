@@ -1,6 +1,6 @@
 from enigma import eLabel, eListbox, ePoint, eSize, eSlider, eWidget, fontRenderClass
 
-from skin import applyAllAttributes, parseBoolean, parseHorizontalAlignment, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
+from skin import applyAllAttributes, parseBoolean, parseHorizontalAlignment, parseInteger, parseScrollbarMode, parseScrollbarScroll, scrollLabelStyle
 from Components.GUIComponent import GUIComponent
 
 
@@ -84,9 +84,9 @@ class ScrollLabel(GUIComponent):
 							self.splitCharacter = value
 							self.split = True
 						elif attribute == "splitMargin":
-							splitMargin = int(value)
+							splitMargin = parseInteger(value)
 						elif attribute in ("splitPosition", "colPosition", "colposition"):
-							splitPosition = int(value)
+							splitPosition = parseInteger(value)
 							self.split = True
 						elif attribute == "splitSeparated":
 							splitSeparated = parseBoolean("splitSeparated", value)
@@ -94,15 +94,15 @@ class ScrollLabel(GUIComponent):
 						elif attribute == "splitTrim":
 							self.splitTrim = parseBoolean("splitTrim", value)
 						elif attribute == "scrollbarBorderWidth":
-							sliderBorderWidth = int(value)
+							sliderBorderWidth = parseInteger(value, eListbox.DefaultScrollBarBorderWidth)
 						elif attribute == "scrollbarMode":
 							sliderMode = parseScrollbarMode(value)
 						elif attribute == "scrollbarScroll":
 							sliderScroll = parseScrollbarScroll(value)
 						elif attribute == "scrollbarOffset":
-							sliderOffset = int(value)
+							sliderOffset = parseInteger(value, eListbox.DefaultScrollBarOffset)
 						elif attribute == "scrollbarWidth":
-							sliderWidth = int(value)
+							sliderWidth = parseInteger(value, eListbox.DefaultScrollBarWidth)
 						else:
 							leftLabelAttributes.append((attribute, value))
 							rightLabelAttributes.append((attribute, value))
@@ -145,6 +145,7 @@ class ScrollLabel(GUIComponent):
 		self.leftWidth = (splitPosition - splitMargin) if splitSeparated else self.pageWidth
 		self.rightColX = splitPosition + splitMargin
 		self.rightWidth = self.pageWidth - splitPosition - splitMargin
+		self.splitSeparated = splitSeparated
 		self.leftText.move(ePoint(0, 0))
 		self.rightText.move(ePoint(self.rightColX, 0))
 		self.slider.move(ePoint(0 if sliderMode in (eListbox.showLeftOnDemand, eListbox.showLeftAlways) else (self.pageWidth - sliderWidth), 0))
@@ -162,7 +163,7 @@ class ScrollLabel(GUIComponent):
 
 	def setText(self, text, showBottom=False):
 		self.msgText = text
-		text = text.rstrip()
+		text = text.rstrip() if self.splitTrim else text
 		if self.pageHeight:
 			if self.split:
 				leftText = []
@@ -179,20 +180,20 @@ class ScrollLabel(GUIComponent):
 			leftWidth = self.leftWidth
 			rightWidth = self.rightWidth
 			if self.isSliderVisible():
-				self.slider.show()
-				if self.sliderMode in (eListbox.showLeftAlways, eListbox.showLeftAlways):
+				if self.sliderMode in (eListbox.showLeftAlways, eListbox.showLeftOnDemand):
 					self.leftColX = self.sliderWidth
 					leftWidth = self.leftWidth - self.sliderWidth
 				else:
+					self.leftColX = 0
+					leftWidth = self.leftWidth if self.splitSeparated else self.leftWidth - self.sliderWidth
 					rightWidth = self.rightWidth - self.sliderWidth
+				self.slider.show()
 			else:
+				self.leftColX = 0
 				self.slider.hide()
 			self.leftText.resize(eSize(leftWidth, self.totalTextHeight))
 			self.rightText.resize(eSize(rightWidth, self.totalTextHeight))
-			if showBottom:
-				self.moveBottom()
-			else:
-				self.setPosition(0)
+			self.setPosition(self.totalTextHeight - self.pageHeight if showBottom else 0)
 
 	text = property(getText, setText)
 
