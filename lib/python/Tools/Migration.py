@@ -33,7 +33,7 @@ def migrateMenuSort():  # This function needs to called in StartEnigma after ini
 	if config.usage.menu_show_numbers.value and config.usage.menuEntryStyle.value == "text":
 		config.usage.menu_show_numbers.value = False  # Remove the old setting.
 		config.usage.menu_show_numbers.save()
-		config.usage.menuEntryStyle.value == "number"  # Save the new setting.
+		config.usage.menuEntryStyle.value = "number"  # Save the new setting.
 		config.usage.menuEntryStyle.save()
 
 	# Update menu sort order setting...
@@ -44,7 +44,7 @@ def migrateMenuSort():  # This function needs to called in StartEnigma after ini
 	if oldValue != config.usage.menuSortOrder.value:
 		config.usage.menu_sort_mode.value = "user"  # Remove the old setting.
 		config.usage.menu_sort_mode.save()
-		config.usage.menuSortOrder.value == "user"  # Save the new setting.
+		config.usage.menuSortOrder.value = "user"  # Save the new setting.
 		config.usage.menuSortOrder.save()
 
 	# Update menu sort hide / show / resorting dictionary setting...

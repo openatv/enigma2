@@ -1615,7 +1615,8 @@ class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 
 	def __init__(self):
-		self["menuActions"] = HelpableActionMap(self, ["InfoBarMenuActions"], {
+		# "MenuActions" is also used by EMC
+		self["MenuActions"] = HelpableActionMap(self, ["InfoBarMenuActions"], {
 			"showMenu": (self.showMainMenu, _("Enter main menu...")),
 			"showSetup": (self.showSetupMenu, _("Show setup menu...")),
 			"showNetworkSetup": (self.showNetworkMenu, _("Show network setup menu...")),
