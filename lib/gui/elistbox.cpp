@@ -530,7 +530,7 @@ int eListbox::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 
 		m_content->cursorSave();
-		if(m_scrollbar_scroll == byLine)
+		if(m_scrollbar && m_scrollbar_scroll == byLine)
 			m_content->cursorSaveTop(m_top);
 		m_content->cursorMove(m_top - m_selected);
 
