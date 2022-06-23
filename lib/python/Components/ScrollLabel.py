@@ -47,7 +47,7 @@ class ScrollLabel(GUIComponent):
 			if attribute not in scrollLabelStyle:
 				scrollLabelStyle[attribute] = default
 		splitMargin = 0
-		splitPosition = None
+		splitPosition = 0
 		splitSeparated = False
 		sliderBorderWidth = scrollLabelStyle["scrollbarBorderWidth"]
 		sliderMode = scrollLabelStyle["scrollbarMode"]
@@ -63,8 +63,9 @@ class ScrollLabel(GUIComponent):
 				"scrollbarBackgroundPixmap",
 				"scrollbarForegroundPixmap"
 			)
-			leftLabelAttributes = []
-			rightLabelAttributes = []
+			widgetAttributes = []
+			leftLabelAttributes = [("transparent", "1")]
+			rightLabelAttributes = [("transparent", "1")]
 			sliderAttributes = []
 			leftAlign = "left"
 			rightAlign = "left"
@@ -72,42 +73,42 @@ class ScrollLabel(GUIComponent):
 				if attribute in sliderProperties:
 					sliderAttributes.append((attribute, value))
 				else:
-					try:
-						if attribute == "leftColumnAlignment":
-							leftAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
-						elif attribute == "rightColumnAlignment":
-							rightAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
-							self.split = True
-						elif attribute == "split":
-							self.split = parseBoolean("split", value)
-						elif attribute in ("splitCharacter", "divideChar", "dividechar"):
-							self.splitCharacter = value
-							self.split = True
-						elif attribute == "splitMargin":
-							splitMargin = parseInteger(value)
-						elif attribute in ("splitPosition", "colPosition", "colposition"):
-							splitPosition = parseInteger(value)
-							self.split = True
-						elif attribute == "splitSeparated":
-							splitSeparated = parseBoolean("splitSeparated", value)
-							self.split = True
-						elif attribute == "splitTrim":
-							self.splitTrim = parseBoolean("splitTrim", value)
-						elif attribute == "scrollbarBorderWidth":
-							sliderBorderWidth = parseInteger(value, eListbox.DefaultScrollBarBorderWidth)
-						elif attribute == "scrollbarMode":
-							sliderMode = parseScrollbarMode(value)
-						elif attribute == "scrollbarScroll":
-							sliderScroll = parseScrollbarScroll(value)
-						elif attribute == "scrollbarOffset":
-							sliderOffset = parseInteger(value, eListbox.DefaultScrollBarOffset)
-						elif attribute == "scrollbarWidth":
-							sliderWidth = parseInteger(value, eListbox.DefaultScrollBarWidth)
-						else:
-							leftLabelAttributes.append((attribute, value))
-							rightLabelAttributes.append((attribute, value))
-					except ValueError:
-						print("[ScrollLabel] Error: The attribute '%s' integer value '%s' is invalid!" % (attribute, value))
+					if attribute in ("backgroundColor", "transparent"):
+						widgetAttributes.append((attribute, value))
+						continue
+					if attribute == "leftColumnAlignment":
+						leftAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
+					elif attribute == "rightColumnAlignment":
+						rightAlign = parseHorizontalAlignment(value)  # The parser is used to check if the value is valid, an exception is raised if it isn't!
+						self.split = True
+					elif attribute == "split":
+						self.split = parseBoolean("split", value)
+					elif attribute in ("splitCharacter", "divideChar", "dividechar"):
+						self.splitCharacter = value
+						self.split = True
+					elif attribute == "splitMargin":
+						splitMargin = parseInteger(value)
+					elif attribute in ("splitPosition", "colPosition", "colposition"):
+						splitPosition = parseInteger(value)
+						self.split = True
+					elif attribute == "splitSeparated":
+						splitSeparated = parseBoolean("splitSeparated", value)
+						self.split = True
+					elif attribute == "splitTrim":
+						self.splitTrim = parseBoolean("splitTrim", value)
+					elif attribute == "scrollbarBorderWidth":
+						sliderBorderWidth = parseInteger(value, eListbox.DefaultScrollBarBorderWidth)
+					elif attribute == "scrollbarMode":
+						sliderMode = parseScrollbarMode(value)
+					elif attribute == "scrollbarScroll":
+						sliderScroll = parseScrollbarScroll(value)
+					elif attribute == "scrollbarOffset":
+						sliderOffset = parseInteger(value, eListbox.DefaultScrollBarOffset)
+					elif attribute == "scrollbarWidth":
+						sliderWidth = parseInteger(value, eListbox.DefaultScrollBarWidth)
+					else:
+						leftLabelAttributes.append((attribute, value))
+						rightLabelAttributes.append((attribute, value))
 			if self.split:
 				for attribute, value in leftLabelAttributes[:]:
 					if attribute == "noWrap":  # Remove "noWrap" attribute so it can be set later.
@@ -119,11 +120,9 @@ class ScrollLabel(GUIComponent):
 						break
 				if not splitSeparated:
 					leftAlign = "left"  # If columns are used and not separated then left column needs to be "left" aligned to avoid overlapping text.
-					rightLabelAttributes.append(("transparent", "1"))  # Also, the right column needs to be transparent to allow for left column text overflow.
 				leftLabelAttributes.extend([("horizontalAlignment", leftAlign), ("noWrap", "1")])  # Set "noWrap" to keep lines synchronized.
 				rightLabelAttributes.extend([("horizontalAlignment", rightAlign), ("noWrap", "1")])  # Set "noWrap" to keep lines synchronized.
-			else:
-				rightLabelAttributes.append(("transparent", "1"))  # Right column needs to be transparent if it is not used..
+			applyAllAttributes(self.instance, desktop, widgetAttributes, parent.scale)
 			applyAllAttributes(self.leftText, desktop, leftLabelAttributes, parent.scale)
 			applyAllAttributes(self.rightText, desktop, rightLabelAttributes, parent.scale)
 			applyAllAttributes(self.slider, desktop, sliderAttributes, parent.scale)
@@ -136,7 +135,7 @@ class ScrollLabel(GUIComponent):
 		self.instance.move(self.leftText.position())
 		self.instance.resize(eSize(self.pageWidth, self.pageHeight))
 		self.sliderWidth = sliderOffset + sliderWidth
-		if splitPosition and sliderMode != eListbox.showNever:  # Check that there is space for the scrollbar in the split.
+		if self.split and sliderMode != eListbox.showNever:  # Check that there is space for the scrollbar in the split.
 			if abs(splitPosition) < self.sliderWidth:
 				splitPosition = None
 			elif abs(self.pageWidth - splitPosition) < self.sliderWidth:
