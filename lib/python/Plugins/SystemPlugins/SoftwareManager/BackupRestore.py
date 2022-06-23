@@ -3,7 +3,7 @@ from os.path import exists as pathexists, isdir
 from datetime import date
 from boxbranding import getBoxType
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
@@ -21,7 +21,6 @@ from Screens.RestartNetwork import RestartNetwork
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import *
 from . import ShellCompatibleFunctions
-from .plugin import SoftwareManagerInfo
 
 
 displayBrand = BoxInfo.getItem("displaybrand")
@@ -792,3 +791,65 @@ class RestorePlugins(Screen):
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()
 		return None if res == "" else res.replace("\n", "")
+
+
+class SoftwareManagerInfo(Screen):
+	skin = """
+		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="SoftwareManager information">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="550,340" scrollbarMode="showOnDemand" selectionDisabled="0">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (5, 0), size = (540, 26), font=0, flags = RT_HALIGN_LEFT | RT_HALIGN_CENTER, text = 0), # index 0 is the name
+						],
+					"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
+					"itemHeight": 26
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
+			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session, mode=None, submode=None):
+		Screen.__init__(self, session)
+		self.mode = mode
+		self.submode = submode
+		self["actions"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
+			"back": self.close,
+			"red": self.close,
+		}, prio=-2)
+		self.infoList = []
+		self["list"] = List(self.infoList)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["introduction"] = StaticText()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Software Manager Information"))
+		if self.mode is not None:
+			self.showInfos()
+
+	def showInfos(self):
+		if self.mode == "backupinfo":
+			self.infoList = []
+			if self.submode == "backupfiles_exclude":
+				backupfiles = config.plugins.configurationbackup.backupdirs_exclude.value
+			elif self.submode == "backupfiles_addon":
+				backupfiles = config.plugins.configurationbackup.backupdirs.value
+			else:
+				backupfiles = config.plugins.configurationbackup.backupdirs_default.value
+			for entry in backupfiles:
+				self.infoList.append((entry,))
+			self["list"].setList(self.infoList)
+
