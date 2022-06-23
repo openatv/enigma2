@@ -320,13 +320,13 @@ class PluginManager(Screen, PackageInfoHandler):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Extensions Management"))
-		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions"], {
+		self["shortcuts"] = HelpableActionMap(self, ["ColorActions", "InfoActions", "OkCancelActions", "HelpActions"], {
 			"ok": self.handleCurrent,
-			"back": self.exit,
+			"cancel": self.exit,
 			"red": self.exit,
 			"green": self.handleCurrent,
 			"yellow": self.handleSelected,
-			"showEventInfo": self.handleSelected,
+			"info": self.handleSelected,
 			"displayHelp": self.handleHelp,
 		}, prio=-1)
 		self.pluginList = []
@@ -761,9 +761,9 @@ class PluginManagerInfo(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Plugin Manager Activity Information"))
 		self.cmdlist = cmdlist
-		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"ok": self.process_all,
-			"back": self.exit,
+			"cancel": self.exit,
 			"red": self.exit,
 			"green": self.process_extensions,
 		}, prio=-1)
@@ -860,8 +860,8 @@ class PluginManagerHelp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Plugin Manager Help"))
-		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
-			"back": self.exit,
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": self.exit,
 			"red": self.exit,
 		}, prio=-1)
 		self.helpList = []
@@ -941,8 +941,8 @@ class PluginDetails(Screen, PackageInfoHandler):
 		else:
 			self.setTitle(_("Plugin Details"))
 		self.thumbnail = ""
-		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions", "WizardActions"], {
-			"back": self.exit,
+		self["actions"] = HelpableActionMap(self, ["CancelActions", "ColorActions", "DirectionActions"], {
+			"cancel": self.exit,
 			"red": self.exit,
 			"green": self.go,
 			"up": self.pageUp,
@@ -1149,9 +1149,9 @@ class UpdatePlugin(Screen):
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
 		self.updating = False
-		self["actions"] = HelpableActionMap(self, ["WizardActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": self.exit,
-			"back": self.exit
+			"cancel": self.exit
 		}, prio=-1)
 		self.activityTimer.start(100, False)
 
@@ -1286,17 +1286,13 @@ class UpdatePlugin(Screen):
 					self.checkTrafficLight()
 					return
 				if self.total_packages and self.TrafficCheck and self.TrafficResult:
-					# message = _("Do you want to update your %s %s?") % (displayBrand, displayModel) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
 					try:
 						if config.plugins.softwaremanager.updatetype.value == "cold":
 							self.startActualUpgrade("cold")
-							# choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 						else:
 							self.startActualUpgrade("hot")
 					except:
 						self.startActualUpgrade("hot")
-						# choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
-					# self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
@@ -1322,8 +1318,6 @@ class UpdatePlugin(Screen):
 		if answer[1] == "cold":
 			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
-		elif answer[1] == "show":
-			self.session.openWithCallback(self.opkgCallback(OpkgComponent.EVENT_DONE, None), ShowUpdatePackages)
 		else:
 			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"test_only": False})
 
@@ -1388,11 +1382,11 @@ class IPKGMenu(Screen):
 		self.entry = False
 		self.exe = False
 		self.path = ""
-		self["actions"] = HelpableActionMap(self, ["SetupActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": self.KeyOk,
 			"cancel": self.keyCancel
 		}, prio=-1)
-		self["shortcuts"] = HelpableActionMap(self, ["ShortcutActions"], {
+		self["shortcuts"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": self.keyCancel,
 			"green": self.KeyOk,
 		})
@@ -1894,165 +1888,6 @@ def filescan(**kwargs):
 		ScanPath(path="ipk", with_subdirs=True),
 		ScanPath(path="", with_subdirs=False),
 	], name="Ipkg", description=_("Install extensions."), openfnc=filescan_open)
-
-
-class ShowUpdatePackages(Screen, NumericalTextInput):
-	skin = """
-		<screen name="ShowUpdatePackages" position="center,center" size="530,420" title="New Packages" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="list" render="Listbox" position="5,50" size="520,365" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
-						],
-					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
-					"itemHeight": 52
-					}
-				</convert>
-			</widget>
-		</screen>"""
-
-	def __init__(self, session, args=None):
-		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self)
-		self.setTitle(_("New Packages"))
-		self.setUseableChars(u"1234567890abcdefghijklmnopqrstuvwxyz")
-		self["shortcuts"] = HelpableNumberActionMap(self, ["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"], {
-			"back": self.exit,
-			"red": self.exit,
-			"ok": self.exit,
-			"green": self.rebuildList,
-			"gotAsciiCode": self.keyGotAscii,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		}, prio=-1)
-		self.packageList = []
-		self.statuslist = []
-		self["list"] = List(self.packageList)
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Reload"))
-		self.opkg = OpkgComponent()
-		self.opkg.addCallback(self.opkgCallback)
-		self.onLayoutFinish.append(self.rebuildList)
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
-
-	def keyNumberGlobal(self, val):
-		key = self.getKey(val)
-		if key is not None:
-			keyvalue = key.encode("utf-8")
-			if len(keyvalue) == 1:
-				self.setNextIdx(keyvalue[0])
-
-	def keyGotAscii(self):
-		keyvalue = chr(getPrevAsciiCode())
-		if len(keyvalue) == 1:
-			self.setNextIdx(keyvalue[0])
-
-	def setNextIdx(self, char):
-		if char in ("0", "1", "a"):
-			self["list"].setIndex(0)
-		else:
-			idx = self.getNextIdx(char)
-			if idx and idx <= self["list"].count:
-				self["list"].setIndex(idx)
-
-	def getNextIdx(self, char):
-		for idx, i in enumerate(self["list"].list):
-			if i[0] and (i[0][0] == char):
-				return idx
-
-	def exit(self):
-		self.opkg.stop()
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
-		self.close()
-
-	def setStatus(self, status=None):
-		if status:
-			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
-			if status == "update":
-				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
-				else:
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), "", _("Trying to download a new updatelist. Please wait..."), "", statuspng, divpng))
-				self["list"].setList(self.statuslist)
-			elif status == "error":
-				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-				else:
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), "", _("There was an error downloading the updatelist. Please try again."), "", statuspng, divpng))
-				self["list"].setList(self.statuslist)
-
-	def rebuildList(self):
-		self.setStatus("update")
-		self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
-
-	def opkgCallback(self, event, param):
-		if event == OpkgComponent.EVENT_ERROR:
-			self.setStatus("error")
-		elif event == OpkgComponent.EVENT_DONE:
-			self.buildPacketList()
-
-	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
-		if not description:
-			description = "No description available."
-		if state == "installed":
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
-				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
-			else:
-				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))
-		elif state == "upgradeable":
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgradeablepng.png")):
-				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeablepng.png"))
-			else:
-				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeablepng.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))
-		else:
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
-				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
-			else:
-				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, _(description), state, installablepng, divpng))
-
-	def buildPacketList(self):
-		self.packageList = []
-		fetchedList = self.opkg.getFetchedList()
-		excludeList = self.opkg.getExcludeList()
-		if len(fetchedList) > 0:
-			for x in fetchedList:
-				try:
-					self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
-				except:
-					self.packageList.append(self.buildEntryComponent(x[0], "", "no valid architecture, ignoring !!", "installable"))
-			if len(excludeList) > 0:
-				for x in excludeList:
-					try:
-						self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
-					except:
-						self.packageList.append(self.buildEntryComponent(x[0], "", "no valid architecture, ignoring !!", "installable"))
-			self["list"].setList(self.packageList)
-		else:
-			self.setStatus("error")
 
 
 class BackupHelper(Screen):
