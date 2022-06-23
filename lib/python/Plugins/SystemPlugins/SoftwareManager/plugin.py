@@ -4,15 +4,12 @@ from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat,
 from os.path import dirname, exists, isdir, isfile
 import requests
 from stat import ST_MTIME
-from six import ensure_binary
 from pickle import dump, load
 from urllib.request import urlopen
 from socket import getdefaulttimeout, setdefaulttimeout
 from time import time
 
 from twisted.internet import reactor
-
-#from twisted.web import client
 
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eTimer, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
 
@@ -557,30 +554,16 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected=False):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
-		else:
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
-		else:
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-		else:
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
-		else:
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
+		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if state == "installed":
-			return((name, details, description, packagename, state, installedpng, divpng, selected))
+			return((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "installable":
-			return((name, details, description, packagename, state, installablepng, divpng, selected))
+			return((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "remove":
-			return((name, details, description, packagename, state, removepng, divpng, selected))
+			return((name, details, description, packagename, state, statusPng, divpng, selected))
 		elif state == "install":
-			return((name, details, description, packagename, state, installpng, divpng, selected))
+			return((name, details, description, packagename, state, statusPng, divpng, selected))
 
 	def buildPacketList(self, categorytag=None):
 		if categorytag is not None:
@@ -778,15 +761,13 @@ class PluginManagerInfo(Screen):
 		self.infoList = []
 		if self.cmdlist is not None:
 			for entry in self.cmdlist:
-				action = ""
+				action = "upgrade"
 				info = ""
 				cmd = entry[0]
 				if cmd == 0:
 					action = "install"
 				elif cmd == 2:
 					action = "remove"
-				else:
-					action = "upgrade"
 				args = entry[1]
 				if cmd == 0:
 					info = args["package"]
@@ -800,24 +781,14 @@ class PluginManagerInfo(Screen):
 
 	def buildEntryComponent(self, action, info):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
-			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
-		else:
-			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
-		else:
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-		else:
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % action)
+		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if action == "install":
-			return((_("Installing"), info, installpng, divpng))
+			return((_("Installing"), info, statusPng, divpng))
 		elif action == "remove":
-			return((_("Removing"), info, removepng, divpng))
+			return((_("Removing"), info, statusPng, divpng))
 		else:
-			return((_("Upgrading"), info, upgradepng, divpng))
+			return((_("Upgrading"), info, statusPng, divpng))
 
 	def exit(self):
 		self.close()
@@ -881,30 +852,16 @@ class PluginManagerHelp(Screen):
 
 	def buildEntryComponent(self, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
-		else:
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
-		else:
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
-		else:
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "icons/install.png")):
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/install.png"))
-		else:
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
+		statusPng = LoadPixmap(cached=True, path=imagePath)
 		if state == "installed":
-			return((_("This plugin is installed."), _("You can remove this plugin."), installedpng, divpng))
+			return((_("This plugin is installed."), _("You can remove this plugin."), statusPng, divpng))
 		elif state == "installable":
-			return((_("This plugin is not installed."), _("You can install this plugin."), installablepng, divpng))
+			return((_("This plugin is not installed."), _("You can install this plugin."), statusPng, divpng))
 		elif state == "install":
-			return((_("This plugin will be installed."), _("You can cancel the installation."), installpng, divpng))
+			return((_("This plugin will be installed."), _("You can cancel the installation."), statusPng, divpng))
 		elif state == "remove":
-			return((_("This plugin will be removed."), _("You can cancel the removal."), removepng, divpng))
+			return((_("This plugin will be removed."), _("You can cancel the removal."), statusPng, divpng))
 
 	def exit(self):
 		self.close()
@@ -1019,9 +976,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.thumbnail = "/tmp/" + thumbnailUrl.split("/")[-1]
 			print("[PluginDetails] downloading screenshot %s to %s" % (thumbnailUrl, self.thumbnail))
 			if iSoftwareTools.NetworkConnectionAvailable:
-				# TODO TEST
 				reactor.callInThread(self.downloadThumbnail, thumbnailUrl)
-				#client.downloadPage(ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot=True)
 		else:
@@ -1029,7 +984,6 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def downloadThumbnail(self, thumbnailUrl=None):
 		try:
-			print("[PluginDetails] downloadThumbnail %s to %s" % (thumbnailUrl, self.thumbnail))
 			response = requests.get(thumbnailUrl, headers={"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
 			with open(self.thumbnail, "wb") as f:
 				f.write(response.content)
@@ -1776,24 +1730,9 @@ class PacketManager(Screen, NumericalTextInput):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		if not description:
 			description = "No description available."
-		if state == "installed":
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
-				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
-			else:
-				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))
-		elif state == "upgradeable":
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png")):
-				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
-			else:
-				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))
-		else:
-			if isfile(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
-				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
-			else:
-				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, _(description), state, installablepng, divpng))
+		imagePath = resolveFilename(SCOPE_GUISKIN, "icons/%s.png" % state)
+		statusPng = LoadPixmap(cached=True, path=imagePath)
+		return((name, version, _(description), state, statusPng, divpng))
 
 	def buildPacketList(self):
 		self.packageList = []
@@ -1811,14 +1750,9 @@ class PacketManager(Screen, NumericalTextInput):
 		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
 			print("rebuilding fresh package list")
 			for x in self.packetlist:
-				status = ""
+				status = "installable"
 				if x[0] in self.installed_packetlist:
-					if x[0] in self.upgradeable_packages:
-						status = "upgradeable"
-					else:
-						status = "installed"
-				else:
-					status = "installable"
+					status = "upgradeable" if x[0] in self.upgradeable_packages else "installed"
 				self.packageList.append(self.buildEntryComponent(x[0], x[1], x[2], status))
 				self.cachelist.append([x[0], x[1], x[2], status])
 			write_cache(self.cache_file, self.cachelist)
