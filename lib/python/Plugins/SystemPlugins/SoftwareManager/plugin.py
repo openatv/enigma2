@@ -2,13 +2,17 @@
 from datetime import timedelta, date
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat, system
 from os.path import dirname, exists, isdir, isfile
+import requests
 from stat import ST_MTIME
 from six import ensure_binary
 from pickle import dump, load
 from urllib.request import urlopen
 from socket import getdefaulttimeout, setdefaulttimeout
 from time import time
-from twisted.web import client # FIXME remove twisted
+
+from twisted.internet import reactor
+
+#from twisted.web import client
 
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eTimer, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
 
@@ -592,9 +596,7 @@ class PluginManager(Screen, PackageInfoHandler):
 							if "packagetype" in attributes:
 								if attributes["packagetype"] == "internal":
 									continue
-								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
-							else:
-								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
+							self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
 			self.packageList = []
 			for x in self.packetlist:
 				status = ""
@@ -606,16 +608,10 @@ class PluginManager(Screen, PackageInfoHandler):
 				packagename = x[3].strip()
 				selectState = self.getSelectionState(details)
 				if packagename in iSoftwareTools.installed_packetlist:
-					if selectState == True:
-						status = "remove"
-					else:
-						status = "installed"
+					status = "remove" if selectState == True else "installed"
 					self.packageList.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
 				else:
-					if selectState == True:
-						status = "install"
-					else:
-						status = "installable"
+					status = "install" if selectState == True else "installable"
 					self.packageList.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected=selectState))
 			if len(self.packageList):
 				self.packageList.sort(key=lambda x: x[0])
@@ -1023,12 +1019,23 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.thumbnail = "/tmp/" + thumbnailUrl.split("/")[-1]
 			print("[PluginDetails] downloading screenshot %s to %s" % (thumbnailUrl, self.thumbnail))
 			if iSoftwareTools.NetworkConnectionAvailable:
-				# FIXME remove twisted
-				client.downloadPage(ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+				# TODO TEST
+				reactor.callInThread(self.downloadThumbnail, thumbnailUrl)
+				#client.downloadPage(ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot=True)
 		else:
 			self.setThumbnail(noScreenshot=True)
+
+	def downloadThumbnail(self, thumbnailUrl=None):
+		try:
+			print("[PluginDetails] downloadThumbnail %s to %s" % (thumbnailUrl, self.thumbnail))
+			response = requests.get(thumbnailUrl, headers={"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
+			with open(self.thumbnail, "wb") as f:
+				f.write(response.content)
+			self.setThumbnail()
+		except OSError as err:
+			self.fetchFailed(err)
 
 	def setThumbnail(self, noScreenshot=False):
 		if not noScreenshot:
