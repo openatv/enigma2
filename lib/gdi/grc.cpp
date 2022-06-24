@@ -245,7 +245,7 @@ void gRC::enableSpinner()
 {
 	if (!m_spinner_dc)
 	{
-		eDebug("[gRC] enabelSpinner Error: No spinner DC!");
+		eDebug("[gRC] enableSpinner Error: No spinner DC!");
 		return;
 	}
 
