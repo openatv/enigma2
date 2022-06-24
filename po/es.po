@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-16 20:45+0000\n"
+"PO-Revision-Date: 2022-06-23 22:42+0000\n"
 "Last-Translator: Overdrive <lukillas.ole@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -78,10 +78,8 @@ msgid "Backup your %s %s settings."
 msgstr "Realizar copia de sus ajustes %s %s."
 
 #, python-format
-msgid ""
-"Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Realizar copia de su imagen en ejecución %s %s en el HDD o USB."
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Realizar copia de su imagen en ejecución %s %s en el HDD o USB."
 
 #
 msgid "Edit the upgrade source address."
@@ -89,20 +87,16 @@ msgstr "Editar la ubicación de la actualización."
 
 # /SoftwareManager/Flash_online.py
 #, python-format
-msgid ""
-"Flash on the fly your %s %s."
-msgstr ""
-"Flasheo dinámico de tu %s %s."
+msgid "Flash on the fly your %s %s."
+msgstr "Flasheo dinámico de tu %s %s."
 
 msgid "Maintain your multi boot device."
 msgstr "Mantenga su dispositivo de arranque múltiple."
 
 #
 #, python-format
-msgid ""
-"Manage extensions or plugins for your %s %s"
-msgstr ""
-"Gestiona las extensiones o complementos para tu %s %s"
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Gestiona las extensiones o complementos para tu %s %s"
 
 #
 #, python-format
@@ -2759,7 +2753,7 @@ msgid "Alpha"
 msgstr "Alfa"
 
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabético"
 
 msgid "Alphabetical under headings"
 msgstr "Alfabético debajo de los títulos"
@@ -4539,7 +4533,7 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "Elige el nombre del archivo que contiene los datos EPG cuando se apaga tu %s %s. Puede ser útil para distinguir entre varios receptores."
 
 msgid "Choose the style/order in which items are displayed in help windows."
-msgstr ""
+msgstr "Elegir el estilo/orden en el que se muestran los elementos en las ventanas de ayuda."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Elige el intervalo de tiempo en el que se redondean los gráficos."
@@ -5032,9 +5026,8 @@ msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Configurar la altura de las letras de la fuente TrueType utilizadas para el teletexto."
 
 #
-#, fuzzy
 msgid "Configure the history of time that will be presented."
-msgstr "Configura la duración de la presentación."
+msgstr "Configurar como será presentando el historial de tiempo."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Configurar la alineación horizontal de los subtítulos."
@@ -5089,7 +5082,7 @@ msgid "Configure the refresh rate of the screen."
 msgstr "Configurar la velocidad de actualización de la pantalla."
 
 msgid "Configure the screen resolution for teletext (Not all skins support full-HD teletext)."
-msgstr ""
+msgstr "Configurar la resolución de pantalla para el teletexto (No todas las interfaces soportan el teletexto full-HD)."
 
 msgid "Configure the second audio language."
 msgstr "Configurar el segundo idioma de audio."
@@ -5118,13 +5111,11 @@ msgstr "Configura como se muestra la fuente de datos del ‘frontend’ en la ba
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
 msgstr "Configurar la velocidad del proceso de borrado en segundo plano. Una velocidad más lenta consume menos recursos."
 
-#, fuzzy
 msgid "Configure the start coordinate in x of the teletext display area."
-msgstr "Configurar el color de los subtítulos del teletexto."
+msgstr "Configurar la coordenada inicial en x del área de visualización del teletexto."
 
-#, fuzzy
 msgid "Configure the start coordinate in y of the teletext display area."
-msgstr "Configurar el color de los subtítulos del teletexto."
+msgstr "Configurar la coordenada inicial en y del área de visualización del teletexto."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Configurar el retraso de los subtítulos cuando no haya datos de sincronización."
@@ -5138,9 +5129,8 @@ msgstr "Configurar el tercer idioma de subtítulos."
 msgid "Configure the transparency of the black background of graphical DVB subtitles."
 msgstr "Configurar la transparencia del fondo negro de los subtítulos gráficos DVB."
 
-#, fuzzy
 msgid "Configure the transparency of the black background of subtitles."
-msgstr "Configurar la transparencia del fondo negro de los subtítulos gráficos DVB."
+msgstr "Configurar la transparencia del fondo negro de los subtítulos."
 
 msgid "Configure the tuner mode."
 msgstr "Configurar el modo de sintonizador."
@@ -5163,30 +5153,27 @@ msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Configurar el ancho de las letras de la fuente TrueType utilizada para teletexto."
 
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
-msgstr ""
+msgstr "Configurar este sintonizador utilizando opciones simples o avanzadas, o pasarlo a otro sintonizador, o copiar una configuración de otro sintonizador, o desactivarlo."
 
 #
-#, fuzzy
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
-msgstr "Elige si mostrar nombres de canal, picon o ambos en el EPG."
+msgstr "Configurar para mostrar los nombres de los canales, los números, los picons o los tres dentro de la EPG."
 
 #
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Elige si mostrar nombres de canal, picon o ambos en el EPG."
 
-#, fuzzy
 msgid "Configure whether a bold TrueType font is used for teletext."
-msgstr "Configurar la duración en minutos del temporizador de apagado."
+msgstr "Configurar si se utiliza una fuente TrueType en negrita para el teletexto."
 
 msgid "Configure whether a fixed font or a scalable TrueType font is used for teletext."
-msgstr ""
+msgstr "Configurar si se utiliza una fuente fija o una fuente TrueType escalable para el teletexto."
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
-msgstr ""
+msgstr "Configurar si otro sintonizador de la lista preferida se asigna para las grabaciones en lugar de compartir un sintonizador que ya está activo recibiendo el mismo canal de televisión en directo."
 
-#, fuzzy
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Elige si las pistas de audio multicanal deben mezclarse a estéreo."
+msgstr "Configurar si las pistas de sonido multicanal deben ser mezcladas a estéreo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
 msgstr "Configurar si el símbolo de grabación (tanto de la pantalla como del LCD) es visible solo durante grabaciones reales o también para retransmisiones y pseudo grabaciones (por ejemplo el refresco de la EPG)."
@@ -5239,11 +5226,11 @@ msgid "Conflicting timer"
 msgstr "Conflicto de temporizadores"
 
 msgid "Congo"
-msgstr ""
+msgstr "Congo"
 
 #, python-format
 msgid "Congratulations, you have successfully configured your %s %s for use with the IceTV Smart Recording service. Your IceTV guide will now download in the background."
-msgstr ""
+msgstr "Enhorabuena, ha configurado con éxito su %s %s para usarlo con el servicio IceTV Smart Recording. Su guía IceTV se descargará ahora en segundo plano."
 
 #
 msgid "Connect"
@@ -5269,25 +5256,24 @@ msgid "Connected: "
 msgstr "Conectado: "
 
 msgid "Connection information"
-msgstr ""
+msgstr "Información de conexión"
 
 msgid "Console"
-msgstr ""
+msgstr "Consola"
 
 #
-#, fuzzy
 msgid "Constellation & FFT mode"
-msgstr "Constelación"
+msgstr "Constelación y modo FFT"
 
 msgid "Consult your SCR device spec sheet for this information."
-msgstr ""
+msgstr "Consultar la hoja de especificaciones de su dispositivo SCR para obtener esta información."
 
 msgid "Consult your motor's spec sheet for this information, or leave the default setting."
-msgstr ""
+msgstr "Consultar la hoja de especificaciones de su motor para obtener esta información, o deje la configuración por defecto."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
-msgstr ""
+msgstr "Contactar con el servidor IceTV y configurar su %s %s."
 
 msgid "Content"
 msgstr "Contenido"
@@ -5303,7 +5289,7 @@ msgid "Context long"
 msgstr "Contexto largo"
 
 msgid "Continent"
-msgstr ""
+msgstr "Continente"
 
 msgid "Continue"
 msgstr "Continuar"
@@ -5320,10 +5306,10 @@ msgid "Continue playing"
 msgstr "Continuar reproduciendo"
 
 msgid "Continue with the flash process"
-msgstr ""
+msgstr "Continuar con el proceso de flasheo"
 
 msgid "Continue with the on-line update"
-msgstr ""
+msgstr "Continuar con la actualización en línea"
 
 msgid "Continues"
 msgstr "Sigue"
@@ -5335,7 +5321,7 @@ msgid "Contrast"
 msgstr "Contraste"
 
 msgid "Control LED can be turned on or off here."
-msgstr ""
+msgstr "El LED de control se puede encender o apagar aquí."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Controla en qué posición se mostrará un temporizador finalizado en la lista de temporizadores."
@@ -5359,55 +5345,49 @@ msgid "Converting ext3 to ext4..."
 msgstr "Convirtiendo ext3 a ext4..."
 
 msgid "Cook Islands"
-msgstr ""
+msgstr "Islas Cook"
 
-#, fuzzy
 msgid "Cooking"
-msgstr "Cocinando"
+msgstr "Cocina"
 
 msgid "Copy"
 msgstr "Copiar"
 
 #, python-format
 msgid "Copy %d elements"
-msgstr ""
+msgstr "Copiar %d elementos"
 
 msgid "Copy 1 element"
-msgstr ""
+msgstr "Copiar 1 elemento"
 
-#, fuzzy
 msgid "Copy file"
-msgstr "Copiando archivos"
+msgstr "Copiar archivo"
 
 #
-#, fuzzy
 msgid "Copy file/directory to target directory"
-msgstr "Copiar a otro directorio"
+msgstr "Copiar archivo/directorio al directorio de destino"
 
 #
-#, fuzzy
 msgid "Copy files/directories to target directory"
-msgstr "Copiar a otro directorio"
+msgstr "Copiar archivos/directorios al directorio de destino"
 
-#, fuzzy
 msgid "Copy folder"
-msgstr "Copiando archivos"
+msgstr "Copiar carpeta"
 
 msgid "Copying files"
 msgstr "Copiando archivos"
 
-#, fuzzy
 msgid "Cornish"
-msgstr "Danés"
+msgstr "Cornuallés"
 
 msgid "Corsican"
-msgstr ""
+msgstr "Corso"
 
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 msgid "Cote d'Ivoire / Ivory Coast"
-msgstr ""
+msgstr "Costa de Marfil / Costa de Marfil"
 
 msgid "Could not connect to server"
 msgstr "No se ha podido conectar con el servidor"
@@ -5435,26 +5415,24 @@ msgstr "No se pudo grabar debido al servicio inválido %s"
 msgid "Could not save configfile %s!"
 msgstr "¡No se pudo guardar el archivo de configuración %s!"
 
-#, fuzzy
 msgid "Country"
-msgstr "Montaje"
+msgstr "País"
 
-#, fuzzy
 msgid "Country for EPG event genre information"
-msgstr "Información del administrador de software"
+msgstr "País para la información sobre el género del evento EPG"
 
 msgid "Country for EPG event rating information"
-msgstr ""
+msgstr "País para la información de clasificación de eventos de la EPG"
 
 msgid "Crash Logs"
 msgstr "Historiales de fallo"
 
 msgid "Crash at skin error for debug reasons"
-msgstr ""
+msgstr "Bloqueo en el error de interfaz por motivos de depuración"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
-msgstr ""
+msgstr "Registro de bloqueo '%s' (%d/%d)"
 
 #
 msgid "Create"
@@ -5471,32 +5449,28 @@ msgid "Create ISO"
 msgstr "Crear ISO"
 
 msgid "Create a randomly generated password"
-msgstr ""
+msgstr "Crear una contraseña generada aleatoriamente"
 
 # MovieSelection.py
 msgid "Create directory"
 msgstr "Crear directorio"
 
 # MovieSelection.py
-#, fuzzy
 msgid "Create directory/folder"
-msgstr "Crear directorio"
+msgstr "Crear directorio/carpeta"
 
-#, fuzzy
 msgid "Create separate radio userbouquet"
-msgstr "Restaurar grupos eliminados"
+msgstr "Crear un userbouquet de radio independiente"
 
-#, fuzzy
 msgid "Create symlink to file"
-msgstr "Crear archivo ISO Bludisc"
+msgstr "Crear un enlace simbólico al archivo"
 
 msgid "Create user-named symbolic link"
-msgstr ""
+msgstr "Crear enlace simbólico con nombre de usuario"
 
 #
-#, fuzzy
 msgid "Create:"
-msgstr "Crear"
+msgstr "Crear:"
 
 #, python-format
 msgid "Create: Recovery Fullbackup %s"
@@ -5520,19 +5494,17 @@ msgid "Creating partition"
 msgstr "Creando partición"
 
 msgid "Cree"
-msgstr ""
+msgstr "Cree"
 
 #
-#, fuzzy
 msgid "Cricket"
-msgstr "Bloqueado"
+msgstr "Criquet"
 
 msgid "Crime"
-msgstr ""
+msgstr "Crimen"
 
-#, fuzzy
 msgid "Croatia"
-msgstr "Croata"
+msgstr "Croacia"
 
 msgid "Croatian"
 msgstr "Croata"
@@ -5544,23 +5516,22 @@ msgid "Cron Timers"
 msgstr "Temporizadores Cron"
 
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 msgid "Cult"
-msgstr ""
+msgstr "Culto"
 
 msgid "Curacao"
-msgstr ""
+msgstr "Curasao"
 
 msgid "Currency"
-msgstr ""
+msgstr "Moneda"
 
 msgid "Current"
-msgstr ""
+msgstr "Actual"
 
-#, fuzzy
 msgid "Current Affairs"
-msgstr "Noticias"
+msgstr "Asuntos de actualidad"
 
 msgid "Current CEC address"
 msgstr "Dirección actual CEC"
@@ -5572,11 +5543,10 @@ msgid "Current Status:"
 msgstr "Estado actual:"
 
 msgid "Current crash log"
-msgstr ""
+msgstr "Registro actual de bloqueos"
 
-#, fuzzy
 msgid "Current installed"
-msgstr "Imagen actualmente instalada"
+msgstr "Actual instalado"
 
 msgid "Current location"
 msgstr "Ubicación actual"
@@ -5591,7 +5561,7 @@ msgid "Current settings:"
 msgstr "Configuración actual:"
 
 msgid "Current status"
-msgstr ""
+msgstr "Estado actual"
 
 msgid "Current time"
 msgstr "Hora actual"
@@ -5605,13 +5575,13 @@ msgid "Current value: "
 msgstr "Valor actual: "
 
 msgid "Current version unknown"
-msgstr ""
+msgstr "Versión actual desconocida"
 
 msgid "Current version:"
 msgstr "Versión actual:"
 
 msgid "Currently Defined Volume Offsets:"
-msgstr ""
+msgstr "Compensaciones de volumen definidas actualmente:"
 
 msgid "Custom"
 msgstr "Personalizado"
@@ -5633,7 +5603,7 @@ msgid "Customize"
 msgstr "Configurar"
 
 msgid "Customize System Settings"
-msgstr ""
+msgstr "Personalizar ajustes del sistema"
 
 # Quick Menue
 msgid "Customize enigma2 personal settings"
@@ -5643,35 +5613,32 @@ msgstr "Personaliza los ajustes de Enigma2"
 msgid "Cut"
 msgstr "Cortar"
 
-#, fuzzy
 msgid "Cutlist Editor"
-msgstr "Editor de listas de corte"
+msgstr "Editor de lista de cortes"
 
 msgid "Cutlist editor..."
 msgstr "Editor de listas de corte…"
 
 msgid "Cycle PIP(zap)"
-msgstr ""
+msgstr "Ciclo PIP(zapeo)"
 
 msgid "Cycling"
-msgstr ""
+msgstr "Ciclismo"
 
 msgid "Cyprus"
-msgstr ""
+msgstr "Chipre"
 
 msgid "Czech"
 msgstr "Checo"
 
 msgid "Czech Republic"
-msgstr ""
+msgstr "República Checa"
 
-#, fuzzy
 msgid "Czechia"
-msgstr "Checo"
+msgstr "Chequia"
 
-#, fuzzy
 msgid "D"
-msgstr "SD"
+msgstr "D"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5690,40 +5657,38 @@ msgid "DMM normal"
 msgstr "DMM normal"
 
 msgid "DNS (Dynamic Name Server) Actions"
-msgstr ""
+msgstr "Acciones de DNS (Sistema de Nombres de Dominio)"
 
 msgid "DNS Settings"
-msgstr ""
+msgstr "Ajustes DNS"
 
 msgid "DNS data source"
-msgstr ""
+msgstr "Fuente de datos DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
 msgstr ""
+"NO APAGUE EL DISPOSITIVO MIENTRAS SE ACTUALIZA.\n"
+"¿Actualizar ahora?"
 
-#, fuzzy
 msgid "DTS HD downmix"
-msgstr "Mezcla AAC"
+msgstr "DTS HD downmix"
 
-#, fuzzy
 msgid "DTS downmix"
-msgstr "Mezcla AAC"
+msgstr "DTS downmix"
 
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
-msgstr ""
+msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 
 msgid "DUAL LAYER DVD"
 msgstr "DVD DOBLE CAPA"
 
-#, fuzzy
 msgid "DVB CI Delay"
-msgstr "Sin retraso"
+msgstr "Retraso DVB-CI"
 
-#, fuzzy
 msgid "DVB Subtitles PID & lang"
-msgstr "Subtítulo largo"
+msgstr "PID de subtítulos DVB e idioma"
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparencia negra de subtítulos DVB"
@@ -5731,9 +5696,8 @@ msgstr "Transparencia negra de subtítulos DVB"
 msgid "DVB-C"
 msgstr "DVB-C"
 
-#, fuzzy
 msgid "DVB-C ANNEX B"
-msgstr "DVB-C ANEXO C"
+msgstr "DVB-C ANEXO B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANEXO C"
@@ -5753,39 +5717,34 @@ msgid "DVB-T2"
 msgstr "DVB-T2"
 
 #
-#, fuzzy
 msgid "DVD Burn"
-msgstr "Menú RC"
+msgstr "Grabación de DVD"
 
 msgid "DVD File Browser"
 msgstr "Navegador de archivos DVD"
 
 #
-#, fuzzy
 msgid "DVD Menu"
-msgstr "Menú RC"
+msgstr "Menú del DVD"
 
 #
 msgid "DVD Titlelist"
 msgstr "Lista de títulos de DVD"
 
 #
-#, fuzzy
 msgid "DVD player"
-msgstr "Reproductor DVD"
+msgstr "Reproductor de DVD"
 
 #
-#, fuzzy
 msgid "DVDPlayer"
-msgstr "Reproductor DVD"
+msgstr "Reproductor de DVD"
 
 msgid "Daily"
 msgstr "Diario"
 
 #
-#, fuzzy
 msgid "Dance"
-msgstr "Cancelar"
+msgstr "Baile"
 
 msgid "Danish"
 msgstr "Danés"
@@ -5794,155 +5753,153 @@ msgstr "Danés"
 msgid "Date"
 msgstr "Fecha"
 
-#, fuzzy
 msgid "Date reverse"
-msgstr "Orden alfabéticamente inverso"
+msgstr "Fecha inversa"
 
 msgid "Date style"
-msgstr ""
+msgstr "Estilo de fecha"
 
 msgid "Date/time input"
 msgstr "Entrada por fecha/hora"
 
 msgid "Day D Mon"
-msgstr ""
+msgstr "Día D Lun"
 
 msgid "Day D-Mon"
-msgstr ""
+msgstr "Día D-Lun"
 
 msgid "Day D/M"
-msgstr ""
+msgstr "Día D/M"
 
 msgid "Day D/MM"
-msgstr ""
+msgstr "Día D/MM"
 
 msgid "Day DD Mon"
-msgstr ""
+msgstr "Día DD Lun"
 
 msgid "Day DD-Mon"
-msgstr ""
+msgstr "Día DD-Mon"
 
 #
-#, fuzzy
 msgid "Day DD/M"
-msgstr "Reproducir DVD"
+msgstr "Día DD/M"
 
 msgid "Day DD/MM"
-msgstr ""
+msgstr "Día DD/MM"
 
 msgid "Day M/D"
-msgstr ""
+msgstr "Día M/D"
 
 msgid "Day M/DD"
-msgstr ""
+msgstr "Día M/DD"
 
 msgid "Day MM/D"
-msgstr ""
+msgstr "Día MM/D"
 
 msgid "Day MM/DD"
-msgstr ""
+msgstr "Día MM/DD"
 
 msgid "Day Mon D"
-msgstr ""
+msgstr "Día Lun D"
 
 msgid "Day Mon DD"
-msgstr ""
+msgstr "Día lun DD"
 
 msgid "Day Mon-D"
-msgstr ""
+msgstr "Día Lun-D"
 
 msgid "Day Mon-DD"
-msgstr ""
+msgstr "Día Lun-DD"
 
 msgid "Dayname D Month Year"
-msgstr ""
+msgstr "Nombre del día D Mes Año"
 
 msgid "Dayname D-Month-Year"
-msgstr ""
+msgstr "Nombre del día D-Mes-Año"
 
 msgid "Dayname D. Month Year"
-msgstr ""
+msgstr "Nombre del día D. Mes Año"
 
 msgid "Dayname D.M.Year"
-msgstr ""
+msgstr "Nombre del día D.M.Año"
 
 msgid "Dayname D.MM.Year"
-msgstr ""
+msgstr "Nombre del día D.MM.Año"
 
 msgid "Dayname D/M/Year"
-msgstr ""
+msgstr "Nombre del día D/M/Año"
 
 msgid "Dayname D/MM/Year"
-msgstr ""
+msgstr "Nombre del día D/MM/Año"
 
 msgid "Dayname DD Month Year"
-msgstr ""
+msgstr "Nombre del día DD Mes Año"
 
 msgid "Dayname DD-Month-Year"
-msgstr ""
+msgstr "Nombre del día DD-Mes-Año"
 
 msgid "Dayname DD. Month Year"
-msgstr ""
+msgstr "Nombre del día DD. Mes Año"
 
 msgid "Dayname DD.M.Year"
-msgstr ""
+msgstr "Nombre del día DD.M.Año"
 
 msgid "Dayname DD.MM.Year"
-msgstr ""
+msgstr "Nombre del día DD.MM.Año"
 
 msgid "Dayname DD/M/Year"
-msgstr ""
+msgstr "Nombre del día DD/M/Año"
 
 msgid "Dayname DD/MM/Year"
-msgstr ""
+msgstr "Nombre del día DD/MM/Año"
 
 msgid "Dayname M/D/Year"
-msgstr ""
+msgstr "Nombre del día M/D/Año"
 
 msgid "Dayname M/DD/Year"
-msgstr ""
+msgstr "Nombre del día M/DD/Año"
 
 msgid "Dayname MM/D/Year"
-msgstr ""
+msgstr "Nombre del día MM/D/Año"
 
 msgid "Dayname MM/DD/Year"
-msgstr ""
+msgstr "Nombre del día MM/DD/Año"
 
 msgid "Dayname Month D Year"
-msgstr ""
+msgstr "Nombre del día Mes D Año"
 
 msgid "Dayname Month DD Year"
-msgstr ""
+msgstr "Nombre del día Mes DD Año"
 
 msgid "Dayname Month-D-Year"
-msgstr ""
+msgstr "Nombre del día Mes-D-Año"
 
 msgid "Dayname Month-DD-Year"
-msgstr ""
+msgstr "Nombre del día Mes-DD-Año"
 
 msgid "Dayname Year Month D"
-msgstr ""
+msgstr "Nombre del día Año Mes D"
 
 msgid "Dayname Year Month DD"
-msgstr ""
+msgstr "Nombre del día Año Mes DD"
 
 msgid "Dayname Year-Month-D"
-msgstr ""
+msgstr "Nombre del día Año-Mes-D"
 
 msgid "Dayname Year-Month-DD"
-msgstr ""
+msgstr "Nombre del día Año-Mes-DD"
 
 msgid "Dayname Year/M/D"
-msgstr ""
+msgstr "Nombre del día Año/M/D"
 
 msgid "Dayname Year/M/DD"
-msgstr ""
+msgstr "Nombre del día Año/M/DD"
 
 msgid "Dayname Year/MM/D"
-msgstr ""
+msgstr "Nombre del día Año/MM/D"
 
 msgid "Dayname Year/MM/DD"
-msgstr ""
+msgstr "Nombre del día Año/MM/DD"
 
 msgid "Deactivate"
 msgstr "Desactivar"
@@ -5952,15 +5909,14 @@ msgstr "Historiales de depuración"
 
 #, python-format
 msgid "Debug log '%s' (%d/%d)"
-msgstr ""
+msgstr "Registro de depuración '%s' (%d/%d)"
 
 msgid "Debug log time format *"
-msgstr ""
+msgstr "Formato de tiempo de registro de depuración *"
 
 #
-#, fuzzy
 msgid "Decryption & Parental Control"
-msgstr "Control paterno"
+msgstr "Descifrado y control parental"
 
 #
 msgid "Deep Standby"
@@ -5974,13 +5930,11 @@ msgid "Default  (keymap.xml)"
 msgstr "Predeterminado  (keymap.xml)"
 
 # PowerTimer
-#, fuzzy
 msgid "Default 'After event' *"
-msgstr "Después del programa"
+msgstr "Por defecto 'Después del evento' *"
 
-#, fuzzy
 msgid "Default 'Timer type' *"
-msgstr "Tipo de grabación por defecto"
+msgstr "Por defecto 'Tipo de temporizador' *"
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-16 15:49+0000\n"
+"PO-Revision-Date: 2022-06-24 11:17+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -71,28 +71,22 @@ msgid "Backup your %s %s settings."
 msgstr "Сделать резервную копию настроек %s %s."
 
 #, python-format
-msgid ""
-"Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Копирование имиджа %s %s на HDD или USB."
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Копирование имиджа %s %s на HDD или USB."
 
 msgid "Edit the upgrade source address."
 msgstr "Отредактировать адрес источника обновления."
 
 #, python-format
-msgid ""
-"Flash on the fly your %s %s."
-msgstr ""
-"Прошить %s %s онлайн."
+msgid "Flash on the fly your %s %s."
+msgstr "Прошить %s %s онлайн."
 
 msgid "Maintain your multi boot device."
 msgstr "Поддерживать мультизагрузочное устройство."
 
 #, python-format
-msgid ""
-"Manage extensions or plugins for your %s %s"
-msgstr ""
-"Управление дополнениями и плагинами %s %s"
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Управление дополнениями и плагинами %s %s"
 
 #, python-format
 msgid ""
@@ -100,7 +94,7 @@ msgid ""
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Онлайн обновление ПО Вашего %s %s."
+"Онлайн обновление ПО Вашего %s %s ."
 
 msgid ""
 "\n"
@@ -3547,7 +3541,7 @@ msgid "Buffers"
 msgstr "Буферы"
 
 msgid "Build Brand"
-msgstr "Создать сборку"
+msgstr "Построение сборки"
 
 msgid "Build Information"
 msgstr "Информация о сборке"
@@ -5529,10 +5523,10 @@ msgid "Day Mon-DD"
 msgstr "День Мес-ДД"
 
 msgid "Dayname D Month Year"
-msgstr "Имя дня Д Месяц Год"
+msgstr "Имя дня День Месяц Год"
 
 msgid "Dayname D-Month-Year"
-msgstr "Имя дня Д-Месяц-Год"
+msgstr "Имя дня День-Месяц-Год"
 
 msgid "Dayname D. Month Year"
 msgstr "Имя дня Д. Месяц Год"
@@ -5619,7 +5613,7 @@ msgid "Dayname Year/MM/DD"
 msgstr "Имя дня Год/ММ/ДД"
 
 msgid "Deactivate"
-msgstr "Отключить"
+msgstr "Отключено"
 
 msgid "Debug Logs"
 msgstr "Отладочные журналы"
@@ -6081,7 +6075,7 @@ msgid "Directory long"
 msgstr "Каталог, долгая"
 
 msgid "Disable"
-msgstr "Отключить"
+msgstr "Отключено"
 
 msgid "Disable Animations"
 msgstr "Отключить анимацию"
@@ -6926,7 +6920,7 @@ msgid "Enable intro screen"
 msgstr "Включить экран приветствия"
 
 msgid "Enable multiple bouquets"
-msgstr "Включить мульти-букеты"
+msgstr "Включить несколько букетов"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Включение или отключение использования HDMI-CEC."
@@ -6950,7 +6944,7 @@ msgid "Enable terrestrial LCN:"
 msgstr "Включить наземный LCN"
 
 msgid "Enable the advanced HDMI-CEC setting options."
-msgstr "Включите расширенные параметры настройки HDMI-CEC."
+msgstr "Включить расширенные параметры настройки HDMI-CEC."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные сопоставления карты действий / удалённого управления в файл журнала отладки."
@@ -8546,7 +8540,7 @@ msgid "Halt"
 msgstr "Остановить"
 
 msgid "Handle Python crashes"
-msgstr "Обработка сбоев Python"
+msgstr "Обрабатывать сбои Python"
 
 msgid "Handle input from TV"
 msgstr "Обработка ввода с телевизора"
@@ -8564,7 +8558,7 @@ msgid "Hard disk standby after"
 msgstr "Отключить HDD через"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Перевести жёсткий диск в режим ожидания одновременно с ресивером"
+msgstr "Перевести HDD в режим ожидания одновременно с ресивером"
 
 msgid "Harddisk"
 msgstr "Жёсткий диск"
@@ -8657,7 +8651,7 @@ msgid "Hide InfoBar"
 msgstr "Всегда скрывать инфобар"
 
 msgid "Hide VBI line for this service"
-msgstr "Скрыть линию VBI на этом канале"
+msgstr "Скрыть строку VBI на этом канале"
 
 msgid "Hide any zap error messages."
 msgstr "Скрыть сообщения об ошибках при переключении каналов."
@@ -9160,7 +9154,7 @@ msgid "Inadyn Settings"
 msgstr "Настройки Inadyn"
 
 msgid "Include AIT in http streams"
-msgstr "Включать AIT в http потоки"
+msgstr "Включить AIT в http-потоки"
 
 msgid "Include AIT in recordings"
 msgstr "Включить AIT в записи"
@@ -9169,13 +9163,13 @@ msgid "Include CI assignment"
 msgstr "Включить назначение CI"
 
 msgid "Include ECM in http streams"
-msgstr "Включать ECM в http потоки"
+msgstr "Включить ECM в http потоки"
 
 msgid "Include EIT in http streams"
 msgstr "Включать EIT в http потоки"
 
 msgid "Include action map data"
-msgstr "Включать AIT в http потоки"
+msgstr "Включить данные карты действий"
 
 msgid "Include keyboard data"
 msgstr "Настройки клавиатуры"
@@ -9184,7 +9178,7 @@ msgid "Include opkg output data"
 msgstr "Включить выходные данные opkg"
 
 msgid "Include remote control data"
-msgstr "Укажите тип пульта управления"
+msgstr "Указать тип пульта управления"
 
 msgid "Include screen load data"
 msgstr "Включить данные о загрузке экрана"
@@ -14100,7 +14094,7 @@ msgid "Restore settings from a backup"
 msgstr "Восстановить настройки из копии"
 
 msgid "Restore System Settings"
-msgstr "Восстановить настройки"
+msgstr "Восстановление настроек системы"
 
 msgid "Restore the highlighted slot"
 msgstr "Восстановить выделенный слот"
@@ -15472,7 +15466,7 @@ msgid "Set Framerate for MiniTV"
 msgstr "Частота кадров для PiG-окна"
 
 msgid "Set action for 'Info' key"
-msgstr "Установите действие для кнопки 'ИНФО'"
+msgstr "Установить действие для кнопки 'ИНФО'"
 
 msgid "Set archive mode (644)"
 msgstr "Присвоить права чтения (644)"
@@ -16130,7 +16124,7 @@ msgid "Show contents of zip file"
 msgstr "Показать содержимое zip-файла"
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Показывать информацию о сбоях на экране и писать журнал сбоев x раз"
+msgstr "Показывать инфо о сбоях на экране и писать журнал сбоев x раз"
 
 msgid "Show crypto icons"
 msgstr "Показать значок кодирования"
@@ -16172,7 +16166,7 @@ msgid "Show event genre information"
 msgstr "Показать информацию о жанре события"
 
 msgid "Show event-progress in channel selection"
-msgstr "Прогрессбар в списке каналов"
+msgstr "Прогресс-бар в списке каналов"
 
 msgid "Show eventinfo plugins"
 msgstr "Показать плагины ТВ-гида"
@@ -17648,7 +17642,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 20.06.2022"
+msgstr "Коррекция перевода Monja 24.06.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20056,7 +20050,7 @@ msgid "Wait for timesync at startup"
 msgstr "Дождитесь синхронизации времени при запуске"
 
 msgid "Wait please while creating swapfile..."
-msgstr "Подождите, пожалуйста, пока создаётся файл подкачки..."
+msgstr "Создаётся файл подкачки..."
 
 msgid "Wait please while scanning for devices..."
 msgstr "Подождите, пожалуйста, пока идёт сканирование устройств..."
@@ -21478,7 +21472,7 @@ msgid "detective/thriller"
 msgstr "Детектив/Триллер"
 
 msgid "disable move mode"
-msgstr "Конец режима перемещения"
+msgstr "Отключить режим перемещения"
 
 msgid "disabled"
 msgstr "Выключено"
@@ -21551,7 +21545,7 @@ msgid "enable favourite edit"
 msgstr "Редактирование избранного"
 
 msgid "enable move mode"
-msgstr "Режим перемещения"
+msgstr "Включить режим перемещения"
 
 msgid "enabled"
 msgstr "Включено"

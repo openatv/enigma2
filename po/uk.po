@@ -4,20 +4,21 @@
 # kvinto <badsystem@ukr.net>, 2021, 2022.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
+# Artem <artem@molotov.work>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-13 04:00+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"PO-Revision-Date: 2022-06-23 09:59+0000\n"
+"Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -74,28 +75,22 @@ msgid "Backup your %s %s settings."
 msgstr "Резервне копіювання налаштувань %s %s."
 
 #, python-format
-msgid ""
-"Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Резервне копіювання іміджу %s %s на HDD або USB."
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Резервне копіювання іміджу %s %s на HDD або USB."
 
 msgid "Edit the upgrade source address."
 msgstr "Змінити адресу джерела оновлення."
 
 #, python-format
-msgid ""
-"Flash on the fly your %s %s."
-msgstr ""
-"Прошити онлайн Ваш %s %s."
+msgid "Flash on the fly your %s %s."
+msgstr "Прошити онлайн Ваш %s %s."
 
 msgid "Maintain your multi boot device."
 msgstr "Підтимка Вашим пристроєм мультизавантаження."
 
 #, python-format
-msgid ""
-"Manage extensions or plugins for your %s %s"
-msgstr ""
-"Керувати розширеннями або плагінами для Вашого %s %s"
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Керувати розширеннями або плагінами для Вашого %s %s"
 
 #, python-format
 msgid ""
@@ -245,7 +240,7 @@ msgid " - file exist! Overwrite"
 msgstr " - файл існує! Перезаписати"
 
 msgid " - folder exist! Overwrite"
-msgstr " - папка існує! Перезаписати"
+msgstr " - тека існує! Перезаписати"
 
 msgid " <No Channel>"
 msgstr " <Немає Каналу>"
@@ -2377,7 +2372,7 @@ msgid "Add bookmark"
 msgstr "Додати закладку"
 
 msgid "Add current folder to bookmarks"
-msgstr "Додати поточну папку в закладки"
+msgstr "Додати поточну теку в закладки"
 
 msgid "Add directory to playlist"
 msgstr "Додати каталог в плейлист"
@@ -2413,7 +2408,7 @@ msgid "Add recording (stop after current event)"
 msgstr "Почати запис (зупинити після цієї передачі)"
 
 msgid "Add selected folder to bookmarks"
-msgstr "Додати вибрану папку у закладки"
+msgstr "Додати вибрану теку у закладки"
 
 msgid "Add service"
 msgstr "Додати канал"
@@ -2437,7 +2432,7 @@ msgid "Additional Info"
 msgstr "Додаткова інформація"
 
 msgid "Additional files/folders to backup"
-msgstr "Додати файли/папки для резервного копіювання"
+msgstr "Додати файли/теки для резервного копіювання"
 
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
 msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації вашого двигуна, так що система зможе обчислити, скільки часу буде потрібно для переміщення антени."
@@ -3781,7 +3776,7 @@ msgid "Calculate"
 msgstr "Обчислення"
 
 msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr "Розрахувати та показати розмір каталогу. Примітка: це може сповільнити інтерфейс користувача під час вибору папки!"
+msgstr "Розрахувати та показати розмір каталогу. Примітка: це може сповільнити інтерфейс користувача під час вибору теки!"
 
 msgid "Calculate file checksums"
 msgstr "Обчислення контрольної суми файлу"
@@ -5121,7 +5116,7 @@ msgid "Copy files/directories to target directory"
 msgstr "Копіювати файлів/каталогів до цільового каталогу"
 
 msgid "Copy folder"
-msgstr "Копіювати папку"
+msgstr "Копіювати теку"
 
 msgid "Copying files"
 msgstr "Копіювання файлів"
@@ -5198,10 +5193,10 @@ msgid "Create a randomly generated password"
 msgstr "Створити випадково згенерований пароль"
 
 msgid "Create directory"
-msgstr "Створити папку"
+msgstr "Створити теку"
 
 msgid "Create directory/folder"
-msgstr "Створити каталог/папку"
+msgstr "Створити каталог/теку"
 
 msgid "Create separate radio userbouquet"
 msgstr "Створити окремий фаворитний радіо-список"
@@ -5677,13 +5672,13 @@ msgid "Default file sorting right"
 msgstr "Стандартне сортування файлів справа"
 
 msgid "Default files/folders to backup"
-msgstr "Файли/папки для резервної копії за замовчуванням"
+msgstr "Файли/теки для резервної копії за замовчуванням"
 
 msgid "Default folder"
-msgstr "Папки за замовчуванням"
+msgstr "Типова тека"
 
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Папки за замовчуванням, якщо ліву або праву папку не збережено, і цільову папку для кнопки 5."
+msgstr "Типова тека, якщо ліву або праву теку не збережено, а цільова тека для кнопки 5."
 
 msgid "Default movie location"
 msgstr "Розташування фільмів типово"
@@ -5866,7 +5861,7 @@ msgid "Delete file or directory (and all its contents)"
 msgstr "Видалити файл або каталог (і весь його вміст)"
 
 msgid "Delete folder"
-msgstr "Видалення папки"
+msgstr "Видалення теки"
 
 msgid "Delete logfile"
 msgstr "Видалити файл журналу збоїв"
@@ -6216,7 +6211,7 @@ msgid "Distribution file system"
 msgstr "Файлова система"
 
 msgid "Distribution folder"
-msgstr "Папка дистрибутиву"
+msgstr "Тека дистрибутиву"
 
 msgid "Distribution language"
 msgstr "Мова"
@@ -7877,7 +7872,7 @@ msgid "Filename"
 msgstr "Назва файлу"
 
 msgid "Files/folders to exclude from backup"
-msgstr "Файли/папки виключити з резервної копії"
+msgstr "Файли/теки виключити з резервної копії"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Перевірка файлової системи Вашого жорсткого диска"
@@ -8306,7 +8301,7 @@ msgid "Go down the list"
 msgstr "Перейти вниз списку"
 
 msgid "Go to bookmarked folder"
-msgstr "Перейти до папки закладок"
+msgstr "Перейти до теки закладок"
 
 msgid "Go to deep standby"
 msgstr "вимкнути приймач"
@@ -10823,7 +10818,7 @@ msgid "Move files/directories to target directory"
 msgstr "Перемістити файли/каталоги до цільового каталогу"
 
 msgid "Move folder"
-msgstr "Переміщення папки"
+msgstr "Переміщення теки"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Перемістити поточний запис DNS на один рядок вниз"
@@ -11254,7 +11249,7 @@ msgid "New event info"
 msgstr "Інформація про нову передачу"
 
 msgid "New folder"
-msgstr "Нова папка"
+msgstr "Нова тека"
 
 msgid "New password"
 msgstr "Новий пароль"
@@ -11624,7 +11619,7 @@ msgid "Not Shown"
 msgstr "Не показаний"
 
 msgid "Not allowed with folders"
-msgstr "Не дозволяється з папками"
+msgstr "Не дозволяється з теками"
 
 msgid "Not associated"
 msgstr "Не пов’язано"
@@ -12395,7 +12390,7 @@ msgid "Play entry"
 msgstr "Відтворити запис"
 
 msgid "Play folder"
-msgstr "Відтворення папки"
+msgstr "Відтворення теки"
 
 msgid "Play from next mark or playlist entry"
 msgstr "Відтворення з наступної мітки або списку записів"
@@ -13888,7 +13883,7 @@ msgid "Remove completed timers after (days)"
 msgstr "Видалення завершених таймерів через (в днях)"
 
 msgid "Remove current folder from bookmarks"
-msgstr "Видалити поточну папку з закладок"
+msgstr "Видалити поточну теку зі закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
@@ -13897,7 +13892,7 @@ msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
 
 msgid "Remove selected folder from bookmarks"
-msgstr "Видалити вибрану папку з закладок"
+msgstr "Видалити вибрану теку зі закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Видалити тексти для слабочуючих із зовнішніх субтитрів (інструментальна музика чи звуки навколишнього середовища, наприклад, коли лунає дзвінок у дверіа бо постріл)."
@@ -13928,7 +13923,7 @@ msgid "Rename failed!"
 msgstr "Не вдалося перейменувати!"
 
 msgid "Rename file/directory"
-msgstr "Перейменувати файл/папку"
+msgstr "Перейменувати файл/теку"
 
 msgid "Rename name and description for new events"
 msgstr "Перейменувати ім'я та опис для нових подій"
@@ -14491,7 +14486,7 @@ msgid "Save every (in hours)"
 msgstr "Зберігати кожні (в годинах)"
 
 msgid "Save left folder on exit"
-msgstr "Зберегти ліву папку при виході"
+msgstr "Зберегти ліву теку при виході"
 
 msgid "Save playlist"
 msgstr "Зберегти список відтворення"
@@ -14500,7 +14495,7 @@ msgid "Save playlist on EXIT"
 msgstr "зберегти плейлист при виході"
 
 msgid "Save right folder on exit"
-msgstr "Зберегти праву папку при виході"
+msgstr "Зберегти праву теку при виході"
 
 msgid "Save settings and EPG data."
 msgstr "Зберегти налаштування та дані ЕПГ."
@@ -14514,10 +14509,10 @@ msgstr ""
 "('%s')"
 
 msgid "Save the left folder list location on exit."
-msgstr "Зберегти розташування списку папок зліва під час виходу."
+msgstr "Зберегти розташування списку тек зліва під час виходу."
 
 msgid "Save the right folder list location on exit."
-msgstr "Зберегти розташування списку папок справа під час виходу."
+msgstr "Зберегти розташування списку тек справа під час виходу."
 
 msgid "Save timeshift as movie and continue recording"
 msgstr "Зберегти таймшифт як запис і продовжити запис"
@@ -14831,7 +14826,7 @@ msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure
 msgstr "Виберіть Швидкий DiSEqC, якщо ваша антена підтримує це. Якщо ви не впевнені, виберіть 'ні'."
 
 msgid "Select Folders"
-msgstr "Виберіть папки"
+msgstr "Виберіть теки"
 
 msgid "Select HDD"
 msgstr "Вибрати HDD"
@@ -14931,7 +14926,7 @@ msgid "Select files to exclude from backup"
 msgstr "Виберіть файли, які будуть виключені з резервної копії"
 
 msgid "Select files/folders to backup"
-msgstr "Виберіть файли/папки для бекапу"
+msgstr "Виберіть файли/теки для резерв. копії"
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Виберіть швидкість переміщення антени між супутниками."
@@ -15000,7 +14995,7 @@ msgid "Select sort method:"
 msgstr "Виберіть метод сортування:"
 
 msgid "Select target folder"
-msgstr "Виберіть папку призначення"
+msgstr "Виберіть теку призначення"
 
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
@@ -15075,7 +15070,7 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
 
 msgid "Select the movie path"
-msgstr "Виберіть папку для фільмів"
+msgstr "Виберіть теку для фільмів"
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
@@ -15633,7 +15628,7 @@ msgid "Set voltage and 22KHz"
 msgstr "Встановити напругу і 22KГц"
 
 msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
-msgstr "Виберіть кореневу папку для списку записів, де вже не буде показана папка вгору '..'."
+msgstr "Виберіть кореневу теку для списку записів, де вже не буде показана тека вгору '..'."
 
 msgid "Setting Restored "
 msgstr "Відновлення Налаштувань "
@@ -15835,7 +15830,7 @@ msgid "Seychelles"
 msgstr "Сейшели"
 
 msgid "Share Folders"
-msgstr "Доступні папки"
+msgstr "Доступні теки"
 
 msgid "Share View"
 msgstr "Перегляд мережевого диска"
@@ -19295,7 +19290,7 @@ msgid "Unpack to %s"
 msgstr "Розпакувати до %s"
 
 msgid "Unpack to current folder"
-msgstr "Розпакувати до поточної папки"
+msgstr "Розпакувати до поточної теки"
 
 msgid "Unsupported"
 msgstr "Не підтримуєтья"
@@ -20410,7 +20405,7 @@ msgid "When receiver wakes from standby it will command the TV to switch to the 
 msgstr "Коли приймач виходить із режиму очікування, він дасть команду телевізору переключитися на вхід HDMI, до якого підключено приймач."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr "Якщо вибрано, попередній стан кожної папки буде використовуватися, при прийнятті значень за умовчанням."
+msgstr "Якщо вибрано, попередній стан кожної теки буде використовуватися, при прийнятті значень за умовчанням."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Якщо вибрано PIG, коли відтворення фільму закінчилося, почнеться показ телепередачі."
@@ -21948,7 +21943,7 @@ msgid "move file"
 msgstr "перемістити файл"
 
 msgid "move folder"
-msgstr "перемістити папку"
+msgstr "перемістити теку"
 
 msgid "move up to first entry"
 msgstr "перемістити вгору до першого запису"
@@ -22320,7 +22315,7 @@ msgid "set as startup service"
 msgstr "встановити стартовим каналом"
 
 msgid "share:"
-msgstr "мережева папка:"
+msgstr "мережева тека:"
 
 msgid "shell"
 msgstr "shell"
