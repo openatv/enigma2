@@ -434,19 +434,19 @@ class FlashImage(Screen, HelpableScreen):
 				if exists("/media/hdd/images/config/myrestore.sh"):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
-					(_("Upgrade (Backup, flash & restore all)"), "restoresettingsandallplugins"),
+					(_("Upgrade (Flash & restore all)"), "restoresettingsandallplugins"),
 					(_("Clean (Just flash and start clean)"), "wizard"),
-					(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-					(_("Backup, flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
+					(_("Flash and restore settings and no plugins"), "restoresettingsnoplugin"),
+					(_("Flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
 					(_("Do not flash image"), "abort")
 				]
 				default = self.selectPrevPostFlashAction()
 				if "backup" in self.imageName:
 					choices = [
 						(_("Only Flash Backup Image"), "nothing"),
-						(_("Backup, flash & restore all"), "restoresettingsandallplugins"),
-						(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-						(_("Backup, flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
+						# (_("Flash & restore all"), "restoresettingsandallplugins"),
+						# (_("Flash and restore settings and no plugins"), "restoresettingsnoplugin"),
+						# (_("Flash and restore settings and selected plugins (Ask user)"), "restoresettings"),
 						(_("Do not flash image"), "abort")
 					]
 					default = 0
