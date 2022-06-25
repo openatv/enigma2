@@ -1,9 +1,6 @@
 from json import load
 from os.path import exists
-try:
-	from urllib.request import urlopen
-except ImportError:
-	from urllib2 import urlopen
+from urllib.request import urlopen
 
 from enigma import eTimer
 
