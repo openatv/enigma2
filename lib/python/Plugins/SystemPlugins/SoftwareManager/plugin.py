@@ -43,8 +43,7 @@ from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
-from .BackupRestore import BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
-from .BackupRestore import InitConfig as BackupRestore_InitConfig
+from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD, RestoreMenu
 from .SoftwareTools import iSoftwareTools
 from .ImageWizard import ImageWizard
 from .ImageBackup import ImageBackup
@@ -132,6 +131,10 @@ class ImageWizard(ImageWizard):
 
 
 class ImageBackup(ImageBackup):
+    pass
+
+
+class RestoreMenu(RestoreMenu):
     pass
 
 
