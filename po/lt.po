@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-17 13:49+0000\n"
+"PO-Revision-Date: 2022-06-25 17:27+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -77,7 +77,7 @@ msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sukurti %s %s veikiančio atvaizdo atsarginę kopiją į HDD arba USB."
 
 msgid "Edit the upgrade source address."
-msgstr "Galėsite redaguoti atnaujinimo šaltinio adresą."
+msgstr "Redaguoti naujinimo šaltinio adresą."
 
 #, python-format
 msgid "Flash on the fly your %s %s."
@@ -88,15 +88,12 @@ msgstr "Tvarkykite savo daugialypės terpės įkrovos įrenginį"
 
 #, python-format
 msgid "Manage extensions or plugins for your %s %s"
-msgstr "Įdiegti ir atnaujinti %s %s plėtinius ir priedus"
+msgstr "Tvarkykite %s %s plėtinius arba papildinius"
 
 #, python-format
 msgid ""
-"\n"
 "Online update of your %s %s software."
-msgstr ""
-"\n"
-"Atnaujinti %s %s programinę įrangą internetu."
+msgstr "%s %s programinės įrangos atnaujinimas internetu."
 
 msgid ""
 "\n"
@@ -114,11 +111,11 @@ msgstr ""
 
 #, python-format
 msgid "Restore your %s %s settings."
-msgstr "Atkurkite jūsų %s %s nustatymus."
+msgstr "Atkurkite %s %s parametrus."
 
 #, python-format
 msgid "Restore your %s %s with a new firmware."
-msgstr "Atkurkite savo %s %s su nauja programine įranga."
+msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
 
 msgid "Restore your backups by date."
 msgstr "Atkurkite savo atsarginę kopiją pagal datą."
@@ -136,7 +133,7 @@ msgstr ""
 "Dabartinis įrenginys: "
 
 msgid "View, install and remove available or installed packages."
-msgstr "Peržiūrėkite, įdiekite galimus, pašalinkite įdiegtus paketus."
+msgstr "Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid ""
 "\n"
@@ -2197,7 +2194,7 @@ msgstr "Garso/vaizdo valdymas"
 
 #, python-format
 msgid "A/V aspect ratio is '%s'."
-msgstr "Garso/vaizdo formatas: %s."
+msgstr "Vaizdo kraštinių santykis '%s'."
 
 msgid "AZPlay"
 msgstr "AZ atkūrimas"
@@ -10349,7 +10346,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Tvarkyti lokalės / kalbos pasirinkimo nustatymus"
 
 msgid "Manage Extensions"
-msgstr "Plėtinių valdymas"
+msgstr "Valdyti Plėtinius"
 
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
@@ -12140,7 +12137,7 @@ msgid "Packages and associated locales"
 msgstr "Paketai ir susijusios lokalės"
 
 msgid "Package Manager"
-msgstr "Paketų valdymas"
+msgstr "Paketų tvarkyklė"
 
 msgid "Packet manager"
 msgstr "Paketo tvarkyklė"
@@ -13819,7 +13816,7 @@ msgid "Remote Control Button Settings"
 msgstr "Nuotolinio valdymo mygtuko parametrai"
 
 msgid "Remote Control Code Settings"
-msgstr "Nuotolinio valdymo pulto kodas"
+msgstr "Nuotolinio valdymo kodo nustatymai"
 
 msgid "Remote box"
 msgstr "Nuotolinis aparatas"
@@ -14109,7 +14106,7 @@ msgid "Restore settings from a backup"
 msgstr "Atkurti nustatymus iš atsarginės kopijos"
 
 msgid "Restore System Settings"
-msgstr "Atkurkite sistemos nustatymus"
+msgstr "Atkurti sistemos nustatymus"
 
 msgid "Restore the highlighted slot"
 msgstr "Atkurti paryškintą lizdą"
@@ -14907,7 +14904,7 @@ msgid "Select audio track"
 msgstr "Pasirinkite garso takelį"
 
 msgid "Select Backup Location"
-msgstr "Pasirinkite atsarginės kopijos vietą"
+msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
 
 msgid "Select cardserver"
 msgstr "Pasirinkite kortelių serverį"
@@ -15051,13 +15048,13 @@ msgid "Select the currently highlighted service"
 msgstr "Pasirinkite šiuo metu pažymėtą paslaugą"
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
-msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
+msgstr "Pasirinkite norimą funkciją ir spustelėkite \"Gerai\", kad ją priskirtumėte. Naudokite \"CH+/-\", kad perjungtumėte sąrašus. Pasirinkite priskirtą funkciją ir spustelėkite \"Gerai\", kad ją priskirtumėte. Naudokite \"NEXT/PREVIOUS\", kad pakeistumėte priskirtų funkcijų tvarką."
 
 msgid "Select the display design for menus."
 msgstr "Pasirinkite meniu rodymo dizainą."
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
-msgstr "Pasirinkite kiekvienos meniu įrašo elemento rodymo parinktis. Jei yra meniu numerių, numerius galima naudoti tiesiogiai pasirinkti konkrečius meniu įrašus."
+msgstr "Pasirinkite kiekvieno meniu įvesties elemento rodymo parinktis. Jei yra meniu numeriai, skaičių mygtukus galima naudoti norint tiesiogiai pasirinkti sunumeruotus meniu įrašus."
 
 msgid "Select the function to be assigned to this button."
 msgstr "Pasirinkite funkciją, kuri bus priskirta šiam mygtukui."
@@ -17657,7 +17654,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-06-17 adga45@gmail.com"
+msgstr "2022-06-25 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
