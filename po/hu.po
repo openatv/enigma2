@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -58,43 +58,12 @@ msgstr ""
 "\n"
 "<Ez a tuner automatikusan konfigurálva van>"
 
-msgid "Advanced options and settings."
-msgstr "Haladó beállítási lehetőségek."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Az OK gomb lenyomása után kérem, várjon!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "A(z) %s %s készülék beállításainak mentése."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "A működő %s %s lemezkép mentése Merevlemezre vagy USB-re."
-
-msgid "Edit the upgrade source address."
-msgstr "A szoftver-frissítési forrás címének módosítása."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "a(z) %s %s készülék Flashelés közben."
-
-msgid "Maintain your multi boot device."
-msgstr "Tartsd karban a multiboot eszközt."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "A(z) %s %s készülék kiegészítések és bővítmények kezelése"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"A(z) %s %s készülék szoftverének online frissítése."
 
 msgid ""
 "\n"
@@ -110,20 +79,6 @@ msgstr ""
 "\n"
 "Felvétel folyamatban."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "A(z) %s %s készülék beállításainak visszaállítása."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "A(z) %s %s készülék visszaállítása egy új firmware-el."
-
-msgid "Restore your backups by date."
-msgstr "Visszaállítás dátum szerint."
-
-msgid "Scan for local extensions and install them."
-msgstr "Helyileg bemásolt bővítmények keresése, telepítése."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -132,9 +87,6 @@ msgstr ""
 "\n"
 "Válasszon célt, a mentéshez.\n"
 "Aktuális eszköz: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Szoftvercsomagok megtekintése, telepítése vagy eltávolítása."
 
 msgid ""
 "\n"
@@ -1996,9 +1948,6 @@ msgstr "<ismeretlen>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2159,6 +2108,10 @@ msgstr ""
 "Az időzítő nem tud felvenni!\n"
 "Próbálja újra TV megjelenítés nélkül?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV képarány %s."
+
 msgid "AAC downmix"
 msgstr "AAC lekeverése"
 
@@ -2208,10 +2161,6 @@ msgstr "ATSC szolgáltató"
 
 msgid "AV Setup"
 msgstr "AV beállítás"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV képarány %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2478,14 +2427,17 @@ msgstr "Felnőtt közönség, erős erőszak 15+"
 msgid "Advanced"
 msgstr "Haladó"
 
-msgid "Advanced Settings"
-msgstr "Haladó beállítások"
-
 msgid "Advanced Options"
 msgstr "Haladó beállítások"
 
 msgid "Advanced Restore"
 msgstr "Mentések visszaállítása"
+
+msgid "Advanced Settings"
+msgstr "Haladó beállítások"
+
+msgid "Advanced options and settings."
+msgstr "Haladó beállítási lehetőségek."
 
 msgid "Advanced software"
 msgstr "Haladó szoftver"
@@ -3275,6 +3227,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr "Beállítások mentése"
 
+msgid "Backup System Settings"
+msgstr "Rendszerbeállítások mentése"
+
 msgid "Backup completed."
 msgstr "Mentés befejezve."
 
@@ -3297,12 +3252,13 @@ msgstr ""
 "Mentett bővítményeket talált\n"
 "szeretné telepíteni most?"
 
-msgid "Backup System Settings"
-msgstr "Rendszerbeállítások mentése"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Biztonsági másolat célhelye: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "A(z) %s %s készülék beállításainak mentése."
 
 msgid "Backup your current image"
 msgstr "A jelenlegi lemezkép mentése"
@@ -3316,11 +3272,9 @@ msgstr "A jelenlegi beállítások mentése"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Az aktuális beállítások mentése. Ez tartalmazza az E2 beállítást, csatornákat, hálózatokat és a kiválasztott fájlokat"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Biztonsági mentés, flash és visszaállítási beállítások és nincsenek bővítmények"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Biztonsági mentés, flash és visszaállítási beállítások és kiválasztott bővítmények (felhasználó megkérdezése)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "A működő %s %s lemezkép mentése Merevlemezre vagy USB-re."
 
 msgid "Bahamas"
 msgstr "Bahamák"
@@ -4058,6 +4012,9 @@ msgstr "A Boxmode megváltoztatása a Hardware Chip Modes vezérléséhez *"
 msgid "Change Language"
 msgstr "Kezelő felület nyelve"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "PIN megváltoztatása"
 
@@ -4573,9 +4530,6 @@ msgstr "CI modulfogadó"
 
 msgid "Common Interface Assignment"
 msgstr "CI hozzárendelés"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -6789,6 +6743,9 @@ msgstr "Szerkessze a(z) %s %s névszerver konfigurációját."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Szerkessze a(z) %s %s hálózati konfigurációját."
 
+msgid "Edit the upgrade source address."
+msgstr "A szoftver-frissítési forrás címének módosítása."
+
 msgid "Edit upgrade source url."
 msgstr "A frissítési forrás URL-jének szerkesztése."
 
@@ -8000,9 +7957,19 @@ msgstr "Flash Online"
 msgid "Flash Online a new image"
 msgstr "Egy új lemezkép Online Flashelése"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "a(z) %s %s készülék Flashelés közben."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "A készülék szoftverének Flashelése."
@@ -8838,9 +8805,6 @@ msgstr "Hotkey"
 msgid "Hotkey Settings"
 msgstr "Hotkey beállítása"
 
-msgid "Hotkey Setup for"
-msgstr "Hotkey beállítás"
-
 msgid "Hour"
 msgstr "Óra"
 
@@ -9400,6 +9364,9 @@ msgstr "Telepítés sikertelen !!"
 msgid "Install Finished."
 msgstr "Telepítés befejezve."
 
+msgid "Install Local Extension"
+msgstr "Bővítmények kézi telepítése"
+
 msgid "Install Plugins"
 msgstr "Bővítméynek telepítése"
 
@@ -9420,9 +9387,6 @@ msgstr "Bővítmények telepítése."
 
 msgid "Install lcd picons on"
 msgstr "LCD piconok telepítése ide"
-
-msgid "Install Local Extension"
-msgstr "Bővítmények kézi telepítése"
 
 msgid "Install or remove finished."
 msgstr "A telepítés vagy eltávolítás befejeződött."
@@ -10369,6 +10333,9 @@ msgstr "Főmenü"
 msgid "Maintain old EPG data for"
 msgstr "Elmúlt EPG adat tárolása eddig"
 
+msgid "Maintain your multi boot device."
+msgstr "Tartsd karban a multiboot eszközt."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "A File Commander elérhetővé tétele a Bővítmények menüben."
 
@@ -10415,12 +10382,16 @@ msgstr "Málta"
 msgid "Maltese"
 msgstr "Málta"
 
+msgid "Manage Extensions"
+msgstr "Bővítmények kezelése"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Csatorna kiválasztás beállítása"
 
-msgid "Manage Extensions"
-msgstr "Bővítmények kezelése"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "A(z) %s %s készülék kiegészítések és bővítmények kezelése"
 
 msgid "Manage network mounts"
 msgstr "Hálózati csatlakozások kezelése"
@@ -10602,6 +10573,15 @@ msgstr "Menü"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Gyors műveletek"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Menü beállítás"
@@ -11926,6 +11906,13 @@ msgstr "Egy sor"
 msgid "Online software update"
 msgstr "Online szoftverfrissítés"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "A(z) %s %s készülék szoftverének online frissítése."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Csak bővítmények."
 
@@ -12241,6 +12228,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR hosszú"
 
+msgid "Package Manager"
+msgstr "Csomagkezelés"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12256,9 +12246,6 @@ msgstr "helyi fájlok kezelése"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Csomagkezelés"
 
 msgid "Packet manager"
 msgstr "Csomagkezelő"
@@ -12748,7 +12735,7 @@ msgstr ""
 "\n"
 "Nyomja le az OK gombot a folytatáshoz."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14223,17 +14210,28 @@ msgstr "Bővítmények visszaállítása"
 msgid "Restore Settings"
 msgstr "Beállítások visszaállítása"
 
+msgid "Restore System Settings"
+msgstr "Rendszerbeállítások visszaállítása"
+
 msgid "Restore backups"
 msgstr "Mentések visszaállítása"
 
 msgid "Restore settings from a backup"
 msgstr "Beállítások visszaállítása mentésből"
 
-msgid "Restore System Settings"
-msgstr "Rendszerbeállítások visszaállítása"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "A(z) %s %s készülék beállításainak visszaállítása."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "A(z) %s %s készülék visszaállítása egy új firmware-el."
+
+msgid "Restore your backups by date."
+msgstr "Visszaállítás dátum szerint."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Állítsd vissza a beállításaidat a mentésből. Visszaállítás után a készülék újraindul az új beállítások érvényesítése miatt"
@@ -14702,6 +14700,9 @@ msgstr "Fájlok keresése..."
 msgid "Scan for local extensions and install them"
 msgstr "Helyileg bemásolt bővítmények keresése, telepítése"
 
+msgid "Scan for local extensions and install them."
+msgstr "Helyileg bemásolt bővítmények keresése, telepítése."
+
 msgid "Scan wireless networks"
 msgstr "Vezeték nélküli hálózat keresése"
 
@@ -14958,11 +14959,20 @@ msgstr "Válassza az 'igen' lehetőséget, ha csak a DiSEqC parancsot szeretné 
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Kijelölés (forráslista) vagy könyvtár megadása (céllista)"
 
+msgid "Select Additional Backup Files"
+msgstr "További mentési fájlok kiválasztása"
+
+msgid "Select Backup Location"
+msgstr "Válassza ki a mentés helyét"
+
 msgid "Select CAId"
 msgstr "CAId kiválasztása"
 
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 kinézet kiválasztás"
+
+msgid "Select Excluded Backup Files"
+msgstr "Válassza ki a kizárt mentési fájlokat"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Válassza a Gyors DiSEqC lehetőséget, ha a soros rendszer támogatja ezt. Ha nem biztos benne, válassza a \"nem\" lehetőséget."
@@ -14987,6 +14997,9 @@ msgstr "Quad Csatorna választása"
 
 msgid "Select Software Update"
 msgstr "Szoftverfrissítés választása"
+
+msgid "Select Upgrade Source"
+msgstr "Válasszon szerkesztendő frissítési forrást"
 
 msgid "Select Your Skin"
 msgstr "Válassza ki a kinézetet (Skin)"
@@ -15028,17 +15041,11 @@ msgstr "Művelet kiválasztása"
 msgid "Select action for timer %s:"
 msgstr "Művelet kiválasztása a(z) %s időzítőhöz:"
 
-msgid "Select Additional Backup Files"
-msgstr "További mentési fájlok kiválasztása"
-
 msgid "Select additional files to backup"
 msgstr "Biztonsági mentésbe helyezendő fájlok"
 
 msgid "Select audio track"
 msgstr "Hangsáv kiválasztása"
-
-msgid "Select Backup Location"
-msgstr "Válassza ki a mentés helyét"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15060,9 +15067,6 @@ msgstr "Válassza ki az alapértelmezett EPG típusát ..."
 
 msgid "Select destination for:"
 msgstr "Cél kiválasztása ehhez:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Válassza ki a kizárt mentési fájlokat"
 
 msgid "Select files to exclude from backup"
 msgstr "Válassza ki a kizárandó fájlokat a mentésből"
@@ -15289,9 +15293,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Válasszon szerkesztendő frissítési forrást"
 
 msgid "Select upgrade source to edit."
 msgstr "Válasszon szerkesztendő frissítési forrást."
@@ -16101,6 +16102,9 @@ msgstr "CI üzenetek mutatása"
 msgid "Show Clients"
 msgstr "A kliensek mutatása"
 
+msgid "Show Default Backup Files"
+msgstr "Alapértelmezett mentési fájlok"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16297,9 +16301,6 @@ msgstr "Kódolási információ megjelenítése az infosorban"
 msgid "Show default after description"
 msgstr "Bővített leírás megjelenítése"
 
-msgid "Show Default Backup Files"
-msgstr "Alapértelmezett mentési fájlok"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "Alapértelmezett mentési fájlok"
@@ -16433,8 +16434,8 @@ msgstr "Filmek megjelenítése"
 msgid "Show multi channel EPG"
 msgstr "Több csatornás EPG megjelenítése"
 
-msgid "Show network mounts ..."
-msgstr "Hálózati csatlakozások mutatása..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -16520,6 +16521,9 @@ msgid "Show setup"
 msgstr "Beállítások megjelenítése..."
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -16642,6 +16646,9 @@ msgstr "Mutasson ismeretlen fájlkiterjesztéseket az 'Addon File-Viewer' haszn�
 
 msgid "Show unknown video format as"
 msgstr "Ismeretlen videó formátum megjelenítése"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Függőleges Műsorújság megjelenítése"
@@ -17019,6 +17026,9 @@ msgstr "Szoftver karbantartó beállításai"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Szoftver visszaállítás"
+
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
@@ -17033,9 +17043,6 @@ msgstr "Szoftverkezelés"
 
 msgid "Software manager setup"
 msgstr "Szoftver karbantartó Beállításai"
-
-msgid "Software Restore"
-msgstr "Szoftver visszaállítás"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17257,9 +17264,6 @@ msgstr "Készenlét"
 
 msgid "Standby / Restart"
 msgstr "Készenlét / Újraindítás"
-
-msgid "Standby / restart"
-msgstr "Készenlét / újraindítás"
 
 msgid "Standby without TV shutdown"
 msgstr "Készenlét a TV leállítása nélkül"
@@ -19020,6 +19024,15 @@ msgstr "Váltás a Csatornacsomag/EPG lista között"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Váltás az új szöveg beszúrásra a meglévő szöveg felülírása elött"
 
@@ -19591,8 +19604,8 @@ msgstr "Csatlakozási helyek frissítése."
 msgid "Updating software catalog"
 msgstr "Szoftver katalógus frissítése"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Frissítés (Biztonsági mentés, Flash és az összes visszaállítása)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Frissítés befejezve."
@@ -20165,6 +20178,9 @@ msgstr "Teletext megtekintése..."
 
 msgid "View video CD..."
 msgstr "Videó-CD nézés..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Szoftvercsomagok megtekintése, telepítése vagy eltávolítása."
 
 msgid "Violence"
 msgstr "Erőszak"
@@ -22931,6 +22947,27 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Biztonsági mentés, flash és visszaállítási beállítások és nincsenek bővítmények"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Biztonsági mentés, flash és visszaállítási beállítások és kiválasztott bővítmények (felhasználó megkérdezése)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Hotkey beállítás"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Hálózati csatlakozások mutatása..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Készenlét / újraindítás"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Frissítés (Biztonsági mentés, Flash és az összes visszaállítása)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Válassza ki a főmenük stílusát"

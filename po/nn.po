@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -46,46 +46,12 @@ msgid ""
 msgstr ""
 
 #
-msgid "Advanced options and settings."
-msgstr "Avanserte alternativer og innstillinger."
-
-#
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Etter å ha trykket OK, vennligst vent!"
-
-#
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Sikkerhetskopiere dine %s %s innstillinger."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-#
-msgid "Edit the upgrade source address."
-msgstr "Endre oppgraderingskilde."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Behandle utvidelser eller plugins for din %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Online oppdatering av din %s %s programvare."
 
 #
 msgid ""
@@ -101,23 +67,6 @@ msgid ""
 msgstr ""
 
 #
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Gjenopprette dine %s %s innstillinger."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Oppgrader %s %s med en ny fastvare."
-
-#
-msgid "Restore your backups by date."
-msgstr "Gjenopprett sikkerhetskopiene etter dato."
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "Søk etter lokale utvidelser og installer disse. "
-
-#
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -126,10 +75,6 @@ msgstr ""
 "\n"
 "Velg sikkerhetskopi enhet.\n"
 " Gjeldende enhet :"
-
-#
-msgid "View, install and remove available or installed packages."
-msgstr "Vise, installere og fjerne tilgjengelige eller installerte pakker."
 
 msgid ""
 "\n"
@@ -2188,10 +2133,6 @@ msgid "?"
 msgstr "??"
 
 #
-msgid "??"
-msgstr "??"
-
-#
 msgid "A"
 msgstr "A"
 
@@ -2362,6 +2303,10 @@ msgstr ""
 "En timer startet ikke opptak.\n"
 "Bytt program og prøv igjen?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV-aspektet er %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2417,10 +2362,6 @@ msgstr "Legg til tilbyder"
 
 msgid "AV Setup"
 msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV-aspektet er %s."
 
 #
 #, fuzzy
@@ -2727,16 +2668,20 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avansert"
 
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "Avanserte innstillinger"
-
 msgid "Advanced Options"
 msgstr "Avanserte innstillinger"
 
 #
 msgid "Advanced Restore"
 msgstr "Avansert gjenoppretting"
+
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Avanserte innstillinger"
+
+#
+msgid "Advanced options and settings."
+msgstr "Avanserte alternativer og innstillinger."
 
 msgid "Advanced software"
 msgstr "Avansert programvare "
@@ -3600,6 +3545,10 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+#
+msgid "Backup System Settings"
+msgstr "Sikkerhetskopier system oppsett"
+
 msgid "Backup completed."
 msgstr "Sikkerhetskopiering fullført."
 
@@ -3623,13 +3572,14 @@ msgid ""
 msgstr ""
 
 #
-msgid "Backup System Settings"
-msgstr "Sikkerhetskopier system oppsett"
-
-#
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "Sikkerhetskopier system oppsett"
+
+#
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Sikkerhetskopiere dine %s %s innstillinger."
 
 msgid "Backup your current image"
 msgstr ""
@@ -3643,10 +3593,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4433,6 +4381,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Språk"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -5009,9 +4960,6 @@ msgstr "Common Interface"
 #
 msgid "Common Interface Assignment"
 msgstr "Common Interface oppdrag"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #
 #, fuzzy
@@ -7434,6 +7382,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "Endre nettverks konfigurasjon for din %s %s."
 
 #
+msgid "Edit the upgrade source address."
+msgstr "Endre oppgraderingskilde."
+
+#
 msgid "Edit upgrade source url."
 msgstr "Endre oppgraderingskilde url."
 
@@ -8732,8 +8684,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9659,9 +9621,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr "Time"
 
@@ -10260,6 +10219,10 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+#
+msgid "Install Local Extension"
+msgstr "Installer lokal utvidelse"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -10283,10 +10246,6 @@ msgstr "Installere utvidelser."
 
 msgid "Install lcd picons on"
 msgstr "Installer lcd picons på"
-
-#
-msgid "Install Local Extension"
-msgstr "Installer lokal utvidelse"
 
 #
 msgid "Install or remove finished."
@@ -11335,6 +11294,9 @@ msgstr "Hovedmeny"
 msgid "Maintain old EPG data for"
 msgstr "Behold gammel EPG data for"
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -11381,13 +11343,17 @@ msgid "Maltese"
 msgstr ""
 
 #
+msgid "Manage Extensions"
+msgstr "Behandle utvidelser"
+
+#
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalg innstillinger"
 
-#
-msgid "Manage Extensions"
-msgstr "Behandle utvidelser"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Behandle utvidelser eller plugins for din %s %s"
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11590,6 +11556,15 @@ msgstr "Meny"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Hurtig Handlinger"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Meny konfig"
@@ -13051,6 +13026,13 @@ msgstr "En linje"
 msgid "Online software update"
 msgstr ""
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Online oppdatering av din %s %s programvare."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr "Kun utvidelser."
@@ -13384,6 +13366,10 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+#
+msgid "Package Manager"
+msgstr "Pakkeforvaltning"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -13399,10 +13385,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-#
-msgid "Package Manager"
-msgstr "Pakkeforvaltning"
 
 #
 msgid "Packet manager"
@@ -13977,7 +13959,7 @@ msgstr ""
 "\n"
 "Trykk OK for å fortsette."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -15603,18 +15585,31 @@ msgid "Restore Settings"
 msgstr ""
 
 #
+msgid "Restore System Settings"
+msgstr "Gjenopprette system oppsett"
+
+#
 msgid "Restore backups"
 msgstr "Gjenopprett Sikkerhetskopier"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-#
-msgid "Restore System Settings"
-msgstr "Gjenopprette system oppsett"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Gjenopprette dine %s %s innstillinger."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Oppgrader %s %s med en ny fastvare."
+
+#
+msgid "Restore your backups by date."
+msgstr "Gjenopprett sikkerhetskopiene etter dato."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -16129,6 +16124,10 @@ msgid "Scan for local extensions and install them"
 msgstr ""
 
 #
+msgid "Scan for local extensions and install them."
+msgstr "Søk etter lokale utvidelser og installer disse. "
+
+#
 msgid "Scan wireless networks"
 msgstr "Søk etter trådløse nettverk"
 
@@ -16403,11 +16402,21 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#
+msgid "Select Backup Location"
+msgstr "Velg sikkerhetskopi plassering"
+
 #
 msgid "Select CAId"
 msgstr "Velg CAId"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -16435,6 +16444,10 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#
+msgid "Select Upgrade Source"
+msgstr "Velg oppgraderings kilde"
 
 #
 #, fuzzy
@@ -16483,19 +16496,12 @@ msgstr "Velg Plassering"
 msgid "Select action for timer %s:"
 msgstr "Velg handling for timer %s:"
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 #
 msgid "Select audio track"
 msgstr "Velg lydspor"
-
-#
-msgid "Select Backup Location"
-msgstr "Velg sikkerhetskopi plassering"
 
 msgid "Select cardserver"
 msgstr ""
@@ -16520,9 +16526,6 @@ msgstr "Velg standard EPG type..."
 
 msgid "Select destination for:"
 msgstr "Velg mål for:"
-
-msgid "Select Excluded Backup Files"
-msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr ""
@@ -16758,10 +16761,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#
-msgid "Select Upgrade Source"
-msgstr "Velg oppgraderings kilde"
 
 #
 msgid "Select upgrade source to edit."
@@ -17616,6 +17615,9 @@ msgstr ""
 msgid "Show Clients"
 msgstr "Vis Klienter"
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17829,9 +17831,6 @@ msgstr "Vis crypto info i Infovindu"
 msgid "Show default after description"
 msgstr "Vis utvidet beskrivelse"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show default on new line"
@@ -17985,8 +17984,8 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
-msgstr "Vis nettverks mount..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -18079,6 +18078,9 @@ msgid "Show setup"
 msgstr "Vis epg"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #
@@ -18211,6 +18213,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #
@@ -18633,6 +18638,10 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+#
+msgid "Software Restore"
+msgstr "Programvare gjenopprette"
+
 msgid "Software Update"
 msgstr "Programvare oppdatering"
 
@@ -18648,10 +18657,6 @@ msgstr "Programvareadministrasjon"
 
 msgid "Software manager setup"
 msgstr "Programvareadministrasjons oppsett"
-
-#
-msgid "Software Restore"
-msgstr "Programvare gjenopprette"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18885,10 +18890,6 @@ msgstr "Standby"
 #
 msgid "Standby / Restart"
 msgstr "Standby / Restart"
-
-#
-msgid "Standby / restart"
-msgstr "Dvalemodus / Restart"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -20787,6 +20788,15 @@ msgstr "Veksle mellom favoritt/epg lister"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -21427,7 +21437,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Oppdaterer programvare katalog"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 #
@@ -22061,6 +22071,10 @@ msgstr "Vis teletext..."
 
 msgid "View video CD..."
 msgstr "Se på Video CD..."
+
+#
+msgid "View, install and remove available or installed packages."
+msgstr "Vise, installere og fjerne tilgjengelige eller installerte pakker."
 
 msgid "Violence"
 msgstr ""
@@ -25105,6 +25119,17 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Vis nettverks mount..."
+
+#
+#~ msgid "Standby / restart"
+#~ msgstr "Dvalemodus / Restart"
 
 #
 #, fuzzy

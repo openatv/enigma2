@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -63,48 +63,12 @@ msgstr ""
 "<Bu tuner otomatik olarak yapılandırılmıştır>"
 
 #
-msgid "Advanced options and settings."
-msgstr "Gelişmiş seçenekler ve ayarlar."
-
-#
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "OK tuşuna bastıktan sonra lütfen bekleyin!"
-
-#
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Sistem ayarlarını %s %s yedekle."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "%s %s çalışan imajını HDD veya USB üzerine yedekle."
-
-#
-msgid "Edit the upgrade source address."
-msgstr "Yükseltme kaynağı adresini düzenleyin."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Alıcı yazılımı yanıp söner%s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Çoklu önyükleme cihazınızı koruyun."
-
-#
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "%s %s için uzantıları veya eklentileri yönetin"
-
-#
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"%s %s yazılımını çevrimiçi güncelleyin."
 
 #
 msgid ""
@@ -122,24 +86,6 @@ msgstr ""
 "Kayıt devam ediyor."
 
 #
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Sistem ayarlarını %s %s geri yükle."
-
-#
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "%s %s yazılımını yeni bellenim ile geri yükleyin."
-
-#
-msgid "Restore your backups by date."
-msgstr "Yedeklerinizi tarihe göre geri yükleyin."
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "Yerel eklentileri inceleyin ve kurun."
-
-#
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -148,10 +94,6 @@ msgstr ""
 "\n"
 "Yedekleme aygıtını seçin.\n"
 "Geçerli aygıt: "
-
-#
-msgid "View, install and remove available or installed packages."
-msgstr "Paketleri izleyin, yükleyin veya yüklü paketleri kaldırın."
 
 msgid ""
 "\n"
@@ -2018,10 +1960,6 @@ msgid "?"
 msgstr "?"
 
 #
-msgid "??"
-msgstr "??"
-
-#
 msgid "A"
 msgstr "A"
 
@@ -2199,6 +2137,10 @@ msgstr ""
 "Kayıt zamanlayıcı başarısız!\n"
 "TV fonksiyonu devre dışı bırakılıp tekrar denensin mi?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV boy% s."
+
 msgid "AAC downmix"
 msgstr "Sayısal downmix"
 
@@ -2247,10 +2189,6 @@ msgstr "ATSC provider"
 
 msgid "AV Setup"
 msgstr "AV Kurulumu"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV boy% s."
 
 #
 msgid "AZPlay"
@@ -2540,9 +2478,6 @@ msgstr "Yetişkin seyirci, ağır şiddet 15+"
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-msgid "Advanced Settings"
-msgstr "Gelişmiş Ayarlar"
-
 #
 msgid "Advanced Options"
 msgstr "Gelişmiş Seçenekler"
@@ -2550,6 +2485,13 @@ msgstr "Gelişmiş Seçenekler"
 #
 msgid "Advanced Restore"
 msgstr "Gelişmiş geri yükleme"
+
+msgid "Advanced Settings"
+msgstr "Gelişmiş Ayarlar"
+
+#
+msgid "Advanced options and settings."
+msgstr "Gelişmiş seçenekler ve ayarlar."
 
 msgid "Advanced software"
 msgstr "Gelişmiş Yazılım"
@@ -3377,6 +3319,10 @@ msgstr "Yedekleme Modu: USB Kurtarma\n"
 msgid "Backup Settings"
 msgstr "Yedekleme Ayarları"
 
+#
+msgid "Backup System Settings"
+msgstr "Sistem ayarlarını yedekle"
+
 msgid "Backup completed."
 msgstr "Yedekleme tamamlandı."
 
@@ -3401,13 +3347,14 @@ msgstr ""
 "Yedekleme eklentileri bulundu\n"
 "şimdi kurmak ister misin?"
 
-#
-msgid "Backup System Settings"
-msgstr "Sistem ayarlarını yedekle"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Hedefe yedekleme: %s"
+
+#
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Sistem ayarlarını %s %s yedekle."
 
 msgid "Backup your current image"
 msgstr "Mevcut resminizi yedekleyin"
@@ -3421,11 +3368,9 @@ msgstr "Mevcut ayarlarınızı yedekleyin"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Mevcut ayarlarınızı yedekleyin. Bu E2-kurulum, kanallar, ağ ve seçilen tüm dosyaları içerir"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Yedekleme, flaş ve ayarları geri yükleme ve eklenti yok"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Ayarları ve seçili eklentileri yedekleme, flaş ve geri yükleme (kullanıcıya sorma)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "%s %s çalışan imajını HDD veya USB üzerine yedekle."
 
 msgid "Bahamas"
 msgstr "Bahamalar"
@@ -4201,6 +4146,9 @@ msgstr "Donanım Chip Modlarını kontrol etmek için Boxmode'u değiştirin *"
 msgid "Change Language"
 msgstr "Dili değiştir"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Pin'i değiştir"
 
@@ -4750,9 +4698,6 @@ msgstr "Ortak Arayüz"
 #
 msgid "Common Interface Assignment"
 msgstr "Ortak Arayüz Ataması"
-
-msgid "Common Menu Actions"
-msgstr "Ayarlar / işlemler menüsünü aç"
 
 msgid "Common Setup Actions"
 msgstr "CI (Ortak Arayüz) Kurulumu"
@@ -7084,6 +7029,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr ""
 
 #
+msgid "Edit the upgrade source address."
+msgstr "Yükseltme kaynağı adresini düzenleyin."
+
+#
 msgid "Edit upgrade source url."
 msgstr "Yükseltme kaynağını (URL) düzenleyin."
 
@@ -8357,9 +8306,19 @@ msgstr "Çevrimiçi flaş"
 msgid "Flash Online a new image"
 msgstr "Flash Çevrimiçi yeni bir görüntü"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Dizini '%s' yazılabilir değil!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Alıcı yazılımı yanıp söner%s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Uçan Flash'ı, Receiver yazılımınız."
@@ -9229,9 +9188,6 @@ msgstr "Kısayol"
 msgid "Hotkey Settings"
 msgstr "Kısayol Kurulum"
 
-msgid "Hotkey Setup for"
-msgstr "Kısayol Kurulum için"
-
 msgid "Hour"
 msgstr "Saat"
 
@@ -9807,6 +9763,10 @@ msgstr "Kurulum Başarısız !!"
 msgid "Install Finished."
 msgstr "Kurulum Bitti."
 
+#
+msgid "Install Local Extension"
+msgstr "Yerel eklentileri yükle"
+
 msgid "Install Plugins"
 msgstr "Eklentileri Kur"
 
@@ -9830,10 +9790,6 @@ msgstr "Eklentileri yükle."
 
 msgid "Install lcd picons on"
 msgstr "Lcd pikonlarını yükle"
-
-#
-msgid "Install Local Extension"
-msgstr "Yerel eklentileri yükle"
 
 #
 msgid "Install or remove finished."
@@ -10825,6 +10781,9 @@ msgstr "Ana menü"
 msgid "Maintain old EPG data for"
 msgstr "Eski EPG bilgisini tut"
 
+msgid "Maintain your multi boot device."
+msgstr "Çoklu önyükleme cihazınızı koruyun."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Dosya Komutanı'nı Uzantılar menüsünden erişilebilir duruma getirin."
 
@@ -10871,12 +10830,17 @@ msgid "Maltese"
 msgstr "Malta"
 
 #
+msgid "Manage Extensions"
+msgstr "Eklentileri yönet"
+
+#
 msgid "Manage Locale/Language Selection settings"
 msgstr "Yerel/Dil Seçimi ayarlarını yönetin"
 
 #
-msgid "Manage Extensions"
-msgstr "Eklentileri yönet"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "%s %s için uzantıları veya eklentileri yönetin"
 
 msgid "Manage network mounts"
 msgstr "Ağ bağlarını yönet"
@@ -11066,6 +11030,15 @@ msgstr "Menü"
 
 msgid "Menu Actions"
 msgstr "Menü Eylemleri"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Menü Yapılandırma"
@@ -12466,6 +12439,14 @@ msgid "Online software update"
 msgstr "Çevrimiçi yazılım güncelleme"
 
 #
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "%s %s yazılımını çevrimiçi güncelleyin."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
+#
 msgid "Only extensions."
 msgstr "Yalnızca eklentiler."
 
@@ -12776,6 +12757,10 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR uzun"
 
+#
+msgid "Package Manager"
+msgstr "Paket yönetimi"
+
 msgid "Package information currently not available!"
 msgstr "Paket bilgileri şu anda mevcut değil!"
 
@@ -12791,10 +12776,6 @@ msgstr "Kullanılabilir yerler"
 
 msgid "Packages and associated locales"
 msgstr "Paketler ve ilişkili yerel ayarlar"
-
-#
-msgid "Package Manager"
-msgstr "Paket yönetimi"
 
 #
 msgid "Packet manager"
@@ -13338,7 +13319,7 @@ msgstr ""
 "\n"
 "Devam etmek için OK tuşuna basın."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14931,18 +14912,32 @@ msgid "Restore Settings"
 msgstr "Ayarları Geri Yükle"
 
 #
+msgid "Restore System Settings"
+msgstr "Sistem ayarlarını geri yükle"
+
+#
 msgid "Restore backups"
 msgstr "Yedekleri geri yükle"
 
 msgid "Restore settings from a backup"
 msgstr "Ayarları bir yedeklemeden geri yükle"
 
-#
-msgid "Restore System Settings"
-msgstr "Sistem ayarlarını geri yükle"
-
 msgid "Restore the highlighted slot"
 msgstr "Vurgulanan yuvayı geri yükle"
+
+#
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Sistem ayarlarını %s %s geri yükle."
+
+#
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "%s %s yazılımını yeni bellenim ile geri yükleyin."
+
+#
+msgid "Restore your backups by date."
+msgstr "Yedeklerinizi tarihe göre geri yükleyin."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Ayarlarınızı bir yedeklemeden geri yükleyin. Geri yüklendikten sonra, yeni ayarları etkinleştirmek için kutu yeniden başlatılacak"
@@ -15438,6 +15433,10 @@ msgid "Scan for local extensions and install them"
 msgstr "Yerel uzantıları tarayın ve yükleyin"
 
 #
+msgid "Scan for local extensions and install them."
+msgstr "Yerel eklentileri inceleyin ve kurun."
+
+#
 msgid "Scan wireless networks"
 msgstr "Kablosuz Ağları Tara"
 
@@ -15700,12 +15699,22 @@ msgstr "DiSEqC komutunu yalnızca bir uydudan diğerine değiştirirken gönderm
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Seçin (kaynak listesi) veya dizini girin (hedef listesi)"
 
+msgid "Select Additional Backup Files"
+msgstr "Ek yedek dosyaları seçin"
+
+#
+msgid "Select Backup Location"
+msgstr "Yedekleme konumu seç"
+
 #
 msgid "Select CAId"
 msgstr "CAId seç"
 
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 Skin'i seçin"
+
+msgid "Select Excluded Backup Files"
+msgstr "Hariç tutulan yedekleme dosyalarını seç"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Anten sisteminiz destekliyorsa Hızlı DiSEqC seçeneğini seçin. Emin değilseniz 'hayır' seçeneğini seçin."
@@ -15730,6 +15739,10 @@ msgstr "Dört Kanal Seç"
 
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
+
+#
+msgid "Select Upgrade Source"
+msgstr "Yükseltme kaynağını seç"
 
 msgid "Select Your Skin"
 msgstr "Skin Seçin"
@@ -15772,19 +15785,12 @@ msgstr "Eylemi seç"
 msgid "Select action for timer %s:"
 msgstr "Zamanlayıcı için eylemi seçin %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Ek yedek dosyaları seçin"
-
 msgid "Select additional files to backup"
 msgstr "Yedeklenecek ek dosyaları seçin"
 
 #
 msgid "Select audio track"
 msgstr "Ses izi seçin"
-
-#
-msgid "Select Backup Location"
-msgstr "Yedekleme konumu seç"
 
 msgid "Select cardserver"
 msgstr "Kart sunucusu seçin"
@@ -15808,9 +15814,6 @@ msgstr "Varsayılan ERPG tipini seçin..."
 
 msgid "Select destination for:"
 msgstr "Hedefi seçin:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Hariç tutulan yedekleme dosyalarını seç"
 
 msgid "Select files to exclude from backup"
 msgstr "Yedeklemeden hariç tutulacak dosyaları seçin"
@@ -16040,10 +16043,6 @@ msgstr "Enerji zamanlayıcı etkinleştirildiğinde istenen kapatma türünü se
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Dik zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
-
-#
-msgid "Select Upgrade Source"
-msgstr "Yükseltme kaynağını seç"
 
 #
 msgid "Select upgrade source to edit."
@@ -16875,6 +16874,9 @@ msgstr "CI mesajları göster"
 msgid "Show Clients"
 msgstr "İstemcileri göster"
 
+msgid "Show Default Backup Files"
+msgstr "Varsayılan yedekleme dosyalarını göster"
+
 msgid "Show Directory size"
 msgstr "Dizin boyutunu göster"
 
@@ -17075,9 +17077,6 @@ msgstr "Bilgi çubuğunda şifrelemeyi göster"
 msgid "Show default after description"
 msgstr "Açıklamadan sonra varsayılanı göster"
 
-msgid "Show Default Backup Files"
-msgstr "Varsayılan yedekleme dosyalarını göster"
-
 msgid "Show default on new line"
 msgstr "Varsayılanı yeni satırda göster"
 
@@ -17219,8 +17218,8 @@ msgstr "Filmleri göster"
 msgid "Show multi channel EPG"
 msgstr "Çoklu kanal EPG göster"
 
-msgid "Show network mounts ..."
-msgstr "Ağ bağlantılarını göster..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Sonraki etkinliği göster"
@@ -17309,6 +17308,9 @@ msgstr "Kurulumu göster"
 
 msgid "Show setup default value"
 msgstr "Kurulum varsayılan değerini göster"
+
+msgid "Show setup menu..."
+msgstr ""
 
 #
 msgid "Show shutdown menu"
@@ -17427,6 +17429,9 @@ msgstr "'Addon File-Viewer' ile bilinmeyen dosya uzantılarını göster."
 
 msgid "Show unknown video format as"
 msgstr "Bilinmeyen video biçimini olarak göster"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 #
 msgid "Show vertical Program Guide"
@@ -17834,6 +17839,10 @@ msgstr "Yazılım Yöneticisi Kurulumu"
 msgid "Software MultiBoot"
 msgstr "Yazılım Çoklu Önyükleme"
 
+#
+msgid "Software Restore"
+msgstr "Yazılım geri yükleme"
+
 msgid "Software Update"
 msgstr "Yazılım Güncellemesi"
 
@@ -17849,10 +17858,6 @@ msgstr "Yazılım yönetimi"
 
 msgid "Software manager setup"
 msgstr "Yazılım yöneticisi kurulumu"
-
-#
-msgid "Software Restore"
-msgstr "Yazılım geri yükleme"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18082,10 +18087,6 @@ msgstr "Beklet"
 
 #
 msgid "Standby / Restart"
-msgstr "Kapatma menüsü"
-
-#
-msgid "Standby / restart"
 msgstr "Kapatma menüsü"
 
 msgid "Standby without TV shutdown"
@@ -19919,6 +19920,15 @@ msgstr "Buket / epg listeleri arasında geçiş yap"
 msgid "Toggle display of the InfoBar"
 msgstr "Bilgi Çubuğunun görüntüsünü aç/kapat"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Yeni metnin eklerini değiştir veya varolan metnin üzerine yaz"
 
@@ -20534,8 +20544,8 @@ msgstr "Montaj yerleri güncelleniyor."
 msgid "Updating software catalog"
 msgstr "Yazılım kataloğu güncelleniyor"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Yükseltme (Yedekleme, Flash ve Tümünü Geri Yükle)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 #
 msgid "Upgrade finished."
@@ -21145,6 +21155,10 @@ msgstr "Teletext izle..."
 #
 msgid "View video CD..."
 msgstr "VCD izle..."
+
+#
+msgid "View, install and remove available or installed packages."
+msgstr "Paketleri izleyin, yükleyin veya yüklü paketleri kaldırın."
 
 msgid "Violence"
 msgstr "Şiddet"
@@ -24123,6 +24137,32 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Yedekleme, flaş ve ayarları geri yükleme ve eklenti yok"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Ayarları ve seçili eklentileri yedekleme, flaş ve geri yükleme (kullanıcıya sorma)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Ayarlar / işlemler menüsünü aç"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Kısayol Kurulum için"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Ağ bağlantılarını göster..."
+
+#
+#~ msgid "Standby / restart"
+#~ msgstr "Kapatma menüsü"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Yükseltme (Yedekleme, Flash ve Tümünü Geri Yükle)"
 
 #
 #~ msgid "Choose style of main menus"

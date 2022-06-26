@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -57,43 +57,12 @@ msgstr ""
 "\n"
 "<Bộ chỉnh này được cấu hình tự động>"
 
-msgid "Advanced options and settings."
-msgstr "Tùy chọn và cài đặt nâng cao."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Sau khi nhấn OK, vui lòng đợi!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Sao lưu cài đặt % s% s của bạn."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Sao lưu hình ảnh% s% s đang chạy của bạn vào ổ cứng hoặc USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Chỉnh sửa địa chỉ nguồn nâng cấp."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
-
-msgid "Maintain your multi boot device."
-msgstr "Duy trì thiết bị đa khởi động của bạn."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Quản lý tiện ích mở rộng hoặc plugin cho đầu thu của bạn%s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Cập nhật trực tuyến phần mềm %s %s nhận của bạn."
 
 msgid ""
 "\n"
@@ -109,20 +78,6 @@ msgstr ""
 "\n"
 "Ghi âm trong tiến trình."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Khôi phục cài đặt%s %s máy thu của bạn."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Khôi phục% s% s của bạn với chương trình cơ sở mới."
-
-msgid "Restore your backups by date."
-msgstr "Khôi phục bản sao lưu của bạn theo ngày."
-
-msgid "Scan for local extensions and install them."
-msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -131,9 +86,6 @@ msgstr ""
 "\n"
 "Chọn thiết bị sao lưu của bạn.\n"
 "Thiêt bị hiện tại: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Xem, cài đặt và loại bỏ các gói có sẵn hoặc cài đặt."
 
 msgid ""
 "\n"
@@ -1991,9 +1943,6 @@ msgstr "<không rõ>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2154,6 +2103,10 @@ msgstr ""
 "Một bộ đếm thời gian không thể ghi lại!\n"
 "Vô hiệu hóa TV và thử lại?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "Khía cạnh AV là%s."
+
 msgid "AAC downmix"
 msgstr "AAC kết hợp"
 
@@ -2202,10 +2155,6 @@ msgstr "Nhà cung cấp ATSC"
 
 msgid "AV Setup"
 msgstr "Thiết lập AV"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "Khía cạnh AV là%s."
 
 msgid "AZPlay"
 msgstr "ChơiAZ"
@@ -2473,14 +2422,17 @@ msgstr ""
 msgid "Advanced"
 msgstr "Nâng cao"
 
-msgid "Advanced Settings"
-msgstr "Tùy chọn và cài đặt nâng cao"
-
 msgid "Advanced Options"
 msgstr "Tùy chọn nâng cao"
 
 msgid "Advanced Restore"
 msgstr "Khôi phục nâng cao"
+
+msgid "Advanced Settings"
+msgstr "Tùy chọn và cài đặt nâng cao"
+
+msgid "Advanced options and settings."
+msgstr "Tùy chọn và cài đặt nâng cao."
 
 msgid "Advanced software"
 msgstr "Phần mềm nâng cao"
@@ -3278,6 +3230,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr "Cài đặt sao lưu"
 
+msgid "Backup System Settings"
+msgstr "Cài đặt hệ thống sao lưu"
+
 msgid "Backup completed."
 msgstr "Sao lưu hoàn tất."
 
@@ -3300,12 +3255,13 @@ msgstr ""
 "Các plugin sao lưu được tìm thấy\n"
 "Bạn có muốn cài đặt bây giờ?"
 
-msgid "Backup System Settings"
-msgstr "Cài đặt hệ thống sao lưu"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Sao lưu đến đích:%s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Sao lưu cài đặt % s% s của bạn."
 
 msgid "Backup your current image"
 msgstr "Sao lưu hình ảnh hiện tại của bạn"
@@ -3319,11 +3275,9 @@ msgstr "Sao lưu các thiết lập hiện tại của bạn"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sao lưu các thiết lập hiện tại của bạn. Điều này bao gồm thiết lập E2, kênh, mạng và tất cả các tệp đã chọn"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Sao lưu, flash và khôi phục cài đặt và không có plugin"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Sao lưu, flash và khôi phục cài đặt và các plugin được chọn (hỏi người dùng)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Sao lưu hình ảnh% s% s đang chạy của bạn vào ổ cứng hoặc USB."
 
 msgid "Bahamas"
 msgstr "Ba Tư"
@@ -4069,6 +4023,9 @@ msgstr "Thay đổi Boxmode để kiểm soát Chế độ Chip Phần cứng *"
 msgid "Change Language"
 msgstr "Ngôn ngữ"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Thay đổi pin"
 
@@ -4587,9 +4544,6 @@ msgstr "Giao diện chung"
 
 msgid "Common Interface Assignment"
 msgstr "Giao diện chung"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -6831,6 +6785,9 @@ msgstr ""
 "Chỉnh sửa cấu hình mạng của máy thu của bạn\n"
 "%s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Chỉnh sửa địa chỉ nguồn nâng cấp."
+
 msgid "Edit upgrade source url."
 msgstr "Chỉnh sửa url nguồn nâng cấp."
 
@@ -8053,9 +8010,19 @@ msgstr "Flash trực tuyến"
 msgid "Flash Online a new image"
 msgstr "Flash trực tuyến một hình ảnh mới"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash khi đang bay phần mềm Nhận của bạn."
@@ -8902,9 +8869,6 @@ msgstr "Phím nóng"
 msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
 
-msgid "Hotkey Setup for"
-msgstr "Cài đặt phím nóng cho"
-
 msgid "Hour"
 msgstr "Giờ"
 
@@ -9464,6 +9428,9 @@ msgstr "Cài đặt không thành công !!"
 msgid "Install Finished."
 msgstr "Cài đặt xong."
 
+msgid "Install Local Extension"
+msgstr "Cài đặt tiện ích mở rộng cục bộ"
+
 msgid "Install Plugins"
 msgstr "Cài đặt plugin"
 
@@ -9484,9 +9451,6 @@ msgstr "Cài đặt tiện ích mở rộng."
 
 msgid "Install lcd picons on"
 msgstr "Cài đặt màn hình LCD trên"
-
-msgid "Install Local Extension"
-msgstr "Cài đặt tiện ích mở rộng cục bộ"
 
 msgid "Install or remove finished."
 msgstr "Cài đặt hoặc gỡ bỏ hoàn thành."
@@ -10435,6 +10399,9 @@ msgstr "Menu chính"
 msgid "Maintain old EPG data for"
 msgstr "Duy trì dữ liệu EPG cũ cho"
 
+msgid "Maintain your multi boot device."
+msgstr "Duy trì thiết bị đa khởi động của bạn."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Làm cho File Commander có thể truy cập từ menu Tiện ích mở rộng."
 
@@ -10481,12 +10448,16 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
+msgid "Manage Extensions"
+msgstr "Quản lý tiện ích mở rộng"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Cài đặt chọn kênh"
 
-msgid "Manage Extensions"
-msgstr "Quản lý tiện ích mở rộng"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Quản lý tiện ích mở rộng hoặc plugin cho đầu thu của bạn%s %s"
 
 msgid "Manage network mounts"
 msgstr "Quản lý kết nối mạng"
@@ -10669,6 +10640,15 @@ msgstr "Menu Chính"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Thao tác nhanh"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Menu cấu hình"
@@ -12011,6 +11991,13 @@ msgstr "Một dòng"
 msgid "Online software update"
 msgstr "Cập nhật trực tuyến phần mềm nhận của bạn"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Cập nhật trực tuyến phần mềm %s %s nhận của bạn."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Chỉ phần mở rộng."
 
@@ -12327,6 +12314,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR dài"
 
+msgid "Package Manager"
+msgstr "Quản lý gói"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12342,9 +12332,6 @@ msgstr "quản lý tập tin cục bộ"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Quản lý gói"
 
 msgid "Packet manager"
 msgstr "Quản lý gói"
@@ -12836,7 +12823,7 @@ msgstr ""
 "\n"
 "Vui lòng nhấn OK để tiếp tục."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14330,17 +14317,28 @@ msgstr "Khôi phục plugin"
 msgid "Restore Settings"
 msgstr "Khôi phục cài đặt"
 
+msgid "Restore System Settings"
+msgstr "Khôi phục cài đặt hệ thống"
+
 msgid "Restore backups"
 msgstr "Khôi phục bản sao lưu"
 
 msgid "Restore settings from a backup"
 msgstr "Khôi phục cài đặt từ bản sao lưu"
 
-msgid "Restore System Settings"
-msgstr "Khôi phục cài đặt hệ thống"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Khôi phục cài đặt%s %s máy thu của bạn."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Khôi phục% s% s của bạn với chương trình cơ sở mới."
+
+msgid "Restore your backups by date."
+msgstr "Khôi phục bản sao lưu của bạn theo ngày."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Khôi phục cài đặt của bạn trở lại từ bản sao lưu. Sau khi khôi phục, hộp sẽ khởi động lại để kích hoạt cài đặt mới"
@@ -14811,6 +14809,9 @@ msgstr "Quét tập tin ..."
 msgid "Scan for local extensions and install them"
 msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng"
 
+msgid "Scan for local extensions and install them."
+msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng."
+
 msgid "Scan wireless networks"
 msgstr "Quét mạng không dây"
 
@@ -15065,11 +15066,20 @@ msgstr "Chọn 'có' để chỉ gửi lệnh DiSEqC khi thay đổi từ vệ t
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Chọn (danh sách nguồn) hoặc nhập thư mục (danh sách đích)"
 
+msgid "Select Additional Backup Files"
+msgstr "Chọn tập tin sao lưu bổ sung"
+
+msgid "Select Backup Location"
+msgstr "Chọn vị trí dự phòng"
+
 msgid "Select CAId"
 msgstr "Chọn CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Chọn da Enigma2"
+
+msgid "Select Excluded Backup Files"
+msgstr "Chọn các tệp sao lưu bị loại trừ"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Chọn Fast DiSEqC nếu hệ thống trên không của bạn hỗ trợ điều này. Nếu bạn không chắc chắn, hãy chọn 'không'."
@@ -15094,6 +15104,9 @@ msgstr "Chọn kênh Quad"
 
 msgid "Select Software Update"
 msgstr "Chọn Cập nhật phần mềm"
+
+msgid "Select Upgrade Source"
+msgstr "Chọn nguồn nâng cấp"
 
 msgid "Select Your Skin"
 msgstr "Chọn làn da của bạn"
@@ -15135,17 +15148,11 @@ msgstr "Chọn hành động"
 msgid "Select action for timer %s:"
 msgstr "Chọn hành động cho bộ đếm thời gian % s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Chọn tập tin sao lưu bổ sung"
-
 msgid "Select additional files to backup"
 msgstr "Chọn tập tin bổ sung để sao lưu"
 
 msgid "Select audio track"
 msgstr "Chọn audio"
-
-msgid "Select Backup Location"
-msgstr "Chọn vị trí dự phòng"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15167,9 +15174,6 @@ msgstr "Chọn loại EPG mặc định ..."
 
 msgid "Select destination for:"
 msgstr "Chọn điểm đến cho:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Chọn các tệp sao lưu bị loại trừ"
 
 msgid "Select files to exclude from backup"
 msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
@@ -15397,9 +15401,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Chọn nguồn nâng cấp"
 
 msgid "Select upgrade source to edit."
 msgstr "Chọn nguồn nâng cấp để chỉnh sửa."
@@ -16214,6 +16215,9 @@ msgstr "Hiển thị tin nhắn CI"
 msgid "Show Clients"
 msgstr "Hiển thị khách hàng"
 
+msgid "Show Default Backup Files"
+msgstr "Hiển thị tập tin sao lưu mặc định"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16410,9 +16414,6 @@ msgstr "Hiển thị thông tin về t điện tử trong infobar"
 msgid "Show default after description"
 msgstr "Hiển thị mô tả mở rộng"
 
-msgid "Show Default Backup Files"
-msgstr "Hiển thị tập tin sao lưu mặc định"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "Hiển thị tập tin sao lưu mặc định"
@@ -16547,8 +16548,8 @@ msgstr "Xem phim"
 msgid "Show multi channel EPG"
 msgstr "Hiển thị EPG đa kênh"
 
-msgid "Show network mounts ..."
-msgstr "Hiển thị gắn kết mạng ..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -16634,6 +16635,9 @@ msgid "Show setup"
 msgstr "Hiển thị thiết lập ..."
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -16757,6 +16761,9 @@ msgstr "Hiển thị phần mở rộng tệp không xác định với 'Addon F
 
 msgid "Show unknown video format as"
 msgstr "Hiển thị định dạng video không xác định là"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Hiển thị Hướng dẫn chương trình dọc"
@@ -17133,6 +17140,9 @@ msgstr "Cài đặt trình quản lý phần mềm"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Khôi phục phần mềm"
+
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
@@ -17147,9 +17157,6 @@ msgstr "Quản lý phần mềm"
 
 msgid "Software manager setup"
 msgstr "Thiết lập trình quản lý phần mềm"
-
-msgid "Software Restore"
-msgstr "Khôi phục phần mềm"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17373,9 +17380,6 @@ msgstr "Tắt ở chế độ chờ"
 
 msgid "Standby / Restart"
 msgstr "Chờ / Khởi động lại"
-
-msgid "Standby / restart"
-msgstr "Chờ / khởi động lại"
 
 msgid "Standby without TV shutdown"
 msgstr "Chờ mà không tắt TV"
@@ -19140,6 +19144,15 @@ msgstr "Chuyển đổi giữa các danh sách bó / epg"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Chuyển đổi chèn văn bản mới trước hoặc ghi đè văn bản hiện có"
 
@@ -19715,8 +19728,8 @@ msgstr "Cập nhật vị trí gắn kết."
 msgid "Updating software catalog"
 msgstr "Cập nhật danh mục phần mềm"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Nâng cấp (Sao lưu, Flash & Khôi phục tất cả)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Nâng cấp xong."
@@ -20292,6 +20305,9 @@ msgstr "Xem teletext ..."
 
 msgid "View video CD..."
 msgstr "Xem CD video ..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Xem, cài đặt và loại bỏ các gói có sẵn hoặc cài đặt."
 
 msgid "Violence"
 msgstr ""
@@ -23080,6 +23096,27 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Sao lưu, flash và khôi phục cài đặt và không có plugin"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Sao lưu, flash và khôi phục cài đặt và các plugin được chọn (hỏi người dùng)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Cài đặt phím nóng cho"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Hiển thị gắn kết mạng ..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Chờ / khởi động lại"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Nâng cấp (Sao lưu, Flash & Khôi phục tất cả)"
 
 #, fuzzy
 #~ msgid "Choose style of main menus"

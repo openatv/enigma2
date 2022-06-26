@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -44,43 +44,12 @@ msgstr ""
 "\n"
 "<Tento tuner je nastaven automaticky>"
 
-msgid "Advanced options and settings."
-msgstr "Pokročilé volby a nastavení."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Po stisknutí OK čekejte, prosím!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Záloha nastavení vašeho %s %s."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Zálohovat provozní image Vašeho %s %s na HDD nebo USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Upravit adresy aktualizačních zdrojů."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flešnutí Vašeho %s %s za chodu."
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Správce rozšíření nebo zásuvných modulů vašeho %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Online aktualizace software %s %s."
 
 msgid ""
 "\n"
@@ -95,20 +64,6 @@ msgid ""
 "Recording in progress."
 msgstr "Probíhá nahrávání"
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Obnova nastavení %s %s."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Obnovit %s %s s novým firmwarem."
-
-msgid "Restore your backups by date."
-msgstr "Obnova záloh podle data."
-
-msgid "Scan for local extensions and install them."
-msgstr "Vyhledá a nainstaluje místní rozšíření."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -117,9 +72,6 @@ msgstr ""
 "\n"
 "Zvolte zařízení pro zálohování.\n"
 "Aktuální zařízení: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Zobrazit, instalovat a odstranit dostupné nebo instalované balíčky."
 
 #, fuzzy
 msgid ""
@@ -2111,9 +2063,6 @@ msgstr "<neznámý>"
 msgid "?"
 msgstr "??"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2277,6 +2226,10 @@ msgstr ""
 "Nahrávání z časovače selhalo!\n"
 "Zakázat TV a zkusit to znovu?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "Náhled videa je %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix (převod do sterea)"
 
@@ -2330,10 +2283,6 @@ msgstr "Přidat poskyt."
 
 msgid "AV Setup"
 msgstr "Nastavení videa"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "Náhled videa je %s."
 
 #, fuzzy
 msgid "AZPlay"
@@ -2615,15 +2564,18 @@ msgstr ""
 msgid "Advanced"
 msgstr "Rozšířený"
 
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "Pokročilé volby"
-
 msgid "Advanced Options"
 msgstr "Pokročilé volby"
 
 msgid "Advanced Restore"
 msgstr "Pokročilá obnova"
+
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Pokročilé volby"
+
+msgid "Advanced options and settings."
+msgstr "Pokročilé volby a nastavení."
 
 msgid "Advanced software"
 msgstr "Pokročilý software"
@@ -3465,6 +3417,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr "Záloha nastavení"
 
+msgid "Backup System Settings"
+msgstr "Záloha nastavení"
+
 msgid "Backup completed."
 msgstr "Záloha kompletní."
 
@@ -3485,12 +3440,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "Záloha nastavení"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "Záloha nastavení"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Záloha nastavení vašeho %s %s."
 
 msgid "Backup your current image"
 msgstr "Zálohovat Image na HDD / USB"
@@ -3504,13 +3460,9 @@ msgstr "Záloha vašeho aktuálního nastavení"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Záloha aktuálního nastavení. To zahrnuje nastavení E2, programů, sítě a všech vybraných souborů"
 
-#, fuzzy
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Flashnout a obnovit nastavení, bez pluginů"
-
-#, fuzzy
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Flashnout a obnovit nastavení, přidat pluginy (možno nastavit)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Zálohovat provozní image Vašeho %s %s na HDD nebo USB."
 
 msgid "Bahamas"
 msgstr ""
@@ -4271,6 +4223,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Jazyk systému"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Změnit PIN kód"
 
@@ -4813,9 +4768,6 @@ msgstr "CI rozhraní"
 
 msgid "Common Interface Assignment"
 msgstr "Konfigurace CI slotů"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -7122,6 +7074,9 @@ msgstr "Upravuje nastavení DNS Vašeho %s %s."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Upravuje nastavení sítě Vašeho %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Upravit adresy aktualizačních zdrojů."
+
 msgid "Edit upgrade source url."
 msgstr "Upravit url zdroje aktualizací."
 
@@ -8379,9 +8334,19 @@ msgstr "Změna Image ONLINE / DISK"
 msgid "Flash Online a new image"
 msgstr "Flešnutí nové image Online"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flešnutí Vašeho %s %s za chodu."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash nové image za běhu software vašeho přijímače"
@@ -9261,9 +9226,6 @@ msgstr "Tlačítka DO"
 msgid "Hotkey Settings"
 msgstr "Nastavení tlačítek DO"
 
-msgid "Hotkey Setup for"
-msgstr "Nastavení tlačítek DO pro"
-
 msgid "Hour"
 msgstr "Hod"
 
@@ -9841,6 +9803,9 @@ msgstr "Stažení se nepovedlo !!"
 msgid "Install Finished."
 msgstr "Instalace dokončena."
 
+msgid "Install Local Extension"
+msgstr "Instalovat místní rozšíření"
+
 msgid "Install Plugins"
 msgstr "Instalovat pluginy"
 
@@ -9861,9 +9826,6 @@ msgstr "Instalovat rozšíření"
 
 msgid "Install lcd picons on"
 msgstr "Instalovat picony lcd do"
-
-msgid "Install Local Extension"
-msgstr "Instalovat místní rozšíření"
 
 msgid "Install or remove finished."
 msgstr "Instalace nebo odstranění dokončeno."
@@ -10847,6 +10809,9 @@ msgstr "Hlavní menu"
 msgid "Maintain old EPG data for"
 msgstr "Udržovat stará EPG data"
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10889,12 +10854,16 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr "Správa rozšíření"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Nastavení výběru kanálu"
 
-msgid "Manage Extensions"
-msgstr "Správa rozšíření"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Správce rozšíření nebo zásuvných modulů vašeho %s %s"
 
 msgid "Manage network mounts"
 msgstr "Správce síťových připojení"
@@ -11087,6 +11056,15 @@ msgstr "Menu"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Rychle"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Nastavení menu"
@@ -12475,6 +12453,13 @@ msgstr "Jeden řádek"
 msgid "Online software update"
 msgstr "Aktualizace software Online"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Online aktualizace software %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Pouze rozšíření"
 
@@ -12810,6 +12795,9 @@ msgstr ""
 msgid "PVR long"
 msgstr "TV - dlouhý stisk"
 
+msgid "Package Manager"
+msgstr "Správa balíčků"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12826,9 +12814,6 @@ msgstr "Balíčků"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Správa balíčků"
 
 #, fuzzy
 msgid "Packet manager"
@@ -13348,7 +13333,7 @@ msgstr ""
 "\n"
 "Stiskněte OK pro pokračování."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14872,17 +14857,28 @@ msgstr "Odstranit pluginy"
 msgid "Restore Settings"
 msgstr "Obnova nastavení"
 
+msgid "Restore System Settings"
+msgstr "Obnova nastavení"
+
 msgid "Restore backups"
 msgstr "Obnovit ze zálohy"
 
 msgid "Restore settings from a backup"
 msgstr "Obnova nastavení ze zálohy"
 
-msgid "Restore System Settings"
-msgstr "Obnova nastavení"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Obnova nastavení %s %s."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Obnovit %s %s s novým firmwarem."
+
+msgid "Restore your backups by date."
+msgstr "Obnova záloh podle data."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Obnova nastavení ze zálohy. Po restartu přijímače bude aktivováno obnovené nastavení ze zálohy"
@@ -15368,6 +15364,9 @@ msgstr "Hledat soubory..."
 msgid "Scan for local extensions and install them"
 msgstr "Prohlédne disky pro instalaci místních rozšíření"
 
+msgid "Scan for local extensions and install them."
+msgstr "Vyhledá a nainstaluje místní rozšíření."
+
 msgid "Scan wireless networks"
 msgstr "Vyhledat bezdrátové sítě"
 
@@ -15631,12 +15630,21 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr "Vybrat další soubory k zálohování"
+
+msgid "Select Backup Location"
+msgstr "Vyberte umístění záloh"
+
 msgid "Select CAId"
 msgstr "Vybrat CAId(y)"
 
 #, fuzzy
 msgid "Select Enigma2 Skin"
 msgstr "Vyberte skin"
+
+msgid "Select Excluded Backup Files"
+msgstr "Vybrat soubory vyloučené ze zálohování"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
@@ -15664,6 +15672,9 @@ msgstr "Vyberte tuner"
 
 msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
+
+msgid "Select Upgrade Source"
+msgstr "Vyberte zdroje pro aktualizaci"
 
 #, fuzzy
 msgid "Select Your Skin"
@@ -15708,17 +15719,11 @@ msgstr "Vyberte umístění"
 msgid "Select action for timer %s:"
 msgstr "Zvolte umístění pro:"
 
-msgid "Select Additional Backup Files"
-msgstr "Vybrat další soubory k zálohování"
-
 msgid "Select additional files to backup"
 msgstr "Přidat další soubory k zálohování"
 
 msgid "Select audio track"
 msgstr "Výběr zvukové stopy"
-
-msgid "Select Backup Location"
-msgstr "Vyberte umístění záloh"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15741,9 +15746,6 @@ msgstr "Zvolte preferovaný typ EPG..."
 
 msgid "Select destination for:"
 msgstr "Zvolte umístění pro:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Vybrat soubory vyloučené ze zálohování"
 
 msgid "Select files to exclude from backup"
 msgstr "Výběr souborů vyloučených ze zálohování"
@@ -15970,9 +15972,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Vyberte zdroje pro aktualizaci"
 
 msgid "Select upgrade source to edit."
 msgstr "Výběr zdroje pro aktualizaci k úpravě."
@@ -16800,6 +16799,9 @@ msgstr "Skrýt CI zprávy"
 msgid "Show Clients"
 msgstr "Zobrazit klienty"
 
+msgid "Show Default Backup Files"
+msgstr "Zobrazit výchozí soubory záloh"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17007,9 +17009,6 @@ msgstr "Zobrazit informace o kódování v Infobaru jako"
 msgid "Show default after description"
 msgstr "Zobrazit rozšířený popis"
 
-msgid "Show Default Backup Files"
-msgstr "Zobrazit výchozí soubory záloh"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "Zobrazit výchozí soubory záloh"
@@ -17151,8 +17150,8 @@ msgstr "Zobrazit filmy"
 msgid "Show multi channel EPG"
 msgstr "Zobrazit EPG z více kanálů"
 
-msgid "Show network mounts ..."
-msgstr "Zobrazit síťové disky..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -17244,6 +17243,9 @@ msgid "Show setup"
 msgstr "Zobrazit nastavení RFmod"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -17371,6 +17373,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #, fuzzy
@@ -17770,6 +17775,9 @@ msgstr "Nastavení správy software"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Obnova Image z USB"
+
 msgid "Software Update"
 msgstr "Aktualizace software"
 
@@ -17784,9 +17792,6 @@ msgstr "Správa software"
 
 msgid "Software manager setup"
 msgstr "Nastavení správy software"
-
-msgid "Software Restore"
-msgstr "Obnova Image z USB"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18019,9 +18024,6 @@ msgid "Standby"
 msgstr "Vypnout do pohotovosti"
 
 msgid "Standby / Restart"
-msgstr "Vypnutí / Restart"
-
-msgid "Standby / restart"
 msgstr "Vypnutí / Restart"
 
 msgid "Standby without TV shutdown"
@@ -19853,6 +19855,15 @@ msgstr "Přepnout mezi přehledy/EPG seznamy"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -20451,7 +20462,7 @@ msgstr "Katalog aktualizací"
 msgid "Updating software catalog"
 msgstr "Katalog aktualizací"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -21058,6 +21069,9 @@ msgstr "Teletext..."
 
 msgid "View video CD..."
 msgstr "Zobrazit video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Zobrazit, instalovat a odstranit dostupné nebo instalované balíčky."
 
 msgid "Violence"
 msgstr ""
@@ -23934,6 +23948,26 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#, fuzzy
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Flashnout a obnovit nastavení, bez pluginů"
+
+#, fuzzy
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Flashnout a obnovit nastavení, přidat pluginy (možno nastavit)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Nastavení tlačítek DO pro"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Zobrazit síťové disky..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Vypnutí / Restart"
 
 #, fuzzy
 #~ msgid "Choose style of main menus"

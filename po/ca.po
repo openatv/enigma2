@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -55,43 +55,12 @@ msgid ""
 msgstr ""
 
 #
-msgid "Advanced options and settings."
-msgstr ""
-
-#
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Després de prémer OK, si us plau esperi!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-msgid "Edit the upgrade source address."
-msgstr ""
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
 
 #
 msgid ""
@@ -108,29 +77,11 @@ msgstr ""
 "\n"
 "Gravació en curs."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr ""
-
-#
-msgid "Restore your backups by date."
-msgstr ""
-
-msgid "Scan for local extensions and install them."
-msgstr ""
-
 #
 msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
-msgstr ""
-
-msgid "View, install and remove available or installed packages."
 msgstr ""
 
 msgid ""
@@ -2119,10 +2070,6 @@ msgid "?"
 msgstr "?"
 
 #
-msgid "??"
-msgstr "??"
-
-#
 msgid "A"
 msgstr "A"
 
@@ -2292,6 +2239,10 @@ msgstr ""
 "Ha fallat la gravació!\n"
 "Voleu desactivar la TV i tornar-ho a provar?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2341,10 +2292,6 @@ msgid "ATSC provider"
 msgstr "Proveïdor ATSC"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 msgid "AZPlay"
@@ -2647,17 +2594,21 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avançat"
 
-#
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "Configuracions"
-
 msgid "Advanced Options"
 msgstr "Opcions avançades"
 
 #
 msgid "Advanced Restore"
 msgstr "Restauració avançada"
+
+#
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Configuracions"
+
+#
+msgid "Advanced options and settings."
+msgstr ""
 
 msgid "Advanced software"
 msgstr "Programari avançat"
@@ -3511,6 +3462,10 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+#
+msgid "Backup System Settings"
+msgstr "Configuració del sistema de còpia de seguretat"
+
 msgid "Backup completed."
 msgstr "S’ha completat la còpia de seguretat."
 
@@ -3533,12 +3488,12 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-#
-msgid "Backup System Settings"
-msgstr "Configuració del sistema de còpia de seguretat"
-
 #, python-format
 msgid "Backup to destination: %s"
+msgstr ""
+
+#, python-format
+msgid "Backup your %s %s settings."
 msgstr ""
 
 msgid "Backup your current image"
@@ -3553,10 +3508,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4354,6 +4307,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Canviar d’idioma"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -4917,9 +4873,6 @@ msgstr "Interfície comuna"
 
 #
 msgid "Common Interface Assignment"
-msgstr ""
-
-msgid "Common Menu Actions"
 msgstr ""
 
 msgid "Common Setup Actions"
@@ -7274,6 +7227,9 @@ msgstr "Configuració del sintonitzador"
 msgid "Edit the network configuration of your %s %s."
 msgstr "Configuració del sintonitzador"
 
+msgid "Edit the upgrade source address."
+msgstr ""
+
 #
 msgid "Edit upgrade source url."
 msgstr ""
@@ -8540,8 +8496,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9436,9 +9402,6 @@ msgstr "Hotkey"
 msgid "Hotkey Settings"
 msgstr "Configuració de HotKey"
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -10026,6 +9989,10 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+#
+msgid "Install Local Extension"
+msgstr "Instal·leu l’extensió local"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -10049,10 +10016,6 @@ msgstr ""
 
 msgid "Install lcd picons on"
 msgstr ""
-
-#
-msgid "Install Local Extension"
-msgstr "Instal·leu l’extensió local"
 
 #
 msgid "Install or remove finished."
@@ -11084,6 +11047,9 @@ msgstr "Menú principal"
 msgid "Maintain old EPG data for"
 msgstr "Manteniu les dades EPG antigues de"
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -11130,13 +11096,17 @@ msgid "Maltese"
 msgstr ""
 
 #
+msgid "Manage Extensions"
+msgstr "Gestiona les extensions"
+
+#
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Selecció de canal"
 
-#
-msgid "Manage Extensions"
-msgstr "Gestiona les extensions"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr ""
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11336,6 +11306,15 @@ msgstr "Menú"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Descripció"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -12784,6 +12763,13 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr ""
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 #
 msgid "Only extensions."
 msgstr "Només extensions."
@@ -13109,6 +13095,10 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+#
+msgid "Package Manager"
+msgstr "Gestió de paquets"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -13124,10 +13114,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-#
-msgid "Package Manager"
-msgstr "Gestió de paquets"
 
 #
 msgid "Packet manager"
@@ -13697,7 +13683,7 @@ msgstr ""
 "\n"
 "Premeu OK per continuar."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -15307,17 +15293,29 @@ msgid "Restore Settings"
 msgstr ""
 
 #
+msgid "Restore System Settings"
+msgstr "Restaura la configuració del sistema"
+
+#
 msgid "Restore backups"
 msgstr "Restaura les còpies de seguretat"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-#
-msgid "Restore System Settings"
-msgstr "Restaura la configuració del sistema"
-
 msgid "Restore the highlighted slot"
+msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr ""
+
+#
+msgid "Restore your backups by date."
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15825,6 +15823,9 @@ msgstr "Escanejar fitxers .."
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+msgid "Scan for local extensions and install them."
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Escaneig de xarxes sense fil"
 
@@ -16100,11 +16101,21 @@ msgstr "Seleccioneu “sí” per enviar només la comanda DiSEqC quan canvieu d
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#
+msgid "Select Backup Location"
+msgstr "Selecciona la ubicació de còpia de seguretat"
+
 #
 msgid "Select CAId"
 msgstr "Seleccionar CAid"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -16132,6 +16143,11 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "Seleccionar una pel·lícula"
 
 #
 #, fuzzy
@@ -16180,19 +16196,12 @@ msgstr "Selecciona l’acció"
 msgid "Select action for timer %s:"
 msgstr "Seleccionar una pel·lícula"
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 #
 msgid "Select audio track"
 msgstr "Seleccionar pista d'àudio"
-
-#
-msgid "Select Backup Location"
-msgstr "Selecciona la ubicació de còpia de seguretat"
 
 msgid "Select cardserver"
 msgstr ""
@@ -16217,9 +16226,6 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr "Selecciona la destinació per a:"
-
-msgid "Select Excluded Backup Files"
-msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr ""
@@ -16452,11 +16458,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "Seleccionar una pel·lícula"
 
 #
 msgid "Select upgrade source to edit."
@@ -17294,6 +17295,9 @@ msgstr "Mostra els missatges de CI"
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17498,9 +17502,6 @@ msgstr "Mostra informació sobre cripto a infobar"
 msgid "Show default after description"
 msgstr ""
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show default on new line"
@@ -17652,7 +17653,7 @@ msgstr "Mostra pel·lícules"
 msgid "Show multi channel EPG"
 msgstr "Mostra EPG multicanal"
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -17747,6 +17748,9 @@ msgid "Show setup"
 msgstr "Mostrar el moviment del motor"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #
@@ -17883,6 +17887,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 msgid "Show vertical Program Guide"
@@ -18292,6 +18299,10 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+#
+msgid "Software Restore"
+msgstr ""
+
 msgid "Software Update"
 msgstr ""
 
@@ -18307,10 +18318,6 @@ msgstr "Gestió de programa"
 
 msgid "Software manager setup"
 msgstr "Configuració del gestor de programa"
-
-#
-msgid "Software Restore"
-msgstr ""
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18536,11 +18543,6 @@ msgstr "Repòs"
 
 #
 msgid "Standby / Restart"
-msgstr "Repòs / Reiniciar"
-
-#
-#, fuzzy
-msgid "Standby / restart"
 msgstr "Repòs / Reiniciar"
 
 msgid "Standby without TV shutdown"
@@ -20371,6 +20373,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Commuta o inserta el text nou abans o sobreescriu el text existent"
 
@@ -21007,7 +21018,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Actualització del catàleg de programari"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 #
@@ -21620,6 +21631,9 @@ msgstr "Veure teletext..."
 
 msgid "View video CD..."
 msgstr "Visualització de CD de vídeo …"
+
+msgid "View, install and remove available or installed packages."
+msgstr ""
 
 msgid "Violence"
 msgstr ""
@@ -24586,6 +24600,15 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "??"
+#~ msgstr "??"
+
+#
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr "Repòs / Reiniciar"
 
 #
 #, fuzzy, python-format

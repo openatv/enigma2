@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -54,46 +54,12 @@ msgstr ""
 "\n"
 "<See tuuner seadistati automaatselt>"
 
-msgid "Advanced options and settings."
-msgstr "Lisavalikud ja seadistused."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Vajuta OK ja oota!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Varunda %s %s seadistused."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Loo töötavast %s %s süsteemist täielik süsteemikoopia\n"
-"kõvakettale või mälupulgale."
-
-msgid "Edit the upgrade source address."
-msgstr "Muuda uuenduste allika aadressi."
-
-# /SoftwareManager/Flash_online.py
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Paigalda püsivara vastuvõtjale %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Halda oma multibuudiga vastuvõtjat."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Halda %s %s pluginaid ja laiendusi"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"%s %s internetiuuendused."
 
 msgid ""
 "\n"
@@ -109,20 +75,6 @@ msgstr ""
 "\n"
 "Toimub salvestamine."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Taasta %s %s seadistused."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Taasta %s %s uue püsivaraga."
-
-msgid "Restore your backups by date."
-msgstr "Taasta varukoopiad kuupäeva alusel."
-
-msgid "Scan for local extensions and install them."
-msgstr "Otsi ja paigalda IPK faile."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -131,9 +83,6 @@ msgstr ""
 "\n"
 "Vali varukoopia asukoht.\n"
 "Hetkel: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Tarkvara paigaldamine ja eemaldamine."
 
 msgid ""
 "\n"
@@ -1978,9 +1927,6 @@ msgstr "<tundmatu>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2143,6 +2089,10 @@ msgstr ""
 "Taimeriga salvestus nurjus!\n"
 "Kas keelata TV ja proovida uuesti?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "Kuvasuhe %s."
+
 msgid "AAC downmix"
 msgstr "AAC > stereo"
 
@@ -2190,10 +2140,6 @@ msgstr "ATSC levitaja"
 
 msgid "AV Setup"
 msgstr "Heli ja pildi seaded"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "Kuvasuhe %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2464,14 +2410,17 @@ msgstr ""
 msgid "Advanced"
 msgstr "Lisavalikud"
 
-msgid "Advanced Settings"
-msgstr "Lisaseaded"
-
 msgid "Advanced Options"
 msgstr "Lisavalikud"
 
 msgid "Advanced Restore"
 msgstr "Täpsem taastamine"
+
+msgid "Advanced Settings"
+msgstr "Lisaseaded"
+
+msgid "Advanced options and settings."
+msgstr "Lisavalikud ja seadistused."
 
 msgid "Advanced software"
 msgstr "Lisatarkvara"
@@ -3275,6 +3224,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr "Seadistuste varundamine"
 
+msgid "Backup System Settings"
+msgstr "Seadistuste varundamine"
+
 msgid "Backup completed."
 msgstr "Varukoopia loodud."
 
@@ -3298,12 +3250,13 @@ msgstr ""
 "Leiti varundatud pluginad.\n"
 "Kas paigaldada need?"
 
-msgid "Backup System Settings"
-msgstr "Seadistuste varundamine"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Varukoopia asukoht: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Varunda %s %s seadistused."
 
 msgid "Backup your current image"
 msgstr "Loo täielik püsivaratõmmis"
@@ -3317,11 +3270,11 @@ msgstr "Varunda kehtivad seadistused"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Varunda aktiivsed seadistused. Kaasatakse  E2 sätted, kanalid ja kõik valitud failid"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Varunda, paigalda püsivara ja taasta seadistused, pluginaid ei taasta"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Varunda, paigalda püsivara, taasta seadistused ja valitud pluginad (küsitakse)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr ""
+"Loo töötavast %s %s süsteemist täielik süsteemikoopia\n"
+"kõvakettale või mälupulgale."
 
 msgid "Bahamas"
 msgstr "Bahama saared"
@@ -4073,6 +4026,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Keel"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Muuda PIN"
 
@@ -4594,9 +4550,6 @@ msgstr "CI liides"
 
 msgid "Common Interface Assignment"
 msgstr "CI määrangud"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 # boot-up action
 #, fuzzy
@@ -6858,6 +6811,9 @@ msgstr "Muuda %s %s nimeserveri seadeid."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Muuda %s %s võrguseadeid."
 
+msgid "Edit the upgrade source address."
+msgstr "Muuda uuenduste allika aadressi."
+
 msgid "Edit upgrade source url."
 msgstr "Muuda uuenduste allika url."
 
@@ -8099,9 +8055,20 @@ msgstr "Püsivara paigaldus"
 msgid "Flash Online a new image"
 msgstr "Paigalda vastuvõtjale uus püsivara"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+# /SoftwareManager/Flash_online.py
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Paigalda püsivara vastuvõtjale %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Paigalda vastuvõtjale uus püsivara."
@@ -8954,9 +8921,6 @@ msgstr "Kiirnupud"
 msgid "Hotkey Settings"
 msgstr "Kiirnuppude seadistus"
 
-msgid "Hotkey Setup for"
-msgstr "Kiirnuppude seadistus"
-
 msgid "Hour"
 msgstr "Tund"
 
@@ -9525,6 +9489,9 @@ msgstr "Paigaldamine nurjus!!"
 msgid "Install Finished."
 msgstr "Paigaldamine tehtud."
 
+msgid "Install Local Extension"
+msgstr "IPK paigaldamine"
+
 msgid "Install Plugins"
 msgstr "Paigalda pluginaid"
 
@@ -9545,9 +9512,6 @@ msgstr "Paigalda laiendusi."
 
 msgid "Install lcd picons on"
 msgstr "Paigalda lcd pikonid asukohta"
-
-msgid "Install Local Extension"
-msgstr "IPK paigaldamine"
 
 msgid "Install or remove finished."
 msgstr "Paigaldamine või kustutamine on tehtud."
@@ -10516,6 +10480,9 @@ msgstr "Peamenüü"
 msgid "Maintain old EPG data for"
 msgstr "Aegunud EPG andmete hoidmise aeg"
 
+msgid "Maintain your multi boot device."
+msgstr "Halda oma multibuudiga vastuvõtjat."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Failihaldur kuvatakse laienduste menüüs."
 
@@ -10562,12 +10529,16 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
+msgid "Manage Extensions"
+msgstr "Laienduste haldamine"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalivaliku seaded"
 
-msgid "Manage Extensions"
-msgstr "Laienduste haldamine"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Halda %s %s pluginaid ja laiendusi"
 
 msgid "Manage network mounts"
 msgstr "Halda võrgu haakepunkte"
@@ -10755,6 +10726,15 @@ msgstr "Menüü"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Kiirtegevused"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Seadistusmenüü"
@@ -12126,6 +12106,13 @@ msgstr "Üks rida"
 msgid "Online software update"
 msgstr "Vastuvõtja internetiuuendused"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "%s %s internetiuuendused."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Ainult laiendused."
 
@@ -12459,6 +12446,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR - pikk"
 
+msgid "Package Manager"
+msgstr "Pakihaldus"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12474,9 +12464,6 @@ msgstr "Halda kohalikke faile"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Pakihaldus"
 
 msgid "Packet manager"
 msgstr "Pakihaldur"
@@ -12981,7 +12968,7 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14495,17 +14482,28 @@ msgstr "Taasta pluginad"
 msgid "Restore Settings"
 msgstr "Seadistuste taastamine"
 
+msgid "Restore System Settings"
+msgstr "Seadistuste taastamine"
+
 msgid "Restore backups"
 msgstr "Taasta varukoopiaid"
 
 msgid "Restore settings from a backup"
 msgstr "Taasta seadistused varukoopiast"
 
-msgid "Restore System Settings"
-msgstr "Seadistuste taastamine"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Taasta %s %s seadistused."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Taasta %s %s uue püsivaraga."
+
+msgid "Restore your backups by date."
+msgstr "Taasta varukoopiad kuupäeva alusel."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Taasta seadistused varukoopiast. Nende jõustamiseks vastuvõtja taaskäivitub"
@@ -14986,6 +14984,9 @@ msgstr "Uuri faile"
 msgid "Scan for local extensions and install them"
 msgstr "Otsi ja paigalda IPK faile"
 
+msgid "Scan for local extensions and install them."
+msgstr "Otsi ja paigalda IPK faile."
+
 msgid "Scan wireless networks"
 msgstr "Traadita võrkude otsing"
 
@@ -15243,12 +15244,21 @@ msgstr "Valides 'jah', saadetakse DiSEqC käsk vahetades ühelt satelliidilt tei
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Vali (allikaloend) või sisene kataloogi (sihtloend)"
 
+msgid "Select Additional Backup Files"
+msgstr "Lisafailid varundamiseks"
+
+msgid "Select Backup Location"
+msgstr "Varukoopia asukoht"
+
 #
 msgid "Select CAId"
 msgstr "Vali CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Vali Enigma2 kujundus"
+
+msgid "Select Excluded Backup Files"
+msgstr "Failid, mida ei varundata"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Vali kiire DiSEqC, kui antennisüsteem seda toetab. Kui pole kindel, vali 'ei'."
@@ -15275,6 +15285,9 @@ msgstr "Vali Quad PiP kanalid"
 #
 msgid "Select Software Update"
 msgstr "Vali tarkvara uuendus"
+
+msgid "Select Upgrade Source"
+msgstr "Vali uuenduste allikas"
 
 msgid "Select Your Skin"
 msgstr "Kujunduse valik"
@@ -15318,17 +15331,11 @@ msgstr "Vali tegevus"
 msgid "Select action for timer %s:"
 msgstr "Vali tegevus taimerile %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Lisafailid varundamiseks"
-
 msgid "Select additional files to backup"
 msgstr "Vali veel faile varundamiseks"
 
 msgid "Select audio track"
 msgstr "Vali heliriba"
-
-msgid "Select Backup Location"
-msgstr "Varukoopia asukoht"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15350,9 +15357,6 @@ msgstr "Vali saatekava laad"
 
 msgid "Select destination for:"
 msgstr "Vali asukoht:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Failid, mida ei varundata"
 
 msgid "Select files to exclude from backup"
 msgstr "Vali varukoopiast välja jäetavad failid"
@@ -15583,9 +15587,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Vali uuenduste allikas"
 
 msgid "Select upgrade source to edit."
 msgstr "Vali muudetav uuenduste allikas."
@@ -16413,6 +16414,9 @@ msgstr "Kuva CI teated"
 msgid "Show Clients"
 msgstr "Kuva kliendid"
 
+msgid "Show Default Backup Files"
+msgstr "Vaikimisi varundatavad failid"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16615,9 +16619,6 @@ msgstr "Salastamise kuvamine inforibal"
 msgid "Show default after description"
 msgstr "Kuva pikem sisututvus"
 
-msgid "Show Default Backup Files"
-msgstr "Vaikimisi varundatavad failid"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "Vaikimisi varundatavad failid"
@@ -16754,8 +16755,8 @@ msgstr "Kuva salvestised"
 msgid "Show multi channel EPG"
 msgstr "MultiEPG"
 
-msgid "Show network mounts ..."
-msgstr "Võrgu haakepunktid"
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -16843,6 +16844,9 @@ msgid "Show setup"
 msgstr "Seadistused"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -16966,6 +16970,9 @@ msgstr "Kuva tundmatud faililaiendid rakendusega \"Failivaatur\"."
 
 msgid "Show unknown video format as"
 msgstr "Tundmatu videovormingu kuvamine"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Vertikaalne EPG"
@@ -17351,6 +17358,9 @@ msgstr "Tarkvarahalduri seaded"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Püsivara taastamise abiline"
+
 msgid "Software Update"
 msgstr "Tarkvara uuendamine"
 
@@ -17365,9 +17375,6 @@ msgstr "Tarkvara haldamine"
 
 msgid "Software manager setup"
 msgstr "Tarkvarahalduri seaded"
-
-msgid "Software Restore"
-msgstr "Püsivara taastamise abiline"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17593,9 +17600,6 @@ msgid "Standby"
 msgstr "Ooteseisund"
 
 msgid "Standby / Restart"
-msgstr "Seiskamine"
-
-msgid "Standby / restart"
 msgstr "Seiskamine"
 
 msgid "Standby without TV shutdown"
@@ -19400,6 +19404,15 @@ msgstr "Vaheta lemmiknimekiri ja epg loend"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Vaheta uue teksti sisestamine või olemasoleva teksti ülekirjutamine"
 
@@ -19988,8 +20001,8 @@ msgstr "Haakepunktide uuendamine."
 msgid "Updating software catalog"
 msgstr "Tarkvarakataloogi uuendamine"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Uuenda (varunda, paigalda püsivara ja taasta kõik)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Uuendamine tehtud."
@@ -20578,6 +20591,9 @@ msgstr "Kuva teletekst"
 
 msgid "View video CD..."
 msgstr "Video CD vaatamine"
+
+msgid "View, install and remove available or installed packages."
+msgstr "Tarkvara paigaldamine ja eemaldamine."
 
 msgid "Violence"
 msgstr ""
@@ -23417,6 +23433,27 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Varunda, paigalda püsivara ja taasta seadistused, pluginaid ei taasta"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Varunda, paigalda püsivara, taasta seadistused ja valitud pluginad (küsitakse)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Kiirnuppude seadistus"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Võrgu haakepunktid"
+
+#~ msgid "Standby / restart"
+#~ msgstr "Seiskamine"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Uuenda (varunda, paigalda püsivara ja taasta kõik)"
 
 #, fuzzy
 #~ msgid "Choose style of main menus"

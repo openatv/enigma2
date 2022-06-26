@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -47,45 +47,12 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid "Advanced options and settings."
-msgstr "אפשרויות מתקדמות והגדרות"
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "!אחרי לחיצה על אשר,נא המתן"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-#
-msgid "Edit the upgrade source address."
-msgstr "ערוך את כתובת מקור העדכון"
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "נהל תוספות או פלאגינים לדרימבוקס"
-
-#, fuzzy, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"עדכונים מהאינטרנט לדרימבוקס שלך"
 
 #
 msgid ""
@@ -100,23 +67,6 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "שיחזור הדרימבוקס עם גרסת קושחה חדשה"
-
-#
-msgid "Restore your backups by date."
-msgstr "שיחזור גיבויים לפי תאריך"
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "סרוק לתוספות מקומיות והתקן אותם"
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -125,9 +75,6 @@ msgstr ""
 "\n"
 ".בחר את התקן הגיבוי\n"
 ":ההתקן הנוכחי "
-
-msgid "View, install and remove available or installed packages."
-msgstr ".הצג, התקן או הסר חבילות זמינות או מותקנות "
 
 msgid ""
 "\n"
@@ -2045,9 +1992,6 @@ msgstr "<לא ידוע>"
 msgid "?"
 msgstr "؟؟"
 
-msgid "??"
-msgstr "؟؟"
-
 #
 msgid "A"
 msgstr "A"
@@ -2208,6 +2152,10 @@ msgstr ""
 "הטיימר לא הצליח להקליט\n"
 "?האם להשבית את הטלויזיה ולנסות שוב\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr ""
 
@@ -2257,10 +2205,6 @@ msgid "ATSC provider"
 msgstr "add Provider"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 #
@@ -2565,17 +2509,20 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Advanced Settings"
-msgstr "אפשרויות מתקדמות"
-
-#
-#, fuzzy
 msgid "Advanced Options"
 msgstr "אפשרויות מתקדמות"
 
 #
 msgid "Advanced Restore"
 msgstr "שחזור מתקדם"
+
+#
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "אפשרויות מתקדמות"
+
+msgid "Advanced options and settings."
+msgstr "אפשרויות מתקדמות והגדרות"
 
 #
 #, fuzzy
@@ -3414,6 +3361,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+msgid "Backup System Settings"
+msgstr "גיבוי הגדרות מערכת"
+
 msgid "Backup completed."
 msgstr ""
 
@@ -3434,12 +3384,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "גיבוי הגדרות מערכת"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "גיבוי הגדרות מערכת"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr ""
 
 msgid "Backup your current image"
 msgstr ""
@@ -3453,10 +3404,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4231,6 +4180,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "שפה"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -4783,9 +4735,6 @@ msgstr "ממשק משותף"
 
 msgid "Common Interface Assignment"
 msgstr "הקצאת ממשק משותף"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -7073,6 +7022,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "ערוך את הגדרות הרשת של הדרימבוקס שלך "
 
 #
+msgid "Edit the upgrade source address."
+msgstr "ערוך את כתובת מקור העדכון"
+
+#
 msgid "Edit upgrade source url."
 msgstr "Edit upgrade source url."
 
@@ -8306,8 +8259,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9194,9 +9157,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -9782,6 +9742,9 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+msgid "Install Local Extension"
+msgstr "התקן תוספת מקומית"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9803,9 +9766,6 @@ msgstr ".התקן תוספות"
 
 msgid "Install lcd picons on"
 msgstr ""
-
-msgid "Install Local Extension"
-msgstr "התקן תוספת מקומית"
 
 msgid "Install or remove finished."
 msgstr ".התקנה או הסרה הסתיימה"
@@ -10829,6 +10789,9 @@ msgstr "תפריט ראשי"
 msgid "Maintain old EPG data for"
 msgstr ""
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10874,13 +10837,18 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+#
+msgid "Manage Extensions"
+msgstr "נהל תוספים"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "הגדרות האוסף"
 
 #
-msgid "Manage Extensions"
-msgstr "נהל תוספים"
+#, fuzzy, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "נהל תוספות או פלאגינים לדרימבוקס"
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11077,6 +11045,15 @@ msgstr "תפריט"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "מיקום"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -12489,6 +12466,13 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Online update of your %s %s software."
+msgstr "עדכונים מהאינטרנט לדרימבוקס שלך"
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr ".רק תוספים"
 
@@ -12812,6 +12796,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "Package Manager"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12827,9 +12814,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Package Manager"
 
 msgid "Packet manager"
 msgstr "Packet manager"
@@ -13370,7 +13354,7 @@ msgstr ""
 "\n"
 "Please press OK to continue."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14912,17 +14896,30 @@ msgstr ""
 msgid "Restore Settings"
 msgstr ""
 
+msgid "Restore System Settings"
+msgstr "שחזור הגדרות מערכת"
+
 msgid "Restore backups"
 msgstr "שחזור גיבויים"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-msgid "Restore System Settings"
-msgstr "שחזור הגדרות מערכת"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "שיחזור הדרימבוקס עם גרסת קושחה חדשה"
+
+#
+msgid "Restore your backups by date."
+msgstr "שיחזור גיבויים לפי תאריך"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -15420,6 +15417,10 @@ msgstr "...סרוק קבצים"
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+#
+msgid "Scan for local extensions and install them."
+msgstr "סרוק לתוספות מקומיות והתקן אותם"
+
 #, fuzzy
 msgid "Scan wireless networks"
 msgstr "סרוק רשתות אלחוטיות"
@@ -15686,11 +15687,21 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#, fuzzy
+msgid "Select Backup Location"
+msgstr "בחר מקום גיבוי"
+
 #, fuzzy
 msgid "Select CAId"
 msgstr "בחר"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -15717,6 +15728,10 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "Select upgrade source to edit."
 
 #, fuzzy
 msgid "Select Your Skin"
@@ -15762,18 +15777,11 @@ msgstr "Select Location"
 msgid "Select action for timer %s:"
 msgstr "בחר קבצי גיבוי"
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 msgid "Select audio track"
 msgstr "Select audio track"
-
-#, fuzzy
-msgid "Select Backup Location"
-msgstr "בחר מקום גיבוי"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15797,9 +15805,6 @@ msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select destination for:"
-msgstr ""
-
-msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select files to exclude from backup"
@@ -16030,10 +16035,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "Select upgrade source to edit."
 
 msgid "Select upgrade source to edit."
 msgstr "Select upgrade source to edit."
@@ -16862,6 +16863,9 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17073,9 +17077,6 @@ msgstr ""
 msgid "Show default after description"
 msgstr "הראה מידע מורחב"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "show Infoline"
@@ -17222,7 +17223,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -17317,6 +17318,9 @@ msgid "Show setup"
 msgstr "show DVD main menu"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #, fuzzy
@@ -17449,6 +17453,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #, fuzzy
@@ -17870,6 +17877,9 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "שחזור תוכנה"
+
 msgid "Software Update"
 msgstr ""
 
@@ -17884,9 +17894,6 @@ msgstr "ניהול תוכנה"
 
 msgid "Software manager setup"
 msgstr ""
-
-msgid "Software Restore"
-msgstr "שחזור תוכנה"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18110,10 +18117,6 @@ msgid "Standby"
 msgstr "המתנה"
 
 msgid "Standby / Restart"
-msgstr " איתחול / המתנה"
-
-#, fuzzy
-msgid "Standby / restart"
 msgstr " איתחול / המתנה"
 
 msgid "Standby without TV shutdown"
@@ -19945,6 +19948,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -20564,7 +20576,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "מעדכן קטלוג תוכנה"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -21161,6 +21173,9 @@ msgstr ""
 #, fuzzy
 msgid "View video CD..."
 msgstr "View Video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr ".הצג, התקן או הסר חבילות זמינות או מותקנות "
 
 msgid "Violence"
 msgstr ""
@@ -23990,6 +24005,13 @@ msgstr "זופזפ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "؟؟"
+
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr " איתחול / המתנה"
 
 #, fuzzy, python-format
 #~ msgid ""

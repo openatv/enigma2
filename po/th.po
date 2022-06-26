@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -46,43 +46,12 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid "Advanced options and settings."
-msgstr "ตั้งค่าขั้นสูง"
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "กดปุ่ม OK แล้วรอสักครู่"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-msgid "Edit the upgrade source address."
-msgstr "แก้ไขที่อยู่เพื่อโหลดส่วนปรับปรุง"
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"ปรับปรุงดรีมบอกซ์แบบออนไลน์"
 
 msgid ""
 "\n"
@@ -96,20 +65,6 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "นำสำรองกลับมาใช้กับเฟิร์มแวร์ใหม่"
-
-msgid "Restore your backups by date."
-msgstr "นำสำรองกลับมาใช้ตามวันที่"
-
-msgid "Scan for local extensions and install them."
-msgstr ""
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -118,9 +73,6 @@ msgstr ""
 "\n"
 "เลือกอุปกรณ์\n"
 "อุปกรณ์ปัจจุบันคือ: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "ตรวจดู ติดตั้งหรือลบส่วนประกอบ"
 
 msgid ""
 "\n"
@@ -2004,9 +1956,6 @@ msgstr "<ไม่ทราบ>"
 msgid "?"
 msgstr "??"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2157,6 +2106,10 @@ msgstr ""
 "ไม่สามารถบันทึกรายการได้\n"
 "ต้องการยกเลิกรายการโทรทัศน์แล้วลองอีกครั้งหรือไม่?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr ""
 
@@ -2205,10 +2158,6 @@ msgid "ATSC provider"
 msgstr "เพิ่มผู้ให้บริการ"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 #, fuzzy
@@ -2494,15 +2443,18 @@ msgid "Advanced"
 msgstr ""
 
 #, fuzzy
-msgid "Advanced Settings"
-msgstr "ตัวเลือกขั้นสูง"
-
-#, fuzzy
 msgid "Advanced Options"
 msgstr "ตัวเลือกขั้นสูง"
 
 msgid "Advanced Restore"
 msgstr "นำข้อมูลกลับมาใช้แบบขั้นสูง"
+
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "ตัวเลือกขั้นสูง"
+
+msgid "Advanced options and settings."
+msgstr "ตั้งค่าขั้นสูง"
 
 #, fuzzy
 msgid "Advanced software"
@@ -3317,6 +3269,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+msgid "Backup System Settings"
+msgstr "ตั้งค่าสำรองข้อมูลระบบ"
+
 msgid "Backup completed."
 msgstr ""
 
@@ -3337,12 +3292,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "ตั้งค่าสำรองข้อมูลระบบ"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "ตั้งค่าสำรองข้อมูลระบบ"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr ""
 
 msgid "Backup your current image"
 msgstr ""
@@ -3356,10 +3312,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4105,6 +4059,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "ภาษา"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -4637,9 +4594,6 @@ msgstr "อินเตอร์เฟซพื้นฐาน"
 
 msgid "Common Interface Assignment"
 msgstr "กำหนดอินเตอร์เฟซพื้นฐาน"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -6886,6 +6840,9 @@ msgstr "แก้ไขการตั้งค่า Nameserver บนเคร
 msgid "Edit the network configuration of your %s %s."
 msgstr "แก้ไขการตั้งค่าเครือข่ายเครื่อดรีมบอกซ์ของท่าน"
 
+msgid "Edit the upgrade source address."
+msgstr "แก้ไขที่อยู่เพื่อโหลดส่วนปรับปรุง"
+
 msgid "Edit upgrade source url."
 msgstr "แก้ไข URL ของเซอร์พเวอร์เพื่อปรับปรุง"
 
@@ -8093,8 +8050,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -8952,9 +8919,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -9518,6 +9482,9 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+msgid "Install Local Extension"
+msgstr "ติดตั้งส่วนเพิ่มเติมจากในเครื่อง"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9538,9 +9505,6 @@ msgstr "ติดตั้งส่วนเพิ่มเติม"
 
 msgid "Install lcd picons on"
 msgstr ""
-
-msgid "Install Local Extension"
-msgstr "ติดตั้งส่วนเพิ่มเติมจากในเครื่อง"
 
 msgid "Install or remove finished."
 msgstr "ติดตั้งหรือลบออกเสร็จแล้ว"
@@ -10522,6 +10486,9 @@ msgstr "เมนูหลัก"
 msgid "Maintain old EPG data for"
 msgstr ""
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10564,11 +10531,15 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr ""
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "ตั้งค่าคอลเลคชั่น"
 
-msgid "Manage Extensions"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
 msgstr ""
 
 msgid "Manage network mounts"
@@ -10758,6 +10729,15 @@ msgstr "เมนู"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "สถานที่"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -12111,6 +12091,13 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Online update of your %s %s software."
+msgstr "ปรับปรุงดรีมบอกซ์แบบออนไลน์"
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr ""
 
@@ -12427,6 +12414,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "จัดการส่วนประกอบ"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12441,9 +12431,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "จัดการส่วนประกอบ"
 
 msgid "Packet manager"
 msgstr "ตัวจัดการส่วนประกอบ"
@@ -12965,7 +12952,7 @@ msgstr ""
 "\n"
 "จากนั้นกดปุ่ม OK เพื่อทำงานต่อ"
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14454,17 +14441,28 @@ msgstr ""
 msgid "Restore Settings"
 msgstr ""
 
+msgid "Restore System Settings"
+msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
+
 msgid "Restore backups"
 msgstr "นำสำรองกลับมาใช้"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-msgid "Restore System Settings"
-msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "นำสำรองกลับมาใช้กับเฟิร์มแวร์ใหม่"
+
+msgid "Restore your backups by date."
+msgstr "นำสำรองกลับมาใช้ตามวันที่"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -14942,6 +14940,9 @@ msgstr "ค้นหาไฟล์..."
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+msgid "Scan for local extensions and install them."
+msgstr ""
+
 #, fuzzy
 msgid "Scan wireless networks"
 msgstr "ค้นหาเครือข่ายไร้สาย"
@@ -15204,11 +15205,21 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#, fuzzy
+msgid "Select Backup Location"
+msgstr "เลือกที่ที่จะสำรอง"
+
 #, fuzzy
 msgid "Select CAId"
 msgstr "เลือก CAId"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -15235,6 +15246,10 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "เลือกที่มาเพื่อปรับปรุง"
 
 #, fuzzy
 msgid "Select Your Skin"
@@ -15280,18 +15295,11 @@ msgstr "เลือกตำแหน่ง"
 msgid "Select action for timer %s:"
 msgstr "เลือกไฟล์ที่จะสำรอง"
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 msgid "Select audio track"
 msgstr "เลือกช่องเสียง"
-
-#, fuzzy
-msgid "Select Backup Location"
-msgstr "เลือกที่ที่จะสำรอง"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15313,9 +15321,6 @@ msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select destination for:"
-msgstr ""
-
-msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select files to exclude from backup"
@@ -15544,10 +15549,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "เลือกที่มาเพื่อปรับปรุง"
 
 msgid "Select upgrade source to edit."
 msgstr "เลือกที่มาเพื่อปรับปรุง"
@@ -16353,6 +16354,9 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16558,9 +16562,6 @@ msgstr ""
 msgid "Show default after description"
 msgstr "แสดงคำอธิบายรายการเพิ่มเติม"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "แสดง Infoline"
@@ -16704,7 +16705,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -16795,6 +16796,9 @@ msgid "Show setup"
 msgstr "แสดงเมนูป้าย"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #, fuzzy
@@ -16920,6 +16924,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #, fuzzy
@@ -17317,6 +17324,9 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "นำสำรองกลับมาใช้"
+
 msgid "Software Update"
 msgstr ""
 
@@ -17331,9 +17341,6 @@ msgstr ""
 
 msgid "Software manager setup"
 msgstr ""
-
-msgid "Software Restore"
-msgstr "นำสำรองกลับมาใช้"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17549,10 +17556,6 @@ msgid "Standby"
 msgstr "Standby"
 
 msgid "Standby / Restart"
-msgstr "ปิดเครื่อง"
-
-#, fuzzy
-msgid "Standby / restart"
 msgstr "ปิดเครื่อง"
 
 msgid "Standby without TV shutdown"
@@ -19300,6 +19303,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -19884,7 +19896,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -20458,6 +20470,9 @@ msgstr "อ่านเทเลเท็กซ์..."
 #, fuzzy
 msgid "View video CD..."
 msgstr "ดูวีซีดี"
+
+msgid "View, install and remove available or installed packages."
+msgstr "ตรวจดู ติดตั้งหรือลบส่วนประกอบ"
 
 msgid "Violence"
 msgstr ""
@@ -23211,6 +23226,13 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr "ปิดเครื่อง"
 
 #, fuzzy, python-format
 #~ msgid ""

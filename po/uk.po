@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-06-23 09:59+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -60,43 +60,12 @@ msgstr ""
 "\n"
 "<Цей тюнер налаштовується автоматично>"
 
-msgid "Advanced options and settings."
-msgstr "Додаткові опції і налаштування."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Після натиснення OK, зачекайте!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Резервне копіювання налаштувань %s %s."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Резервне копіювання іміджу %s %s на HDD або USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Змінити адресу джерела оновлення."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Прошити онлайн Ваш %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Підтимка Вашим пристроєм мультизавантаження."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Керувати розширеннями або плагінами для Вашого %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Онлайн оновлення ПЗ Вашого %s %s."
 
 msgid ""
 "\n"
@@ -112,20 +81,6 @@ msgstr ""
 "\n"
 "Триває запис."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Відновити Ваші %s %s налаштування."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Відновлення Вашого %s %s з новим ПЗ."
-
-msgid "Restore your backups by date."
-msgstr "Відновлення резервних копій за датою."
-
-msgid "Scan for local extensions and install them."
-msgstr "Пошук і встановлення локальних розширень."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -134,9 +89,6 @@ msgstr ""
 "\n"
 "Вибір носія для збереження копій.\n"
 "Поточний носій: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Переглянути, встановити або видалити наявні чи встановлені пакети."
 
 msgid ""
 "\n"
@@ -1979,9 +1931,6 @@ msgstr "<невідомий>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2145,6 +2094,10 @@ msgstr ""
 "Таймер зупинив запис!\n"
 "Відключити ТБ і спробувати ще раз?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "А/В співвідношення %s."
+
 msgid "AAC downmix"
 msgstr "AAC Plus мікшування"
 
@@ -2192,10 +2145,6 @@ msgstr "ATSC провайдер"
 
 msgid "AV Setup"
 msgstr "Налаштування Аудіо-Відео"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "А/В співвідношення %s."
 
 msgid "AZPlay"
 msgstr "Відтворення А-Я"
@@ -2462,14 +2411,17 @@ msgstr "Аудиторія для дорослих, насильство 15+"
 msgid "Advanced"
 msgstr "Розширений"
 
-msgid "Advanced Settings"
-msgstr "Розширені Налаштування"
-
 msgid "Advanced Options"
 msgstr "Розширені параметри"
 
 msgid "Advanced Restore"
 msgstr "Розширене відновлення"
+
+msgid "Advanced Settings"
+msgstr "Розширені Налаштування"
+
+msgid "Advanced options and settings."
+msgstr "Додаткові опції і налаштування."
 
 msgid "Advanced software"
 msgstr "Додаткове ПЗ"
@@ -3253,6 +3205,9 @@ msgstr "Режим збереження: USB Відновлення\n"
 msgid "Backup Settings"
 msgstr "Збереження Налаштувань"
 
+msgid "Backup System Settings"
+msgstr "Резервна копія системних налаштувань"
+
 msgid "Backup completed."
 msgstr "Бекап успішно створений."
 
@@ -3275,12 +3230,13 @@ msgstr ""
 "Знайдений бекап плагінів!\n"
 "Хочете встановити його зараз?"
 
-msgid "Backup System Settings"
-msgstr "Резервна копія системних налаштувань"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Місце збереження Резервної копії: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Резервне копіювання налаштувань %s %s."
 
 msgid "Backup your current image"
 msgstr "Резервне копіювання поточного іміджу"
@@ -3294,11 +3250,9 @@ msgstr "Резервне копіювання поточних налаштув�
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Резервне копіювання поточних налаштувань. У тому числі настройки Енігми2, списку каналів, налаштування мережі і всі вибрані файли"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Копіювання, прошивка та відновлення налаштувань без плагінів"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Копіювання, прошивка та відновлення налаштувань і плагінів (запитати користувача)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Резервне копіювання іміджу %s %s на HDD або USB."
 
 msgid "Bahamas"
 msgstr "Багами"
@@ -4041,6 +3995,9 @@ msgstr "Зміна режиму приймача для управління а�
 msgid "Change Language"
 msgstr "Змінити Мову"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Змінити ПІН"
 
@@ -4554,9 +4511,6 @@ msgstr "Модуль доступу"
 
 msgid "Common Interface Assignment"
 msgstr "Призначення Модуля доступу"
-
-msgid "Common Menu Actions"
-msgstr "Загальні дії меню"
 
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
@@ -6754,6 +6708,9 @@ msgstr "Редагувати конфігурацію DNS Вашого %s %s."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Редагувати конфігурацію мережі Вашого %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Змінити адресу джерела оновлення."
+
 msgid "Edit upgrade source url."
 msgstr "Змінити адресу джерела оновлення."
 
@@ -7962,9 +7919,19 @@ msgstr "Прошити приймач он-лайн"
 msgid "Flash Online a new image"
 msgstr "Прошити приймач новим іміджем"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-каталог '%s' заборонено!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Прошити онлайн Ваш %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Прошити приймач Вашим ПЗ."
@@ -8787,9 +8754,6 @@ msgstr "Гарячі кнопки"
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
-msgid "Hotkey Setup for"
-msgstr "Налаштування гарячих кнопок для"
-
 msgid "Hour"
 msgstr "Година"
 
@@ -9342,6 +9306,9 @@ msgstr "Встановлення невдале!!"
 msgid "Install Finished."
 msgstr "Встановлення завершено."
 
+msgid "Install Local Extension"
+msgstr "Встановлення локальних розширень"
+
 msgid "Install Plugins"
 msgstr "Встановити плагіни"
 
@@ -9362,9 +9329,6 @@ msgstr "Встановити розширення."
 
 msgid "Install lcd picons on"
 msgstr "Встановити lcd пікони на"
-
-msgid "Install Local Extension"
-msgstr "Встановлення локальних розширень"
 
 msgid "Install or remove finished."
 msgstr "Встановлення чи видалення завершено."
@@ -10290,6 +10254,9 @@ msgstr "Головне меню"
 msgid "Maintain old EPG data for"
 msgstr "Зберігати старі дані ЕПГ"
 
+msgid "Maintain your multi boot device."
+msgstr "Підтимка Вашим пристроєм мультизавантаження."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Зробити File Commander доступним у розширеному Меню."
 
@@ -10332,11 +10299,15 @@ msgstr "Мальта"
 msgid "Maltese"
 msgstr "Мальтійська"
 
+msgid "Manage Extensions"
+msgstr "Управління розширеннями"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
 
-msgid "Manage Extensions"
-msgstr "Управління розширеннями"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Керувати розширеннями або плагінами для Вашого %s %s"
 
 msgid "Manage network mounts"
 msgstr "Управління монтуванням мережі"
@@ -10513,6 +10484,15 @@ msgstr "Меню"
 
 msgid "Menu Actions"
 msgstr "Дії для Меню"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Налаштування меню"
@@ -11807,6 +11787,13 @@ msgstr "Одна лінія"
 msgid "Online software update"
 msgstr "Онлайн оновлення програмного забезпечення"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Онлайн оновлення ПЗ Вашого %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Тільки розширення."
 
@@ -12111,6 +12098,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR довго"
 
+msgid "Package Manager"
+msgstr "Управління пакетами"
+
 msgid "Package information currently not available!"
 msgstr "Інформація про пакет на даний момент недоступна!"
 
@@ -12125,9 +12115,6 @@ msgstr "Тільки запаковані регіони"
 
 msgid "Packages and associated locales"
 msgstr "Пакети та пов’язані локалі"
-
-msgid "Package Manager"
-msgstr "Управління пакетами"
 
 msgid "Packet manager"
 msgstr "Управління пакетами"
@@ -12615,8 +12602,8 @@ msgstr ""
 "\n"
 "Натисніть OK для продовження."
 
-msgid "Please select what to do:"
-msgstr "Будь ласка, виберіть, що робити:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Будь ласка, налаштуйте тюнер A"
@@ -14089,17 +14076,28 @@ msgstr "Відновити плагіни"
 msgid "Restore Settings"
 msgstr "Відновлення Налаштування"
 
+msgid "Restore System Settings"
+msgstr "Відновлення системних налаштувань"
+
 msgid "Restore backups"
 msgstr "Відновлення резервних копій"
 
 msgid "Restore settings from a backup"
 msgstr "Відновити налаштування з резервної копії"
 
-msgid "Restore System Settings"
-msgstr "Відновлення системних налаштувань"
-
 msgid "Restore the highlighted slot"
 msgstr "Відновити виділений слот"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Відновити Ваші %s %s налаштування."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Відновлення Вашого %s %s з новим ПЗ."
+
+msgid "Restore your backups by date."
+msgstr "Відновлення резервних копій за датою."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Відновлення настройок з резервної копії. Після відновлення приймач буде перезавантажений для активації нових налаштувань"
@@ -14560,6 +14558,9 @@ msgstr "Сканування файлів..."
 msgid "Scan for local extensions and install them"
 msgstr "Пошук і встановлення локальних розширень"
 
+msgid "Scan for local extensions and install them."
+msgstr "Пошук і встановлення локальних розширень."
+
 msgid "Scan wireless networks"
 msgstr "Пошук Wі-Fі мереж"
 
@@ -14814,11 +14815,20 @@ msgstr "Виберіть 'так', щоб надіслати команду DiSE
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Виберіть (список джерел) або введіть каталог (список цілей)"
 
+msgid "Select Additional Backup Files"
+msgstr "Вибір додаткових файлів резервної копії"
+
+msgid "Select Backup Location"
+msgstr "Вибір розташування бекапу"
+
 msgid "Select CAId"
 msgstr "Вибрати CAID"
 
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
+
+msgid "Select Excluded Backup Files"
+msgstr "Вибір файлів для виключення з резервної копії"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Виберіть Швидкий DiSEqC, якщо ваша антена підтримує це. Якщо ви не впевнені, виберіть 'ні'."
@@ -14843,6 +14853,9 @@ msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
+
+msgid "Select Upgrade Source"
+msgstr "Вибер джерела оновлення"
 
 msgid "Select Your Skin"
 msgstr "Виберіть потрібний Скін"
@@ -14884,17 +14897,11 @@ msgstr "Вибір дії"
 msgid "Select action for timer %s:"
 msgstr "Вибір дії для таймеру %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Вибір додаткових файлів резервної копії"
-
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
 
 msgid "Select audio track"
 msgstr "Вибір аудіо доріжки"
-
-msgid "Select Backup Location"
-msgstr "Вибір розташування бекапу"
 
 msgid "Select cardserver"
 msgstr "Виберіть cardserver"
@@ -14916,9 +14923,6 @@ msgstr "Вибір тип ЕПГ за умовчанням..."
 
 msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Вибір файлів для виключення з резервної копії"
 
 msgid "Select files to exclude from backup"
 msgstr "Виберіть файли, які будуть виключені з резервної копії"
@@ -15141,9 +15145,6 @@ msgstr "Виберіть потрібний тип вимкнення, коли 
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Виберіть потрібний тип вимкнення, коли активується таймер вимкнення."
-
-msgid "Select Upgrade Source"
-msgstr "Вибер джерела оновлення"
 
 msgid "Select upgrade source to edit."
 msgstr "Виберіть джерело оновлення для редагування."
@@ -15944,6 +15945,9 @@ msgstr "Показати повідомлення СІ"
 msgid "Show Clients"
 msgstr "Показати клієнтів"
 
+msgid "Show Default Backup Files"
+msgstr "Показати файли резервної копії за замовчуванням"
+
 msgid "Show Directory size"
 msgstr "Показати розмір каталогу"
 
@@ -16137,9 +16141,6 @@ msgstr "Показати інфо кодування в Інфобарі"
 msgid "Show default after description"
 msgstr "Показати опис за замовчуванням"
 
-msgid "Show Default Backup Files"
-msgstr "Показати файли резервної копії за замовчуванням"
-
 msgid "Show default on new line"
 msgstr "Показати за замовчуванням у новому рядку"
 
@@ -16272,8 +16273,8 @@ msgstr "Показати записи"
 msgid "Show multi channel EPG"
 msgstr "Показати мульти телегід"
 
-msgid "Show network mounts ..."
-msgstr "Показати мережеві підключення..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Показати наступну передачу"
@@ -16358,6 +16359,9 @@ msgstr "Показати налаштування"
 
 msgid "Show setup default value"
 msgstr "Показати значення налаштувань за замовчуванням"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Показати меню вимкнення"
@@ -16472,6 +16476,9 @@ msgstr "Показувати невідомі розширення файлу з
 
 msgid "Show unknown video format as"
 msgstr "Показати невідомий формат відео як"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Показати Вертикальний Електронний Гід"
@@ -16849,6 +16856,9 @@ msgstr "Налаштування Менеджера ПЗ"
 msgid "Software MultiBoot"
 msgstr "ПЗ MultiBoot"
 
+msgid "Software Restore"
+msgstr "Відновлення ПЗ"
+
 msgid "Software Update"
 msgstr "Оновлення ПЗ"
 
@@ -16863,9 +16873,6 @@ msgstr "Управління ПЗ"
 
 msgid "Software manager setup"
 msgstr "Налаштування мененджера ПЗ"
-
-msgid "Software Restore"
-msgstr "Відновлення ПЗ"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17085,9 +17092,6 @@ msgstr "Режим очікування"
 
 msgid "Standby / Restart"
 msgstr "Вимкнення"
-
-msgid "Standby / restart"
-msgstr "Меню вимкнення"
 
 msgid "Standby without TV shutdown"
 msgstr "Режим очікування без вимкнення телевізора"
@@ -18827,6 +18831,15 @@ msgstr "Перемикання між списками фаворити/теле
 msgid "Toggle display of the InfoBar"
 msgstr "Увімкнути/вимкнути відображення InfoBar"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Перемикання до нових текстових вставок, або перезаписати існуючий текст"
 
@@ -19390,8 +19403,8 @@ msgstr "Оновлення параметрів підключення."
 msgid "Updating software catalog"
 msgstr "Каталог оновлення ПЗ"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Оновлення завершено."
@@ -19957,6 +19970,9 @@ msgstr "Перегляд телетексту..."
 
 msgid "View video CD..."
 msgstr "Перегляд відео СД..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Переглянути, встановити або видалити наявні чи встановлені пакети."
 
 msgid "Violence"
 msgstr "Насилля"
@@ -22715,6 +22731,33 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Копіювання, прошивка та відновлення налаштувань без плагінів"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Копіювання, прошивка та відновлення налаштувань і плагінів (запитати користувача)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Загальні дії меню"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Налаштування гарячих кнопок для"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Будь ласка, виберіть, що робити:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Показати мережеві підключення..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Меню вимкнення"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Виберіть стиль Головного Меню"

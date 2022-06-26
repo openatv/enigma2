@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -54,43 +54,12 @@ msgstr ""
 "\n"
 "<Denne Tuner er automatisk konfigureret>"
 
-msgid "Advanced options and settings."
-msgstr "Avancerede indstillinger og opsætninger."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Efter tryk på OK, vent venligst!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Sikkerhedskopier dine %s %s indstillinger."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Sikkerhedskopier dit kørende %s %s Image til Harddisk eller USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Rediger kildeadresse for opgradering."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flash din %s %s øjeblikkeligt."
-
-msgid "Maintain your multi boot device."
-msgstr "Vedligehold din multiboot enhed."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Administrer udvidelser eller plugins til din %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Online opdatering af din %s %s software."
 
 msgid ""
 "\n"
@@ -106,20 +75,6 @@ msgstr ""
 "\n"
 "Optagelse i gang."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Gendan dine %s %s indstillinger."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Gendan din %s %s med en ny firmware."
-
-msgid "Restore your backups by date."
-msgstr "Gendan dine sikkerhedskopier efter dato."
-
-msgid "Scan for local extensions and install them."
-msgstr "Søg efter lokale udvidelser og installer dem."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -128,9 +83,6 @@ msgstr ""
 "\n"
 "Vælg enhed til sikkerhedskopi.\n"
 "Nuværende enhed: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Se, installer og fjern tilgængelige eller installerede pakker."
 
 msgid ""
 "\n"
@@ -1955,9 +1907,6 @@ msgstr "<ukendt>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2118,6 +2067,10 @@ msgstr ""
 "En Timer kunne ikke starte optagelse!\n"
 "Deaktiver TV og prøv igen?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "A/V format er %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2165,10 +2118,6 @@ msgstr "ATSC Udbyder"
 
 msgid "AV Setup"
 msgstr "AV Opsætning"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "A/V format er %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2435,14 +2384,17 @@ msgstr "Voksen publikum, Hård vold 15+"
 msgid "Advanced"
 msgstr "Avanceret"
 
-msgid "Advanced Settings"
-msgstr "Avancerede indstillinger"
-
 msgid "Advanced Options"
 msgstr "Avancerede indstillinger"
 
 msgid "Advanced Restore"
 msgstr "Avanceret gendannelse"
+
+msgid "Advanced Settings"
+msgstr "Avancerede indstillinger"
+
+msgid "Advanced options and settings."
+msgstr "Avancerede indstillinger og opsætninger."
 
 msgid "Advanced software"
 msgstr "Avanceret Software"
@@ -3228,6 +3180,9 @@ msgstr "Gendannelsestilstand: USB Gendannelse\n"
 msgid "Backup Settings"
 msgstr "Sikkerhedskopier indstillinger"
 
+msgid "Backup System Settings"
+msgstr "Sikkerhedskopier systemindstillinger"
+
 msgid "Backup completed."
 msgstr "Sikkerhedskopiering færdig."
 
@@ -3250,12 +3205,13 @@ msgstr ""
 "Sikkerhedskopi Plugin fundet\n"
 "Vil du installere det nu ?"
 
-msgid "Backup System Settings"
-msgstr "Sikkerhedskopier systemindstillinger"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Skikkerhedskopier til destinationen: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Sikkerhedskopier dine %s %s indstillinger."
 
 msgid "Backup your current image"
 msgstr "Sikkerhedskopier dit aktuelle Image"
@@ -3269,11 +3225,9 @@ msgstr "Sikkerhedskopier dine nuværende indstillinger"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sikkerhedskopier dine nuværende indstillinger. Dette inkluderer E2-opsætning, kanaler, netværk og alle valgte filer"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Sikkerhedskopier, flash og gendan indstillinger og ingen Plugins"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Sikkerhedskopier, flash og gendan indstillinger og valgte Plugins (spørg bruger)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Sikkerhedskopier dit kørende %s %s Image til Harddisk eller USB."
 
 msgid "Bahamas"
 msgstr "Bahamas"
@@ -4018,6 +3972,9 @@ msgstr "Skift bokstilstand for at kontrollere hardware chip-tilstande*"
 msgid "Change Language"
 msgstr "Ændre Sprog"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Skift PIN"
 
@@ -4532,9 +4489,6 @@ msgstr "Common Interface"
 
 msgid "Common Interface Assignment"
 msgstr "Common Interface tildeling"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -6731,6 +6685,9 @@ msgstr "Rediger navneserverkonfigurationen for din %s %s."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Rediger netværkskonfiguration for din %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Rediger kildeadresse for opgradering."
+
 msgid "Edit upgrade source url."
 msgstr "Rediger URL for opgraderingskilde."
 
@@ -7943,9 +7900,19 @@ msgstr "Online Flash"
 msgid "Flash Online a new image"
 msgstr "Online flash et nyt Image"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flashmappe '%s' ikke tilladt!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flash din %s %s øjeblikkeligt."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash opdater din modtager på farten."
@@ -8773,9 +8740,6 @@ msgstr "Hurtigtast"
 msgid "Hotkey Settings"
 msgstr "Hurtigtast opsætning"
 
-msgid "Hotkey Setup for"
-msgstr "Hurtigtast opsætning for"
-
 msgid "Hour"
 msgstr "Time"
 
@@ -9337,6 +9301,9 @@ msgstr "Installation mislykkedes !!"
 msgid "Install Finished."
 msgstr "Installation gennemført."
 
+msgid "Install Local Extension"
+msgstr "Installer lokal udvidelse"
+
 msgid "Install Plugins"
 msgstr "Installer Plugins"
 
@@ -9357,9 +9324,6 @@ msgstr "Installer udvidelser."
 
 msgid "Install lcd picons on"
 msgstr "Installer LCD Pikoner på"
-
-msgid "Install Local Extension"
-msgstr "Installer lokal udvidelse"
 
 msgid "Install or remove finished."
 msgstr "Installer og fjern gennemført."
@@ -10306,6 +10270,9 @@ msgstr "Hovedmenu"
 msgid "Maintain old EPG data for"
 msgstr "Bevar EPG data i (minutter)"
 
+msgid "Maintain your multi boot device."
+msgstr "Vedligehold din multiboot enhed."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Gør File Commander tilgængelig fra udvidelsesmenuen."
 
@@ -10352,12 +10319,16 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
+msgid "Manage Extensions"
+msgstr "Administrer udvidelser"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalg indstillinger"
 
-msgid "Manage Extensions"
-msgstr "Administrer udvidelser"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Administrer udvidelser eller plugins til din %s %s"
 
 msgid "Manage network mounts"
 msgstr "Håndter netværks-mounts"
@@ -10544,6 +10515,15 @@ msgstr "Menu"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Kvik handlinger"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Menu konfiguration"
@@ -11861,6 +11841,13 @@ msgstr "En linje"
 msgid "Online software update"
 msgstr "Online software-opdatering"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Online opdatering af din %s %s software."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Kun udvidelser."
 
@@ -12177,6 +12164,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR lang"
 
+msgid "Package Manager"
+msgstr "Pakkehåndtering"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12192,9 +12182,6 @@ msgstr "Håndter lokale filer"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Pakkehåndtering"
 
 msgid "Packet manager"
 msgstr "Pakkestyring"
@@ -12687,7 +12674,7 @@ msgstr ""
 "\n"
 "Tryk venligst på OK for at fortsætte."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14169,17 +14156,28 @@ msgstr "Gendan Plugins"
 msgid "Restore Settings"
 msgstr "Gendan indstillinger"
 
+msgid "Restore System Settings"
+msgstr "Gendan systemopsætning"
+
 msgid "Restore backups"
 msgstr "Gendan backup"
 
 msgid "Restore settings from a backup"
 msgstr "Gendan indstillinger fra en sikkerhedskopi"
 
-msgid "Restore System Settings"
-msgstr "Gendan systemopsætning"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Gendan dine %s %s indstillinger."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Gendan din %s %s med en ny firmware."
+
+msgid "Restore your backups by date."
+msgstr "Gendan dine sikkerhedskopier efter dato."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Gendan dine indstillinger fra sikkerhedskopi. Efter gendannelse vil boksen genstarte for at aktivere de nye indstillinger."
@@ -14648,6 +14646,9 @@ msgstr "Søg filer..."
 msgid "Scan for local extensions and install them"
 msgstr "Søg efter lokale udvidelser og installer dem"
 
+msgid "Scan for local extensions and install them."
+msgstr "Søg efter lokale udvidelser og installer dem."
+
 msgid "Scan wireless networks"
 msgstr "Søg trådløse netværk"
 
@@ -14905,11 +14906,20 @@ msgstr "Vælg 'Ja' for kun at sende DiSEqC kommandoen nå der skiftes fra en sat
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Vælg (kildeliste) eller indtast mappe (målliste)"
 
+msgid "Select Additional Backup Files"
+msgstr "Vælg yderligere sikkerhedskopieringsfiler"
+
+msgid "Select Backup Location"
+msgstr "Vælg placering af sikkerhedskopi"
+
 msgid "Select CAId"
 msgstr "Vælg CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Vælg Enigma2 Tema"
+
+msgid "Select Excluded Backup Files"
+msgstr "Vælg fravalgte sikkerhedskopieringsfiler"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Vælg Hurtig DiSEqC hvis dit antennesystem understøtter dette. Vælg 'Nej' hvis du er usikker."
@@ -14934,6 +14944,9 @@ msgstr "Vælg Firdobbel kanaler"
 
 msgid "Select Software Update"
 msgstr "Vælg Software-opdatering"
+
+msgid "Select Upgrade Source"
+msgstr "Vælg opgraderingskilde"
 
 msgid "Select Your Skin"
 msgstr "Vælg dit Tema"
@@ -14975,17 +14988,11 @@ msgstr "Vælg handling"
 msgid "Select action for timer %s:"
 msgstr "Vælg handling for Timer %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Vælg yderligere sikkerhedskopieringsfiler"
-
 msgid "Select additional files to backup"
 msgstr "Vælg yderligere filer til sikkerhedskopiering"
 
 msgid "Select audio track"
 msgstr "Vælg lydspor"
-
-msgid "Select Backup Location"
-msgstr "Vælg placering af sikkerhedskopi"
 
 msgid "Select cardserver"
 msgstr "Vælg kortserver"
@@ -15007,9 +15014,6 @@ msgstr "Vælg standard EPG type..."
 
 msgid "Select destination for:"
 msgstr "Vælg destination for:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Vælg fravalgte sikkerhedskopieringsfiler"
 
 msgid "Select files to exclude from backup"
 msgstr "Vælg filer der udelukkes i sikkerhedskopi"
@@ -15235,9 +15239,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Vælg opgraderingskilde"
 
 msgid "Select upgrade source to edit."
 msgstr "Vælg opgraderingskilde til redigering."
@@ -16049,6 +16050,9 @@ msgstr "Vis CI beskeder"
 msgid "Show Clients"
 msgstr "Vis klienter"
 
+msgid "Show Default Backup Files"
+msgstr "Vis standard sikkerhedskopieringsfiler"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16245,9 +16249,6 @@ msgstr "Vis krypteringsinfo i Infobjælke"
 msgid "Show default after description"
 msgstr "Vis udvidet beskrivelse"
 
-msgid "Show Default Backup Files"
-msgstr "Vis standard sikkerhedskopieringsfiler"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "Vis standard sikkerhedskopieringsfiler"
@@ -16381,8 +16382,8 @@ msgstr "Vis Film"
 msgid "Show multi channel EPG"
 msgstr "Vis multikanal EPG"
 
-msgid "Show network mounts ..."
-msgstr "Vis netværks-mounts..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -16470,6 +16471,9 @@ msgstr "Vis opsætning..."
 #, fuzzy
 msgid "Show setup default value"
 msgstr "Vis standard opsætningsværdi"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Vis nedlukningsmenu"
@@ -16591,6 +16595,9 @@ msgstr "Vis ukendte filtyper med 'Tilføjelsen File-Viewer'."
 
 msgid "Show unknown video format as"
 msgstr "Vis ukendt videoformat som"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Vis lodret Program Guide"
@@ -16970,6 +16977,9 @@ msgstr "Softwarehåndtering opsætning"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Software-gendannelse"
+
 msgid "Software Update"
 msgstr "Software-opdatering"
 
@@ -16984,9 +16994,6 @@ msgstr "Softwarehåndtering"
 
 msgid "Software manager setup"
 msgstr "Softwarehåndtering opsætning"
-
-msgid "Software Restore"
-msgstr "Software-gendannelse"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17208,9 +17215,6 @@ msgstr "Standby"
 
 msgid "Standby / Restart"
 msgstr "Afbryd / Genstart"
-
-msgid "Standby / restart"
-msgstr "Standby / genstart"
 
 msgid "Standby without TV shutdown"
 msgstr "Standby uden TV slukning"
@@ -18961,6 +18965,15 @@ msgstr "Skift mellem Buketter/EPG lister"
 msgid "Toggle display of the InfoBar"
 msgstr "Ombyt visning af Infobjælken"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Byt indsættelse af ny tekst før eller overskriv eksisterende tekst om."
 
@@ -19531,8 +19544,8 @@ msgstr "Opdatere mount placering."
 msgid "Updating software catalog"
 msgstr "Opdaterer softwarekatalog"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Opgrader (Sikkerhedskopier, Flash, & Gendan alt)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Opgradering gennemført."
@@ -20104,6 +20117,9 @@ msgstr "Se Tekst-TV..."
 
 msgid "View video CD..."
 msgstr "Se video-CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Se, installer og fjern tilgængelige eller installerede pakker."
 
 msgid "Violence"
 msgstr "Vold"
@@ -22880,6 +22896,27 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Sikkerhedskopier, flash og gendan indstillinger og ingen Plugins"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Sikkerhedskopier, flash og gendan indstillinger og valgte Plugins (spørg bruger)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Hurtigtast opsætning for"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Vis netværks-mounts..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Standby / genstart"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Opgrader (Sikkerhedskopier, Flash, & Gendan alt)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Vælg hovedmenuens stil"

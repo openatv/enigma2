@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-06-26 08:11+0000\n"
 "Last-Translator: mapi68 <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
@@ -55,43 +55,12 @@ msgstr ""
 "\n"
 "<Questo Tuner è configurato automaticamente>"
 
-msgid "Advanced options and settings."
-msgstr "Opzioni e configurazione avanzate."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Dopo aver premuto OK, attendere!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Salva le configurazioni %s %s."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Salva l'immagine del tuo %s %s su un HDD o memoria USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Modificare indirizzo sorgenti aggiornamento."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flash al volo del %s %s attraverso internet."
-
-msgid "Maintain your multi boot device."
-msgstr "Mantieni il tuo dispositivo multiboot."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Gestione app e plugin per il %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Aggiornamento online software del %s %s."
 
 msgid ""
 "\n"
@@ -107,20 +76,6 @@ msgstr ""
 "\n"
 "Registrazione in corso."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Ripristina le tue configurazioni %s %s."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Ripristina il tuo %s %s con un nuovo firmware."
-
-msgid "Restore your backups by date."
-msgstr "Ripristinare i backup per data."
-
-msgid "Scan for local extensions and install them."
-msgstr "Ricercare estensioni locali e installarle."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -129,9 +84,6 @@ msgstr ""
 "\n"
 "Selezionare il supporto per il backup.\n"
 "Supporto attuale: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Elencare, installare e rimuovere i pacchetti disponibili o installati."
 
 msgid ""
 "\n"
@@ -1955,9 +1907,6 @@ msgstr "<sconosciuto>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2121,6 +2070,10 @@ msgstr ""
 "Un timer ha fallito la registrazione!\n"
 "Disattivare la TV e riprovare?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "Aspetto AV è %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2168,10 +2121,6 @@ msgstr "provider ATSC"
 
 msgid "AV Setup"
 msgstr "Configurazione AV"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "Aspetto AV è %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2438,14 +2387,17 @@ msgstr "Pubblico adulto, violenza forte 15+"
 msgid "Advanced"
 msgstr "Avanzato"
 
-msgid "Advanced Settings"
-msgstr "Impostazioni avanzate"
-
 msgid "Advanced Options"
 msgstr "Opzioni avanzate"
 
 msgid "Advanced Restore"
 msgstr "Ripristino avanzato"
+
+msgid "Advanced Settings"
+msgstr "Impostazioni avanzate"
+
+msgid "Advanced options and settings."
+msgstr "Opzioni e configurazione avanzate."
 
 msgid "Advanced software"
 msgstr "Software avanzato"
@@ -3242,6 +3194,9 @@ msgstr "Modalità Backup: Recupero USB\n"
 msgid "Backup Settings"
 msgstr "Backup configurazioni"
 
+msgid "Backup System Settings"
+msgstr "Backup configurazione del sistema"
+
 msgid "Backup completed."
 msgstr "Backup terminato."
 
@@ -3264,12 +3219,13 @@ msgstr ""
 "Trovato un backup plugin \n"
 "Vuoi installarlo adesso?"
 
-msgid "Backup System Settings"
-msgstr "Backup configurazione del sistema"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Backup alla destinazione: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Salva le configurazioni %s %s."
 
 msgid "Backup your current image"
 msgstr "Crea backup completo della immagine"
@@ -3283,11 +3239,9 @@ msgstr "Crea un Backup delle tue configurazioni"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Effettua il backup delle impostazioni correnti. Ciò include le impostazioni E2, i canali, la rete e tutti i file selezionati"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Backup, flash, ripristino impostazioni senza plugin"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Backup, flash, ripristino impostazioni e plugin (selezione utente)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Salva l'immagine del tuo %s %s su un HDD o memoria USB."
 
 msgid "Bahamas"
 msgstr "Bahamas"
@@ -4033,6 +3987,9 @@ msgstr "Cambia Boxmode (Hardware Chip Modes)*"
 msgid "Change Language"
 msgstr "Lingua"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Cambia PIN"
 
@@ -4551,9 +4508,6 @@ msgstr "Common Interface"
 
 msgid "Common Interface Assignment"
 msgstr "Assegnazione Common Interface"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -6776,6 +6730,9 @@ msgstr "Modifica configurazione DNS del %s %s."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Modifica la configurazione di rete del %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Modificare indirizzo sorgenti aggiornamento."
+
 msgid "Edit upgrade source url."
 msgstr "Modifica URL sorgenti aggiornamento."
 
@@ -7998,9 +7955,19 @@ msgstr "FLASH online"
 msgid "Flash Online a new image"
 msgstr "FLASH online una nuova immagine"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flash al volo del %s %s attraverso internet."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "FLASH al volo il tuo ricevitore."
@@ -8846,9 +8813,6 @@ msgstr "Hotkey"
 msgid "Hotkey Settings"
 msgstr "Impostzioni Hotkey"
 
-msgid "Hotkey Setup for"
-msgstr "Impostazioni Hotkey per"
-
 msgid "Hour"
 msgstr "Ora"
 
@@ -9408,6 +9372,9 @@ msgstr "Installazione fallita !!"
 msgid "Install Finished."
 msgstr "Installazione terminata."
 
+msgid "Install Local Extension"
+msgstr "Installare estensioni locali"
+
 msgid "Install Plugins"
 msgstr "Installare plugin"
 
@@ -9428,9 +9395,6 @@ msgstr "Installare estensioni"
 
 msgid "Install lcd picons on"
 msgstr "Installare picons LCD su"
-
-msgid "Install Local Extension"
-msgstr "Installare estensioni locali"
 
 msgid "Install or remove finished."
 msgstr "Installazione o rimozione conclusa."
@@ -10379,6 +10343,9 @@ msgstr "Menu principale"
 msgid "Maintain old EPG data for"
 msgstr "Mantieni i vecchi dati EPG per"
 
+msgid "Maintain your multi boot device."
+msgstr "Mantieni il tuo dispositivo multiboot."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Rendi accessibile File Commander dal menu Estensioni."
 
@@ -10425,12 +10392,16 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Malta"
 
+msgid "Manage Extensions"
+msgstr "Gestire le applicazioni"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Impostazioni Selezione Canali"
 
-msgid "Manage Extensions"
-msgstr "Gestire le applicazioni"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Gestione app e plugin per il %s %s"
 
 msgid "Manage network mounts"
 msgstr "Gestire i mounts di rete"
@@ -10613,6 +10584,15 @@ msgstr "Menu"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Azioni rapide"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Config Menu"
@@ -11957,6 +11937,13 @@ msgstr "Una riga"
 msgid "Online software update"
 msgstr "Aggiornamento software online"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Aggiornamento online software del %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Solo estensioni."
 
@@ -12273,6 +12260,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR lungo"
 
+msgid "Package Manager"
+msgstr "Gestione dei pacchetti"
+
 msgid "Package information currently not available!"
 msgstr "Informazioni sul pacchetto attualmente non disponibili!"
 
@@ -12288,9 +12278,6 @@ msgstr "gestire i file locali"
 
 msgid "Packages and associated locales"
 msgstr "Pacchetti e impostazioni locali associate"
-
-msgid "Package Manager"
-msgstr "Gestione dei pacchetti"
 
 msgid "Packet manager"
 msgstr "Gestore pacchetti"
@@ -12784,8 +12771,8 @@ msgstr ""
 "\n"
 "Premere OK per continuare."
 
-msgid "Please select what to do:"
-msgstr "Seleziona cosa fare:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Impostare il tuner A"
@@ -14281,17 +14268,28 @@ msgstr "Ripristina plugin"
 msgid "Restore Settings"
 msgstr "Ripristino configurazioni"
 
+msgid "Restore System Settings"
+msgstr "Ripristino configurazione del sistema"
+
 msgid "Restore backups"
 msgstr "Ripristino backup"
 
 msgid "Restore settings from a backup"
 msgstr "Ripristina la configurazione da un backup"
 
-msgid "Restore System Settings"
-msgstr "Ripristino configurazione del sistema"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Ripristina le tue configurazioni %s %s."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Ripristina il tuo %s %s con un nuovo firmware."
+
+msgid "Restore your backups by date."
+msgstr "Ripristinare i backup per data."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Ripristina la tua configurazione da un backup. Dopo il ripristino sarà necessario un riavvio del decoder"
@@ -14762,6 +14760,9 @@ msgstr "Scansione file..."
 msgid "Scan for local extensions and install them"
 msgstr "Ricerca ipk locali ed installa"
 
+msgid "Scan for local extensions and install them."
+msgstr "Ricercare estensioni locali e installarle."
+
 msgid "Scan wireless networks"
 msgstr "Scansione reti wireless"
 
@@ -15018,11 +15019,20 @@ msgstr "Scegli 'SI' per inviare il comando DiSEqC unicamente su cambio satellite
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Seleziona (elenco sorgenti) o inserire la directory (elenco di destinazione)"
 
+msgid "Select Additional Backup Files"
+msgstr "File di backup addizionali"
+
+msgid "Select Backup Location"
+msgstr "Seleziona percorso backup"
+
 msgid "Select CAId"
 msgstr "Selezionare CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Seleziona la skin di Enigma2"
+
+msgid "Select Excluded Backup Files"
+msgstr "File di backup esclusi"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Seleziona DiSEqC veloce se il tuo sistema lo supporta. Se non sei sicuro, scegli 'no'."
@@ -15047,6 +15057,9 @@ msgstr "Seleziona un canale quadruplo"
 
 msgid "Select Software Update"
 msgstr "Selezionare aggiornamento online"
+
+msgid "Select Upgrade Source"
+msgstr "Seleziona la sorgente aggiornamenti"
 
 msgid "Select Your Skin"
 msgstr "Seleziona la tua skin"
@@ -15088,17 +15101,11 @@ msgstr "Seleziona un'azione"
 msgid "Select action for timer %s:"
 msgstr "Seleziona azione per il timer %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "File di backup addizionali"
-
 msgid "Select additional files to backup"
 msgstr "File addizionali per il backup"
 
 msgid "Select audio track"
 msgstr "Seleziona una traccia audio"
-
-msgid "Select Backup Location"
-msgstr "Seleziona percorso backup"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15120,9 +15127,6 @@ msgstr "Seleziona tipo EPG predefinito..."
 
 msgid "Select destination for:"
 msgstr "Seleziona destinazione per:"
-
-msgid "Select Excluded Backup Files"
-msgstr "File di backup esclusi"
 
 msgid "Select files to exclude from backup"
 msgstr "Seleziona i file da escludere dal backup"
@@ -15350,9 +15354,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Seleziona la sorgente aggiornamenti"
 
 msgid "Select upgrade source to edit."
 msgstr "Seleziona la sorgente aggiornamento da modificare."
@@ -16167,6 +16168,9 @@ msgstr "Mostra notifiche CI"
 msgid "Show Clients"
 msgstr "Mostra i client"
 
+msgid "Show Default Backup Files"
+msgstr "File di backup predefiniti"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16363,9 +16367,6 @@ msgstr "Mostra le info di codifica nella infobar"
 msgid "Show default after description"
 msgstr "Mostra descrizione estesa"
 
-msgid "Show Default Backup Files"
-msgstr "File di backup predefiniti"
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "File di backup predefiniti"
@@ -16500,8 +16501,8 @@ msgstr "Mostra registrazioni"
 msgid "Show multi channel EPG"
 msgstr "Mostra multi canale EPG"
 
-msgid "Show network mounts ..."
-msgstr "Mostra i mount di rete..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -16588,6 +16589,9 @@ msgid "Show setup"
 msgstr "Mostra configurazioni"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -16710,6 +16714,9 @@ msgstr "Mostra i file con estensioni sconosciute con 'Addon File-Viewer'."
 
 msgid "Show unknown video format as"
 msgstr "Mostra formato video sconosciuto come"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Mostra la guida programmi verticale"
@@ -17088,6 +17095,9 @@ msgstr "Impostazioni software manager"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Ripristino software"
+
 msgid "Software Update"
 msgstr "Aggiornamento Software"
 
@@ -17102,9 +17112,6 @@ msgstr "Gestione software"
 
 msgid "Software manager setup"
 msgstr "Impostazioni software manager"
-
-msgid "Software Restore"
-msgstr "Ripristino software"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17328,9 +17335,6 @@ msgstr "Standby"
 
 msgid "Standby / Restart"
 msgstr "Standby / Riavvio / Spegnimento"
-
-msgid "Standby / restart"
-msgstr "Standby / riavvio"
 
 msgid "Standby without TV shutdown"
 msgstr "Standby senza spegnimento della TV"
@@ -19090,6 +19094,15 @@ msgstr "Commuta tra elenchi bouquet/liste EPG"
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Commuta fra inserimento e sovrascrittura del testo"
 
@@ -19665,8 +19678,8 @@ msgstr "Aggiornamento delle locazioni."
 msgid "Updating software catalog"
 msgstr "Aggiornamento catalogo software in corso"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Aggiorna (Backup, flash e ripristina tutto)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Aggiornamento terminato."
@@ -20241,6 +20254,9 @@ msgstr "Visualizza televideo..."
 
 msgid "View video CD..."
 msgstr "Riprodurre CD video..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Elencare, installare e rimuovere i pacchetti disponibili o installati."
 
 msgid "Violence"
 msgstr ""
@@ -23029,6 +23045,30 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Backup, flash, ripristino impostazioni senza plugin"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Backup, flash, ripristino impostazioni e plugin (selezione utente)"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Impostazioni Hotkey per"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Seleziona cosa fare:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Mostra i mount di rete..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Standby / riavvio"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Aggiorna (Backup, flash e ripristina tutto)"
 
 #, fuzzy
 #~ msgid "Choose style of main menus"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -53,43 +53,12 @@ msgstr ""
 "\n"
 "<Този тунер е конфигуриран автоматично>"
 
-msgid "Advanced options and settings."
-msgstr "Разширени опции и настройки."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "След като натиснете OK, моля, изчакайте!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Архивирайте настройките на %s %s."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Архивирайте вашето работещо %s %s изображение на HDD или USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Редактирайте адреса на източника на надстройката."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flash в движение на вашия %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Поддържайте вашето устройство за многократно зареждане."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Управлявайте разширенията или плъгините за вашия %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Онлайн актуализация на вашия софтуер %s %s."
 
 msgid ""
 "\n"
@@ -105,20 +74,6 @@ msgstr ""
 "\n"
 "Записът е в ход."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Възстановете вашите %s %s настройки."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Възстановете вашия %s %s с нов фърмуер."
-
-msgid "Restore your backups by date."
-msgstr "Възстановяване на резервни копия по дата."
-
-msgid "Scan for local extensions and install them."
-msgstr "Сканиране за местни разширения и инсталиране."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -127,9 +82,6 @@ msgstr ""
 "\n"
 "Изберете резервното устройство.\n"
 "Текущо устройство: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Преглед,инсталиране и премахване на наличните или инсталирани пакети."
 
 msgid ""
 "\n"
@@ -1953,9 +1905,6 @@ msgstr "<неизвестен>"
 msgid "?"
 msgstr ""
 
-msgid "??"
-msgstr ""
-
 msgid "A"
 msgstr ""
 
@@ -2116,6 +2065,10 @@ msgstr ""
 "Таймер не успя да запише!\n"
 "Деактивиране на телевизора и опит отново?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV аспект е %s."
+
 msgid "AAC downmix"
 msgstr ""
 
@@ -2163,10 +2116,6 @@ msgstr ""
 
 msgid "AV Setup"
 msgstr "AV настройки"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV аспект е %s."
 
 msgid "AZPlay"
 msgstr ""
@@ -2433,14 +2382,17 @@ msgstr ""
 msgid "Advanced"
 msgstr "Разширени"
 
-msgid "Advanced Settings"
-msgstr "Разширени настройки"
-
 msgid "Advanced Options"
 msgstr "Разширени опции"
 
 msgid "Advanced Restore"
 msgstr "Разширено възстановяване"
+
+msgid "Advanced Settings"
+msgstr "Разширени настройки"
+
+msgid "Advanced options and settings."
+msgstr "Разширени опции и настройки."
 
 msgid "Advanced software"
 msgstr "Разширен софтуер"
@@ -3224,6 +3176,9 @@ msgstr "Режим на архивиране: USB възстановяване\n
 msgid "Backup Settings"
 msgstr "Архивиране насройки"
 
+msgid "Backup System Settings"
+msgstr "Архивиране на системни настройки"
+
 msgid "Backup completed."
 msgstr "Архивирането завърши."
 
@@ -3246,12 +3201,13 @@ msgstr ""
 "Архивирани плъгини са намерени \n"
 "искате ли да се инсталират сега?"
 
-msgid "Backup System Settings"
-msgstr "Архивиране на системни настройки"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Архивиране до местоназначение: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Архивирайте настройките на %s %s."
 
 msgid "Backup your current image"
 msgstr "Архивиране на вашпя текущ имидж"
@@ -3265,11 +3221,9 @@ msgstr "Архивиране на вашите текущи настройки"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Архивиране на вашите текущи настройки. Това включва E2-настройка, канали, мрежа и избраните файлове"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Настройки за архивиране, флаш и възстановяване и без плъгини"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Архивиране, флаш и възстановяване на настройки и избрани плъгини (попитайте потребителя)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Архивирайте вашето работещо %s %s изображение на HDD или USB."
 
 msgid "Bahamas"
 msgstr ""
@@ -4008,6 +3962,9 @@ msgstr "Променете режима на кутията, за да конт�
 msgid "Change Language"
 msgstr "Промяна на езика"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Промени PIN"
 
@@ -4521,9 +4478,6 @@ msgstr ""
 
 msgid "Common Interface Assignment"
 msgstr ""
-
-msgid "Common Menu Actions"
-msgstr "Общи действия в менюто"
 
 msgid "Common Setup Actions"
 msgstr "Общи действия за настройка"
@@ -6722,6 +6676,9 @@ msgstr "Редактиране на конфигурацията на Nameserver
 msgid "Edit the network configuration of your %s %s."
 msgstr "Редактиране на мрежовата конфигурация на вашия %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Редактирайте адреса на източника на надстройката."
+
 msgid "Edit upgrade source url."
 msgstr "Редактиране на източника на актуализации."
 
@@ -7928,9 +7885,19 @@ msgstr "Флаш онлайн"
 msgid "Flash Online a new image"
 msgstr "Онлайн флаш на нов имидж"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Флаш на директорията „%s“ не е разрешена!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flash в движение на вашия %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Онлоайн флаш на софтуера на приемника."
@@ -8753,9 +8720,6 @@ msgstr "Горещ бутон"
 msgid "Hotkey Settings"
 msgstr "Настройка на гореш бутон"
 
-msgid "Hotkey Setup for"
-msgstr "Настройка на горещ бутон за"
-
 msgid "Hour"
 msgstr "Час"
 
@@ -9306,6 +9270,9 @@ msgstr "Инсталирането не бе успешно !!"
 msgid "Install Finished."
 msgstr "Инсталирането завършено."
 
+msgid "Install Local Extension"
+msgstr "Инсталиране на местни разширения"
+
 msgid "Install Plugins"
 msgstr "Инсталиране на плъгини"
 
@@ -9326,9 +9293,6 @@ msgstr "Инсталиране на разширения."
 
 msgid "Install lcd picons on"
 msgstr "Инсталиране на LCD пикони на"
-
-msgid "Install Local Extension"
-msgstr "Инсталиране на местни разширения"
 
 msgid "Install or remove finished."
 msgstr "Инсталиране или премахване завършено."
@@ -10253,6 +10217,9 @@ msgstr "Основно меню"
 msgid "Maintain old EPG data for"
 msgstr "Поддържане на стари EPG данни за"
 
+msgid "Maintain your multi boot device."
+msgstr "Поддържайте вашето устройство за многократно зареждане."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Направете File Commander достъпен от менюто Разширения."
 
@@ -10295,11 +10262,15 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr "Управление на разширенията"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Управлявайте Местно/Настройки за избор на език"
 
-msgid "Manage Extensions"
-msgstr "Управление на разширенията"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Управлявайте разширенията или плъгините за вашия %s %s"
 
 msgid "Manage network mounts"
 msgstr "Управление на монтираната мрежа"
@@ -10476,6 +10447,15 @@ msgstr "Меню"
 
 msgid "Menu Actions"
 msgstr "Действия в менюто"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Конфигурация на менюто"
@@ -11770,6 +11750,13 @@ msgstr "Една линия"
 msgid "Online software update"
 msgstr "Онлайн актуализация на софтуера"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Онлайн актуализация на вашия софтуер %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Само разширения."
 
@@ -12074,6 +12061,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "Управление на пакети"
+
 msgid "Package information currently not available!"
 msgstr "Информацията за пакета в момента не е налична!"
 
@@ -12088,9 +12078,6 @@ msgstr "Само пакетирани локали"
 
 msgid "Packages and associated locales"
 msgstr "Пакети и свързани локали"
-
-msgid "Package Manager"
-msgstr "Управление на пакети"
 
 msgid "Packet manager"
 msgstr "Мениджър на пакети"
@@ -12578,7 +12565,7 @@ msgstr ""
 "\n"
 "Натиснете ОК за да продължите."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14052,17 +14039,28 @@ msgstr "Възстановяване на плъгини"
 msgid "Restore Settings"
 msgstr "Възстановяване на настройки"
 
+msgid "Restore System Settings"
+msgstr "Възстановяване на системни настройки"
+
 msgid "Restore backups"
 msgstr "Възстановяване на архиви"
 
 msgid "Restore settings from a backup"
 msgstr "Възстановяване на настройките  от архив"
 
-msgid "Restore System Settings"
-msgstr "Възстановяване на системни настройки"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Възстановете вашите %s %s настройки."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Възстановете вашия %s %s с нов фърмуер."
+
+msgid "Restore your backups by date."
+msgstr "Възстановяване на резервни копия по дата."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Възстановяване на вашите настройки обратно от архив. След възстановяване, приемника ще се рестартира за да активира новите настройки"
@@ -14523,6 +14521,9 @@ msgstr "Сканиране на файлове..."
 msgid "Scan for local extensions and install them"
 msgstr "Сканиране за местни разширения и ги инсталира"
 
+msgid "Scan for local extensions and install them."
+msgstr "Сканиране за местни разширения и инсталиране."
+
 msgid "Scan wireless networks"
 msgstr "Сканиране на безжични мрежи"
 
@@ -14775,11 +14776,20 @@ msgstr "Изберете 'Да', за да изпратите командата
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Изберете (списък с източници) или въведете директория (целеви списък)"
 
+msgid "Select Additional Backup Files"
+msgstr "Допълнителни файлове за архивиране"
+
+msgid "Select Backup Location"
+msgstr "Изберете местоположение за архивиране"
+
 msgid "Select CAId"
 msgstr "Изберете CAID"
 
 msgid "Select Enigma2 Skin"
 msgstr "Изберете Enigma2 кожа"
+
+msgid "Select Excluded Backup Files"
+msgstr "Изберете изключени архивни файлове"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Изберете Fast DiSEqC, ако вашата антенна система поддържа това. Ако не сте сигурни, изберете „не“."
@@ -14804,6 +14814,9 @@ msgstr "Изберете Quad Channels"
 
 msgid "Select Software Update"
 msgstr "Изберете актуализация на софтуера"
+
+msgid "Select Upgrade Source"
+msgstr "Изберете източник за надстройване"
 
 msgid "Select Your Skin"
 msgstr "Изберете вашата кожа"
@@ -14845,17 +14858,11 @@ msgstr "Изберете действие"
 msgid "Select action for timer %s:"
 msgstr "Изберете действие за таймер %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Допълнителни файлове за архивиране"
-
 msgid "Select additional files to backup"
 msgstr "Изберете допълнителни файлове за архивиране"
 
 msgid "Select audio track"
 msgstr "Изберете аудиозапис"
-
-msgid "Select Backup Location"
-msgstr "Изберете местоположение за архивиране"
 
 msgid "Select cardserver"
 msgstr "Изберете сървър за карти"
@@ -14877,9 +14884,6 @@ msgstr "Изберете по подразбиране тип EPG ..."
 
 msgid "Select destination for:"
 msgstr "Изберете дестинация за:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Изберете изключени архивни файлове"
 
 msgid "Select files to exclude from backup"
 msgstr "Изберете файлове, за изключване от архива"
@@ -15102,9 +15106,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "Изберете източник за надстройване"
 
 msgid "Select upgrade source to edit."
 msgstr "Изберете източник за надстройване, който да редактирате."
@@ -15905,6 +15906,9 @@ msgstr "Показване на CI съобщения"
 msgid "Show Clients"
 msgstr "Показване на клиенти"
 
+msgid "Show Default Backup Files"
+msgstr "Показване на архивни файлове по подразбиране"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16098,9 +16102,6 @@ msgstr "Показване на инфо за криптиране на инфо
 msgid "Show default after description"
 msgstr "Показване по подразбиране след описание"
 
-msgid "Show Default Backup Files"
-msgstr "Показване на архивни файлове по подразбиране"
-
 msgid "Show default on new line"
 msgstr "Показване по подразбиране на нов ред"
 
@@ -16233,8 +16234,8 @@ msgstr "Показване на филми"
 msgid "Show multi channel EPG"
 msgstr "Показване на многоканален EPG"
 
-msgid "Show network mounts ..."
-msgstr "Показване на монтираните мрежи ..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Показване на следващото събитие"
@@ -16319,6 +16320,9 @@ msgstr "Показване на настройка"
 
 msgid "Show setup default value"
 msgstr "Показване на стойността по подразбиране за настройка"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Показване на менюто за изключване"
@@ -16433,6 +16437,9 @@ msgstr "Показване на неизвестни разширения на �
 
 msgid "Show unknown video format as"
 msgstr "Показване на неизвестен видео формат като"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Показване на вертикално програмно ръководство"
@@ -16808,6 +16815,9 @@ msgstr "Настройка на софтуерния мениджър"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "Възстановяване на софтуера"
+
 msgid "Software Update"
 msgstr "Актуализация на софтуера"
 
@@ -16822,9 +16832,6 @@ msgstr "Управление на софтуер"
 
 msgid "Software manager setup"
 msgstr "Настройка на софтуерния мениджър"
-
-msgid "Software Restore"
-msgstr "Възстановяване на софтуера"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17044,9 +17051,6 @@ msgstr ""
 
 msgid "Standby / Restart"
 msgstr "Standby / Рестарт"
-
-msgid "Standby / restart"
-msgstr "Standby / рестарт"
 
 msgid "Standby without TV shutdown"
 msgstr "Standby без изключване на телевизора"
@@ -18780,6 +18784,15 @@ msgstr "Превключване между списъци с букети/EPG"
 msgid "Toggle display of the InfoBar"
 msgstr "Превключване на дисплея на информационната лента"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Превключва вмъкване на нов текст преди или презаписва съществуващ текст"
 
@@ -19343,8 +19356,8 @@ msgstr "Актуализиране на местата за монтиране."
 msgid "Updating software catalog"
 msgstr "Актуализиране на каталога на софтуера"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Надстройка (архивиране, флаширане и възстановяване на всички)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Надстройването завърши."
@@ -19910,6 +19923,9 @@ msgstr "Преглед на телетекст..."
 
 msgid "View video CD..."
 msgstr "Преглед на видео CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Преглед,инсталиране и премахване на наличните или инсталирани пакети."
 
 msgid "Violence"
 msgstr "Насилие"
@@ -22663,6 +22679,27 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Настройки за архивиране, флаш и възстановяване и без плъгини"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Архивиране, флаш и възстановяване на настройки и избрани плъгини (попитайте потребителя)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Общи действия в менюто"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Настройка на горещ бутон за"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Показване на монтираните мрежи ..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Standby / рестарт"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Надстройка (архивиране, флаширане и възстановяване на всички)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Избиране на стил на основните менюта"

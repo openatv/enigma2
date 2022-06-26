@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -58,43 +58,12 @@ msgstr ""
 "\n"
 "<Deze tuner is automatisch geconfigureerd>"
 
-msgid "Advanced options and settings."
-msgstr "Geavanceerde opties en instellingen."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Na indrukken van OK, een moment geduld a.u.b.!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Back-up uw %s %s instellingen."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Back-up uw huidige %s %s image naar HDD of USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Wijzig het adres van de update locatie."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flash uw %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Uw multi-boot device handhaven."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Beheer extensies en plug-ins voor uw %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Online updaten van uw %s %s software."
 
 msgid ""
 "\n"
@@ -110,20 +79,6 @@ msgstr ""
 "\n"
 "Opname is bezig."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Herstel uw %s %s instellingen."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Herstel uw %s %s met nieuwe firmware."
-
-msgid "Restore your backups by date."
-msgstr "Zet een back-up van een bepaalde datum terug."
-
-msgid "Scan for local extensions and install them."
-msgstr "Scan naar lokale Extensions en installeer ze."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -132,9 +87,6 @@ msgstr ""
 "\n"
 "Selecteer een apparaat voor de back-up.\n"
 "Huidig apparaat: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Bekijk, installeer en verwijder beschikbare of geïnstalleerde packages."
 
 msgid ""
 "\n"
@@ -1958,9 +1910,6 @@ msgstr "<onbekend>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2124,6 +2073,10 @@ msgstr ""
 "Timer opname mislukt!\n"
 "Verander van zender en probeer het opnieuw.\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV aspect is %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2171,10 +2124,6 @@ msgstr "ATSC provider"
 
 msgid "AV Setup"
 msgstr "Audio / Video"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV aspect is %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2441,14 +2390,17 @@ msgstr "Volwassen kijker, Geweld 15+"
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-msgid "Advanced Settings"
-msgstr "Geavanceerde instellingen"
-
 msgid "Advanced Options"
 msgstr "Geavanceerde opties"
 
 msgid "Advanced Restore"
 msgstr "Geavanceerd herstellen"
+
+msgid "Advanced Settings"
+msgstr "Geavanceerde instellingen"
+
+msgid "Advanced options and settings."
+msgstr "Geavanceerde opties en instellingen."
 
 msgid "Advanced software"
 msgstr "Geavanceerde software"
@@ -3231,6 +3183,9 @@ msgstr "Back-up modus: herstel via USB\n"
 msgid "Backup Settings"
 msgstr "Back-up instellingen"
 
+msgid "Backup System Settings"
+msgstr "Back-up uw instellingen"
+
 msgid "Backup completed."
 msgstr "Back-up voltooid."
 
@@ -3253,12 +3208,13 @@ msgstr ""
 "Er is een back-up van plug-ins gevonden\n"
 "wilt u deze nu installeren?"
 
-msgid "Backup System Settings"
-msgstr "Back-up uw instellingen"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Back-up naar locatie : %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Back-up uw %s %s instellingen."
 
 msgid "Backup your current image"
 msgstr "Back-up de volledige image"
@@ -3272,11 +3228,9 @@ msgstr "Maak een back-up van alle instellingen"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Maak een volledige back-up van: Enigma2-instellingen, zenders, netwerk en alle geselecteerde bestanden"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Back-up, Flash en herstel de instellingen zonder plug-ins"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Back-up, Flash en herstel de instellingen inclusief geselecteerde plug-ins"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Back-up uw huidige %s %s image naar HDD of USB."
 
 msgid "Bahamas"
 msgstr "Bahama’s"
@@ -4019,6 +3973,9 @@ msgstr "Wijzig boxmodus om hardware chip modi te beheren*"
 msgid "Change Language"
 msgstr "Wijzig de Taal"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Wijzig pincode"
 
@@ -4535,9 +4492,6 @@ msgstr "Common Interface"
 
 msgid "Common Interface Assignment"
 msgstr "Common interface taken"
-
-msgid "Common Menu Actions"
-msgstr "Meest gebruikte Menu keuzes"
 
 msgid "Common Setup Actions"
 msgstr "Algemene keuzes"
@@ -6844,6 +6798,9 @@ msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Bewerk de netwerkinstellingen van uw %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Wijzig het adres van de update locatie."
+
 msgid "Edit upgrade source url."
 msgstr "Update url bewerken."
 
@@ -8055,9 +8012,19 @@ msgstr "Flash online/lokaal"
 msgid "Flash Online a new image"
 msgstr "Flash een image online of lokaal"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash van map '%s' is niet toegestaan!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flash uw %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash een image online of via usb naar uw ontvanger."
@@ -8883,9 +8850,6 @@ msgstr "Hotkey"
 msgid "Hotkey Settings"
 msgstr "Hotkey instellingen"
 
-msgid "Hotkey Setup for"
-msgstr "Hotkey instellen voor"
-
 msgid "Hour"
 msgstr "Uur"
 
@@ -9444,6 +9408,9 @@ msgstr "!! Installatie mislukt !!"
 msgid "Install Finished."
 msgstr "Installatie voltooid."
 
+msgid "Install Local Extension"
+msgstr "Installeer een ipk bestand"
+
 msgid "Install Plugins"
 msgstr "Installeer plug-ins"
 
@@ -9464,9 +9431,6 @@ msgstr "Installeer applicaties."
 
 msgid "Install lcd picons on"
 msgstr "Installeer LCD-Picons in"
-
-msgid "Install Local Extension"
-msgstr "Installeer een ipk bestand"
 
 msgid "Install or remove finished."
 msgstr "Installeren of verwijderen voltooid."
@@ -10391,6 +10355,9 @@ msgstr "Hoofdmenu"
 msgid "Maintain old EPG data for"
 msgstr "Oude EPG data bewaren voor"
 
+msgid "Maintain your multi boot device."
+msgstr "Uw multi-boot device handhaven."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Maak file Commander toegankelijk via het Extensions menu."
 
@@ -10433,11 +10400,15 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltees"
 
+msgid "Manage Extensions"
+msgstr "Beheer applicaties"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Beheer taalselectie instellingen"
 
-msgid "Manage Extensions"
-msgstr "Beheer applicaties"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Beheer extensies en plug-ins voor uw %s %s"
 
 msgid "Manage network mounts"
 msgstr "Beheer netwerk verbindingen"
@@ -10614,6 +10585,15 @@ msgstr "Menu"
 
 msgid "Menu Actions"
 msgstr "Menu Acties"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Menu configuratie"
@@ -11911,6 +11891,13 @@ msgstr "Eén regel"
 msgid "Online software update"
 msgstr "openATV via het internet updaten"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Online updaten van uw %s %s software."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Alleen Applicaties."
 
@@ -12215,6 +12202,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR lang"
 
+msgid "Package Manager"
+msgstr "Pakketbeheer"
+
 msgid "Package information currently not available!"
 msgstr "Pakketinformatie is nu niet beschikbaar!"
 
@@ -12229,9 +12219,6 @@ msgstr "Alleen beschikbare talen"
 
 msgid "Packages and associated locales"
 msgstr "Packages en bijbehorende locales"
-
-msgid "Package Manager"
-msgstr "Pakketbeheer"
 
 msgid "Packet manager"
 msgstr "Pakketbeheer"
@@ -12720,7 +12707,7 @@ msgstr ""
 "\n"
 "Druk op OK om verder te gaan."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14196,17 +14183,28 @@ msgstr "Herstel plug-ins"
 msgid "Restore Settings"
 msgstr "Instellingen herstellen"
 
+msgid "Restore System Settings"
+msgstr "Herstel uw instellingen"
+
 msgid "Restore backups"
 msgstr "Back-ups terugzetten"
 
 msgid "Restore settings from a backup"
 msgstr "Instellingen herstellen vanuit een back-up"
 
-msgid "Restore System Settings"
-msgstr "Herstel uw instellingen"
-
 msgid "Restore the highlighted slot"
 msgstr "Herstel het actuele slot"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Herstel uw %s %s instellingen."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Herstel uw %s %s met nieuwe firmware."
+
+msgid "Restore your backups by date."
+msgstr "Zet een back-up van een bepaalde datum terug."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Herstel de instellingen uit een back-up. De ontvanger moet herstart worden om de nieuwe instellingen te activeren."
@@ -14669,6 +14667,9 @@ msgstr ""
 "Zoek naar lokale plug-ins en installeer deze.\n"
 "Plug-ins installeren vanaf: HDD of USB"
 
+msgid "Scan for local extensions and install them."
+msgstr "Scan naar lokale Extensions en installeer ze."
+
 msgid "Scan wireless networks"
 msgstr "Zoek naar WiFi netwerken"
 
@@ -14923,11 +14924,20 @@ msgstr "Selecteer 'ja' om het DiSEqC-commando alleen te versturen bij veranderen
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Selecteer (bron lijst) of voer directory in (doel lijst)"
 
+msgid "Select Additional Backup Files"
+msgstr "Extra back-up bestanden"
+
+msgid "Select Backup Location"
+msgstr "Selecteer een back-up locatie"
+
 msgid "Select CAId"
 msgstr "Selecteer CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Selecteer een Enigma2 skin"
+
+msgid "Select Excluded Backup Files"
+msgstr "Uitgesloten back-up bestanden"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Selecteer 'snelle DiSEqC' als uw antennesysteem dat ondersteunt. Als u er niet zeker va bent, kiest u 'nee'."
@@ -14952,6 +14962,9 @@ msgstr "Selecteer Quad zenders"
 
 msgid "Select Software Update"
 msgstr "Selecteer software update"
+
+msgid "Select Upgrade Source"
+msgstr "Selecteer de update bron"
 
 msgid "Select Your Skin"
 msgstr "Selecteer uw skin"
@@ -14993,17 +15006,11 @@ msgstr "Selecteer actie"
 msgid "Select action for timer %s:"
 msgstr "Selecteer actie voor de timer%s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Extra back-up bestanden"
-
 msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
 
 msgid "Select audio track"
 msgstr "Selecteer een Audio spoor"
-
-msgid "Select Backup Location"
-msgstr "Selecteer een back-up locatie"
 
 msgid "Select cardserver"
 msgstr "Kies een cardserver"
@@ -15025,9 +15032,6 @@ msgstr "Selecteer het standaard EPG type..."
 
 msgid "Select destination for:"
 msgstr "Selecteer bestemming voor:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Uitgesloten back-up bestanden"
 
 msgid "Select files to exclude from backup"
 msgstr "Selecteer uitgesloten back-up bestanden"
@@ -15252,9 +15256,6 @@ msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie spaar timer actief 
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Hoe wilt u de ontvanger afsluiten wanneer de Slaaptimer actief wordt."
-
-msgid "Select Upgrade Source"
-msgstr "Selecteer de update bron"
 
 msgid "Select upgrade source to edit."
 msgstr "Selecteer te wijzigen updatefeed."
@@ -16069,6 +16070,9 @@ msgstr "Toon CI berichten"
 msgid "Show Clients"
 msgstr "Toon gebruikers"
 
+msgid "Show Default Backup Files"
+msgstr "Standaard back-up bestanden"
+
 msgid "Show Directory size"
 msgstr "Toon map grootte"
 
@@ -16266,9 +16270,6 @@ msgstr "Laat versleutel informatie zien in de informatiebalk"
 msgid "Show default after description"
 msgstr "Toon default informatie"
 
-msgid "Show Default Backup Files"
-msgstr "Standaard back-up bestanden"
-
 msgid "Show default on new line"
 msgstr "Toon default op nieuwe regel"
 
@@ -16401,8 +16402,8 @@ msgstr "Toon opnames"
 msgid "Show multi channel EPG"
 msgstr "Toon de multi-zender EPG"
 
-msgid "Show network mounts ..."
-msgstr "Toon netwerkmounts ..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Toon het volgende programma"
@@ -16489,6 +16490,9 @@ msgstr "Toon configuratie"
 
 msgid "Show setup default value"
 msgstr "Toon default instelwaarde"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Afsluitmenu weergeven"
@@ -16603,6 +16607,9 @@ msgstr "Toon onbekende bestandsextensies met ' addon File-Viewer '."
 
 msgid "Show unknown video format as"
 msgstr "Toon onbekend video formaat als"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Toon verticale Elektronische programmagids"
@@ -16980,6 +16987,9 @@ msgstr "Online update instellingen"
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
+msgid "Software Restore"
+msgstr "Software herstellen"
+
 msgid "Software Update"
 msgstr "Software update"
 
@@ -16994,9 +17004,6 @@ msgstr "Softwarebeheer"
 
 msgid "Software manager setup"
 msgstr "Online update instellingen"
-
-msgid "Software Restore"
-msgstr "Software herstellen"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17214,9 +17221,6 @@ msgid "Standby"
 msgstr "Stand-by"
 
 msgid "Standby / Restart"
-msgstr "Afsluiten"
-
-msgid "Standby / restart"
 msgstr "Afsluiten"
 
 msgid "Standby without TV shutdown"
@@ -18997,6 +19001,15 @@ msgstr "Wissel tussen de favorieten- en EPG-lijsten"
 msgid "Toggle display of the InfoBar"
 msgstr "Wissel de weergave van de Informatiebalk"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Schakel nieuwe tekst invoegingen in of overschrijf de bestaande tekst"
 
@@ -19560,8 +19573,8 @@ msgstr "Mount locaties vernieuwen."
 msgid "Updating software catalog"
 msgstr "Software catalogus wordt geupdate"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Upgrade (Back-up, Flash & Herstel alles)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Update voltooid."
@@ -20128,6 +20141,9 @@ msgstr "Teletekst weergeven..."
 
 msgid "View video CD..."
 msgstr "Bekijk Video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Bekijk, installeer en verwijder beschikbare of geïnstalleerde packages."
 
 msgid "Violence"
 msgstr "Geweld"
@@ -22905,6 +22921,30 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Back-up, Flash en herstel de instellingen zonder plug-ins"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Back-up, Flash en herstel de instellingen inclusief geselecteerde plug-ins"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Meest gebruikte Menu keuzes"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Hotkey instellen voor"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Toon netwerkmounts ..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Afsluiten"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Upgrade (Back-up, Flash & Herstel alles)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Kies hier de stijl van het hoofdmenu."

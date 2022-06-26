@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-06-25 17:27+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -58,42 +58,12 @@ msgstr ""
 "\n"
 "<Šis imtuvas sukonfigūruotas automatiškai>"
 
-msgid "Advanced options and settings."
-msgstr "Išplėstinės funkcijos ir nustatymai."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Paspaudę OK, palaukite!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Sukurti %s %s nustatymų atsarginę kopiją."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Sukurti %s %s veikiančio atvaizdo atsarginę kopiją į HDD arba USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Redaguoti naujinimo šaltinio adresą."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Įdiegti %s %s iškart, nedelsiant."
-
-msgid "Maintain your multi boot device."
-msgstr "Tvarkykite savo daugialypės terpės įkrovos įrenginį"
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Tvarkykite %s %s plėtinius arba papildinius"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr "%s %s programinės įrangos atnaujinimas internetu."
 
 msgid ""
 "\n"
@@ -109,20 +79,6 @@ msgstr ""
 "\n"
 "Vyksta įrašymas."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Atkurkite %s %s parametrus."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
-
-msgid "Restore your backups by date."
-msgstr "Atkurkite savo atsarginę kopiją pagal datą."
-
-msgid "Scan for local extensions and install them."
-msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -131,9 +87,6 @@ msgstr ""
 "\n"
 "Pasirinkite įrenginį atsarginei kopijai.\n"
 "Dabartinis įrenginys: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid ""
 "\n"
@@ -1978,9 +1931,6 @@ msgstr "<Nežinoma>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2144,6 +2094,10 @@ msgstr ""
 "Laikmatis nutraukė įrašymą!\n"
 "Išjungti TV ir pakartoti iš pradžių?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "Vaizdo kraštinių santykis '%s'."
+
 msgid "AAC downmix"
 msgstr "AAC kanalų suliejimas"
 
@@ -2191,10 +2145,6 @@ msgstr "ATSC teikėjas"
 
 msgid "AV Setup"
 msgstr "Garso/vaizdo valdymas"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "Vaizdo kraštinių santykis '%s'."
 
 msgid "AZPlay"
 msgstr "AZ atkūrimas"
@@ -2461,14 +2411,17 @@ msgstr "Suaugusiųjų auditorijai, stiprus smurtas 15+"
 msgid "Advanced"
 msgstr "Išplėstinis"
 
-msgid "Advanced Settings"
-msgstr "Papildomi nustatymai"
-
 msgid "Advanced Options"
 msgstr "Išplėstiniai nustatymai"
 
 msgid "Advanced Restore"
 msgstr "Išplėstinis atkūrimas"
+
+msgid "Advanced Settings"
+msgstr "Papildomi nustatymai"
+
+msgid "Advanced options and settings."
+msgstr "Išplėstinės funkcijos ir nustatymai."
 
 msgid "Advanced software"
 msgstr "Išplėstinė programinė įranga"
@@ -3254,6 +3207,9 @@ msgstr "Atsarginio kopijavimo režimas: Atkūrimas iš USB\n"
 msgid "Backup Settings"
 msgstr "Atsarginės kopijos nustatymai"
 
+msgid "Backup System Settings"
+msgstr "Atsarginė sistemos nustatymų kopija"
+
 msgid "Backup completed."
 msgstr "Atsarginė kopija padaryta."
 
@@ -3276,12 +3232,13 @@ msgstr ""
 "Rasti atsarginio kopijavimo priedai,\n"
 "norite juos įdiegti dabar?"
 
-msgid "Backup System Settings"
-msgstr "Atsarginė sistemos nustatymų kopija"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Atsarginė kopija į paskirties vietą: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Sukurti %s %s nustatymų atsarginę kopiją."
 
 msgid "Backup your current image"
 msgstr "Sukurti šio atvaizdo atsarginę kopiją"
@@ -3295,11 +3252,9 @@ msgstr "Dabartinių nustatymų kopija"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sukurti dabartinių nustatymų kopiją, kurioje bus E2, kanalų, tinklo nuostatos ir visi pasirinkti failai"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Atsarginė kopija, įdiegimas ir nustatymų atkūrimas be priedų"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Atsarginė kopija, įdiegimas, nustatymų ir pasirinktų priedų atkūrimas (klausti vartotojo)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Sukurti %s %s veikiančio atvaizdo atsarginę kopiją į HDD arba USB."
 
 msgid "Bahamas"
 msgstr "Bahamai"
@@ -4042,6 +3997,9 @@ msgstr "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto r
 msgid "Change Language"
 msgstr "Pakeisti kalbą"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Keisti PIN kodą"
 
@@ -4555,9 +4513,6 @@ msgstr "Įstatomi moduliai"
 
 msgid "Common Interface Assignment"
 msgstr "Įstatomo modulio priskyrimas"
-
-msgid "Common Menu Actions"
-msgstr "Bendrieji meniu veiksmai"
 
 msgid "Common Setup Actions"
 msgstr "Bendrieji nustatymo veiksmai"
@@ -6762,6 +6717,9 @@ msgstr "Redaguokite %s %s DNS konfigūraciją."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
+msgid "Edit the upgrade source address."
+msgstr "Redaguoti naujinimo šaltinio adresą."
+
 msgid "Edit upgrade source url."
 msgstr "Redaguoti atnaujinimo šaltinio adresą."
 
@@ -7972,9 +7930,19 @@ msgstr "Įdiegti tiesiai iš interneto"
 msgid "Flash Online a new image"
 msgstr "Įdiegti naują atvaizdą tiesiai iš interneto"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Įdiegimo katalogas \"%s\" neleidžiamas!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Įdiegti %s %s iškart, nedelsiant."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Įdiegti jūsų imtuvo programinę įrangą."
@@ -8797,9 +8765,6 @@ msgstr "Spartusis klavišas"
 msgid "Hotkey Settings"
 msgstr "Sparčiojo klavišo parametrai"
 
-msgid "Hotkey Setup for"
-msgstr "Sparčiųjų klavišų sąranka"
-
 msgid "Hour"
 msgstr "Valanda"
 
@@ -9352,6 +9317,9 @@ msgstr "Įdiegti nepavyko !!"
 msgid "Install Finished."
 msgstr "Įdiegimas baigtas."
 
+msgid "Install Local Extension"
+msgstr "Įdiekite vietinį išplėtimą"
+
 msgid "Install Plugins"
 msgstr "Įdiegti priedus"
 
@@ -9372,9 +9340,6 @@ msgstr "Įdiekite plėtinius."
 
 msgid "Install lcd picons on"
 msgstr "Įdiegti LCD logotipus į"
-
-msgid "Install Local Extension"
-msgstr "Įdiekite vietinį išplėtimą"
 
 msgid "Install or remove finished."
 msgstr "Įdiegimas arba pašalinimas baigtas."
@@ -10300,6 +10265,9 @@ msgstr "Pagrindinis Meniu"
 msgid "Maintain old EPG data for"
 msgstr "Senus EPG duomenis saugoti"
 
+msgid "Maintain your multi boot device."
+msgstr "Tvarkykite savo daugialypės terpės įkrovos įrenginį"
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Padarykite Failų valdytoją prieinamą išplėstiniame meniu."
 
@@ -10342,11 +10310,15 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltiečių"
 
+msgid "Manage Extensions"
+msgstr "Valdyti Plėtinius"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Tvarkyti lokalės / kalbos pasirinkimo nustatymus"
 
-msgid "Manage Extensions"
-msgstr "Valdyti Plėtinius"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Tvarkykite %s %s plėtinius arba papildinius"
 
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
@@ -10523,6 +10495,15 @@ msgstr "Meniu"
 
 msgid "Menu Actions"
 msgstr "Meniu veiksmai"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Meniu konfigūracija"
@@ -11817,6 +11798,13 @@ msgstr "Viena eilutė"
 msgid "Online software update"
 msgstr "Programinės įrangos atnaujinimas internetu"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "%s %s programinės įrangos atnaujinimas internetu."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Tik plėtinius."
 
@@ -12121,6 +12109,9 @@ msgstr "ĮRAŠAI"
 msgid "PVR long"
 msgstr "PVR, ilgai spausti"
 
+msgid "Package Manager"
+msgstr "Paketų tvarkyklė"
+
 msgid "Package information currently not available!"
 msgstr "Paketo informacija šiuo metu nepasiekiama!"
 
@@ -12135,9 +12126,6 @@ msgstr "Tik supakuotos lokalės"
 
 msgid "Packages and associated locales"
 msgstr "Paketai ir susijusios lokalės"
-
-msgid "Package Manager"
-msgstr "Paketų tvarkyklė"
 
 msgid "Packet manager"
 msgstr "Paketo tvarkyklė"
@@ -12625,8 +12613,8 @@ msgstr ""
 "\n"
 "Spauskite 'OK', kad tęsti."
 
-msgid "Please select what to do:"
-msgstr "Pasirinkite, ką daryti:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Sukonfigūruokite A imtuvą"
@@ -14099,17 +14087,28 @@ msgstr "Atkurti priedus"
 msgid "Restore Settings"
 msgstr "Atkurti nustatymus"
 
+msgid "Restore System Settings"
+msgstr "Atkurti sistemos nustatymus"
+
 msgid "Restore backups"
 msgstr "Atkurti atsargines kopijas"
 
 msgid "Restore settings from a backup"
 msgstr "Atkurti nustatymus iš atsarginės kopijos"
 
-msgid "Restore System Settings"
-msgstr "Atkurti sistemos nustatymus"
-
 msgid "Restore the highlighted slot"
 msgstr "Atkurti paryškintą lizdą"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Atkurkite %s %s parametrus."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
+
+msgid "Restore your backups by date."
+msgstr "Atkurkite savo atsarginę kopiją pagal datą."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Atkurti savus nustatymus iš atsarginės kopijos. Po atkūrimo, kad aktyvuoti nustatymus, imtuvas bus paleistas iš naujo"
@@ -14570,6 +14569,9 @@ msgstr "Failų paieška..."
 msgid "Scan for local extensions and install them"
 msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti"
 
+msgid "Scan for local extensions and install them."
+msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
+
 msgid "Scan wireless networks"
 msgstr "Ieškoti belaidžių tinklų"
 
@@ -14824,11 +14826,20 @@ msgstr "Pasirinkite 'taip', jei tik siunčiate DiSEqC komandą, kad pakeisti iš
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Pasirinkite (šaltinių sąrašą) arba įveskite katalogą (tikslinį sąrašą)"
 
+msgid "Select Additional Backup Files"
+msgstr "Pasirinkite papildomus failus atsarginei kopijai"
+
+msgid "Select Backup Location"
+msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
+
 msgid "Select CAId"
 msgstr "Pasirinkite CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Pasirinkite Enigma2 temą"
+
+msgid "Select Excluded Backup Files"
+msgstr "Pasirinkite failus, neįtrauktus į atsarginę kopiją"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Pasirinkite greitą DiSEqC, jei jūsų sistema palaiko tai. Jei jūs nežinote, pasirinkite 'ne'."
@@ -14853,6 +14864,9 @@ msgstr "Pasirinkite 4 PIP kanalus"
 
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
+
+msgid "Select Upgrade Source"
+msgstr "Pasirinkite atnaujinimo šaltinį"
 
 msgid "Select Your Skin"
 msgstr "Pasirinkite norimą temą"
@@ -14894,17 +14908,11 @@ msgstr "Pasirinkite veiksmą"
 msgid "Select action for timer %s:"
 msgstr "Pasirinkite veiksmą %s laikmačiui:"
 
-msgid "Select Additional Backup Files"
-msgstr "Pasirinkite papildomus failus atsarginei kopijai"
-
 msgid "Select additional files to backup"
 msgstr "Papildomi failai atsarginei kopijai"
 
 msgid "Select audio track"
 msgstr "Pasirinkite garso takelį"
-
-msgid "Select Backup Location"
-msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
 
 msgid "Select cardserver"
 msgstr "Pasirinkite kortelių serverį"
@@ -14926,9 +14934,6 @@ msgstr "Pasirinkite numatytąjį EPG tipą..."
 
 msgid "Select destination for:"
 msgstr "Pasirinkite vietą:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Pasirinkite failus, neįtrauktus į atsarginę kopiją"
 
 msgid "Select files to exclude from backup"
 msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
@@ -15151,9 +15156,6 @@ msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmat
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
-
-msgid "Select Upgrade Source"
-msgstr "Pasirinkite atnaujinimo šaltinį"
 
 msgid "Select upgrade source to edit."
 msgstr "Pasirinkite atnaujinimo šaltinį redagavimui."
@@ -15954,6 +15956,9 @@ msgstr "Rodyti CI pranešimus"
 msgid "Show Clients"
 msgstr "Klientai"
 
+msgid "Show Default Backup Files"
+msgstr "Rodyti numatytuosius atsarginių kopijų failus"
+
 msgid "Show Directory size"
 msgstr "Rodyti katalogo dydį"
 
@@ -16147,9 +16152,6 @@ msgstr "Rodyti kodavimo informaciją info juostoje"
 msgid "Show default after description"
 msgstr "Rodyti numatytąjį po aprašo"
 
-msgid "Show Default Backup Files"
-msgstr "Rodyti numatytuosius atsarginių kopijų failus"
-
 msgid "Show default on new line"
 msgstr "Rodyti numatytąjį naujoje eilutėje"
 
@@ -16282,8 +16284,8 @@ msgstr "Rodyti filmus"
 msgid "Show multi channel EPG"
 msgstr "Rodyti daugiakanalį EPG"
 
-msgid "Show network mounts ..."
-msgstr "Rodyti tinklo pajungimus ..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Rodyti kitą įvykį"
@@ -16368,6 +16370,9 @@ msgstr "Rodyti sąranką"
 
 msgid "Show setup default value"
 msgstr "Rodyti numatytąją nustatymo vertę"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Rodyti išjungimo meniu"
@@ -16482,6 +16487,9 @@ msgstr "Rodyti nežinomus failų plėtinius su 'Pridėtų failų peržiūra'."
 
 msgid "Show unknown video format as"
 msgstr "Rodyti nežinomą vaizdo formatą kaip"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Rodyti vertikalų programos vadovą"
@@ -16859,6 +16867,9 @@ msgstr "Programinės įrangos valdymas"
 msgid "Software MultiBoot"
 msgstr "Švelni daugialypė įkrova"
 
+msgid "Software Restore"
+msgstr "Programinės įrangos atkūrimas"
+
 msgid "Software Update"
 msgstr "Programinės įrangos atnaujinimas"
 
@@ -16873,9 +16884,6 @@ msgstr "Programinės įrangos valdymas"
 
 msgid "Software manager setup"
 msgstr "Programinės įrangos valdymas"
-
-msgid "Software Restore"
-msgstr "Programinės įrangos atkūrimas"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17094,9 +17102,6 @@ msgid "Standby"
 msgstr "Budėjimo režimas"
 
 msgid "Standby / Restart"
-msgstr "Išjungimo meniu"
-
-msgid "Standby / restart"
 msgstr "Išjungimo meniu"
 
 msgid "Standby without TV shutdown"
@@ -18835,6 +18840,15 @@ msgstr "Perjungti paketo / EPG sąrašus"
 msgid "Toggle display of the InfoBar"
 msgstr "Perjungti informacinės juostos rodymą"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Įjunkite naujus teksto įterpimus prieš esamą tekstą arba perrašykite jį"
 
@@ -19398,8 +19412,8 @@ msgstr "Atnaujinamos pajungimo vietos."
 msgid "Updating software catalog"
 msgstr "Atnaujinamas programinės įrangos katalogas"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Atnaujinti (kopijuoti, įdiegti ir viską atkurti)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Atnaujinimas baigtas."
@@ -19965,6 +19979,9 @@ msgstr "Peržiūrėti teletekstą..."
 
 msgid "View video CD..."
 msgstr "Žiūrėti vaizdo CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid "Violence"
 msgstr "Smurtas"
@@ -22723,6 +22740,33 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Atsarginė kopija, įdiegimas ir nustatymų atkūrimas be priedų"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Atsarginė kopija, įdiegimas, nustatymų ir pasirinktų priedų atkūrimas (klausti vartotojo)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Bendrieji meniu veiksmai"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Sparčiųjų klavišų sąranka"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Pasirinkite, ką daryti:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Rodyti tinklo pajungimus ..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Išjungimo meniu"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Atnaujinti (kopijuoti, įdiegti ir viską atkurti)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Pasirinkite pagrindinio meniu stilių"

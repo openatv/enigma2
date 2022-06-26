@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -55,43 +55,12 @@ msgstr ""
 "\n"
 "<此调谐器已被自动配置>"
 
-msgid "Advanced options and settings."
-msgstr "高级选项和设置."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "按OK键后,请稍候!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "备份 %s %s 设置."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "运行备份 %s %s 镜像到硬盘或U盘."
-
-msgid "Edit the upgrade source address."
-msgstr "编辑升级更新源地址."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "直接刷写 %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "管理和维护你的多重启动设备."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "管理 %s %s 的扩展或插件"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"在线更新您的 %s %s 软件."
 
 msgid ""
 "\n"
@@ -107,20 +76,6 @@ msgstr ""
 "\n"
 "录制正在进行中."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "恢复 %s %s 设置."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "使用新固件恢复 %s %s."
-
-msgid "Restore your backups by date."
-msgstr "按日期恢复备份."
-
-msgid "Scan for local extensions and install them."
-msgstr "扫描本地扩展并安装它们."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -129,9 +84,6 @@ msgstr ""
 "\n"
 "选择备份设备.\n"
 "当前设备: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "查看,安装和删除可用的或已安装的软件包."
 
 msgid ""
 "\n"
@@ -1955,9 +1907,6 @@ msgstr "<未知>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2118,6 +2067,10 @@ msgstr ""
 "定时录制失败!\n"
 "是否关闭电视并再试一次？\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "音视频宽高比为 %s."
+
 msgid "AAC downmix"
 msgstr "AAC缩混"
 
@@ -2165,10 +2118,6 @@ msgstr "ATSC供应商"
 
 msgid "AV Setup"
 msgstr "音频/视频设置"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "音视频宽高比为 %s."
 
 msgid "AZPlay"
 msgstr "AZ播放"
@@ -2435,14 +2384,17 @@ msgstr "成人节目, 强暴力等级15+"
 msgid "Advanced"
 msgstr "高级"
 
-msgid "Advanced Settings"
-msgstr "高级设置"
-
 msgid "Advanced Options"
 msgstr "高级选项"
 
 msgid "Advanced Restore"
 msgstr "高级恢复"
+
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+msgid "Advanced options and settings."
+msgstr "高级选项和设置."
 
 msgid "Advanced software"
 msgstr "高级软件"
@@ -3226,6 +3178,9 @@ msgstr "备份模式: 使用U盘恢复\n"
 msgid "Backup Settings"
 msgstr "备份设置"
 
+msgid "Backup System Settings"
+msgstr "备份系统设置"
+
 msgid "Backup completed."
 msgstr "备份已完成."
 
@@ -3248,12 +3203,13 @@ msgstr ""
 "找到的备份插件\n"
 "是否要立即安装？"
 
-msgid "Backup System Settings"
-msgstr "备份系统设置"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "备份到:%s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "备份 %s %s 设置."
 
 msgid "Backup your current image"
 msgstr "备份当前固件"
@@ -3267,11 +3223,9 @@ msgstr "备份您的当前设置"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "备份当前设置.包括E2设置,频道,网络和所有已选择的文件"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "刷写并恢复设置(安装的插件不会恢复)"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "备份,闪存和还原设置以及选定的插件(询问用户)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "运行备份 %s %s 镜像到硬盘或U盘."
 
 msgid "Bahamas"
 msgstr "巴哈马"
@@ -4014,6 +3968,9 @@ msgstr "更改机顶盒以控制硬件芯片模式*"
 msgid "Change Language"
 msgstr "更改语言"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "更改PIN码"
 
@@ -4527,9 +4484,6 @@ msgstr "通用接口"
 
 msgid "Common Interface Assignment"
 msgstr "公共接口分配"
-
-msgid "Common Menu Actions"
-msgstr "常用菜单操作"
 
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
@@ -6728,6 +6682,9 @@ msgstr "编辑 %s %s 的DNS服务器配置."
 msgid "Edit the network configuration of your %s %s."
 msgstr "编辑您的 %s %s 的网络配置."
 
+msgid "Edit the upgrade source address."
+msgstr "编辑升级更新源地址."
+
 msgid "Edit upgrade source url."
 msgstr "编辑升级源地址."
 
@@ -7934,9 +7891,19 @@ msgstr "在线刷机"
 msgid "Flash Online a new image"
 msgstr "在线刷写新镜像"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "不允许使用闪存目录 '%s'!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "直接刷写 %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "在线或从本地来源刷写接收器镜像."
@@ -8759,9 +8726,6 @@ msgstr "快捷键"
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
-msgid "Hotkey Setup for"
-msgstr "快捷键设置于"
-
 msgid "Hour"
 msgstr "小时"
 
@@ -9314,6 +9278,9 @@ msgstr "安装失败!!"
 msgid "Install Finished."
 msgstr "安装完成."
 
+msgid "Install Local Extension"
+msgstr "安装本地扩展"
+
 msgid "Install Plugins"
 msgstr "安装插件"
 
@@ -9334,9 +9301,6 @@ msgstr "安装扩展."
 
 msgid "Install lcd picons on"
 msgstr "将lcd Picon安装到"
-
-msgid "Install Local Extension"
-msgstr "安装本地扩展"
 
 msgid "Install or remove finished."
 msgstr "安装或删除完成."
@@ -10261,6 +10225,9 @@ msgstr "主菜单"
 msgid "Maintain old EPG data for"
 msgstr "保留过期的EPG数据"
 
+msgid "Maintain your multi boot device."
+msgstr "管理和维护你的多重启动设备."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "使文件管理器可从扩展菜单访."
 
@@ -10303,11 +10270,15 @@ msgstr "马耳他"
 msgid "Maltese"
 msgstr "马耳他语"
 
+msgid "Manage Extensions"
+msgstr "管理扩展"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "管理本地/语言选择设置"
 
-msgid "Manage Extensions"
-msgstr "管理扩展"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "管理 %s %s 的扩展或插件"
 
 msgid "Manage network mounts"
 msgstr "管理网络挂载"
@@ -10484,6 +10455,15 @@ msgstr "菜单"
 
 msgid "Menu Actions"
 msgstr "菜单操作"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "菜单配置"
@@ -11778,6 +11758,13 @@ msgstr "单行"
 msgid "Online software update"
 msgstr "在线软件更新"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "在线更新您的 %s %s 软件."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "仅扩展."
 
@@ -12082,6 +12069,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR 长按"
 
+msgid "Package Manager"
+msgstr "软件包管理"
+
 msgid "Package information currently not available!"
 msgstr "软件包信息暂时不可用!"
 
@@ -12096,9 +12086,6 @@ msgstr "仅适用于打包的地区"
 
 msgid "Packages and associated locales"
 msgstr "软件包和相关区域设置"
-
-msgid "Package Manager"
-msgstr "软件包管理"
 
 msgid "Packet manager"
 msgstr "数据包管理器"
@@ -12586,7 +12573,7 @@ msgstr ""
 "\n"
 "请按OK键继续.."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14060,17 +14047,28 @@ msgstr "恢复插件"
 msgid "Restore Settings"
 msgstr "恢复设置"
 
+msgid "Restore System Settings"
+msgstr "恢复系统设置"
+
 msgid "Restore backups"
 msgstr "恢复备份"
 
 msgid "Restore settings from a backup"
 msgstr "从备份恢复设置"
 
-msgid "Restore System Settings"
-msgstr "恢复系统设置"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "恢复 %s %s 设置."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "使用新固件恢复 %s %s."
+
+msgid "Restore your backups by date."
+msgstr "按日期恢复备份."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "从备份恢复设置.恢复后机顶盒将重启以激活新的设置"
@@ -14531,6 +14529,9 @@ msgstr "扫描文件..."
 msgid "Scan for local extensions and install them"
 msgstr "扫描本地附件包并安装它们"
 
+msgid "Scan for local extensions and install them."
+msgstr "扫描本地扩展并安装它们."
+
 msgid "Scan wireless networks"
 msgstr "扫描无线网络"
 
@@ -14783,11 +14784,20 @@ msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiS
 msgid "Select (source list) or enter directory (target list)"
 msgstr "选择(源列表)或输入目录(目标列表)"
 
+msgid "Select Additional Backup Files"
+msgstr "选择额外的备份文件"
+
+msgid "Select Backup Location"
+msgstr "选择备份位置"
+
 msgid "Select CAId"
 msgstr "选择CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "选择Enigma2皮肤"
+
+msgid "Select Excluded Backup Files"
+msgstr "选择排除的备份文件"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "如果天线系统支持此功能,请选择'快速DISEQC'.如果不确定,请选择'否'."
@@ -14812,6 +14822,9 @@ msgstr "选择四画面频道"
 
 msgid "Select Software Update"
 msgstr "选择软件更新"
+
+msgid "Select Upgrade Source"
+msgstr "选择升级源"
 
 msgid "Select Your Skin"
 msgstr "选择你的皮肤"
@@ -14853,17 +14866,11 @@ msgstr "选择操作"
 msgid "Select action for timer %s:"
 msgstr "选择定时器 %s 的操作:"
 
-msgid "Select Additional Backup Files"
-msgstr "选择额外的备份文件"
-
 msgid "Select additional files to backup"
 msgstr "选择额外的文件来备份"
 
 msgid "Select audio track"
 msgstr "选择音轨"
-
-msgid "Select Backup Location"
-msgstr "选择备份位置"
 
 msgid "Select cardserver"
 msgstr "选择卡服务器"
@@ -14885,9 +14892,6 @@ msgstr "选择默认的EPG类型..."
 
 msgid "Select destination for:"
 msgstr "选择目标为:"
-
-msgid "Select Excluded Backup Files"
-msgstr "选择排除的备份文件"
 
 msgid "Select files to exclude from backup"
 msgstr "选择要从备份中排除的文件"
@@ -15110,9 +15114,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-msgid "Select Upgrade Source"
-msgstr "选择升级源"
 
 msgid "Select upgrade source to edit."
 msgstr "选择升级源来编辑."
@@ -15910,6 +15911,9 @@ msgstr "显示CI消息"
 msgid "Show Clients"
 msgstr "显示客户端"
 
+msgid "Show Default Backup Files"
+msgstr "显示默认备份文件"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16103,9 +16107,6 @@ msgstr "在信息条上显示加密信息"
 msgid "Show default after description"
 msgstr "在描述后显示默认值"
 
-msgid "Show Default Backup Files"
-msgstr "显示默认备份文件"
-
 msgid "Show default on new line"
 msgstr "在新行上显示默认值"
 
@@ -16238,8 +16239,8 @@ msgstr "显示影片"
 msgid "Show multi channel EPG"
 msgstr "显示多个频道的EPG"
 
-msgid "Show network mounts ..."
-msgstr "显示网络挂载..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "显示下一个事件"
@@ -16324,6 +16325,9 @@ msgstr "显示设置"
 
 msgid "Show setup default value"
 msgstr "显示设置默认值"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "显示关机菜单"
@@ -16438,6 +16442,9 @@ msgstr "使用'加载项文件查看器'显示未知的文件扩展名."
 
 msgid "Show unknown video format as"
 msgstr "将未知的视频格式显示为"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "显示垂直节目指南"
@@ -16813,6 +16820,9 @@ msgstr "软件管理器设置"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "软件恢复"
+
 msgid "Software Update"
 msgstr "软件更新"
 
@@ -16827,9 +16837,6 @@ msgstr "软件管理"
 
 msgid "Software manager setup"
 msgstr "软件管理器设置"
-
-msgid "Software Restore"
-msgstr "软件恢复"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17049,9 +17056,6 @@ msgid "Standby"
 msgstr "待机"
 
 msgid "Standby / Restart"
-msgstr "待机/重启"
-
-msgid "Standby / restart"
 msgstr "待机/重启"
 
 msgid "Standby without TV shutdown"
@@ -18786,6 +18790,15 @@ msgstr "在 自定义组/EPG列表 之间切换"
 msgid "Toggle display of the InfoBar"
 msgstr "切换信息栏的显示"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "切换在现有文本之前插入或覆盖现有文本的新文本"
 
@@ -19349,8 +19362,8 @@ msgstr "正在更新挂载位置."
 msgid "Updating software catalog"
 msgstr "更新软件目录"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "升级(备份,刷写和恢复所有内容)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "升级完成."
@@ -19916,6 +19929,9 @@ msgstr "查看图文电视..."
 
 msgid "View video CD..."
 msgstr "观看视频CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "查看,安装和删除可用的或已安装的软件包."
 
 msgid "Violence"
 msgstr "暴力"
@@ -22669,6 +22685,30 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "刷写并恢复设置(安装的插件不会恢复)"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "备份,闪存和还原设置以及选定的插件(询问用户)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "常用菜单操作"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "快捷键设置于"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "显示网络挂载..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "待机/重启"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "升级(备份,刷写和恢复所有内容)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "选择主菜单样式"

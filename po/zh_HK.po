@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -42,43 +42,12 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid "Advanced options and settings."
-msgstr "高級選項和設定."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "按OK鍵確定後, 請稍等!"
-
-#, fuzzy, python-format
-msgid "Backup your %s %s settings."
-msgstr "備份您的Dreambox設定。"
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-msgid "Edit the upgrade source address."
-msgstr "編輯升級源地址。"
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "管理Dreambox的軟體和插件。"
-
-#, fuzzy, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"線上更新您的Dreambox軟體。"
 
 msgid ""
 "\n"
@@ -93,20 +62,6 @@ msgid ""
 "Recording in progress."
 msgstr "錄製位置..."
 
-#, fuzzy, python-format
-msgid "Restore your %s %s settings."
-msgstr "重定您的Dreambox設定。"
-
-#, fuzzy, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "用新的韧體來恢復您的Dreambox."
-
-msgid "Restore your backups by date."
-msgstr "按日期恢復您的備份"
-
-msgid "Scan for local extensions and install them."
-msgstr "掃描本地套裝軟體並安裝它們。"
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -115,9 +70,6 @@ msgstr ""
 "\n"
 "選擇備份裝置.\n"
 "當前的裝置:"
-
-msgid "View, install and remove available or installed packages."
-msgstr "檢視, 安裝和刪除已安裝的套裝軟體。"
 
 #, fuzzy
 msgid ""
@@ -2017,9 +1969,6 @@ msgstr "<未知>"
 msgid "?"
 msgstr "更新! 立即重啟dreambox嗎？"
 
-msgid "??"
-msgstr "更新! 立即重啟dreambox嗎？"
-
 msgid "A"
 msgstr "A"
 
@@ -2185,6 +2134,10 @@ msgstr ""
 "定時錄影失敗.\n"
 "禁用電視輸出並重試?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 #, fuzzy
 msgid "AAC downmix"
 msgstr "AC3 縮減混音"
@@ -2239,10 +2192,6 @@ msgstr "供應商"
 #, fuzzy
 msgid "AV Setup"
 msgstr "設定"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr ""
 
 #, fuzzy
 msgid "AZPlay"
@@ -2532,15 +2481,18 @@ msgstr ""
 msgid "Advanced"
 msgstr "高級"
 
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "高級選項"
-
 msgid "Advanced Options"
 msgstr ""
 
 msgid "Advanced Restore"
 msgstr "高級恢復"
+
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "高級選項"
+
+msgid "Advanced options and settings."
+msgstr "高級選項和設定."
 
 msgid "Advanced software"
 msgstr ""
@@ -3396,6 +3348,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr "備份系統設定"
 
+msgid "Backup System Settings"
+msgstr "備份系統設定"
+
 msgid "Backup completed."
 msgstr ""
 
@@ -3416,12 +3371,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "備份系統設定"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "跳轉到目標目錄"
+
+#, fuzzy, python-format
+msgid "Backup your %s %s settings."
+msgstr "備份您的Dreambox設定。"
 
 #, fuzzy
 msgid "Backup your current image"
@@ -3439,13 +3395,9 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, fuzzy
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "是，立即還原設定"
-
-#, fuzzy
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "是，立即還原設定"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr ""
 
 msgid "Bahamas"
 msgstr ""
@@ -4224,6 +4176,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "語言"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Change PIN"
 msgstr "更改目錄."
@@ -4774,9 +4729,6 @@ msgstr "通用介面 (CI)"
 
 msgid "Common Interface Assignment"
 msgstr "通用介面分配"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -7087,6 +7039,9 @@ msgstr "修改Dreambox的DNS配置."
 msgid "Edit the network configuration of your %s %s."
 msgstr "修改Dreambox的網路配置."
 
+msgid "Edit the upgrade source address."
+msgstr "編輯升級源地址。"
+
 msgid "Edit upgrade source url."
 msgstr "編輯升級源地址."
 
@@ -8340,8 +8295,18 @@ msgstr "顯示資訊"
 msgid "Flash Online a new image"
 msgstr "請輸入一個新的檔案名"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 #, fuzzy
@@ -9240,9 +9205,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr "網路設定"
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 #, fuzzy
 msgid "Hour"
 msgstr "小時(s)"
@@ -9828,6 +9790,9 @@ msgstr "安裝附件: "
 msgid "Install Finished."
 msgstr "安裝完成."
 
+msgid "Install Local Extension"
+msgstr "安裝本地附件"
+
 #, fuzzy
 msgid "Install Plugins"
 msgstr "正在安裝"
@@ -9851,9 +9816,6 @@ msgstr "安裝附件."
 
 #, fuzzy
 msgid "Install lcd picons on"
-msgstr "安裝本地附件"
-
-msgid "Install Local Extension"
 msgstr "安裝本地附件"
 
 msgid "Install or remove finished."
@@ -10858,6 +10820,9 @@ msgstr "主功能表"
 msgid "Maintain old EPG data for"
 msgstr ""
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10900,12 +10865,16 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr "附件管理"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "收藏設定"
 
-msgid "Manage Extensions"
-msgstr "附件管理"
+#, fuzzy, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "管理Dreambox的軟體和插件。"
 
 #, fuzzy
 msgid "Manage network mounts"
@@ -11099,6 +11068,15 @@ msgstr "功能表"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "快速按鍵"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Menu config"
@@ -12510,6 +12488,13 @@ msgstr ""
 msgid "Online software update"
 msgstr "軟體升級"
 
+#, fuzzy, python-format
+msgid "Online update of your %s %s software."
+msgstr "線上更新您的Dreambox軟體。"
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "僅增加部分."
 
@@ -12848,6 +12833,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "套裝軟體管理"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12864,9 +12852,6 @@ msgstr "升級軟體列表"
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "套裝軟體管理"
 
 msgid "Packet manager"
 msgstr "軟體管理器"
@@ -13399,7 +13384,7 @@ msgstr ""
 "\n"
 "按OK鍵確認"
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14974,6 +14959,9 @@ msgstr "移除插件"
 msgid "Restore Settings"
 msgstr "恢復系統設定"
 
+msgid "Restore System Settings"
+msgstr "恢復系統設定"
+
 msgid "Restore backups"
 msgstr "恢復備份"
 
@@ -14981,11 +14969,19 @@ msgstr "恢復備份"
 msgid "Restore settings from a backup"
 msgstr "恢復備份"
 
-msgid "Restore System Settings"
-msgstr "恢復系統設定"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "Restore your %s %s settings."
+msgstr "重定您的Dreambox設定。"
+
+#, fuzzy, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "用新的韧體來恢復您的Dreambox."
+
+msgid "Restore your backups by date."
+msgstr "按日期恢復您的備份"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -15481,6 +15477,9 @@ msgstr ""
 "\n"
 "掃描本地套裝軟體並安裝它們。"
 
+msgid "Scan for local extensions and install them."
+msgstr "掃描本地套裝軟體並安裝它們。"
+
 msgid "Scan wireless networks"
 msgstr ""
 
@@ -15750,12 +15749,23 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+#, fuzzy
+msgid "Select Additional Backup Files"
+msgstr "選擇音軌"
+
+msgid "Select Backup Location"
+msgstr ""
+
 msgid "Select CAId"
 msgstr ""
 
 #, fuzzy
 msgid "Select Enigma2 Skin"
 msgstr "選擇皮膚"
+
+#, fuzzy
+msgid "Select Excluded Backup Files"
+msgstr "選擇要備份的檔/目錄"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
@@ -15785,6 +15795,9 @@ msgstr "選擇Softcam:"
 #, fuzzy
 msgid "Select Software Update"
 msgstr "軟體升級"
+
+msgid "Select Upgrade Source"
+msgstr ""
 
 #, fuzzy
 msgid "Select Your Skin"
@@ -15831,18 +15844,11 @@ msgid "Select action for timer %s:"
 msgstr "選擇一個計時器導入"
 
 #, fuzzy
-msgid "Select Additional Backup Files"
-msgstr "選擇音軌"
-
-#, fuzzy
 msgid "Select additional files to backup"
 msgstr "選擇要備份的檔/目錄"
 
 msgid "Select audio track"
 msgstr "選擇音軌"
-
-msgid "Select Backup Location"
-msgstr ""
 
 msgid "Select cardserver"
 msgstr ""
@@ -15865,10 +15871,6 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr ""
-
-#, fuzzy
-msgid "Select Excluded Backup Files"
-msgstr "選擇要備份的檔/目錄"
 
 #, fuzzy
 msgid "Select files to exclude from backup"
@@ -16100,9 +16102,6 @@ msgid "Select the type of shutdown desired when the energy timer activates."
 msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
-
-msgid "Select Upgrade Source"
 msgstr ""
 
 msgid "Select upgrade source to edit."
@@ -16984,6 +16983,10 @@ msgstr "顯示Softcam名稱"
 msgid "Show Clients"
 msgstr "顯示Gemini專案"
 
+#, fuzzy
+msgid "Show Default Backup Files"
+msgstr "選擇備份檔案"
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17201,10 +17204,6 @@ msgid "Show default after description"
 msgstr "選擇備份檔案"
 
 #, fuzzy
-msgid "Show Default Backup Files"
-msgstr "選擇備份檔案"
-
-#, fuzzy
 msgid "Show default on new line"
 msgstr "選擇備份檔案"
 
@@ -17353,9 +17352,8 @@ msgstr "短片"
 msgid "Show multi channel EPG"
 msgstr ""
 
-#, fuzzy
-msgid "Show network mounts ..."
-msgstr "找不到網路"
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr ""
@@ -17451,6 +17449,9 @@ msgid "Show setup"
 msgstr "電視重播模式下..."
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -17589,6 +17590,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #, fuzzy
@@ -17992,6 +17996,9 @@ msgstr "軟體管理"
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "軟體還原"
+
 #, fuzzy
 msgid "Software Update"
 msgstr "軟體升級"
@@ -18007,9 +18014,6 @@ msgstr "軟體管理"
 
 msgid "Software manager setup"
 msgstr ""
-
-msgid "Software Restore"
-msgstr "軟體還原"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18243,9 +18247,6 @@ msgstr "待機"
 
 msgid "Standby / Restart"
 msgstr "待機 / 重啟"
-
-msgid "Standby / restart"
-msgstr ""
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -20057,6 +20058,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -20664,7 +20674,7 @@ msgstr "更新軟體目錄"
 msgid "Updating software catalog"
 msgstr "更新軟體目錄"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -21269,6 +21279,9 @@ msgstr "檢視電傳視訊..."
 
 msgid "View video CD..."
 msgstr ""
+
+msgid "View, install and remove available or installed packages."
+msgstr "檢視, 安裝和刪除已安裝的套裝軟體。"
 
 msgid "Violence"
 msgstr ""
@@ -24111,6 +24124,21 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "更新! 立即重啟dreambox嗎？"
+
+#, fuzzy
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "是，立即還原設定"
+
+#, fuzzy
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "是，立即還原設定"
+
+#, fuzzy
+#~ msgid "Show network mounts ..."
+#~ msgstr "找不到網路"
 
 #, fuzzy
 #~ msgid "Choose style of main menus"

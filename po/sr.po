@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -51,47 +51,12 @@ msgstr ""
 "Ovaj tjuner je konfigurisan automatski"
 
 #
-msgid "Advanced options and settings."
-msgstr "Napredne opcije i podešavanja."
-
-#
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Posle stiskanja OK,molim pričekajte"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-#
-msgid "Edit the upgrade source address."
-msgstr "Uredi poboljšanu izvornu adresu"
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Izvrši proširenja i dodatke za vaš drimboks"
-
-#
-#, fuzzy, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Onlajn ažuriranje Drimbox softvera"
 
 #
 msgid ""
@@ -106,23 +71,6 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Vrati svoje Drimbox postavke sa novim firmverom"
-
-#
-msgid "Restore your backups by date."
-msgstr "Vrati svoje snimljene kopije po datumu"
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "Traži lokalna proširenja i instaliraj ih. "
-
 #
 msgid ""
 "\n"
@@ -132,10 +80,6 @@ msgstr ""
 "\n"
 "Izaberi svoj rezervni uredjaj.\n"
 "Aktuelni uređaj:"
-
-#
-msgid "View, install and remove available or installed packages."
-msgstr "Pogledaj,instaliraj i ukloni pristupačne ili instalirane pakete"
 
 msgid ""
 "\n"
@@ -2160,10 +2104,6 @@ msgid "?"
 msgstr "??"
 
 #
-msgid "??"
-msgstr "??"
-
-#
 msgid "A"
 msgstr "A"
 
@@ -2335,6 +2275,10 @@ msgstr ""
 "Tajmer je neuspešno pokušao snimiti!\n"
 "Onemogućite TV i pokušajte ponovo?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr ""
 
@@ -2385,10 +2329,6 @@ msgid "ATSC provider"
 msgstr "Dodaj provajdera"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 #
@@ -2707,17 +2647,21 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Advanced Settings"
-msgstr "Napredne opcije"
-
-#
-#, fuzzy
 msgid "Advanced Options"
 msgstr "Napredne opcije"
 
 #
 msgid "Advanced Restore"
 msgstr "Napredno vraćanje"
+
+#
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Napredne opcije"
+
+#
+msgid "Advanced options and settings."
+msgstr "Napredne opcije i podešavanja."
 
 #
 #, fuzzy
@@ -3598,6 +3542,10 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+#
+msgid "Backup System Settings"
+msgstr "Snimanje sistemskih postavki"
+
 msgid "Backup completed."
 msgstr ""
 
@@ -3621,13 +3569,13 @@ msgid ""
 msgstr ""
 
 #
-msgid "Backup System Settings"
-msgstr "Snimanje sistemskih postavki"
-
-#
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "Snimanje sistemskih postavki"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr ""
 
 msgid "Backup your current image"
 msgstr ""
@@ -3641,10 +3589,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4437,6 +4383,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Jezik"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -5014,9 +4963,6 @@ msgstr "Opšti interfejs"
 #
 msgid "Common Interface Assignment"
 msgstr "Dodeljivanje opšteg interfejsa"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #
 #, fuzzy
@@ -7433,6 +7379,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "Urediti mrežnu konfiguraciju vašeg Drimboxa."
 
 #
+msgid "Edit the upgrade source address."
+msgstr "Uredi poboljšanu izvornu adresu"
+
+#
 msgid "Edit upgrade source url."
 msgstr "Uredi url izvora nadogradnje."
 
@@ -8728,8 +8678,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9642,9 +9602,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -10245,6 +10202,10 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+#
+msgid "Install Local Extension"
+msgstr "Instaliraj lokalno proširenje"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -10268,10 +10229,6 @@ msgstr "Instaliraj proširenja."
 
 msgid "Install lcd picons on"
 msgstr ""
-
-#
-msgid "Install Local Extension"
-msgstr "Instaliraj lokalno proširenje"
 
 #
 msgid "Install or remove finished."
@@ -11349,6 +11306,9 @@ msgstr "Glavni meni"
 msgid "Maintain old EPG data for"
 msgstr ""
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -11395,13 +11355,18 @@ msgid "Maltese"
 msgstr ""
 
 #
+msgid "Manage Extensions"
+msgstr "Rukuj proširenjima"
+
+#
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Postavke kolekcije"
 
 #
-msgid "Manage Extensions"
-msgstr "Rukuj proširenjima"
+#, fuzzy, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Izvrši proširenja i dodatke za vaš drimboks"
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11609,6 +11574,15 @@ msgstr "Meni"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Lokacija"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -13098,6 +13072,14 @@ msgid "Online software update"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Online update of your %s %s software."
+msgstr "Onlajn ažuriranje Drimbox softvera"
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
+#
 msgid "Only extensions."
 msgstr "Samo proširenja:"
 
@@ -13427,6 +13409,10 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+#
+msgid "Package Manager"
+msgstr "Rukovanje paketima"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -13442,10 +13428,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-#
-msgid "Package Manager"
-msgstr "Rukovanje paketima"
 
 #
 msgid "Packet manager"
@@ -14036,7 +14018,7 @@ msgstr ""
 "\n"
 "Molim pritisni OK da nastaviš."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -15672,18 +15654,31 @@ msgid "Restore Settings"
 msgstr ""
 
 #
+msgid "Restore System Settings"
+msgstr "Vratite sistemske postavke"
+
+#
 msgid "Restore backups"
 msgstr "Vrati bekape"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-#
-msgid "Restore System Settings"
-msgstr "Vratite sistemske postavke"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Vrati svoje Drimbox postavke sa novim firmverom"
+
+#
+msgid "Restore your backups by date."
+msgstr "Vrati svoje snimljene kopije po datumu"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -16207,6 +16202,10 @@ msgid "Scan for local extensions and install them"
 msgstr ""
 
 #
+msgid "Scan for local extensions and install them."
+msgstr "Traži lokalna proširenja i instaliraj ih. "
+
+#
 #, fuzzy
 msgid "Scan wireless networks"
 msgstr "Pretražite bežičnu mrežu"
@@ -16487,12 +16486,23 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Select Backup Location"
+msgstr "Izaberite snimljenu lokaciju"
+
 #
 #, fuzzy
 msgid "Select CAId"
 msgstr "Izaberite CAId"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -16520,6 +16530,11 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "Izaberi izvor nadodradnje za uređivanje."
 
 #
 #, fuzzy
@@ -16570,20 +16585,12 @@ msgstr "Izaberi lokaciju"
 msgid "Select action for timer %s:"
 msgstr "Izaberite snimljene datoteke  "
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 #
 msgid "Select audio track"
 msgstr "Odaberite zvučni zapis"
-
-#
-#, fuzzy
-msgid "Select Backup Location"
-msgstr "Izaberite snimljenu lokaciju"
 
 msgid "Select cardserver"
 msgstr ""
@@ -16607,9 +16614,6 @@ msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select destination for:"
-msgstr ""
-
-msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select files to exclude from backup"
@@ -16849,11 +16853,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "Izaberi izvor nadodradnje za uređivanje."
 
 #
 msgid "Select upgrade source to edit."
@@ -17705,6 +17704,9 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17922,9 +17924,6 @@ msgstr ""
 msgid "Show default after description"
 msgstr "prikaži proširene informacije"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show default on new line"
@@ -18081,7 +18080,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -18179,6 +18178,9 @@ msgid "Show setup"
 msgstr "prikaži citat menia"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #
@@ -18314,6 +18316,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #
@@ -18751,6 +18756,10 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+#
+msgid "Software Restore"
+msgstr "Vraćanje softvera"
+
 msgid "Software Update"
 msgstr ""
 
@@ -18766,10 +18775,6 @@ msgstr "Upravljač softvera "
 
 msgid "Software manager setup"
 msgstr "Podešavanje upravljača softvera"
-
-#
-msgid "Software Restore"
-msgstr "Vraćanje softvera"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18996,11 +19001,6 @@ msgstr "Spreman"
 
 #
 msgid "Standby / Restart"
-msgstr "Spreman / restart"
-
-#
-#, fuzzy
-msgid "Standby / restart"
 msgstr "Spreman / restart"
 
 msgid "Standby without TV shutdown"
@@ -20894,6 +20894,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -21539,7 +21548,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Ažuriranje kataloga softvera"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 #
@@ -22165,6 +22174,10 @@ msgstr "Pregled teleteksta..."
 #, fuzzy
 msgid "View video CD..."
 msgstr "Vidi video CD"
+
+#
+msgid "View, install and remove available or installed packages."
+msgstr "Pogledaj,instaliraj i ukloni pristupačne ili instalirane pakete"
 
 msgid "Violence"
 msgstr ""
@@ -25169,6 +25182,15 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "??"
+#~ msgstr "??"
+
+#
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr "Spreman / restart"
 
 #
 #, fuzzy, python-format

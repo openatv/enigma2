@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -47,42 +47,12 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid "Advanced options and settings."
-msgstr ""
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Etter å ha trykket OK, vennligst vent!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-msgid "Edit the upgrade source address."
-msgstr ""
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
 
 msgid ""
 "\n"
@@ -98,27 +68,10 @@ msgstr ""
 "\n"
 "Innspilling pågår."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr ""
-
-msgid "Restore your backups by date."
-msgstr ""
-
-msgid "Scan for local extensions and install them."
-msgstr ""
-
 msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
-msgstr ""
-
-msgid "View, install and remove available or installed packages."
 msgstr ""
 
 msgid ""
@@ -1933,9 +1886,6 @@ msgstr "<ukjent>"
 msgid "?"
 msgstr ""
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2072,6 +2022,10 @@ msgstr ""
 "Et timer opptak mislyktes!\n"
 "Slå av TV og prøv igjen?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr "AAC nedskalering"
 
@@ -2118,10 +2072,6 @@ msgid "ATSC provider"
 msgstr "ATSC distributør"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 msgid "AZPlay"
@@ -2389,14 +2339,17 @@ msgstr ""
 msgid "Advanced"
 msgstr "Ekspert"
 
-msgid "Advanced Settings"
-msgstr ""
-
 msgid "Advanced Options"
 msgstr "Ekspert valg"
 
 msgid "Advanced Restore"
 msgstr "Ekspert gjenoppretting"
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Advanced options and settings."
+msgstr ""
 
 msgid "Advanced software"
 msgstr "Ekspert programvare"
@@ -3178,6 +3131,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+msgid "Backup System Settings"
+msgstr "Sikkerhetskopier system innstillinger"
+
 msgid "Backup completed."
 msgstr "Sikkerhetskopiering fullført."
 
@@ -3198,11 +3154,12 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "Sikkerhetskopier system innstillinger"
-
 #, python-format
 msgid "Backup to destination: %s"
+msgstr ""
+
+#, python-format
+msgid "Backup your %s %s settings."
 msgstr ""
 
 msgid "Backup your current image"
@@ -3217,10 +3174,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -3954,6 +3909,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Endre språk"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Endre PIN"
 
@@ -4463,9 +4421,6 @@ msgid "Common Interface"
 msgstr "Common Interface"
 
 msgid "Common Interface Assignment"
-msgstr ""
-
-msgid "Common Menu Actions"
 msgstr ""
 
 msgid "Common Setup Actions"
@@ -6633,6 +6588,9 @@ msgstr ""
 msgid "Edit the network configuration of your %s %s."
 msgstr ""
 
+msgid "Edit the upgrade source address."
+msgstr ""
+
 msgid "Edit upgrade source url."
 msgstr ""
 
@@ -7806,8 +7764,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -8627,9 +8595,6 @@ msgstr "Snarveistast"
 msgid "Hotkey Settings"
 msgstr "Snarveistast innstilling"
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -9174,6 +9139,9 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+msgid "Install Local Extension"
+msgstr "Installer lokal utvidelse"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9194,9 +9162,6 @@ msgstr ""
 
 msgid "Install lcd picons on"
 msgstr ""
-
-msgid "Install Local Extension"
-msgstr "Installer lokal utvidelse"
 
 msgid "Install or remove finished."
 msgstr ""
@@ -10121,6 +10086,9 @@ msgstr "Hovedmeny"
 msgid "Maintain old EPG data for"
 msgstr "Lagre gamle EPG data i min"
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10163,11 +10131,15 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr "Administrer utvidelser"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr ""
 
-msgid "Manage Extensions"
-msgstr "Administrer utvidelser"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr ""
 
 msgid "Manage network mounts"
 msgstr ""
@@ -10343,6 +10315,15 @@ msgid "Menu"
 msgstr "Meny"
 
 msgid "Menu Actions"
+msgstr ""
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
 msgstr ""
 
 msgid "Menu config"
@@ -11624,6 +11605,13 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr ""
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Kun utvidelser."
 
@@ -11928,6 +11916,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "Velg programpakker"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -11942,9 +11933,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "Velg programpakker"
 
 msgid "Packet manager"
 msgstr "Pakkeforvalter"
@@ -12430,7 +12418,7 @@ msgstr ""
 "\n"
 "Trykk OK for å fortsette."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -13858,16 +13846,27 @@ msgstr ""
 msgid "Restore Settings"
 msgstr ""
 
+msgid "Restore System Settings"
+msgstr "Gjenopprett systeminnstillingene"
+
 msgid "Restore backups"
 msgstr "Gjenopprett sikkerhetskopier"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-msgid "Restore System Settings"
-msgstr "Gjenopprett systeminnstillingene"
-
 msgid "Restore the highlighted slot"
+msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr ""
+
+msgid "Restore your backups by date."
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -14327,6 +14326,9 @@ msgstr "Søker filer..."
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+msgid "Scan for local extensions and install them."
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Søk etter trådløse nettverk"
 
@@ -14579,10 +14581,19 @@ msgstr "Velg 'Ja' for bare å sende DiSEqC kommando når du endrer fra en satell
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+msgid "Select Backup Location"
+msgstr "Velg sikkerhetskopi"
+
 msgid "Select CAId"
 msgstr "Velg CAId"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -14607,6 +14618,9 @@ msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Software Update"
+msgstr ""
+
+msgid "Select Upgrade Source"
 msgstr ""
 
 msgid "Select Your Skin"
@@ -14649,17 +14663,11 @@ msgstr "Velg handling"
 msgid "Select action for timer %s:"
 msgstr ""
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 msgid "Select audio track"
 msgstr "Velg lydspor"
-
-msgid "Select Backup Location"
-msgstr "Velg sikkerhetskopi"
 
 msgid "Select cardserver"
 msgstr ""
@@ -14681,9 +14689,6 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr "Velg målet for:"
-
-msgid "Select Excluded Backup Files"
-msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr ""
@@ -14905,9 +14910,6 @@ msgid "Select the type of shutdown desired when the energy timer activates."
 msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
-
-msgid "Select Upgrade Source"
 msgstr ""
 
 msgid "Select upgrade source to edit."
@@ -15692,6 +15694,9 @@ msgstr "Vis CI meldinger"
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -15885,9 +15890,6 @@ msgstr "Vis krypteringsinfo på infobar"
 msgid "Show default after description"
 msgstr ""
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 msgid "Show default on new line"
 msgstr ""
 
@@ -16020,7 +16022,7 @@ msgstr "Vis opptakene"
 msgid "Show multi channel EPG"
 msgstr "Vis flerkanals EPG"
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -16105,6 +16107,9 @@ msgid "Show setup"
 msgstr ""
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 msgid "Show shutdown menu"
@@ -16219,6 +16224,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 msgid "Show vertical Program Guide"
@@ -16595,6 +16603,9 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr ""
+
 msgid "Software Update"
 msgstr ""
 
@@ -16609,9 +16620,6 @@ msgstr "Programvareadministrasjon"
 
 msgid "Software manager setup"
 msgstr "Programvare oppsett"
-
-msgid "Software Restore"
-msgstr ""
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -16826,9 +16834,6 @@ msgstr "Slå av"
 
 msgid "Standby / Restart"
 msgstr ""
-
-msgid "Standby / restart"
-msgstr "Av/på strømvalg"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -18514,6 +18519,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Bruk nye tekst valg først eller overskriv eksisterende tekst"
 
@@ -19070,7 +19084,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Oppdaterer programvarekatalog"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -19626,6 +19640,9 @@ msgstr "Se tekst-TV..."
 
 msgid "View video CD..."
 msgstr "Se video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr ""
 
 msgid "Violence"
 msgstr ""
@@ -22300,6 +22317,12 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Standby / restart"
+#~ msgstr "Av/på strømvalg"
 
 #~ msgid ""
 #~ "GUI needs a restart to apply a new language\n"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -45,44 +45,12 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid "Advanced options and settings."
-msgstr "Auka sérfræði stillingar."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Bíðið eftir að hafa ýtt á OK!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr ""
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr ""
-
-msgid "Edit the upgrade source address."
-msgstr "Breyta veffangi uppfærslu uppruna."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr ""
-
-msgid "Maintain your multi boot device."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Umsýsla á viðbótum eða íforritum fyrir móttakarann þinn"
-
-#
-#, fuzzy, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Uppfærsla hugbúnaðar beint af neti."
 
 #
 msgid ""
@@ -97,22 +65,6 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Setja inn nýtt stýrikerfi í %s %sið þitt."
-
-#
-msgid "Restore your backups by date."
-msgstr "Setja inn stilligar eftir dagsetningu."
-
-msgid "Scan for local extensions and install them."
-msgstr "Leita að viðbótum á móttakara og setja þær upp."
-
 #
 msgid ""
 "\n"
@@ -122,10 +74,6 @@ msgstr ""
 "\n"
 "Veldu afritunar tæki.\n"
 "Núverandi tæki:"
-
-#
-msgid "View, install and remove available or installed packages."
-msgstr "Skoða, setja inn og taka út hugbúnaðar pakka."
 
 msgid ""
 "\n"
@@ -2119,9 +2067,6 @@ msgstr "<óþekkt>"
 msgid "?"
 msgstr "??"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2289,6 +2234,10 @@ msgstr ""
 "Tímastillt upptaka mistókst!\n"
 "Hætta og reyna aftur?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr ""
 
@@ -2339,10 +2288,6 @@ msgid "ATSC provider"
 msgstr "bæta við sendanda"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 #
@@ -2650,15 +2595,18 @@ msgid "Advanced"
 msgstr ""
 
 #, fuzzy
-msgid "Advanced Settings"
-msgstr "Sérfræði stillingar"
-
-#, fuzzy
 msgid "Advanced Options"
 msgstr "Sérfræði stillingar"
 
 msgid "Advanced Restore"
 msgstr "Sérfræði innsetning afrita"
+
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Sérfræði stillingar"
+
+msgid "Advanced options and settings."
+msgstr "Auka sérfræði stillingar."
 
 #, fuzzy
 msgid "Advanced software"
@@ -3498,6 +3446,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+msgid "Backup System Settings"
+msgstr "Afrita kerfis stillingar"
+
 msgid "Backup completed."
 msgstr ""
 
@@ -3518,12 +3469,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "Afrita kerfis stillingar"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "Afrita kerfis stillingar"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr ""
 
 msgid "Backup your current image"
 msgstr ""
@@ -3537,10 +3489,8 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
 msgid "Bahamas"
@@ -4300,6 +4250,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "Tungumál"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -4835,9 +4788,6 @@ msgstr "Afruglara tengi"
 
 msgid "Common Interface Assignment"
 msgstr "Stillingar afruglara tengis"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -7187,6 +7137,9 @@ msgstr "Breyta nafnaþjóns stillingum %s %sins."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Breyta stillingum netkorts í %s %sinu."
 
+msgid "Edit the upgrade source address."
+msgstr "Breyta veffangi uppfærslu uppruna."
+
 msgid "Edit upgrade source url."
 msgstr "Breyta uppfærslu uppruna slóð."
 
@@ -8455,8 +8408,18 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9362,9 +9325,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -9961,6 +9921,9 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+msgid "Install Local Extension"
+msgstr "Setja inn viðbót af boxi"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9983,9 +9946,6 @@ msgstr "Setja inn viðbót."
 
 msgid "Install lcd picons on"
 msgstr ""
-
-msgid "Install Local Extension"
-msgstr "Setja inn viðbót af boxi"
 
 #
 msgid "Install or remove finished."
@@ -11054,6 +11014,9 @@ msgstr "Aðalvalmynd"
 msgid "Maintain old EPG data for"
 msgstr ""
 
+msgid "Maintain your multi boot device."
+msgstr ""
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -11099,12 +11062,16 @@ msgstr ""
 msgid "Maltese"
 msgstr ""
 
+msgid "Manage Extensions"
+msgstr "Sýsla með íforrit"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Stillingar safns"
 
-msgid "Manage Extensions"
-msgstr "Sýsla með íforrit"
+#, fuzzy, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Umsýsla á viðbótum eða íforritum fyrir móttakarann þinn"
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11310,6 +11277,15 @@ msgstr "Valmynd"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "Staðsetning"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -12788,6 +12764,14 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Online update of your %s %s software."
+msgstr "Uppfærsla hugbúnaðar beint af neti."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Bara viðbætur."
 
@@ -13116,6 +13100,10 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+#
+msgid "Package Manager"
+msgstr "Pakka meðhöndlun"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -13131,10 +13119,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-#
-msgid "Package Manager"
-msgstr "Pakka meðhöndlun"
 
 #
 msgid "Packet manager"
@@ -13714,7 +13698,7 @@ msgstr ""
 "\n"
 "Ýttu á OK til að halda áfram."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -15342,18 +15326,31 @@ msgid "Restore Settings"
 msgstr ""
 
 #
+msgid "Restore System Settings"
+msgstr "Setja inn kerfis stillingar"
+
+#
 msgid "Restore backups"
 msgstr "Setja inn afrit"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-#
-msgid "Restore System Settings"
-msgstr "Setja inn kerfis stillingar"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Setja inn nýtt stýrikerfi í %s %sið þitt."
+
+#
+msgid "Restore your backups by date."
+msgstr "Setja inn stilligar eftir dagsetningu."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -15867,6 +15864,9 @@ msgstr "Leita að skrám..."
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+msgid "Scan for local extensions and install them."
+msgstr "Leita að viðbótum á móttakara og setja þær upp."
+
 #
 #, fuzzy
 msgid "Scan wireless networks"
@@ -16143,12 +16143,22 @@ msgstr ""
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+#, fuzzy
+msgid "Select Backup Location"
+msgstr "Veldu stað fyrir afrit"
+
 #
 #, fuzzy
 msgid "Select CAId"
 msgstr "veldu CAId"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -16176,6 +16186,11 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "Veldu upphafs slóð til að breyta."
 
 #
 #, fuzzy
@@ -16225,19 +16240,12 @@ msgstr "Velja staðsetningu"
 msgid "Select action for timer %s:"
 msgstr "Veldu afrits skrár"
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 #
 msgid "Select audio track"
 msgstr "Veldu hljóð rás"
-
-#, fuzzy
-msgid "Select Backup Location"
-msgstr "Veldu stað fyrir afrit"
 
 msgid "Select cardserver"
 msgstr ""
@@ -16261,9 +16269,6 @@ msgid "Select default EPG type..."
 msgstr ""
 
 msgid "Select destination for:"
-msgstr ""
-
-msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select files to exclude from backup"
@@ -16501,11 +16506,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "Veldu upphafs slóð til að breyta."
 
 #
 msgid "Select upgrade source to edit."
@@ -17349,6 +17349,9 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -17564,9 +17567,6 @@ msgstr ""
 msgid "Show default after description"
 msgstr "sýna auka upplýsingar"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show default on new line"
@@ -17722,7 +17722,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -17820,6 +17820,9 @@ msgid "Show setup"
 msgstr "sýna merkja valmynd"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #
@@ -17950,6 +17953,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #
@@ -18380,6 +18386,10 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+#
+msgid "Software Restore"
+msgstr "Hugbúnaðar endurinnsetning"
+
 msgid "Software Update"
 msgstr ""
 
@@ -18394,10 +18404,6 @@ msgstr "Hugbúnaðar umsýsla"
 
 msgid "Software manager setup"
 msgstr "Uppsetning hugbúnaðar umsýslu"
-
-#
-msgid "Software Restore"
-msgstr "Hugbúnaðar endurinnsetning"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18623,11 +18629,6 @@ msgstr "Biðstaða"
 
 #
 msgid "Standby / Restart"
-msgstr "Biðstaða / Endurræsing"
-
-#
-#, fuzzy
-msgid "Standby / restart"
 msgstr "Biðstaða / Endurræsing"
 
 msgid "Standby without TV shutdown"
@@ -20508,6 +20509,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -21147,7 +21157,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Uppfæri efnisyfirlit hugbúnaðar"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 #
@@ -21770,6 +21780,10 @@ msgstr "Skoða textavarp..."
 #, fuzzy
 msgid "View video CD..."
 msgstr "Skoða Video CD..."
+
+#
+msgid "View, install and remove available or installed packages."
+msgstr "Skoða, setja inn og taka út hugbúnaðar pakka."
 
 msgid "Violence"
 msgstr ""
@@ -24751,6 +24765,14 @@ msgstr "stokkið"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr "Biðstaða / Endurræsing"
 
 #, fuzzy, python-format
 #~ msgid ""

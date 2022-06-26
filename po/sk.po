@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-06-13 04:00+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -55,43 +55,12 @@ msgstr ""
 "\n"
 "<Tento tuner je konfigurovaný automaticky>"
 
-msgid "Advanced options and settings."
-msgstr "Pokročilé voľby a nastavenia."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Po stlačení OK prosím počkajte!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Záloha nastavenia vášho %s %s."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Záloha aktuálneho image prijímača %s %s na HDD alebo USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Upraviť adresu zdroja aktualizácií."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Flashovanie prijímača %s %s on the fly."
-
-msgid "Maintain your multi boot device."
-msgstr "Vykonávajte správu a údržbu zariadenia multiboot."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Správa rozšírení alebo pluginov prijímača %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Online aktualizácia softvéru prijímača %s %s."
 
 msgid ""
 "\n"
@@ -107,20 +76,6 @@ msgstr ""
 "\n"
 "Prebieha nahrávanie."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Obnoviť nastavenia vášho %s %s."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Obnoviť %s %s s novým firmwarom."
-
-msgid "Restore your backups by date."
-msgstr "Obnoviť zo zálohy podľa dátumu."
-
-msgid "Scan for local extensions and install them."
-msgstr "Prehľadať lokálne rozšírenia a nainštalovať ich."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -129,9 +84,6 @@ msgstr ""
 "\n"
 "Zvoľte zariadenie pre zálohovanie.\n"
 "Aktuálne zariadenie: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Zobraziť, nainštalovať a odstrániť dostupné alebo nainštalované balíčky."
 
 msgid ""
 "\n"
@@ -1974,9 +1926,6 @@ msgstr "<neznámy>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2140,6 +2089,10 @@ msgstr ""
 "Časovač nespustil nahrávanie!\n"
 "Vypnúť TV a skúsiť znovu?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV aspekt je %s."
+
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2187,10 +2140,6 @@ msgstr "Poskytovateľ ATSC"
 
 msgid "AV Setup"
 msgstr "Nastavenie A/V"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV aspekt je %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2457,14 +2406,17 @@ msgstr "Dospelé publikum, hrubé násilie 15+"
 msgid "Advanced"
 msgstr "Pokročilé"
 
-msgid "Advanced Settings"
-msgstr "Pokročilé nastavenia"
-
 msgid "Advanced Options"
 msgstr "Pokročilé možnosti"
 
 msgid "Advanced Restore"
 msgstr "Pokročilé obnovenie"
+
+msgid "Advanced Settings"
+msgstr "Pokročilé nastavenia"
+
+msgid "Advanced options and settings."
+msgstr "Pokročilé voľby a nastavenia."
 
 msgid "Advanced software"
 msgstr "Pokročilý softvér"
@@ -3248,6 +3200,9 @@ msgstr "Režim zálohovania: obnova USB\n"
 msgid "Backup Settings"
 msgstr "Záloha nastavení prijímača"
 
+msgid "Backup System Settings"
+msgstr "Zálohovať nastavenia systému"
+
 msgid "Backup completed."
 msgstr "Zálohovanie dokončené."
 
@@ -3270,12 +3225,13 @@ msgstr ""
 "Našli sa pluginy pre zálohovanie.\n"
 "Chcete nainštalovať teraz?"
 
-msgid "Backup System Settings"
-msgstr "Zálohovať nastavenia systému"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Zálohovať do: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Záloha nastavenia vášho %s %s."
 
 msgid "Backup your current image"
 msgstr "Záloha aktuálneho image"
@@ -3289,11 +3245,9 @@ msgstr "Záloha vašich nastavení"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Záloha vašich aktuálnych nastavení. To zahŕňa nastavenie E2, kanály, sieť a všetky vybrané súbory"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Záloha, flash a obnovenie nastavení a žiadnych pluginov"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Záloha, flash a obnovenie nastavení a vybraných pluginov (opýtať sa používateľa)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Záloha aktuálneho image prijímača %s %s na HDD alebo USB."
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -4036,6 +3990,9 @@ msgstr "Zmeniť režim prijímača pre kontrolu HW režimov čipu*"
 msgid "Change Language"
 msgstr "Zmeniť jazyk"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Zmeniť PIN"
 
@@ -4549,9 +4506,6 @@ msgstr "Rozhranie CI"
 
 msgid "Common Interface Assignment"
 msgstr "Priradenie Common Interface"
-
-msgid "Common Menu Actions"
-msgstr "Menu bežných akcií"
 
 msgid "Common Setup Actions"
 msgstr "Bežné nastavenia"
@@ -6749,6 +6703,9 @@ msgstr "Upravuje nastavenie DNS %s %s."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Upravuje nastavenie siete %s %s."
 
+msgid "Edit the upgrade source address."
+msgstr "Upraviť adresu zdroja aktualizácií."
+
 msgid "Edit upgrade source url."
 msgstr "Upraviť URL zdroja aktualizácie."
 
@@ -7957,9 +7914,19 @@ msgstr "Flashovanie online"
 msgid "Flash Online a new image"
 msgstr "Flashovanie nového image online"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash priečinok '%s' nie je povolený!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Flashovanie prijímača %s %s on the fly."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Umožňuje inštaláciu softvéru pre váš prijímač v režime on the fly."
@@ -8782,9 +8749,6 @@ msgstr "Tlačidlo skrátenej voľby"
 msgid "Hotkey Settings"
 msgstr "Nastavenie tlač. skrátenej voľby"
 
-msgid "Hotkey Setup for"
-msgstr "Nastavenie tlač. skrátenej voľby pre"
-
 msgid "Hour"
 msgstr "Hodina"
 
@@ -9337,6 +9301,9 @@ msgstr "Inštalácia bola neúspešná!"
 msgid "Install Finished."
 msgstr "Inštalácia bola dokončená."
 
+msgid "Install Local Extension"
+msgstr "Inštalovať miestne rozšírenie"
+
 msgid "Install Plugins"
 msgstr "Inštalácia pluginov"
 
@@ -9357,9 +9324,6 @@ msgstr "Inštalovať rozšírenia."
 
 msgid "Install lcd picons on"
 msgstr "Inštalovať prog. ikony lcd do"
-
-msgid "Install Local Extension"
-msgstr "Inštalovať miestne rozšírenie"
 
 msgid "Install or remove finished."
 msgstr "Inštalácia alebo odstránenie dokončené."
@@ -10285,6 +10249,9 @@ msgstr "Hlavné menu"
 msgid "Maintain old EPG data for"
 msgstr "Zachovať staré EPG na"
 
+msgid "Maintain your multi boot device."
+msgstr "Vykonávajte správu a údržbu zariadenia multiboot."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Sprístupniť správcu súborov z menu pre rozšírenia."
 
@@ -10327,11 +10294,15 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltčina"
 
+msgid "Manage Extensions"
+msgstr "Spravovať rozšírenia"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Spravovať nastavenia pre výber miestneho nastavenia/jazyka"
 
-msgid "Manage Extensions"
-msgstr "Spravovať rozšírenia"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Správa rozšírení alebo pluginov prijímača %s %s"
 
 msgid "Manage network mounts"
 msgstr "Správa sieťových pripojení"
@@ -10508,6 +10479,15 @@ msgstr "Menu"
 
 msgid "Menu Actions"
 msgstr "Akcie menu"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Nastavenie menu"
@@ -11802,6 +11782,13 @@ msgstr "Jeden riadok"
 msgid "Online software update"
 msgstr "Online aktualizácia softvéru"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Online aktualizácia softvéru prijímača %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Len rozšírenia."
 
@@ -12106,6 +12093,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR - dlho"
 
+msgid "Package Manager"
+msgstr "Správa balíčkov"
+
 msgid "Package information currently not available!"
 msgstr "Informácia o balíku nie je momentálne dostupná!"
 
@@ -12120,9 +12110,6 @@ msgstr "Len zabalené jazykové balíčky"
 
 msgid "Packages and associated locales"
 msgstr "Balíky a súvisiace miestne nastavenia"
-
-msgid "Package Manager"
-msgstr "Správa balíčkov"
 
 msgid "Packet manager"
 msgstr "Správca balíčkov"
@@ -12610,8 +12597,8 @@ msgstr ""
 "\n"
 "Pokračujte stlačením OK."
 
-msgid "Please select what to do:"
-msgstr "Prosím vyberte, čo chcete urobiť:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Prosím nastavte tuner A"
@@ -14084,17 +14071,28 @@ msgstr "Obnoviť pluginy"
 msgid "Restore Settings"
 msgstr "Obnoviť nastavenia"
 
+msgid "Restore System Settings"
+msgstr "Obnoviť systémové nastavenia"
+
 msgid "Restore backups"
 msgstr "Obnoviť zálohy"
 
 msgid "Restore settings from a backup"
 msgstr "Obnoviť nastavenia zo zálohy"
 
-msgid "Restore System Settings"
-msgstr "Obnoviť systémové nastavenia"
-
 msgid "Restore the highlighted slot"
 msgstr "Obnoviť zvýraznený slot"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Obnoviť nastavenia vášho %s %s."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Obnoviť %s %s s novým firmwarom."
+
+msgid "Restore your backups by date."
+msgstr "Obnoviť zo zálohy podľa dátumu."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Obnovenie nastavení zo zálohy. Po obnovení sa prijímač reštartuje. aby sa aktivovali nové nastavenia"
@@ -14555,6 +14553,9 @@ msgstr "Hľadať súbory..."
 msgid "Scan for local extensions and install them"
 msgstr "Vyhľadajte lokálne rozšírenia a nainštalujte ich"
 
+msgid "Scan for local extensions and install them."
+msgstr "Prehľadať lokálne rozšírenia a nainštalovať ich."
+
 msgid "Scan wireless networks"
 msgstr "Vyhľadať bezdrôtové siete"
 
@@ -14809,11 +14810,20 @@ msgstr "Ak chcete vysielať príkaz DiSEqC len pri zmene družice na inú, vyber
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Vyberte (zdrojový zoznam) alebo zadajte priečinok (cieľový zoznam)"
 
+msgid "Select Additional Backup Files"
+msgstr "Vybrať doplnkové záložné súbory"
+
+msgid "Select Backup Location"
+msgstr "Vyberte umiestnenie zálohy"
+
 msgid "Select CAId"
 msgstr "Vyberte CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Výber vzhľadu systému Enigma2"
+
+msgid "Select Excluded Backup Files"
+msgstr "Vybrať vylúčené záložné súbory"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Možnosť pre rýchle DiSEqC vyberte v prípade, že to váš anténny systém podporuje. Ak si nie ste istí, vyberte možnosť 'nie'."
@@ -14838,6 +14848,9 @@ msgstr "Vyberte kanály Quad"
 
 msgid "Select Software Update"
 msgstr "Výber SW aktualizácie"
+
+msgid "Select Upgrade Source"
+msgstr "Vyberte zdroje pre aktualizáciu"
 
 msgid "Select Your Skin"
 msgstr "Výber vzhľadu"
@@ -14879,17 +14892,11 @@ msgstr "Vyberte akciu"
 msgid "Select action for timer %s:"
 msgstr "Vyberte akciu pre časovač %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Vybrať doplnkové záložné súbory"
-
 msgid "Select additional files to backup"
 msgstr "Výber doplnkových súborov, ktoré chcete zálohovať"
 
 msgid "Select audio track"
 msgstr "Vyberte zvukovú stopu"
-
-msgid "Select Backup Location"
-msgstr "Vyberte umiestnenie zálohy"
 
 msgid "Select cardserver"
 msgstr "Vybrať kartový server"
@@ -14911,9 +14918,6 @@ msgstr "Vyberte predvolený typ EPG..."
 
 msgid "Select destination for:"
 msgstr "Vyberte umiestnenie pre:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Vybrať vylúčené záložné súbory"
 
 msgid "Select files to exclude from backup"
 msgstr "Výber súborov, ktoré nechcete zálohovať"
@@ -15136,9 +15140,6 @@ msgstr "Vyberte typ požadovaného vypnutia v prípade, že sa aktivuje časova�
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Vyberte typ požadovaného vypnutia v prípade, že sa aktivuje časovač uspania."
-
-msgid "Select Upgrade Source"
-msgstr "Vyberte zdroje pre aktualizáciu"
 
 msgid "Select upgrade source to edit."
 msgstr "Vyberte zdroj aktualizácie, ktorý chcete upraviť."
@@ -15939,6 +15940,9 @@ msgstr "Zobraziť správy CI"
 msgid "Show Clients"
 msgstr "Zobraziť klientov"
 
+msgid "Show Default Backup Files"
+msgstr "Zobraziť predvolené záložné súbory"
+
 msgid "Show Directory size"
 msgstr "Zobraziť veľkosť priečinka"
 
@@ -16132,9 +16136,6 @@ msgstr "Zobraziť informácie o kódovaní v info-paneli"
 msgid "Show default after description"
 msgstr "Zobraziť predvolene po opise"
 
-msgid "Show Default Backup Files"
-msgstr "Zobraziť predvolené záložné súbory"
-
 msgid "Show default on new line"
 msgstr "Zobraziť predvolene na novom riadku"
 
@@ -16267,8 +16268,8 @@ msgstr "Zobraziť filmy"
 msgid "Show multi channel EPG"
 msgstr "Zobraziť multi-kanálové EPG"
 
-msgid "Show network mounts ..."
-msgstr "Zobraziť sieťové disky..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Zobraziť ďalšiu udalosť"
@@ -16353,6 +16354,9 @@ msgstr "Zobraziť nastavenie"
 
 msgid "Show setup default value"
 msgstr "Zobraziť predvolenú hodnotu nastavenia"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Zobraziť menu pre vypnutie"
@@ -16467,6 +16471,9 @@ msgstr "Zobraziť neznámu koncovku súboru s použitím 'prídavného prehliada
 
 msgid "Show unknown video format as"
 msgstr "Zobraziť neznámy formát videa ako"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Zobraziť vertikálneho programového sprievodcu"
@@ -16844,6 +16851,9 @@ msgstr "Inštalácia správcu softvéru"
 msgid "Software MultiBoot"
 msgstr "Softvérový MultiBoot"
 
+msgid "Software Restore"
+msgstr "Obnoviť softvér"
+
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
 
@@ -16858,9 +16868,6 @@ msgstr "Správa softvéru"
 
 msgid "Software manager setup"
 msgstr "Inštalácia správcu softvéru"
-
-msgid "Software Restore"
-msgstr "Obnoviť softvér"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17079,9 +17086,6 @@ msgid "Standby"
 msgstr "Pohotovostný režim"
 
 msgid "Standby / Restart"
-msgstr "Vypnúť / Reštart"
-
-msgid "Standby / restart"
 msgstr "Vypnúť / Reštart"
 
 msgid "Standby without TV shutdown"
@@ -18825,6 +18829,15 @@ msgstr "Prepínať medzi zoznamami prehľadov/EPG"
 msgid "Toggle display of the InfoBar"
 msgstr "Prepnúť zobrazenie informačného panela"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Prepnúť vkladanie nového textu dopredu alebo prepisovanie existujúceho textu"
 
@@ -19388,8 +19401,8 @@ msgstr "Aktualizácia lokalít pripojenia."
 msgid "Updating software catalog"
 msgstr "Aktualizácia katalógu softvéru"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Upgrade (záloha, flash a obnoviť všetky)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Upgrade bol dokončený."
@@ -19955,6 +19968,9 @@ msgstr "Zobraziť teletext..."
 
 msgid "View video CD..."
 msgstr "Zobraziť video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Zobraziť, nainštalovať a odstrániť dostupné alebo nainštalované balíčky."
 
 msgid "Violence"
 msgstr "Násilie"
@@ -22713,6 +22729,33 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Záloha, flash a obnovenie nastavení a žiadnych pluginov"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Záloha, flash a obnovenie nastavení a vybraných pluginov (opýtať sa používateľa)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Menu bežných akcií"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Nastavenie tlač. skrátenej voľby pre"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Prosím vyberte, čo chcete urobiť:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Zobraziť sieťové disky..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Vypnúť / Reštart"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Upgrade (záloha, flash a obnoviť všetky)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Vybrať štýl hlavného menu"

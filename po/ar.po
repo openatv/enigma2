@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-05-23 16:27+0000\n"
 "Last-Translator: Bader <fentanyl100@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -59,45 +59,12 @@ msgstr ""
 "\n"
 "<هذا الموالف تم اعداده تلقائيا>"
 
-msgid "Advanced options and settings."
-msgstr "إعدادات و إختيارات متقدمه"
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "بعد الضغط على موافق ، الرجاء الانتظار!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "أخذ نسخة احتياطية من %s %s إعداداتك."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "قم بعمل نسخة احتياطية من %s %s على محرك الأقراص الثابتة أو محرك أقراص USB"
-
-#
-msgid "Edit the upgrade source address."
-msgstr "تحرير عنوان مصدر الترقيه"
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "وميض سريعًا %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "صيانة جهازك متعدد الصور"
-
-#
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "إدارة الملحقات أو المكونات الإضافية لـ %s %s"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"تحديث عبر الإنترنت لبرنامج %s %s الخاص بك."
 
 #
 msgid ""
@@ -114,23 +81,6 @@ msgstr ""
 "\n"
 "التسجيل قيد التشغيل."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "قم باستعادة %s %s إعداداتك."
-
-#
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "قم باستعادة %s %s باستخدام برنامج ثابت جديد."
-
-#
-msgid "Restore your backups by date."
-msgstr "إستعاده النسخه الاحتياطيه بالتاريخ"
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "البحث عن إضافات موضعيه وتركيبها"
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -139,9 +89,6 @@ msgstr ""
 "\n"
 "أختار جهاز النسخه الاحتياطيه.\n"
 "الجهاز الحالى: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "مشاهده،تنصيب أو إزالة الباقات."
 
 msgid ""
 "\n"
@@ -2096,9 +2043,6 @@ msgstr "<مجهول>"
 msgid "?"
 msgstr "؟؟"
 
-msgid "??"
-msgstr "??"
-
 #
 msgid "A"
 msgstr "A"
@@ -2259,6 +2203,10 @@ msgstr ""
 "فشل عمليه التسجيل بالمؤقت\n"
 "قم بتعطيل التليفزيون وحاول مره ثانيه؟\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr ""
+
 msgid "AAC downmix"
 msgstr "ترميز الصوت الرقمي المزدوج"
 
@@ -2307,10 +2255,6 @@ msgid "ATSC provider"
 msgstr "مزود خدمات لجنة أنظمة التلفزيون المتقدمة"
 
 msgid "AV Setup"
-msgstr ""
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
 msgstr ""
 
 #
@@ -2608,17 +2552,20 @@ msgid "Advanced"
 msgstr "متقدم"
 
 #
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "إختيارات متقدمه"
-
-#
 msgid "Advanced Options"
 msgstr "خيارات متقدمة"
 
 #
 msgid "Advanced Restore"
 msgstr "إستعاده متقدمة"
+
+#
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "إختيارات متقدمه"
+
+msgid "Advanced options and settings."
+msgstr "إعدادات و إختيارات متقدمه"
 
 #
 msgid "Advanced software"
@@ -3454,6 +3401,9 @@ msgstr ""
 msgid "Backup Settings"
 msgstr ""
 
+msgid "Backup System Settings"
+msgstr "عمل نسخة إحتياطية  لأعدادات النظام"
+
 msgid "Backup completed."
 msgstr "اكتمل النسخ الاحتياطي."
 
@@ -3474,12 +3424,13 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-msgid "Backup System Settings"
-msgstr "عمل نسخة إحتياطية  لأعدادات النظام"
-
 #, fuzzy, python-format
 msgid "Backup to destination: %s"
 msgstr "عمل نسخه إحتياطيه  لأعدادات النظام"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "أخذ نسخة احتياطية من %s %s إعداداتك."
 
 msgid "Backup your current image"
 msgstr ""
@@ -3493,11 +3444,9 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr ""
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "قم بعمل نسخة احتياطية من %s %s على محرك الأقراص الثابتة أو محرك أقراص USB"
 
 msgid "Bahamas"
 msgstr "الباهاما"
@@ -4271,6 +4220,9 @@ msgstr ""
 msgid "Change Language"
 msgstr "اللغـه "
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr ""
 
@@ -4818,9 +4770,6 @@ msgstr "وحده النفاذ المشروط"
 
 msgid "Common Interface Assignment"
 msgstr "تحديد وحدة النفاذ المشروط"
-
-msgid "Common Menu Actions"
-msgstr ""
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -7093,6 +7042,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "تحرير تهيئة الشبكه للدريم بوكس."
 
 #
+msgid "Edit the upgrade source address."
+msgstr "تحرير عنوان مصدر الترقيه"
+
+#
 msgid "Edit upgrade source url."
 msgstr "تحرير عنوان مصدر الترقيه"
 
@@ -8322,9 +8275,19 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "وميض سريعًا %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
@@ -9197,9 +9160,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hotkey Setup for"
-msgstr ""
-
 msgid "Hour"
 msgstr ""
 
@@ -9781,6 +9741,9 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+msgid "Install Local Extension"
+msgstr "تثبيت إضافات محليه"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9802,9 +9765,6 @@ msgstr "تثبيت إضافات"
 
 msgid "Install lcd picons on"
 msgstr ""
-
-msgid "Install Local Extension"
-msgstr "تثبيت إضافات محليه"
 
 msgid "Install or remove finished."
 msgstr "إنتهاء التثبيت أو الحذف"
@@ -10809,6 +10769,9 @@ msgstr "القائمة الرئيسية"
 msgid "Maintain old EPG data for"
 msgstr "الحفاظ على بيانات دليل البرامج الإلكتروني القديم"
 
+msgid "Maintain your multi boot device."
+msgstr "صيانة جهازك متعدد الصور"
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr ""
 
@@ -10854,13 +10817,18 @@ msgstr "مالطا"
 msgid "Maltese"
 msgstr ""
 
+#
+msgid "Manage Extensions"
+msgstr "التحكم فى الاضافات"
+
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "إعدادات المجموعه"
 
 #
-msgid "Manage Extensions"
-msgstr "التحكم فى الاضافات"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "إدارة الملحقات أو المكونات الإضافية لـ %s %s"
 
 msgid "Manage network mounts"
 msgstr ""
@@ -11052,6 +11020,15 @@ msgstr "قائمة"
 #, fuzzy
 msgid "Menu Actions"
 msgstr "مكان"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr ""
@@ -12451,6 +12428,13 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "تحديث عبر الإنترنت لبرنامج %s %s الخاص بك."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "الملحقات فقط."
 
@@ -12771,6 +12755,9 @@ msgstr ""
 msgid "PVR long"
 msgstr ""
 
+msgid "Package Manager"
+msgstr "التحكم فى الحزم"
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12786,9 +12773,6 @@ msgstr ""
 
 msgid "Packages and associated locales"
 msgstr ""
-
-msgid "Package Manager"
-msgstr "التحكم فى الحزم"
 
 msgid "Packet manager"
 msgstr "المتحكم فى الحزم"
@@ -13317,7 +13301,7 @@ msgstr ""
 "\n"
 "أضغط موافق للاستمرار."
 
-msgid "Please select what to do:"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid "Please set up tuner A"
@@ -14849,17 +14833,30 @@ msgstr ""
 msgid "Restore Settings"
 msgstr ""
 
+msgid "Restore System Settings"
+msgstr "إستعادة إعدادات النظام"
+
 msgid "Restore backups"
 msgstr "إستعادة النسخة الإحتياطية"
 
 msgid "Restore settings from a backup"
 msgstr ""
 
-msgid "Restore System Settings"
-msgstr "إستعادة إعدادات النظام"
-
 msgid "Restore the highlighted slot"
 msgstr ""
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "قم باستعادة %s %s إعداداتك."
+
+#
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "قم باستعادة %s %s باستخدام برنامج ثابت جديد."
+
+#
+msgid "Restore your backups by date."
+msgstr "إستعاده النسخه الاحتياطيه بالتاريخ"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
@@ -15352,6 +15349,10 @@ msgstr "البحث في الملفات..."
 msgid "Scan for local extensions and install them"
 msgstr ""
 
+#
+msgid "Scan for local extensions and install them."
+msgstr "البحث عن إضافات موضعيه وتركيبها"
+
 msgid "Scan wireless networks"
 msgstr "البحث عن شبكات لاسلكية"
 
@@ -15622,10 +15623,19 @@ msgstr "اختر 'نعم' لإرسال الأمر الدايزك فقط عند �
 msgid "Select (source list) or enter directory (target list)"
 msgstr ""
 
+msgid "Select Additional Backup Files"
+msgstr ""
+
+msgid "Select Backup Location"
+msgstr "تحديد موقع النسخ الاحتياطي"
+
 msgid "Select CAId"
 msgstr "أختيار كايد"
 
 msgid "Select Enigma2 Skin"
+msgstr ""
+
+msgid "Select Excluded Backup Files"
 msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
@@ -15652,6 +15662,10 @@ msgstr ""
 
 msgid "Select Software Update"
 msgstr ""
+
+#, fuzzy
+msgid "Select Upgrade Source"
+msgstr "أختار مصدر الترقيه المراد تحريره"
 
 #, fuzzy
 msgid "Select Your Skin"
@@ -15695,17 +15709,11 @@ msgstr "حدد الاجراء"
 msgid "Select action for timer %s:"
 msgstr "اختار ملفات النسخه الإحتياطيه "
 
-msgid "Select Additional Backup Files"
-msgstr ""
-
 msgid "Select additional files to backup"
 msgstr ""
 
 msgid "Select audio track"
 msgstr "أختار مسار الصوت"
-
-msgid "Select Backup Location"
-msgstr "تحديد موقع النسخ الاحتياطي"
 
 msgid "Select cardserver"
 msgstr ""
@@ -15730,9 +15738,6 @@ msgstr ""
 
 msgid "Select destination for:"
 msgstr "اختر الوجهة التالية:"
-
-msgid "Select Excluded Backup Files"
-msgstr ""
 
 msgid "Select files to exclude from backup"
 msgstr ""
@@ -15959,10 +15964,6 @@ msgstr ""
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
-
-#, fuzzy
-msgid "Select Upgrade Source"
-msgstr "أختار مصدر الترقيه المراد تحريره"
 
 msgid "Select upgrade source to edit."
 msgstr "أختار مصدر الترقيه المراد تحريره"
@@ -16788,6 +16789,9 @@ msgstr "عرض رسائل الكامة الداخلية"
 msgid "Show Clients"
 msgstr ""
 
+msgid "Show Default Backup Files"
+msgstr ""
+
 msgid "Show Directory size"
 msgstr ""
 
@@ -16997,9 +17001,6 @@ msgstr "عرض معلومات التشفير في شريط المعومات"
 msgid "Show default after description"
 msgstr "إظهار وصف متقدم"
 
-msgid "Show Default Backup Files"
-msgstr ""
-
 #, fuzzy
 msgid "Show default on new line"
 msgstr "إظهار شريط المعلومات"
@@ -17142,7 +17143,7 @@ msgstr "عرض الأفلام"
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network mounts ..."
+msgid "Show network setup menu..."
 msgstr ""
 
 msgid "Show next event"
@@ -17236,6 +17237,9 @@ msgid "Show setup"
 msgstr "أعرض قائمة دى فى دى الرئيسيه"
 
 msgid "Show setup default value"
+msgstr ""
+
+msgid "Show setup menu..."
 msgstr ""
 
 #, fuzzy
@@ -17368,6 +17372,9 @@ msgid "Show unknown file extensions with 'Addon File-Viewer'."
 msgstr ""
 
 msgid "Show unknown video format as"
+msgstr ""
+
+msgid "Show usage and GUI menu..."
 msgstr ""
 
 #, fuzzy
@@ -17785,6 +17792,9 @@ msgstr ""
 msgid "Software MultiBoot"
 msgstr ""
 
+msgid "Software Restore"
+msgstr "إستعادة البرنامج التشغيلى"
+
 msgid "Software Update"
 msgstr ""
 
@@ -17799,9 +17809,6 @@ msgstr "التحكم فى البرنامج التشغيلي"
 
 msgid "Software manager setup"
 msgstr "إعداد مدير البرنامج التشغيلي"
-
-msgid "Software Restore"
-msgstr "إستعادة البرنامج التشغيلى"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18026,10 +18033,6 @@ msgid "Standby"
 msgstr "وضع الإستعداد"
 
 msgid "Standby / Restart"
-msgstr "وضع الاستعداد/إعاده التشغيل"
-
-#, fuzzy
-msgid "Standby / restart"
 msgstr "وضع الاستعداد/إعاده التشغيل"
 
 msgid "Standby without TV shutdown"
@@ -19845,6 +19848,15 @@ msgstr ""
 msgid "Toggle display of the InfoBar"
 msgstr ""
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
@@ -20458,7 +20470,7 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "جاري تحديث فهرس البرنامج التشغيلي"
 
-msgid "Upgrade (Backup, flash & restore all)"
+msgid "Upgrade (Flash & restore all)"
 msgstr ""
 
 msgid "Upgrade finished."
@@ -21048,6 +21060,9 @@ msgstr "مشاهدة نصوص الأخبار..."
 #
 msgid "View video CD..."
 msgstr "مشاهدة أقراص فيديو..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "مشاهده،تنصيب أو إزالة الباقات."
 
 msgid "Violence"
 msgstr ""
@@ -23878,6 +23893,13 @@ msgstr "تم الانتقال"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#, fuzzy
+#~ msgid "Standby / restart"
+#~ msgstr "وضع الاستعداد/إعاده التشغيل"
 
 #
 #, fuzzy

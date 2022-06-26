@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
 "PO-Revision-Date: 2022-06-23 17:33+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -55,43 +55,12 @@ msgstr ""
 "\n"
 "<Tämä viritin on määritetty automaattisesti>"
 
-msgid "Advanced options and settings."
-msgstr "Lisävalinnat ja vaihtoehdot."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Paina OK näppäintä ja odota!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Varmuuskopioi %s %s:n asetukset."
-
-#, python-format
-msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Varmuuskopioi laitteen %s %s ohjelmisto Kiintolevylle tai USB-muistitikulle."
-
-msgid "Edit the upgrade source address."
-msgstr "Muokkaa päivityksen lähdeosoitetta."
-
-#, python-format
-msgid "Flash on the fly your %s %s."
-msgstr "Päivitä laitteen %s %s image verkosta tai paikallisesta sijainnista."
-
-msgid "Maintain your multi boot device."
-msgstr "Ylläpidä multiboot image paikkoja."
-
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Muokkaa %s %s:n laajennuksia ja lisäosia"
-
-#, python-format
-msgid ""
-"Online update of your %s %s software."
-msgstr ""
-"Päivitä %s %s:n ohjelmisto online-päivityksen kautta."
 
 msgid ""
 "\n"
@@ -107,20 +76,6 @@ msgstr ""
 "\n"
 "Tallennus käynnissä."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Palauta %s %s:n asetukset."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Palauta %s %s:n ohjelmisto perustilaan."
-
-msgid "Restore your backups by date."
-msgstr "Palauta asetukset varmuuskopio päivän mukaan."
-
-msgid "Scan for local extensions and install them."
-msgstr "Etsi paikallisia lisäosia ja asenna ne."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -129,9 +84,6 @@ msgstr ""
 "\n"
 "Valitse tallennuspaikka varmuuskopiolle.\n"
 "Nykyinen sijainti: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Katsele, asenna ja poista ohjelmapaketteja."
 
 msgid ""
 "\n"
@@ -1955,9 +1907,6 @@ msgstr "<tuntematon>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2123,6 +2072,10 @@ msgstr ""
 "Sallitko kanavanvaihdon, jotta tallennusta\n"
 "voidaan yrittää uudelleen?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV kuvasuhde on %s."
+
 msgid "AAC downmix"
 msgstr "AAC muunto stereoksi"
 
@@ -2170,10 +2123,6 @@ msgstr "Lisää p.tarjoaja"
 
 msgid "AV Setup"
 msgstr "Kuva/Ääni Asetukset"
-
-#, python-format
-msgid "A/V aspect ratio is '%s'."
-msgstr "AV kuvasuhde on %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2444,14 +2393,17 @@ msgstr "Aikuisten yleisö, voimakas väkivalta 15+"
 msgid "Advanced"
 msgstr "Laaja"
 
-msgid "Advanced Settings"
-msgstr "Laajat Asetukset"
-
 msgid "Advanced Options"
 msgstr "Laajennetut valinnat"
 
 msgid "Advanced Restore"
 msgstr "Laajennettu palautus"
+
+msgid "Advanced Settings"
+msgstr "Laajat Asetukset"
+
+msgid "Advanced options and settings."
+msgstr "Lisävalinnat ja vaihtoehdot."
 
 msgid "Advanced software"
 msgstr "Laajemmat ohjelmistovalinnat"
@@ -3235,6 +3187,9 @@ msgstr "Varmuuskopiointitila: USB Palautus\n"
 msgid "Backup Settings"
 msgstr "Varmuuskopioi asetukset"
 
+msgid "Backup System Settings"
+msgstr "Varmuuskopioi järjestelmäasetukset"
+
 msgid "Backup completed."
 msgstr "Varmuuskopiointi suoritettu."
 
@@ -3257,12 +3212,13 @@ msgstr ""
 "Varmuuskopio lisäosat löytyi!\n"
 "Haluatko asentaa ne nyt?"
 
-msgid "Backup System Settings"
-msgstr "Varmuuskopioi järjestelmäasetukset"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Varmuuskopion sijainti: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Varmuuskopioi %s %s:n asetukset."
 
 msgid "Backup your current image"
 msgstr "Luo täydellinen varmuuskopio ohjelmistosta"
@@ -3276,11 +3232,9 @@ msgstr "Varmuuskopioi nykyiset asetukset"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Varmuuskopioi nykyiset asetukset. Tämä sisältää E2-asetukset, kanava, verkko ja kaikki valitut tiedostot"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Varmuuskopio, päivitä ja palauta asetukset ei lisäosia"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Varmuuskopio, päivitä ja palauta asetukset ja valitut lisäosat(kysy käyttäjältä)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Varmuuskopioi laitteen %s %s ohjelmisto Kiintolevylle tai USB-muistitikulle."
 
 msgid "Bahamas"
 msgstr "Bahamasaaret"
@@ -4024,6 +3978,9 @@ msgstr "Video sirun tila*"
 msgid "Change Language"
 msgstr "Kielivalinta"
 
+msgid "Change OSD Settings"
+msgstr ""
+
 msgid "Change PIN"
 msgstr "Muuta PIN koodi"
 
@@ -4537,9 +4494,6 @@ msgstr "CI liitäntä Ja CAM"
 
 msgid "Common Interface Assignment"
 msgstr "CI-määritykset"
-
-msgid "Common Menu Actions"
-msgstr "Yleiset Valikko toiminnot"
 
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
@@ -6736,6 +6690,9 @@ msgstr "Muokkaan %s %s:n nimipalvelimen asetuksia."
 msgid "Edit the network configuration of your %s %s."
 msgstr "Muokkaa %s %s:n lähiverkon asetuksia."
 
+msgid "Edit the upgrade source address."
+msgstr "Muokkaa päivityksen lähdeosoitetta."
+
 msgid "Edit upgrade source url."
 msgstr "Muokkaa päivitys-URL:ia."
 
@@ -7942,9 +7899,19 @@ msgstr "Lataa ohjelmisto image internetin kautta"
 msgid "Flash Online a new image"
 msgstr "Lataa internetistä uusi ohjelmisto image"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash hakemisto '%s' ei ole sallittu!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Päivitä laitteen %s %s image verkosta tai paikallisesta sijainnista."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
@@ -8767,9 +8734,6 @@ msgstr "Pikanäppäin"
 msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
 
-msgid "Hotkey Setup for"
-msgstr "Pikanäppäin"
-
 msgid "Hour"
 msgstr "Tunti"
 
@@ -9327,6 +9291,9 @@ msgstr "Asennus epäonnistui!"
 msgid "Install Finished."
 msgstr "Asennus suoritettu."
 
+msgid "Install Local Extension"
+msgstr "Asenna paikallinen laajennus"
+
 msgid "Install Plugins"
 msgstr "Asenna lisäosia"
 
@@ -9347,9 +9314,6 @@ msgstr "Asenna laajennukset."
 
 msgid "Install lcd picons on"
 msgstr "Asenna etupaneeliin piconit tänne"
-
-msgid "Install Local Extension"
-msgstr "Asenna paikallinen laajennus"
 
 msgid "Install or remove finished."
 msgstr "Asennus/poisto suoritettu."
@@ -10274,6 +10238,9 @@ msgstr "Päävalikko"
 msgid "Maintain old EPG data for"
 msgstr "Säilytä vanhoja ohjelmatietoja (minuuttia)"
 
+msgid "Maintain your multi boot device."
+msgstr "Ylläpidä multiboot image paikkoja."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Tee File Commanderiin pääsy Laajennukset valikosta."
 
@@ -10316,11 +10283,15 @@ msgstr "Malta"
 msgid "Maltese"
 msgstr "Maltan kieli"
 
+msgid "Manage Extensions"
+msgstr "Hallitse laajennuksia/lisäosia"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Hallitse Alue/Kieli valinta asetuksia"
 
-msgid "Manage Extensions"
-msgstr "Hallitse laajennuksia/lisäosia"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Muokkaa %s %s:n laajennuksia ja lisäosia"
 
 msgid "Manage network mounts"
 msgstr "Hallitse verkkoliitoksia"
@@ -10497,6 +10468,15 @@ msgstr "Valikko"
 
 msgid "Menu Actions"
 msgstr "Valikko toiminnot"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Valikon määritys"
@@ -11799,6 +11779,13 @@ msgstr "Yksi rivi"
 msgid "Online software update"
 msgstr "Ohjelmistopäivitys internetin kautta"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Päivitä %s %s:n ohjelmisto online-päivityksen kautta."
+
+msgid "Only Flash Backup Image"
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Vain laajennukset."
 
@@ -12105,6 +12092,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR (pitkä)"
 
+msgid "Package Manager"
+msgstr "Ohjelmapakettien hallinta"
+
 msgid "Package information currently not available!"
 msgstr "Pakettitietoja ei ole tällä hetkellä saatavilla!"
 
@@ -12119,9 +12109,6 @@ msgstr "Halitse paikallisia tiedostoja"
 
 msgid "Packages and associated locales"
 msgstr "Paketit ja niihin liittyvät alueet"
-
-msgid "Package Manager"
-msgstr "Ohjelmapakettien hallinta"
 
 msgid "Packet manager"
 msgstr "Ohjelmapakettien hallinta"
@@ -12609,8 +12596,8 @@ msgstr ""
 "\n"
 "Jatka painamalla OK näppäintä."
 
-msgid "Please select what to do:"
-msgstr "Valitse mitä haluat tehdä:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Määritä virittimen A asetukset"
@@ -14083,17 +14070,28 @@ msgstr "Palauta Lisäosat"
 msgid "Restore Settings"
 msgstr "Palauta Asetukset"
 
+msgid "Restore System Settings"
+msgstr "Palauta järjestelmäasetukset"
+
 msgid "Restore backups"
 msgstr "Palauta varmuuskopiot"
 
 msgid "Restore settings from a backup"
 msgstr "Palauta asetukset varmuuskopiosta"
 
-msgid "Restore System Settings"
-msgstr "Palauta järjestelmäasetukset"
-
 msgid "Restore the highlighted slot"
 msgstr "Palauta korostettu image paikka"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Palauta %s %s:n asetukset."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Palauta %s %s:n ohjelmisto perustilaan."
+
+msgid "Restore your backups by date."
+msgstr "Palauta asetukset varmuuskopio päivän mukaan."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Palauta asetukset takaisin varmuuskopiosta. Käynnistä vastaanotin uudelleen aktivoidaksesi uudet asetukset"
@@ -14554,6 +14552,9 @@ msgstr "Hae tiedostoja."
 msgid "Scan for local extensions and install them"
 msgstr "Etsi paikallisia laajennuksia ja asenna ne"
 
+msgid "Scan for local extensions and install them."
+msgstr "Etsi paikallisia lisäosia ja asenna ne."
+
 msgid "Scan wireless networks"
 msgstr "Hae langattomia verkkoja"
 
@@ -14812,11 +14813,20 @@ msgstr "Valitse 'kyllä' jos haluat lähettää DiSEqC komennon vain vaihdettaes
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Valitse (lähdeluettelo) tai kirjoita hakemisto (kohdelista)"
 
+msgid "Select Additional Backup Files"
+msgstr "Lisää varmuuskopioitavat tiedostot"
+
+msgid "Select Backup Location"
+msgstr "Varmuuskopion sijainti"
+
 msgid "Select CAId"
 msgstr "Valitse CAId"
 
 msgid "Select Enigma2 Skin"
 msgstr "Valitse järjestelmän Teema"
+
+msgid "Select Excluded Backup Files"
+msgstr "Pois jätettävät tiedostot varmuuskopiosta"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
@@ -14843,6 +14853,9 @@ msgstr "Valitse Quad kanavat"
 
 msgid "Select Software Update"
 msgstr "Ohjelmistopäivitys"
+
+msgid "Select Upgrade Source"
+msgstr "Valitse päivityksen lähdeosoite"
 
 msgid "Select Your Skin"
 msgstr "Valitse teemasi"
@@ -14884,17 +14897,11 @@ msgstr "Valitse toiminto"
 msgid "Select action for timer %s:"
 msgstr "Valitse toiminto ajastimelle %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Lisää varmuuskopioitavat tiedostot"
-
 msgid "Select additional files to backup"
 msgstr "Valitse varmuuskopioitavat lisätiedostot"
 
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
-
-msgid "Select Backup Location"
-msgstr "Varmuuskopion sijainti"
 
 msgid "Select cardserver"
 msgstr "Valitse korttipalvelin"
@@ -14916,9 +14923,6 @@ msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
 msgid "Select destination for:"
 msgstr "Valitse kohde:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Pois jätettävät tiedostot varmuuskopiosta"
 
 msgid "Select files to exclude from backup"
 msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
@@ -15143,9 +15147,6 @@ msgstr "Valitse haluamasi sammutus tyyppi, kun energia ajastin aktivoituu."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
-
-msgid "Select Upgrade Source"
-msgstr "Valitse päivityksen lähdeosoite"
 
 msgid "Select upgrade source to edit."
 msgstr "Valitse päivityksen lähde muokattavaksi."
@@ -15948,6 +15949,9 @@ msgstr "Näytä CI-viestit"
 msgid "Show Clients"
 msgstr "Näytä asiakkaat"
 
+msgid "Show Default Backup Files"
+msgstr "Varmuuskopion oletussisältö"
+
 msgid "Show Directory size"
 msgstr "Näytä Kansion koko"
 
@@ -16141,9 +16145,6 @@ msgstr "Näytä salaustyyppi tietopalkissa"
 msgid "Show default after description"
 msgstr "Näytä laajennettu ohjelmakuvaus"
 
-msgid "Show Default Backup Files"
-msgstr "Varmuuskopion oletussisältö"
-
 msgid "Show default on new line"
 msgstr "Näytä oletus uudella rivillä"
 
@@ -16276,8 +16277,8 @@ msgstr "Näytä tallennukset"
 msgid "Show multi channel EPG"
 msgstr "Näytä monikanava-EPG"
 
-msgid "Show network mounts ..."
-msgstr "Näytä verkkoliitokset"
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Näytä seuraava ohjelma"
@@ -16362,6 +16363,9 @@ msgstr "Näytä Asetukset"
 
 msgid "Show setup default value"
 msgstr "Näytä asetusten oletusarvo"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Näytä sammutusvalikko"
@@ -16476,6 +16480,9 @@ msgstr "Näytä tuntemattomat tiedostotunnisteet Lisäosa File Viewer."
 
 msgid "Show unknown video format as"
 msgstr "Näytä tuntematon videon tarkkuus muodossa"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Näytä pystysuora EPG"
@@ -16851,6 +16858,9 @@ msgstr "Ohjelmiston hallinnan asetukset"
 msgid "Software MultiBoot"
 msgstr "MultiBoot"
 
+msgid "Software Restore"
+msgstr "Ohjelmiston palautus"
+
 msgid "Software Update"
 msgstr "Ohjelmistopäivitykset"
 
@@ -16865,9 +16875,6 @@ msgstr "Ohjelmiston hallinta"
 
 msgid "Software manager setup"
 msgstr "Ohjelmiston hallinnan asetukset"
-
-msgid "Software Restore"
-msgstr "Ohjelmiston palautus"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17086,9 +17093,6 @@ msgid "Standby"
 msgstr "Valmiustila"
 
 msgid "Standby / Restart"
-msgstr "Sammutusvalikko"
-
-msgid "Standby / restart"
 msgstr "Sammutusvalikko"
 
 msgid "Standby without TV shutdown"
@@ -18833,6 +18837,15 @@ msgstr "Vaihda suosikkien ja ohjelmatietojen välillä"
 msgid "Toggle display of the InfoBar"
 msgstr "Näytä ohjelman tiedot"
 
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti"
 
@@ -19399,8 +19412,8 @@ msgstr "Päivitetään Liitosten paikkaa."
 msgid "Updating software catalog"
 msgstr "Päivitetään laajennuksien/lisäosien luetteloa"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Päivitä (Varmuuskopio, päivitä ja palauta kaikki)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Päivitys suoritettu."
@@ -19966,6 +19979,9 @@ msgstr "Näytä tekstitv"
 
 msgid "View video CD..."
 msgstr "Katso Video CD..."
+
+msgid "View, install and remove available or installed packages."
+msgstr "Katsele, asenna ja poista ohjelmapaketteja."
 
 msgid "Violence"
 msgstr "Väkivalta"
@@ -22729,6 +22745,33 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Varmuuskopio, päivitä ja palauta asetukset ei lisäosia"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Varmuuskopio, päivitä ja palauta asetukset ja valitut lisäosat(kysy käyttäjältä)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Yleiset Valikko toiminnot"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Pikanäppäin"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Valitse mitä haluat tehdä:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Näytä verkkoliitokset"
+
+#~ msgid "Standby / restart"
+#~ msgstr "Sammutusvalikko"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Päivitä (Varmuuskopio, päivitä ja palauta kaikki)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Valitse päävalikko näkymä"
