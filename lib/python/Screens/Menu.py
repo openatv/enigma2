@@ -20,8 +20,8 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
-displayBrand = BoxInfo.getItem("displaybrand")
-displayModel = BoxInfo.getItem("displaymodel")
+DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
+DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
 
 MENU_TEXT = 0
 MENU_MODULE = 1
@@ -298,7 +298,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 						self.menuList.append(data)
 		if self.menuID:
 			for plugin in plugins.getPluginsForMenu(self.menuID):  # Plugins.
-				print("[Menu] DEBUG 1: Plugin data=%s." % str(plugin))
+				# print("[Menu] DEBUG 1: Plugin data=%s." % str(plugin))
 				pluginKey = plugin[PLUGIN_KEY]  # Check if a plugin overrides an existing menu.
 				for entry in self.menuList:
 					if entry[PLUGIN_KEY] == pluginKey:
@@ -306,7 +306,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 						break
 				description = plugins.getDescriptionForMenuEntryID(self.menuID, pluginKey)  # It is assumed that description is already translated by the plugin!
 				if "%s %s" in description:
-					description = description % (displayBrand, displayModel)
+					description = description % (DISPLAY_BRAND, DISPLAY_MODEL)
 				image = self.getMenuEntryImage(plugin[PLUGIN_KEY], lastKey)
 				if len(plugin) > PLUGIN_CLOSEALL and plugin[PLUGIN_CLOSEALL]:  # Was "len(plugin) > 4".
 					self.menuList.append((plugin[PLUGIN_TEXT], boundFunction(plugin[PLUGIN_MODULE], self.session, self.close), plugin[PLUGIN_KEY], plugin[PLUGIN_WEIGHT] or 50, description, image))
@@ -315,7 +315,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		if config.usage.menuSortOrder.value == "user" and self.menuID == "mainmenu":
 			idList = []
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				print("[Menu] DEBUG 2: Plugin data=%s." % str(plugin))
+				# print("[Menu] DEBUG 2: Plugin data=%s." % str(plugin))
 				plugin.id = (plugin.name.lower()).replace(" ", "_")
 				if plugin.id not in idList:
 					idList.append(plugin.id)
@@ -411,7 +411,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	def processDisplayedText(self, text):
 		text = _(text) if text else ""
 		if "%s %s" in text:
-			text = text % (displayBrand, displayModel)
+			text = text % (DISPLAY_BRAND, DISPLAY_MODEL)
 		return text
 
 	def getMenuEntryImage(self, key, lastKey):
