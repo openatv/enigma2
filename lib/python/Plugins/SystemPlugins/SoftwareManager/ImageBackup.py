@@ -151,6 +151,8 @@ class ImageBackup(Screen):
 				self.DISTRO = DISTRO
 				self.DISPLAYDISTRO = DISPLAYDISTRO
 				self.DISTROVERSION = DISTROVERSION
+				self.IMAGETYPE = BoxInfo.getItem("imagetype")
+				self.IMAGEDEVBUILD = "" if self.IMAGETYPE == "release" else BoxInfo.getItem("imagedevbuild")
 				self.MODEL = GetBoxName()
 				self.OEM = BoxInfo.getItem("brand")
 				self.MACHINEBUILD = BoxInfo.getItem("model")
@@ -205,18 +207,23 @@ class ImageBackup(Screen):
 				print("[Image Backup] ROOTFSTYPE = >%s<" % self.ROOTFSTYPE)
 				print("[Image Backup] hasMultiBootMDT = >%s<" % self.hasMultiBootMDT)
 				print("[Image Backup] EMMCIMG = >%s<" % self.EMMCIMG)
-				print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
-				print("[Image Backup] DISPLAYDISTRO = >%s<" % self.DISPLAYDISTRO)
-				print("[Image Backup] DISTROVERSION = >%s<" % self.DISTROVERSION)
 				print("[Image Backup] MTDBOOT = >%s<" % self.MTDBOOT)
 				print("[Image Backup] USB RECOVERY = >%s< " % self.RECOVERY)
 				print("[Image Backup] DESTINATION = >%s< " % self.DIRECTORY)
 				print("[Image Backup] SLOT = >%s< " % self.SLOT)
 
-				print("[Image Backup] IMAGEBUILD = >%s<" % self.IMAGEBUILD)
-				print("[Image Backup] IMGVERSION = >%s<" % self.IMGVERSION)
-				print("[Image Backup] IMGREVISION = >%s<" % self.IMGREVISION)
-				print("[Image Backup] DRIVERSDATE = >%s<" % self.DRIVERSDATE)
+				isNotCurrent = MultiBoot.getCurrentSlotCode() != answer[1]
+				
+				if self.RECOVERY and not isNotCurrent:
+					print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
+					print("[Image Backup] DISPLAYDISTRO = >%s<" % self.DISPLAYDISTRO)
+					print("[Image Backup] DISTROVERSION = >%s<" % self.DISTROVERSION)
+					print("[Image Backup] IMAGEBUILD = >%s<" % self.IMAGEBUILD)
+					print("[Image Backup] IMGVERSION = >%s<" % self.IMGVERSION)
+					print("[Image Backup] IMGREVISION = >%s<" % self.IMGREVISION)
+					print("[Image Backup] DRIVERSDATE = >%s<" % self.DRIVERSDATE)
+					print("[Image Backup] IMAGEDEVBUILD = >%s<" % self.IMAGEDEVBUILD)
+					print("[Image Backup] IMAGETYPE = >%s<" % self.IMAGETYPE)
 
 				self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
 				self.START = time()
@@ -255,7 +262,6 @@ class ImageBackup(Screen):
 				self.IMAGEVERSION = ""
 				# Get real slot info if not current slot and not recovery
 				if not self.RECOVERY:
-					isNotCurrent = MultiBoot.getCurrentSlotCode() != answer[1]
 					infoPath = "/"
 					if MultiBoot.canMultiBoot() and isNotCurrent:
 						infoPath = self.backuproot
@@ -268,6 +274,10 @@ class ImageBackup(Screen):
 							self.DISPLAYDISTRO = info["displaydistro"]
 						if "imageversion" in info:
 							self.DISTROVERSION = info["imageversion"]
+						if "imagetype" in info:
+							self.IMAGETYPE = info["imagetype"]
+						if "imagedevbuild" in info:
+							self.IMAGEDEVBUILD = info["imagedevbuild"]
 						if "imagebuild" in info:
 							self.IMAGEBUILD = info["imagebuild"]
 						if "driversdate" in info:
@@ -284,8 +294,9 @@ class ImageBackup(Screen):
 							self.IMAGEBUILD = info["compiledate"]
 							self.DRIVERSDATE = ""
 
+						if self.IMAGETYPE != "release" and self.IMAGEDEVBUILD:
+							self.DISTROVERSION = "%s.%s" % (self.DISTROVERSION, self.IMAGEDEVBUILD)
 
-						print("[Image Backup] Real Info")
 						print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
 						print("[Image Backup] DISPLAYDISTRO = >%s<" % self.DISPLAYDISTRO)
 						print("[Image Backup] DISTROVERSION = >%s<" % self.DISTROVERSION)
@@ -293,8 +304,12 @@ class ImageBackup(Screen):
 						print("[Image Backup] IMGVERSION = >%s<" % self.IMGVERSION)
 						print("[Image Backup] IMGREVISION = >%s<" % self.IMGREVISION)
 						print("[Image Backup] DRIVERSDATE = >%s<" % self.DRIVERSDATE)
+						print("[Image Backup] IMAGEDEVBUILD = >%s<" % self.IMAGEDEVBUILD)
+						print("[Image Backup] IMAGETYPE = >%s<" % self.IMAGETYPE)
 
 					self.IMAGEVERSION = self.imageInfo(settingsFile, bouquetsTV, bouquetsRadio, isNotCurrent)
+				else:
+					self.IMAGEVERSION = "" # TODO TEST Recovery image
 
 				self.message = "echo -e '\n"
 				if MACHINEBRAND.startswith("A") or MACHINEBRAND.startswith("E") or MACHINEBRAND.startswith("I") or MACHINEBRAND.startswith("O") or MACHINEBRAND.startswith("U") or MACHINEBRAND.startswith("Xt"):
@@ -748,7 +763,7 @@ class ImageBackup(Screen):
 
 		AboutText += _("[Enigma2 Settings]\n")
 		for setting in settings:
-			AboutText += setting
+			AboutText += "%s\n" % setting
 		AboutText += _("\n\n[User - bouquets (TV)]\n")
 		if bouquetsTV:
 			for bouquet in bouquetsTV:
