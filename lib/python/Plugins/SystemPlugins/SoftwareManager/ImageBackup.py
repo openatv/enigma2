@@ -371,31 +371,19 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
 				if self.MACHINEBUILD in ("h9", "i55plus"):
-					# TODO check
-					#for index, value in enumerate(["fastboot", "bootargs", "baseparam", "pq_param", "logo"]):
-					#	cmdlist.append(self.makeEchoCreate("%s dump" % value))
-					#	cmdlist.append("dd if=/dev/mtd%d of=%s/%s.bin" % (index, self.WORKDIR, value))
-
-					cmdlist.append(self.makeEchoCreate("fastboot dump"))
-					cmdlist.append("dd if=/dev/mtd0 of=%s/fastboot.bin" % self.WORKDIR)
-					cmdlist.append(self.makeEchoCreate("bootargs dump"))
-					cmdlist.append("dd if=/dev/mtd1 of=%s/bootargs.bin" % self.WORKDIR)
-					cmdlist.append(self.makeEchoCreate("baseparam dump"))
-					cmdlist.append("dd if=/dev/mtd2 of=%s/baseparam.bin" % self.WORKDIR)
-					cmdlist.append(self.makeEchoCreate("pq_param dump"))
-					cmdlist.append("dd if=/dev/mtd3 of=%s/pq_param.bin" % self.WORKDIR)
-					cmdlist.append(self.makeEchoCreate("logo dump"))
-					cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
+					for index, value in enumerate(["fastboot", "bootargs", "baseparam", "pq_param", "logo"]):
+						cmdlist.append(self.makeEchoCreate("%s dump" % value))
+						cmdlist.append("dd if=/dev/mtd%d of=%s/%s.bin" % (index, self.WORKDIR, value))
 
 				if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
 					SEEK_CONT = (getFolderSize(self.backuproot) / 1024) + 100000
 
 					cmdlist.append(self.makeEchoCreate("fastboot dump"))
-					cmdlist.append("cp -f /usr/share/fastboot.bin %s/fastboot.bin" % (self.WORKDIR))
+					cmdlist.append(self.makeCopyBinFile("fastboot", self.WORKDIR))
 					#cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
 
 					cmdlist.append(self.makeEchoCreate("bootargs dump"))
-					cmdlist.append("cp -f /usr/share/bootargs.bin %s/bootargs.bin" % (self.WORKDIR))
+					cmdlist.append(self.makeCopyBinFile("bootargs", self.WORKDIR))
 					#cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
 
 					cmdlist.append(self.makeEchoCreate("boot dump"))
@@ -417,7 +405,7 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/deviceinfo.bin" % self.WORKDIR)
 
 					cmdlist.append(self.makeEchoCreate("apploader dump"))
-					cmdlist.append("cp -f /usr/share/apploader.bin %s/apploader.bin" % (self.WORKDIR))
+					cmdlist.append(self.makeCopyBinFile("apploader", self.WORKDIR))
 					#cmdlist.append("dd if=/dev/mmcblk0p10 of=%s/apploader.bin" % self.WORKDIR)
 
 					cmdlist.append(self.makeEchoCreate("rootfs dump"))
@@ -569,6 +557,9 @@ class ImageBackup(Screen):
 	def makeSpace(self):
 		return "echo \" \""
 
+	def makeCopyBinFile(self, fileName, destination):
+		return "cp -f /usr/share/%s.bin %s/%s.bin" % (fileName, destination, fileName)
+
 	def doFullBackupCB(self):
 		cmdlist = []
 		cmdlist.append(self.message)
@@ -602,9 +593,9 @@ class ImageBackup(Screen):
 		if self.RECOVERY:
 			if self.EMMCIMG == "usb_update.bin":
 				system("mv %s/%s %s/%s" % (self.WORKDIR, self.EMMCIMG, self.MAINDESTROOT, self.EMMCIMG))
-				cmdlist.append("cp -f /usr/share/fastboot.bin %s/fastboot.bin" % (self.MAINDESTROOT))
-				cmdlist.append("cp -f /usr/share/bootargs.bin %s/bootargs.bin" % (self.MAINDESTROOT))
-				cmdlist.append("cp -f /usr/share/apploader.bin %s/apploader.bin" % (self.MAINDESTROOT))
+				cmdlist.append(self.makeCopyBinFile("fastboot", self.MAINDESTROOT))
+				cmdlist.append(self.makeCopyBinFile("bootargs", self.MAINDESTROOT))
+				cmdlist.append(self.makeCopyBinFile("apploader", self.MAINDESTROOT))
 			else:
 				system("mv %s/%s %s/%s" % (self.WORKDIR, self.EMMCIMG, self.MAINDEST, self.EMMCIMG))
 			if self.EMMCIMG == "emmc.img":
@@ -654,33 +645,32 @@ class ImageBackup(Screen):
 			f.close()
 
 		if self.MACHINEBUILD in ("h9", "i55plus"):
-			cmdlist.append("cp -f /usr/share/fastboot.bin %s/fastboot.bin" % (self.MAINDESTROOT))
-			cmdlist.append("cp -f /usr/share/bootargs.bin %s/bootargs.bin" % (self.MAINDESTROOT))
+			cmdlist.append(self.makeCopyBinFile("fastboot", self.MAINDESTROOT))
+			cmdlist.append(self.makeCopyBinFile("bootargs", self.MAINDESTROOT))
 
 		iname = "recovery_emmc" if BoxInfo.getItem("canRecovery") and self.RECOVERY else "usb"
 
 		cmdlist.append("7za a -r -bt -bd %s/%s-%s-%s-backup-%s_%s.zip %s/*" % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, iname, self.MAINDESTROOT))
 
 		cmdlist.append("sync")
-		file_found = True
+		file_not_found = ""
 
 		if self.RECOVERY:
 			if self.EMMCIMG == "usb_update.bin":
 				if not isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
-					print("[Image Backup] %s file not found" % (self.EMMCIMG))
-					file_found = False
+					file_not_found = self.EMMCIMG
 			else:
 				if not isfile("%s/%s" % (self.MAINDEST, self.EMMCIMG)):
-					print("[Image Backup] %s file not found" % (self.EMMCIMG))
-					file_found = False
+					file_not_found = self.EMMCIMG
 		else:
 			if not isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
-				print("[Image Backup] %s file not found" % (self.ROOTFSBIN))
-				file_found = False
+				file_not_found = self.ROOTFSBIN
 
 			if not isfile("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
-				print("[Image Backup] %s file not found" % (self.KERNELBIN))
-				file_found = False
+				file_not_found = self.KERNELBIN
+
+		if file_not_found:
+			print("[Image Backup] %s file not found" % file_not_found)
 
 		if MultiBoot.canMultiBoot() and not self.RECOVERY and self.ROOTFSSUBDIR == "none":
 			cmdlist.append(self.makeEchoLine())
@@ -691,7 +681,7 @@ class ImageBackup(Screen):
 			cmdlist.append(self.makeSpace())
 			cmdlist.append(self.makeEcho(_("To restore the image:")))
 			cmdlist.append(self.makeEcho(_("Use OnlineFlash in SoftwareManager")))
-		elif file_found:
+		elif file_not_found == "":
 			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Image created on: %s/%s-%s-%s-backup-%s_%s.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, iname)))
 			cmdlist.append(self.makeEchoLine(True))
@@ -729,7 +719,7 @@ class ImageBackup(Screen):
 		AboutText += _("By openATV Image Team") + "\n"
 		AboutText += _("Support at") + " www.opena.tv\n\n"
 		AboutText += _("[Image Info]\n")
-		AboutText += _("Model: %s %s\n") % (MACHINEBRAND, MACHINENAME)
+		AboutText += "%s: %s %s\n" % (_("Model"), MACHINEBRAND, MACHINENAME)
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if exists("/proc/stb/info/chipset"):
@@ -754,9 +744,9 @@ class ImageBackup(Screen):
 			month = driversdate[4:6]
 			day = driversdate[6:8]
 			driversdate = "-".join((year, month, day))
-			AboutText += _("Drivers:\t%s") % driversdate + "\n"
+			AboutText += "%s:\t%s\n" % (_("Drivers version"), driversdate)
 
-		AboutText += _("Last update:\t%s") % self.IMGREVISION + "\n\n"
+		AboutText += "%s\t%s\n\n" % (_("Last update"), self.IMGREVISION)
 
 		AboutText += _("[Enigma2 Settings]\n")
 		for setting in settings:
@@ -793,34 +783,32 @@ class ImageBackup(Screen):
 		settingsFile = fileReadLines(pathjoin(imageDir, "etc/enigma2/settings"), source=MODULE_NAME) or []
 		bouquetsTV = []
 		bouquetsRadio = []
-		try:
-			lines = fileReadLines(pathjoin(imageDir, "etc/enigma2/bouquets.tv"), source=MODULE_NAME)
-			if lines:
-				for line in lines:
-					if line.startswith("#SERVICE "):
-						bouqet = line.split()
-						if len(bouqet) > 3:
-							bouqet[3] = bouqet[3].replace("\"", "")
-							f = open("/etc/enigma2/" + bouqet[3], "r")
-							userbouqet = f.readline()
-							bouquetsTV.append(userbouqet.replace("#NAME ", ""))
-							f.close()
-		except OSError:
-			pass
+		lines = fileReadLines(pathjoin(imageDir, "etc/enigma2/bouquets.tv"), source=MODULE_NAME)
+		if lines:
+			for line in lines:
+				if line.startswith("#SERVICE "):
+					bouqet = line.split()
+					if len(bouqet) > 3:
+						bouqet[3] = bouqet[3].replace("\"", "")
+					try:
+						with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+							userbouqet = fd.readline()
+						bouquetsTV.append(userbouqet.replace("#NAME ", ""))
+					except OSError:
+						pass
 
-		try:
-			lines = fileReadLines(pathjoin(imageDir, "etc/enigma2/bouquets.radio"), source=MODULE_NAME)
-			if lines:
-				for line in lines:
-					if line.startswith("#SERVICE "):
-						bouqet = line.split()
-						if len(bouqet) > 3:
-							bouqet[3] = bouqet[3].replace("\"", "")
-							f = open("/etc/enigma2/" + bouqet[3], "r")
-							userbouqet = f.readline()
+		lines = fileReadLines(pathjoin(imageDir, "etc/enigma2/bouquets.radio"), source=MODULE_NAME)
+		if lines:
+			for line in lines:
+				if line.startswith("#SERVICE "):
+					bouqet = line.split()
+					if len(bouqet) > 3:
+						bouqet[3] = bouqet[3].replace("\"", "")
+						try:
+							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+								userbouqet = fd.readline()
 							bouquetsRadio.append(userbouqet.replace("#NAME ", ""))
-							f.close()
-		except OSError:
-			pass
+						except OSError:
+							pass
 
 		return (enigmaInfo, info, settingsFile, bouquetsTV, bouquetsRadio)
