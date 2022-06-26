@@ -26,6 +26,7 @@ DISTROVERSION = BoxInfo.getItem("imageversion")
 MACHINEBRAND = BoxInfo.getItem("displaybrand")
 MACHINENAME = BoxInfo.getItem("displaymodel")
 
+USEP = "_________________________________________________"
 
 class ImageBackup(Screen):
 
@@ -317,16 +318,16 @@ class ImageBackup(Screen):
 				else:
 					self.message += (_("Back-up Tool for a %s\n") % self.SHOWNAME).upper()
 				self.message += _("Version %s %s") % (self.DISTRO, self.DISTROVERSION) + "\n"
-				self.message += "_________________________________________________\n\n"
+				self.message += "%s\n\n" % USEP
 				self.message += _("Please be patient, a backup will now be made,\n")
 				self.message += _("because of the used filesystem the back-up\n")
 				self.message += _("will take about 1-15 minutes for this system\n")
-				self.message += "_________________________________________________\n\n"
+				self.message += "%s\n\n" % USEP
 				if self.RECOVERY:
 					self.message += _("Backup Mode: USB Recovery\n")
 				else:
 					self.message += _("Backup Mode: Flash Online\n")
-				self.message += "_________________________________________________\n"
+				self.message += "%s\n" % USEP
 				self.message += "'"
 
 				cmd1 = None
@@ -370,6 +371,11 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
 				if self.MACHINEBUILD in ("h9", "i55plus"):
+					# TODO check
+					#for index, value in enumerate(["fastboot", "bootargs", "baseparam", "pq_param", "logo"]):
+					#	cmdlist.append(self.makeEchoCreate("%s dump" % value))
+					#	cmdlist.append("dd if=/dev/mtd%d of=%s/%s.bin" % (index, self.WORKDIR, value))
+
 					cmdlist.append(self.makeEchoCreate("fastboot dump"))
 					cmdlist.append("dd if=/dev/mtd0 of=%s/fastboot.bin" % self.WORKDIR)
 					cmdlist.append(self.makeEchoCreate("bootargs dump"))
@@ -557,8 +563,8 @@ class ImageBackup(Screen):
 	def makeEcho(self, txt):
 		return "echo \"%s\"" % txt
 
-	def makeLine(self, nocr=False):
-		return "echo \"_________________________________________________%s\"" % "" if nocr else "\n"
+	def makeEchoLine(self, nocr=False):
+		return "echo \"%s%s\"" % (USEP,"" if nocr else "\n")
 
 	def makeSpace(self):
 		return "echo \" \""
@@ -651,10 +657,9 @@ class ImageBackup(Screen):
 			cmdlist.append("cp -f /usr/share/fastboot.bin %s/fastboot.bin" % (self.MAINDESTROOT))
 			cmdlist.append("cp -f /usr/share/bootargs.bin %s/bootargs.bin" % (self.MAINDESTROOT))
 
-		if BoxInfo.getItem("canRecovery") and self.RECOVERY:
-			cmdlist.append("7za a -r -bt -bd %s/%s-%s-%s-backup-%s_recovery_emmc.zip %s/*" % (self.DIRECTORY, DISTRO, DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
-		else:
-			cmdlist.append("7za a -r -bt -bd %s/%s-%s-%s-backup-%s_usb.zip %s/*" % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
+		iname = "recovery_emmc" if BoxInfo.getItem("canRecovery") and self.RECOVERY else "usb"
+
+		cmdlist.append("7za a -r -bt -bd %s/%s-%s-%s-backup-%s_%s.zip %s/*" % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, iname, self.MAINDESTROOT))
 
 		cmdlist.append("sync")
 		file_found = True
@@ -668,7 +673,6 @@ class ImageBackup(Screen):
 				if not isfile("%s/%s" % (self.MAINDEST, self.EMMCIMG)):
 					print("[Image Backup] %s file not found" % (self.EMMCIMG))
 					file_found = False
-
 		else:
 			if not isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
 				print("[Image Backup] %s file not found" % (self.ROOTFSBIN))
@@ -679,22 +683,18 @@ class ImageBackup(Screen):
 				file_found = False
 
 		if MultiBoot.canMultiBoot() and not self.RECOVERY and self.ROOTFSSUBDIR == "none":
-			cmdlist.append(self.makeLine())
+			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE)))
-			cmdlist.append(self.makeLine(True))
+			cmdlist.append(self.makeEchoLine(True))
 			cmdlist.append(self.makeSpace())
 			cmdlist.append(self.makeEcho(_("Please wait...almost ready! ")))
 			cmdlist.append(self.makeSpace())
 			cmdlist.append(self.makeEcho(_("To restore the image:")))
 			cmdlist.append(self.makeEcho(_("Use OnlineFlash in SoftwareManager")))
 		elif file_found:
-			cmdlist.append(self.makeLine())
-
-			if BoxInfo.getItem("canRecovery") and self.RECOVERY:
-				cmdlist.append(self.makeEcho(_("Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip") % (self.DIRECTORY, DISTRO, DISTROVERSION, self.MODEL, self.DATE)))
-			else:
-				cmdlist.append(self.makeEcho(_("Image created on: %s/%s-%s-%s-backup-%s_usb.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE)))
-			cmdlist.append(self.makeLine(True))
+			cmdlist.append(self.makeEchoLine())
+			cmdlist.append(self.makeEcho(_("Image created on: %s/%s-%s-%s-backup-%s_%s.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, iname)))
+			cmdlist.append(self.makeEchoLine(True))
 			cmdlist.append(self.makeSpace())
 			cmdlist.append(self.makeEcho(_("Please wait...almost ready! ")))
 			cmdlist.append(self.makeSpace())
@@ -702,7 +702,7 @@ class ImageBackup(Screen):
 			cmdlist.append(self.makeEcho(_("Please check the manual of the receiver")))
 			cmdlist.append(self.makeEcho(_("on how to restore the image")))
 		else:
-			cmdlist.append(self.makeLine())
+			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Image creation failed - ")))
 			cmdlist.append(self.makeEcho(_("Probable causes could be") + ":"))
 			cmdlist.append(self.makeEcho(_("     wrong back-up destination ")))
@@ -711,12 +711,9 @@ class ImageBackup(Screen):
 			cmdlist.append(self.makeSpace())
 
 		cmdlist.append("rm -rf %s/build_%s" % (self.DIRECTORY, self.MODEL))
-		if self.ROOTFSSUBDIR != "none":
-			cmdlist.append("umount /tmp/bi/RootSubdir")
-			cmdlist.append("rmdir /tmp/bi/RootSubdir")
-		else:
-			cmdlist.append("umount /tmp/bi/root")
-			cmdlist.append("rmdir /tmp/bi/root")
+		rdir = "RootSubdir" if self.ROOTFSSUBDIR != "none" else "root"
+		cmdlist.append("umount /tmp/bi/%s" % rdir)
+		cmdlist.append("rmdir /tmp/bi/%s" % rdir)
 		cmdlist.append("rmdir /tmp/bi")
 		cmdlist.append("rm -rf %s" % self.WORKDIR)
 		cmdlist.append("sleep 5")
