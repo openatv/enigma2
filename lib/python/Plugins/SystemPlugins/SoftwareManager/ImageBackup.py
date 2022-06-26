@@ -413,10 +413,9 @@ class ImageBackup(Screen):
 					cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4" % (self.WORKDIR))
 					cmdlist.append("mkdir -p %s/userdata" % self.WORKDIR)
 					cmdlist.append("mount %s/rootfs.ext4 %s/userdata" % (self.WORKDIR, self.WORKDIR))
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs1" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs2" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs3" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs4" % self.WORKDIR)
+					for rootindex in range(1, 5):
+						cmdlist.append("mkdir -p %s/userdata/linuxrootfs%d" % (self.WORKDIR, rootindex))
+
 					cmdlist.append("rsync -aAX %s/ %s/userdata/linuxrootfs1/" % (self.backuproot, self.WORKDIR))
 					cmdlist.append("umount %s/userdata" % (self.WORKDIR))
 
@@ -566,23 +565,20 @@ class ImageBackup(Screen):
 		cmdlist.append(self.makeEcho(_("Almost there... ")))
 		cmdlist.append(self.makeEcho(_("Now building the Backup Image")))
 
+		def initDestination(destination):
+			system("rm -rf %s" % destination)
+			if not exists(destination):
+				makedirs(destination)
+			with open("%s/imageversion" % destination, "w") as fd:
+				fd.write(self.IMAGEVERSION)
+
 		if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
-			system("rm -rf %s" % self.MAINDESTROOT)
-			if not exists(self.MAINDESTROOT):
-				makedirs(self.MAINDESTROOT)
-			f = open("%s/imageversion" % self.MAINDESTROOT, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
+			initDestination(self.MAINDESTROOT)
 		else:
-			system("rm -rf %s" % self.MAINDEST)
-			if not exists(self.MAINDEST):
-				makedirs(self.MAINDEST)
-			f = open("%s/imageversion" % self.MAINDEST, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
+			initDestination(self.MAINDEST)
 			if not self.RECOVERY:
 				if self.ROOTFSBIN == "rootfs.tar.bz2":
-					system("mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2" % (self.WORKDIR, self.MAINDEST))
+					system("mv %s/%s %s/%s" % (self.WORKDIR, self.ROOTFSBIN, self.MAINDEST, self.ROOTFSBIN))
 				else:
 					system("mv %s/root.ubifs %s/%s" % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
 				if MultiBoot.canMultiBoot() or self.MTDKERNEL.startswith("mmcblk0") or self.MACHINEBUILD in ("h8", "hzero"):
@@ -672,8 +668,8 @@ class ImageBackup(Screen):
 		if file_not_found:
 			print("[Image Backup] %s file not found" % file_not_found)
 
+		cmdlist.append(self.makeEchoLine())
 		if MultiBoot.canMultiBoot() and not self.RECOVERY and self.ROOTFSSUBDIR == "none":
-			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE)))
 			cmdlist.append(self.makeEchoLine(True))
 			cmdlist.append(self.makeSpace())
@@ -682,7 +678,6 @@ class ImageBackup(Screen):
 			cmdlist.append(self.makeEcho(_("To restore the image:")))
 			cmdlist.append(self.makeEcho(_("Use OnlineFlash in SoftwareManager")))
 		elif file_not_found == "":
-			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Image created on: %s/%s-%s-%s-backup-%s_%s.zip") % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, self.MODEL, self.DATE, iname)))
 			cmdlist.append(self.makeEchoLine(True))
 			cmdlist.append(self.makeSpace())
@@ -692,7 +687,6 @@ class ImageBackup(Screen):
 			cmdlist.append(self.makeEcho(_("Please check the manual of the receiver")))
 			cmdlist.append(self.makeEcho(_("on how to restore the image")))
 		else:
-			cmdlist.append(self.makeEchoLine())
 			cmdlist.append(self.makeEcho(_("Image creation failed - ")))
 			cmdlist.append(self.makeEcho(_("Probable causes could be") + ":"))
 			cmdlist.append(self.makeEcho(_("     wrong back-up destination ")))
