@@ -128,7 +128,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.onShown.remove(self.showMenu)
 		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
-		self.mainMenu()
+		self.showMainMenu()
 
 	def doButtonsCheck(self):
 		if config.plisettings.ColouredButtons.value:
