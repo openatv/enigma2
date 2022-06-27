@@ -155,6 +155,30 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="ci_setup" level="1" text="Common Interface" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 				<item key="parental_setup" level="0" text="Parental control" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
+			<!-- Menu / Setup / Software Management -->
+			<menu key="software_manager" level="0" text="Software Management" description="This menu offers options related managing the software on the %s %s." weight="50">
+				<item key="manage_extensions" level="0" text="Manage Extensions" description="Browse, install or remove extensions / plugins." weight="10"><plugin system="SoftwareManager" screen="PluginManager" /></item>
+				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
+				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
+				<item key="flash_online" level="0" text="Flash Online" description="Flash on the fly your %s %s." weight="13" requires="canImageBackup"><screen module="FlashManager" screen="FlashManager" /></item>
+				<item key="backup_image_dflash" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
+				<item key="backup_image_dbackup" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
+				<item key="backup_image" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
+				<item key="multiboot" level="0" text="MultiBoot Manager" description="Maintain your multi boot device." weight="15" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
+				<item key="backup_system" level="0" text="Backup System Settings" description="Backup your %s %s settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">1</plugin></item>
+				<item key="restore_system" level="0" text="Restore System Settings" description="Restore your %s %s settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">2</plugin></item>
+				<item key="install_local" level="0" text="Install Local Extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="BackupHelper">3</plugin></item>
+				<!-- Menu / Setup / Software Management / Advanced Options -->
+				<menu key="advanced_software" level="2" text="Advanced Options" description="Advanced options and settings." weight="20">
+					<item key="advanced_restore" level="2" text="Advanced Restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>
+					<item key="backup_location" level="2" text="Select Backup Location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">4</plugin></item>
+					<item key="backup_default" level="2" text="Show Default Backup Files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">5</plugin></item>
+					<item key="backup_additional" level="2" text="Select Additional Backup Files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
+					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
+					<item key="package_manager" level="2" text="Package Manager" description="View, install and remove available or installed packages." weight="16"><plugin system="SoftwareManager" screen="PacketManager" /></item>
+					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
+				</menu>
+			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">
 				<!-- Menu / Setup / System / Storage devices -->

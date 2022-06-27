@@ -281,6 +281,7 @@ def GetBoxName():
 model = BoxInfo.getItem("model")
 socfamily = BoxInfo.getItem("socfamily")
 architecture = BoxInfo.getItem("architecture")
+brand = BoxInfo.getItem("brand")
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
@@ -395,4 +396,9 @@ SystemInfo["ArchIsARM64"] = architecture == "aarch64" or "64" in architecture
 SystemInfo["ArchIsARM"] = architecture.startswith(("arm", "cortex"))
 SystemInfo["STi"] = socfamily.startswith("sti")
 SystemInfo["BoxName"] = GetBoxName()
+canImageBackup = not model.startswith('az') and not brand.startswith('cube') and not brand.startswith('wetek') and not model.startswith('alien')
+SystemInfo["canImageBackup"] = canImageBackup
+SystemInfo["dFlash"] = canImageBackup and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dFlash")
+SystemInfo["dBackup"] = canImageBackup and not SystemInfo["dFlash"] and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dBackup")
+SystemInfo["ImageBackup"] = canImageBackup and not SystemInfo["dFlash"] and not SystemInfo["dBackup"]
 Refresh_SysSoftCam()
