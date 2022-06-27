@@ -1,28 +1,24 @@
-from __future__ import absolute_import
-from Screens.HelpMenu import ShowRemoteControl
-from Screens.WizardLanguage import WizardLanguage
-from Screens.Wizard import wizardManager
-from Screens.Screen import Screen
-from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.PluginComponent import plugins
-from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
-from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from enigma import eEnv
-from boxbranding import getBoxType, getImageDistro
-from .BackupRestore import InitConfig as BackupRestore_InitConfig
+from os import access, W_OK, R_OK
+from os.path import isfile, join as pathjoin
+
+from boxbranding import getBoxType
 
 from Components.config import config
 from Components.Harddisk import harddiskmanager
+from Components.Pixmap import Pixmap
+from Components.SystemInfo import BoxInfo
+from Screens.HelpMenu import ShowRemoteControl
+from Screens.WizardLanguage import WizardLanguage
+from Screens.Wizard import wizardManager
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from .BackupRestore import getBackupFilename, InitConfig as BackupRestore_InitConfig
+
 
 boxtype = getBoxType()
-distro = getImageDistro()
+BACKUP_FILE = getBackupFilename()
+DISTRO = BoxInfo.getItem("distro")
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()
-
-backupfile = "enigma2settingsbackup.tar.gz"
 
 
 def checkConfigBackup():
@@ -34,63 +30,21 @@ def checkConfigBackup():
 			parts.remove(x)
 	if len(parts):
 		for x in parts:
-			if x[1].endswith('/'):
-				fullbackupfile = x[1] + 'backup_' + distro + '_' + boxtype + '/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
-				fullbackupfile = x[1] + 'backup/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
-			else:
-				fullbackupfile = x[1] + '/backup_' + distro + '_' + boxtype + '/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
-				fullbackupfile = x[1] + '/backup/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
+			fullbackupfile1 = pathjoin(x[1], 'backup_' + DISTRO + '_' + boxtype, BACKUP_FILE)
+			fullbackupfile2 = pathjoin(x[1], 'backup', BACKUP_FILE)
+			if isfile(fullbackupfile1) or isfile(fullbackupfile2):
+				config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
+				config.plugins.configurationbackup.backuplocation.save()
+				config.plugins.configurationbackup.save()
+				return x
 		return None
 
 
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.value
-	if backuplocation.endswith('/'):
-		fullbackupfile = backuplocation + 'backup_' + distro + '_' + boxtype + '/' + backupfile
-		if fileExists(fullbackupfile):
-			return True
-		else:
-			fullbackupfile = backuplocation + 'backup/' + backupfile
-			if fileExists(fullbackupfile):
-				return True
-			else:
-				return False
-	else:
-		fullbackupfile = backuplocation + '/backup_' + distro + '_' + boxtype + '/' + backupfile
-		if fileExists(fullbackupfile):
-			return True
-		else:
-			fullbackupfile = backuplocation + '/backup/' + backupfile
-			if fileExists(fullbackupfile):
-				return True
-			else:
-				return False
-
-
-if checkConfigBackup() is None:
-	backupAvailable = 0
-else:
-	backupAvailable = 1
+	fullbackupfile1 = pathjoin(backuplocation, 'backup_' + DISTRO + '_' + boxtype, BACKUP_FILE)
+	fullbackupfile2 = pathjoin(backuplocation, 'backup', BACKUP_FILE)
+	return isfile(fullbackupfile1) or isfile(fullbackupfile2)
 
 
 class ImageWizard(WizardLanguage, ShowRemoteControl):
@@ -119,8 +73,7 @@ class ImageWizard(WizardLanguage, ShowRemoteControl):
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		#Screen.setTitle(self, _("Welcome..."))
-		Screen.setTitle(self, _("ImageWizard"))
+		self.setTitle(_("ImageWizard"))
 		self.selectedDevice = None
 
 	def markDone(self):
@@ -151,4 +104,4 @@ class ImageWizard(WizardLanguage, ShowRemoteControl):
 
 
 if config.misc.firstrun.value:
-	wizardManager.registerWizard(ImageWizard, backupAvailable, priority=10)
+	wizardManager.registerWizard(ImageWizard, 0 if checkConfigBackup() is None else 1, priority=10)
