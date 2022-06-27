@@ -55,6 +55,9 @@ config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 
 def Load_defaults():
+	if hasattr(config.plugins, "softwaremanager"):
+		return
+
 	config.plugins.softwaremanager = ConfigSubsection()
 	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
 	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
