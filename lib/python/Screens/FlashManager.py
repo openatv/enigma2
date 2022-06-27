@@ -186,8 +186,9 @@ class FlashManager(Screen, HelpableScreen):
 		else:
 			self.session.openWithCallback(self.getImagesListCallback, MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
 
-	def getImagesListCallback(self, retVal=None):  # The retVal argument absorbs the inappropriate return value from MessageBox.
-		self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
+	def getImagesListCallback(self, retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
+		if self.imageFeed != "openATV":
+			self.keyDistributionCallback("openATV")  # No images can be found for the selected distribution so go back to the openATV default.
 
 	def keyCancel(self):
 		self.close()
