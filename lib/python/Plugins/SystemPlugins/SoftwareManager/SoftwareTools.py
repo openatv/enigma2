@@ -22,7 +22,7 @@ class SoftwareTools(PackageInfoHandler):
 	installed_packetlist = {}
 
 	def __init__(self):
-		aboutInfo = BoxInfo.getItem("imageversion")
+		aboutInfo = str(BoxInfo.getItem("imageversion"))
 		if aboutInfo.startswith("dev-"):
 			self.ImageVersion = 'Experimental'
 		else:
