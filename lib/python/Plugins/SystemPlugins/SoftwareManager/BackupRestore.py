@@ -241,14 +241,14 @@ class BackupSelection(Screen):
 			<widget source="key_red" render="Label" position="0,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="280,360" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="title_text" render="Label" position="10,0" size="540,30" font="Regular;24" halign="left" foregroundColor="white" backgroundColor="black" transparent="1" />
+			<widget source="Title" render="Label" position="10,0" size="540,30" font="Regular;24" halign="left" foregroundColor="white" backgroundColor="black" transparent="1" />
 			<widget source="summary_description" render="Label" position="5,300" size="550,30" foregroundColor="white" backgroundColor="black" font="Regular; 24" halign="left" transparent="1" />
 			<widget name="checkList" position="5,50" size="550,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, title=_("Select files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode=""):
 		Screen.__init__(self, session)
-		self.setTitle(_("Select files/folders to backup"))
+		self.setTitle(title)
 		self.mode = mode
 		self.readOnly = readOnly
 		self.configBackupDirs = configBackupDirs
@@ -256,7 +256,6 @@ class BackupSelection(Screen):
 		self["key_green"] = StaticText("" if self.readOnly else _("Save"))
 		self["key_yellow"] = StaticText(_("Info") if self.readOnly else "")
 		self["summary_description"] = StaticText(_("default"))
-		self["title_text"] = StaticText(title)
 
 		self.selectedFiles = self.configBackupDirs.value
 		defaultDir = '/'
