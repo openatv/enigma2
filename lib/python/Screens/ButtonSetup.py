@@ -373,7 +373,7 @@ class ButtonSetupSelect(Screen):
 		Screen.__init__(self, session)
 		self.key = key
 		# self.skinName = "ButtonSetupSelect"
-		self.setTitle("%s: %s" % (_("Hotkey Setup"), key[0][0]))
+		self.setTitle("%s: %s" % (_("Hotkey Settings"), key[0][0]))
 		self["description"] = Label(_("Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))

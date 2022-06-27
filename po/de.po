@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-19 05:18+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"PO-Revision-Date: 2022-06-25 17:27+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -62,9 +62,6 @@ msgstr ""
 "\n"
 "<Dieser Tuner wird automatisch verwaltet>"
 
-msgid "Advanced options and settings."
-msgstr "Erweiterte Optionen und Einstellungen."
-
 #
 msgid ""
 "\n"
@@ -72,46 +69,6 @@ msgid ""
 msgstr ""
 "\n"
 "Nach dem Drücken von OK bitte warten!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Einstellungen Ihrer %s %s sichern."
-
-#, python-format
-msgid ""
-"Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Sicherung des laufenden Images Ihrer %s %s auf Festplatte oder USB."
-
-#
-msgid "Edit the upgrade source address."
-msgstr "Adresse der Updatequelle bearbeiten."
-
-# /SoftwareManager/Flash_online.py
-#, python-format
-msgid ""
-"Flash on the fly your %s %s."
-msgstr ""
-"Online-/Lokales flashen Ihrer %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Ihr Multiboot-Gerät verwalten."
-
-#
-#, python-format
-msgid ""
-"Manage extensions or plugins for your %s %s"
-msgstr ""
-"Plugins Ihrer %s %s verwalten."
-
-#
-#, python-format
-msgid ""
-"\n"
-"Online update of your %s %s software."
-msgstr ""
-"\n"
-"Onlineupdate der %s %s-Software."
 
 #
 msgid ""
@@ -128,23 +85,6 @@ msgstr ""
 "\n"
 "Laufende Aufnahme."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Einstellungen Ihrer %s %s wiederherstellen."
-
-#
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Ihre %s %s mit einer neuen Firmware wiederherstellen."
-
-#
-msgid "Restore your backups by date."
-msgstr "Wiederherstellen der nach Datum sortierten Sicherungen."
-
-#
-msgid "Scan for local extensions and install them."
-msgstr "Nach lokalen Erweiterungen suchen, die Sie installieren können."
-
 #
 msgid ""
 "\n"
@@ -154,10 +94,6 @@ msgstr ""
 "\n"
 "Wählen Sie das Sicherungsgerät.\n"
 "Aktuelles Gerät: "
-
-#
-msgid "View, install and remove available or installed packages."
-msgstr "Anzeigen, installieren oder entfernen verfügbarer oder installierter Pakete."
 
 msgid ""
 "\n"
@@ -2026,9 +1962,6 @@ msgstr "<unbekannt>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 #
 msgid "A"
 msgstr "A"
@@ -2220,6 +2153,10 @@ msgstr ""
 "Eine Timeraufnahme konnte nicht gestartet werden!\n"
 "TV-Sender umschalten und erneut versuchen?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "AV-Seitenverhältnis ist %s."
+
 #
 msgid "AAC downmix"
 msgstr "AAC-Downmix"
@@ -2274,10 +2211,6 @@ msgstr "ATSC-Anbieter"
 
 msgid "AV Setup"
 msgstr "Audio/Video"
-
-#, python-format
-msgid "AV aspect is %s."
-msgstr "AV-Seitenverhältnis ist %s."
 
 msgid "AZPlay"
 msgstr "AZPlay"
@@ -2571,15 +2504,18 @@ msgstr "Erwachsenes Publikum, starke Gewalt 15+"
 msgid "Advanced"
 msgstr "Erweitert"
 
-msgid "Advanced Settings"
-msgstr "Erweiterte Einstellungen"
-
 #
 msgid "Advanced Options"
 msgstr "Erweiterte Optionen"
 
 msgid "Advanced Restore"
 msgstr "Erweiterte Wiederherstellung"
+
+msgid "Advanced Settings"
+msgstr "Erweiterte Einstellungen"
+
+msgid "Advanced options and settings."
+msgstr "Erweiterte Optionen und Einstellungen."
 
 msgid "Advanced software"
 msgstr "Erweiterte Software"
@@ -3414,6 +3350,10 @@ msgstr "Sicherungsmodus: USB-Recovery\n"
 msgid "Backup Settings"
 msgstr "Einstellungen sichern"
 
+#
+msgid "Backup System Settings"
+msgstr "Systemeinstellungen sichern"
+
 msgid "Backup completed."
 msgstr "Sicherung beendet."
 
@@ -3439,13 +3379,13 @@ msgstr ""
 "Gesicherte Erweiterungen gefunden!\n"
 "Möchten Sie diese jetzt installieren?"
 
-#
-msgid "Backup System Settings"
-msgstr "Systemeinstellungen sichern"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Sicherung nach: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Einstellungen Ihrer %s %s sichern."
 
 msgid "Backup your current image"
 msgstr "Sicherung vom ganzen Image"
@@ -3459,11 +3399,9 @@ msgstr "Einstellungen sichern"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sichern der E2-Einstellungen, Sender, Netzwerk und alle ausgewählten Dateien."
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Sichern, flashen und wiederherstellen der Einstellungen, ohne Plugins"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Sichern, flashen und wiederherstellen der Einstellungen, Plugins abfragen"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Sicherung des laufenden Images Ihrer %s %s auf Festplatte oder USB."
 
 msgid "Bahamas"
 msgstr "Bahamas"
@@ -4244,6 +4182,9 @@ msgstr "Boxmodus zur Hardwaresteuerung *"
 msgid "Change Language"
 msgstr "Sprache ändern"
 
+msgid "Change OSD Settings"
+msgstr "OSD Einstellungen ändern"
+
 msgid "Change PIN"
 msgstr "PIN ändern"
 
@@ -4659,7 +4600,7 @@ msgstr "Playlist leeren"
 msgid "Clear the virtual memory caches"
 msgstr "Löschen des virtuellen Speichercaches"
 
-msgid "Click on your remote on the button you want to change"
+msgid "Click the button on your remote you want to change."
 msgstr "Drücken Sie die Taste der Fernbedienung, die neu belegt werden soll."
 
 msgid "Client"
@@ -4800,9 +4741,6 @@ msgstr "Common Interface"
 #
 msgid "Common Interface Assignment"
 msgstr "Common-Interface-Zuweisung"
-
-msgid "Common Menu Actions"
-msgstr "Allgemeine Menüaktionen"
 
 # boot-up action
 msgid "Common Setup Actions"
@@ -7156,6 +7094,10 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "Netzwerkkonfiguration der %s %s bearbeiten."
 
 #
+msgid "Edit the upgrade source address."
+msgstr "Adresse der Updatequelle bearbeiten."
+
+#
 msgid "Edit upgrade source url."
 msgstr "Adresse der Updatequelle bearbeiten."
 
@@ -8438,9 +8380,20 @@ msgstr "Flashen online/lokal"
 msgid "Flash Online a new image"
 msgstr "Online/Offline flashen"
 
+msgid "Flash and restore settings and no plugins"
+msgstr "Flashen und wiederherstellen der Einstellungen, ohne Plugins"
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr "Flashen und wiederherstellen der Einstellungen, Plugins abfragen"
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-Verzeichnis '%s' nicht erlaubt!"
+
+# /SoftwareManager/Flash_online.py
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Online-/Lokales flashen Ihrer %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flashen Sie Ihre Receiver-Software online oder von einer lokalen Quelle."
@@ -8890,7 +8843,7 @@ msgid "Grab"
 msgstr "Grab"
 
 msgid "Graphical EPG"
-msgstr "Grafischer-EPG"
+msgstr "Grafischer EPG"
 
 msgid "Graphical InfobarEPG Settings"
 msgstr "Grafischer Infoleisten-EPG"
@@ -9300,9 +9253,6 @@ msgstr "Hotkey"
 
 msgid "Hotkey Settings"
 msgstr "Hotkey"
-
-msgid "Hotkey Setup for"
-msgstr "Hotkey für"
 
 msgid "Hour"
 msgstr "Stunde"
@@ -9881,6 +9831,10 @@ msgstr "!! Installation fehlgeschlagen !!"
 msgid "Install Finished."
 msgstr "Installation abgeschlossen."
 
+#
+msgid "Install Local Extension"
+msgstr "Lokale Erweiterung installieren"
+
 msgid "Install Plugins"
 msgstr "Plugins installieren"
 
@@ -9904,10 +9858,6 @@ msgstr "Erweiterungen installieren..."
 
 msgid "Install lcd picons on"
 msgstr "Picons für das Display installieren auf"
-
-#
-msgid "Install Local Extension"
-msgstr "Lokale Erweiterung installieren"
 
 msgid "Install or remove finished."
 msgstr "Installation oder Deinstallation beendet."
@@ -10901,6 +10851,9 @@ msgstr "Hauptmenü"
 msgid "Maintain old EPG data for"
 msgstr "Alte EPG-Daten für x Minuten halten"
 
+msgid "Maintain your multi boot device."
+msgstr "Ihr Multiboot-Gerät verwalten."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "File Commander über das Erweiterungsmenü zugänglich machen."
 
@@ -10947,12 +10900,17 @@ msgid "Maltese"
 msgstr "Maltesisch"
 
 #
+msgid "Manage Extensions"
+msgstr "Erweiterungen verwalten"
+
+#
 msgid "Manage Locale/Language Selection settings"
 msgstr "Einstellungen für die Sprachauswahl verwalten"
 
 #
-msgid "Manage Extensions"
-msgstr "Erweiterungen verwalten"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Plugins Ihrer %s %s verwalten."
 
 msgid "Manage network mounts"
 msgstr "Netzwerklaufwerke verwalten"
@@ -11143,6 +11101,15 @@ msgstr "Menü"
 # UsageConfig.py:295
 msgid "Menu Actions"
 msgstr "Menüaktionen"
+
+msgid "Menu Common Actions"
+msgstr "Allgemeine Menü Aktionen"
+
+msgid "Menu Edit Actions"
+msgstr "Menü Edit Aktionen"
+
+msgid "Menu Navigation Actions"
+msgstr "Menü Navigationsaktionen"
 
 msgid "Menu config"
 msgstr "Menü-Einstellungen"
@@ -12577,6 +12544,13 @@ msgstr "Eine Zeile"
 msgid "Online software update"
 msgstr "Software online aktualisieren"
 
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Onlineupdate der %s %s-Software."
+
+msgid "Only Flash Backup Image"
+msgstr "Nur Backup Image flashen"
+
 msgid "Only extensions."
 msgstr "Nur Erweiterungen."
 
@@ -12904,6 +12878,10 @@ msgstr "PVR/Video"
 msgid "PVR long"
 msgstr "PVR/Video lang"
 
+#
+msgid "Package Manager"
+msgstr "Paket-Management"
+
 msgid "Package information currently not available!"
 msgstr "Paketinformationen derzeit nicht verfügbar!"
 
@@ -12919,10 +12897,6 @@ msgstr "Sprachregionen"
 
 msgid "Packages and associated locales"
 msgstr "Pakete und zugehörige Sprachregionen"
-
-#
-msgid "Package Manager"
-msgstr "Paket-Management"
 
 #
 msgid "Packet manager"
@@ -13473,8 +13447,8 @@ msgstr ""
 "\n"
 "Drücken Sie OK, um fortzufahren."
 
-msgid "Please select what to do:"
-msgstr "Bitte wählen Sie aus, was Sie tun möchten:"
+msgid "Please select what to do after flash of the following image:"
+msgstr "Bitte wählen, was nach dem Flashen mit dem folgenden Image passieren soll:"
 
 msgid "Please set up tuner A"
 msgstr "Bitte Tuner A einrichten"
@@ -14762,7 +14736,7 @@ msgstr "Fernbedienung"
 msgid "Remote Control Button Settings"
 msgstr "Fernbedienung"
 
-msgid "Remote Control Code"
+msgid "Remote Control Code Settings"
 msgstr "Fernbedienungscode"
 
 msgid "Remote box"
@@ -15081,18 +15055,31 @@ msgid "Restore Settings"
 msgstr "Einstellungen wiederherstellen"
 
 #
+msgid "Restore System Settings"
+msgstr "Systemeinstellungen wiederherstellen"
+
+#
 msgid "Restore backups"
 msgstr "Einstellungen wiederherstellen"
 
 msgid "Restore settings from a backup"
 msgstr "Einstellungen wiederherstellen"
 
-#
-msgid "Restore System Settings"
-msgstr "Systemeinstellungen wiederherstellen"
-
 msgid "Restore the highlighted slot"
 msgstr "Den markierten Slot wiederherstellen"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Einstellungen Ihrer %s %s wiederherstellen."
+
+#
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Ihre %s %s mit einer neuen Firmware wiederherstellen."
+
+#
+msgid "Restore your backups by date."
+msgstr "Wiederherstellen der nach Datum sortierten Sicherungen."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Wiederherstellen der Einstellungen von der Sicherung. Nach Wiederherstellung wird der Receiver neu starten."
@@ -15594,6 +15581,10 @@ msgid "Scan for local extensions and install them"
 msgstr "Nach lokalen Erweiterungen suchen, die Sie installieren können"
 
 #
+msgid "Scan for local extensions and install them."
+msgstr "Nach lokalen Erweiterungen suchen, die Sie installieren können."
+
+#
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
 
@@ -15863,12 +15854,22 @@ msgstr "Wählen Sie 'Ja', um nur den DiSEqC-Befehl zu senden, wenn Sie von einem
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Wählen Sie (Quellenliste) oder betreten Sie das Verzeichnis (Zielliste)"
 
+msgid "Select Additional Backup Files"
+msgstr "Zusätzlich zu sichernde Dateien auswählen"
+
+#
+msgid "Select Backup Location"
+msgstr "Sicherungziel auswählen"
+
 #
 msgid "Select CAId"
 msgstr "CAID auswählen"
 
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2-Skin auswählen"
+
+msgid "Select Excluded Backup Files"
+msgstr "Nicht zu sichernde Dateien auswählen"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Wählen Sie 'Ja', wenn Ihr Antennensystem dies unterstützt. Wenn Sie unsicher sind, wählen Sie 'Nein'."
@@ -15895,6 +15896,9 @@ msgstr "Sendergruppe auswählen"
 #
 msgid "Select Software Update"
 msgstr "Software-Update auswählen"
+
+msgid "Select Upgrade Source"
+msgstr "Updatequelle auswählen"
 
 msgid "Select Your Skin"
 msgstr "Skin auswählen"
@@ -15938,19 +15942,12 @@ msgstr "Aktion auswählen"
 msgid "Select action for timer %s:"
 msgstr "Aktion für Timer %s auswählen:"
 
-msgid "Select Additional Backup Files"
-msgstr "Zusätzlich zu sichernde Dateien auswählen"
-
 msgid "Select additional files to backup"
 msgstr "Dateien auswählen, die zusätzlich gesichert werden"
 
 #
 msgid "Select audio track"
 msgstr "Tonspur auswählen"
-
-#
-msgid "Select Backup Location"
-msgstr "Sicherungziel auswählen"
 
 msgid "Select cardserver"
 msgstr "Cardserver auswählen"
@@ -15973,9 +15970,6 @@ msgstr "Standard-EPG-Typ auswählen..."
 
 msgid "Select destination for:"
 msgstr "Speicherort auswählen:"
-
-msgid "Select Excluded Backup Files"
-msgstr "Nicht zu sichernde Dateien auswählen"
 
 msgid "Select files to exclude from backup"
 msgstr "Nicht zu sichernde Dateien auswählen"
@@ -16214,9 +16208,6 @@ msgstr "Wählen Sie die Art der Abschaltung bei Aktivierung der Energiesparfunkt
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Wählen Sie die Art der Abschaltung bei Aktivierung des Ausschalttimers."
-
-msgid "Select Upgrade Source"
-msgstr "Updatequelle auswählen"
 
 #
 msgid "Select upgrade source to edit."
@@ -17082,6 +17073,9 @@ msgstr "CI Meldungen anzeigen"
 msgid "Show Clients"
 msgstr "Clients anzeigen"
 
+msgid "Show Default Backup Files"
+msgstr "Standardliste gesicherter Dateien zeigen"
+
 msgid "Show Directory size"
 msgstr "Verzeichnisgröße anzeigen"
 
@@ -17287,9 +17281,6 @@ msgstr "Verschlüsselungsdetails in der Infoleiste anzeigen"
 msgid "Show default after description"
 msgstr "Standard nach Beschreibung anzeigen"
 
-msgid "Show Default Backup Files"
-msgstr "Standardliste gesicherter Dateien zeigen"
-
 msgid "Show default on new line"
 msgstr "Standard in neuer Zeile anzeigen"
 
@@ -17434,8 +17425,8 @@ msgstr "Filmauswahl"
 msgid "Show multi channel EPG"
 msgstr "Multi-EPG anzeigen"
 
-msgid "Show network mounts ..."
-msgstr "Netzwerklaufwerke anzeigen..."
+msgid "Show network setup menu..."
+msgstr "Zeige Netzwerkeinstellungen..."
 
 msgid "Show next event"
 msgstr "Nächste Sendung anzeigen"
@@ -17489,7 +17480,7 @@ msgstr "Aufnahmeindikator anzeigen"
 
 # data/setup.xml
 msgid "Show recording symbol"
-msgstr "Aufnahmesymbol anzeigen, wenn Aufnahmetyp"
+msgstr "Aufnahmesymbol anzeigen für"
 
 msgid "Show satellites list"
 msgstr "Satellitenliste anzeigen"
@@ -17526,6 +17517,9 @@ msgstr "Einstellungen anzeigen"
 
 msgid "Show setup default value"
 msgstr "Standardwert der Einstellung anzeigen"
+
+msgid "Show setup menu..."
+msgstr "Zeige Einstellungen..."
 
 #
 msgid "Show shutdown menu"
@@ -17646,12 +17640,15 @@ msgstr "Unbekannte Dateierweiterungen mit 'Addon File-Viewer' anzeigen."
 msgid "Show unknown video format as"
 msgstr "Unbekannte Videoauflösung anzeigen als"
 
+msgid "Show usage and GUI menu..."
+msgstr "Zeige OSD-Einstellungen..."
+
 msgid "Show vertical Program Guide"
 msgstr "Vertikalen EPG anzeigen"
 
 # data/setup.xml
 msgid "Show warning before restart"
-msgstr "Warnung vor Neustart anzeigen, wenn Aufnahmetyp"
+msgstr "Warnung vor Neustart anzeigen für"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Warnung anzeigen, wenn Timeshift gestoppt wird"
@@ -18049,6 +18046,10 @@ msgid "Software MultiBoot"
 msgstr "Software-Multiboot"
 
 #
+msgid "Software Restore"
+msgstr "Software wiederherstellen"
+
+#
 msgid "Software Update"
 msgstr "Software aktualisieren"
 
@@ -18064,10 +18065,6 @@ msgstr "Softwareverwaltung"
 
 msgid "Software manager setup"
 msgstr "Updateeinstellungen"
-
-#
-msgid "Software Restore"
-msgstr "Software wiederherstellen"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -18306,10 +18303,6 @@ msgid "Standby"
 msgstr "Standby"
 
 msgid "Standby / Restart"
-msgstr "Standby / Neustart"
-
-#
-msgid "Standby / restart"
 msgstr "Standby / Neustart"
 
 msgid "Standby without TV shutdown"
@@ -19863,7 +19856,7 @@ msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
+"- verify that you have entered correct IP informations in the adapter setup dialog.\n"
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
@@ -20194,6 +20187,15 @@ msgstr "Zwischen Favoritenliste und EPG-Liste wechseln"
 
 msgid "Toggle display of the InfoBar"
 msgstr "Anzeige der Infoleiste umschalten"
+
+msgid "Toggle hide/show of the current item"
+msgstr "Zeigen/Verstecken vom aktuellen Eintrag umschalten"
+
+msgid "Toggle item edit mode on/off"
+msgstr "Editmodus An/Aus umschalten"
+
+msgid "Toggle item move mode on/off"
+msgstr "Verschiebemodus An/Aus umschalten"
 
 #
 msgid "Toggle new text inserts before or overwrites existing text"
@@ -20813,8 +20815,8 @@ msgstr "Mount-Einstellungen werden aktualisiert."
 msgid "Updating software catalog"
 msgstr "Softwarekatalog wird aktualisiert."
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Aktualisierung (Sicherung, flashen & alles wiederherstellen)"
+msgid "Upgrade (Flash & restore all)"
+msgstr "Aktualisierung (Flashen & alles wiederherstellen)"
 
 #
 msgid "Upgrade finished."
@@ -21449,6 +21451,10 @@ msgstr "Videotext anzeigen"
 msgid "View video CD..."
 msgstr "Video-CD wiedergeben..."
 
+#
+msgid "View, install and remove available or installed packages."
+msgstr "Anzeigen, installieren oder entfernen verfügbarer oder installierter Pakete."
+
 msgid "Violence"
 msgstr "Gewalt"
 
@@ -21669,7 +21675,7 @@ msgstr "Mittwoch"
 
 #
 msgid "Weekday"
-msgstr "Wochentags"
+msgstr "Wochentag"
 
 #
 msgid "Weekend"
@@ -24495,6 +24501,34 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Sichern, flashen und wiederherstellen der Einstellungen, ohne Plugins"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Sichern, flashen und wiederherstellen der Einstellungen, Plugins abfragen"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Allgemeine Menüaktionen"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Hotkey für"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Bitte wählen Sie aus, was Sie tun möchten:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Netzwerklaufwerke anzeigen..."
+
+#
+#~ msgid "Standby / restart"
+#~ msgstr "Standby / Neustart"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Aktualisierung (Sicherung, flashen & alles wiederherstellen)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Wählen Sie die Ansicht für das Hauptmenü."

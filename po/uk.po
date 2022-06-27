@@ -4,20 +4,21 @@
 # kvinto <badsystem@ukr.net>, 2021, 2022.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
+# Artem <artem@molotov.work>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 20:44+0000\n"
-"PO-Revision-Date: 2022-06-13 04:00+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"PO-Revision-Date: 2022-06-23 09:59+0000\n"
+"Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -59,51 +60,12 @@ msgstr ""
 "\n"
 "<Цей тюнер налаштовується автоматично>"
 
-msgid "Advanced options and settings."
-msgstr "Додаткові опції і налаштування."
-
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
 "Після натиснення OK, зачекайте!"
-
-#, python-format
-msgid "Backup your %s %s settings."
-msgstr "Резервне копіювання налаштувань %s %s."
-
-#, python-format
-msgid ""
-"Backup your running %s %s image to HDD or USB."
-msgstr ""
-"Резервне копіювання іміджу %s %s на HDD або USB."
-
-msgid "Edit the upgrade source address."
-msgstr "Змінити адресу джерела оновлення."
-
-#, python-format
-msgid ""
-"Flash on the fly your %s %s."
-msgstr ""
-"Прошити онлайн Ваш %s %s."
-
-msgid "Maintain your multi boot device."
-msgstr "Підтимка Вашим пристроєм мультизавантаження."
-
-#, python-format
-msgid ""
-"Manage extensions or plugins for your %s %s"
-msgstr ""
-"Керувати розширеннями або плагінами для Вашого %s %s"
-
-#, python-format
-msgid ""
-"\n"
-"Online update of your %s %s software."
-msgstr ""
-"\n"
-"Онлайн оновлення ПЗ Вашого %s %s."
 
 msgid ""
 "\n"
@@ -119,20 +81,6 @@ msgstr ""
 "\n"
 "Триває запис."
 
-#, python-format
-msgid "Restore your %s %s settings."
-msgstr "Відновити Ваші %s %s налаштування."
-
-#, python-format
-msgid "Restore your %s %s with a new firmware."
-msgstr "Відновлення Вашого %s %s з новим ПЗ."
-
-msgid "Restore your backups by date."
-msgstr "Відновлення резервних копій за датою."
-
-msgid "Scan for local extensions and install them."
-msgstr "Пошук і встановлення локальних розширень."
-
 msgid ""
 "\n"
 "Select your backup device.\n"
@@ -141,9 +89,6 @@ msgstr ""
 "\n"
 "Вибір носія для збереження копій.\n"
 "Поточний носій: "
-
-msgid "View, install and remove available or installed packages."
-msgstr "Переглянути, встановити або видалити наявні чи встановлені пакети."
 
 msgid ""
 "\n"
@@ -245,7 +190,7 @@ msgid " - file exist! Overwrite"
 msgstr " - файл існує! Перезаписати"
 
 msgid " - folder exist! Overwrite"
-msgstr " - папка існує! Перезаписати"
+msgstr " - тека існує! Перезаписати"
 
 msgid " <No Channel>"
 msgstr " <Немає Каналу>"
@@ -1986,9 +1931,6 @@ msgstr "<невідомий>"
 msgid "?"
 msgstr "?"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -2152,6 +2094,10 @@ msgstr ""
 "Таймер зупинив запис!\n"
 "Відключити ТБ і спробувати ще раз?\n"
 
+#, python-format
+msgid "A/V aspect ratio is '%s'."
+msgstr "А/В співвідношення %s."
+
 msgid "AAC downmix"
 msgstr "AAC Plus мікшування"
 
@@ -2199,10 +2145,6 @@ msgstr "ATSC провайдер"
 
 msgid "AV Setup"
 msgstr "Налаштування Аудіо-Відео"
-
-#, python-format
-msgid "AV aspect is %s."
-msgstr "А/В співвідношення %s."
 
 msgid "AZPlay"
 msgstr "Відтворення А-Я"
@@ -2377,7 +2319,7 @@ msgid "Add bookmark"
 msgstr "Додати закладку"
 
 msgid "Add current folder to bookmarks"
-msgstr "Додати поточну папку в закладки"
+msgstr "Додати поточну теку в закладки"
 
 msgid "Add directory to playlist"
 msgstr "Додати каталог в плейлист"
@@ -2413,7 +2355,7 @@ msgid "Add recording (stop after current event)"
 msgstr "Почати запис (зупинити після цієї передачі)"
 
 msgid "Add selected folder to bookmarks"
-msgstr "Додати вибрану папку у закладки"
+msgstr "Додати вибрану теку у закладки"
 
 msgid "Add service"
 msgstr "Додати канал"
@@ -2437,7 +2379,7 @@ msgid "Additional Info"
 msgstr "Додаткова інформація"
 
 msgid "Additional files/folders to backup"
-msgstr "Додати файли/папки для резервного копіювання"
+msgstr "Додати файли/теки для резервного копіювання"
 
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
 msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації вашого двигуна, так що система зможе обчислити, скільки часу буде потрібно для переміщення антени."
@@ -2469,14 +2411,17 @@ msgstr "Аудиторія для дорослих, насильство 15+"
 msgid "Advanced"
 msgstr "Розширений"
 
-msgid "Advanced Settings"
-msgstr "Розширені Налаштування"
-
 msgid "Advanced Options"
 msgstr "Розширені параметри"
 
 msgid "Advanced Restore"
 msgstr "Розширене відновлення"
+
+msgid "Advanced Settings"
+msgstr "Розширені Налаштування"
+
+msgid "Advanced options and settings."
+msgstr "Додаткові опції і налаштування."
 
 msgid "Advanced software"
 msgstr "Додаткове ПЗ"
@@ -3260,6 +3205,9 @@ msgstr "Режим збереження: USB Відновлення\n"
 msgid "Backup Settings"
 msgstr "Збереження Налаштувань"
 
+msgid "Backup System Settings"
+msgstr "Резервна копія системних налаштувань"
+
 msgid "Backup completed."
 msgstr "Бекап успішно створений."
 
@@ -3282,12 +3230,13 @@ msgstr ""
 "Знайдений бекап плагінів!\n"
 "Хочете встановити його зараз?"
 
-msgid "Backup System Settings"
-msgstr "Резервна копія системних налаштувань"
-
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Місце збереження Резервної копії: %s"
+
+#, python-format
+msgid "Backup your %s %s settings."
+msgstr "Резервне копіювання налаштувань %s %s."
 
 msgid "Backup your current image"
 msgstr "Резервне копіювання поточного іміджу"
@@ -3301,11 +3250,9 @@ msgstr "Резервне копіювання поточних налаштув�
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Резервне копіювання поточних налаштувань. У тому числі настройки Енігми2, списку каналів, налаштування мережі і всі вибрані файли"
 
-msgid "Backup, flash and restore settings and no plugins"
-msgstr "Копіювання, прошивка та відновлення налаштувань без плагінів"
-
-msgid "Backup, flash and restore settings and selected plugins (Ask user)"
-msgstr "Копіювання, прошивка та відновлення налаштувань і плагінів (запитати користувача)"
+#, python-format
+msgid "Backup your running %s %s image to HDD or USB."
+msgstr "Резервне копіювання іміджу %s %s на HDD або USB."
 
 msgid "Bahamas"
 msgstr "Багами"
@@ -3781,7 +3728,7 @@ msgid "Calculate"
 msgstr "Обчислення"
 
 msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr "Розрахувати та показати розмір каталогу. Примітка: це може сповільнити інтерфейс користувача під час вибору папки!"
+msgstr "Розрахувати та показати розмір каталогу. Примітка: це може сповільнити інтерфейс користувача під час вибору теки!"
 
 msgid "Calculate file checksums"
 msgstr "Обчислення контрольної суми файлу"
@@ -4047,6 +3994,9 @@ msgstr "Зміна режиму приймача для управління а�
 
 msgid "Change Language"
 msgstr "Змінити Мову"
+
+msgid "Change OSD Settings"
+msgstr ""
 
 msgid "Change PIN"
 msgstr "Змінити ПІН"
@@ -4429,7 +4379,7 @@ msgstr "Очистити список відтворення"
 msgid "Clear the virtual memory caches"
 msgstr "Очистити віртуальну пам’ять"
 
-msgid "Click on your remote on the button you want to change"
+msgid "Click the button on your remote you want to change."
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити"
 
 msgid "Client"
@@ -4561,9 +4511,6 @@ msgstr "Модуль доступу"
 
 msgid "Common Interface Assignment"
 msgstr "Призначення Модуля доступу"
-
-msgid "Common Menu Actions"
-msgstr "Загальні дії меню"
 
 msgid "Common Setup Actions"
 msgstr "Загальні дії з налаштування"
@@ -5121,7 +5068,7 @@ msgid "Copy files/directories to target directory"
 msgstr "Копіювати файлів/каталогів до цільового каталогу"
 
 msgid "Copy folder"
-msgstr "Копіювати папку"
+msgstr "Копіювати теку"
 
 msgid "Copying files"
 msgstr "Копіювання файлів"
@@ -5198,10 +5145,10 @@ msgid "Create a randomly generated password"
 msgstr "Створити випадково згенерований пароль"
 
 msgid "Create directory"
-msgstr "Створити папку"
+msgstr "Створити теку"
 
 msgid "Create directory/folder"
-msgstr "Створити каталог/папку"
+msgstr "Створити каталог/теку"
 
 msgid "Create separate radio userbouquet"
 msgstr "Створити окремий фаворитний радіо-список"
@@ -5677,13 +5624,13 @@ msgid "Default file sorting right"
 msgstr "Стандартне сортування файлів справа"
 
 msgid "Default files/folders to backup"
-msgstr "Файли/папки для резервної копії за замовчуванням"
+msgstr "Файли/теки для резервної копії за замовчуванням"
 
 msgid "Default folder"
-msgstr "Папки за замовчуванням"
+msgstr "Типова тека"
 
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Папки за замовчуванням, якщо ліву або праву папку не збережено, і цільову папку для кнопки 5."
+msgstr "Типова тека, якщо ліву або праву теку не збережено, а цільова тека для кнопки 5."
 
 msgid "Default movie location"
 msgstr "Розташування фільмів типово"
@@ -5866,7 +5813,7 @@ msgid "Delete file or directory (and all its contents)"
 msgstr "Видалити файл або каталог (і весь його вміст)"
 
 msgid "Delete folder"
-msgstr "Видалення папки"
+msgstr "Видалення теки"
 
 msgid "Delete logfile"
 msgstr "Видалити файл журналу збоїв"
@@ -6216,7 +6163,7 @@ msgid "Distribution file system"
 msgstr "Файлова система"
 
 msgid "Distribution folder"
-msgstr "Папка дистрибутиву"
+msgstr "Тека дистрибутиву"
 
 msgid "Distribution language"
 msgstr "Мова"
@@ -6760,6 +6707,9 @@ msgstr "Редагувати конфігурацію DNS Вашого %s %s."
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Редагувати конфігурацію мережі Вашого %s %s."
+
+msgid "Edit the upgrade source address."
+msgstr "Змінити адресу джерела оновлення."
 
 msgid "Edit upgrade source url."
 msgstr "Змінити адресу джерела оновлення."
@@ -7877,7 +7827,7 @@ msgid "Filename"
 msgstr "Назва файлу"
 
 msgid "Files/folders to exclude from backup"
-msgstr "Файли/папки виключити з резервної копії"
+msgstr "Файли/теки виключити з резервної копії"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Перевірка файлової системи Вашого жорсткого диска"
@@ -7969,9 +7919,19 @@ msgstr "Прошити приймач он-лайн"
 msgid "Flash Online a new image"
 msgstr "Прошити приймач новим іміджем"
 
+msgid "Flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Flash and restore settings and selected plugins (Ask user)"
+msgstr ""
+
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-каталог '%s' заборонено!"
+
+#, python-format
+msgid "Flash on the fly your %s %s."
+msgstr "Прошити онлайн Ваш %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Прошити приймач Вашим ПЗ."
@@ -8306,7 +8266,7 @@ msgid "Go down the list"
 msgstr "Перейти вниз списку"
 
 msgid "Go to bookmarked folder"
-msgstr "Перейти до папки закладок"
+msgstr "Перейти до теки закладок"
 
 msgid "Go to deep standby"
 msgstr "вимкнути приймач"
@@ -8793,9 +8753,6 @@ msgstr "Гарячі кнопки"
 
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
-
-msgid "Hotkey Setup for"
-msgstr "Налаштування гарячих кнопок для"
 
 msgid "Hour"
 msgstr "Година"
@@ -9349,6 +9306,9 @@ msgstr "Встановлення невдале!!"
 msgid "Install Finished."
 msgstr "Встановлення завершено."
 
+msgid "Install Local Extension"
+msgstr "Встановлення локальних розширень"
+
 msgid "Install Plugins"
 msgstr "Встановити плагіни"
 
@@ -9369,9 +9329,6 @@ msgstr "Встановити розширення."
 
 msgid "Install lcd picons on"
 msgstr "Встановити lcd пікони на"
-
-msgid "Install Local Extension"
-msgstr "Встановлення локальних розширень"
 
 msgid "Install or remove finished."
 msgstr "Встановлення чи видалення завершено."
@@ -10297,6 +10254,9 @@ msgstr "Головне меню"
 msgid "Maintain old EPG data for"
 msgstr "Зберігати старі дані ЕПГ"
 
+msgid "Maintain your multi boot device."
+msgstr "Підтимка Вашим пристроєм мультизавантаження."
+
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "Зробити File Commander доступним у розширеному Меню."
 
@@ -10339,11 +10299,15 @@ msgstr "Мальта"
 msgid "Maltese"
 msgstr "Мальтійська"
 
+msgid "Manage Extensions"
+msgstr "Управління розширеннями"
+
 msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
 
-msgid "Manage Extensions"
-msgstr "Управління розширеннями"
+#, python-format
+msgid "Manage extensions or plugins for your %s %s"
+msgstr "Керувати розширеннями або плагінами для Вашого %s %s"
 
 msgid "Manage network mounts"
 msgstr "Управління монтуванням мережі"
@@ -10520,6 +10484,15 @@ msgstr "Меню"
 
 msgid "Menu Actions"
 msgstr "Дії для Меню"
+
+msgid "Menu Common Actions"
+msgstr ""
+
+msgid "Menu Edit Actions"
+msgstr ""
+
+msgid "Menu Navigation Actions"
+msgstr ""
 
 msgid "Menu config"
 msgstr "Налаштування меню"
@@ -10823,7 +10796,7 @@ msgid "Move files/directories to target directory"
 msgstr "Перемістити файли/каталоги до цільового каталогу"
 
 msgid "Move folder"
-msgstr "Переміщення папки"
+msgstr "Переміщення теки"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Перемістити поточний запис DNS на один рядок вниз"
@@ -11254,7 +11227,7 @@ msgid "New event info"
 msgstr "Інформація про нову передачу"
 
 msgid "New folder"
-msgstr "Нова папка"
+msgstr "Нова тека"
 
 msgid "New password"
 msgstr "Новий пароль"
@@ -11624,7 +11597,7 @@ msgid "Not Shown"
 msgstr "Не показаний"
 
 msgid "Not allowed with folders"
-msgstr "Не дозволяється з папками"
+msgstr "Не дозволяється з теками"
 
 msgid "Not associated"
 msgstr "Не пов’язано"
@@ -11813,6 +11786,13 @@ msgstr "Одна лінія"
 
 msgid "Online software update"
 msgstr "Онлайн оновлення програмного забезпечення"
+
+#, python-format
+msgid "Online update of your %s %s software."
+msgstr "Онлайн оновлення ПЗ Вашого %s %s."
+
+msgid "Only Flash Backup Image"
+msgstr ""
 
 msgid "Only extensions."
 msgstr "Тільки розширення."
@@ -12118,6 +12098,9 @@ msgstr "PVR"
 msgid "PVR long"
 msgstr "PVR довго"
 
+msgid "Package Manager"
+msgstr "Управління пакетами"
+
 msgid "Package information currently not available!"
 msgstr "Інформація про пакет на даний момент недоступна!"
 
@@ -12132,9 +12115,6 @@ msgstr "Тільки запаковані регіони"
 
 msgid "Packages and associated locales"
 msgstr "Пакети та пов’язані локалі"
-
-msgid "Package Manager"
-msgstr "Управління пакетами"
 
 msgid "Packet manager"
 msgstr "Управління пакетами"
@@ -12395,7 +12375,7 @@ msgid "Play entry"
 msgstr "Відтворити запис"
 
 msgid "Play folder"
-msgstr "Відтворення папки"
+msgstr "Відтворення теки"
 
 msgid "Play from next mark or playlist entry"
 msgstr "Відтворення з наступної мітки або списку записів"
@@ -12622,8 +12602,8 @@ msgstr ""
 "\n"
 "Натисніть OK для продовження."
 
-msgid "Please select what to do:"
-msgstr "Будь ласка, виберіть, що робити:"
+msgid "Please select what to do after flash of the following image:"
+msgstr ""
 
 msgid "Please set up tuner A"
 msgstr "Будь ласка, налаштуйте тюнер A"
@@ -13812,7 +13792,7 @@ msgstr "Пульт"
 msgid "Remote Control Button Settings"
 msgstr "Налаштування кнопок пульта"
 
-msgid "Remote Control Code"
+msgid "Remote Control Code Settings"
 msgstr "Код дистанційного керування"
 
 msgid "Remote box"
@@ -13888,7 +13868,7 @@ msgid "Remove completed timers after (days)"
 msgstr "Видалення завершених таймерів через (в днях)"
 
 msgid "Remove current folder from bookmarks"
-msgstr "Видалити поточну папку з закладок"
+msgstr "Видалити поточну теку зі закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
@@ -13897,7 +13877,7 @@ msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
 
 msgid "Remove selected folder from bookmarks"
-msgstr "Видалити вибрану папку з закладок"
+msgstr "Видалити вибрану теку зі закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Видалити тексти для слабочуючих із зовнішніх субтитрів (інструментальна музика чи звуки навколишнього середовища, наприклад, коли лунає дзвінок у дверіа бо постріл)."
@@ -13928,7 +13908,7 @@ msgid "Rename failed!"
 msgstr "Не вдалося перейменувати!"
 
 msgid "Rename file/directory"
-msgstr "Перейменувати файл/папку"
+msgstr "Перейменувати файл/теку"
 
 msgid "Rename name and description for new events"
 msgstr "Перейменувати ім'я та опис для нових подій"
@@ -14096,17 +14076,28 @@ msgstr "Відновити плагіни"
 msgid "Restore Settings"
 msgstr "Відновлення Налаштування"
 
+msgid "Restore System Settings"
+msgstr "Відновлення системних налаштувань"
+
 msgid "Restore backups"
 msgstr "Відновлення резервних копій"
 
 msgid "Restore settings from a backup"
 msgstr "Відновити налаштування з резервної копії"
 
-msgid "Restore System Settings"
-msgstr "Відновлення системних налаштувань"
-
 msgid "Restore the highlighted slot"
 msgstr "Відновити виділений слот"
+
+#, python-format
+msgid "Restore your %s %s settings."
+msgstr "Відновити Ваші %s %s налаштування."
+
+#, python-format
+msgid "Restore your %s %s with a new firmware."
+msgstr "Відновлення Вашого %s %s з новим ПЗ."
+
+msgid "Restore your backups by date."
+msgstr "Відновлення резервних копій за датою."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Відновлення настройок з резервної копії. Після відновлення приймач буде перезавантажений для активації нових налаштувань"
@@ -14491,7 +14482,7 @@ msgid "Save every (in hours)"
 msgstr "Зберігати кожні (в годинах)"
 
 msgid "Save left folder on exit"
-msgstr "Зберегти ліву папку при виході"
+msgstr "Зберегти ліву теку при виході"
 
 msgid "Save playlist"
 msgstr "Зберегти список відтворення"
@@ -14500,7 +14491,7 @@ msgid "Save playlist on EXIT"
 msgstr "зберегти плейлист при виході"
 
 msgid "Save right folder on exit"
-msgstr "Зберегти праву папку при виході"
+msgstr "Зберегти праву теку при виході"
 
 msgid "Save settings and EPG data."
 msgstr "Зберегти налаштування та дані ЕПГ."
@@ -14514,10 +14505,10 @@ msgstr ""
 "('%s')"
 
 msgid "Save the left folder list location on exit."
-msgstr "Зберегти розташування списку папок зліва під час виходу."
+msgstr "Зберегти розташування списку тек зліва під час виходу."
 
 msgid "Save the right folder list location on exit."
-msgstr "Зберегти розташування списку папок справа під час виходу."
+msgstr "Зберегти розташування списку тек справа під час виходу."
 
 msgid "Save timeshift as movie and continue recording"
 msgstr "Зберегти таймшифт як запис і продовжити запис"
@@ -14566,6 +14557,9 @@ msgstr "Сканування файлів..."
 
 msgid "Scan for local extensions and install them"
 msgstr "Пошук і встановлення локальних розширень"
+
+msgid "Scan for local extensions and install them."
+msgstr "Пошук і встановлення локальних розширень."
 
 msgid "Scan wireless networks"
 msgstr "Пошук Wі-Fі мереж"
@@ -14821,17 +14815,26 @@ msgstr "Виберіть 'так', щоб надіслати команду DiSE
 msgid "Select (source list) or enter directory (target list)"
 msgstr "Виберіть (список джерел) або введіть каталог (список цілей)"
 
+msgid "Select Additional Backup Files"
+msgstr "Вибір додаткових файлів резервної копії"
+
+msgid "Select Backup Location"
+msgstr "Вибір розташування бекапу"
+
 msgid "Select CAId"
 msgstr "Вибрати CAID"
 
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
+msgid "Select Excluded Backup Files"
+msgstr "Вибір файлів для виключення з резервної копії"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Виберіть Швидкий DiSEqC, якщо ваша антена підтримує це. Якщо ви не впевнені, виберіть 'ні'."
 
 msgid "Select Folders"
-msgstr "Виберіть папки"
+msgstr "Виберіть теки"
 
 msgid "Select HDD"
 msgstr "Вибрати HDD"
@@ -14850,6 +14853,9 @@ msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
+
+msgid "Select Upgrade Source"
+msgstr "Вибер джерела оновлення"
 
 msgid "Select Your Skin"
 msgstr "Виберіть потрібний Скін"
@@ -14891,17 +14897,11 @@ msgstr "Вибір дії"
 msgid "Select action for timer %s:"
 msgstr "Вибір дії для таймеру %s:"
 
-msgid "Select Additional Backup Files"
-msgstr "Вибір додаткових файлів резервної копії"
-
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
 
 msgid "Select audio track"
 msgstr "Вибір аудіо доріжки"
-
-msgid "Select Backup Location"
-msgstr "Вибір розташування бекапу"
 
 msgid "Select cardserver"
 msgstr "Виберіть cardserver"
@@ -14924,14 +14924,11 @@ msgstr "Вибір тип ЕПГ за умовчанням..."
 msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
 
-msgid "Select Excluded Backup Files"
-msgstr "Вибір файлів для виключення з резервної копії"
-
 msgid "Select files to exclude from backup"
 msgstr "Виберіть файли, які будуть виключені з резервної копії"
 
 msgid "Select files/folders to backup"
-msgstr "Виберіть файли/папки для бекапу"
+msgstr "Виберіть файли/теки для резерв. копії"
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Виберіть швидкість переміщення антени між супутниками."
@@ -15000,7 +14997,7 @@ msgid "Select sort method:"
 msgstr "Виберіть метод сортування:"
 
 msgid "Select target folder"
-msgstr "Виберіть папку призначення"
+msgstr "Виберіть теку призначення"
 
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
@@ -15075,7 +15072,7 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
 
 msgid "Select the movie path"
-msgstr "Виберіть папку для фільмів"
+msgstr "Виберіть теку для фільмів"
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
@@ -15148,9 +15145,6 @@ msgstr "Виберіть потрібний тип вимкнення, коли 
 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Виберіть потрібний тип вимкнення, коли активується таймер вимкнення."
-
-msgid "Select Upgrade Source"
-msgstr "Вибер джерела оновлення"
 
 msgid "Select upgrade source to edit."
 msgstr "Виберіть джерело оновлення для редагування."
@@ -15633,7 +15627,7 @@ msgid "Set voltage and 22KHz"
 msgstr "Встановити напругу і 22KГц"
 
 msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
-msgstr "Виберіть кореневу папку для списку записів, де вже не буде показана папка вгору '..'."
+msgstr "Виберіть кореневу теку для списку записів, де вже не буде показана тека вгору '..'."
 
 msgid "Setting Restored "
 msgstr "Відновлення Налаштувань "
@@ -15835,7 +15829,7 @@ msgid "Seychelles"
 msgstr "Сейшели"
 
 msgid "Share Folders"
-msgstr "Доступні папки"
+msgstr "Доступні теки"
 
 msgid "Share View"
 msgstr "Перегляд мережевого диска"
@@ -15950,6 +15944,9 @@ msgstr "Показати повідомлення СІ"
 
 msgid "Show Clients"
 msgstr "Показати клієнтів"
+
+msgid "Show Default Backup Files"
+msgstr "Показати файли резервної копії за замовчуванням"
 
 msgid "Show Directory size"
 msgstr "Показати розмір каталогу"
@@ -16144,9 +16141,6 @@ msgstr "Показати інфо кодування в Інфобарі"
 msgid "Show default after description"
 msgstr "Показати опис за замовчуванням"
 
-msgid "Show Default Backup Files"
-msgstr "Показати файли резервної копії за замовчуванням"
-
 msgid "Show default on new line"
 msgstr "Показати за замовчуванням у новому рядку"
 
@@ -16279,8 +16273,8 @@ msgstr "Показати записи"
 msgid "Show multi channel EPG"
 msgstr "Показати мульти телегід"
 
-msgid "Show network mounts ..."
-msgstr "Показати мережеві підключення..."
+msgid "Show network setup menu..."
+msgstr ""
 
 msgid "Show next event"
 msgstr "Показати наступну передачу"
@@ -16365,6 +16359,9 @@ msgstr "Показати налаштування"
 
 msgid "Show setup default value"
 msgstr "Показати значення налаштувань за замовчуванням"
+
+msgid "Show setup menu..."
+msgstr ""
 
 msgid "Show shutdown menu"
 msgstr "Показати меню вимкнення"
@@ -16479,6 +16476,9 @@ msgstr "Показувати невідомі розширення файлу з
 
 msgid "Show unknown video format as"
 msgstr "Показати невідомий формат відео як"
+
+msgid "Show usage and GUI menu..."
+msgstr ""
 
 msgid "Show vertical Program Guide"
 msgstr "Показати Вертикальний Електронний Гід"
@@ -16856,6 +16856,9 @@ msgstr "Налаштування Менеджера ПЗ"
 msgid "Software MultiBoot"
 msgstr "ПЗ MultiBoot"
 
+msgid "Software Restore"
+msgstr "Відновлення ПЗ"
+
 msgid "Software Update"
 msgstr "Оновлення ПЗ"
 
@@ -16870,9 +16873,6 @@ msgstr "Управління ПЗ"
 
 msgid "Software manager setup"
 msgstr "Налаштування мененджера ПЗ"
-
-msgid "Software Restore"
-msgstr "Відновлення ПЗ"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -17092,9 +17092,6 @@ msgstr "Режим очікування"
 
 msgid "Standby / Restart"
 msgstr "Вимкнення"
-
-msgid "Standby / restart"
-msgstr "Меню вимкнення"
 
 msgid "Standby without TV shutdown"
 msgstr "Режим очікування без вимкнення телевізора"
@@ -18537,7 +18534,7 @@ msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
+"- verify that you have entered correct IP informations in the adapter setup dialog.\n"
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
@@ -18833,6 +18830,15 @@ msgstr "Перемикання між списками фаворити/теле
 
 msgid "Toggle display of the InfoBar"
 msgstr "Увімкнути/вимкнути відображення InfoBar"
+
+msgid "Toggle hide/show of the current item"
+msgstr ""
+
+msgid "Toggle item edit mode on/off"
+msgstr ""
+
+msgid "Toggle item move mode on/off"
+msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Перемикання до нових текстових вставок, або перезаписати існуючий текст"
@@ -19295,7 +19301,7 @@ msgid "Unpack to %s"
 msgstr "Розпакувати до %s"
 
 msgid "Unpack to current folder"
-msgstr "Розпакувати до поточної папки"
+msgstr "Розпакувати до поточної теки"
 
 msgid "Unsupported"
 msgstr "Не підтримуєтья"
@@ -19397,8 +19403,8 @@ msgstr "Оновлення параметрів підключення."
 msgid "Updating software catalog"
 msgstr "Каталог оновлення ПЗ"
 
-msgid "Upgrade (Backup, flash & restore all)"
-msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
+msgid "Upgrade (Flash & restore all)"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Оновлення завершено."
@@ -19965,6 +19971,9 @@ msgstr "Перегляд телетексту..."
 msgid "View video CD..."
 msgstr "Перегляд відео СД..."
 
+msgid "View, install and remove available or installed packages."
+msgstr "Переглянути, встановити або видалити наявні чи встановлені пакети."
+
 msgid "Violence"
 msgstr "Насилля"
 
@@ -20410,7 +20419,7 @@ msgid "When receiver wakes from standby it will command the TV to switch to the 
 msgstr "Коли приймач виходить із режиму очікування, він дасть команду телевізору переключитися на вхід HDMI, до якого підключено приймач."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr "Якщо вибрано, попередній стан кожної папки буде використовуватися, при прийнятті значень за умовчанням."
+msgstr "Якщо вибрано, попередній стан кожної теки буде використовуватися, при прийнятті значень за умовчанням."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Якщо вибрано PIG, коли відтворення фільму закінчилося, почнеться показ телепередачі."
@@ -21948,7 +21957,7 @@ msgid "move file"
 msgstr "перемістити файл"
 
 msgid "move folder"
-msgstr "перемістити папку"
+msgstr "перемістити теку"
 
 msgid "move up to first entry"
 msgstr "перемістити вгору до першого запису"
@@ -22320,7 +22329,7 @@ msgid "set as startup service"
 msgstr "встановити стартовим каналом"
 
 msgid "share:"
-msgstr "мережева папка:"
+msgstr "мережева тека:"
 
 msgid "shell"
 msgstr "shell"
@@ -22722,6 +22731,33 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Backup, flash and restore settings and no plugins"
+#~ msgstr "Копіювання, прошивка та відновлення налаштувань без плагінів"
+
+#~ msgid "Backup, flash and restore settings and selected plugins (Ask user)"
+#~ msgstr "Копіювання, прошивка та відновлення налаштувань і плагінів (запитати користувача)"
+
+#~ msgid "Common Menu Actions"
+#~ msgstr "Загальні дії меню"
+
+#~ msgid "Hotkey Setup for"
+#~ msgstr "Налаштування гарячих кнопок для"
+
+#~ msgid "Please select what to do:"
+#~ msgstr "Будь ласка, виберіть, що робити:"
+
+#~ msgid "Show network mounts ..."
+#~ msgstr "Показати мережеві підключення..."
+
+#~ msgid "Standby / restart"
+#~ msgstr "Меню вимкнення"
+
+#~ msgid "Upgrade (Backup, flash & restore all)"
+#~ msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
 
 #~ msgid "Choose style of main menus"
 #~ msgstr "Виберіть стиль Головного Меню"
