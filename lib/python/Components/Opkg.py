@@ -130,15 +130,6 @@ class OpkgComponent:
 	EVENT_MODIFIED = 12
 
 	def __init__(self, opkg="/usr/bin/opkg"):
-		if not hasattr(config.plugins, "softwaremanager"):
-			config.plugins.softwaremanager = ConfigSubsection()
-		if not hasattr(config.plugins.softwaremanager, "overwriteSettingsFiles"):
-			config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-			config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
 		self.opkg = opkg
 		self.cmd = eConsoleAppContainer()
 		self.callbackList = []

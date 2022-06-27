@@ -20,7 +20,7 @@ from Components.SystemInfo import BoxInfo
 import NavigationInstance
 
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
-from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
+from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup
 
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.MountManager import HddMount
@@ -126,7 +126,6 @@ class QuickMenu(Screen, ProtectedScreen):
 			"yellow": self.keyyellow,
 			})
 
-		Load_defaults()
 		self.MainQmenu()
 		self.selectedList = self["list"]
 		self.selectionChanged()

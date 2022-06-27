@@ -1696,6 +1696,32 @@ def InitUsageConfig():
 		config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 		config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
 
+	# softwaremanager
+	config.plugins.softwaremanager = ConfigSubsection()
+	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+
+	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(default="Y", choices=[
+		("Y", _("Yes, always")),
+		("N", _("No, never")),
+		("ask", _("Always ask"))
+	])
+
+	config.plugins.softwaremanager.updatetype = ConfigSelection(default="hot", choices=[
+		("hot", _("Upgrade with GUI")),
+		("cold", _("Unattended upgrade without GUI"))
+	])
+	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
+		("turbo", _("turbo")),
+		("fast", _("fast")),
+		("slow", _("slow"))
+	])
+	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
 	elem = config_priority.value

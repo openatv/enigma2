@@ -54,38 +54,6 @@ boxType = BoxInfo.getItem("model")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 
-def Load_defaults():
-	if hasattr(config.plugins, "softwaremanager"):
-		return
-
-	config.plugins.softwaremanager = ConfigSubsection()
-	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(default="Y", choices=[
-		("Y", _("Yes, always")),
-		("N", _("No, never")),
-		("ask", _("Always ask"))
-	])
-
-	config.plugins.softwaremanager.updatetype = ConfigSelection(default="hot", choices=[
-		("hot", _("Upgrade with GUI")),
-		("cold", _("Unattended upgrade without GUI"))
-	])
-	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
-		("turbo", _("turbo")),
-		("fast", _("fast")),
-		("slow", _("slow"))
-	])
-	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
-
-
-Load_defaults()
-
-
 def write_cache(cache_file, cache_data):  # Does a cPickle dump.
 	if not isdir(dirname(cache_file)):
 		try:
@@ -182,7 +150,6 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
-		Load_defaults()
 		self.createSetup()
 
 	def createSetup(self):
