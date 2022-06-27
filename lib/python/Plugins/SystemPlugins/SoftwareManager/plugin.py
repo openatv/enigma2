@@ -1832,7 +1832,7 @@ def filescan(**kwargs):
 
 class BackupHelper(Screen):
 	skin = """
-		<screen name="BackupHelper" position="center,center" size="10,10" title="SoftwareManager">
+		<screen name="BackupHelper" position="0,0" size="1,1" title="SoftwareManager">
 		</screen>"""
 
 	def __init__(self, session, args=0):
@@ -1917,16 +1917,5 @@ class BackupHelper(Screen):
 		self.close()
 
 
-#def keyInfo(self):
-#	current = self["menu"].getCurrent()
-#	if current:
-#		currentEntry = current[0]
-#		if currentEntry in ("system-backup", "backupfiles", "backupfiles_exclude", "backupfiles_addon"):
-#			self.session.open(SoftwareManagerInfo, mode="backupinfo", submode=currentEntry)
-
-
 def Plugins(path, **kwargs):
-	list = [
-		PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
-	]
-	return list
+	return [PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)]
