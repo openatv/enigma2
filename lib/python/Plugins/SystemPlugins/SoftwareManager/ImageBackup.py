@@ -102,7 +102,7 @@ class ImageBackup(Screen):
 			imageList.append(ChoiceEntryComponent("", (_("Internal flash:  %s %s ") % (DISTRO, DISTROVERSION), "slotCode", False)))
 		self["config"].setList(imageList)
 		for index, item in enumerate(imageList):
-			if item[0][2] == str(currentimageslot):
+			if item[0][1] == str(currentimageslot):
 				break
 		self["config"].moveToIndex(index)
 
