@@ -18,6 +18,7 @@ eDVBServiceStream::eDVBServiceStream()
 	m_stream_eit = false;
 	m_stream_ait = false;
 	m_stream_sdtbat = false;
+	m_stream_tdt = false;
 	m_tuned = 0;
 	m_target_fd = -1;
 }
@@ -111,6 +112,7 @@ int eDVBServiceStream::doPrepare()
 		m_stream_eit = eConfigManager::getConfigBoolValue("config.streaming.stream_eit");
 		m_stream_ait = eConfigManager::getConfigBoolValue("config.streaming.stream_ait");
 		m_stream_sdtbat = eConfigManager::getConfigBoolValue("config.streaming.stream_sdtbat");
+		m_stream_tdt = eConfigManager::getConfigBoolValue("config.streaming.stream_tdt");
 		m_pids_active.clear();
 		m_state = statePrepared;
 		eDVBServicePMTHandler::serviceType servicetype = m_stream_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
@@ -301,8 +303,10 @@ int eDVBServiceStream::doRecord()
 			pids_to_record.insert(0x11);
 		}
 
-		/* include TDT pid, really low bandwidth, should not hurt anyone */
-		pids_to_record.insert(0x14);
+		if (m_stream_tdt)
+		{
+			pids_to_record.insert(0x14);
+		}
 
 		recordPids(pids_to_record, timing_pid, timing_stream_type, timing_pid_type);
 	}
@@ -360,8 +364,10 @@ bool eDVBServiceStream::recordCachedPids()
 		pids_to_record.insert(0x11);
 	}
 
-	/* include TDT pid, really low bandwidth, should not hurt anyone */
-	pids_to_record.insert(0x14);
+	if (m_stream_tdt)
+	{
+		pids_to_record.insert(0x14);
+	}
 
 	recordPids(pids_to_record, -1, -1, iDVBTSRecorder::none);
 

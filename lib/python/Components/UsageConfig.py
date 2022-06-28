@@ -1671,6 +1671,7 @@ def InitUsageConfig():
 	config.streaming.stream_eit = ConfigYesNo(default=True)
 	config.streaming.stream_ait = ConfigYesNo(default=True)
 	config.streaming.stream_sdtbat = ConfigYesNo(default=False)
+	config.streaming.stream_tdt = ConfigYesNo(default=False)
 	config.streaming.authentication = ConfigYesNo(default=False)
 
 	config.pluginbrowser = ConfigSubsection()
