@@ -310,7 +310,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Show Default Backup Files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Additional Backup Files", _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Select Excluded Backup Files", _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup", _("Manage your online update files"), _("Here you can select which files should be updated with a online update")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Settings", _("Manage your online update files"), _("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
@@ -512,7 +512,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode="backupfiles_addon")
 		elif item[0] == _("Select Excluded Backup Files"):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
-		elif item[0] == _("Software Manager Setup"):
+		elif item[0] == _("Software Manager Settings"):
 			self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
 		elif item[0] == _("Plugin Browser"):

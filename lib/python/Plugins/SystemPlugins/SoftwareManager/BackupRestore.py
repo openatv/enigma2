@@ -794,7 +794,7 @@ class RestorePlugins(Screen):
 
 class SoftwareManagerInfo(Screen):
 	skin = """
-		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="SoftwareManager information">
+		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="Software Manager Information">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
