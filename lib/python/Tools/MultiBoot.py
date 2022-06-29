@@ -302,6 +302,7 @@ class MultiBootClass():
 			self.callback(self.imageList)
 
 	def analyzeSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
+		from Tools.Conversions import formatDate  # This import must stay here to avoid a boot loop.
 		if retVal:
 			# print("[MultiBoot] analyzeSlot Error %d: Unable to mount slot '%s' (%s)!" % (retVal, self.slotCode, self.device))
 			self.imageList[self.slotCode]["imagename"] = _("Inaccessible")
@@ -320,15 +321,13 @@ class MultiBootClass():
 				else:
 					revision = " %s" % revision
 				revision = "" if revision.strip() == compileDate else revision
-				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
-				self.imageList[self.slotCode]["imagename"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, compileDate)
+				self.imageList[self.slotCode]["imagename"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, formatDate(compileDate))
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 				# print("[MultiBoot] Slot '%s' (%s%s): Found an enigma2 binary file." % (self.slotCode, self.device, " - %s" % rootDir if rootDir else ""))
 				info = self.deriveSlotInfo(imageDir)
 				compileDate = str(info.get("compiledate"))
-				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
-				self.imageList[self.slotCode]["imagename"] = "%s %s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), compileDate)
+				self.imageList[self.slotCode]["imagename"] = "%s %s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), formatDate(compileDate))
 				self.imageList[self.slotCode]["status"] = "active"
 			else:
 				# print("[MultiBoot] Slot '%s' (%s%s): Found no enigma files." % (self.slotCode, self.device, " - %s" % rootDir if rootDir else ""))
