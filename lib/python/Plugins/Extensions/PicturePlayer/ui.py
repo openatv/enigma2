@@ -1,4 +1,3 @@
-from __future__ import print_function
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Components.Pixmap import Pixmap, MovingPixmap
@@ -213,13 +212,13 @@ class Pic_Thumb(Screen):
 		self.size_h = getDesktop(0).size().height()
 		self.thumbsX = self.size_w / (self.spaceX + self.picX) # thumbnails in X
 		self.thumbsY = self.size_h / (self.spaceY + self.picY) # thumbnails in Y
-		self.thumbsC = self.thumbsX * self.thumbsY # all thumbnails
+		self.thumbsC = int(self.thumbsX * self.thumbsY) # all thumbnails
 
 		self.positionlist = []
 		skincontent = ""
 
 		posX = -1
-		for x in list(range(self.thumbsC)):
+		for x in range(self.thumbsC):
 			posY = x / self.thumbsX
 			posX += 1
 			if posX >= self.thumbsX:
@@ -252,7 +251,7 @@ class Pic_Thumb(Screen):
 		}, -1)
 
 		self["frame"] = MovingPixmap()
-		for x in list(range(self.thumbsC)):
+		for x in range(self.thumbsC):
 			self["label" + str(x)] = StaticText()
 			self["thumb" + str(x)] = Pixmap()
 
@@ -310,7 +309,7 @@ class Pic_Thumb(Screen):
 	def newPage(self):
 		self.Thumbnaillist = []
 		#clear Labels and Thumbnail
-		for x in list(range(self.thumbsC)):
+		for x in range(self.thumbsC):
 			self["label" + str(x)].setText("")
 			self["thumb" + str(x)].hide()
 		#paint Labels and fill Thumbnail-List
@@ -513,7 +512,7 @@ class Pic_Full_View(Screen):
 			self.index = self.maxentry
 
 	def slidePic(self):
-		print("slide to next Picture index=" + str(self.lastindex))
+		print("slide to next Picture index=%s" % str(self.lastindex))
 		if config.pic.loop.value == False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
