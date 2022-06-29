@@ -784,12 +784,12 @@ class ImageBackup(Screen):
 					bouqet = line.split()
 					if len(bouqet) > 3:
 						bouqet[3] = bouqet[3].replace("\"", "")
-					try:
-						with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
-							userbouqet = fd.readline()
-						bouquetsTV.append(userbouqet.replace("#NAME ", ""))
-					except OSError:
-						pass
+						try:
+							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
+								userbouqet = fd.readline()
+							bouquetsTV.append(userbouqet.replace("#NAME ", ""))
+						except OSError:
+							pass
 
 		lines = fileReadLines(pathjoin(imageDir, "etc/enigma2/bouquets.radio"), source=MODULE_NAME)
 		if lines:
