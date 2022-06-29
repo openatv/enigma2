@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -57,33 +57,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"按OK键后,请稍候!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"按遥控器上的OK键继续."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "录制正在进行中."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"选择备份设备.\n"
-"当前设备: "
 
 msgid ""
 "\n"
@@ -2008,9 +1985,6 @@ msgstr "是否重复定时器或只运行一次？"
 msgid "A required tool (%s) was not found."
 msgstr "所需的工具(%s)没有找到."
 
-msgid "A search for available updates is currently in progress."
-msgstr "正在搜索可用的更新."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2395,12 +2369,6 @@ msgstr "高级设置"
 
 msgid "Advanced options and settings."
 msgstr "高级选项和设置."
-
-msgid "Advanced software"
-msgstr "高级软件"
-
-msgid "Advanced software plugin"
-msgstr "高级软件插件"
 
 msgid "Advanced video enhancement setup"
 msgstr "高级视频增强设置"
@@ -3207,7 +3175,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "备份到:%s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "备份 %s %s 设置."
 
@@ -3223,7 +3190,6 @@ msgstr "备份您的当前设置"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "备份当前设置.包括E2设置,频道,网络和所有已选择的文件"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "运行备份 %s %s 镜像到硬盘或U盘."
 
@@ -3458,6 +3424,9 @@ msgstr "无线网络"
 
 msgid "Broadcom"
 msgstr "博通"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "文莱"
@@ -5883,9 +5852,6 @@ msgstr "取消选择的包通常发生,因为打包的包与现有包不兼容. 
 msgid "Detail of GStreamer log"
 msgstr "GStreamer日志的详细信息"
 
-msgid "Details for plugin: "
-msgstr "插件详细信息: "
-
 msgid "Detected drives"
 msgstr "检测到的驱动器"
 
@@ -6482,10 +6448,6 @@ msgstr "驱动器"
 msgid "Drivers version"
 msgstr "驱动版本"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "驱动程序:\t%s"
-
 msgid "Drives Information"
 msgstr "驱动器信息"
 
@@ -6659,6 +6621,9 @@ msgstr "编辑定时器"
 msgid "Edit Title"
 msgstr "编辑标题"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "编辑当前标题章节"
 
@@ -6684,9 +6649,6 @@ msgstr "编辑您的 %s %s 的网络配置."
 
 msgid "Edit the upgrade source address."
 msgstr "编辑升级更新源地址."
-
-msgid "Edit upgrade source url."
-msgstr "编辑升级源地址."
 
 msgid "Education"
 msgstr "教育"
@@ -7496,12 +7458,6 @@ msgstr "扩展设置..."
 msgid "Extended Shares"
 msgstr "扩展共享"
 
-msgid "Extended Software"
-msgstr "扩展软件"
-
-msgid "Extended Software Plugin"
-msgstr "扩展软件插件"
-
 msgid "Extended settings"
 msgstr "扩展设置"
 
@@ -7901,7 +7857,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "不允许使用闪存目录 '%s'!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "直接刷写 %s %s."
 
@@ -9020,12 +8975,8 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip已创建"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "镜像创建失败 - "
@@ -9105,6 +9056,9 @@ msgstr "在Http串流中包含ECM信息"
 
 msgid "Include EIT in http streams"
 msgstr "在Http串流中包含EIT信息"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "包含动作映射信息"
@@ -9793,10 +9747,6 @@ msgstr "最后播放速度"
 msgid "Last update"
 msgstr "最后更新"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "最后更新:\t%s"
-
 msgid "Last used share: "
 msgstr "最后使用的共享: "
 
@@ -10276,16 +10226,8 @@ msgstr "管理扩展"
 msgid "Manage Locale/Language Selection settings"
 msgstr "管理本地/语言选择设置"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "管理 %s %s 的扩展或插件"
-
 msgid "Manage network mounts"
 msgstr "管理网络挂载"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "管理 %s %s's 的软件"
 
 msgid "Manage your online update files"
 msgstr "管理在线更新文件"
@@ -10597,10 +10539,6 @@ msgstr "型号"
 
 msgid "Model: "
 msgstr "型号: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "品牌名称: %s %s\n"
 
 msgid "Modified:"
 msgstr "最后修改:"
@@ -11182,9 +11120,6 @@ msgstr "新喀里多尼亚"
 msgid "New PIN"
 msgstr "新的PIN码"
 
-msgid "New Packages"
-msgstr "新软件包"
-
 msgid "New Setting DXAndy "
 msgstr "新设置DXAndy "
 
@@ -11393,6 +11328,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "不待机"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "没有找到合适的卫星调谐器！"
@@ -11758,7 +11696,6 @@ msgstr "单行"
 msgid "Online software update"
 msgstr "在线软件更新"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "在线更新您的 %s %s 软件."
 
@@ -12768,11 +12705,15 @@ msgstr "插件浏览器"
 msgid "Plugin Browser Settings"
 msgstr "插件浏览器设置"
 
-msgid "Plugin Filter Settings"
-msgstr "插件筛选"
-
 msgid "Plugin Details"
 msgstr "插件细节"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "插件筛选"
 
 msgid "Plugin Manager Activity Information"
 msgstr "插件管理活动信息"
@@ -12959,12 +12900,6 @@ msgstr ""
 
 msgid "Press EXIT to return to the help screen."
 msgstr "按EXIT键返回帮助界面."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "按INFO键显示附加的信息."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "按遥控器的MENU键获得更多信息."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14059,11 +13994,9 @@ msgstr "从备份恢复设置"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "恢复 %s %s 设置."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "使用新固件恢复 %s %s."
 
@@ -14826,6 +14759,9 @@ msgstr "选择软件更新"
 msgid "Select Upgrade Source"
 msgstr "选择升级源"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "选择升级源来编辑."
+
 msgid "Select Your Skin"
 msgstr "选择你的皮肤"
 
@@ -15115,9 +15051,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "选择升级源来编辑."
-
 msgid "Select video input with up/down buttons"
 msgstr "使用上/下键选择视频输入"
 
@@ -15159,6 +15092,9 @@ msgstr "选择ATSC提供商."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "选择音频/字幕语言"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "选择国家(地区).如果不可用,请选择'全部'."
@@ -16811,8 +16747,17 @@ msgstr "softcams共享设置"
 msgid "Software"
 msgstr "软件"
 
+msgid "Software Management"
+msgstr "软件管理"
+
 msgid "Software Manager"
 msgstr "软件管理器"
+
+msgid "Software Manager Information"
+msgstr "软件管理器信息"
+
+msgid "Software Manager Settings"
+msgstr "软件管理器设置"
 
 msgid "Software Manager Setup"
 msgstr "软件管理器设置"
@@ -16832,12 +16777,6 @@ msgstr "软件更新操作"
 msgid "Software information"
 msgstr "软件信息"
 
-msgid "Software Management"
-msgstr "软件管理"
-
-msgid "Software Manager Settings"
-msgstr "软件管理器设置"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
@@ -16845,9 +16784,6 @@ msgstr ""
 "软件更新开始,请稍候.\n"
 "\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "软件管理器信息"
 
 msgid "Softwaremanager..."
 msgstr "软件管理器..."
@@ -18104,10 +18040,6 @@ msgstr "向导现在已完成设置."
 msgid "There are at least "
 msgstr "至少有 "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "至少有 %s 个更新可用."
-
 msgid "There are currently no outstanding actions."
 msgstr "目前没有任何突出的动作."
 
@@ -18139,9 +18071,6 @@ msgstr "下载区域列表时出错"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "下载更新列表时出错.请再试一次."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "下载软件包列表出错,请重试."
 
 msgid "There was an error while trying to login."
 msgstr "尝试登录时出错."
@@ -18238,6 +18167,9 @@ msgid "This line is not editable!"
 msgstr "此行不可编辑！"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -18943,9 +18875,6 @@ msgstr "如果不是所有命令都被执行,尝试发送重复的命令.(例如
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "尝试下载新的软件包列表,请稍候..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "正在尝试下载新的更新列表.请稍等..."
 
 msgid "Tsonga"
 msgstr "特松加"
@@ -20247,6 +20176,9 @@ msgstr "启用后,EIT数据将包含在HTTP流.这允许一个客户端接收显
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "启用后,Enigma2将加载未链接的频道列表.这意味着频道列表可用,但未包括在bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "启用时,将在电影播放完毕,下一个电影开始时显示弹出消息."
@@ -22685,6 +22617,97 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "按OK键后,请稍候!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "按遥控器上的OK键继续."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "选择备份设备.\n"
+#~ "当前设备: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "正在搜索可用的更新."
+
+#~ msgid "Advanced software"
+#~ msgstr "高级软件"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "高级软件插件"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "插件详细信息: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "驱动程序:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "编辑升级源地址."
+
+#~ msgid "Extended Software"
+#~ msgstr "扩展软件"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "扩展软件插件"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip已创建"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "最后更新:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "管理 %s %s 的扩展或插件"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "管理 %s %s's 的软件"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "品牌名称: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "新软件包"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "按INFO键显示附加的信息."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "按遥控器的MENU键获得更多信息."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "至少有 %s 个更新可用."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "下载软件包列表出错,请重试."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "正在尝试下载新的更新列表.请稍等..."
 
 #~ msgid "??"
 #~ msgstr "??"

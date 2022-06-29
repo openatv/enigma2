@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-06-13 04:00+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -57,33 +57,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Po stlačení OK prosím počkajte!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Pre pokračovanie stlačte OK na diaľkovom ovládači."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Prebieha nahrávanie."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Zvoľte zariadenie pre zálohovanie.\n"
-"Aktuálne zariadenie: "
 
 msgid ""
 "\n"
@@ -2030,9 +2007,6 @@ msgstr "Opakovaný časovač alebo iba jedenkrát?"
 msgid "A required tool (%s) was not found."
 msgstr "Požadovaný nástroj (%s) sa nenašiel."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Práve prebieha vyhľadávanie dostupných aktualizácií."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2417,12 +2391,6 @@ msgstr "Pokročilé nastavenia"
 
 msgid "Advanced options and settings."
 msgstr "Pokročilé voľby a nastavenia."
-
-msgid "Advanced software"
-msgstr "Pokročilý softvér"
-
-msgid "Advanced software plugin"
-msgstr "Plugin pre pokročilý softvér"
 
 msgid "Advanced video enhancement setup"
 msgstr "Nastavenie pokročilých rozšírení videa"
@@ -3229,7 +3197,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Zálohovať do: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Záloha nastavenia vášho %s %s."
 
@@ -3245,7 +3212,6 @@ msgstr "Záloha vašich nastavení"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Záloha vašich aktuálnych nastavení. To zahŕňa nastavenie E2, kanály, sieť a všetky vybrané súbory"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Záloha aktuálneho image prijímača %s %s na HDD alebo USB."
 
@@ -3480,6 +3446,9 @@ msgstr "Vysielanie"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunej (Brunejsko-darussalamský štát)"
@@ -5903,9 +5872,6 @@ msgstr "Odznačené balíky sa vyskytnú vtedy, keď nie sú pribalené balíky 
 msgid "Detail of GStreamer log"
 msgstr "Vymazať záznam súčasti GStreamer"
 
-msgid "Details for plugin: "
-msgstr "Podrobnosti o plugine: "
-
 msgid "Detected drives"
 msgstr "Zistené jednotky"
 
@@ -6503,10 +6469,6 @@ msgstr "ovládače"
 msgid "Drivers version"
 msgstr "Verzia ovládača"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Ovládače:\t%s"
-
 msgid "Drives Information"
 msgstr "Informácia o jednotkách"
 
@@ -6680,6 +6642,9 @@ msgstr "Upraviť časovač"
 msgid "Edit Title"
 msgstr "Upraviť názov"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Upraviť kapitoly aktuálneho titulu"
 
@@ -6705,9 +6670,6 @@ msgstr "Upravuje nastavenie siete %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr "Upraviť adresu zdroja aktualizácií."
-
-msgid "Edit upgrade source url."
-msgstr "Upraviť URL zdroja aktualizácie."
 
 msgid "Education"
 msgstr "Vzdelávanie"
@@ -7519,12 +7481,6 @@ msgstr "Rozšírené nastavenie..."
 msgid "Extended Shares"
 msgstr "Rozšírené zdieľanie"
 
-msgid "Extended Software"
-msgstr "Rozšírený softvér"
-
-msgid "Extended Software Plugin"
-msgstr "Plugin pre rozšírený softvér"
-
 msgid "Extended settings"
 msgstr "Rozšírené nastavenia"
 
@@ -7924,7 +7880,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash priečinok '%s' nie je povolený!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flashovanie prijímača %s %s on the fly."
 
@@ -9043,12 +8998,8 @@ msgid "Image Flash Actions"
 msgstr "Akcie pre flashovanie image"
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Vytváranie image bolo neúspešné - "
@@ -9128,6 +9079,9 @@ msgstr "Zahrnúť ECM do http streamov"
 
 msgid "Include EIT in http streams"
 msgstr "Zahrnúť EIT do http streamov"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Zahrnúť údaje z mapy akcií"
@@ -9816,10 +9770,6 @@ msgstr "Posledná rýchlosť"
 msgid "Last update"
 msgstr "Posledná aktualizácia"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Posl. aktualizácia:\t%s"
-
 msgid "Last used share: "
 msgstr "Posledné použitie zdieľania: "
 
@@ -10300,16 +10250,8 @@ msgstr "Spravovať rozšírenia"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Spravovať nastavenia pre výber miestneho nastavenia/jazyka"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Správa rozšírení alebo pluginov prijímača %s %s"
-
 msgid "Manage network mounts"
 msgstr "Správa sieťových pripojení"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Spravujte softvér prijímača %s %s"
 
 msgid "Manage your online update files"
 msgstr "Spravujte online aktualizačné súbory"
@@ -10621,10 +10563,6 @@ msgstr "Model"
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Model: %s %s\n"
 
 msgid "Modified:"
 msgstr "Upravené:"
@@ -11206,9 +11144,6 @@ msgstr "Nová Kaledónia"
 msgid "New PIN"
 msgstr "Nový PIN"
 
-msgid "New Packages"
-msgstr "Nové balíčky"
-
 msgid "New Setting DXAndy "
 msgstr "Nový setting DXAndy "
 
@@ -11417,6 +11352,9 @@ msgstr "Nenašli sa žiadne image pre slot"
 
 msgid "No standby"
 msgstr "Žiadny pohotovostný režim"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Nenašiel sa žiadny vhodný satel. tuner!"
@@ -11782,7 +11720,6 @@ msgstr "Jeden riadok"
 msgid "Online software update"
 msgstr "Online aktualizácia softvéru"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Online aktualizácia softvéru prijímača %s %s."
 
@@ -12792,11 +12729,15 @@ msgstr "Prehliadač pluginov"
 msgid "Plugin Browser Settings"
 msgstr "Nastavenia prehliadača pluginov"
 
-msgid "Plugin Filter Settings"
-msgstr "Filter pluginov"
-
 msgid "Plugin Details"
 msgstr "Podrobnosti o pluginoch"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Filter pluginov"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Informácie o činnosti správcu pluginov"
@@ -12983,12 +12924,6 @@ msgstr "Stlačením tlačidla EXIT ponuku zatvoríte."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Stlačením EXIT sa vrátite na obrazovku pomocníka."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Stlačením INFO na DO zobrazíte doplnkové informácie."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Stlačením MENU na DO zobrazíte ďalšie možnosti."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Pre výber MultiBoot stlačte OK."
@@ -14083,11 +14018,9 @@ msgstr "Obnoviť nastavenia zo zálohy"
 msgid "Restore the highlighted slot"
 msgstr "Obnoviť zvýraznený slot"
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Obnoviť nastavenia vášho %s %s."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Obnoviť %s %s s novým firmwarom."
 
@@ -14852,6 +14785,9 @@ msgstr "Výber SW aktualizácie"
 msgid "Select Upgrade Source"
 msgstr "Vyberte zdroje pre aktualizáciu"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Vyberte zdroj aktualizácie, ktorý chcete upraviť."
+
 msgid "Select Your Skin"
 msgstr "Výber vzhľadu"
 
@@ -15141,9 +15077,6 @@ msgstr "Vyberte typ požadovaného vypnutia v prípade, že sa aktivuje časova�
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Vyberte typ požadovaného vypnutia v prípade, že sa aktivuje časovač uspania."
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Vyberte zdroj aktualizácie, ktorý chcete upraviť."
-
 msgid "Select video input with up/down buttons"
 msgstr "Tlačidlami nahor/nadol vyberte vstup pre video"
 
@@ -15185,6 +15118,9 @@ msgstr "Vyberte vášho poskytovateľa ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Vyberte jazyk pre zvuk/titulky"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Vyberte svoju krajinu. Ak nie je dostupná, vyberte 'všetky'."
@@ -16842,8 +16778,17 @@ msgstr "softcamy"
 msgid "Software"
 msgstr "Softvér"
 
+msgid "Software Management"
+msgstr "Správa softvéru"
+
 msgid "Software Manager"
 msgstr "Správca softvéru"
+
+msgid "Software Manager Information"
+msgstr "Informácia správcu softvéru"
+
+msgid "Software Manager Settings"
+msgstr "Inštalácia správcu softvéru"
 
 msgid "Software Manager Setup"
 msgstr "Inštalácia správcu softvéru"
@@ -16863,21 +16808,12 @@ msgstr "Akcie aktualizovania softvéru"
 msgid "Software information"
 msgstr "Informácie o softvéri"
 
-msgid "Software Management"
-msgstr "Správa softvéru"
-
-msgid "Software Manager Settings"
-msgstr "Inštalácia správcu softvéru"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "Spúšťa sa aktualizovanie softvéru, prosím čakajte.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Informácia správcu softvéru"
 
 msgid "Softwaremanager..."
 msgstr "Správca softvéru..."
@@ -18143,10 +18079,6 @@ msgstr "Sprievodca teraz skončil."
 msgid "There are at least "
 msgstr "Je aspoň "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "K dispozícii je najmenej %s aktualizácií."
-
 msgid "There are currently no outstanding actions."
 msgstr "Žiadne činnosti na vykonanie."
 
@@ -18178,9 +18110,6 @@ msgstr "Došlo k chybe pri sťahovaní zoznamu regiónov"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "Pri sťahovaní zoznamu aktualizácií došlo k chybe. Prosím skúste to ešte raz."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Došlo k chybe pri sťahovaní zoznamu aktualizácií. Prosím skúste to ešte raz."
 
 msgid "There was an error while trying to login."
 msgstr "Došlo k chybe počas pokusu o prihlásenie."
@@ -18278,6 +18207,9 @@ msgstr "Tento riadok nemožno upravovať!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Toto menu obsahuje výbery pre zobrazenie informácie o prijímači."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Tento posun sa použije iba vtedy, keď stanica nemá nastavený svoj vlastný posun hlasitosti."
@@ -18982,9 +18914,6 @@ msgstr "Pokúsiť sa odoslať opakované príkazy, ak sa nevykonajú všetky pr�
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Pokúšam sa stiahnuť nový zoznam paketov. Čakajte..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Pokúšam sa stiahnuť nový zoznam aktualizácií. Čakajte..."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -20286,6 +20215,9 @@ msgstr "Ak je povolené, pridajú sa dáta EIT do streamu. To umožní klientsk�
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Ak je povolené, systém Enigma2 načíta aj neprepojené prehľady kanálov, ktoré sú dostupné, ale nie sú obsiahnuté v súbore bouquets.tv alebo bouquets.radio. To Vám umožní napríklad zachovať vlastný prehľad kanálov aj vtedy, keď sa aktualizujú nastavenia prijímača"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Ak je povolené, zobrazí sa po skončení prehrávania správa, pred začiatkom nového prehrávania."
@@ -22729,6 +22661,97 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Po stlačení OK prosím počkajte!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Pre pokračovanie stlačte OK na diaľkovom ovládači."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Zvoľte zariadenie pre zálohovanie.\n"
+#~ "Aktuálne zariadenie: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Práve prebieha vyhľadávanie dostupných aktualizácií."
+
+#~ msgid "Advanced software"
+#~ msgstr "Pokročilý softvér"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Plugin pre pokročilý softvér"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Podrobnosti o plugine: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Ovládače:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Upraviť URL zdroja aktualizácie."
+
+#~ msgid "Extended Software"
+#~ msgstr "Rozšírený softvér"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Plugin pre rozšírený softvér"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image vytvorený na: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Posl. aktualizácia:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Správa rozšírení alebo pluginov prijímača %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Spravujte softvér prijímača %s %s"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Nové balíčky"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Stlačením INFO na DO zobrazíte doplnkové informácie."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Stlačením MENU na DO zobrazíte ďalšie možnosti."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "K dispozícii je najmenej %s aktualizácií."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Došlo k chybe pri sťahovaní zoznamu aktualizácií. Prosím skúste to ešte raz."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Pokúšam sa stiahnuť nový zoznam aktualizácií. Čakajte..."
 
 #~ msgid "??"
 #~ msgstr "??"

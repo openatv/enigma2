@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -62,38 +62,12 @@ msgstr ""
 "\n"
 "<Bu tuner otomatik olarak yapılandırılmıştır>"
 
-#
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"OK tuşuna bastıktan sonra lütfen bekleyin!"
-
-#
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Devam etmek için kumandanızdaki OK tuşuna basın."
-
 msgid ""
 "\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Kayıt devam ediyor."
-
-#
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Yedekleme aygıtını seçin.\n"
-"Geçerli aygıt: "
 
 msgid ""
 "\n"
@@ -2074,9 +2048,6 @@ msgstr "Tekrarlanan bir zamanlayıcı mı, yoksa sadece bir kez mi?"
 msgid "A required tool (%s) was not found."
 msgstr "Gereken (%s) aracı bulunamadı."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Güncelleştirmeler kontrol ediliyor."
-
 #
 msgid ""
 "A second configured interface has been found.\n"
@@ -2492,12 +2463,6 @@ msgstr "Gelişmiş Ayarlar"
 #
 msgid "Advanced options and settings."
 msgstr "Gelişmiş seçenekler ve ayarlar."
-
-msgid "Advanced software"
-msgstr "Gelişmiş Yazılım"
-
-msgid "Advanced software plugin"
-msgstr "Gelişmiş yazılım eklentisi"
 
 #
 msgid "Advanced video enhancement setup"
@@ -3352,7 +3317,6 @@ msgid "Backup to destination: %s"
 msgstr "Hedefe yedekleme: %s"
 
 #
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Sistem ayarlarını %s %s yedekle."
 
@@ -3368,7 +3332,6 @@ msgstr "Mevcut ayarlarınızı yedekleyin"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Mevcut ayarlarınızı yedekleyin. Bu E2-kurulum, kanallar, ağ ve seçilen tüm dosyaları içerir"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "%s %s çalışan imajını HDD veya USB üzerine yedekle."
 
@@ -3618,6 +3581,9 @@ msgstr "Toplu Mesaj"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Sultanlığı"
@@ -6176,9 +6142,6 @@ msgstr "Seçimi kaldırılan paketler genellikle, paketlenenler mevcut paketlerl
 msgid "Detail of GStreamer log"
 msgstr "GStreamer günlüğünün ayrıntısı"
 
-msgid "Details for plugin: "
-msgstr "Eklenti için detaylar: "
-
 msgid "Detected drives"
 msgstr "Algılanan sürücüler"
 
@@ -6819,10 +6782,6 @@ msgstr "Sürücüler"
 msgid "Drivers version"
 msgstr "Sürücü sürümü"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Sürücüler:\t%s"
-
 msgid "Drives Information"
 msgstr "Sürücü Bilgileri"
 
@@ -7002,6 +6961,9 @@ msgstr "Zamanlayıcı düzenle"
 msgid "Edit Title"
 msgstr "Başlığı Düzenle"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 #
 msgid "Edit chapters of current title"
 msgstr "Geçerli başlık için bölümleri düzenle"
@@ -7031,10 +6993,6 @@ msgstr ""
 #
 msgid "Edit the upgrade source address."
 msgstr "Yükseltme kaynağı adresini düzenleyin."
-
-#
-msgid "Edit upgrade source url."
-msgstr "Yükseltme kaynağını (URL) düzenleyin."
 
 #
 msgid "Education"
@@ -7888,14 +7846,6 @@ msgstr "Gelişmiş Kurulum..."
 msgid "Extended Shares"
 msgstr "Genişletilmiş paylaşımlar"
 
-#
-msgid "Extended Software"
-msgstr "Genişletilmiş yazılım"
-
-#
-msgid "Extended Software Plugin"
-msgstr "Extended Software Eklentisi"
-
 msgid "Extended settings"
 msgstr "Genişletilmiş ayarlar"
 
@@ -8316,7 +8266,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "Dizini '%s' yazılabilir değil!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Alıcı yazılımı yanıp söner%s %s."
 
@@ -9493,12 +9442,8 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image oluşturuldu:%s /%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Oluşturulan image: %s /%s-%s-%s-yedekleme-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Image yaratılamadı - "
@@ -9578,6 +9523,9 @@ msgstr "ECM http akımına dahil edilsin"
 
 msgid "Include EIT in http streams"
 msgstr "EIT http akımına dahil edilsin"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Eylem haritası verilerini dahil et"
@@ -10317,10 +10265,6 @@ msgstr "Son hız"
 msgid "Last update"
 msgstr "Son Güncelleme"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Son Güncelleme:\t%s"
-
 msgid "Last used share: "
 msgstr "Son kullanılan paylaşım: "
 
@@ -10837,18 +10781,8 @@ msgstr "Eklentileri yönet"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Yerel/Dil Seçimi ayarlarını yönetin"
 
-#
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "%s %s için uzantıları veya eklentileri yönetin"
-
 msgid "Manage network mounts"
 msgstr "Ağ bağlarını yönet"
-
-#
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "%s %s nuzun yazılımını yönetin"
 
 msgid "Manage your online update files"
 msgstr "Çevrimiçi güncelleme dosyalarınızı yönetin"
@@ -11176,10 +11110,6 @@ msgstr "Model"
 #
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Model: %s %s\n"
 
 msgid "Modified:"
 msgstr "Değiştirilmiş:"
@@ -11810,9 +11740,6 @@ msgstr "Yeni Kaledonya"
 msgid "New PIN"
 msgstr "Yeni PIN"
 
-msgid "New Packages"
-msgstr "Yeni Paketler"
-
 msgid "New Setting DXAndy "
 msgstr "Yeni Setting DXAndy "
 
@@ -12047,6 +11974,9 @@ msgstr "Slot resmi bulunamadı"
 #
 msgid "No standby"
 msgstr "Bekleme yok"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Uygun tuner bulunamadı!"
@@ -12439,7 +12369,6 @@ msgid "Online software update"
 msgstr "Çevrimiçi yazılım güncelleme"
 
 #
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "%s %s yazılımını çevrimiçi güncelleyin."
 
@@ -13528,11 +13457,15 @@ msgstr "Eklentiler Listesi"
 msgid "Plugin Browser Settings"
 msgstr "Pluginbrowser Ayarları"
 
-msgid "Plugin Filter Settings"
-msgstr "Eklenti Filtresi"
-
 msgid "Plugin Details"
 msgstr "Eklenti ayrıntıları"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Eklenti Filtresi"
 
 #
 msgid "Plugin Manager Activity Information"
@@ -13740,12 +13673,6 @@ msgstr ""
 #
 msgid "Press EXIT to return to the help screen."
 msgstr "Yardım ekranına dönmek için EXIT'e basın."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Ek bilgi için INFO'ya basın."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Ek seçenekler için MENU'ye basın."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14926,12 +14853,10 @@ msgid "Restore the highlighted slot"
 msgstr "Vurgulanan yuvayı geri yükle"
 
 #
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Sistem ayarlarını %s %s geri yükle."
 
 #
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "%s %s yazılımını yeni bellenim ile geri yükleyin."
 
@@ -15744,6 +15669,10 @@ msgstr "Yazılım Güncelleme Seç"
 msgid "Select Upgrade Source"
 msgstr "Yükseltme kaynağını seç"
 
+#
+msgid "Select Upgrade Source To Edit"
+msgstr "Düzenlemek istediğiniz yükseltme kaynağını seçin."
+
 msgid "Select Your Skin"
 msgstr "Skin Seçin"
 
@@ -16045,10 +15974,6 @@ msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Dik zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
 
 #
-msgid "Select Upgrade Source To Edit"
-msgstr "Düzenlemek istediğiniz yükseltme kaynağını seçin."
-
-#
 msgid "Select video input with up/down buttons"
 msgstr "Yukarı/aşağı tuşlarıyla görüntü girişini seçin"
 
@@ -16093,6 +16018,9 @@ msgstr "ATSC sağlayıcınızı seçin."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Ses / Altyazılar için Dilinizi seçin"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Ülkeni seç. Mevcut değilse 'tümü' seçeneğini seçin."
@@ -17830,8 +17758,18 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Yazılım"
 
+#
+msgid "Software Management"
+msgstr "Yazılım yönetimi"
+
 msgid "Software Manager"
 msgstr "Yazılım Yöneticisi"
+
+msgid "Software Manager Information"
+msgstr "Yazılım yöneticisi bilgisi"
+
+msgid "Software Manager Settings"
+msgstr "Yazılım yöneticisi kurulumu"
 
 msgid "Software Manager Setup"
 msgstr "Yazılım Yöneticisi Kurulumu"
@@ -17852,22 +17790,12 @@ msgstr "Yazılım Güncelleme Eylemleri"
 msgid "Software information"
 msgstr "Yazılım bilgileri"
 
-#
-msgid "Software Management"
-msgstr "Yazılım yönetimi"
-
-msgid "Software Manager Settings"
-msgstr "Yazılım yöneticisi kurulumu"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "Yazılım güncellemesi başlıyor, lütfen bekleyin.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Yazılım yöneticisi bilgisi"
 
 msgid "Softwaremanager..."
 msgstr "Yazılım yöneticisi..."
@@ -19207,10 +19135,6 @@ msgstr "Sihirbaz tamamlandı."
 msgid "There are at least "
 msgstr "En az "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "En az %s güncelleme var."
-
 #
 msgid "There are currently no outstanding actions."
 msgstr "Göze çarpan bir görev yok."
@@ -19245,9 +19169,6 @@ msgstr "Bölge listesi indirilirken bir hata oluştu"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "Güncelleme listesi indirilirken bir hata oluştu. Lütfen tekrar deneyin."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Updatelist indirirken bir hata oluştu. Lütfen tekrar deneyin."
 
 msgid "There was an error while trying to login."
 msgstr "Giriş yapmaya çalışırken bir hata oluştu."
@@ -19348,6 +19269,9 @@ msgstr "Bu satır düzenlenebilir değil!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Bu menü, alıcıyla ilgili bilgileri görüntülemek için seçimler içerir."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Bu ofset sadece kanalın kendi ses seviyesi ofseti yoksa kullanılacaktır."
@@ -20085,9 +20009,6 @@ msgstr "Tüm komutlar yürütülmezse, tekrarlanan komutlar göndermeyi deneyin.
 #
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Yeni bir updatelist indirmeye çalışıyor. Lütfen bekle..."
 
 msgid "Tsonga"
 msgstr "Tsonga Dili"
@@ -21497,6 +21418,9 @@ msgstr "Etkinleşince, http akışına EIT verileri eklenir. Bu, bir istemci al�
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Etkinleştirildiğinde, Enigma2 bağlantısız buketleri yükler. Bu, mevcut olan, ancak buketler.tv veya buketler.radio dosyalarına dahil edilmeyen buketlerin hala yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Etkinleşince, bir film bitip diğeri başlıyacağı zaman pencere mesajı görülür."
@@ -24137,6 +24061,105 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "OK tuşuna bastıktan sonra lütfen bekleyin!"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Devam etmek için kumandanızdaki OK tuşuna basın."
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Yedekleme aygıtını seçin.\n"
+#~ "Geçerli aygıt: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Güncelleştirmeler kontrol ediliyor."
+
+#~ msgid "Advanced software"
+#~ msgstr "Gelişmiş Yazılım"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Gelişmiş yazılım eklentisi"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Eklenti için detaylar: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Sürücüler:\t%s"
+
+#
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Yükseltme kaynağını (URL) düzenleyin."
+
+#
+#~ msgid "Extended Software"
+#~ msgstr "Genişletilmiş yazılım"
+
+#
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Extended Software Eklentisi"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image oluşturuldu:%s /%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Oluşturulan image: %s /%s-%s-%s-yedekleme-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Son Güncelleme:\t%s"
+
+#
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "%s %s için uzantıları veya eklentileri yönetin"
+
+#
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "%s %s nuzun yazılımını yönetin"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Yeni Paketler"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Ek bilgi için INFO'ya basın."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Ek seçenekler için MENU'ye basın."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "En az %s güncelleme var."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Updatelist indirirken bir hata oluştu. Lütfen tekrar deneyin."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Yeni bir updatelist indirmeye çalışıyor. Lütfen bekle..."
 
 #
 #~ msgid "??"

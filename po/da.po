@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -56,33 +56,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Efter tryk på OK, vent venligst!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Tryk OK på din fjernbetjening for at fortsætte."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Optagelse i gang."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Vælg enhed til sikkerhedskopi.\n"
-"Nuværende enhed: "
 
 msgid ""
 "\n"
@@ -2008,9 +1985,6 @@ msgstr "Skal Timer gentages eller kun en gang ?"
 msgid "A required tool (%s) was not found."
 msgstr "Et nødvendigt værktøj (%s) blev ikke fundet."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Søgning efter tilgængelige opdateringer er allerede i gang."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2395,12 +2369,6 @@ msgstr "Avancerede indstillinger"
 
 msgid "Advanced options and settings."
 msgstr "Avancerede indstillinger og opsætninger."
-
-msgid "Advanced software"
-msgstr "Avanceret Software"
-
-msgid "Advanced software plugin"
-msgstr "Avanceret software plugin"
 
 msgid "Advanced video enhancement setup"
 msgstr "Avanceret opsætning af videoforbedring"
@@ -3209,7 +3177,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Skikkerhedskopier til destinationen: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Sikkerhedskopier dine %s %s indstillinger."
 
@@ -3225,7 +3192,6 @@ msgstr "Sikkerhedskopier dine nuværende indstillinger"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sikkerhedskopier dine nuværende indstillinger. Dette inkluderer E2-opsætning, kanaler, netværk og alle valgte filer"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sikkerhedskopier dit kørende %s %s Image til Harddisk eller USB."
 
@@ -3461,6 +3427,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -5890,9 +5859,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Detaljer for plugin: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6485,10 +6451,6 @@ msgstr "Drivere"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Drivere:\t\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6662,6 +6624,9 @@ msgstr "Rediger timer"
 msgid "Edit Title"
 msgstr "Rediger titel"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Rediger kapitler for nuværende titel"
 
@@ -6687,9 +6652,6 @@ msgstr "Rediger netværkskonfiguration for din %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr "Rediger kildeadresse for opgradering."
-
-msgid "Edit upgrade source url."
-msgstr "Rediger URL for opgraderingskilde."
 
 msgid "Education"
 msgstr "Uddannelse"
@@ -7501,12 +7463,6 @@ msgstr "Udvidet opsætning..."
 msgid "Extended Shares"
 msgstr "Udvidet delinger"
 
-msgid "Extended Software"
-msgstr "Udvidet software"
-
-msgid "Extended Software Plugin"
-msgstr "Udvidet software plugin"
-
 msgid "Extended settings"
 msgstr "Udvidet indstillinger"
 
@@ -7910,7 +7866,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flashmappe '%s' ikke tilladt!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flash din %s %s øjeblikkeligt."
 
@@ -9038,12 +8993,8 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Image oprettelse mislykkedes - "
@@ -9123,6 +9074,9 @@ msgstr "Inkluder ECM i http stream"
 
 msgid "Include EIT in http streams"
 msgstr "Inkluder EIT i http stream"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -9828,10 +9782,6 @@ msgstr "Sidste hastighed"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Sidst opdateret:\t%s"
-
 msgid "Last used share: "
 msgstr "Sidst brugte delnig: "
 
@@ -10326,16 +10276,8 @@ msgstr "Administrer udvidelser"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalvalg indstillinger"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Administrer udvidelser eller plugins til din %s %s"
-
 msgid "Manage network mounts"
 msgstr "Håndter netværks-mounts"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Håndter din %s %s software"
 
 msgid "Manage your online update files"
 msgstr "Håndter dine online opdateringsfiler"
@@ -10659,10 +10601,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Model: %s %s\n"
 
 msgid "Modified:"
 msgstr "Modificeret:"
@@ -11259,9 +11197,6 @@ msgstr "Ny Kaledonien"
 msgid "New PIN"
 msgstr "Ny PIN"
 
-msgid "New Packages"
-msgstr "Nye pakker"
-
 msgid "New Setting DXAndy "
 msgstr "Ny indstillling DXAndy "
 
@@ -11473,6 +11408,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Ingen Standby"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Ingen passende sat Tuner fundet!"
@@ -11841,7 +11779,6 @@ msgstr "En linje"
 msgid "Online software update"
 msgstr "Online software-opdatering"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Online opdatering af din %s %s software."
 
@@ -12869,11 +12806,15 @@ msgstr "Plugin-browser"
 msgid "Plugin Browser Settings"
 msgstr "Plugin browser indstillinger"
 
-msgid "Plugin Filter Settings"
-msgstr "Plugin filtre"
-
 msgid "Plugin Details"
 msgstr "Plugin detaljer"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Plugin filtre"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Aktivitetsinformation for plugin styring"
@@ -13062,12 +13003,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Tryk OK for at starte søgningen"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Tryk INFO på din fjernbetjening for mere information."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Tryk MENU på din fjernbetjening for flere indstillinger."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14168,11 +14103,9 @@ msgstr "Gendan indstillinger fra en sikkerhedskopi"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Gendan dine %s %s indstillinger."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Gendan din %s %s med en ny firmware."
 
@@ -14948,6 +14881,9 @@ msgstr "Vælg Software-opdatering"
 msgid "Select Upgrade Source"
 msgstr "Vælg opgraderingskilde"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Vælg opgraderingskilde til redigering."
+
 msgid "Select Your Skin"
 msgstr "Vælg dit Tema"
 
@@ -15240,9 +15176,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Vælg opgraderingskilde til redigering."
-
 msgid "Select video input with up/down buttons"
 msgstr "Vælg video input med op/ned knapperne"
 
@@ -15284,6 +15217,9 @@ msgstr "Vælg din ATSC Udbyder."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Vælg dit sprog for Lyd/Undertekster"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Vælg dit land. Vælg 'Alle' hvis det ikke findes."
@@ -16968,8 +16904,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Software"
 
+msgid "Software Management"
+msgstr "Softwarehåndtering"
+
 msgid "Software Manager"
 msgstr "Softwarehåndtering"
+
+msgid "Software Manager Information"
+msgstr "Softwarehåndtering information"
+
+msgid "Software Manager Settings"
+msgstr "Softwarehåndtering opsætning"
 
 msgid "Software Manager Setup"
 msgstr "Softwarehåndtering opsætning"
@@ -16989,19 +16934,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Softwarehåndtering"
-
-msgid "Software Manager Settings"
-msgstr "Softwarehåndtering opsætning"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Softwarehåndtering information"
 
 msgid "Softwaremanager..."
 msgstr "Software-håndtering..."
@@ -18277,10 +18213,6 @@ msgstr "Assistenten er nu gennemført."
 msgid "There are at least "
 msgstr "Der er mindst "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Der er mindst %s opdateringer tilgængelig."
-
 msgid "There are currently no outstanding actions."
 msgstr "Der er i øjeblikket ingen udestående handlinger."
 
@@ -18312,9 +18244,6 @@ msgstr "Der opstod en fejl ved download af regionslisten"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Der opstod en fejl ved download af opdateringslisten, Prøv venligs igen."
 
 msgid "There was an error while trying to login."
 msgstr "Der opstod en fejl mens login blev forsøgt."
@@ -18411,6 +18340,9 @@ msgid "This line is not editable!"
 msgstr "Denne linje er ikke redigerbar!"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19119,9 +19051,6 @@ msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Prøver at downloade en ny pakkeliste. Vent venligst..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Prøver at downloade en ny opdateringsliste. Vent venligst..."
 
 #, fuzzy
 msgid "Tsonga"
@@ -20437,6 +20366,9 @@ msgstr "Når dette aktiveres, vil EIT data blive inkluderet i http streams. Dett
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Når dette aktiveres, vil Enigma2 hente ulænkede brugerbuketter. Dette betyder at buketter som er tilgængelige, men ikke inkluderet i bouquets.tv eller bouquets.radio filerne, alligevel hentes. Dette tillader dig f.eks. at beholde dine egne brugerbuketter mens installerede indstillinger bliver opgraderet."
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Når dette aktiveres, vises en pop-op besked når en film er slut og den næste starter."
@@ -22896,6 +22828,97 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Efter tryk på OK, vent venligst!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Tryk OK på din fjernbetjening for at fortsætte."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Vælg enhed til sikkerhedskopi.\n"
+#~ "Nuværende enhed: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Søgning efter tilgængelige opdateringer er allerede i gang."
+
+#~ msgid "Advanced software"
+#~ msgstr "Avanceret Software"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Avanceret software plugin"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Detaljer for plugin: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Drivere:\t\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Rediger URL for opgraderingskilde."
+
+#~ msgid "Extended Software"
+#~ msgstr "Udvidet software"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Udvidet software plugin"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image oprettet den: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Sidst opdateret:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Administrer udvidelser eller plugins til din %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Håndter din %s %s software"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Nye pakker"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Tryk INFO på din fjernbetjening for mere information."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Tryk MENU på din fjernbetjening for flere indstillinger."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Der er mindst %s opdateringer tilgængelig."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Der opstod en fejl ved download af opdateringslisten, Prøv venligs igen."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Prøver at downloade en ny opdateringsliste. Vent venligst..."
 
 #~ msgid "??"
 #~ msgstr "??"

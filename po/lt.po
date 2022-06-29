@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
-"PO-Revision-Date: 2022-06-25 17:27+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"PO-Revision-Date: 2022-06-29 20:02+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -60,33 +60,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Paspaudę OK, palaukite!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Paspauskite OK savo valdymo pulte ir tęskite."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Vyksta įrašymas."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Pasirinkite įrenginį atsarginei kopijai.\n"
-"Dabartinis įrenginys: "
 
 msgid ""
 "\n"
@@ -2035,9 +2012,6 @@ msgstr "Laikmatis kartojamas, ar vienkartinis?"
 msgid "A required tool (%s) was not found."
 msgstr "Reikalingo įrankio (%s) nėra."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Šiuo metu ieškoma galimų atnaujinimų."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2422,12 +2396,6 @@ msgstr "Papildomi nustatymai"
 
 msgid "Advanced options and settings."
 msgstr "Išplėstinės funkcijos ir nustatymai."
-
-msgid "Advanced software"
-msgstr "Išplėstinė programinė įranga"
-
-msgid "Advanced software plugin"
-msgstr "Išplėstinės programinės įrangos priedas"
 
 msgid "Advanced video enhancement setup"
 msgstr "Išplėstinis vaizdo gerinimo valdymas"
@@ -3236,7 +3204,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Atsarginė kopija į paskirties vietą: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Sukurti %s %s nustatymų atsarginę kopiją."
 
@@ -3252,7 +3219,6 @@ msgstr "Dabartinių nustatymų kopija"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sukurti dabartinių nustatymų kopiją, kurioje bus E2, kanalų, tinklo nuostatos ir visi pasirinkti failai"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sukurti %s %s veikiančio atvaizdo atsarginę kopiją į HDD arba USB."
 
@@ -3487,6 +3453,9 @@ msgstr "Transliacijos"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr "Naršykite, įdiekite arba pašalinkite priedus / papildinius."
 
 msgid "Brunei Darussalam"
 msgstr "Brunėjus"
@@ -3998,7 +3967,7 @@ msgid "Change Language"
 msgstr "Pakeisti kalbą"
 
 msgid "Change OSD Settings"
-msgstr ""
+msgstr "Pakeiskite OSD nustatymus"
 
 msgid "Change PIN"
 msgstr "Keisti PIN kodą"
@@ -5917,9 +5886,6 @@ msgstr "Panaikintos pakuotės paprastai atsiranda dėl to, kad supakuotos yra ne
 msgid "Detail of GStreamer log"
 msgstr "Išsami GStreamer žurnalo informacija"
 
-msgid "Details for plugin: "
-msgstr "Išsamiau apie priedą: "
-
 msgid "Detected drives"
 msgstr "Aptikti diskai"
 
@@ -6517,10 +6483,6 @@ msgstr "Tvarkyklės"
 msgid "Drivers version"
 msgstr "Tvarkyklių versija"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Tvarkyklės:\t%s"
-
 msgid "Drives Information"
 msgstr "Diskų informacija"
 
@@ -6694,6 +6656,9 @@ msgstr "Redaguoti laikmatį"
 msgid "Edit Title"
 msgstr "Redaguoti pavadinimą"
 
+msgid "Edit Upgrade Source URL"
+msgstr "Redaguoti atnaujinimo šaltinio adresą."
+
 msgid "Edit chapters of current title"
 msgstr "Redaguoti šio pavadinimo skyrius"
 
@@ -6719,9 +6684,6 @@ msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
 msgid "Edit the upgrade source address."
 msgstr "Redaguoti naujinimo šaltinio adresą."
-
-msgid "Edit upgrade source url."
-msgstr "Redaguoti atnaujinimo šaltinio adresą."
 
 msgid "Education"
 msgstr "Išsilavinimas"
@@ -7535,12 +7497,6 @@ msgstr "Išplėstinis valdymas..."
 msgid "Extended Shares"
 msgstr "Išplėstiniai bendrinimai"
 
-msgid "Extended Software"
-msgstr "Išplėsta programinė įranga"
-
-msgid "Extended Software Plugin"
-msgstr "Išplėstinis programinės įrangos priedas"
-
 msgid "Extended settings"
 msgstr "Išplėstiniai parametrai"
 
@@ -7931,16 +7887,15 @@ msgid "Flash Online a new image"
 msgstr "Įdiegti naują atvaizdą tiesiai iš interneto"
 
 msgid "Flash and restore settings and no plugins"
-msgstr ""
+msgstr "Įdiegti, atkurti parametrus be priedų"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr ""
+msgstr "Atsarginė kopija, įdiegimas, nustatymų ir pasirinktų priedų atkūrimas (klausti vartotojo)"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Įdiegimo katalogas \"%s\" neleidžiamas!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Įdiegti %s %s iškart, nedelsiant."
 
@@ -9059,12 +9014,8 @@ msgid "Image Flash Actions"
 msgstr "Atvaizdo įdiegimo veiksmai"
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_%s.zip"
 
 msgid "Image creation failed - "
 msgstr "Atvaizdo sukurti nepavyko - "
@@ -9144,6 +9095,9 @@ msgstr "Įtraukti ECM http srautus"
 
 msgid "Include EIT in http streams"
 msgstr "Įtraukti EIT į http srautus"
+
+msgid "Include PID in http streams"
+msgstr "PID įtraukimas į http srautus"
 
 msgid "Include action map data"
 msgstr "Įtraukti veiksmų struktūros duomenis"
@@ -9832,10 +9786,6 @@ msgstr "Paskutinis greitis"
 msgid "Last update"
 msgstr "Paskutinis atnaujinimas"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Paskutinis atnaujinimas:\t%s"
-
 msgid "Last used share: "
 msgstr "Paskutinis naudotas bendrinimas: "
 
@@ -10316,16 +10266,8 @@ msgstr "Valdyti Plėtinius"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Tvarkyti lokalės / kalbos pasirinkimo nustatymus"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Tvarkykite %s %s plėtinius arba papildinius"
-
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Tvarkyti %s %s programinę įrangą"
 
 msgid "Manage your online update files"
 msgstr "Tvarkyti savo internetinio atnaujinimo failus"
@@ -10497,13 +10439,13 @@ msgid "Menu Actions"
 msgstr "Meniu veiksmai"
 
 msgid "Menu Common Actions"
-msgstr ""
+msgstr "Meniu bendrieji veiksmai"
 
 msgid "Menu Edit Actions"
-msgstr ""
+msgstr "Meniu redagavimo veiksmai"
 
 msgid "Menu Navigation Actions"
-msgstr ""
+msgstr "Meniu naršymo veiksmai"
 
 msgid "Menu config"
 msgstr "Meniu konfigūracija"
@@ -10637,10 +10579,6 @@ msgstr "Modelis"
 
 msgid "Model: "
 msgstr "Modelis: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Modelis: %s %s\n"
 
 msgid "Modified:"
 msgstr "Pakeista:"
@@ -11222,9 +11160,6 @@ msgstr "Naujoji Kaledonija"
 msgid "New PIN"
 msgstr "Naujas PIN"
 
-msgid "New Packages"
-msgstr "Nauji paketai"
-
 msgid "New Setting DXAndy "
 msgstr "Naujas nustatymas DXAndy "
 
@@ -11433,6 +11368,9 @@ msgstr "Lizdų atvaizdų nerasta"
 
 msgid "No standby"
 msgstr "Nebudėti"
+
+msgid "No suitable backup locations found!"
+msgstr "Nerasta tinkamų atsarginių vietų!"
 
 msgid "No suitable sat tuner found!"
 msgstr "Nėra tinkamo palydovinio imtuvo!"
@@ -11798,12 +11736,11 @@ msgstr "Viena eilutė"
 msgid "Online software update"
 msgstr "Programinės įrangos atnaujinimas internetu"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "%s %s programinės įrangos atnaujinimas internetu."
 
 msgid "Only Flash Backup Image"
-msgstr ""
+msgstr "Tik Įdiegtas atsarginės kopijos atvaizdas"
 
 msgid "Only extensions."
 msgstr "Tik plėtinius."
@@ -12128,7 +12065,7 @@ msgid "Packages and associated locales"
 msgstr "Paketai ir susijusios lokalės"
 
 msgid "Packet Manager"
-msgstr "Paketo tvarkyklė"
+msgstr "Paketų tvarkyklė"
 
 msgid "Page down"
 msgstr "Puslapis žemyn"
@@ -12614,7 +12551,7 @@ msgstr ""
 "Spauskite 'OK', kad tęsti."
 
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
+msgstr "Pasirinkite, ką daryti po šio atvaizdo įdiegimo:"
 
 msgid "Please set up tuner A"
 msgstr "Sukonfigūruokite A imtuvą"
@@ -12808,17 +12745,21 @@ msgstr "Priedų naršyklė"
 msgid "Plugin Browser Settings"
 msgstr "Priedo naršyklės parametrai"
 
-msgid "Plugin Filter Settings"
-msgstr "Priedo filtro parametrai"
-
 msgid "Plugin Details"
 msgstr "Priedo informacija"
 
+#, python-format
+msgid "Plugin Details: %s"
+msgstr "Išsami priedo informacija: %s"
+
+msgid "Plugin Filter Settings"
+msgstr "Priedo filtro parametrai"
+
 msgid "Plugin Manager Activity Information"
-msgstr "Priedų tvarkyklės aktyvumo informacija"
+msgstr "Priedų tvarkyklės veiklos informacija"
 
 msgid "Plugin Manager Help"
-msgstr "Priedų tvarkyklės pagalba"
+msgstr "Priedų tvarkyklės žinynas"
 
 msgid "Plugins"
 msgstr "Priedai"
@@ -12999,12 +12940,6 @@ msgstr "Paspauskite EXIT, kad uždarytumėte."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Paspauskite EXIT, kad grįžtumėte į žinyno ekraną."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Paspauskite INFO savo valdymo pulte dėl papildomos informacijos."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
@@ -14099,11 +14034,9 @@ msgstr "Atkurti nustatymus iš atsarginės kopijos"
 msgid "Restore the highlighted slot"
 msgstr "Atkurti paryškintą lizdą"
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Atkurkite %s %s parametrus."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Atkurkite %s %s naudodami naują programinę įrangą."
 
@@ -14868,6 +14801,9 @@ msgstr "Pasirinkite programinės įrangos atnaujinimą"
 msgid "Select Upgrade Source"
 msgstr "Pasirinkite atnaujinimo šaltinį"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Pasirinkite versijos naujinimo šaltinį, kurį norite redaguoti"
+
 msgid "Select Your Skin"
 msgstr "Pasirinkite norimą temą"
 
@@ -15157,9 +15093,6 @@ msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmat
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Pasirinkite atnaujinimo šaltinį redagavimui."
-
 msgid "Select video input with up/down buttons"
 msgstr "Mygtukais aukštyn/žemyn pasirinkite vaizdo įvestį"
 
@@ -15201,6 +15134,9 @@ msgstr "Pasirinkite savo ATSC paslaugų teikėją."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Pasirinkite garso/subtitrų kalbą"
+
+msgid "Select your backup device."
+msgstr "Pasirinkite atsarginį įrenginį."
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Pasirinkite savo šalį. Jei nėra pasirinkti 'visos'."
@@ -16285,7 +16221,7 @@ msgid "Show multi channel EPG"
 msgstr "Rodyti daugiakanalį EPG"
 
 msgid "Show network setup menu..."
-msgstr ""
+msgstr "Rodyti tinklo sąrankos meniu..."
 
 msgid "Show next event"
 msgstr "Rodyti kitą įvykį"
@@ -16372,7 +16308,7 @@ msgid "Show setup default value"
 msgstr "Rodyti numatytąją nustatymo vertę"
 
 msgid "Show setup menu..."
-msgstr ""
+msgstr "Rodyti sąrankos meniu..."
 
 msgid "Show shutdown menu"
 msgstr "Rodyti išjungimo meniu"
@@ -16489,7 +16425,7 @@ msgid "Show unknown video format as"
 msgstr "Rodyti nežinomą vaizdo formatą kaip"
 
 msgid "Show usage and GUI menu..."
-msgstr ""
+msgstr "Rodyti naudojimą ir GUI meniu..."
 
 msgid "Show vertical Program Guide"
 msgstr "Rodyti vertikalų programos vadovą"
@@ -16858,8 +16794,17 @@ msgstr "Emuliatoriai"
 msgid "Software"
 msgstr "Programinė įranga"
 
+msgid "Software Management"
+msgstr "Programinės įrangos valdymas"
+
 msgid "Software Manager"
 msgstr "Programinės įrangos tvarkyklė"
+
+msgid "Software Manager Information"
+msgstr "Programinės įrangos tvarkyklės informacija"
+
+msgid "Software Manager Settings"
+msgstr "Programinės įrangos tvarkyklės nustatymai"
 
 msgid "Software Manager Setup"
 msgstr "Programinės įrangos valdymas"
@@ -16879,21 +16824,12 @@ msgstr "Programinės įrangos naujinimo veiksmai"
 msgid "Software information"
 msgstr "Programinės įrangos informacija"
 
-msgid "Software Management"
-msgstr "Programinės įrangos valdymas"
-
-msgid "Software Manager Settings"
-msgstr "Programinės įrangos valdymas"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "Programinės įrangos atnaujinimas prasideda, palaukite.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Programinės įrangos informacija"
 
 msgid "Softwaremanager..."
 msgstr "Programinės įrangos tvarkyklė..."
@@ -17659,7 +17595,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-06-25 adga45@gmail.com"
+msgstr "2022-06-29 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18154,10 +18090,6 @@ msgstr "Vedlys baigė darbą."
 msgid "There are at least "
 msgstr "Bent jau yra "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Yra bent %s galimi atnaujinimai."
-
 msgid "There are currently no outstanding actions."
 msgstr "Šiuo metu nėra jokių neįvykdytų veiksmų."
 
@@ -18189,9 +18121,6 @@ msgstr "Atsisiunčiant regionų sąrašą įvyko klaida"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "Atsisiunčiant naujinimų sąrašą įvyko klaida.  Bandykite dar kartą."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Parsisiunčiant atnaujinimų sąrašą, įvyko klaida. Pabandykite dar kartą."
 
 msgid "There was an error while trying to login."
 msgstr "Bandant prisijungti įvyko klaida."
@@ -18289,6 +18218,9 @@ msgstr "Ši eilutė yra neredaguojama!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Šiame meniu yra pasirinkimai, rodantys informaciją apie imtuvą."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr "Šiame meniu siūlomos parinktys, susijusios su programinės įrangos valdymu %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Šis poslinkis bus naudojamas tik tuo atveju, jei kanalas neturi savo garsumo poslinkio."
@@ -18841,13 +18773,13 @@ msgid "Toggle display of the InfoBar"
 msgstr "Perjungti informacinės juostos rodymą"
 
 msgid "Toggle hide/show of the current item"
-msgstr ""
+msgstr "Perjungti dabartinio elemento slėpimą / rodymą"
 
 msgid "Toggle item edit mode on/off"
-msgstr ""
+msgstr "Perjungti elemento redagavimo režimą įjungimas / išjungimas"
 
 msgid "Toggle item move mode on/off"
-msgstr ""
+msgstr "Perjungti elemento perkėlimo režimą įjungimas / išjungimas"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Įjunkite naujus teksto įterpimus prieš esamą tekstą arba perrašykite jį"
@@ -18993,9 +18925,6 @@ msgstr "Pabandykite siųsti pasikartojančias komandas, jei vykdomos ne visos ko
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Bandoma atsisiųsti naują atnaujinimų sąrašą. Palaukite..."
 
 msgid "Tsonga"
 msgstr "Tsongų"
@@ -19413,7 +19342,7 @@ msgid "Updating software catalog"
 msgstr "Atnaujinamas programinės įrangos katalogas"
 
 msgid "Upgrade (Flash & restore all)"
-msgstr ""
+msgstr "Versijos naujinimas (įdieg & atkurti viską)"
 
 msgid "Upgrade finished."
 msgstr "Atnaujinimas baigtas."
@@ -20298,6 +20227,9 @@ msgstr "Kai čia įjungta, http sraute bus įtraukti ir EIT duomenys. Tai leis k
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kai įjungta, Enigma2 įkels nesusietus paketus. Tai reiškia, kad paketai, kurie yra prieinami, bet nėra įtraukti į paketai.tv ar paketai.radijas failus, vis tiek bus įkelti. Tai leidžia jums pvz. saugoti savo vartotojo paketus, o įdiegti nustatymai bus atnaujinti"
 
+msgid "When enabled, PID data will be included in http streams."
+msgstr "Kai įjungta, PID duomenys bus įtraukti į http srautus."
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Įjungus, iššokantis pranešimas bus rodomas, kai filmas bus baigtas ir bus pradėtas kitas."
 
@@ -20866,7 +20798,7 @@ msgstr "Jūsų %s%s išsijungia. Palaukite..."
 
 #, python-format
 msgid "Your %s %s isn't connected to the Internet properly. Please check it and try again."
-msgstr "Jūsų %s %s neprijungtas prie interneto. Sutvarkykite tai ir bandykite dar kartą."
+msgstr "Jūsų %s %s nėra tinkamai prijungtas prie interneto. Patikrinkite ir bandykite dar kartą."
 
 #, python-format
 msgid ""
@@ -22740,6 +22672,97 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Paspaudę OK, palaukite!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Paspauskite OK savo valdymo pulte ir tęskite."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Pasirinkite įrenginį atsarginei kopijai.\n"
+#~ "Dabartinis įrenginys: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Šiuo metu ieškoma galimų atnaujinimų."
+
+#~ msgid "Advanced software"
+#~ msgstr "Išplėstinė programinė įranga"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Išplėstinės programinės įrangos priedas"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Išsamiau apie priedą: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Tvarkyklės:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Redaguoti atnaujinimo šaltinio adresą."
+
+#~ msgid "Extended Software"
+#~ msgstr "Išplėsta programinė įranga"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Išplėstinis programinės įrangos priedas"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Paskutinis atnaujinimas:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Tvarkykite %s %s plėtinius arba papildinius"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Tvarkyti %s %s programinę įrangą"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Modelis: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Nauji paketai"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Paspauskite INFO savo valdymo pulte dėl papildomos informacijos."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Yra bent %s galimi atnaujinimai."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Parsisiunčiant atnaujinimų sąrašą, įvyko klaida. Pabandykite dar kartą."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Bandoma atsisiųsti naują atnaujinimų sąrašą. Palaukite..."
 
 #~ msgid "??"
 #~ msgstr "??"

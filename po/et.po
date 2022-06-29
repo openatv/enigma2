@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -56,33 +56,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Vajuta OK ja oota!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Jätkamiseks vajuta OK."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Toimub salvestamine."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Vali varukoopia asukoht.\n"
-"Hetkel: "
 
 msgid ""
 "\n"
@@ -2028,9 +2005,6 @@ msgstr "Kas korduv taimer või ainult üks kord?"
 msgid "A required tool (%s) was not found."
 msgstr "Vajaliku tööriista (%s) ei leitud."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Toimub uuenduste otsimine."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2421,12 +2395,6 @@ msgstr "Lisaseaded"
 
 msgid "Advanced options and settings."
 msgstr "Lisavalikud ja seadistused."
-
-msgid "Advanced software"
-msgstr "Lisatarkvara"
-
-msgid "Advanced software plugin"
-msgstr "Lisatarkvara"
 
 msgid "Advanced video enhancement setup"
 msgstr "Pildiparanduse seaded"
@@ -3254,7 +3222,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Varukoopia asukoht: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Varunda %s %s seadistused."
 
@@ -3270,7 +3237,6 @@ msgstr "Varunda kehtivad seadistused"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Varunda aktiivsed seadistused. Kaasatakse  E2 sätted, kanalid ja kõik valitud failid"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 "Loo töötavast %s %s süsteemist täielik süsteemikoopia\n"
@@ -3512,6 +3478,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -5990,9 +5959,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Plugina üksikasjad: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6606,10 +6572,6 @@ msgstr "Ajurid"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Ajurid:\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6788,6 +6750,9 @@ msgstr "Muuda taimer"
 msgid "Edit Title"
 msgstr "Muuda pealkirja"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Muuda peatükke"
 
@@ -6813,9 +6778,6 @@ msgstr "Muuda %s %s võrguseadeid."
 
 msgid "Edit the upgrade source address."
 msgstr "Muuda uuenduste allika aadressi."
-
-msgid "Edit upgrade source url."
-msgstr "Muuda uuenduste allika url."
 
 #, fuzzy
 msgid "Education"
@@ -7646,12 +7608,6 @@ msgstr "Täpsemad seaded."
 msgid "Extended Shares"
 msgstr "Täpsemad jaod"
 
-msgid "Extended Software"
-msgstr "Lisatarkvara"
-
-msgid "Extended Software Plugin"
-msgstr "Lisatarkvara"
-
 #
 msgid "Extended settings"
 msgstr "Täpsemad seaded"
@@ -8066,7 +8022,6 @@ msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
 # /SoftwareManager/Flash_online.py
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Paigalda püsivara vastuvõtjale %s %s."
 
@@ -9221,13 +9176,9 @@ msgstr "Täielik püsivaratõmmis"
 msgid "Image Flash Actions"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Püsivaratõmmis loodi asukohas: %s/%s-%s-%s-backup-%s_recovery.zip"
-
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Püsivaratõmmis loodi asukohas: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Tõmmise loomine nurjus - "
@@ -9307,6 +9258,9 @@ msgstr "ECM kaasatud http voogudesse"
 
 msgid "Include EIT in http streams"
 msgstr "EIT kaasatud http voogudesse"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -10022,10 +9976,6 @@ msgstr "Eelmine kiirus"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Uuendatud:\t%s"
-
 msgid "Last used share: "
 msgstr "Viimati kasutatud: "
 
@@ -10536,16 +10486,8 @@ msgstr "Laienduste haldamine"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kanalivaliku seaded"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Halda %s %s pluginaid ja laiendusi"
-
 msgid "Manage network mounts"
 msgstr "Halda võrgu haakepunkte"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Halda %s %s tarkvara"
 
 msgid "Manage your online update files"
 msgstr "Halda internetiuuenduse faile"
@@ -10876,10 +10818,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Tüüp: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Mudel: %s %s\n"
 
 msgid "Modified:"
 msgstr "Muudetud:"
@@ -11505,10 +11443,6 @@ msgstr "Uus Kaledoonia"
 msgid "New PIN"
 msgstr "Uus PIN"
 
-#
-msgid "New Packages"
-msgstr "Uued paketid"
-
 msgid "New Setting DXAndy "
 msgstr "DXAndy uus kanalinimekiri "
 
@@ -11730,6 +11664,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Ooteseisundita"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Satituunerit ei leitud!"
@@ -12106,7 +12043,6 @@ msgstr "Üks rida"
 msgid "Online software update"
 msgstr "Vastuvõtja internetiuuendused"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "%s %s internetiuuendused."
 
@@ -13165,11 +13101,15 @@ msgstr "Pluginad"
 msgid "Plugin Browser Settings"
 msgstr "Pluginamenüü seaded"
 
-msgid "Plugin Filter Settings"
-msgstr "Pluginate filter"
-
 msgid "Plugin Details"
 msgstr "Plugina üksikasjad"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Pluginate filter"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Pluginahalduri tegevuse andmed"
@@ -13358,12 +13298,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Otsingu alustamiseks vajuta OK"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Lisainfo saamiseks vajuta 'INFO'."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Lisavõimaluste nägemiseks vajuta 'MENU'."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14494,11 +14428,9 @@ msgstr "Taasta seadistused varukoopiast"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Taasta %s %s seadistused."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Taasta %s %s uue püsivaraga."
 
@@ -15289,6 +15221,9 @@ msgstr "Vali tarkvara uuendus"
 msgid "Select Upgrade Source"
 msgstr "Vali uuenduste allikas"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Vali muudetav uuenduste allikas."
+
 msgid "Select Your Skin"
 msgstr "Kujunduse valik"
 
@@ -15588,9 +15523,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Vali muudetav uuenduste allikas."
-
 msgid "Select video input with up/down buttons"
 msgstr "Vali video sisend ÜLES/ALLA nuppudega"
 
@@ -15633,6 +15565,9 @@ msgstr "Vali ATSC levitaja."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Määra heli ja subtiitrite keel"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Vali asukohamaa. Kui pole saadaval, vali 'kõik'."
@@ -17349,8 +17284,17 @@ msgstr "Emulaatorid"
 msgid "Software"
 msgstr "Tarkvara"
 
+msgid "Software Management"
+msgstr "Tarkvara haldamine"
+
 msgid "Software Manager"
 msgstr "Tarkvara paneel"
+
+msgid "Software Manager Information"
+msgstr "Tarkvarahalduri info"
+
+msgid "Software Manager Settings"
+msgstr "Tarkvarahalduri seaded"
 
 msgid "Software Manager Setup"
 msgstr "Tarkvarahalduri seaded"
@@ -17370,19 +17314,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Tarkvara haldamine"
-
-msgid "Software Manager Settings"
-msgstr "Tarkvarahalduri seaded"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Tarkvarahalduri info"
 
 msgid "Softwaremanager..."
 msgstr "Tarkvarahaldur"
@@ -18682,10 +18617,6 @@ msgstr "Abiline on nüüd läbitud."
 msgid "There are at least "
 msgstr "Saadaval on "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Saadaval on vähemalt %s uuendust."
-
 msgid "There are currently no outstanding actions."
 msgstr "Täitmata tegevusi ei ole."
 
@@ -18721,10 +18652,6 @@ msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-# SoftwareManager
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
 
 # SoftwareManager
 #, fuzzy
@@ -18823,6 +18750,9 @@ msgid "This line is not editable!"
 msgstr "Seda rida ei saa muuta!"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19561,10 +19491,6 @@ msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Uue tarkvaraloendi hankimine. Oota..."
-
-# SoftwareManager
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Uuenduste nimekirja laadimine. Oota..."
 
 #, fuzzy
 msgid "Tsonga"
@@ -20926,6 +20852,9 @@ msgstr "Kui lubatud, kaasatakse EIT andmed http voogudesse. See võimaldab klien
 # channelselection 5.1
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kui lubatud, laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii on võimalik oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kui lubatud, teavitatakse filmi lõppemisest ja uue alustamisest hüpikaknaga."
@@ -23433,6 +23362,100 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Vajuta OK ja oota!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Jätkamiseks vajuta OK."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Vali varukoopia asukoht.\n"
+#~ "Hetkel: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Toimub uuenduste otsimine."
+
+#~ msgid "Advanced software"
+#~ msgstr "Lisatarkvara"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Lisatarkvara"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Plugina üksikasjad: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Ajurid:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Muuda uuenduste allika url."
+
+#~ msgid "Extended Software"
+#~ msgstr "Lisatarkvara"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Lisatarkvara"
+
+#, fuzzy, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Püsivaratõmmis loodi asukohas: %s/%s-%s-%s-backup-%s_recovery.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Püsivaratõmmis loodi asukohas: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Uuendatud:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Halda %s %s pluginaid ja laiendusi"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Halda %s %s tarkvara"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Mudel: %s %s\n"
+
+#
+#~ msgid "New Packages"
+#~ msgstr "Uued paketid"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Lisainfo saamiseks vajuta 'INFO'."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Lisavõimaluste nägemiseks vajuta 'MENU'."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Saadaval on vähemalt %s uuendust."
+
+# SoftwareManager
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
+
+# SoftwareManager
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Uuenduste nimekirja laadimine. Oota..."
 
 #~ msgid "??"
 #~ msgstr "??"

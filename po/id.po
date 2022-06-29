@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -56,33 +56,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"After pressing OK, please wait!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Press OK on your remote control to continue."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Recording in progress."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
 
 msgid ""
 "\n"
@@ -2180,9 +2157,6 @@ msgstr "Pewaktu berulang atau hanya sekali?"
 msgid "A required tool (%s) was not found."
 msgstr "Peralatan yg diperlukan (%s) tidak ditemukan."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Pencarian pembaruan yg tersedia sedang berlangsung."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2576,12 +2550,6 @@ msgstr "Pilihan Mahir"
 
 msgid "Advanced options and settings."
 msgstr "Advanced options and settings."
-
-msgid "Advanced software"
-msgstr "Perangkat lunak mahir"
-
-msgid "Advanced software plugin"
-msgstr "Plugin perangkat lunak mahir"
 
 msgid "Advanced video enhancement setup"
 msgstr "Pengaturan peningkatan video mahir"
@@ -3416,7 +3384,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Backup Location"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Backup your %s %s settings."
 
@@ -3432,7 +3399,6 @@ msgstr "Backup your current settings"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Backup your running %s %s image to HDD or USB."
 
@@ -3674,6 +3640,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6155,9 +6124,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Details for plugin: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6764,10 +6730,6 @@ msgstr "Drivers"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Drivers:\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6945,6 +6907,9 @@ msgstr "Ubah pewaktu"
 msgid "Edit Title"
 msgstr "Edit Title"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Edit chapters of current title"
 
@@ -6973,9 +6938,6 @@ msgstr "Edit the network configuration of your %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr ""
-
-msgid "Edit upgrade source url."
-msgstr "Edit upgrade source url."
 
 #, fuzzy
 msgid "Education"
@@ -7799,12 +7761,6 @@ msgstr "Extended Setup..."
 msgid "Extended Shares"
 msgstr "Extended Shares"
 
-msgid "Extended Software"
-msgstr "Extended Software"
-
-msgid "Extended Software Plugin"
-msgstr "Extended Software Plugin"
-
 msgid "Extended settings"
 msgstr "Extended settings"
 
@@ -8220,7 +8176,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flash on the fly your %s %s."
 
@@ -9387,11 +9342,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9470,6 +9421,9 @@ msgstr "Include ECM in http streams"
 
 msgid "Include EIT in http streams"
 msgstr "Include EIT in http streams"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -10195,10 +10149,6 @@ msgstr "Last speed"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Last update:\t%s"
-
 msgid "Last used share: "
 msgstr "Last used share: "
 
@@ -10703,16 +10653,8 @@ msgstr "Manage Extensions"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Channel Selection Settings"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Manage extensions or plugins for your %s %s"
-
 msgid "Manage network mounts"
 msgstr "Manage network mounts"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Manage your %s %s's software"
 
 msgid "Manage your online update files"
 msgstr "Manage your online update files"
@@ -11035,10 +10977,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Model: %s %s\n"
 
 msgid "Modified:"
 msgstr ""
@@ -11650,9 +11588,6 @@ msgstr "New Caledonia"
 msgid "New PIN"
 msgstr "PIN Baru"
 
-msgid "New Packages"
-msgstr "Paket Baru"
-
 msgid "New Setting DXAndy "
 msgstr "New Setting DXAndy "
 
@@ -11876,6 +11811,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "No standby"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "No suitable sat tuner found!"
@@ -12253,7 +12191,6 @@ msgstr "One line"
 msgid "Online software update"
 msgstr "Online software update"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr ""
 
@@ -13307,11 +13244,15 @@ msgstr "Plugin Browser"
 msgid "Plugin Browser Settings"
 msgstr "Plugin Browser Settings"
 
-msgid "Plugin Filter Settings"
-msgstr "Plugin Filter Settings"
-
 msgid "Plugin Details"
 msgstr "Plugin Details"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Plugin Filter Settings"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Plugin Manager Activity Information"
@@ -13504,12 +13445,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Press OK to start the scan"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Press INFO on your remote control for additional information."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Press MENU on your remote control for additional options."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14631,11 +14566,9 @@ msgstr "Restore settings from a backup"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Restore your %s %s settings."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Restore your %s %s with a new firmware."
 
@@ -15423,6 +15356,9 @@ msgstr "Select Software Update"
 msgid "Select Upgrade Source"
 msgstr "Select Upgrade Source"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Select Upgrade Source To Edit"
+
 msgid "Select Your Skin"
 msgstr "Select Your Skin"
 
@@ -15716,9 +15652,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Select Upgrade Source To Edit"
-
 msgid "Select video input with up/down buttons"
 msgstr "Select video input with up/down buttons"
 
@@ -15761,6 +15694,9 @@ msgstr "ATSC provider"
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Select your Language for Audio/Subtitles"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr ""
@@ -17478,8 +17414,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Software"
 
+msgid "Software Management"
+msgstr "Kelola perangkat lunak"
+
 msgid "Software Manager"
 msgstr "Pengelola Perangkat Lunak"
+
+msgid "Software Manager Information"
+msgstr "Informasi pengelola perangkat lunak"
+
+msgid "Software Manager Settings"
+msgstr "Atur pengelola perangkat lunak"
 
 msgid "Software Manager Setup"
 msgstr "Atur Pengelola Perangkat Lunak"
@@ -17499,19 +17444,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Kelola perangkat lunak"
-
-msgid "Software Manager Settings"
-msgstr "Atur pengelola perangkat lunak"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Informasi pengelola perangkat lunak"
 
 msgid "Softwaremanager..."
 msgstr "Softwaremanager..."
@@ -18802,10 +18738,6 @@ msgstr "The wizard is finished now."
 msgid "There are at least "
 msgstr "There are at least "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "There are at least %s updates available."
-
 msgid "There are currently no outstanding actions."
 msgstr "There are currently no outstanding actions."
 
@@ -18839,9 +18771,6 @@ msgstr "There was an error downloading the updatelist. Please try again."
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "There was an error downloading the updatelist. Please try again."
 
 #, fuzzy
 msgid "There was an error while trying to login."
@@ -18943,6 +18872,9 @@ msgid "This line is not editable!"
 msgstr "This plugin is not installed."
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19675,9 +19607,6 @@ msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Trying to download a new packetlist. Please wait..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Trying to download a new updatelist. Please wait..."
 
 #, fuzzy
 msgid "Tsonga"
@@ -21018,6 +20947,9 @@ msgstr "When enabled, EIT data will be included in http streams. This allows a c
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -23524,6 +23456,89 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Pencarian pembaruan yg tersedia sedang berlangsung."
+
+#~ msgid "Advanced software"
+#~ msgstr "Perangkat lunak mahir"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Plugin perangkat lunak mahir"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Details for plugin: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Drivers:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Edit upgrade source url."
+
+#~ msgid "Extended Software"
+#~ msgstr "Extended Software"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Extended Software Plugin"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Last update:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Manage extensions or plugins for your %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Manage your %s %s's software"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Paket Baru"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Press INFO on your remote control for additional information."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Press MENU on your remote control for additional options."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "There are at least %s updates available."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "There was an error downloading the updatelist. Please try again."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Trying to download a new updatelist. Please wait..."
 
 #, fuzzy
 #~ msgid "Backup, flash and restore settings and no plugins"

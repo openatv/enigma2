@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -47,28 +47,9 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-#
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-
-#
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-
 msgid ""
 "\n"
 "Recording in progress."
-msgstr ""
-
-#
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
 msgstr ""
 
 msgid ""
@@ -2179,10 +2160,6 @@ msgid "A required tool (%s) was not found."
 msgstr "In benedicht programma (%s) wie net fûn"
 
 #
-msgid "A search for available updates is currently in progress."
-msgstr ""
-
-#
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2614,12 +2591,6 @@ msgstr "Adapter ynstellingen"
 
 #
 msgid "Advanced options and settings."
-msgstr ""
-
-msgid "Advanced software"
-msgstr ""
-
-msgid "Advanced software plugin"
 msgstr ""
 
 msgid "Advanced video enhancement setup"
@@ -3509,7 +3480,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr ""
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr ""
 
@@ -3525,7 +3495,6 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
@@ -3780,6 +3749,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6431,9 +6403,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr ""
-
 msgid "Detected drives"
 msgstr ""
 
@@ -7072,10 +7041,6 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr ""
-
 msgid "Drives Information"
 msgstr ""
 
@@ -7257,6 +7222,9 @@ msgstr "Bewukje titel"
 msgid "Edit Title"
 msgstr ""
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 #
 msgid "Edit chapters of current title"
 msgstr "Bewurkje haadstik fan dizze titel"
@@ -7291,10 +7259,6 @@ msgid "Edit the network configuration of your %s %s."
 msgstr "Bewurkje de netwurk ynstellingen fan de %s %s."
 
 msgid "Edit the upgrade source address."
-msgstr ""
-
-#
-msgid "Edit upgrade source url."
 msgstr ""
 
 #
@@ -8153,14 +8117,6 @@ msgstr "Utwreide Ynstellingen..."
 msgid "Extended Shares"
 msgstr ""
 
-#
-msgid "Extended Software"
-msgstr ""
-
-#
-msgid "Extended Software Plugin"
-msgstr ""
-
 msgid "Extended settings"
 msgstr ""
 
@@ -8592,7 +8548,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr ""
 
@@ -9822,11 +9777,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9905,6 +9856,9 @@ msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
+msgstr ""
+
+msgid "Include PID in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -10701,11 +10655,6 @@ msgstr "Lêste faasje"
 msgid "Last update"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Last update:\t%s"
-msgstr "Bywurkje pakketlyst  "
-
 msgid "Last used share: "
 msgstr ""
 
@@ -11258,15 +11207,7 @@ msgstr ""
 msgid "Manage Locale/Language Selection settings"
 msgstr "Kolleksje ynstellingen"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr ""
-
 msgid "Manage network mounts"
-msgstr ""
-
-#, python-format
-msgid "Manage your %s %s's software"
 msgstr ""
 
 msgid "Manage your online update files"
@@ -11612,10 +11553,6 @@ msgstr ""
 #
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr ""
 
 msgid "Modified:"
 msgstr ""
@@ -12298,9 +12235,6 @@ msgstr ""
 msgid "New PIN"
 msgstr ""
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -12545,6 +12479,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "gjin paraatstand"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr ""
@@ -12947,7 +12884,6 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr ""
 
@@ -14068,10 +14004,14 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Details"
 msgstr ""
 
-msgid "Plugin Details"
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
 msgstr ""
 
 #
@@ -14294,12 +14234,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk Ok om sykjen te starten"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr ""
-
-msgid "Press MENU on your remote control for additional options."
-msgstr ""
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -15536,11 +15470,9 @@ msgstr ""
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr ""
 
@@ -16401,6 +16333,10 @@ msgid "Select Upgrade Source"
 msgstr "Kies fideo moadus"
 
 #
+msgid "Select Upgrade Source To Edit"
+msgstr ""
+
+#
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "Kies hurde skiif"
@@ -16718,10 +16654,6 @@ msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 #
-msgid "Select Upgrade Source To Edit"
-msgstr ""
-
-#
 msgid "Select video input with up/down buttons"
 msgstr ""
 
@@ -16764,6 +16696,9 @@ msgid "Select your ATSC provider."
 msgstr ""
 
 msgid "Select your Language for Audio/Subtitles"
+msgstr ""
+
+msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'all'."
@@ -18593,7 +18528,17 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
+#
+msgid "Software Management"
+msgstr ""
+
 msgid "Software Manager"
+msgstr ""
+
+msgid "Software Manager Information"
+msgstr ""
+
+msgid "Software Manager Settings"
 msgstr ""
 
 msgid "Software Manager Setup"
@@ -18615,19 +18560,9 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-#
-msgid "Software Management"
-msgstr ""
-
-msgid "Software Manager Settings"
-msgstr ""
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
-msgstr ""
-
-msgid "Software Manager Information"
 msgstr ""
 
 msgid "Softwaremanager..."
@@ -19975,10 +19910,6 @@ msgstr "De gucheler is klear."
 msgid "There are at least "
 msgstr ""
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr ""
-
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
@@ -20012,9 +19943,6 @@ msgid "There was an error downloading the region list"
 msgstr ""
 
 msgid "There was an error downloading the update list.  Please try again."
-msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -20113,6 +20041,9 @@ msgid "This line is not editable!"
 msgstr ""
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -20890,9 +20821,6 @@ msgstr ""
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr ""
-
-msgid "Trying to download a new updatelist. Please wait..."
 msgstr ""
 
 msgid "Tsonga"
@@ -22327,6 +22255,9 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr ""
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr ""
+
+msgid "When enabled, PID data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24971,6 +24902,11 @@ msgstr "knipt"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Bywurkje pakketlyst  "
 
 #
 #~ msgid "??"

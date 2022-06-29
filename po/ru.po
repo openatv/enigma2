@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
-"PO-Revision-Date: 2022-06-28 00:25+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"PO-Revision-Date: 2022-06-29 20:02+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -58,33 +58,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"После нажатия ОК, пожалуйста, подождите!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Нажмите ОК на пульте для продолжения."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Идёт запись."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Выберите устройство для копирования\n"
-"Текущее устройство "
 
 msgid ""
 "\n"
@@ -2031,9 +2008,6 @@ msgstr "Записать лишь однажды или периодически
 msgid "A required tool (%s) was not found."
 msgstr "Требуемая программа (%s) не найдена."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Идёт поиск доступных обновлений."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2418,12 +2392,6 @@ msgstr "Расширенные настройки"
 
 msgid "Advanced options and settings."
 msgstr "Дополнительные параметры и настройки."
-
-msgid "Advanced software"
-msgstr "Расширенное ПО"
-
-msgid "Advanced software plugin"
-msgstr "Плагин расширенного ПО"
 
 msgid "Advanced video enhancement setup"
 msgstr "Расширенные настройки по улучшению видео"
@@ -3230,7 +3198,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Резервное копирование в : %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Сделать резервную копию настроек %s %s."
 
@@ -3246,7 +3213,6 @@ msgstr "Сохранение текущих настроек"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Сохранение текущих настроек, в том числе настроек Enigma2, списка каналов, настроек сети и выбранных файлов"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Копирование имиджа %s %s на HDD или USB."
 
@@ -3481,6 +3447,9 @@ msgstr "Трансляция"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr "Просматривайте, устанавливайте или удаляйте расширения/плагины."
 
 msgid "Brunei Darussalam"
 msgstr "Бруней-Даруссалам"
@@ -5904,9 +5873,6 @@ msgstr "Невыбранные пакеты обычно возникают из
 msgid "Detail of GStreamer log"
 msgstr "Деталь журнала GStreamer"
 
-msgid "Details for plugin: "
-msgstr "Подробнее о плагине "
-
 msgid "Detected drives"
 msgstr "Обнаруженные диски"
 
@@ -6504,10 +6470,6 @@ msgstr "Драйверы"
 msgid "Drivers version"
 msgstr "Версия драйверов"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Драйверы: %s"
-
 msgid "Drives Information"
 msgstr "Информация о дисках"
 
@@ -6681,6 +6643,9 @@ msgstr "Редактировать таймер"
 msgid "Edit Title"
 msgstr "Изменить заголовок"
 
+msgid "Edit Upgrade Source URL"
+msgstr "Изменить URL-адрес источника обновления"
+
 msgid "Edit chapters of current title"
 msgstr "Изменить главы текущего заголовка"
 
@@ -6706,9 +6671,6 @@ msgstr "Редактировать сетевые установки Вашег�
 
 msgid "Edit the upgrade source address."
 msgstr "Отредактировать адрес источника обновления."
-
-msgid "Edit upgrade source url."
-msgstr "Измените URL-адрес источника обновления."
 
 msgid "Education"
 msgstr "Образование"
@@ -7520,12 +7482,6 @@ msgstr "Расширенные настройки..."
 msgid "Extended Shares"
 msgstr "Расширенные сетевые диски"
 
-msgid "Extended Software"
-msgstr "Продвинутое ПО"
-
-msgid "Extended Software Plugin"
-msgstr "Плагин продвинутого ПО"
-
 msgid "Extended settings"
 msgstr "Расширенные настройки"
 
@@ -7925,7 +7881,6 @@ msgstr "Прошить и восстановить настройки и выб�
 msgid "Flash directory '%s' not allowed!"
 msgstr "Флеш-каталог '%s' не допускается!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Прошить %s %s онлайн."
 
@@ -9044,12 +8999,8 @@ msgid "Image Flash Actions"
 msgstr "Действия с прошивкой имиджа"
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Имидж создан на: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Имидж создан на: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr "Имидж создан: %s/%s-%s-%s-backup-%s_%s.zip"
 
 msgid "Image creation failed - "
 msgstr "Не удалось создать имидж -"
@@ -9129,6 +9080,9 @@ msgstr "Включить ECM в http потоки"
 
 msgid "Include EIT in http streams"
 msgstr "Включать EIT в http потоки"
+
+msgid "Include PID in http streams"
+msgstr "Включить PID в http-потоки"
 
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
@@ -9817,10 +9771,6 @@ msgstr "Последняя скорость"
 msgid "Last update"
 msgstr "Последнее обновление"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Обновление\t%s"
-
 msgid "Last used share: "
 msgstr "Последний сетевой диск "
 
@@ -10301,16 +10251,8 @@ msgstr "Управление плагинами"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Управление настройками выбора локали / языка"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Управление дополнениями и плагинами %s %s"
-
 msgid "Manage network mounts"
 msgstr "Управление монтированием сети"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Управление ПО Вашего %s %s"
 
 msgid "Manage your online update files"
 msgstr "Управление файлами онлайн обновления"
@@ -10622,10 +10564,6 @@ msgstr "Модель"
 
 msgid "Model: "
 msgstr "Модель: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Модель:\\t\\t%s %s\\\n"
 
 msgid "Modified:"
 msgstr "Изменено:"
@@ -11207,9 +11145,6 @@ msgstr "Новая Каледония"
 msgid "New PIN"
 msgstr "Новый пин-код"
 
-msgid "New Packages"
-msgstr "Новые пакеты"
-
 msgid "New Setting DXAndy "
 msgstr "Новые настройки DXAndy "
 
@@ -11418,6 +11353,9 @@ msgstr "Изображения слота не найдены"
 
 msgid "No standby"
 msgstr "Не переходить в режим ожидания"
+
+msgid "No suitable backup locations found!"
+msgstr "Не найдено подходящих резервных копий!"
 
 msgid "No suitable sat tuner found!"
 msgstr "Спутниковый тюнер не найден!"
@@ -11783,7 +11721,6 @@ msgstr "В одну строчку"
 msgid "Online software update"
 msgstr "Онлайн обновление"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Онлайн обновление ПО Вашего %s %s ."
 
@@ -12793,11 +12730,15 @@ msgstr "Браузер плагинов"
 msgid "Plugin Browser Settings"
 msgstr "Настройки списка плагинов"
 
-msgid "Plugin Filter Settings"
-msgstr "Фильтр плагинов"
-
 msgid "Plugin Details"
 msgstr "Подробности о плагине"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr "Сведения о плагине: %s"
+
+msgid "Plugin Filter Settings"
+msgstr "Фильтр плагинов"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Информация об активности менеджера плагинов"
@@ -12984,12 +12925,6 @@ msgstr "Нажмите EXIT для закрытия."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Нажмите EXIT, чтобы вернуться к экрану справки."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Нажмите кнопку ИНФО на пульте для дополнительной информации."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Нажмите кнопку МЕНЮ на пульте для дополнительных опций."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Нажмите OK для выбора MultiBoot."
@@ -14084,11 +14019,9 @@ msgstr "Восстановить настройки из копии"
 msgid "Restore the highlighted slot"
 msgstr "Восстановить выделенный слот"
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Восстановить настройки %s %s."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Восстановить свой %s %s с новой прошивкой."
 
@@ -14853,6 +14786,9 @@ msgstr "Выбор обновления ПО"
 msgid "Select Upgrade Source"
 msgstr "Выбор источника обновления"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Выбор источника для редактирования"
+
 msgid "Select Your Skin"
 msgstr "Выберите свой скин"
 
@@ -15142,9 +15078,6 @@ msgstr "Выберите желаемый тип выключения при а�
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Выберите желаемый тип выключения при срабатывании таймера быстрого отсчёта."
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Выбор источника для редактирования."
-
 msgid "Select video input with up/down buttons"
 msgstr "Выберите видео вход клавишами ВВЕРХ/ВНИЗ"
 
@@ -15186,6 +15119,9 @@ msgstr "Выберите провайдера ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Выбор языка для аудио, субтитров"
+
+msgid "Select your backup device."
+msgstr "Выберите устройство для резервного копирования."
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Выберите свою страну. Если страна недоступна, выберите 'все'."
@@ -16843,8 +16779,17 @@ msgstr "Эмуляторы"
 msgid "Software"
 msgstr "ПО"
 
+msgid "Software Management"
+msgstr "Управление ПО"
+
 msgid "Software Manager"
 msgstr "Управление ПО"
+
+msgid "Software Manager Information"
+msgstr "Информация менеджера ПО"
+
+msgid "Software Manager Settings"
+msgstr "Настройки менеджера ПО"
 
 msgid "Software Manager Setup"
 msgstr "Настройки менеджера ПО"
@@ -16864,21 +16809,12 @@ msgstr "Действия при обновлении ПО"
 msgid "Software information"
 msgstr "Информация о ПО"
 
-msgid "Software Management"
-msgstr "Управление ПО"
-
-msgid "Software Manager Settings"
-msgstr "Настройки менеджера ПО"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "Начинается обновление ПО, пожалуйста, подождите.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Информация менеджера ПО"
 
 msgid "Softwaremanager..."
 msgstr "Управление ПО..."
@@ -17644,7 +17580,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 27.06.2022"
+msgstr "Коррекция перевода Monja 29.06.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18141,10 +18077,6 @@ msgstr "Мастер закончил работу."
 msgid "There are at least "
 msgstr "Как минимум "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Как минимум %s обновлений доступно."
-
 msgid "There are currently no outstanding actions."
 msgstr "В данное время нет невыполненных действий."
 
@@ -18176,9 +18108,6 @@ msgstr "При загрузке списка регионов произошла
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "При загрузке списка обновлений произошла ошибка. Попробуйте ещё раз."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "При загрузке списка обновлений, произошла ошибка. Попробуйте ещё раз."
 
 msgid "There was an error while trying to login."
 msgstr "При попытке входа в систему произошла ошибка."
@@ -18276,6 +18205,9 @@ msgstr "Эта линия не редактируется!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Это меню содержит пункты для отображения информации о ресивере."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr "Это меню предлагает опции, связанные с управлением ПО на %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Это смещение будет использовано только в том случае, если канал не имеет собственного набора выключения громкости."
@@ -18980,9 +18912,6 @@ msgstr "Попробуйте отправить повторяющиеся ко�
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Пытаемся загрузить новый список пакетов. Пожалуйста подождите..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Попытка загрузить новый список обновлений. Пожалуйста, подождите..."
 
 msgid "Tsonga"
 msgstr "Тсонга"
@@ -20284,6 +20213,9 @@ msgstr "Если эта функция включена, данные EIT буд
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr "Если этот параметр включён, данные PID будут включены в потоки http."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Показать всплывающее окно, когда один фильм закончился, а следующий начинается."
@@ -22727,6 +22659,97 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "После нажатия ОК, пожалуйста, подождите!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Нажмите ОК на пульте для продолжения."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Выберите устройство для копирования\n"
+#~ "Текущее устройство "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Идёт поиск доступных обновлений."
+
+#~ msgid "Advanced software"
+#~ msgstr "Расширенное ПО"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Плагин расширенного ПО"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Подробнее о плагине "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Драйверы: %s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Измените URL-адрес источника обновления."
+
+#~ msgid "Extended Software"
+#~ msgstr "Продвинутое ПО"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Плагин продвинутого ПО"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Имидж создан на: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Имидж создан на: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Обновление\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Управление дополнениями и плагинами %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Управление ПО Вашего %s %s"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Модель:\\t\\t%s %s\\\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Новые пакеты"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Нажмите кнопку ИНФО на пульте для дополнительной информации."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Нажмите кнопку МЕНЮ на пульте для дополнительных опций."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Как минимум %s обновлений доступно."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "При загрузке списка обновлений, произошла ошибка. Попробуйте ещё раз."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Попытка загрузить новый список обновлений. Пожалуйста, подождите..."
 
 #~ msgid "??"
 #~ msgstr "??"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -60,33 +60,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Az OK gomb lenyomása után kérem, várjon!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Nyomja le az OK gombot a távírányítón a folytatáshoz."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Felvétel folyamatban."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Válasszon célt, a mentéshez.\n"
-"Aktuális eszköz: "
 
 msgid ""
 "\n"
@@ -2049,9 +2026,6 @@ msgstr "Ismétlődő időzítés vagy csak egyszeri?"
 msgid "A required tool (%s) was not found."
 msgstr "A keresett eszköz (%s) nem található."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Az elérhető frissítések keresése folyamatban van."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2438,12 +2412,6 @@ msgstr "Haladó beállítások"
 
 msgid "Advanced options and settings."
 msgstr "Haladó beállítási lehetőségek."
-
-msgid "Advanced software"
-msgstr "Haladó szoftver"
-
-msgid "Advanced software plugin"
-msgstr "Haladó szoftver bővítmények"
 
 msgid "Advanced video enhancement setup"
 msgstr "Haladó videó bővített beállítás"
@@ -3256,7 +3224,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Biztonsági másolat célhelye: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "A(z) %s %s készülék beállításainak mentése."
 
@@ -3272,7 +3239,6 @@ msgstr "A jelenlegi beállítások mentése"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Az aktuális beállítások mentése. Ez tartalmazza az E2 beállítást, csatornákat, hálózatokat és a kiválasztott fájlokat"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "A működő %s %s lemezkép mentése Merevlemezre vagy USB-re."
 
@@ -3510,6 +3476,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -5945,9 +5914,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Bővítmény részletei: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6541,10 +6507,6 @@ msgstr "illesztőprogramok"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Drivers:\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6720,6 +6682,9 @@ msgstr "Időzítő módosítása"
 msgid "Edit Title"
 msgstr "Cím szerkesztése"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Aktuális cím jeleneteinek módosítása"
 
@@ -6745,9 +6710,6 @@ msgstr "Szerkessze a(z) %s %s hálózati konfigurációját."
 
 msgid "Edit the upgrade source address."
 msgstr "A szoftver-frissítési forrás címének módosítása."
-
-msgid "Edit upgrade source url."
-msgstr "A frissítési forrás URL-jének szerkesztése."
 
 msgid "Education"
 msgstr "Oktatás"
@@ -7556,12 +7518,6 @@ msgstr "Bővített beállítások..."
 msgid "Extended Shares"
 msgstr "Bővített megosztások"
 
-msgid "Extended Software"
-msgstr "Bővített Szoftver"
-
-msgid "Extended Software Plugin"
-msgstr "Bővített Szoftver Bővítmény"
-
 msgid "Extended settings"
 msgstr "Haladó beállítások"
 
@@ -7967,7 +7923,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "a(z) %s %s készülék Flashelés közben."
 
@@ -9099,13 +9054,9 @@ msgstr "Lemezkép Mentés"
 msgid "Image Flash Actions"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_recovery.zip"
-
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "A lemezkép létrehozása nem sikerült- "
@@ -9186,6 +9137,9 @@ msgstr "Legyen ECM a HTTP jelfolyamban"
 
 msgid "Include EIT in http streams"
 msgstr "Legyen EIT a HTTP jelfolyamban"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -9891,10 +9845,6 @@ msgstr "Utolsó sebesség"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Utolsó frissítés:\t%s"
-
 msgid "Last used share: "
 msgstr "Utolsó használt megosztás: "
 
@@ -10389,16 +10339,8 @@ msgstr "Bővítmények kezelése"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Csatorna kiválasztás beállítása"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "A(z) %s %s készülék kiegészítések és bővítmények kezelése"
-
 msgid "Manage network mounts"
 msgstr "Hálózati csatlakozások kezelése"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "%s %s szoftver kezelése"
 
 msgid "Manage your online update files"
 msgstr "Az online frissítési fájlok kezelése"
@@ -10717,10 +10659,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Modell: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Modell: %s %s\n"
 
 msgid "Modified:"
 msgstr "Módosított:"
@@ -11325,9 +11263,6 @@ msgstr "Új-Kaledónia"
 msgid "New PIN"
 msgstr "Új PIN"
 
-msgid "New Packages"
-msgstr "Új csomagok"
-
 msgid "New Setting DXAndy "
 msgstr "DXAndy új Beállítás "
 
@@ -11538,6 +11473,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Nincs kikapcsolás"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Nincs megfelelő műholdas tuner!"
@@ -11906,7 +11844,6 @@ msgstr "Egy sor"
 msgid "Online software update"
 msgstr "Online szoftverfrissítés"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "A(z) %s %s készülék szoftverének online frissítése."
 
@@ -12927,11 +12864,15 @@ msgstr "Bővítménykezelő"
 msgid "Plugin Browser Settings"
 msgstr "Plugin Browser Settings"
 
-msgid "Plugin Filter Settings"
-msgstr "Bővítmények szűrése"
-
 msgid "Plugin Details"
 msgstr "Bővítmény részletei"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Bővítmények szűrése"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Bővítménykezelő - végrehajtási információk"
@@ -13120,12 +13061,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Az OK gombbal indíthatja a keresést"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Nyomja le az INFO gombot a távírányítón a részletekért."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14222,11 +14157,9 @@ msgstr "Beállítások visszaállítása mentésből"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "A(z) %s %s készülék beállításainak visszaállítása."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "A(z) %s %s készülék visszaállítása egy új firmware-el."
 
@@ -15001,6 +14934,9 @@ msgstr "Szoftverfrissítés választása"
 msgid "Select Upgrade Source"
 msgstr "Válasszon szerkesztendő frissítési forrást"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Válasszon szerkesztendő frissítési forrást."
+
 msgid "Select Your Skin"
 msgstr "Válassza ki a kinézetet (Skin)"
 
@@ -15294,9 +15230,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Válasszon szerkesztendő frissítési forrást."
-
 msgid "Select video input with up/down buttons"
 msgstr "Válasszon videó bemenetet a FEL/LE gombokkal"
 
@@ -15338,6 +15271,9 @@ msgstr "Válassza ki az ATSC szolgáltatót."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Válassza ki a nyelvet az Audióhoz / Feliratokhoz"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Válassza ki az országot. Ha nem áll rendelkezésre, válassza az 'összes' lehetőséget."
@@ -17017,8 +16953,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Szoftver"
 
+msgid "Software Management"
+msgstr "Szoftverkezelés"
+
 msgid "Software Manager"
 msgstr "Szoftver karbantartó"
+
+msgid "Software Manager Information"
+msgstr "Szoftver kezelő információ"
+
+msgid "Software Manager Settings"
+msgstr "Szoftver karbantartó Beállításai"
 
 msgid "Software Manager Setup"
 msgstr "Szoftver karbantartó beállításai"
@@ -17038,19 +16983,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Szoftverkezelés"
-
-msgid "Software Manager Settings"
-msgstr "Szoftver karbantartó Beállításai"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Szoftver kezelő információ"
 
 msgid "Softwaremanager..."
 msgstr "Szoftverkezelő..."
@@ -18333,10 +18269,6 @@ msgstr "A varázsló befejezte feladatát."
 msgid "There are at least "
 msgstr "Legalább "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Legalább %s frissítés elérhető."
-
 msgid "There are currently no outstanding actions."
 msgstr "Semmilyen kiemelkedő esemény nem következik."
 
@@ -18368,9 +18300,6 @@ msgstr "Hiba történt a régiólista letöltésekor"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Hiba történt a frissítési lista letöltése közben. Kérlek próbáld újra."
 
 msgid "There was an error while trying to login."
 msgstr "Hiba történt a bejelentkezés közben."
@@ -18467,6 +18396,9 @@ msgid "This line is not editable!"
 msgstr "Ez a sor nem szerkeszthető!"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19178,9 +19110,6 @@ msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Az új csomaglista letöltése folyamatban. Kérem, várjon..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Az új frissítéslista letöltése folyamatban. Kérem, várjon..."
 
 #, fuzzy
 msgid "Tsonga"
@@ -20499,6 +20428,9 @@ msgstr "A HTTP jelfolyamba kerüljön bele a DVB-ből származó EIT adatcsomag 
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Ha engedélyezi, a leválasztott csatornacsomagok is betöltődnek. Ez azt jelenti, hogy az olyan csatornacsomagok is betöltődnek, amelyek léteznek, de nincsnek benne a bouquets.tv vagy bouquets.radio fájlban. Ez lehetőséget ad arra, hogy a saját csatornacsomagjait megtartsa, ha a csatornák frissülnek"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Egy felugró üzenet jelenjen meg a képernyőn amikor egy fájl a végéhez ért és a következő elindul."
@@ -22947,6 +22879,97 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Az OK gomb lenyomása után kérem, várjon!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Nyomja le az OK gombot a távírányítón a folytatáshoz."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Válasszon célt, a mentéshez.\n"
+#~ "Aktuális eszköz: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Az elérhető frissítések keresése folyamatban van."
+
+#~ msgid "Advanced software"
+#~ msgstr "Haladó szoftver"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Haladó szoftver bővítmények"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Bővítmény részletei: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Drivers:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "A frissítési forrás URL-jének szerkesztése."
+
+#~ msgid "Extended Software"
+#~ msgstr "Bővített Szoftver"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Bővített Szoftver Bővítmény"
+
+#, fuzzy, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_recovery.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Utolsó frissítés:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "A(z) %s %s készülék kiegészítések és bővítmények kezelése"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "%s %s szoftver kezelése"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Modell: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Új csomagok"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Nyomja le az INFO gombot a távírányítón a részletekért."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Legalább %s frissítés elérhető."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Hiba történt a frissítési lista letöltése közben. Kérlek próbáld újra."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Az új frissítéslista letöltése folyamatban. Kérem, várjon..."
 
 #~ msgid "??"
 #~ msgstr "??"

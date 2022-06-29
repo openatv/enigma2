@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -59,33 +59,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Sau khi nhấn OK, vui lòng đợi!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Nhấn OK trên điều khiển từ xa của bạn để tiếp tục."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Ghi âm trong tiến trình."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Chọn thiết bị sao lưu của bạn.\n"
-"Thiêt bị hiện tại: "
 
 msgid ""
 "\n"
@@ -2044,9 +2021,6 @@ msgstr "Một bộ đếm thời gian lặp lại hoặc chỉ một lần?"
 msgid "A required tool (%s) was not found."
 msgstr "Không tìm thấy công cụ cần thiết (%s)."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Một tìm kiếm cho các bản cập nhật có sẵn hiện đang được tiến hành."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2433,12 +2407,6 @@ msgstr "Tùy chọn và cài đặt nâng cao"
 
 msgid "Advanced options and settings."
 msgstr "Tùy chọn và cài đặt nâng cao."
-
-msgid "Advanced software"
-msgstr "Phần mềm nâng cao"
-
-msgid "Advanced software plugin"
-msgstr "Plugin phần mềm nâng cao"
 
 msgid "Advanced video enhancement setup"
 msgstr "Thiết lập nâng cao video nâng cao"
@@ -3259,7 +3227,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Sao lưu đến đích:%s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Sao lưu cài đặt % s% s của bạn."
 
@@ -3275,7 +3242,6 @@ msgstr "Sao lưu các thiết lập hiện tại của bạn"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sao lưu các thiết lập hiện tại của bạn. Điều này bao gồm thiết lập E2, kênh, mạng và tất cả các tệp đã chọn"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sao lưu hình ảnh% s% s đang chạy của bạn vào ổ cứng hoặc USB."
 
@@ -3513,6 +3479,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -5969,9 +5938,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Chi tiết cho plugin: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6578,10 +6544,6 @@ msgstr "lái xe"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Trình điều khiển:%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6758,6 +6720,9 @@ msgstr "Chỉnh sửa bộ đếm thời gian"
 msgid "Edit Title"
 msgstr "Chỉnh sửa tiêu đề"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 
@@ -6787,9 +6752,6 @@ msgstr ""
 
 msgid "Edit the upgrade source address."
 msgstr "Chỉnh sửa địa chỉ nguồn nâng cấp."
-
-msgid "Edit upgrade source url."
-msgstr "Chỉnh sửa url nguồn nâng cấp."
 
 #, fuzzy
 msgid "Education"
@@ -7607,12 +7569,6 @@ msgstr "Thiết lập mở rộng ..."
 msgid "Extended Shares"
 msgstr "Mở rộng"
 
-msgid "Extended Software"
-msgstr "Phần mềm mở rộng"
-
-msgid "Extended Software Plugin"
-msgstr "Plugin phần mềm mở rộng"
-
 msgid "Extended settings"
 msgstr "Cài đặt mở rộng"
 
@@ -8020,7 +7976,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
 
@@ -9168,13 +9123,9 @@ msgstr "Sao lưu hình ảnh"
 msgid "Image Flash Actions"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Hình ảnh được tạo trên:% s /% s-% s-% s-backup-% s_recovery.zip"
-
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Hình ảnh trực tuyến của chúng tôi:% s /% s-% s-% s-backup-% s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Tạo hình ảnh thất bại - "
@@ -9249,6 +9200,9 @@ msgstr "Bao gồm ECM trong luồng http"
 
 msgid "Include EIT in http streams"
 msgstr "Bao gồm thuế TNDN trong các luồng http"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -9955,10 +9909,6 @@ msgstr "Tốc độ cuối"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Cập nhật lần cuối:%s"
-
 msgid "Last used share: "
 msgstr "Chia sẻ được sử dụng lần cuối: "
 
@@ -10455,16 +10405,8 @@ msgstr "Quản lý tiện ích mở rộng"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Cài đặt chọn kênh"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Quản lý tiện ích mở rộng hoặc plugin cho đầu thu của bạn%s %s"
-
 msgid "Manage network mounts"
 msgstr "Quản lý kết nối mạng"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Quản lý phần mềm% s% s's của bạn"
 
 msgid "Manage your online update files"
 msgstr "Quản lý tập tin cập nhật trực tuyến của bạn"
@@ -10786,10 +10728,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Mô hình: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Mô hình:% s%s\n"
 
 msgid "Modified:"
 msgstr "Đã sửa đổi:"
@@ -11401,9 +11339,6 @@ msgstr "Caledonia mới"
 msgid "New PIN"
 msgstr "Mã PIN mới"
 
-msgid "New Packages"
-msgstr "Gói mới"
-
 msgid "New Setting DXAndy "
 msgstr "Cài đặt mới DXAndy "
 
@@ -11622,6 +11557,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Không có chế độ chờ"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Không tìm thấy sat tuner phù hợp!"
@@ -11991,7 +11929,6 @@ msgstr "Một dòng"
 msgid "Online software update"
 msgstr "Cập nhật trực tuyến phần mềm nhận của bạn"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Cập nhật trực tuyến phần mềm %s %s nhận của bạn."
 
@@ -13016,11 +12953,15 @@ msgstr "Trình duyệt Plugin"
 msgid "Plugin Browser Settings"
 msgstr "Cài đặt trình cắm"
 
-msgid "Plugin Filter Settings"
-msgstr "Bộ lọc Plugin"
-
 msgid "Plugin Details"
 msgstr "Chi tiết về plugin"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Bộ lọc Plugin"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Thông tin hoạt động của trình quản lý plugin"
@@ -13208,12 +13149,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Nhấn OK để bắt đầu quét"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Nhấn INFO trên điều khiển từ xa để biết thêm thông tin."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Nhấn MENU trên điều khiển từ xa của bạn để có thêm tùy chọn."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14329,11 +14264,9 @@ msgstr "Khôi phục cài đặt từ bản sao lưu"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Khôi phục cài đặt%s %s máy thu của bạn."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Khôi phục% s% s của bạn với chương trình cơ sở mới."
 
@@ -15108,6 +15041,9 @@ msgstr "Chọn Cập nhật phần mềm"
 msgid "Select Upgrade Source"
 msgstr "Chọn nguồn nâng cấp"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Chọn nguồn nâng cấp để chỉnh sửa."
+
 msgid "Select Your Skin"
 msgstr "Chọn làn da của bạn"
 
@@ -15402,9 +15338,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Chọn nguồn nâng cấp để chỉnh sửa."
-
 msgid "Select video input with up/down buttons"
 msgstr "Chọn đầu vào video với các nút lên / xuống"
 
@@ -15446,6 +15379,9 @@ msgstr "Chọn nhà cung cấp ATSC của bạn."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Chọn ngôn ngữ của bạn cho âm thanh / phụ đề"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Chọn đất nước của bạn. Nếu không có sẵn, chọn 'tất cả'."
@@ -17131,8 +17067,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Phần mềm"
 
+msgid "Software Management"
+msgstr "Quản lý phần mềm"
+
 msgid "Software Manager"
 msgstr "Quản trị viên phần mềm"
+
+msgid "Software Manager Information"
+msgstr "Thông tin về phần mềm"
+
+msgid "Software Manager Settings"
+msgstr "Thiết lập trình quản lý phần mềm"
 
 msgid "Software Manager Setup"
 msgstr "Cài đặt trình quản lý phần mềm"
@@ -17152,19 +17097,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Quản lý phần mềm"
-
-msgid "Software Manager Settings"
-msgstr "Thiết lập trình quản lý phần mềm"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Thông tin về phần mềm"
 
 msgid "Softwaremanager..."
 msgstr "Quản lý phần mềm..."
@@ -18445,10 +18381,6 @@ msgstr "Đã kết thúc."
 msgid "There are at least "
 msgstr "Có ít nhất "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Có ít nhất%s cập nhật có sẵn."
-
 msgid "There are currently no outstanding actions."
 msgstr "Hiện tại không có hành động nổi bật."
 
@@ -18482,9 +18414,6 @@ msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
 
 #, fuzzy
 msgid "There was an error while trying to login."
@@ -18582,6 +18511,9 @@ msgid "This line is not editable!"
 msgstr "Dòng này không thể chỉnh sửa!"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19297,9 +19229,6 @@ msgid "Try to send repeated commands if not all commands are executed. (e.g. TV 
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Đang cố gắng tải xuống một danh sách gói mới. Xin vui lòng chờ ..."
-
-msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Đang cố gắng tải xuống một danh sách gói mới. Xin vui lòng chờ ..."
 
 #, fuzzy
@@ -20629,6 +20558,9 @@ msgstr "Khi được bật, dữ liệu EIT sẽ được bao gồm trong các l
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Khi được bật enigma2 sẽ tải các tập tin người dùng không liên kết. Điều này có nghĩa là các userbouquets có sẵn, nhưng không được bao gồm trong các tập tin bouquets.tv hoặc bouquets.radio, vẫn sẽ được tải. Điều này cho phép bạn lấy ví dụ để giữ bó hoa người dùng của riêng bạn trong khi cài đặt được cài đặt được nâng cấp"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Khi được bật, một thông báo bật lên sẽ được hiển thị khi phim kết thúc và phần tiếp theo sẽ bắt đầu."
@@ -23096,6 +23028,97 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Sau khi nhấn OK, vui lòng đợi!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Nhấn OK trên điều khiển từ xa của bạn để tiếp tục."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Chọn thiết bị sao lưu của bạn.\n"
+#~ "Thiêt bị hiện tại: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Một tìm kiếm cho các bản cập nhật có sẵn hiện đang được tiến hành."
+
+#~ msgid "Advanced software"
+#~ msgstr "Phần mềm nâng cao"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Plugin phần mềm nâng cao"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Chi tiết cho plugin: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Trình điều khiển:%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Chỉnh sửa url nguồn nâng cấp."
+
+#~ msgid "Extended Software"
+#~ msgstr "Phần mềm mở rộng"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Plugin phần mềm mở rộng"
+
+#, fuzzy, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Hình ảnh được tạo trên:% s /% s-% s-% s-backup-% s_recovery.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Hình ảnh trực tuyến của chúng tôi:% s /% s-% s-% s-backup-% s_recovery.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Cập nhật lần cuối:%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Quản lý tiện ích mở rộng hoặc plugin cho đầu thu của bạn%s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Quản lý phần mềm% s% s's của bạn"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Mô hình:% s%s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Gói mới"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Nhấn INFO trên điều khiển từ xa để biết thêm thông tin."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Nhấn MENU trên điều khiển từ xa của bạn để có thêm tùy chọn."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Có ít nhất%s cập nhật có sẵn."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Đang cố gắng tải xuống một danh sách gói mới. Xin vui lòng chờ ..."
 
 #~ msgid "??"
 #~ msgstr "??"

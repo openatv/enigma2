@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -50,36 +50,10 @@ msgstr ""
 "\n"
 "Ovaj tjuner je konfigurisan automatski"
 
-#
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Posle stiskanja OK,molim pričekajte"
-
-#
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Pritisni OK na tvom daljinskom da nastaviš"
-
 msgid ""
 "\n"
 "Recording in progress."
 msgstr ""
-
-#
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Izaberi svoj rezervni uredjaj.\n"
-"Aktuelni uređaj:"
 
 msgid ""
 "\n"
@@ -2217,10 +2191,6 @@ msgid "A required tool (%s) was not found."
 msgstr "Potrebni alat (%s) nije pronađen."
 
 #
-msgid "A search for available updates is currently in progress."
-msgstr "Traženje za moguća ažuriranja je trenutno u toku."
-
-#
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2662,16 +2632,6 @@ msgstr "Napredne opcije"
 #
 msgid "Advanced options and settings."
 msgstr "Napredne opcije i podešavanja."
-
-#
-#, fuzzy
-msgid "Advanced software"
-msgstr "Napredni softver"
-
-#
-#, fuzzy
-msgid "Advanced software plugin"
-msgstr "Napredni softver dodatak"
 
 #
 #, fuzzy
@@ -3573,7 +3533,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Snimanje sistemskih postavki"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr ""
 
@@ -3589,7 +3548,6 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
@@ -3850,6 +3808,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6512,9 +6473,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Detalji dodatka:"
-
 msgid "Detected drives"
 msgstr ""
 
@@ -7158,10 +7116,6 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr ""
-
 msgid "Drives Information"
 msgstr ""
 
@@ -7345,6 +7299,9 @@ msgstr "Urediti naslov"
 msgid "Edit Title"
 msgstr ""
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 #
 msgid "Edit chapters of current title"
 msgstr "Urediti poglavlja sadašnjeg naslova"
@@ -7381,10 +7338,6 @@ msgstr "Urediti mrežnu konfiguraciju vašeg Drimboxa."
 #
 msgid "Edit the upgrade source address."
 msgstr "Uredi poboljšanu izvornu adresu"
-
-#
-msgid "Edit upgrade source url."
-msgstr "Uredi url izvora nadogradnje."
 
 #
 #, fuzzy
@@ -8248,14 +8201,6 @@ msgstr "Proširene postavke..."
 msgid "Extended Shares"
 msgstr ""
 
-#
-msgid "Extended Software"
-msgstr "Prošireni softver"
-
-#
-msgid "Extended Software Plugin"
-msgstr "Prošireni softver dodatak "
-
 msgid "Extended settings"
 msgstr ""
 
@@ -8688,7 +8633,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr ""
 
@@ -9916,11 +9860,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9999,6 +9939,9 @@ msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
+msgstr ""
+
+msgid "Include PID in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -10799,11 +10742,6 @@ msgstr "Poslednja brzina"
 msgid "Last update"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Last update:\t%s"
-msgstr "Nadogradnja liste paketa"
-
 msgid "Last used share: "
 msgstr ""
 
@@ -11363,18 +11301,8 @@ msgstr "Rukuj proširenjima"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Postavke kolekcije"
 
-#
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Izvrši proširenja i dodatke za vaš drimboks"
-
 msgid "Manage network mounts"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Manage your %s %s's software"
-msgstr "Upravljanje softverom vašeg prijemnika"
 
 msgid "Manage your online update files"
 msgstr ""
@@ -11724,10 +11652,6 @@ msgstr ""
 #
 msgid "Model: "
 msgstr "Model:"
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr ""
 
 msgid "Modified:"
 msgstr ""
@@ -12414,9 +12338,6 @@ msgstr ""
 msgid "New PIN"
 msgstr "Novi PIN"
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -12669,6 +12590,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "ne stanje pripravnosti"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr ""
@@ -13072,7 +12996,7 @@ msgid "Online software update"
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, fuzzy
 msgid "Online update of your %s %s software."
 msgstr "Onlajn ažuriranje Drimbox softvera"
 
@@ -14204,10 +14128,14 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Details"
 msgstr ""
 
-msgid "Plugin Details"
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
 msgstr ""
 
 #
@@ -14429,12 +14357,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Pritisnite OK za početak skeniranja"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Pritisni INFO na svom daljinskom za dodatne informacije."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Pritisni MENI na svom daljinskom za dodatne opcije."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -15667,12 +15589,11 @@ msgstr ""
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, fuzzy
 msgid "Restore your %s %s with a new firmware."
 msgstr "Vrati svoje Drimbox postavke sa novim firmverom"
 
@@ -16537,6 +16458,10 @@ msgid "Select Upgrade Source"
 msgstr "Izaberi izvor nadodradnje za uređivanje."
 
 #
+msgid "Select Upgrade Source To Edit"
+msgstr "Izaberi izvor nadodradnje za uređivanje."
+
+#
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "Izaberite CAId"
@@ -16855,10 +16780,6 @@ msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 #
-msgid "Select Upgrade Source To Edit"
-msgstr "Izaberi izvor nadodradnje za uređivanje."
-
-#
 msgid "Select video input with up/down buttons"
 msgstr "Izaberi video ulaz sa UP/DOWN tipkama"
 
@@ -16903,6 +16824,9 @@ msgid "Select your ATSC provider."
 msgstr "Izaberi provajdera za dodavanje"
 
 msgid "Select your Language for Audio/Subtitles"
+msgstr ""
+
+msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'all'."
@@ -18747,8 +18671,18 @@ msgstr ""
 msgid "Software"
 msgstr "Softver"
 
+#
+msgid "Software Management"
+msgstr "Upravljač softvera "
+
 msgid "Software Manager"
 msgstr ""
+
+msgid "Software Manager Information"
+msgstr "Informacije upravljača softvera"
+
+msgid "Software Manager Settings"
+msgstr "Podešavanje upravljača softvera"
 
 msgid "Software Manager Setup"
 msgstr ""
@@ -18769,20 +18703,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-#
-msgid "Software Management"
-msgstr "Upravljač softvera "
-
-msgid "Software Manager Settings"
-msgstr "Podešavanje upravljača softvera"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Informacije upravljača softvera"
 
 msgid "Softwaremanager..."
 msgstr ""
@@ -20147,10 +20071,6 @@ msgstr "Čarobnjak je sada gotov."
 msgid "There are at least "
 msgstr "Postoji najmanje"
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr ""
-
 #
 msgid "There are currently no outstanding actions."
 msgstr "Trenutno nema izrazitih dešavanja."
@@ -20184,9 +20104,6 @@ msgid "There was an error downloading the region list"
 msgstr ""
 
 msgid "There was an error downloading the update list.  Please try again."
-msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -20288,6 +20205,9 @@ msgid "This line is not editable!"
 msgstr "Ovaj dodatak nije instaliran."
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -21066,9 +20986,6 @@ msgstr ""
 #
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Pokušavam skinuti novu listu paketa.Molim sačekajte..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr ""
 
 msgid "Tsonga"
 msgstr ""
@@ -22520,6 +22437,9 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr ""
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr ""
+
+msgid "When enabled, PID data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -25182,6 +25102,82 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Posle stiskanja OK,molim pričekajte"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Pritisni OK na tvom daljinskom da nastaviš"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Izaberi svoj rezervni uredjaj.\n"
+#~ "Aktuelni uređaj:"
+
+#
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Traženje za moguća ažuriranja je trenutno u toku."
+
+#
+#, fuzzy
+#~ msgid "Advanced software"
+#~ msgstr "Napredni softver"
+
+#
+#, fuzzy
+#~ msgid "Advanced software plugin"
+#~ msgstr "Napredni softver dodatak"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Detalji dodatka:"
+
+#
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Uredi url izvora nadogradnje."
+
+#
+#~ msgid "Extended Software"
+#~ msgstr "Prošireni softver"
+
+#
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Prošireni softver dodatak "
+
+#
+#, fuzzy, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Nadogradnja liste paketa"
+
+#
+#, fuzzy, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Izvrši proširenja i dodatke za vaš drimboks"
+
+#
+#, fuzzy, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Upravljanje softverom vašeg prijemnika"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Pritisni INFO na svom daljinskom za dodatne informacije."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Pritisni MENI na svom daljinskom za dodatne opcije."
 
 #
 #~ msgid "??"

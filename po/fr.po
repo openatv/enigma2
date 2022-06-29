@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -58,33 +58,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Après avoir appuyé sur OK, veuillez patienter !"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Appuyez sur OK de la télécommande pour continuer."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Enregistrement en cours."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Choix périphérique sauvegarde.\n"
-"Périphérique actuel : "
 
 msgid ""
 "\n"
@@ -2012,9 +1989,6 @@ msgstr "Un timer répétitif ou unique?"
 msgid "A required tool (%s) was not found."
 msgstr "Un outil requis (%s) n'a pas été trouvé."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Une recherche pour les mises à jour disponibles est actuellement en cours."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2399,12 +2373,6 @@ msgstr "Paramètres avancés"
 
 msgid "Advanced options and settings."
 msgstr "Options et paramètres avancés."
-
-msgid "Advanced software"
-msgstr "Logiciel avancé"
-
-msgid "Advanced software plugin"
-msgstr "Plugin Logiciel avancé"
 
 msgid "Advanced video enhancement setup"
 msgstr "Paramètres avancés pour améliorer la vidéo"
@@ -3211,7 +3179,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Sauvegarde vers la destination : %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Sauvegarder vos %s %s paramètres."
 
@@ -3227,7 +3194,6 @@ msgstr "Sauvegarder vos paramètres courants"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Sauvegarder vos paramètres courants. Cela inclus la configuration de E2, les chaînes, le réseau et tous les fichiers sélectionnés"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sauvegarder votre image %s %s courante vers HDD ou USB."
 
@@ -3462,6 +3428,9 @@ msgstr "Diffusion"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
@@ -5890,9 +5859,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Détails pour le plugin : "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6491,10 +6457,6 @@ msgstr "pilotes"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Pilotes :\t\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6668,6 +6630,9 @@ msgstr "Éditer programmation"
 msgid "Edit Title"
 msgstr "Editer titre"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Éditer chapitres du titre actuel"
 
@@ -6694,9 +6659,6 @@ msgstr "Editer la configuration réseau de votre %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr "Editer l'adresse d'origine de la mise à jour."
-
-msgid "Edit upgrade source url."
-msgstr "Editer l'url source des mises à jour."
 
 msgid "Education"
 msgstr "Éducation"
@@ -7509,12 +7471,6 @@ msgstr "Paramètre avancé..."
 msgid "Extended Shares"
 msgstr "Partages étendus"
 
-msgid "Extended Software"
-msgstr "Logiciel étendu"
-
-msgid "Extended Software Plugin"
-msgstr "Plugin logiciel étendu"
-
 msgid "Extended settings"
 msgstr "Paramètres étendus"
 
@@ -7914,7 +7870,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "Le répertoire Flash '%s' n’est pas autorisé !"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flasher à la volée votre %s %s."
 
@@ -9034,12 +8989,8 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image créée le : %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image créée le : %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "La création de l'image a échoué - "
@@ -9119,6 +9070,9 @@ msgstr "Inclure ECM dans les flux HTTP"
 
 msgid "Include EIT in http streams"
 msgstr "Inclure EIT dans les flux HTTP"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Inclure des données de carte d’action"
@@ -9807,10 +9761,6 @@ msgstr "Dernière vitesse"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Dernière mise à jour :\t%s"
-
 msgid "Last used share: "
 msgstr "Dernier partage utilisé : "
 
@@ -10290,16 +10240,8 @@ msgstr "Gestionnaire des extensions"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Gérer les paramètres de la sélection locale/langue"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Gestion des extensions ou plugins pour votre %s %s"
-
 msgid "Manage network mounts"
 msgstr "Gérer les points de montage réseau"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Gérer le logiciel de votre %s %s"
 
 msgid "Manage your online update files"
 msgstr "Gère vos fichiers de mise à jour en ligne"
@@ -10612,10 +10554,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Modèle : "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Modèle : %s %s\n"
 
 msgid "Modified:"
 msgstr "Modifié :"
@@ -11199,9 +11137,6 @@ msgstr "Nouvelle-Calédonie"
 msgid "New PIN"
 msgstr "Nouveau PIN"
 
-msgid "New Packages"
-msgstr "Nouveaux paquets"
-
 msgid "New Setting DXAndy "
 msgstr "Nouveau Paramètre DXAndy "
 
@@ -11410,6 +11345,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Pas de veille"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Aucun tuner satellite convenable trouvé !"
@@ -11775,7 +11713,6 @@ msgstr "Une ligne"
 msgid "Online software update"
 msgstr "Mise à jour logiciel en ligne"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Mise à jour en ligne du logiciel de votre %s %s."
 
@@ -12790,11 +12727,15 @@ msgstr "Navigateur d'extensions"
 msgid "Plugin Browser Settings"
 msgstr "Paramètres de l'explorateur de plugins"
 
-msgid "Plugin Filter Settings"
-msgstr "Filtrer les plugins"
-
 msgid "Plugin Details"
 msgstr "Détails des plugins"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Filtrer les plugins"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Information sur l'activité du gestionnaire des plugins"
@@ -12981,12 +12922,6 @@ msgstr ""
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Appuyez sur EXIT pour revenir à l’écran d’aide."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Appuyez sur INFO de votre télécommande pour plus d'informations."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Appuyez sur MENU de votre télécommande pour d'autres options."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14086,11 +14021,9 @@ msgstr "Restaurer les paramètres à partir d'une sauvegarde"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Restaurer vos paramètres %s %s."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Restaurer votre %s %s avec un nouveau logiciel."
 
@@ -14854,6 +14787,9 @@ msgstr "Choisir mise à jour logiciel"
 msgid "Select Upgrade Source"
 msgstr "Choisissez la source de mise à niveau"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Choisissez la source de mise à niveau à éditer."
+
 msgid "Select Your Skin"
 msgstr "Sélectionnez votre skin"
 
@@ -15143,9 +15079,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Choisissez la source de mise à niveau à éditer."
-
 msgid "Select video input with up/down buttons"
 msgstr "Sélectionner l’entrée vidéo avec les boutons haut/bas"
 
@@ -15187,6 +15120,9 @@ msgstr "Sélectionnez votre fournisseur ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Choisir votre langue pour l'audio/les sous-titres"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Sélectionnez votre pays. Si pas disponible choisir ‘tous’."
@@ -16846,8 +16782,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Logiciel"
 
+msgid "Software Management"
+msgstr "Gestionnaire logiciel"
+
 msgid "Software Manager"
 msgstr "Gestionnaire logiciel"
+
+msgid "Software Manager Information"
+msgstr "Informations gestionnaire logiciel"
+
+msgid "Software Manager Settings"
+msgstr "Paramètres gestionnaire logiciel"
 
 msgid "Software Manager Setup"
 msgstr "Paramètres gestionnaire logiciel"
@@ -16867,19 +16812,10 @@ msgstr "Actions de mise à jour du logiciel"
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Gestionnaire logiciel"
-
-msgid "Software Manager Settings"
-msgstr "Paramètres gestionnaire logiciel"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Informations gestionnaire logiciel"
 
 msgid "Softwaremanager..."
 msgstr "Gestionnaire logiciel..."
@@ -18144,10 +18080,6 @@ msgstr "L'assistant est terminé."
 msgid "There are at least "
 msgstr "Il y a au moins "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Il y a au moins %s mises à jour disponibles."
-
 msgid "There are currently no outstanding actions."
 msgstr "Il n'y a actuellement aucune action marquante."
 
@@ -18180,9 +18112,6 @@ msgstr "Une erreur s’est produite lors du téléchargement de la liste des ré
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "Une erreur s'est produite lors du téléchargement de la liste des mises à jour.  Veuillez réessayer."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Erreur pendant le téléchargement de la liste des mises à jour. Merci de réessayer."
 
 msgid "There was an error while trying to login."
 msgstr "Une erreur s’est produite lors de la tentative de connexion."
@@ -18279,6 +18208,9 @@ msgid "This line is not editable!"
 msgstr "Cette ligne n'est pas modifiable !"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -18997,9 +18929,6 @@ msgstr "Essayez d'envoyer des commandes répétées si toutes les commandes ne s
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Essai téléchargement nouvelle liste paquet. Veuillez patienter..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Tentative de téléchargement d'une liste des mises à jour. Veuillez patienter..."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -20301,6 +20230,9 @@ msgstr "Lorsqu'elle est activée, les données EIT seront inclus dans les flux h
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie que les bouquets qui sont disponibles, mais pas repris dans les fichiers bouquets.tv ou bouquets.radio, seront chargés. Cela vous permet par exemple de garder vos propres bouquets lorsque les bouquets téléchargés sont mis à jour"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Lorsqu'elle est activée, un message contextuel s'affiche quand un film est terminé et que le prochain va commencer."
@@ -22745,6 +22677,97 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Après avoir appuyé sur OK, veuillez patienter !"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Appuyez sur OK de la télécommande pour continuer."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Choix périphérique sauvegarde.\n"
+#~ "Périphérique actuel : "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Une recherche pour les mises à jour disponibles est actuellement en cours."
+
+#~ msgid "Advanced software"
+#~ msgstr "Logiciel avancé"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Plugin Logiciel avancé"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Détails pour le plugin : "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Pilotes :\t\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Editer l'url source des mises à jour."
+
+#~ msgid "Extended Software"
+#~ msgstr "Logiciel étendu"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Plugin logiciel étendu"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image créée le : %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image créée le : %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Dernière mise à jour :\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Gestion des extensions ou plugins pour votre %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Gérer le logiciel de votre %s %s"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Modèle : %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Nouveaux paquets"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Appuyez sur INFO de votre télécommande pour plus d'informations."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Appuyez sur MENU de votre télécommande pour d'autres options."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Il y a au moins %s mises à jour disponibles."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Erreur pendant le téléchargement de la liste des mises à jour. Merci de réessayer."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Tentative de téléchargement d'une liste des mises à jour. Veuillez patienter..."
 
 #~ msgid "??"
 #~ msgstr "??"

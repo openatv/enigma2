@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -44,34 +44,11 @@ msgstr ""
 "\n"
 "<Tento tuner je nastaven automaticky>"
 
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Po stisknutí OK čekejte, prosím!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Dále stiskněte OK na dálkovém ovladači."
-
 #, fuzzy
 msgid ""
 "\n"
 "Recording in progress."
 msgstr "Probíhá nahrávání"
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Zvolte zařízení pro zálohování.\n"
-"Aktuální zařízení: "
 
 #, fuzzy
 msgid ""
@@ -2164,9 +2141,6 @@ msgstr "Opakovat časovač nebo jen jednou?"
 msgid "A required tool (%s) was not found."
 msgstr "Požadovaný nástroj (%s) nebyl nalezen."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Probíhá vyhledávání dostupných aktualizací."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2576,12 +2550,6 @@ msgstr "Pokročilé volby"
 
 msgid "Advanced options and settings."
 msgstr "Pokročilé volby a nastavení."
-
-msgid "Advanced software"
-msgstr "Pokročilý software"
-
-msgid "Advanced software plugin"
-msgstr "Pokročilý softwarový plugin"
 
 msgid "Advanced video enhancement setup"
 msgstr "Pokročilé detailní video nastavení"
@@ -3444,7 +3412,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Záloha nastavení"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Záloha nastavení vašeho %s %s."
 
@@ -3460,7 +3427,6 @@ msgstr "Záloha vašeho aktuálního nastavení"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Záloha aktuálního nastavení. To zahrnuje nastavení E2, programů, sítě a všech vybraných souborů"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Zálohovat provozní image Vašeho %s %s na HDD nebo USB."
 
@@ -3705,6 +3671,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6242,9 +6211,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "Detaily pluginu: "
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6871,10 +6837,6 @@ msgstr "Servery"
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Ovladače:\t%s"
-
 msgid "Drives Information"
 msgstr ""
 
@@ -7049,6 +7011,9 @@ msgstr "Upravit časovač"
 msgid "Edit Title"
 msgstr "Upravit titul"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Upravit kapitoly zvoleného titulu"
 
@@ -7076,9 +7041,6 @@ msgstr "Upravuje nastavení sítě Vašeho %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr "Upravit adresy aktualizačních zdrojů."
-
-msgid "Edit upgrade source url."
-msgstr "Upravit url zdroje aktualizací."
 
 #, fuzzy
 msgid "Education"
@@ -7921,12 +7883,6 @@ msgstr "Rozšířené nastavení..."
 msgid "Extended Shares"
 msgstr "Rozšířené sdílení"
 
-msgid "Extended Software"
-msgstr "Další software"
-
-msgid "Extended Software Plugin"
-msgstr "Plugin dalšího software"
-
 msgid "Extended settings"
 msgstr "Rozšířené nastavení"
 
@@ -8344,7 +8300,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flešnutí Vašeho %s %s za chodu."
 
@@ -9530,11 +9485,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9615,6 +9566,9 @@ msgstr "Zahrnout ECM do http streamů"
 
 msgid "Include EIT in http streams"
 msgstr "Zahrnout EIT do http streamů"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 #, fuzzy
 msgid "Include action map data"
@@ -10345,10 +10299,6 @@ msgstr "Poslední rychlost"
 msgid "Last update"
 msgstr ""
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Poslední aktualizace:\t%s"
-
 msgid "Last used share: "
 msgstr "Poslední sdílené: "
 
@@ -10861,16 +10811,8 @@ msgstr "Správa rozšíření"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Nastavení výběru kanálu"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Správce rozšíření nebo zásuvných modulů vašeho %s %s"
-
 msgid "Manage network mounts"
 msgstr "Správce síťových připojení"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Spravujte Váš %s %s's software  "
 
 msgid "Manage your online update files"
 msgstr "Správa aktualizací souborů online"
@@ -11207,10 +11149,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "Model: "
-
-#, fuzzy, python-format
-msgid "Model: %s %s\n"
-msgstr "Model:\t%s %s\n"
 
 msgid "Modified:"
 msgstr ""
@@ -11835,10 +11773,6 @@ msgstr ""
 msgid "New PIN"
 msgstr "Nový PIN"
 
-#, fuzzy
-msgid "New Packages"
-msgstr "Balíčků"
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -12068,6 +12002,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Neuspávat"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Nenalezen žádný vhodný tuner!"
@@ -12453,7 +12390,6 @@ msgstr "Jeden řádek"
 msgid "Online software update"
 msgstr "Aktualizace software Online"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Online aktualizace software %s %s."
 
@@ -13506,11 +13442,15 @@ msgstr "Prohlížeč pluginů"
 msgid "Plugin Browser Settings"
 msgstr "Prohlížeč pluginů"
 
-msgid "Plugin Filter Settings"
-msgstr "Filtrování pluginů"
-
 msgid "Plugin Details"
 msgstr "Detaily pluginu"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Filtrování pluginů"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Informace o činosti správce pluginů"
@@ -13707,12 +13647,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "Stiskněte OK pro spuštění prohledávání"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Stiskněte INFO na dálkovém ovladači pro další informace."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Stiskněte MENU na Vašem dálkovém ovladači pro další možnosti."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14869,11 +14803,9 @@ msgstr "Obnova nastavení ze zálohy"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Obnova nastavení %s %s."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Obnovit %s %s s novým firmwarem."
 
@@ -15676,6 +15608,9 @@ msgstr "Vyberte typ aktualizace Software"
 msgid "Select Upgrade Source"
 msgstr "Vyberte zdroje pro aktualizaci"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Výběr zdroje pro aktualizaci k úpravě."
+
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "Vyberte skin"
@@ -15973,9 +15908,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Výběr zdroje pro aktualizaci k úpravě."
-
 msgid "Select video input with up/down buttons"
 msgstr "Tlačítky up/down vybere video vstup"
 
@@ -16018,6 +15950,9 @@ msgstr "Vyberte poskytovatele služeb"
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Vyberte si vlastní nastavení jazyka zvuku a titulků"
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr ""
@@ -17766,8 +17701,17 @@ msgstr "Instalace Softcamů"
 msgid "Software"
 msgstr "Software"
 
+msgid "Software Management"
+msgstr "Správa software"
+
 msgid "Software Manager"
 msgstr "Správa software"
+
+msgid "Software Manager Information"
+msgstr "Info správy software"
+
+msgid "Software Manager Settings"
+msgstr "Nastavení správy software"
 
 msgid "Software Manager Setup"
 msgstr "Nastavení správy software"
@@ -17787,19 +17731,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "Správa software"
-
-msgid "Software Manager Settings"
-msgstr "Nastavení správy software"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "Info správy software"
 
 #, fuzzy
 msgid "Softwaremanager..."
@@ -19127,10 +19062,6 @@ msgstr "Průvodce skončil."
 msgid "There are at least "
 msgstr "Existuje nejméně "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "K dispozici je nejméně %s aktualizací."
-
 msgid "There are currently no outstanding actions."
 msgstr "V současné době nejsou žádné nedokončené akce."
 
@@ -19165,10 +19096,6 @@ msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-#, fuzzy
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
 
 #, fuzzy
 msgid "There was an error while trying to login."
@@ -19270,6 +19197,9 @@ msgid "This line is not editable!"
 msgstr "Tento řádek nelze upravit!"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -20013,9 +19943,6 @@ msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Snažím se stáhnout nový seznam balíčků. Prosím, čekejte..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Snažím se stáhnout nový seznam aktualizací. Prosím čekejte ..."
 
 msgid "Tsonga"
 msgstr ""
@@ -21402,6 +21329,9 @@ msgstr "Při povolení budou přidávána EIT data do streamu. To umožní klien
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Je povoleno načtení nepropojených přehledů. Tj. přehledů které jsou k dispozici, ale nejsou zahrnuty v přehledech TV/Radia a budou tedy trvale načteny. To vám například umožní použití vlastních uživatelských přehledů, zatímco instalovaná nastavení jsou aktualizována."
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Při povolení bude zobrazována zpráva po skončení přehrávání před začátkem nového přehrávání."
@@ -23948,6 +23878,91 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Po stisknutí OK čekejte, prosím!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Dále stiskněte OK na dálkovém ovladači."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Zvolte zařízení pro zálohování.\n"
+#~ "Aktuální zařízení: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Probíhá vyhledávání dostupných aktualizací."
+
+#~ msgid "Advanced software"
+#~ msgstr "Pokročilý software"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Pokročilý softwarový plugin"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Detaily pluginu: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Ovladače:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Upravit url zdroje aktualizací."
+
+#~ msgid "Extended Software"
+#~ msgstr "Další software"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Plugin dalšího software"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Poslední aktualizace:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Správce rozšíření nebo zásuvných modulů vašeho %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Spravujte Váš %s %s's software  "
+
+#, fuzzy, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model:\t%s %s\n"
+
+#, fuzzy
+#~ msgid "New Packages"
+#~ msgstr "Balíčků"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Stiskněte INFO na dálkovém ovladači pro další informace."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Stiskněte MENU na Vašem dálkovém ovladači pro další možnosti."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "K dispozici je nejméně %s aktualizací."
+
+#, fuzzy
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Snažím se stáhnout nový seznam aktualizací. Prosím čekejte ..."
 
 #~ msgid "??"
 #~ msgstr "??"

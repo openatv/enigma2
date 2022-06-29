@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -49,32 +49,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"!אחרי לחיצה על אשר,נא המתן"
-
-#
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"לחץ אשר על השלט בכדי להמשיך"
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-".בחר את התקן הגיבוי\n"
-":ההתקן הנוכחי "
 
 msgid ""
 "\n"
@@ -2095,10 +2071,6 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr " (%s) :הכלי הבא - לא נמצא"
 
-#
-msgid "A search for available updates is currently in progress."
-msgstr "בדיקת עדכונים זמינים בפועל"
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2523,16 +2495,6 @@ msgstr "אפשרויות מתקדמות"
 
 msgid "Advanced options and settings."
 msgstr "אפשרויות מתקדמות והגדרות"
-
-#
-#, fuzzy
-msgid "Advanced software"
-msgstr "תוכנות מתקדמות"
-
-#
-#, fuzzy
-msgid "Advanced software plugin"
-msgstr "פלאגינים מתקדמים לתוכנה"
 
 #
 #, fuzzy
@@ -3388,7 +3350,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "גיבוי הגדרות מערכת"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr ""
 
@@ -3404,7 +3365,6 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
@@ -3654,6 +3614,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6205,9 +6168,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr ""
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6812,10 +6772,6 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr ""
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6992,6 +6948,9 @@ msgstr "ערוך כותרת"
 msgid "Edit Title"
 msgstr ""
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "ערוך פרקים של הכותרת הנוכחית"
 
@@ -7024,10 +6983,6 @@ msgstr "ערוך את הגדרות הרשת של הדרימבוקס שלך "
 #
 msgid "Edit the upgrade source address."
 msgstr "ערוך את כתובת מקור העדכון"
-
-#
-msgid "Edit upgrade source url."
-msgstr "Edit upgrade source url."
 
 #
 #, fuzzy
@@ -7849,12 +7804,6 @@ msgstr "הגדרות נרחבות"
 msgid "Extended Shares"
 msgstr ""
 
-msgid "Extended Software"
-msgstr "Extended Software"
-
-msgid "Extended Software Plugin"
-msgstr "Extended Software פלאגין ל"
-
 msgid "Extended settings"
 msgstr ""
 
@@ -8269,7 +8218,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr ""
 
@@ -9462,11 +9410,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9544,6 +9488,9 @@ msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
+msgstr ""
+
+msgid "Include PID in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -10303,11 +10250,6 @@ msgstr "מהירות קודמת"
 msgid "Last update"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Last update:\t%s"
-msgstr "עדכון רשימת חבילות"
-
 msgid "Last used share: "
 msgstr ""
 
@@ -10845,18 +10787,8 @@ msgstr "נהל תוספים"
 msgid "Manage Locale/Language Selection settings"
 msgstr "הגדרות האוסף"
 
-#
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "נהל תוספות או פלאגינים לדרימבוקס"
-
 msgid "Manage network mounts"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Manage your %s %s's software"
-msgstr "נהל את תוכנת הממיר שלך"
 
 msgid "Manage your online update files"
 msgstr ""
@@ -11192,10 +11124,6 @@ msgstr ""
 #
 msgid "Model: "
 msgstr ":דגם"
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr ""
 
 msgid "Modified:"
 msgstr ""
@@ -11837,9 +11765,6 @@ msgstr ""
 msgid "New PIN"
 msgstr ""
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -12081,6 +12006,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "Go to standby"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr ""
@@ -12466,7 +12394,7 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Online update of your %s %s software."
 msgstr "עדכונים מהאינטרנט לדרימבוקס שלך"
 
@@ -13523,10 +13451,14 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Details"
 msgstr ""
 
-msgid "Plugin Details"
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
 msgstr ""
 
 msgid "Plugin Manager Activity Information"
@@ -13742,12 +13674,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "לחץ אשר לתחילת הסריקה"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr ""
-
-msgid "Press MENU on your remote control for additional options."
-msgstr ""
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14908,12 +14834,11 @@ msgstr ""
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, fuzzy
 msgid "Restore your %s %s with a new firmware."
 msgstr "שיחזור הדרימבוקס עם גרסת קושחה חדשה"
 
@@ -15733,6 +15658,9 @@ msgstr ""
 msgid "Select Upgrade Source"
 msgstr "Select Upgrade Source To Edit"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Select Upgrade Source To Edit"
+
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "בחר"
@@ -16036,9 +15964,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Select Upgrade Source To Edit"
-
 #
 msgid "Select video input with up/down buttons"
 msgstr "Select video input with up/down buttons"
@@ -16081,6 +16006,9 @@ msgid "Select your ATSC provider."
 msgstr "Select provider to add..."
 
 msgid "Select your Language for Audio/Subtitles"
+msgstr ""
+
+msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'all'."
@@ -17868,7 +17796,16 @@ msgstr ""
 msgid "Software"
 msgstr "תוכנה"
 
+msgid "Software Management"
+msgstr "ניהול תוכנה"
+
 msgid "Software Manager"
+msgstr ""
+
+msgid "Software Manager Information"
+msgstr ""
+
+msgid "Software Manager Settings"
 msgstr ""
 
 msgid "Software Manager Setup"
@@ -17889,18 +17826,9 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "ניהול תוכנה"
-
-msgid "Software Manager Settings"
-msgstr ""
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
-msgstr ""
-
-msgid "Software Manager Information"
 msgstr ""
 
 msgid "Softwaremanager..."
@@ -19222,10 +19150,6 @@ msgstr "The wizard is finished now."
 msgid "There are at least "
 msgstr "There are at least "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr ""
-
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
@@ -19257,9 +19181,6 @@ msgid "There was an error downloading the region list"
 msgstr ""
 
 msgid "There was an error downloading the update list.  Please try again."
-msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -19359,6 +19280,9 @@ msgid "This line is not editable!"
 msgstr ".הפלאגין הזה לא הותקן"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -20118,9 +20042,6 @@ msgstr ""
 
 #
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr ""
-
-msgid "Trying to download a new updatelist. Please wait..."
 msgstr ""
 
 msgid "Tsonga"
@@ -21504,6 +21425,9 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr ""
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr ""
+
+msgid "When enabled, PID data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24005,6 +23929,69 @@ msgstr "זופזפ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "!אחרי לחיצה על אשר,נא המתן"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "לחץ אשר על השלט בכדי להמשיך"
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ ".בחר את התקן הגיבוי\n"
+#~ ":ההתקן הנוכחי "
+
+#
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "בדיקת עדכונים זמינים בפועל"
+
+#
+#, fuzzy
+#~ msgid "Advanced software"
+#~ msgstr "תוכנות מתקדמות"
+
+#
+#, fuzzy
+#~ msgid "Advanced software plugin"
+#~ msgstr "פלאגינים מתקדמים לתוכנה"
+
+#
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Edit upgrade source url."
+
+#~ msgid "Extended Software"
+#~ msgstr "Extended Software"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Extended Software פלאגין ל"
+
+#
+#, fuzzy, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "עדכון רשימת חבילות"
+
+#
+#, fuzzy, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "נהל תוספות או פלאגינים לדרימבוקס"
+
+#
+#, fuzzy, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "נהל את תוכנת הממיר שלך"
 
 #~ msgid "??"
 #~ msgstr "؟؟"

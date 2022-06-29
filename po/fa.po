@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -49,32 +49,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"بعد از فشار دادن دکمه OK لطفا صبر کنید"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"دکمه OK را برای ادامه دادن فشار دهید"
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
-
-#
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"دستگاه مورد نظر برای تهیه نسخه پشتیبان را انتخاب کنید\n"
-"دستگاه فعلی: "
 
 msgid ""
 "\n"
@@ -2099,9 +2075,6 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr "ابزار (%s) مورد نیاز یافت نشد"
 
-msgid "A search for available updates is currently in progress."
-msgstr "جستجو برای آپدیت های در دسترس ، در حال حاضر در حال انجام است"
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2505,15 +2478,6 @@ msgstr "گزینه های پیشرفته"
 #
 msgid "Advanced options and settings."
 msgstr "گزینه ها و تنظیمات پیشرفته"
-
-#, fuzzy
-msgid "Advanced software"
-msgstr "نرم افزار پیشرفته"
-
-#
-#, fuzzy
-msgid "Advanced software plugin"
-msgstr "پلاگین پیشرفته نرم افزار"
 
 #, fuzzy
 msgid "Advanced video enhancement setup"
@@ -3359,7 +3323,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "تهیه نسخه پشتیبان از تنظیمات"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr ""
 
@@ -3375,7 +3338,6 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
@@ -3620,6 +3582,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6126,9 +6091,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr "مشخصات پلاگین"
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6719,10 +6681,6 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr ""
-
 msgid "Drives Information"
 msgstr ""
 
@@ -6895,6 +6853,9 @@ msgstr "ویرایش عنوان"
 msgid "Edit Title"
 msgstr ""
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "ویرایش فصل های عنوان فعلی"
 
@@ -6924,10 +6885,6 @@ msgstr "ویرایش پیکربندی شبکه دستگاه شما"
 #
 msgid "Edit the upgrade source address."
 msgstr "ویرایش آدرس منبع به روز رسانی"
-
-#
-msgid "Edit upgrade source url."
-msgstr "ویرایش منبع به روز رسانی"
 
 #, fuzzy
 msgid "Education"
@@ -7732,13 +7689,6 @@ msgstr "تنظیمات تمدید شده"
 msgid "Extended Shares"
 msgstr ""
 
-msgid "Extended Software"
-msgstr "نرم افزار تعمیم یافته"
-
-#
-msgid "Extended Software Plugin"
-msgstr "پلاگین نرم افزاری قابل تمدید شده"
-
 msgid "Extended settings"
 msgstr ""
 
@@ -8148,7 +8098,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr ""
 
@@ -9306,11 +9255,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -9388,6 +9333,9 @@ msgstr "شامل ECM در جریان های http"
 
 msgid "Include EIT in http streams"
 msgstr "شامل EIT در جریان های http"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr ""
@@ -10121,10 +10069,6 @@ msgstr "آخرین سرعت"
 msgid "Last update"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Last update:\t%s"
-msgstr "به روز رسانی لیست بسته های نرم افزاری"
-
 msgid "Last used share: "
 msgstr ""
 
@@ -10627,16 +10571,8 @@ msgstr "مدیریت بسته ها"
 msgid "Manage Locale/Language Selection settings"
 msgstr "تنظیمات مجموعه"
 
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "مدیریت بسته ها یا پلاگین ها برای دستگاه شما"
-
 msgid "Manage network mounts"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Manage your %s %s's software"
-msgstr "مدیریت نرم افزار رسیور شما"
 
 msgid "Manage your online update files"
 msgstr ""
@@ -10962,10 +10898,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr "مدل:"
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr ""
 
 msgid "Modified:"
 msgstr ""
@@ -11591,9 +11523,6 @@ msgstr ""
 msgid "New PIN"
 msgstr "رمز جدید"
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -11824,6 +11753,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "خاموشی موقت خیر"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 #, fuzzy
 msgid "No suitable sat tuner found!"
@@ -12192,7 +12124,7 @@ msgstr ""
 msgid "Online software update"
 msgstr ""
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Online update of your %s %s software."
 msgstr "به روز رسانی نرم افزار دستگاه شما"
 
@@ -13226,10 +13158,14 @@ msgstr ""
 msgid "Plugin Browser Settings"
 msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Details"
 msgstr ""
 
-msgid "Plugin Details"
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
 msgstr ""
 
 #
@@ -13428,12 +13364,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "دکمه OK را برای شروع اسکن فشار دهید"
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "دکمه INFO روی ریموت کنترل را برای مشاهده اطلاعات اضافی فشار دهید"
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "دکمه MENU روی ریموت کنترل را برای گزینه های اضافی فشار دهید"
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14574,11 +14504,10 @@ msgstr ""
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr ""
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Restore your %s %s with a new firmware."
 msgstr "بازگردانی دستگاه شما با ایمیج جدید"
 
@@ -15374,6 +15303,9 @@ msgstr ""
 msgid "Select Upgrade Source"
 msgstr "انتخاب منبع به روز رسانی برای ویرایش"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "انتخاب منبع به روز رسانی برای ویرایش"
+
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "انتخاب CAId"
@@ -15675,9 +15607,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "انتخاب منبع به روز رسانی برای ویرایش"
-
 msgid "Select video input with up/down buttons"
 msgstr "انتخاب ورودی تصویر توسط کلید های بالا/پایین"
 
@@ -15719,6 +15648,9 @@ msgid "Select your ATSC provider."
 msgstr "انتخاب ارائه دهنده برای اضافه کردن"
 
 msgid "Select your Language for Audio/Subtitles"
+msgstr ""
+
+msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'all'."
@@ -17446,8 +17378,17 @@ msgstr ""
 msgid "Software"
 msgstr "نرم افزار"
 
+msgid "Software Management"
+msgstr "مدیریت نرم افزار"
+
 msgid "Software Manager"
 msgstr ""
+
+msgid "Software Manager Information"
+msgstr "اطلاعات مدیریت نرم افزار"
+
+msgid "Software Manager Settings"
+msgstr "تنظیمات مدیریت نرم افزار"
 
 msgid "Software Manager Setup"
 msgstr ""
@@ -17467,19 +17408,10 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "مدیریت نرم افزار"
-
-msgid "Software Manager Settings"
-msgstr "تنظیمات مدیریت نرم افزار"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
-
-msgid "Software Manager Information"
-msgstr "اطلاعات مدیریت نرم افزار"
 
 msgid "Softwaremanager..."
 msgstr ""
@@ -18752,10 +18684,6 @@ msgstr "هدایتگر به پایان رسید"
 msgid "There are at least "
 msgstr "آنها حداقل هستند"
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr ""
-
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
@@ -18787,9 +18715,6 @@ msgid "There was an error downloading the region list"
 msgstr ""
 
 msgid "There was an error downloading the update list.  Please try again."
-msgstr ""
-
-msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -18889,6 +18814,9 @@ msgid "This line is not editable!"
 msgstr "این پلاگین نصب نشده است"
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -19597,9 +19525,6 @@ msgstr ""
 #
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "تلاش برای دانلود لیست بسته های جدید ، لطفا صبر کنید"
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr ""
 
 msgid "Tsonga"
 msgstr ""
@@ -20942,6 +20867,9 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr ""
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr ""
+
+msgid "When enabled, PID data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -23388,6 +23316,74 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "بعد از فشار دادن دکمه OK لطفا صبر کنید"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "دکمه OK را برای ادامه دادن فشار دهید"
+
+#
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "دستگاه مورد نظر برای تهیه نسخه پشتیبان را انتخاب کنید\n"
+#~ "دستگاه فعلی: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "جستجو برای آپدیت های در دسترس ، در حال حاضر در حال انجام است"
+
+#, fuzzy
+#~ msgid "Advanced software"
+#~ msgstr "نرم افزار پیشرفته"
+
+#
+#, fuzzy
+#~ msgid "Advanced software plugin"
+#~ msgstr "پلاگین پیشرفته نرم افزار"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "مشخصات پلاگین"
+
+#
+#~ msgid "Edit upgrade source url."
+#~ msgstr "ویرایش منبع به روز رسانی"
+
+#~ msgid "Extended Software"
+#~ msgstr "نرم افزار تعمیم یافته"
+
+#
+#~ msgid "Extended Software Plugin"
+#~ msgstr "پلاگین نرم افزاری قابل تمدید شده"
+
+#, fuzzy, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "به روز رسانی لیست بسته های نرم افزاری"
+
+#, fuzzy, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "مدیریت بسته ها یا پلاگین ها برای دستگاه شما"
+
+#, fuzzy, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "مدیریت نرم افزار رسیور شما"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "دکمه INFO روی ریموت کنترل را برای مشاهده اطلاعات اضافی فشار دهید"
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "دکمه MENU روی ریموت کنترل را برای گزینه های اضافی فشار دهید"
 
 #~ msgid "??"
 #~ msgstr "??"

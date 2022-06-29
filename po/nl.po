@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -60,33 +60,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Na indrukken van OK, een moment geduld a.u.b.!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Druk op de OK-knop om door te gaan."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Opname is bezig."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Selecteer een apparaat voor de back-up.\n"
-"Huidig apparaat: "
 
 msgid ""
 "\n"
@@ -2014,9 +1991,6 @@ msgstr "Een herhalende timer of eenmalig?"
 msgid "A required tool (%s) was not found."
 msgstr "Het benodigde hulpmiddel (%s) is niet gevonden."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Bezig met zoeken naar updates."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2401,12 +2375,6 @@ msgstr "Geavanceerde instellingen"
 
 msgid "Advanced options and settings."
 msgstr "Geavanceerde opties en instellingen."
-
-msgid "Advanced software"
-msgstr "Geavanceerde software"
-
-msgid "Advanced software plugin"
-msgstr "Geavanceerde software plug-in"
 
 msgid "Advanced video enhancement setup"
 msgstr "Geavanceerde videoverbeteringsinstellingen"
@@ -3212,7 +3180,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Back-up naar locatie : %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Back-up uw %s %s instellingen."
 
@@ -3228,7 +3195,6 @@ msgstr "Maak een back-up van alle instellingen"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Maak een volledige back-up van: Enigma2-instellingen, zenders, netwerk en alle geselecteerde bestanden"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Back-up uw huidige %s %s image naar HDD of USB."
 
@@ -3463,6 +3429,9 @@ msgstr "Broadcast"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr ""
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
@@ -5997,9 +5966,6 @@ msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn me
 msgid "Detail of GStreamer log"
 msgstr "Detailniveau van het GStreamer log"
 
-msgid "Details for plugin: "
-msgstr "Plug-in informatie: "
-
 msgid "Detected drives"
 msgstr "Gedetecteerde harde schijven"
 
@@ -6598,10 +6564,6 @@ msgstr "Drivers"
 msgid "Drivers version"
 msgstr "Drivers versie"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Drivers:\t%s"
-
 msgid "Drives Information"
 msgstr "Informatie over harde schijven"
 
@@ -6775,6 +6737,9 @@ msgstr "Pas een timer aan"
 msgid "Edit Title"
 msgstr "Wijzig titel"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "Wijzig hoofdstuk van de huidige titel"
 
@@ -6800,9 +6765,6 @@ msgstr "Bewerk de netwerkinstellingen van uw %s %s."
 
 msgid "Edit the upgrade source address."
 msgstr "Wijzig het adres van de update locatie."
-
-msgid "Edit upgrade source url."
-msgstr "Update url bewerken."
 
 msgid "Education"
 msgstr "Educatie"
@@ -7617,12 +7579,6 @@ msgstr "Uitgebreide instellingen..."
 msgid "Extended Shares"
 msgstr "Uitgebreide shares"
 
-msgid "Extended Software"
-msgstr "Uitgebreide software"
-
-msgid "Extended Software Plugin"
-msgstr "Uitgebreide software plug-in"
-
 msgid "Extended settings"
 msgstr "Uitgebreide instellingen"
 
@@ -8022,7 +7978,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash van map '%s' is niet toegestaan!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Flash uw %s %s."
 
@@ -9150,12 +9105,8 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr ""
 
 msgid "Image creation failed - "
 msgstr "Maken Image mislukt - "
@@ -9235,6 +9186,9 @@ msgstr "ECM toevoegen aan http-streams"
 
 msgid "Include EIT in http streams"
 msgstr "EIT toevoegen aan http-streams"
+
+msgid "Include PID in http streams"
+msgstr ""
 
 msgid "Include action map data"
 msgstr "Inclusief action map data"
@@ -9923,10 +9877,6 @@ msgstr "Laatste snelheid"
 msgid "Last update"
 msgstr "Laatste update"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Laatste update:\t%s"
-
 msgid "Last used share: "
 msgstr "Laatst gebruikte share: "
 
@@ -10406,16 +10356,8 @@ msgstr "Beheer applicaties"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Beheer taalselectie instellingen"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Beheer extensies en plug-ins voor uw %s %s"
-
 msgid "Manage network mounts"
 msgstr "Beheer netwerk verbindingen"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Beheer de software van uw %s %s"
 
 msgid "Manage your online update files"
 msgstr "Selecteer te overschrijven bestanden bij een update"
@@ -10727,10 +10669,6 @@ msgstr "Model"
 
 msgid "Model: "
 msgstr "Model: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Model: %s %s\n"
 
 msgid "Modified:"
 msgstr "Gemodificeerd:"
@@ -11312,9 +11250,6 @@ msgstr "Nieuw-Caledonië"
 msgid "New PIN"
 msgstr "Nieuwe pincode"
 
-msgid "New Packages"
-msgstr "Nieuwe pakketen"
-
 msgid "New Setting DXAndy "
 msgstr "Nieuwe zenderlijst DXAndy "
 
@@ -11523,6 +11458,9 @@ msgstr "Geen slot images gevonden"
 
 msgid "No standby"
 msgstr "Geen stand-by"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 msgid "No suitable sat tuner found!"
 msgstr "Geen passende satelliettuner gevonden!"
@@ -11891,7 +11829,6 @@ msgstr "Eén regel"
 msgid "Online software update"
 msgstr "openATV via het internet updaten"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Online updaten van uw %s %s software."
 
@@ -12902,11 +12839,15 @@ msgstr "Applicatie overzicht"
 msgid "Plugin Browser Settings"
 msgstr "Applicatie overzicht instellingen"
 
-msgid "Plugin Filter Settings"
-msgstr "Plug-in filter"
-
 msgid "Plugin Details"
 msgstr "Plug-in informatie"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+msgid "Plugin Filter Settings"
+msgstr "Plug-in filter"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Plug-in beheer status"
@@ -13093,12 +13034,6 @@ msgstr ""
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Druk op EXIT om terug te gaan naar het help scherm."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Druk INFO op uw afstandsbediening voor meer informatie."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14195,11 +14130,9 @@ msgstr "Instellingen herstellen vanuit een back-up"
 msgid "Restore the highlighted slot"
 msgstr "Herstel het actuele slot"
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Herstel uw %s %s instellingen."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Herstel uw %s %s met nieuwe firmware."
 
@@ -14966,6 +14899,9 @@ msgstr "Selecteer software update"
 msgid "Select Upgrade Source"
 msgstr "Selecteer de update bron"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Selecteer te wijzigen updatefeed."
+
 msgid "Select Your Skin"
 msgstr "Selecteer uw skin"
 
@@ -15257,9 +15193,6 @@ msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie spaar timer actief 
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Hoe wilt u de ontvanger afsluiten wanneer de Slaaptimer actief wordt."
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Selecteer te wijzigen updatefeed."
-
 msgid "Select video input with up/down buttons"
 msgstr "Selecteer video-ingang met de omhoog / omlaag knoppen"
 
@@ -15303,6 +15236,9 @@ msgstr "Selecteer uw ATSC provider."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Selecteer voorkeurstaal voor audio/ondertitels."
+
+msgid "Select your backup device."
+msgstr ""
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Selecteer het land. Indien niet beschikbaar kiest u 'alle'."
@@ -16978,8 +16914,17 @@ msgstr "Softcams"
 msgid "Software"
 msgstr "Software"
 
+msgid "Software Management"
+msgstr "Softwarebeheer"
+
 msgid "Software Manager"
 msgstr "Software beheer"
+
+msgid "Software Manager Information"
+msgstr "Softwarebeheer informatie"
+
+msgid "Software Manager Settings"
+msgstr "Online update instellingen"
 
 msgid "Software Manager Setup"
 msgstr "Online update instellingen"
@@ -16999,21 +16944,12 @@ msgstr "Software Update Acties"
 msgid "Software information"
 msgstr "Software informatie"
 
-msgid "Software Management"
-msgstr "Softwarebeheer"
-
-msgid "Software Manager Settings"
-msgstr "Online update instellingen"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "De software update begint, een moment geduld.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Softwarebeheer informatie"
 
 msgid "Softwaremanager..."
 msgstr "Softwarebeheer..."
@@ -18277,10 +18213,6 @@ msgstr "De wizard is nu gereed."
 msgid "There are at least "
 msgstr "Er zijn ten minste "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Er zijn minimaal %s updates beschikbaar."
-
 msgid "There are currently no outstanding actions."
 msgstr "Er zijn geen uitstaande acties."
 
@@ -18314,9 +18246,6 @@ msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
 "Er is iets verkeerd gegaan bij het downloaden van het update overzicht.\n"
 "A.u.b. nog een keer proberen."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Er is een fout opgetreden bij het downloaden van de update lijst. Probeer het opnieuw."
 
 msgid "There was an error while trying to login."
 msgstr "Er is een fout opgetreden bij het inloggen."
@@ -18417,6 +18346,9 @@ msgstr "Regel kan niet worden gewijzigd!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Dit menu bevat informatie over uw ontvanger."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Deze offset wordt alleen gebruikt wanneer de zender geen eigen volume offset heeft."
@@ -19154,9 +19086,6 @@ msgstr "Probeer herhaalde commando's te sturen wanneer niet alle commando's word
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Probeert een nieuwe pakketlijst te downloaden. Een ogenblik ..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Probeert een nieuwe updatelijst te downloaden. Een ogenblik geduld..."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -20459,6 +20388,9 @@ msgstr "Indien geactiveerd, zal de EIT data toegevoegd worden aan de http-stream
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio, worden toch geladen. Hierdoor wordt uw zelf samengestelde Favorietenlijst niet gewijzigd wanneer de geïnstalleerde Favorietenlijsten worden geactualiseerd bij een update van de ontvanger."
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Indien geactiveerd, dan zal er een bericht op het scherm getoond worden zodra een film afgelopen is en een nieuwe zal starten."
@@ -22921,6 +22853,97 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Na indrukken van OK, een moment geduld a.u.b.!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Druk op de OK-knop om door te gaan."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Selecteer een apparaat voor de back-up.\n"
+#~ "Huidig apparaat: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Bezig met zoeken naar updates."
+
+#~ msgid "Advanced software"
+#~ msgstr "Geavanceerde software"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Geavanceerde software plug-in"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Plug-in informatie: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Drivers:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Update url bewerken."
+
+#~ msgid "Extended Software"
+#~ msgstr "Uitgebreide software"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Uitgebreide software plug-in"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Laatste update:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Beheer extensies en plug-ins voor uw %s %s"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Beheer de software van uw %s %s"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Model: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Nieuwe pakketen"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Druk INFO op uw afstandsbediening voor meer informatie."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Druk MENU op uw afstandsbediening voor meer opties."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Er zijn minimaal %s updates beschikbaar."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Er is een fout opgetreden bij het downloaden van de update lijst. Probeer het opnieuw."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Probeert een nieuwe updatelijst te downloaden. Een ogenblik geduld..."
 
 #~ msgid "??"
 #~ msgstr "??"

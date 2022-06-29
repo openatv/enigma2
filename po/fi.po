@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
-"PO-Revision-Date: 2022-06-23 17:33+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"PO-Revision-Date: 2022-06-29 20:02+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -57,33 +57,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Paina OK näppäintä ja odota!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Jatka painamalla OK näppäintä."
-
-msgid ""
-"\n"
 "Recording in progress."
 msgstr ""
 "\n"
 "Tallennus käynnissä."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"Valitse tallennuspaikka varmuuskopiolle.\n"
-"Nykyinen sijainti: "
 
 msgid ""
 "\n"
@@ -2011,9 +1988,6 @@ msgstr "Tehdäänkö toistuva vai kerta ajastus?"
 msgid "A required tool (%s) was not found."
 msgstr "Tarvittavaa osaa (%s) ei löytynyt."
 
-msgid "A search for available updates is currently in progress."
-msgstr "Päivityksien haku on käynnissä."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2404,12 +2378,6 @@ msgstr "Laajat Asetukset"
 
 msgid "Advanced options and settings."
 msgstr "Lisävalinnat ja vaihtoehdot."
-
-msgid "Advanced software"
-msgstr "Laajemmat ohjelmistovalinnat"
-
-msgid "Advanced software plugin"
-msgstr "Laajemmat lisäosavalinnat"
 
 msgid "Advanced video enhancement setup"
 msgstr "Laajemmat kuvasäätöjen asetukset"
@@ -3216,7 +3184,6 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "Varmuuskopion sijainti: %s"
 
-#, python-format
 msgid "Backup your %s %s settings."
 msgstr "Varmuuskopioi %s %s:n asetukset."
 
@@ -3232,7 +3199,6 @@ msgstr "Varmuuskopioi nykyiset asetukset"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Varmuuskopioi nykyiset asetukset. Tämä sisältää E2-asetukset, kanava, verkko ja kaikki valitut tiedostot"
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Varmuuskopioi laitteen %s %s ohjelmisto Kiintolevylle tai USB-muistitikulle."
 
@@ -3467,6 +3433,9 @@ msgstr "Lähetys"
 
 msgid "Broadcom"
 msgstr "Broadcom"
+
+msgid "Browse, install or remove extensions / plugins."
+msgstr "Selaa, asenna tai poista laajennuksia / plugineja."
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
@@ -3979,7 +3948,7 @@ msgid "Change Language"
 msgstr "Kielivalinta"
 
 msgid "Change OSD Settings"
-msgstr ""
+msgstr "Muuta Kuvaruudun Asetuksia"
 
 msgid "Change PIN"
 msgstr "Muuta PIN koodi"
@@ -4363,7 +4332,7 @@ msgid "Clear the virtual memory caches"
 msgstr "Tyhjennä virtuaalimuistin välimuisti"
 
 msgid "Click the button on your remote you want to change."
-msgstr "Määrittää näppäimelle haluamasi toiminnon"
+msgstr "Määrittää näppäimelle haluamasi toiminnon."
 
 msgid "Client"
 msgstr "Asiakas"
@@ -5891,9 +5860,6 @@ msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien 
 msgid "Detail of GStreamer log"
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
 
-msgid "Details for plugin: "
-msgstr "Lisäosan tiedot: "
-
 msgid "Detected drives"
 msgstr "Tunnistetut asemat"
 
@@ -6490,10 +6456,6 @@ msgstr "ajurit"
 msgid "Drivers version"
 msgstr "Ajurien versio"
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr "Ajurit:\t%s"
-
 msgid "Drives Information"
 msgstr "Asemien tiedot"
 
@@ -6667,6 +6629,9 @@ msgstr "Muokkaa ajastusta"
 msgid "Edit Title"
 msgstr "Muokkaa otsikkoa"
 
+msgid "Edit Upgrade Source URL"
+msgstr "Muuta päivitys URL:ia"
+
 msgid "Edit chapters of current title"
 msgstr "Muokkaa kappaleita"
 
@@ -6692,9 +6657,6 @@ msgstr "Muokkaa %s %s:n lähiverkon asetuksia."
 
 msgid "Edit the upgrade source address."
 msgstr "Muokkaa päivityksen lähdeosoitetta."
-
-msgid "Edit upgrade source url."
-msgstr "Muokkaa päivitys-URL:ia."
 
 msgid "Education"
 msgstr "Koulutus"
@@ -7504,12 +7466,6 @@ msgstr "Laajat Asetukset."
 msgid "Extended Shares"
 msgstr "Laajennetut jaot"
 
-msgid "Extended Software"
-msgstr "Laajat ohjelmavalinnat"
-
-msgid "Extended Software Plugin"
-msgstr "Laajat lisäosavalinnat"
-
 msgid "Extended settings"
 msgstr "Laajennetut asetukset"
 
@@ -7900,16 +7856,15 @@ msgid "Flash Online a new image"
 msgstr "Lataa internetistä uusi ohjelmisto image"
 
 msgid "Flash and restore settings and no plugins"
-msgstr ""
+msgstr "Päivitä ja palauta asetukset, ei laajennuksia"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr ""
+msgstr "Päivitä ja palauta setukset ja valitut laajennukset (Kysy käyttäjältä)"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash hakemisto '%s' ei ole sallittu!"
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr "Päivitä laitteen %s %s image verkosta tai paikallisesta sijainnista."
 
@@ -9033,12 +8988,8 @@ msgid "Image Flash Actions"
 msgstr "Ohjelmisto Päivitys Asetukset"
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image tehty: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgstr "Ohjelmisto image luotu:%s/%s-%s-%s-backup-%s_%s.zip"
 
 msgid "Image creation failed - "
 msgstr "Imagen luominen epäonnistui - "
@@ -9118,6 +9069,9 @@ msgstr "Sisällytä ECM http striimeihin"
 
 msgid "Include EIT in http streams"
 msgstr "Sisällytä EIT http striimeihin"
+
+msgid "Include PID in http streams"
+msgstr "Sisällytä PID http striimeihin"
 
 msgid "Include action map data"
 msgstr "Sisällytä ohjelmiston toiminta tiedot"
@@ -9806,10 +9760,6 @@ msgstr "Aikaisempi nopeus"
 msgid "Last update"
 msgstr "Päivitetty viimeksi"
 
-#, python-format
-msgid "Last update:\t%s"
-msgstr "Päivitetty:\t%s"
-
 msgid "Last used share: "
 msgstr "Viimeksi käytetty jako: "
 
@@ -10289,16 +10239,8 @@ msgstr "Hallitse laajennuksia/lisäosia"
 msgid "Manage Locale/Language Selection settings"
 msgstr "Hallitse Alue/Kieli valinta asetuksia"
 
-#, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "Muokkaa %s %s:n laajennuksia ja lisäosia"
-
 msgid "Manage network mounts"
 msgstr "Hallitse verkkoliitoksia"
-
-#, python-format
-msgid "Manage your %s %s's software"
-msgstr "Hallitse %s %s:n ohjelmistoa"
 
 msgid "Manage your online update files"
 msgstr "Hallinnoi internet päivitys päivitystiedostojasi"
@@ -10470,13 +10412,13 @@ msgid "Menu Actions"
 msgstr "Valikko toiminnot"
 
 msgid "Menu Common Actions"
-msgstr ""
+msgstr "Valikon Yleiset toiminnot"
 
 msgid "Menu Edit Actions"
-msgstr ""
+msgstr "Muokkaa Valikko toimintoja"
 
 msgid "Menu Navigation Actions"
-msgstr ""
+msgstr "Valikko Navigointi Toiminnot"
 
 msgid "Menu config"
 msgstr "Valikon määritys"
@@ -10610,10 +10552,6 @@ msgstr "Malli"
 
 msgid "Model: "
 msgstr "Malli: "
-
-#, python-format
-msgid "Model: %s %s\n"
-msgstr "Malli: %s %s\n"
 
 msgid "Modified:"
 msgstr "Muutettu:"
@@ -11197,9 +11135,6 @@ msgstr "Uusi Kaledonia"
 msgid "New PIN"
 msgstr "Uusi PIN koodi"
 
-msgid "New Packages"
-msgstr "Uusia paketteja"
-
 msgid "New Setting DXAndy "
 msgstr "Uudet Asetukset DXAndy "
 
@@ -11412,6 +11347,9 @@ msgstr "Image paikkoja ei löytynyt"
 
 msgid "No standby"
 msgstr "Ei valmiustilaa"
+
+msgid "No suitable backup locations found!"
+msgstr "Yhteensopivia varmuuskopiointi sijainteja ei löytynyt!"
 
 msgid "No suitable sat tuner found!"
 msgstr "Sopivaa satelliittiviritintä ei löytynyt!"
@@ -11779,12 +11717,11 @@ msgstr "Yksi rivi"
 msgid "Online software update"
 msgstr "Ohjelmistopäivitys internetin kautta"
 
-#, python-format
 msgid "Online update of your %s %s software."
 msgstr "Päivitä %s %s:n ohjelmisto online-päivityksen kautta."
 
 msgid "Only Flash Backup Image"
-msgstr ""
+msgstr "Päivitä vain varmuuskopio Image"
 
 msgid "Only extensions."
 msgstr "Vain laajennukset."
@@ -12597,7 +12534,7 @@ msgstr ""
 "Jatka painamalla OK näppäintä."
 
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
+msgstr "Valitse, mitä tehdä päivityksen jälkeen:"
 
 msgid "Please set up tuner A"
 msgstr "Määritä virittimen A asetukset"
@@ -12791,11 +12728,15 @@ msgstr "Lisäosien selaus"
 msgid "Plugin Browser Settings"
 msgstr "Plugin lisäosien asetukset"
 
-msgid "Plugin Filter Settings"
-msgstr "Lisäosin Suodatus"
-
 msgid "Plugin Details"
 msgstr "Lisäosan lisätietoja"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr "Lisäosan tiedot: %s"
+
+msgid "Plugin Filter Settings"
+msgstr "Lisäosin Suodatus"
 
 msgid "Plugin Manager Activity Information"
 msgstr "Lisäosien hallinnan asennustiedot"
@@ -12982,12 +12923,6 @@ msgstr "Sulje painamalla EXIT näppäintä."
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Palaa ohje näyttöön painamalla EXIT."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr "Katso lisätietoja painamalla INFO näppäintä."
-
-msgid "Press MENU on your remote control for additional options."
-msgstr "Avaa lisäasetukset painamalla MENU-näppäintä."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Valitse MultiBoot painamalla OK."
@@ -14082,11 +14017,9 @@ msgstr "Palauta asetukset varmuuskopiosta"
 msgid "Restore the highlighted slot"
 msgstr "Palauta korostettu image paikka"
 
-#, python-format
 msgid "Restore your %s %s settings."
 msgstr "Palauta %s %s:n asetukset."
 
-#, python-format
 msgid "Restore your %s %s with a new firmware."
 msgstr "Palauta %s %s:n ohjelmisto perustilaan."
 
@@ -14857,6 +14790,9 @@ msgstr "Ohjelmistopäivitys"
 msgid "Select Upgrade Source"
 msgstr "Valitse päivityksen lähdeosoite"
 
+msgid "Select Upgrade Source To Edit"
+msgstr "Valitse päivityksen lähde muokattavaksi"
+
 msgid "Select Your Skin"
 msgstr "Valitse teemasi"
 
@@ -15148,9 +15084,6 @@ msgstr "Valitse haluamasi sammutus tyyppi, kun energia ajastin aktivoituu."
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
-msgid "Select Upgrade Source To Edit"
-msgstr "Valitse päivityksen lähde muokattavaksi."
-
 msgid "Select video input with up/down buttons"
 msgstr "Valitse video sisäänmeno ylös/alas näppäimillä"
 
@@ -15192,6 +15125,9 @@ msgstr "Valitse ATSC-palveluntarjoajasi."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Valitse kieliasetukset äänelle ja tekstitykselle"
+
+msgid "Select your backup device."
+msgstr "Valitse varmuuskopio laite."
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Valitse maasi, jos ei ole saatavilla valitse 'kaikki'."
@@ -16278,7 +16214,7 @@ msgid "Show multi channel EPG"
 msgstr "Näytä monikanava-EPG"
 
 msgid "Show network setup menu..."
-msgstr ""
+msgstr "Näytä verkon asetusvalikko"
 
 msgid "Show next event"
 msgstr "Näytä seuraava ohjelma"
@@ -16365,7 +16301,7 @@ msgid "Show setup default value"
 msgstr "Näytä asetusten oletusarvo"
 
 msgid "Show setup menu..."
-msgstr ""
+msgstr "Näytä asetukset valikko"
 
 msgid "Show shutdown menu"
 msgstr "Näytä sammutusvalikko"
@@ -16482,7 +16418,7 @@ msgid "Show unknown video format as"
 msgstr "Näytä tuntematon videon tarkkuus muodossa"
 
 msgid "Show usage and GUI menu..."
-msgstr ""
+msgstr "Näytä käyttö ja järjestelmä valikko"
 
 msgid "Show vertical Program Guide"
 msgstr "Näytä pystysuora EPG"
@@ -16849,8 +16785,17 @@ msgstr "softcammit"
 msgid "Software"
 msgstr "Valmistaja"
 
+msgid "Software Management"
+msgstr "Ohjelmiston hallinta"
+
 msgid "Software Manager"
 msgstr "Ohjelmiston hallinta"
+
+msgid "Software Manager Information"
+msgstr "Ohjelmiston hallinnan tiedot"
+
+msgid "Software Manager Settings"
+msgstr "Ohjelmiston hallinnan asetukset"
 
 msgid "Software Manager Setup"
 msgstr "Ohjelmiston hallinnan asetukset"
@@ -16870,21 +16815,12 @@ msgstr "Ohjelmiston päivitys Toiminnot"
 msgid "Software information"
 msgstr "Ohjelmistotiedot"
 
-msgid "Software Management"
-msgstr "Ohjelmiston hallinta"
-
-msgid "Software Manager Settings"
-msgstr "Ohjelmiston hallinnan asetukset"
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 "Ohjelmistopäivitys alkaa, odota.\n"
 "\n"
-
-msgid "Software Manager Information"
-msgstr "Ohjelmiston hallinnan tiedot"
 
 msgid "Softwaremanager..."
 msgstr "Ohjelmistonhallinta."
@@ -17651,7 +17587,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 19.06.2022\n"
+"Suomenkielinen käännös: 29.06.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18149,10 +18085,6 @@ msgstr "Avustaja on lopettanut. Paina OK."
 msgid "There are at least "
 msgstr "Vähintään "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr "Vähintään %s päivitystä saatavilla."
-
 msgid "There are currently no outstanding actions."
 msgstr "Ei suorittamattomia tehtäviä."
 
@@ -18184,9 +18116,6 @@ msgstr "Aluelistan lataamisessa tapahtui virhe"
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr "Virhe ladattaessa päivitys listaa. Yritä uudelleen."
-
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Päivitysluettelon lataamisessa tapahtui virhe. Yritä uudelleen."
 
 msgid "There was an error while trying to login."
 msgstr "Sisäänkirjautumisessa tapahtui virhe."
@@ -18284,6 +18213,9 @@ msgstr "Tätä riviä ei voi muokata!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Tämä valikko sisältää valintoja vastaanottimen tietojen näyttämiseksi."
+
+msgid "This menu offers options related managing the software on the %s %s."
+msgstr "Tämä valikko tarjoaa vaihtoehtoja, jotka liittyvät ohjelmiston hallintaan %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Tätä offsetia käytetään vain, jos kanavalla ei ole omaa äänenvoimakkuuden offsetia."
@@ -18838,13 +18770,13 @@ msgid "Toggle display of the InfoBar"
 msgstr "Näytä ohjelman tiedot"
 
 msgid "Toggle hide/show of the current item"
-msgstr ""
+msgstr "Nykyisen kohteen piilottamisen/näyttämisen vaihtaminen"
 
 msgid "Toggle item edit mode on/off"
-msgstr ""
+msgstr "Vaihda kohteen muokkaustila päälle/pois"
 
 msgid "Toggle item move mode on/off"
-msgstr ""
+msgstr "Kohteen siirtotilan kytkeminen päälle/pois"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti"
@@ -18990,9 +18922,6 @@ msgstr "Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suorite
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Ladataan uusinta IPKG-ohjelmapakettiluetteloa. Odota..."
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Haetaan tietoa uusista ohjelmapaketeista. Odota..."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -19413,7 +19342,7 @@ msgid "Updating software catalog"
 msgstr "Päivitetään laajennuksien/lisäosien luetteloa"
 
 msgid "Upgrade (Flash & restore all)"
-msgstr ""
+msgstr "Päivitä Ohjelmisto & palauta kaikki"
 
 msgid "Upgrade finished."
 msgstr "Päivitys suoritettu."
@@ -20297,6 +20226,9 @@ msgstr "Kun päällä, EIT-tiedot lähetetään http streameissä. Tämä mahdol
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kun päällä, Enigma2 lataa linkittämättömät suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
+
+msgid "When enabled, PID data will be included in http streams."
+msgstr "Kun se on käytössä, PID tiedot sisällytetään http streameihin."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kun päällä, näytetään viesti, kun tallenne loppuu ja seuraava alkaa."
@@ -22745,6 +22677,97 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "Paina OK näppäintä ja odota!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "Jatka painamalla OK näppäintä."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "Valitse tallennuspaikka varmuuskopiolle.\n"
+#~ "Nykyinen sijainti: "
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "Päivityksien haku on käynnissä."
+
+#~ msgid "Advanced software"
+#~ msgstr "Laajemmat ohjelmistovalinnat"
+
+#~ msgid "Advanced software plugin"
+#~ msgstr "Laajemmat lisäosavalinnat"
+
+#~ msgid "Details for plugin: "
+#~ msgstr "Lisäosan tiedot: "
+
+#, python-format
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Ajurit:\t%s"
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "Muokkaa päivitys-URL:ia."
+
+#~ msgid "Extended Software"
+#~ msgstr "Laajat ohjelmavalinnat"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "Laajat lisäosavalinnat"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+#~ msgstr "Image tehty: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "Päivitetty:\t%s"
+
+#, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "Muokkaa %s %s:n laajennuksia ja lisäosia"
+
+#, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "Hallitse %s %s:n ohjelmistoa"
+
+#, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "Malli: %s %s\n"
+
+#~ msgid "New Packages"
+#~ msgstr "Uusia paketteja"
+
+#~ msgid "Press INFO on your remote control for additional information."
+#~ msgstr "Katso lisätietoja painamalla INFO näppäintä."
+
+#~ msgid "Press MENU on your remote control for additional options."
+#~ msgstr "Avaa lisäasetukset painamalla MENU-näppäintä."
+
+#, python-format
+#~ msgid "There are at least %s updates available."
+#~ msgstr "Vähintään %s päivitystä saatavilla."
+
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "Päivitysluettelon lataamisessa tapahtui virhe. Yritä uudelleen."
+
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "Haetaan tietoa uusista ohjelmapaketeista. Odota..."
 
 #~ msgid "??"
 #~ msgstr "??"

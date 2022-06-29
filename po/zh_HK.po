@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 13:26+0000\n"
+"POT-Creation-Date: 2022-06-28 09:31+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -42,34 +42,11 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"按OK鍵確定後, 請稍等!"
-
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"按OK鍵確認."
-
 #, fuzzy
 msgid ""
 "\n"
 "Recording in progress."
 msgstr "錄製位置..."
-
-msgid ""
-"\n"
-"Select your backup device.\n"
-"Current device: "
-msgstr ""
-"\n"
-"選擇備份裝置.\n"
-"當前的裝置:"
 
 #, fuzzy
 msgid ""
@@ -2072,9 +2049,6 @@ msgstr "所有非重複計時器"
 msgid "A required tool (%s) was not found."
 msgstr "一個必須的工具 (%s) 未找到."
 
-msgid "A search for available updates is currently in progress."
-msgstr "正在搜尋可用更新."
-
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
@@ -2493,12 +2467,6 @@ msgstr "高級選項"
 
 msgid "Advanced options and settings."
 msgstr "高級選項和設定."
-
-msgid "Advanced software"
-msgstr ""
-
-msgid "Advanced software plugin"
-msgstr ""
 
 msgid "Advanced video enhancement setup"
 msgstr ""
@@ -3375,7 +3343,7 @@ msgstr ""
 msgid "Backup to destination: %s"
 msgstr "跳轉到目標目錄"
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Backup your %s %s settings."
 msgstr "備份您的Dreambox設定。"
 
@@ -3395,7 +3363,6 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
-#, python-format
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr ""
 
@@ -3646,6 +3613,9 @@ msgid "Broadcast"
 msgstr ""
 
 msgid "Broadcom"
+msgstr ""
+
+msgid "Browse, install or remove extensions / plugins."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -6204,9 +6174,6 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
-msgid "Details for plugin: "
-msgstr ""
-
 msgid "Detected drives"
 msgstr ""
 
@@ -6831,10 +6798,6 @@ msgstr ""
 msgid "Drivers version"
 msgstr ""
 
-#, python-format
-msgid "Drivers:\t%s"
-msgstr ""
-
 msgid "Drives Information"
 msgstr ""
 
@@ -7014,6 +6977,9 @@ msgstr "編輯自動計時器"
 msgid "Edit Title"
 msgstr "編輯標題"
 
+msgid "Edit Upgrade Source URL"
+msgstr ""
+
 msgid "Edit chapters of current title"
 msgstr "編輯章節當前標題"
 
@@ -7041,9 +7007,6 @@ msgstr "修改Dreambox的網路配置."
 
 msgid "Edit the upgrade source address."
 msgstr "編輯升級源地址。"
-
-msgid "Edit upgrade source url."
-msgstr "編輯升級源地址."
 
 msgid "Education"
 msgstr "教育"
@@ -7870,12 +7833,6 @@ msgstr "擴展設定..."
 msgid "Extended Shares"
 msgstr "擴展軟體"
 
-msgid "Extended Software"
-msgstr "擴展軟體"
-
-msgid "Extended Software Plugin"
-msgstr "擴展插件"
-
 #, fuzzy
 msgid "Extended settings"
 msgstr "編輯設定"
@@ -8305,7 +8262,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-#, python-format
 msgid "Flash on the fly your %s %s."
 msgstr ""
 
@@ -9511,11 +9467,7 @@ msgid "Image Flash Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
 #, fuzzy
@@ -9597,6 +9549,9 @@ msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
+msgstr ""
+
+msgid "Include PID in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -10352,10 +10307,6 @@ msgstr "最快速度"
 msgid "Last update"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Last update:\t%s"
-msgstr "最後更新"
-
 #, fuzzy
 msgid "Last used share: "
 msgstr "最後更新"
@@ -10872,17 +10823,9 @@ msgstr "附件管理"
 msgid "Manage Locale/Language Selection settings"
 msgstr "收藏設定"
 
-#, fuzzy, python-format
-msgid "Manage extensions or plugins for your %s %s"
-msgstr "管理Dreambox的軟體和插件。"
-
 #, fuzzy
 msgid "Manage network mounts"
 msgstr "管理網路共用"
-
-#, fuzzy, python-format
-msgid "Manage your %s %s's software"
-msgstr "管理Dreambox軟體."
 
 msgid "Manage your online update files"
 msgstr ""
@@ -11220,10 +11163,6 @@ msgstr ""
 
 msgid "Model: "
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Model: %s %s\n"
-msgstr "型號:"
 
 msgid "Modified:"
 msgstr ""
@@ -11869,10 +11808,6 @@ msgstr ""
 msgid "New PIN"
 msgstr ""
 
-#, fuzzy
-msgid "New Packages"
-msgstr "套裝軟體:"
-
 msgid "New Setting DXAndy "
 msgstr ""
 
@@ -12102,6 +12037,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "沒有待機"
+
+msgid "No suitable backup locations found!"
+msgstr ""
 
 #, fuzzy
 msgid "No suitable sat tuner found!"
@@ -12488,7 +12426,7 @@ msgstr ""
 msgid "Online software update"
 msgstr "軟體升級"
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Online update of your %s %s software."
 msgstr "線上更新您的Dreambox軟體。"
 
@@ -13565,12 +13503,16 @@ msgid "Plugin Browser Settings"
 msgstr "流覽插件"
 
 #, fuzzy
-msgid "Plugin Filter Settings"
-msgstr "流覽插件"
-
-#, fuzzy
 msgid "Plugin Details"
 msgstr "檢視明細"
+
+#, python-format
+msgid "Plugin Details: %s"
+msgstr ""
+
+#, fuzzy
+msgid "Plugin Filter Settings"
+msgstr "流覽插件"
 
 msgid "Plugin Manager Activity Information"
 msgstr "插件管理活動資訊"
@@ -13779,12 +13721,6 @@ msgstr ""
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
 msgstr "按OK鍵開始掃描."
-
-msgid "Press INFO on your remote control for additional information."
-msgstr ""
-
-msgid "Press MENU on your remote control for additional options."
-msgstr ""
 
 msgid "Press OK for MultiBoot selection."
 msgstr ""
@@ -14972,11 +14908,11 @@ msgstr "恢復備份"
 msgid "Restore the highlighted slot"
 msgstr ""
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Restore your %s %s settings."
 msgstr "重定您的Dreambox設定。"
 
-#, fuzzy, python-format
+#, fuzzy
 msgid "Restore your %s %s with a new firmware."
 msgstr "用新的韧體來恢復您的Dreambox."
 
@@ -15799,6 +15735,9 @@ msgstr "軟體升級"
 msgid "Select Upgrade Source"
 msgstr ""
 
+msgid "Select Upgrade Source To Edit"
+msgstr "選擇並編輯升級來源"
+
 #, fuzzy
 msgid "Select Your Skin"
 msgstr "選擇皮膚"
@@ -16104,9 +16043,6 @@ msgstr ""
 msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
-msgid "Select Upgrade Source To Edit"
-msgstr "選擇並編輯升級來源"
-
 msgid "Select video input with up/down buttons"
 msgstr "選擇視頻輸入(上/下 鍵)"
 
@@ -16150,6 +16086,9 @@ msgid "Select your ATSC provider."
 msgstr "選擇您的選擇."
 
 msgid "Select your Language for Audio/Subtitles"
+msgstr ""
+
+msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'all'."
@@ -17985,9 +17924,18 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
+msgid "Software Management"
+msgstr "軟體管理"
+
 #, fuzzy
 msgid "Software Manager"
 msgstr "軟體管理"
+
+msgid "Software Manager Information"
+msgstr ""
+
+msgid "Software Manager Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Software Manager Setup"
@@ -18009,18 +17957,9 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid "Software Management"
-msgstr "軟體管理"
-
-msgid "Software Manager Settings"
-msgstr ""
-
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
-msgstr ""
-
-msgid "Software Manager Information"
 msgstr ""
 
 msgid "Softwaremanager..."
@@ -19354,10 +19293,6 @@ msgstr "嚮導已完成設定."
 msgid "There are at least "
 msgstr "這裏至少有 "
 
-#, python-format
-msgid "There are at least %s updates available."
-msgstr ""
-
 msgid "There are currently no outstanding actions."
 msgstr "目前沒有異常."
 
@@ -19392,10 +19327,6 @@ msgstr "有一個下載錯誤. 請重試."
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
-
-#, fuzzy
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "有一個下載錯誤. 請重試."
 
 #, fuzzy
 msgid "There was an error while trying to login."
@@ -19495,6 +19426,9 @@ msgid "This line is not editable!"
 msgstr "這個插件未安裝."
 
 msgid "This menu contains selections to display information about the receiver."
+msgstr ""
+
+msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -20217,10 +20151,6 @@ msgid "Try to send repeated commands if not all commands are executed. (e.g. TV 
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "嘗試下載新的套裝軟體列表. 請稍候..."
-
-#, fuzzy
-msgid "Trying to download a new updatelist. Please wait..."
 msgstr "嘗試下載新的套裝軟體列表. 請稍候..."
 
 msgid "Tsonga"
@@ -21611,6 +21541,9 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr ""
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgstr ""
+
+msgid "When enabled, PID data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24124,6 +24057,69 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "\n"
+#~ "按OK鍵確定後, 請稍等!"
+
+#~ msgid ""
+#~ "\n"
+#~ "Press OK on your remote control to continue."
+#~ msgstr ""
+#~ "\n"
+#~ "按OK鍵確認."
+
+#~ msgid ""
+#~ "\n"
+#~ "Select your backup device.\n"
+#~ "Current device: "
+#~ msgstr ""
+#~ "\n"
+#~ "選擇備份裝置.\n"
+#~ "當前的裝置:"
+
+#~ msgid "A search for available updates is currently in progress."
+#~ msgstr "正在搜尋可用更新."
+
+#~ msgid "Edit upgrade source url."
+#~ msgstr "編輯升級源地址."
+
+#~ msgid "Extended Software"
+#~ msgstr "擴展軟體"
+
+#~ msgid "Extended Software Plugin"
+#~ msgstr "擴展插件"
+
+#, fuzzy, python-format
+#~ msgid "Last update:\t%s"
+#~ msgstr "最後更新"
+
+#, fuzzy, python-format
+#~ msgid "Manage extensions or plugins for your %s %s"
+#~ msgstr "管理Dreambox的軟體和插件。"
+
+#, fuzzy, python-format
+#~ msgid "Manage your %s %s's software"
+#~ msgstr "管理Dreambox軟體."
+
+#, fuzzy, python-format
+#~ msgid "Model: %s %s\n"
+#~ msgstr "型號:"
+
+#, fuzzy
+#~ msgid "New Packages"
+#~ msgstr "套裝軟體:"
+
+#, fuzzy
+#~ msgid "There was an error downloading the updatelist. Please try again."
+#~ msgstr "有一個下載錯誤. 請重試."
+
+#, fuzzy
+#~ msgid "Trying to download a new updatelist. Please wait..."
+#~ msgstr "嘗試下載新的套裝軟體列表. 請稍候..."
 
 #~ msgid "??"
 #~ msgstr "更新! 立即重啟dreambox嗎？"
