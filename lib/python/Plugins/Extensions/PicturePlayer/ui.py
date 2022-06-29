@@ -227,15 +227,19 @@ class Pic_Thumb(Screen):
 			absX = self.spaceX + (posX * (self.spaceX + self.picX))
 			absY = self.spaceY + (posY * (self.spaceY + self.picY))
 			self.positionlist.append((absX, absY))
-			skincontent += "<widget source=\"label" + str(x) + "\" render=\"Label\" position=\"" + str(absX + 5) + "," + str(absY + self.picY - textsize) + "\" size=\"" + str(self.picX - 10) + "," + str(textsize) \
-					+ "\" font=\"Regular;" + str(thumtxt) + "\" zPosition=\"2\" transparent=\"1\" noWrap=\"1\" foregroundColor=\"" + self.textcolor + "\" />"
-			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX + 5) + "," + str(absY + 5) + "\" size=\"" + str(self.picX - 10) + "," + str(self.picY - (textsize * 2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
+			skincontent += f"""
+				<widget source="label{x}" render="Label" position="{absX + 5},{absY + self.picY - textsize}" size="{self.picX - 10},{textsize}" font="Regular;{thumtxt}" zPosition="2" transparent="1" noWrap="1" foregroundColor="{self.textcolor}" />
+				<widget name="thumb{x}" position="{absX + 5},{absY + 5}" size="{self.picX - 10},{self.picY - (textsize * 2)}" zPosition="2" transparent="1" alphatest="on" />
+			"""
 
 		# Screen, backgroundlabel and MovingPixmap
-		self.skin = "<screen position=\"0,0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
-			+ "<widget name=\"frame\" position=\"" + str(self.spaceX) + "," + str(self.spaceY) + "\" size=\"" + str(self.picX) + "," + str(self.picY) + "\" pixmap=\"" + pic_frame + "\" zPosition=\"1\" alphatest=\"on\" />" \
-			+ skincontent + "</screen>"
+		self.skin = f"""
+			<screen position="0,0" size="{self.size_w},{self.size_h}" flags="wfNoBorder">
+			<eLabel position="0,0" zPosition="0" size="{self.size_w},{self.size_h}" backgroundColor="{self.color}" />
+			<widget name="frame" position="{self.spaceX},{self.spaceY}" size="{self.picX},{self.picY}" pixmap="{pic_frame}" zPosition="1" alphatest="on" />
+			{skincontent}
+			</screen>
+		"""
 
 		Screen.__init__(self, session)
 
