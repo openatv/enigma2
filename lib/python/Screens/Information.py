@@ -132,8 +132,7 @@ class InformationBase(Screen, HelpableScreen):
 			self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
 				"info": (self.showReceiverImage, _("Show receiver image(s)"))
 			}, prio=0, description=_("Receiver Information Actions"))
-		# colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
-		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ff0000, 0x00ff00ff, 0x000000ff, 0x0000ffff, 0x00ffff00, 0x00999999))
+		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
 		if len(colors) == len(INFO_COLORS):
 			for index in range(len(colors)):
 				INFO_COLOR[INFO_COLORS[index]] = colors[index]
@@ -573,6 +572,7 @@ class DebugInformation(InformationBase):
 		self.informationTimer.stop()
 		if not self.debugLogs:
 			self.debugLogs = self.findLogFiles()
+			self.debugLogIndex = 0
 			self.debugLogMax = len(self.debugLogs)
 		if self.debugLogs:
 			self["key_menu"].setText(_("MENU"))
@@ -627,6 +627,7 @@ class DebugInformation(InformationBase):
 
 	def refreshInformation(self):  # Should we limit the number of fetches per minute?
 		self.debugLogs = []
+		self.debugLogIndex = 0
 		self.cachedDebugInfo = {}
 		InformationBase.refreshInformation(self)
 
