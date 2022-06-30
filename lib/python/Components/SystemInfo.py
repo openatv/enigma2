@@ -158,9 +158,14 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 
 BoxInfo = BoxInformation()
 
+ARCHITECTURE = BoxInfo.getItem("architecture")
+BRAND = BoxInfo.getItem("brand")
+MODEL = BoxInfo.getItem("model")
+SOC_FAMILY = BoxInfo.getItem("socfamily")
+
 # Parse the boot commandline.
-cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
-cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
+# cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
+# cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
 
 def getNumVideoDecoders():
@@ -278,27 +283,47 @@ def GetBoxName():
 	return box
 
 
-model = BoxInfo.getItem("model")
-socfamily = BoxInfo.getItem("socfamily")
-architecture = BoxInfo.getItem("architecture")
-brand = BoxInfo.getItem("brand")
-
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
-BoxInfo.setItem("RemoteEnable", model in ("dm800", "azboxhd"))
-if model in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
+BoxInfo.setItem("RemoteEnable", MODEL in ("dm800", "azboxhd"))
+if MODEL in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 	repeat = 400
-elif model == 'azboxhd':
+elif MODEL == 'azboxhd':
 	repeat = 150
 else:
 	repeat = 100
 BoxInfo.setItem("RemoteRepeat", repeat)
 BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
+
 BoxInfo.setItem("HDMI-PreEmphasis", fileExists("/proc/stb/hdmi/preemphasis"))
+
+try:
+	branch = getE2Rev()
+	if "+" in branch:
+		branch = branch.split("+")[1]
+	branch = "?sha=%s" % branch
+except Exception as err:
+	branch = ""
+commitLogs = [
+	("openATV Enigma2", "https://api.github.com/repos/openatv/enigma2/commits%s" % branch),
+	("OE-Alliance Plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
+	("Enigma2 Plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits"),
+	("OpenWebIf", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits"),
+	("MetrixHD Skin", "https://api.github.com/repos/openatv/MetrixHD/commits")
+]
+BoxInfo.setItem("InformationCommitLogs", commitLogs)
+welcome = [
+	_("Welcome to openATV"),
+	"",
+	_("Please refer to our repositories for information about our distribution:"),
+	"\thttps://github.com/openatv",
+	"\thttps://github.com/oe-alliance"
+]
+BoxInfo.setItem("InformationDistributionWelcome", welcome)
 
 SystemInfo["OSDAnimation"] = fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
@@ -312,10 +337,10 @@ SystemInfo["LCDSKINSetup"] = fileExists("/usr/share/enigma2/display")
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
-SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or model in ("osminiplus",)
+SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or MODEL in ("osminiplus",)
 SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0")
 SystemInfo["FBLCDDisplay"] = fileCheck("/proc/stb/fb/sd_detach")
-SystemInfo["DeepstandbySupport"] = model != 'dm800'
+SystemInfo["DeepstandbySupport"] = MODEL != 'dm800'
 SystemInfo["Fan"] = fileCheck("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileCheck("/proc/stb/fp/fan_pwm")
 SystemInfo["PowerLed"] = fileExists("/proc/stb/power/powerled")
@@ -328,14 +353,14 @@ SystemInfo["LedSuspendColor"] = fileExists("/proc/stb/fp/ledsuspendledcolor")
 SystemInfo["Power4x7On"] = fileExists("/proc/stb/fp/power4x7on")
 SystemInfo["Power4x7Standby"] = fileExists("/proc/stb/fp/power4x7standby")
 SystemInfo["Power4x7Suspend"] = fileExists("/proc/stb/fp/power4x7suspend")
-SystemInfo["LEDButtons"] = model == "vuultimo"
+SystemInfo["LEDButtons"] = MODEL == "vuultimo"
 SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
 SystemInfo["HDMICEC"] = fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")
 SystemInfo["SABSetup"] = isPluginInstalled("SABnzbd")
 SystemInfo["SeekStatePlay"] = False
 SystemInfo["StatePlayPause"] = False
 SystemInfo["StandbyState"] = False
-SystemInfo["GraphicLCD"] = model in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus")
+SystemInfo["GraphicLCD"] = MODEL in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus")
 SystemInfo["Blindscan"] = isPluginInstalled("Blindscan")
 SystemInfo["Satfinder"] = isPluginInstalled("Satfinder")
 SystemInfo["HasExternalPIP"] = getMachineBuild() not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external")
@@ -347,7 +372,7 @@ SystemInfo["VFD_scroll_delay"] = fileCheck("/proc/stb/lcd/scroll_delay")
 SystemInfo["VFD_initial_scroll_delay"] = fileCheck("/proc/stb/lcd/initial_scroll_delay")
 SystemInfo["VFD_final_scroll_delay"] = fileCheck("/proc/stb/lcd/final_scroll_delay")
 SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
-SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and model not in ("gb800ueplus", "gbquad4k", "gbue4k")
+SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and MODEL not in ("gb800ueplus", "gbquad4k", "gbue4k")
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
 SystemInfo["LcdLiveTVPiP"] = fileCheck("/proc/stb/lcd/live_decoder")
 SystemInfo["MiniTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
@@ -357,12 +382,12 @@ SystemInfo["grautec"] = fileExists("/tmp/usbtft")
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d")
 SystemInfo["3DZNorm"] = fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/fb/primary/zoffset")
 SystemInfo["CanUse3DModeChoices"] = fileExists("/proc/stb/fb/3dmode_choices") and True or False
-SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = model in ("vusolo4k", "gbquad4k", "gbue4k")
-SystemInfo["need_dsw"] = model not in ("osminiplus", "osmega")
+SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = MODEL in ("vusolo4k", "gbquad4k", "gbue4k")
+SystemInfo["need_dsw"] = MODEL not in ("osminiplus", "osmega")
 SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem")
 SystemInfo["HaveID"] = fileCheck("/etc/.id")
-SystemInfo["HaveTouchSensor"] = model in ("dm520", "dm525", "dm900", "dm920")
-SystemInfo["DefaultDisplayBrightness"] = model in ("dm900", "dm920") and 8 or 5
+SystemInfo["HaveTouchSensor"] = MODEL in ("dm520", "dm525", "dm900", "dm920")
+SystemInfo["DefaultDisplayBrightness"] = MODEL in ("dm900", "dm920") and 8 or 5
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
@@ -384,19 +409,19 @@ SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
 SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in getMachineMtdRoot()
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
-SystemInfo["HasFullHDSkinSupport"] = model not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
+SystemInfo["HasFullHDSkinSupport"] = MODEL not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
 SystemInfo["SoftCam"] = Check_Softcam()
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")
 SystemInfo["MiddleFlash"] = BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash")
-SystemInfo["HiSilicon"] = socfamily.startswith("hisi") or fileAccess("/proc/hisi") or fileAccess("/usr/bin/hihalt") or fileAccess("/usr/lib/hisilicon")
-SystemInfo["AmlogicFamily"] = socfamily.startswith(("aml", "meson")) or fileAccess("/proc/device-tree/amlogic-dt-id") or fileAccess("/usr/bin/amlhalt") or fileAccess("/sys/module/amports")
-SystemInfo["ArchIsARM64"] = architecture == "aarch64" or "64" in architecture
-SystemInfo["ArchIsARM"] = architecture.startswith(("arm", "cortex"))
-SystemInfo["STi"] = socfamily.startswith("sti")
+SystemInfo["HiSilicon"] = SOC_FAMILY.startswith("hisi") or fileAccess("/proc/hisi") or fileAccess("/usr/bin/hihalt") or fileAccess("/usr/lib/hisilicon")
+SystemInfo["AmlogicFamily"] = SOC_FAMILY.startswith(("aml", "meson")) or fileAccess("/proc/device-tree/amlogic-dt-id") or fileAccess("/usr/bin/amlhalt") or fileAccess("/sys/module/amports")
+SystemInfo["ArchIsARM64"] = ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
+SystemInfo["ArchIsARM"] = ARCHITECTURE.startswith(("arm", "cortex"))
+SystemInfo["STi"] = SOC_FAMILY.startswith("sti")
 SystemInfo["BoxName"] = GetBoxName()
-canImageBackup = not model.startswith('az') and not brand.startswith('cube') and not brand.startswith('wetek') and not model.startswith('alien')
+canImageBackup = not MODEL.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MODEL.startswith('alien')
 SystemInfo["canImageBackup"] = canImageBackup
 SystemInfo["dFlash"] = canImageBackup and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dFlash")
 SystemInfo["dBackup"] = canImageBackup and not SystemInfo["dFlash"] and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dBackup")
