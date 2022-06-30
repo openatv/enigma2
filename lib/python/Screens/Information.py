@@ -132,8 +132,7 @@ class InformationBase(Screen, HelpableScreen):
 			self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
 				"info": (self.showReceiverImage, _("Show receiver image(s)"))
 			}, prio=0, description=_("Receiver Information Actions"))
-		# colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
-		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ff0000, 0x00ff00ff, 0x000000ff, 0x0000ffff, 0x00ffff00, 0x00999999))
+		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
 		if len(colors) == len(INFO_COLORS):
 			for index in range(len(colors)):
 				INFO_COLOR[INFO_COLORS[index]] = colors[index]
