@@ -316,14 +316,12 @@ commitLogs = [
 	("MetrixHD Skin", "https://api.github.com/repos/openatv/MetrixHD/commits")
 ]
 BoxInfo.setItem("InformationCommitLogs", commitLogs)
-welcome = [
-	_("Welcome to openATV"),
-	"",
-	_("Please refer to our repositories for information about our distribution:"),
-	"\thttps://github.com/openatv",
-	"\thttps://github.com/oe-alliance"
-]
-BoxInfo.setItem("InformationDistributionWelcome", welcome)
+# NOTE: Return the welcome text back to Information.py until SystemInfo can process translation requests.
+#
+# welcome = [
+# 	_("Welcome to %s") % BoxInfo.getItem("displaydistro", "Enigma2")
+# ]
+# BoxInfo.setItem("InformationDistributionWelcome", welcome)
 
 SystemInfo["OSDAnimation"] = fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()

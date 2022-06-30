@@ -59,7 +59,7 @@ INFO_COLOR = {
 LOG_MAX_LINES = 10000  # Maximum number of log lines to be displayed on screen.
 AUTO_REFRESH_TIME = 5000  # Streaming auto refresh timer (in milliseconds).
 
-# This code is all to move into SystemInfo.py...
+# This code is all to move into SystemInfo.py when it can handle translated text...
 #
 def getBoxProcTypeName():
 	boxProcTypes = {
@@ -73,6 +73,11 @@ def getBoxProcTypeName():
 	if procType == "unknown":
 		return _("Unknown")
 	return "%s  -  %s" % (procType, boxProcTypes.get(procType, _("Unknown")))
+
+welcome = [
+	_("Welcome to %s") % BoxInfo.getItem("displaydistro", "Enigma2")
+]
+BoxInfo.setItem("InformationDistributionWelcome", welcome)
 #
 # End of marked code.
 
