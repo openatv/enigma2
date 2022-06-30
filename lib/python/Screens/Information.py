@@ -572,6 +572,7 @@ class DebugInformation(InformationBase):
 		self.informationTimer.stop()
 		if not self.debugLogs:
 			self.debugLogs = self.findLogFiles()
+			self.debugLogIndex = 0
 			self.debugLogMax = len(self.debugLogs)
 		if self.debugLogs:
 			self["key_menu"].setText(_("MENU"))
@@ -626,6 +627,7 @@ class DebugInformation(InformationBase):
 
 	def refreshInformation(self):  # Should we limit the number of fetches per minute?
 		self.debugLogs = []
+		self.debugLogIndex = 0
 		self.cachedDebugInfo = {}
 		InformationBase.refreshInformation(self)
 
