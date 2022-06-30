@@ -110,6 +110,7 @@ def InitUsageConfig():
 			message = ngettext("%d minute", "%d minutes", message) % message
 		choiceList.append((delay, message))
 	config.usage.screen_saver = ConfigSelection(default="0", choices=choiceList)
+	config.usage.informationExtraSpacing = ConfigYesNo(False)
 
 	# settings for servicemp3 and handling from cue sheet file.
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)		#use marker for video media file

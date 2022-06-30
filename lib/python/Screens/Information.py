@@ -5,25 +5,18 @@ from locale import format_string
 from os import listdir, remove, statvfs
 from os.path import basename, getmtime, isdir, isfile, join as pathjoin
 from select import select
-from six import PY2
-from ssl import _create_unverified_context  # For python 2.7.11 we need to bypass the certificate check
 from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
-try:
-	from urllib2 import urlopen
-except ImportError:
-	from urllib.request import urlopen
+from urllib.request import urlopen
 
-from enigma import eConsoleAppContainer, eDVBResourceManager, eGetEnigmaDebugLvl, eStreamServer, eTimer, getDesktop, getE2Rev
+from enigma import eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eStreamServer, eTimer, getDesktop, getE2Rev
 
-from boxbranding import getMachineBuild, getDriverDate
-
+from ServiceReference import ServiceReference
 from skin import parameters
 from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
 from Components.Console import Console
-from Components.Converter.ClientsStreaming import ClientsStreaming
 from Components.Harddisk import Harddisk, harddiskmanager
 from Components.InputDevice import REMOTE_DISPLAY_NAME, REMOTE_NAME, REMOTE_RCTYPE, remoteControl
 from Components.Label import Label
@@ -38,13 +31,19 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_GUISKIN, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
+from Screens.Setup import Setup
+from Tools.Conversions import scaleNumber, formatDate
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot
 from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
 
 MODULE_NAME = __name__.split(".")[-1]
+
+DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
+DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
+MODEL = BoxInfo.getItem("model")
 
 INFO_COLORS = ["N", "H", "S", "P", "V", "M", "F"]
 INFO_COLOR = {
@@ -57,82 +56,36 @@ INFO_COLOR = {
 	"M": 0x00ffff00,  # Messages.
 	"F": 0x0000ffff  # Features.
 }
+LOG_MAX_LINES = 10000  # Maximum number of log lines to be displayed on screen.
+AUTO_REFRESH_TIME = 5000  # Streaming auto refresh timer (in milliseconds).
 
-USECOMMA = "," in format_string("%.1f", 1)
-
-def scaleNumber(number, style="Si", suffix="B", format="%.3f"):  # This temporary code is borrowed from the new Storage.py!
-	units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"]
-	style = style.capitalize()
-	if style not in ("Si", "Iec", "Jedec"):
-		print("[Information] Error: Invalid number unit style '%s' specified so 'Si' is assumed!" % style)
-	if style == "Si":
-		units[1] = units[1].lower()
-	negative = number < 0
-	if negative:
-		number = -number
-	digits = len(str(number))
-	scale = int((digits - 1) // 3)
-	result = float(number) / (10 ** (scale * 3)) if style == "Si" else float(number) / (1024 ** scale)
-	if negative:
-		result = -result
-	# print("[Information] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
-	return "%s %s%s%s" % (format_string(format, result), units[scale], ("i" if style == "Iec" and scale else ""), suffix)
-
-
-BoxProcTypes = {
-	"00": _("OTT Model"),
-	"10": _("Single Tuner"),
-	"11": _("Twin Tuner"),
-	"12": _("Combo Tuner"),
-	"22": _("Hybrid Tuner")
-}
-
+# This code is all to move into SystemInfo.py when it can handle translated text...
+#
 def getBoxProcTypeName():
-	proctype = getBoxProcType()
-	if proctype == "unknown":
-		return proctype
-	return "%s - %s" % (proctype, BoxProcTypes.get(proctype, _("Unknown")))
-
-def convertDate(StringDate):
-	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD" / or integer YYYYMMDD
-	try:
-		if type(StringDate) == int:
-			StringDate = str(StringDate)
-		if len(StringDate) == 8:
-			year = StringDate[0:4]
-			month = StringDate[4:6]
-			day = StringDate[6:8]
-			StringDate = ' '.join((year, month, day))
-		else:
-			StringDate = StringDate.replace("-", " ")
-		StringDate = strftime(config.usage.date.full.value, strptime(StringDate, "%Y %m %d"))
-		return StringDate
-	except:
+	boxProcTypes = {
+		"00": _("OTT Model"),
+		"10": _("Single Tuner"),
+		"11": _("Twin Tuner"),
+		"12": _("Combo Tuner"),
+		"22": _("Hybrid Tuner")
+	}
+	procType = getBoxProcType()
+	if procType == "unknown":
 		return _("Unknown")
+	return "%s  -  %s" % (procType, boxProcTypes.get(procType, _("Unknown")))
 
-def formatMinMax(values):
-	# 'min=950 MHz,max=2.15 GHz,stepsize=125 kHz,tolerance=0 Hz'
-	values = values.split(",")
-	min = ""
-	max = ""
-	for value in values:
-		if "min=" in value:
-			min = value[4:]
-		if "max=" in value:
-			max = value[4:]
-	if min and max:
-		ret = "%s - %s" % (min, max)
-		if USECOMMA:
-			return ret.replace(".", ",")
-		return ret
-	else:
-		return None
+welcome = [
+	_("Welcome to %s") % BoxInfo.getItem("displaydistro", "Enigma2")
+]
+BoxInfo.setItem("InformationDistributionWelcome", welcome)
+#
+# End of marked code.
+
 
 class InformationBase(Screen, HelpableScreen):
 	skin = """
-	<screen name="Information" position="center,center" size="950,560" resolution="1280,720">
-		<widget name="information" position="10,10" size="e-20,e-60" colPosition="475" conditional="information" divideChar="|" font="Regular;20" noWrap="1" leftColAlign="left" rightColAlign="left" split="1" transparent="1" />
-		<widget name="description" position="e-1,e-50" size="1,1" font="Regular;18" valign="center" conditional="description" />
+	<screen name="Information" title="Information" position="center,center" size="950,590" resolution="1280,720">
+		<widget name="information" position="10,10" size="e-20,e-60" font="Regular;20" splitPosition="400" />
 		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -154,11 +107,10 @@ class InformationBase(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session, mandatoryWidgets=["information", "description"])
+		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.skinName = ["Information"]
 		self["information"] = ScrollLabel()
-		self["description"] = Label()
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Refresh"))
 		self["actions"] = HelpableActionMap(self, ["CancelSaveActions", "OkActions", "NavigationActions"], {
@@ -168,25 +120,27 @@ class InformationBase(Screen, HelpableScreen):
 			"ok": (self.refreshInformation, _("Refresh the screen")),
 			"top": (self["information"].moveTop, _("Move to first line / screen")),
 			"pageUp": (self["information"].pageUp, _("Move up a screen")),
-			"left": (self["information"].pageUp, _("Move up a screen")),
-			"right": (self["information"].pageDown, _("Move down a screen")),
+			# "left": (self["information"].pageUp, _("Move up a screen")),
+			# "right": (self["information"].pageDown, _("Move down a screen")),
 			"up": (self["information"].moveUp, _("Move up a line")),
 			"down": (self["information"].moveDown, _("Move down a line")),
 			"pageDown": (self["information"].pageDown, _("Move down a screen")),
 			"bottom": (self["information"].moveBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
-		#if isfile(resolveFilename(SCOPE_GUISKIN, "receiver/%s.png" % BoxInfo.getItem("model"))):
-		#	self["key_info"] = StaticText(_("INFO"))
-		#	self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
-		#		"info": (self.showReceiverImage, _("Show receiver image(s)"))
-		#	}, prio=0, description=_("Receiver Information Actions"))
-		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
+		if isfile(resolveFilename(SCOPE_GUISKIN, "receiver/%s.png" % MODEL)):
+			self["key_info"] = StaticText(_("INFO"))
+			self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
+				"info": (self.showReceiverImage, _("Show receiver image(s)"))
+			}, prio=0, description=_("Receiver Information Actions"))
+		# colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
+		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ff0000, 0x00ff00ff, 0x000000ff, 0x0000ffff, 0x00ffff00, 0x00999999))
 		if len(colors) == len(INFO_COLORS):
 			for index in range(len(colors)):
 				INFO_COLOR[INFO_COLORS[index]] = colors[index]
 		else:
 			print("[Information] Warning: %d colors are defined in the skin when %d were expected!" % (len(colors), len(INFO_COLORS)))
 		self["information"].setText(_("Loading information, please wait..."))
+		self.extraSpacing = config.usage.informationExtraSpacing.value
 		self.onInformationUpdated = [self.displayInformation]
 		self.onLayoutFinish.append(self.displayInformation)
 		self.console = Console()
@@ -194,8 +148,8 @@ class InformationBase(Screen, HelpableScreen):
 		self.informationTimer.callback.append(self.fetchInformation)
 		self.informationTimer.start(25)
 
-	#def showReceiverImage(self):
-	#	self.session.openWithCallback(self.informationWindowClosed, InformationImage)
+	def showReceiverImage(self):
+		self.session.openWithCallback(self.informationWindowClosed, InformationImage)
 
 	def keyCancel(self):
 		self.console.killAll()
@@ -231,16 +185,16 @@ class InformationBase(Screen, HelpableScreen):
 
 class InformationImage(Screen, HelpableScreen):
 	skin = """
-	<screen name="InformationImage" title="Receiver Image" position="center,center" size="950,560" resolution="1280,720">
+	<screen name="InformationImage" title="Receiver Images" position="center,center" size="950,560" resolution="1280,720">
 		<widget name="name" position="10,10" size="e-20,25" font="Regular;20" halign="center" transparent="1" valign="center" />
 		<widget name="image" position="10,45" size="e-20,e-105" alphatest="blend" scale="1" transparent="1" />
 		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_green" render="Label" position="200,e-50" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_blue" render="Label" position="570,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="key_help" render="Label" position="e-90,e-50" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
@@ -251,32 +205,44 @@ class InformationImage(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session, mandatoryWidgets=["name", "image"])
 		HelpableScreen.__init__(self)
+		self.setTitle(_("Receiver Images"))
 		self["name"] = Label()
 		self["image"] = Pixmap()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Prev Image"))
-		self["key_yellow"] = StaticText(_("Next Image"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
+		self["key_yellow"] = StaticText(_("Previous Image"))
+		self["key_blue"] = StaticText(_("Next Image"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
-			"ok": (self.nextImage, _("Show next image")),
 			"red": (self.keyCancel, _("Close the screen")),
-			"green": (self.prevImage, _("Show previous image")),
-			"yellow": (self.nextImage, _("Show next image")),
+		}, prio=0, description=_("Receiver Image Actions"))
+		self["imageActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"ok": (self.nextImage, _("Show next image")),
+			"yellow": (self.prevImage, _("Show previous image")),
+			"blue": (self.nextImage, _("Show next image")),
 			"up": (self.prevImage, _("Show previous image")),
 			"left": (self.prevImage, _("Show previous image")),
 			"right": (self.nextImage, _("Show next image")),
 			"down": (self.nextImage, _("Show next image"))
 		}, prio=0, description=_("Receiver Image Actions"))
-		self.images = (
-			(_("Front"), "receiver/%s.png", BoxInfo.getItem("model")),
-			(_("Rear"), "receiver/%s-rear.png", BoxInfo.getItem("model")),
-			(_("Internal"), "receiver/%s-internal.png", BoxInfo.getItem("model")),
-			(_("Remote Control"), "rc/%s.png", BoxInfo.getItem("rcname")),
-			(_("Flashing"), "receiver/%s-flashing.png", BoxInfo.getItem("model"))
+		self["imageActions"].setEnabled(False)
+		self.definedImages = (
+			(_("Remote Control"), "receiver/%s.png" % BoxInfo.getItem("rcname")),
+			(_("Front"), "receiver/%s_front.png" % MODEL),
+			(_("Rear"), "receiver/%s_rear.png" % MODEL),
+			(_("Internal"), "receiver/%s_internal.png" % MODEL)
 		)
-		self.imageIndex = 0
-		self.widgetContext = None
+		self.receiverImages = []
+		for item in self.definedImages:
+			image = resolveFilename(SCOPE_SKINS, item[1])
+			if isfile(image):
+				image = LoadPixmap(image)
+				if image:
+					self.receiverImages.append((item[0], image))
+		if not self.receiverImages:
+			self.receiverImages.append((_("No images available"), None))
+		self.receiverImageIndex = 0
+		self.receiverImageMax = len(self.receiverImages)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def keyCancel(self):
@@ -285,35 +251,27 @@ class InformationImage(Screen, HelpableScreen):
 	def closeRecursive(self):
 		self.close(True)
 
+	def layoutFinished(self):
+		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.receiverImages[self.receiverImageIndex][0]))
+		if self.receiverImageMax > 1:
+			self["key_yellow"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex - 1) % self.receiverImageMax][0])
+			self["key_blue"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex + 1) % self.receiverImageMax][0])
+			self["imageActions"].setEnabled(True)
+		else:
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["imageActions"].setEnabled(False)
+		image = self.receiverImages[self.receiverImageIndex][1]
+		if image:
+			self["image"].instance.setPixmap(self.receiverImages[self.receiverImageIndex][1])
+
 	def prevImage(self):
-		self.imageIndex -= 1
-		if self.imageIndex < 0:
-			self.imageIndex = len(self.images) - 1
-		while not isfile(resolveFilename(SCOPE_GUISKIN, self.images[self.imageIndex][1] % self.images[self.imageIndex][2])):
-			self.imageIndex -= 1
-			if self.imageIndex < 0:
-				self.imageIndex = len(self.images) - 1
-				break
+		self.receiverImageIndex = (self.receiverImageIndex - 1) % self.receiverImageMax
 		self.layoutFinished()
 
 	def nextImage(self):
-		self.imageIndex += 1
-		while not isfile(resolveFilename(SCOPE_GUISKIN, self.images[self.imageIndex][1] % self.images[self.imageIndex][2])):
-			self.imageIndex += 1
-			if self.imageIndex >= len(self.images):
-				self.imageIndex = 0
-				break
+		self.receiverImageIndex = (self.receiverImageIndex + 1) % self.receiverImageMax
 		self.layoutFinished()
-
-	def layoutFinished(self):
-		if self.widgetContext is None:
-			self.widgetContext = tuple(self["image"].getPosition() + self["image"].getSize())
-			print(self.widgetContext)
-		self["name"].setText("%s %s  -  %s View" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), self.images[self.imageIndex][0]))
-		imagePath = resolveFilename(SCOPE_GUISKIN, self.images[self.imageIndex][1] % self.images[self.imageIndex][2])
-		image = LoadPixmap(imagePath)
-		if image:
-			self["image"].instance.setPixmap(image)
 
 
 def formatLine(style, left, right=None):
@@ -330,185 +288,383 @@ def formatLine(style, left, right=None):
 	return "%s%s%s:%s|%s%s%s%s" % (leftIndent, leftStartColor, left, leftEndColor, rightIndent, rightStartColor, right, rightEndColor)
 
 
-class CommitLogInformation(InformationBase):
+class BenchmarkInformation(InformationBase):  # This code can't be used until we find open source test code!
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.baseTitle = _("Commit Information")
-		self.setTitle(self.baseTitle)
-		self.skinName.insert(0, "CommitLogInformation")
-		self["systemMenuActions"] = HelpableActionMap(self, ["MenuActions"], {
-			"menu": (self.selectCommit, _("Show selection for commit logs")),
-		}, prio=0, description=_("Commit Information Actions"))
-		self["commitActions"] = HelpableActionMap(self, ["DirectionActions"], {
-			"moveUp": (self.previousCommit, _("Display previous commit log")),
-			"moveDown": (self.nextCommit, _("Display next commit log")),
-		}, prio=0, description=_("Commit Information Actions"))
-		try:
-			branch = getE2Rev()
-			if "+" in branch:
-				branch = branch.split("+")[1]
-			branch = "?sha=%s" % branch
-		except Exception as err:
-			branch = ""
-
-		self.projects = [
-			("openATV Enigma2", "https://api.github.com/repos/openatv/enigma2/commits%s" % branch),
-			("oe-alliance-plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
-			("enigma2-plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits")
-		]
-		self.project = 0
-		self.cachedProjects = {}
-		self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
-		self["description"].setText(_("Press <> or menu to select the different commit logs"))
-
-	def selectCommit(self):
-		choices = [(cmd[0], str(idx)) for idx, cmd in enumerate(self.projects)]
-		self.session.openWithCallback(self.selectCommitCallBack, ChoiceBox, title=_("Select commit log"), list=choices)
-
-	def selectCommitCallBack(self, selected):
-		if selected:
-			self.project = int(selected[1]) % len(self.projects)
-			self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
-			self.informationTimer.start(25)
-
-	def previousCommit(self):
-		self.project = self.project == 0 and len(self.projects) - 1 or self.project - 1
-		self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
-		self.informationTimer.start(25)
-
-	def nextCommit(self):
-		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
-		self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
-		self.informationTimer.start(25)
+		self.setTitle(_("Benchmark Information"))
+		self.skinName.insert(0, "BenchmarkInformation")
+		self.cpuTypes = []
+		self.cpuBenchmark = None
+		self.cpuRating = None
+		self.ramBenchmark = None
 
 	def fetchInformation(self):
-		# Limit the number of fetches per minute!
 		self.informationTimer.stop()
-		name = self.projects[self.project][0]
-		url = self.projects[self.project][1]
-		log = []
-		try:
-			try:
-				rawLog = loads(urlopen(url, timeout=10, context=_create_unverified_context()).read())
-			except Exception as err:
-				rawLog = loads(urlopen(url, timeout=10).read())
-			for data in rawLog:
-				date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime("%x %X")
-				creator = "" #data["commit"]["author"]["name"]
-				title = data["commit"]["message"]
-				if log:
-					log.append("")
-				log.append("%s  %s" % (date, creator))
-				log.append(title)
-			if log:
-				log = "\n".join(log).encode("UTF-8", "ignore") if PY2 else "\n".join(log)
-				self.cachedProjects[name] = log
-			else:
-				log = _("The %s commit log contains no information.") % name
-		except Exception as err:
-			log.append(_("Error '%s' encountered retrieving the %s commit logs!") % (str(err), name))
-			log.append("")
-			log.append(_("The %s commit logs can't be retrieved, please try again later.") % name)
-			log.append("")
-			log.append(_("Access to the %s commit logs requires an internet connection.") % name)
-			log = "\n".join(log)
-		self.log = log
+		self.cpuTypes = []
+		lines = []
+		lines = fileReadLines("/proc/cpuinfo", lines, source=MODULE_NAME)
+		for line in lines:
+			if line.startswith("model name") or line.startswith("Processor"):  # HiSilicon use the label "Processor"!
+				self.cpuTypes.append([x.strip() for x in line.split(":")][1])
+		self.console.ePopen(("/usr/bin/dhry", "/usr/bin/dhry"), self.cpuBenchmarkFinished)
+		# Serialize the tests for better accuracy.
+		# self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), self.ramBenchmarkFinished)
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def cpuBenchmarkFinished(self, result, retVal, extraArgs):
+		for line in result.split("\n"):
+			if line.startswith("Open Vision DMIPS"):
+				self.cpuBenchmark = int([x.strip() for x in line.split(":")][1])
+			if line.startswith("Open Vision CPU status"):
+				self.cpuRating = [x.strip() for x in line.split(":")][1]
+		# Serialize the tests for better accuracy.
+		self.console.ePopen(("/usr/bin/streambench", "/usr/bin/streambench"), self.ramBenchmarkFinished)
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def ramBenchmarkFinished(self, result, retVal, extraArgs):
+		for line in result.split("\n"):
+			if line.startswith("Open Vision copy rate"):
+				self.ramBenchmark = float([x.strip() for x in line.split(":")][1])
 		for callback in self.onInformationUpdated:
 			callback()
 
 	def refreshInformation(self):
-		# Limit the number of fetches per minute!
-		self.cachedProjects = {}
-		self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
-		self.informationTimer.start(25)
-		for callback in self.onInformationUpdated:
-			callback()
-
-	def displayInformation(self):
-		name = self.projects[self.project][0]
-		self.setTitle("%s - %s" % (self.baseTitle, name))
-		if name in self.cachedProjects:
-			self["information"].setText(self.cachedProjects[name])
-		elif self.log:
-			self["information"].setText(self.log)
-		else:
-			self["information"].setText(_("The %s commit log contains no information.") % name)
-
-
-class GeolocationInformation(InformationBase):
-	def __init__(self, session):
-		InformationBase.__init__(self, session)
-		self.setTitle(_("Geolocation Information"))
-		self.skinName.insert(0, "GeolocationInformation")
+		self.cpuBenchmark = None
+		self.cpuRating = None
+		self.ramBenchmark = None
+		InformationBase.refreshInformation(self)
 
 	def displayInformation(self):
 		info = []
-		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
-		if geolocationData.get("status", None) == "success":
-			info.append(formatLine("H", _("Location information")))
-			continent = geolocationData.get("continent", None)
-			if continent:
-				info.append(formatLine("P1", _("Continent"), continent))
-			country = geolocationData.get("country", None)
-			if country:
-				info.append(formatLine("P1", _("Country"), country))
-			state = geolocationData.get("regionName", None)
-			if state:
-				# TRANSLATORS: "State" is Location Info
-				info.append(formatLine("P1", _("State"), state))
-			city = geolocationData.get("city", None)
-			if city:
-				info.append(formatLine("P1", _("City"), city))
-			latitude = geolocationData.get("lat", None)
-			if latitude:
-				info.append(formatLine("P1", _("Latitude"), latitude))
-			longitude = geolocationData.get("lon", None)
-			if longitude:
-				info.append(formatLine("P1", _("Longitude"), longitude))
-			info.append("")
-			info.append(formatLine("H", _("Local information")))
-			timezone = geolocationData.get("timezone", None)
-			if timezone:
-				info.append(formatLine("P1", _("Timezone"), timezone))
-			currency = geolocationData.get("currency", None)
-			if currency:
-				info.append(formatLine("P1", _("Currency"), currency))
-			info.append("")
-			info.append(formatLine("H", _("Connection information")))
-			isp = geolocationData.get("isp", None)
-			if isp:
-				ispOrg = geolocationData.get("org", None)
-				if ispOrg:
-					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
-				else:
-					info.append(formatLine("P1", _("ISP"), isp))
-			mobile = geolocationData.get("mobile", None)
-			info.append(formatLine("P1", _("Mobile connection"), (_("Yes") if mobile else _("No"))))
-			proxy = geolocationData.get("proxy", False)
-			info.append(formatLine("P1", _("Proxy detected"), (_("Yes") if proxy else _("No"))))
-			publicIp = geolocationData.get("query", None)
-			if publicIp:
-				info.append(formatLine("P1", _("Public IP"), publicIp))
-		else:
-			info.append(_("Geolocation information cannot be retrieved, please try again later."))
-			info.append("")
-			info.append(_("Access to geolocation information requires an internet connection."))
-		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
+		info.append(formatLine("H", _("Benchmark information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		for index, cpu in enumerate(self.cpuTypes):
+			info.append(formatLine("P1", _("CPU / Core %d type") % index, cpu))
+		info.append("")
+		info.append(formatLine("P1", _("CPU benchmark"), _("%d DMIPS per core") % self.cpuBenchmark if self.cpuBenchmark else _("Calculating benchmark...")))
+		count = len(self.cpuTypes)
+		if count > 1:
+			info.append(formatLine("P1", _("Total CPU benchmark"), _("%d DMIPS with %d cores") % (self.cpuBenchmark * count, count) if self.cpuBenchmark else _("Calculating benchmark...")))
+		info.append(formatLine("P1", _("CPU rating"), self.cpuRating if self.cpuRating else _("Calculating rating...")))
+		info.append("")
+		info.append(formatLine("P1", _("RAM benchmark"), "%.2f MB/s copy rate" % self.ramBenchmark if self.ramBenchmark else _("Calculating benchmark...")))
+		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
-		return "Geolocation Information"
+		return "Benchmark Information"
 
 
-class ImageInformation(InformationBase):
+class BuildInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.displayDistro = BoxInfo.getItem("displaydistro", "openATV")
+		self.setTitle(_("Build Information"))
+		self.skinName.insert(0, "BuildInformation")
+
+	def displayInformation(self):
+		info = []
+		info.append(formatLine("H", _("Build information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		checksum = BoxInfo.getItem("checksumerror", False)
+		if checksum:
+			info.append(formatLine("M1", _("Error: Checksum is invalid!")))
+		override = BoxInfo.getItem("overrideactive", False)
+		if override:
+			info.append(formatLine("M1", _("Warning: Overrides are currently active!")))
+		if checksum or override:
+			info.append("")
+		for item in BoxInfo.getEnigmaInfoList():
+			info.append(formatLine("P1", item, BoxInfo.getItem(item)))
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Build Information"
+
+
+class CommitInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Commit Log Information"))
+		self.baseTitle = _("Commit Log")
+		self.skinName.insert(0, "CommitInformation")
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_yellow"] = StaticText(_("Previous Log"))
+		self["key_blue"] = StaticText(_("Next Log"))
+		self["commitActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
+			"menu": (self.showCommitMenu, _("Show selection menu for commit logs")),
+			"yellow": (self.previousCommitLog, _("Show previous commit log")),
+			"blue": (self.nextCommitLog, _("Show next commit log")),
+			"left": (self.previousCommitLog, _("Show previous commit log")),
+			"right": (self.nextCommitLog, _("Show next commit log"))
+		}, prio=0, description=_("Commit Information Actions"))
+		self.commitLogs = BoxInfo.getItem("InformationCommitLogs", [("Unavailable", None)])
+		self.commitLogIndex = 0
+		self.commitLogMax = len(self.commitLogs)
+		self.cachedCommitInfo = {}
+
+	def showCommitMenu(self):
+		choices = [(commitLog[0], index) for index, commitLog in enumerate(self.commitLogs)]
+		self.session.openWithCallback(self.showCommitMenuCallBack, MessageBox, text=_("Select a repository commit log to view:"), list=choices, windowTitle=self.baseTitle)
+
+	def showCommitMenuCallBack(self, selectedIndex):
+		if isinstance(selectedIndex, int):
+			self.commitLogIndex = selectedIndex
+			self.displayInformation()
+			self.informationTimer.start(25)
+
+	def previousCommitLog(self):
+		self.commitLogIndex = (self.commitLogIndex - 1) % self.commitLogMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def nextCommitLog(self):
+		self.commitLogIndex = (self.commitLogIndex + 1) % self.commitLogMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def fetchInformation(self):  # Should we limit the number of fetches per minute?
+		self.informationTimer.stop()
+		name = self.commitLogs[self.commitLogIndex][0]
+		url = self.commitLogs[self.commitLogIndex][1]
+		if url is None:
+			info = [_("There are no repositories defined so commit logs are unavailable!")]
+		else:
+			try:
+				log = []
+				with urlopen(url, timeout=10) as fd:
+					log = loads(fd.read())
+				info = []
+				for data in log:
+					date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime("%s %s" % (config.usage.date.daylong.value, config.usage.time.long.value))
+					author = data["commit"]["author"]["name"]
+					# committer = data["commit"]["committer"]["name"]
+					message = [x.rstrip() for x in data["commit"]["message"].split("\n")]
+					if info:
+						info.append("")
+					# info.append(_("Date: %s   Author: %s   Commit by: %s") % (date, author, committer))
+					info.append(_("Date: %s   Author: %s") % (date, author))
+					info.extend(message)
+				if not info:
+					info = [_("The '%s' commit log contains no information.") % name]
+			except Exception as err:
+				info = str(err)
+		self.cachedCommitInfo[name] = info
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def refreshInformation(self):  # Should we limit the number of fetches per minute?
+		self.cachedCommitInfo = {}
+		InformationBase.refreshInformation(self)
+
+	def displayInformation(self):
+		name = self.commitLogs[self.commitLogIndex][0]
+		self.setTitle("%s: %s" % (self.baseTitle, name))
+		self["key_yellow"].setText(self.commitLogs[(self.commitLogIndex - 1) % self.commitLogMax][0])
+		self["key_blue"].setText(self.commitLogs[(self.commitLogIndex + 1) % self.commitLogMax][0])
+		if name in self.cachedCommitInfo:
+			info = self.cachedCommitInfo[name]
+			if isinstance(info, str):
+				err = info
+				info = []
+				info.append(_("Error '%s' encountered retrieving the '%s' commit log!") % (err, name))
+				info.append("")
+				info.append(_("The '%s' commit log can't be retrieved, please try again later.") % name)
+				info.append("")
+				info.append(_("(Access to the '%s' commit log requires an Internet connection.)") % name)
+		else:
+			info = [_("Retrieving '%s' commit log, please wait...") % name]
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Commit Log Information"
+
+
+class DebugInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Debug Log Information"))
+		self.baseTitle = _("Debug Log")
+		self.skinName.insert(0, "DebugInformation")
+		self["key_menu"] = StaticText()
+		self["key_info"] = StaticText(_("INFO"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["debugActions"] = HelpableActionMap(self, ["MenuActions", "InfoActions", "ColorActions", "NavigationActions"], {
+			"menu": (self.showLogMenu, _("Show selection menu for debug log files")),
+			"info": (self.showLogSettings, _("Show the Logs Settings screen")),
+			"yellow": (self.deleteLog, _("Delete the currently displayed log file")),
+			"blue": (self.deleteAllLogs, _("Delete all log files")),
+			"left": (self.previousDebugLog, _("Show previous debug log file")),
+			"right": (self.nextDebugLog, _("Show next debug log file"))
+		}, prio=0, description=_("Debug Log Information Actions"))
+		self["debugActions"].setEnabled(False)
+		self.debugLogs = []
+		self.debugLogIndex = 0
+		self.debugLogMax = 0
+		self.cachedDebugInfo = {}
+
+	def showLogMenu(self):
+		choices = [(_("Log file: '%s'  (%s)") % (debugLog[0], debugLog[1]), index) for index, debugLog in enumerate(self.debugLogs)]
+		self.session.openWithCallback(self.showLogMenuCallBack, MessageBox, text=_("Select a debug log file to view:"), list=choices, default=self.debugLogIndex, windowTitle=self.baseTitle)
+
+	def showLogMenuCallBack(self, selectedIndex):
+		if isinstance(selectedIndex, int):
+			self.debugLogIndex = selectedIndex
+			self.displayInformation()
+			self.informationTimer.start(25)
+
+	def showLogSettings(self):
+		self.setTitle(_("Debug Log Information"))
+		self.session.openWithCallback(self.showLogSettingsCallback, Setup, "Logs")
+
+	def showLogSettingsCallback(self, *retVal):
+		if retVal and retVal[0]:
+			self.close(True)
+
+	def deleteLog(self):
+		name, sequence, path = self.debugLogs[self.debugLogIndex]
+		self.session.openWithCallback(self.deleteLogCallback, MessageBox, "%s\n\n%s" % (_("Log file: '%s'  (%s)") % (name, sequence), _("Do you want to delete this log file?")), default=False)
+
+	def deleteLogCallback(self, answer):
+		if answer:
+			name, sequence, path = self.debugLogs[self.debugLogIndex]
+			try:
+				remove(path)
+				del self.cachedDebugInfo[path]
+				self.session.open(MessageBox, _("Log file '%s' deleted.") % name, type=MessageBox.TYPE_INFO, timeout=5, close_on_any_key=True, windowTitle=self.baseTitle)
+				self.debugLogs = []
+			except OSError as err:
+				self.session.open(MessageBox, _("Error %d: Log file '%s' not deleted!  (%s)") % (err.errno, name, err.strerror), type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.baseTitle)
+			self.informationTimer.start(25)
+
+	def deleteAllLogs(self):
+		self.session.openWithCallback(self.deleteAllLogsCallback, MessageBox, _("Do you want to delete all the log files?"), default=False)
+
+	def deleteAllLogsCallback(self, answer):
+		if answer:
+			log = []
+			type = MessageBox.TYPE_INFO
+			close = True
+			for name, sequence, path in self.debugLogs:
+				try:
+					remove(path)
+					log.append(((_("Log file '%s' deleted.") % name), None))
+				except OSError as err:
+					type = MessageBox.TYPE_ERROR
+					close = False
+					log.append(((_("Error %d: Log file '%s' not deleted!  (%s)") % (err.errno, name, err.strerror)), None))
+			self.session.open(MessageBox, _("Results of the delete all logs:"), type=type, list=log, timeout=5, close_on_any_key=close, windowTitle=self.baseTitle)
+			self.debugLogs = []
+			self.cachedDebugInfo = {}
+			self.informationTimer.start(25)
+
+	def previousDebugLog(self):
+		self.debugLogIndex = (self.debugLogIndex - 1) % self.debugLogMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def nextDebugLog(self):
+		self.debugLogIndex = (self.debugLogIndex + 1) % self.debugLogMax
+		self.displayInformation()
+		self.informationTimer.start(25)
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		if not self.debugLogs:
+			self.debugLogs = self.findLogFiles()
+			self.debugLogMax = len(self.debugLogs)
+		if self.debugLogs:
+			self["key_menu"].setText(_("MENU"))
+			self["key_yellow"].setText(_("Delete log"))
+			self["key_blue"].setText(_("Delete all logs"))
+			self["debugActions"].setEnabled(True)
+			name, sequence, path = self.debugLogs[self.debugLogIndex]
+			if path in self.cachedDebugInfo:
+				info = self.cachedDebugInfo[path]
+			else:
+				try:
+					with open(path, "r") as fd:
+						info = [x.strip() for x in fd.readlines()][-LOG_MAX_LINES:]
+				except OSError as err:
+					info = "%s,%s" % (err.errno, err.strerror)
+			self.cachedDebugInfo[path] = info
+		else:
+			self["key_menu"].setText("")
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["debugActions"].setEnabled(False)
+			name = "Unavailable"
+			self.debugLogs = [(name, name, name)]
+			self.cachedDebugInfo[name] = "0,%s" % _("No log files found so debug logs are unavailable!")
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def findLogFiles(self):
+		debugLogs = []
+		installLog = "/home/root/autoinstall.log"
+		if isfile(installLog):
+			debugLogs.append((_("Auto install log"), _("Install 1/1"), installLog))
+		crashLog = "/tmp/enigma2_crash.log"
+		if isfile(crashLog):
+			debugLogs.append((_("Current crash log"), _("Current 1/1"), crashLog))
+		paths = [x for x in sorted(glob("/mnt/hdd/*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		if paths:
+			countLogs = len(paths)
+			for index, path in enumerate(reversed(paths)):
+				debugLogs.append((basename(path), _("Log %d/%d") % (index + 1, countLogs), path))
+		paths = [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		if paths:
+			countLogs = len(paths)
+			for index, path in enumerate(reversed(paths)):
+				debugLogs.append((basename(path), _("Crash %d/%d") % (index + 1, countLogs), path))
+		paths = [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		if paths:
+			countLogs = len(paths)
+			for index, path in enumerate(reversed(paths)):
+				debugLogs.append((basename(path), _("Debug %d/%d") % (index + 1, countLogs), path))
+		return debugLogs
+
+	def refreshInformation(self):  # Should we limit the number of fetches per minute?
+		self.debugLogs = []
+		self.cachedDebugInfo = {}
+		InformationBase.refreshInformation(self)
+
+	def displayInformation(self):
+		if self.debugLogs:
+			name, sequence, path = self.debugLogs[self.debugLogIndex]
+			self.setTitle(_("Debug Log Information") if sequence == "Unavailable" else "%s: '%s' (%s)" % (self.baseTitle, name, sequence))
+			if path in self.cachedDebugInfo:
+				info = self.cachedDebugInfo[path]
+				if isinstance(info, str):
+					errno, strerror = info.split(",", 1)
+					info = []
+					if errno == "0":
+						info.append(strerror)
+					else:
+						info.append(_("Error %s: Unable to retrieve the '%s' file!  (%s)") % (errno, path, strerror))
+						info.append("")
+						info.append(_("The '%s' file can't be retrieved, please try again later.") % path)
+			else:
+				info = [_("Retrieving '%s' log, please wait...") % name]
+		else:
+			info = [_("Finding available log files, please wait...")]
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Debug Log Information"
+
+
+class DistributionInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.displayDistro = BoxInfo.getItem("displaydistro", "Enigma2")
 		self.setTitle(_("%s Information") % self.displayDistro)
-		self.skinName.insert(0, "ImageInformation")
+		self.skinName.insert(0, "DistributionInformation")
 		self["key_yellow"] = StaticText(_("Commit Logs"))
 		self["key_blue"] = StaticText(_("Translation"))
 		self["receiverActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.showCommitLogs, _("Show latest commit log information")),
+			"yellow": (self.showCommitLogs, _("Show commit log information")),
 			"blue": (self.showTranslation, _("Show translation information"))
 		}, prio=0, description=_("%s Information Actions") % self.displayDistro)
 		self.resolutions = {
@@ -520,30 +676,33 @@ class ImageInformation(InformationBase):
 			4320: _("8K"),
 			8640: _("16K")
 		}
-		self["description"].setText("https://github.com/openatv\n\nhttps://github.com/oe-alliance")
-		self.imageMessage = ""
+		self.imageMessage = BoxInfo.getItem("InformationDistributionWelcome", "")
 
 	def showCommitLogs(self):
-		self.session.openWithCallback(self.informationWindowClosed, CommitLogInformation)
+		self.session.openWithCallback(self.informationWindowClosed, CommitInformation)
 
 	def showTranslation(self):
 		self.session.openWithCallback(self.informationWindowClosed, TranslationInformation)
 
 	def displayInformation(self):
 		info = []
+		info.append(formatLine("H", _("Distribution '%s' information for %s %s") % (self.displayDistro, DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
 		if self.imageMessage:
 			for line in self.imageMessage:
 				info.append(formatLine("M", line))
 			info.append("")
-		info.append(formatLine("H", _("%s information") % self.displayDistro))
+		info.append(formatLine("S", _("System information")))
+		if self.extraSpacing:
+			info.append("")
 		info.append(formatLine("P1", _("Info file checksum"), _("Invalid") if BoxInfo.getItem("checksumerror", False) else _("Valid")))
 		override = BoxInfo.getItem("overrideactive", False)
 		if override:
 			info.append(formatLine("P1", _("Info file override"), _("Defined / Active")))
 		info.append(formatLine("P1", _("Distribution version"), BoxInfo.getItem("imgversion")))
-		info.append(formatLine("P1", _("Distribution revision"), convertDate(BoxInfo.getItem("imgrevision"))))
+		info.append(formatLine("P1", _("Distribution revision"), formatDate(BoxInfo.getItem("imgrevision"))))
 		info.append(formatLine("P1", _("Distribution language"), BoxInfo.getItem("imglanguage")))
-		info.append(formatLine("P1", _("OEM Model"), getMachineBuild()))
+		info.append(formatLine("P1", _("OEM model"), BoxInfo.getItem("platform", _("Unknown"))))
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
@@ -563,7 +722,9 @@ class ImageInformation(InformationBase):
 		yResolution = getDesktop(0).size().height()
 		info.append(formatLine("P1", _("Skin & Resolution"), "%s  (%s  -  %s x %s)" % (config.skin.primary_skin.value.split('/')[0], self.resolutions.get(yResolution, "Unknown"), xResolution, yResolution)))
 		info.append("")
-		info.append(formatLine("H", _("Enigma2 information")))
+		info.append(formatLine("S", _("Enigma2 information")))
+		if self.extraSpacing:
+			info.append("")
 		enigmaVersion = about.getEnigmaVersionString()
 		enigmaVersion = enigmaVersion.rsplit("-", enigmaVersion.count("-") - 2)
 		if len(enigmaVersion) == 3:
@@ -575,18 +736,20 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Enigma2 version"), enigmaVersion))
 		info.append(formatLine("P1", _("Enigma2 revision"), getE2Rev()))
 		compileDate = str(BoxInfo.getItem("compiledate"))
-		info.append(formatLine("P1", _("Last update"), convertDate("%s%s%s" % (compileDate[:4], compileDate[4:6], compileDate[6:]))))
-		info.append(formatLine("P1", _("Last flash"), convertDate(about.getFlashDateString())))
+		info.append(formatLine("P1", _("Last update"), formatDate("%s%s%s" % (compileDate[:4], compileDate[4:6], compileDate[6:]))))
+		info.append(formatLine("P1", _("Last flash"), formatDate(about.getFlashDateString())))
 		info.append(formatLine("P1", _("Enigma2 (re)starts"), config.misc.startCounter.value))
 		info.append(formatLine("P1", _("Enigma2 debug level"), eGetEnigmaDebugLvl()))
 		mediaService = BoxInfo.getItem("mediaservice")
 		if mediaService:
 			info.append(formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
 		info.append("")
-		info.append(formatLine("H", _("Build information")))
-		info.append(formatLine("P1", _("Distribution"), BoxInfo.getItem("distro")))
+		info.append(formatLine("S", _("Build information")))
+		if self.extraSpacing:
+			info.append("")
+		info.append(formatLine("P1", _("Distribution"), BoxInfo.getItem("displaydistro")))
 		info.append(formatLine("P1", _("Distribution build"), BoxInfo.getItem("imagebuild")))
-		info.append(formatLine("P1", _("Distribution build date"), convertDate(about.getBuildDateString())))
+		info.append(formatLine("P1", _("Distribution build date"), formatDate(about.getBuildDateString())))
 		info.append(formatLine("P1", _("Distribution architecture"), BoxInfo.getItem("architecture")))
 		if BoxInfo.getItem("imagedir"):
 			info.append(formatLine("P1", _("Distribution folder"), BoxInfo.getItem("imagedir")))
@@ -595,7 +758,9 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Feed URL"), BoxInfo.getItem("feedsurl")))
 		info.append(formatLine("P1", _("Compiled by"), BoxInfo.getItem("developername")))
 		info.append("")
-		info.append(formatLine("H", _("Software information")))
+		info.append(formatLine("S", _("Software information")))
+		if self.extraSpacing:
+			info.append("")
 		info.append(formatLine("P1", _("GCC version"), about.getGccVersion()))
 		info.append(formatLine("P1", _("Glibc version"), about.getGlibcVersion()))
 		info.append(formatLine("P1", _("OpenSSL version"), about.getopensslVersionString()))
@@ -609,7 +774,9 @@ class ImageInformation(InformationBase):
 		if uuId:
 			info.append(formatLine("P1", _("UUID"), uuId))
 		info.append("")
-		info.append(formatLine("H", _("Boot information")))
+		info.append(formatLine("S", _("Boot information")))
+		if self.extraSpacing:
+			info.append("")
 		if BoxInfo.getItem("mtdbootfs"):
 			info.append(formatLine("P1", _("MTD boot"), BoxInfo.getItem("mtdbootfs")))
 		if BoxInfo.getItem("mtdkernel"):
@@ -624,10 +791,82 @@ class ImageInformation(InformationBase):
 			info.append(formatLine("P1", _("MKUBIFS"), BoxInfo.getItem("mkubifs")))
 		if BoxInfo.getItem("ubinize"):
 			info.append(formatLine("P1", _("UBINIZE"), BoxInfo.getItem("ubinize")))
-		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
+		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
 		return "%s Information" % self.displayDistro
+
+
+class GeolocationInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Geolocation Information"))
+		self.skinName.insert(0, "GeolocationInformation")
+
+	def displayInformation(self):
+		info = []
+		info.append(formatLine("H", _("Geolocation information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
+		if geolocationData.get("status", None) == "success":
+			info.append(formatLine("S", _("Location information")))
+			if self.extraSpacing:
+				info.append("")
+			continent = geolocationData.get("continent", None)
+			if continent:
+				info.append(formatLine("P1", _("Continent"), continent))
+			country = geolocationData.get("country", None)
+			if country:
+				info.append(formatLine("P1", _("Country"), country))
+			state = geolocationData.get("regionName", None)
+			if state:
+				# TRANSLATORS: "State" is location information and not condition based information.
+				info.append(formatLine("P1", _("State"), state))
+			city = geolocationData.get("city", None)
+			if city:
+				info.append(formatLine("P1", _("City"), city))
+			latitude = geolocationData.get("lat", None)
+			if latitude:
+				info.append(formatLine("P1", _("Latitude"), latitude))
+			longitude = geolocationData.get("lon", None)
+			if longitude:
+				info.append(formatLine("P1", _("Longitude"), longitude))
+			info.append("")
+			info.append(formatLine("S", _("Local information")))
+			if self.extraSpacing:
+				info.append("")
+			timezone = geolocationData.get("timezone", None)
+			if timezone:
+				info.append(formatLine("P1", _("Timezone"), timezone))
+			currency = geolocationData.get("currency", None)
+			if currency:
+				info.append(formatLine("P1", _("Currency"), currency))
+			info.append("")
+			info.append(formatLine("S", _("Connection information")))
+			if self.extraSpacing:
+				info.append("")
+			isp = geolocationData.get("isp", None)
+			if isp:
+				ispOrg = geolocationData.get("org", None)
+				if ispOrg:
+					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
+				else:
+					info.append(formatLine("P1", _("ISP"), isp))
+			mobile = geolocationData.get("mobile", None)
+			info.append(formatLine("P1", _("Mobile connection"), (_("Yes") if mobile else _("No"))))
+			proxy = geolocationData.get("proxy", False)
+			info.append(formatLine("P1", _("Proxy detected"), (_("Yes") if proxy else _("No"))))
+			publicIp = geolocationData.get("query", None)
+			if publicIp:
+				info.append(formatLine("P1", _("Public IP"), publicIp))
+		else:
+			info.append(_("Geolocation information cannot be retrieved, please try again later."))
+			info.append("")
+			info.append(_("Access to geolocation information requires an Internet connection."))
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Geolocation Information"
 
 
 class MemoryInformation(InformationBase):
@@ -641,25 +880,42 @@ class MemoryInformation(InformationBase):
 		self["key_yellow"] = StaticText(_("Clear"))
 
 	def displayInformation(self):
+		def formatNumber(number):
+			number = number.strip()
+			value, units = number.split(maxsplit=1) if " " in number else (number, None)
+			if "." in value:
+				format = "%.3f"
+				value = float(value)
+			else:
+				format = "%d"
+				value = int(value)
+			return "%s %s" % (format_string(format, value, grouping=True), units) if units else format_string(format, value, grouping=True)
+
 		info = []
-		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
-		info.append(formatLine("H", _("RAM (Summary)")))
-		for line in memInfo:
-			key, value, units = [x for x in line.split()]
-			if key == "MemTotal:":
-				info.append(formatLine("P1", _("Total memory"), "%s %s" % (value, units)))
-			if key == "MemFree:":
-				info.append(formatLine("P1", _("Free memory"), "%s %s" % (value, units)))
-			if key == "Buffers:":
-				info.append(formatLine("P1", _("Buffers"), "%s %s" % (value, units)))
-			if key == "Cached:":
-				info.append(formatLine("P1", _("Cached"), "%s %s" % (value, units)))
-			if key == "SwapTotal:":
-				info.append(formatLine("P1", _("Total swap"), "%s %s" % (value, units)))
-			if key == "SwapFree:":
-				info.append(formatLine("P1", _("Free swap"), "%s %s" % (value, units)))
+		info.append(formatLine("H", _("Memory information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
 		info.append("")
-		info.append(formatLine("H", _("FLASH")))
+		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
+		info.append(formatLine("S", _("RAM (Summary)")))
+		if self.extraSpacing:
+			info.append("")
+		for line in memInfo:
+			key, value = [x for x in line.split(maxsplit=1)]
+			if key == "MemTotal:":
+				info.append(formatLine("P1", _("Total memory"), formatNumber(value)))
+			elif key == "MemFree:":
+				info.append(formatLine("P1", _("Free memory"), formatNumber(value)))
+			elif key == "Buffers:":
+				info.append(formatLine("P1", _("Buffers"), formatNumber(value)))
+			elif key == "Cached:":
+				info.append(formatLine("P1", _("Cached"), formatNumber(value)))
+			elif key == "SwapTotal:":
+				info.append(formatLine("P1", _("Total swap"), formatNumber(value)))
+			elif key == "SwapFree:":
+				info.append(formatLine("P1", _("Free swap"), formatNumber(value)))
+		info.append("")
+		info.append(formatLine("S", _("FLASH")))
+		if self.extraSpacing:
+			info.append("")
 		stat = statvfs("/")
 		diskSize = stat.f_blocks * stat.f_frsize
 		diskFree = stat.f_bfree * stat.f_frsize
@@ -668,17 +924,19 @@ class MemoryInformation(InformationBase):
 		info.append(formatLine("P1", _("Used flash"), "%s  (%s)" % (scaleNumber(diskUsed), scaleNumber(diskUsed, "Iec"))))
 		info.append(formatLine("P1", _("Free flash"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
 		info.append("")
-		info.append(formatLine("H", _("RAM (Details)")))
+		info.append(formatLine("S", _("RAM (Details)")))
+		if self.extraSpacing:
+			info.append("")
 		for line in memInfo:
-			key, value, units = [x for x in line.split()]
-			info.append(formatLine("P1", key[:-1], "%s %s" % (value, units)))
+			key, value = [x for x in line.split(maxsplit=1)]
+			info.append(formatLine("P1", key[:-1], formatNumber(value)))
 		info.append("")
-		info.append(formatLine("P1", _("The detailed information is intended for developers only.")))
-		info.append(formatLine("P1", _("Please don't panic if you see values that look suspicious.")))
-		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
+		info.append(formatLine("M1", _("The detailed information is intended for developers only.")))
+		info.append(formatLine("M1", _("Please don't panic if you see values that look suspicious.")))
+		self["information"].setText("\n".join(info))
 
 	def clearMemoryInformation(self):
-		eConsoleAppContainer().execute(*["/bin/sync", "/bin/sync"])
+		self.console.ePopen(("/bin/sync", "/bin/sync"))
 		fileWriteLine("/proc/sys/vm/drop_caches", "3")
 		self.informationTimer.start(25)
 		for callback in self.onInformationUpdated:
@@ -707,13 +965,11 @@ class MultiBootInformation(InformationBase):
 	def refreshInformation(self):
 		self.slotImages = None
 		MultiBoot.loadMultiBoot()
-		self.informationTimer.start(25)
-		for callback in self.onInformationUpdated:
-			callback()
+		InformationBase.refreshInformation(self)
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Boot slot information for %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))))
+		info.append(formatLine("H", _("Boot slot information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
 		info.append("")
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
@@ -725,7 +981,7 @@ class MultiBootInformation(InformationBase):
 					if imageLists.get(boot) is None:
 						imageLists[boot] = []
 					current = currentMsg if boot == bootCode and slot == slotCode else ""
-					indent = "P0V0" if boot == "" else "P1V0"
+					indent = "P0V" if boot == "" else "P1V"
 					if current:
 						indent = indent.replace("P", "F").replace("V", "F")
 					imageLists[boot].append(formatLine(indent, _("Slot '%s'") % slot, "%s%s" % (self.slotImages[slot]["imagename"], current)))
@@ -736,6 +992,8 @@ class MultiBootInformation(InformationBase):
 				if count:
 					info.append("")
 				info.append(formatLine("S", MultiBoot.getBootCodeDescription(bootCode), None))
+				if self.extraSpacing:
+					info.append("")
 				info.extend(imageLists[bootCode])
 				count += 1
 			if count:
@@ -754,12 +1012,10 @@ class NetworkInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Network Information"))
-		self.skinName = ["Information", "WlanStatus"]
-		#self["key_yellow"] = StaticText(_("WAN Geolocation"))
-		self["key_yellow"] = StaticText(_("Geolocation"))
+		self.skinName.insert(0, "NetworkInformation")
+		self["key_yellow"] = StaticText(_("WAN Geolocation"))
 		self["geolocationActions"] = HelpableActionMap(self, ["ColorActions"], {
-			# "yellow": (self.useGeolocation, _("Use geolocation to get WAN information")),
-			"yellow": (self.showGeolocation, _("Show geolocation information"))
+			"yellow": (self.useGeolocation, _("Use geolocation to get WAN information")),
 		}, prio=0, description=_("Network Information Actions"))
 		self.interfaceData = {}
 		self.geolocationData = []
@@ -818,15 +1074,12 @@ class NetworkInformation(InformationBase):
 			"Link detected": "link"
 		}
 
-	def showGeolocation(self):
-		self.session.openWithCallback(self.informationWindowClosed, GeolocationInformation)
-
 	def useGeolocation(self):
 		geolocationData = geolocation.getGeolocationData(fields="isp,org,mobile,proxy,query", useCache=False)
 		info = []
 		if geolocationData.get("status", None) == "success":
 			info.append("")
-			info.append(formatLine("H", _("WAN connection information")))
+			info.append(formatLine("S", _("WAN connection information")))
 			isp = geolocationData.get("isp", None)
 			if isp:
 				ispOrg = geolocationData.get("org", None)
@@ -844,7 +1097,7 @@ class NetworkInformation(InformationBase):
 		else:
 			info.append(_("Geolocation information cannot be retrieved, please try again later."))
 			info.append("")
-			info.append(_("Access to geolocation information requires an internet connection."))
+			info.append(_("Access to geolocation information requires an Internet connection."))
 		self.geolocationData = info
 		for callback in self.onInformationUpdated:
 			callback()
@@ -981,26 +1234,31 @@ class NetworkInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
+		info.append(formatLine("H", _("Network information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
 		hostname = fileReadLine("/proc/sys/kernel/hostname", source=MODULE_NAME)
-		info.append(formatLine("H0H", _("Hostname"), hostname))
-		for interface in sorted(list(self.interfaceData.keys())):
+		info.append(formatLine("S0S", _("Hostname"), hostname))
+		for interface in sorted(self.interfaceData.keys()):
 			info.append("")
-			info.append(formatLine("H", _("Interface '%s'") % interface, iNetwork.getFriendlyAdapterName(interface)))
+			info.append(formatLine("S", _("Interface '%s'") % interface, iNetwork.getFriendlyAdapterName(interface)))
 			if "up" in self.interfaceData[interface]:
-				info.append(formatLine("P1", _("Status"), (_("Active") if self.interfaceData[interface]["up"] else _("Inactive"))))
+				info.append(formatLine("P1", _("Status"), (_("Up / Active") if self.interfaceData[interface]["up"] else _("Down / Inactive"))))
 				if self.interfaceData[interface]["up"]:
 					if "addr" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("IP"), self.interfaceData[interface]["addr"]))
+						info.append(formatLine("P1", _("IP address"), self.interfaceData[interface]["addr"]))
 					if "nmask" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Netmask"), self.interfaceData[interface]["nmask"]))
 					if "brdaddr" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("Broadcast"), self.interfaceData[interface]["brdaddr"]))
+						info.append(formatLine("P1", _("Broadcast address"), self.interfaceData[interface]["brdaddr"]))
 					if "addr6" in self.interfaceData[interface]:
 						for addr6 in self.interfaceData[interface]["addr6"]:
 							addr, scope = addr6.split()
-							info.append(formatLine("P1", "IPv6 (%s)" % scope, addr))
+							info.append(formatLine("P1", _("IPv6 address"), addr))
+							info.append(formatLine("P3V2", _("Scope"), scope))
+						info.append(formatLine("P1", _("IPv6 address"), "2003:0000:4021:4700:4270:0000:0000:8250/64"))
+						info.append(formatLine("P3V2", _("Scope"), "Global"))
 					if "mac" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("MAC"), self.interfaceData[interface]["mac"]))
+						info.append(formatLine("P1", _("MAC address"), self.interfaceData[interface]["mac"]))
 					if "speed" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Speed"), "%s Mbps" % self.interfaceData[interface]["speed"]))
 					if "duplex" in self.interfaceData[interface]:
@@ -1032,7 +1290,7 @@ class NetworkInformation(InformationBase):
 				info.append(formatLine("P1", _("Bytes received"), "%d (%s)" % (rxBytes, scaleNumber(rxBytes, style="Iec", format="%.1f"))))
 				info.append(formatLine("P1", _("Bytes sent"), "%d (%s)" % (txBytes, scaleNumber(txBytes, style="Iec", format="%.1f"))))
 		info += self.geolocationData
-		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
+		self["information"].setText("\n".join(info))
 
 
 class ReceiverInformation(InformationBase):
@@ -1040,31 +1298,43 @@ class ReceiverInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Receiver Information"))
 		self.skinName.insert(0, "ReceiverInformation")
-		self["key_yellow"] = StaticText(_("System"))
-		self["key_blue"] = StaticText(_("Logs"))
+		self["key_yellow"] = StaticText(_("System Information"))
+		self["key_blue"] = StaticText(_("Debug Information"))
 		self["receiverActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.showSystem, _("Show system information")),
-			"blue": (self.showLogs, _("Show logs"))
+			"yellow": (self.showSystemInformation, _("Show system information")),
+			"blue": (self.showDebugInformation, _("Show debug log information"))
 		}, prio=0, description=_("Receiver Information Actions"))
 
-	def showSystem(self):
+	def showSystemInformation(self):
 		self.session.openWithCallback(self.informationWindowClosed, SystemInformation)
 
-	def showLogs(self):
-		self.session.openWithCallback(self.informationWindowClosed, SystemInformationLogs)
+	def showDebugInformation(self):
+		self.session.openWithCallback(self.informationWindowClosed, DebugInformation)
 
 	def displayInformation(self):
+		def findPackageRevision(package, packageList):
+			revision = None
+			data = [x for x in packageList if "-%s" % package in x]
+			if data:
+				data = data[0].split("-")
+				if len(data) >= 4:
+					revision = data[3]
+			return revision
+
 		info = []
-		info.append(formatLine("H", _("Hardware information")))
-		info.append(formatLine("P1", _("Receiver name"), "%s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))))
+		info.append(formatLine("H", _("Receiver information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		info.append(formatLine("S", _("Hardware information")))
+		if self.extraSpacing:
+			info.append("")
+		info.append(formatLine("P1", _("Receiver name"), "%s %s" % (DISPLAY_BRAND, DISPLAY_MODEL)))
 		info.append(formatLine("P1", _("Build Brand"), BoxInfo.getItem("brand")))
 		platform = BoxInfo.getItem("platform")
-		model = BoxInfo.getItem("model")
-		info.append(formatLine("P1", _("Build Model"), model))
-		if platform != model:
+		info.append(formatLine("P1", _("Build Model"), MODEL))
+		if platform != MODEL:
 			info.append(formatLine("P1", _("Platform"), platform))
 		procModel = getBoxProc()
-		if procModel != model:
+		if procModel != MODEL:
 			info.append(formatLine("P1", _("Proc model"), procModel))
 		procModelType = getBoxProcTypeName()
 		if procModelType and procModelType != "unknown":
@@ -1087,7 +1357,9 @@ class ReceiverInformation(InformationBase):
 		if temp:
 			info.append(formatLine("P1", _("System temperature"), temp))
 		info.append("")
-		info.append(formatLine("H", _("Processor information")))
+		info.append(formatLine("S", _("Processor information")))
+		if self.extraSpacing:
+			info.append("")
 		cpu = about.getCPUInfoString()
 		info.append(formatLine("P1", _("CPU"), cpu[0]))
 		info.append(formatLine("P1", _("CPU speed/cores"), "%s %s" % (cpu[1], cpu[2])))
@@ -1103,7 +1375,9 @@ class ReceiverInformation(InformationBase):
 		if BoxInfo.getItem("architecture") == "aarch64":
 			info.append(formatLine("P1", _("MultiLib"), (_("Yes") if BoxInfo.getItem("multilib") else _("No"))))
 		info.append("")
-		info.append(formatLine("H", _("Remote control information")))
+		info.append(formatLine("S", _("Remote control information")))
+		if self.extraSpacing:
+			info.append("")
 		rcIndex = int(config.inputDevices.remotesIndex.value)
 		info.append(formatLine("P1", _("RC identification"), "%s  (Index: %d)" % (remoteControl.remotes[rcIndex][REMOTE_DISPLAY_NAME], rcIndex)))
 		rcName = remoteControl.remotes[rcIndex][REMOTE_NAME]
@@ -1133,8 +1407,10 @@ class ReceiverInformation(InformationBase):
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("N/A")
 			info.append(formatLine("P1", _("HDMI-CEC address"), address))
 		info.append("")
-		info.append(formatLine("H", _("Driver and kernel information")))
-		info.append(formatLine("P1", _("Drivers version"), convertDate(getDriverDate())))
+		info.append(formatLine("S", _("Driver and kernel information")))
+		if self.extraSpacing:
+			info.append("")
+		info.append(formatLine("P1", _("Drivers version"), formatDate(about.getDriverInstalledDate())))
 		info.append(formatLine("P1", _("Kernel version"), BoxInfo.getItem("kernel")))
 		deviceId = fileReadLine("/proc/device-tree/amlogic-dt-id", source=MODULE_NAME)
 		if deviceId:
@@ -1142,17 +1418,59 @@ class ReceiverInformation(InformationBase):
 		givenId = fileReadLine("/proc/device-tree/le-dt-id", source=MODULE_NAME)
 		if givenId:
 			info.append(formatLine("P1", _("Given device id"), givenId))
+		if BoxInfo.getItem("HiSilicon"):
+			info.append("")
+			info.append(formatLine("S", _("HiSilicon specific information")))
+			if self.extraSpacing:
+				info.append("")
+			process = Popen(("/usr/bin/opkg", "list-installed"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
+			stdout, stderr = process.communicate()
+			if process.returncode == 0:
+				missing = True
+				packageList = stdout.split("\n")
+				revision = findPackageRevision("grab", packageList)
+				if revision and revision != "r0":
+					info.append(formatLine("P1", _("Grab"), revision))
+					missing = False
+				revision = findPackageRevision("hihalt", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Halt"), revision))
+					missing = False
+				revision = findPackageRevision("libs", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Libs"), revision))
+					missing = False
+				revision = findPackageRevision("partitions", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Partitions"), revision))
+					missing = False
+				revision = findPackageRevision("reader", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Reader"), revision))
+					missing = False
+				revision = findPackageRevision("showiframe", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Showiframe"), revision))
+					missing = False
+				if missing:
+					info.append(formatLine("P1", _("HiSilicon specific information not found.")))
+			else:
+				info.append(formatLine("P1", _("Package information currently not available!")))
 		info.append("")
-		info.append(formatLine("H", _("Tuner information")))
-		nims = nimmanager.nimListCompressed()
-		for count in range(len(nims)):
-			tuner, type = [x.strip() for x in nims[count].split(":", 1)]
+		info.append(formatLine("S", _("Tuner information")))
+		if self.extraSpacing:
+			info.append("")
+		for count, nim in enumerate(nimmanager.nimListCompressed()):
+			tuner, type = [x.strip() for x in nim.split(":", 1)]
 			info.append(formatLine("P1", tuner, type))
 		info.append("")
-		info.append(formatLine("H", _("Drives information")))
+		info.append(formatLine("S", _("Storage / Drive information")))
+		if self.extraSpacing:
+			info.append("")
 		stat = statvfs("/")
 		diskSize = stat.f_blocks * stat.f_frsize
 		info.append(formatLine("P1", _("Internal flash"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
+		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
 		if hddList:
 			for hdd in hddList:
@@ -1162,68 +1480,24 @@ class ReceiverInformation(InformationBase):
 		else:
 			info.append(formatLine("H", _("No hard disks detected.")))
 		info.append("")
-		info.append(formatLine("H", _("Network information")))
+		info.append(formatLine("S", _("Network information")))
+		if self.extraSpacing:
+			info.append("")
 		for x in about.GetIPsFromNetworkInterfaces():
 			info.append(formatLine("P1", x[0], x[1]))
 		info.append("")
-		info.append(formatLine("H", _("Uptime"), about.getBoxUptime()))
-		if BoxInfo.getItem("HiSilicon"):
-			info.append("")
-			info.append(formatLine("H", _("HiSilicon specific information")))
-			#info.append("")
-			process = Popen(("/usr/bin/opkg", "list-installed"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-			stdout, stderr = process.communicate()
-			if process.returncode == 0:
-				missing = True
-				packageList = stdout.split("\n")
-				revision = self.findPackageRevision("grab", packageList)
-				if revision and revision != "r0":
-					info.append(formatLine("P1", _("Grab"), revision))
-					missing = False
-				revision = self.findPackageRevision("hihalt", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Halt"), revision))
-					missing = False
-				revision = self.findPackageRevision("libs", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Libs"), revision))
-					missing = False
-				revision = self.findPackageRevision("partitions", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Partitions"), revision))
-					missing = False
-				revision = self.findPackageRevision("reader", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Reader"), revision))
-					missing = False
-				revision = self.findPackageRevision("showiframe", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Showiframe"), revision))
-					missing = False
-				if missing:
-					info.append(formatLine("P1", _("HiSilicon specific information not found.")))
-			else:
-				info.append(formatLine("P1", _("Package information currently not available!")))
+		info.append(formatLine("S", _("Uptime"), about.getBoxUptime()))
 		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
 		return "Receiver Information"
 
-	def findPackageRevision(self, package, packageList):
-		revision = None
-		data = [x for x in packageList if "-%s" % package in x]
-		if data:
-			data = data[0].split("-")
-			if len(data) >= 4:
-				revision = data[3]
-		return revision
 
-
-class DrivesInformation(InformationBase):
+class StorageInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.setTitle(_("Drives Information"))
-		self.skinName.insert(0, "DrivesInformation")
+		self.setTitle(_("Storage / Disk Information"))
+		self.skinName.insert(0, "StorageDiskInformation")
 		self["information"].setText(_("Retrieving network server information, please wait..."))
 		self.mountInfo = []
 
@@ -1259,11 +1533,12 @@ class DrivesInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Detected drives")))
-		partitions = sorted(harddiskmanager.getMountedPartitions(), key=lambda x: x.device or "")
+		info.append(formatLine("H", _("Storage / Disk information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		partitions = sorted(harddiskmanager.getMountedPartitions(), key=lambda partitions: partitions.device or "")
 		for partition in partitions:
 			if partition.mountpoint == "/":
-				info.append(formatLine("H1", "/dev/root", partition.description))
+				info.append(formatLine("S1", "/dev/root", partition.description))
 				stat = statvfs("/")
 				diskSize = stat.f_blocks * stat.f_frsize
 				diskFree = stat.f_bfree * stat.f_frsize
@@ -1273,14 +1548,15 @@ class DrivesInformation(InformationBase):
 				info.append(formatLine("P2", _("Used"), "%s  (%s)" % (scaleNumber(diskUsed), scaleNumber(diskUsed, "Iec"))))
 				info.append(formatLine("P2", _("Free"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
 				break
+		# hddList = storageManager.HDDList()
 		hddList = harddiskmanager.HDDList()
 		if hddList:
 			for hdd in hddList:
 				hdd = hdd[1]
 				info.append("")
-				info.append(formatLine("H1", hdd.getDeviceName(), hdd.bus()))
+				info.append(formatLine("S1", hdd.getDeviceName(), hdd.bus()))
 				info.append(formatLine("P2", _("Model"), hdd.model()))
-				diskSize = int(hdd.diskSize() * 1000000)
+				diskSize = hdd.diskSize() * 1000000
 				info.append(formatLine("P2", _("Capacity"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
@@ -1296,12 +1572,16 @@ class DrivesInformation(InformationBase):
 						info.append(formatLine("P3", _("Free"), "%s  (%s)" % (scaleNumber(diskFree), scaleNumber(diskFree, "Iec"))))
 		else:
 			info.append("")
-			info.append(formatLine("H1", _("No hard disks detected.")))
+			info.append(formatLine("S1", _("No storage or hard disks detected.")))
 		info.append("")
-		info.append(formatLine("H", _("Detected network servers")))
+		info.append(formatLine("H", "%s %s %s" % (_("Network storage on"), DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
 		if self.mountInfo:
+			count = 0
 			for data in self.mountInfo:
-				info.append(formatLine("H1", data[5]))
+				if count:
+					info.append("")
+				info.append(formatLine("S1", data[5]))
 				if data[0]:
 					info.append(formatLine("P2", _("Network address"), data[0]))
 					info.append(formatLine("P2", _("Capacity"), data[1]))
@@ -1309,10 +1589,63 @@ class DrivesInformation(InformationBase):
 					info.append(formatLine("P2", _("Free"), data[3]))
 				else:
 					info.append(formatLine("P2", _("Not currently mounted.")))
+				count += 1
 		else:
-			info.append("")
-			info.append(formatLine("P1", _("No network servers detected.")))
+			info.append(formatLine("S1", _("No network storage detected.")))
 		self["information"].setText("\n".join(info))
+
+
+class StreamingInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Streaming Tuner Information"))
+		self.skinName.insert(0, "StreamingInformation")
+		self["key_yellow"] = StaticText(_("Stop Auto Refresh"))
+		self["key_blue"] = StaticText()
+		self["refreshActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.toggleAutoRefresh, _("Toggle auto refresh On/Off"))
+		}, prio=0, description=_("Streaming Information Actions"))
+		self["streamActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.stopStreams, _("Stop streams"))
+		}, prio=0, description=_("Streaming Information Actions"))
+		self["streamActions"].setEnabled(False)
+		self.autoRefresh = True
+
+	def toggleAutoRefresh(self):
+		self.autoRefresh = not self.autoRefresh
+		self["key_yellow"].setText(_("Stop Auto Refresh") if self.autoRefresh else _("Start Auto Refresh"))
+
+	def stopStreams(self):
+		for client in eStreamServer.getInstance().getConnectedClients():
+			client.stopStream()
+
+	def displayInformation(self):
+		info = []
+		info.append(formatLine("H", _("Streaming tuner information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		clientList = eStreamServer.getInstance().getConnectedClients() + eRTSPStreamServer.getInstance().getConnectedClients()
+		if clientList:
+			self["key_blue"].setText(_("Stop Streams"))
+			self["streamActions"].setEnabled(True)
+			for count, client in enumerate(clientList):
+				# print("[Information] DEBUG: Client data '%s'." % str(client))
+				if count:
+					info.append("")
+				info.append(formatLine("S", "%s  -  %d" % (_("Client"), count + 1)))
+				info.append(formatLine("P1", _("Service reference"), client[1]))
+				info.append(formatLine("P1", _("Service name"), ServiceReference(client[1]).getServiceName() or _("Unknown service!")))
+				info.append(formatLine("P1", _("IP address"), client[0][7:] if client[0].startswith("::ffff:") else client[0]))
+				info.append(formatLine("P1", _("Transcoding"), _("Yes") if client[2] else _("No")))
+		else:
+			self["key_blue"].setText("")
+			self["streamActions"].setEnabled(False)
+			info.append(formatLine("P1", _("No tuners are currently streaming.")))
+		self["information"].setText("\n".join(info))
+		if self.autoRefresh:
+			self.informationTimer.start(AUTO_REFRESH_TIME)
+
+	def getSummaryInformation(self):
+		return "Streaming Tuner Information"
 
 
 class SystemInformation(InformationBase):
@@ -1321,264 +1654,85 @@ class SystemInformation(InformationBase):
 		self.baseTitle = _("System Information")
 		self.setTitle(self.baseTitle)
 		self.skinName.insert(0, "SystemInformation")
-		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText()
-		self["systemMenuActions"] = HelpableActionMap(self, ["MenuActions"], {
-			"menu": (self.selectDiagnostic, _("Show selection for system information screen")),
+		self["key_yellow"] = StaticText(_("Previous"))
+		self["key_blue"] = StaticText(_("Next"))
+		self["systemActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
+			"menu": (self.showSystemMenu, _("Show selection for system information screen")),
+			"yellow": (self.previousSystem, _("Show previous system information screen")),
+			"blue": (self.nextSystem, _("Show next system information screen")),
+			"left": (self.previousSystem, _("Show previous system information screen")),
+			"right": (self.nextSystem, _("Show next system information screen"))
 		}, prio=0, description=_("System Information Actions"))
-		self["systemLogActions"] = HelpableActionMap(self, ["DirectionActions"], {
-			"moveUp": (self.previousDiagnostic, _("Display previous system information screen")),
-			"moveDown": (self.nextDiagnostic, _("Display next system information screen")),
-		}, prio=0, description=_("System Information Actions"))
-		self["logfileActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.deleteLog, _("Delete the currently displayed log file")),
-			"blue": (self.deleteAllLogs, _("Delete all log files"))
-		}, prio=0, description=_("System Information Actions"))
-		self["logfileActions"].setEnabled(False)
-		self["number_actions"] = HelpableNumberActionMap(self, ["NumberActions"], {
-			str(i): (self.selectDiagnosticNumber, _("Enter number to select screen")) for i in range(10)
-		}, prio=0, description=_("System Information Actions"))
-		self.commands = []
-		self.numberOfCommands = 0
-		self.commandIndex = 0
-		self.commandData = ""
-		self.shortTitle = False
-		self.container = eConsoleAppContainer()
-		self.container.dataAvail.append(self.dataAvail)
-		self.container.appClosed.append(self.appClosed)
-		self.log = _("Retrieving system information, please wait...")
-		self["description"].setText(_("Press <> or menu to select the different info screens"))
+		self.systemCommands = [
+			("CPU", None, "/proc/cpuinfo"),
+			("Top Processes", ("/usr/bin/top", "/usr/bin/top", "-b", "-n", "1"), None),
+			("Current Processes", ("/bin/ps", "/bin/ps", "-l"), None),
+			("Kernel Modules", None, "/proc/modules"),
+			("Kernel Messages", ("/bin/dmesg", "/bin/dmesg"), None),
+			("System Messages", None, "/var/volatile/log/messages"),
+			("Network Interfaces", ("/sbin/ifconfig", "/sbin/ifconfig"), None),
+			("Disk Usage", ("/bin/df", "/bin/df", "-h"), None),
+			("Mounted Volumes", ("/bin/mount", "/bin/mount"), None),
+			("Partition Table", None, "/proc/partitions")
+		]
+		if BoxInfo.getItem("HAVEEDIDDECODE"):
+			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", "/proc/stb/hdmi/raw_edid"), None))
+		self.systemCommandsIndex = 0
+		self.systemCommandsMax = len(self.systemCommands)
+		self.info = None
 
-	def selectDiagnosticNumber(self, number):
-		self.commandIndex = number % len(self.commands)
-		self.refreshInformation()
+	def showSystemMenu(self):
+		choices = [(systemCommand[0], index) for index, systemCommand in enumerate(self.systemCommands)]
+		self.session.openWithCallback(self.showSystemMenuCallBack, MessageBox, text=_("Select system information to view:"), list=choices, windowTitle=self.baseTitle)
 
-	def selectDiagnostic(self):
-		choices = [(cmd[0], str(idx)) for idx, cmd in enumerate(self.commands)]
-		self.session.openWithCallback(self.selectDiagnosticCallBack, ChoiceBox, title=_("Select information screen"), list=choices)
-
-	def selectDiagnosticCallBack(self, selected):
-		if selected:
-			self.commandIndex = int(selected[1]) % len(self.commands)
-			self.refreshInformation()
-
-	def previousDiagnostic(self):
-		self.commandIndex = (self.commandIndex - 1) % len(self.commands)
-		self.refreshInformation()
-
-	def nextDiagnostic(self):
-		self.commandIndex = (self.commandIndex + 1) % len(self.commands)
-		self.refreshInformation()
-
-	def deleteLog(self):
-		if self.commandIndex >= self.numberOfCommands:
-			self.session.openWithCallback(self.removeLog, MessageBox, _("Do you want to delete this log file?"), default=False)
-
-	def removeLog(self, answer):
-		if answer:
-			try:
-				args = self.commands[self.commandIndex][1].split()
-				remove(args[-1])
-				self.session.open(MessageBox, _("Log file '%s' deleted.") % args[-1], type=MessageBox.TYPE_INFO, timeout=5, close_on_any_key=True, title=self.baseTitle)
-			except OSError as err:
-				self.session.open(MessageBox, _("Log file '%s' deleted.") % args[-1], type=MessageBox.TYPE_ERROR, timeout=5, title=self.baseTitle)
+	def showSystemMenuCallBack(self, selectedIndex):
+		if isinstance(selectedIndex, int):
+			self.systemCommandsIndex = selectedIndex
+			self.displayInformation()
 			self.informationTimer.start(25)
-			for callback in self.onInformationUpdated:
-				callback()
 
-	def deleteAllLogs(self):
-		if self.commandIndex >= self.numberOfCommands:
-			self.session.openWithCallback(self.removeAllLogs, MessageBox, _("Do you want to delete all log files?"), default=False)
+	def previousSystem(self):
+		self.systemCommandsIndex = (self.systemCommandsIndex - 1) % self.systemCommandsMax
+		self.displayInformation()
+		self.informationTimer.start(25)
 
-	def removeAllLogs(self, answer):
-		if answer:
-			filenames = [x for x in sorted(glob("/mnt/hdd/*.log"), key=lambda x: isfile(x) and getmtime(x))]
-			filenames += [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
-			filenames += [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
-			log = []
-			type = MessageBox.TYPE_INFO
-			close = True
-			for filename in filenames:
-				try:
-					remove(filename)
-					log.append(_("Log file '%s' deleted.") % filename)
-				except OSError as err:
-					type = MessageBox.TYPE_ERROR
-					close = False
-					log.append(_("Error %d: Log file '%s' wasn't deleted!  (%s)") % (err.errno, filename, err.strerror))
-			log = "\n".join(log)
-			self.session.open(MessageBox, log, type=type, timeout=5, close_on_any_key=close, title=self.baseTitle)
-			self.informationTimer.start(25)
-			for callback in self.onInformationUpdated:
-				callback()
-
-	def keyCancel(self):
-		self.container.dataAvail.remove(self.dataAvail)
-		self.container.appClosed.remove(self.appClosed)
-		self.container = None
-		InformationBase.keyCancel(self)
-
-	def closeRecursive(self):
-		self.container.dataAvail.remove(self.dataAvail)
-		self.container.appClosed.remove(self.appClosed)
-		self.container = None
-		InformationBase.closeRecursive(self)
+	def nextSystem(self):
+		self.systemCommandsIndex = (self.systemCommandsIndex + 1) % self.systemCommandsMax
+		self.displayInformation()
+		self.informationTimer.start(25)
 
 	def fetchInformation(self):
 		self.informationTimer.stop()
-		self.commands = [
-#			("cpu", "/bin/cat /proc/cpuinfo | sed 's/\t\t/\t/'", "cpu"),
-#			("edid", "/bin/cat /proc/stb/hdmi/raw_edid | edid-decode", "edid"),
-			("dmesg", "/bin/dmesg", "dmesg"),
-			("ifconfig", "/sbin/ifconfig", "ifconfig"),
-			("df", "/bin/df -h", "df"),
-			("top", "/usr/bin/top -b -n 1", "top"),
-			("ps", "/bin/ps -l", "ps"),
-			("mount", "/bin/mount", "mount"),
-			("partitions", "/bin/cat /proc/partitions", "partitions"),
-			("modules", "/bin/cat /proc/modules", "modules"),
-			("build", "build", "build"),
-		]
-		if BoxInfo.getItem("HAVEEDIDDECODE"):
-			self.commands.append(("edid", "/bin/cat /proc/stb/hdmi/raw_edid | edid-decode", "edid"))
-
-		self.numberOfCommands = len(self.commands)
-		self.commandIndex = min(len(self.commands) - 1, self.commandIndex)
-		self.refreshInformation()
-
-	def refreshInformation(self):
-		command = self.commands[self.commandIndex][1]
-		if command == "build":
-			self.setTitle(_("Build Information"))
-			self.displayBuildInformation()
-			return
-		self.log = _("Retrieving system information, please wait...")
-		if self.shortTitle:
-			self.setTitle(self.commands[self.commandIndex][0])
-		else:
-			self.setTitle("%s - %s" % (self.baseTitle, self.commands[self.commandIndex][0]))
-		args = command.split()  # For safety don't use a shell command line!
-		if args[0] == "/bin/cat" and "|" not in command:
+		name, command, path = self.systemCommands[self.systemCommandsIndex]
+		self.info = None
+		if command:
+			self.console.ePopen(command, self.fetchInformationCallback)
+		elif path:
 			try:
-				with open(args[1], "rb") as fd:
-					data = fd.read()
-				data = data.decode("UTF-8", "ignore")
-				self.log = data
+				with open(path, "r") as fd:
+					self.info = [x.strip() for x in fd.readlines()]
 			except OSError as err:
-				self.log = _("Error %d: The logfile '%s' could not be opened.  (%s)") % (err.errno, args[1], err.strerror)
-		else:
-			self.commandData = "" #"CUT" if self.commands[self.commandIndex][0] in ["mount", "modules"] else ""
-			args.insert(0, args[0])
-			if "|" in command:
-				retVal = self.container.execute(command)
-			else:
-				retVal = self.container.execute(*args)
-			pid = self.container.getPID()
-			# print("[Information] DEBUG: System logs PID=%d." % pid)
-			# try:
-			# 	waitpid(pid, 0)
-			# except OSError as err:
-			# 	pass
-		if self.commandIndex >= self.numberOfCommands:
-			self["key_yellow"].text = _("Delete logfile")
-			self["key_blue"].text = _("Delete all logfiles")
-			self["logfileActions"].setEnabled(True)
-		else:
-			self["key_yellow"].text = ""
-			self["key_blue"].text = ""
-			self["logfileActions"].setEnabled(False)
-		for callback in self.onInformationUpdated:
-			callback()
+				self.info = [_("Error %d: System information file '%s' can't be read!  (%s)") % (err.errno, path, err.strerror)]
+			for callback in self.onInformationUpdated:
+				callback()
 
-	def dataAvail(self, data):
-		if isinstance(data, bytes):
-			data = data.decode("UTF-8", "ignore")
-		self.commandData += data
-
-	def cutData(self):
-		if self.commandData[:3] == "CUT":
-			text = ""
-			for line in self.commandData.split("\n"):
-				text = text + line[:95] + "\n"
-			if text[-1:] == "\n":
-				text = text[:-1]
-			return text
-		else:
-			return self.commandData
-
-	def appClosed(self, retVal):
-		self.log = self.cutData()
-		if retVal:
-			self.log += "\n\n%s" % (_("An error occurred, error code %d, please try again later.") % retVal)
+	def fetchInformationCallback(self, result, retVal, extraArgs):
+		self.info = [x.rstrip() for x in result.split("\n")]
 		for callback in self.onInformationUpdated:
 			callback()
 
 	def displayInformation(self):
-		if not self.log:
-			self.log = _("The '%s' log file contains no information.") % self.commands[self.commandIndex][2]
-		self["information"].setText(self.log)
-
-	def displayBuildInformation(self):
-		info = []
-		info.append(formatLine("H", "%s %s %s" % (_("Build information for"), BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))))
-		checksum = BoxInfo.getItem("checksumerror", False)
-		if checksum:
-			info.append(formatLine("M1", _("Error: Checksum is invalid!")))
-		override = BoxInfo.getItem("overrideactive", False)
-		if override:
-			info.append(formatLine("M1", _("Warning: Overrides are currently active!")))
-		if checksum or override:
-			info.append("")
-		for item in BoxInfo.getEnigmaInfoList():
-			info.append(formatLine("P1", item, BoxInfo.getItem(item)))
+		name, command, path = self.systemCommands[self.systemCommandsIndex]
+		self.setTitle("%s: %s" % (self.baseTitle, name))
+		self["key_yellow"].setText(self.systemCommands[(self.systemCommandsIndex - 1) % self.systemCommandsMax][0])
+		self["key_blue"].setText(self.systemCommands[(self.systemCommandsIndex + 1) % self.systemCommandsMax][0])
+		info = [_("Retrieving '%s' information, please wait...") % name] if self.info is None else self.info
+		if info == [""]:
+			info = [_("There is no information to show for '%s'.") % name]
 		self["information"].setText("\n".join(info))
 
-
-class SystemInformationLogs(SystemInformation):
-	def __init__(self, session):
-		SystemInformation.__init__(self, session)
-		self.shortTitle = True
-
-	def fetchInformation(self):
-		self.informationTimer.stop()
-		self.commands = [
-			("messages", "/bin/cat /var/volatile/log/messages", "messages")
-		]
-		self.numberOfCommands = len(self.commands)
-		#
-		# TODO: Need to adjust path of log files to match current configurations!
-		#
-		installLog = "/home/root/autoinstall.log"
-		if isfile(installLog):
-			self.commands.append((_("Auto install log"), "/bin/cat %s" % installLog, installLog))
-			self.numberOfCommands += 1
-		crashLog = "/tmp/enigma2_crash.log"
-		if isfile(crashLog):
-			self.commands.append((_("Current crash log"), "/bin/cat %s" % crashLog, crashLog))
-			self.numberOfCommands += 1
-		filenames = [x for x in sorted(glob("/mnt/hdd/*.log"), key=lambda x: isfile(x) and getmtime(x))]
-		if filenames:
-			totalNumberOfLogfiles = len(filenames)
-			logfileCounter = 1
-			for filename in reversed(filenames):
-				self.commands.append((_("Logfile '%s' (%d/%d)") % (basename(filename), logfileCounter, totalNumberOfLogfiles), "/bin/cat %s" % filename, filename))
-				logfileCounter += 1
-		filenames = [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
-		if filenames:
-			totalNumberOfLogfiles = len(filenames)
-			logfileCounter = 1
-			for filename in reversed(filenames):
-				self.commands.append((_("Crash log '%s' (%d/%d)") % (basename(filename), logfileCounter, totalNumberOfLogfiles), "/bin/cat %s" % filename, filename))
-				logfileCounter += 1
-		filenames = [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
-		if filenames:
-			totalNumberOfLogfiles = len(filenames)
-			logfileCounter = 1
-			for filename in reversed(filenames):
-				self.commands.append((_("Debug log '%s' (%d/%d)") % (basename(filename), logfileCounter, totalNumberOfLogfiles), "/usr/bin/tail -n 1000 %s" % filename, filename))
-				logfileCounter += 1
-		self.commandIndex = min(len(self.commands) - 1, self.commandIndex)
-		self.refreshInformation()		
+	def getSummaryInformation(self):
+		return "System Information"
 
 
 class TranslationInformation(InformationBase):
@@ -1589,9 +1743,12 @@ class TranslationInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
+		info.append(formatLine("H", _("Translation information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
 		translateInfo = _("TRANSLATOR_INFO")
 		if translateInfo != "TRANSLATOR_INFO":
 			info.append(formatLine("H", _("Translation information")))
+			info.append("")
 			translateInfo = translateInfo.split("\n")
 			for translate in translateInfo:
 				info.append(formatLine("P1", translate))
@@ -1615,126 +1772,156 @@ class TunerInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Tuner Information"))
 		self.skinName.insert(0, "TunerInformation")
+		self.frontEndFields = {
+			"DVB API version": "api",
+			"Name": "name",
+			"Frequency": "frequency",
+			"Symbolrate": "symbolrate",
+			"Capabilities": "capabilities",
+			"Delivery Systems": "delivery"
+		}
+		self.broadcasts = ("DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2", "ATSC", "ISDB-T", "DTMB")
+		self.tunerList = []
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		self.tunerList = []
+		curIndex = -1
+		for count, nim in enumerate(nimmanager.nimList()):
+			tunerData = {}
+			tuner, model = [x.strip() for x in nim.split(":", 1)]
+			tuner = tuner.strip("Tuner").strip()
+			if self.tunerList and self.tunerList[curIndex]["model"] == model:
+				self.tunerList[curIndex]["end"] = tuner
+				continue
+			curIndex += 1
+			tunerData["start"] = tuner
+			tunerData["end"] = tuner
+			tunerData["model"] = model
+			for key, value in [(x.strip(), y.strip()) for x, y in [x.split(":", 1) for x in eDVBResourceManager.getInstance().getFrontendCapabilities(count).splitlines()]]:
+				if key in self.frontEndFields:
+					tunerData[self.frontEndFields[key]] = value
+				else:
+					print("[Information] Note: Unexpected field '%s' in front-end with data '%s'!" % (key, value))
+			if tunerData.get("delivery"):
+				broadcasts = []
+				for broadcast in self.broadcasts:
+					if broadcast.replace("-", "") in tunerData["delivery"]:
+						broadcasts.append(broadcast)
+				if broadcasts:
+					tunerData["broadcast"] = ", ".join(broadcasts)
+			self.tunerList.append(tunerData)
+		for callback in self.onInformationUpdated:
+			callback()
 
 	def displayInformation(self):
-		allsystems = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2"]
-		info = []
-		info.append(formatLine("H", _("Detected tuners")))
-		info.append("")
-		nims = nimmanager.nimList()
-		descList = []
-		curIndex = -1
-		for count in range(len(nims)):
-			data = nims[count].split(":")
-			idx = data[0].strip("Tuner").strip()
-			desc = data[1].strip()
-			if descList and descList[curIndex]["desc"] == desc:
-				descList[curIndex]["end"] = idx
-			else:
-				descList.append({
-					"desc": desc,
-					"start": idx,
-					"end": idx,
-					"info" : eDVBResourceManager.getInstance().getFrontendCapabilities(count).splitlines()
-				})
-				curIndex += 1
-			count += 1
-		for count in range(len(descList)):
-			data = descList[count]["start"] if descList[count]["start"] == descList[count]["end"] else ("%s-%s" % (descList[count]["start"], descList[count]["end"]))
-			info.append(formatLine("P1", "Tuner %s" % data))
-			try:
-				# TUNER Info
-				info.append(formatLine("P2", _("Name") , descList[count]["desc"]))
-				frontend = descList[count]["info"]
-				frequency = frontend[2].split(":")
-				frequencyvalue = formatMinMax(frequency[1])
-				symbolrate = frontend[3].split(":")
-				symbolratevalue = formatMinMax(symbolrate[1])
-				capabilities = frontend[4].split(":")[1]
-				deliverysystem = frontend[5].split(":")[1]
-				systems = []
-				for system in allsystems:
-					if system.replace("-", "") in deliverysystem:
-						systems.append(system)
-				if systems:
-					info.append(formatLine("P2", _("Systems"), ", ".join(systems)))
-				info.append(formatLine("P2", _("Multistream"), (_("Yes") if "MULTISTREAM" in capabilities else _("No"))))
-				if frequencyvalue:
-					info.append(formatLine("P2", _(frequency[0]), frequencyvalue))
-				if symbolratevalue:
-					info.append(formatLine("P2", _(symbolrate[0]), symbolratevalue))
-				info.append("")
-			except Exception as e:
-				print("[Information] Error get frontends %s" % str(e))
-				pass
-		self["information"].setText("\n".join(info))
-		return
+		def parseValues(data):
+			values = {}
+			for item in data.split(","):
+				key, value = item.split("=", 1)
+				values[key] = formatNumber(value)
+			return values
 
-	def tunerInfo(self):
+		def formatNumber(number):
+			number = number.strip()
+			value, units = number.split(maxsplit=1) if " " in number else (number, None)
+			if "." in value:
+				format = "%.3f"
+				value = float(value)
+			else:
+				format = "%d"
+				value = int(value)
+			return "%s %s" % (format_string(format, value, grouping=True), units) if units else format_string(format, value, grouping=True)
+
+		def extractModes(data, mode):
+			mode = "%s " % mode
+			length = len(mode)
+			values = []
+			for item in data.split(","):
+				if item.startswith(mode):
+					values.append(item[length:].capitalize())
+			return sorted(values)
+
+		def sortQAM(values):
+			if "Auto" in values:
+				values.remove("Auto")
+				addAuto = True
+			else:
+				addAuto = False
+			values = [str(x) for x in sorted([int(x) for x in values])]
+			if addAuto:
+				values.append("Auto")
+			return values
+
 		info = []
-		return info
+		info.append(formatLine("H", _("Tuner information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append("")
+		for count, tunerData in enumerate(self.tunerList):
+			if count:
+				info.append("")
+			tuner = tunerData["start"] if tunerData["start"] == tunerData["end"] else "%s - %s" % (tunerData["start"], tunerData["end"])
+			info.append(formatLine("S", "Tuner %s" % tuner))
+			if self.extraSpacing:
+				info.append("")
+			name = tunerData.get("name")
+			if name:
+				info.append(formatLine("P1", _("Name"), name))
+			model = tunerData.get("model")
+			if model:
+				info.append(formatLine("P1", _("Type / Model"), model))
+			broadcast = tunerData.get("broadcast")
+			if broadcast:
+				info.append(formatLine("P1", _("Broadcast systems"), broadcast))
+			capabilities = tunerData.get("capabilities")
+			if capabilities:
+				info.append(formatLine("P1", _("Multistream"), (_("Yes") if "MULTISTREAM" in capabilities else _("No"))))
+			frequency = tunerData.get("frequency")
+			if frequency:
+				data = parseValues(frequency)
+				info.append(formatLine("P1", _("Frequency range"), "%s  -  %s  (Step %s)" % (data["min"], data["max"], data["stepsize"])))
+			symbolrate = tunerData.get("symbolrate")
+			if symbolrate:
+				data = parseValues(symbolrate)
+				info.append(formatLine("P1", _("Symbol rate"), "%s  -  %s" % (data["min"], data["max"])))
+			FEC = extractModes(capabilities, "FEC")
+			if FEC:
+				info.append(formatLine("P1", _("FEC modes"), ", ".join(FEC)))
+			QAM = sortQAM(extractModes(capabilities, "QAM"))
+			if QAM:
+				info.append(formatLine("P1", _("Modulation modes"), ", ".join(QAM)))
+			api = tunerData.get("api")
+			if api:
+				info.append(formatLine("P1", _("DVB API version"), api))
+		if info:
+			info.append("")
+		info.append(formatLine("S", _("Transcoding"), (_("Yes") if BoxInfo.getItem("transcoding") else _("No"))))
+		info.append(formatLine("S", _("MultiTranscoding"), (_("Yes") if BoxInfo.getItem("multitranscoding") else _("No"))))
+		self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
-		return "DVB Information"
+		return "Tuner Information"
 
 
-class StreamingInformation(InformationBase):
+class TestingInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.setTitle(_("Streaming Clients"))
-		self.skinName.insert(0, "StreamingInformation")
-		self.refreshTimer = eTimer()
-		self["key_green"].text = ""
-		self["key_blue"] = StaticText()
-		self["streamActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.stopStreams, _("Stop Streams"))
-		}, prio=0, description=_("Streaming Information Actions"))
-
-	def stop(self):
-		if self.displayInformation in self.refreshTimer.callback:
-			self.refreshTimer.callback.remove(self.displayInformation)
-		self.refreshTimer.stop()
+		self.setTitle(_("Testing Information"))
+		self.skinName.insert(0, "TestingInformation")
+		self.slotImages = None
 
 	def displayInformation(self):
-		if self.displayInformation not in self.refreshTimer.callback:
-			self.refreshTimer.callback.append(self.displayInformation)
-			self.refreshTimer.startLongTimer(0)
-		info = []
-		info.append(formatLine("H", _("Active Streaming Clients")))
-		info.append("")
-		clients = ClientsStreaming("DATA").getText()
-		if clients:
-			pos = 0
-			for client in clients:
-				pos = pos + 1
-				info.append(formatLine("P1", "%s - %d" % (_("Client"), pos)))
-				info.append(formatLine("P2", _("ServiceName"), client[1]))
-				info.append(formatLine("P2", _("IP"), client[0]))
-				info.append(formatLine("P2", _("Transcoding"), client[2]))
-				info.append("")
-		else:
-			info.append(formatLine("P1", _("No clients streaming")))
-		self["information"].setText("\n".join(info))
-		self["key_blue"].setText(_("Stop Streams") if clients else "")
-		self.refreshTimer.startLongTimer(5)
-
-	def keyCancel(self):
-		self.stop()
-		InformationBase.keyCancel(self)
-
-	def closeRecursive(self):
-		self.stop()
-		InformationBase.closeRecursive(self)
-
-	def stopStreams(self):
-		streamServer = eStreamServer.getInstance()
-		if not streamServer:
-			return
-		for x in streamServer.getConnectedClients():
-			streamServer.stopStream()
+		from Components.InputDevice import remoteControl
+		html = remoteControl.getOpenWebIfHTML()
+		if html is None:
+			html = "OpenWebIf HTML file isn't available."
+		self["information"].setText(html)
+		# info = []
+		# for index in range(1, 24):
+		# 	info.append("This is test line %d." % index)
+		# self["information"].setText("\n".join(info))
 
 	def getSummaryInformation(self):
-		return "Translation Information"
+		return "Testing Information Data"
 
 
 class InformationSummary(ScreenSummary):
@@ -1746,5 +1933,4 @@ class InformationSummary(ScreenSummary):
 		# self.updateSummary()
 
 	def updateSummary(self):
-		# print("[Information] DEBUG: Updating summary.")
 		self["information"].setText(self.parent.getSummaryInformation())
