@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -882,6 +882,14 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr ""
 
@@ -1209,6 +1217,10 @@ msgstr ""
 msgid "%s Setup"
 msgstr "設定"
 
+#, python-format
+msgid "%s View"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "掃描更多 SR"
@@ -1219,10 +1231,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1320,6 +1328,10 @@ msgid "(%d jobs)"
 msgstr ""
 
 msgid "(1 job)"
+msgstr ""
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
 
 #, python-format
@@ -2201,11 +2213,7 @@ msgstr "關於..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #, fuzzy
@@ -2275,9 +2283,6 @@ msgstr ""
 
 msgid "Active"
 msgstr "啟動"
-
-msgid "Active Streaming Clients"
-msgstr ""
 
 #, fuzzy
 msgid "Active clients"
@@ -2713,10 +2718,6 @@ msgid "An empty filename is illegal."
 msgstr "一個空的檔案名是非法的."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
-msgstr ""
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
 msgstr ""
 
 msgid "An unknown error occurred!"
@@ -3451,6 +3452,13 @@ msgstr ""
 msgid "Belize"
 msgstr ""
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3609,7 +3617,10 @@ msgstr "亮度"
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3640,7 +3651,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3841,13 +3853,23 @@ msgstr ""
 msgid "CPU"
 msgstr ""
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
 msgstr ""
 
 msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "CPU rating"
 msgstr ""
 
 msgid "CPU speed/cores"
@@ -3881,6 +3903,12 @@ msgid "Calculate and show size of directory. Note: This can be slow down the UI 
 msgstr ""
 
 msgid "Calculate file checksums"
+msgstr ""
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -4682,10 +4710,13 @@ msgstr ""
 msgid "Command type"
 msgstr "命令順序"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5330,14 +5361,14 @@ msgstr ""
 msgid "Country for EPG event rating information"
 msgstr ""
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
 msgid "Crash at skin error for debug reasons"
-msgstr ""
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
 msgstr ""
 
 msgid "Create"
@@ -5437,6 +5468,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
@@ -5594,6 +5628,9 @@ msgstr ""
 msgid "DUAL LAYER DVD"
 msgstr "雙層DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr ""
 
@@ -5668,6 +5705,10 @@ msgid "Date style"
 msgstr ""
 
 msgid "Date/time input"
+msgstr ""
+
+#, python-format
+msgid "Date: %s   Author: %s"
 msgstr ""
 
 msgid "Day D Mon"
@@ -5813,11 +5854,23 @@ msgstr ""
 msgid "Deactivate"
 msgstr "啟動交換檔"
 
-msgid "Debug Logs"
+#, python-format
+msgid "Debug %d/%d"
 msgstr ""
 
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
+msgid "Debug Logs"
 msgstr ""
 
 msgid "Debug log time format *"
@@ -6041,7 +6094,7 @@ msgstr "刪除項目"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -6079,7 +6132,7 @@ msgstr ""
 msgid "Delete folder"
 msgstr "刪除檔"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -6172,15 +6225,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 #, fuzzy
@@ -6395,19 +6439,7 @@ msgstr "顯示和用戶介面"
 msgid "Display message before playing next movie"
 msgstr ""
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6429,6 +6461,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6600,12 +6636,12 @@ msgstr " 是否燒錄這個收藏到DVD光碟?"
 msgid "Do you want to continue?"
 msgstr " 是否檢視更多專案?"
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
+msgstr ""
+
+msgid "Do you want to delete all the log files?"
 msgstr ""
 
 #, fuzzy
@@ -6737,6 +6773,9 @@ msgstr[1] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
 msgid "Down"
 msgstr "下載"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "下載插件"
 
@@ -6796,12 +6835,6 @@ msgid "Drivers"
 msgstr ""
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -7230,6 +7263,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 
@@ -7389,9 +7425,6 @@ msgstr "關閉標題選項"
 msgid "Enter number to jump to channel"
 msgstr ""
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr ""
 
@@ -7461,11 +7494,11 @@ msgid "Error"
 msgstr "錯誤"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7481,7 +7514,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 #, fuzzy
@@ -7920,6 +7957,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -8194,6 +8234,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr ""
 
@@ -8416,6 +8459,9 @@ msgstr "頻率:"
 msgid "Frequency bands"
 msgstr "頻帶"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "頻率掃描步長(khz)"
 
@@ -8581,6 +8627,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -9226,10 +9276,6 @@ msgstr "創作模式"
 msgid "INS"
 msgstr ""
 
-#, fuzzy
-msgid "IP"
-msgstr "IP:"
-
 msgid "IP address"
 msgstr ""
 
@@ -9239,6 +9285,9 @@ msgstr "IP:"
 #, fuzzy
 msgid "IPK Installer"
 msgstr "IPKG安裝..."
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO文件過大!"
@@ -9551,7 +9600,7 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -9735,6 +9784,9 @@ msgstr "安裝"
 
 #, python-format
 msgid "Install '%s' and enable this operation"
+msgstr ""
+
+msgid "Install 1/1"
 msgstr ""
 
 #, fuzzy
@@ -10593,12 +10645,20 @@ msgstr "鎖定:"
 msgid "Log"
 msgstr "RS Log"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 #, fuzzy
 msgid "Log Manager"
 msgstr "管理器"
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10611,10 +10671,6 @@ msgstr "記錄日誌到硬碟"
 msgid "LogManager"
 msgstr "管理器"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr ""
 
@@ -10623,9 +10679,6 @@ msgid "Login failure"
 msgstr "安裝失敗"
 
 msgid "Login to IceTV server"
-msgstr ""
-
-msgid "Logs"
 msgstr ""
 
 #, fuzzy
@@ -10701,15 +10754,15 @@ msgstr ""
 msgid "M2k"
 msgstr ""
 
-msgid "MAC"
-msgstr ""
-
 msgid "MAC Address Actions"
 msgstr ""
 
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "網卡設定"
+
+msgid "MAC address"
+msgstr ""
 
 #, fuzzy
 msgid "MAC-address"
@@ -11005,6 +11058,10 @@ msgstr ""
 msgid "Memory index"
 msgstr ""
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "功能表"
 
@@ -11169,6 +11226,9 @@ msgstr ""
 
 msgid "Modulation"
 msgstr "調製"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "調製器"
@@ -11764,6 +11824,10 @@ msgstr ""
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 #, fuzzy
 msgid "Network menu"
 msgstr "網路設定"
@@ -11777,6 +11841,9 @@ msgstr ""
 
 msgid "Network scan"
 msgstr "網路掃描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "網路測驗"
@@ -11856,6 +11923,9 @@ msgid "Next"
 msgstr ""
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #, fuzzy
@@ -11945,9 +12015,6 @@ msgstr "新的Softcam已啟動 !\n"
 msgid "No channel"
 msgstr "改變"
 
-msgid "No clients streaming"
-msgstr ""
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11998,13 +12065,19 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr ""
 
 msgid "No network connection available."
 msgstr "無可用網路連接."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -12037,6 +12110,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "沒有待機"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -12077,6 +12153,9 @@ msgid ""
 msgstr ""
 "未找到可用的調諧器!\n"
 "請設定您的調諧器的設定，然後再啟動頻道掃描。."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr ""
@@ -12305,7 +12384,7 @@ msgstr "無視頻輸出"
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13709,12 +13788,6 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr "按OK來切換選擇."
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13807,9 +13880,6 @@ msgstr "按黃鍵來設定此介面為預設."
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
 
-msgid "Prev Image"
-msgstr ""
-
 #, fuzzy
 msgid "Prev quad PiP channel"
 msgstr "上一個頻道"
@@ -13823,6 +13893,12 @@ msgstr "DVD預覽功能表"
 #, fuzzy
 msgid "Previous"
 msgstr "預覽"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -14147,6 +14223,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -14315,10 +14394,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14932,6 +15018,9 @@ msgstr "限制 \"事件後\" 在一定時間內?"
 msgid "Restricted 18+"
 msgstr ""
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "從最後位置恢復"
 
@@ -14943,7 +15032,15 @@ msgid "Resuming playback"
 msgstr "恢復播放"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14958,9 +15055,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "正在安裝... 請稍候..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -15464,6 +15558,9 @@ msgstr ""
 msgid "Science & Tech"
 msgstr "Science & Technology"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
@@ -15748,6 +15845,9 @@ msgstr ""
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -15760,6 +15860,9 @@ msgstr ""
 #, fuzzy
 msgid "Select a path"
 msgstr "選擇一部電影"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 #, fuzzy
 msgid "Select a script to run:"
@@ -15798,9 +15901,6 @@ msgstr "選擇要錄製的頻道"
 
 msgid "Select channel to record from"
 msgstr "選擇要記錄的頻道"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr ""
@@ -15841,9 +15941,6 @@ msgid "Select if timeshift must continue when set to record."
 msgstr ""
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr ""
-
-msgid "Select information screen"
 msgstr ""
 
 msgid "Select input device"
@@ -15888,6 +15985,9 @@ msgstr ""
 #, fuzzy
 msgid "Select sort method:"
 msgstr "設定視頻模式"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr ""
@@ -17117,6 +17217,9 @@ msgstr ""
 msgid "Show columns"
 msgstr ""
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr ""
 
@@ -17136,6 +17239,9 @@ msgid "Show crypto icons"
 msgstr ""
 
 msgid "Show crypto info in infobar"
+msgstr ""
+
+msgid "Show debug log information"
 msgstr ""
 
 #, fuzzy
@@ -17189,14 +17295,14 @@ msgstr "選擇頻道時顯示事件進度"
 msgid "Show extensions..."
 msgstr ""
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 #, fuzzy
 msgid "Show favourites list"
 msgstr "取消喜愛頻道編輯"
 
 msgid "Show files backed up by default"
-msgstr ""
-
-msgid "Show geolocation information"
 msgstr ""
 
 #, fuzzy
@@ -17251,15 +17357,9 @@ msgstr "檢視圖示位置"
 msgid "Show job tasks in extensions"
 msgstr ""
 
-msgid "Show latest commit log information"
-msgstr ""
-
 #, fuzzy
 msgid "Show live TV when movie stopped"
 msgstr "當電影結束時"
-
-msgid "Show logs"
-msgstr ""
 
 #, fuzzy
 msgid "Show marked events"
@@ -17294,6 +17394,12 @@ msgstr ""
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -17306,6 +17412,9 @@ msgstr ""
 #, fuzzy
 msgid "Show next picture"
 msgstr "選擇圖片"
+
+msgid "Show next system information screen"
+msgstr ""
 
 #, fuzzy
 msgid "Show or hide the extended description, (skin dependent)."
@@ -17329,6 +17438,12 @@ msgstr "檢視Rotor移動"
 msgid "Show preview of current mode (*)."
 msgstr "當前標題屬性"
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -17342,7 +17457,13 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "選擇圖片"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
+msgstr ""
+
+msgid "Show receiver image(s)"
 msgstr ""
 
 msgid "Show record indicator"
@@ -17363,10 +17484,13 @@ msgstr "以列表形式顯示主功能表"
 msgid "Show screensaver"
 msgstr ""
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 #, fuzzy
@@ -17439,6 +17563,9 @@ msgstr ""
 #, fuzzy
 msgid "Show the DreamPlex player..."
 msgstr "廣播重播模式下..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr ""
@@ -17937,10 +18064,6 @@ msgstr ""
 msgid "Software Manager Settings"
 msgstr ""
 
-#, fuzzy
-msgid "Software Manager Setup"
-msgstr "軟體管理"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -18193,6 +18316,9 @@ msgstr ""
 msgid "Start"
 msgstr "開始"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 #, fuzzy
 msgid "Start Kodi"
 msgstr "開始"
@@ -18262,7 +18388,7 @@ msgstr "開始"
 msgid "Starts in a few seconds"
 msgstr "錄製後的空白時間"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -18306,6 +18432,9 @@ msgstr ""
 msgid "Stop"
 msgstr "停止"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr ""
 
@@ -18341,6 +18470,9 @@ msgstr "停止錄影"
 #, fuzzy
 msgid "Stop service on return to movie list"
 msgstr "是，返回電影列表"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "停止測驗"
@@ -18380,7 +18512,17 @@ msgstr ""
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 #, fuzzy
@@ -18407,15 +18549,19 @@ msgstr "碼流資訊"
 msgid "Streaming"
 msgstr "Gaming"
 
-msgid "Streaming Clients"
+msgid "Streaming Information Actions"
 msgstr ""
 
-msgid "Streaming Information Actions"
+msgid "Streaming Tuner Information"
 msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "更改錄影 (結束時間)"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -18756,6 +18902,9 @@ msgstr "移除插件"
 msgid "System Setup"
 msgstr "系統設定"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr ""
 
@@ -18769,9 +18918,6 @@ msgstr "系統:"
 #, fuzzy
 msgid "Systeminfo"
 msgstr "系統資訊"
-
-msgid "Systems"
-msgstr ""
 
 msgid "T2MI PID"
 msgstr ""
@@ -18968,6 +19114,9 @@ msgstr "測驗Dreambox網路配置."
 msgid "Test type"
 msgstr ""
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr ""
 
@@ -19009,15 +19158,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 #, fuzzy
@@ -19299,11 +19448,18 @@ msgstr "目前沒有異常."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "這裏沒有可用更新."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -19986,6 +20142,9 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr ""
 
@@ -20035,6 +20194,9 @@ msgid "Top and Bottom"
 msgstr ""
 
 msgid "Total"
+msgstr ""
+
+msgid "Total CPU benchmark"
 msgstr ""
 
 msgid "Total cards:"
@@ -20087,6 +20249,10 @@ msgid "Translation Information"
 msgstr "資訊"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -20206,6 +20372,10 @@ msgstr "調諧器插槽"
 msgid "Tuner information"
 msgstr ""
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 #, fuzzy
 msgid "Tuner is not supported"
 msgstr "不支援的"
@@ -20323,6 +20493,9 @@ msgstr "連接最多"
 
 msgid "Type"
 msgstr "類型"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "掃描類型"
@@ -20476,6 +20649,9 @@ msgstr ""
 msgid "Unknown recording event"
 msgstr "停止錄影"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "未知頻道"
@@ -20528,6 +20704,9 @@ msgid "Unzipping Image"
 msgstr ""
 
 msgid "Up"
+msgstr ""
+
+msgid "Up / Active"
 msgstr ""
 
 msgid "Up/Down button mode"
@@ -20749,6 +20928,9 @@ msgid "Use for load only x days in EPG"
 msgstr ""
 
 msgid "Use frequency or channel"
+msgstr ""
+
+msgid "Use geolocation to get WAN information"
 msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
@@ -21276,6 +21458,9 @@ msgstr "音量"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -21433,6 +21618,10 @@ msgstr "週末"
 msgid "Weekly"
 msgstr "每週"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr ""
 
@@ -21543,7 +21732,7 @@ msgstr ""
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24057,6 +24246,14 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "IP"
+#~ msgstr "IP:"
+
+#, fuzzy
+#~ msgid "Software Manager Setup"
+#~ msgstr "軟體管理"
 
 #~ msgid ""
 #~ "\n"

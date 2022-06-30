@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -884,6 +884,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1227,6 +1235,10 @@ msgid "%s Setup"
 msgstr "%s Ρυθμίσεις"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s πρόσθετες οθόνες"
 
@@ -1236,10 +1248,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1337,6 +1345,10 @@ msgstr "(%d εργασίες)"
 
 msgid "(1 job)"
 msgstr "(1 εργασία)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr ""
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2165,11 +2177,7 @@ msgstr "Περί..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
@@ -2234,9 +2242,6 @@ msgstr "Ενεργοποίηση τέλους χρονομετατόπισης �
 
 msgid "Active"
 msgstr "Ενεργό"
-
-msgid "Active Streaming Clients"
-msgstr ""
 
 msgid "Active clients"
 msgstr "Ενεργοί πελάτες"
@@ -2638,10 +2643,6 @@ msgstr "Η κενή ονομασία είναι άκυρη."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Υπήρξε ένα σφάλμα κατά τη λήψη της λίστας πακέτων. Δοκιμάστε ξανά."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Προέκυψε άγνωστο σφάλμα!"
@@ -3321,6 +3322,13 @@ msgstr "Βέλγιο"
 msgid "Belize"
 msgstr "Μπελίζ"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3468,7 +3476,10 @@ msgstr "Φωτεινότητα (Αναμονή)"
 msgid "British Indian Ocean Territory"
 msgstr "Βρετανική Περιοχή Ινδικού Ωκεανού"
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3499,7 +3510,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3681,7 +3693,14 @@ msgstr "Κύριο μενού ανάθεσης CI"
 msgid "CPU"
 msgstr "Επεξεργαστής"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
@@ -3689,6 +3708,9 @@ msgstr ""
 
 msgid "CPU priority for script execution"
 msgstr "Προτεραιότητα CPU για εκτέλεση script"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr ""
@@ -3722,6 +3744,12 @@ msgstr ""
 
 msgid "Calculate file checksums"
 msgstr "Υπολογισμός συνόλου ελέγχου αρχείου"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Ο υπολογισμός ολοκληρώθηκε"
@@ -4480,10 +4508,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Τύπος εντολής"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5113,15 +5144,15 @@ msgstr "Χώρα για πληροφορίες σήμανσης προγραμμ
 msgid "Country for EPG event rating information"
 msgstr "Χώρα για πληροφορίες σήμανσης προγραμμάτων EPG"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Καταγραφές Crash"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Εμφάνιση crash σε σφάλμα θέματος για εκσφαλμάτωση ;"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Create"
 msgstr "Δημιουργία"
@@ -5210,6 +5241,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 msgid "Current Affairs"
@@ -5359,6 +5393,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DVD ΔΙΠΛΗΣ ΣΤΡΩΣΗΣ"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "Καθυστέρηση DVB CI"
 
@@ -5428,6 +5465,10 @@ msgstr "Στυλ ημερομηνίας"
 
 msgid "Date/time input"
 msgstr "Εισαγωγή ημερομηνίας/ώρας"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Ημέρα Η Μην"
@@ -5576,12 +5617,24 @@ msgstr "Όνομα ημέρας Έτος/ΜΜ/ΗΗ"
 msgid "Deactivate"
 msgstr "Απενεργοποίηση"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Καταγραφές απόσφαλμάτωσης"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Debug log time format *"
 msgstr ""
@@ -5784,7 +5837,7 @@ msgstr "Διαγραφή χρονοδιακόπτη"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -5820,7 +5873,7 @@ msgstr "Διαγραφή φακέλου ή καταλόγου (και όλων �
 msgid "Delete folder"
 msgstr "Διαγραφή φακέλου"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -5914,15 +5967,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6120,19 +6164,7 @@ msgstr "Οθόνη και διεπαφή χρήστη"
 msgid "Display message before playing next movie"
 msgstr "Εμφάνιση μηνύματος πριν από την αναπαραγωγή της επόμενης ταινίας"
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6154,6 +6186,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6323,15 +6359,15 @@ msgstr "Θέλετε να γίνει εγγραφή αυτής της συλλο
 msgid "Do you want to continue?"
 msgstr "Θέλετε να συνεχίσετε;"
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Θέλετε να διαγραφούν όλα τα επιλεγμένα αρχεία:\n"
 "(επιλέξτε 'Όχι' για να διαγραφεί μόνο το επιλεγμένο αρχείο.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Θέλετε να διαγραφούν οι παλιές ρυθμίσεις στο /etc/enigma2 πρώτα;"
@@ -6458,6 +6494,9 @@ msgstr[1] "Τέλος - Εγκαταστάθηκαν, αναβαθμίστηκα
 msgid "Down"
 msgstr "Κάτω"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Λήψη προσθέτων"
 
@@ -6511,12 +6550,6 @@ msgid "Drivers"
 msgstr "οδηγοί"
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -6927,6 +6960,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ενεργοποιήστε αυτή τη ρύθμιση εάν η κεραία σας απαιτεί πρόσθετη ισχύ"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Αν ενεργοποιηθεί θα εμφανίζονται όλες οι επιλογές αληθές/ψευδές, ναι/όχι, ανοικτό/κλειστό ενεργό/ανενεργό ως γραφικοί διακόπτες."
 
@@ -7082,9 +7118,6 @@ msgstr "Μετάβαση στη λειτουργία πολλαπλής επιλ
 msgid "Enter number to jump to channel"
 msgstr "εισαγωγή αριθμού για μετάβαση στο κανάλι."
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr "Εισαγωγή σταθερού κωδικού PIN"
 
@@ -7152,11 +7185,11 @@ msgid "Error"
 msgstr "Σφάλμα"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7172,7 +7205,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 msgid "Error Download Setting"
@@ -7603,6 +7640,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -7867,6 +7907,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Μικροκίνηση"
 
@@ -8072,6 +8115,9 @@ msgstr "Συχνότητα: "
 msgid "Frequency bands"
 msgstr "Μπάντες συχνότητας"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Μέγεθος βήματος συχνότητας στην ανίχνευση(khz)"
 
@@ -8230,6 +8276,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -8824,9 +8874,6 @@ msgstr "Λειτουργία πλήκτρου INFO"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "Διεύθυνση IP"
 
@@ -8835,6 +8882,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "Εγκατάσταση IPK"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "Το αρχείο ISO είναι πολύ μεγάλο για αυτό το σύστημα αρχείων!"
@@ -9145,7 +9195,7 @@ msgstr "Συμπερίληψη του ECM στις ροές http"
 msgid "Include EIT in http streams"
 msgstr "Συμπερίληψη του ΕΙΤ στις ροές http"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 #, fuzzy
@@ -9318,6 +9368,9 @@ msgstr "Εγκατάσταση"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "Εγκατάσταση του '%s' και ενεργοποίηση αυτής της λειτουργίας"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Αποτυχία εγκατάστασης !!"
@@ -10122,11 +10175,19 @@ msgstr "Κλείδ:"
 msgid "Log"
 msgstr "Καταγραφή"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Διαχείριση καταγραφών"
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10138,10 +10199,6 @@ msgstr "Αποτελέσματα καταγραφών στον σκληρό δί
 msgid "LogManager"
 msgstr "Διαχείριση καταγραφών"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr "Σύνδεση"
 
@@ -10150,9 +10207,6 @@ msgstr "Αποτυχία σύνδεσης"
 
 msgid "Login to IceTV server"
 msgstr "Σύνδεση στον διακομιστή IceTV"
-
-msgid "Logs"
-msgstr ""
 
 msgid "Logs Settings"
 msgstr "Ρυθμίσεις καταγραφολογίου"
@@ -10222,14 +10276,14 @@ msgstr "Λουξεμβουργιανά"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Ρυθμίσεις διεύθυνσης MAC"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "Διεύθυνση MAC"
@@ -10516,6 +10570,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Θέση στη μνήμη"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Μενού"
 
@@ -10673,6 +10731,9 @@ msgstr "Τροποποιήθηκε:"
 
 msgid "Modulation"
 msgstr "Διαμόρφωση"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Διαμορφωτής"
@@ -11229,6 +11290,10 @@ msgstr "Διαμόρφωση δικτύου..."
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Μενού δικτύου"
 
@@ -11240,6 +11305,9 @@ msgstr "Όνομα δικτύου (SSID)"
 
 msgid "Network scan"
 msgstr "Ανίχνευση δικτύου"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Έλεγχος δικτύου"
@@ -11313,6 +11381,9 @@ msgid "Next"
 msgstr "Επόμενο"
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #, fuzzy
@@ -11396,9 +11467,6 @@ msgstr "Δεν έχει εισαχθεί κάρτα!"
 msgid "No channel"
 msgstr "Χωρίς κανάλι"
 
-msgid "No clients streaming"
-msgstr "Χωρίς πελάτες ροής"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11445,13 +11513,19 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Δεν έχουν παραμετροποιηθεί οι υπολογισμοί των ψηφιακών υπογραφών"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
 
 msgid "No network connection available."
 msgstr "Δεν υπάρχει διαθέσιμη σύνδεση δικτύου."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -11483,6 +11557,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Χωρίς αναμονή"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11525,6 +11602,9 @@ msgid ""
 msgstr ""
 "Δεν υπάρχει ενεργοποιημένο tuner!\n"
 "Ρυθμίστε το tuner πριν την ανίχνευση υπηρεσιών."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Δεν απαιτείται ενημέρωση!"
@@ -11744,7 +11824,7 @@ msgstr "Αριθμός γραμμών προς εμφάνιση"
 msgid "Number or SMS style data entry"
 msgstr "Στυλ εισόδου ως αριθμός ή SMS"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13059,12 +13139,6 @@ msgstr "Προσχολικά"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Πιέστε '0' για εναλλαγή λειτουργίας PiP"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13152,9 +13226,6 @@ msgstr "Πιέστε το κίτρινο για ορισμό αυτής της �
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Πιέζοντας το πλήκτρο πανικού θα γίνει μετάβαση σε αυτό το νούμερο καναλιού στο πρώτο σας μπουκέτο."
 
-msgid "Prev Image"
-msgstr ""
-
 msgid "Prev quad PiP channel"
 msgstr "Προηγούμενο κανάλι στο τετραπλό PiP"
 
@@ -13166,6 +13237,12 @@ msgstr "Μενού προεπισκόπησης"
 
 msgid "Previous"
 msgstr "Προηγούμενο"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -13471,6 +13548,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -13631,10 +13711,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14190,6 +14277,9 @@ msgstr "Περιορισμός της ενεργής κλίμακας χρόνο
 msgid "Restricted 18+"
 msgstr "Περιορισμένο 18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Συνέχιση από το τελευταίο σημείο"
 
@@ -14201,7 +14291,15 @@ msgid "Resuming playback"
 msgstr "Επανασυνέχιση αναπαραγωγής"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14214,9 +14312,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Ανάκτηση θέσεων image - Παρακαλώ περιμένετε..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -14696,6 +14791,9 @@ msgstr "Επιστήμη"
 msgid "Science & Tech"
 msgstr "Επιστήμη & τεχνολογία"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "Στιγμιότυπο του LCD στο /tmp"
 
@@ -14959,6 +15057,9 @@ msgstr "Επιλογή μπουκέτου"
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -14970,6 +15071,9 @@ msgstr "Επιλογή προσαρμογέα δικτύου"
 
 msgid "Select a path"
 msgstr "Επιλογή διαδρομής"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Επιλογή ενός script προς εκτέλεση:"
@@ -15004,9 +15108,6 @@ msgstr "Επιλογή ήχου καναλιού"
 
 msgid "Select channel to record from"
 msgstr "Επιλογή καναλιού προς εγγραφή"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Επιλογή προορισμού αντιγραφής για το:"
@@ -15047,9 +15148,6 @@ msgstr "Επιλέξτε εάν η χρονομετατόπιση θα πρέπ�
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Επιλέξτε εάν θέλετε να ενεργοποιηθεί η λειτουργία υπο-υπηρεσιών."
 
-msgid "Select information screen"
-msgstr ""
-
 msgid "Select input device"
 msgstr "Επιλογή συσκευής εισόδου"
 
@@ -15088,6 +15186,9 @@ msgstr ""
 
 msgid "Select sort method:"
 msgstr "Επιλογή τρόπου ταξινόμησης:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Επιλογή φάκελου προορισμού"
@@ -16228,6 +16329,9 @@ msgstr "Εμφάνιση θέσεων στα κεφάλαια για υποστ�
 msgid "Show columns"
 msgstr "Εμφάνιση στηλών"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Εμφάνιση περιεχομένων αρχείου ipk"
 
@@ -16248,6 +16352,9 @@ msgstr "Εμφάνιση κρυπτοεικονιδίων"
 
 msgid "Show crypto info in infobar"
 msgstr "Εμφάνιση πληροφοριών κρυπτοποίησης στη μπάρα πληροφοριών"
+
+msgid "Show debug log information"
+msgstr ""
 
 #, fuzzy
 msgid "Show default after description"
@@ -16296,14 +16403,14 @@ msgstr "Εμφάνιση επιλογής επεκτάσεων"
 msgid "Show extensions..."
 msgstr "Εμφάνιση επεκτάσεων..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Εμφάνιση λίστας αγαπημένων"
 
 msgid "Show files backed up by default"
 msgstr "Εμφάνιση αρχείων εφεδρείας από προεπιλογή"
-
-msgid "Show geolocation information"
-msgstr ""
 
 msgid "Show graphical multi EPG"
 msgstr "Εμφάνιση γραφικού πολλαπλού EPG"
@@ -16350,14 +16457,8 @@ msgstr "Εμφάνιση λογότυπων (picons) στη μπάρα πληρ�
 msgid "Show job tasks in extensions"
 msgstr "Εμφάνιση εργασιών στις προεκτάσεις"
 
-msgid "Show latest commit log information"
-msgstr ""
-
 msgid "Show live TV when movie stopped"
 msgstr "Εμφάνιση ζωντανής TV όταν μία ταινία σταματήσει"
-
-msgid "Show logs"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Εμφάνιση μαρκαρισμένων προγραμμάτων"
@@ -16389,6 +16490,12 @@ msgstr "Εμφάνιση EPG πολλαπλών καναλιών"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -16400,6 +16507,9 @@ msgstr ""
 
 msgid "Show next picture"
 msgstr "Εμφάνιση επόμενης εικόνας"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Εμφάνιση ή απόκρυψη της εκτεταμένης περιγραφής, (εξαρτάται από το θέμα)."
@@ -16419,6 +16529,12 @@ msgstr "Εμφάνιση κίνησης του μοτέρ"
 msgid "Show preview of current mode (*)."
 msgstr "Εμφάνιση προεπισκόπησης της τρέχουσας λειτουργίας (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -16431,8 +16547,14 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Εμφάνιση προηγούμενης εικόνας"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Εμφάνιση γρήγορου μενού..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Εμφάνιση εικονιδίου εγγραφής"
@@ -16450,10 +16572,13 @@ msgstr "Εμφάνιση προστασίας οθόνης"
 msgid "Show screensaver"
 msgstr "Εμφάνιση προστασίας οθόνης"
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -16516,6 +16641,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Εμφάνιση του αναπαραγωγού DreamPlex..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr ""
@@ -16981,9 +17109,6 @@ msgstr "Πληροφορίες διαχείρισης λογισμικού"
 msgid "Software Manager Settings"
 msgstr "Ρυθμίσεις διαχείρισης λογισμικού"
 
-msgid "Software Manager Setup"
-msgstr "Ρυθμίσεις διαχείρισης λογισμικού"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17223,6 +17348,9 @@ msgstr "Αναμονή χωρίς σβήσιμο της TV"
 msgid "Start"
 msgstr "Εκκίνηση"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Εκκίνηση του Kodi"
 
@@ -17284,7 +17412,7 @@ msgstr "Έναρξη από το"
 msgid "Starts in a few seconds"
 msgstr "Ξεκινά σε λίγα δευτερόλεπτα"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -17327,6 +17455,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Σταμάτημα"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Τερματισμός PiP"
 
@@ -17359,6 +17490,9 @@ msgstr "Διακοπή εγγραφής τώρα"
 
 msgid "Stop service on return to movie list"
 msgstr "Σταμάτημα υπηρεσίας κατά την επιστροφή στη λίστα ταινιών"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Τερματισμός ελέγχου"
@@ -17396,7 +17530,17 @@ msgstr "Σταμάτημα softcam"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Διακοπή της χρονομετατόπισης εάν βρίσκεται σε εξέλιξη μία εγγραφή. (συνίσταται για τα usb στικ)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 msgid "Storage Devices"
@@ -17420,14 +17564,18 @@ msgstr "Ροή-tv"
 msgid "Streaming"
 msgstr "Γίνεται ροή"
 
-msgid "Streaming Clients"
-msgstr "Πληροφορίες πελατών ροής"
-
 msgid "Streaming Information Actions"
+msgstr ""
+
+msgid "Streaming Tuner Information"
 msgstr ""
 
 msgid "Streaming recording ended"
 msgstr "Η εγγραφή της ροής τελείωσε"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17747,6 +17895,9 @@ msgstr "πρόσθετα συστήματος"
 msgid "System Setup"
 msgstr "Ρυθμίσεις συστήματος"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Ελεύθερος χώρος διαμερίσματος συστήματος:"
 
@@ -17758,9 +17909,6 @@ msgstr "Σύστημα: "
 
 msgid "Systeminfo"
 msgstr "Πληροφορίες συστήματος"
-
-msgid "Systems"
-msgstr ""
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17952,6 +18100,9 @@ msgstr "Έλεγχος των ρυθμίσεων δικτύου του %s %s σ�
 msgid "Test type"
 msgstr "Τύπος τεστ"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Οθόνες δοκιμών"
 
@@ -17991,15 +18142,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Ο %s %s σας αποθηκεύει το αποθηκευμένο EPG κάθε (ώρες)."
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 msgid ""
@@ -18287,11 +18438,18 @@ msgstr "Δεν υπάρχουν ενέργειες σε εκκρεμότητα."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -18964,6 +19122,9 @@ msgstr "Δημιουργία σημειωτή αποκοπής στην τρέχ
 msgid "Toggle aspect ratio..."
 msgstr "Εναλλαγή λόγου πλευρών..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Εναλλαγή μεταξύ λίστας μπουκέτων/epg"
 
@@ -19016,6 +19177,9 @@ msgstr "Επάνω και κάτω"
 msgid "Total"
 msgstr "Σύνολο"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Σύνολο καρτών:"
 
@@ -19063,6 +19227,10 @@ msgid "Translation Information"
 msgstr "Πληροφορίες μετάφρασης"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -19175,6 +19343,10 @@ msgstr "Ρυθμίσεις tuner"
 msgid "Tuner information"
 msgstr ""
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Μη υποστηριζόμενο tuner"
 
@@ -19284,6 +19456,9 @@ msgstr "Δύο γραμμές"
 
 msgid "Type"
 msgstr "Τύπος"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Τύπος ανίχνευσης"
@@ -19427,6 +19602,9 @@ msgstr "Άγνωστη ομάδα: %d"
 msgid "Unknown recording event"
 msgstr "Άγνωστο πρόγραμμα προς εγγραφή"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Άγνωστος χρήστης: %d"
@@ -19479,6 +19657,9 @@ msgstr "Αποσυμπίεση Image"
 
 msgid "Up"
 msgstr "Επάνω"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Λειτουργία πλήκτρου επάνω/κάτω"
@@ -19691,6 +19872,9 @@ msgstr "Χρήση για φόρτωση μόνο x ημερών στο EPG"
 
 msgid "Use frequency or channel"
 msgstr "Χρήση συχνότητας ή καναλιού"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
@@ -20183,6 +20367,9 @@ msgstr "Αύξηση έντασης ήχου"
 msgid "W"
 msgstr "Δ"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -20333,6 +20520,10 @@ msgstr "Σαββατοκύριακο"
 msgid "Weekly"
 msgstr "Εβδομαδιαία"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "Καλωσορίσατε στο IceTV"
 
@@ -20443,7 +20634,7 @@ msgstr "Όταν είναι ενεργό, τα ΕΙΤ δεδομένα θα πε
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Όταν είναι ενεργό, το Enigma2 θα φορτώσει τα μη συνδεδεμένα μπουκέτα. Αυτό σημαίνει ότι τα διαθέσιμα μπουκέτα που δεν συμπεριλαμβάνονται στα αρχεία bouquets.tv ή bouquets.radio, θα φορτωθούν επίσης. Αυτό σας επιτρέπει, για παράδειγμα, να διατηρήσετε τα δικά σας μπουκέτα χρήστη, όταν οι εγκατεστημένες ρυθμίσεις αναβαθμιστούν"
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -22892,6 +23083,21 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Χωρίς πελάτες ροής"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Πληροφορίες πελατών ροής"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Ρυθμίσεις διαχείρισης λογισμικού"
 
 #~ msgid ""
 #~ "\n"

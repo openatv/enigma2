@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -887,6 +887,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1212,6 +1220,10 @@ msgid "%s Setup"
 msgstr "%sCài đặt"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s màn hình bổ sung"
 
@@ -1221,10 +1233,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1322,6 +1330,10 @@ msgstr "(%d công việc)"
 
 msgid "(1 job)"
 msgstr "(1 công việc)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr ""
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2163,11 +2175,7 @@ msgstr "Thông tin phần mền..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
@@ -2233,9 +2241,6 @@ msgstr "Kích hoạt kết thúc timeshift và tạm dừng"
 
 msgid "Active"
 msgstr "Hoạt động"
-
-msgid "Active Streaming Clients"
-msgstr ""
 
 msgid "Active clients"
 msgstr "Khách hàng tích cực"
@@ -2640,10 +2645,6 @@ msgstr "Một tên tệp trống là bất hợp pháp."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Đã xảy ra lỗi trong khi tải xuống danh sách gói. Vui lòng thử lại."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Một lỗi không xác định đã xảy ra!"
@@ -3328,6 +3329,13 @@ msgstr "Nước Bỉ"
 msgid "Belize"
 msgstr "Belize"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3475,7 +3483,10 @@ msgstr "Độ sáng (Chế độ chờ)"
 msgid "British Indian Ocean Territory"
 msgstr "Lãnh thổ Ấn Độ Dương thuộc Anh"
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3506,7 +3517,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3687,7 +3699,14 @@ msgstr "ChọnManyMothy"
 msgid "CPU"
 msgstr "CPU"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
@@ -3695,6 +3714,9 @@ msgstr ""
 
 msgid "CPU priority for script execution"
 msgstr "CPU ưu tiên thực thi tập lệnh"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr ""
@@ -3728,6 +3750,12 @@ msgstr ""
 
 msgid "Calculate file checksums"
 msgstr "Tính toán tổng kiểm tra"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Tính toán hoàn tất"
@@ -4496,10 +4524,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Loại lệnh"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5134,15 +5165,15 @@ msgstr "Thông tin về phần mềm"
 msgid "Country for EPG event rating information"
 msgstr "Tham khảo bảng thông số thiết bị SCR của bạn để biết thông tin này."
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Nhật ký sự cố"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Tai nạn tại lỗi da vì lý do gỡ lỗi?"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Create"
 msgstr "Tạo"
@@ -5232,6 +5263,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
@@ -5380,6 +5414,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DVD DUAL LAYER"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "Sự chậm trễ của DVB CI"
 
@@ -5450,6 +5487,10 @@ msgstr "Phong cách ngày"
 
 msgid "Date/time input"
 msgstr "Ngày / thời gian đầu vào"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Ngày D Môn"
@@ -5598,12 +5639,24 @@ msgstr "Tên ngày MM / DD / Năm"
 msgid "Deactivate"
 msgstr "Vô hiệu hóa"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Gỡ lỗi để tập tin"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Debug log time format *"
 msgstr ""
@@ -5806,7 +5859,7 @@ msgstr "Xóa bộ đếm thời gian"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -5842,7 +5895,7 @@ msgstr "Xóa tập tin hoặc thư mục (và tất cả nội dung của nó)"
 msgid "Delete folder"
 msgstr "Xóa thư mục"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -5936,15 +5989,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6147,19 +6191,7 @@ msgstr "Giao diện hiển thị và người dùng"
 msgid "Display message before playing next movie"
 msgstr "Hiển thị thông báo trước khi phát phim tiếp theo"
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6181,6 +6213,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6355,15 +6391,15 @@ msgstr "Bạn có muốn ghi bộ sưu tập này vào phương tiện DVD khôn
 msgid "Do you want to continue?"
 msgstr "Bạn có muốn tiếp tục?"
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Bạn có muốn xóa tất cả các tập tin đã chọn:\n"
 "(chọn 'Không' để chỉ xóa tệp hiện được chọn.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Bạn có muốn xóa cài đặt cũ trong / etc / enigma2 trước không?"
@@ -6489,6 +6525,9 @@ msgstr[0] "Xong - Đã cài đặt, nâng cấp hoặc gỡ bỏ gói%d (%s)"
 msgid "Down"
 msgstr "Đi xuống danh sách"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Tải xuống plugin"
 
@@ -6542,12 +6581,6 @@ msgid "Drivers"
 msgstr "lái xe"
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -6968,6 +7001,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Kích hoạt cài đặt này nếu hệ thống trên không của bạn cần nguồn điện"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Bật để hiển thị tất cả đúng / sai, có / không, bật / tắt và bật / tắt tùy chọn thiết lập dưới dạng chuyển đổi đồ họa."
 
@@ -7121,9 +7157,6 @@ msgstr "Vào chế độ chọn nhiều tập tin"
 msgid "Enter number to jump to channel"
 msgstr "nhập số để nhảy đến kênh."
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr "Nhập mã PIN liên tục"
 
@@ -7192,11 +7225,11 @@ msgid "Error"
 msgstr "Lỗi"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7212,7 +7245,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 msgid "Error Download Setting"
@@ -7647,6 +7684,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -7912,6 +7952,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Phong trào tốt"
 
@@ -8119,6 +8162,9 @@ msgstr "Tần số"
 msgid "Frequency bands"
 msgstr "Dải tần"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Kích thước bước quét tần số (khz)"
 
@@ -8283,6 +8329,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -8882,9 +8932,6 @@ msgstr "Chế độ nút INFO"
 msgid "INS"
 msgstr "Trong"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "Địa chỉ IP"
 
@@ -8893,6 +8940,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "Trình cài đặt IPK"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "Tập tin ISO quá lớn cho hệ thống tập tin này!"
@@ -9201,7 +9251,7 @@ msgstr "Bao gồm ECM trong luồng http"
 msgid "Include EIT in http streams"
 msgstr "Bao gồm thuế TNDN trong các luồng http"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 #, fuzzy
@@ -9375,6 +9425,9 @@ msgstr "Ráp vào"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "Cài đặt '% s' và kích hoạt thao tác này"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Cài đặt không thành công !!"
@@ -10179,11 +10232,19 @@ msgstr "Khóa:"
 msgid "Log"
 msgstr "Đăng nhập"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Trình quản lý nhật ký"
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10195,10 +10256,6 @@ msgstr "Đăng nhập kết quả vào ổ cứng"
 msgid "LogManager"
 msgstr "Trình quản lý log"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr ""
 
@@ -10207,9 +10264,6 @@ msgid "Login failure"
 msgstr "Núi thất bại"
 
 msgid "Login to IceTV server"
-msgstr ""
-
-msgid "Logs"
 msgstr ""
 
 msgid "Logs Settings"
@@ -10280,14 +10334,14 @@ msgstr "Tiếng Luxembourg"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Cài đặt địa chỉ MAC"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "Địa chỉ MAC"
@@ -10576,6 +10630,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Chỉ số bộ nhớ"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Menu Chính"
 
@@ -10734,6 +10792,9 @@ msgstr "Đã sửa đổi:"
 
 msgid "Modulation"
 msgstr "Điều chế"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Bộ điều biến"
@@ -11297,6 +11358,10 @@ msgstr "Cấu hình mạng..."
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Menu mạng"
 
@@ -11308,6 +11373,9 @@ msgstr "Tên Mạng (SSID)"
 
 msgid "Network scan"
 msgstr "Quét mạng"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Kiểm tra mạng"
@@ -11384,6 +11452,9 @@ msgid "Next"
 msgstr "Kế tiếp"
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #, fuzzy
@@ -11468,9 +11539,6 @@ msgstr "Không có thẻ chèn!"
 msgid "No channel"
 msgstr "Không có kênh"
 
-msgid "No clients streaming"
-msgstr "Không có khách hàng phát trực tuyến"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11519,13 +11587,19 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Không có tính toán băm được cấu hình"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Không tìm thấy tên địa điểm phù hợp"
 
 msgid "No network connection available."
 msgstr "Không có kết nối mạng có sẵn."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -11557,6 +11631,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Không có chế độ chờ"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11598,6 +11675,9 @@ msgid ""
 msgstr ""
 "Không có bộ chỉnh được kích hoạt!\n"
 "Vui lòng thiết lập cài đặt bộ chỉnh tần số trước khi bạn bắt đầu quét dịch vụ."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Không cần cập nhật!"
@@ -11818,7 +11898,7 @@ msgstr "Số lượng hàng để hiển thị"
 msgid "Number or SMS style data entry"
 msgstr "Nhập dữ liệu kiểu số hoặc SMS"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13137,12 +13217,6 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr "Nhấn '0' để chuyển chế độ PiP"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13230,9 +13304,6 @@ msgstr "Nhấn màu vàng để đặt giao diện này làm giao diện mặc �
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Nhấn nút will zap  sẽ đưa bạn đến kênh này trong gói kênh đầu tiên của bạn."
 
-msgid "Prev Image"
-msgstr ""
-
 msgid "Prev quad PiP channel"
 msgstr "Trước kênh bốn PiP"
 
@@ -13244,6 +13315,12 @@ msgstr "Menu xem trước"
 
 msgid "Previous"
 msgstr "Trước"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -13554,6 +13631,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -13714,10 +13794,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14285,6 +14372,9 @@ msgstr "Hạn chế phạm vi thời gian hoạt động"
 msgid "Restricted 18+"
 msgstr ""
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Tiếp tục từ vị trí cuối cùng"
 
@@ -14296,7 +14386,15 @@ msgid "Resuming playback"
 msgstr "Tiếp tục phát lại"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14309,9 +14407,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Lấy các khe hình ảnh - Vui lòng đợi .."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -14790,6 +14885,9 @@ msgstr ""
 msgid "Science & Tech"
 msgstr ""
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "Ảnh chụp màn hình LCD trong / tmp"
 
@@ -15053,6 +15151,9 @@ msgstr "Chọn một gói kênh"
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -15064,6 +15165,9 @@ msgstr "Chọn bộ điều hợp mạng"
 
 msgid "Select a path"
 msgstr "Chọn đường dẫn"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Chọn một tập lệnh để chạy:"
@@ -15098,9 +15202,6 @@ msgstr "Chọn kênh audio"
 
 msgid "Select channel to record from"
 msgstr "Chọn kênh để ghi từ"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Chọn đích sao chép cho:"
@@ -15141,9 +15242,6 @@ msgstr "Chọn nếu timeshift phải tiếp tục khi được đặt thành gh
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Chọn nếu bạn muốn chế độ Dịch vụ phụ được kích hoạt."
 
-msgid "Select information screen"
-msgstr ""
-
 msgid "Select input device"
 msgstr "Chọn thiết bị đầu vào"
 
@@ -15182,6 +15280,9 @@ msgstr ""
 
 msgid "Select sort method:"
 msgstr "Chọn phương pháp sắp xếp:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Chọn thư mục đích"
@@ -16325,6 +16426,9 @@ msgstr "Hiển thị vị trí chương cho các tệp video được hỗ trợ
 msgid "Show columns"
 msgstr "Hiển thị cột"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Hiển thị nội dung của tập tin ipk"
 
@@ -16345,6 +16449,9 @@ msgstr "Hiển thị biểu tượng  điện tử"
 
 msgid "Show crypto info in infobar"
 msgstr "Hiển thị thông tin về t điện tử trong infobar"
+
+msgid "Show debug log information"
+msgstr ""
 
 #, fuzzy
 msgid "Show default after description"
@@ -16394,14 +16501,14 @@ msgstr "Hiển thị lựa chọn mở rộng"
 msgid "Show extensions..."
 msgstr "Hiển thị tiện ích mở rộng ..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Hiển thị danh sách yêu thích"
 
 msgid "Show files backed up by default"
 msgstr "Hiển thị tập tin được sao lưu theo mặc định"
-
-msgid "Show geolocation information"
-msgstr ""
 
 msgid "Show graphical multi EPG"
 msgstr "Hiển thị đồ họa đa EPG"
@@ -16448,14 +16555,8 @@ msgstr "Hiển thị picons infobar"
 msgid "Show job tasks in extensions"
 msgstr "Hiển thị nhiệm vụ công việc trong phần mở rộng"
 
-msgid "Show latest commit log information"
-msgstr ""
-
 msgid "Show live TV when movie stopped"
 msgstr "Hiển thị truyền hình trực tiếp khi phim dừng"
-
-msgid "Show logs"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Hiển thị các sự kiện được đánh dấu"
@@ -16487,6 +16588,12 @@ msgstr "Hiển thị EPG đa kênh"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -16498,6 +16605,9 @@ msgstr ""
 
 msgid "Show next picture"
 msgstr "Hiển thị hình ảnh tiếp theo"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Hiển thị hoặc ẩn mô tả mở rộng, (phụ thuộc vào da)."
@@ -16517,6 +16627,12 @@ msgstr "Hiển thị chuyển động định vị"
 msgid "Show preview of current mode (*)."
 msgstr "Hiển thị xem trước của chế độ hiện tại (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -16529,8 +16645,14 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Hiển thị hình ảnh trước đó"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Hiển thị quickmenu ..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Hiển thị chỉ số hồ sơ"
@@ -16548,10 +16670,13 @@ msgstr "Hiển thị bảo vệ màn hình"
 msgid "Show screensaver"
 msgstr "Hiển thị bảo vệ màn hình"
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -16614,6 +16739,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Hiển thị trình phát DreamPlex ..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr ""
@@ -17079,9 +17207,6 @@ msgstr "Thông tin về phần mềm"
 msgid "Software Manager Settings"
 msgstr "Thiết lập trình quản lý phần mềm"
 
-msgid "Software Manager Setup"
-msgstr "Cài đặt trình quản lý phần mềm"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17323,6 +17448,9 @@ msgstr "Chờ mà không tắt TV"
 msgid "Start"
 msgstr "Khởi động"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Khởi động Kodi"
 
@@ -17385,7 +17513,7 @@ msgstr "Bắt đầu vào"
 msgid "Starts in a few seconds"
 msgstr "Bắt đầu giải mã ngoại tuyến"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -17428,6 +17556,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Dừng lại"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Dừng PiP"
 
@@ -17460,6 +17591,9 @@ msgstr "Dừng ghi âm ngay"
 
 msgid "Stop service on return to movie list"
 msgstr "Dừng dịch vụ khi quay lại danh sách phim"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Dừng kiểm tra"
@@ -17498,7 +17632,17 @@ msgstr "Dừng Softcam"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Mốc timeshift trong khi ghi âm?"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 msgid "Storage Devices"
@@ -17522,15 +17666,19 @@ msgstr "Truyền hình"
 msgid "Streaming"
 msgstr "Truyền phát"
 
-msgid "Streaming Clients"
-msgstr "Truyền thông tin khách hàng"
-
 msgid "Streaming Information Actions"
+msgstr ""
+
+msgid "Streaming Tuner Information"
 msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Thay đổi ghi âm (thời gian kết thúc)"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17850,6 +17998,9 @@ msgstr "hệ thống"
 msgid "System Setup"
 msgstr "Thiết lập hệ thống"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Phân vùng hệ thống không gian trống:"
 
@@ -17861,9 +18012,6 @@ msgstr "Hệ thống: "
 
 msgid "Systeminfo"
 msgstr "Thông tin hệ thống"
-
-msgid "Systems"
-msgstr ""
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -18054,6 +18202,9 @@ msgstr "Kiểm tra cấu hình mạng của % s% s của bạn."
 msgid "Test type"
 msgstr "Loại thử nghiệm"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Kiểm tra"
 
@@ -18093,15 +18244,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Lưu% s% s trữ dữ liệu EPG mỗi (giờ)."
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 msgid ""
@@ -18387,11 +18538,18 @@ msgstr "Hiện tại không có hành động nổi bật."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Không có cập nhật có sẵn."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -19070,6 +19228,9 @@ msgstr "Chuyển đổi dấu cắt ở vị trí hiện tại"
 msgid "Toggle aspect ratio..."
 msgstr "Chuyển đổi tỷ lệ khung hình ..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Chuyển đổi giữa các danh sách bó / epg"
 
@@ -19122,6 +19283,9 @@ msgstr "Trên và dưới"
 msgid "Total"
 msgstr "Toàn bộ"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Tổng số thẻ:"
 
@@ -19169,6 +19333,10 @@ msgid "Translation Information"
 msgstr "Thông tin dịch thuật"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -19282,6 +19450,10 @@ msgstr "Cài đặt bộ chỉnh"
 msgid "Tuner information"
 msgstr ""
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Bộ chỉnh tần số không được hỗ trợ"
 
@@ -19391,6 +19563,9 @@ msgstr "Hai dòng"
 
 msgid "Type"
 msgstr "Kiểu"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Loại quét"
@@ -19537,6 +19712,9 @@ msgstr "Nhóm không xác định:%d"
 msgid "Unknown recording event"
 msgstr "Dừng ghi âm ngay"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Người dùng không xác định:%d"
@@ -19589,6 +19767,9 @@ msgstr "Giải nén hình ảnh"
 
 msgid "Up"
 msgstr "Lên"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Chế độ nút Lên / Xuống"
@@ -19802,6 +19983,9 @@ msgstr "Chỉ sử dụng để tải x ngày trong EPG"
 
 msgid "Use frequency or channel"
 msgstr "Sử dụng tần số hoặc kênh"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
@@ -20296,6 +20480,9 @@ msgstr "Tăng âm lượng"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -20448,6 +20635,10 @@ msgstr "Ngày cuối tuần"
 msgid "Weekly"
 msgstr "Hàng tuần"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr ""
 
@@ -20559,7 +20750,7 @@ msgstr "Khi được bật, dữ liệu EIT sẽ được bao gồm trong các l
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Khi được bật enigma2 sẽ tải các tập tin người dùng không liên kết. Điều này có nghĩa là các userbouquets có sẵn, nhưng không được bao gồm trong các tập tin bouquets.tv hoặc bouquets.radio, vẫn sẽ được tải. Điều này cho phép bạn lấy ví dụ để giữ bó hoa người dùng của riêng bạn trong khi cài đặt được cài đặt được nâng cấp"
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -23028,6 +23219,21 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Không có khách hàng phát trực tuyến"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Truyền thông tin khách hàng"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Cài đặt trình quản lý phần mềm"
 
 #~ msgid ""
 #~ "\n"

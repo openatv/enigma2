@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
-"PO-Revision-Date: 2022-06-29 20:02+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -855,6 +855,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1192,6 +1200,10 @@ msgid "%s Setup"
 msgstr "%s Asetukset"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s lisä näyttöjä"
 
@@ -1202,10 +1214,6 @@ msgstr "%s on aktivoitu."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s on poistettu käytöstä."
-
-#, python-format
-msgid "%s information"
-msgstr "%s tiedot"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1302,6 +1310,10 @@ msgstr "(%d työt)"
 
 msgid "(1 job)"
 msgstr "(1 työ)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "Pääsy %s lokitiedostoihin edellyttää internet yhteyttä."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2131,12 +2143,8 @@ msgstr "Tietoja..."
 msgid "Access point"
 msgstr "Tukiasema"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "Paikannustietojen käyttö edellyttää internet yhteyttä."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "Pääsy %s lokitiedostoihin edellyttää internet yhteyttä."
 
 msgid "Accessed:"
 msgstr "Tukiasema:"
@@ -2200,9 +2208,6 @@ msgstr "Aktivoi ajansiirron loppu ja tauko"
 
 msgid "Active"
 msgstr "Aktiivinen"
-
-msgid "Active Streaming Clients"
-msgstr "Aktiiviset Etäasiakkaat"
 
 msgid "Active clients"
 msgstr "Aktiiviset asiakkaat"
@@ -2606,10 +2611,6 @@ msgstr "Tyhjä nimi ei ole sallittu."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Virhe pakettiluetteloa ladattaessa. Yritä uudestaan."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "Tapahtui virhe, virhekoodi %d, yritä myöhemmin uudelleen."
 
 msgid "An unknown error occurred!"
 msgstr "Tuntematon virhe!"
@@ -3283,6 +3284,13 @@ msgstr "Belgia"
 msgid "Belize"
 msgstr "Belize"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Bengali"
 
@@ -3428,8 +3436,11 @@ msgstr "Kirkkaus (valmiustila)"
 msgid "British Indian Ocean Territory"
 msgstr "Brittiläinen Intian valtameren alue"
 
-msgid "Broadcast"
-msgstr "Lähetys"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
+msgstr ""
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3459,8 +3470,9 @@ msgstr "Malli"
 msgid "Build information"
 msgstr "Ohjelmisto tiedot"
 
-msgid "Build information for"
-msgstr "Ohjelmiston tiedot"
+#, python-format
+msgid "Build information for %s %s"
+msgstr ""
 
 #, python-format
 msgid "Build: %s"
@@ -3642,14 +3654,24 @@ msgstr "CI Päävalikko"
 msgid "CPU"
 msgstr "Prosessori"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "CPU arkkitehtuuri"
+
+msgid "CPU benchmark"
+msgstr ""
 
 msgid "CPU brand"
 msgstr "CPU Malli"
 
 msgid "CPU priority for script execution"
 msgstr "Prosessorin prioriteetti sciptin suorittamiselle"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr "CPU nopeus/ydintä"
@@ -3683,6 +3705,12 @@ msgstr "Laske ja näytä kansion koko. Huomautus: Tämä voi hidastaa järjestel
 
 msgid "Calculate file checksums"
 msgstr "Laske tiedostojen tarkistus"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Laskenta valmis"
@@ -4446,11 +4474,14 @@ msgstr "Suoritettava komento"
 msgid "Command type"
 msgstr "Käskyn tyyppi"
 
-msgid "Commit Information"
-msgstr "Vahvista tiedot"
-
 msgid "Commit Information Actions"
 msgstr "Yleiset tiedot Toiminnot"
+
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
+msgstr ""
 
 msgid "Commit Logs"
 msgstr "Yleiset logit"
@@ -5071,15 +5102,15 @@ msgstr "Ohjelmaoppaan ohjelmatyylitietojen maa asetus"
 msgid "Country for EPG event rating information"
 msgstr "Ohjelmaoppaan arvostelutietojen maa asetus"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Kaatumislokit"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Kaatuminen teema virheessä debug lokeja"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr "Kaatumisloki %s (%d/%d)"
 
 msgid "Create"
 msgstr "Luo"
@@ -5169,6 +5200,9 @@ msgstr "Valuutta"
 
 msgid "Current"
 msgstr "Nykyinen"
+
+msgid "Current 1/1"
+msgstr ""
 
 msgid "Current Affairs"
 msgstr "Ajankohtaisohjelmat"
@@ -5313,6 +5347,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "DVB CI Viive"
 
@@ -5381,6 +5418,10 @@ msgstr "Päivämäärän näyttömuoto"
 
 msgid "Date/time input"
 msgstr "Päivämäärä / kellonaika"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Päivä P-Kuukausi"
@@ -5523,12 +5564,24 @@ msgstr "Viikonpäivä KK/PP"
 msgid "Deactivate"
 msgstr "Poista käytöstä"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Vianselvityslokit"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr "Virheenkorjausloki '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Vianmäärityslokin aikamuoto *"
@@ -5731,8 +5784,8 @@ msgstr "Poista ajastus"
 msgid "Delete all log files"
 msgstr "Poista kaikki lokitiedostot"
 
-msgid "Delete all logfiles"
-msgstr "Poista kaikki lokitiedostot"
+msgid "Delete all logs"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "Poista kaikki tunnisteet"
@@ -5767,8 +5820,8 @@ msgstr "Poista tiedosto / hakemisto (koko sisältö)"
 msgid "Delete folder"
 msgstr "Poista kansio"
 
-msgid "Delete logfile"
-msgstr "Poista lokitiedosto"
+msgid "Delete log"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Poista tai pyyhi nykyinen image paikka"
@@ -5859,15 +5912,6 @@ msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien 
 
 msgid "Detail of GStreamer log"
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
-
-msgid "Detected drives"
-msgstr "Tunnistetut asemat"
-
-msgid "Detected network servers"
-msgstr "Tunnistetut verkkopalvelimet"
-
-msgid "Detected tuners"
-msgstr "Havaitut virittimet"
 
 msgid "Device Manager"
 msgstr "Laitehallinta"
@@ -6063,20 +6107,8 @@ msgstr "Näyttö ja käyttöliittymä"
 msgid "Display message before playing next movie"
 msgstr "Näytä viesti ennen seuraavan tallenteen toistoa"
 
-msgid "Display next commit log"
-msgstr "Näytä seuraava loki"
-
-msgid "Display next system information screen"
-msgstr "Näyttää seuraavan järjestelmän tietonäytön"
-
 msgid "Display oscam information."
 msgstr "Näytä oscam tiedot."
-
-msgid "Display previous commit log"
-msgstr "Näytä edellinen loki"
-
-msgid "Display previous system information screen"
-msgstr "Näytä edellinen järjestelmätietonäyttö"
 
 msgid "Display selection list as a selection menu"
 msgstr "Näytä valintalista samanlaisena kuin suosikkilista"
@@ -6098,6 +6130,10 @@ msgstr "Näytön tyyppi"
 
 msgid "Distribution"
 msgstr "Ohjelmisto"
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
+msgstr ""
 
 msgid "Distribution architecture"
 msgstr "Jakeluarkkitehtuuri"
@@ -6269,15 +6305,15 @@ msgstr "Haluatko polttaa tämän kokoelman DVD:lle?"
 msgid "Do you want to continue?"
 msgstr "Haluatko jatkaa?"
 
-msgid "Do you want to delete all log files?"
-msgstr "Haluatko poistaa kaikki lokitiedostot?"
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Haluatko poistaa kaikki valitut tiedostot:\n"
 "(valitse 'ei' poistaaksesi vain nykyinen valinta.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr "Haluatko poistaa kaikki lokitiedostot?"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Haluatko ensin poistaa vanhat asetukset /etc/enigma2 f?"
@@ -6402,6 +6438,9 @@ msgstr[1] "Valmis - Asennettu, päivitetty tai poistettu %d ohjelmapakettia (%s)
 msgid "Down"
 msgstr "Alas"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Lataa lisäosia"
 
@@ -6455,12 +6494,6 @@ msgstr "ajurit"
 
 msgid "Drivers version"
 msgstr "Ajurien versio"
-
-msgid "Drives Information"
-msgstr "Asemien tiedot"
-
-msgid "Drives information"
-msgstr "Asemien tiedot"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -6867,6 +6900,9 @@ msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä j
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päältä asetukset näkyvät graafisena kytkimenä."
 
@@ -7021,9 +7057,6 @@ msgstr "Aktivoi useita valinta tiloja"
 msgid "Enter number to jump to channel"
 msgstr "Syötä numero hypätäksesi kanavalle"
 
-msgid "Enter number to select screen"
-msgstr "Näppäile numero valitaksesi näytön"
-
 msgid "Enter persistent PIN code"
 msgstr "Syötä katselun PIN koodi"
 
@@ -7091,12 +7124,12 @@ msgid "Error"
 msgstr "Virhe"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Virhe %d: Lokitiedostoa '%s' ei poistettu!  (%s))"
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "Virhe %d: Lokitiedostoa '%s' ei voitu avata.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7111,7 +7144,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Virhe %d: Komentoa 'passwd' ei pystytä käynnistämään!"
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr "Virhe '%s' havaittiin haettaessa %s lokeja!"
 
 msgid "Error Download Setting"
@@ -7542,6 +7579,9 @@ msgstr "FCC käytössä"
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr "FFmpeg versio"
 
@@ -7802,6 +7842,9 @@ msgstr "Lisätietoja %s"
 msgid "Find similar events in the EPG"
 msgstr "Etsi samanlaisia ohjelmia EPG:stä"
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Moottorin hienosäätö"
 
@@ -8002,6 +8045,9 @@ msgstr "Taajuus:"
 msgid "Frequency bands"
 msgstr "Taajuusalueet"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Taajuushaun askel (khz)"
 
@@ -8160,6 +8206,10 @@ msgstr "Aikavyöhykkeen asettamiseen on käytetty maantieteellistä sijaintia."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Maantieteellisen sijainnin tietoja ei voi noutaa, yritä myöhemmin uudelleen."
+
+#, python-format
+msgid "Geolocation information for %s %s"
+msgstr ""
 
 msgid "Geolocation is not available."
 msgstr "Maantieteellinen sijainti ei ole käytettävissä."
@@ -8746,9 +8796,6 @@ msgstr "INFO näppäimen toiminto"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "IP osoite"
 
@@ -8757,6 +8804,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Asennus"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO-tiedosto on liian suuri tälle tiedostojärjestelmälle!"
@@ -9070,8 +9120,8 @@ msgstr "Sisällytä ECM http striimeihin"
 msgid "Include EIT in http streams"
 msgstr "Sisällytä EIT http striimeihin"
 
-msgid "Include PID in http streams"
-msgstr "Sisällytä PID http striimeihin"
+msgid "Include SDT, BAT in http streams"
+msgstr "Sisällytä SDT, BAT http striimeihin"
 
 msgid "Include action map data"
 msgstr "Sisällytä ohjelmiston toiminta tiedot"
@@ -9238,6 +9288,9 @@ msgstr "Asenna"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "'%s' asenna ja aktivoi"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Asennus epäonnistui!"
@@ -10023,12 +10076,20 @@ msgstr "Lukittu:"
 msgid "Log"
 msgstr "Loki"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Lokien hallinta"
 
 #, python-format
 msgid "Log file '%s' deleted."
 msgstr "Lokitiedosto %s poistettiin."
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
+msgstr ""
 
 msgid "Log python stack trace on spinner"
 msgstr "Kirjataanko python jäljitys"
@@ -10039,10 +10100,6 @@ msgstr "Luo lokitiedosto kiintolevylle"
 msgid "LogManager"
 msgstr "Lokien hallinta"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr "Lokitiedosto '%s' (%d/%d)"
-
 msgid "Login"
 msgstr "Kirjaudu"
 
@@ -10051,9 +10108,6 @@ msgstr "Kirjautuminen epäonnistui"
 
 msgid "Login to IceTV server"
 msgstr "Kirjaudu IceTV palvelimeen"
-
-msgid "Logs"
-msgstr "Lokit"
 
 msgid "Logs Settings"
 msgstr "Loki asetukset"
@@ -10122,14 +10176,14 @@ msgstr "Luxemburg"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr "MAC osoite toiminnot"
 
 msgid "MAC Address Settings"
 msgstr "MAC-osoitteen asetukset"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-osoite"
@@ -10405,6 +10459,10 @@ msgstr "Muistitiedot Toiminnot"
 msgid "Memory index"
 msgstr "Muistipaikka"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Valikko"
 
@@ -10558,6 +10616,9 @@ msgstr "Muutettu:"
 
 msgid "Modulation"
 msgstr "Modulaatio"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Modulaattori"
@@ -11093,6 +11154,10 @@ msgstr "Verkkoasetukset."
 msgid "Network information"
 msgstr "Verkon tiedot"
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Lähiverkon asetukset"
 
@@ -11104,6 +11169,9 @@ msgstr "Verkkonimi (SSID)"
 
 msgid "Network scan"
 msgstr "Verkkohaku"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Lähiverkon testi"
@@ -11177,6 +11245,9 @@ msgstr "Seuraava"
 
 msgid "Next Image"
 msgstr "Seuraava Ohjelmisto"
+
+msgid "Next Log"
+msgstr ""
 
 msgid "Next bouquet"
 msgstr "Seuraavalle suosikkilistalle"
@@ -11256,9 +11327,6 @@ msgstr "Ei korttia!"
 msgid "No channel"
 msgstr "Ei kanavaa"
 
-msgid "No clients streaming"
-msgstr "Etäasiakkaita ei ole"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11307,14 +11375,20 @@ msgstr "Kiintolevyjä ei havaittu."
 msgid "No hash calculations configured"
 msgstr "Ei hash laskelmia määritetty"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
 
 msgid "No network connection available."
 msgstr "Ei verkkoyhteyttä."
 
-msgid "No network servers detected."
-msgstr "Verkkopalvelimia ei havaittu."
+msgid "No network storage detected."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Verkkoja ei löytynyt"
@@ -11347,6 +11421,9 @@ msgstr "Image paikkoja ei löytynyt"
 
 msgid "No standby"
 msgstr "Ei valmiustilaa"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr "Yhteensopivia varmuuskopiointi sijainteja ei löytynyt!"
@@ -11391,6 +11468,9 @@ msgid ""
 msgstr ""
 "Viritintä ei ole määritetty!!\n"
 "Määritä virittimen asetukset ennen kanavahaun aloittamista."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Ei päivitystä!"
@@ -11606,7 +11686,7 @@ msgstr "Näytettävien rivien määrä."
 msgid "Number or SMS style data entry"
 msgstr "Numerot tai tekstiviestien syöttötapa"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr "Malli"
 
 msgid "OK"
@@ -12912,12 +12992,6 @@ msgstr "Esikoulu"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Vaihda PiP-tilaa '0' näppäimellä"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr "Paina <> tai paina menu näppäintä valitaksesi eri loki"
-
-msgid "Press <> or menu to select the different info screens"
-msgstr "Paina <> tai menu valitaksesi eri tietonäytöt"
-
 msgid "Press EXIT to close."
 msgstr "Sulje painamalla EXIT näppäintä."
 
@@ -13004,9 +13078,6 @@ msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Paniikkinäppäimen painallus vaihtaa tälle kanavalle (ensimmäisessä suosikkilistassasi)."
 
-msgid "Prev Image"
-msgstr "Prev ohjelmisto"
-
 msgid "Prev quad PiP channel"
 msgstr "4 kuvan PIP"
 
@@ -13018,6 +13089,12 @@ msgstr "Esikatsele valikkoa"
 
 msgid "Previous"
 msgstr "Edellinen"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Edellinen suosikkilista"
@@ -13318,6 +13395,9 @@ msgstr "RAM (Tiedot)"
 msgid "RAM (Summary)"
 msgstr "RAM (yhteenveto)"
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "Mukautettu RC koodi"
 
@@ -13478,11 +13558,18 @@ msgstr "Vastaanotin"
 msgid "Receiver Image Actions"
 msgstr "Vastaanottimen kuvatoiminnot"
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr "Vastaanottimen tiedot"
 
 msgid "Receiver Information Actions"
 msgstr "Vastaanottimen tietotoiminnot"
+
+#, python-format
+msgid "Receiver information for %s %s"
+msgstr ""
 
 msgid "Receiver name"
 msgstr "Vastaanottimen malli"
@@ -14038,6 +14125,9 @@ msgstr "Rajoita aktiivista ajanjaksoa"
 msgid "Restricted 18+"
 msgstr "Rajoitettu 18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Jatka viimeksi katsotusta kohdasta"
 
@@ -14049,8 +14139,16 @@ msgid "Resuming playback"
 msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
 msgstr "Haetaan %s lokeja, odota..."
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
+msgstr ""
 
 msgid "Retrieving boot slot information..."
 msgstr "Käynnistyspaikan tietojen hakeminen..."
@@ -14063,9 +14161,6 @@ msgstr "Haetaan image paikkoja - Odota hetki.."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Haetaan verkkopalvelimen tietoja, odota..."
-
-msgid "Retrieving system information, please wait..."
-msgstr "Haetaan järjestelmätietoja, odota..."
 
 msgid "Return the current selection response"
 msgstr "Palauta nykyinen valinta"
@@ -14535,6 +14630,9 @@ msgstr "Tiede"
 msgid "Science & Tech"
 msgstr "Tiede & tekniikka"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "Kuvankaappaus näytössä /tmp"
 
@@ -14802,6 +14900,9 @@ msgstr "Valitse suosikkilista"
 msgid "Select a cardserver from the available list."
 msgstr "Valitse korttipalvelin käytettävissä olevasta listasta."
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Valitse jakelija, josta ohjelmistot haetaan"
 
@@ -14813,6 +14914,9 @@ msgstr "Valitse verkkoadapteri"
 
 msgid "Select a path"
 msgstr "Valitse polku"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
@@ -14847,9 +14951,6 @@ msgstr "Valitse kanavan ääni"
 
 msgid "Select channel to record from"
 msgstr "Valitse tallennettava kanava"
-
-msgid "Select commit log"
-msgstr "Valitse loki"
 
 msgid "Select copy destination for:"
 msgstr "Valitse kohde kopioinnille:"
@@ -14892,9 +14993,6 @@ msgstr "Valitse jatkuuko ajansiirto kun tallennus aloitetaan."
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Valitse, haluatko, että alipalvelutila aktivoidaan."
 
-msgid "Select information screen"
-msgstr "Valitse tietonäyttö"
-
 msgid "Select input device"
 msgstr "Valitse kaukosäädin"
 
@@ -14933,6 +15031,9 @@ msgstr "Valitse softcam"
 
 msgid "Select sort method:"
 msgstr "Valitse lajittelutapa:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Valitse kohdehakemisto"
@@ -16057,6 +16158,9 @@ msgstr "Näytä videotiedostojen kappalejako sijainnit. (gstreamer-version on ol
 msgid "Show columns"
 msgstr "Näytä sarakkeet"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Näytä sisältö ipk tiedosto"
 
@@ -16077,6 +16181,9 @@ msgstr "Näytä salauksen kuvakkeet"
 
 msgid "Show crypto info in infobar"
 msgstr "Näytä salaustyyppi tietopalkissa"
+
+msgid "Show debug log information"
+msgstr ""
 
 msgid "Show default after description"
 msgstr "Näytä laajennettu ohjelmakuvaus"
@@ -16123,14 +16230,14 @@ msgstr "Näytä laajennukset"
 msgid "Show extensions..."
 msgstr "Näytä laajennukset..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Näytä Suosikkilista"
 
 msgid "Show files backed up by default"
 msgstr "Näytä oletuksena varmuuskopioitavat tiedostot"
-
-msgid "Show geolocation information"
-msgstr "Näytä maantieteelliset sijaintitiedot"
 
 msgid "Show graphical multi EPG"
 msgstr "Graafinen EPG"
@@ -16177,14 +16284,8 @@ msgstr "Näytä kanavalogot tietopalkissa"
 msgid "Show job tasks in extensions"
 msgstr "Näytä tehtävät (job tasks) laajennusvalikossa"
 
-msgid "Show latest commit log information"
-msgstr "Näytä viimeisimmät lokitiedot"
-
 msgid "Show live TV when movie stopped"
 msgstr "Näytä tv-kuva tallenteen loputtua"
-
-msgid "Show logs"
-msgstr "Näytä lokit"
 
 msgid "Show marked events"
 msgstr "Näytä merkityt tapahtumat"
@@ -16216,6 +16317,12 @@ msgstr "Näytä monikanava-EPG"
 msgid "Show network setup menu..."
 msgstr "Näytä verkon asetusvalikko"
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr "Näytä seuraava ohjelma"
 
@@ -16227,6 +16334,9 @@ msgstr "Näytä seuraava sivu"
 
 msgid "Show next picture"
 msgstr "Näytä seuraava kanava"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Näytä tai piilota laajennettu kuvaus, (teemasta riippuva)."
@@ -16246,6 +16356,12 @@ msgstr "Näytä kuvake kääntömoottorin liikkuessa"
 msgid "Show preview of current mode (*)."
 msgstr "Näytä nykyisen tilan esikatselu (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr "Näytä edellinen tapahtuma"
 
@@ -16258,8 +16374,14 @@ msgstr "Näytä edellinen sivu"
 msgid "Show previous picture"
 msgstr "Vaihda edelliselle kanavalle"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Näytä pikavalikko"
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Tallennusmerkki"
@@ -16276,11 +16398,14 @@ msgstr "Näytä näytön valikkopolku"
 msgid "Show screensaver"
 msgstr "Näytönsäästäjä"
 
-msgid "Show selection for commit logs"
-msgstr "Näytä valittu loki"
-
 msgid "Show selection for system information screen"
 msgstr "Näytä järjestelmätietojen valinta näyttö"
+
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
+msgstr ""
 
 msgid "Show service list"
 msgstr "Avaa kanavalista"
@@ -16341,6 +16466,9 @@ msgstr "Näytä CCcam tiedot näytön näyttäminen"
 
 msgid "Show the DreamPlex player..."
 msgstr "Näytä DreamPlex soitin"
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr "Näytä OScamTiedot Näyttö"
@@ -16797,9 +16925,6 @@ msgstr "Ohjelmiston hallinnan tiedot"
 msgid "Software Manager Settings"
 msgstr "Ohjelmiston hallinnan asetukset"
 
-msgid "Software Manager Setup"
-msgstr "Ohjelmiston hallinnan asetukset"
-
 msgid "Software MultiBoot"
 msgstr "MultiBoot"
 
@@ -17037,6 +17162,9 @@ msgstr "Valmiustila ilman tv sammutusta"
 msgid "Start"
 msgstr "Käynnistä"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Käynnistä Kodi"
 
@@ -17097,7 +17225,7 @@ msgstr "Alkaen"
 msgid "Starts in a few seconds"
 msgstr "Alkaa 5 sekunnissa"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Osavaltio"
 
@@ -17140,6 +17268,9 @@ msgstr "Sti"
 msgid "Stop"
 msgstr "Pysäytä"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Sulje PiP"
 
@@ -17172,6 +17303,9 @@ msgstr "Pysäytä ajastettu tallennus"
 
 msgid "Stop service on return to movie list"
 msgstr "Pysäytä palvelu ja palaa tallenneluetteloon"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Lopeta testi"
@@ -17209,8 +17343,18 @@ msgstr "Pysäytä Softcam"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
 msgstr "Tallennustila / Asemat"
+
+msgid "Storage / Drive information"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Tallennusvälineet"
@@ -17233,14 +17377,18 @@ msgstr "Stream"
 msgid "Streaming"
 msgstr "Stream"
 
-msgid "Streaming Clients"
-msgstr "Etäasiakkaiden tiedot"
-
 msgid "Streaming Information Actions"
 msgstr "Suoratoistettavat toiminnot"
 
+msgid "Streaming Tuner Information"
+msgstr ""
+
 msgid "Streaming recording ended"
 msgstr "Suoratoiston tallennus on päättynyt"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17552,6 +17700,9 @@ msgstr "järjestelmälisäosat"
 msgid "System Setup"
 msgstr "Järjestelmän asetukset"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Vapaa tila järjestelmäosiolla:"
 
@@ -17563,9 +17714,6 @@ msgstr "Järjestelmä: "
 
 msgid "Systeminfo"
 msgstr "Järjestelmätiedot"
-
-msgid "Systems"
-msgstr "Järjestelmä"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17750,6 +17898,9 @@ msgstr "Testaa %s %s:n lähiverkon toiminta."
 msgid "Test type"
 msgstr "Testin tyyppi"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Testikuvat"
 
@@ -17789,16 +17940,16 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s tallentaa EPG-tiedon joka (tuntia)."
 
 #, python-format
-msgid "The %s commit log contains no information."
-msgstr "%s loki ei sisällä mitään tietoja."
-
-#, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr "%s lokeja ei voi noutaa, yritä uudelleen myöhemmin."
 
 #, python-format
-msgid "The '%s' log file contains no information."
-msgstr "Lokitiedosto %s ei sisällä tietoja."
+msgid "The '%s' commit log contains no information."
+msgstr "%s loki ei sisällä mitään tietoja."
+
+#, python-format
+msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -18091,12 +18242,19 @@ msgstr "Ei suorittamattomia tehtäviä."
 msgid "There are no items currently available for this screen."
 msgstr "Tällä hetkellä tässä näytössä ei ole käytettävissä kohteita."
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Päivityksiä ei ole saatavilla."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr "Voi olla, että %s %s ei käynnisty tai siinä voi esiintyä toiminta häiriöitä näin suuren päivityksen jälkeen (epätodennäköistä)."
+
+#, python-format
+msgid "There is no information to show for '%s'."
+msgstr ""
 
 msgid "There is no signal to lock on !"
 msgstr "Ei signaalia johon voisi lukittua!"
@@ -18763,6 +18921,9 @@ msgstr "Vaihda leikkausmerkki nykyiseen kohtaan"
 msgid "Toggle aspect ratio..."
 msgstr "Vaihda kuvasuhdetta"
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Vaihda suosikkien ja ohjelmatietojen välillä"
 
@@ -18814,6 +18975,9 @@ msgstr "Ylä ja ala"
 msgid "Total"
 msgstr "Kokonais"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Kortteja yhteensä:"
 
@@ -18862,6 +19026,10 @@ msgstr "Käännös tiedot"
 
 msgid "Translation information"
 msgstr "Käännöstiedot"
+
+#, python-format
+msgid "Translation information for %s %s"
+msgstr ""
 
 msgid "Transmission mode"
 msgstr "Lähetystapa"
@@ -18971,6 +19139,10 @@ msgstr "Viritin asetukset"
 msgid "Tuner information"
 msgstr "Viritin tiedot"
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
 
@@ -19077,6 +19249,9 @@ msgstr "Kaksi riviä"
 
 msgid "Type"
 msgstr "Tyyppi"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Hakutapa"
@@ -19221,6 +19396,9 @@ msgstr "Tuntematon ryhmä: %d"
 msgid "Unknown recording event"
 msgstr "Tuntematon tallennus tapahtuma"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Tuntematon käyttäjä: %d"
@@ -19273,6 +19451,9 @@ msgstr "Puretaan Image"
 
 msgid "Up"
 msgstr "Ylös"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Ylös/alas -näppäimien toiminto"
@@ -19485,6 +19666,9 @@ msgstr "Lataa vain ohjelmatiedot päiväksi"
 
 msgid "Use frequency or channel"
 msgstr "Käytä taajuutta tai kanavaa"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Nykyisen aikavyöhykkeen sijainnin asettaminen geopaikannuksen avulla"
@@ -19969,6 +20153,9 @@ msgstr "Äänenvoimakkuus +"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr "WAN yhteystiedot"
 
@@ -20118,6 +20305,10 @@ msgstr "Viikonloppu"
 msgid "Weekly"
 msgstr "Viikoittain"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "Tervetuloa IceTV"
 
@@ -20227,8 +20418,8 @@ msgstr "Kun päällä, EIT-tiedot lähetetään http streameissä. Tämä mahdol
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kun päällä, Enigma2 lataa linkittämättömät suosikkilistat. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään"
 
-msgid "When enabled, PID data will be included in http streams."
-msgstr "Kun se on käytössä, PID tiedot sisällytetään http streameihin."
+msgid "When enabled, SDT, BAT data will be included in http streams."
+msgstr "Kun se on käytössä, SDT, BAT tiedot sisällytetään http streameihin."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kun päällä, näytetään viesti, kun tallenne loppuu ja seuraava alkaa."
@@ -22677,6 +22868,142 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s tiedot"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "Aktiiviset Etäasiakkaat"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "Tapahtui virhe, virhekoodi %d, yritä myöhemmin uudelleen."
+
+#~ msgid "Broadcast"
+#~ msgstr "Lähetys"
+
+#~ msgid "Build information for"
+#~ msgstr "Ohjelmiston tiedot"
+
+#~ msgid "Commit Information"
+#~ msgstr "Vahvista tiedot"
+
+#, python-format
+#~ msgid "Crash log '%s' (%d/%d)"
+#~ msgstr "Kaatumisloki %s (%d/%d)"
+
+#, python-format
+#~ msgid "Debug log '%s' (%d/%d)"
+#~ msgstr "Virheenkorjausloki '%s' (%d/%d)"
+
+#~ msgid "Delete all logfiles"
+#~ msgstr "Poista kaikki lokitiedostot"
+
+#~ msgid "Delete logfile"
+#~ msgstr "Poista lokitiedosto"
+
+#~ msgid "Detected drives"
+#~ msgstr "Tunnistetut asemat"
+
+#~ msgid "Detected network servers"
+#~ msgstr "Tunnistetut verkkopalvelimet"
+
+#~ msgid "Detected tuners"
+#~ msgstr "Havaitut virittimet"
+
+#~ msgid "Display next commit log"
+#~ msgstr "Näytä seuraava loki"
+
+#~ msgid "Display next system information screen"
+#~ msgstr "Näyttää seuraavan järjestelmän tietonäytön"
+
+#~ msgid "Display previous commit log"
+#~ msgstr "Näytä edellinen loki"
+
+#~ msgid "Display previous system information screen"
+#~ msgstr "Näytä edellinen järjestelmätietonäyttö"
+
+#~ msgid "Drives Information"
+#~ msgstr "Asemien tiedot"
+
+#~ msgid "Drives information"
+#~ msgstr "Asemien tiedot"
+
+#~ msgid "Enter number to select screen"
+#~ msgstr "Näppäile numero valitaksesi näytön"
+
+#, python-format
+#~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+#~ msgstr "Virhe %d: Lokitiedostoa '%s' ei voitu avata.  (%s)"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#, python-format
+#~ msgid "Logfile '%s' (%d/%d)"
+#~ msgstr "Lokitiedosto '%s' (%d/%d)"
+
+#~ msgid "Logs"
+#~ msgstr "Lokit"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Etäasiakkaita ei ole"
+
+#~ msgid "No network servers detected."
+#~ msgstr "Verkkopalvelimia ei havaittu."
+
+#~ msgid "Press <> or menu to select the different commit logs"
+#~ msgstr "Paina <> tai paina menu näppäintä valitaksesi eri loki"
+
+#~ msgid "Press <> or menu to select the different info screens"
+#~ msgstr "Paina <> tai menu valitaksesi eri tietonäytöt"
+
+#~ msgid "Prev Image"
+#~ msgstr "Prev ohjelmisto"
+
+#~ msgid "Retrieving system information, please wait..."
+#~ msgstr "Haetaan järjestelmätietoja, odota..."
+
+#~ msgid "Select commit log"
+#~ msgstr "Valitse loki"
+
+#~ msgid "Select information screen"
+#~ msgstr "Valitse tietonäyttö"
+
+#~ msgid "Show geolocation information"
+#~ msgstr "Näytä maantieteelliset sijaintitiedot"
+
+#~ msgid "Show latest commit log information"
+#~ msgstr "Näytä viimeisimmät lokitiedot"
+
+#~ msgid "Show logs"
+#~ msgstr "Näytä lokit"
+
+#~ msgid "Show selection for commit logs"
+#~ msgstr "Näytä valittu loki"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Etäasiakkaiden tiedot"
+
+#~ msgid "Systems"
+#~ msgstr "Järjestelmä"
+
+#, python-format
+#~ msgid "The '%s' log file contains no information."
+#~ msgstr "Lokitiedosto %s ei sisällä tietoja."
+
+#~ msgid "Include PID in http streams"
+#~ msgstr "Sisällytä PID http striimeihin"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Ohjelmiston hallinnan asetukset"
+
+#~ msgid "When enabled, PID data will be included in http streams."
+#~ msgstr "Kun se on käytössä, PID tiedot sisällytetään http streameihin."
 
 #~ msgid ""
 #~ "\n"

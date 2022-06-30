@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -951,6 +951,14 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr ""
 
@@ -1293,6 +1301,10 @@ msgstr ""
 msgid "%s Setup"
 msgstr "Çékirin"
 
+#, python-format
+msgid "%s View"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Scan additional SR"
@@ -1303,10 +1315,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1405,6 +1413,10 @@ msgid "(%d jobs)"
 msgstr ""
 
 msgid "(1 job)"
+msgstr ""
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
 
 #, python-format
@@ -2263,11 +2275,7 @@ msgstr "Heqé wi..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #, fuzzy
@@ -2337,9 +2345,6 @@ msgstr ""
 #, fuzzy
 msgid "Active"
 msgstr "Aktif bike"
-
-msgid "Active Streaming Clients"
-msgstr ""
 
 #, fuzzy
 msgid "Active clients"
@@ -2772,10 +2777,6 @@ msgstr "An empty filename is illegal."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "An error occurred while downloading the packetlist. Please try again."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "An unknown error occurred!"
@@ -3496,6 +3497,13 @@ msgstr ""
 msgid "Belize"
 msgstr ""
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3653,7 +3661,10 @@ msgstr "Ronahi"
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3684,7 +3695,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3869,13 +3881,23 @@ msgstr ""
 msgid "CPU"
 msgstr ""
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
 msgstr ""
 
 msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "CPU rating"
 msgstr ""
 
 msgid "CPU speed/cores"
@@ -3909,6 +3931,12 @@ msgid "Calculate and show size of directory. Note: This can be slow down the UI 
 msgstr ""
 
 msgid "Calculate file checksums"
+msgstr ""
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -4714,10 +4742,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Command order"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5377,14 +5408,14 @@ msgstr "Software Manager Information"
 msgid "Country for EPG event rating information"
 msgstr ""
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
 msgid "Crash at skin error for debug reasons"
-msgstr ""
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
 msgstr ""
 
 msgid "Create"
@@ -5481,6 +5512,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
@@ -5634,6 +5668,9 @@ msgstr ""
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr ""
 
@@ -5709,6 +5746,10 @@ msgstr ""
 
 msgid "Date/time input"
 msgstr "Date/time input"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr ""
@@ -5852,11 +5893,23 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-msgid "Debug Logs"
+#, python-format
+msgid "Debug %d/%d"
 msgstr ""
 
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
+msgid "Debug Logs"
 msgstr ""
 
 msgid "Debug log time format *"
@@ -6078,7 +6131,7 @@ msgstr "Delete file"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -6116,7 +6169,7 @@ msgstr ""
 msgid "Delete folder"
 msgstr "Delete file"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -6209,15 +6262,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6419,19 +6463,7 @@ msgstr "Display and user interface"
 msgid "Display message before playing next movie"
 msgstr "Display message before playing next movie"
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6454,6 +6486,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6627,12 +6663,12 @@ msgstr "Do you want to burn this collection to DVD medium?"
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
+msgstr ""
+
+msgid "Do you want to delete all the log files?"
 msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
@@ -6756,6 +6792,9 @@ msgstr[1] "Done - Installed, upgraded or removed %d packages with %d errors"
 msgid "Down"
 msgstr ""
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr ""
 
@@ -6812,12 +6851,6 @@ msgid "Drivers"
 msgstr ""
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -7243,6 +7276,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 
@@ -7394,9 +7430,6 @@ msgstr "Close title selection"
 msgid "Enter number to jump to channel"
 msgstr ""
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr ""
 
@@ -7467,11 +7500,11 @@ msgid "Error"
 msgstr "Error"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7487,7 +7520,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 #, fuzzy
@@ -7912,6 +7949,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -8182,6 +8222,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Fine movement"
 
@@ -8400,6 +8443,9 @@ msgstr "Frequency"
 msgid "Frequency bands"
 msgstr "Frequency bands"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Frequency scan step size(khz)"
 
@@ -8564,6 +8610,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -9190,9 +9240,6 @@ msgstr ""
 msgid "INS"
 msgstr ""
 
-msgid "IP"
-msgstr ""
-
 msgid "IP address"
 msgstr "IP address"
 
@@ -9200,6 +9247,9 @@ msgid "IP:"
 msgstr ""
 
 msgid "IPK Installer"
+msgstr ""
+
+msgid "IPv6 address"
 msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
@@ -9511,7 +9561,7 @@ msgstr "Include ECM in http streams"
 msgid "Include EIT in http streams"
 msgstr "Include EIT in http streams"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 #, fuzzy
@@ -9692,6 +9742,9 @@ msgstr "Install"
 
 #, python-format
 msgid "Install '%s' and enable this operation"
+msgstr ""
+
+msgid "Install 1/1"
 msgstr ""
 
 msgid "Install Failed !!"
@@ -10534,11 +10587,19 @@ msgstr "Lock:"
 msgid "Log"
 msgstr ""
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10550,10 +10611,6 @@ msgstr "Log results to harddisk"
 msgid "LogManager"
 msgstr ""
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr ""
 
@@ -10561,9 +10618,6 @@ msgid "Login failure"
 msgstr ""
 
 msgid "Login to IceTV server"
-msgstr ""
-
-msgid "Logs"
 msgstr ""
 
 #, fuzzy
@@ -10639,15 +10693,15 @@ msgstr "Luxembourgish"
 msgid "M2k"
 msgstr ""
 
-msgid "MAC"
-msgstr ""
-
 msgid "MAC Address Actions"
 msgstr ""
 
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Adaptör Çéki"
+
+msgid "MAC address"
+msgstr ""
 
 #, fuzzy
 msgid "MAC-address"
@@ -10937,6 +10991,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Memory index"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -11094,6 +11152,9 @@ msgstr ""
 
 msgid "Modulation"
 msgstr "Modulation"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Modulator"
@@ -11672,6 +11733,10 @@ msgstr "Network configuration..."
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr ""
 
@@ -11684,6 +11749,9 @@ msgstr "Network name (SSID)"
 
 msgid "Network scan"
 msgstr "Network scan"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Network test"
@@ -11763,6 +11831,9 @@ msgid "Next"
 msgstr "Next"
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #, fuzzy
@@ -11846,9 +11917,6 @@ msgstr ""
 msgid "No channel"
 msgstr "Qanal"
 
-msgid "No clients streaming"
-msgstr ""
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11898,6 +11966,12 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 #, fuzzy
 msgid "No matching place names found"
 msgstr "No networks found"
@@ -11905,7 +11979,7 @@ msgstr "No networks found"
 msgid "No network connection available."
 msgstr "No network connection available."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -11938,6 +12012,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "No standby"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11977,6 +12054,9 @@ msgid ""
 msgstr ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr ""
@@ -12201,7 +12281,7 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13552,12 +13632,6 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr ""
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13646,9 +13720,6 @@ msgstr ""
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
 
-msgid "Prev Image"
-msgstr ""
-
 msgid "Prev quad PiP channel"
 msgstr ""
 
@@ -13659,6 +13730,12 @@ msgid "Preview menu"
 msgstr "Preview menu"
 
 msgid "Previous"
+msgstr ""
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
 msgstr ""
 
 #, fuzzy
@@ -13973,6 +14050,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -14138,10 +14218,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14737,6 +14824,9 @@ msgstr ""
 msgid "Restricted 18+"
 msgstr ""
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Resume from last position"
 
@@ -14748,7 +14838,15 @@ msgid "Resuming playback"
 msgstr "Resuming playback"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14763,9 +14861,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Searching for available updates. Please wait..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -15255,6 +15350,9 @@ msgstr ""
 msgid "Science & Tech"
 msgstr ""
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
@@ -15527,6 +15625,9 @@ msgstr "Select a bouquet"
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -15539,6 +15640,9 @@ msgstr "Select a network adapter"
 #, fuzzy
 msgid "Select a path"
 msgstr "Select the movie path"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr ""
@@ -15575,9 +15679,6 @@ msgstr "Select channel to record from"
 
 msgid "Select channel to record from"
 msgstr "Select channel to record from"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Select copy destination for:"
@@ -15618,9 +15719,6 @@ msgstr ""
 msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
-msgid "Select information screen"
-msgstr ""
-
 msgid "Select input device"
 msgstr "Select input device"
 
@@ -15658,6 +15756,9 @@ msgid "Select softcam"
 msgstr ""
 
 msgid "Select sort method:"
+msgstr ""
+
+msgid "Select system information to view:"
 msgstr ""
 
 msgid "Select target folder"
@@ -16837,6 +16938,9 @@ msgstr ""
 msgid "Show columns"
 msgstr ""
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr ""
 
@@ -16857,6 +16961,9 @@ msgstr ""
 
 msgid "Show crypto info in infobar"
 msgstr "Show crypto info in infobar"
+
+msgid "Show debug log information"
+msgstr ""
 
 #, fuzzy
 msgid "Show default after description"
@@ -16909,13 +17016,13 @@ msgstr ""
 msgid "Show extensions..."
 msgstr "Show extensions..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr ""
 
 msgid "Show files backed up by default"
-msgstr ""
-
-msgid "Show geolocation information"
 msgstr ""
 
 msgid "Show graphical multi EPG"
@@ -16968,15 +17075,9 @@ msgstr ""
 msgid "Show job tasks in extensions"
 msgstr "Show extensions..."
 
-msgid "Show latest commit log information"
-msgstr ""
-
 #, fuzzy
 msgid "Show live TV when movie stopped"
 msgstr "Behavior when a movie is stopped"
-
-msgid "Show logs"
-msgstr ""
 
 #, fuzzy
 msgid "Show marked events"
@@ -17011,6 +17112,12 @@ msgstr ""
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -17021,6 +17128,9 @@ msgid "Show next page"
 msgstr ""
 
 msgid "Show next picture"
+msgstr ""
+
+msgid "Show next system information screen"
 msgstr ""
 
 #, fuzzy
@@ -17044,6 +17154,12 @@ msgstr "Show positioner movement"
 msgid "Show preview of current mode (*)."
 msgstr "Properties of current title"
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -17057,7 +17173,13 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Switch to previous channel"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
+msgstr ""
+
+msgid "Show receiver image(s)"
 msgstr ""
 
 msgid "Show record indicator"
@@ -17076,10 +17198,13 @@ msgstr "Show tag menu"
 msgid "Show screensaver"
 msgstr ""
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -17145,6 +17270,9 @@ msgid "Show the CCcam Info Screen"
 msgstr ""
 
 msgid "Show the DreamPlex player..."
+msgstr ""
+
+msgid "Show the Logs Settings screen"
 msgstr ""
 
 msgid "Show the OScamInfo Screen"
@@ -17635,9 +17763,6 @@ msgstr "Software Manager Information"
 msgid "Software Manager Settings"
 msgstr "Software Manager Settings"
 
-msgid "Software Manager Setup"
-msgstr ""
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17882,6 +18007,9 @@ msgstr ""
 msgid "Start"
 msgstr "Start test"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 #, fuzzy
 msgid "Start Kodi"
 msgstr "Start time"
@@ -17946,7 +18074,7 @@ msgstr "Starting on"
 msgid "Starts in a few seconds"
 msgstr "Start offline decode"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -17989,6 +18117,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Stop"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Stop PiP"
 
@@ -18022,6 +18153,9 @@ msgid "Stop recording now"
 msgstr "Stop recording"
 
 msgid "Stop service on return to movie list"
+msgstr ""
+
+msgid "Stop streams"
 msgstr ""
 
 msgid "Stop test"
@@ -18062,7 +18196,17 @@ msgstr ""
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 #, fuzzy
@@ -18087,15 +18231,19 @@ msgstr ""
 msgid "Streaming"
 msgstr ""
 
-msgid "Streaming Clients"
+msgid "Streaming Information Actions"
 msgstr ""
 
-msgid "Streaming Information Actions"
+msgid "Streaming Tuner Information"
 msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Change recording (endtime)"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -18425,6 +18573,9 @@ msgstr ""
 msgid "System Setup"
 msgstr ""
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr ""
 
@@ -18436,9 +18587,6 @@ msgid "System: "
 msgstr "Systemé wi"
 
 msgid "Systeminfo"
-msgstr ""
-
-msgid "Systems"
 msgstr ""
 
 #, fuzzy
@@ -18635,6 +18783,9 @@ msgstr "Test the network configuration of your receiver."
 msgid "Test type"
 msgstr "Test type"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr ""
 
@@ -18676,15 +18827,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 #, fuzzy
@@ -18955,11 +19106,18 @@ msgstr "There are currently no outstanding actions."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "There are no updates available."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -19657,6 +19815,9 @@ msgstr "Toggle a cut mark at the current position"
 msgid "Toggle aspect ratio..."
 msgstr "Aspect ratio"
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr ""
 
@@ -19710,6 +19871,9 @@ msgstr "Top and bottom"
 msgid "Total"
 msgstr ""
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -19759,6 +19923,10 @@ msgid "Translation Information"
 msgstr "Hakké İmagéda"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -19877,6 +20045,10 @@ msgstr ""
 msgid "Tuner information"
 msgstr ""
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr ""
 
@@ -19992,6 +20164,9 @@ msgstr "Show info line"
 
 msgid "Type"
 msgstr "Type"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Type of scan"
@@ -20141,6 +20316,9 @@ msgstr ""
 msgid "Unknown recording event"
 msgstr "Stop recording"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Unknown Service"
@@ -20193,6 +20371,9 @@ msgid "Unzipping Image"
 msgstr ""
 
 msgid "Up"
+msgstr ""
+
+msgid "Up / Active"
 msgstr ""
 
 msgid "Up/Down button mode"
@@ -20406,6 +20587,9 @@ msgid "Use for load only x days in EPG"
 msgstr ""
 
 msgid "Use frequency or channel"
+msgstr ""
+
+msgid "Use geolocation to get WAN information"
 msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
@@ -20917,6 +21101,9 @@ msgstr ""
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -21072,6 +21259,10 @@ msgstr "Weekday"
 msgid "Weekly"
 msgstr "weekly"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr ""
 
@@ -21182,7 +21373,7 @@ msgstr "When enabled, EIT data will be included in http streams. This allows a c
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."

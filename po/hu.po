@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -884,6 +884,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1226,6 +1234,10 @@ msgid "%s Setup"
 msgstr "%s - beállítás"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s további képernyők"
 
@@ -1236,10 +1248,6 @@ msgstr ""
 #, python-format
 msgid "%s has been disabled."
 msgstr ""
-
-#, python-format
-msgid "%s information"
-msgstr "%s információ"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1336,6 +1344,10 @@ msgstr "(%d feladat)"
 
 msgid "(1 job)"
 msgstr "(1 feladat)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "A %s véglegesítési naplóihoz internetkapcsolat szükséges."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2169,12 +2181,8 @@ msgstr "Névjegy..."
 msgid "Access point"
 msgstr "Hozzáférési pont"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "A földrajzi helyadatok eléréséhez internetkapcsolat szükséges."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "A %s véglegesítési naplóihoz internetkapcsolat szükséges."
 
 msgid "Accessed:"
 msgstr "Hozzáférhető:"
@@ -2238,9 +2246,6 @@ msgstr "Timeshift végének aktiválása és megállítás"
 
 msgid "Active"
 msgstr "Aktiv"
-
-msgid "Active Streaming Clients"
-msgstr "Aktuális streamelő kliensek"
 
 msgid "Active clients"
 msgstr "Aktív kliensek"
@@ -2642,10 +2647,6 @@ msgstr "Egy üres fájlnév érvénytelen."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Hiba keletkezett a szoftvercsomag listájának letöltése közben. Kérem, próbálja meg újra."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "Hiba történt, hibakód %d, kérem, próbálja később."
 
 msgid "An unknown error occurred!"
 msgstr "Ismeretlen hiba keletkezett!"
@@ -3325,6 +3326,13 @@ msgstr "Belgium"
 msgid "Belize"
 msgstr "Belize"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3472,7 +3480,10 @@ msgstr "Fényerő (Készenlét)"
 msgid "British Indian Ocean Territory"
 msgstr "Brit Indiai-óceáni Terület"
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3503,7 +3514,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3683,7 +3695,14 @@ msgstr "CIconfigMenu"
 msgid "CPU"
 msgstr "Processzor"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
@@ -3691,6 +3710,9 @@ msgstr ""
 
 msgid "CPU priority for script execution"
 msgstr "Processzorprioritás a parancsfájlok végrehajtásához"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr ""
@@ -3724,6 +3746,12 @@ msgstr ""
 
 msgid "Calculate file checksums"
 msgstr "Fájlellenőrző összegek számítása"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Számítás kész"
@@ -4482,10 +4510,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Parancs típus"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5113,15 +5144,15 @@ msgstr "Ország az EPG esemény műfaj információknak"
 msgid "Country for EPG event rating information"
 msgstr "Ország az EPG esemény minősítési adatainak informáciájáért"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Hibanaplók"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "A kinézet hibája is a naplóba kerüljön?"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Create"
 msgstr "Létrehoz"
@@ -5210,6 +5241,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 msgid "Current Affairs"
@@ -5357,6 +5391,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "Kétréteges DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "DVB CI késleltetés"
 
@@ -5426,6 +5463,10 @@ msgstr "Dátumstílus"
 
 msgid "Date/time input"
 msgstr "Idő/Dátum megadása"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Day D Mon"
@@ -5574,12 +5615,24 @@ msgstr "Napnév Év/MM/DD"
 msgid "Deactivate"
 msgstr "Hatástalanít"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Hibakeresési naplók"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Debug log time format *"
 msgstr ""
@@ -5782,7 +5835,7 @@ msgstr "Időzítő törlése"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -5818,7 +5871,7 @@ msgstr "Fájl vagy könyvtár törlése (és annak tartalma)"
 msgid "Delete folder"
 msgstr "Mappa törlése"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -5912,15 +5965,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6118,19 +6162,7 @@ msgstr "Kijelző és felhasználói felület"
 msgid "Display message before playing next movie"
 msgstr "A következő fájl lejátszása előtt üzenet megjelenítése"
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6152,6 +6184,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6320,15 +6356,15 @@ msgstr "Fel szeretné írni ezt a gyűjteményt a DVD lemezre?"
 msgid "Do you want to continue?"
 msgstr "Szeretné folytatni?"
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Törölni kívánja az összes kiválasztott fájlt:\n"
 "(válassza a 'Nem' lehetőséget, hogy csak a kiválasztott fájlt törlölje)"
+
+msgid "Do you want to delete all the log files?"
+msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Először szeretné törölni a régi beállításokat az /etc/enigma2 fájlban?"
@@ -6453,6 +6489,9 @@ msgstr[1] "%d szoftvercsomag telepítése, frissítése vagy eltávolítása elk
 msgid "Down"
 msgstr "Lefelé"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Bővítmények letöltése"
 
@@ -6505,12 +6544,6 @@ msgid "Drivers"
 msgstr "illesztőprogramok"
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -6920,6 +6953,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Engedélyezze ezt a beállítást, ha az antennarendszer áramellátást igényel"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Engedélyezze az összes igaz/hamis, igen/nem, be- és kikapcsolási és enged/tilt beállítások grafikus kapcsolóként való megjelenítését."
 
@@ -7075,9 +7111,6 @@ msgstr "Többfájlos kijelölési mód megadása"
 msgid "Enter number to jump to channel"
 msgstr "írja be a számot a csatorna ugrásához."
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr "Adja meg a tartós PIN-kódot"
 
@@ -7145,11 +7178,11 @@ msgid "Error"
 msgstr "Hiba"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7165,7 +7198,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 msgid "Error Download Setting"
@@ -7596,6 +7633,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -7860,6 +7900,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Finom mozgatás"
 
@@ -8065,6 +8108,9 @@ msgstr "Frekvencia: "
 msgid "Frequency bands"
 msgstr "Frekvencia sávok"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Frekvencia léptetés mérete (kHz)"
 
@@ -8225,6 +8271,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -8817,9 +8867,6 @@ msgstr "INFO gomb mód"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "IP cím"
 
@@ -8828,6 +8875,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "Az ISO fájl túl nagy ehhez a fájlrendszerhez!"
@@ -9138,7 +9188,7 @@ msgstr "Legyen ECM a HTTP jelfolyamban"
 msgid "Include EIT in http streams"
 msgstr "Legyen EIT a HTTP jelfolyamban"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 #, fuzzy
@@ -9311,6 +9361,9 @@ msgstr "Telepítés"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "A(z) '%s' telepítése és a művelet engedélyezése"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Telepítés sikertelen !!"
@@ -10115,11 +10168,19 @@ msgstr "Hangolás:"
 msgid "Log"
 msgstr "Napló"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Napló Kezelő"
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10131,10 +10192,6 @@ msgstr "Eredmények naplózása háttértárra"
 msgid "LogManager"
 msgstr "Napló Kezelő"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr "Bejelentkezés"
 
@@ -10143,9 +10200,6 @@ msgstr "Bejelentkezési hiba"
 
 msgid "Login to IceTV server"
 msgstr "Bejelentkezés az IceTV kiszolgálóra"
-
-msgid "Logs"
-msgstr ""
 
 msgid "Logs Settings"
 msgstr "Naplók beállítása"
@@ -10215,14 +10269,14 @@ msgstr "Luxemburgi"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "MAC-cím beállítások"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-cím"
@@ -10509,6 +10563,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Memóriaindex"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Menü"
 
@@ -10665,6 +10723,9 @@ msgstr "Módosított:"
 
 msgid "Modulation"
 msgstr "Moduláció"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Modulátor"
@@ -11221,6 +11282,10 @@ msgstr "Hálózati beállítások..."
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Hálózat menü"
 
@@ -11232,6 +11297,9 @@ msgstr "Hálózatnév (SSID)"
 
 msgid "Network scan"
 msgstr "Hálózat keresése"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Hálózat ellenőrzése"
@@ -11305,6 +11373,9 @@ msgid "Next"
 msgstr "Következő"
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11386,9 +11457,6 @@ msgstr "Nincs kártya behelyezve!"
 msgid "No channel"
 msgstr "Nincs csatorna"
 
-msgid "No clients streaming"
-msgstr "Nincsenek streamelő kliensek"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11435,13 +11503,19 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Nincs Hash kalkuláció konfigurálva"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Nem található megfelelő helynév"
 
 msgid "No network connection available."
 msgstr "Nincs elérhető hálózati kapcsolat."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -11473,6 +11547,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Nincs kikapcsolás"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11514,6 +11591,9 @@ msgid ""
 msgstr ""
 "Nincs engedélyezett tuner!\n"
 "Csatornakeresés előtt állítsa be a tunereket."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Nincs elérhető frissítés!"
@@ -11733,7 +11813,7 @@ msgstr "A megjeleníteni kívánt sorok száma"
 msgid "Number or SMS style data entry"
 msgstr "Szám vagy SMS stílusú adatbevitel"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13049,12 +13129,6 @@ msgstr "Óvodai"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Nyomja meg a '0' gombot a Jelenlegi mód váltásához"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13142,9 +13216,6 @@ msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje meg alapért
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "A pánik gomb megnyomásával erre a csatorna számra fog ugrani a csatornacsomagban."
 
-msgid "Prev Image"
-msgstr ""
-
 msgid "Prev quad PiP channel"
 msgstr "Az előző Quad Kép-a-Képben csatorna"
 
@@ -13156,6 +13227,12 @@ msgstr "Előnézeti menü"
 
 msgid "Previous"
 msgstr "Előző"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Előző lista"
@@ -13459,6 +13536,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -13619,10 +13699,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14178,6 +14265,9 @@ msgstr "Korlátozza az aktív időtartományra"
 msgid "Restricted 18+"
 msgstr "18+ korlátozva"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Folytatás az utolsó pozíciótól"
 
@@ -14189,7 +14279,15 @@ msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14202,9 +14300,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Lemezkép bővítőhelyek beolvasása - Várjon..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -14683,6 +14778,9 @@ msgstr "Tudomány"
 msgid "Science & Tech"
 msgstr "Tudomány & Tech"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "LCD képernyőmentése a /tmp-be"
 
@@ -14946,6 +15044,9 @@ msgstr "Csatornacsomag kiválasztása"
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -14957,6 +15058,9 @@ msgstr "Válasszon hálózati adaptert"
 
 msgid "Select a path"
 msgstr "Válasszon egy utat"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Válasszon egy scriptet a futtatáshoz:"
@@ -14991,9 +15095,6 @@ msgstr "Válassza ki a csatorna hangját"
 
 msgid "Select channel to record from"
 msgstr "Csatorna kiválasztása melyről fel szeretne venni"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Másolási cél kiválasztása ehhez:"
@@ -15034,9 +15135,6 @@ msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közb
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Válassza ki, hogy aktiválja-e a Subservice módot."
 
-msgid "Select information screen"
-msgstr ""
-
 msgid "Select input device"
 msgstr "Válasszon beviteli eszközt"
 
@@ -15075,6 +15173,9 @@ msgstr ""
 
 msgid "Select sort method:"
 msgstr "Rendezési módszer választása:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Válassza ki a célmappát"
@@ -16212,6 +16313,9 @@ msgstr "A támogatott videofájlok fejezet pozícióinak megjelenítése. (a gst
 msgid "Show columns"
 msgstr "Oszlopok megjelenítése"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Ipk-fájl tartalmának megjelenítése"
 
@@ -16232,6 +16336,9 @@ msgstr "Kódolt ikon megjelenítése"
 
 msgid "Show crypto info in infobar"
 msgstr "Kódolási információ megjelenítése az infosorban"
+
+msgid "Show debug log information"
+msgstr ""
 
 #, fuzzy
 msgid "Show default after description"
@@ -16280,14 +16387,14 @@ msgstr "Bővítmények kiválasztásának megjelenítése"
 msgid "Show extensions..."
 msgstr "Bővítmények megtekintése..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Kedvencek lista mutatása"
 
 msgid "Show files backed up by default"
 msgstr "Alapértelmezés szerint mentett fájlok megjelenítése"
-
-msgid "Show geolocation information"
-msgstr ""
 
 msgid "Show graphical multi EPG"
 msgstr "Grafikus multi EPG megjelenítése"
@@ -16334,14 +16441,8 @@ msgstr "Csatorna ikon megjelenítése az Információs sávon"
 msgid "Show job tasks in extensions"
 msgstr "Munkafolyamatok megjelenítése a bővítmények között"
 
-msgid "Show latest commit log information"
-msgstr ""
-
 msgid "Show live TV when movie stopped"
 msgstr "Az élő TV adás megjelenítése, amikor egy lejátszás meg van állítva"
-
-msgid "Show logs"
-msgstr ""
 
 msgid "Show marked events"
 msgstr "Megjelölt események megjelenítése"
@@ -16373,6 +16474,12 @@ msgstr "Több csatornás EPG megjelenítése"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -16384,6 +16491,9 @@ msgstr ""
 
 msgid "Show next picture"
 msgstr "Következő kép megjelenítése"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Mutassa be vagy rejtse el a kiterjesztett leírást (kinézet függő)."
@@ -16403,6 +16513,12 @@ msgstr "A forgatómotor mozgásának megjelenítése"
 msgid "Show preview of current mode (*)."
 msgstr "Az aktuális mód előnézetének megjelenítése (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -16415,8 +16531,14 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Előző kép megjelenítése"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Gyors menü megjelenítése..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Felvétel jelző ikon mutatása"
@@ -16434,10 +16556,13 @@ msgstr "Képernyőkímélő megjelenítése"
 msgid "Show screensaver"
 msgstr "Képernyőkímélő megjelenítése"
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -16500,6 +16625,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex Player mutatása..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr ""
@@ -16965,9 +17093,6 @@ msgstr "Szoftver kezelő információ"
 msgid "Software Manager Settings"
 msgstr "Szoftver karbantartó Beállításai"
 
-msgid "Software Manager Setup"
-msgstr "Szoftver karbantartó beállításai"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17207,6 +17332,9 @@ msgstr "Készenlét a TV leállítása nélkül"
 msgid "Start"
 msgstr "Kezdés"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Kodi indítása"
 
@@ -17268,7 +17396,7 @@ msgstr "Kezdve"
 msgid "Starts in a few seconds"
 msgstr "Néhány másodperc múlva kezdődik"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -17311,6 +17439,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Állj"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Kép-a-Képben leállítása"
 
@@ -17343,6 +17474,9 @@ msgstr "Felvétel leállítása most"
 
 msgid "Stop service on return to movie list"
 msgstr "Csatorna megállítása a filmlistára váltáskor"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Teszt megállítása"
@@ -17380,7 +17514,17 @@ msgstr "Softcam leállítása"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 msgid "Storage Devices"
@@ -17404,14 +17548,18 @@ msgstr "Stream-tv"
 msgid "Streaming"
 msgstr "Adatfolyam"
 
-msgid "Streaming Clients"
-msgstr "Streamelő kliensek"
-
 msgid "Streaming Information Actions"
+msgstr ""
+
+msgid "Streaming Tuner Information"
 msgstr ""
 
 msgid "Streaming recording ended"
 msgstr "A streamelési felvétel véget ért"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17731,6 +17879,9 @@ msgstr "rendszer bővítmények"
 msgid "System Setup"
 msgstr "Rendszerbeállítás"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "A rendszer szabadterülete:"
 
@@ -17742,9 +17893,6 @@ msgstr "Rendszer: "
 
 msgid "Systeminfo"
 msgstr "Rendszerinformáció"
-
-msgid "Systems"
-msgstr ""
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17940,6 +18088,9 @@ msgstr "A hálózati konfiguráció tesztelése a(z) %s %s készüléken."
 msgid "Test type"
 msgstr "Teszt típusa"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Fényerő"
 
@@ -17979,15 +18130,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "A(z) %s %s tárolja az EPG adatokat minden órában."
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 msgid ""
@@ -18275,11 +18426,18 @@ msgstr "Semmilyen kiemelkedő esemény nem következik."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Nincs elérhető frissítés."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -18950,6 +19108,9 @@ msgstr "Jelenlegi pozícióra vágási jelet tenni"
 msgid "Toggle aspect ratio..."
 msgstr "A képarány módosítása..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Váltás a Csatornacsomag/EPG lista között"
 
@@ -19002,6 +19163,9 @@ msgstr "Felső és alsó"
 msgid "Total"
 msgstr "Összesen"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Összes kártyák:"
 
@@ -19049,6 +19213,10 @@ msgid "Translation Information"
 msgstr "Fordítási információk"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -19161,6 +19329,10 @@ msgstr "Tuner Beállítás"
 msgid "Tuner information"
 msgstr ""
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Tuner nem támogatott"
 
@@ -19270,6 +19442,9 @@ msgstr "Kettő sor"
 
 msgid "Type"
 msgstr "Típus"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Keresés típusa"
@@ -19413,6 +19588,9 @@ msgstr "Ismeretlen csoport: %d"
 msgid "Unknown recording event"
 msgstr "Ismeretlen felvételi esemény"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Ismeretlen felhasználó: %d"
@@ -19465,6 +19643,9 @@ msgstr "Lemezkép kibontása"
 
 msgid "Up"
 msgstr "Fel"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Fel/Le billentyű mód"
@@ -19677,6 +19858,9 @@ msgstr "Ennyi napot mutat maximálisan az EPG műsorújság"
 
 msgid "Use frequency or channel"
 msgstr "Frekvencia vagy csatorna használata"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
@@ -20169,6 +20353,9 @@ msgstr "Hangerő fel"
 msgid "W"
 msgstr "Ny"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -20319,6 +20506,10 @@ msgstr "Hétvége"
 msgid "Weekly"
 msgstr "Hetente"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "Üdvözöljük az IceTV-ben"
 
@@ -20429,7 +20620,7 @@ msgstr "A HTTP jelfolyamba kerüljön bele a DVB-ből származó EIT adatcsomag 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Ha engedélyezi, a leválasztott csatornacsomagok is betöltődnek. Ez azt jelenti, hogy az olyan csatornacsomagok is betöltődnek, amelyek léteznek, de nincsnek benne a bouquets.tv vagy bouquets.radio fájlban. Ez lehetőséget ad arra, hogy a saját csatornacsomagjait megtartsa, ha a csatornák frissülnek"
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -22879,6 +23070,32 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s információ"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "Aktuális streamelő kliensek"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "Hiba történt, hibakód %d, kérem, próbálja később."
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Nincsenek streamelő kliensek"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Streamelő kliensek"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Szoftver karbantartó beállításai"
 
 #~ msgid ""
 #~ "\n"

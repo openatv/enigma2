@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -932,6 +932,14 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr ""
 
@@ -1313,6 +1321,10 @@ msgstr ""
 msgid "%s Setup"
 msgstr "Podešavanje"
 
+#, python-format
+msgid "%s View"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%s additional screens"
@@ -1324,10 +1336,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1432,6 +1440,10 @@ msgid "(%d jobs)"
 msgstr ""
 
 msgid "(1 job)"
+msgstr ""
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
 
 #, python-format
@@ -2340,11 +2352,7 @@ msgstr "O programu..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #
@@ -2419,9 +2427,6 @@ msgid "Activate timeshift end and pause"
 msgstr ""
 
 msgid "Active"
-msgstr ""
-
-msgid "Active Streaming Clients"
 msgstr ""
 
 msgid "Active clients"
@@ -2889,10 +2894,6 @@ msgid "An empty filename is illegal."
 msgstr "Prazno ime datoteke je nelegalno."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
-msgstr ""
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
 msgstr ""
 
 #
@@ -3644,6 +3645,13 @@ msgstr ""
 msgid "Belize"
 msgstr ""
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3804,7 +3812,10 @@ msgstr ""
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3835,7 +3846,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -4023,13 +4035,23 @@ msgstr ""
 msgid "CPU"
 msgstr ""
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
 msgstr ""
 
 msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "CPU rating"
 msgstr ""
 
 msgid "CPU speed/cores"
@@ -4067,6 +4089,12 @@ msgid "Calculate and show size of directory. Note: This can be slow down the UI 
 msgstr ""
 
 msgid "Calculate file checksums"
+msgstr ""
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -4905,10 +4933,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Redosled komandi"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5580,14 +5611,14 @@ msgstr "Informacije upravljača softvera"
 msgid "Country for EPG event rating information"
 msgstr ""
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr ""
 
 msgid "Crash at skin error for debug reasons"
-msgstr ""
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
 msgstr ""
 
 msgid "Create"
@@ -5691,6 +5722,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 #
@@ -5858,6 +5892,9 @@ msgstr ""
 msgid "DUAL LAYER DVD"
 msgstr "DVOSLOJNI DVDi "
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr ""
 
@@ -5941,6 +5978,10 @@ msgid "Date style"
 msgstr ""
 
 msgid "Date/time input"
+msgstr ""
+
+#, python-format
+msgid "Date: %s   Author: %s"
 msgstr ""
 
 msgid "Day D Mon"
@@ -6086,11 +6127,23 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-msgid "Debug Logs"
+#, python-format
+msgid "Debug %d/%d"
 msgstr ""
 
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
+msgid "Debug Logs"
 msgstr ""
 
 msgid "Debug log time format *"
@@ -6327,7 +6380,7 @@ msgstr "Obriši datoteku"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -6371,7 +6424,7 @@ msgstr ""
 msgid "Delete folder"
 msgstr "Obriši datoteku"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -6471,15 +6524,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6703,19 +6747,7 @@ msgstr "Displej i korisnički interfejs"
 msgid "Display message before playing next movie"
 msgstr ""
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6737,6 +6769,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6913,12 +6949,12 @@ msgstr "Da li želite da narežete ovu kolekciju na DVD medij?"
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
+msgstr ""
+
+msgid "Do you want to delete all the log files?"
 msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
@@ -7056,6 +7092,9 @@ msgstr[2] "Učinjeno,instalisano,nadograđeno ili uklonjeno %d paketa sa %d gre�
 msgid "Down"
 msgstr ""
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr ""
 
@@ -7114,12 +7153,6 @@ msgid "Drivers"
 msgstr ""
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -7565,6 +7598,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 
@@ -7732,9 +7768,6 @@ msgstr "Zatvori zbor naslova"
 msgid "Enter number to jump to channel"
 msgstr ""
 
-msgid "Enter number to select screen"
-msgstr ""
-
 msgid "Enter persistent PIN code"
 msgstr ""
 
@@ -7807,11 +7840,11 @@ msgid "Error"
 msgstr "Greška"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7827,7 +7860,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 #
@@ -8282,6 +8319,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -8561,6 +8601,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Fine movement"
@@ -8796,6 +8839,9 @@ msgstr "Frekvencija"
 msgid "Frequency bands"
 msgstr "Band frekvencije"
 
+msgid "Frequency range"
+msgstr ""
+
 #
 msgid "Frequency scan step size(khz)"
 msgstr "Veličina frekvencijskih koraka (khz)"
@@ -8965,6 +9011,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -9608,9 +9658,6 @@ msgstr ""
 msgid "INS"
 msgstr ""
 
-msgid "IP"
-msgstr ""
-
 #
 #, fuzzy
 msgid "IP address"
@@ -9620,6 +9667,9 @@ msgid "IP:"
 msgstr ""
 
 msgid "IPK Installer"
+msgstr ""
+
+msgid "IPv6 address"
 msgstr ""
 
 #
@@ -9941,7 +9991,7 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -10137,6 +10187,9 @@ msgstr "Instalisati"
 
 #, python-format
 msgid "Install '%s' and enable this operation"
+msgstr ""
+
+msgid "Install 1/1"
 msgstr ""
 
 msgid "Install Failed !!"
@@ -11065,11 +11118,19 @@ msgstr "Zaključaj:"
 msgid "Log"
 msgstr ""
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr ""
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -11082,10 +11143,6 @@ msgstr "Rezultati izveštaja na hard disk"
 msgid "LogManager"
 msgstr ""
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr ""
 
@@ -11093,9 +11150,6 @@ msgid "Login failure"
 msgstr ""
 
 msgid "Login to IceTV server"
-msgstr ""
-
-msgid "Logs"
 msgstr ""
 
 msgid "Logs Settings"
@@ -11171,9 +11225,6 @@ msgstr ""
 msgid "M2k"
 msgstr ""
 
-msgid "MAC"
-msgstr ""
-
 msgid "MAC Address Actions"
 msgstr ""
 
@@ -11181,6 +11232,9 @@ msgstr ""
 #, fuzzy
 msgid "MAC Address Settings"
 msgstr "Postavke adaptera"
+
+msgid "MAC address"
+msgstr ""
 
 #
 #, fuzzy
@@ -11494,6 +11548,10 @@ msgstr ""
 msgid "Memory index"
 msgstr ""
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 #
 msgid "Menu"
 msgstr "Meni"
@@ -11659,6 +11717,9 @@ msgstr ""
 #
 msgid "Modulation"
 msgstr "Modulacija"
+
+msgid "Modulation modes"
+msgstr ""
 
 #
 msgid "Modulator"
@@ -12288,6 +12349,10 @@ msgstr ""
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr ""
 
@@ -12303,6 +12368,9 @@ msgstr "Test mreže:"
 #
 msgid "Network scan"
 msgstr "Pretraga mreže"
+
+msgid "Network storage on"
+msgstr ""
 
 #
 msgid "Network test"
@@ -12386,6 +12454,9 @@ msgid "Next"
 msgstr ""
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #
@@ -12478,9 +12549,6 @@ msgstr ""
 msgid "No channel"
 msgstr "Kanal"
 
-msgid "No clients streaming"
-msgstr ""
-
 #
 msgid ""
 "No data on transponder!\n"
@@ -12541,6 +12609,12 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 #
 #, fuzzy
 msgid "No matching place names found"
@@ -12550,7 +12624,7 @@ msgstr "Nijedna mreža nije nađena"
 msgid "No network connection available."
 msgstr "Nijedna mrežna veza nije dostupna."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 #
@@ -12590,6 +12664,9 @@ msgstr ""
 #, fuzzy
 msgid "No standby"
 msgstr "ne stanje pripravnosti"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -12634,6 +12711,9 @@ msgid ""
 msgstr ""
 "Nijedan tjuner nije uključen!\n"
 "Molim podesite postavke tjunera pre nego počnete pretraživanje kanala."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr ""
@@ -12874,7 +12954,7 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 #
@@ -14344,12 +14424,6 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr ""
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -14451,9 +14525,6 @@ msgstr ""
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
 
-msgid "Prev Image"
-msgstr ""
-
 msgid "Prev quad PiP channel"
 msgstr ""
 
@@ -14466,6 +14537,12 @@ msgid "Preview menu"
 msgstr "Pregled menia"
 
 msgid "Previous"
+msgstr ""
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
 msgstr ""
 
 #
@@ -14789,6 +14866,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -14969,10 +15049,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -15613,6 +15700,9 @@ msgstr ""
 msgid "Restricted 18+"
 msgstr ""
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Nastavite sa poslednje pozicije"
@@ -15627,7 +15717,15 @@ msgid "Resuming playback"
 msgstr "Nastavite reprodukciju"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -15644,9 +15742,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Traženje dostupnih ažuriranja.Molim sačekajte..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -16178,6 +16273,9 @@ msgstr ""
 msgid "Science & Tech"
 msgstr ""
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
@@ -16472,6 +16570,9 @@ msgstr ""
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -16485,6 +16586,9 @@ msgstr ""
 #, fuzzy
 msgid "Select a path"
 msgstr "Izaberite putanju filma"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr ""
@@ -16529,9 +16633,6 @@ msgstr "Odaberite kanal za snimanje od"
 msgid "Select channel to record from"
 msgstr "Odaberite kanal za snimanje od"
 
-msgid "Select commit log"
-msgstr ""
-
 msgid "Select copy destination for:"
 msgstr ""
 
@@ -16570,9 +16671,6 @@ msgid "Select if timeshift must continue when set to record."
 msgstr ""
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr ""
-
-msgid "Select information screen"
 msgstr ""
 
 msgid "Select input device"
@@ -16618,6 +16716,9 @@ msgid "Select softcam"
 msgstr ""
 
 msgid "Select sort method:"
+msgstr ""
+
+msgid "Select system information to view:"
 msgstr ""
 
 #
@@ -17822,6 +17923,9 @@ msgstr ""
 msgid "Show columns"
 msgstr ""
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr ""
 
@@ -17841,6 +17945,9 @@ msgid "Show crypto icons"
 msgstr ""
 
 msgid "Show crypto info in infobar"
+msgstr ""
+
+msgid "Show debug log information"
 msgstr ""
 
 #
@@ -17898,13 +18005,13 @@ msgstr ""
 msgid "Show extensions..."
 msgstr ""
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr ""
 
 msgid "Show files backed up by default"
-msgstr ""
-
-msgid "Show geolocation information"
 msgstr ""
 
 msgid "Show graphical multi EPG"
@@ -17964,13 +18071,7 @@ msgstr ""
 msgid "Show job tasks in extensions"
 msgstr ""
 
-msgid "Show latest commit log information"
-msgstr ""
-
 msgid "Show live TV when movie stopped"
-msgstr ""
-
-msgid "Show logs"
 msgstr ""
 
 #
@@ -18007,6 +18108,12 @@ msgstr ""
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -18017,6 +18124,9 @@ msgid "Show next page"
 msgstr ""
 
 msgid "Show next picture"
+msgstr ""
+
+msgid "Show next system information screen"
 msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
@@ -18042,6 +18152,12 @@ msgstr "Prikaži kretanje motora"
 msgid "Show preview of current mode (*)."
 msgstr "Svojstva tekućeg naziva"
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -18056,7 +18172,13 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "prebaci na prethodni podkanal "
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
+msgstr ""
+
+msgid "Show receiver image(s)"
 msgstr ""
 
 msgid "Show record indicator"
@@ -18076,10 +18198,13 @@ msgstr "prikaži citat menia"
 msgid "Show screensaver"
 msgstr ""
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -18148,6 +18273,9 @@ msgid "Show the CCcam Info Screen"
 msgstr ""
 
 msgid "Show the DreamPlex player..."
+msgstr ""
+
+msgid "Show the Logs Settings screen"
 msgstr ""
 
 msgid "Show the OScamInfo Screen"
@@ -18684,9 +18812,6 @@ msgstr "Informacije upravljača softvera"
 msgid "Software Manager Settings"
 msgstr "Podešavanje upravljača softvera"
 
-msgid "Software Manager Setup"
-msgstr ""
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -18933,6 +19058,9 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Start Kodi"
@@ -19006,7 +19134,7 @@ msgstr "Pokrećem"
 msgid "Starts in a few seconds"
 msgstr ""
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -19056,6 +19184,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Zaustavi  "
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Stop PiP"
@@ -19100,6 +19231,9 @@ msgstr "ovo snimanje"
 msgid "Stop service on return to movie list"
 msgstr ""
 
+msgid "Stop streams"
+msgstr ""
+
 #
 msgid "Stop test"
 msgstr "Zaustavite test"
@@ -19141,7 +19275,17 @@ msgstr ""
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 #
@@ -19169,16 +19313,20 @@ msgstr ""
 msgid "Streaming"
 msgstr ""
 
-msgid "Streaming Clients"
+msgid "Streaming Information Actions"
 msgstr ""
 
-msgid "Streaming Information Actions"
+msgid "Streaming Tuner Information"
 msgstr ""
 
 #
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Molim promenite završno vreme snimanja"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -19533,6 +19681,9 @@ msgstr ""
 msgid "System Setup"
 msgstr ""
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr ""
 
@@ -19543,9 +19694,6 @@ msgid "System: "
 msgstr ""
 
 msgid "Systeminfo"
-msgstr ""
-
-msgid "Systems"
 msgstr ""
 
 #, fuzzy
@@ -19749,6 +19897,9 @@ msgstr "Testirajte mrežnu konfiguraciju vašeg drimboxa."
 msgid "Test type"
 msgstr "Testiraj tip"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr ""
 
@@ -19789,15 +19940,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr ""
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 msgid ""
@@ -20078,12 +20229,19 @@ msgstr "Trenutno nema izrazitih dešavanja."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 #
 msgid "There are no updates available."
 msgstr "Nema dostupnih ažuriranja."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -20808,6 +20966,9 @@ msgstr ""
 msgid "Toggle aspect ratio..."
 msgstr ""
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr ""
 
@@ -20864,6 +21025,9 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr ""
 
@@ -20916,6 +21080,10 @@ msgid "Translation Information"
 msgstr "Informacije"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 #
@@ -21045,6 +21213,10 @@ msgid "Tuner Setup"
 msgstr ""
 
 msgid "Tuner information"
+msgstr ""
+
+#, python-format
+msgid "Tuner information for %s %s"
 msgstr ""
 
 msgid "Tuner is not supported"
@@ -21177,6 +21349,9 @@ msgstr ""
 #
 msgid "Type"
 msgstr "Tip"
+
+msgid "Type / Model"
+msgstr ""
 
 #
 msgid "Type of scan"
@@ -21337,6 +21512,9 @@ msgstr ""
 msgid "Unknown recording event"
 msgstr "ovo snimanje"
 
+msgid "Unknown service!"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -21390,6 +21568,9 @@ msgid "Unzipping Image"
 msgstr ""
 
 msgid "Up"
+msgstr ""
+
+msgid "Up / Active"
 msgstr ""
 
 msgid "Up/Down button mode"
@@ -21606,6 +21787,9 @@ msgid "Use for load only x days in EPG"
 msgstr ""
 
 msgid "Use frequency or channel"
+msgstr ""
+
+msgid "Use geolocation to get WAN information"
 msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
@@ -22155,6 +22339,9 @@ msgstr ""
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -22321,6 +22508,10 @@ msgstr "Nedeljnii dan"
 msgid "Weekly"
 msgstr "nedeljno"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr ""
 
@@ -22439,7 +22630,7 @@ msgstr ""
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."

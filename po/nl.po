@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -858,6 +858,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1195,6 +1203,10 @@ msgid "%s Setup"
 msgstr "%s Instellingen"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s extra schermen"
 
@@ -1205,10 +1217,6 @@ msgstr "%s is geactiveerd."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s is uitgeschakeld."
-
-#, python-format
-msgid "%s information"
-msgstr "%s informatie"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1305,6 +1313,10 @@ msgstr "(%d taken)"
 
 msgid "(1 job)"
 msgstr "(1 taak)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "Voor toegang tot de %s commit logs is een internetverbinding noodzakelijk."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2132,12 +2144,8 @@ msgstr "Over..."
 msgid "Access point"
 msgstr "Access point"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "Voor toegang tot geolocatie informatie is een internetverbinding noodzakelijk."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "Voor toegang tot de %s commit logs is een internetverbinding noodzakelijk."
 
 msgid "Accessed:"
 msgstr "Toegankelijk:"
@@ -2201,9 +2209,6 @@ msgstr "Beëindig de Timestift en pauzeer"
 
 msgid "Active"
 msgstr "Actief"
-
-msgid "Active Streaming Clients"
-msgstr "Actieve Streaming Clients"
 
 msgid "Active clients"
 msgstr "Actieve gebruikers"
@@ -2603,10 +2608,6 @@ msgstr "Een lege bestandsnaam is ongeldig."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het opnieuw."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "Er is een fout opgetreden, met de code %d, probeer het later nog eens."
 
 msgid "An unknown error occurred!"
 msgstr "Er is een onbekende fout opgetreden!"
@@ -3279,6 +3280,13 @@ msgstr "België"
 msgid "Belize"
 msgstr "Belize"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Bengaals"
 
@@ -3424,8 +3432,11 @@ msgstr "Helderheid (stand-by)"
 msgid "British Indian Ocean Territory"
 msgstr "Brits Indische Oceaanterritorium"
 
-msgid "Broadcast"
-msgstr "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
+msgstr ""
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3455,8 +3466,9 @@ msgstr "Build Model"
 msgid "Build information"
 msgstr "Build informatie"
 
-msgid "Build information for"
-msgstr "Build informatie voor"
+#, python-format
+msgid "Build information for %s %s"
+msgstr ""
 
 #, python-format
 msgid "Build: %s"
@@ -3638,14 +3650,24 @@ msgstr "CI hoofdmenu"
 msgid "CPU"
 msgstr "CPU"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "CPU architectuur"
+
+msgid "CPU benchmark"
+msgstr ""
 
 msgid "CPU brand"
 msgstr "CPU merk"
 
 msgid "CPU priority for script execution"
 msgstr "CPU prioriteit voor uitvoeren van script"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr "CPU snelheid/cores"
@@ -3679,6 +3701,12 @@ msgstr "Bereken en toon de grootte van de map. Opmerking: Hierdoor kan de UI tra
 
 msgid "Calculate file checksums"
 msgstr "Bereken bestand checksums"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Berekening gereed"
@@ -4444,11 +4472,14 @@ msgstr ""
 msgid "Command type"
 msgstr "Type opdracht"
 
-msgid "Commit Information"
-msgstr "Commit Informatie"
-
 msgid "Commit Information Actions"
 msgstr "Commit Informatie Acties"
+
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
+msgstr ""
 
 msgid "Commit Logs"
 msgstr "Commit Informatie"
@@ -5169,15 +5200,15 @@ msgstr "Land voor EPG programma-genre informatie"
 msgid "Country for EPG event rating information"
 msgstr "Land voor EPG programma-rating informatie"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Crash logs"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Crash bij skinfout voor debug informatie"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr "Crash log '%s' (%d/%d)"
 
 msgid "Create"
 msgstr "Maak"
@@ -5267,6 +5298,9 @@ msgstr "Munteenheid"
 
 msgid "Current"
 msgstr "Huidige"
+
+msgid "Current 1/1"
+msgstr ""
 
 msgid "Current Affairs"
 msgstr "Nieuws/Actualiteiten"
@@ -5411,6 +5445,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "DVB CI vertraging"
 
@@ -5479,6 +5516,10 @@ msgstr "Datumstijl"
 
 msgid "Date/time input"
 msgstr "Tijd/datum invoer"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Dag D Ma"
@@ -5621,12 +5662,24 @@ msgstr "Dagnaam jaar/MM/DD"
 msgid "Deactivate"
 msgstr "Uitschakelen"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Debug logs"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr "Debug log '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Debug log tijd format *"
@@ -5835,8 +5888,8 @@ msgstr "Verwijder een Timer"
 msgid "Delete all log files"
 msgstr "Verwijder alle log bestanden"
 
-msgid "Delete all logfiles"
-msgstr "Verwijder alle log-bestanden"
+msgid "Delete all logs"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "Verwijder alle tags"
@@ -5873,8 +5926,8 @@ msgstr "Verwijder bestand of map (en al zijn inhoud)"
 msgid "Delete folder"
 msgstr "Verwijder map"
 
-msgid "Delete logfile"
-msgstr "Verwijder log-bestand"
+msgid "Delete log"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Verwijder of wis het actuele slot"
@@ -5965,15 +6018,6 @@ msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn me
 
 msgid "Detail of GStreamer log"
 msgstr "Detailniveau van het GStreamer log"
-
-msgid "Detected drives"
-msgstr "Gedetecteerde harde schijven"
-
-msgid "Detected network servers"
-msgstr "Gedetecteerde netwerk servers"
-
-msgid "Detected tuners"
-msgstr "Gedetecteerde tuners"
 
 msgid "Device Manager"
 msgstr "Beheer opslagmedia"
@@ -6169,20 +6213,8 @@ msgstr "Scherm- en gebruikersinterface"
 msgid "Display message before playing next movie"
 msgstr "Een bericht weergeven voordat de volgende film start"
 
-msgid "Display next commit log"
-msgstr "toon het volgende commit log"
-
-msgid "Display next system information screen"
-msgstr "Toon het volgende systeem informatie scherm"
-
 msgid "Display oscam information."
 msgstr "Toon Oscam informatie."
-
-msgid "Display previous commit log"
-msgstr "Toon het vorige commit log"
-
-msgid "Display previous system information screen"
-msgstr "Toon het vorige systeem informatie scherm"
 
 msgid "Display selection list as a selection menu"
 msgstr "Wijzig de selectielijst in een selectiemenu"
@@ -6204,6 +6236,10 @@ msgstr "Display type"
 
 msgid "Distribution"
 msgstr "Distributie"
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
+msgstr ""
 
 msgid "Distribution architecture"
 msgstr "Distributie architectuur"
@@ -6375,15 +6411,15 @@ msgstr "Wilt u deze selectie op een DVD branden?"
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 
-msgid "Do you want to delete all log files?"
-msgstr "Wilt u alle log-bestanden verwijderen?"
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Wilt u alle geselecteerde bestanden wissen:\n"
 "(kies 'Nee' om alleen het nu geselecteerde bestand te wissen.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr "Wilt u alle log-bestanden verwijderen?"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Wilt u eerst uw oude instellingen in /etc/enigma2 verwijderen?"
@@ -6508,6 +6544,9 @@ msgstr[1] "Gereed - %d pakketten geïnstalleerd, vervangen of verwijderd (%s)"
 msgid "Down"
 msgstr "Omlaag"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Plug-ins downloaden"
 
@@ -6563,12 +6602,6 @@ msgstr "Drivers"
 
 msgid "Drivers version"
 msgstr "Drivers versie"
-
-msgid "Drives Information"
-msgstr "Informatie over harde schijven"
-
-msgid "Drives information"
-msgstr "Informatie over harde schijven"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -6975,6 +7008,9 @@ msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Schakel deze optie in indien de antenne een externe voeding nodig heeft"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 "Gebruik een grafische schakelaar voor alle opties als waar/onwaar, ja/nee, aan/uit en activeer/deactiveer.\n"
@@ -7134,9 +7170,6 @@ msgstr "Open multi-bestand selecteer modus"
 msgid "Enter number to jump to channel"
 msgstr "Geef een zendernummer op om er naar toe te zappen."
 
-msgid "Enter number to select screen"
-msgstr "Nummer invoeren om een scherm te selecteren"
-
 msgid "Enter persistent PIN code"
 msgstr "Voer definitieve pincode in"
 
@@ -7204,12 +7237,12 @@ msgid "Error"
 msgstr "Fout"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Fout %d: Log-bestand '%s' is niet verwijderd!  (%s)"
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "Fout %d: Het logbestand '%s' kon niet geopend worden.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7224,7 +7257,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Fout %d: Kan het 'passwd' commando niet starten!"
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr "Fout '%s' bij het ophalen van het %s commit log overzicht!"
 
 msgid "Error Download Setting"
@@ -7655,6 +7692,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr "FFmpeg versie"
 
@@ -7915,6 +7955,9 @@ msgstr "Lees meer op %s"
 msgid "Find similar events in the EPG"
 msgstr "Zoek vergelijkbare programma's in de EPG"
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Fijn bewegen"
 
@@ -8115,6 +8158,9 @@ msgstr "Frequentie Norm:"
 msgid "Frequency bands"
 msgstr "Frequentiebanden"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Frequentie scan stapgrootte(kHz)"
 
@@ -8273,6 +8319,10 @@ msgstr "Deze Geolocatie is gebruikt voor het instellen van de tijdzone."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Geolocatie informatie niet gevonden, a.u.b. later nog een keer proberen."
+
+#, python-format
+msgid "Geolocation information for %s %s"
+msgstr ""
 
 msgid "Geolocation is not available."
 msgstr "Deze Geolocatie is niet beschikbaar."
@@ -8862,9 +8912,6 @@ msgstr "INFO-knop"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "IP-adres"
 
@@ -8873,6 +8920,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK installeren"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO betand is te groot voor dit bestandsysteem!"
@@ -9187,7 +9237,7 @@ msgstr "ECM toevoegen aan http-streams"
 msgid "Include EIT in http streams"
 msgstr "EIT toevoegen aan http-streams"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -9355,6 +9405,9 @@ msgstr "Installeer"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "Installeer '%s' en activeer deze verrichting"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "!! Installatie mislukt !!"
@@ -10140,12 +10193,20 @@ msgstr "Lock:"
 msgid "Log"
 msgstr "Log"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Log beheer"
 
 #, python-format
 msgid "Log file '%s' deleted."
 msgstr "Log-bestand '%s' verwijderd."
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
+msgstr ""
 
 msgid "Log python stack trace on spinner"
 msgstr "Log python stack trace bij spinner"
@@ -10156,10 +10217,6 @@ msgstr "Schrijf resultaten naar de harde schijf"
 msgid "LogManager"
 msgstr "Log beheer"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr "Log-bestand '%s' (%d/%d)"
-
 msgid "Login"
 msgstr "Inloggen"
 
@@ -10168,9 +10225,6 @@ msgstr "Login mislukt"
 
 msgid "Login to IceTV server"
 msgstr "Bij IceTV server inloggen"
-
-msgid "Logs"
-msgstr "Log-bestanden"
 
 msgid "Logs Settings"
 msgstr "Log instellingen"
@@ -10239,14 +10293,14 @@ msgstr "Luxumburgs"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "MAC-adres instellingen"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-adres"
@@ -10522,6 +10576,10 @@ msgstr "Geheugen Informatie Acties"
 msgid "Memory index"
 msgstr "Geheugenindex"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -10675,6 +10733,9 @@ msgstr "Gemodificeerd:"
 
 msgid "Modulation"
 msgstr "Modulatie"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Modulator"
@@ -11208,6 +11269,10 @@ msgstr "Netwerkconfiguratie..."
 msgid "Network information"
 msgstr "Netwerkinformatie"
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Netwerkmenu"
 
@@ -11219,6 +11284,9 @@ msgstr "Netwerknaam (SSID)"
 
 msgid "Network scan"
 msgstr "Netwerk zoeken"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Netwerktest"
@@ -11292,6 +11360,9 @@ msgstr "Straks"
 
 msgid "Next Image"
 msgstr "Volgende Image"
+
+msgid "Next Log"
+msgstr ""
 
 msgid "Next bouquet"
 msgstr "Volgende favorietenlijst"
@@ -11371,9 +11442,6 @@ msgstr "Geen kaart geplaatst!"
 msgid "No channel"
 msgstr "Geen Zender"
 
-msgid "No clients streaming"
-msgstr "Geen Streaming Clients gevonden"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11420,14 +11488,20 @@ msgstr "Geen harde schijven gevonden."
 msgid "No hash calculations configured"
 msgstr "Geen hash berekeningen geconfigureerd"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Geen overeenkomende locaties gevonden"
 
 msgid "No network connection available."
 msgstr "Geen netwerkverbinding beschikbaar."
 
-msgid "No network servers detected."
-msgstr "Geen netwerkservers gevonden."
+msgid "No network storage detected."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Geen netwerken gevonden"
@@ -11458,6 +11532,9 @@ msgstr "Geen slot images gevonden"
 
 msgid "No standby"
 msgstr "Geen stand-by"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11500,6 +11577,9 @@ msgid ""
 msgstr ""
 "Geen tuner geactiveerd!\n"
 "Controleer uw tunerinstellingen alvorens zenders te zoeken."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Geen update vereist!"
@@ -11718,8 +11798,8 @@ msgstr "Aantal lijnen om weer te geven"
 msgid "Number or SMS style data entry"
 msgstr "Nummer of SMS stijl gegevens invoer"
 
-msgid "OEM Model"
-msgstr "OEM Model"
+msgid "OEM model"
+msgstr "OEM model"
 
 msgid "OK"
 msgstr "Bevestigen"
@@ -13023,12 +13103,6 @@ msgstr "Peuters"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Druk '0' om de PiP modus te wisselen"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr "Druk <> of MENU voor een volgend commit log overzicht"
-
-msgid "Press <> or menu to select the different info screens"
-msgstr "Druk <> of MENU voor een volgend info-scherm"
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13117,9 +13191,6 @@ msgstr "Druk op gele knop om deze interface als de standaardinterface in te stel
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Bij het drukken van de Paniek-knop schakelt u over naar deze zender in uw eerste favorietenlijst."
 
-msgid "Prev Image"
-msgstr "Vorige Image"
-
 msgid "Prev quad PiP channel"
 msgstr "Vorige Quad PiP zender"
 
@@ -13131,6 +13202,12 @@ msgstr "Voorbeeld menu"
 
 msgid "Previous"
 msgstr "Vorige"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Vorige favorietenlijst"
@@ -13431,6 +13508,9 @@ msgstr "RAM (Details)"
 msgid "RAM (Summary)"
 msgstr "RAM (Overzicht)"
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "AB custom code"
 
@@ -13591,11 +13671,18 @@ msgstr "Ontvanger"
 msgid "Receiver Image Actions"
 msgstr "Ontvanger Image Acties"
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr "Ontvanger Informatie"
 
 msgid "Receiver Information Actions"
 msgstr "Ontvanger Informatie Acties"
+
+#, python-format
+msgid "Receiver information for %s %s"
+msgstr ""
 
 msgid "Receiver name"
 msgstr "Ontvanger naam"
@@ -14151,6 +14238,9 @@ msgstr "Beperk actieve looptijd"
 msgid "Restricted 18+"
 msgstr "18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Ga door vanaf de laatste positie"
 
@@ -14162,8 +14252,16 @@ msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
 msgstr "Ontvangen van %s commit log, een moment geduld..."
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
+msgstr ""
 
 msgid "Retrieving boot slot information..."
 msgstr "Boot slot informatie opvragen..."
@@ -14176,9 +14274,6 @@ msgstr "Image sloten word opgehaald. Een ogenblik geduld ..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Netwerk server informatie ontvangen, een moment geduld..."
-
-msgid "Retrieving system information, please wait..."
-msgstr "Systeem informatie ontvangen, een moment geduld..."
 
 msgid "Return the current selection response"
 msgstr "Accepteer de huidige selectie"
@@ -14650,6 +14745,9 @@ msgstr "Wetenschap"
 msgid "Science & Tech"
 msgstr "Wetenschap & Techniek"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "Screenshot van LCD in /tmp"
 
@@ -14911,6 +15009,9 @@ msgstr "Selecteer een favorietenlijst"
 msgid "Select a cardserver from the available list."
 msgstr "Kies een cardserver uit de lijst."
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -14922,6 +15023,9 @@ msgstr "Selecteer een netwerkadapter"
 
 msgid "Select a path"
 msgstr "Selecteer een locatie"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Selecteer script om uit te voeren:"
@@ -14956,9 +15060,6 @@ msgstr "Selecteer audio kanaal"
 
 msgid "Select channel to record from"
 msgstr "Selecteer de juiste zender om van op te nemen"
-
-msgid "Select commit log"
-msgstr "Selecteer een commit log-bestand"
 
 msgid "Select copy destination for:"
 msgstr "Selecteer kopieerbestemming voor:"
@@ -15001,9 +15102,6 @@ msgstr "Wat moet er met de Timeshift opname gebeuren wanneer u overschakelt naar
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Selecteer als u het gebruik van sub-zenders wilt activeren."
 
-msgid "Select information screen"
-msgstr "Selecteer een informatie scherm"
-
 msgid "Select input device"
 msgstr "Selecteer invoerapparaat"
 
@@ -15042,6 +15140,9 @@ msgstr "Kies een softcam"
 
 msgid "Select sort method:"
 msgstr "Selecteer sorteermethode:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Selecteer doelmap"
@@ -16182,6 +16283,9 @@ msgstr ""
 msgid "Show columns"
 msgstr "Toon / wijzig de kolommen"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Toon inhoud van ipk bestand"
 
@@ -16202,6 +16306,9 @@ msgstr "Toon icon bij een gecodeerde zender"
 
 msgid "Show crypto info in infobar"
 msgstr "Laat versleutel informatie zien in de informatiebalk"
+
+msgid "Show debug log information"
+msgstr ""
 
 msgid "Show default after description"
 msgstr "Toon default informatie"
@@ -16248,14 +16355,14 @@ msgstr "Toon het extensie menu"
 msgid "Show extensions..."
 msgstr "Toon de applicaties ..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Toon favorietenlijst"
 
 msgid "Show files backed up by default"
 msgstr "Toon standaard geselecteerde back-up bestanden"
-
-msgid "Show geolocation information"
-msgstr "Toon geolocatie informatie"
 
 msgid "Show graphical multi EPG"
 msgstr "Toon grafische Multi-EPG"
@@ -16302,14 +16409,8 @@ msgstr "Toon picons op de informatiebalk"
 msgid "Show job tasks in extensions"
 msgstr "Toon systeemtaken (Job Tasks) in het Extensiemenu"
 
-msgid "Show latest commit log information"
-msgstr "Toon actuele commit log informatie"
-
 msgid "Show live TV when movie stopped"
 msgstr "Toon live-TV als de opname gestopt is"
-
-msgid "Show logs"
-msgstr "Toon log-bestanden"
 
 msgid "Show marked events"
 msgstr "Toon gemarkeerde programma's"
@@ -16341,6 +16442,12 @@ msgstr "Toon de multi-zender EPG"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr "Toon het volgende programma"
 
@@ -16352,6 +16459,9 @@ msgstr "Toon de volgende pagina"
 
 msgid "Show next picture"
 msgstr "Toon volgende afbeelding"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Toon of verberg de uitgebreide beschrijving (skin afhankelijk)."
@@ -16371,6 +16481,12 @@ msgstr "Rotorbewegingen zichtbaar maken"
 msgid "Show preview of current mode (*)."
 msgstr "Toon voorbeeld van huidige modus (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr "Toon het vorige programma"
 
@@ -16383,8 +16499,14 @@ msgstr "Toon de vorige pagina"
 msgid "Show previous picture"
 msgstr "Toon vorige afbeelding"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Open snel menu..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Toon een opname indicatie in de zenderlijst"
@@ -16401,11 +16523,14 @@ msgstr "Toon het scherm menu adres"
 msgid "Show screensaver"
 msgstr "Screensaver"
 
-msgid "Show selection for commit logs"
-msgstr "Toon een selectie van commit log overzichten"
-
 msgid "Show selection for system information screen"
 msgstr "Toon selectie voor het systeem informatie scherm"
+
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
+msgstr ""
 
 msgid "Show service list"
 msgstr "Toon de zenderlijst"
@@ -16468,6 +16593,9 @@ msgstr "Toon het CCcam informatiescherm"
 
 msgid "Show the DreamPlex player..."
 msgstr "Toon de Dreamplex speler..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr "Toon het OScamInfo scherm"
@@ -16926,9 +17054,6 @@ msgstr "Softwarebeheer informatie"
 msgid "Software Manager Settings"
 msgstr "Online update instellingen"
 
-msgid "Software Manager Setup"
-msgstr "Online update instellingen"
-
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
@@ -17165,6 +17290,9 @@ msgstr "Stand-by zonder uitschakelen TV"
 msgid "Start"
 msgstr "Start"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Start Kodi"
 
@@ -17225,7 +17353,7 @@ msgstr "Start op"
 msgid "Starts in a few seconds"
 msgstr "Begint over enkele seconden"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Status"
 
@@ -17268,6 +17396,9 @@ msgstr "Sti"
 msgid "Stop"
 msgstr "Stop"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Beëindig PiP"
 
@@ -17300,6 +17431,9 @@ msgstr "Stop de opname nu"
 
 msgid "Stop service on return to movie list"
 msgstr "Stop zender bij terugkeren naar opname lijst"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Stop test"
@@ -17337,8 +17471,18 @@ msgstr "Stoppen Softcam"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
 msgstr "Opslag / Schijven"
+
+msgid "Storage / Drive information"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Opslagmedia"
@@ -17361,14 +17505,18 @@ msgstr "Stream-tv"
 msgid "Streaming"
 msgstr "Streaming"
 
-msgid "Streaming Clients"
-msgstr "Streaming"
-
 msgid "Streaming Information Actions"
 msgstr "Streaming Informatie Acties"
 
+msgid "Streaming Tuner Information"
+msgstr ""
+
 msgid "Streaming recording ended"
 msgstr "Streaming opname beëindigd"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17680,6 +17828,9 @@ msgstr "systeemplug-ins"
 msgid "System Setup"
 msgstr "Systeem instellingen"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Systeem partitie vrije ruimte:"
 
@@ -17691,9 +17842,6 @@ msgstr "Systeem: "
 
 msgid "Systeminfo"
 msgstr "Systeeminfo"
-
-msgid "Systems"
-msgstr "Systemen"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17878,6 +18026,9 @@ msgstr "Test de netwerkconfiguratie van uw %s %s."
 msgid "Test type"
 msgstr "Testtype"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Testschermen"
 
@@ -17917,16 +18068,16 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
 
 #, python-format
-msgid "The %s commit log contains no information."
-msgstr "Het %s commit log overzicht bevat geen informatie."
-
-#, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr "Het %s commit log overzicht kan niet opgehaald worden, a.u.b. later nog een keer proberen."
 
 #, python-format
-msgid "The '%s' log file contains no information."
-msgstr "Het '%s' log bestand bevat geen informatie."
+msgid "The '%s' commit log contains no information."
+msgstr "Het %s commit log overzicht bevat geen informatie."
+
+#, python-format
+msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -18219,12 +18370,19 @@ msgstr "Er zijn geen uitstaande acties."
 msgid "There are no items currently available for this screen."
 msgstr "Er zijn op dit moment geen items beschikbaar voor dit scherm."
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Er zijn momenteel geen updates beschikbaar."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr "Er is een risico dat uw %s %s niet zal booten of niet goed zal functioneren na zo'n grote online update."
+
+#, python-format
+msgid "There is no information to show for '%s'."
+msgstr ""
 
 msgid "There is no signal to lock on !"
 msgstr "Er is geen signaal om te locken!"
@@ -18927,6 +19085,9 @@ msgstr "Op de huidige positie een snijmarkering aanbrengen"
 msgid "Toggle aspect ratio..."
 msgstr "Wissel aspectverhouding..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Wissel tussen de favorieten- en EPG-lijsten"
 
@@ -18978,6 +19139,9 @@ msgstr "Boven en onderzijde"
 msgid "Total"
 msgstr "Totaal"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Aantal kaarten:"
 
@@ -19026,6 +19190,10 @@ msgstr "Informatie over vertaling"
 
 msgid "Translation information"
 msgstr "Vertaal informatie"
+
+#, python-format
+msgid "Translation information for %s %s"
+msgstr ""
 
 msgid "Transmission mode"
 msgstr "Transmissiemodus"
@@ -19135,6 +19303,10 @@ msgstr "Tuner"
 msgid "Tuner information"
 msgstr "Tuner informatie"
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Tuner wordt niet ondersteund"
 
@@ -19240,6 +19412,9 @@ msgstr "Twee regels"
 
 msgid "Type"
 msgstr "Type"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Zoekmodus"
@@ -19382,6 +19557,9 @@ msgstr "Onbekende groep: %d"
 msgid "Unknown recording event"
 msgstr "Onbekende opname"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Onbekende gebruiker: %d"
@@ -19434,6 +19612,9 @@ msgstr "Image wordt uitgepakt"
 
 msgid "Up"
 msgstr "Omhoog"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Omhoog / Omlaag knop"
@@ -19646,6 +19827,9 @@ msgstr "Gebruik voor een minimale belasting van uw ontvanger nog maar x dagen in
 
 msgid "Use frequency or channel"
 msgstr "Gebruik frequentie of zender"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Gebruik geolocatie om de huidige tijdzone locatie in te stellen"
@@ -20131,6 +20315,9 @@ msgstr "Volume +"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr "WAN verbinding informatie"
 
@@ -20280,6 +20467,10 @@ msgstr "Weekend"
 msgid "Weekly"
 msgstr "Wekelijks"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "Welkom bij IceTV"
 
@@ -20389,7 +20580,7 @@ msgstr "Indien geactiveerd, zal de EIT data toegevoegd worden aan de http-stream
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radio, worden toch geladen. Hierdoor wordt uw zelf samengestelde Favorietenlijst niet gewijzigd wanneer de geïnstalleerde Favorietenlijsten worden geactualiseerd bij een update van de ontvanger."
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -22853,6 +23044,136 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s informatie"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "Actieve Streaming Clients"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "Er is een fout opgetreden, met de code %d, probeer het later nog eens."
+
+#~ msgid "Broadcast"
+#~ msgstr "Broadcast"
+
+#~ msgid "Build information for"
+#~ msgstr "Build informatie voor"
+
+#~ msgid "Commit Information"
+#~ msgstr "Commit Informatie"
+
+#, python-format
+#~ msgid "Crash log '%s' (%d/%d)"
+#~ msgstr "Crash log '%s' (%d/%d)"
+
+#, python-format
+#~ msgid "Debug log '%s' (%d/%d)"
+#~ msgstr "Debug log '%s' (%d/%d)"
+
+#~ msgid "Delete all logfiles"
+#~ msgstr "Verwijder alle log-bestanden"
+
+#~ msgid "Delete logfile"
+#~ msgstr "Verwijder log-bestand"
+
+#~ msgid "Detected drives"
+#~ msgstr "Gedetecteerde harde schijven"
+
+#~ msgid "Detected network servers"
+#~ msgstr "Gedetecteerde netwerk servers"
+
+#~ msgid "Detected tuners"
+#~ msgstr "Gedetecteerde tuners"
+
+#~ msgid "Display next commit log"
+#~ msgstr "toon het volgende commit log"
+
+#~ msgid "Display next system information screen"
+#~ msgstr "Toon het volgende systeem informatie scherm"
+
+#~ msgid "Display previous commit log"
+#~ msgstr "Toon het vorige commit log"
+
+#~ msgid "Display previous system information screen"
+#~ msgstr "Toon het vorige systeem informatie scherm"
+
+#~ msgid "Drives Information"
+#~ msgstr "Informatie over harde schijven"
+
+#~ msgid "Drives information"
+#~ msgstr "Informatie over harde schijven"
+
+#~ msgid "Enter number to select screen"
+#~ msgstr "Nummer invoeren om een scherm te selecteren"
+
+#, python-format
+#~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+#~ msgstr "Fout %d: Het logbestand '%s' kon niet geopend worden.  (%s)"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#, python-format
+#~ msgid "Logfile '%s' (%d/%d)"
+#~ msgstr "Log-bestand '%s' (%d/%d)"
+
+#~ msgid "Logs"
+#~ msgstr "Log-bestanden"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Geen Streaming Clients gevonden"
+
+#~ msgid "No network servers detected."
+#~ msgstr "Geen netwerkservers gevonden."
+
+#~ msgid "Press <> or menu to select the different commit logs"
+#~ msgstr "Druk <> of MENU voor een volgend commit log overzicht"
+
+#~ msgid "Press <> or menu to select the different info screens"
+#~ msgstr "Druk <> of MENU voor een volgend info-scherm"
+
+#~ msgid "Prev Image"
+#~ msgstr "Vorige Image"
+
+#~ msgid "Retrieving system information, please wait..."
+#~ msgstr "Systeem informatie ontvangen, een moment geduld..."
+
+#~ msgid "Select commit log"
+#~ msgstr "Selecteer een commit log-bestand"
+
+#~ msgid "Select information screen"
+#~ msgstr "Selecteer een informatie scherm"
+
+#~ msgid "Show geolocation information"
+#~ msgstr "Toon geolocatie informatie"
+
+#~ msgid "Show latest commit log information"
+#~ msgstr "Toon actuele commit log informatie"
+
+#~ msgid "Show logs"
+#~ msgstr "Toon log-bestanden"
+
+#~ msgid "Show selection for commit logs"
+#~ msgstr "Toon een selectie van commit log overzichten"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Streaming"
+
+#~ msgid "Systems"
+#~ msgstr "Systemen"
+
+#, python-format
+#~ msgid "The '%s' log file contains no information."
+#~ msgstr "Het '%s' log bestand bevat geen informatie."
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Online update instellingen"
 
 #~ msgid ""
 #~ "\n"

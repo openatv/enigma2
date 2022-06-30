@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -855,6 +855,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1192,6 +1200,10 @@ msgid "%s Setup"
 msgstr "%s 设置"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s 个附加屏幕"
 
@@ -1202,10 +1214,6 @@ msgstr ""
 #, python-format
 msgid "%s has been disabled."
 msgstr ""
-
-#, python-format
-msgid "%s information"
-msgstr "%s 信息"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1302,6 +1310,10 @@ msgstr "(%d 个任务)"
 
 msgid "(1 job)"
 msgstr "(1 个任务)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "访问 %s 提交日志需要互联网连接."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2126,12 +2138,8 @@ msgstr "关于..."
 msgid "Access point"
 msgstr "接入点"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "访问地理位置信息需要互联网连接."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "访问 %s 提交日志需要互联网连接."
 
 msgid "Accessed:"
 msgstr "最后访问时间:"
@@ -2195,9 +2203,6 @@ msgstr "激活时移结束并暂停"
 
 msgid "Active"
 msgstr "活跃"
-
-msgid "Active Streaming Clients"
-msgstr "主动流媒体客户端"
 
 msgid "Active clients"
 msgstr "活动客户端"
@@ -2597,10 +2602,6 @@ msgstr "文件名不能为空."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "下载文件包列表时发生了一个错误.请重试."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "发生错误,错误代码 %d,请稍后再试."
 
 msgid "An unknown error occurred!"
 msgstr "发生未知错误！"
@@ -3274,6 +3275,13 @@ msgstr "比利时"
 msgid "Belize"
 msgstr "伯利兹"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr "孟加拉语"
 
@@ -3419,8 +3427,11 @@ msgstr "亮度(待机状态)"
 msgid "British Indian Ocean Territory"
 msgstr "英属印度洋领地"
 
-msgid "Broadcast"
-msgstr "无线网络"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
+msgstr ""
 
 msgid "Broadcom"
 msgstr "博通"
@@ -3450,8 +3461,9 @@ msgstr "构建型号"
 msgid "Build information"
 msgstr "构建信息"
 
-msgid "Build information for"
-msgstr "为…构建信息"
+#, python-format
+msgid "Build information for %s %s"
+msgstr ""
 
 #, python-format
 msgid "Build: %s"
@@ -3633,14 +3645,24 @@ msgstr "CI选择菜单"
 msgid "CPU"
 msgstr "处理器"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "处理器架构"
+
+msgid "CPU benchmark"
+msgstr ""
 
 msgid "CPU brand"
 msgstr "处理器品牌"
 
 msgid "CPU priority for script execution"
 msgstr "脚本执行的CPU优先级"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr "处理器速度/内核"
@@ -3674,6 +3696,12 @@ msgstr ""
 
 msgid "Calculate file checksums"
 msgstr "计算文件校验和"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "计算完成"
@@ -4436,11 +4464,14 @@ msgstr ""
 msgid "Command type"
 msgstr "命令类型"
 
-msgid "Commit Information"
-msgstr "提交信息"
-
 msgid "Commit Information Actions"
 msgstr "提交信息操作"
+
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
+msgstr ""
 
 msgid "Commit Logs"
 msgstr "提交日志"
@@ -5063,15 +5094,15 @@ msgstr "EPG活动类型信息的国家/地区"
 msgid "Country for EPG event rating information"
 msgstr "EPG事件分级信息的国家/地区"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "崩溃日志"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "由于调试原因导致皮肤错误崩溃?"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr "崩溃日志 '%s' (%d/%d)"
 
 msgid "Create"
 msgstr "创建"
@@ -5160,6 +5191,9 @@ msgid "Currency"
 msgstr "货币"
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 msgid "Current Affairs"
@@ -5305,6 +5339,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "双层DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "DVB CI延迟"
 
@@ -5373,6 +5410,10 @@ msgstr "日期样式"
 
 msgid "Date/time input"
 msgstr "日期/输入时间"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "Day D Mon"
@@ -5515,12 +5556,24 @@ msgstr "格式 年/月/日"
 msgid "Deactivate"
 msgstr "停用"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "调试日志"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr "调试日志\"%s\"（%d/%d）"
 
 msgid "Debug log time format *"
 msgstr "调试日志时间格式*"
@@ -5723,8 +5776,8 @@ msgstr "删除定时器"
 msgid "Delete all log files"
 msgstr "删除所有日志文件"
 
-msgid "Delete all logfiles"
-msgstr "删除所有日志文件"
+msgid "Delete all logs"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "删除所有标签"
@@ -5759,8 +5812,8 @@ msgstr "删除文件或目录(及其所有内容)"
 msgid "Delete folder"
 msgstr "删除文件夹"
 
-msgid "Delete logfile"
-msgstr "删除日志文件"
+msgid "Delete log"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
@@ -5851,15 +5904,6 @@ msgstr "取消选择的包通常发生,因为打包的包与现有包不兼容. 
 
 msgid "Detail of GStreamer log"
 msgstr "GStreamer日志的详细信息"
-
-msgid "Detected drives"
-msgstr "检测到的驱动器"
-
-msgid "Detected network servers"
-msgstr "检测到的网络服务器"
-
-msgid "Detected tuners"
-msgstr "检测到调谐器"
 
 msgid "Device Manager"
 msgstr "设备管理器"
@@ -6055,20 +6099,8 @@ msgstr "显示和用户界面"
 msgid "Display message before playing next movie"
 msgstr "在播放下一部电影之前显示消息"
 
-msgid "Display next commit log"
-msgstr "显示下一个提交日志"
-
-msgid "Display next system information screen"
-msgstr "显示下一个系统信息屏幕"
-
 msgid "Display oscam information."
 msgstr "显示oscam信息."
-
-msgid "Display previous commit log"
-msgstr "显示以前的提交日志"
-
-msgid "Display previous system information screen"
-msgstr "显示以前的系统信息屏幕"
 
 msgid "Display selection list as a selection menu"
 msgstr "将选择列表显示为选择菜单"
@@ -6090,6 +6122,10 @@ msgstr "显示类型"
 
 msgid "Distribution"
 msgstr "分发"
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
+msgstr ""
 
 msgid "Distribution architecture"
 msgstr "分发架构"
@@ -6261,15 +6297,15 @@ msgstr "是否要将这个合集刻录到 DVD 介质中？"
 msgid "Do you want to continue?"
 msgstr "是否确定继续？"
 
-msgid "Do you want to delete all log files?"
-msgstr "是否要删除所有日志文件？"
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "是否要删除所有选定的文件:\n"
 "(选择\"否\"仅删除当前已选择的文件.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr "是否要删除所有日志文件？"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "是否要删除 /etc/enigma2 中的旧设置？"
@@ -6394,6 +6430,9 @@ msgstr[1] "完成-已安装,升级或删除了 %d 个软件包 (%s)"
 msgid "Down"
 msgstr "向下"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "下载插件"
 
@@ -6447,12 +6486,6 @@ msgstr "驱动器"
 
 msgid "Drivers version"
 msgstr "驱动版本"
-
-msgid "Drives Information"
-msgstr "驱动器信息"
-
-msgid "Drives information"
-msgstr "驱动器信息"
 
 msgid "Duplex"
 msgstr "双工模式"
@@ -6859,6 +6892,9 @@ msgstr "启用此选项可将屏幕名称和分辨率数据添加到调试日志
 msgid "Enable this setting if your aerial system needs power"
 msgstr "如果天线系统需要电源,请启用此设置"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "启用显示所有开/关和启用/禁用设置选项作为图形开关."
 
@@ -7013,9 +7049,6 @@ msgstr "输入多文件选择模式"
 msgid "Enter number to jump to channel"
 msgstr "输入要转到的频道编号"
 
-msgid "Enter number to select screen"
-msgstr "输入数字以选择屏幕"
-
 msgid "Enter persistent PIN code"
 msgstr "输入永久PIN码"
 
@@ -7083,12 +7116,12 @@ msgid "Error"
 msgstr "错误"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "错误%d:未删除日志文件'%s'!   (%s)"
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "错误%d:无法打开日志文件'%s'.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7103,7 +7136,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr "检索%s提交日志时遇到错误'%s'!"
 
 msgid "Error Download Setting"
@@ -7534,6 +7571,9 @@ msgstr ""
 msgid "FEC"
 msgstr "前向纠错"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr "FFmpeg版本"
 
@@ -7794,6 +7834,9 @@ msgstr "更多信息请访问%s"
 msgid "Find similar events in the EPG"
 msgstr "在EPG中查找类似事件"
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "精细运动"
 
@@ -7994,6 +8037,9 @@ msgstr "频率标准:"
 msgid "Frequency bands"
 msgstr "频段"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "频率扫描步长(khz)"
 
@@ -8152,6 +8198,10 @@ msgstr "地理位置已用于设置时区."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "无法检索地理位置信息,请稍后重试."
+
+#, python-format
+msgid "Geolocation information for %s %s"
+msgstr ""
 
 msgid "Geolocation is not available."
 msgstr "地理位置不可用."
@@ -8738,9 +8788,6 @@ msgstr "INFO键模式"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "本机地址"
-
 msgid "IP address"
 msgstr "IP地址"
 
@@ -8749,6 +8796,9 @@ msgstr "IP地址:"
 
 msgid "IPK Installer"
 msgstr "IPK安装器"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO文件对此文件系统太大!"
@@ -9057,7 +9107,7 @@ msgstr "在Http串流中包含ECM信息"
 msgid "Include EIT in http streams"
 msgstr "在Http串流中包含EIT信息"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -9225,6 +9275,9 @@ msgstr "安裝"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "安装'%s'并启用此操作"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "安装失败!!"
@@ -10010,12 +10063,20 @@ msgstr "锁定:"
 msgid "Log"
 msgstr "日志"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "日志管理"
 
 #, python-format
 msgid "Log file '%s' deleted."
 msgstr "日志文件'%s'已删除."
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
+msgstr ""
 
 msgid "Log python stack trace on spinner"
 msgstr "系统崩溃时日志是否打印堆栈信息?"
@@ -10026,10 +10087,6 @@ msgstr "将结果记录到硬盘"
 msgid "LogManager"
 msgstr "日志管理器"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr "日志文件'%s' (%d/%d)"
-
 msgid "Login"
 msgstr "登录"
 
@@ -10038,9 +10095,6 @@ msgstr "登录失败"
 
 msgid "Login to IceTV server"
 msgstr "登录IceTV服务器"
-
-msgid "Logs"
-msgstr "日志"
 
 msgid "Logs Settings"
 msgstr "日志设置"
@@ -10109,14 +10163,14 @@ msgstr "卢森堡语 / 勒兹伯格语"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC地址"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "MAC-地址设置"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-地址"
@@ -10392,6 +10446,10 @@ msgstr "内存信息操作"
 msgid "Memory index"
 msgstr "存储的位置索引"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "菜单"
 
@@ -10545,6 +10603,9 @@ msgstr "最后修改:"
 
 msgid "Modulation"
 msgstr "调制"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "调制器"
@@ -11078,6 +11139,10 @@ msgstr "网络配置..."
 msgid "Network information"
 msgstr "网络信息"
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "网络菜单"
 
@@ -11089,6 +11154,9 @@ msgstr "网络名称(SSID)"
 
 msgid "Network scan"
 msgstr "网络扫描"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "网络测试"
@@ -11162,6 +11230,9 @@ msgstr "接下来"
 
 msgid "Next Image"
 msgstr "下一张图片"
+
+msgid "Next Log"
+msgstr ""
 
 msgid "Next bouquet"
 msgstr "下一个自定义组"
@@ -11241,9 +11312,6 @@ msgstr "没有卡插入！"
 msgid "No channel"
 msgstr "没有频道"
 
-msgid "No clients streaming"
-msgstr "没有串流在使用"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11290,14 +11358,20 @@ msgstr "未检测到硬盘."
 msgid "No hash calculations configured"
 msgstr "未配置哈希计算"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "未找到匹配的地名"
 
 msgid "No network connection available."
 msgstr "无可用的网络连接."
 
-msgid "No network servers detected."
-msgstr "未检测到网络服务器."
+msgid "No network storage detected."
+msgstr ""
 
 msgid "No networks found"
 msgstr "没有发现网络"
@@ -11328,6 +11402,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "不待机"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -11370,6 +11447,9 @@ msgid ""
 msgstr ""
 "没有启用调谐器!\n"
 "请在启动频道扫描之前设置您的调谐器设置."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "无需更新！"
@@ -11585,7 +11665,7 @@ msgstr "要显示的行数"
 msgid "Number or SMS style data entry"
 msgstr "数字或短信样式数据输入"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr "原装型号"
 
 msgid "OK"
@@ -12889,12 +12969,6 @@ msgstr "学前班"
 msgid "Press '0' to toggle PiP mode"
 msgstr "按'0'键切换画中画模式"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr "按<>键或菜单键选择不同的提交日志"
-
-msgid "Press <> or menu to select the different info screens"
-msgstr "按<>键或菜单键选择不同的信息屏幕"
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -12981,9 +13055,6 @@ msgstr "按黄色键将此接口设置为默认接口."
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "按下紧急键可切换到第一个频道列表中的频道号码."
 
-msgid "Prev Image"
-msgstr "上一张图片"
-
 msgid "Prev quad PiP channel"
 msgstr "上一个四画面PIP频道"
 
@@ -12995,6 +13066,12 @@ msgstr "预览菜单"
 
 msgid "Previous"
 msgstr "前一个"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "转到上个自定义组"
@@ -13295,6 +13372,9 @@ msgstr "RAM(详细信息)"
 msgid "RAM (Summary)"
 msgstr "RAM(摘要)"
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "RC自定义代码"
 
@@ -13455,11 +13535,18 @@ msgstr "接收器"
 msgid "Receiver Image Actions"
 msgstr "接收器图像操作"
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr "接收器信息"
 
 msgid "Receiver Information Actions"
 msgstr "接收机信息动作"
+
+#, python-format
+msgid "Receiver information for %s %s"
+msgstr ""
 
 msgid "Receiver name"
 msgstr "接收器名称"
@@ -14015,6 +14102,9 @@ msgstr "限制活动时间范围"
 msgid "Restricted 18+"
 msgstr "受限18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "从最后位置恢复"
 
@@ -14026,8 +14116,16 @@ msgid "Resuming playback"
 msgstr "恢复播放"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
 msgstr "正在检索%s提交日志,请稍候..."
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
+msgstr ""
 
 msgid "Retrieving boot slot information..."
 msgstr ""
@@ -14040,9 +14138,6 @@ msgstr "正在检索镜像分区-请稍候..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "正在检索网络服务器信息,请稍候..."
-
-msgid "Retrieving system information, please wait..."
-msgstr "正在检索系统信息,请稍候..."
 
 msgid "Return the current selection response"
 msgstr "返回当前选择响应"
@@ -14512,6 +14607,9 @@ msgstr "科学"
 msgid "Science & Tech"
 msgstr "科技"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "LCD截屏到/tmp"
 
@@ -14771,6 +14869,9 @@ msgstr "选择自定义组"
 msgid "Select a cardserver from the available list."
 msgstr "从可用列表中选择一个卡服务器."
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -14782,6 +14883,9 @@ msgstr "选择网络适配器"
 
 msgid "Select a path"
 msgstr "选择路径"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本:"
@@ -14816,9 +14920,6 @@ msgstr "选择频道音频"
 
 msgid "Select channel to record from"
 msgstr "选择要录制的频道"
-
-msgid "Select commit log"
-msgstr "选择提交日志"
 
 msgid "Select copy destination for:"
 msgstr "选择复制目标为:"
@@ -14859,9 +14960,6 @@ msgstr "选择设置为录制时是否必须继续时移."
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "选择是否激活子频道模式."
 
-msgid "Select information screen"
-msgstr "选择信息屏幕"
-
 msgid "Select input device"
 msgstr "选择输入设备"
 
@@ -14900,6 +14998,9 @@ msgstr "选择softcam"
 
 msgid "Select sort method:"
 msgstr "选择排序方法:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "选择目标文件夹"
@@ -16019,6 +16120,9 @@ msgstr "显示支持的视频文件的章节位置.(GStreamer版本必须大于1
 msgid "Show columns"
 msgstr "显示列"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "显示ipk文件的内容"
 
@@ -16039,6 +16143,9 @@ msgstr "显示加密图标"
 
 msgid "Show crypto info in infobar"
 msgstr "在信息条上显示加密信息"
+
+msgid "Show debug log information"
+msgstr ""
 
 msgid "Show default after description"
 msgstr "在描述后显示默认值"
@@ -16085,14 +16192,14 @@ msgstr "显示扩展选择"
 msgid "Show extensions..."
 msgstr "显示扩展名..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "显示收藏夹列表"
 
 msgid "Show files backed up by default"
 msgstr "显示默认备份的文件"
-
-msgid "Show geolocation information"
-msgstr "显示地理位置信息"
 
 msgid "Show graphical multi EPG"
 msgstr "显示图形化多个EPG"
@@ -16139,14 +16246,8 @@ msgstr "显示信息栏picon图标"
 msgid "Show job tasks in extensions"
 msgstr "在扩展中显示工作任务"
 
-msgid "Show latest commit log information"
-msgstr "显示最新的提交日志信息"
-
 msgid "Show live TV when movie stopped"
 msgstr "电影停止时显示电视直播"
-
-msgid "Show logs"
-msgstr "显示日志"
 
 msgid "Show marked events"
 msgstr "显示标记的事件"
@@ -16178,6 +16279,12 @@ msgstr "显示多个频道的EPG"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr "显示下一个事件"
 
@@ -16189,6 +16296,9 @@ msgstr "显示下一页"
 
 msgid "Show next picture"
 msgstr "显示下一张图片"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "显示或隐藏附件的描述,(依皮肤而定)."
@@ -16208,6 +16318,12 @@ msgstr "显示马达移动动画"
 msgid "Show preview of current mode (*)."
 msgstr "显示当前模式预览 (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr "显示上一个事件"
 
@@ -16220,8 +16336,14 @@ msgstr "显示上一页"
 msgid "Show previous picture"
 msgstr "显示上一张图片"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "显示快速菜单..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "显示录像指示符"
@@ -16238,11 +16360,14 @@ msgstr "显示屏幕菜单路径"
 msgid "Show screensaver"
 msgstr "显示屏保"
 
-msgid "Show selection for commit logs"
-msgstr "显示提交日志的选择"
-
 msgid "Show selection for system information screen"
 msgstr "显示系统信息画面的选择"
+
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
+msgstr ""
 
 msgid "Show service list"
 msgstr "显示频道列表"
@@ -16303,6 +16428,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "显示DreamPlex播放器……"
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr "显示OScam信息屏幕"
@@ -16759,9 +16887,6 @@ msgstr "软件管理器信息"
 msgid "Software Manager Settings"
 msgstr "软件管理器设置"
 
-msgid "Software Manager Setup"
-msgstr "软件管理器设置"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17000,6 +17125,9 @@ msgstr "无需关闭电视即可待机"
 msgid "Start"
 msgstr "开始"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "启动Kodi"
 
@@ -17060,7 +17188,7 @@ msgstr "开始于"
 msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "省市自治区"
 
@@ -17103,6 +17231,9 @@ msgstr ""
 msgid "Stop"
 msgstr "停止"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "停止画中画"
 
@@ -17135,6 +17266,9 @@ msgstr "马上停止录制"
 
 msgid "Stop service on return to movie list"
 msgstr "返回电影列表时停止频道"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "停止测试"
@@ -17172,7 +17306,17 @@ msgstr "停止softcam"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "如果录制正在进行,则停止的时移会被使用.(建议使用U盘)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 msgid "Storage Devices"
@@ -17196,14 +17340,18 @@ msgstr "流-电视"
 msgid "Streaming"
 msgstr "串流"
 
-msgid "Streaming Clients"
-msgstr "串流客户端信息"
-
 msgid "Streaming Information Actions"
 msgstr "流式信息操作"
 
+msgid "Streaming Tuner Information"
+msgstr ""
+
 msgid "Streaming recording ended"
 msgstr "串流录制结束"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17515,6 +17663,9 @@ msgstr "系统插件"
 msgid "System Setup"
 msgstr "系统设置"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "系统分区可用空间:"
 
@@ -17526,9 +17677,6 @@ msgstr "系统: "
 
 msgid "Systeminfo"
 msgstr "系统信息"
-
-msgid "Systems"
-msgstr "调谐器类型"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17711,6 +17859,9 @@ msgstr "测试您 %s %s 的网络配置."
 msgid "Test type"
 msgstr "测试类型"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "测试屏幕"
 
@@ -17750,16 +17901,16 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "这个%s %s 每隔(小时)存储一次EPG数据."
 
 #, python-format
-msgid "The %s commit log contains no information."
-msgstr "%s 提交日志不包含任何信息."
-
-#, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr "无法检索 %s 提交日志,请稍后再试."
 
 #, python-format
-msgid "The '%s' log file contains no information."
-msgstr "'%s' 日志文件不包含任何信息."
+msgid "The '%s' commit log contains no information."
+msgstr "%s 提交日志不包含任何信息."
+
+#, python-format
+msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -18046,12 +18197,19 @@ msgstr "目前没有任何突出的动作."
 msgid "There are no items currently available for this screen."
 msgstr "当前界面没有可用的选择."
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "没有可用的更新."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr "在进行如此大规模的在线更新后,您的 %s%s 可能无法启动或出现故障."
+
+#, python-format
+msgid "There is no information to show for '%s'."
+msgstr ""
 
 msgid "There is no signal to lock on !"
 msgstr "没有信号可以锁定!"
@@ -18716,6 +18874,9 @@ msgstr "在当前位置切换剪切标记"
 msgid "Toggle aspect ratio..."
 msgstr "切换宽高比..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "在 自定义组/EPG列表 之间切换"
 
@@ -18767,6 +18928,9 @@ msgstr "顶部和底部"
 msgid "Total"
 msgstr "总数"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "总卡片:"
 
@@ -18815,6 +18979,10 @@ msgstr "翻译信息"
 
 msgid "Translation information"
 msgstr "编译信息"
+
+#, python-format
+msgid "Translation information for %s %s"
+msgstr ""
 
 msgid "Transmission mode"
 msgstr "传输模式"
@@ -18924,6 +19092,10 @@ msgstr "调谐器设置"
 msgid "Tuner information"
 msgstr "调谐器信息"
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "不支持的调谐器"
 
@@ -19029,6 +19201,9 @@ msgstr "两行"
 
 msgid "Type"
 msgstr "类型"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "扫描类型"
@@ -19171,6 +19346,9 @@ msgstr "未知组: %d"
 msgid "Unknown recording event"
 msgstr "未知的录制事件"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "未知用户: %d"
@@ -19223,6 +19401,9 @@ msgstr "解压镜像"
 
 msgid "Up"
 msgstr "上箭头"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "向上/向下 按键模式"
@@ -19435,6 +19616,9 @@ msgstr "EPG中只加载x天使用"
 
 msgid "Use frequency or channel"
 msgstr "使用频率或频道"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "使用定位设置当前时区位置"
@@ -19919,6 +20103,9 @@ msgstr "音量增大"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr "广域网连接信息"
 
@@ -20068,6 +20255,10 @@ msgstr "周末"
 msgid "Weekly"
 msgstr "每周"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "欢迎使用IceTV"
 
@@ -20177,7 +20368,7 @@ msgstr "启用后,EIT数据将包含在HTTP流.这允许一个客户端接收显
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "启用后,Enigma2将加载未链接的频道列表.这意味着频道列表可用,但未包括在bouquets.tv或bouquets.radio文件中,依然会被加载.这允许你例如升级已安装的设置后要保持自己的用户频道列表"
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -22617,6 +22808,136 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s 信息"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "主动流媒体客户端"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "发生错误,错误代码 %d,请稍后再试."
+
+#~ msgid "Broadcast"
+#~ msgstr "无线网络"
+
+#~ msgid "Build information for"
+#~ msgstr "为…构建信息"
+
+#~ msgid "Commit Information"
+#~ msgstr "提交信息"
+
+#, python-format
+#~ msgid "Crash log '%s' (%d/%d)"
+#~ msgstr "崩溃日志 '%s' (%d/%d)"
+
+#, python-format
+#~ msgid "Debug log '%s' (%d/%d)"
+#~ msgstr "调试日志\"%s\"（%d/%d）"
+
+#~ msgid "Delete all logfiles"
+#~ msgstr "删除所有日志文件"
+
+#~ msgid "Delete logfile"
+#~ msgstr "删除日志文件"
+
+#~ msgid "Detected drives"
+#~ msgstr "检测到的驱动器"
+
+#~ msgid "Detected network servers"
+#~ msgstr "检测到的网络服务器"
+
+#~ msgid "Detected tuners"
+#~ msgstr "检测到调谐器"
+
+#~ msgid "Display next commit log"
+#~ msgstr "显示下一个提交日志"
+
+#~ msgid "Display next system information screen"
+#~ msgstr "显示下一个系统信息屏幕"
+
+#~ msgid "Display previous commit log"
+#~ msgstr "显示以前的提交日志"
+
+#~ msgid "Display previous system information screen"
+#~ msgstr "显示以前的系统信息屏幕"
+
+#~ msgid "Drives Information"
+#~ msgstr "驱动器信息"
+
+#~ msgid "Drives information"
+#~ msgstr "驱动器信息"
+
+#~ msgid "Enter number to select screen"
+#~ msgstr "输入数字以选择屏幕"
+
+#, python-format
+#~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+#~ msgstr "错误%d:无法打开日志文件'%s'.  (%s)"
+
+#~ msgid "IP"
+#~ msgstr "本机地址"
+
+#, python-format
+#~ msgid "Logfile '%s' (%d/%d)"
+#~ msgstr "日志文件'%s' (%d/%d)"
+
+#~ msgid "Logs"
+#~ msgstr "日志"
+
+#~ msgid "MAC"
+#~ msgstr "MAC地址"
+
+#~ msgid "No clients streaming"
+#~ msgstr "没有串流在使用"
+
+#~ msgid "No network servers detected."
+#~ msgstr "未检测到网络服务器."
+
+#~ msgid "Press <> or menu to select the different commit logs"
+#~ msgstr "按<>键或菜单键选择不同的提交日志"
+
+#~ msgid "Press <> or menu to select the different info screens"
+#~ msgstr "按<>键或菜单键选择不同的信息屏幕"
+
+#~ msgid "Prev Image"
+#~ msgstr "上一张图片"
+
+#~ msgid "Retrieving system information, please wait..."
+#~ msgstr "正在检索系统信息,请稍候..."
+
+#~ msgid "Select commit log"
+#~ msgstr "选择提交日志"
+
+#~ msgid "Select information screen"
+#~ msgstr "选择信息屏幕"
+
+#~ msgid "Show geolocation information"
+#~ msgstr "显示地理位置信息"
+
+#~ msgid "Show latest commit log information"
+#~ msgstr "显示最新的提交日志信息"
+
+#~ msgid "Show logs"
+#~ msgstr "显示日志"
+
+#~ msgid "Show selection for commit logs"
+#~ msgstr "显示提交日志的选择"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "串流客户端信息"
+
+#~ msgid "Systems"
+#~ msgstr "调谐器类型"
+
+#, python-format
+#~ msgid "The '%s' log file contains no information."
+#~ msgstr "'%s' 日志文件不包含任何信息."
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "软件管理器设置"
 
 #~ msgid ""
 #~ "\n"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -941,6 +941,14 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr ""
 
@@ -1303,6 +1311,10 @@ msgstr ""
 msgid "%s Setup"
 msgstr "Nastavení"
 
+#, python-format
+msgid "%s View"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Prohledat dodatečný SR"
@@ -1313,10 +1325,6 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
-
-#, python-format
-msgid "%s information"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1414,6 +1422,10 @@ msgid "(%d jobs)"
 msgstr " (%d mins)\n"
 
 msgid "(1 job)"
+msgstr ""
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
 
 #, python-format
@@ -2295,11 +2307,7 @@ msgstr "Info o..."
 msgid "Access point"
 msgstr ""
 
-msgid "Access to geolocation information requires an internet connection."
-msgstr ""
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #, fuzzy
@@ -2367,9 +2375,6 @@ msgstr "Aktivuje timeshift pauzu"
 
 msgid "Active"
 msgstr "Aktivní"
-
-msgid "Active Streaming Clients"
-msgstr ""
 
 msgid "Active clients"
 msgstr "Aktivní klienti"
@@ -2796,10 +2801,6 @@ msgstr "Neplatný název souboru."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr ""
 
 msgid "An unknown error occurred!"
 msgstr "Došlo k neznámé chybě!"
@@ -3514,6 +3515,13 @@ msgstr ""
 msgid "Belize"
 msgstr ""
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr ""
 
@@ -3667,7 +3675,10 @@ msgstr "Jas (Po vypnutí)"
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-msgid "Broadcast"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
 msgstr ""
 
 msgid "Broadcom"
@@ -3698,7 +3709,8 @@ msgstr ""
 msgid "Build information"
 msgstr ""
 
-msgid "Build information for"
+#, python-format
+msgid "Build information for %s %s"
 msgstr ""
 
 #, python-format
@@ -3887,13 +3899,23 @@ msgstr "Nastavení CI rozhraní"
 msgid "CPU"
 msgstr "CPU:\t%s"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
+msgstr ""
+
+msgid "CPU benchmark"
 msgstr ""
 
 msgid "CPU brand"
 msgstr ""
 
 msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "CPU rating"
 msgstr ""
 
 msgid "CPU speed/cores"
@@ -3927,6 +3949,12 @@ msgid "Calculate and show size of directory. Note: This can be slow down the UI 
 msgstr ""
 
 msgid "Calculate file checksums"
+msgstr ""
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -4720,10 +4748,13 @@ msgstr ""
 msgid "Command type"
 msgstr "Příkaz typu"
 
-msgid "Commit Information"
+msgid "Commit Information Actions"
 msgstr ""
 
-msgid "Commit Information Actions"
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
 msgstr ""
 
 msgid "Commit Logs"
@@ -5381,14 +5412,14 @@ msgstr "Info správy software"
 msgid "Country for EPG event rating information"
 msgstr ""
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Zpráva pádů"
 
 msgid "Crash at skin error for debug reasons"
-msgstr ""
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
 msgstr ""
 
 msgid "Create"
@@ -5486,6 +5517,9 @@ msgid "Currency"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
@@ -5636,6 +5670,9 @@ msgstr ""
 msgid "DUAL LAYER DVD"
 msgstr "DVOUVRSTVÉ DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr ""
 
@@ -5712,6 +5749,10 @@ msgstr ""
 
 msgid "Date/time input"
 msgstr "Nastavení data/času"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr ""
@@ -5856,12 +5897,24 @@ msgstr ""
 msgid "Deactivate"
 msgstr "Aktivovat"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Zprávy chyb"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr ""
 
 msgid "Debug log time format *"
 msgstr ""
@@ -6074,7 +6127,7 @@ msgstr "Smazat časovač"
 msgid "Delete all log files"
 msgstr ""
 
-msgid "Delete all logfiles"
+msgid "Delete all logs"
 msgstr ""
 
 msgid "Delete all tags"
@@ -6113,7 +6166,7 @@ msgstr "Opravdu chcete smazat tento adresář a jeho obsah ?"
 msgid "Delete folder"
 msgstr "Smazat soubor"
 
-msgid "Delete logfile"
+msgid "Delete log"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -6209,15 +6262,6 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr ""
 
 msgid "Detail of GStreamer log"
-msgstr ""
-
-msgid "Detected drives"
-msgstr ""
-
-msgid "Detected network servers"
-msgstr ""
-
-msgid "Detected tuners"
 msgstr ""
 
 msgid "Device Manager"
@@ -6428,19 +6472,7 @@ msgstr "Displej a uživatelské rozhraní"
 msgid "Display message before playing next movie"
 msgstr "Zobrazit zprávu před dalším přehrávaným filmem"
 
-msgid "Display next commit log"
-msgstr ""
-
-msgid "Display next system information screen"
-msgstr ""
-
 msgid "Display oscam information."
-msgstr ""
-
-msgid "Display previous commit log"
-msgstr ""
-
-msgid "Display previous system information screen"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -6462,6 +6494,10 @@ msgid "Display type"
 msgstr ""
 
 msgid "Distribution"
+msgstr ""
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
 msgstr ""
 
 msgid "Distribution architecture"
@@ -6636,15 +6672,15 @@ msgstr "Chcete vypálit tuto kompilaci na DVD?"
 msgid "Do you want to continue?"
 msgstr "Chcete nastavit"
 
-msgid "Do you want to delete all log files?"
-msgstr ""
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Chcete smazat všechny vybrané soubory:\n"
 "(vyberte 'Ne' ke smazání pouze aktuálně vybraných souborů.)"
+
+msgid "Do you want to delete all the log files?"
+msgstr ""
 
 #, fuzzy
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
@@ -6777,6 +6813,9 @@ msgstr[2] "Dokončeno - instalováno, aktualizováno nebo odstraněno %d balíč
 msgid "Down"
 msgstr "Dolu"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Nahrát pluginy"
 
@@ -6835,12 +6874,6 @@ msgid "Drivers"
 msgstr "Servery"
 
 msgid "Drivers version"
-msgstr ""
-
-msgid "Drives Information"
-msgstr ""
-
-msgid "Drives information"
 msgstr ""
 
 msgid "Duplex"
@@ -7265,6 +7298,9 @@ msgstr ""
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 
@@ -7419,9 +7455,6 @@ msgstr "Zavřít výběr titulku"
 msgid "Enter number to jump to channel"
 msgstr "Vložte číslo programu na které chcete skočit."
 
-msgid "Enter number to select screen"
-msgstr ""
-
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "Zadejte pin kód"
@@ -7492,11 +7525,11 @@ msgid "Error"
 msgstr "Chyba"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7512,7 +7545,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr ""
 
 #, fuzzy
@@ -7965,6 +8002,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr ""
 
@@ -8234,6 +8274,9 @@ msgstr ""
 msgid "Find similar events in the EPG"
 msgstr ""
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Jemné natáčení"
 
@@ -8452,6 +8495,9 @@ msgstr "Frekvence:"
 msgid "Frequency bands"
 msgstr "Frekvenční pásma"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Frekvenční prohledávání po (khz)"
 
@@ -8618,6 +8664,10 @@ msgid "Geolocation has been used to set the time zone."
 msgstr ""
 
 msgid "Geolocation information cannot be retrieved, please try again later."
+msgstr ""
+
+#, python-format
+msgid "Geolocation information for %s %s"
 msgstr ""
 
 msgid "Geolocation is not available."
@@ -9240,10 +9290,6 @@ msgstr "Režim tlačítka INFO"
 msgid "INS"
 msgstr ""
 
-#, fuzzy
-msgid "IP"
-msgstr "IP:"
-
 msgid "IP address"
 msgstr "IP adresa"
 
@@ -9253,6 +9299,9 @@ msgstr "IP:"
 #, fuzzy
 msgid "IPK Installer"
 msgstr "Instalovat místní rozšíření"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "Soubor ISO je příliš veliký pro tento systém"
@@ -9567,7 +9616,7 @@ msgstr "Zahrnout ECM do http streamů"
 msgid "Include EIT in http streams"
 msgstr "Zahrnout EIT do http streamů"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 #, fuzzy
@@ -9747,6 +9796,9 @@ msgstr "Instalovat"
 
 #, python-format
 msgid "Install '%s' and enable this operation"
+msgstr ""
+
+msgid "Install 1/1"
 msgstr ""
 
 #, fuzzy
@@ -10584,11 +10636,19 @@ msgstr "Zámek:"
 msgid "Log"
 msgstr "Zprávy"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Prohlížeč zpráv"
 
 #, python-format
 msgid "Log file '%s' deleted."
+msgstr ""
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
 msgstr ""
 
 msgid "Log python stack trace on spinner"
@@ -10600,10 +10660,6 @@ msgstr "Uložit zprávu na disk"
 msgid "LogManager"
 msgstr "Manažer zpráv"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr ""
-
 msgid "Login"
 msgstr ""
 
@@ -10612,9 +10668,6 @@ msgid "Login failure"
 msgstr "Ladění selhalo!"
 
 msgid "Login to IceTV server"
-msgstr ""
-
-msgid "Logs"
 msgstr ""
 
 msgid "Logs Settings"
@@ -10689,15 +10742,14 @@ msgstr "Lucembursky"
 msgid "M2k"
 msgstr ""
 
-#, fuzzy
-msgid "MAC"
-msgstr "MAC adresa:"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
 msgstr "Nastaveni MAC-adresy"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-adresa"
@@ -10992,6 +11044,10 @@ msgstr ""
 msgid "Memory index"
 msgstr "Pozice (index) paměti"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -11155,6 +11211,9 @@ msgstr ""
 
 msgid "Modulation"
 msgstr "Modulace"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Modulátor"
@@ -11729,6 +11788,10 @@ msgstr "Nastavení sítě"
 msgid "Network information"
 msgstr ""
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Nastavení protokolů síťě"
 
@@ -11740,6 +11803,9 @@ msgstr "Název sítě (SSID)"
 
 msgid "Network scan"
 msgstr "Prohledávání sítě"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Test sítě"
@@ -11822,6 +11888,9 @@ msgid "Next"
 msgstr "Next - dlouhý stisk"
 
 msgid "Next Image"
+msgstr ""
+
+msgid "Next Log"
 msgstr ""
 
 #, fuzzy
@@ -11908,10 +11977,6 @@ msgstr "Vložte kartu"
 msgid "No channel"
 msgstr "Kanál"
 
-#, fuzzy
-msgid "No clients streaming"
-msgstr "Opravdové nahrávání nebo streamování"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11962,6 +12027,12 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr ""
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 #, fuzzy
 msgid "No matching place names found"
 msgstr "Zádný nový plugin nenalezen."
@@ -11969,7 +12040,7 @@ msgstr "Zádný nový plugin nenalezen."
 msgid "No network connection available."
 msgstr "Žádné síťové připojení k dispozici."
 
-msgid "No network servers detected."
+msgid "No network storage detected."
 msgstr ""
 
 msgid "No networks found"
@@ -12002,6 +12073,9 @@ msgstr ""
 
 msgid "No standby"
 msgstr "Neuspávat"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -12044,6 +12118,9 @@ msgid ""
 msgstr ""
 "Není povolen žádný tuner!\n"
 "Před prohledáváním nejdříve nastavte Váš tuner."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 #, fuzzy
 msgid "No update required!"
@@ -12274,7 +12351,7 @@ msgstr "Počet opakování textu na displeji"
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr ""
 
 msgid "OK"
@@ -13635,12 +13712,6 @@ msgstr "Prosím, vyberte si."
 msgid "Press '0' to toggle PiP mode"
 msgstr "Stiskněte '0' k přepnutí různých režimů PiP"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr ""
-
-msgid "Press <> or menu to select the different info screens"
-msgstr ""
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13731,9 +13802,6 @@ msgstr "Stiskem 'ŽLUTÉHO' tlačítka nastavíte toto rozhraní jako standardn�
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Stisknutím tlačítka panika se přepne na tento kanál v prvním oblíbeném přehledu."
 
-msgid "Prev Image"
-msgstr ""
-
 #, fuzzy
 msgid "Prev quad PiP channel"
 msgstr "Kanál tlačítka Panika"
@@ -13747,6 +13815,12 @@ msgstr "Náhled menu"
 #, fuzzy
 msgid "Previous"
 msgstr "Previous - dlouhý stisk"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 #, fuzzy
 msgid "Previous bouquet"
@@ -14061,6 +14135,9 @@ msgstr ""
 msgid "RAM (Summary)"
 msgstr ""
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -14232,10 +14309,17 @@ msgstr ""
 msgid "Receiver Image Actions"
 msgstr ""
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr ""
 
 msgid "Receiver Information Actions"
+msgstr ""
+
+#, python-format
+msgid "Receiver information for %s %s"
 msgstr ""
 
 msgid "Receiver name"
@@ -14824,6 +14908,9 @@ msgstr "Omezit časový rozsah akce"
 msgid "Restricted 18+"
 msgstr ""
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Pokračovat z poslední pozice"
 
@@ -14835,7 +14922,15 @@ msgid "Resuming playback"
 msgstr "Obnovit přehrávání"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
 msgstr ""
 
 msgid "Retrieving boot slot information..."
@@ -14850,9 +14945,6 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Čekejte prosím, rozbaluji soubory ..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
-
-msgid "Retrieving system information, please wait..."
 msgstr ""
 
 msgid "Return the current selection response"
@@ -15348,6 +15440,9 @@ msgstr ""
 msgid "Science & Tech"
 msgstr ""
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
@@ -15621,6 +15716,9 @@ msgstr "Vyberte přehled"
 msgid "Select a cardserver from the available list."
 msgstr ""
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -15633,6 +15731,9 @@ msgstr "Vyberte síťový adaptér"
 #, fuzzy
 msgid "Select a path"
 msgstr "Vyberte tuner"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
@@ -15669,9 +15770,6 @@ msgstr "Vyberte kanál z kterého chcete nahrávat"
 
 msgid "Select channel to record from"
 msgstr "Vyberte kanál z kterého chcete nahrávat"
-
-msgid "Select commit log"
-msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Zvolte umístění kopie pro:"
@@ -15712,9 +15810,6 @@ msgstr "Vyberte, jak dále pokračovat s Timeshiftem při přepnutí na jiný ka
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Vyberte, zda chcete aktivovat režim Podprogramů."
 
-msgid "Select information screen"
-msgstr ""
-
 msgid "Select input device"
 msgstr "Vyberte vstupní zařízení"
 
@@ -15754,6 +15849,9 @@ msgstr ""
 
 msgid "Select sort method:"
 msgstr "Zvolte typ řazení"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Vyberte cílovou složku"
@@ -16919,6 +17017,9 @@ msgstr ""
 msgid "Show columns"
 msgstr "Zobrazit sloupce"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr ""
 
@@ -16939,6 +17040,9 @@ msgstr "Zobrazit ikony šifrování"
 
 msgid "Show crypto info in infobar"
 msgstr "Zobrazit informace o kódování v Infobaru jako"
+
+msgid "Show debug log information"
+msgstr ""
 
 #, fuzzy
 msgid "Show default after description"
@@ -16990,14 +17094,14 @@ msgstr "Rozšířená nabídka"
 msgid "Show extensions..."
 msgstr "Zobrazit rozšíření..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Seznam oblíbených"
 
 msgid "Show files backed up by default"
 msgstr "Zobrazit soubory standardně určené k zálohování"
-
-msgid "Show geolocation information"
-msgstr ""
 
 msgid "Show graphical multi EPG"
 msgstr "Zobrazit Grafické Multi EPG"
@@ -17047,14 +17151,8 @@ msgstr "Zobrazit Infobar s picony"
 msgid "Show job tasks in extensions"
 msgstr "Zobrazit úkoly v rozšířené nabídce (modré tlačítko)"
 
-msgid "Show latest commit log information"
-msgstr ""
-
 msgid "Show live TV when movie stopped"
 msgstr "Zobrazit TV vysílání po zastavení filmu"
-
-msgid "Show logs"
-msgstr ""
 
 #, fuzzy
 msgid "Show marked events"
@@ -17088,6 +17186,12 @@ msgstr "Zobrazit EPG z více kanálů"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr ""
 
@@ -17100,6 +17204,9 @@ msgstr ""
 #, fuzzy
 msgid "Show next picture"
 msgstr "Obraz v Obraze (PIP)"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zobrazit/skrýt rozšířený popis, (závisí na skinu)."
@@ -17121,6 +17228,12 @@ msgstr "Zobrazit otáčení motoru"
 msgid "Show preview of current mode (*)."
 msgstr "Vlastnosti zvoleného titulu"
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr ""
 
@@ -17134,9 +17247,15 @@ msgstr ""
 msgid "Show previous picture"
 msgstr "Předchozí podprogram"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 #, fuzzy
 msgid "Show quickmenu..."
 msgstr "Zobrazit menu"
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Zobrazit indikátor nahrávání"
@@ -17154,10 +17273,13 @@ msgstr "Zobrazit spořič obrazovky"
 msgid "Show screensaver"
 msgstr "Zobrazit spořič obrazovky"
 
-msgid "Show selection for commit logs"
+msgid "Show selection for system information screen"
 msgstr ""
 
-msgid "Show selection for system information screen"
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
 msgstr ""
 
 msgid "Show service list"
@@ -17224,6 +17346,9 @@ msgstr ""
 #, fuzzy
 msgid "Show the DreamPlex player..."
 msgstr "Zobrazit přehrávač médií..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr ""
@@ -17713,9 +17838,6 @@ msgstr "Info správy software"
 msgid "Software Manager Settings"
 msgstr "Nastavení správy software"
 
-msgid "Software Manager Setup"
-msgstr "Nastavení správy software"
-
 msgid "Software MultiBoot"
 msgstr ""
 
@@ -17967,6 +18089,9 @@ msgstr ""
 msgid "Start"
 msgstr "Spustit"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 #, fuzzy
 msgid "Start Kodi"
 msgstr "Spouštět v módu"
@@ -18034,7 +18159,7 @@ msgstr "Začíná"
 msgid "Starts in a few seconds"
 msgstr "Spustit offline dekódování"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr ""
 
@@ -18077,6 +18202,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Zastavit"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Ukončit PiP"
 
@@ -18111,6 +18239,9 @@ msgstr "Zastavit nahrávání"
 #, fuzzy
 msgid "Stop service on return to movie list"
 msgstr "Ano, vrátit se na seznam filmů"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Zastavit test"
@@ -18151,7 +18282,17 @@ msgstr "Stáhnout Softcamy"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Ukončit časový posun v případě, že probíhá nahrávání. (Vhodné pro USB flash)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
+msgstr ""
+
+msgid "Storage / Drive information"
 msgstr ""
 
 msgid "Storage Devices"
@@ -18177,16 +18318,19 @@ msgstr "Při pož. na stream"
 msgid "Streaming"
 msgstr ""
 
-#, fuzzy
-msgid "Streaming Clients"
-msgstr "Info o CCcam klientovi"
-
 msgid "Streaming Information Actions"
+msgstr ""
+
+msgid "Streaming Tuner Information"
 msgstr ""
 
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Změnit záznam (Čas ukončení)"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -18518,6 +18662,9 @@ msgstr "Odstranit pluginy"
 msgid "System Setup"
 msgstr "Nastavení systému"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr ""
 
@@ -18530,9 +18677,6 @@ msgstr "Systém: "
 #, fuzzy
 msgid "Systeminfo"
 msgstr "Systémové informace"
-
-msgid "Systems"
-msgstr ""
 
 #, fuzzy
 msgid "T2MI PID"
@@ -18729,6 +18873,9 @@ msgstr "Testuji síťovou konfiguraci Vašeho %s %s."
 msgid "Test type"
 msgstr "Typ testu"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Nastavení obrazu v TV"
 
@@ -18769,15 +18916,15 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s uloží data EPG každých (hodin)."
 
 #, python-format
-msgid "The %s commit log contains no information."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
 #, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log contains no information."
 msgstr ""
 
 #, python-format
-msgid "The '%s' log file contains no information."
+msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
 msgid ""
@@ -19068,11 +19215,18 @@ msgstr "V současné době nejsou žádné nedokončené akce."
 msgid "There are no items currently available for this screen."
 msgstr ""
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Nejsou žádné dostupné aktualizace."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
+msgstr ""
+
+#, python-format
+msgid "There is no information to show for '%s'."
 msgstr ""
 
 msgid "There is no signal to lock on !"
@@ -19779,6 +19933,9 @@ msgstr "Přepnout střihovou značku na této pozici"
 msgid "Toggle aspect ratio..."
 msgstr "Přepnout poměr stran..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Přepnout mezi přehledy/EPG seznamy"
 
@@ -19831,6 +19988,9 @@ msgstr "Nad sebou"
 msgid "Total"
 msgstr "Celkem"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Karet:"
 
@@ -19880,6 +20040,10 @@ msgid "Translation Information"
 msgstr "Překlad Informace"
 
 msgid "Translation information"
+msgstr ""
+
+#, python-format
+msgid "Translation information for %s %s"
 msgstr ""
 
 msgid "Transmission mode"
@@ -19992,6 +20156,10 @@ msgid "Tuner Setup"
 msgstr "Hledání programů"
 
 msgid "Tuner information"
+msgstr ""
+
+#, python-format
+msgid "Tuner information for %s %s"
 msgstr ""
 
 #, fuzzy
@@ -20113,6 +20281,9 @@ msgstr "Dva řádky"
 
 msgid "Type"
 msgstr "Typ"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Typ prohledávání"
@@ -20265,6 +20436,9 @@ msgstr ""
 msgid "Unknown recording event"
 msgstr "Zastavit nahrávání"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Neznámý program"
@@ -20319,6 +20493,9 @@ msgstr ""
 
 msgid "Up"
 msgstr "Nahoru"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Režim tlačítek Nahoru/Dolu"
@@ -20535,6 +20712,9 @@ msgstr ""
 #, fuzzy
 msgid "Use frequency or channel"
 msgstr "Hledat kanály"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr ""
@@ -21060,6 +21240,9 @@ msgstr "Hlasitost +"
 msgid "W"
 msgstr "Západně"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr ""
 
@@ -21215,6 +21398,10 @@ msgstr "Všední den "
 msgid "Weekly"
 msgstr "Týdně"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 #, fuzzy
 msgid "Welcome to IceTV"
 msgstr "Vítám Vás"
@@ -21330,7 +21517,7 @@ msgstr "Při povolení budou přidávána EIT data do streamu. To umožní klien
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Je povoleno načtení nepropojených přehledů. Tj. přehledů které jsou k dispozici, ale nejsou zahrnuty v přehledech TV/Radia a budou tedy trvale načteny. To vám například umožní použití vlastních uživatelských přehledů, zatímco instalovaná nastavení jsou aktualizována."
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -23878,6 +24065,25 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "IP"
+#~ msgstr "IP:"
+
+#, fuzzy
+#~ msgid "MAC"
+#~ msgstr "MAC adresa:"
+
+#, fuzzy
+#~ msgid "No clients streaming"
+#~ msgstr "Opravdové nahrávání nebo streamování"
+
+#, fuzzy
+#~ msgid "Streaming Clients"
+#~ msgstr "Info o CCcam klientovi"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Nastavení správy software"
 
 #~ msgid ""
 #~ "\n"

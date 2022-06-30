@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
-"PO-Revision-Date: 2022-06-29 20:02+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -857,6 +857,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d Гб"
 
@@ -1212,6 +1220,10 @@ msgid "%s Setup"
 msgstr "%s Настройка"
 
 #, python-format
+msgid "%s View"
+msgstr ""
+
+#, python-format
 msgid "%s additional screens"
 msgstr "%s дополнительные экраны"
 
@@ -1222,10 +1234,6 @@ msgstr "%s активирован."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s отключён."
-
-#, python-format
-msgid "%s information"
-msgstr "%s информация"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1322,6 +1330,10 @@ msgstr "(%d работы)"
 
 msgid "(1 job)"
 msgstr "(1 работа)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "Для доступа к журналам фиксации %s требуется подключение к Интернету."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2149,12 +2161,8 @@ msgstr "О программе..."
 msgid "Access point"
 msgstr "Точка доступа"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "Для доступа к информации о геолокации требуется подключение к Интернету."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "Для доступа к журналам фиксации %s требуется подключение к Интернету."
 
 msgid "Accessed:"
 msgstr "Доступ:"
@@ -2218,9 +2226,6 @@ msgstr "Указать окончание и паузу в таймшифте"
 
 msgid "Active"
 msgstr "Активный"
-
-msgid "Active Streaming Clients"
-msgstr "Активные потоковые клиенты"
 
 msgid "Active clients"
 msgstr "Активные клиенты"
@@ -2620,10 +2625,6 @@ msgstr "Пустое имя недопустимо."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "При загрузке списка пакетов произошла ошибка. Попробуйте позже."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "Произошла ошибка, код ошибки %d, повторите попытку позже."
 
 msgid "An unknown error occurred!"
 msgstr "Неизвестная ошибка!"
@@ -3297,6 +3298,13 @@ msgstr "Бельгия"
 msgid "Belize"
 msgstr "Белиз"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Бенгальский"
 
@@ -3442,8 +3450,11 @@ msgstr "Яркость (В режиме ожидания)"
 msgid "British Indian Ocean Territory"
 msgstr "Британская территория Индийского океана"
 
-msgid "Broadcast"
-msgstr "Трансляция"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
+msgstr ""
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3473,8 +3484,9 @@ msgstr "Модель сборки"
 msgid "Build information"
 msgstr "Информация о сборке"
 
-msgid "Build information for"
-msgstr "Информация о сборке для"
+#, python-format
+msgid "Build information for %s %s"
+msgstr ""
 
 #, python-format
 msgid "Build: %s"
@@ -3656,14 +3668,24 @@ msgstr "Выбор главного меню"
 msgid "CPU"
 msgstr "ЦП"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "Архитектура процессора"
+
+msgid "CPU benchmark"
+msgstr ""
 
 msgid "CPU brand"
 msgstr "Марка процессора"
 
 msgid "CPU priority for script execution"
 msgstr "Приоритет ЦП для выполнения скрипта"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr "Скорость процессора/ядра"
@@ -3697,6 +3719,12 @@ msgstr "Рассчитать и показать размер каталога. 
 
 msgid "Calculate file checksums"
 msgstr "Вычисление контрольных сумм файлов"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Расчёт закончен"
@@ -4459,11 +4487,14 @@ msgstr "Команда для запуска"
 msgid "Command type"
 msgstr "Тип команды"
 
-msgid "Commit Information"
-msgstr "Информация о Commit"
-
 msgid "Commit Information Actions"
 msgstr "Совершение информационных действий"
+
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
+msgstr ""
 
 msgid "Commit Logs"
 msgstr "Журналы фиксации"
@@ -5084,15 +5115,15 @@ msgstr "Информация о стране для жанра EPG"
 msgid "Country for EPG event rating information"
 msgstr "Информация о стране для рейтинга событий EPG"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Файлы аварии"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Сбой при ошибке скина по причинам отладки"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr "Журнал сбоев '%s' (%d/%d)"
 
 msgid "Create"
 msgstr "Создание"
@@ -5182,6 +5213,9 @@ msgstr "Валюта"
 
 msgid "Current"
 msgstr "Текущий"
+
+msgid "Current 1/1"
+msgstr ""
 
 msgid "Current Affairs"
 msgstr "Текущие события"
@@ -5326,6 +5360,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "Двухслойный DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "Задержка CI"
 
@@ -5394,6 +5431,10 @@ msgstr "Стиль даты"
 
 msgid "Date/time input"
 msgstr "Ввод даты/времени"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "День Д Мес"
@@ -5536,12 +5577,24 @@ msgstr "Имя дня Год/ММ/ДД"
 msgid "Deactivate"
 msgstr "Отключено"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Отладочные журналы"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr "Журнал отладки '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Формат времени журнала отладки *"
@@ -5744,8 +5797,8 @@ msgstr "Удалить таймер"
 msgid "Delete all log files"
 msgstr "Удалить все файлы журналов"
 
-msgid "Delete all logfiles"
-msgstr "Удалить все файлы журналов"
+msgid "Delete all logs"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "Удалить все теги"
@@ -5780,8 +5833,8 @@ msgstr "Удалить файл или каталог (и всё его соде
 msgid "Delete folder"
 msgstr "Удалить папку"
 
-msgid "Delete logfile"
-msgstr "Удалить файл журнала"
+msgid "Delete log"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Удалить или стереть выделенный слот"
@@ -5872,15 +5925,6 @@ msgstr "Невыбранные пакеты обычно возникают из
 
 msgid "Detail of GStreamer log"
 msgstr "Деталь журнала GStreamer"
-
-msgid "Detected drives"
-msgstr "Обнаруженные диски"
-
-msgid "Detected network servers"
-msgstr "Обнаруженные сетевые серверы"
-
-msgid "Detected tuners"
-msgstr "Обнаруженные тюнеры"
 
 msgid "Device Manager"
 msgstr "Диспетчер устройств"
@@ -6076,20 +6120,8 @@ msgstr "Дисплей и пользовательский интерфейс"
 msgid "Display message before playing next movie"
 msgstr "Сообщение перед воспроизведением следующей записи"
 
-msgid "Display next commit log"
-msgstr "Показать журнал следующей фиксации"
-
-msgid "Display next system information screen"
-msgstr "Показать следующий экран информации о системе"
-
 msgid "Display oscam information."
 msgstr "Отображение информации об oscam."
-
-msgid "Display previous commit log"
-msgstr "Показать предыдущий журнал фиксаций"
-
-msgid "Display previous system information screen"
-msgstr "Показать предыдущий экран информации о системе"
 
 msgid "Display selection list as a selection menu"
 msgstr "Отображение списка выбора в виде меню выбора"
@@ -6111,6 +6143,10 @@ msgstr "Тип дисплея"
 
 msgid "Distribution"
 msgstr "Дистрибутив"
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
+msgstr ""
 
 msgid "Distribution architecture"
 msgstr "Архитектура"
@@ -6282,15 +6318,15 @@ msgstr "Хотите записать эту коллекцию на DVD нос�
 msgid "Do you want to continue?"
 msgstr "Хотите продолжить?"
 
-msgid "Do you want to delete all log files?"
-msgstr "Вы хотите удалить все файлы журналов?"
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Хотите удалить все выбранные файлы\n"
 "(Выберите 'Нет', если хотите удалить только выбранный файл)"
+
+msgid "Do you want to delete all the log files?"
+msgstr "Вы хотите удалить все файлы журналов?"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Хотите сначала удалить старые настройки из /etc/enigma2 ?"
@@ -6416,6 +6452,9 @@ msgstr[2] "Готово - Установлены, обновлены или уд
 msgid "Down"
 msgstr "Вниз"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Установка плагинов"
 
@@ -6469,12 +6508,6 @@ msgstr "Драйверы"
 
 msgid "Drivers version"
 msgstr "Версия драйверов"
-
-msgid "Drives Information"
-msgstr "Информация о дисках"
-
-msgid "Drives information"
-msgstr "Информация о дисках"
 
 msgid "Duplex"
 msgstr "Двойной"
@@ -6881,6 +6914,9 @@ msgstr "Включите эту опцию, чтобы добавить имен
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Включите этот параметр, если Вашей антенной системе требуется питание"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Включите отображение всех параметров true/false, yes/no, on/off и включите/отключите параметры настройки в качестве графического переключателя."
 
@@ -7037,9 +7073,6 @@ msgstr "Вход в режим выбора нескольких файлов"
 msgid "Enter number to jump to channel"
 msgstr "Введите номер для перехода к каналу"
 
-msgid "Enter number to select screen"
-msgstr "Введите номер для выбора экрана"
-
 msgid "Enter persistent PIN code"
 msgstr "Сменить PIN-код"
 
@@ -7107,12 +7140,12 @@ msgid "Error"
 msgstr "Ошибка"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Ошибка %d: файл журнала '%s' не удалён!  (%s)"
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "Ошибка %d: Файл журнала '%s' не удалось открыть.  (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7127,7 +7160,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Ошибка %d: невозможно запустить команду 'passwd'!"
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr "Ошибка '%s' при получении %s журналов!"
 
 msgid "Error Download Setting"
@@ -7558,6 +7595,9 @@ msgstr "FCC включён"
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr "Версия FFmpeg"
 
@@ -7818,6 +7858,9 @@ msgstr "Узнайте больше на сайте %s"
 msgid "Find similar events in the EPG"
 msgstr "Найти похожие события в EPG"
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Тонкое перемещение"
 
@@ -8018,6 +8061,9 @@ msgstr "Норма частоты:"
 msgid "Frequency bands"
 msgstr "Частотные диапазоны"
 
+msgid "Frequency range"
+msgstr ""
+
 msgid "Frequency scan step size(khz)"
 msgstr "Шаг поиска частоты (кГц)"
 
@@ -8176,6 +8222,10 @@ msgstr "Геолокация была использована для устан
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Не удаётся получить информацию о геолокации. Повторите попытку позже."
+
+#, python-format
+msgid "Geolocation information for %s %s"
+msgstr ""
 
 msgid "Geolocation is not available."
 msgstr "Геолокация недоступна."
@@ -8762,9 +8812,6 @@ msgstr "Кнопка INFO"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 msgid "IP address"
 msgstr "IP-адрес"
 
@@ -8773,6 +8820,9 @@ msgstr "IP-адрес:"
 
 msgid "IPK Installer"
 msgstr "Установщик IPK"
+
+msgid "IPv6 address"
+msgstr ""
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO файл слишком велик для этой файловой системы!"
@@ -9081,8 +9131,8 @@ msgstr "Включить ECM в http потоки"
 msgid "Include EIT in http streams"
 msgstr "Включать EIT в http потоки"
 
-msgid "Include PID in http streams"
-msgstr "Включить PID в http-потоки"
+msgid "Include SDT, BAT in http streams"
+msgstr "Включить SDT, BAT в потоки http"
 
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
@@ -9249,6 +9299,9 @@ msgstr "Установить"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "Установите '%s' и включите эту операцию"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Установить не удалось!"
@@ -10035,12 +10088,20 @@ msgstr "Захват"
 msgid "Log"
 msgstr "Журнал"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Управление журналами"
 
 #, python-format
 msgid "Log file '%s' deleted."
 msgstr "Файл журнала '%s' удалён."
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
+msgstr ""
 
 msgid "Log python stack trace on spinner"
 msgstr "Запись трассировки стека python на спиннере"
@@ -10051,10 +10112,6 @@ msgstr "Записать результаты на HDD"
 msgid "LogManager"
 msgstr "Управление журналами"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr "Файл журнала '%s' (%d/%d)"
-
 msgid "Login"
 msgstr "Логин"
 
@@ -10063,9 +10120,6 @@ msgstr "Ошибка входа"
 
 msgid "Login to IceTV server"
 msgstr "Вход на сервер IceTV"
-
-msgid "Logs"
-msgstr "Журналы"
 
 msgid "Logs Settings"
 msgstr "Настройки журналов"
@@ -10134,14 +10188,14 @@ msgstr "Люксембургский"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr "Действия с MAC-адресом"
 
 msgid "MAC Address Settings"
 msgstr "Настройки MAC-адреса"
+
+msgid "MAC address"
+msgstr ""
 
 msgid "MAC-address"
 msgstr "MAC-адрес"
@@ -10417,6 +10471,10 @@ msgstr "Действия с информацией о памяти"
 msgid "Memory index"
 msgstr "Индекс памяти"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 msgid "Menu"
 msgstr "Меню"
 
@@ -10570,6 +10628,9 @@ msgstr "Изменено:"
 
 msgid "Modulation"
 msgstr "Модуляция"
+
+msgid "Modulation modes"
+msgstr ""
 
 msgid "Modulator"
 msgstr "Модулятор"
@@ -11103,6 +11164,10 @@ msgstr "Конфигурация сети..."
 msgid "Network information"
 msgstr "Информация о сети"
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Меню сети"
 
@@ -11114,6 +11179,9 @@ msgstr "Сетевое имя (SSID)"
 
 msgid "Network scan"
 msgstr "Поиск сети"
+
+msgid "Network storage on"
+msgstr ""
 
 msgid "Network test"
 msgstr "Тест сети"
@@ -11187,6 +11255,9 @@ msgstr "Далее"
 
 msgid "Next Image"
 msgstr "Следующий имидж"
+
+msgid "Next Log"
+msgstr ""
 
 msgid "Next bouquet"
 msgstr "Следующий фаворит"
@@ -11266,9 +11337,6 @@ msgstr "Карта не вставлена!"
 msgid "No channel"
 msgstr "Нет канала"
 
-msgid "No clients streaming"
-msgstr "Нет потоковых клиентов"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11315,14 +11383,20 @@ msgstr "Жёсткие диски не обнаружены."
 msgid "No hash calculations configured"
 msgstr "Не настроены хэш-вычисления"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Не найдено совпадающих географических названий"
 
 msgid "No network connection available."
 msgstr "Нет доступного сетевого подключения."
 
-msgid "No network servers detected."
-msgstr "Сетевые серверы не обнаружены."
+msgid "No network storage detected."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Сети не найдены"
@@ -11353,6 +11427,9 @@ msgstr "Изображения слота не найдены"
 
 msgid "No standby"
 msgstr "Не переходить в режим ожидания"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr "Не найдено подходящих резервных копий!"
@@ -11395,6 +11472,9 @@ msgid ""
 msgstr ""
 "Нет включенного тюнера!\n"
 "Пожалуйста настройте тюнер перед поиском каналов."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Обновлений не требуется!"
@@ -11610,7 +11690,7 @@ msgstr "Количество строк для отображения."
 msgid "Number or SMS style data entry"
 msgstr "Ввод данных в стиле номера или SMS"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr "OEM-модель"
 
 msgid "OK"
@@ -12914,12 +12994,6 @@ msgstr "Дошкольное учреждение"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Нажмите кнопку '0', чтобы изменить режим PiP"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr "Нажмите <> или меню, чтобы выбрать различные журналы"
-
-msgid "Press <> or menu to select the different info screens"
-msgstr "Нажмите <> или меню, чтобы выбрать различные информационные экраны"
-
 msgid "Press EXIT to close."
 msgstr "Нажмите EXIT для закрытия."
 
@@ -13006,9 +13080,6 @@ msgstr "Нажмите ЖЁЛТУЮ кнопку, чтобы назначить 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "При нажатии тревожной кнопки будете переключены на этот номер канала в первом фаворите."
 
-msgid "Prev Image"
-msgstr "Предыдущий имидж"
-
 msgid "Prev quad PiP channel"
 msgstr "Предыдущий канал 4X PiP"
 
@@ -13020,6 +13091,12 @@ msgstr "Просмотреть меню"
 
 msgid "Previous"
 msgstr "Предыдущий"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Перейти на предыдущий фаворит"
@@ -13320,6 +13397,9 @@ msgstr "ОЗУ (подробно)"
 msgid "RAM (Summary)"
 msgstr "ОЗУ (обзор)"
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "Пользовательский код RC"
 
@@ -13480,11 +13560,18 @@ msgstr "Ресивер"
 msgid "Receiver Image Actions"
 msgstr "Действия с имиджем ресивера"
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr "Информация о ресивере"
 
 msgid "Receiver Information Actions"
 msgstr "Действия с информацией о ресивере"
+
+#, python-format
+msgid "Receiver information for %s %s"
+msgstr ""
 
 msgid "Receiver name"
 msgstr "Имя ресивера"
@@ -14040,6 +14127,9 @@ msgstr "Ограничить активный диапазон времени"
 msgid "Restricted 18+"
 msgstr "Ограничено 18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 msgid "Resume from last position"
 msgstr "Возобновить с последней позиции"
 
@@ -14051,8 +14141,16 @@ msgid "Resuming playback"
 msgstr "Возобновление воспроизведения"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
 msgstr "Получение журнала %s, подождите..."
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
+msgstr ""
 
 msgid "Retrieving boot slot information..."
 msgstr "Получение информации о загрузочном слоте..."
@@ -14065,9 +14163,6 @@ msgstr "Идёт распаковка имиджей, пожалуйста по�
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Получение информации о сетевом сервере, пожалуйста, подождите..."
-
-msgid "Retrieving system information, please wait..."
-msgstr "Получение информации о системе, пожалуйста, подождите..."
 
 msgid "Return the current selection response"
 msgstr "Вернуть текущий ответ выбора"
@@ -14539,6 +14634,9 @@ msgstr "Наука"
 msgid "Science & Tech"
 msgstr "Наука и техника"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "Создать скриншот LCD в /tmp"
 
@@ -14798,6 +14896,9 @@ msgstr "Выберите фаворит"
 msgid "Select a cardserver from the available list."
 msgstr "Выберите кардсервер из доступного списка."
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Выберите дистрибутив, откуда должны быть получены имиджи"
 
@@ -14809,6 +14910,9 @@ msgstr "Выбор сетевого адаптера"
 
 msgid "Select a path"
 msgstr "Выберите путь"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Выбор скрипта для запуска"
@@ -14843,9 +14947,6 @@ msgstr "Выберите канал аудио"
 
 msgid "Select channel to record from"
 msgstr "Выбрать канал для записи"
-
-msgid "Select commit log"
-msgstr "Выберите журнал"
 
 msgid "Select copy destination for:"
 msgstr "Выберите место для копии"
@@ -14886,9 +14987,6 @@ msgstr "Выберите из вариантов, как следует сохр
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Выберите, если хотите активировать режим подсервисов."
 
-msgid "Select information screen"
-msgstr "Выберите информационный экран"
-
 msgid "Select input device"
 msgstr "Выберите устройства ввода"
 
@@ -14927,6 +15025,9 @@ msgstr "Выберите ЭМУ"
 
 msgid "Select sort method:"
 msgstr "Выбор метода сортировки"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Выбрать папку назначения"
@@ -16049,6 +16150,9 @@ msgstr "Показывает положение глав для поддержи
 msgid "Show columns"
 msgstr "Выровнять название передачи"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "Показать содержимое ipk файла"
 
@@ -16069,6 +16173,9 @@ msgstr "Показать значок кодирования"
 
 msgid "Show crypto info in infobar"
 msgstr "Показать криптоинфо в инфобаре"
+
+msgid "Show debug log information"
+msgstr ""
 
 msgid "Show default after description"
 msgstr "По умолчанию после описания"
@@ -16115,14 +16222,14 @@ msgstr "Показать выбор дополнений"
 msgid "Show extensions..."
 msgstr "Показать дополнения..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Показать список фаворитов"
 
 msgid "Show files backed up by default"
 msgstr "Просмотр файлов резервных копий"
-
-msgid "Show geolocation information"
-msgstr "Показать информацию о геолокации"
 
 msgid "Show graphical multi EPG"
 msgstr "Показать графический ТВ-гид"
@@ -16169,14 +16276,8 @@ msgstr "Показать пиконы инфобара"
 msgid "Show job tasks in extensions"
 msgstr "Показать задачи в меню дополнений"
 
-msgid "Show latest commit log information"
-msgstr "Показать последнюю информацию журнала"
-
 msgid "Show live TV when movie stopped"
 msgstr "Просмотра ТВ при остановке воспроизведения"
-
-msgid "Show logs"
-msgstr "Показать логи"
 
 msgid "Show marked events"
 msgstr "Показать отмеченные события"
@@ -16208,6 +16309,12 @@ msgstr "Показать мульти ТВ-гид"
 msgid "Show network setup menu..."
 msgstr "Показать меню настроек сети..."
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr "Показать следующее событие"
 
@@ -16219,6 +16326,9 @@ msgstr "Показать следующую страницу"
 
 msgid "Show next picture"
 msgstr "Показать следующее изображение"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Показать или скрыть расширенное описание, если скин поддерживает."
@@ -16238,6 +16348,12 @@ msgstr "Показать движение позиционера"
 msgid "Show preview of current mode (*)."
 msgstr "Показать предварительный просмотр текущего режима (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr "Показать предыдущее мероприятие"
 
@@ -16250,8 +16366,14 @@ msgstr "Показать предыдущую страницу"
 msgid "Show previous picture"
 msgstr "Показать предыдущее изображение"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Показать быстрое меню..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Показать индикатор записи"
@@ -16268,11 +16390,14 @@ msgstr "Показать заставку"
 msgid "Show screensaver"
 msgstr "Показать заставку"
 
-msgid "Show selection for commit logs"
-msgstr "Показать выбор для логов"
-
 msgid "Show selection for system information screen"
 msgstr "Показать выбор для экрана информации о системе"
+
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
+msgstr ""
 
 msgid "Show service list"
 msgstr "Показать список каналов"
@@ -16333,6 +16458,9 @@ msgstr "Показать инфо-экран CCcam"
 
 msgid "Show the DreamPlex player..."
 msgstr "Показать DreamPlex плеер..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr "Показать экран OScamInfo"
@@ -16791,9 +16919,6 @@ msgstr "Информация менеджера ПО"
 msgid "Software Manager Settings"
 msgstr "Настройки менеджера ПО"
 
-msgid "Software Manager Setup"
-msgstr "Настройки менеджера ПО"
-
 msgid "Software MultiBoot"
 msgstr "Мультизагрузка ПО"
 
@@ -17031,6 +17156,9 @@ msgstr "Режим ожидания без выключения ТВ"
 msgid "Start"
 msgstr "Запустить"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Старт Коди"
 
@@ -17091,7 +17219,7 @@ msgstr "Начиная с"
 msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Регион"
 
@@ -17134,6 +17262,9 @@ msgstr "Sti"
 msgid "Stop"
 msgstr "Стоп"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr "Отключить PiP"
 
@@ -17166,6 +17297,9 @@ msgstr "Остановить запись сейчас"
 
 msgid "Stop service on return to movie list"
 msgstr "При возврате к записям не запускать текущий канал"
+
+msgid "Stop streams"
+msgstr ""
 
 msgid "Stop test"
 msgstr "Остановить тест"
@@ -17203,8 +17337,18 @@ msgstr "Остановка эмулятора"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Укажите, нужно ли остановить таймшифт, если идёт запись (Желательно, если используется USB, а не HDD)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
 msgstr "Хранилище/Диски"
+
+msgid "Storage / Drive information"
+msgstr ""
 
 msgid "Storage Devices"
 msgstr "Устройства хранения"
@@ -17227,14 +17371,18 @@ msgstr "Потоковое-TV"
 msgid "Streaming"
 msgstr "Приём (передача) потока"
 
-msgid "Streaming Clients"
-msgstr "Потоковые клиенты"
-
 msgid "Streaming Information Actions"
 msgstr "Действия с потоковой информацией"
 
+msgid "Streaming Tuner Information"
+msgstr ""
+
 msgid "Streaming recording ended"
 msgstr "Потоковая запись завершена"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17546,6 +17694,9 @@ msgstr "Системные плагины"
 msgid "System Setup"
 msgstr "Настройки системы"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Свободное место в системном разделе:"
 
@@ -17557,9 +17708,6 @@ msgstr "Система "
 
 msgid "Systeminfo"
 msgstr "Системная информация"
-
-msgid "Systems"
-msgstr "Системы"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -17580,7 +17728,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 29.06.2022"
+msgstr "Коррекция перевода Monja 30.06.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -17742,6 +17890,9 @@ msgstr "Тест сетевой конфигурации Вашего %s %s."
 msgid "Test type"
 msgstr "Тип теста"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Калибровка экрана"
 
@@ -17781,16 +17932,16 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Ваш %s %s сохраняет данные ТВ-гида каждые (часов)."
 
 #, python-format
-msgid "The %s commit log contains no information."
-msgstr "Журнал логов %s не содержит информации."
-
-#, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr "Не удалось получить логи %s. Повторите попытку позже."
 
 #, python-format
-msgid "The '%s' log file contains no information."
-msgstr "Файл журнала '%s' не содержит информации."
+msgid "The '%s' commit log contains no information."
+msgstr "Журнал логов %s не содержит информации."
+
+#, python-format
+msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -18083,12 +18234,19 @@ msgstr "В данное время нет невыполненных дейст�
 msgid "There are no items currently available for this screen."
 msgstr "В настоящее время для этого экрана нет доступных элементов."
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 msgid "There are no updates available."
 msgstr "Нет доступных обновлений."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr "Существует риск, что Ваш %s %s не загрузится или может выйти из строя после такого большого онлайн-обновления."
+
+#, python-format
+msgid "There is no information to show for '%s'."
+msgstr ""
 
 msgid "There is no signal to lock on !"
 msgstr "Нет сигнала по этому захвату!"
@@ -18753,6 +18911,9 @@ msgstr "Расположить метку обработки в текущей �
 msgid "Toggle aspect ratio..."
 msgstr "Переключение соотношения сторон..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Переключение между списками фаворитов/ТВ-гида"
 
@@ -18804,6 +18965,9 @@ msgstr "Вертикально"
 msgid "Total"
 msgstr "Всего"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Количество смарт-карт"
 
@@ -18852,6 +19016,10 @@ msgstr "Информация о переводе"
 
 msgid "Translation information"
 msgstr "Информация о переводе"
+
+#, python-format
+msgid "Translation information for %s %s"
+msgstr ""
 
 msgid "Transmission mode"
 msgstr "Режим передачи"
@@ -18961,6 +19129,10 @@ msgstr "Настройка тюнера"
 msgid "Tuner information"
 msgstr "Информация о тюнере"
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Неподдерживаемый тюнер"
 
@@ -19066,6 +19238,9 @@ msgstr "В двух строчках"
 
 msgid "Type"
 msgstr "Тип"
+
+msgid "Type / Model"
+msgstr ""
 
 msgid "Type of scan"
 msgstr "Тип поиска"
@@ -19208,6 +19383,9 @@ msgstr "Неизвестная группа: %d"
 msgid "Unknown recording event"
 msgstr "Неизвестное событие записи"
 
+msgid "Unknown service!"
+msgstr ""
+
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Неизвестный пользователь: %d"
@@ -19260,6 +19438,9 @@ msgstr "Распаковка имиджа"
 
 msgid "Up"
 msgstr "Вверх"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Кнопки Вверх/Вниз"
@@ -19472,6 +19653,9 @@ msgstr "Загружать ТВ-гид только на выбранное ко
 
 msgid "Use frequency or channel"
 msgstr "Используйте частоту или канал"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Используйте геолокацию для установки текущего местоположения часового пояса"
@@ -19956,6 +20140,9 @@ msgstr "Громкость выше"
 msgid "W"
 msgstr "З"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr "Информация о подключении к глобальной сети"
 
@@ -20105,6 +20292,10 @@ msgstr "Выходные"
 msgid "Weekly"
 msgstr "Еженедельно"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "Добро пожаловать на IceTV"
 
@@ -20214,8 +20405,8 @@ msgstr "Если эта функция включена, данные EIT буд
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
 
-msgid "When enabled, PID data will be included in http streams."
-msgstr "Если этот параметр включён, данные PID будут включены в потоки http."
+msgid "When enabled, SDT, BAT data will be included in http streams."
+msgstr "При включении данные SDT, BAT будут включены в потоки http."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Показать всплывающее окно, когда один фильм закончился, а следующий начинается."
@@ -22659,6 +22850,142 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s информация"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "Активные потоковые клиенты"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "Произошла ошибка, код ошибки %d, повторите попытку позже."
+
+#~ msgid "Broadcast"
+#~ msgstr "Трансляция"
+
+#~ msgid "Build information for"
+#~ msgstr "Информация о сборке для"
+
+#~ msgid "Commit Information"
+#~ msgstr "Информация о Commit"
+
+#, python-format
+#~ msgid "Crash log '%s' (%d/%d)"
+#~ msgstr "Журнал сбоев '%s' (%d/%d)"
+
+#, python-format
+#~ msgid "Debug log '%s' (%d/%d)"
+#~ msgstr "Журнал отладки '%s' (%d/%d)"
+
+#~ msgid "Delete all logfiles"
+#~ msgstr "Удалить все файлы журналов"
+
+#~ msgid "Delete logfile"
+#~ msgstr "Удалить файл журнала"
+
+#~ msgid "Detected drives"
+#~ msgstr "Обнаруженные диски"
+
+#~ msgid "Detected network servers"
+#~ msgstr "Обнаруженные сетевые серверы"
+
+#~ msgid "Detected tuners"
+#~ msgstr "Обнаруженные тюнеры"
+
+#~ msgid "Display next commit log"
+#~ msgstr "Показать журнал следующей фиксации"
+
+#~ msgid "Display next system information screen"
+#~ msgstr "Показать следующий экран информации о системе"
+
+#~ msgid "Display previous commit log"
+#~ msgstr "Показать предыдущий журнал фиксаций"
+
+#~ msgid "Display previous system information screen"
+#~ msgstr "Показать предыдущий экран информации о системе"
+
+#~ msgid "Drives Information"
+#~ msgstr "Информация о дисках"
+
+#~ msgid "Drives information"
+#~ msgstr "Информация о дисках"
+
+#~ msgid "Enter number to select screen"
+#~ msgstr "Введите номер для выбора экрана"
+
+#, python-format
+#~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+#~ msgstr "Ошибка %d: Файл журнала '%s' не удалось открыть.  (%s)"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#, python-format
+#~ msgid "Logfile '%s' (%d/%d)"
+#~ msgstr "Файл журнала '%s' (%d/%d)"
+
+#~ msgid "Logs"
+#~ msgstr "Журналы"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Нет потоковых клиентов"
+
+#~ msgid "No network servers detected."
+#~ msgstr "Сетевые серверы не обнаружены."
+
+#~ msgid "Press <> or menu to select the different commit logs"
+#~ msgstr "Нажмите <> или меню, чтобы выбрать различные журналы"
+
+#~ msgid "Press <> or menu to select the different info screens"
+#~ msgstr "Нажмите <> или меню, чтобы выбрать различные информационные экраны"
+
+#~ msgid "Prev Image"
+#~ msgstr "Предыдущий имидж"
+
+#~ msgid "Retrieving system information, please wait..."
+#~ msgstr "Получение информации о системе, пожалуйста, подождите..."
+
+#~ msgid "Select commit log"
+#~ msgstr "Выберите журнал"
+
+#~ msgid "Select information screen"
+#~ msgstr "Выберите информационный экран"
+
+#~ msgid "Show geolocation information"
+#~ msgstr "Показать информацию о геолокации"
+
+#~ msgid "Show latest commit log information"
+#~ msgstr "Показать последнюю информацию журнала"
+
+#~ msgid "Show logs"
+#~ msgstr "Показать логи"
+
+#~ msgid "Show selection for commit logs"
+#~ msgstr "Показать выбор для логов"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Потоковые клиенты"
+
+#~ msgid "Systems"
+#~ msgstr "Системы"
+
+#, python-format
+#~ msgid "The '%s' log file contains no information."
+#~ msgstr "Файл журнала '%s' не содержит информации."
+
+#~ msgid "Include PID in http streams"
+#~ msgstr "Включить PID в http-потоки"
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Настройки менеджера ПО"
+
+#~ msgid "When enabled, PID data will be included in http streams."
+#~ msgstr "Если этот параметр включён, данные PID будут включены в потоки http."
 
 #~ msgid ""
 #~ "\n"

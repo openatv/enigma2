@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 09:31+0000\n"
+"POT-Creation-Date: 2022-06-30 19:40+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -869,6 +869,14 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d DMIPS per core"
+msgstr ""
+
+#, python-format
+msgid "%d DMIPS with %d cores"
+msgstr ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1203,6 +1211,10 @@ msgstr "%s MHz"
 msgid "%s Setup"
 msgstr "%s kurmak"
 
+#, python-format
+msgid "%s View"
+msgstr ""
+
 #
 #, python-format
 msgid "%s additional screens"
@@ -1215,10 +1227,6 @@ msgstr "%s etkinleştirildi."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s devre dışı bırakıldı."
-
-#, python-format
-msgid "%s information"
-msgstr "%s bilgi"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1317,6 +1325,10 @@ msgstr "(%d jobs)"
 
 msgid "(1 job)"
 msgstr "(1 job)"
+
+#, python-format
+msgid "(Access to the '%s' commit log requires an Internet connection.)"
+msgstr "%s kaydetme günlüklerine erişim için internet bağlantısı gerekir."
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2199,12 +2211,8 @@ msgstr "Hakkında..."
 msgid "Access point"
 msgstr "Erişim noktası"
 
-msgid "Access to geolocation information requires an internet connection."
+msgid "Access to geolocation information requires an Internet connection."
 msgstr "Coğrafi konum bilgilerine erişim, internet bağlantısı gerektirir."
-
-#, python-format
-msgid "Access to the %s commit logs requires an internet connection."
-msgstr "%s kaydetme günlüklerine erişim için internet bağlantısı gerekir."
 
 #
 msgid "Accessed:"
@@ -2273,9 +2281,6 @@ msgstr "Zaman kayması sonunu etkinleştir ve duraklat"
 
 msgid "Active"
 msgstr "Etkin"
-
-msgid "Active Streaming Clients"
-msgstr "Aktif Akış İstemcileri"
 
 msgid "Active clients"
 msgstr "Etkin istemciler"
@@ -2705,10 +2710,6 @@ msgstr "Boş dosya adı geçersiz."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Paket listesi indirilirken hata oluştu. Tekrar deneyin."
-
-#, python-format
-msgid "An error occurred, error code %d, please try again later."
-msgstr "Bir hata oluştu, hata kodu %d, lütfen daha sonra tekrar deneyin."
 
 #
 msgid "An unknown error occurred!"
@@ -3424,6 +3425,13 @@ msgstr "Belçika"
 msgid "Belize"
 msgstr "Belize"
 
+msgid "Benchmark Information"
+msgstr ""
+
+#, python-format
+msgid "Benchmark information for %s %s"
+msgstr ""
+
 msgid "Bengali"
 msgstr "Bengal"
 
@@ -3576,8 +3584,11 @@ msgstr "Parlaklık (Beklemede)"
 msgid "British Indian Ocean Territory"
 msgstr "İngiliz Hint Okyanusu Bölgesi"
 
-msgid "Broadcast"
-msgstr "Toplu Mesaj"
+msgid "Broadcast address"
+msgstr ""
+
+msgid "Broadcast systems"
+msgstr ""
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3607,8 +3618,9 @@ msgstr "Yapı Modeli"
 msgid "Build information"
 msgstr "Derleme bilgileri"
 
-msgid "Build information for"
-msgstr "Için yapı bilgileri"
+#, python-format
+msgid "Build information for %s %s"
+msgstr ""
 
 #, python-format
 msgid "Build: %s"
@@ -3794,14 +3806,24 @@ msgstr "CI Ana Menüyü seçin"
 msgid "CPU"
 msgstr "CPU"
 
+#, python-format
+msgid "CPU / Core %d type"
+msgstr ""
+
 msgid "CPU architecture"
 msgstr "CPU mimarisi"
+
+msgid "CPU benchmark"
+msgstr ""
 
 msgid "CPU brand"
 msgstr "Işlemci markası"
 
 msgid "CPU priority for script execution"
 msgstr "CPU komut dosyası yürütme önceliği"
+
+msgid "CPU rating"
+msgstr ""
 
 msgid "CPU speed/cores"
 msgstr "CPU hızı/çekirdekleri"
@@ -3837,6 +3859,12 @@ msgstr "Dizin boyutunu hesaplayın ve gösterin. Not: Bu, bir klasör seçiminde
 
 msgid "Calculate file checksums"
 msgstr "Dosya sağlama toplamlarını hesapla"
+
+msgid "Calculating benchmark..."
+msgstr ""
+
+msgid "Calculating rating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Hesaplama bitti"
@@ -4645,11 +4673,14 @@ msgstr ""
 msgid "Command type"
 msgstr "Komut tipi"
 
-msgid "Commit Information"
-msgstr "Taahhüt Bilgileri"
-
 msgid "Commit Information Actions"
 msgstr "Bilgi İşlemlerini Taahhüt Etme"
+
+msgid "Commit Log"
+msgstr ""
+
+msgid "Commit Log Information"
+msgstr ""
 
 msgid "Commit Logs"
 msgstr "Günlükleri Kaydet"
@@ -5302,15 +5333,15 @@ msgstr "EPG olay türü bilgisi için ülke"
 msgid "Country for EPG event rating information"
 msgstr "EPG olay derecelendirme bilgileri için ülke"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Çökme Günlükleri"
 
 msgid "Crash at skin error for debug reasons"
 msgstr "Hata ayıklama nedenleriyle skin çarpışma"
-
-#, python-format
-msgid "Crash log '%s' (%d/%d)"
-msgstr "Kilitlenme günlüğü '%s' (%d/%d)"
 
 msgid "Create"
 msgstr "Oluştur"
@@ -5407,6 +5438,9 @@ msgstr "Para Birimi"
 
 msgid "Current"
 msgstr "Akım"
+
+msgid "Current 1/1"
+msgstr ""
 
 msgid "Current Affairs"
 msgstr "Haber / güncel olaylar (genel)"
@@ -5563,6 +5597,9 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "ÇİFT KATMAN DVD"
 
+msgid "DVB API version"
+msgstr ""
+
 msgid "DVB CI Delay"
 msgstr "DVB CI Gecikmesi"
 
@@ -5639,6 +5676,10 @@ msgstr "Tarih tarzı"
 
 msgid "Date/time input"
 msgstr "Tarih/saat girişi"
+
+#, python-format
+msgid "Date: %s   Author: %s"
+msgstr ""
 
 msgid "Day D Mon"
 msgstr "D Gün Pzt"
@@ -5782,12 +5823,24 @@ msgstr "Gündüz Yılı / AA / GG"
 msgid "Deactivate"
 msgstr "Devre dışı bırakmak"
 
+#, python-format
+msgid "Debug %d/%d"
+msgstr ""
+
+msgid "Debug Information"
+msgstr ""
+
+msgid "Debug Log"
+msgstr ""
+
+msgid "Debug Log Information"
+msgstr ""
+
+msgid "Debug Log Information Actions"
+msgstr ""
+
 msgid "Debug Logs"
 msgstr "Hata ayıklama Günlükleri"
-
-#, python-format
-msgid "Debug log '%s' (%d/%d)"
-msgstr "Hata ayıklama günlüğü '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Hata ayıklama kaydını etkinleştir"
@@ -6002,8 +6055,8 @@ msgstr "Zamanlayıcı sil"
 msgid "Delete all log files"
 msgstr "Tüm günlük dosyalarını sil"
 
-msgid "Delete all logfiles"
-msgstr "Tüm günlük dosyalarını sil"
+msgid "Delete all logs"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "Tüm etiketleri sil"
@@ -6043,8 +6096,8 @@ msgstr "Dosya veya dizini sil (ve tüm içeriğini)"
 msgid "Delete folder"
 msgstr "Klasörü sil"
 
-msgid "Delete logfile"
-msgstr "Günlük dosyasını sil"
+msgid "Delete log"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Vurgulanan yuvayı Sil veya Sil"
@@ -6141,15 +6194,6 @@ msgstr "Seçimi kaldırılan paketler genellikle, paketlenenler mevcut paketlerl
 
 msgid "Detail of GStreamer log"
 msgstr "GStreamer günlüğünün ayrıntısı"
-
-msgid "Detected drives"
-msgstr "Algılanan sürücüler"
-
-msgid "Detected network servers"
-msgstr "Algılanan ağ sunucuları"
-
-msgid "Detected tuners"
-msgstr "Algılanan tunerler"
 
 msgid "Device Manager"
 msgstr "Aygıt Yöneticisi"
@@ -6364,20 +6408,8 @@ msgstr "Görünüm ve kullanıcı arayüzü"
 msgid "Display message before playing next movie"
 msgstr "Sonraki filmi oynatmadan önce mesaj göster"
 
-msgid "Display next commit log"
-msgstr "Sonraki kayıt günlüğünü görüntüle"
-
-msgid "Display next system information screen"
-msgstr "Sonraki sistem bilgi ekranını görüntüle"
-
 msgid "Display oscam information."
 msgstr "Oscam bilgilerini görüntüleyin."
-
-msgid "Display previous commit log"
-msgstr "Önceki kayıt günlüğünü görüntüle"
-
-msgid "Display previous system information screen"
-msgstr "Önceki sistem bilgi ekranını görüntüle"
 
 msgid "Display selection list as a selection menu"
 msgstr "Seçim listesini bir seçim menüsü olarak göster"
@@ -6399,6 +6431,10 @@ msgstr "Ekran tipi"
 
 msgid "Distribution"
 msgstr "Dağıtım"
+
+#, python-format
+msgid "Distribution '%s' information for %s %s"
+msgstr ""
 
 msgid "Distribution architecture"
 msgstr "Dağıtım mimarisi"
@@ -6579,15 +6615,15 @@ msgstr "Bu derlemeyi DVD ortamına yazmak istiyor musunuz?"
 msgid "Do you want to continue?"
 msgstr "Devam etmek istiyor musunz?"
 
-msgid "Do you want to delete all log files?"
-msgstr "Tüm günlük dosyalarını silmek istiyor musunuz?"
-
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 "Seçilmiş dosyaların tümünü silmek istiyor musunuz:\n"
 "(Sadece geçerli dosyayı silmek için 'Hayır' seçin .)"
+
+msgid "Do you want to delete all the log files?"
+msgstr "Tüm günlük dosyalarını silmek istiyor musunuz?"
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "İlk olarak /etc/enigma2 içindeki eski ayarları silmek istiyor musunuz ?"
@@ -6725,6 +6761,9 @@ msgstr[0] "Tamam - %d paket yüklendi, yükseltildi veya kaldırıldı (%s)"
 msgid "Down"
 msgstr "Aşağı"
 
+msgid "Down / Inactive"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Eklentileri iİndir"
 
@@ -6781,12 +6820,6 @@ msgstr "Sürücüler"
 
 msgid "Drivers version"
 msgstr "Sürücü sürümü"
-
-msgid "Drives Information"
-msgstr "Sürücü Bilgileri"
-
-msgid "Drives information"
-msgstr "Sürücü bilgileri"
 
 msgid "Duplex"
 msgstr "Dubleks"
@@ -7211,6 +7244,9 @@ msgstr "Hata ayıklama günlük dosyasına ekran adları ve çözünürlük veri
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Anten sisteminiz güç gerektiriyorsa bu ayarı etkinleştirin"
 
+msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgstr ""
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını göstermeyi etkinleştir ve ayar seçeneklerini grafiksel anahtar olarak etkinleştir / devre dışı bırak."
 
@@ -7372,9 +7408,6 @@ msgstr "Çok dosyalı seçim moduna girin"
 msgid "Enter number to jump to channel"
 msgstr "Kanala atlamak için numarayı girin"
 
-msgid "Enter number to select screen"
-msgstr "Ekranı seçmek için numarayı girin"
-
 msgid "Enter persistent PIN code"
 msgstr "Kalıcı PIN kodunu girin"
 
@@ -7445,12 +7478,12 @@ msgid "Error"
 msgstr "Hata"
 
 #, python-format
-msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
+msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Hata %d: '%s' günlük dosyası silinmedi! (%s)"
 
 #, python-format
-msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "Hata %d: '%s' günlük dosyası açılamadı. (%s)"
+msgid "Error %d: System information file '%s' can't be read!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7465,7 +7498,11 @@ msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Hata %d: 'passwd' komutu başlatılamıyor!"
 
 #, python-format
-msgid "Error '%s' encountered retrieving the %s commit logs!"
+msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error '%s' encountered retrieving the '%s' commit log!"
 msgstr "%s kesinleştirme günlükleri alınırken '%s' hatasıyla karşılaşıldı!"
 
 #
@@ -7927,6 +7964,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC modes"
+msgstr ""
+
 msgid "FFmpeg version"
 msgstr "FFmpeg sürümü"
 
@@ -8198,6 +8238,9 @@ msgstr "Adresinde daha fazla bilgi edinin %s"
 msgid "Find similar events in the EPG"
 msgstr "EPG'de benzer olayları bulun"
 
+msgid "Finding available log files, please wait..."
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Adım hareketi"
 
@@ -8415,6 +8458,9 @@ msgstr "Frekans Normu:"
 msgid "Frequency bands"
 msgstr "Frekans bantları"
 
+msgid "Frequency range"
+msgstr ""
+
 #
 msgid "Frequency scan step size(khz)"
 msgstr "Frekans tarama adımı (khz)"
@@ -8582,6 +8628,10 @@ msgstr "Saat dilimini ayarlamak için coğrafi konum kullanılmıştır."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr "Coğrafi konum bilgileri alınamıyor, lütfen daha sonra tekrar deneyin."
+
+#, python-format
+msgid "Geolocation information for %s %s"
+msgstr ""
 
 msgid "Geolocation is not available."
 msgstr "Coğrafi konum mevcut değil."
@@ -9198,9 +9248,6 @@ msgstr "INFO düğmesi modu"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP"
-msgstr "IP"
-
 #
 msgid "IP address"
 msgstr "IP Adresi"
@@ -9210,6 +9257,9 @@ msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
+
+msgid "IPv6 address"
+msgstr ""
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -9524,7 +9574,7 @@ msgstr "ECM http akımına dahil edilsin"
 msgid "Include EIT in http streams"
 msgstr "EIT http akımına dahil edilsin"
 
-msgid "Include PID in http streams"
+msgid "Include SDT, BAT in http streams"
 msgstr ""
 
 msgid "Include action map data"
@@ -9704,6 +9754,9 @@ msgstr "Yükle"
 #, python-format
 msgid "Install '%s' and enable this operation"
 msgstr "'%s' kur ve bu işlemi etkinleştir"
+
+msgid "Install 1/1"
+msgstr ""
 
 msgid "Install Failed !!"
 msgstr "Kurulum Başarısız !!"
@@ -10554,12 +10607,20 @@ msgstr "Kilit:"
 msgid "Log"
 msgstr "Log"
 
+#, python-format
+msgid "Log %d/%d"
+msgstr ""
+
 msgid "Log Manager"
 msgstr "Günlük Yöneticisi"
 
 #, python-format
 msgid "Log file '%s' deleted."
 msgstr "Günlük dosyası '%s' silindi."
+
+#, python-format
+msgid "Log file: '%s'  (%s)"
+msgstr ""
 
 msgid "Log python stack trace on spinner"
 msgstr "Spinner günlük piton yığını iz"
@@ -10571,10 +10632,6 @@ msgstr "Sonuçları diske günlükle"
 msgid "LogManager"
 msgstr "GünlükYöneticisi"
 
-#, python-format
-msgid "Logfile '%s' (%d/%d)"
-msgstr "Günlük dosyası '%s' (%d/%d)"
-
 msgid "Login"
 msgstr "Giriş"
 
@@ -10583,9 +10640,6 @@ msgstr "Giriş başarısız"
 
 msgid "Login to IceTV server"
 msgstr "IceTV sunucusuna giriş yapın"
-
-msgid "Logs"
-msgstr "Kayıtlar"
 
 msgid "Logs Settings"
 msgstr "Günlük ayarları"
@@ -10658,13 +10712,13 @@ msgstr "Lüksemburgca / Letzeburgesch"
 msgid "M2k"
 msgstr "M2k"
 
-msgid "MAC"
-msgstr "MAC"
-
 msgid "MAC Address Actions"
 msgstr ""
 
 msgid "MAC Address Settings"
+msgstr ""
+
+msgid "MAC address"
 msgstr ""
 
 msgid "MAC-address"
@@ -10958,6 +11012,10 @@ msgstr "Bellek Bilgi İşlemleri"
 msgid "Memory index"
 msgstr "Bellek"
 
+#, python-format
+msgid "Memory information for %s %s"
+msgstr ""
+
 #
 msgid "Menu"
 msgstr "Menü"
@@ -11117,6 +11175,9 @@ msgstr "Değiştirilmiş:"
 #
 msgid "Modulation"
 msgstr "Modülasyon"
+
+msgid "Modulation modes"
+msgstr ""
 
 #
 msgid "Modulator"
@@ -11694,6 +11755,10 @@ msgstr "Ağ yapılandırması..."
 msgid "Network information"
 msgstr "Ağ Bilgisi"
 
+#, python-format
+msgid "Network information for %s %s"
+msgstr ""
+
 msgid "Network menu"
 msgstr "Ağ menüsü"
 
@@ -11706,6 +11771,9 @@ msgstr "Ağ adı (SSID)"
 #
 msgid "Network scan"
 msgstr "Ağ Tarama"
+
+msgid "Network storage on"
+msgstr ""
 
 #
 msgid "Network test"
@@ -11784,6 +11852,9 @@ msgstr "Sonraki"
 
 msgid "Next Image"
 msgstr "Sonraki Resim"
+
+msgid "Next Log"
+msgstr ""
 
 msgid "Next bouquet"
 msgstr "Sonraki bukete geç"
@@ -11870,9 +11941,6 @@ msgstr "Kart takılmadı!"
 msgid "No channel"
 msgstr "Kanal yok"
 
-msgid "No clients streaming"
-msgstr "İstemci akışı yok"
-
 #
 msgid ""
 "No data on transponder!\n"
@@ -11929,6 +11997,12 @@ msgstr "Sabit disk algılanmadı."
 msgid "No hash calculations configured"
 msgstr "Yapılandırılmış hesap yok"
 
+msgid "No images available"
+msgstr ""
+
+msgid "No log files found so debug logs are unavailable!"
+msgstr ""
+
 #
 msgid "No matching place names found"
 msgstr "Eşleşen yer adı bulunamadı"
@@ -11937,8 +12011,8 @@ msgstr "Eşleşen yer adı bulunamadı"
 msgid "No network connection available."
 msgstr "Uygun ağ bağlantısı yok."
 
-msgid "No network servers detected."
-msgstr "Hiçbir ağ sunucusu algılanmadı."
+msgid "No network storage detected."
+msgstr ""
 
 #
 msgid "No networks found"
@@ -11974,6 +12048,9 @@ msgstr "Slot resmi bulunamadı"
 #
 msgid "No standby"
 msgstr "Bekleme yok"
+
+msgid "No storage or hard disks detected."
+msgstr ""
 
 msgid "No suitable backup locations found!"
 msgstr ""
@@ -12020,6 +12097,9 @@ msgid ""
 msgstr ""
 "Etkin tuner yok!\n"
 "Lütfen kanal taramasına başlamadan önce tuner ayarlarınızı yapın."
+
+msgid "No tuners are currently streaming."
+msgstr ""
 
 msgid "No update required!"
 msgstr "Güncelleme gerekmez!"
@@ -12252,7 +12332,7 @@ msgstr "Görüntülenecek satır sayısı"
 msgid "Number or SMS style data entry"
 msgstr "Numara veya SMS tarzı veri girişi"
 
-msgid "OEM Model"
+msgid "OEM model"
 msgstr "OEM Modeli"
 
 #
@@ -13661,12 +13741,6 @@ msgstr "Okul öncesi"
 msgid "Press '0' to toggle PiP mode"
 msgstr "RiR modu arasında geçiş yapmak için '0' tuşuna basın"
 
-msgid "Press <> or menu to select the different commit logs"
-msgstr "Farklı kayıt günlüklerini seçmek için <> veya menüye basın"
-
-msgid "Press <> or menu to select the different info screens"
-msgstr "Farklı bilgi ekranlarını seçmek için <> veya menüye basın"
-
 msgid "Press EXIT to close."
 msgstr ""
 
@@ -13764,9 +13838,6 @@ msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarı tuşa bas�
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Panik düğmesine basmak sizi ilk buketinizde bu kanal numarasına yönlendirecektir."
 
-msgid "Prev Image"
-msgstr "Önceki Resim"
-
 msgid "Prev quad PiP channel"
 msgstr "Önceki quad PiP kanalı"
 
@@ -13780,6 +13851,12 @@ msgstr "Önizleme menüsü"
 
 msgid "Previous"
 msgstr "Önceki"
+
+msgid "Previous Image"
+msgstr ""
+
+msgid "Previous Log"
+msgstr ""
 
 msgid "Previous bouquet"
 msgstr "Önceki bukete geç"
@@ -14091,6 +14168,9 @@ msgstr "RAM (Ayrıntılar)"
 msgid "RAM (Summary)"
 msgstr "RAM (Özet)"
 
+msgid "RAM benchmark"
+msgstr ""
+
 msgid "RC custom code"
 msgstr "RC özel kodu"
 
@@ -14265,11 +14345,18 @@ msgstr "Alıcı"
 msgid "Receiver Image Actions"
 msgstr "Hızlı İşlemler"
 
+msgid "Receiver Images"
+msgstr ""
+
 msgid "Receiver Information"
 msgstr "Alıcı bilgisi"
 
 msgid "Receiver Information Actions"
 msgstr "Alıcı Bilgi İşlemleri"
+
+#, python-format
+msgid "Receiver information for %s %s"
+msgstr ""
 
 msgid "Receiver name"
 msgstr "Alıcı adı"
@@ -14876,6 +14963,9 @@ msgstr "Aktif zaman aralığını kısıtla"
 msgid "Restricted 18+"
 msgstr "Kısıtlı 18+"
 
+msgid "Results of the delete all logs:"
+msgstr ""
+
 #
 msgid "Resume from last position"
 msgstr "Son konumdan devam et"
@@ -14889,8 +14979,16 @@ msgid "Resuming playback"
 msgstr "Oynatmaya devam ediliyor"
 
 #, python-format
-msgid "Retrieving %s commit log, please wait..."
+msgid "Retrieving '%s' commit log, please wait..."
 msgstr "%s kaydetme günlüğü alınıyor, lütfen bekleyin..."
+
+#, python-format
+msgid "Retrieving '%s' information, please wait..."
+msgstr ""
+
+#, python-format
+msgid "Retrieving '%s' log, please wait..."
+msgstr ""
 
 msgid "Retrieving boot slot information..."
 msgstr "Önyükleme yuvası bilgileri alınıyor..."
@@ -14903,9 +15001,6 @@ msgstr "Görüntü yuvaları alınıyor - Lütfen bekleyin ..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "Ağ sunucusu bilgileri alınıyor, lütfen bekleyin..."
-
-msgid "Retrieving system information, please wait..."
-msgstr "Sistem bilgileri alınıyor, lütfen bekleyin..."
 
 msgid "Return the current selection response"
 msgstr "Geçerli seçim yanıtını döndür"
@@ -15408,6 +15503,9 @@ msgstr "Bilim"
 msgid "Science & Tech"
 msgstr "Bilim ve Teknoloji"
 
+msgid "Scope"
+msgstr ""
+
 msgid "Screenshot of LCD in /tmp"
 msgstr "/tmp in LCD ekran görüntüsü"
 
@@ -15682,6 +15780,9 @@ msgstr "Bir buket seçin"
 msgid "Select a cardserver from the available list."
 msgstr "Mevcut listeden bir kart sunucusu seçin."
 
+msgid "Select a debug log file to view:"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
@@ -15693,6 +15794,9 @@ msgstr "Bir ağ bağdaştırıcısı seçin"
 
 msgid "Select a path"
 msgstr "Bir yol seçin"
+
+msgid "Select a repository commit log to view:"
+msgstr ""
 
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
@@ -15731,9 +15835,6 @@ msgstr "Kanal sesini seçin"
 #
 msgid "Select channel to record from"
 msgstr "Kaydın yapılacağı kanalı seçin"
-
-msgid "Select commit log"
-msgstr "İşlem günlüğü seçin"
 
 msgid "Select copy destination for:"
 msgstr "Kopya için hedef seçin:"
@@ -15774,9 +15875,6 @@ msgstr "Kayıt için ayarlandığında timeshift'in devam etmesi gerekip gerekme
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Alt servis kipinin etkinleştirilmesini seçin."
-
-msgid "Select information screen"
-msgstr "Bilgi ekranını seçin"
 
 msgid "Select input device"
 msgstr "Giriş aygıtı seçin"
@@ -15821,6 +15919,9 @@ msgstr "Softcam'i seçin"
 
 msgid "Select sort method:"
 msgstr "Sıralama yöntemini seç:"
+
+msgid "Select system information to view:"
+msgstr ""
 
 msgid "Select target folder"
 msgstr "Hedef klasörü seç"
@@ -16980,6 +17081,9 @@ msgstr "Desteklenen video dosyaları için bölüm konumlarını göster. (gstre
 msgid "Show columns"
 msgstr "Sütunları göster"
 
+msgid "Show commit log information"
+msgstr ""
+
 msgid "Show contents of ipk file"
 msgstr "İpk dosyasının içeriğini göster"
 
@@ -17000,6 +17104,9 @@ msgstr "Kripto simgelerini göster"
 
 msgid "Show crypto info in infobar"
 msgstr "Bilgi çubuğunda şifrelemeyi göster"
+
+msgid "Show debug log information"
+msgstr ""
 
 #
 msgid "Show default after description"
@@ -17049,14 +17156,14 @@ msgstr "Uzantı seçimini göster"
 msgid "Show extensions..."
 msgstr "Uzantıları göster..."
 
+msgid "Show extra spacing in Information"
+msgstr ""
+
 msgid "Show favourites list"
 msgstr "Favoriler listesini göster"
 
 msgid "Show files backed up by default"
 msgstr "Varsayılan olarak yedeklenen dosyaları göster"
-
-msgid "Show geolocation information"
-msgstr "Coğrafi konum bilgilerini göster"
 
 msgid "Show graphical multi EPG"
 msgstr "Grafiksel çoklu EPG'yi göster"
@@ -17109,14 +17216,8 @@ msgstr "Bilgi çubuğu piksilerini göster"
 msgid "Show job tasks in extensions"
 msgstr "İş görevlerini uzantılarda göster"
 
-msgid "Show latest commit log information"
-msgstr "En son kayıt günlüğü bilgilerini göster"
-
 msgid "Show live TV when movie stopped"
 msgstr "Film durdurulunca canlı TV yi göster"
-
-msgid "Show logs"
-msgstr "Günlükleri göster"
 
 msgid "Show marked events"
 msgstr "İşaretli etkinlikleri göster"
@@ -17149,6 +17250,12 @@ msgstr "Çoklu kanal EPG göster"
 msgid "Show network setup menu..."
 msgstr ""
 
+msgid "Show next commit log"
+msgstr ""
+
+msgid "Show next debug log file"
+msgstr ""
+
 msgid "Show next event"
 msgstr "Sonraki etkinliği göster"
 
@@ -17160,6 +17267,9 @@ msgstr "Sonraki sayfayı göster"
 
 msgid "Show next picture"
 msgstr "Sonraki resmi göster"
+
+msgid "Show next system information screen"
+msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Geniş açıklamayı göster ya da gizle, (arayüze bağımlı)."
@@ -17182,6 +17292,12 @@ msgstr "Konumlayıcı hareketini göster"
 msgid "Show preview of current mode (*)."
 msgstr "Geçerli modun önizlemesini göster (*)."
 
+msgid "Show previous commit log"
+msgstr ""
+
+msgid "Show previous debug log file"
+msgstr ""
+
 msgid "Show previous event"
 msgstr "Önceki etkinliği göster"
 
@@ -17194,8 +17310,14 @@ msgstr "Önceki sayfayı göster"
 msgid "Show previous picture"
 msgstr "Önceki resmi göster"
 
+msgid "Show previous system information screen"
+msgstr ""
+
 msgid "Show quickmenu..."
 msgstr "Hızlı menü göster ..."
+
+msgid "Show receiver image(s)"
+msgstr ""
 
 msgid "Show record indicator"
 msgstr "Kayıt göstergesini göster"
@@ -17212,11 +17334,14 @@ msgstr "Ekran menüsü yolunu göster"
 msgid "Show screensaver"
 msgstr "Ekrankoruyucuyu göster"
 
-msgid "Show selection for commit logs"
-msgstr "Kesinleştirme günlükleri için seçimi göster"
-
 msgid "Show selection for system information screen"
 msgstr "Sistem bilgi ekranı için seçimi göster"
+
+msgid "Show selection menu for commit logs"
+msgstr ""
+
+msgid "Show selection menu for debug log files"
+msgstr ""
 
 msgid "Show service list"
 msgstr "Kanal listesini göster"
@@ -17280,6 +17405,9 @@ msgstr "CCcam Bilgi Ekranını Göster"
 
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex oynatıcısını göster ..."
+
+msgid "Show the Logs Settings screen"
+msgstr ""
 
 msgid "Show the OScamInfo Screen"
 msgstr "OScamInfo Ekranını Göster"
@@ -17771,9 +17899,6 @@ msgstr "Yazılım yöneticisi bilgisi"
 msgid "Software Manager Settings"
 msgstr "Yazılım yöneticisi kurulumu"
 
-msgid "Software Manager Setup"
-msgstr "Yazılım Yöneticisi Kurulumu"
-
 msgid "Software MultiBoot"
 msgstr "Yazılım Çoklu Önyükleme"
 
@@ -18023,6 +18148,9 @@ msgstr "TV kapatmadan bekleme"
 msgid "Start"
 msgstr "Başla"
 
+msgid "Start Auto Refresh"
+msgstr ""
+
 msgid "Start Kodi"
 msgstr "Kodi'yi başlat"
 
@@ -18088,7 +18216,7 @@ msgstr "Başlangıç"
 msgid "Starts in a few seconds"
 msgstr "Birkaç saniye içinde başlar"
 
-#. TRANSLATORS: "State" is Location Info
+#. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Şehir"
 
@@ -18136,6 +18264,9 @@ msgstr "Sti"
 msgid "Stop"
 msgstr "Durdur"
 
+msgid "Stop Auto Refresh"
+msgstr ""
+
 #
 msgid "Stop PiP"
 msgstr "PiP'i durdur"
@@ -18174,6 +18305,9 @@ msgstr "Kaydı şimdi durdur"
 
 msgid "Stop service on return to movie list"
 msgstr "Film listesine geri dönme servisi durdur"
+
+msgid "Stop streams"
+msgstr ""
 
 #
 msgid "Stop test"
@@ -18214,8 +18348,18 @@ msgstr "Softcam'ı durdurma"
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Bir kaydın devam etmesi durumunda durdurmanın zaman kayması kullanılır. (USB çubukları için tavsiye edilir)"
 
+msgid "Storage / Disk Information"
+msgstr ""
+
+#, python-format
+msgid "Storage / Disk information for %s %s"
+msgstr ""
+
 msgid "Storage / Disks"
 msgstr "Depolama / Diskler"
+
+msgid "Storage / Drive information"
+msgstr ""
 
 #
 msgid "Storage Devices"
@@ -18241,14 +18385,18 @@ msgstr "Stream-tv"
 msgid "Streaming"
 msgstr "Streaming"
 
-msgid "Streaming Clients"
-msgstr "Akış müşterileri bilgisi"
-
 msgid "Streaming Information Actions"
 msgstr "Bilgi Akışı Eylemleri"
 
+msgid "Streaming Tuner Information"
+msgstr ""
+
 msgid "Streaming recording ended"
 msgstr "Akış kaydı sona erdi"
+
+#, python-format
+msgid "Streaming tuner information for %s %s"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -18581,6 +18729,9 @@ msgstr "Sistem Eklentileri"
 msgid "System Setup"
 msgstr "Sistem Kurulumu"
 
+msgid "System information"
+msgstr ""
+
 msgid "System partition free space:"
 msgstr "Sistem bölümü boş alanı:"
 
@@ -18592,9 +18743,6 @@ msgstr "Sistem: "
 
 msgid "Systeminfo"
 msgstr "Sistem bilgisi"
-
-msgid "Systems"
-msgstr "Sistemler"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -18786,6 +18934,9 @@ msgstr ""
 msgid "Test type"
 msgstr "Test tipi"
 
+msgid "Testing Information"
+msgstr ""
+
 msgid "Testscreens"
 msgstr "Test ekranları"
 
@@ -18827,16 +18978,16 @@ msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s EPG bilgisini her (saat) saklar."
 
 #, python-format
-msgid "The %s commit log contains no information."
-msgstr "%s kaydetme günlüğü hiçbir bilgi içermiyor."
-
-#, python-format
-msgid "The %s commit logs can't be retrieved, please try again later."
+msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr "%s kaydetme günlükleri alınamıyor, lütfen daha sonra tekrar deneyin."
 
 #, python-format
-msgid "The '%s' log file contains no information."
-msgstr "'%s' günlük dosyası hiçbir bilgi içermiyor."
+msgid "The '%s' commit log contains no information."
+msgstr "%s kaydetme günlüğü hiçbir bilgi içermiyor."
+
+#, python-format
+msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -19142,6 +19293,9 @@ msgstr "Göze çarpan bir görev yok."
 msgid "There are no items currently available for this screen."
 msgstr "Bu ekran için şu anda mevcut bir öğe yok."
 
+msgid "There are no repositories defined so commit logs are unavailable!"
+msgstr ""
+
 #
 msgid "There are no updates available."
 msgstr "Kullanılabilir güncelleme yok."
@@ -19149,6 +19303,10 @@ msgstr "Kullanılabilir güncelleme yok."
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr "Bu kadar büyük bir çevrimiçi güncellemeden sonra %s %s cihazınızın açılmama veya arızalanma riski vardır."
+
+#, python-format
+msgid "There is no information to show for '%s'."
+msgstr ""
 
 msgid "There is no signal to lock on !"
 msgstr "Kilitlenecek hiç sinyal yok !"
@@ -19838,6 +19996,9 @@ msgstr "Şimdiki konuma kesme işareti koy"
 msgid "Toggle aspect ratio..."
 msgstr "Geçiş aspectratiodur ..."
 
+msgid "Toggle auto refresh On/Off"
+msgstr ""
+
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Buket / epg listeleri arasında geçiş yap"
 
@@ -19892,6 +20053,9 @@ msgstr "Üst ve Alt"
 msgid "Total"
 msgstr "Toplam"
 
+msgid "Total CPU benchmark"
+msgstr ""
+
 msgid "Total cards:"
 msgstr "Toplam kart:"
 
@@ -19942,6 +20106,10 @@ msgstr "Çeviri Bilgisi"
 
 msgid "Translation information"
 msgstr "Çeviri Bilgisi"
+
+#, python-format
+msgid "Translation information for %s %s"
+msgstr ""
 
 #
 msgid "Transmission mode"
@@ -20066,6 +20234,10 @@ msgstr "Tuner  Kurulumu"
 msgid "Tuner information"
 msgstr "Tuner Bilgileri"
 
+#, python-format
+msgid "Tuner information for %s %s"
+msgstr ""
+
 msgid "Tuner is not supported"
 msgstr "Tuner desteklenmiyor"
 
@@ -20185,6 +20357,9 @@ msgstr "İki satır"
 #
 msgid "Type"
 msgstr "Tip"
+
+msgid "Type / Model"
+msgstr ""
 
 #
 msgid "Type of scan"
@@ -20338,6 +20513,9 @@ msgstr "Bilinmeyen grup: %d"
 msgid "Unknown recording event"
 msgstr "Bilinmeyen kayıt olayı"
 
+msgid "Unknown service!"
+msgstr ""
+
 #
 #, python-format
 msgid "Unknown user: %d"
@@ -20392,6 +20570,9 @@ msgstr "Görüntüyü Açma"
 
 msgid "Up"
 msgstr "Yukarı"
+
+msgid "Up / Active"
+msgstr ""
 
 msgid "Up/Down button mode"
 msgstr "Yukarı / Aşağı düğmesi modu"
@@ -20613,6 +20794,9 @@ msgstr "EPG’de yalnızca x gün yükle"
 
 msgid "Use frequency or channel"
 msgstr "Kanal veya frekans kullan"
+
+msgid "Use geolocation to get WAN information"
+msgstr ""
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Geçerli saat dilimi konumunu ayarlamak için coğrafi konumu kullanın"
@@ -21140,6 +21324,9 @@ msgstr "Ses yükselt"
 msgid "W"
 msgstr "W"
 
+msgid "WAN Geolocation"
+msgstr ""
+
 msgid "WAN connection information"
 msgstr "WAN bağlantı bilgileri"
 
@@ -21302,6 +21489,10 @@ msgstr "Hafta sonu"
 msgid "Weekly"
 msgstr "Haftalık"
 
+#, python-format
+msgid "Welcome to %s"
+msgstr ""
+
 msgid "Welcome to IceTV"
 msgstr "IceTV'ye hoş geldiniz"
 
@@ -21419,7 +21610,7 @@ msgstr "Etkinleşince, http akışına EIT verileri eklenir. Bu, bir istemci al�
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Etkinleştirildiğinde, Enigma2 bağlantısız buketleri yükler. Bu, mevcut olan, ancak buketler.tv veya buketler.radio dosyalarına dahil edilmeyen buketlerin hala yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
 
-msgid "When enabled, PID data will be included in http streams."
+msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24061,6 +24252,136 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s information"
+#~ msgstr "%s bilgi"
+
+#~ msgid "Active Streaming Clients"
+#~ msgstr "Aktif Akış İstemcileri"
+
+#, python-format
+#~ msgid "An error occurred, error code %d, please try again later."
+#~ msgstr "Bir hata oluştu, hata kodu %d, lütfen daha sonra tekrar deneyin."
+
+#~ msgid "Broadcast"
+#~ msgstr "Toplu Mesaj"
+
+#~ msgid "Build information for"
+#~ msgstr "Için yapı bilgileri"
+
+#~ msgid "Commit Information"
+#~ msgstr "Taahhüt Bilgileri"
+
+#, python-format
+#~ msgid "Crash log '%s' (%d/%d)"
+#~ msgstr "Kilitlenme günlüğü '%s' (%d/%d)"
+
+#, python-format
+#~ msgid "Debug log '%s' (%d/%d)"
+#~ msgstr "Hata ayıklama günlüğü '%s' (%d/%d)"
+
+#~ msgid "Delete all logfiles"
+#~ msgstr "Tüm günlük dosyalarını sil"
+
+#~ msgid "Delete logfile"
+#~ msgstr "Günlük dosyasını sil"
+
+#~ msgid "Detected drives"
+#~ msgstr "Algılanan sürücüler"
+
+#~ msgid "Detected network servers"
+#~ msgstr "Algılanan ağ sunucuları"
+
+#~ msgid "Detected tuners"
+#~ msgstr "Algılanan tunerler"
+
+#~ msgid "Display next commit log"
+#~ msgstr "Sonraki kayıt günlüğünü görüntüle"
+
+#~ msgid "Display next system information screen"
+#~ msgstr "Sonraki sistem bilgi ekranını görüntüle"
+
+#~ msgid "Display previous commit log"
+#~ msgstr "Önceki kayıt günlüğünü görüntüle"
+
+#~ msgid "Display previous system information screen"
+#~ msgstr "Önceki sistem bilgi ekranını görüntüle"
+
+#~ msgid "Drives Information"
+#~ msgstr "Sürücü Bilgileri"
+
+#~ msgid "Drives information"
+#~ msgstr "Sürücü bilgileri"
+
+#~ msgid "Enter number to select screen"
+#~ msgstr "Ekranı seçmek için numarayı girin"
+
+#, python-format
+#~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+#~ msgstr "Hata %d: '%s' günlük dosyası açılamadı. (%s)"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#, python-format
+#~ msgid "Logfile '%s' (%d/%d)"
+#~ msgstr "Günlük dosyası '%s' (%d/%d)"
+
+#~ msgid "Logs"
+#~ msgstr "Kayıtlar"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "No clients streaming"
+#~ msgstr "İstemci akışı yok"
+
+#~ msgid "No network servers detected."
+#~ msgstr "Hiçbir ağ sunucusu algılanmadı."
+
+#~ msgid "Press <> or menu to select the different commit logs"
+#~ msgstr "Farklı kayıt günlüklerini seçmek için <> veya menüye basın"
+
+#~ msgid "Press <> or menu to select the different info screens"
+#~ msgstr "Farklı bilgi ekranlarını seçmek için <> veya menüye basın"
+
+#~ msgid "Prev Image"
+#~ msgstr "Önceki Resim"
+
+#~ msgid "Retrieving system information, please wait..."
+#~ msgstr "Sistem bilgileri alınıyor, lütfen bekleyin..."
+
+#~ msgid "Select commit log"
+#~ msgstr "İşlem günlüğü seçin"
+
+#~ msgid "Select information screen"
+#~ msgstr "Bilgi ekranını seçin"
+
+#~ msgid "Show geolocation information"
+#~ msgstr "Coğrafi konum bilgilerini göster"
+
+#~ msgid "Show latest commit log information"
+#~ msgstr "En son kayıt günlüğü bilgilerini göster"
+
+#~ msgid "Show logs"
+#~ msgstr "Günlükleri göster"
+
+#~ msgid "Show selection for commit logs"
+#~ msgstr "Kesinleştirme günlükleri için seçimi göster"
+
+#~ msgid "Streaming Clients"
+#~ msgstr "Akış müşterileri bilgisi"
+
+#~ msgid "Systems"
+#~ msgstr "Sistemler"
+
+#, python-format
+#~ msgid "The '%s' log file contains no information."
+#~ msgstr "'%s' günlük dosyası hiçbir bilgi içermiyor."
+
+#~ msgid "Software Manager Setup"
+#~ msgstr "Yazılım Yöneticisi Kurulumu"
 
 #
 #~ msgid ""
