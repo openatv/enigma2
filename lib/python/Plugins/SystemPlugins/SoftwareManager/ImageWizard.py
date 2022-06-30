@@ -1,4 +1,4 @@
-from os import access, W_OK, R_OK
+from os import W_OK, R_OK, access
 from os.path import isfile, join as pathjoin
 
 from boxbranding import getBoxType
@@ -8,50 +8,50 @@ from Components.Harddisk import harddiskmanager
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+
 from .BackupRestore import getBackupFilename, InitConfig as BackupRestore_InitConfig
 
 
-boxtype = getBoxType()
 BACKUP_FILE = getBackupFilename()
+BOX_TYPE = getBoxType()
 DISTRO = BoxInfo.getItem("distro")
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 
 def checkConfigBackup():
-	parts = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-		parts.append(('mtd backup', '/media/backup'))
-	for x in parts:
-		if x[1] == '/':
-			parts.remove(x)
-	if len(parts):
-		for x in parts:
-			fullbackupfile1 = pathjoin(x[1], 'backup_' + DISTRO + '_' + boxtype, BACKUP_FILE)
-			fullbackupfile2 = pathjoin(x[1], 'backup', BACKUP_FILE)
-			if isfile(fullbackupfile1) or isfile(fullbackupfile2):
-				config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
+	partitions = [(x.description, x.mountpoint) for x in harddiskmanager.getMountedPartitions(onlyhotplug=False) if x.mountpoint != "/"]
+	# This test criteria should be in BoxInfo!  Don't add hardware dependencies into the general Enigma2 code.
+	# if BoxInfo.getItem("isMTDBackup"):
+	if BOX_TYPE in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6"):
+		partitions.append(("mtd backup", "/media/backup"))
+	if partitions:
+		for partition in partitions:
+			fullBackupFile1 = pathjoin(partition[1], "backup_%s_%s" % (DISTRO, BOX_TYPE), BACKUP_FILE)
+			fullBackupFile2 = pathjoin(partition[1], "backup", BACKUP_FILE)
+			if isfile(fullBackupFile1) or isfile(fullBackupFile2):
+				config.plugins.configurationbackup.backuplocation.setValue(partition[1])
 				config.plugins.configurationbackup.backuplocation.save()
 				config.plugins.configurationbackup.save()
-				return x
+				return partition
 		return None
 
 
 def checkBackupFile():
-	backuplocation = config.plugins.configurationbackup.backuplocation.value
-	fullbackupfile1 = pathjoin(backuplocation, 'backup_' + DISTRO + '_' + boxtype, BACKUP_FILE)
-	fullbackupfile2 = pathjoin(backuplocation, 'backup', BACKUP_FILE)
-	return isfile(fullbackupfile1) or isfile(fullbackupfile2)
+	backupLocation = config.plugins.configurationbackup.backuplocation.value
+	fullBackupFile1 = pathjoin(backupLocation, "backup_%s_%s" % (DISTRO, BOX_TYPE), BACKUP_FILE)
+	fullBackupFile2 = pathjoin(backupLocation, "backup", BACKUP_FILE)
+	return isfile(fullBackupFile1) or isfile(fullBackupFile2)
 
 
 class ImageWizard(WizardLanguage, ShowRemoteControl):
 	skin = """
-		<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
+		<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" resolution="720,576">
 			<widget name="text" position="153,40" size="340,330" font="Regular;22" />
-			<widget source="list" render="Listbox" position="43,340" size="490,180" scrollbarMode="showOnDemand" >
+			<widget source="list" render="Listbox" position="43,340" size="490,180" scrollbarMode="showOnDemand">
 				<convert type="StringList" />
 			</widget>
 			<widget name="config" position="53,340" zPosition="1" size="440,180" transparent="1" scrollbarMode="showOnDemand" />
@@ -80,15 +80,14 @@ class ImageWizard(WizardLanguage, ShowRemoteControl):
 		pass
 
 	def listDevices(self):
-		list = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-		for x in list:
-			result = access(x[1], W_OK) and access(x[1], R_OK)
-			if result is False or x[1] == '/':
-				list.remove(x)
-		for x in list:
-			if x[1].startswith('/autofs/'):
-				list.remove(x)
-		return list
+		partitions = [(x.description, x.mountpoint) for x in harddiskmanager.getMountedPartitions(onlyhotplug=False) if x.mountpoint != "/"]
+		for partition in partitions:
+			if not (access(partition[1], W_OK) and access(partition[1], R_OK)):
+				partitions.remove(partition)
+		for partition in partitions:
+			if partition[1].startswith("/autofs/"):
+				partitions.remove(partition)
+		return partitions
 
 	def deviceSelectionMade(self, index):
 		self.deviceSelect(index)
