@@ -213,6 +213,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self.sortMode = False
 		self.selectedEntry = None
 		self.subMenuSort = None
+		self.showDescription = config.usage.menuDescription.value
 		self.createMenuList()
 		# For the skin: first try a menu_<menuID>, then Menu.
 		self.skinName = []
@@ -464,7 +465,8 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		current = self["menu"].getCurrent()
 		if current:
 			self["menuimage"].instance.setPixmap(current[WIDGET_IMAGE])
-			self["description"].setText(current[WIDGET_DESCRIPTION])
+			if self.showDescription:
+				self["description"].setText(current[WIDGET_DESCRIPTION])
 			if self.sortMode:
 				self["key_yellow"].setText(_("Show") if self.subMenuSort.getConfigValue(current[WIDGET_KEY], "hidden") else _("Hide"))
 			else:

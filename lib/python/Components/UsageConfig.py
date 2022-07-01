@@ -74,6 +74,7 @@ def InitUsageConfig():
 		("default", _("Default")),
 		("user", _("User defined"))
 	])
+	config.usage.menuDescription = ConfigYesNo(default=True)
 	config.usage.showScreenPath = ConfigSelection(default="off", choices=[
 		("off", _("None")),
 		("small", _("Small")),
