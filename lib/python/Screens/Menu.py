@@ -707,6 +707,11 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		menuList.sort(key=lambda x: int(x[MENU_SORT]))
 		self.menuList = list(menuList)
 
+	def gotoStandby(self, *res):
+		from Screens.Standby import Standby2
+		self.session.open(Standby2)
+		self.close(True)
+
 
 class AnimMain(Screen):
 	def __init__(self, session, tlist, menuTitle):
