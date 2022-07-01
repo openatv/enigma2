@@ -749,7 +749,7 @@ class DistributionInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		info.append(formatLine("P1", _("Distribution"), BoxInfo.getItem("displaydistro")))
-		info.append(formatLine("P1", _("Distribution build"), BoxInfo.getItem("imagebuild")))
+		info.append(formatLine("P1", _("Distribution build"), formatDate(BoxInfo.getItem("imagebuild"))))
 		info.append(formatLine("P1", _("Distribution build date"), formatDate(about.getBuildDateString())))
 		info.append(formatLine("P1", _("Distribution architecture"), BoxInfo.getItem("architecture")))
 		if BoxInfo.getItem("imagedir"):
@@ -1411,7 +1411,7 @@ class ReceiverInformation(InformationBase):
 		info.append(formatLine("S", _("Driver and kernel information")))
 		if self.extraSpacing:
 			info.append("")
-		info.append(formatLine("P1", _("Drivers version"), formatDate(about.getDriverInstalledDate())))
+		info.append(formatLine("P1", _("Drivers version"), formatDate(BoxInfo.getItem("driversdate"))))
 		info.append(formatLine("P1", _("Kernel version"), BoxInfo.getItem("kernel")))
 		deviceId = fileReadLine("/proc/device-tree/amlogic-dt-id", source=MODULE_NAME)
 		if deviceId:
