@@ -147,9 +147,8 @@ void bsodFatal(const char *component)
 	strftime (dated, 21, "%Y%m%d-%H%M%S", &loctime);
 
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
-	os << "enigma-crash-";
 	os << dated;
-	os << ".log";
+	os << "-enigma-crash.log";
 	crashlog_name = os.str();
 	f = fopen(crashlog_name.c_str(), "wb");
 
