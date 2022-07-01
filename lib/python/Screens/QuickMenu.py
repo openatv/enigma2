@@ -182,8 +182,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.close()
 
 	def keygreen(self):
-		from Screens.Information import ImageInformation
-		self.session.open(ImageInformation)
+		from Screens.Information import DistributionInformation
+		self.session.open(DistributionInformation)
 
 	def keyyellow(self):
 		self.session.open(QuickMenuDevices)
