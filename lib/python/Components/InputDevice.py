@@ -321,7 +321,7 @@ class RemoteControl:
 		if rcType > 0:
 			fileWriteLine("/proc/stb/ir/rc/type", rcType, source=MODULE_NAME)
 
-	def getOpenWebIiHTML(self):
+	def getOpenWebifHTML(self):
 		html = []
 		error = False
 		image = self.remote["image"]
