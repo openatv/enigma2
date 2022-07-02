@@ -290,21 +290,22 @@ class PluginManager(Screen, PackageInfoHandler):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Extensions Management"))
-		self["shortcuts"] = HelpableActionMap(self, ["ColorActions", "InfoActions", "OkCancelActions", "HelpActions"], {
+		self["shortcuts"] = HelpableActionMap(self, ["ColorActions", "InfoActions", "OkCancelActions"], {
 			"ok": self.handleCurrent,
 			"cancel": self.exit,
 			"red": self.exit,
 			"green": self.handleCurrent,
 			"yellow": self.handleSelected,
 			"info": self.handleSelected,
-			"displayHelp": self.handleHelp,
 		}, prio=-1)
-		self.pluginList = []
+		self["helpaction"] = HelpableActionMap(self, ["HelpActions"], {
+			"displayHelp": self.handleHelp,
+		}, prio=0)
 		self.statuslist = []
 		self.selectedFiles = []
 		self.categoryList = []
-		self.packetlist = []
-		self["list"] = List(self.pluginList)
+		self.packageList = []
+		self["list"] = List(self.packageList)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText("")
 		self["key_yellow"] = StaticText("")
@@ -463,8 +464,8 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif self.currList == "packages":
 				if current[7] != "":
 					idx = self["list"].getIndex()
-					detailsFile = self.pluginList[idx][1]
-					if self.pluginList[idx][7] == True:
+					detailsFile = self.packageList[idx][1]
+					if self.packageList[idx][7] == True:
 						for entry in self.selectedFiles:
 							if entry[0] == detailsFile:
 								self.selectedFiles.remove(entry)
@@ -480,18 +481,18 @@ class PluginManager(Screen, PackageInfoHandler):
 								self.selectedFiles.append((detailsFile, current[4], current[3]))
 								self.currentSelectedPackage = ((detailsFile, current[4], current[3]))
 					if current[4] == "installed":
-						self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "remove", True)
+						self.packageList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "remove", True)
 					elif current[4] == "installable":
 						if iSoftwareTools.NetworkConnectionAvailable:
-							self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "install", True)
+							self.packageList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "install", True)
 					elif current[4] == "remove":
-						self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installed", False)
+						self.packageList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installed", False)
 					elif current[4] == "install":
 						if iSoftwareTools.NetworkConnectionAvailable:
-							self.pluginList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installable", False)
-					self["list"].setList(self.pluginList)
+							self.packageList[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], "installable", False)
+					self["list"].setList(self.packageList)
 					self["list"].setIndex(idx)
-					self["list"].updateList(self.pluginList)
+					self["list"].updateList(self.packageList)
 					self.selectionChanged()
 			elif self.currList == "status":
 				iSoftwareTools.lastDownloadDate = time()
@@ -542,7 +543,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		if categorytag is not None:
 			self.currList = "packages"
 			self.currentSelectedTag = categorytag
-			self.packetlist = []
+			packetlist = []
 			for package in iSoftwareTools.packagesIndexlist[:]:
 				prerequisites = package[0]["prerequisites"]
 				if "tag" in prerequisites:
@@ -552,9 +553,9 @@ class PluginManager(Screen, PackageInfoHandler):
 							if "packagetype" in attributes:
 								if attributes["packagetype"] == "internal":
 									continue
-							self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
+							packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
 			self.packageList = []
-			for x in self.packetlist:
+			for x in packetlist:
 				status = ""
 				name = x[0].strip()
 				details = x[1].strip()
