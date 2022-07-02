@@ -312,7 +312,7 @@ commitLogs = [
 	("openATV Enigma2", "https://api.github.com/repos/openatv/enigma2/commits%s" % branch),
 	("OE-Alliance Plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
 	("Enigma2 Plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits"),
-	("OpenWebIf", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits"),
+	("OpenWebif", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits"),
 	("MetrixHD Skin", "https://api.github.com/repos/openatv/MetrixHD/commits")
 ]
 BoxInfo.setItem("InformationCommitLogs", commitLogs)

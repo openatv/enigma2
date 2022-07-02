@@ -1912,9 +1912,9 @@ class TestingInformation(InformationBase):
 
 	def displayInformation(self):
 		from Components.InputDevice import remoteControl
-		html = remoteControl.getOpenWebIfHTML()
+		html = remoteControl.getOpenWebIiHTML()
 		if html is None:
-			html = "OpenWebIf HTML file isn't available."
+			html = "OpenWebif HTML file isn't available."
 		self["information"].setText(html)
 		# info = []
 		# for index in range(1, 24):
