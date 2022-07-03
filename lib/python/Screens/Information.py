@@ -613,12 +613,14 @@ class DebugInformation(InformationBase):
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Log %d/%d") % (index + 1, countLogs), path))
-		paths = [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		paths = [x for x in sorted(glob("/home/root/logs/*-enigma2-crash.log"), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
 				debugLogs.append((basename(path), _("Crash %d/%d") % (index + 1, countLogs), path))
-		paths = [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		paths = [x for x in sorted(glob("/home/root/logs/*-enigma2-debug.log"), key=lambda x: isfile(x) and getmtime(x))]
+		paths += [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
 		if paths:
 			countLogs = len(paths)
 			for index, path in enumerate(reversed(paths)):
