@@ -168,7 +168,7 @@ if [ "$(grep -i config.crash.gstdebug=true /etc/enigma2/settings)" != "" ]; then
 	if [ "$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')" != "" ]; then
 		GSTDEBUGLEVEL=$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')
 	fi
-	export GST_DEBUG_FILE="${LOGFOLDER}GStreamer-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log"
+	export GST_DEBUG_FILE="${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-GStreamer-debug.log"
 	export GST_DEBUG="${GSTDEBUGCATEGORY}:${GSTDEBUGLEVEL}"
 	export GST_DEBUG_NO_COLOR="1"
 fi
