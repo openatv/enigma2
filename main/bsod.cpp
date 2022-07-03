@@ -139,10 +139,16 @@ void bsodFatal(const char *component)
 	std::string crashlog_name;
 	std::ostringstream os;
 	std::ostringstream os_text;
+
+	char dated[22];
+	time_t now_time = time(0);
+	struct tm loctime;
+	localtime_r(&now_time, &loctime);
+	strftime (dated, 21, "%Y%m%d-%H%M%S", &loctime);
+
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
-	os << "enigma2_crash_";
-	os << time(0);
-	os << ".log";
+	os << dated;
+	os << "-enigma-crash.log";
 	crashlog_name = os.str();
 	f = fopen(crashlog_name.c_str(), "wb");
 
