@@ -72,9 +72,9 @@ struct uniqueEPGKey
 	};
 };
 
-//eventMap is sorted by event_id
+// eventMap is sorted by event_id
 typedef std::map<uint16_t, eventData*> eventMap;
-//timeMap is sorted by beginTime
+// timeMap is sorted by beginTime
 typedef std::map<time_t, eventData*> timeMap;
 
 struct hash_uniqueEPGKey
@@ -175,7 +175,7 @@ private:
 	eServiceReferenceDVB *m_timeQueryRef;
 	time_t m_timeQueryBegin;
 	int m_timeQueryMinutes;
-	int m_timeQueryCount;  // counts the returned events; getNextTimeEntry returns always the m_timeQueryCount'th event
+	int m_timeQueryCount;  // counts the returned events; getNextTimeEntry always returns the m_timeQueryCount'th event
 #else
 	eEPGCache();
 	~eEPGCache();
@@ -198,7 +198,7 @@ public:
 	// must be called once!
 	void setCacheFile(const char *filename);
 
-	// at moment just for one service..
+	// currently just for one service.
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);
 
 #ifndef SWIG
@@ -208,11 +208,11 @@ private:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 
 public:
-	/* Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file */
+	// Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file.
 	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
-	// Events are parsed epg events.. it's safe to use them after cache unlock
-	// after use the Event pointer must be released using "delete".
+	// Events are parsed EPG events; it's safe to use them after cache unlock.
+	// After use, the Event pointer must be released using "delete".
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &, int direction=0);
 	RESULT getNextTimeEntry(Event *&);
@@ -234,8 +234,8 @@ public:
 	const char* casetypestr(int value);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
-	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
-	// for use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
+	// eServiceEvent are parsed EPG events; it's safe to use them after cache unlock.
+	// For use from python ( members: m_start_time, m_duration, m_short_description, m_extended_description )
 	SWIG_VOID(RESULT) lookupEventId(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &SWIG_OUTPUT);
 	SWIG_VOID(RESULT) lookupEventTime(const eServiceReference &service, time_t, ePtr<eServiceEvent> &SWIG_OUTPUT, int direction=0);
 	SWIG_VOID(RESULT) getNextTimeEntry(ePtr<eServiceEvent> &SWIG_OUTPUT);
