@@ -144,8 +144,8 @@ BUTTON_SETUP_KEYS = [
 	(_("F4 long"), "f4_long", ""),
 	(_("Magic"), "f10", ""),
 	(_("Magic long"), "f10_long", ""),
-	(_("PIP"), "f6", ""),
-	(_("PIP long"), "f6_long", ""),
+	(_("PiP"), "f6", ""),
+	(_("PiP long"), "f6_long", ""),
 	(_("MOUSE"), "mouse", ""),
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", ""),
@@ -232,11 +232,11 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Seekbar"), "Infobar/seekFwdVod", "InfoBar"))
 	if BoxInfo.getItem("PIPAvailable"):
-		ButtonSetupFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
-		ButtonSetupFunctions.append((_("Toggle PIPzap"), "Infobar/togglePipzap", "InfoBar"))
-		ButtonSetupFunctions.append((_("Cycle PIP(zap)"), "Infobar/activePiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Show PiP"), "Infobar/showPiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Swap PiP"), "Infobar/swapPiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Move PiP"), "Infobar/movePiP", "InfoBar"))
+		ButtonSetupFunctions.append((_("Toggle PiPzap"), "Infobar/togglePipzap", "InfoBar"))
+		ButtonSetupFunctions.append((_("Cycle PiP(zap)"), "Infobar/activePiP", "InfoBar"))
 	ButtonSetupFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
 	if BoxInfo.getItem("hdmihdin") or BoxInfo.getItem("hdmifhdin"):
 		ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))

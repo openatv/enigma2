@@ -16,7 +16,7 @@ eDVBServiceFCCPlay::~eDVBServiceFCCPlay()
 
 void eDVBServiceFCCPlay::serviceEvent(int event)
 {
-	if (!m_is_primary) // PIP mode
+	if (!m_is_primary) // PiP mode
 	{
 		eDVBServicePlay::serviceEvent(event);
 		return;
@@ -107,7 +107,7 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 
 RESULT eDVBServiceFCCPlay::start()
 {
-	if (!m_is_primary) // PIP mode
+	if (!m_is_primary) // PiP mode
 	{
 		eDVBServicePlay::start();
 		return 0;

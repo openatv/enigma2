@@ -558,7 +558,7 @@ class ChannelContextMenu(Screen):
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-					print('[LCDMiniTV] disable PIP')
+					print('[LCDMiniTV] disable PiP')
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(config.lcd.modeminitv.value)
 					f.close()
@@ -574,7 +574,7 @@ class ChannelContextMenu(Screen):
 					self.session.pip.servicePath = self.csel.getCurrentServicePath()
 					self.session.pip.servicePath[1] = currentBouquet
 					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-						print('[LCDMiniTV] enable PIP')
+						print('[LCDMiniTV] enable PiP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
 						f.close()
@@ -592,7 +592,7 @@ class ChannelContextMenu(Screen):
 					self.session.pipshown = False
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
-						print('[LCDMiniTV] disable PIP')
+						print('[LCDMiniTV] disable PiP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modeminitv.value)
 						f.close()
@@ -2768,7 +2768,7 @@ class PiPZapSelection(ChannelSelection):
 					self.saveChannel(ref)
 					self.setCurrentSelection(ref)
 					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-						print('[LCDMiniTV] enable PIP')
+						print('[LCDMiniTV] enable PiP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
 						f.close()
@@ -2787,7 +2787,7 @@ class PiPZapSelection(ChannelSelection):
 					self.session.pipshown = False
 					del self.session.pip
 					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-							print('[LCDMiniTV] disable PIP')
+							print('[LCDMiniTV] disable PiP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modeminitv.value)
 							f.close()
@@ -2799,7 +2799,7 @@ class PiPZapSelection(ChannelSelection):
 			self.session.pipshown = False
 			del self.session.pip
 			if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
-					print('[LCDMiniTV] disable PIP')
+					print('[LCDMiniTV] disable PiP')
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(config.lcd.modeminitv.value)
 					f.close()

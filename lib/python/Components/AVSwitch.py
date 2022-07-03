@@ -839,8 +839,8 @@ def InitAVSwitch():
 			except:
 				pass
 		config.av.boxmode = ConfigSelection(choices={
-				"12": _("enable PIP no HDR"),
-				"1": _("12bit 4:2:0/4:2:2 no PIP")},
+				"12": _("enable PiP no HDR"),
+				"1": _("12bit 4:2:0/4:2:2 no PiP")},
 				default="12")
 		config.av.boxmode.addNotifier(setBoxmode)
 	else:

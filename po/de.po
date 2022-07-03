@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-06-30 20:45+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2022-07-01 03:24+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1332,7 +1332,7 @@ msgstr "(1 Auftrag)"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
-msgstr "Der Zugriff auf das %s Commit-Log benötigt eine Internetverbindung."
+msgstr "Der Zugriff auf das %s Commit-Log benötigt eine Internetverbindung!"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -1528,7 +1528,7 @@ msgstr "12V Ausgang."
 msgid "12bit"
 msgstr "12 Bit"
 
-msgid "12bit 4:2:0/4:2:2 no PIP"
+msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12 Bit 4:2:0/4:2:2 ohne Bild im Bild"
 
 #
@@ -2122,7 +2122,7 @@ msgstr ""
 # RecordTimer.py
 msgid ""
 "A timer failed to record!\n"
-"Disable PIP and try again?\n"
+"Disable PiP and try again?\n"
 msgstr ""
 "Eine Timeraufnahme konnte nicht gestartet werden!\n"
 "Bild im Bild deaktivieren und erneut versuchen?\n"
@@ -3852,7 +3852,7 @@ msgid "CPU priority for script execution"
 msgstr "CPU-Priorität für die Skriptausführung"
 
 msgid "CPU rating"
-msgstr "CPU-Rating"
+msgstr "CPU-Bewertung"
 
 msgid "CPU speed/cores"
 msgstr "CPU-Geschwindigkeit/Kerne"
@@ -4491,7 +4491,7 @@ msgstr "Wählen Sie, wie die Beschreibung der Fernbedienungstasten-Hilfe angezei
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Das Zeitintervall einstellen, auf welches die Grafiken gerundet werden sollen."
 
-msgid "Choose what you want the button '0' to do when PIP is active."
+msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Die Funktion der Taste '0' auswählen, wenn Bild im Bild aktiv ist."
 
 msgid "Choose where to mount your devices to:"
@@ -5589,7 +5589,7 @@ msgid "Cutlist editor..."
 msgstr "Schnitteditor..."
 
 #, fuzzy
-msgid "Cycle PIP(zap)"
+msgid "Cycle PiP(zap)"
 msgstr "Rotiere Bild im Bild (Zap)"
 
 msgid "Cycling"
@@ -5891,7 +5891,7 @@ msgid "Debug Log Information"
 msgstr "Debug-Log-Informationen"
 
 msgid "Debug Log Information Actions"
-msgstr "Debug Log Information Aktionen"
+msgstr "Debug-Log Information-Aktionen"
 
 msgid "Debug Logs"
 msgstr "Debug-Logs"
@@ -6407,7 +6407,7 @@ msgid "Disabled"
 msgstr "Deaktiviert"
 
 # RecordTimer.py
-msgid "Disabled PIP.\n"
+msgid "Disabled PiP.\n"
 msgstr "Bild im Bild wurde deaktiviert.\n"
 
 msgid "Disabled or WPA/WPA2"
@@ -7186,7 +7186,7 @@ msgstr "Überprüfung der Netzwerkdatenübertragung aktivieren"
 msgid "Enable OpenTV EPG"
 msgstr "OpenTV-EPG aktivieren"
 
-msgid "Enable Quad PIP"
+msgid "Enable Quad PiP"
 msgstr "Aktiviere Quad Bild im Bild"
 
 #
@@ -7307,7 +7307,7 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
 
 msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
-msgstr "Aktivieren Sie diese Option, um den Informationsbildschirmen zusätzliche Abstände hinzuzufügen.  Dies kann die Lesbarkeit verbessern."
+msgstr "Aktivieren Sie diese Option, um den Informationsbildschirmen zusätzliche Abstände hinzuzufügen. Dies kann die Lesbarkeit verbessern."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Bei 'Ja' werden alle Optionen für 'Wahr/Falsch', 'Ja/Nein', 'Ein/Aus' und 'Einschalten/Ausschalten' als grafischer Schalter dargestellt."
@@ -7544,11 +7544,11 @@ msgstr "Fehler"
 
 #, python-format
 msgid "Error %d: Log file '%s' not deleted!  (%s)"
-msgstr "Fehler %d: Logdatei '%s' wurde'nicht gelöscht! (%s)"
+msgstr "Fehler %d: Logdatei '%s' wurde nicht gelöscht! (%s)"
 
 #, python-format
 msgid "Error %d: System information file '%s' can't be read!  (%s)"
-msgstr "Fehler %d: Systeminformationsdatei '%s' kann'nicht gelesen werden!  (%s)"
+msgstr "Fehler %d: Systeminformationsdatei '%s' kann nicht gelesen werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7564,7 +7564,7 @@ msgstr "Fehler %d: Befehl 'passwd' konnte nicht gestartet werden!"
 
 #, python-format
 msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
-msgstr "Fehler %s: Die Datei '%s' konnte nicht abgerufen werden!  (%s)"
+msgstr "Fehler %s: Die Datei '%s' konnte nicht abgerufen werden! (%s)"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the '%s' commit log!"
@@ -8309,7 +8309,7 @@ msgid "Find similar events in the EPG"
 msgstr "Finde ähnliche Sendungen im EPG"
 
 msgid "Finding available log files, please wait..."
-msgstr "Suche nach verfügbaren Log-Dateien, bitte warten..."
+msgstr "Suche nach verfügbaren Log-Dateien. Bitte warten..."
 
 msgid "Fine movement"
 msgstr "Fein-Steuerung"
@@ -10587,7 +10587,7 @@ msgid "Loading information, please wait..."
 msgstr "Informationen werden geladen. Bitte warten..."
 
 msgid "Loading slot information, please wait..."
-msgstr "Slot-Informationen werden geladen, bitte warten..."
+msgstr "Slot-Informationen werden geladen. Bitte warten..."
 
 msgid "Local box"
 msgstr "Lokaler Receiver"
@@ -11365,7 +11365,7 @@ msgstr "Verschiebemodus aus"
 msgid "Move Mode On"
 msgstr "Verschiebemodus an"
 
-msgid "Move PIP"
+msgid "Move PiP"
 msgstr "Verschiebe Bild im Bild"
 
 #
@@ -12082,13 +12082,13 @@ msgid "No free tuner!"
 msgstr "Kein freier Tuner!"
 
 msgid "No hard disks detected."
-msgstr "Keine Festplatten gefunden."
+msgstr "Keine Festplatten gefunden!"
 
 msgid "No hash calculations configured"
 msgstr "Keine Hash-Berechnungen konfiguriert"
 
 msgid "No images available"
-msgstr "Keine Bilder verfügbar"
+msgstr "Keine Bilder verfügbar!"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Keine Log-Dateien gefunden, daher sind keine Debug-Logs verfügbar!"
@@ -12101,7 +12101,7 @@ msgid "No network connection available."
 msgstr "Keine Netzwerkverbindung verfügbar."
 
 msgid "No network storage detected."
-msgstr "Keine Netzwerkspeicher gefunden."
+msgstr "Keine Netzwerkspeicher gefunden!"
 
 #
 msgid "No networks found"
@@ -12143,7 +12143,7 @@ msgid "No standby"
 msgstr "Kein Standby"
 
 msgid "No storage or hard disks detected."
-msgstr "Keine Festplatten gefunden."
+msgstr "Keine Festplatten gefunden!"
 
 msgid "No suitable backup locations found!"
 msgstr "Keinen passenden Speicherort für die Sicherung gefunden!"
@@ -12852,13 +12852,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "PIN-Code erforderlich!"
 
-msgid "PIP"
+msgid "PiP"
 msgstr "Bild im Bild"
 
-msgid "PIP long"
+msgid "PiP long"
 msgstr "Bild im Bild lang"
 
-msgid "PIP with OSD"
+msgid "PiP with OSD"
 msgstr "Bild im Bild mit OSD"
 
 msgid "PLP ID"
@@ -14484,7 +14484,7 @@ msgid "Receiver Image Actions"
 msgstr "Receiver Imageaktionen"
 
 msgid "Receiver Images"
-msgstr "Bilder des Receiver"
+msgstr "Bilder des Receivers"
 
 msgid "Receiver Information"
 msgstr "Receiver-Informationen"
@@ -14596,7 +14596,7 @@ msgstr "Aufnahmen"
 msgid "Recordings & Timeshift"
 msgstr "Aufnahmen & Timeshift"
 
-msgid "Recordings abort PIP"
+msgid "Recordings abort PiP"
 msgstr "Bild im Bild bei Aufnahmen beenden"
 
 # Record neu 5.1
@@ -15126,11 +15126,11 @@ msgstr "%s Commit-Log wird abgerufen. Bitte warten..."
 
 #, python-format
 msgid "Retrieving '%s' information, please wait..."
-msgstr "Abruf von '%s' Informationen, bitte warten..."
+msgstr "Abruf von '%s' Informationen. Bitte warten..."
 
 #, python-format
 msgid "Retrieving '%s' log, please wait..."
-msgstr "Abruf von '%s' Log, bitte warten..."
+msgstr "Abruf von '%s' Log. Bitte warten..."
 
 msgid "Retrieving boot slot information..."
 msgstr "Abrufen von Boot-Slot-Informationen..."
@@ -15935,7 +15935,7 @@ msgid "Select a cardserver from the available list."
 msgstr "Wählen Sie einen Cardserver aus der Liste aus."
 
 msgid "Select a debug log file to view:"
-msgstr "Wählen Sie eine Debug-Log zur Ansicht aus:"
+msgstr "Wählen Sie ein Debug-Log zur Ansicht aus:"
 
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Wählen Sie eine Distribution aus, von der Images bezogen werden sollen"
@@ -17187,13 +17187,13 @@ msgstr "OScam-Info anzeigen"
 msgid "Show OScam in extensions"
 msgstr "OScam in Erweiterungen anzeigen"
 
-msgid "Show PIP"
+msgid "Show PiP"
 msgstr "Bild im Bild einschalten"
 
-msgid "Show PIP in MiniTV"
+msgid "Show PiP in MiniTV"
 msgstr "Bild im Bild im MiniTV anzeigen"
 
-msgid "Show PIP in the Front Display"
+msgid "Show PiP in the Front Display"
 msgstr "Bild im Bild im Display anzeigen"
 
 msgid "Show PVR status in MoviePlayer infobar"
@@ -18748,7 +18748,7 @@ msgstr "Swap-File nicht gefunden. Bitte erst erstellen."
 msgid "Swap Manager"
 msgstr "Swap-Verwaltung"
 
-msgid "Swap PIP"
+msgid "Swap PiP"
 msgstr "Tausche Bild im Bild"
 
 #
@@ -18803,7 +18803,7 @@ msgstr "EPG-Seite nach unten wechseln"
 msgid "Switch EPG Page Up"
 msgstr "EPG-Seite nach oben wechseln"
 
-msgid "Switch Mode to enable HDR Modes or PIP Functions"
+msgid "Switch Mode to enable HDR Modes or PiP Functions"
 msgstr "Den Boxmodus wechseln, um den HDR-Modus oder die Bild im Bild Funktionen zu aktivieren."
 
 msgid "Switch TV to correct input"
@@ -19210,7 +19210,7 @@ msgstr "Das %s Commit-Log enthält keine Informationen!"
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
-msgstr "Die Datei '%s' kann nicht abgerufen werden, bitte versuchen Sie es später erneut."
+msgstr "Die Datei '%s' kann nicht abgerufen werden! Bitte versuchen Sie es später erneut."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -19533,7 +19533,7 @@ msgstr "Es besteht die Gefahr, dass Ihre %s %s nach einer so umfangreichen Onlin
 
 #, python-format
 msgid "There is no information to show for '%s'."
-msgstr "Es gibt keine Informationen für '%s'."
+msgstr "Es gibt keine Informationen für '%s'!"
 
 msgid "There is no signal to lock on !"
 msgstr "Es gibt kein Signal zum Einrasten!"
@@ -19656,7 +19656,7 @@ msgid "This line is not editable!"
 msgstr "Diese Zeile kann nicht bearbeitet werden!"
 
 msgid "This menu contains selections to display information about the receiver."
-msgstr "Dieses Menü enthält eine Auswahl von Informationen über den Receiver."
+msgstr "Alle Informationen zu Ihrem Receiver."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Software Ihrer %s %s verwalten."
@@ -20247,7 +20247,7 @@ msgstr "HDMI-IN im Vollbildmodus wiedergeben"
 msgid "Toggle LCD LiveTV"
 msgstr "Display/Live-TV umschalten"
 
-msgid "Toggle PIPzap"
+msgid "Toggle PiPzap"
 msgstr "Bild im Bild umschalten"
 
 msgid "Toggle Picture in Graphics"
@@ -20405,7 +20405,7 @@ msgid "Travel"
 msgstr "Reise"
 
 # RecordTimer.py
-msgid "Tried to disable PIP, suddenly found no InfoBar.instance.\n"
+msgid "Tried to disable PiP, suddenly found no InfoBar.instance.\n"
 msgstr "Beim Versuch, Bild im Bild zu deaktivieren, wurde keine 'InfoBar.instance' gefunden.\n"
 
 #
@@ -22334,7 +22334,7 @@ msgstr ""
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Zeige MiniTV im Display mit oder ohne OSD-Menü"
 
-msgid "You can Display PIP with or without OSD Menu"
+msgid "You can Display PiP with or without OSD Menu"
 msgstr "Sie können sich Bild im Bild mit oder ohne OSD Menü im Display anzeigen lassen."
 
 msgid "You can cancel the installation."
@@ -22525,7 +22525,7 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s is rebooting"
-msgstr "Ihre %s %s startet neu"
+msgstr "Ihre %s %s startet neu..."
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
@@ -22558,11 +22558,11 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "%s %s startet neu..."
+msgstr "Ihre %s %s startet neu..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr "%s %s startet neu..."
+msgstr "Ihre %s %s startet neu..."
 
 #, python-format
 msgid ""
@@ -23300,7 +23300,7 @@ msgstr "Integriert"
 msgid "empty"
 msgstr "Leer"
 
-msgid "enable PIP no HDR"
+msgid "enable PiP no HDR"
 msgstr "Aktiviere Bild im Bild ohne HDR"
 
 #

@@ -558,7 +558,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return False
 
 			if self.first_try_prepare == 0:
-				# (0) try to make a tuner available by disabling PIP
+				# (0) try to make a tuner available by disabling PiP
 				self.first_try_prepare += 1
 				if not InfoBar:
 					from Screens.InfoBar import InfoBar
@@ -567,10 +567,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) == True:
 					if config.recording.ask_to_abort_pip.value == "ask":
-						self.log(8, "asking user to disable PIP")
+						self.log(8, "asking user to disable PiP")
 						self.messageBoxAnswerPending = True
 						callback = self.failureCB_pip
-						message = _("A timer failed to record!\nDisable PIP and try again?\n")
+						message = _("A timer failed to record!\nDisable PiP and try again?\n")
 						messageboxtyp = MessageBox.TYPE_YESNO
 						timeout = 20
 						default = True
@@ -579,12 +579,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						else:
 							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					elif config.recording.ask_to_abort_pip.value in ("abort_no_msg", "abort_msg"):
-						self.log(8, "disable PIP without asking")
+						self.log(8, "disable PiP without asking")
 						self.setRecordingPreferredTuner()
 						self.failureCB_pip(True)
 					return False
 				else:
-					self.log(8, "currently no PIP active... so we dont need to stop it")
+					self.log(8, "currently no PiP active... so we dont need to stop it")
 
 			if self.first_try_prepare == 1:
 				# (1) try to make a tuner available by aborting pseudo recordings
@@ -954,7 +954,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def failureCB_pip(self, answer):
 		if answer:
-			self.log(13, "ok, disable PIP")
+			self.log(13, "ok, disable PiP")
 			global InfoBar
 			if not InfoBar:
 				from Screens.InfoBar import InfoBar
@@ -963,15 +963,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 			if InfoBarInstance:
 				InfoBarPiP.showPiP(InfoBarInstance)
-				self.messageString += _("Disabled PIP.\n")
+				self.messageString += _("Disabled PiP.\n")
 			else:
-				self.log(14, "tried to disable PIP, suddenly found no InfoBar.instance")
-				self.messageString += _("Tried to disable PIP, suddenly found no InfoBar.instance.\n")
+				self.log(14, "tried to disable PiP, suddenly found no InfoBar.instance")
+				self.messageString += _("Tried to disable PiP, suddenly found no InfoBar.instance.\n")
 			if config.recording.ask_to_abort_pip.value in ("ask", "abort_msg"):
 				self.messageStringShow = True
 			self.justTriedFreeingTuner = True
 		else:
-			self.log(14, "user didn't want to disable PIP, try other methods of freeing a tuner")
+			self.log(14, "user didn't want to disable PiP, try other methods of freeing a tuner")
 		self.messageBoxAnswerPending = False
 
 	def failureCB_pseudo_rec(self, answer):

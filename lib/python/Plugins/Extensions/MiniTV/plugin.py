@@ -23,7 +23,7 @@ class MiniTV:
 
 	def getExtensionNameDecoder(self):
 		if config.plugins.minitv.decoder.value == "0":
-			return _("Show PIP in MiniTV")
+			return _("Show PiP in MiniTV")
 
 		return _("Show Live in MiniTV")
 

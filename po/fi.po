@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-06-30 16:10+0000\n"
+"PO-Revision-Date: 2022-07-03 07:30+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -856,11 +856,11 @@ msgstr "%d %b %Y"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr ""
+msgstr "%d DMIPS per ydin"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d DMIPS ja %d ytimet"
 
 #, python-format
 msgid "%d GB"
@@ -1201,7 +1201,7 @@ msgstr "%s Asetukset"
 
 #, python-format
 msgid "%s View"
-msgstr ""
+msgstr "%s Näkymä"
 
 #, python-format
 msgid "%s additional screens"
@@ -1500,7 +1500,7 @@ msgstr "12V ulostulo."
 msgid "12bit"
 msgstr "12bit"
 
-msgid "12bit 4:2:0/4:2:2 no PIP"
+msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr "12bit 4:2:0/4:2:2 ei PIP"
 
 msgid "13 V"
@@ -2044,7 +2044,7 @@ msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
-"Disable PIP and try again?\n"
+"Disable PiP and try again?\n"
 msgstr ""
 "Ajastettu tallennus epäonnistui!\n"
 "Poistetaanko PiP käytöstä, jotta\n"
@@ -3285,11 +3285,11 @@ msgid "Belize"
 msgstr "Belize"
 
 msgid "Benchmark Information"
-msgstr ""
+msgstr "Vertailuarvo tiedot"
 
 #, python-format
 msgid "Benchmark information for %s %s"
-msgstr ""
+msgstr "Vertailutiedot kohteelle %s %s"
 
 msgid "Bengali"
 msgstr "Bengali"
@@ -3437,10 +3437,10 @@ msgid "British Indian Ocean Territory"
 msgstr "Brittiläinen Intian valtameren alue"
 
 msgid "Broadcast address"
-msgstr ""
+msgstr "Lähetys osoite"
 
 msgid "Broadcast systems"
-msgstr ""
+msgstr "Lähetysjärjestelmät"
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3472,7 +3472,7 @@ msgstr "Ohjelmisto tiedot"
 
 #, python-format
 msgid "Build information for %s %s"
-msgstr ""
+msgstr "Versio tiedot kohteelle %s %s"
 
 #, python-format
 msgid "Build: %s"
@@ -3656,13 +3656,13 @@ msgstr "Prosessori"
 
 #, python-format
 msgid "CPU / Core %d type"
-msgstr ""
+msgstr "CPU / Ydin %d tyyppi"
 
 msgid "CPU architecture"
 msgstr "CPU arkkitehtuuri"
 
 msgid "CPU benchmark"
-msgstr ""
+msgstr "CPU suorituskyky"
 
 msgid "CPU brand"
 msgstr "CPU Malli"
@@ -3671,7 +3671,7 @@ msgid "CPU priority for script execution"
 msgstr "Prosessorin prioriteetti sciptin suorittamiselle"
 
 msgid "CPU rating"
-msgstr ""
+msgstr "CPU luokitus"
 
 msgid "CPU speed/cores"
 msgstr "CPU nopeus/ydintä"
@@ -3707,10 +3707,10 @@ msgid "Calculate file checksums"
 msgstr "Laske tiedostojen tarkistus"
 
 msgid "Calculating benchmark..."
-msgstr ""
+msgstr "Lasketaan suorituskyky..."
 
 msgid "Calculating rating..."
-msgstr ""
+msgstr "Lasketaan luokitusta..."
 
 msgid "Calculation complete"
 msgstr "Laskenta valmis"
@@ -4263,7 +4263,7 @@ msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Valitse aikaväli, johon grafiikat pyöristetään."
 
-msgid "Choose what you want the button '0' to do when PIP is active."
+msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Määrittää, mitä 0-näppäin tekee, kun PiP-kuva on aktivoitu."
 
 msgid "Choose where to mount your devices to:"
@@ -5104,7 +5104,7 @@ msgstr "Ohjelmaoppaan arvostelutietojen maa asetus"
 
 #, python-format
 msgid "Crash %d/%d"
-msgstr ""
+msgstr "Kaatuminen %d/%d"
 
 msgid "Crash Logs"
 msgstr "Kaatumislokit"
@@ -5202,7 +5202,7 @@ msgid "Current"
 msgstr "Nykyinen"
 
 msgid "Current 1/1"
-msgstr ""
+msgstr "Nykyinen 1/1"
 
 msgid "Current Affairs"
 msgstr "Ajankohtaisohjelmat"
@@ -5283,7 +5283,7 @@ msgstr "Leikkauskohtien editori"
 msgid "Cutlist editor..."
 msgstr "Määritä leikkauskohdat..."
 
-msgid "Cycle PIP(zap)"
+msgid "Cycle PiP(zap)"
 msgstr "Kierrä PIP(zap)"
 
 msgid "Cycling"
@@ -5348,7 +5348,7 @@ msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
 msgid "DVB API version"
-msgstr ""
+msgstr "DVB API versio"
 
 msgid "DVB CI Delay"
 msgstr "DVB CI Viive"
@@ -5421,7 +5421,7 @@ msgstr "Päivämäärä / kellonaika"
 
 #, python-format
 msgid "Date: %s   Author: %s"
-msgstr ""
+msgstr "Päivämäärä: %s Tekijä: %s"
 
 msgid "Day D Mon"
 msgstr "Päivä P-Kuukausi"
@@ -5566,19 +5566,20 @@ msgstr "Poista käytöstä"
 
 #, python-format
 msgid "Debug %d/%d"
-msgstr ""
+msgstr "Virheenjäljitys %d/%d"
 
 msgid "Debug Information"
-msgstr ""
+msgstr "Vianmääritys tiedot"
 
 msgid "Debug Log"
-msgstr ""
+msgstr "Vianmääritys loki"
 
+#, fuzzy
 msgid "Debug Log Information"
-msgstr ""
+msgstr "Vianmäärityslokin tiedot"
 
 msgid "Debug Log Information Actions"
-msgstr ""
+msgstr "Virheenjäljitys tiedot"
 
 msgid "Debug Logs"
 msgstr "Vianselvityslokit"
@@ -5785,7 +5786,7 @@ msgid "Delete all log files"
 msgstr "Poista kaikki lokitiedostot"
 
 msgid "Delete all logs"
-msgstr ""
+msgstr "Poista kaikki lokit"
 
 msgid "Delete all tags"
 msgstr "Poista kaikki tunnisteet"
@@ -5821,7 +5822,7 @@ msgid "Delete folder"
 msgstr "Poista kansio"
 
 msgid "Delete log"
-msgstr ""
+msgstr "Poista loki"
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Poista tai pyyhi nykyinen image paikka"
@@ -6062,7 +6063,7 @@ msgstr "Keskeytä ajastus"
 msgid "Disabled"
 msgstr "Ei käytössä"
 
-msgid "Disabled PIP.\n"
+msgid "Disabled PiP.\n"
 msgstr "Poista PiP Käytöstä.\n"
 
 msgid "Disabled or WPA/WPA2"
@@ -6133,7 +6134,7 @@ msgstr "Ohjelmisto"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
-msgstr ""
+msgstr "Jakelun '%s' tiedot %s %s"
 
 msgid "Distribution architecture"
 msgstr "Jakeluarkkitehtuuri"
@@ -6439,7 +6440,7 @@ msgid "Down"
 msgstr "Alas"
 
 msgid "Down / Inactive"
-msgstr ""
+msgstr "Alas / Ei aktiivinen"
 
 msgid "Download Plugins"
 msgstr "Lataa lisäosia"
@@ -6782,7 +6783,7 @@ msgstr "Ota käyttöön verkkoliikenteen tarkistus"
 msgid "Enable OpenTV EPG"
 msgstr "Ota käyttöön OpenTV ohjelmaopas"
 
-msgid "Enable Quad PIP"
+msgid "Enable Quad PiP"
 msgstr "Aktivoi 4 kanava PIP"
 
 msgid "Enable Swap at startup"
@@ -6901,7 +6902,7 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa"
 
 msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
-msgstr ""
+msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin.  Tämä voi parantaa luettavuutta."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päältä asetukset näkyvät graafisena kytkimenä."
@@ -7129,7 +7130,7 @@ msgstr "Virhe %d: Lokitiedostoa '%s' ei poistettu!  (%s))"
 
 #, python-format
 msgid "Error %d: System information file '%s' can't be read!  (%s)"
-msgstr ""
+msgstr "Virhe %d: Järjestelmätieto tiedostoa '%s' ei voida lukea!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7145,7 +7146,7 @@ msgstr "Virhe %d: Komentoa 'passwd' ei pystytä käynnistämään!"
 
 #, python-format
 msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
-msgstr ""
+msgstr "Virhe %s: Tiedostoa '%s' ei pystytty hakemaan!  (%s))"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the '%s' commit log!"
@@ -7580,7 +7581,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FEC modes"
-msgstr ""
+msgstr "FEC tilat"
 
 msgid "FFmpeg version"
 msgstr "FFmpeg versio"
@@ -7843,7 +7844,7 @@ msgid "Find similar events in the EPG"
 msgstr "Etsi samanlaisia ohjelmia EPG:stä"
 
 msgid "Finding available log files, please wait..."
-msgstr ""
+msgstr "Etsi saatavilla olevia lokitiedostoja, odota..."
 
 msgid "Fine movement"
 msgstr "Moottorin hienosäätö"
@@ -8046,7 +8047,7 @@ msgid "Frequency bands"
 msgstr "Taajuusalueet"
 
 msgid "Frequency range"
-msgstr ""
+msgstr "Taajuusalue"
 
 msgid "Frequency scan step size(khz)"
 msgstr "Taajuushaun askel (khz)"
@@ -8209,7 +8210,7 @@ msgstr "Maantieteellisen sijainnin tietoja ei voi noutaa, yritä myöhemmin uude
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr ""
+msgstr "Paikannustiedot seuraaville: %s %s"
 
 msgid "Geolocation is not available."
 msgstr "Maantieteellinen sijainti ei ole käytettävissä."
@@ -8806,7 +8807,7 @@ msgid "IPK Installer"
 msgstr "IPK Asennus"
 
 msgid "IPv6 address"
-msgstr ""
+msgstr "IPv6 osoite"
 
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO-tiedosto on liian suuri tälle tiedostojärjestelmälle!"
@@ -9290,7 +9291,7 @@ msgid "Install '%s' and enable this operation"
 msgstr "'%s' asenna ja aktivoi"
 
 msgid "Install 1/1"
-msgstr ""
+msgstr "Asenna 1/1"
 
 msgid "Install Failed !!"
 msgstr "Asennus epäonnistui!"
@@ -10078,7 +10079,7 @@ msgstr "Loki"
 
 #, python-format
 msgid "Log %d/%d"
-msgstr ""
+msgstr "Loki %d/%d"
 
 msgid "Log Manager"
 msgstr "Lokien hallinta"
@@ -10089,7 +10090,7 @@ msgstr "Lokitiedosto %s poistettiin."
 
 #, python-format
 msgid "Log file: '%s'  (%s)"
-msgstr ""
+msgstr "Lokitiedosto: '%s' (%s)"
 
 msgid "Log python stack trace on spinner"
 msgstr "Kirjataanko python jäljitys"
@@ -10183,7 +10184,7 @@ msgid "MAC Address Settings"
 msgstr "MAC-osoitteen asetukset"
 
 msgid "MAC address"
-msgstr ""
+msgstr "Mac osoite"
 
 msgid "MAC-address"
 msgstr "MAC-osoite"
@@ -10461,7 +10462,7 @@ msgstr "Muistipaikka"
 
 #, python-format
 msgid "Memory information for %s %s"
-msgstr ""
+msgstr "Muistitiedot %s %s"
 
 msgid "Menu"
 msgstr "Valikko"
@@ -10618,7 +10619,7 @@ msgid "Modulation"
 msgstr "Modulaatio"
 
 msgid "Modulation modes"
-msgstr ""
+msgstr "Modulaatio tilat"
 
 msgid "Modulator"
 msgstr "Modulaattori"
@@ -10724,7 +10725,7 @@ msgstr "Siirrä tila pois päältä"
 msgid "Move Mode On"
 msgstr "Siirto tila on"
 
-msgid "Move PIP"
+msgid "Move PiP"
 msgstr "Siirrä PiP"
 
 msgid "Move PiP to main picture"
@@ -11156,7 +11157,7 @@ msgstr "Verkon tiedot"
 
 #, python-format
 msgid "Network information for %s %s"
-msgstr ""
+msgstr "Verkkotiedot, %s %s"
 
 msgid "Network menu"
 msgstr "Lähiverkon asetukset"
@@ -11171,7 +11172,7 @@ msgid "Network scan"
 msgstr "Verkkohaku"
 
 msgid "Network storage on"
-msgstr ""
+msgstr "Verkkotallennus päällä"
 
 msgid "Network test"
 msgstr "Lähiverkon testi"
@@ -11247,7 +11248,7 @@ msgid "Next Image"
 msgstr "Seuraava Ohjelmisto"
 
 msgid "Next Log"
-msgstr ""
+msgstr "Seuraava loki"
 
 msgid "Next bouquet"
 msgstr "Seuraavalle suosikkilistalle"
@@ -11376,10 +11377,10 @@ msgid "No hash calculations configured"
 msgstr "Ei hash laskelmia määritetty"
 
 msgid "No images available"
-msgstr ""
+msgstr "Ohjelmistoja ei ole saatavilla"
 
 msgid "No log files found so debug logs are unavailable!"
-msgstr ""
+msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
 
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
@@ -11388,7 +11389,7 @@ msgid "No network connection available."
 msgstr "Ei verkkoyhteyttä."
 
 msgid "No network storage detected."
-msgstr ""
+msgstr "Verkkotallennusta ei havaittu."
 
 msgid "No networks found"
 msgstr "Verkkoja ei löytynyt"
@@ -11423,7 +11424,7 @@ msgid "No standby"
 msgstr "Ei valmiustilaa"
 
 msgid "No storage or hard disks detected."
-msgstr ""
+msgstr "Tallennustilaa tai kiintolevyjä ei havaittu."
 
 msgid "No suitable backup locations found!"
 msgstr "Yhteensopivia varmuuskopiointi sijainteja ei löytynyt!"
@@ -11470,7 +11471,7 @@ msgstr ""
 "Määritä virittimen asetukset ennen kanavahaun aloittamista."
 
 msgid "No tuners are currently streaming."
-msgstr ""
+msgstr "Tällä hetkellä ei ole virittimiä."
 
 msgid "No update required!"
 msgstr "Ei päivitystä!"
@@ -12076,13 +12077,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "PIN koodi vaaditaan"
 
-msgid "PIP"
+msgid "PiP"
 msgstr "PiP"
 
-msgid "PIP long"
+msgid "PiP long"
 msgstr "PIP pitkä"
 
-msgid "PIP with OSD"
+msgid "PiP with OSD"
 msgstr "PiP ja kuvaruutu"
 
 msgid "PLP ID"
@@ -13090,11 +13091,12 @@ msgstr "Esikatsele valikkoa"
 msgid "Previous"
 msgstr "Edellinen"
 
+#, fuzzy
 msgid "Previous Image"
-msgstr ""
+msgstr "Edellinen kuva"
 
 msgid "Previous Log"
-msgstr ""
+msgstr "Edellinen loki"
 
 msgid "Previous bouquet"
 msgstr "Edellinen suosikkilista"
@@ -13396,7 +13398,7 @@ msgid "RAM (Summary)"
 msgstr "RAM (yhteenveto)"
 
 msgid "RAM benchmark"
-msgstr ""
+msgstr "RAM Suorituskyky"
 
 msgid "RC custom code"
 msgstr "Mukautettu RC koodi"
@@ -13666,7 +13668,7 @@ msgstr "Tallenteet"
 msgid "Recordings & Timeshift"
 msgstr "Tallennus & Ajansiirto"
 
-msgid "Recordings abort PIP"
+msgid "Recordings abort PiP"
 msgstr "Tallennus saa keskeyttää PiP toiminnon"
 
 msgid "Recordings abort pseudo recordings"
@@ -16064,13 +16066,13 @@ msgstr "Näytä OScam tiedot"
 msgid "Show OScam in extensions"
 msgstr "Näytä OScam laajennuksissa"
 
-msgid "Show PIP"
+msgid "Show PiP"
 msgstr "Näytä PiP"
 
-msgid "Show PIP in MiniTV"
+msgid "Show PiP in MiniTV"
 msgstr "Näytä PIP etunäytössä"
 
-msgid "Show PIP in the Front Display"
+msgid "Show PiP in the Front Display"
 msgstr "Näytä PiP etunäytössä"
 
 msgid "Show PVR status in MoviePlayer infobar"
@@ -17520,7 +17522,7 @@ msgstr "Swap tiedostoa ei löydy. Tiedosto täytyy luoda ennen aktivointia."
 msgid "Swap Manager"
 msgstr "Swap muistin hallinta"
 
-msgid "Swap PIP"
+msgid "Swap PiP"
 msgstr "Vaihda PIP"
 
 msgid "Swap PiP and main picture"
@@ -17571,7 +17573,7 @@ msgstr "Vaihda EPG Sivu Alas"
 msgid "Switch EPG Page Up"
 msgstr "Vaihda EPG Sivu Ylös"
 
-msgid "Switch Mode to enable HDR Modes or PIP Functions"
+msgid "Switch Mode to enable HDR Modes or PiP Functions"
 msgstr "Valitse joko HDR (High Dynamic Range) tai PIP (Picture in Picture). Molemmat eivät voi olla päällä yhtaikaa. Vaatii laitteen uudelleenkäynnistyksen*"
 
 msgid "Switch TV to correct input"
@@ -18909,7 +18911,7 @@ msgstr "Valitse HDMI-tulo kokoruudulle"
 msgid "Toggle LCD LiveTV"
 msgstr "Valitse tv kuva etupaneeliin"
 
-msgid "Toggle PIPzap"
+msgid "Toggle PiPzap"
 msgstr "Valitse PiP-kaappaus"
 
 msgid "Toggle Picture in Graphics"
@@ -19055,7 +19057,7 @@ msgstr "Roskakori:"
 msgid "Travel"
 msgstr "Matkustaa"
 
-msgid "Tried to disable PIP, suddenly found no InfoBar.instance.\n"
+msgid "Tried to disable PiP, suddenly found no InfoBar.instance.\n"
 msgstr "InfoBar.instance ohjelmaa ei löytynyt, kun yritettiin poistaa PIP käytöstä.\n"
 
 msgid "Tries left:"
@@ -20811,7 +20813,7 @@ msgstr ""
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Voit valita MiniTV:n kuvaruutunäytöllä tai ilman"
 
-msgid "You can Display PIP with or without OSD Menu"
+msgid "You can Display PiP with or without OSD Menu"
 msgstr "Voit valita PiP:n kuvaruutunäytöllä tai ilman"
 
 msgid "You can cancel the installation."
@@ -21691,7 +21693,7 @@ msgstr "Integroitu"
 msgid "empty"
 msgstr "tyhjä"
 
-msgid "enable PIP no HDR"
+msgid "enable PiP no HDR"
 msgstr "Aktivoi PIP ilman HDR:ää"
 
 msgid "enable bouquet edit"
