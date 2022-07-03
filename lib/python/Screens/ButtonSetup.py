@@ -144,8 +144,10 @@ BUTTON_SETUP_KEYS = [
 	(_("F4 long"), "f4_long", ""),
 	(_("Magic"), "f10", ""),
 	(_("Magic long"), "f10_long", ""),
-	(_("PiP"), "f6", ""),
-	(_("PiP long"), "f6_long", ""),
+	# TRANSLATORS PIP with uppercase i is for the button key text
+	(_("PIP"), "f6", ""),
+	# TRANSLATORS PIP with uppercase i is for the button key text
+	(_("PIP long"), "f6_long", ""),
 	(_("MOUSE"), "mouse", ""),
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", ""),
