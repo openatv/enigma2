@@ -456,7 +456,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(SoftcamSetup)
 		elif item[0] == _("OScam Information"):
 			self.session.open(OscamInfoMenu)
-		elif item[0] == _("CCcam Info"):
+		elif item[0] == _("CCcam Information"):
 			self.session.open(CCcamInfoMain)
 		elif item[0] == _("Download Softcams"):
 			self.session.open(ShowSoftcamPackages)

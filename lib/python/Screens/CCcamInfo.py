@@ -1,9 +1,10 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from base64 import b64encode
+from glob import glob
 import requests
 from os import listdir, remove, rename, system, popen
-from os.path import dirname, exists
+from os.path import dirname, exists, isfile
 from urllib.parse import urlparse, urlunparse
 from skin import parameters, getSkinFactor
 
@@ -29,6 +30,7 @@ from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
 VERSION = "V3"
 DATE = "01.12.2021"
 CFG = "/etc/CCcam.cfg"
+CFG_path = '/etc'
 global Counter
 Counter = 0
 AuthHeaders = {
@@ -42,19 +44,11 @@ sf = getSkinFactor()
 
 def searchConfig():
 	global CFG, CFG_path
-	CFG = confPath()
-	CFG_path = '/var/etc'
-	if CFG:
+	files = glob("/etc/**/CCcam.cfg", recursive=True)
+	if files:
+		CFG = files[0]
 		CFG_path = dirname(CFG)
-
-
-def confPath():
-	cmd = 'find /etc -iname "CCcam.cfg" | head -n 1'
-	res = popen(cmd).read()
-	if res == "":
-		return None
-	else:
-		return res.replace("\n", "")
+	print("[CCcamInfo] searchConfig CFG=%s" % CFG)
 
 
 def _parse(url):
@@ -387,7 +381,9 @@ class CCcamInfoMain(Screen):
 
 		self.working = False
 		self.Console = Console()
-		searchConfig()
+		if not isfile(CFG):
+			print("[CCcamInfo] %s not found" % CFG)
+			searchConfig()
 
 		if config.cccaminfo.profile.value == "":
 			self.readConfig()
