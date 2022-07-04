@@ -339,32 +339,9 @@ class CCcamLineEdit(Setup):
 		self.close()
 
 
-class CCcamList(MenuList):
+class CCcamMenuList(MenuList):
 	def __init__(self, list):
-		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(int(30 * sf))
-		self.l.setFont(0, gFont("Regular", int(20 * sf)))
-
-
-class CCcamShareList(MenuList):
-	def __init__(self, list):
-		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(int(60 * sf))
-		self.l.setFont(0, gFont("Regular", int(18 * sf)))
-
-
-class CCcamConfigList(MenuList):
-	def __init__(self, list):
-		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(int(30 * sf))
-		self.l.setFont(0, gFont("Regular", int(20 * sf)))
-
-
-class CCcamShareViewList(MenuList):
-	def __init__(self, list):
-		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(int(30 * sf))
-		self.l.setFont(0, gFont("Regular", int(18 * sf)))
+		MenuList.__init__(self, list, content=eListboxPythonMultiContent)
 
 
 def CCcamListEntry(name, idx):
@@ -474,7 +451,7 @@ class CCcamInfoMain(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("CCcam Info"))
 
-		self["menu"] = CCcamList([])
+		self["menu"] = CCcamMenuList([])
 
 		self.working = False
 		self.Console = Console()
@@ -962,7 +939,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 		self.uphop = -1
 		self.working = True
 
-		self["list"] = CCcamShareViewList([])
+		self["list"] = CCcamMenuList([])
 		self["uphops"] = Label()
 		self["cards"] = Label()
 		self["providers"] = Label()
@@ -1446,7 +1423,7 @@ class CCcamInfoShareInfo(Screen):
 		self["key_green"] = Label(_("Uphops -"))
 		self["key_yellow"] = Label(_("Maxdown +"))
 		self["key_blue"] = Label(_("Maxdown -"))
-		self["list"] = CCcamShareList([])
+		self["list"] = CCcamMenuList()
 
 		self["actions"] = ActionMap(["CCcamInfoActions"],
 			{
@@ -1587,7 +1564,7 @@ class CCcamInfoConfigSwitcher(Screen):
 		self["key_green"] = Label(_("Activate"))
 		self["key_yellow"] = Label(_("Rename"))
 		self["key_blue"] = Label(_("Content"))
-		self["list"] = CCcamConfigList([])
+		self["list"] = CCcamMenuList([])
 
 		self["actions"] = ActionMap(["CCcamInfoActions"],
 			{
