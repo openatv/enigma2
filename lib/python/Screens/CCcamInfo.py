@@ -1679,7 +1679,7 @@ class CCcamInfoMenuConfig(Screen):
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label(_("Location"))
-		self["list"] = CCcamConfigList([])
+		self["list"] = CCcamMenuList([])
 		self.getBlacklistedMenuEntries()
 
 		self["actions"] = ActionMap(["CCcamInfoActions"],
