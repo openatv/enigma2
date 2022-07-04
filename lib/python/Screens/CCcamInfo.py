@@ -9,7 +9,8 @@ from os.path import dirname, exists, isfile
 from urllib.parse import urlparse, urlunparse
 from skin import parameters, getSkinFactor
 
-from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT
+from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_HALIGN_LEFT
+
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigText, ConfigNumber, NoSave
 from Components.Console import Console
@@ -342,6 +343,7 @@ class CCcamLineEdit(Setup):
 class CCcamMenuList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, content=eListboxPythonMultiContent)
+		self.l.setFont(0, gFont("Regular", int(20 * sf)))
 
 
 def CCcamListEntry(name, idx):
@@ -364,9 +366,9 @@ def CCcamListEntry(name, idx):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
 		x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, int(x), int(y), int(w), int(h), loadPNG(png)))
 	x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
-	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, name))
 	return res
 
 
@@ -378,9 +380,9 @@ def CCcamServerListEntry(name, color):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
 		x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, int(x), int(y), int(w), int(h), loadPNG(png)))
 	x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
-	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, name))
 	return res
 
 
@@ -1226,7 +1228,7 @@ class CCcamInfoServerMenu(Screen):
 				items.append(CCcamServerListEntry(x[0], "blue"))
 			else: #online with cards - green
 				items.append(CCcamServerListEntry(x[0], "green"))
-		self["list"] = CCcamList(items)
+		self["list"] = CCcamMenuList(items)
 		self["info"] = Label()
 
 		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.close}, -1)
@@ -1423,7 +1425,7 @@ class CCcamInfoShareInfo(Screen):
 		self["key_green"] = Label(_("Uphops -"))
 		self["key_yellow"] = Label(_("Maxdown +"))
 		self["key_blue"] = Label(_("Maxdown -"))
-		self["list"] = CCcamMenuList()
+		self["list"] = CCcamMenuList([])
 
 		self["actions"] = ActionMap(["CCcamInfoActions"],
 			{
