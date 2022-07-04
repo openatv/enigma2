@@ -483,7 +483,7 @@ class DebugInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Debug Log Information"))
-		self.baseTitle = _("Debug Log")
+		self.baseTitle = _("Log")
 		self.skinName.insert(0, "DebugInformation")
 		self["key_menu"] = StaticText()
 		self["key_info"] = StaticText(_("INFO"))
