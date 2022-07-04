@@ -11,8 +11,7 @@ from skin import parameters, getSkinFactor
 
 from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigText, ConfigNumber, NoSave
-from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigText, ConfigNumber, NoSave
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -1293,30 +1292,19 @@ class CCcamInfoRemoteBox:
 
 #############################################################
 
-
-class CCcamInfoConfigMenu(ConfigListScreen, Screen):
+class CCcamInfoProfileSetup(Setup):
 	def __init__(self, session, profile):
-		Screen.__init__(self, session)
-		self.setTitle(_("CCcam Info Setup"))
 		config.cccaminfo.name.value = profile.name
 		config.cccaminfo.ip.value = profile.ip
 		config.cccaminfo.username.value = profile.username
 		config.cccaminfo.password.value = profile.password
 		config.cccaminfo.port.value = profile.port
+		Setup.__init__(self, session=session, setup="CCcamProfile")
 
-		ConfigListScreen.__init__(self, [
-			getConfigListEntry(_("Name:"), config.cccaminfo.name),
-			getConfigListEntry(_("IP:"), config.cccaminfo.ip),
-			getConfigListEntry(_("Username:"), config.cccaminfo.username),
-			getConfigListEntry(_("Password:"), config.cccaminfo.password),
-			getConfigListEntry(_("Port:"), config.cccaminfo.port)])
-
-		self["actions"] = ActionMap(["CCcamInfoActions"], {"ok": self.okClicked, "cancel": self.exit}, -2)
-
-	def okClicked(self):
+	def keySave(self):
 		self.close(CCcamInfoRemoteBox(config.cccaminfo.name.value, config.cccaminfo.ip.value, config.cccaminfo.username.value, config.cccaminfo.password.value, config.cccaminfo.port.value))
 
-	def exit(self):
+	def keyCancel(self):
 		self.close(None)
 
 #############################################################
@@ -1405,7 +1393,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 			self["list"].setList(self.list)
 
 	def new(self):
-		self.session.openWithCallback(self.newCallback, CCcamInfoConfigMenu, CCcamInfoRemoteBox("Profile", "192.168.2.12", "", "", 16001))
+		self.session.openWithCallback(self.newCallback, CCcamInfoProfileSetup, CCcamInfoRemoteBox("Profile", "192.168.2.12", "", "", 16001))
 
 	def newCallback(self, callback):
 		if callback:
@@ -1429,7 +1417,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 	def edit(self):
 		if len(self.list) > 0:
 			idx = self["list"].getSelectionIndex()
-			self.session.openWithCallback(self.editCallback, CCcamInfoConfigMenu, self.profiles[idx])
+			self.session.openWithCallback(self.editCallback, CCcamInfoProfileSetup, self.profiles[idx])
 
 	def editCallback(self, callback):
 		if callback:
