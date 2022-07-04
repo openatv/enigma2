@@ -44,6 +44,14 @@
 		<item level="1" text="EPG language selection 1" description="Configure the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Configure the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
+	<setup key="CCcamLineEdit" title="CCcam Line Editor">
+		<item level="0" text="Protocol" description="Select the softcam protocol.">config.cccamlineedit.protocol</item>
+		<item level="0" text="Domain" description="Edit the CCcam/NewCamd server hostname.">config.cccamlineedit.domain</item>
+		<item level="0" text="Port" description="Edit the CCcam/NewCamd server port.">config.cccamlineedit.port</item>
+		<item level="0" text="Username" description="Edit the username.">config.cccamlineedit.username</item>
+		<item level="0" text="Password" description="Edit the password.">config.cccamlineedit.password</item>
+		<item level="0" text="NewCamd DES Key" description="Edit the NewCamd DES Key." conditional="config.cccamlineedit.protocol.value == 'N:'">config.cccamlineedit.deskey</item>
+	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
