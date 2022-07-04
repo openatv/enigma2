@@ -1619,8 +1619,10 @@ class StreamingInformation(InformationBase):
 		self["key_yellow"].setText(_("Stop Auto Refresh") if self.autoRefresh else _("Start Auto Refresh"))
 
 	def stopStreams(self):
-		for client in eStreamServer.getInstance().getConnectedClients():
-			client.stopStream()
+		# FIXME: Stop selected streams
+		# for client in eStreamServer.getInstance().getConnectedClients():
+		# 	client.stopStream()
+		eStreamServer.getInstance().stopStream()
 
 	def displayInformation(self):
 		info = []
