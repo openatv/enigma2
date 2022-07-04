@@ -610,7 +610,7 @@ class CCcamInfoMain(Screen):
 				if isfile(CFG):
 					self.showCfgSelection()
 				else:
-					self.showInfo(_("Error reading " + CFG + " File is missing!"), _("Error"))
+					self.showInfo(_("Could not open the file %s!") % CFG, _("Error"))
 
 			else:
 				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis screen shows you the status of CCcam.") % (VERSION, DATE), _("About"))
@@ -626,8 +626,8 @@ class CCcamInfoMain(Screen):
 				lineElements = line.split(" ")
 				lineDescription = "%s %s %s" % (lineElements[0],lineElements[1],lineElements[2])
 				cfgLines.append((lineDescription, line))
-			cfgLines.append(("Add new CCcam line", "newC"))
-			cfgLines.append(("Add new Newcamd line", "newN"))
+			cfgLines.append((_("Add new CCcam line"), "newC"))
+			cfgLines.append((_("Add new Newcamd line"), "newN"))
 			self.session.openWithCallback(self.showCfgSelectionCallback, MessageBox, _("Please select a line to edit or select add to create new line."), list=cfgLines, windowTitle=_("CCcam - Lines"))
 		else:
 			self.workingFinished()
