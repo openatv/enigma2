@@ -177,97 +177,6 @@ class InformationBase(Screen, HelpableScreen):
 		return InformationSummary
 
 
-class InformationImage(Screen, HelpableScreen):
-	skin = """
-	<screen name="InformationImage" title="Receiver Images" position="center,center" size="950,560" resolution="1280,720">
-		<widget name="name" position="10,10" size="e-20,25" font="Regular;20" halign="center" transparent="1" valign="center" />
-		<widget name="image" position="10,45" size="e-20,e-105" alphatest="blend" scale="1" transparent="1" />
-		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_blue" render="Label" position="570,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_help" render="Label" position="e-90,e-50" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-	</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session, mandatoryWidgets=["name", "image"])
-		HelpableScreen.__init__(self)
-		self.setTitle(_("Receiver Images"))
-		self["name"] = Label()
-		self["image"] = Pixmap()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText(_("Previous Image"))
-		self["key_blue"] = StaticText(_("Next Image"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"cancel": (self.keyCancel, _("Close the screen")),
-			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
-			"red": (self.keyCancel, _("Close the screen")),
-		}, prio=0, description=_("Receiver Image Actions"))
-		self["imageActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
-			"ok": (self.nextImage, _("Show next image")),
-			"yellow": (self.prevImage, _("Show previous image")),
-			"blue": (self.nextImage, _("Show next image")),
-			"up": (self.prevImage, _("Show previous image")),
-			"left": (self.prevImage, _("Show previous image")),
-			"right": (self.nextImage, _("Show next image")),
-			"down": (self.nextImage, _("Show next image"))
-		}, prio=0, description=_("Receiver Image Actions"))
-		self["imageActions"].setEnabled(False)
-		self.definedImages = (
-			(_("Remote Control"), "receiver/%s.png" % BoxInfo.getItem("rcname")),
-			(_("Front"), "receiver/%s_front.png" % MODEL),
-			(_("Rear"), "receiver/%s_rear.png" % MODEL),
-			(_("Internal"), "receiver/%s_internal.png" % MODEL)
-		)
-		self.receiverImages = []
-		for item in self.definedImages:
-			image = resolveFilename(SCOPE_SKINS, item[1])
-			if isfile(image):
-				image = LoadPixmap(image)
-				if image:
-					self.receiverImages.append((item[0], image))
-		if not self.receiverImages:
-			self.receiverImages.append((_("No images available"), None))
-		self.receiverImageIndex = 0
-		self.receiverImageMax = len(self.receiverImages)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def keyCancel(self):
-		self.close()
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def layoutFinished(self):
-		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.receiverImages[self.receiverImageIndex][0]))
-		if self.receiverImageMax > 1:
-			self["key_yellow"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex - 1) % self.receiverImageMax][0])
-			self["key_blue"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex + 1) % self.receiverImageMax][0])
-			self["imageActions"].setEnabled(True)
-		else:
-			self["key_yellow"].setText("")
-			self["key_blue"].setText("")
-			self["imageActions"].setEnabled(False)
-		image = self.receiverImages[self.receiverImageIndex][1]
-		if image:
-			self["image"].instance.setPixmap(self.receiverImages[self.receiverImageIndex][1])
-
-	def prevImage(self):
-		self.receiverImageIndex = (self.receiverImageIndex - 1) % self.receiverImageMax
-		self.layoutFinished()
-
-	def nextImage(self):
-		self.receiverImageIndex = (self.receiverImageIndex + 1) % self.receiverImageMax
-		self.layoutFinished()
-
-
 def formatLine(style, left, right=None):
 	styleLen = len(style)
 	leftStartColor = "" if styleLen > 0 and style[0] == "B" else "\c%08x" % (INFO_COLOR.get(style[0], "P") if styleLen > 0 else INFO_COLOR["P"])
@@ -872,6 +781,97 @@ class GeolocationInformation(InformationBase):
 		return "Geolocation Information"
 
 
+class ImageInformation(Screen, HelpableScreen):
+	skin = """
+	<screen name="ImageInformation" title="Receiver Images" position="center,center" size="950,560" resolution="1280,720">
+		<widget name="name" position="10,10" size="e-20,25" font="Regular;20" halign="center" transparent="1" valign="center" />
+		<widget name="image" position="10,45" size="e-20,e-105" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
+		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-90,e-50" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session, mandatoryWidgets=["name", "image"])
+		HelpableScreen.__init__(self)
+		self.setTitle(_("Receiver Images"))
+		self["name"] = Label()
+		self["image"] = Pixmap()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_yellow"] = StaticText(_("Previous Image"))
+		self["key_blue"] = StaticText(_("Next Image"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.keyCancel, _("Close the screen")),
+			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
+			"red": (self.keyCancel, _("Close the screen")),
+		}, prio=0, description=_("Receiver Image Actions"))
+		self["imageActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"ok": (self.nextImage, _("Show next image")),
+			"yellow": (self.prevImage, _("Show previous image")),
+			"blue": (self.nextImage, _("Show next image")),
+			"up": (self.prevImage, _("Show previous image")),
+			"left": (self.prevImage, _("Show previous image")),
+			"right": (self.nextImage, _("Show next image")),
+			"down": (self.nextImage, _("Show next image"))
+		}, prio=0, description=_("Receiver Image Actions"))
+		self["imageActions"].setEnabled(False)
+		self.definedImages = (
+			(_("Remote Control"), "receiver/%s.png" % BoxInfo.getItem("rcname")),
+			(_("Front"), "receiver/%s_front.png" % MODEL),
+			(_("Rear"), "receiver/%s_rear.png" % MODEL),
+			(_("Internal"), "receiver/%s_internal.png" % MODEL)
+		)
+		self.receiverImages = []
+		for item in self.definedImages:
+			image = resolveFilename(SCOPE_SKINS, item[1])
+			if isfile(image):
+				image = LoadPixmap(image)
+				if image:
+					self.receiverImages.append((item[0], image))
+		if not self.receiverImages:
+			self.receiverImages.append((_("No images available"), None))
+		self.receiverImageIndex = 0
+		self.receiverImageMax = len(self.receiverImages)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def keyCancel(self):
+		self.close()
+
+	def closeRecursive(self):
+		self.close(True)
+
+	def layoutFinished(self):
+		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.receiverImages[self.receiverImageIndex][0]))
+		if self.receiverImageMax > 1:
+			self["key_yellow"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex - 1) % self.receiverImageMax][0])
+			self["key_blue"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex + 1) % self.receiverImageMax][0])
+			self["imageActions"].setEnabled(True)
+		else:
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["imageActions"].setEnabled(False)
+		image = self.receiverImages[self.receiverImageIndex][1]
+		if image:
+			self["image"].instance.setPixmap(self.receiverImages[self.receiverImageIndex][1])
+
+	def prevImage(self):
+		self.receiverImageIndex = (self.receiverImageIndex - 1) % self.receiverImageMax
+		self.layoutFinished()
+
+	def nextImage(self):
+		self.receiverImageIndex = (self.receiverImageIndex + 1) % self.receiverImageMax
+		self.layoutFinished()
+
+
 class MemoryInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
@@ -1301,12 +1301,17 @@ class ReceiverInformation(InformationBase):
 		InformationBase.__init__(self, session)
 		self.setTitle(_("Receiver Information"))
 		self.skinName.insert(0, "ReceiverInformation")
+		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText(_("System Information"))
 		self["key_blue"] = StaticText(_("Debug Information"))
-		self["receiverActions"] = HelpableActionMap(self, ["ColorActions"], {
+		self["receiverActions"] = HelpableActionMap(self, ["InfoActions", "ColorActions"], {
+			"info": (self.showImageInformation, _("Show receiver image information")),
 			"yellow": (self.showSystemInformation, _("Show system information")),
 			"blue": (self.showDebugInformation, _("Show debug log information"))
 		}, prio=0, description=_("Receiver Information Actions"))
+
+	def showImageInformation(self):
+		self.session.openWithCallback(self.informationWindowClosed, ImageInformation)
 
 	def showSystemInformation(self):
 		self.session.openWithCallback(self.informationWindowClosed, SystemInformation)
