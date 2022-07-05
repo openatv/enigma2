@@ -98,6 +98,9 @@ class InformationBase(Screen, HelpableScreen):
 		<widget source="key_blue" render="Label" position="580,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
+		<widget source="key_menu" render="Label" position="e-270,e-50" size="80,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="key_info" render="Label" position="e-180,e-50" size="80,40" backgroundColor="key_back" conditional="key_info" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -127,11 +130,6 @@ class InformationBase(Screen, HelpableScreen):
 			"pageDown": (self["information"].pageDown, _("Move down a screen")),
 			"bottom": (self["information"].moveBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
-		if isfile(resolveFilename(SCOPE_GUISKIN, "receiver/%s.png" % MODEL)):
-			self["key_info"] = StaticText(_("INFO"))
-			self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
-				"info": (self.showReceiverImage, _("Show receiver image(s)"))
-			}, prio=0, description=_("Receiver Information Actions"))
 		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
 		if len(colors) == len(INFO_COLORS):
 			for index in range(len(colors)):
@@ -146,9 +144,6 @@ class InformationBase(Screen, HelpableScreen):
 		self.informationTimer = eTimer()
 		self.informationTimer.callback.append(self.fetchInformation)
 		self.informationTimer.start(25)
-
-	def showReceiverImage(self):
-		self.session.openWithCallback(self.informationWindowClosed, InformationImage)
 
 	def keyCancel(self):
 		self.console.killAll()
@@ -664,9 +659,11 @@ class DistributionInformation(InformationBase):
 		self.displayDistro = BoxInfo.getItem("displaydistro", "Enigma2")
 		self.setTitle(_("%s Information") % self.displayDistro)
 		self.skinName.insert(0, "DistributionInformation")
+		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText(_("Commit Logs"))
 		self["key_blue"] = StaticText(_("Translation"))
-		self["receiverActions"] = HelpableActionMap(self, ["ColorActions"], {
+		self["receiverActions"] = HelpableActionMap(self, ["InfoActions", "ColorActions"], {
+			"info": (self.showBuild, _("Show build information")),
 			"yellow": (self.showCommitLogs, _("Show commit log information")),
 			"blue": (self.showTranslation, _("Show translation information"))
 		}, prio=0, description=_("%s Information Actions") % self.displayDistro)
@@ -680,6 +677,9 @@ class DistributionInformation(InformationBase):
 			8640: _("16K")
 		}
 		self.imageMessage = BoxInfo.getItem("InformationDistributionWelcome", "")
+
+	def showBuild(self):
+		self.session.openWithCallback(self.informationWindowClosed, BuildInformation)
 
 	def showCommitLogs(self):
 		self.session.openWithCallback(self.informationWindowClosed, CommitInformation)
