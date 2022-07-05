@@ -1826,8 +1826,9 @@ class BackupHelper(Screen):
 				self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 3:
 			try:
-				from Plugins.Extensions.MediaScanner.plugin import main
-				main(self.session)
+				from Plugins.Extensions.MediaScanner.plugin import scan
+				scan(self.session, self)
+				doClose = False
 			except:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 4:
