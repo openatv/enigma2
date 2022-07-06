@@ -104,7 +104,7 @@
 	</setup>
 	<setup key="CISettings" title="CI Basic Settings" requires="CommonInterface" showOpenWebif="1">
 		<item level="1" text="DVB CI Delay" description="Choose dvb wait delay for ci response." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
-		<if requires="HaveCISSL"/>
+		<if requires="HaveCISSL">
 			<item level="1" text="CI Operation Mode" description="Choose the CI protocol operation mode for standard ci or ciplus.">config.cimisc.civersion</item>
 		<else />
 			<item level="1" text="CI Operation Mode" description="Your Hardware can detect ci mode self or work only in legacy mode.">config.cimisc.civersion</item>
