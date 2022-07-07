@@ -90,7 +90,7 @@ self.session.open(RemoteControlCode)
 					</item>
 					<item key="keyboard" level="1" text="Keyboard Settings" weight="40"><setup setupKey="Keyboard" /></item>
 				</menu>
-			<item key="locale_setup" level="0" text="Language" weight="70"><screen module="LocaleSelection" /></item>
+				<item key="locale_setup" level="0" text="Language" weight="70"><screen module="LocaleSelection" /></item>
 			</menu>
 			<!-- Menu / Setup / EPG -->
 			<menu key="epg" level="2" text="EPG" weight="20">
@@ -255,6 +255,5 @@ else:
 			<item key="restart_enigma" level="0" text="Restart GUI" weight="30"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item key="maintenance_mode" level="0" text="Recovery Mode" weight="24" requires="RecoveryMode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
 		</menu>
-
 	</menu>
 </menuxml>
