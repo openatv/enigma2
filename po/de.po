@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-07-01 03:24+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"PO-Revision-Date: 2022-07-05 23:51+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2389,6 +2389,12 @@ msgstr "Datei zur Playlist hinzufügen"
 msgid "Add files to playlist"
 msgstr "Zur Playlist hinzufügen"
 
+msgid "Add new CCcam line"
+msgstr "Neue CCcam-Line hinzufügen"
+
+msgid "Add new NewCamd line"
+msgstr "Neue NewCamd-Line hinzufügen"
+
 msgid "Add new tag"
 msgstr "Neuen Tag hinzufügen"
 
@@ -3722,6 +3728,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam-Info"
 
+msgid "CCcam"
+msgstr "CCcam"
+
+msgid "CCcam - Lines"
+msgstr "CCcam - Lines"
+
 msgid "CCcam Client Info"
 msgstr "CCcam-Clientinfo"
 
@@ -3749,8 +3761,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Konfiguration von CCcam-Info"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam-Info - Einstellungen"
+msgid "CCcam Information"
+msgstr "CCcam-Informationen"
+
+msgid "CCcam Line Edit Actions"
+msgstr "CCcam Line Edit-Aktionen"
+
+msgid "CCcam Line Editor"
+msgstr "CCcam Line Editor"
+
+msgid "CCcam Profile Settings"
+msgstr "CCcam Profileinstellungen"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam-Betreiberinformation"
@@ -3766,6 +3787,9 @@ msgstr "CCcam-Freigabeinformation"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam-Freigabeinformationen"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr "Einfacher 'CCcam.cfg' Line Editor"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam-Info - Hauptmenü"
@@ -5884,9 +5908,6 @@ msgstr "Debug %d/%d"
 msgid "Debug Information"
 msgstr "Debug-Informationen"
 
-msgid "Debug Log"
-msgstr "Debug-Log"
-
 msgid "Debug Log Information"
 msgstr "Debug-Log-Informationen"
 
@@ -6764,6 +6785,9 @@ msgstr "Dokumentarfilm"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital Downmix ist jetzt"
 
+msgid "Domain"
+msgstr "Bereich"
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -7075,19 +7099,43 @@ msgstr "Bearbeitungsposition ist am Zeilenende"
 msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr "Hostname des CCcam/NewCamd-Servers bearbeiten."
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr "CCcam/NewCamd-Serverport bearbeiten."
+
 #
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Nameserver-Einstellungen der %s %s bearbeiten."
+
+msgid "Edit the NewCamd DES Key."
+msgstr "NewCamd DES-Schlüssel bearbeiten."
 
 #
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Netzwerkkonfiguration der %s %s bearbeiten."
 
+msgid "Edit the password."
+msgstr "Passwort bearbeiten."
+
+msgid "Edit the profile name."
+msgstr "Profilname bearbeiten."
+
+msgid "Edit the remote CCCam port."
+msgstr "Remote-CCCam-Port bearbeiten."
+
+msgid "Edit the remote IP address."
+msgstr "Remote-IP-Adresse bearbeiten."
+
 #
 msgid "Edit the upgrade source address."
 msgstr "Adresse der Updatequelle bearbeiten."
+
+msgid "Edit the username."
+msgstr "Benutzername bearbeiten."
 
 #
 msgid "Education"
@@ -9309,12 +9357,12 @@ msgstr "Funktion der Taste INFO"
 msgid "INS"
 msgstr "Einfügen"
 
+msgid "IP"
+msgstr "IP"
+
 #
 msgid "IP address"
 msgstr "IP-Adresse"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK-Installer"
@@ -11705,9 +11753,6 @@ msgstr "Name absteigend"
 msgid "Name server %d"
 msgstr "Nameserver %d"
 
-msgid "Name:"
-msgstr "Name:"
-
 #
 msgid "Nameserver"
 msgstr "Nameserver"
@@ -11927,6 +11972,12 @@ msgstr "Neue Programminfo"
 #
 msgid "New version:"
 msgstr "Neue Version:"
+
+msgid "NewCamd DES Key"
+msgstr "NewCamd DES-Schlüssel"
+
+msgid "NewCamd"
+msgstr "NewCamd"
 
 msgid "News"
 msgstr "Nachrichten"
@@ -12852,11 +12903,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "PIN-Code erforderlich!"
 
-msgid "PIP long"
-msgstr "Bild im Bild lang"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr "PIP"
 
-msgid "PiP with OSD"
-msgstr "Bild im Bild mit OSD"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP long"
+msgstr "PIP lang"
 
 msgid "PLP ID"
 msgstr "PLP-ID"
@@ -13021,9 +13074,6 @@ msgstr "Passwort einrichten"
 msgid "Password changed."
 msgstr "Passwort geändert."
 
-msgid "Password:"
-msgstr "Passwort:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Pfad zum Speichern nicht vorhanden: '/tmp/'"
 
@@ -13094,6 +13144,9 @@ msgstr "Bild im Bild"
 # UsageConfig.py:295
 msgid "PiP Actions"
 msgstr "Bild im Bild Aktionen"
+
+msgid "PiP with OSD"
+msgstr "Bild im Bild mit OSD"
 
 msgid "PiP-Zap"
 msgstr "Bild im Bild Zap"
@@ -13374,6 +13427,9 @@ msgstr "Bitte einen Standard-EPG-Typ auswählen..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Bitte wählen Sie eine Distribution aus, von der Sie ein Image flashen möchten:"
+
+msgid "Please select a line to edit or select add to create new line."
+msgstr "Bitte wählen Sie eine Line aus, die Sie bearbeiten möchten, oder wählen Sie Hinzufügen, um eine neue Line zu erstellen."
 
 #
 msgid "Please select a playlist to delete..."
@@ -13718,9 +13774,6 @@ msgstr "Port C"
 #
 msgid "Port D"
 msgstr "Port D"
-
-msgid "Port:"
-msgstr "Port:"
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -14841,6 +14894,9 @@ msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "'Ja' entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr "Entfernen Sie diese Line aus 'CCcam.cfg'"
 
 #
 msgid "Remove timer"
@@ -16197,6 +16253,9 @@ msgstr "Shift für die kommenden Zeichen benutzen"
 msgid "Select the shifted character set for the next character only"
 msgstr "Shift nur für das nächste Zeichen benutzen"
 
+msgid "Select the softcam protocol."
+msgstr "Wählen Sie das Softcam-Protokoll aus."
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Einträge im Plugin-Manager einstellen."
 
@@ -17184,6 +17243,9 @@ msgstr "OScam-Info anzeigen"
 msgid "Show OScam in extensions"
 msgstr "OScam in Erweiterungen anzeigen"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "PVR-Status in der Movieplayer-Infoleiste anzeigen"
+
 msgid "Show PiP"
 msgstr "Bild im Bild einschalten"
 
@@ -17192,9 +17254,6 @@ msgstr "Bild im Bild im MiniTV anzeigen"
 
 msgid "Show PiP in the Front Display"
 msgstr "Bild im Bild im Display anzeigen"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "PVR-Status in der Movieplayer-Infoleiste anzeigen"
 
 msgid "Show RFmod setup..."
 msgstr "RFmod-Einstellungen anzeigen..."
@@ -21226,9 +21285,6 @@ msgstr "Benutzername"
 msgid "Username (httpuser)"
 msgstr "Benutzername (httpuser)"
 
-msgid "Username:"
-msgstr "Benutzername:"
-
 msgid "Using automatic address"
 msgstr "Automatische Adresse verwenden"
 
@@ -24610,6 +24666,27 @@ msgstr "Umschalten"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam-Info - Einstellungen"
+
+#~ msgid "Debug Log"
+#~ msgstr "Debug-Log"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Name:"
+
+#~ msgid "Password:"
+#~ msgstr "Passwort:"
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Username:"
+#~ msgstr "Benutzername:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s Informationen"
@@ -24679,9 +24756,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Fehler %d: Die Logdatei '%s' konnte nicht geöffnet werden! (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

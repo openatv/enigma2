@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-07-01 22:59+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"PO-Revision-Date: 2022-07-05 23:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -2305,6 +2305,12 @@ msgstr "Добавить файл в плейлист"
 msgid "Add files to playlist"
 msgstr "Добавить файлы в плейлист"
 
+msgid "Add new CCcam line"
+msgstr "Добавить новую строку CCcam"
+
+msgid "Add new NewCamd line"
+msgstr "Добавить новую строку Newcamd"
+
 msgid "Add new tag"
 msgstr "Добавить новый тег"
 
@@ -3558,6 +3564,12 @@ msgstr "CAID: SrvID"
 msgid "CCCam Information"
 msgstr "Инфо CCCam"
 
+msgid "CCcam"
+msgstr "CCcam"
+
+msgid "CCcam - Lines"
+msgstr "CCcam - Линии"
+
 msgid "CCcam Client Info"
 msgstr "CCcam клиент инфо"
 
@@ -3585,8 +3597,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Настройки CCcam инфо"
 
-msgid "CCcam Info Setup"
-msgstr "Настройка CCcam инфо"
+msgid "CCcam Information"
+msgstr "Информация о CCcam"
+
+msgid "CCcam Line Edit Actions"
+msgstr "Действия по редактированию строк CCcam"
+
+msgid "CCcam Line Editor"
+msgstr "Редактор строк CCcam"
+
+msgid "CCcam Profile Settings"
+msgstr "Настройки профиля CCcam"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Провайдер инфо"
@@ -3602,6 +3623,9 @@ msgstr "CCcam ресурс инфо"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam шаринг инфо"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr "CCcam.cfg Редактор базовых строк"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "Меню CCcam"
@@ -5584,9 +5608,6 @@ msgstr "Отладка %d/%d"
 msgid "Debug Information"
 msgstr "Информация об отладке"
 
-msgid "Debug Log"
-msgstr "Лог отладки"
-
 msgid "Debug Log Information"
 msgstr "Информация лога отладки"
 
@@ -6401,6 +6422,9 @@ msgstr "Документалистика"
 msgid "Dolby Digital downmix is now"
 msgstr "Теперь в формате Dolby Digital"
 
+msgid "Domain"
+msgstr "Домен"
+
 msgid "Dominica"
 msgstr "Доминика"
 
@@ -6694,16 +6718,40 @@ msgstr "Позиция редактирования - конец строки"
 msgid "Edit settings"
 msgstr "Изменить настройки"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr "Отредактировать имя хоста сервера CCcam/NewCamd."
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr "Отредактировать порт сервера CCcam/NewCamd."
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Редактировать установки DNS Вашего %s %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr "Отредактировать ключ NewCamd DES."
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Редактировать сетевые установки Вашего %s %s."
 
+msgid "Edit the password."
+msgstr "Отредактировать пароль."
+
+msgid "Edit the profile name."
+msgstr "Отредактировать имя профиля."
+
+msgid "Edit the remote CCCam port."
+msgstr "Отредактировать удалённый порт CCCam."
+
+msgid "Edit the remote IP address."
+msgstr "Отредактировать удалённый IP-адрес."
+
 msgid "Edit the upgrade source address."
 msgstr "Отредактировать адрес источника обновления."
+
+msgid "Edit the username."
+msgstr "Отредактировать имя пользователя."
 
 msgid "Education"
 msgstr "Образование"
@@ -8812,11 +8860,11 @@ msgstr "Кнопка INFO"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP-адрес"
-
-msgid "IP:"
-msgstr "IP-адрес:"
 
 msgid "IPK Installer"
 msgstr "Установщик IPK"
@@ -11041,9 +11089,6 @@ msgstr "Реверс имени"
 msgid "Name server %d"
 msgstr "Сервер имён %d"
 
-msgid "Name:"
-msgstr "Имя"
-
 msgid "Nameserver"
 msgstr "DNS сервер"
 
@@ -11239,6 +11284,12 @@ msgstr "Новая информация о программе"
 
 msgid "New version:"
 msgstr "Новая версия"
+
+msgid "NewCamd DES Key"
+msgstr "Ключ NewCamd DES"
+
+msgid "NewCamd"
+msgstr "NewCamd"
 
 msgid "News"
 msgstr "Новости"
@@ -12078,11 +12129,13 @@ msgstr "Пид"
 msgid "PIN code needed"
 msgstr "Нужно ввести пин-код"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr "PIP"
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PiP (долгое нажатие)"
-
-msgid "PiP with OSD"
-msgstr "PiP с OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12239,9 +12292,6 @@ msgstr "Настройки пароля"
 msgid "Password changed."
 msgstr "Пароль изменён."
 
-msgid "Password:"
-msgstr "Пароль"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Путь для сохранения не существует: '/tmp/'"
 
@@ -12307,6 +12357,9 @@ msgstr "PiP "
 
 msgid "PiP Actions"
 msgstr "Действия PiP"
+
+msgid "PiP with OSD"
+msgstr "PiP с OSD"
 
 msgid "PiP-Zap"
 msgstr "Переключение PiPzap"
@@ -12548,6 +12601,9 @@ msgstr "Пожалуйста, выберите тип EPG по умолчани�
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Пожалуйста, выберите дистрибутив, из которого Вы хотите прошить образ:"
+
+msgid "Please select a line to edit or select add to create new line."
+msgstr "Выберите строку для редактирования или нажмите 'Добавить', чтобы создать новую строку."
 
 msgid "Please select a playlist to delete..."
 msgstr "Пожалуйста, выберите плейлист для удаления..."
@@ -12855,9 +12911,6 @@ msgstr "Порт C"
 
 msgid "Port D"
 msgstr "Порт D"
-
-msgid "Port:"
-msgstr "Порт"
 
 msgid "Portugal"
 msgstr "Португалия"
@@ -13896,6 +13949,9 @@ msgstr "Удалить выбранную папку из закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Удалить тексты для слабослышащих из внешних субтитров (инструментальная музыка или звуки окружающей среды, например, когда раздаётся звонок в дверь или выстрел)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr "Удалить строку из CCcam.cfg"
 
 msgid "Remove timer"
 msgstr "Удалить таймер"
@@ -15137,6 +15193,9 @@ msgstr "Выберите действие таймера сна"
 msgid "Select the shifted character set for the next character only"
 msgstr "Выберите смещённый набор символов только для следующего символа"
 
+msgid "Select the softcam protocol."
+msgstr "Выберать протокол softcam."
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
 
@@ -16053,6 +16112,9 @@ msgstr "Показать информацию OScam"
 msgid "Show OScam in extensions"
 msgstr "Показать OScam в расширениях"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Показать статус записи в инфобаре мувиплеера"
+
 msgid "Show PiP"
 msgstr "Показать PiP"
 
@@ -16061,9 +16123,6 @@ msgstr "Показать PIP в MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Показать PiP на дисплее"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Показать статус записи в инфобаре мувиплеера"
 
 msgid "Show RFmod setup..."
 msgstr "Показать настройки RFmod..."
@@ -17725,7 +17784,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 01.07.2022"
+msgstr "Коррекция перевода Monja 05.07.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19789,9 +19848,6 @@ msgstr "Имя пользователя"
 
 msgid "Username (httpuser)"
 msgstr "Имя пользователя (httpuser)"
-
-msgid "Username:"
-msgstr "Имя пользователя"
 
 msgid "Using automatic address"
 msgstr "Использование автоматического адреса"
@@ -22848,6 +22904,27 @@ msgstr "Переключение"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "Настройка CCcam инфо"
+
+#~ msgid "Debug Log"
+#~ msgstr "Лог отладки"
+
+#~ msgid "IP:"
+#~ msgstr "IP-адрес:"
+
+#~ msgid "Name:"
+#~ msgstr "Имя"
+
+#~ msgid "Password:"
+#~ msgstr "Пароль"
+
+#~ msgid "Port:"
+#~ msgstr "Порт"
+
+#~ msgid "Username:"
+#~ msgstr "Имя пользователя"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s информация"
@@ -22915,9 +22992,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Ошибка %d: Файл журнала '%s' не удалось открыть.  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

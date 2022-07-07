@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2320,6 +2320,12 @@ msgstr "Thêm tập tin vào danh sách phát"
 msgid "Add files to playlist"
 msgstr "Thêm tệp vào danh sách phát"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3592,6 +3598,12 @@ msgstr "CAID: SrvID"
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "Thông tin khách hàng CCcam"
 
@@ -3615,8 +3627,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Cấu hình thông tin CCcam"
 
-msgid "CCcam Info Setup"
-msgstr "Cài đặt thông tin CCcam"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "Thông tin nhà cung cấp CCcam"
@@ -3632,6 +3653,9 @@ msgstr "Thông tin chia sẻ CCcam"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam chia sẻ thông tin"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam Thông tin Menu chính"
@@ -5646,9 +5670,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6475,6 +6496,9 @@ msgstr "phim tài liệu"
 msgid "Dolby Digital downmix is now"
 msgstr "Cộng với kỹ thuật số downmix hiện tại"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -6771,11 +6795,20 @@ msgstr "Chỉnh sửa vị trí là cuối dòng"
 msgid "Edit settings"
 msgstr "Chỉnh sửa cài đặt"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr ""
 "Chỉnh sửa cấu hình máy chủ tên của máy thu của bạn\n"
 "%s %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
@@ -6783,8 +6816,23 @@ msgstr ""
 "Chỉnh sửa cấu hình mạng của máy thu của bạn\n"
 "%s %s."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Chỉnh sửa địa chỉ nguồn nâng cấp."
+
+msgid "Edit the username."
+msgstr ""
 
 #, fuzzy
 msgid "Education"
@@ -8932,11 +8980,11 @@ msgstr "Chế độ nút INFO"
 msgid "INS"
 msgstr "Trong"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "Địa chỉ IP"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "Trình cài đặt IPK"
@@ -11231,9 +11279,6 @@ msgstr "Tên ngược"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "Tên:"
-
 msgid "Nameserver"
 msgstr "Tên máy chủ"
 
@@ -11436,6 +11481,12 @@ msgstr "hiển thị thông tin chương trình ..."
 
 msgid "New version:"
 msgstr "Phiên bản mới:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr ""
@@ -12298,11 +12349,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Mã PIN cần thiết"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP dài"
-
-msgid "PiP with OSD"
-msgstr "PIP với OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12460,9 +12513,6 @@ msgstr "Thiết lập mật khẩu"
 msgid "Password changed."
 msgstr "Mật khẩu đã được thay đổi."
 
-msgid "Password:"
-msgstr "Mật khẩu:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Đường dẫn lưu không tồn tại: '/ tmp /'"
 
@@ -12532,6 +12582,9 @@ msgstr "PiP"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "Thao tác nhanh"
+
+msgid "PiP with OSD"
+msgstr "PIP với OSD"
 
 msgid "PiP-Zap"
 msgstr "ZAP -PiP"
@@ -12771,6 +12824,9 @@ msgid "Please select a default EPG type..."
 msgstr "Vui lòng chọn loại EPG mặc định ..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -13078,9 +13134,6 @@ msgstr "CổngC"
 
 msgid "Port D"
 msgstr "CổngD"
-
-msgid "Port:"
-msgstr "Cổng:"
 
 msgid "Portugal"
 msgstr "Bồ Đào Nha"
@@ -14142,6 +14195,9 @@ msgstr "Xóa thư mục đã chọn khỏi dấu trang"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Xóa văn bản cho người khiếm thính khỏi phụ đề bên ngoài (nhạc cụ hoặc âm thanh môi trường, ví dụ: khi nghe tiếng chuông cửa hoặc tiếng súng nổ)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Hủy bỏ bộ đếm thời gian"
@@ -15396,6 +15452,9 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16329,6 +16388,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Hiển thị trạng thái PVR trong infobar MoviePlayer"
+
 msgid "Show PiP"
 msgstr "Hiển thị PIP"
 
@@ -16337,9 +16399,6 @@ msgstr "Hiển thị PIP trong MiniTAB"
 
 msgid "Show PiP in the Front Display"
 msgstr "Hiển thị PIP trong màn hình phía trước"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Hiển thị trạng thái PVR trong infobar MoviePlayer"
 
 msgid "Show RFmod setup..."
 msgstr "Hiển thị thiết lập RFmod ..."
@@ -20120,9 +20179,6 @@ msgstr "Tên đăng nhập"
 msgid "Username (httpuser)"
 msgstr "Tên người dùng (httpuser)"
 
-msgid "Username:"
-msgstr "Tên đăng nhập:"
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -23217,8 +23273,23 @@ msgstr "hạ gục"
 msgid "®"
 msgstr ""
 
-#~ msgid "IP"
-#~ msgstr "IP"
+#~ msgid "CCcam Info Setup"
+#~ msgstr "Cài đặt thông tin CCcam"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Tên:"
+
+#~ msgid "Password:"
+#~ msgstr "Mật khẩu:"
+
+#~ msgid "Port:"
+#~ msgstr "Cổng:"
+
+#~ msgid "Username:"
+#~ msgstr "Tên đăng nhập:"
 
 #~ msgid "MAC"
 #~ msgstr "MAC"

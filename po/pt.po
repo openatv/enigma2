@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -2502,6 +2502,12 @@ msgstr "Adicionar ficheiro à lista de reprodução"
 msgid "Add files to playlist"
 msgstr "Adicionar ficheiros à lista de reprodução"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3891,6 +3897,12 @@ msgstr ""
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam Informação Cliente"
 
@@ -3914,8 +3926,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam Configuração Informação"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Definições Informação"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Informação Operador"
@@ -3931,6 +3952,9 @@ msgstr "CCcam Informação Partilha"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam Informação Partilhas"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Menu principal"
@@ -6083,9 +6107,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6981,6 +7002,9 @@ msgstr ""
 msgid "Dolby Digital downmix is now"
 msgstr ""
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr ""
 
@@ -7291,19 +7315,43 @@ msgstr "Ir para posição"
 msgid "Edit settings"
 msgstr "Editar definições"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Edite a configuração do servidor DNS do seu %s %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Edite as configurações de rede de %s %s."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 #
 msgid "Edit the upgrade source address."
 msgstr "Edite o endereço da origem de actualização."
+
+msgid "Edit the username."
+msgstr ""
 
 #
 #, fuzzy
@@ -9596,13 +9644,13 @@ msgstr ""
 msgid "INS"
 msgstr ""
 
+msgid "IP"
+msgstr ""
+
 #
 #, fuzzy
 msgid "IP address"
 msgstr "Endereço IP"
-
-msgid "IP:"
-msgstr ""
 
 msgid "IPK Installer"
 msgstr ""
@@ -12102,9 +12150,6 @@ msgstr "Servidor DNS"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "Nome:"
-
 #
 msgid "Nameserver"
 msgstr "Servidor DNS"
@@ -12320,6 +12365,12 @@ msgstr ""
 #
 msgid "New version:"
 msgstr "Nova versão:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr ""
@@ -13252,12 +13303,14 @@ msgstr "SID"
 msgid "PIN code needed"
 msgstr "Código PIN Necessário"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 #, fuzzy
 msgid "PIP long"
 msgstr "PVR longo"
-
-msgid "PiP with OSD"
-msgstr "PiP com OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -13432,9 +13485,6 @@ msgstr "Palavra-passe"
 msgid "Password changed."
 msgstr ""
 
-msgid "Password:"
-msgstr "Palavra-passe:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13510,6 +13560,9 @@ msgstr " PiP"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "Localização"
+
+msgid "PiP with OSD"
+msgstr "PiP com OSD"
 
 msgid "PiP-Zap"
 msgstr ""
@@ -13809,6 +13862,9 @@ msgid "Please select a default EPG type..."
 msgstr ""
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 #
@@ -14133,9 +14189,6 @@ msgstr "Porta C"
 #
 msgid "Port D"
 msgstr "Porta D"
-
-msgid "Port:"
-msgstr ""
 
 #
 #, fuzzy
@@ -15301,6 +15354,9 @@ msgid "Remove selected folder from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr ""
+
+msgid "Remove the Line from CCcam.cfg"
 msgstr ""
 
 #
@@ -16687,6 +16743,9 @@ msgstr "Seleccione a acção do temporizador"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -17656,6 +17715,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr ""
+
 msgid "Show PiP"
 msgstr ""
 
@@ -17665,9 +17727,6 @@ msgid "Show PiP in MiniTV"
 msgstr "mostrar Infoline"
 
 msgid "Show PiP in the Front Display"
-msgstr ""
-
-msgid "Show PVR status in MoviePlayer infobar"
 msgstr ""
 
 msgid "Show RFmod setup..."
@@ -21761,9 +21820,6 @@ msgstr "Utilizador"
 msgid "Username (httpuser)"
 msgstr ""
 
-msgid "Username:"
-msgstr ""
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -25139,6 +25195,15 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Definições Informação"
+
+#~ msgid "Name:"
+#~ msgstr "Nome:"
+
+#~ msgid "Password:"
+#~ msgstr "Palavra-passe:"
 
 #, fuzzy
 #~ msgid "Streaming Clients"

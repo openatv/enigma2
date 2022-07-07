@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2321,6 +2321,12 @@ msgstr "Προσθήκη αρχείου στη λίστα αναπαραγωγή
 msgid "Add files to playlist"
 msgstr "Προσθήκη αρχείων στη λίστα αναπαραγωγής"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3585,6 +3591,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "Πληροφορίες πελάτη CCcam"
 
@@ -3608,8 +3620,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Ρυθμίσεις πληροφοριών CCcam"
 
-msgid "CCcam Info Setup"
-msgstr "Ρυθμίσεις πληροφοριών CCcam"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "Πληροφορίες διακομιστή CCcam"
@@ -3625,6 +3646,9 @@ msgstr "Πληροφορίες μοιράσματος CCcam"
 
 msgid "CCcam Shares Info"
 msgstr "Πληροφορίες μοιρασμάτων CCcam"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "Κύριο μενού πληροφοριών CCcam"
@@ -5624,9 +5648,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6443,6 +6464,9 @@ msgstr "Ντοκυμαντέρ"
 msgid "Dolby Digital downmix is now"
 msgstr "Η αποκωδικοποίηση & μίξη Dolby Digital είναι τώρα"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Δομίνικα"
 
@@ -6740,16 +6764,40 @@ msgstr "Επεξεργασία θέσης στο τέλος της γραμμή�
 msgid "Edit settings"
 msgstr "Επεξεργασία ρυθμίσεων"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Επεξεργασία της ρύθμισης διακομιστή ονομάτων του %s %s σας."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Επεξεργασία των ρυθμίσεων δικτύου του %s %s σας."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr " Επεξεργασία διεύθυνσης πηγής αναβαθμίσεων."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Εκπαίδευση"
@@ -8874,11 +8922,11 @@ msgstr "Λειτουργία πλήκτρου INFO"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "Διεύθυνση IP"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "Εγκατάσταση IPK"
@@ -11165,9 +11213,6 @@ msgstr "Αντιστροφή ονόματος"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "Όνομα:"
-
 msgid "Nameserver"
 msgstr "Διακομιστής ονομάτων"
 
@@ -11366,6 +11411,12 @@ msgstr "Νέες πληροφορίες προγράμματος"
 
 msgid "New version:"
 msgstr "Νέα έκδοση:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Ειδήσεις"
@@ -12224,11 +12275,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Απαιτείται κωδικός PIN"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP παρατεταμένο"
-
-msgid "PiP with OSD"
-msgstr "PIP με OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12386,9 +12439,6 @@ msgstr "Ρυθμίσεις κωδικού πρόσβασης"
 msgid "Password changed."
 msgstr "Ο κωδικός άλλαξε."
 
-msgid "Password:"
-msgstr "Κωδικός:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Η διαδρομή για αποθήκευση δεν υπάρχει: '/tmp/'"
 
@@ -12455,6 +12505,9 @@ msgstr "PiP"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "Γρήγορες ενέργειες"
+
+msgid "PiP with OSD"
+msgstr "PIP με OSD"
 
 msgid "PiP-Zap"
 msgstr "PiPZap"
@@ -12695,6 +12748,9 @@ msgid "Please select a default EPG type..."
 msgstr "Επιλέξτε τον προεπιλεγμένο τύπο EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -13000,9 +13056,6 @@ msgstr "Πόρτα C"
 
 msgid "Port D"
 msgstr "Πόρτα D"
-
-msgid "Port:"
-msgstr "Θύρα:"
 
 msgid "Portugal"
 msgstr "Πορτογαλία"
@@ -14048,6 +14101,9 @@ msgstr "Αφαίρεση του επιλεγμένου φακέλου από τ�
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Αφαιρεί τα κείμενα για τα Άτομα Με Προβλήματα Ακοής από τους εξωτερικούς υπότιτλους (ορχηστρική μουσική ή ήχοι περιβάλλοντος π.χ. κουδούνισμα ή πυροβολισμός)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Διαγραφή χρονοδιακόπτη"
@@ -15302,6 +15358,9 @@ msgstr "Επιλογή του σετ χαρακτήρων με shift"
 msgid "Select the shifted character set for the next character only"
 msgstr "Επιλογή του σετ χαρακτήρων με shift του εικονικού πληκτρολογίου μόνο για τον επόμενο χαρακτήρα"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16232,6 +16291,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Εμφάνιση κατάστασης PVR στη μπάρα πληροφοριών ταινιών"
+
 msgid "Show PiP"
 msgstr "Εμφάνιση PIP"
 
@@ -16240,9 +16302,6 @@ msgstr "Εμφάνιση του PIP σε MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Εμφάνιση PIP στην οθόνη πρόσοψης"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Εμφάνιση κατάστασης PVR στη μπάρα πληροφοριών ταινιών"
 
 msgid "Show RFmod setup..."
 msgstr "Εμφάνιση ρυθμίσεων RFmod..."
@@ -20009,9 +20068,6 @@ msgstr "Όνομα χρήστη"
 msgid "Username (httpuser)"
 msgstr "Όνομα χρήστη (httpuser)"
 
-msgid "Username:"
-msgstr "Όνομα χρήστη:"
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -23081,8 +23137,23 @@ msgstr "ζάπινγκ"
 msgid "®"
 msgstr ""
 
-#~ msgid "IP"
-#~ msgstr "IP"
+#~ msgid "CCcam Info Setup"
+#~ msgstr "Ρυθμίσεις πληροφοριών CCcam"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Όνομα:"
+
+#~ msgid "Password:"
+#~ msgstr "Κωδικός:"
+
+#~ msgid "Port:"
+#~ msgstr "Θύρα:"
+
+#~ msgid "Username:"
+#~ msgstr "Όνομα χρήστη:"
 
 #~ msgid "MAC"
 #~ msgstr "MAC"

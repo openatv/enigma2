@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2280,6 +2280,12 @@ msgstr "Добавяне на файл към плейлиста"
 msgid "Add files to playlist"
 msgstr "Добавяне на файлове към плейлиста"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "Добавяне на нов маркер"
 
@@ -3533,6 +3539,12 @@ msgstr ""
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr ""
 
@@ -3556,7 +3568,16 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr ""
 
-msgid "CCcam Info Setup"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
 msgstr ""
 
 msgid "CCcam Provider Info"
@@ -3572,6 +3593,9 @@ msgid "CCcam Share Info"
 msgstr ""
 
 msgid "CCcam Shares Info"
+msgstr ""
+
+msgid "CCcam.cfg Basic Line Editor"
 msgstr ""
 
 msgid "CCcamInfo Mainmenu"
@@ -5557,9 +5581,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6374,6 +6395,9 @@ msgstr "Документален"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital цифрово смесване сега"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr ""
 
@@ -6666,16 +6690,40 @@ msgstr "Редактиране на позицията в краят на лин
 msgid "Edit settings"
 msgstr "Редактиране на настройките"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Редактиране на конфигурацията на Nameserver на вашия %s %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Редактиране на мрежовата конфигурация на вашия %s %s."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Редактирайте адреса на източника на надстройката."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Образование"
@@ -8782,11 +8830,11 @@ msgstr "Режим на инфо бутон"
 msgid "INS"
 msgstr ""
 
+msgid "IP"
+msgstr ""
+
 msgid "IP address"
 msgstr "IP адрес"
-
-msgid "IP:"
-msgstr ""
 
 msgid "IPK Installer"
 msgstr "IPK инсталатор"
@@ -11008,9 +11056,6 @@ msgstr "Обратно име"
 msgid "Name server %d"
 msgstr "Сървър за имена %d"
 
-msgid "Name:"
-msgstr "Име:"
-
 msgid "Nameserver"
 msgstr "Сървър на имена"
 
@@ -11206,6 +11251,12 @@ msgstr "Информация за новата програма"
 
 msgid "New version:"
 msgstr "Нова версия:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Новини"
@@ -12045,10 +12096,12 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "PIN код е необходим"
 
-msgid "PIP long"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
 msgstr ""
 
-msgid "PiP with OSD"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP long"
 msgstr ""
 
 msgid "PLP ID"
@@ -12206,9 +12259,6 @@ msgstr "Настройки на паролата"
 msgid "Password changed."
 msgstr "Паролата е сменена."
 
-msgid "Password:"
-msgstr "Парола:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Пътят за запис не съществува: '/tmp/'"
 
@@ -12274,6 +12324,9 @@ msgstr ""
 
 msgid "PiP Actions"
 msgstr "PiP действия"
+
+msgid "PiP with OSD"
+msgstr ""
 
 msgid "PiP-Zap"
 msgstr ""
@@ -12514,6 +12567,9 @@ msgid "Please select a default EPG type..."
 msgstr "Моля, изберете тип EPG по подразбиране...."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -12822,9 +12878,6 @@ msgstr "Порт C"
 
 msgid "Port D"
 msgstr "Порт D"
-
-msgid "Port:"
-msgstr "Порт:"
 
 msgid "Portugal"
 msgstr ""
@@ -13863,6 +13916,9 @@ msgstr "Премахване на избраната папка от отмет�
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Премахване на текстовете за хора с увреден слух от външни субтитри(инструментална музика или звуци на околната среда, например)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Премахване на таймер"
@@ -15102,6 +15158,9 @@ msgstr "Изберете изместения набор от знаци"
 msgid "Select the shifted character set for the next character only"
 msgstr "Изберете изместения набор от знаци само за следващия знак"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16018,6 +16077,9 @@ msgstr "Показване на информация за OScam"
 msgid "Show OScam in extensions"
 msgstr "Показване на OScam в разширения"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Показване на PVR статус в MoviePlaye инфобар"
+
 msgid "Show PiP"
 msgstr "Показване на PIP"
 
@@ -16026,9 +16088,6 @@ msgstr "Показване на PIP в MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Показване на PIP на предния дисплей"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Показване на PVR статус в MoviePlaye инфобар"
 
 msgid "Show RFmod setup..."
 msgstr "Показване на RFmod настройка..."
@@ -19747,9 +19806,6 @@ msgstr "Потребителско име"
 msgid "Username (httpuser)"
 msgstr "Потребителско име (httpuser)"
 
-msgid "Username:"
-msgstr "Потребителско име:"
-
 msgid "Using automatic address"
 msgstr "Използване на автоматичен адрес"
 
@@ -22799,6 +22855,18 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Name:"
+#~ msgstr "Име:"
+
+#~ msgid "Password:"
+#~ msgstr "Парола:"
+
+#~ msgid "Port:"
+#~ msgstr "Порт:"
+
+#~ msgid "Username:"
+#~ msgstr "Потребителско име:"
 
 #, python-format
 #~ msgid "%s information"

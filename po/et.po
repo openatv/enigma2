@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2306,6 +2306,12 @@ msgstr "Lisa fail mängukavva"
 msgid "Add files to playlist"
 msgstr "Lisa failid mängukavva"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3592,6 +3598,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam kliendi info"
 
@@ -3615,8 +3627,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam info seadistused"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam info seaded"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam levitaja info"
@@ -3632,6 +3653,9 @@ msgstr "CCcam jao info"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam jagude info"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam info peamenüü"
@@ -5664,9 +5688,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6498,6 +6519,9 @@ msgstr "dokumentaal"
 msgid "Dolby Digital downmix is now"
 msgstr "DD / DTS > stereo on"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -6801,16 +6825,40 @@ msgstr "Muutmise asukoht rea lõpus"
 msgid "Edit settings"
 msgstr "Muuda seadeid"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Muuda %s %s nimeserveri seadeid."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Muuda %s %s võrguseadeid."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Muuda uuenduste allika aadressi."
+
+msgid "Edit the username."
+msgstr ""
 
 #, fuzzy
 msgid "Education"
@@ -8984,11 +9032,11 @@ msgstr "INFO nupu vajutus"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP aadress"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK paigaldamine"
@@ -11326,9 +11374,6 @@ msgstr "Pööratud tähestikuline"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "Nimi:"
-
 msgid "Nameserver"
 msgstr "Nimeserver"
 
@@ -11540,6 +11585,12 @@ msgstr "Saateinfo"
 
 msgid "New version:"
 msgstr "Uus versioon:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr ""
@@ -12429,11 +12480,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PiP - pikk"
-
-msgid "PiP with OSD"
-msgstr "PiP ja OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12592,9 +12645,6 @@ msgstr "Parooli seadistus"
 msgid "Password changed."
 msgstr "Parool muudetud."
 
-msgid "Password:"
-msgstr "Parool:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Salvestamise asukohta pole olemas: '/tmp/'"
 
@@ -12665,6 +12715,9 @@ msgstr "PiP"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "Kiirtegevused"
+
+msgid "PiP with OSD"
+msgstr "PiP ja OSD"
 
 msgid "PiP-Zap"
 msgstr "PiP-kanalivahetus"
@@ -12912,6 +12965,9 @@ msgid "Please select a default EPG type..."
 msgstr "Vali saatekava laad"
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -13226,9 +13282,6 @@ msgstr "Port C"
 
 msgid "Port D"
 msgstr "Port D"
-
-msgid "Port:"
-msgstr "Port:"
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -14303,6 +14356,9 @@ msgstr "Eemalda valitud kataloog järjehoidjatest"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Eemalda välistelt subtiitritelt vaegkuuljatele mõeldud tekst (instrumentaalmuusika või taustahelid, nt. ''uksekell heliseb'', ''püssipauk''.)"
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Eemalda taimer"
@@ -15581,6 +15637,9 @@ msgstr "Vali unetaimeri tegevus."
 msgid "Select the shifted character set for the next character only"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16530,6 +16589,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Kuva PVR olek inforibal"
+
 msgid "Show PiP"
 msgstr "Kuva PiP"
 
@@ -16538,9 +16600,6 @@ msgstr "PiP MiniTV-s"
 
 msgid "Show PiP in the Front Display"
 msgstr "Kuva PiP esipaneelil"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Kuva PVR olek inforibal"
 
 msgid "Show RFmod setup..."
 msgstr "RFmod seadistused"
@@ -20396,9 +20455,6 @@ msgstr "Kasutajanimi"
 msgid "Username (httpuser)"
 msgstr "Kasutajanimi (httpuser)"
 
-msgid "Username:"
-msgstr "Kasutajanimi:"
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -23551,8 +23607,23 @@ msgstr "Kanalivahetus"
 msgid "®"
 msgstr ""
 
-#~ msgid "IP"
-#~ msgstr "IP"
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam info seaded"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Nimi:"
+
+#~ msgid "Password:"
+#~ msgstr "Parool:"
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Username:"
+#~ msgstr "Kasutajanimi:"
 
 #~ msgid "MAC"
 #~ msgstr "MAC"

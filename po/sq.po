@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-07-01 23:00+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
 "Language: sq\n"
@@ -933,7 +933,7 @@ msgstr[1] "%d paketat e katalogut të ushqimit u përditësua."
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d orë"
-msgstr[1] "%d orë"
+msgstr[1] "%d orësh"
 
 #, python-format
 msgid "%d kB"
@@ -985,7 +985,7 @@ msgstr[1] "%dPaketa u shkarkua."
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
 msgstr[0] "Paketa %d u identifikua për përmirësim."
-msgstr[1] "Paketa %d u identifikua për përmirësim."
+msgstr[1] "Paketat %d u identifikua për përmirësim."
 
 #, python-format
 msgid "%d package was installed."
@@ -1316,7 +1316,7 @@ msgstr "(1 punë)"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
-msgstr "Qasja në regjistrat e kryerjes së %s kërkon një lidhje interneti."
+msgstr "(Hyrja në login e kryerjes '%s' kërkon një lidhje interneti.)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2287,6 +2287,12 @@ msgstr "Shto file në playlist"
 
 msgid "Add files to playlist"
 msgstr "Shto file në playlist"
+
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
 
 msgid "Add new tag"
 msgstr "Shto etiketë të re"
@@ -3541,6 +3547,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "Informacioni i CCCam"
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "Informacioni i klientit CCcam"
 
@@ -3568,8 +3580,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Konfigurimi i informacionit të CCcam"
 
-msgid "CCcam Info Setup"
-msgstr "Konfigurimi i informacionit të CCcam"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "Informacioni i ofruesit të CCcam"
@@ -3585,6 +3606,9 @@ msgstr "CCcam Share Informacion"
 
 msgid "CCcam Shares Info"
 msgstr "Informacioni i aksioneve të CCcam"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "Menyja kryesore e CCcamInfo"
@@ -5567,9 +5591,6 @@ msgstr "Debug %d/%d"
 msgid "Debug Information"
 msgstr "Informacione debug"
 
-msgid "Debug Log"
-msgstr "Regjistri i korrigjimit"
-
 msgid "Debug Log Information"
 msgstr "Informacione për log debug"
 
@@ -6384,6 +6405,9 @@ msgstr "Dokumentar"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital downmix është tani"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominika"
 
@@ -6676,16 +6700,40 @@ msgstr "Pozicioni i modifikimit është fundi i linjës"
 msgid "Edit settings"
 msgstr "Redakto cilësimet"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Ndrysho konfigurimin DNS të %s tënd %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Ndryshoni konfigurimin e rrjetit të %s %s tuaj."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Ndryshoni adresën e burimit të përmirësimit."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Arsimi"
@@ -6972,7 +7020,7 @@ msgstr[1] "Kohëmatësi i energjisë: Mbeten %d minutë."
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
 msgstr[0] "Kohëmatësi i energjisë: Mbetet %d sekondë."
-msgstr[1] "Kohëmatësi i energjisë: Mbetet %d sekondë."
+msgstr[1] "Kohëmatësi i energjisë: Mbetet %d sekonda."
 
 msgid "Energy timer: Inactive."
 msgstr "Kohëmatësi i energjisë: Joaktiv."
@@ -7476,1514 +7524,1525 @@ msgid "Expert mode"
 msgstr "Mënyra e ekspertëve"
 
 msgid "Ext. NumberZap"
-msgstr ""
+msgstr "Jashtë. NumberZap"
 
 msgid "Extend"
-msgstr ""
+msgstr "Zgjeron"
 
 msgid "Extended"
-msgstr ""
+msgstr "I zgjatur"
 
 msgid "Extended GUI"
-msgstr ""
+msgstr "GUI i zgjeruar"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Plugin i Zgjeruar Networksetup..."
 
 msgid "Extended PID info"
-msgstr ""
+msgstr "Informacione e zgjeruara PID"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Organizimi i zgjeruar..."
 
 msgid "Extended Shares"
-msgstr ""
+msgstr "Aksionet e zgjeruara"
 
 msgid "Extended settings"
-msgstr ""
+msgstr "Cilësimet e zgjeruara"
 
 msgid "Extension Actions"
-msgstr ""
+msgstr "Veprimet e Zgjerimit"
 
 msgid "Extensions"
-msgstr ""
+msgstr "Shtesat"
 
 msgid "Extensions Management"
-msgstr ""
+msgstr "Menaxhimi i Zgjerimeve"
 
 msgid "Extensions/QuickMenu"
-msgstr ""
+msgstr "Zgjerimet/Menuja e shpejtë"
 
 msgid "External"
-msgstr ""
+msgstr "E jashtme"
 
 msgid "External PiP"
-msgstr ""
+msgstr "PiP i jashtëm"
 
 #, python-format
 msgid "External Storage %s"
-msgstr ""
+msgstr "Hapësirë ruajtëse e jashtme %s"
 
 msgid "External subtitle color"
-msgstr ""
+msgstr "Ngjyra e jashtme e nëntitullit"
 
 msgid "External subtitle dialog colorization"
-msgstr ""
+msgstr "Ngjyra e jashtme e dialogut nëntitull"
 
 msgid "External subtitle switch fonts"
-msgstr ""
+msgstr "Shkronjat e jashtme të ndërrimit të titrave"
 
 msgid "Extra motor options"
-msgstr ""
+msgstr "Opsionet shtesë të motorit"
 
 msgid "Extrude from left"
-msgstr ""
+msgstr "Të dalësh nga e majta"
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "F1"
-msgstr ""
+msgstr "F1"
 
 msgid "F1 long"
-msgstr ""
+msgstr "F1 i gjatë"
 
 msgid "F2"
-msgstr ""
+msgstr "F2"
 
 msgid "F2 long"
-msgstr ""
+msgstr "F2 i gjatë"
 
 msgid "F3"
-msgstr ""
+msgstr "F3"
 
 msgid "F3 long"
-msgstr ""
+msgstr "F3 i gjatë"
 
 msgid "F4"
-msgstr ""
+msgstr "F4"
 
 msgid "F4 long"
-msgstr ""
+msgstr "F4 i gjatë"
 
 msgid "FCC 1953"
-msgstr ""
+msgstr "FCC 1953"
 
 msgid "FCC enabled"
-msgstr ""
+msgstr "FCC i aktivizuar"
 
 msgid "FEC"
-msgstr ""
+msgstr "FEC"
 
 msgid "FEC modes"
-msgstr ""
+msgstr "Modalitetet FEC"
 
 msgid "FFmpeg version"
-msgstr ""
+msgstr "Versioni FFmpeg"
 
 msgid "FHD"
-msgstr ""
+msgstr "FHD"
 
 msgid "FIFO"
-msgstr ""
+msgstr "FIFO"
 
 msgid "FLASH"
-msgstr ""
+msgstr "FLASH"
 
 msgid "FP Upgrade"
-msgstr ""
+msgstr "Përmirësimi i FP"
 
 msgid "FPU"
-msgstr ""
+msgstr "FPU"
 
 msgid "FSBL Update Check"
-msgstr ""
+msgstr "Kontrolli i përditësimit të FSBL"
 
 msgid "FTA"
-msgstr ""
+msgstr "FTA"
 
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 msgid "FTP Actions"
-msgstr ""
+msgstr "Veprimet FTP"
 
 msgid "FTP Settings"
-msgstr ""
+msgstr "Rregullimet FTP"
 
 msgid "Factory Reset"
-msgstr ""
+msgstr "Rikthim ne gjendjen e fabrikes"
 
 msgid "Factory release"
-msgstr ""
+msgstr "Lëshimi i fabrikës"
 
 msgid "Fade the Infobar on hide"
-msgstr ""
+msgstr "Fshije infobarin në një vend të fshehtë"
 
 msgid "Fahrenheit"
-msgstr ""
+msgstr "Fahrenheit"
 
 msgid "Failed"
-msgstr ""
+msgstr "Dështoi"
 
 msgid "Failed to write /tmp/positionersetup.log: "
-msgstr ""
+msgstr "Shkrimi i /tmp/positionersetup.log dështoi:"
 
 msgid "Failed:"
-msgstr ""
+msgstr "Dështoi:"
 
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Ishujt Falkland (Malvinas)"
 
 msgid "Fallback remote receiver URL"
-msgstr ""
+msgstr "URL-ja e marrësit në distancë të kthimit"
 
 msgid "False"
-msgstr ""
+msgstr "E rreme"
 
 msgid "Family"
-msgstr ""
+msgstr "Familja"
 
 #, python-format
 msgid "Fan %d"
-msgstr ""
+msgstr "Ventilator %d"
 
 msgid "Fantasy"
-msgstr ""
+msgstr "Fantazi"
 
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Ishujt Faroe"
 
 msgid "Faroese"
-msgstr ""
+msgstr "Faroese"
 
 msgid "Farsi / Persian"
-msgstr ""
+msgstr "Farsi / Persishtja"
 
 msgid "Fast"
-msgstr ""
+msgstr "Shpejt"
 
 msgid "Fast Channel Change"
-msgstr ""
+msgstr "Ndryshimi i shpejtë i kanalit"
 
 msgid "Fast Channel Change Setup"
-msgstr ""
+msgstr "Konfigurimi i shpejtë i ndryshimit të kanalit"
 
 msgid "Fast DiSEqC"
-msgstr ""
+msgstr "DiSEqC i shpejtë"
 
 msgid "Fast Scan"
-msgstr ""
+msgstr "Skanim i shpejtë"
 
 msgid "Fast epoch"
-msgstr ""
+msgstr "Epokë e shpejtë"
 
 msgid "Fast forward speeds"
-msgstr ""
+msgstr "Shpejtësi të shpejta përpara"
 
 msgid "Fastforward"
-msgstr ""
+msgstr "Shpejt përpara"
 
 msgid "Favorites"
-msgstr ""
+msgstr "Të preferuarat"
 
 msgid "Favorites long"
-msgstr ""
+msgstr "Të preferuarat e gjata"
 
 msgid "Favourites"
-msgstr ""
+msgstr "Të preferuarat"
 
 msgid "Feed URL"
-msgstr ""
+msgstr "URL-ja e furnizimit"
 
 msgid "Feed disabled!"
-msgstr ""
+msgstr "Furnizimi është çaktivizuar!"
 
 msgid "Feed stable."
-msgstr ""
+msgstr "Ushqimi i qëndrueshëm."
 
 msgid "Feed unstable!"
-msgstr ""
+msgstr "Ushqehuni të paqëndrueshëm!"
 
 msgid "Fetch EPG and update timers now"
-msgstr ""
+msgstr "Merr EPG dhe përditëso kohëmatësit tani"
 
 msgid "Fiji"
-msgstr ""
+msgstr "Fixhi"
 
 msgid "Fijian"
-msgstr ""
+msgstr "fixhiane"
 
 msgid "File"
-msgstr ""
+msgstr "Skedari"
 
 msgid "File Commander"
-msgstr ""
+msgstr "Komandanti i dosjes"
 
 msgid "File Commander - Addon File-Viewer"
-msgstr ""
+msgstr "File Commander - Addon File-Viewer"
 
 msgid "File Commander - Addon Mediaplayer"
-msgstr ""
+msgstr "File Commander - Addon Mediaplayer"
 
 msgid "File Commander - Addon Movieplayer"
-msgstr ""
+msgstr "File Commander - Addon Movieplayer"
 
 msgid "File Commander - all Task's are completed!"
-msgstr ""
+msgstr "Komandanti i skedarit - të gjitha detyrat janë përfunduar!"
 
 msgid "File Commander - generalised archive handler"
-msgstr ""
+msgstr "File Commander - mbajtës i përgjithësuar i arkivit"
 
 msgid "File Commander - gzip Addon"
-msgstr ""
+msgstr "Komandanti i skedarit - gzip Addon"
 
 msgid "File Commander - ipk Addon"
-msgstr ""
+msgstr "Komandanti i skedarit - ipk Addon"
 
 msgid "File Commander - tar Addon"
-msgstr ""
+msgstr "Komandanti i skedarit - tar Addon"
 
 msgid "File Commander - unrar Addon"
-msgstr ""
+msgstr "Komandant File - unrar Addon"
 
 msgid "File Commander - unzip Addon"
-msgstr ""
+msgstr "Komandanti i skedarit - unzip Addon"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "Cilësimet e komandantit të skedarit"
 
 msgid "File Commander context menu"
-msgstr ""
+msgstr "Menyja e kontekstit të Komandantit të skedarit"
 
 msgid "File Commander menu"
-msgstr ""
+msgstr "Menyja e Komandantit të Skedarit"
 
 msgid "File System Check"
-msgstr ""
+msgstr "Kontrolli i sistemit të skedarëve"
 
 msgid "File appears to be busy.\n"
-msgstr ""
+msgstr "Skedari duket se është i zënë.\n"
 
 msgid "File checksums to calculate for button 9"
-msgstr ""
+msgstr "Regjistroni shumat e kontrollit për të llogaritur për butonin 9"
 
 msgid "File checksums/hashes"
-msgstr ""
+msgstr "Dosja e kontrolleve/hashes"
 
 msgid "File long"
-msgstr ""
+msgstr "Skedari i gjatë"
 
 #, python-format
 msgid "File not found: %s"
-msgstr ""
+msgstr "Skedari nuk u gjet: %s"
 
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
+"Skedari oscam.conf nuk u gjet.\n"
+"Ju lutemi shkruani me dorë emrin e përdoruesit/fjalëkalimin."
 
 msgid "File transfer was cancelled by user"
-msgstr ""
+msgstr "Transferimi i skedarit u anulua nga përdoruesi"
 
 #, python-format
 msgid "File write error: '%s'"
-msgstr ""
+msgstr "Gabim i shkrimit të skedarit: '%s'"
 
 msgid "File/Directory Status Information"
-msgstr ""
+msgstr "Informacion mbi statusin e skedarit/direktorisë"
 
 msgid "Filename"
-msgstr ""
+msgstr "Emri i file"
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
+msgstr "Skedarët/dosjet për të përjashtuar nga rezervimi"
 
 msgid "Filesystem check your Harddisk"
-msgstr ""
+msgstr "Kontrolloni sistemin e skedarëve Harddiskun tuaj"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
-msgstr ""
+msgstr "Plotësoni EPG-të e kanalit nga EPG e transmetuar ku nuk ka IceTV EPG për kanalin"
 
 msgid "Film-Noir"
-msgstr ""
+msgstr "Film-Noir"
 
 msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr ""
+msgstr "Zgjatja e filtrit për cilësimin \"Zgjatja ime\" e \"Zgjatja e filtrit\". Përdorni emrin e shtesës pa një '.'."
 
 msgid "Filter extension, (*) appears in title"
-msgstr ""
+msgstr "Zgjatja e filtrit, (*) shfaqet në titull"
 
 msgid "Filter visible file classes by extension."
-msgstr ""
+msgstr "Filtro klasat e skedarëve të dukshëm sipas shtrirjes."
 
 msgid "Final position at"
-msgstr ""
+msgstr "Pozicioni përfundimtar në"
 
 msgid "Final position at index"
-msgstr ""
+msgstr "Pozicioni përfundimtar në indeks"
 
 msgid "Final scroll delay"
-msgstr ""
+msgstr "Vonesa e lëvizjes përfundimtare"
 
 msgid "Finance"
-msgstr ""
+msgstr "Financa"
 
 #, python-format
 msgid "Find out more at %s"
-msgstr ""
+msgstr "Zbuloni më shumë në %s"
 
 msgid "Find similar events in the EPG"
-msgstr ""
+msgstr "Gjeni ngjarje të ngjashme në EPG"
 
 msgid "Finding available log files, please wait..."
-msgstr ""
+msgstr "Gjetja e skedarëve të disponueshëm të regjistrit, ju lutemi prisni..."
 
 msgid "Fine movement"
-msgstr ""
+msgstr "Lëvizje e shkëlqyer"
 
 msgid "Finetune"
-msgstr ""
+msgstr "Përshtatshme"
 
 msgid "Finished"
-msgstr ""
+msgstr "Përfunduar"
 
 msgid "Finished configuring your network"
-msgstr ""
+msgstr "Përfundoi konfigurimi i rrjetit tuaj"
 
 msgid "Finished restarting your network"
-msgstr ""
+msgstr "Përfundoi rinisja e rrjetit tuaj"
 
 msgid "Finland"
-msgstr ""
+msgstr "Finlanda"
 
 msgid "Finnish"
-msgstr ""
+msgstr "finlandez"
 
 msgid "First playable timeshift file!"
-msgstr ""
+msgstr "Skedari i parë i zhvendosjes në kohë!"
 
 msgid "Fishing"
-msgstr ""
+msgstr "Peshkimi"
 
 msgid "Fixed"
-msgstr ""
+msgstr "E rregulluar"
 
 msgid "Fixed X11 font (SD)"
-msgstr ""
+msgstr "Fonti X11 i rregulluar (SD)"
 
 msgid "Flash Image"
-msgstr ""
+msgstr "Flash Image"
 
 #. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
 #, python-format
 msgid "Flash Manager - %s Images"
-msgstr ""
+msgstr "Menaxhues Flash - %s Imazhe"
 
 msgid "Flash Manager - Distributions"
-msgstr ""
+msgstr "Menaxhuesi i Flash - Shpërndarjeve"
 
 msgid "Flash Manager Actions"
-msgstr ""
+msgstr "Veprimet e Menaxhuesit të Flash"
 
 msgid "Flash Online"
-msgstr ""
+msgstr "Flash Online"
 
 msgid "Flash Online a new image"
-msgstr ""
+msgstr "Flash Online një imazh të ri"
 
 msgid "Flash and restore settings and no plugins"
-msgstr ""
+msgstr "Flash dhe rivendos cilësimet dhe pa shtojca"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr ""
+msgstr "Flash dhe rivendos cilësimet dhe shtojcat e zgjedhura (Pyet përdoruesin)"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
+msgstr "Direktoria e Flash '%s' nuk lejohet!"
 
 msgid "Flash on the fly your %s %s."
 msgstr "Instalim në Flash nga interneti për %s %s tuaj."
 
 msgid "Flash on the fly your your Receiver software."
-msgstr ""
+msgstr "Ndizni menjëherë softuerin tuaj të Marrësit."
 
 msgid "Flash type"
-msgstr ""
+msgstr "Lloji i blicit"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
+msgstr "Ndizni %s %s tuaj dhe rindizni tani?"
 
 msgid "Flashing"
-msgstr ""
+msgstr "Vezullim"
 
 msgid "Flashing Image"
-msgstr ""
+msgstr "Flash Image"
 
 #, python-format
 msgid "Flashing image '%s' was not successful!"
-msgstr ""
+msgstr "Imazhi ndezës '%s' nuk ishte i suksesshëm!"
 
 msgid "Flashing image successful"
-msgstr ""
+msgstr "Imazhi i ndezur me sukses"
 
 msgid "Flat alphabetical"
-msgstr ""
+msgstr "Alfabetik i sheshtë"
 
 msgid "Flat by key group on remote"
-msgstr ""
+msgstr "Grupi i sheshtë me çelës në telekomandë"
 
 msgid "Flat by position on remote"
-msgstr ""
+msgstr "E sheshtë sipas pozicionit në telekomandë"
 
 msgid "Following tasks will be done after you press OK!"
-msgstr ""
+msgstr "Detyrat e mëposhtme do të kryhen pasi të shtypni OK!"
 
 msgid "Font size"
-msgstr ""
+msgstr "Madhësia e gërmave"
 
 msgid "Font:"
-msgstr ""
+msgstr "Gërmat:"
 
 msgid "Food/Wine"
-msgstr ""
+msgstr "Ushqim/Verë"
 
 msgid "Football"
-msgstr ""
+msgstr "Futboll"
 
 msgid "For more information see https://www.opena.tv"
-msgstr ""
+msgstr "Për më shumë informacion shihni https://www.opena.tv"
 
 msgid "Force LNB Power"
-msgstr ""
+msgstr "Forco fuqinë LNB"
 
 msgid "Force LNB Tuner Power settings."
-msgstr ""
+msgstr "Detyro cilësimet e fuqisë së sintonizuesit LNB."
 
 msgid "Force LNB Tuner ToneBurst settings."
-msgstr ""
+msgstr "Forca LNB Tuner ToneBurst rregullimet."
 
 msgid "Force Legacy Signal stats"
-msgstr ""
+msgstr "Force Legacy Signal stats"
 
 msgid "Force ToneBurst"
-msgstr ""
+msgstr "Forca ToneBurst"
 
 msgid "Force de-interlace"
-msgstr ""
+msgstr "Forco de-gërshetim"
 
 msgid "Format"
-msgstr ""
+msgstr "Formati"
 
 msgid "Format HDD"
-msgstr ""
+msgstr "Formatoni HDD-në"
 
 msgid "Format your Harddisk"
-msgstr ""
+msgstr "Formatoni harddiskun tuaj"
 
 msgid "Forward volume keys"
-msgstr ""
+msgstr "Çelësat e volumit përpara"
 
 msgid "Frame rate"
-msgstr ""
+msgstr "Shpejtësia e kornizës"
 
 msgid "Frame size in full view"
-msgstr ""
+msgstr "Madhësia e kornizës në pamje të plotë"
 
 msgid "France"
-msgstr ""
+msgstr "Franca"
 
 msgid "Free"
-msgstr ""
+msgstr "Falas"
 
 msgid "Free flash"
-msgstr ""
+msgstr "Flash falas"
 
 msgid "Free memory"
-msgstr ""
+msgstr "Memorie e lirë"
 
 msgid "Free memory:"
-msgstr ""
+msgstr "Memorie e lirë"
 
 msgid "Free swap"
-msgstr ""
+msgstr "Shkëmbim falas"
 
 msgid "Free:"
-msgstr ""
+msgstr "Falas:"
 
 msgid "French"
-msgstr ""
+msgstr "Frëngjisht"
 
 msgid "French Guiana"
-msgstr ""
+msgstr "Guajanë Franceze"
 
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinezia franceze"
 
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Territoret jugore franceze"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekuenca"
 
 msgid "Frequency & Channel"
-msgstr ""
+msgstr "Frekuenca dhe kanalet"
 
 msgid "Frequency & Polarization"
-msgstr ""
+msgstr "Frekuenca & Polarizimi"
 
 msgid "Frequency Norm:"
-msgstr ""
+msgstr "Norma e frekuencës:"
 
 msgid "Frequency bands"
-msgstr ""
+msgstr "Brezat e frekuencës"
 
 msgid "Frequency range"
-msgstr ""
+msgstr "Gama e frekuencës"
 
 msgid "Frequency scan step size(khz)"
-msgstr ""
+msgstr "Madhësia e hapit të skanimit të frekuencës (khz)"
 
 msgid "Frequency steps"
-msgstr ""
+msgstr "Hapat e frekuencës"
 
 msgid "Frequency:"
-msgstr ""
+msgstr "Frekuenca:"
 
 msgid "Frequency: "
-msgstr ""
+msgstr "Frekuenca:"
 
 msgid "Fri"
-msgstr ""
+msgstr "e premte"
 
 msgid "Friday"
-msgstr ""
+msgstr "E premte"
 
 msgid "From :"
-msgstr ""
+msgstr "Nga:"
 
 msgid "Front"
-msgstr ""
+msgstr "Përpara"
 
 msgid "Front USB"
-msgstr ""
+msgstr "USB e përparme"
 
 msgid "Front USB 3.0"
-msgstr ""
+msgstr "USB 3.0 e përparme"
 
 msgid "Front processor version"
-msgstr ""
+msgstr "Versioni i procesorit të përparmë"
 
 msgid "Fulah"
-msgstr ""
+msgstr "Fulah"
 
 msgid "Full Image Backup "
-msgstr ""
+msgstr "Rezervimi i plotë i imazhit"
 
 msgid "Full Range RGB"
-msgstr ""
+msgstr "RGB me gamë të plotë"
 
 #, python-format
 msgid "Full back-up on %s"
-msgstr ""
+msgstr "Rezervimi i plotë në %s"
 
 msgid "Full factory reset"
-msgstr ""
+msgstr "Rivendosja e plotë e fabrikës"
 
 msgid "Full transparency"
-msgstr ""
+msgstr "Transparencë e plotë"
 
 msgid "Full view resolution"
-msgstr ""
+msgstr "Rezolucioni i plotë i pamjes"
 
 msgid "FullHD Test"
-msgstr ""
+msgstr "Testi FullHD"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ekran i plotë"
 
 msgid "G"
-msgstr ""
+msgstr "G"
 
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 msgid "GCC version"
-msgstr ""
+msgstr "Versioni GCC"
 
 msgid "GREEN button"
-msgstr ""
+msgstr "Butoni JESHIL"
 
 msgid "GREEN long"
-msgstr ""
+msgstr "E GJELBËR e gjatë"
 
 msgid "GStreamer debug log category *"
-msgstr ""
+msgstr "Kategoria e regjistrit të korrigjimit të GStreamer *"
 
 msgid "GStreamer debug log level *"
-msgstr ""
+msgstr "Niveli i regjistrit të korrigjimit të GStreamer *"
 
 msgid "GStreamer version"
-msgstr ""
+msgstr "Versioni GStreamer"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"GUI ka nevojë për një rinisje për të aplikuar një lëkurë të re\n"
+"Dëshiron të rinisësh GUI-në tani?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
+"GUI ka nevojë për një rinisje për të aplikuar një lëkurë të re\n"
+"Dëshiron të rinisësh GUI-në tani?"
 
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 msgid "Gaelic"
-msgstr ""
+msgstr "gale"
 
 msgid "Galicia (Spain)"
-msgstr ""
+msgstr "Galicia (Spanjë)"
 
 msgid "Galician"
-msgstr ""
+msgstr "Galician"
 
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 msgid "Game Show"
-msgstr ""
+msgstr "Shfaqja e lojës"
 
 msgid "Ganda"
-msgstr ""
+msgstr "Ganda"
 
 msgid "Gardening"
-msgstr ""
+msgstr "Kopshtari"
 
 msgid "Gateway"
-msgstr ""
+msgstr "Gateway"
 
 msgid "General"
-msgstr ""
+msgstr "Gjeneral"
 
 msgid "General AC3 delay"
-msgstr ""
+msgstr "Vonesa e përgjithshme AC3"
 
 msgid "General BT Audio delay"
-msgstr ""
+msgstr "Vonesë e përgjithshme BT Audio"
 
 msgid "General PCM delay"
-msgstr ""
+msgstr "Vonesa e përgjithshme PCM"
 
 msgid "Generic"
-msgstr ""
+msgstr "Gjenerike"
 
 msgid "Genre"
-msgstr ""
+msgstr "Zhanri"
 
 msgid "Geolocation"
-msgstr ""
+msgstr "Gjeolokimi"
 
 msgid "Geolocation Information"
-msgstr ""
+msgstr "Informacioni i Gjeolokimit"
 
 msgid "Geolocation does not contain time zone information."
-msgstr ""
+msgstr "Vendndodhja gjeografike nuk përmban informacione për zonën kohore."
 
 msgid "Geolocation has been used to set the time zone."
-msgstr ""
+msgstr "Gjeolokimi është përdorur për të vendosur zonën kohore."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr ""
+msgstr "Informacioni i gjeolokacionit nuk mund të merret, ju lutem provoni përsëri më vonë."
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr ""
+msgstr "Informacioni i vendndodhjes për %s %s"
 
 msgid "Geolocation is not available."
-msgstr ""
+msgstr "Gjeolokimi nuk është i disponueshëm."
 
 msgid "Georgia"
-msgstr ""
+msgstr "Gjeorgjia"
 
 msgid "Georgian"
-msgstr ""
+msgstr "gjeorgjiane"
 
 msgid "German"
-msgstr ""
+msgstr "gjermanisht"
 
 msgid "Germany"
-msgstr ""
+msgstr "Gjermania"
 
 msgid "Getting Event Info failed!"
-msgstr ""
+msgstr "Marrja e informacionit të ngjarjes dështoi!"
 
 msgid "Getting Softcam list. Please wait..."
-msgstr ""
+msgstr "Marrja e listës së Softcam. Te lutem prit..."
 
 msgid "Getting plugin information. Please wait..."
-msgstr ""
+msgstr "Marrja e informacionit të shtojcave. Te lutem prit..."
 
 msgid "Ghana"
-msgstr ""
+msgstr "Gana"
 
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gjibraltarit"
 
 msgid "Given device id"
-msgstr ""
+msgstr "ID-ja e dhënë e pajisjes"
 
 msgid "Glibc version"
-msgstr ""
+msgstr "Versioni Glibc"
 
 msgid "Go down the list"
-msgstr ""
+msgstr "Shkoni poshtë listës"
 
 msgid "Go to bookmarked folder"
-msgstr ""
+msgstr "Shkoni te dosja e shënuar"
 
 msgid "Go to deep standby"
-msgstr ""
+msgstr "Shkoni në gatishmëri të thellë"
 
 msgid "Go to end of file"
-msgstr ""
+msgstr "Shkoni në fund të skedarit"
 
 msgid "Go to first movie or last item"
-msgstr ""
+msgstr "Shkoni te filmi i parë ose artikulli i fundit"
 
 msgid "Go to first movie or top of list"
-msgstr ""
+msgstr "Shkoni te filmi i parë ose në krye të listës"
 
 msgid "Go to parent directory"
-msgstr ""
+msgstr "Shkoni te drejtoria e prindërve"
 
 msgid "Go to standby"
-msgstr ""
+msgstr "Shko në gadishmëri"
 
 msgid "Go to start of file"
-msgstr ""
+msgstr "Nise file"
 
 msgid "Go up the list"
-msgstr ""
+msgstr "Shkoni lart në listë"
 
 msgid "Gold"
-msgstr ""
+msgstr "Ar"
 
 msgid "Golf"
-msgstr ""
+msgstr "Golf"
 
 msgid "Google DNS"
-msgstr ""
+msgstr "Google DNS"
 
 msgid "Goto"
-msgstr ""
+msgstr "Shkoni"
 
 msgid "Goto 0"
-msgstr ""
+msgstr "Shkoni 0"
 
 msgid "Goto :"
-msgstr ""
+msgstr "Shkoni:"
 
 msgid "Goto Date/Time"
-msgstr ""
+msgstr "Shkoni në datën/kohën"
 
 msgid "Goto Date/Timer"
-msgstr ""
+msgstr "Shkoni në datën / kohëmatësin"
 
 msgid "Goto Primetime"
-msgstr ""
+msgstr "Shkoni në Primetime"
 
 msgid "Goto X"
-msgstr ""
+msgstr "Shkoni në X"
 
 msgid "Goto next bouquet"
-msgstr ""
+msgstr "Shkoni në buqetën tjetër"
 
 msgid "Goto next channel"
-msgstr ""
+msgstr "Shkoni në kanalin tjetër"
 
 msgid "Goto next event"
-msgstr ""
+msgstr "Shkoni në ngjarjen e radhës"
 
 msgid "Goto position"
-msgstr ""
+msgstr "Shkoni në pozicion"
 
 msgid "Goto previous bouquet"
-msgstr ""
+msgstr "Shko te buqeta e mëparshme"
 
 msgid "Goto previous channel"
-msgstr ""
+msgstr "Shkoni në kanalin e mëparshëm"
 
 msgid "Goto previous event"
-msgstr ""
+msgstr "Shkoni në ngjarjen e mëparshme"
 
 msgid "Goto specific date/time"
-msgstr ""
+msgstr "Shkoni te data/ora specifike"
 
 msgid "GotoX calibration"
-msgstr ""
+msgstr "Kalibrimi GotoX"
 
 msgid "Grab"
-msgstr ""
+msgstr "Kap"
 
 msgid "Graphical EPG"
-msgstr ""
+msgstr "EPG grafik"
 
 msgid "Graphical InfobarEPG Settings"
-msgstr ""
+msgstr "Cilësimet grafike të InfobarEPG"
 
 msgid "GraphicalEPG Settings"
-msgstr ""
+msgstr "Cilësimet GraphicalEPG"
 
 msgid "Graphics"
-msgstr ""
+msgstr "Grafika"
 
 msgid "Greece"
-msgstr ""
+msgstr "Greqia"
 
 msgid "Greek"
-msgstr ""
+msgstr "greke"
 
 msgid "Green"
-msgstr ""
+msgstr "Jeshile"
 
 msgid "Greenland"
-msgstr ""
+msgstr "Grenlanda"
 
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 msgid "Grey"
-msgstr ""
+msgstr "Gri"
 
 msgid "Group:"
-msgstr ""
+msgstr "Grupi:"
 
 msgid "Grow drop"
-msgstr ""
+msgstr "Rritet rënie"
 
 msgid "Grow from left"
-msgstr ""
+msgstr "Rriteni nga e majta"
 
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadelupe"
 
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 msgid "Guarani"
-msgstr ""
+msgstr "Guarani"
 
 msgid "Guard interval"
-msgstr ""
+msgstr "Intervali i rojes"
 
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 msgid "Guinea"
-msgstr ""
+msgstr "Guinea"
 
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guineja-Bisau"
 
 msgid "Gujarati"
-msgstr ""
+msgstr "guxharatisht"
 
 msgid "Guyana"
-msgstr ""
+msgstr "Guajana"
 
 msgid "H"
-msgstr ""
+msgstr "H"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
-msgstr ""
+msgstr "H: = Orare / D: = Ditore / W: = Javore / M: = Mujore"
 
 msgid "H:mm"
-msgstr ""
+msgstr "H:mm"
 
 msgid "H:mm:ss"
-msgstr ""
+msgstr "H:mm:ss"
 
 msgid "HARD DISK: "
-msgstr ""
+msgstr "HARD DISK:"
 
 msgid "HD"
-msgstr ""
+msgstr "HD"
 
 msgid "HD list"
-msgstr ""
+msgstr "Lista HD"
 
 msgid "HDMI"
-msgstr ""
+msgstr "HDMI"
 
 msgid "HDMI Colordepth"
-msgstr ""
+msgstr "Thellësia e ngjyrave HDMI"
 
 msgid "HDMI Colorimetry"
-msgstr ""
+msgstr "Ngjyra HDMI"
 
 msgid "HDMI Colorspace"
-msgstr ""
+msgstr "Hapësira e ngjyrave HDMI"
 
 msgid "HDMI HDR Type"
-msgstr ""
+msgstr "Lloji HDMI HDR"
 
 msgid "HDMI Recording Settings"
-msgstr ""
+msgstr "Cilësimet e regjistrimit HDMI"
 
 msgid "HDMI-CEC Settings"
-msgstr ""
+msgstr "Rregullimet HDMI-CEC"
 
 msgid "HDMI-CEC Setup Actions"
-msgstr ""
+msgstr "Veprimet e konfigurimit të HDMI-CEC"
 
 msgid "HDMI-CEC address"
-msgstr ""
+msgstr "Adresa HDMI-CEC"
 
 msgid "HDMI-IN Actions"
-msgstr ""
+msgstr "Veprimet HDMI-IN"
 
 msgid "HDMI-In Recording Settings"
-msgstr ""
+msgstr "Cilësimet e regjistrimit në HDMI"
 
 msgid "HDMIin"
-msgstr ""
+msgstr "HDMIin"
 
 msgid "HDR10 Support"
-msgstr ""
+msgstr "Mbështetja HDR10"
 
 msgid "HELP"
-msgstr ""
+msgstr "NDIHMË"
 
 msgid "HELP provides brief information for buttons in your current context."
-msgstr ""
+msgstr "HELP ofron informacion të shkurtër për butonat në kontekstin tuaj aktual."
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH: mm"
 
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
-msgstr ""
+msgstr "HI-pastrimi për titrat e jashtme"
 
 msgid "HLG Support"
-msgstr ""
+msgstr "Mbështetje HLG"
 
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 msgid "Haitian / Haitian Creole"
-msgstr ""
+msgstr "Haitian / Haitian Kreole"
 
 msgid "Halt"
-msgstr ""
+msgstr "Ndaloni"
 
 msgid "Handle Python crashes"
-msgstr ""
+msgstr "Trajto përplasjet e Python"
 
 msgid "Handle input from TV"
-msgstr ""
+msgstr "Trajtoni hyrjen nga televizori"
 
 msgid "Handle standby from TV"
-msgstr ""
+msgstr "Trajtoni gatishmërinë nga televizori"
 
 msgid "Handle wakeup from TV"
-msgstr ""
+msgstr "Trajtoni zgjimin nga televizori"
 
 msgid "Hard Disk Settings"
-msgstr ""
+msgstr "Rregullimet e Hard Diskut"
 
 msgid "Hard disk standby after"
-msgstr ""
+msgstr "Hard disk standby pas"
 
 msgid "Hard disk standby in box standby after"
-msgstr ""
+msgstr "Gatishmëria e diskut të ngurtë në gatishmërinë e kutisë pas"
 
 msgid "Harddisk"
-msgstr ""
+msgstr "Hard disk"
 
 msgid "Harddisk Setup"
-msgstr ""
+msgstr "Konfigurimi i harddiskut"
 
 msgid "Hardware MultiBoot device"
-msgstr ""
+msgstr "Pajisje Hardware MultiBoot"
 
 msgid "Hardware information"
-msgstr ""
+msgstr "Informacioni i harduerit"
 
 msgid "Hardware serial"
-msgstr ""
+msgstr "Seriali harduerik"
 
 msgid "Hardware type"
-msgstr ""
+msgstr "Lloji i harduerit"
 
 msgid "Hausa"
-msgstr ""
+msgstr "Hausa"
 
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Ishulli Heard dhe Ishujt McDonald"
 
 msgid "Hebrew"
-msgstr ""
+msgstr "hebraishtja"
 
 msgid "Height"
-msgstr ""
+msgstr "Lartësia"
 
 msgid "Help"
-msgstr ""
+msgstr "Ndihmë"
 
 msgid "Help Screen Information"
-msgstr ""
+msgstr "Informacioni i ekranit të ndihmës"
 
 msgid "Help animation speed"
-msgstr ""
+msgstr "Ndihmoni shpejtësinë e animacionit"
 
 msgid "Help long"
-msgstr ""
+msgstr "Ndihmoni gjatë"
 
 msgid "Help screen style"
-msgstr ""
+msgstr "Ndihmë për stilin e ekranit"
 
 msgid "Helps setting up your signal"
-msgstr ""
+msgstr "Ndihmon në vendosjen e sinjalit"
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr ""
+msgstr "Këtu mund të vendosni se EPG do të hapet gjithmonë në kanalin aktual, në kanalin e parë ose në një nga të dyja me primetime. Nëse nuk zgjidhet primetime, përdoret ora aktuale."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
-msgstr ""
+msgstr "Këtu mund të shfletoni (por jo të modifikoni) skedarët që janë shtuar në skedarin rezervë si parazgjedhje (konfigurimi E2, kanalet, rrjeti)."
 
 msgid "Here you can select which files should be excluded from the backup."
-msgstr ""
+msgstr "Këtu mund të zgjidhni se cilët skedarë duhet të përjashtohen nga rezervimi."
 
 msgid "Here you can select which files should be updated with a online update"
-msgstr ""
+msgstr "Këtu mund të zgjidhni cilat skedarë duhet të përditësohen me një përditësim online"
 
 msgid "Here you can set what is called when pressing the 'Info' key."
-msgstr ""
+msgstr "Këtu mund të vendosni se çfarë thirret kur shtypni tastin 'Info'."
 
 msgid "Here you can specify additional files that should be added to the backup file."
-msgstr ""
+msgstr "Këtu mund të specifikoni skedarë shtesë që duhet të shtohen në skedarin rezervë."
 
 msgid "Herero"
-msgstr ""
+msgstr "Herero"
 
 msgid "HiSilicon"
-msgstr ""
+msgstr "HiSilicon"
 
 msgid "HiSilicon specific information"
-msgstr ""
+msgstr "Informacion specifik i HiSilicon"
 
 msgid "HiSilicon specific information not found."
-msgstr ""
+msgstr "Informacioni specifik i HiSilicon nuk u gjet."
 
 msgid "Hidden / Blank"
-msgstr ""
+msgstr "Fshehur / Bosh"
 
 msgid "Hidden network"
-msgstr ""
+msgstr "Rrjeti i fshehur"
 
 msgid "Hide"
-msgstr ""
+msgstr "Fshih"
 
 msgid "Hide InfoBar"
-msgstr ""
+msgstr "Fshihe Infobar"
 
 msgid "Hide VBI line for this service"
-msgstr ""
+msgstr "Fshih linjën VBI për këtë shërbim"
 
 msgid "Hide any zap error messages."
-msgstr ""
+msgstr "Fshih çdo mesazh gabimi zap."
 
 msgid "Hide known extensions"
-msgstr ""
+msgstr "Fshih shtesat e njohura"
 
 msgid "Hide mute notification"
-msgstr ""
+msgstr "Fshih njoftimin e heshtjes"
 
 msgid "Hide number markers"
-msgstr ""
+msgstr "Fshih shënuesit e numrave"
 
 msgid "Hide parental locked services"
-msgstr ""
+msgstr "Fshih shërbimet e kyçura prindërore"
 
 msgid "Hide player"
-msgstr ""
+msgstr "Fshih lojtarin"
 
 msgid "Hide the InfoBar"
-msgstr ""
+msgstr "Fshih shiritin e informacionit"
 
 msgid "Hide zap errors"
-msgstr ""
+msgstr "Fshih gabimet zap"
 
 msgid "Hierarchy info"
-msgstr ""
+msgstr "Informacion mbi hierarkinë"
 
 msgid "High bitrate support"
-msgstr ""
+msgstr "Mbështetje me shpejtësi të lartë bit"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Indisht"
 
 msgid "Hiri Motu"
-msgstr ""
+msgstr "Hiri Motu"
 
 msgid "Hispasat 30.0w"
-msgstr ""
+msgstr "Hispasat 30.0w"
 
 msgid "Historical"
-msgstr ""
+msgstr "Historike"
 
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 msgid "History Prev/Next"
-msgstr ""
+msgstr "Historia Para/Tjetër"
 
 msgid "History back"
-msgstr ""
+msgstr "Historia kthehet"
 
 msgid "History buttons mode"
-msgstr ""
+msgstr "Modaliteti i butonave të historisë"
 
 msgid "History long"
-msgstr ""
+msgstr "Histori e gjatë"
 
 msgid "History next"
-msgstr ""
+msgstr "Historia e radhës"
 
 msgid "History zap..."
-msgstr ""
+msgstr "Historia zap..."
 
 msgid "Hockey"
-msgstr ""
+msgstr "Hokej"
 
 msgid "Hold screen"
-msgstr ""
+msgstr "Mbaje ekranin"
 
 msgid "Hold till locked"
-msgstr ""
+msgstr "Mbajeni derisa të kyçet"
 
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Selia e Shenjtë (Shteti i qytetit të Vatikanit)"
 
 msgid "Home"
-msgstr ""
+msgstr "Shtëpi"
 
 msgid "Home long"
-msgstr ""
+msgstr "Shtëpi gjatë"
 
 msgid "Homepage"
-msgstr ""
+msgstr "Faqja kryesore"
 
 msgid "Homepage long"
-msgstr ""
+msgstr "Faqja kryesore e gjatë"
 
 msgid "Honduras"
-msgstr ""
+msgstr "Hondurasi"
 
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kongu"
 
 msgid "Hops"
-msgstr ""
+msgstr "Hops"
 
 msgid "Hops:"
-msgstr ""
+msgstr "Hops:"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontale"
 
 msgid "Horizontal icons"
-msgstr ""
+msgstr "Ikonat horizontale"
 
 msgid "Horizontal menu"
-msgstr ""
+msgstr "Menuja horizontale"
 
 msgid "Horizontal turning speed"
-msgstr ""
+msgstr "Shpejtësia e rrotullimit horizontal"
 
 msgid "Horror"
-msgstr ""
+msgstr "Tmerr"
 
 msgid "Horse Racing"
-msgstr ""
+msgstr "Gare me kuaj"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Emri i hostit"
 
 msgid "Hostname: "
-msgstr ""
+msgstr "Emri i hostit:"
 
 msgid "Hotbird 13.0e"
-msgstr ""
+msgstr "Hotbird 13.0e"
 
 msgid "Hotkey"
-msgstr ""
+msgstr "Hotkey"
 
 msgid "Hotkey Settings"
-msgstr ""
+msgstr "Cilësimet e tastierës së nxehtë"
 
 msgid "Hour"
-msgstr ""
+msgstr "Ora"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Për orë"
 
 msgid "Hours Mins"
-msgstr ""
+msgstr "Orë Min"
 
 msgid "Hours Mins Secs"
-msgstr ""
+msgstr "Orë Min. Sec"
 
 msgid "How many minutes do you want to record?"
-msgstr ""
+msgstr "Sa minuta dëshironi të regjistroni?"
 
 msgid "Http(s) stream start delay"
-msgstr ""
+msgstr "Http(s) vonesa e nisjes së rrjedhës"
 
 msgid "Hue"
-msgstr ""
+msgstr "Hue"
 
 msgid "Hungarian"
-msgstr ""
+msgstr "Hungarisht"
 
 msgid "Hungary"
-msgstr ""
+msgstr "Hungaria"
 
 msgid "Hybrid Tuner"
-msgstr ""
+msgstr "Tuner hibrid"
 
 msgid "I"
-msgstr ""
+msgstr "I"
 
 msgid "I/O priority for script execution"
-msgstr ""
+msgstr "Prioriteti I/O për ekzekutimin e skriptit"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr ""
+msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 Model i ri"
 
 msgid "IMDb Details"
-msgstr ""
+msgstr "Detajet e IMDb"
 
 msgid "IMDb Search"
-msgstr ""
+msgstr "Kërkimi në IMDb"
 
 msgid "IMDb search for current event"
-msgstr ""
+msgstr "Kërkoni në IMDb për ngjarjen aktuale"
 
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 msgid "INFO button mode"
-msgstr ""
+msgstr "Modaliteti i butonit INFO"
 
 msgid "INS"
+msgstr "INS"
+
+msgid "IP"
 msgstr ""
 
 msgid "IP address"
-msgstr ""
-
-msgid "IP:"
-msgstr ""
+msgstr "Adresa IP"
 
 msgid "IPK Installer"
-msgstr ""
+msgstr "Instaluesi IPK"
 
 msgid "IPv6 address"
-msgstr ""
+msgstr "Adresa IPv6"
 
 msgid "ISO file is too large for this filesystem!"
-msgstr ""
+msgstr "File ISO është shumë i madh për këtë filesystem!"
 
 msgid "ISO path"
-msgstr ""
+msgstr "Rruga ISO"
 
 msgid "ISP"
-msgstr ""
+msgstr "ISP"
 
 msgid "IceTV"
-msgstr ""
+msgstr "IceTV"
 
 msgid "IceTV - Account selection"
-msgstr ""
+msgstr "IceTV - Zgjedhja e llogarisë"
 
 msgid "IceTV - Login"
-msgstr ""
+msgstr "IceTV - Login"
 
 msgid "IceTV - Password required"
-msgstr ""
+msgstr "IceTV - Kërkohet fjalëkalimi"
 
 msgid "IceTV - Region"
-msgstr ""
+msgstr "IceTV - Rajoni"
 
 msgid "IceTV - Service selection"
-msgstr ""
+msgstr "IceTV - Zgjedhja e shërbimit"
 
 msgid "IceTV - Setup"
-msgstr ""
+msgstr "IceTV - Konfigurimi"
 
 msgid "IceTV - User Information"
-msgstr ""
+msgstr "IceTV - Informacioni i përdoruesit"
 
 msgid "IceTV disabled"
-msgstr ""
+msgstr "IceTV është çaktivizuar"
 
 msgid "IceTV enabled"
-msgstr ""
+msgstr "U aktivua IceTV"
 
 msgid "IceTV setup wizard"
-msgstr ""
+msgstr "Magjistari i instalimit të IceTV"
 
 msgid "IceTV update completed OK"
-msgstr ""
+msgstr "Përditësimi i IceTV përfundoi në rregull"
 
 msgid ""
 "IceTV update completed with errors.\n"
 "\n"
 "Please check the log for details."
 msgstr ""
+"Përditësimi i IceTV përfundoi me gabime.\n"
+"\n"
+"Ju lutemi kontrolloni regjistrin për detaje."
 
 #, python-format
 msgid "IceTV version %s"
-msgstr ""
+msgstr "Versioni IceTV %s"
 
 #, python-format
 msgid "IceTV version %s\n"
-msgstr ""
+msgstr "Versioni IceTV %s\n"
 
 msgid "Iceland"
-msgstr ""
+msgstr "Islanda"
 
 msgid "Icelandic"
-msgstr ""
+msgstr "Islandisht"
 
 msgid "Icons"
-msgstr ""
+msgstr "Ikonat"
 
 msgid "Idle Time: "
-msgstr ""
+msgstr "Koha e pacaktuara: "
 
 msgid "Ido"
-msgstr ""
+msgstr "Ido"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr ""
+msgstr "Nëse \"kurrë\", do të detyrohet të riniset pavarësisht nga kjo pas 100 përplasjeve."
 
 msgid "If 'never', will write crash log despite that for the first crash."
-msgstr ""
+msgstr "Nëse 'kurrë', do të shkruajë regjistrin e përplasjeve pavarësisht se për përplasjen e parë."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr ""
+msgstr "Nëse një veprim është i konfigurueshëm nga përdoruesi, hyrja e tij e ndihmës do të raportohet me një prapashtesë '(C)'."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr ""
+msgstr "Nëse redaktoni një skedar, a mund të vendosni pozicionin e fillimit të kursorit në fund ose në fillim të rreshtit."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr ""
+msgstr "Po të jetë e aktivizuar zgjidhja dalëse e kutisë do të përpiqet të përputhet me rezolucionin e rezolucionit të përmbajtjeve video"
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr ""
+msgstr "Nëse është e aktivizuar videoja do të jetë gjithmonë e çaktivizuar."
 
 msgid "If enabled, AIT data is included in recordings."
-msgstr ""
+msgstr "Nëse aktivizohet, të dhënat e AIT përfshihen në regjistrime."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
-msgstr ""
+msgstr "Nëse aktivizohet, do të mbahet një regjistër i trafikut të protokollit të KQZ-së. Skedarët e regjistrit janë të vendosur me skedarët e tjerë të regjistrit, por të quajtur 'Enigma2-hdmicec-[date].log'."
 
 msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
-msgstr ""
+msgstr "Po të jetë e mundur, duke përdorur një dritare kohore për të zbuluar një zgjim nga një kohëmbulues i thellë. Prezgjedhur është çaktivizuar dhe përdorur një sinjal të veçantë nga marrësi. Por disa pajisje vendosin një sinjal të gabuar ose asnjë sinjal dhe zbulimi i zgjimit mund të dështojë."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
-msgstr ""
+msgstr "Nëse regjistrat përdorin hapësirën maksimale të vendosur, më i madhi do të fshihet."
 
 msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr ""
+msgstr "Nëse është në heshtje, fshihni ikonën e heshtjes ose heshtni informacionin pas disa sekondash."
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
-msgstr ""
+msgstr "Nëse vendoset në \"Po\", të njëjtat komanda do të dërgohen në televizor për ngjarjet e gatishmërisë së thellë siç dërgohen gjatë ngjarjeve të rregullta të gatishmërisë."
 
 msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
-msgstr ""
+msgstr "Nëse caktohet në \"jo\", a mund të ruani ngjarje të vjetra edhe pas ndërprerjes ose ndërprerjes së ndërrimit të kohës."
 
 msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
-msgstr ""
+msgstr "Nëse vendoset në 'jo', timeshift përdori vetëm një skedar buffer. Rekomandohet \"Timeshift kontrollon për skedarë të vjetër [në minuta]\" dhe \"Timeshift kontrollon për hapësirë të lirë?\" për të rregulluar."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr ""
+msgstr "Nëse vendoset në 'po', kanalet pa EPG nuk do të shfaqen."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr ""
+msgstr "Nëse vendoset në 'po' do të shfaqë paketat 'PO' në shfletues."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr ""
+msgstr "Nëse vendoset në 'po' do të shfaqë paketat 'SRC' në shfletues."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr ""
+msgstr "Nëse vendoset në 'po' tregon një ekran të vogël TV në EPG."
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
-msgstr ""
+msgstr "Nëse vendoset në 'po', vlerat e sinjalit (SNR, etj) do të llogariten nga API V3. Ky është një version i vjetër API që tani është zëvendësuar."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr ""
+msgstr "Nëse vendoset në 'po', buqetat do të shfaqen sa herë që hapni EPG-në."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr ""
+msgstr "Nëse vendoset në 'po', lista e kanaleve do të shfaqet pas kalimit ndërmjet modalitetit të radios dhe televizorit."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr ""
+msgstr "Nëse vendoset në 'po', numri i kanalit do të shfaqet në shiritin e informacionit."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr ""
+msgstr "Nëse vendoset në 'po' infobar do të shfaqet kur të fillojë një ngjarje e re."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr ""
+msgstr "Nëse vendoset në 'po', shiriti i informacionit do të shfaqet kur ndryshoni kanalet."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr ""
+msgstr "Nëse caktohet në 'po', mund të shikoni paraprakisht kanalet në listën EPG."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr ""
+msgstr "Nëse caktohet në 'po', mund të shikoni paraprakisht kanalet në listën e kanaleve. Shtypni 'OK' për të parë paraprakisht kanalin e zgjedhur, shtypni një 'OK' të dytë për të dalë dhe futeni në atë kanal, duke shtypur 'EXIT' për t'u kthyer në kanalin ku keni filluar."
 
 msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
-msgstr ""
+msgstr "Nëse vendoset në 'po', ju lejon të përdorni shiritin e kërkimit për të kërcyer në një pikë brenda ngjarjes."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr ""
+msgstr "Nëse vendoset në 'po; shiriti i informacionit do të shfaqet kur kaloni shpejt përpara ose ktheni prapa gjatë riprodhimit të medias."
 
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
-msgstr ""
+msgstr "Nëse vendoset në 'po; shiriti i informacionit do të mbetet i shfaqur përgjithmonë në gjendje \"të ndërprerë\" (pa afat kohor)."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
-msgstr ""
+msgstr "Nëse është aktivizuar zgjidhja e gatishmërisë së thellë, prisni derisa koha e sistemit të sinkronizohet. Në varësi të kërkesës, zgjimi i pajisjes do të vazhdojë pas një maksimumi 2 minutash."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
-msgstr ""
+msgstr "Nëse hapësira e lirë është më e vogël se vlera e caktuar, atëherë bëhet një përpjekje për të fshirë skedarët e vjetër të zhvendosjes së kohës."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
-msgstr ""
+msgstr "Nëse teksti është shumë i gjatë për t'u shfaqur në panelin e përparmë, ai do të përsëritet (numër herë)."
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
-msgstr ""
+msgstr "Nëse përdorni çelësa të shumtë të pakomituar, komandat DiSEqC duhet të dërgohen disa herë. Vendosni në numrin e çelsave të paangazhuar në zinxhir minus një."
 
 msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
-msgstr ""
+msgstr "Nëse jeni duke përdorur një LNB të polarizuar rrethore, zgjidhni 'po', përndryshe zgjidhni 'jo'."
 
 msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
-msgstr ""
+msgstr "Nëse jeni duke përdorur një ndërprerës të angazhuar DiSEqC, futni letrën e portës që kërkohet për të hyrë në LNB të përdorur për këtë satelit."
 
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
-msgstr ""
+msgstr "Nëse jeni duke përdorur një çelës të pakomituar DiSEqC, futni numrin e portës që kërkohet për të hyrë në LNB të përdorur për këtë satelit."
 
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
+"Nëse e shihni këtë, diçka nuk shkon me\n"
+"lidhjen tuaj scart. Shtypni OK për t'u kthyer."
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -8991,114 +9050,123 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
+"Nëse televizori juaj ka një përmirësim të ndriçimit ose kontrastit, çaktivizoni atë. Nëse ka diçka që quhet \"dinamike\", vendoseni në standard. Rregulloni nivelin e dritës së prapme në një vlerë që i përshtatet shijes tuaj. Ulni kontrastin në televizorin tuaj sa më shumë që të jetë e mundur.\n"
+"Më pas kthejeni cilësimin e ndriçimit sa më të ulët që të jetë e mundur, por sigurohuni që dy nuancat më të ulëta të grisë të qëndrojnë të dallueshme.\n"
+"Mos u kujdesni për nuancat e ndritshme tani. Ato do të vendosen në hapin tjetër.\n"
+"Nëse jeni të kënaqur me rezultatin, shtypni OK."
 
 msgid "Igbo"
-msgstr ""
+msgstr "Igbo"
 
 msgid "Ignore DVB-C namespace sub network"
-msgstr ""
+msgstr "Injoro nënrrjetin e hapësirës së emrave DVB-C"
 
 msgid "Ignore DVB-S namespace sub network"
-msgstr ""
+msgstr "Injoro nënrrjetin e hapësirës së emrave DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
-msgstr ""
+msgstr "Injoro nënrrjetin e hapësirës së emrave DVB-T"
 
 msgid "Ignore unexpectedly wakeup and stay in standby"
-msgstr ""
+msgstr "Injoroni zgjimin e papritur dhe qëndroni në gatishmëri"
 
 msgid "Image Backup"
-msgstr ""
+msgstr "Rezervimi i imazhit"
 
 msgid "Image Flash Actions"
-msgstr ""
+msgstr "Veprimet e Flash-it të Imazhit"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr ""
+msgstr "Imazhi i krijuar në: %s/%s-%s-%s-backup-%s_%s.zip"
 
 msgid "Image creation failed - "
-msgstr ""
+msgstr "Krijimi i imazhit dështoi -"
 
 msgid "ImageWizard"
-msgstr ""
+msgstr "ImageWizard"
 
 msgid "Immediate shutdown"
-msgstr ""
+msgstr "Mbyllje e menjëhershme"
 
 msgid "Immediately restart selected devices."
-msgstr ""
+msgstr "Rinisni menjëherë pajisjet e zgjedhura."
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr ""
+msgstr "Përveç kontrollit në fillimin e ngjarjes, mund të përdoret një kontroll i përsëritur, në mënyrë që kushtet 'kufiri i tamponit në orë' ose 'kontrolloni hapësirën e lirë' të zbulohen më herët."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
-msgstr ""
+msgstr "Në modalitetin ekspert, konfiguroni se cilët sintonizues do të preferohen për regjistrime, kur disponohen më shumë se një sintonizues."
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
-msgstr ""
+msgstr "Në shumicën e rasteve, kjo duhet të vendoset në Nr. Aktivizoni vetëm nëse keni një nevojë shumë specifike."
 
 msgid ""
 "In order to allow you to access all the features of the IceTV smart recording service, we need to gather some basic information.\n"
 "\n"
 "If you already have an IceTV subscription or trial, please select 'Existing or trial customer', if not, then select 'New customer'."
 msgstr ""
+"Për t'ju lejuar të përdorni të gjitha veçoritë e shërbimit të regjistrimit inteligjent IceTV, duhet të mbledhim disa informacione bazë.\n"
+"\n"
+"Nëse tashmë keni një abonim ose provë në IceTV, ju lutemi zgjidhni 'Klient ekzistues ose provë', nëse jo, atëherë zgjidhni 'Klient i ri'."
 
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
 "\n"
 msgstr ""
+"Për të regjistruar një kohëmatës, një sintonizues u lirua me sukses:\n"
+"\n"
 
 msgid "In progress"
-msgstr ""
+msgstr "Në vazhdim"
 
 msgid "In the Standby Record on the LCD Display"
-msgstr ""
+msgstr "Në Regjistrin e gatishmërisë në ekranin LCD"
 
 msgid "Inaccessible"
-msgstr ""
+msgstr "E paarritshme"
 
 msgid "Inactive"
-msgstr ""
+msgstr "Joaktiv"
 
 msgid "Inadyn"
-msgstr ""
+msgstr "Inadyn"
 
 msgid "Inadyn Actions"
-msgstr ""
+msgstr "Veprimet Inadyn"
 
 msgid "Inadyn Log"
-msgstr ""
+msgstr "Inadyn Log"
 
 msgid "Inadyn Setting Actions"
-msgstr ""
+msgstr "Veprimet e vendosjes së inadyn"
 
 msgid "Inadyn Settings"
-msgstr ""
+msgstr "Inadyn Cilësimet"
 
 msgid "Include AIT in http streams"
-msgstr ""
+msgstr "Përfshi AIT në rrjedhat http"
 
 msgid "Include AIT in recordings"
-msgstr ""
+msgstr "Përfshi AIT në regjistrime"
 
 msgid "Include CI assignment"
-msgstr ""
+msgstr "Përfshi detyrën CI"
 
 msgid "Include ECM in http streams"
-msgstr ""
+msgstr "Përfshi ECM në transmetimet http"
 
 msgid "Include EIT in http streams"
-msgstr ""
+msgstr "Përfshi EIT në rrjedhat http"
 
 msgid "Include SDT, BAT in http streams"
-msgstr ""
+msgstr "Përfshi SDT, BAT në transmetimet http"
 
 msgid "Include action map data"
-msgstr ""
+msgstr "Përfshi të dhënat e hartës së veprimit"
 
 msgid "Include keyboard data"
-msgstr ""
+msgstr "Përfshini të dhënat e tastierës"
 
 msgid "Include opkg output data"
 msgstr ""
@@ -10998,9 +11066,6 @@ msgstr ""
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr ""
-
 msgid "Nameserver"
 msgstr ""
 
@@ -11195,6 +11260,12 @@ msgid "New program info"
 msgstr ""
 
 msgid "New version:"
+msgstr ""
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
 msgstr ""
 
 msgid "News"
@@ -12011,10 +12082,12 @@ msgstr ""
 msgid "PIN code needed"
 msgstr ""
 
-msgid "PIP long"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
 msgstr ""
 
-msgid "PiP with OSD"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP long"
 msgstr ""
 
 msgid "PLP ID"
@@ -12172,9 +12245,6 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
-msgid "Password:"
-msgstr ""
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -12239,6 +12309,9 @@ msgid "PiP"
 msgstr ""
 
 msgid "PiP Actions"
+msgstr ""
+
+msgid "PiP with OSD"
 msgstr ""
 
 msgid "PiP-Zap"
@@ -12474,6 +12547,9 @@ msgid "Please select a default EPG type..."
 msgstr ""
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -12741,9 +12817,6 @@ msgid "Port C"
 msgstr ""
 
 msgid "Port D"
-msgstr ""
-
-msgid "Port:"
 msgstr ""
 
 msgid "Portugal"
@@ -13774,6 +13847,9 @@ msgid "Remove selected folder from bookmarks"
 msgstr ""
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr ""
+
+msgid "Remove the Line from CCcam.cfg"
 msgstr ""
 
 msgid "Remove timer"
@@ -15010,6 +15086,9 @@ msgstr ""
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -15903,6 +15982,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr ""
+
 msgid "Show PiP"
 msgstr ""
 
@@ -15910,9 +15992,6 @@ msgid "Show PiP in MiniTV"
 msgstr ""
 
 msgid "Show PiP in the Front Display"
-msgstr ""
-
-msgid "Show PVR status in MoviePlayer infobar"
 msgstr ""
 
 msgid "Show RFmod setup..."
@@ -16607,7 +16686,7 @@ msgstr "Vonesa e aktivizimit të kohëmatësit të gjumit"
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
 msgstr[0] "Kohëmatësi i gjumit: Mbetet %d minutë."
-msgstr[1] "Kohëmatësi i gjumit: Mbetet %d minutë."
+msgstr[1] "Kohëmatësi i gjumit: Mbetet %d minuta."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
@@ -19594,9 +19673,6 @@ msgstr ""
 msgid "Username (httpuser)"
 msgstr ""
 
-msgid "Username:"
-msgstr ""
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -19696,7 +19772,7 @@ msgid "Very short filenames"
 msgstr "Emrat shumë të shkurtër të file"
 
 msgid "Very slow"
-msgstr "Shumë i ngadalshëm."
+msgstr "Shumë ngadalë"
 
 msgid "Very very short filenames - Warning"
 msgstr "Emri shumë i shkurtër i file - Paralajmërim"
@@ -21348,46 +21424,46 @@ msgid "config menu"
 msgstr ""
 
 msgid "confirmed"
-msgstr ""
+msgstr "konfirmuar"
 
 msgid "connected"
-msgstr ""
+msgstr "lidhur"
 
 msgid "controlled by HDMI"
-msgstr ""
+msgstr "kontrollohet nga HDMI"
 
 msgid "convert to AC3"
-msgstr ""
+msgstr "konvertohet në AC3"
 
 msgid "convert to DTS"
-msgstr ""
+msgstr "konvertohet në DTS"
 
 msgid "convert to multi-channel PCM"
-msgstr ""
+msgstr "konvertohet në PCM me shumë kanale"
 
 msgid "cooking"
-msgstr ""
+msgstr "Gatim"
 
 msgid "copy"
-msgstr ""
+msgstr "kopje"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "kopje në buqeta"
 
 msgid "create symlink ..."
-msgstr ""
+msgstr "krijoni lidhjen simbolike ..."
 
 msgid "current affairs (general)"
-msgstr ""
+msgstr "punët aktuale (të përgjithshme)"
 
 msgid "daily"
-msgstr ""
+msgstr "Ditore"
 
 msgid "day"
-msgstr ""
+msgstr "ditë"
 
 msgid "decrease uphop by 1"
-msgstr ""
+msgstr "zvogëloni lart me 1"
 
 msgid "default"
 msgstr ""
@@ -22436,175 +22512,178 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
 msgid "top"
-msgstr ""
+msgstr "sipër"
 
 msgid "tourism/travel"
-msgstr ""
+msgstr "turizëm/udhëtim"
 
 msgid "traditional (fast)"
-msgstr ""
+msgstr "tradicionale (e shpejte)"
 
 msgid "traditional (fast), retune"
-msgstr ""
+msgstr "tradicional (i shpejtë), ribashkim"
 
 msgid "turbo"
-msgstr ""
+msgstr "turbo"
 
 msgid "uShare"
-msgstr ""
+msgstr "uShare"
 
 msgid "uShare Actions"
-msgstr ""
+msgstr "uShare Veprimet"
 
 msgid "uShare Log"
-msgstr ""
+msgstr "Log uShare"
 
 msgid "uShare Name"
-msgstr ""
+msgstr "Emri uShare"
 
 msgid "uShare Port"
-msgstr ""
+msgstr "uShare Port"
 
 msgid "uShare Selection Actions"
-msgstr ""
+msgstr "Veprimet e përzgjedhjes së uShare"
 
 msgid "uShare Setting Actions"
-msgstr ""
+msgstr "uShare duke vendosur veprime"
 
 msgid "uShare Settings"
-msgstr ""
+msgstr "Cilësimet e uShare"
 
 msgid "unavailable"
-msgstr ""
+msgstr "i padisponueshëm"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "e pakonfirmuar"
 
 msgid "unknown"
-msgstr ""
+msgstr "i panjohur"
 
 msgid "unknown error"
-msgstr ""
+msgstr "gabim i panjohur"
 
 msgid "unpack Rar Files"
-msgstr ""
+msgstr "shpaketoni skedarët Rar"
 
 msgid "unpack archives"
-msgstr ""
+msgstr "shpaketoj arkivat"
 
 msgid "unpack gzip Files"
-msgstr ""
+msgstr "shpaketoni skedarët gzip"
 
 msgid "unpack tar/compressed tar Files"
-msgstr ""
+msgstr "shpaketoni skedarët tar/të ngjeshur tar"
 
 msgid "unpack zip Files"
-msgstr ""
+msgstr "shpaketoni skedarët gzip"
 
 msgid "unpublished"
-msgstr ""
+msgstr "e pabotuar"
 
 msgid "untestable"
-msgstr ""
+msgstr "e paprovueshme"
 
 msgid "until standby/restart"
-msgstr ""
+msgstr "deri në gatishmëri/rinisje"
 
 msgid "update"
-msgstr ""
+msgstr "rifresko"
 
 msgid "updates available."
-msgstr ""
+msgstr "përditësime të disponueshme."
 
 msgid "upper line"
-msgstr ""
+msgstr "vija e sipërme"
 
 msgid "use best / controlled by HDMI"
-msgstr ""
+msgstr "përdorni më së miri / kontrolluar nga HDMI"
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr ""
+msgstr "përdorni tension të rritur '14/18V' nëse ka probleme gjatë ndërrimit të lnb"
 
 msgid "use_hdmi_cacenter"
-msgstr ""
+msgstr "use_hdmi_cacenter"
 
 msgid "user defined"
-msgstr ""
+msgstr "Perdorues i percaktuar"
 
 msgid "userdefined"
-msgstr ""
+msgstr "Perdorues i percaktuar"
 
 msgid "using:"
-msgstr ""
+msgstr "duke përdorur:"
 
 msgid "v"
-msgstr ""
+msgstr "v"
 
 msgid "variety show"
-msgstr ""
+msgstr "shfaqe variete"
 
 msgid "view extensions..."
-msgstr ""
+msgstr "shikoni shtesat..."
 
 msgid "violet"
-msgstr ""
+msgstr "vjollce"
 
 msgid "wait for mmi..."
-msgstr ""
+msgstr "Prit për mmi..."
 
 msgid "wakeup"
-msgstr ""
+msgstr "zgjim"
 
 msgid "wakeup to standby"
-msgstr ""
+msgstr "zgjimi në gatishmëri"
 
 msgid "water sport"
-msgstr ""
+msgstr "sport ujor"
 
 msgid "weekly"
-msgstr ""
+msgstr "Javore"
 
 msgid "west"
-msgstr ""
+msgstr "perëndim"
 
 msgid "when asking question about this log"
-msgstr ""
+msgstr "kur bëni pyetje në lidhje me këtë regjistër"
 
 msgid ""
 "when asking question about this log\n"
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
+"kur bëni pyetje në lidhje me këtë regjistër\n"
+"\n"
+"Një kopje i është dërguar vetes."
 
 msgid "white"
-msgstr ""
+msgstr "të bardhë"
 
 msgid "wide"
-msgstr ""
+msgstr "i gjerë"
 
 msgid "width"
-msgstr ""
+msgstr "gjerësia"
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
+msgstr "do të duhen rreth 1-15 minuta për këtë sistem\n"
 
 msgid "winter sport"
-msgstr ""
+msgstr "sport dimëror"
 
 msgid "wireless network interface"
-msgstr ""
+msgstr "ndërfaqja e rrjetit pa tel"
 
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "me gabim %d"
+msgstr[1] "me gabime %d"
 
 msgid "with errors"
-msgstr ""
+msgstr "me gabime"
 
 msgid "with exit button"
-msgstr ""
+msgstr "me butonin e daljes"
 
 msgid "with left/right buttons"
 msgstr "me butona majtas/djathtas"
@@ -22639,6 +22718,15 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "CCcam Info Setup"
+#~ msgstr "Konfigurimi i informacionit të CCcam"
+
+#~ msgid "Debug Log"
+#~ msgstr "Regjistri i korrigjimit"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
 
 #, python-format
 #~ msgid "%s information"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2367,6 +2367,12 @@ msgstr "Dosyayı oynatma listesine ekle"
 msgid "Add files to playlist"
 msgstr "Dosyaları oynatma listesine ekle"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "Yeni etiket ekle"
 
@@ -3694,6 +3700,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam Bilgileri"
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam İstemci Bilgisi"
 
@@ -3721,8 +3733,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCam Kurulum Bilgisi"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Kurulum Bilgisi"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Sağlayıcı Bilgisi"
@@ -3738,6 +3759,9 @@ msgstr "CCcam Paylaşım Bilgisi"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam Paylaşımlar Bilgisi"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Mainmenu"
@@ -5830,9 +5854,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6710,6 +6731,9 @@ msgstr "Belgesel"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital downmix şimdi"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominika"
 
@@ -7015,17 +7039,41 @@ msgstr "Konumu düzenle satırın sonudur"
 msgid "Edit settings"
 msgstr "Ayarları düzenle"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
+msgstr ""
+
+msgid "Edit the NewCamd DES Key."
 msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr ""
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 #
 msgid "Edit the upgrade source address."
 msgstr "Yükseltme kaynağı adresini düzenleyin."
+
+msgid "Edit the username."
+msgstr ""
 
 #
 msgid "Education"
@@ -9248,12 +9296,12 @@ msgstr "INFO düğmesi modu"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 #
 msgid "IP address"
 msgstr "IP Adresi"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
@@ -11627,9 +11675,6 @@ msgstr "İsim ters"
 msgid "Name server %d"
 msgstr "Ad sunucusu %d"
 
-msgid "Name:"
-msgstr "Ad:"
-
 #
 msgid "Nameserver"
 msgstr "Ad sunucu (DNS)"
@@ -11836,6 +11881,12 @@ msgstr "Yeni program bilgisi"
 #
 msgid "New version:"
 msgstr "Yeni sürüm:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Haber"
@@ -12733,11 +12784,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Şifre gerekli"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "Pip uzun"
-
-msgid "PiP with OSD"
-msgstr "OSD'li PIP"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12903,9 +12956,6 @@ msgstr "Şifre Kurulumu"
 msgid "Password changed."
 msgstr "Sifre değişti."
 
-msgid "Password:"
-msgstr "Parola:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Kaydedilecek yol mevcut değil: '/tmp/'"
 
@@ -12973,6 +13023,9 @@ msgstr "PiP"
 
 msgid "PiP Actions"
 msgstr "PiP Eylemleri"
+
+msgid "PiP with OSD"
+msgstr "OSD'li PIP"
 
 msgid "PiP-Zap"
 msgstr "PiP-Zap"
@@ -13248,6 +13301,9 @@ msgid "Please select a default EPG type..."
 msgstr "Varsayılan EPG tipini seçin..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 #
@@ -13592,9 +13648,6 @@ msgstr "Kapı C"
 #
 msgid "Port D"
 msgstr "Kapı D"
-
-msgid "Port:"
-msgstr "Kapı:"
 
 #
 msgid "Portugal"
@@ -14702,6 +14755,9 @@ msgstr "Seçilen klasörü yer işaretlerinden kaldır"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Harici altyazılardan etkilenen işitme için metinleri (enstrümantal müzik veya çevresel sesler, örn., Kapı zili çaldığında veya silah sesi duyulduğunda) çıkarın."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 #
 msgid "Remove timer"
@@ -16032,6 +16088,9 @@ msgstr "Kaydırılan karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seçin"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16979,6 +17038,9 @@ msgstr "OScam Bilgilerini Göster"
 msgid "Show OScam in extensions"
 msgstr "OScam'i uzantılarda göster"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "FilmPlayer bilgi çubuğunda PVR durumunu göster"
+
 msgid "Show PiP"
 msgstr "PIP göster"
 
@@ -16988,9 +17050,6 @@ msgstr "MiniTV'de PIP Göster"
 
 msgid "Show PiP in the Front Display"
 msgstr "Ön Ekranda PIP'yi Göster"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "FilmPlayer bilgi çubuğunda PVR durumunu göster"
 
 msgid "Show RFmod setup..."
 msgstr "RFmod kurulumu göster ..."
@@ -20941,9 +21000,6 @@ msgstr "Kullanıcı adı"
 msgid "Username (httpuser)"
 msgstr "Kullanıcı Adı (httpuser)"
 
-msgid "Username:"
-msgstr "Kullanıcı Adı:"
-
 msgid "Using automatic address"
 msgstr "Otomatik adresi kullanma"
 
@@ -24250,6 +24306,24 @@ msgstr "zaplama"
 msgid "®"
 msgstr ""
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Kurulum Bilgisi"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Ad:"
+
+#~ msgid "Password:"
+#~ msgstr "Parola:"
+
+#~ msgid "Port:"
+#~ msgstr "Kapı:"
+
+#~ msgid "Username:"
+#~ msgstr "Kullanıcı Adı:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s bilgi"
@@ -24317,9 +24391,6 @@ msgstr ""
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Hata %d: '%s' günlük dosyası açılamadı. (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"
