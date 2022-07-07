@@ -247,7 +247,7 @@ def getConfigNameAndContent(fileName):
 
 
 config.cccamlineedit = ConfigSubsection()
-config.cccamlineedit.protocol = NoSave(ConfigSelection(default="C:", choices=[("C:", _("CCcam")), ("N:", _("Newcamd"))]))
+config.cccamlineedit.protocol = NoSave(ConfigSelection(default="C:", choices=[("C:", _("CCcam")), ("N:", _("NewCamd"))]))
 config.cccamlineedit.domain = NoSave(ConfigText(fixed_size=False))
 config.cccamlineedit.port = NoSave(ConfigNumber())
 config.cccamlineedit.username = NoSave(ConfigText(fixed_size=False))
@@ -627,7 +627,7 @@ class CCcamInfoMain(Screen):
 				lineDescription = "%s %s %s" % (lineElements[0],lineElements[1],lineElements[2])
 				cfgLines.append((lineDescription, line))
 			cfgLines.append((_("Add new CCcam line"), "newC"))
-			cfgLines.append((_("Add new Newcamd line"), "newN"))
+			cfgLines.append((_("Add new NewCamd line"), "newN"))
 			self.session.openWithCallback(self.showCfgSelectionCallback, MessageBox, _("Please select a line to edit or select add to create new line."), list=cfgLines, windowTitle=_("CCcam - Lines"))
 		else:
 			self.workingFinished()

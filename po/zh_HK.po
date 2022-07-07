@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2372,6 +2372,12 @@ msgstr ""
 msgid "Add files to playlist"
 msgstr ""
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr ""
 
@@ -3730,6 +3736,12 @@ msgstr ""
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 #, fuzzy
 msgid "CCcam Client Info"
 msgstr "CCcam資訊"
@@ -3756,9 +3768,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam資訊"
 
-#, fuzzy
-msgid "CCcam Info Setup"
-msgstr "CCcam資訊"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 #, fuzzy
 msgid "CCcam Provider Info"
@@ -3779,6 +3799,9 @@ msgstr "CCcam資訊"
 #, fuzzy
 msgid "CCcam Shares Info"
 msgstr "CCcam資訊"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 #, fuzzy
 msgid "CCcamInfo Mainmenu"
@@ -5861,9 +5884,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6719,6 +6739,9 @@ msgstr ""
 msgid "Dolby Digital downmix is now"
 msgstr ""
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr ""
 
@@ -7030,16 +7053,40 @@ msgstr ""
 msgid "Edit settings"
 msgstr "編輯設定"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "修改Dreambox的DNS配置."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "修改Dreambox的網路配置."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "編輯升級源地址。"
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "教育"
@@ -9276,11 +9323,12 @@ msgstr "創作模式"
 msgid "INS"
 msgstr ""
 
+#, fuzzy
+msgid "IP"
+msgstr "IP:"
+
 msgid "IP address"
 msgstr ""
-
-msgid "IP:"
-msgstr "IP:"
 
 #, fuzzy
 msgid "IPK Installer"
@@ -11689,10 +11737,6 @@ msgstr "DNS伺服器"
 msgid "Name server %d"
 msgstr ""
 
-#, fuzzy
-msgid "Name:"
-msgstr "名稱"
-
 msgid "Nameserver"
 msgstr "DNS伺服器"
 
@@ -11907,6 +11951,12 @@ msgstr "硬碟資訊..."
 
 msgid "New version:"
 msgstr "新版本:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 #, fuzzy
 msgid "News"
@@ -12814,10 +12864,12 @@ msgstr "PIDs"
 msgid "PIN code needed"
 msgstr ""
 
-msgid "PIP long"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
 msgstr ""
 
-msgid "PiP with OSD"
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP long"
 msgstr ""
 
 msgid "PLP ID"
@@ -12992,9 +13044,6 @@ msgstr "密碼"
 msgid "Password changed."
 msgstr ""
 
-msgid "Password:"
-msgstr "密碼:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13065,6 +13114,9 @@ msgstr "IP:"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "快速按鍵"
+
+msgid "PiP with OSD"
+msgstr ""
 
 msgid "PiP-Zap"
 msgstr ""
@@ -13329,6 +13381,9 @@ msgid "Please select a default EPG type..."
 msgstr "請選擇要刪除的播放列表..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -13629,9 +13684,6 @@ msgstr "埠 C"
 
 msgid "Port D"
 msgstr "埠 D"
-
-msgid "Port:"
-msgstr "埠:"
 
 #, fuzzy
 msgid "Portugal"
@@ -14764,6 +14816,9 @@ msgid "Remove selected folder from bookmarks"
 msgstr "移除選定的自動計時器"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr ""
+
+msgid "Remove the Line from CCcam.cfg"
 msgstr ""
 
 msgid "Remove timer"
@@ -16100,6 +16155,9 @@ msgstr "定時休眠:"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -17110,6 +17168,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr ""
+
 #, fuzzy
 msgid "Show PiP"
 msgstr "顯示資訊"
@@ -17120,9 +17181,6 @@ msgstr ""
 #, fuzzy
 msgid "Show PiP in the Front Display"
 msgstr "廣播重播模式下..."
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr ""
 
 msgid "Show RFmod setup..."
 msgstr ""
@@ -21074,9 +21132,6 @@ msgstr "用戶名"
 msgid "Username (httpuser)"
 msgstr ""
 
-msgid "Username:"
-msgstr "用戶名:"
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -24245,8 +24300,24 @@ msgid "®"
 msgstr ""
 
 #, fuzzy
-#~ msgid "IP"
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam資訊"
+
+#~ msgid "IP:"
 #~ msgstr "IP:"
+
+#, fuzzy
+#~ msgid "Name:"
+#~ msgstr "名稱"
+
+#~ msgid "Password:"
+#~ msgstr "密碼:"
+
+#~ msgid "Port:"
+#~ msgstr "埠:"
+
+#~ msgid "Username:"
+#~ msgstr "用戶名:"
 
 #, fuzzy
 #~ msgid "Software Manager Setup"

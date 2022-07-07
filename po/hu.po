@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2325,6 +2325,12 @@ msgstr "Fájl hozzáadása a lejátszási listához"
 msgid "Add files to playlist"
 msgstr "Fájlok hozzáadása a lejátszási listához"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "Új címke hozzáadása "
 
@@ -3589,6 +3595,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam kliens Információ"
 
@@ -3612,8 +3624,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam Info Konfiguráció"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Info Beállítás"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Provider Info"
@@ -3629,6 +3650,9 @@ msgstr "CCcam Share Info"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam Shares Info"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Főmenü"
@@ -5622,9 +5646,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6439,6 +6460,9 @@ msgstr "Dokumentumfilm"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital lekeverés most"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominikai Közösség"
 
@@ -6733,16 +6757,40 @@ msgstr "A pozíció szerkesztése a sor végén"
 msgid "Edit settings"
 msgstr "Beállítások módosítása"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Szerkessze a(z) %s %s névszerver konfigurációját."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Szerkessze a(z) %s %s hálózati konfigurációját."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "A szoftver-frissítési forrás címének módosítása."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Oktatás"
@@ -8867,11 +8915,11 @@ msgstr "INFO gomb mód"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP cím"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
@@ -11157,9 +11205,6 @@ msgstr "Név fordított"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "Név:"
-
 msgid "Nameserver"
 msgstr "Névszerver"
 
@@ -11358,6 +11403,12 @@ msgstr "Új programinformáció"
 
 msgid "New version:"
 msgstr "Új verzió:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Hírek"
@@ -12212,11 +12263,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "PIN-kód szükséges"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "Kép-a-Képben hosszan"
-
-msgid "PiP with OSD"
-msgstr "Kép-a-Képben OSD-vel"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12374,9 +12427,6 @@ msgstr "Jelszó beállítása"
 msgid "Password changed."
 msgstr "Jelszó módosítva."
 
-msgid "Password:"
-msgstr "Jelszó:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "A mentéshez nem létező elérési út: '/tmp/'"
 
@@ -12443,6 +12493,9 @@ msgstr "Kép-a-Képben"
 #, fuzzy
 msgid "PiP Actions"
 msgstr "Gyors műveletek"
+
+msgid "PiP with OSD"
+msgstr "Kép-a-Képben OSD-vel"
 
 msgid "PiP-Zap"
 msgstr "Kép-a-Képben Ugrás"
@@ -12684,6 +12737,9 @@ msgid "Please select a default EPG type..."
 msgstr "Válasszon egy alapértelmezett EPG típust..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -12989,9 +13045,6 @@ msgstr "C port"
 
 msgid "Port D"
 msgstr "D port"
-
-msgid "Port:"
-msgstr "Port:"
 
 msgid "Portugal"
 msgstr "Portugália"
@@ -14036,6 +14089,9 @@ msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Távolítsa el a halláskárosult szövegeket a külső feliratokból (hangszeres zenét vagy környezeti hangokat, például amikor csengő gyűrűt vagy fegyverlövést hallat)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Időzítő eltávolítása"
@@ -15289,6 +15345,9 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletét"
 msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16216,6 +16275,9 @@ msgstr ""
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "A PVR állapotának megjelenítése a MoviePlayer Információs sávjában"
+
 msgid "Show PiP"
 msgstr "Kép-a-Képben megjelenítése"
 
@@ -16224,9 +16286,6 @@ msgstr "Kép-a-Képben megjelenítése a MiniTV-ben"
 
 msgid "Show PiP in the Front Display"
 msgstr "A Kép-a-Képben megjelenítésé az előlapi kijelzőn"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "A PVR állapotának megjelenítése a MoviePlayer Információs sávjában"
 
 msgid "Show RFmod setup..."
 msgstr "RFmode beállítás megjelenítése..."
@@ -19995,9 +20054,6 @@ msgstr "Felhasználónév"
 msgid "Username (httpuser)"
 msgstr "Felhasználónév (httpuser)"
 
-msgid "Username:"
-msgstr "Felhasználói név:"
-
 msgid "Using automatic address"
 msgstr ""
 
@@ -23068,6 +23124,24 @@ msgstr "ugrás folyamatban"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Info Beállítás"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Név:"
+
+#~ msgid "Password:"
+#~ msgstr "Jelszó:"
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Username:"
+#~ msgstr "Felhasználói név:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s információ"
@@ -23078,9 +23152,6 @@ msgstr "®"
 #, python-format
 #~ msgid "An error occurred, error code %d, please try again later."
 #~ msgstr "Hiba történt, hibakód %d, kérem, próbálja később."
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #~ msgid "MAC"
 #~ msgstr "MAC"

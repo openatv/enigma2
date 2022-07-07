@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-07-03 07:30+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"PO-Revision-Date: 2022-07-05 23:51+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -2287,6 +2287,12 @@ msgstr "Lisää tiedosto soittolistalle"
 msgid "Add files to playlist"
 msgstr "Lisää tiedostot soittolistalle"
 
+msgid "Add new CCcam line"
+msgstr "Lisää uusi CCcam rivi"
+
+msgid "Add new NewCamd line"
+msgstr "Lisää uusi Newcamd rivi"
+
 msgid "Add new tag"
 msgstr "Lisää uusi tunniste"
 
@@ -3544,6 +3550,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam tiedot"
 
+msgid "CCcam"
+msgstr "CCcam"
+
+msgid "CCcam - Lines"
+msgstr "CCcam - Rivit"
+
 msgid "CCcam Client Info"
 msgstr "CCcam asiakkaan tietoja"
 
@@ -3571,8 +3583,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam Info -asetukset"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Info -asetukset"
+msgid "CCcam Information"
+msgstr "CCcam tiedot"
+
+msgid "CCcam Line Edit Actions"
+msgstr "CCcam rivien muokkaus toiminnot"
+
+msgid "CCcam Line Editor"
+msgstr "CCcam rivi editori"
+
+msgid "CCcam Profile Settings"
+msgstr "CCcam profiili asetukset"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam palveluntarjoajan tietoja"
@@ -3588,6 +3609,9 @@ msgstr "CCcam jaon tietoja"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam jakojen tietoja"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr "CCcam.cfg rivi editori"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "Oscam Päävalikko"
@@ -4478,10 +4502,10 @@ msgid "Commit Information Actions"
 msgstr "Yleiset tiedot Toiminnot"
 
 msgid "Commit Log"
-msgstr ""
+msgstr "Yleiset logit"
 
 msgid "Commit Log Information"
-msgstr ""
+msgstr "Yleiset lokit tiedot"
 
 msgid "Commit Logs"
 msgstr "Yleiset logit"
@@ -5571,10 +5595,6 @@ msgstr "Virheenjäljitys %d/%d"
 msgid "Debug Information"
 msgstr "Vianmääritys tiedot"
 
-msgid "Debug Log"
-msgstr "Vianmääritys loki"
-
-#, fuzzy
 msgid "Debug Log Information"
 msgstr "Vianmäärityslokin tiedot"
 
@@ -6389,6 +6409,9 @@ msgstr "Dokumenttit"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital / DTS muunto stereoksi on nyt"
 
+msgid "Domain"
+msgstr "Verkkotunnus"
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -6681,16 +6704,40 @@ msgstr "Muokkaa sijaintia on rivin loppussa"
 msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr "Muokkaa CCcam/NewCamd palvelimen isäntänimeä."
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr "Muokkaa CCcam/NewCamd palvelimen porttia."
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Muokkaan %s %s:n nimipalvelimen asetuksia."
+
+msgid "Edit the NewCamd DES Key."
+msgstr "Muokkaa NewCamd DES Avainta."
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Muokkaa %s %s:n lähiverkon asetuksia."
 
+msgid "Edit the password."
+msgstr "Muokkaa salasanaa."
+
+msgid "Edit the profile name."
+msgstr "Muokkaa profiili nimeä."
+
+msgid "Edit the remote CCCam port."
+msgstr "Muokkaa CCCam porttia."
+
+msgid "Edit the remote IP address."
+msgstr "Muokkaa etä IP osoitetta."
+
 msgid "Edit the upgrade source address."
 msgstr "Muokkaa päivityksen lähdeosoitetta."
+
+msgid "Edit the username."
+msgstr "Muokkaa käyttäjänimeä."
 
 msgid "Education"
 msgstr "Koulutus"
@@ -8797,11 +8844,11 @@ msgstr "INFO näppäimen toiminto"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP osoite"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK Asennus"
@@ -11032,9 +11079,6 @@ msgstr "Nimi laskevassa järjestyksessä"
 msgid "Name server %d"
 msgstr "Nimipalvelin %d"
 
-msgid "Name:"
-msgstr "Nimi:"
-
 msgid "Nameserver"
 msgstr "Nimipalvelin"
 
@@ -11230,6 +11274,12 @@ msgstr "Uuden ohjelman tiedot"
 
 msgid "New version:"
 msgstr "Uusi versio:"
+
+msgid "NewCamd DES Key"
+msgstr "NewCamd DES Avain"
+
+msgid "NewCamd"
+msgstr "NewCamd"
 
 msgid "News"
 msgstr "Uutiset"
@@ -12077,11 +12127,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "PIN koodi vaaditaan"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr "PIP"
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP pitkä"
-
-msgid "PiP with OSD"
-msgstr "PiP ja kuvaruutu"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12238,9 +12290,6 @@ msgstr "Salasana asetukset"
 msgid "Password changed."
 msgstr "Salasana vaihdettu."
 
-msgid "Password:"
-msgstr "Salasana:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Polkua ei ole olemassa /tmp/"
 
@@ -12306,6 +12355,9 @@ msgstr "PiP"
 
 msgid "PiP Actions"
 msgstr "PiP Toiminnot"
+
+msgid "PiP with OSD"
+msgstr "PiP ja kuvaruutu"
 
 msgid "PiP-Zap"
 msgstr "PiP Kanavanvaihto"
@@ -12547,6 +12599,9 @@ msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Valitse jakelija, jolta haluat päivittää ohjelmiston:"
+
+msgid "Please select a line to edit or select add to create new line."
+msgstr "Valitse muokattava rivi tai luo uusi rivi valitsemalla Lisää."
 
 msgid "Please select a playlist to delete..."
 msgstr "Valitse poistettava toistolista."
@@ -12855,9 +12910,6 @@ msgstr "Portti C"
 msgid "Port D"
 msgstr "Portti D"
 
-msgid "Port:"
-msgstr "Portti:"
-
 msgid "Portugal"
 msgstr "Portugali"
 
@@ -13088,9 +13140,8 @@ msgstr "Esikatsele valikkoa"
 msgid "Previous"
 msgstr "Edellinen"
 
-#, fuzzy
 msgid "Previous Image"
-msgstr "Edellinen kuva"
+msgstr "Edellinen Ohjelmisto"
 
 msgid "Previous Log"
 msgstr "Edellinen loki"
@@ -13558,7 +13609,7 @@ msgid "Receiver Image Actions"
 msgstr "Vastaanottimen kuvatoiminnot"
 
 msgid "Receiver Images"
-msgstr ""
+msgstr "Vastaanottimen Ohjelmistot"
 
 msgid "Receiver Information"
 msgstr "Vastaanottimen tiedot"
@@ -13568,7 +13619,7 @@ msgstr "Vastaanottimen tietotoiminnot"
 
 #, python-format
 msgid "Receiver information for %s %s"
-msgstr ""
+msgstr "Vastaanottimen tiedot %s %s"
 
 msgid "Receiver name"
 msgstr "Vastaanottimen malli"
@@ -13897,6 +13948,9 @@ msgstr "Poista valittu kansio kirjanmerkeistä"
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Kyllä poistaa kuulovammaisille tarkoitetut tekstit ulkoisista tekstityksistä (Esimerkkisi. Äänien kuvaukset)."
 
+msgid "Remove the Line from CCcam.cfg"
+msgstr "Poista rivi CCcam.cfg-tiedostosta"
+
 msgid "Remove timer"
 msgstr "Poista ajastus"
 
@@ -14125,7 +14179,7 @@ msgid "Restricted 18+"
 msgstr "Rajoitettu 18+"
 
 msgid "Results of the delete all logs:"
-msgstr ""
+msgstr "Poistettujen lokien tulokset:"
 
 msgid "Resume from last position"
 msgstr "Jatka viimeksi katsotusta kohdasta"
@@ -14143,11 +14197,11 @@ msgstr "Haetaan %s lokeja, odota..."
 
 #, python-format
 msgid "Retrieving '%s' information, please wait..."
-msgstr ""
+msgstr "Haetaan %s tietoja, odota..."
 
 #, python-format
 msgid "Retrieving '%s' log, please wait..."
-msgstr ""
+msgstr "Haetaan %s lokia, odota..."
 
 msgid "Retrieving boot slot information..."
 msgstr "Käynnistyspaikan tietojen hakeminen..."
@@ -14630,7 +14684,7 @@ msgid "Science & Tech"
 msgstr "Tiede & tekniikka"
 
 msgid "Scope"
-msgstr ""
+msgstr "Alue"
 
 msgid "Screenshot of LCD in /tmp"
 msgstr "Kuvankaappaus näytössä /tmp"
@@ -14900,7 +14954,7 @@ msgid "Select a cardserver from the available list."
 msgstr "Valitse korttipalvelin käytettävissä olevasta listasta."
 
 msgid "Select a debug log file to view:"
-msgstr ""
+msgstr "Valitse tarkasteltava vianmäärityslokitiedosto:"
 
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Valitse jakelija, josta ohjelmistot haetaan"
@@ -14915,7 +14969,7 @@ msgid "Select a path"
 msgstr "Valitse polku"
 
 msgid "Select a repository commit log to view:"
-msgstr ""
+msgstr "Valitse arkiston loki tarkasteltavaksi:"
 
 msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
@@ -15032,7 +15086,7 @@ msgid "Select sort method:"
 msgstr "Valitse lajittelutapa:"
 
 msgid "Select system information to view:"
-msgstr ""
+msgstr "Valitse tarkasteltavat järjestelmätiedot:"
 
 msgid "Select target folder"
 msgstr "Valitse kohdehakemisto"
@@ -15144,6 +15198,9 @@ msgstr "Käytä siirtymää seuraaville merkeille"
 
 msgid "Select the shifted character set for the next character only"
 msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
+
+msgid "Select the softcam protocol."
+msgstr "Valitse softcam protokolla."
 
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr "Valitse Plugin selaimen valikko lajittelujärjestys.  Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
@@ -16063,6 +16120,9 @@ msgstr "Näytä OScam tiedot"
 msgid "Show OScam in extensions"
 msgstr "Näytä OScam laajennuksissa"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Näytä PVR tila toiston tietopalkissa"
+
 msgid "Show PiP"
 msgstr "Näytä PiP"
 
@@ -16071,9 +16131,6 @@ msgstr "Näytä PIP etunäytössä"
 
 msgid "Show PiP in the Front Display"
 msgstr "Näytä PiP etunäytössä"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Näytä PVR tila toiston tietopalkissa"
 
 msgid "Show RFmod setup..."
 msgstr "Näytä RFMod asetukset"
@@ -16158,7 +16215,7 @@ msgid "Show columns"
 msgstr "Näytä sarakkeet"
 
 msgid "Show commit log information"
-msgstr ""
+msgstr "Näytä loki tiedot"
 
 msgid "Show contents of ipk file"
 msgstr "Näytä sisältö ipk tiedosto"
@@ -16182,7 +16239,7 @@ msgid "Show crypto info in infobar"
 msgstr "Näytä salaustyyppi tietopalkissa"
 
 msgid "Show debug log information"
-msgstr ""
+msgstr "Näytä virheenkorjaus lokin tiedot"
 
 msgid "Show default after description"
 msgstr "Näytä laajennettu ohjelmakuvaus"
@@ -16230,7 +16287,7 @@ msgid "Show extensions..."
 msgstr "Näytä laajennukset..."
 
 msgid "Show extra spacing in Information"
-msgstr ""
+msgstr "Näytä ylimääräiset välilyönnit tiedoissa"
 
 msgid "Show favourites list"
 msgstr "Näytä Suosikkilista"
@@ -16317,10 +16374,10 @@ msgid "Show network setup menu..."
 msgstr "Näytä verkon asetusvalikko"
 
 msgid "Show next commit log"
-msgstr ""
+msgstr "Näytä seuraava loki"
 
 msgid "Show next debug log file"
-msgstr ""
+msgstr "Näytä seuraava virheenkorjausloki tiedosto"
 
 msgid "Show next event"
 msgstr "Näytä seuraava ohjelma"
@@ -16335,7 +16392,7 @@ msgid "Show next picture"
 msgstr "Näytä seuraava kanava"
 
 msgid "Show next system information screen"
-msgstr ""
+msgstr "Näytä seuraava järjestelmätietonäyttö"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Näytä tai piilota laajennettu kuvaus, (teemasta riippuva)."
@@ -16356,10 +16413,10 @@ msgid "Show preview of current mode (*)."
 msgstr "Näytä nykyisen tilan esikatselu (*)."
 
 msgid "Show previous commit log"
-msgstr ""
+msgstr "Näytä edellinen loki"
 
 msgid "Show previous debug log file"
-msgstr ""
+msgstr "Näytä edellinen virheenkorjausloki tiedosto"
 
 msgid "Show previous event"
 msgstr "Näytä edellinen tapahtuma"
@@ -16374,13 +16431,13 @@ msgid "Show previous picture"
 msgstr "Vaihda edelliselle kanavalle"
 
 msgid "Show previous system information screen"
-msgstr ""
+msgstr "Näytä aikaisempi järjestelmätieto näyttö"
 
 msgid "Show quickmenu..."
 msgstr "Näytä pikavalikko"
 
 msgid "Show receiver image(s)"
-msgstr ""
+msgstr "Näytä vastaanottimen ohjelmistot"
 
 msgid "Show record indicator"
 msgstr "Tallennusmerkki"
@@ -16401,10 +16458,10 @@ msgid "Show selection for system information screen"
 msgstr "Näytä järjestelmätietojen valinta näyttö"
 
 msgid "Show selection menu for commit logs"
-msgstr ""
+msgstr "Näytä valinta valikko lokeissa"
 
 msgid "Show selection menu for debug log files"
-msgstr ""
+msgstr "Näytä virheenkorjauslokit valinta valikkossa"
 
 msgid "Show service list"
 msgstr "Avaa kanavalista"
@@ -16467,7 +16524,7 @@ msgid "Show the DreamPlex player..."
 msgstr "Näytä DreamPlex soitin"
 
 msgid "Show the Logs Settings screen"
-msgstr ""
+msgstr "Näytä Lokit asetukset näytössä"
 
 msgid "Show the OScamInfo Screen"
 msgstr "Näytä OScamTiedot Näyttö"
@@ -17162,7 +17219,7 @@ msgid "Start"
 msgstr "Käynnistä"
 
 msgid "Start Auto Refresh"
-msgstr ""
+msgstr "Käynnistä automaattinen virkistäminen"
 
 msgid "Start Kodi"
 msgstr "Käynnistä Kodi"
@@ -17268,7 +17325,7 @@ msgid "Stop"
 msgstr "Pysäytä"
 
 msgid "Stop Auto Refresh"
-msgstr ""
+msgstr "Pysäytä automaattinen virkistys"
 
 msgid "Stop PiP"
 msgstr "Sulje PiP"
@@ -17304,7 +17361,7 @@ msgid "Stop service on return to movie list"
 msgstr "Pysäytä palvelu ja palaa tallenneluetteloon"
 
 msgid "Stop streams"
-msgstr ""
+msgstr "Pysäytä streamit"
 
 msgid "Stop test"
 msgstr "Lopeta testi"
@@ -17343,17 +17400,17 @@ msgid "Stops timeshift being used if a recording is in progress. (Advisable for 
 msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
 
 msgid "Storage / Disk Information"
-msgstr ""
+msgstr "Tallennustila / levyn tiedot"
 
 #, python-format
 msgid "Storage / Disk information for %s %s"
-msgstr ""
+msgstr "Tallennustilan / levyn tiedot %s %s"
 
 msgid "Storage / Disks"
 msgstr "Tallennustila / Asemat"
 
 msgid "Storage / Drive information"
-msgstr ""
+msgstr "Tallennustilan / Aseman tiedot"
 
 msgid "Storage Devices"
 msgstr "Tallennusvälineet"
@@ -17380,14 +17437,14 @@ msgid "Streaming Information Actions"
 msgstr "Suoratoistettavat toiminnot"
 
 msgid "Streaming Tuner Information"
-msgstr ""
+msgstr "Suoratoisto virittimen tiedot"
 
 msgid "Streaming recording ended"
 msgstr "Suoratoiston tallennus on päättynyt"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
-msgstr ""
+msgstr "Suoratoisto virittimen tiedot seuraaville: %s %s"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17700,7 +17757,7 @@ msgid "System Setup"
 msgstr "Järjestelmän asetukset"
 
 msgid "System information"
-msgstr ""
+msgstr "Järjestelmän tiedot"
 
 msgid "System partition free space:"
 msgstr "Vapaa tila järjestelmäosiolla:"
@@ -17898,7 +17955,7 @@ msgid "Test type"
 msgstr "Testin tyyppi"
 
 msgid "Testing Information"
-msgstr ""
+msgstr "Testaus tiedot"
 
 msgid "Testscreens"
 msgstr "Testikuvat"
@@ -17948,7 +18005,7 @@ msgstr "%s loki ei sisällä mitään tietoja."
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
-msgstr ""
+msgstr "Tiedostoa '%s' ei voi hakea, yritä myöhemmin uudelleen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -18242,7 +18299,7 @@ msgid "There are no items currently available for this screen."
 msgstr "Tällä hetkellä tässä näytössä ei ole käytettävissä kohteita."
 
 msgid "There are no repositories defined so commit logs are unavailable!"
-msgstr ""
+msgstr "Varastoja ei ole määritelty, joten lokit eivät ole käytettävissä!"
 
 msgid "There are no updates available."
 msgstr "Päivityksiä ei ole saatavilla."
@@ -18253,7 +18310,7 @@ msgstr "Voi olla, että %s %s ei käynnisty tai siinä voi esiintyä toiminta h�
 
 #, python-format
 msgid "There is no information to show for '%s'."
-msgstr ""
+msgstr "Ei ole mitään näytettävää tietoa \"%s\"."
 
 msgid "There is no signal to lock on !"
 msgstr "Ei signaalia johon voisi lukittua!"
@@ -18369,7 +18426,7 @@ msgid "This line is not editable!"
 msgstr "Tätä riviä ei voi muokata!"
 
 msgid "This menu contains selections to display information about the receiver."
-msgstr "Tämä valikko sisältää valintoja vastaanottimen tietojen näyttämiseksi."
+msgstr "Tämä valikko sisältää tietoja vastaanottimen ohjelmistosta."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Tämä valikko tarjoaa vaihtoehtoja, jotka liittyvät ohjelmiston hallintaan %s %s."
@@ -18921,7 +18978,7 @@ msgid "Toggle aspect ratio..."
 msgstr "Vaihda kuvasuhdetta"
 
 msgid "Toggle auto refresh On/Off"
-msgstr ""
+msgstr "Kytke automaattinen virkistys päälle/pois"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Vaihda suosikkien ja ohjelmatietojen välillä"
@@ -18975,7 +19032,7 @@ msgid "Total"
 msgstr "Kokonais"
 
 msgid "Total CPU benchmark"
-msgstr ""
+msgstr "CPU:n suorituskyky"
 
 msgid "Total cards:"
 msgstr "Kortteja yhteensä:"
@@ -19028,7 +19085,7 @@ msgstr "Käännöstiedot"
 
 #, python-format
 msgid "Translation information for %s %s"
-msgstr ""
+msgstr "Käännöstiedot kohteelle %s %s"
 
 msgid "Transmission mode"
 msgstr "Lähetystapa"
@@ -19140,7 +19197,7 @@ msgstr "Viritin tiedot"
 
 #, python-format
 msgid "Tuner information for %s %s"
-msgstr ""
+msgstr "Viritin tiedot %s %s"
 
 msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
@@ -19250,7 +19307,7 @@ msgid "Type"
 msgstr "Tyyppi"
 
 msgid "Type / Model"
-msgstr ""
+msgstr "Tyyppi / Malli"
 
 msgid "Type of scan"
 msgstr "Hakutapa"
@@ -19396,7 +19453,7 @@ msgid "Unknown recording event"
 msgstr "Tuntematon tallennus tapahtuma"
 
 msgid "Unknown service!"
-msgstr ""
+msgstr "Tuntematon palvelu!"
 
 #, python-format
 msgid "Unknown user: %d"
@@ -19452,7 +19509,7 @@ msgid "Up"
 msgstr "Ylös"
 
 msgid "Up / Active"
-msgstr ""
+msgstr "Ylös / aktiivinen"
 
 msgid "Up/Down button mode"
 msgstr "Ylös/alas -näppäimien toiminto"
@@ -19667,7 +19724,7 @@ msgid "Use frequency or channel"
 msgstr "Käytä taajuutta tai kanavaa"
 
 msgid "Use geolocation to get WAN information"
-msgstr ""
+msgstr "Käytä maantieteellistä sijaintia saadaksesi ulkoverkon tiedot"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Nykyisen aikavyöhykkeen sijainnin asettaminen geopaikannuksen avulla"
@@ -19804,9 +19861,6 @@ msgstr "Käyttäjänimi"
 
 msgid "Username (httpuser)"
 msgstr "Käyttäjänimi (httpkäyttäjä)"
-
-msgid "Username:"
-msgstr "Käyttäjänimi:"
 
 msgid "Using automatic address"
 msgstr "Käyttää automaattista osoitetta"
@@ -20153,7 +20207,7 @@ msgid "W"
 msgstr "W"
 
 msgid "WAN Geolocation"
-msgstr ""
+msgstr "Ulkoverkko maantieteellinen sijainti"
 
 msgid "WAN connection information"
 msgstr "WAN yhteystiedot"
@@ -20306,7 +20360,7 @@ msgstr "Viikoittain"
 
 #, python-format
 msgid "Welcome to %s"
-msgstr ""
+msgstr "Tervetuloa %s"
 
 msgid "Welcome to IceTV"
 msgstr "Tervetuloa IceTV"
@@ -22868,6 +22922,27 @@ msgstr "vaihtaa"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Info -asetukset"
+
+#~ msgid "Debug Log"
+#~ msgstr "Vianmääritys loki"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Nimi:"
+
+#~ msgid "Password:"
+#~ msgstr "Salasana:"
+
+#~ msgid "Port:"
+#~ msgstr "Portti:"
+
+#~ msgid "Username:"
+#~ msgstr "Käyttäjänimi:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s tiedot"
@@ -22935,9 +23010,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Virhe %d: Lokitiedostoa '%s' ei voitu avata.  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

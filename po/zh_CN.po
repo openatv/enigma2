@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2282,6 +2282,12 @@ msgstr "将文件添加到播放列表"
 msgid "Add files to playlist"
 msgstr "将文件添加到播放列表"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "添加新标签"
 
@@ -3535,6 +3541,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam信息"
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam客户端信息"
 
@@ -3562,8 +3574,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam信息配置"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam信息设置"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam供应商信息"
@@ -3579,6 +3600,9 @@ msgstr "CCcam共享信息"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam最新信息"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam信息主菜单"
@@ -5563,9 +5587,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6380,6 +6401,9 @@ msgstr "纪录片"
 msgid "Dolby Digital downmix is now"
 msgstr "杜比数字缩混现已推出"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "多米尼加"
 
@@ -6672,16 +6696,40 @@ msgstr "编辑位置在末尾"
 msgid "Edit settings"
 msgstr "编辑设置"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "编辑 %s %s 的DNS服务器配置."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "编辑您的 %s %s 的网络配置."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "编辑升级更新源地址."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "教育"
@@ -8788,11 +8836,11 @@ msgstr "INFO键模式"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "本机地址"
+
 msgid "IP address"
 msgstr "IP地址"
-
-msgid "IP:"
-msgstr "IP地址:"
 
 msgid "IPK Installer"
 msgstr "IPK安装器"
@@ -11016,9 +11064,6 @@ msgstr "名称反向"
 msgid "Name server %d"
 msgstr ""
 
-msgid "Name:"
-msgstr "频道名称:"
-
 msgid "Nameserver"
 msgstr "DNS服务器"
 
@@ -11214,6 +11259,12 @@ msgstr "新节目信息"
 
 msgid "New version:"
 msgstr "新版本:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "新闻"
@@ -12053,11 +12104,13 @@ msgstr "PID信息显示"
 msgid "PIN code needed"
 msgstr "需要PIN码"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP键 长按"
-
-msgid "PiP with OSD"
-msgstr "带OSD的画中画"
 
 msgid "PLP ID"
 msgstr "脉冲水平ID"
@@ -12214,9 +12267,6 @@ msgstr "密码设置"
 msgid "Password changed."
 msgstr "密码已更改"
 
-msgid "Password:"
-msgstr "密码:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "要保存的路径不存在:'/tmp/'"
 
@@ -12282,6 +12332,9 @@ msgstr "PIP键"
 
 msgid "PiP Actions"
 msgstr "画中画操作"
+
+msgid "PiP with OSD"
+msgstr "带OSD的画中画"
 
 msgid "PiP-Zap"
 msgstr "切换画中画"
@@ -12522,6 +12575,9 @@ msgid "Please select a default EPG type..."
 msgstr "请选择默认的EPG类型..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -12830,9 +12886,6 @@ msgstr "端口 C"
 
 msgid "Port D"
 msgstr "端口 D"
-
-msgid "Port:"
-msgstr "端口:"
 
 msgid "Portugal"
 msgstr "葡萄牙"
@@ -13871,6 +13924,9 @@ msgstr "从书签中删除选定的文件夹"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "删除定时器"
@@ -15110,6 +15166,9 @@ msgstr "选择转换后的字符集"
 msgid "Select the shifted character set for the next character only"
 msgstr "仅为下一个字符选择移位字符集"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16023,6 +16082,9 @@ msgstr "显示OScam信息"
 msgid "Show OScam in extensions"
 msgstr ""
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "在电影播放器信息栏中显示PVR状态"
+
 msgid "Show PiP"
 msgstr "显示画中画"
 
@@ -16031,9 +16093,6 @@ msgstr "小窗口(MiniTV)播放画中画频道"
 
 msgid "Show PiP in the Front Display"
 msgstr "在前面板显示画中画"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "在电影播放器信息栏中显示PVR状态"
 
 msgid "Show RFmod setup..."
 msgstr "显示射频模块设置…"
@@ -19753,9 +19812,6 @@ msgstr "用户名"
 msgid "Username (httpuser)"
 msgstr "用户名(http用户)"
 
-msgid "Username:"
-msgstr "用户名:"
-
 msgid "Using automatic address"
 msgstr "使用自动地址"
 
@@ -22806,6 +22862,24 @@ msgstr "切换中"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam信息设置"
+
+#~ msgid "IP:"
+#~ msgstr "IP地址:"
+
+#~ msgid "Name:"
+#~ msgstr "频道名称:"
+
+#~ msgid "Password:"
+#~ msgstr "密码:"
+
+#~ msgid "Port:"
+#~ msgstr "端口:"
+
+#~ msgid "Username:"
+#~ msgstr "用户名:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s 信息"
@@ -22873,9 +22947,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "错误%d:无法打开日志文件'%s'.  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "本机地址"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

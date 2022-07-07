@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2309,6 +2309,12 @@ msgstr "Pridėti failą į grojaraštį"
 msgid "Add files to playlist"
 msgstr "Pridėti failus į grojaraštį"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "Pridėti naują žymę"
 
@@ -3564,6 +3570,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam informacija"
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam kliento informacija"
 
@@ -3591,8 +3603,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam informacijos konfigūravimas"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam informacijos valdymas"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam teikėjo informacija"
@@ -3608,6 +3629,9 @@ msgstr "CCcam bendrinimo informacija"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam bendrinimų informacija"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo pagrindinis meniu"
@@ -5597,9 +5621,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6414,6 +6435,9 @@ msgstr "Dokumentika"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital kanalų suliejimas"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominika"
 
@@ -6707,16 +6731,40 @@ msgstr "Redagavimo pozicija yra linijos pabaiga"
 msgid "Edit settings"
 msgstr "Redaguoti nustatymus"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Redaguokite %s %s DNS konfigūraciją."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Redaguoti naujinimo šaltinio adresą."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Išsilavinimas"
@@ -8827,11 +8875,11 @@ msgstr "INFO mygtuko režimas"
 msgid "INS"
 msgstr "INS"
 
-msgid "IP address"
+msgid "IP"
 msgstr "IP adresas"
 
-msgid "IP:"
-msgstr "IP:"
+msgid "IP address"
+msgstr "IP adresas"
 
 msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
@@ -11056,9 +11104,6 @@ msgstr "Atvirkštinis pavadinimas"
 msgid "Name server %d"
 msgstr "Vardų serverio %d"
 
-msgid "Name:"
-msgstr "Pavadinimas:"
-
 msgid "Nameserver"
 msgstr "DNS serveris"
 
@@ -11254,6 +11299,12 @@ msgstr "Nauja programos informacija"
 
 msgid "New version:"
 msgstr "Nauja versija:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Naujienos"
@@ -12093,11 +12144,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Reikia pin kodo"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP ilgai"
-
-msgid "PiP with OSD"
-msgstr "PiP su OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12254,9 +12307,6 @@ msgstr "Slaptažodžio parametrai"
 msgid "Password changed."
 msgstr "Slaptažodis pakeistas."
 
-msgid "Password:"
-msgstr "Slaptažodis:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Nėra kelio išsaugojimui: '/tmp/'"
 
@@ -12322,6 +12372,9 @@ msgstr "PiP"
 
 msgid "PiP Actions"
 msgstr "PiP veiksmai"
+
+msgid "PiP with OSD"
+msgstr "PiP su OSD"
 
 msgid "PiP-Zap"
 msgstr "PiP jungti"
@@ -12563,6 +12616,9 @@ msgstr "Pasirinkite numatytąjį EPG tipą..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Pasirinkite platintoją, iš kurio norite paleisti vaizdą:"
+
+msgid "Please select a line to edit or select add to create new line."
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Prašome pasirinkti grojaraštį, kurį norite ištrinti..."
@@ -12870,9 +12926,6 @@ msgstr "Jungtis C"
 
 msgid "Port D"
 msgstr "Jungtis D"
-
-msgid "Port:"
-msgstr "Jungtis:"
 
 msgid "Portugal"
 msgstr "Portugalija"
@@ -13911,6 +13964,9 @@ msgstr "Pašalinkite pasirinktą aplanką iš žymių"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Pašalinti tekstus, skirtus turintiems klausos sutrikimų, iš išorinių subtitrų (instrumentinė muzika, ar aplinkos garsai, pvz., kai skamba durų skambutis, arba girdimas ginklo šūvis)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Pašalinti laikmatį"
@@ -15152,6 +15208,9 @@ msgstr "Pasirinkite perkeltą simbolių rinkinį"
 msgid "Select the shifted character set for the next character only"
 msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite papildinių naršyklės meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
 
@@ -16068,6 +16127,9 @@ msgstr "Rodyti 'OScam' informaciją"
 msgid "Show OScam in extensions"
 msgstr "Rodyti OScam plėtiniuose"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
+
 msgid "Show PiP"
 msgstr "Paveikslėlis paveikslėlyje"
 
@@ -16076,9 +16138,6 @@ msgstr "Rodyti PIP į MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Rodyti PIP priekiniame monitoriuje"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
 
 msgid "Show RFmod setup..."
 msgstr "Rodyti RF modulio sąranką..."
@@ -19803,9 +19862,6 @@ msgstr "Vartotojas"
 msgid "Username (httpuser)"
 msgstr "Vartotojo vardas (httpuser)"
 
-msgid "Username:"
-msgstr "Vartotojas:"
-
 msgid "Using automatic address"
 msgstr "Automatinio adreso naudojimas"
 
@@ -22861,6 +22917,24 @@ msgstr "perjungimas"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam informacijos valdymas"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Pavadinimas:"
+
+#~ msgid "Password:"
+#~ msgstr "Slaptažodis:"
+
+#~ msgid "Port:"
+#~ msgstr "Jungtis:"
+
+#~ msgid "Username:"
+#~ msgstr "Vartotojas:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s informacija"
@@ -22928,9 +23002,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "klaida %d: nepavyko atidaryti žurnalo '%s'.  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP adresas"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

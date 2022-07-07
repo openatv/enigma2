@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
 "PO-Revision-Date: 2022-05-22 09:18+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2288,6 +2288,12 @@ msgstr "Bestand toevoegen aan de afspeellijst"
 msgid "Add files to playlist"
 msgstr "Bestanden toevoegen aan de afspeellijst"
 
+msgid "Add new CCcam line"
+msgstr ""
+
+msgid "Add new NewCamd line"
+msgstr ""
+
 msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
 
@@ -3540,6 +3546,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam Info"
 
+msgid "CCcam"
+msgstr ""
+
+msgid "CCcam - Lines"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam gebruikers info"
 
@@ -3567,8 +3579,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "CCcam Info configuratie"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Info instellingen"
+msgid "CCcam Information"
+msgstr ""
+
+msgid "CCcam Line Edit Actions"
+msgstr ""
+
+msgid "CCcam Line Editor"
+msgstr ""
+
+msgid "CCcam Profile Settings"
+msgstr ""
 
 msgid "CCcam Provider Info"
 msgstr "CCcam provider informatie"
@@ -3584,6 +3605,9 @@ msgstr "CCcam share informatie"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam share informatie"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr ""
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Hoofdmenu"
@@ -5669,9 +5693,6 @@ msgstr ""
 msgid "Debug Information"
 msgstr ""
 
-msgid "Debug Log"
-msgstr ""
-
 msgid "Debug Log Information"
 msgstr ""
 
@@ -6494,6 +6515,9 @@ msgstr "Documentaire"
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby digitale downmix is nu"
 
+msgid "Domain"
+msgstr ""
+
 msgid "Dominica"
 msgstr "Dominica"
 
@@ -6788,16 +6812,40 @@ msgstr "Bewerk positie is het einde van de regel"
 msgid "Edit settings"
 msgstr "Instellingen wijzigen"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr ""
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr ""
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan."
+
+msgid "Edit the NewCamd DES Key."
+msgstr ""
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Bewerk de netwerkinstellingen van uw %s %s."
 
+msgid "Edit the password."
+msgstr ""
+
+msgid "Edit the profile name."
+msgstr ""
+
+msgid "Edit the remote CCCam port."
+msgstr ""
+
+msgid "Edit the remote IP address."
+msgstr ""
+
 msgid "Edit the upgrade source address."
 msgstr "Wijzig het adres van de update locatie."
+
+msgid "Edit the username."
+msgstr ""
 
 msgid "Education"
 msgstr "Educatie"
@@ -8912,11 +8960,11 @@ msgstr "INFO-knop"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP-adres"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK installeren"
@@ -11146,9 +11194,6 @@ msgstr "Naam omgekeerd"
 msgid "Name server %d"
 msgstr "Name server %d"
 
-msgid "Name:"
-msgstr "Naam:"
-
 msgid "Nameserver"
 msgstr "Naamserver (DNS)"
 
@@ -11344,6 +11389,12 @@ msgstr "Nieuwe programma info"
 
 msgid "New version:"
 msgstr "Nieuwe versie:"
+
+msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewCamd"
+msgstr ""
 
 msgid "News"
 msgstr "Nieuws"
@@ -12186,11 +12237,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Pincode benodigd"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr ""
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PiP lang"
-
-msgid "PiP with OSD"
-msgstr "PiP met OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12347,9 +12400,6 @@ msgstr "Wachtwoord instellen"
 msgid "Password changed."
 msgstr "Wachtwoord gewijzigd."
 
-msgid "Password:"
-msgstr "Wachtwoord:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Pad voor opslaan bestaat niet: '/tmp/'"
 
@@ -12415,6 +12465,9 @@ msgstr "PiP"
 
 msgid "PiP Actions"
 msgstr "PiP Acties"
+
+msgid "PiP with OSD"
+msgstr "PiP met OSD"
 
 msgid "PiP-Zap"
 msgstr "PiP-Zap"
@@ -12656,6 +12709,9 @@ msgid "Please select a default EPG type..."
 msgstr "Selecteer het standaard EPG-type..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
+msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -12964,9 +13020,6 @@ msgstr "Poort C"
 
 msgid "Port D"
 msgstr "Poort D"
-
-msgid "Port:"
-msgstr "Poort:"
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -14007,6 +14060,9 @@ msgstr "Verwijder geselecteerde map van bookmarks"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. Denk aan teksten als 'Deurbel gaat', 'Muziek speelt', enz."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Verwijder timer"
@@ -15252,6 +15308,9 @@ msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
 msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
+msgid "Select the softcam protocol."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16182,6 +16241,9 @@ msgstr "Toon OScam Info"
 msgid "Show OScam in extensions"
 msgstr "Toon OScam in het Extensie menu"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Toon de PVR-status in de Mediaspeler informatiebalk"
+
 msgid "Show PiP"
 msgstr "Toon PiP"
 
@@ -16190,9 +16252,6 @@ msgstr "Toon PiP in MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Toon PiP in het Front Display"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Toon de PVR-status in de Mediaspeler informatiebalk"
 
 msgid "Show RFmod setup..."
 msgstr "Toon RFmod instellingen..."
@@ -19966,9 +20025,6 @@ msgstr "Gebruikersnaam"
 msgid "Username (httpuser)"
 msgstr "Gebruikersnaam (httpuser)"
 
-msgid "Username:"
-msgstr "Gebruikersnaam:"
-
 msgid "Using automatic address"
 msgstr "Het adres wordt automatisch ingesteld"
 
@@ -23042,6 +23098,24 @@ msgstr "zappen"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Info instellingen"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Naam:"
+
+#~ msgid "Password:"
+#~ msgstr "Wachtwoord:"
+
+#~ msgid "Port:"
+#~ msgstr "Poort:"
+
+#~ msgid "Username:"
+#~ msgstr "Gebruikersnaam:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s informatie"
@@ -23109,9 +23183,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Fout %d: Het logbestand '%s' kon niet geopend worden.  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"

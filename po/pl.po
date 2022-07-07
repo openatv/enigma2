@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 19:40+0000\n"
-"PO-Revision-Date: 2022-07-01 22:59+0000\n"
+"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"PO-Revision-Date: 2022-07-05 23:51+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2314,6 +2314,12 @@ msgstr "Dodaj plik do listy odtwarzania"
 msgid "Add files to playlist"
 msgstr "Dodaj pliki do listy odtwarzania"
 
+msgid "Add new CCcam line"
+msgstr "Dodaj nową linię CCcam"
+
+msgid "Add new NewCamd line"
+msgstr "Dodaj nową linię Newcamd"
+
 msgid "Add new tag"
 msgstr "Dodaj nowy znacznik"
 
@@ -3567,6 +3573,12 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "Info o CCCam"
 
+msgid "CCcam"
+msgstr "CCcam"
+
+msgid "CCcam - Lines"
+msgstr "CCcam - Linie"
+
 msgid "CCcam Client Info"
 msgstr "CCcam Klient Info"
 
@@ -3594,8 +3606,17 @@ msgstr ""
 msgid "CCcam Info Config"
 msgstr "Ustawienia CCcam Info"
 
-msgid "CCcam Info Setup"
-msgstr "CCcam Info Ustawienie"
+msgid "CCcam Information"
+msgstr "Informacje o CCcam"
+
+msgid "CCcam Line Edit Actions"
+msgstr "Akcje edycji linii CCcam"
+
+msgid "CCcam Line Editor"
+msgstr "Edytor linii CCcam"
+
+msgid "CCcam Profile Settings"
+msgstr "Ustawienia profilu CCcam"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Info o Nadawcy"
@@ -3611,6 +3632,9 @@ msgstr "CCcam Info o Współdzieleniu"
 
 msgid "CCcam Shares Info"
 msgstr "CCcam Info o Udziałach"
+
+msgid "CCcam.cfg Basic Line Editor"
+msgstr "Podstawowy edytor linii CCcam.cfg"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Menu główne"
@@ -5594,9 +5618,6 @@ msgstr "Debug %d/%d"
 msgid "Debug Information"
 msgstr "Informacje debugowania"
 
-msgid "Debug Log"
-msgstr "Debug Log"
-
 msgid "Debug Log Information"
 msgstr "Informacje dziennika debugowania"
 
@@ -6156,7 +6177,7 @@ msgstr "Wydanie"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
-msgstr "Wydanie '%s' informacji dla %s %s"
+msgstr "Wydanie '%s' informacje dla %s %s"
 
 msgid "Distribution architecture"
 msgstr "Architektura"
@@ -6410,6 +6431,9 @@ msgstr "Dokumentalny"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital downmix jest teraz"
+
+msgid "Domain"
+msgstr "Domena"
 
 msgid "Dominica"
 msgstr "Dominika"
@@ -6704,16 +6728,40 @@ msgstr "Edytuj pozycję to koniec linii"
 msgid "Edit settings"
 msgstr "Edytuj ustawienia"
 
+msgid "Edit the CCcam/NewCamd server hostname."
+msgstr "Edytuj nazwę hosta serwera CCcam/NewCamd."
+
+msgid "Edit the CCcam/NewCamd server port."
+msgstr "Edytuj port serwera CCcam/NewCamd."
+
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Edytuj konfigurację serwera DNS swojego %s %s."
+
+msgid "Edit the NewCamd DES Key."
+msgstr "Edytuj klucz DES NewCamd."
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Edytuj ustawienia sieci %s %s."
 
+msgid "Edit the password."
+msgstr "Edytuj hasło."
+
+msgid "Edit the profile name."
+msgstr "Edytuj nazwę profilu."
+
+msgid "Edit the remote CCCam port."
+msgstr "Edytuj zdalny port CCCam."
+
+msgid "Edit the remote IP address."
+msgstr "Edytuj zdalny adres IP."
+
 msgid "Edit the upgrade source address."
 msgstr "Edytuj adres źródła aktualizacji."
+
+msgid "Edit the username."
+msgstr "Edytuj nazwę użytkownika."
 
 msgid "Education"
 msgstr "Edukacja"
@@ -8822,11 +8870,11 @@ msgstr "Akcja dla przycisku 'INFO'"
 msgid "INS"
 msgstr "INS"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "Adres IP"
-
-msgid "IP:"
-msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "Instalator IPK"
@@ -11052,9 +11100,6 @@ msgstr "Nazwa odwrotna"
 msgid "Name server %d"
 msgstr "Nazwa serwera %d"
 
-msgid "Name:"
-msgstr "Nazwa:"
-
 msgid "Nameserver"
 msgstr "Serwer DNS"
 
@@ -11250,6 +11295,12 @@ msgstr "Info o nowym programie"
 
 msgid "New version:"
 msgstr "Nowa wersja:"
+
+msgid "NewCamd DES Key"
+msgstr "Nowy klucz Camd DES"
+
+msgid "NewCamd"
+msgstr "NewCamd"
 
 msgid "News"
 msgstr "Aktualności"
@@ -12090,11 +12141,13 @@ msgstr "PID"
 msgid "PIN code needed"
 msgstr "Wymagany kod PIN"
 
+#. TRANSLATORS: PIP with uppercase i is for the button key text
+msgid "PIP"
+msgstr "PIP"
+
+#. TRANSLATORS: PIP with uppercase i is for the button key text
 msgid "PIP long"
 msgstr "PIP (długo)"
-
-msgid "PiP with OSD"
-msgstr "PIP z OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -12251,9 +12304,6 @@ msgstr "Ustawienia hasła"
 msgid "Password changed."
 msgstr "Hasło zostało zmienione."
 
-msgid "Password:"
-msgstr "Hasło:"
-
 msgid "Path to save not exist: '/tmp/'"
 msgstr "Ścieżka do zapisu nie istnieje: '/tmp/'"
 
@@ -12319,6 +12369,9 @@ msgstr "PiP"
 
 msgid "PiP Actions"
 msgstr "Akcje PiP"
+
+msgid "PiP with OSD"
+msgstr "PIP z OSD"
 
 msgid "PiP-Zap"
 msgstr "PiP-Zap"
@@ -12560,6 +12613,9 @@ msgstr "Wybierz domyślny typ EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Wybierz dystrybucję, z której chcesz flaszować obraz:"
+
+msgid "Please select a line to edit or select add to create new line."
+msgstr "Proszę wybrać linię do edycji lub wybrać dodaj, aby utworzyć nową linię."
 
 msgid "Please select a playlist to delete..."
 msgstr "Wybierz listę odtwarzania do usunięcia..."
@@ -12867,9 +12923,6 @@ msgstr "Port C"
 
 msgid "Port D"
 msgstr "Port D"
-
-msgid "Port:"
-msgstr "Port:"
 
 msgid "Portugal"
 msgstr "Portugalia"
@@ -13908,6 +13961,9 @@ msgstr "Usuń wybrany folder z zakładek"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Usuń teksty dla osób niedosłyszących z zewnętrznych napisów (np. informacje o muzyce i dźwiękach np. gdy dzwoni dzwonek do drzwi lub słychać strzał z pistoletu)."
+
+msgid "Remove the Line from CCcam.cfg"
+msgstr "Usuń linię z CCcam.cfg"
 
 msgid "Remove timer"
 msgstr "Usuń timer"
@@ -15149,6 +15205,9 @@ msgstr "Wybierz przesunięty zestaw znaków"
 msgid "Select the shifted character set for the next character only"
 msgstr "Wybierz przesunięty zestaw znaków tylko dla następnego znaku"
 
+msgid "Select the softcam protocol."
+msgstr "Wybierz protokół softcam."
+
 msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
 msgstr "Wybierz kolejność sortowania wpisów menu Przeglądarka wtyczek.  Zdefiniowane przez użytkownika pozwala również na ukrycie pozycji menu."
 
@@ -16065,6 +16124,9 @@ msgstr "Pokaż informacje OScam"
 msgid "Show OScam in extensions"
 msgstr "Pokaż OScam w rozszerzeniach"
 
+msgid "Show PVR status in MoviePlayer infobar"
+msgstr "Pokaż status PVR w pasku informacyjnym Odtwarzacza filmów"
+
 msgid "Show PiP"
 msgstr "Pokaż PIP"
 
@@ -16073,9 +16135,6 @@ msgstr "Pokaż PIP w MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Pokaż PIP na przednim wyświetlaczu"
-
-msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Pokaż status PVR w pasku informacyjnym Odtwarzacza filmów"
 
 msgid "Show RFmod setup..."
 msgstr "Pokaż ustawienia RFmod..."
@@ -19803,9 +19862,6 @@ msgstr "Użytkownik"
 msgid "Username (httpuser)"
 msgstr "Nazwa użytkownika (http.user)"
 
-msgid "Username:"
-msgstr "Nazwa użytkownika:"
-
 msgid "Using automatic address"
 msgstr "Używanie automatycznego adresu"
 
@@ -22861,6 +22917,27 @@ msgstr "przełączanie"
 msgid "®"
 msgstr "®"
 
+#~ msgid "CCcam Info Setup"
+#~ msgstr "CCcam Info Ustawienie"
+
+#~ msgid "Debug Log"
+#~ msgstr "Debug Log"
+
+#~ msgid "IP:"
+#~ msgstr "IP:"
+
+#~ msgid "Name:"
+#~ msgstr "Nazwa:"
+
+#~ msgid "Password:"
+#~ msgstr "Hasło:"
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Username:"
+#~ msgstr "Nazwa użytkownika:"
+
 #, python-format
 #~ msgid "%s information"
 #~ msgstr "%s info"
@@ -22928,9 +23005,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 #~ msgstr "Błąd %d: Plik logu '%s' nie może być otwarty!  (%s)"
-
-#~ msgid "IP"
-#~ msgstr "IP"
 
 #, python-format
 #~ msgid "Logfile '%s' (%d/%d)"
