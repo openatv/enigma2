@@ -1,24 +1,23 @@
-from genericpath import isfile
 from os import remove, unlink, rename, chmod, access, X_OK
+from os.path import isfile
 import time
-from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.ActionMap import NumberActionMap
+from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.Console import Console
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Console import Console
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Boolean import Boolean
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigText, ConfigYesNo, NoSave
-from Components.ConfigList import ConfigList
 from Components.SystemInfo import BoxInfo
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import fileExists, fileReadLines, fileWriteLines
+from Tools.Directories import fileReadLines, fileWriteLines
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
-from boxbranding import getBrandOEM
+
+BRAND = BoxInfo.getItem("brand")
 
 if BoxInfo.getItem("model") in ("zgemmah9combo", "pulse4kmini"):
 	MAX_NUM_CI = 1
@@ -45,7 +44,7 @@ def setdvbCiDelay(configElement):
 
 def setRelevantPidsRouting(configElement):
 	fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing" % (configElement.slotid)
-	if fileExists(fileName, "r"):
+	if isfile(fileName):
 		f = open(fileName, "w")
 		f.write(configElement.value)
 		f.close()
@@ -64,7 +63,7 @@ def InitCiConfig():
 		config.ci[slot].static_pin = ConfigPIN(default=0)
 		config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
 		if BoxInfo.getItem("CommonInterfaceSupportsHighBitrates"):
-			if getBrandOEM() in ("dags", "blackbox"):
+			if BRAND in ("dags", "blackbox"):
 				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default=True)
 			else:
 				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default=False)
@@ -76,7 +75,7 @@ def InitCiConfig():
 				relevantPidsRoutingChoices = [("no", _("No")), ("yes", _("Yes"))]
 				default = "no"
 				fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing_choices"
-			if fileExists(fileName, "r"):
+			if isfile(fileName):
 				relevantPidsRoutingChoices = []
 				fd = open(fileName, "r")
 				data = fd.read()
@@ -91,7 +90,7 @@ def InitCiConfig():
 	if BoxInfo.getItem("CommonInterfaceCIDelay"):
 		config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", _("16")), ("32", _("32")), ("64", _("64")), ("128", _("128")), ("256", _("256"))])
 		config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
-	if getBrandOEM() in ("entwopia", "tripledot", "dreambox"):
+	if BRAND in ("entwopia", "tripledot", "dreambox"):
 		if BoxInfo.getItem("HaveCISSL"):
 			config.cimisc.civersion = ConfigSelection(default="ciplus1", choices=[("auto", _("Auto")), ("ciplus1", _("CI Plus 1.2")), ("ciplus2", _("CI Plus 1.3")), ("legacy", _("CI Legacy"))])
 		else:
@@ -146,10 +145,10 @@ class MMIDialog(Screen):
 
 		self.is_pin_list = -1
 
-		if action == 2:		#start MMI
+		if action == 2:  # Start MMI
 			handler.startMMI(self.slotid)
 			self.showWait()
-		elif action == 3:		#mmi already there (called from infobar)
+		elif action == 3:  # mmi already there (called from infobar)
 			self.showScreen()
 
 	def addEntry(self, list, entry):
@@ -158,11 +157,9 @@ class MMIDialog(Screen):
 		if entry[0] == "PIN":
 			pinlength = entry[1]
 			if entry[3] == 1:
-				# masked pins:
-				x = ConfigPIN(0, pinLength=pinlength, censor="*")
+				x = ConfigPIN(0, pinLength=pinlength, censor="*")  # Masked pins
 			else:
-				# unmasked pins:
-				x = ConfigPIN(0, pinLength=pinlength)
+				x = ConfigPIN(0, pinLength=pinlength)  # Unmasked pins
 			self["subtitle"].setText(entry[2])
 			list.append(getConfigListEntry("", x))
 			self["bottom"].setText(_("please press OK when ready"))
@@ -176,10 +173,7 @@ class MMIDialog(Screen):
 		elif self.tag == "MENU":
 			print("answer MENU")
 			cur = self["entries"].getCurrent()
-			if cur:
-				self.handler.answerMenu(self.slotid, cur[2])
-			else:
-				self.handler.answerMenu(self.slotid, 0)
+			self.handler.answerMenu(self.slotid, cur[2] if cur else 0)
 			self.showWait()
 		elif self.tag == "LIST":
 			print("answer LIST")
@@ -318,17 +312,12 @@ class MMIDialog(Screen):
 
 	def ciStateChanged(self):
 		do_close = False
-		if self.action == 0:			#reset
-			do_close = True
-		if self.action == 1:			#init
+		if self.action == 0 or self.action == 1:  #reset = 0 , init = 1
 			do_close = True
 
 		#module still there ?
-		if self.handler.getState(self.slotid) != 2:
-			do_close = True
-
 		#mmi session still active ?
-		if self.handler.getMMIState(self.slotid) != 1:
+		if self.handler.getState(self.slotid) != 2 or self.handler.getMMIState(self.slotid) != 1:
 			do_close = True
 
 		if do_close:
@@ -346,6 +335,7 @@ class CiMessageHandler:
 		self.dlgs = {}
 		self.auto_close = False
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
+		# TODO move to systeminfo
 		if BoxInfo.getItem("model") in ("vuzero",):
 			BoxInfo.setItem("CommonInterface", False)
 		else:
@@ -795,6 +785,6 @@ class CIHelperSetup(Screen, ConfigListScreen):
 			with open("/tmp/CIHelper.log", "a") as fd:
 				fd.write("%s\n" % errorText)
 			self.session.open(MessageBox, errorText, MessageBox.TYPE_INFO)
-		if fileExists("/etc/cihelper.conf.tmp"):
+		if isfile("/etc/cihelper.conf.tmp"):
 			rename("/etc/cihelper.conf.tmp", "/etc/cihelper.conf")
 		self.close()
