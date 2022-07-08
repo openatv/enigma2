@@ -155,13 +155,10 @@ public:
 		pageDown,
 		justCheck,
 		refresh,
-		moveFirst = moveTop,
 		moveBottom = moveEnd,
 		moveLast = moveEnd,
 		movePageUp = pageUp,
-		movePageDown = pageDown,
-		moveLeft,
-		moveRight
+		movePageDown = pageDown
 	};
 
 	void setItemHeight(int h);
