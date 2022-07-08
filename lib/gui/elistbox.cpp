@@ -14,9 +14,9 @@ int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
 eListbox::eListbox(eWidget *parent) :
-	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
+	eWidget(parent), m_list_orientation(listVertical), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
-	m_top(0), m_selected(0), m_itemheight(25),
+	m_top(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
 	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
@@ -158,11 +158,13 @@ void eListbox::moveSelection(long dir)
 	int prevsel = oldsel;
 	int newsel;
 
-	// TODO horizontal or grid
-	if (dir == moveLeft)
-		dir = moveUp;
-	if (dir == moveRight)
-		dir = moveDown;
+	if(m_list_orientation != listGrid) {
+		// left, righ = up, down for vertical or horizontal
+		if (dir == moveLeft)
+			dir = moveUp;
+		if (dir == moveRight)
+			dir = moveDown;
+	}
 
 #ifdef USE_LIBVUGLES2
 	m_dir = dir;
@@ -640,7 +642,7 @@ void eListbox::setItemHeight(int h)
 	if (h)
 		m_itemheight = h;
 	else
-		m_itemheight = 20;
+		m_itemheight = 20; // TODO : why 20
 	recalcSize();
 }
 
@@ -881,4 +883,19 @@ struct eListboxStyle *eListbox::getLocalStyle(void)
 		/* transparency is set directly in the widget */
 	m_style.m_transparent_background = isTransparent();
 	return &m_style;
+}
+
+void eListbox::setItemWidth(int w)
+{
+	if (w)
+		m_itemwidth = w;
+	else
+		m_itemwidth = 20; // TODO : why 20
+	recalcSize();
+}
+
+void eListbox::setOrientation(int o)
+{
+	m_list_orientation = o;
+	invalidate();
 }
