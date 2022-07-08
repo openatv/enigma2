@@ -157,6 +157,13 @@ void eListbox::moveSelection(long dir)
 	int oldsel = m_selected;
 	int prevsel = oldsel;
 	int newsel;
+
+	// TODO horizontal or grid
+	if (dir == moveLeft)
+		dir = moveUp;
+	if (dir == moveRight)
+		dir = moveDown;
+
 #ifdef USE_LIBVUGLES2
 	m_dir = dir;
 #endif
