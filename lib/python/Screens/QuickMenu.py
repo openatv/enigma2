@@ -212,9 +212,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("OSD Settings", _("OSD Setup"), _("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button Setup", _("Button Setup"), _("Setup your remote buttons")))
 		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
-			self.sublist.append(QuickSubMenuEntryComponent("Display Settings", _("Display Setup"), _("Setup your display")))
+			self.sublist.append(QuickSubMenuEntryComponent("Display Settings", _("Setup your LCD"), _("Setup your display")))
 		if BoxInfo.getItem("LCDSKINSetup"):
-			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD")))
+			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Settings", _("Select LCD Skin"), _("Setup your LCD Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Settings", _("Select Enigma2 Skin"), _("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
