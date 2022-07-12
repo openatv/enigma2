@@ -1004,7 +1004,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			name = alias.attrib.get("name")
 			font = alias.attrib.get("font")
 			size = parseInteger(alias.attrib.get("size"), 20)
-			height = parseInteger(alias.attrib.get("height"), 25)  # To be calculated some day.
+			height = parseInteger(alias.attrib.get("height", 25), 25)  # To be calculated some day.
 			width = parseInteger(alias.attrib.get("width", 18), 18)  # To be calculated some day.
 			if name and font and size:
 				fonts[name] = (font, size, height, width)
