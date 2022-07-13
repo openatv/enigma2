@@ -192,7 +192,7 @@ class ScrollLabel(GUIComponent):
 				self.slider.hide()
 			self.leftText.resize(eSize(leftWidth, self.totalTextHeight))
 			self.rightText.resize(eSize(rightWidth, self.totalTextHeight))
-			self.setPosition(self.totalTextHeight - self.pageHeight if showBottom else 0)
+			self.setPos(self.totalTextHeight - self.pageHeight if showBottom else 0)
 
 	text = property(getText, setText)
 
@@ -202,7 +202,7 @@ class ScrollLabel(GUIComponent):
 	def isSliderVisible(self):
 		return self.sliderMode in (eListbox.showAlways, eListbox.showLeftAlways) or (self.sliderMode in (eListbox.showOnDemand, eListbox.showLeftOnDemand) and self.totalTextHeight > self.pageHeight)
 
-	def setPosition(self, pos):
+	def setPos(self, pos):
 		self.currentPosition = max(0, min(pos, self.totalTextHeight - self.pageHeight))
 		if self.isSliderVisible():
 			self.updateScrollbar()
@@ -211,30 +211,30 @@ class ScrollLabel(GUIComponent):
 
 	def moveTop(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(0)
+			self.setPos(0)
 
 	def homePage(self):  # Deprecated navigation (no use found).
 		return self.moveTop()
 
 	def pageUp(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(self.currentPosition - self.pageHeight)
+			self.setPos(self.currentPosition - self.pageHeight)
 
 	def moveUp(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(self.currentPosition - self.sliderScroll)
+			self.setPos(self.currentPosition - self.sliderScroll)
 
 	def moveDown(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(self.currentPosition + self.sliderScroll)
+			self.setPos(self.currentPosition + self.sliderScroll)
 
 	def pageDown(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(self.currentPosition + self.pageHeight)
+			self.setPos(self.currentPosition + self.pageHeight)
 
 	def moveBottom(self):
 		if self.totalTextHeight > self.pageHeight:
-			self.setPosition(self.totalTextHeight - self.pageHeight)
+			self.setPos(self.totalTextHeight - self.pageHeight)
 
 	def endPage(self):  # Deprecated navigation (no use found).
 		return self.moveBottom()
