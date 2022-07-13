@@ -438,6 +438,7 @@ void eListbox::updateScrollBar()
 	if (!m_scrollbar || !m_content || m_scrollbar_mode == showNever )
 		return;
 	int entries = m_content->size();
+	bool scrollbarvisible = m_scrollbar->isVisible();
 	if (m_content_changed)
 	{
 		int width = size().width();
@@ -452,10 +453,12 @@ void eListbox::updateScrollBar()
 			if (entries > m_items_per_page || m_scrollbar_mode == showLeftAlways)
 			{
 				m_scrollbar->show();
+				scrollbarvisible = true;
 			}
 			else
 			{
 				m_scrollbar->hide();
+				scrollbarvisible = false;
 			}
 		}
 		else if (entries > m_items_per_page || m_scrollbar_mode == showAlways)
@@ -464,35 +467,40 @@ void eListbox::updateScrollBar()
 			m_scrollbar->resize(eSize(m_scrollbar_width, height));
 			m_content->setSize(eSize(width-m_scrollbar_width-m_scrollbar_offset, m_itemheight));
 			m_scrollbar->show();
+			scrollbarvisible = true;
 		}
 		else
 		{
 			m_content->setSize(eSize(width, m_itemheight));
 			m_scrollbar->hide();
+			scrollbarvisible = false;
 		}
 	}
-	if (m_items_per_page && entries)
+
+	// Don't set Start/End if scollbar not visible or entries/m_items_per_page = 0
+	if (m_items_per_page && entries && scrollbarvisible)
 	{
 
 		if(m_scrollbar_scroll == byLine) {
 
 			if(m_prev_scrollbar_page != m_selected) {
-
-				int range = 100;
-
 				m_prev_scrollbar_page = m_selected;
-			    int thumb = (int)((float)m_items_per_page / (float)entries * range);
-				int start = (range - thumb) * m_selected / (entries - 1);
-				int visblethumb = thumb < 4 ? 4 : thumb;
-				int end = start + visblethumb;
-				if (end>range) {
-					end = range;
-					start = range - visblethumb;
+				int end = 100;
+				int start = 0;
+				// calculate thumb only if needed
+				if (entries > 1 && entries > m_items_per_page) {
+					int range = 100;
+					int thumb = (int)((float)m_items_per_page / (float)entries * range);
+					start = (range - thumb) * m_selected / (entries - 1);
+					int visblethumb = thumb < 4 ? 4 : thumb;
+					end = start + visblethumb;
+					if (end>range) {
+						end = range;
+						start = range - visblethumb;
+					}
+					//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d", thumb, start, end, m_items_per_page, entries);
 				}
 				m_scrollbar->setStartEnd(start,end);
-
-				//eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d", thumb, start, end, m_items_per_page, entries);
-
 			} 
 			return;
 		}
