@@ -316,7 +316,7 @@ void eListbox::moveSelection(long dir)
 		//eDebug("[eListbox] moveSelection dir=%d old=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d", dir, oldtop, m_top, m_selected, m_items_per_page, m_content->size());
 		switch (dir) {
 			case moveEnd:
-				m_top = m_content->size() - 1;
+				m_top = m_content->size() - m_items_per_page;
 				break;
 			case justCheck:
 				{
@@ -333,6 +333,10 @@ void eListbox::moveSelection(long dir)
 
 					if(m_selected==0)
 						m_top=0;
+					else if(m_top == 0 && m_selected > m_items_per_page)
+					{
+						m_top = m_content->size() - m_items_per_page;
+					}
 
 				}
 				break;
@@ -392,6 +396,10 @@ void eListbox::moveSelection(long dir)
 			//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
 		}
 		//eDebug("[eListbox] moveSelection m_top=%d m_selected=%d m_items_per_page=%d", m_top, m_selected, m_items_per_page);
+		if(m_top < 0) {
+			m_top = 0;
+			oldtop = 1;
+		}
 	}
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
