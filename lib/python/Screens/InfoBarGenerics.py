@@ -3156,9 +3156,18 @@ class InfoBarExtensions:
 	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
 		if config.usage.sort_extensionslist.value:
-			print("[InfoBarExtensions] sort_extensionslist not supported yet")
-			# FIME sort extensions
-			# self.list.sort()
+			def sortExtensions(tek):
+				type = tek[0]
+				extension = tek[1]
+				key = tek[2]
+				name = ""
+				if type == self.EXTENSION_LIST:
+					if extension() != []:
+						name = extension()[0][0][0]()
+				if type == self.EXTENSION_SINGLE:
+					name = extension[0]()
+				return name
+			self.list.sort(key = sortExtensions)
 
 	def updateExtension(self, extension, key=None):
 		self.extensionsList.append(extension)
@@ -3207,9 +3216,7 @@ class InfoBarExtensions:
 				else:
 					extensionsList.remove(extension)
 		if config.usage.sort_extensionslist.value:
-			print("[InfoBarExtensions] sort_extensionslist not supported yet")
-			# FIME sort extensions
-			# list.sort()
+			list.sort()
 		for x in colorlist:
 			list.append(x)
 		list.extend([(x[0](), x) for x in extensionsList])
