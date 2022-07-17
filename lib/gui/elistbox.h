@@ -131,37 +131,36 @@ public:
 	void allowNativeKeys(bool allow);
 	void enableAutoNavigation(bool allow) { allowNativeKeys(allow); }
 
-/*	enum Movement {
-		moveUp,
-		moveDown,
-		moveTop,
-		moveEnd,
-		justCheck
-	}; */
-
 	int getCurrentIndex();
 	void moveSelection(long how);
 	void moveSelectionTo(int index);
-	void moveToEnd();
+	void moveToEnd(); // Deprecated
 	bool atBegin();
 	bool atEnd();
+
+	void goTop() { moveSelection(moveTop); }
+	void goBottom() { moveSelection(moveBottom); }
+	void goLineUp() { moveSelection(moveUp); }
+	void goLineDown() { moveSelection(moveDown); }
+	void goPageUp() { moveSelection(movePageUp); }
+	void goPageDown() { moveSelection(movePageDown); }
+	void goLeft() { moveSelection(moveLeft); }
+	void goRight() { moveSelection(moveRight); }
 
 	enum ListboxActions {
 		moveUp,
 		moveDown,
 		moveTop,
-		moveEnd,
-		pageUp,
-		pageDown,
+		moveBottom,
+		movePageUp,
+		movePageDown,
 		justCheck,
 		refresh,
 		moveLeft,
 		moveRight,
-		moveFirst = moveTop,
-		moveBottom = moveEnd,
-		moveLast = moveEnd,
-		movePageUp = pageUp,
-		movePageDown = pageDown
+		moveEnd = moveBottom, // deprecated
+		pageUp = movePageUp,  // deprecated
+		pageDown = movePageDown  // deprecated
 	};
 
 	void setItemHeight(int h);
