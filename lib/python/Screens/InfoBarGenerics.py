@@ -3159,14 +3159,8 @@ class InfoBarExtensions:
 			def sortExtensions(tek):
 				type = tek[0]
 				extension = tek[1]
-				key = tek[2]
-				name = ""
-				if type == self.EXTENSION_LIST:
-					if extension() != []:
-						name = extension()[0][0][0]()
-				if type == self.EXTENSION_SINGLE:
-					name = extension[0]()
-				return name
+				name = extension[0]() if type == self.EXTENSION_SINGLE else ""
+				return extension()[0][0][0]() if type == self.EXTENSION_LIST and extension() != [] else name
 			self.list.sort(key = sortExtensions)
 
 	def updateExtension(self, extension, key=None):
