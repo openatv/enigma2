@@ -125,8 +125,10 @@ bool eListbox::atEnd()
 	return false;
 }
 
+// Deprecated
 void eListbox::moveToEnd()
 {
+	eWarning("[eListbox] moveToEnd is deprecated. Use moveSelection or goBottom instead.");
 	if (!m_content)
 		return;
 	/* move to last existing one ("end" is already invalid) */
@@ -169,7 +171,7 @@ void eListbox::moveSelection(long dir)
 #endif
 	switch (dir)
 	{
-	case moveEnd:
+	case moveBottom:
 		m_content->cursorEnd();
 		[[fallthrough]];
 	case moveUp:
@@ -218,7 +220,7 @@ void eListbox::moveSelection(long dir)
 		}
 		while (newsel != oldsel && !m_content->currentCursorSelectable());
 		break;
-	case pageUp:
+	case movePageUp:
 	{
 		int pageind;
 		do
@@ -258,7 +260,7 @@ void eListbox::moveSelection(long dir)
 		while (newsel == prevsel);
 		break;
 	}
-	case pageDown:
+	case movePageDown:
 	{
 		int pageind;
 		do
@@ -315,7 +317,7 @@ void eListbox::moveSelection(long dir)
 	{
 		//eDebug("[eListbox] moveSelection dir=%d old=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d", dir, oldtop, m_top, m_selected, m_items_per_page, m_content->size());
 		switch (dir) {
-			case moveEnd:
+			case moveBottom:
 				m_top = m_content->size() - m_items_per_page;
 				break;
 			case justCheck:
