@@ -147,6 +147,12 @@ public:
 	void goLeft() { moveSelection(moveLeft); }
 	void goRight() { moveSelection(moveRight); }
 
+	// for future use
+	void goPageLeft() { moveSelection(movePageLeft); }
+	void goPageRight() { moveSelection(movePageRight); }
+	void goFirst() { moveSelection(moveFirst); }
+	void goLast() { moveSelection(moveLast); }
+
 	enum ListboxActions {
 		moveUp,
 		moveDown,
@@ -158,6 +164,10 @@ public:
 		refresh,
 		moveLeft,
 		moveRight,
+		moveFirst, // for future use
+		moveLast, // for future use
+		movePageLeft, // for future use
+		movePageRight, // for future use
 		moveEnd = moveBottom, // deprecated
 		pageUp = movePageUp,  // deprecated
 		pageDown = movePageDown  // deprecated
