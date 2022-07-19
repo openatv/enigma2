@@ -4,17 +4,14 @@ from Components.GUIComponent import GUIComponent
 
 
 class MenuList(GUIComponent):
-	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
+	GUI_WIDGET = eListbox
+
+	def __init__(self, list, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
 		self.list = list
 		self.l = content()
 		self.l.setList(self.list)
 		self.onSelectionChanged = []
-
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-
-	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
@@ -25,14 +22,8 @@ class MenuList(GUIComponent):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		for module in self.onSelectionChanged:
-			module()
-
-	def getSelectionIndex(self):
-		return self.l.getCurrentSelectionIndex()
-
-	def getSelectedIndex(self):
-		return self.l.getCurrentSelectionIndex()
+		for callback in self.onSelectionChanged:
+			callback()
 
 	def getList(self):
 		return self.list
@@ -41,37 +32,66 @@ class MenuList(GUIComponent):
 		self.list = list
 		self.l.setList(self.list)
 
-	def moveToIndex(self, index):
-		if self.instance is not None:
-			self.instance.moveSelectionTo(index)
+	def selectionEnabled(self, enabled):
+		if self.instance:
+			self.instance.setSelectionEnable(enabled)
+
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+
+	def getSelectionIndex(self):
+		return self.l.getCurrentSelectionIndex()
+
+	def getSelectedIndex(self):
+		return self.l.getCurrentSelectionIndex()
 
 	def count(self):
 		return len(self.list)
 
+	def moveToIndex(self, index):
+		if self.instance:
+			self.instance.moveSelectionTo(index)
+
+	def goTop(self):
+		if self.instance:
+			self.instance.goTop()
+
+	def goPageUp(self):
+		if self.instance:
+			self.instance.goPageUp()
+
+	def goLineUp(self):
+		if self.instance:
+			self.instance.goLineUp()
+
+	def goLineDown(self):
+		if self.instance:
+			self.instance.goLineDown()
+
+	def goPageDown(self):
+		if self.instance:
+			self.instance.goPageDown()
+
+	def goBottom(self):
+		if self.instance:
+			self.instance.goBottom()
+
+	# Old navigation method names.
+	#
 	def top(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveTop)
+		self.goTop()
 
 	def pageUp(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.pageUp)
+		self.goPageUp()
 
 	def up(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveUp)
+		self.goLineUp()
 
 	def down(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveDown)
+		self.goLineDown()
 
 	def pageDown(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.pageDown)
+		self.goPageDown()
 
 	def bottom(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveEnd)
-
-	def selectionEnabled(self, enabled):
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
+		self.goBottom()
