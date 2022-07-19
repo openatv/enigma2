@@ -15,7 +15,7 @@ has_scart = BoxInfo.getItem("scart")
 has_yuv = BoxInfo.getItem("yuv")
 has_rca = BoxInfo.getItem("rca")
 has_avjack = BoxInfo.getItem("avjack")
-has_scartyuv = BoxInfo.getItem("scart-yuv")
+has_scartyuv = BoxInfo.getItem("scartyuv")
 has_dvi = BoxInfo.getItem("dvi")
 
 config.av = ConfigSubsection()
