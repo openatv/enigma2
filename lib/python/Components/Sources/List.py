@@ -17,12 +17,12 @@ to generate HTML."""
 	# use of the enableWrapAround="1" attribute in the skin. Similarly the 
 	# itemHeight and font specifications are handled by the skin.
 	#
-	def __init__(self, list=[], enableWrapAround=False, item_height=25, fonts=[]):
+	def __init__(self, list=[], enableWrapAround=None, item_height=0, fonts=[]):
 		Source.__init__(self)
 		self.listData = list
+		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.onSelectionChanged = []
 		self.disableCallbacks = False
-		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 
 	def setList(self, listData):
 		self.listData = listData
@@ -50,11 +50,11 @@ to generate HTML."""
 	def selectionChanged(self, index):
 		if self.disableCallbacks:
 			return
-		for x in self.downstream_elements:  # Update all non-master targets.
-			if x is not self.master:
-				x.index = index
-		for x in self.onSelectionChanged:
-			x()
+		for element in self.downstream_elements:  # Update all non-master targets.
+			if element is not self.master:
+				element.index = index
+		for callback in self.onSelectionChanged:
+			callback()
 
 	@cached
 	def getCurrent(self):
@@ -92,50 +92,72 @@ to generate HTML."""
 	def count(self):
 		return len(self.listData)
 
-	def selectPrevious(self):  # This is a hack to protect code that was modified to use the previous up/down hack!
-		self.up()
-
-	def selectNext(self):  # This is a hack to protect code that was modified to use the previous up/down hack!
-		self.down()
-
-	def top(self):
+	def goTop(self):
 		try:
 			instance = self.master.master.instance
-			instance.moveSelection(instance.moveTop)
+			instance.goTop()
 		except AttributeError:
 			return
+
+	def goPageUp(self):
+		try:
+			instance = self.master.master.instance
+			instance.goPageUp()
+		except AttributeError:
+			return
+
+	def goLineUp(self):
+		try:
+			instance = self.master.master.instance
+			instance.goLineUp()
+		except AttributeError:
+			return
+
+	def goLineDown(self):
+		try:
+			instance = self.master.master.instance
+			instance.goLineDown()
+		except AttributeError:
+			return
+
+	def goPageDown(self):
+		try:
+			instance = self.master.master.instance
+			instance.goPageDown()
+		except AttributeError:
+			return
+
+	def goBottom(self):
+		try:
+			instance = self.master.master.instance
+			instance.goBottom()
+		except AttributeError:
+			return
+
+	# These hacks protect code that was modified to use the previous up/down hack!
+	#
+	def selectPrevious(self):
+		self.goLineUp()
+
+	def selectNext(self):
+		self.goLineDown()
+
+	# Old navigation method names.
+	#
+	def top(self):
+		self.goTop()
 
 	def pageUp(self):
-		try:
-			instance = self.master.master.instance
-			instance.moveSelection(instance.pageUp)
-		except AttributeError:
-			return
+		self.goPageUp()
 
 	def up(self):
-		try:
-			instance = self.master.master.instance
-			instance.moveSelection(instance.moveUp)
-		except AttributeError:
-			return
+		self.goLineUp()
 
 	def down(self):
-		try:
-			instance = self.master.master.instance
-			instance.moveSelection(instance.moveDown)
-		except AttributeError:
-			return
+		self.goLineDown()
 
 	def pageDown(self):
-		try:
-			instance = self.master.master.instance
-			instance.moveSelection(instance.pageDown)
-		except AttributeError:
-			return
+		self.goPageDown()
 
 	def bottom(self):
-		try:
-			instance = self.master.master.instance
-			instance.moveSelection(instance.moveEnd)
-		except AttributeError:
-			return
+		self.goBottom()
