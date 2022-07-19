@@ -4,7 +4,7 @@ from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islin
 from re import findall
 from subprocess import PIPE, Popen
 
-from boxbranding import getBrandOEM, getDisplayType, getMachineBuild, getMachineMtdRoot, getMachineName, getBoxType
+from boxbranding import getMachineBuild, getBoxType
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
@@ -162,6 +162,10 @@ ARCHITECTURE = BoxInfo.getItem("architecture")
 BRAND = BoxInfo.getItem("brand")
 MODEL = BoxInfo.getItem("model")
 SOC_FAMILY = BoxInfo.getItem("socfamily")
+DISPLAYTYPE = BoxInfo.getItem("displaytype")
+MTDROOTFS = BoxInfo.getItem("mtdrootfs")
+DISPLAYMODEL = BoxInfo.getItem("displaymodel")
+
 
 # Parse the boot commandline.
 # cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
@@ -247,22 +251,22 @@ def Refresh_SysSoftCam():
 
 def GetBoxName():
 	box = getBoxType()
-	machinename = getMachineName()
+	machinename = DISPLAYMODEL.lower()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 		box = "ventonhdx"
 	elif box == "odinm6":
-		box = getMachineName().lower()
-	elif box == "inihde" and machinename.lower() == "xpeedlx":
+		box = machinename
+	elif box == "inihde" and machinename == "xpeedlx":
 		box = "xpeedlx"
 	elif box in ('xpeedlx1', 'xpeedlx2'):
 		box = "xpeedlx"
-	elif box == "inihde" and machinename.lower() == "hd-1000":
+	elif box == "inihde" and machinename == "hd-1000":
 		box = "sezam-1000hd"
-	elif box == "ventonhdx" and machinename.lower() == "hd-5000":
+	elif box == "ventonhdx" and machinename == "hd-5000":
 		box = "sezam-5000hd"
-	elif box == "ventonhdx" and machinename.lower() == "premium twin":
+	elif box == "ventonhdx" and machinename == "premium twin":
 		box = "miraclebox-twin"
-	elif box == "xp1000" and machinename.lower() == "sf8 hd":
+	elif box == "xp1000" and machinename == "sf8 hd":
 		box = "sf8"
 	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
 		box = box[0:3] + 'x00'
@@ -329,8 +333,8 @@ SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["HAVEINITCAM"] = haveInitCam()
-SystemInfo["7segment"] = getDisplayType() in ("7segment",)
-SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ("7segment",)
+SystemInfo["7segment"] = DISPLAYTYPE in ("7segment",)
+SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and DISPLAYTYPE not in ("7segment",)
 SystemInfo["LCDSKINSetup"] = fileExists("/usr/share/enigma2/display")
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
@@ -396,7 +400,7 @@ SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
-SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in getMachineMtdRoot()
+SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in MTDROOTFS
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasFullHDSkinSupport"] = MODEL not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
