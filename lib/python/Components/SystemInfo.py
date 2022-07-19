@@ -4,8 +4,8 @@ from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islin
 from re import findall
 from subprocess import PIPE, Popen
 
-from boxbranding import getMachineBuild, getBoxType
-from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
+from boxbranding import getBoxType
+from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
 from Tools.MultiBoot import MultiBoot
@@ -365,7 +365,7 @@ SystemInfo["StandbyState"] = False
 SystemInfo["GraphicLCD"] = MODEL in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus")
 SystemInfo["Blindscan"] = isPluginInstalled("Blindscan")
 SystemInfo["Satfinder"] = isPluginInstalled("Satfinder")
-SystemInfo["HasExternalPIP"] = getMachineBuild() not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external")
+SystemInfo["HasExternalPIP"] = MODEL not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
@@ -393,17 +393,17 @@ SystemInfo["DefaultDisplayBrightness"] = MODEL in ("dm900", "dm920") and 8 or 5
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
-SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439")
-SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or BoxInfo.getItem("machinebuild") in ("spycat4k", "spycat4kcombo", "gbquad4k")
+SystemInfo["XcoreVFD"] = MODEL in ("xc7346", "xc7439")
+SystemInfo["HDMIin"] = MODEL in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or BoxInfo.getItem("machinebuild") in ("spycat4k", "spycat4kcombo", "gbquad4k")
 SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
 SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in MTDROOTFS
-SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
+SystemInfo["HasSDswap"] = MODEL in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasFullHDSkinSupport"] = MODEL not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
-SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
+SystemInfo["canRecovery"] = MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
 SystemInfo["SoftCam"] = Check_Softcam()
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")
 SystemInfo["MiddleFlash"] = BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash")
