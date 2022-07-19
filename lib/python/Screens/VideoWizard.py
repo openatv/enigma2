@@ -15,16 +15,10 @@ from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default=False)
 
-has_rca = False
-has_dvi = False
-has_jack = False
-has_scart = False
-
-
-has_rca = BoxInfo.getItem("HaveRCA")
-has_dvi = BoxInfo.getItem("HaveDVI")
-has_jack = BoxInfo.getItem("HaveAVJACK")
-has_scart = BoxInfo.getItem("HAVESCART")
+has_scart = BoxInfo.getItem("scart")
+has_rca = BoxInfo.getItem("rca")
+has_jack = BoxInfo.getItem("avjack")
+has_dvi = BoxInfo.getItem("dvi")
 
 
 class VideoWizardSummary(WizardSummary):

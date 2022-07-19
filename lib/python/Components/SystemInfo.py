@@ -4,7 +4,7 @@ from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islin
 from re import findall
 from subprocess import PIPE, Popen
 
-from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot, getMachineName, getBoxType
+from boxbranding import getBrandOEM, getDisplayType, getMachineBuild, getMachineMtdRoot, getMachineName, getBoxType
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
@@ -392,15 +392,6 @@ SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["
 SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439")
 SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or BoxInfo.getItem("machinebuild") in ("spycat4k", "spycat4kcombo", "gbquad4k")
 SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
-SystemInfo["HaveRCA"] = getHaveRCA() == "True"
-SystemInfo["HaveDVI"] = getHaveDVI() == "True"
-SystemInfo["HaveAVJACK"] = getHaveAVJACK() == "True"
-SystemInfo["HAVESCART"] = getHaveSCART() == "True"
-SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() == "True"
-SystemInfo["HAVEYUV"] = getHaveYUV() == "True"
-SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
-SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
-SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
 SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
@@ -408,7 +399,6 @@ SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot
 SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in getMachineMtdRoot()
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasFullHDSkinSupport"] = MODEL not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
-SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
 SystemInfo["SoftCam"] = Check_Softcam()
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")

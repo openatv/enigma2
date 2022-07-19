@@ -10,21 +10,13 @@ from Components.SystemInfo import BoxInfo
 import os
 from time import sleep
 
-has_scart = False
-has_scartyuv = False
-has_yuv = False
-has_dvi = False
-has_hdmi = False
-has_rca = False
-has_avjack = False
-
-has_scart = BoxInfo.getItem("HAVESCART")
-has_scartyuv = BoxInfo.getItem("HAVESCARTYUV")
-has_yuv = BoxInfo.getItem("HAVEYUV")
-has_dvi = BoxInfo.getItem("HaveDVI")
-has_hdmi = BoxInfo.getItem("HAVEHDMI")
-has_rca = BoxInfo.getItem("HaveRCA")
-has_avjack = BoxInfo.getItem("HaveAVJACK")
+has_hdmi = BoxInfo.getItem("hdmi")
+has_scart = BoxInfo.getItem("scart")
+has_yuv = BoxInfo.getItem("yuv")
+has_rca = BoxInfo.getItem("rca")
+has_avjack = BoxInfo.getItem("avjack")
+has_scartyuv = BoxInfo.getItem("scart-yuv")
+has_dvi = BoxInfo.getItem("dvi")
 
 config.av = ConfigSubsection()
 if getBrandOEM() in ('azbox',):
