@@ -244,9 +244,11 @@ def Check_SysSoftcam():
 				pass
 	return syscam
 
+
 def Refresh_SysSoftCam():
 	SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
 	SystemInfo["ShowCCCamInfo"] = Check_SysSoftcam() in ("cccam",)
+
 
 def GetBoxName():
 	box = getBoxType()
@@ -335,8 +337,7 @@ SystemInfo["HAVEINITCAM"] = haveInitCam()
 SystemInfo["7segment"] = DISPLAYTYPE in ("7segment",)
 SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and DISPLAYTYPE not in ("7segment",)
 SystemInfo["LCDSKINSetup"] = fileExists("/usr/share/enigma2/display")
-# TODO : do we need this ?
-SystemInfo["12V_Output"] = False # Misc_Options.getInstance().detected_12V_output()
+SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()  #FIXME : Do we need this?
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or MODEL in ("osminiplus",)
