@@ -1,13 +1,12 @@
 from hashlib import md5
-from os import R_OK, access, listdir, walk, readlink
-from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islink
-from re import findall
+from os import listdir, readlink
+from os.path import exists, isfile, join as pathjoin, islink
 from subprocess import PIPE, Popen
 
 from boxbranding import getBoxType
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl
 
-from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
 from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -336,7 +335,8 @@ SystemInfo["HAVEINITCAM"] = haveInitCam()
 SystemInfo["7segment"] = DISPLAYTYPE in ("7segment",)
 SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and DISPLAYTYPE not in ("7segment",)
 SystemInfo["LCDSKINSetup"] = fileExists("/usr/share/enigma2/display")
-SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+# TODO : do we need this ?
+SystemInfo["12V_Output"] = False # Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or MODEL in ("osminiplus",)
@@ -407,15 +407,15 @@ SystemInfo["canRecovery"] = MODEL in ("hd51", "vs1500", "h7", "8100s") and ("dis
 SystemInfo["SoftCam"] = Check_Softcam()
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")
 SystemInfo["MiddleFlash"] = BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash")
-SystemInfo["HiSilicon"] = SOC_FAMILY.startswith("hisi") or fileAccess("/proc/hisi") or fileAccess("/usr/bin/hihalt") or fileAccess("/usr/lib/hisilicon")
-SystemInfo["AmlogicFamily"] = SOC_FAMILY.startswith(("aml", "meson")) or fileAccess("/proc/device-tree/amlogic-dt-id") or fileAccess("/usr/bin/amlhalt") or fileAccess("/sys/module/amports")
+SystemInfo["HiSilicon"] = SOC_FAMILY.startswith("hisi") or exists("/proc/hisi") or exists("/usr/bin/hihalt") or exists("/usr/lib/hisilicon")
+SystemInfo["AmlogicFamily"] = SOC_FAMILY.startswith(("aml", "meson")) or exists("/proc/device-tree/amlogic-dt-id") or exists("/usr/bin/amlhalt") or exists("/sys/module/amports")
 SystemInfo["ArchIsARM64"] = ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
 SystemInfo["ArchIsARM"] = ARCHITECTURE.startswith(("arm", "cortex"))
 SystemInfo["STi"] = SOC_FAMILY.startswith("sti")
 SystemInfo["BoxName"] = GetBoxName()
 canImageBackup = not MODEL.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MODEL.startswith('alien')
 SystemInfo["canImageBackup"] = canImageBackup
-SystemInfo["dFlash"] = canImageBackup and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dFlash")
-SystemInfo["dBackup"] = canImageBackup and not SystemInfo["dFlash"] and fileAccess("/usr/lib/enigma2/python/Plugins/Extensions/dBackup")
+SystemInfo["dFlash"] = canImageBackup and exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash")
+SystemInfo["dBackup"] = canImageBackup and not SystemInfo["dFlash"] and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup")
 SystemInfo["ImageBackup"] = canImageBackup and not SystemInfo["dFlash"] and not SystemInfo["dBackup"]
 Refresh_SysSoftCam()
