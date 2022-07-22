@@ -7,13 +7,14 @@
 # Makumbo <tokioplo@web.de>, 2021, 2022.
 # Mr.Servo <mrservo@gmx.de>, 2021.
 # VfBFan <drop0815@posteo.de>, 2021, 2022.
+# Gunnar Koser <info@e2world.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-04 20:08+0000\n"
-"PO-Revision-Date: 2022-07-12 13:10+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2022-07-22 19:35+0000\n"
+"Last-Translator: Gunnar Koser <info@e2world.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2499,7 +2500,7 @@ msgid "Advanced options and settings."
 msgstr "Erweiterte Optionen und Einstellungen."
 
 msgid "Advanced video enhancement setup"
-msgstr "Erweiterte Einrichtung der Bildoptimierung"
+msgstr "Bildoptimierungen einstellen."
 
 msgid "Adventure"
 msgstr "Abenteuer"
@@ -2618,10 +2619,10 @@ msgid "Allow unsupported modes"
 msgstr "Nicht unterstützte Modi erlauben"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Regelmäßiges Lesen der EPG-Daten aus der unter 'EPG Dateiname' eingestellten Datei erlauben."
+msgstr "'Ja' erlaubt regelmäßiges Lesen der EPG-Daten aus der unter 'EPG Dateiname' eingestellten Datei."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Regelmäßiges Schreiben der EPG-Daten in die unter 'EPG Dateiname' eingestellte Datei erlauben."
+msgstr "'Ja' erlaubt regelmäßiges Schreiben der EPG-Daten in die unter 'EPG Dateiname' eingestellte Datei."
 
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Den Receiver mit der Fernbedienung des Fernsehers steuern."
@@ -2642,7 +2643,7 @@ msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Anzeige von Icons auf dem Display erlauben."
 
 msgid "Allows you to hide the extensions of known file types."
-msgstr "Das Ausblenden der Dateiendungen von bekannten Dateiformaten aktivieren."
+msgstr "Bei 'Ja' werden Dateiendungen von bekannten Dateiformaten ausgeblendet."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Maximale Größe in Megabyte (MB) des Debug-Logs festlegen. Wenn die Größe erreicht ist wird eine neue Datei erstellt."
@@ -4860,7 +4861,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "Die Anzeige des Sendernamens in der Senderliste einstellen."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr "Die Speicherung der EPG-Daten einstellen."
+msgstr "'Ja' erlaubt die Speicherung der EPG-Daten."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Bei 'Ja' werden Senderlogos (Picons) falls vorhanden beim Quickzap (Umschalten) angezeigt."
@@ -6489,7 +6490,7 @@ msgstr "Auswahlliste als Auswahlmenü anzeigen"
 
 # EPG Setup
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "EIT-EPG-Informationen jetzt/gleich in der Infoleiste zeigen."
+msgstr "Bei 'Ja' werden EIT-EPG-Informationen jetzt/gleich in der Infoleiste angezeigt."
 
 msgid "Display the base locales or all locales for a language."
 msgstr "Anzeige der Sprachregion oder aller lokalen Sprachen für eine Sprache."
@@ -7185,7 +7186,7 @@ msgid "Enable 5V for active antenna"
 msgstr "5V für aktive Antenne aktivieren"
 
 msgid "Enable BT Audio"
-msgstr "BT-Audio aktivieren"
+msgstr "Bluetooth-Audio aktivieren"
 
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Aktiviere CIHelper für SLOT CI0"
@@ -10217,7 +10218,7 @@ msgid "Keep service"
 msgstr "Laufender Kanal"
 
 msgid "Keeps MovieList open whilst playing audio files."
-msgstr "Filmauswahl offen lassen, wenn Audiodateien abgespielt werden?"
+msgstr "Bei 'Ja' bleibt die Filmauswahl geöffnet, wenn Audiodateien abgespielt werden."
 
 msgid "Kenya"
 msgstr "Kenia"
@@ -12620,10 +12621,10 @@ msgid "Only log debug information of GStreamer category. * means all categories.
 msgstr "Nur Meldungen der ausgewählten GStreamer-Kategorie schreiben. * Bedeutet alle."
 
 msgid "Only move the dish quickly after this hour."
-msgstr "Bewegen Sie die Satellitenschüssel erst nach dieser Stunde."
+msgstr "Bewegen der Satellitenschüssel erst nach dieser Stunde."
 
 msgid "Only move the dish quickly before this hour."
-msgstr "Bewegen Sie die Satellitenschüssel erst kurz vor dieser Stunde."
+msgstr "Bewegen der Satellitenschüssel erst kurz vor dieser Stunde."
 
 # ChannelSelection.py
 msgid "Only on startup"
@@ -16804,7 +16805,7 @@ msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Wählen Sie 'Ja', um die Playlisten alphabetisch zu sortieren."
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
+msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
@@ -17535,7 +17536,7 @@ msgid "Show next system information screen"
 msgstr "Nächsten Systeminformationsbildschirm anzeigen"
 
 msgid "Show or hide the extended description, (skin dependent)."
-msgstr "Die erweiterte Beschreibung anzeigen oder verbergen (abhängig vom Skin)."
+msgstr "Bei 'Ja' wird eine erweiterte Beschreibung angezeigt (abhängig vom Skin)."
 
 msgid "Show parting lines"
 msgstr "Trennlinien anzeigen"
@@ -17791,7 +17792,7 @@ msgid "Shows live tv or informations on LCD."
 msgstr "Live-TV oder Informationen auf dem Display anzeigen."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
-msgstr "Die Anzeige von neuen/ungesehenen Filmen in der Filmauswahl einstellen."
+msgstr "Bei 'Ja' werden in der Anzeige von neuen/ungesehenen Filmen Icons angezeigt."
 
 #
 msgid "Shows the state of your wireless LAN connection."
@@ -18561,7 +18562,7 @@ msgid "Stop playing this movie?"
 msgstr "Wiedergabe beenden?"
 
 msgid "Stop previous broadcasted service on return to movie list."
-msgstr "Wählen Sie, ob nach dem Stoppen zur Filmauswahl zurückgekehrt werden soll."
+msgstr "Bei 'Ja' wird nach dem Stoppen zur Filmauswahl zurückgekehrt."
 
 msgid "Stop recording"
 msgstr "Aufnahme beenden"
@@ -18613,7 +18614,7 @@ msgid "Stopping Softcam"
 msgstr "Stoppe Softcam"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Beendet Timeshift, wenn eine Aufnahme läuft. Ratsam bei der Verwendung eines USB-Sticks."
+msgstr "Bei 'Ja' wird Timeshift beendet, wenn eine Aufnahme läuft. Ratsam bei Verwendung eines USB-Sticks."
 
 msgid "Storage / Disk Information"
 msgstr "Disk-Informationen"
@@ -19712,7 +19713,7 @@ msgid "This line is not editable!"
 msgstr "Diese Zeile kann nicht bearbeitet werden!"
 
 msgid "This menu contains selections to display information about the receiver."
-msgstr "Alle Informationen zu Ihrem Receiver."
+msgstr "Alle Informationen zu Ihrem Receiver"
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Software Ihrer %s %s verwalten."
@@ -19843,7 +19844,7 @@ msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Die Ausgabe von 3D-Surround-Sound aktivieren."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr "Den Signalwert SNR in 'dB' anstatt '%' anzeigen lassen (nicht alle Receiver unterstützen diese Funktion)."
+msgstr "Bei 'Ja' wird der Signalwert SNR in 'dB' anstatt in '%' angezeigt. Nicht alle Receiver unterstützen diese Funktion."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Bei 'Ja' können Sie alle HDMI-Modi verwenden."
@@ -21040,10 +21041,10 @@ msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Deinterlacing für 1080i-Videosignal verwenden?"
 
 msgid "Use EIT EPG information when it is available."
-msgstr "EIT-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden EIT-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Freesat-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden Freesat-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 msgid "Use Geolocation"
 msgstr "Standortbestimmung"
@@ -21059,17 +21060,17 @@ msgid "Use Keymap *"
 msgstr "Tastaturbelegung *"
 
 msgid "Use MHW EPG information when it is available."
-msgstr "MHW-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden MHW-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Netmed-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden Netmed-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 # ImageBackup.py
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "OnlineFlash in der Softwareverwaltung verwenden"
 
 msgid "Use OpenTV EPG information when it is available."
-msgstr "OpenTV-EPG-Information verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden OpenTV-EPG-Information verwendet, wenn sie verfügbar sind."
 
 msgid "Use TV remote control"
 msgstr "TV-Fernbedienung benutzen"
@@ -21079,10 +21080,10 @@ msgid "Use USALS for this sat"
 msgstr "USALS für diesen Satelliten verwenden"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "ViaSat-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden ViaSat-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 msgid "Use Virgin EPG information when it is available."
-msgstr "Virgin-EPG-Informationen verwenden, wenn sie verfügbar sind."
+msgstr "Bei 'Ja' werden Virgin-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 #
 msgid "Use a gateway"
@@ -21944,10 +21945,10 @@ msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Bei 'Ja' kann der Bild im Bild Modus mit EXIT beendet werden."
 
 msgid "When enabled the receiver will automatically be switched off."
-msgstr "Wenn aktiviert wird der Receiver automatisch ausgeschaltet."
+msgstr "Wenn aktiviert, wird der Receiver automatisch ausgeschaltet."
 
 msgid "When enabled the receiver will automatically be switched on."
-msgstr "Wenn aktiviert wird der Receiver automatisch eingeschaltet."
+msgstr "Wenn aktiviert, wird der Receiver automatisch eingeschaltet."
 
 msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
 msgstr "Wenn aktiviert, wird der Receiver automatisch in den Standby gehen, wenn der Fernseher ausgeschaltet wird."
@@ -22035,7 +22036,7 @@ msgid "When enabled, measure power consumption to detect when the rotor stops tu
 msgstr "Wenn aktiviert, wird der Stromverbrauch gemessen, um festzustellen, wann der Rotor aufhört, sich zu drehen (wenn dies vom Tuner unterstützt wird)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Wenn aktiviert, werden die Netzwerk-Papierkörbe auch geleert."
+msgstr "Bei 'Ja' werden auch die Netzwerk-Papierkörbe geleert."
 
 msgid "When enabled, number markers will be hidden."
 msgstr "Bei 'Ja' werden nummerierte Marker ausgeblendet."
@@ -22105,10 +22106,10 @@ msgid "When receiver wakes from standby it will command the TV to switch to the 
 msgstr "Wenn der Receiver aus dem Standby aufwacht, wird am Fernseher auf den HDMI Eingang geschaltet, an dem der Receiver angeschlossen ist."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr "Wenn aktiviert, merken sich die Verzeichnisse ihren vorherigen Zustand, ansonsten wird die Standardansicht angezeigt."
+msgstr "Bei 'Ja' merken sich Verzeichnisse ihren vorherigen Zustand, ansonsten wird die Standardansicht angezeigt."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Wenn aktiviert, wird, nachdem der Film beendet wurde, Live-TV angezeigt."
+msgstr "Bei 'Ja' wird, nachdem der Film beendet wurde, Live-TV angezeigt."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
