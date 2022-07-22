@@ -213,6 +213,8 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 	def selectionChanged(self):
 		if self["config"]:
 			self.setFootnote(None)
+		else:
+			self["description"].text = _("There are no items currently available for this screen.")
 
 	def layoutFinished(self):
 		if self.setupImage:
