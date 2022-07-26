@@ -605,13 +605,13 @@ class ConfigDictionarySet(ConfigElement):
 		self.dirs = self.value
 
 	def save(self):
-		del_keys = []
+		delKeys = []
 		for key in self.dirs:
 			if not len(self.dirs[key]):
-				del_keys.append(key)
-		for del_key in del_keys:
+				delKeys.append(key)
+		for delKey in delKeys:
 			try:
-				del self.dirs[del_key]
+				del self.dirs[delKey]
 			except KeyError:
 				pass
 			self.changed()
