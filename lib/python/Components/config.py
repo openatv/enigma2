@@ -408,8 +408,7 @@ class choicesList():
 		except (ValueError, IndexError):  # Occurs, for example, when default is not in list.
 			return 0  # DEBUG: Is it appropriate to return the first item if the index is invalid?
 
-	# only used in nimmanager.py / connectedToChanged
-	def updateItemDescription(self, index, descr):
+	def updateItemDescription(self, index, descr):  # This is only used in nimmanager.py / connectedToChanged.
 		if self.type == choicesList.TYPE_LIST:
 			orig = self.choices[index]
 			if isinstance(orig, tuple):
@@ -417,6 +416,7 @@ class choicesList():
 		else:
 			key = list(self.choices.keys())[index]
 			self.choices[key] = descr
+
 
 class descriptionsList(choicesList):
 	def __getitem__(self, index):
@@ -485,7 +485,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = default
 		self.descriptions = descriptions
 		self.graphic = graphic
-		self.trueValues = ("1", "enabled", "on", "true", "yes")
+		self.trueValues = ("1", "enable", "enabled", "on", "true", "yes")
 
 	def handleKey(self, key, callback=None):
 		prev = self.value
@@ -605,13 +605,13 @@ class ConfigDictionarySet(ConfigElement):
 		self.dirs = self.value
 
 	def save(self):
-		del_keys = []
+		delKeys = []
 		for key in self.dirs:
 			if not len(self.dirs[key]):
-				del_keys.append(key)
-		for del_key in del_keys:
+				delKeys.append(key)
+		for delKey in delKeys:
 			try:
-				del self.dirs[del_key]
+				del self.dirs[delKey]
 			except KeyError:
 				pass
 			self.changed()
@@ -665,9 +665,6 @@ class ConfigDictionarySet(ConfigElement):
 			if callable(self.callback):
 				self.callback()
 
-	def getKeys(self):
-		return self.dir_pathes
-
 
 # This is the control, and base class, for location settings.
 #
@@ -693,7 +690,7 @@ class ConfigLocations(ConfigElement):
 
 	def load(self):
 		ConfigElement.load(self)
-		self.loadValue = list(set(self.loadValue))  # Remove any duplicated entries.
+		self.loadValue = list(dict.fromkeys(self.loadValue))  # Remove any duplicated entries.
 		self.locations = [[x, None, False] for x in self.loadValue]
 		self.refreshMountPoints()
 		for location in self.locations:
@@ -746,8 +743,8 @@ class ConfigLocations(ConfigElement):
 		self.checkChangedMountPoints()
 		return [x[0] for x in self.locations if x[2]]
 
-	def setValue(self, value):
-		value = list(set(value))  # Remove any duplicated entries.
+	def setValue(self, value):  # Do not sort the locations here, this should be done as required in the UI.
+		value = list(dict.fromkeys(value))  # Remove any duplicated entries.
 		newLocations = []
 		for location in self.locations:
 			if location[0] in value:
@@ -755,7 +752,6 @@ class ConfigLocations(ConfigElement):
 				value.remove(location[0])
 		for location in value:
 			newLocations.append([location, self.getMountPoint(location), fileAccess(location)])
-		newLocations.sort(key=lambda x: x[0])
 		if newLocations != self.locations:
 			self.locations = newLocations
 			self.changed()
@@ -1354,7 +1350,7 @@ class ConfigPIN(ConfigInteger):
 	def __init__(self, default, pinLength=4, censor=u"\u2022"):
 		if not isinstance(default, int):
 			raise TypeError("[Config] Error: 'ConfigPIN' default must be an integer!")
-		if censor != "" and (isinstance(censor, str) and len(censor) != 1): # and (isinstance(censor, unicode) and len(censor) != 1):
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1):  # and (isinstance(censor, unicode) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		ConfigInteger.__init__(self, default=default, limits=(0, (10 ** pinLength) - 1), censor=censor)
 		self.pinLength = pinLength
