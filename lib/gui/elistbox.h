@@ -37,8 +37,8 @@ protected:
 
 	virtual void cursorSave()=0;
 	virtual void cursorRestore()=0;
-	virtual void cursorSaveTop(int n)=0;
-	virtual int cursorRestoreTop()=0;
+	virtual void cursorSaveLine(int n)=0;
+	virtual int cursorRestoreLine()=0;
 
 	virtual int size()=0;
 
@@ -114,6 +114,12 @@ public:
 	};
 
 	enum {
+		listVertical,
+		listHorizontal,
+		listGrid
+	};
+
+	enum {
 		DefaultScrollBarWidth = 10,
 		DefaultScrollBarOffset = 5,
 		DefaultScrollBarBorderWidth = 1,
@@ -133,6 +139,7 @@ public:
 
 	int getCurrentIndex();
 	void moveSelection(long how);
+	void moveSelectionNew(long how);
 	void moveSelectionTo(int index);
 	void moveToEnd(); // Deprecated
 	bool atBegin();
@@ -174,6 +181,7 @@ public:
 	};
 
 	void setItemHeight(int h);
+	void setItemWidth(int w);
 	void setSelectionEnable(int en);
 
 	void setBackgroundColor(gRGB &col);
@@ -212,6 +220,8 @@ public:
 			defaultScrollBarMode = mode;
 		}
 
+	void setOrientation(int o);
+
 	bool getWrapAround() { return m_enabled_wrap_around; }
 	int getScrollbarScroll() { return m_scrollbar_scroll; }
 	int getScrollbarMode() { return m_scrollbar_mode; }
@@ -219,6 +229,8 @@ public:
 	int getScrollbarOffset() { return m_scrollbar_offset; }
 	int getScrollbarBorderWidth() { return m_scrollbar_border_width; }
 	int getItemHeight() { return m_itemheight; }
+	int getItemWidth() { return m_itemwidth; }
+	int getOrientation() { return m_list_orientation; }
 	bool getSelectionEnable() {return m_selection_enabled; }
 	gFont* getFont() {return m_style.m_font; }
 	gFont* getEntryFont() {return m_style.m_font; }
@@ -252,7 +264,7 @@ private:
 	static int defaultScrollBarMode;
 	static bool defaultWrapAround;
 
-	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
+	int m_list_orientation,m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 
@@ -261,10 +273,12 @@ private:
 	int m_scrollbar_border_width;
 	int m_top, m_selected;
 	int m_itemheight;
+	int m_itemwidth;
 	int m_items_per_page;
 	int m_selection_enabled;
 
 	bool m_native_keys_bound;
+	bool m_new_navigation;
 
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
