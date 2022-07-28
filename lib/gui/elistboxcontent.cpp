@@ -56,7 +56,7 @@ int iListboxContent::currentCursorSelectable()
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	:m_cursor(0), m_saved_cursor(0), m_saved_cursor_top(0), m_itemheight(25)
+	:m_cursor(0), m_saved_cursor(0), m_saved_cursor_line(0), m_itemheight(25)
 {
 }
 
@@ -130,14 +130,14 @@ void eListboxPythonStringContent::cursorRestore()
 	m_cursor = m_saved_cursor;
 }
 
-void eListboxPythonStringContent::cursorSaveTop(int top)
+void eListboxPythonStringContent::cursorSaveLine(int line)
 {
-	m_saved_cursor_top = top;
+	m_saved_cursor_line = line;
 }
 
-int eListboxPythonStringContent::cursorRestoreTop()
+int eListboxPythonStringContent::cursorRestoreLine()
 {
-	return m_saved_cursor_top;
+	return m_saved_cursor_line;
 }
 
 int eListboxPythonStringContent::size()

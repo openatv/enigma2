@@ -154,8 +154,8 @@ protected:
 
 	void cursorSave();
 	void cursorRestore();
-	void cursorSaveTop(int n);
-	int cursorRestoreTop();
+	void cursorSaveLine(int n);
+	int cursorRestoreLine();
 	int size();
 
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
@@ -177,7 +177,7 @@ private:
 	list m_list;
 	list::iterator m_cursor, m_saved_cursor;
 
-	int m_cursor_number, m_saved_cursor_number, m_saved_cursor_top;
+	int m_cursor_number, m_saved_cursor_number, m_saved_cursor_line;
 	int m_size;
 
 	eSize m_itemsize;

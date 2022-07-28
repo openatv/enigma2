@@ -37,8 +37,8 @@ protected:
 
 	virtual void cursorSave()=0;
 	virtual void cursorRestore()=0;
-	virtual void cursorSaveTop(int n)=0;
-	virtual int cursorRestoreTop()=0;
+	virtual void cursorSaveLine(int n)=0;
+	virtual int cursorRestoreLine()=0;
 
 	virtual int size()=0;
 
@@ -137,37 +137,47 @@ public:
 	void allowNativeKeys(bool allow);
 	void enableAutoNavigation(bool allow) { allowNativeKeys(allow); }
 
-/*	enum Movement {
-		moveUp,
-		moveDown,
-		moveTop,
-		moveEnd,
-		justCheck
-	}; */
-
 	int getCurrentIndex();
 	void moveSelection(long how);
+	void moveSelectionNew(long how);
 	void moveSelectionTo(int index);
-	void moveToEnd();
+	void moveToEnd(); // Deprecated
 	bool atBegin();
 	bool atEnd();
+
+	void goTop() { moveSelection(moveTop); }
+	void goBottom() { moveSelection(moveBottom); }
+	void goLineUp() { moveSelection(moveUp); }
+	void goLineDown() { moveSelection(moveDown); }
+	void goPageUp() { moveSelection(movePageUp); }
+	void goPageDown() { moveSelection(movePageDown); }
+	void goLeft() { moveSelection(moveLeft); }
+	void goRight() { moveSelection(moveRight); }
+
+	// for future use
+	void goPageLeft() { moveSelection(movePageLeft); }
+	void goPageRight() { moveSelection(movePageRight); }
+	void goFirst() { moveSelection(moveFirst); }
+	void goLast() { moveSelection(moveLast); }
 
 	enum ListboxActions {
 		moveUp,
 		moveDown,
 		moveTop,
-		moveEnd,
-		pageUp,
-		pageDown,
+		moveBottom,
+		movePageUp,
+		movePageDown,
 		justCheck,
 		refresh,
 		moveLeft,
 		moveRight,
-		moveFirst = moveTop,
-		moveBottom = moveEnd,
-		moveLast = moveEnd,
-		movePageUp = pageUp,
-		movePageDown = pageDown
+		moveFirst, // for future use
+		moveLast, // for future use
+		movePageLeft, // for future use
+		movePageRight, // for future use
+		moveEnd = moveBottom, // deprecated
+		pageUp = movePageUp,  // deprecated
+		pageDown = movePageDown  // deprecated
 	};
 
 	void setItemHeight(int h);
@@ -268,6 +278,7 @@ private:
 	int m_selection_enabled;
 
 	bool m_native_keys_bound;
+	bool m_new_navigation;
 
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
