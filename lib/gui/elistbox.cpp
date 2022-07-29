@@ -422,15 +422,15 @@ void eListbox::updateScrollBar()
 					float range = 101;
 					float thumb = (float)m_items_per_page / (float)entries * range;
 					if (m_selected>0)
-					    start = (int)(((range - thumb) * ((float)m_selected / (float)entries)) + 0.5);
-			        thumb = (int)(thumb + 0.5);
+						start = (int)(((range - thumb) * ((float)m_selected / (float)entries)) + 0.5);
+					thumb = (int)(thumb + 0.5);
 					int visblethumb = thumb < 4 ? 4 : thumb;
 					end = start + visblethumb;
 					if (end>range) {
 						end = range;
 						start = range - visblethumb;
 					}
-					eDebug("[eListbox] updateScrollBar thumb=%f start=%d end=%d m_items_per_page=%d entries=%d m_selected=%d", thumb, start, end, m_items_per_page, entries, m_selected);
+					eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d m_items_per_page=%d entries=%d m_selected=%d", thumb, start, end, m_items_per_page, entries, m_selected);
 				}
 				m_scrollbar->setStartEnd(start,end);
 
@@ -1015,15 +1015,13 @@ void eListbox::moveSelectionNew(long dir)
 
 		int oldline = m_content->cursorRestoreLine();
 		int max = m_content->size() - m_items_per_page;
-		eDebug("[eListbox] moveSelection 1 dir=%d oldline=%d oldtop=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d max=%d", dir, oldline, oldtop, m_top, m_selected, m_items_per_page, m_content->size(), max);
+		eDebug("[eListbox] moveSelection 1 dir=%d oldline=%d oldsel=%d m_selected=%d m_items_per_page=%d sz=%d max=%d", dir, oldline, oldsel, m_selected, m_items_per_page, m_content->size(), max);
 
 		bool jumpBottom = (dir == moveBottom);
-		//jumpBottom |= (dir == moveUp && m_selected >= max);  
 
 		if(dir == moveUp) {
 			if(m_selected > oldsel) {
 				jumpBottom = true;
-				eDebug("[eListbox] moveSelection moveUp jumpBottom");
 			}
 			else if (oldline > 0)
 				oldline-= oldsel - m_selected;
@@ -1042,18 +1040,25 @@ void eListbox::moveSelectionNew(long dir)
 		}
 
 		if(dir == moveDown) {
-			if(oldline < (m_items_per_page - 1)) {
-				oldline+= m_selected - oldsel;
+
+			int newline = oldline + (m_selected - oldsel);
+			if(newline < m_items_per_page && newline > 0) {
+				m_top = oldsel - oldline;
 			}
+			else {
+				m_top = m_selected - (m_items_per_page - 1);
+				if(m_selected < m_items_per_page )
+					m_top=0;
+			}
+
 			if (m_last_selectable_item != m_content->size()-1 && m_selected >= m_last_selectable_item)
 				jumpBottom = true;
 		}
 
 		if(jumpBottom) {
-			eDebug("[eListbox] moveSelection jumpBottom");
 			m_top = max;
 		}
-		else if (dir == justCheck || dir == moveUp || dir == moveDown)
+		else if (dir == justCheck || dir == moveUp)
 		{
 			if(m_first_selectable_item==-1 && dir == justCheck && m_selected != 0)
 			{
@@ -1067,11 +1072,9 @@ void eListbox::moveSelectionNew(long dir)
 			}
 			
 			m_top = m_selected - oldline;
-			eDebug("[eListbox] moveSelection new m_top=%d", m_top);
 		}
 
 		if(m_top<0 || oldline<0) {
-			eDebug("[eListbox] moveSelection m_top = 0");
 			m_top=0;
 		}
 
