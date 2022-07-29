@@ -279,6 +279,8 @@ private:
 
 	bool m_native_keys_bound;
 	bool m_new_navigation;
+	int m_first_selectable_item;
+	int m_last_selectable_item;
 
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;

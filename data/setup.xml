@@ -667,6 +667,7 @@
 	</setup>
 	<setup key="Usage" title="Customize System Settings" showOpenWebif="1">
 		<item level="0" text="Settings mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
+		<item level="2" text="Experimental navigation" description="This is a temporary setting to enable testing of new navigation code within the C++ GUI engine.">config.usage.new_navigation</item>
 		<item level="0" text="Input scroll position" description="When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor.">config.usage.cursorscroll</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="Teletext font and resolution" description="Configure the display resolution and the font used for teletext.">config.usage.tuxtxt_font_and_res</item>

@@ -18,7 +18,7 @@ eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_list_orientation(listVertical), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
-	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_new_navigation(false) ,m_scrollbar(nullptr)
+	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_new_navigation(false) , m_first_selectable_item(-1),m_last_selectable_item(-1),m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::defaultScrollBarOffset;
@@ -95,6 +95,8 @@ void eListbox::setWrapAround(bool state)
 
 void eListbox::setContent(iListboxContent *content)
 {
+	m_first_selectable_item = -1;
+	m_last_selectable_item = -1;
 	m_content = content;
 	if (content)
 		m_content->setListbox(this);
@@ -979,7 +981,7 @@ void eListbox::moveSelectionNew(long dir)
 					m_content->cursorMove(1);
 					newsel = m_content->cursorGet();
 				}
-			        while (newsel != prevsel + m_items_per_page && m_content->cursorValid() && !m_content->currentCursorSelectable());
+			    while (newsel != prevsel + m_items_per_page && m_content->cursorValid() && !m_content->currentCursorSelectable());
 			}
 			if (!m_content->cursorValid())
 			{
@@ -1027,21 +1029,24 @@ void eListbox::moveSelectionNew(long dir)
 				oldline-= oldsel - m_selected;
 		}
 
+		if(m_last_selectable_item==-1 && dir == justCheck)
+		{
+			m_content->cursorEnd();
+			do
+			{
+				m_content->cursorMove(-1);
+				m_last_selectable_item = m_content->cursorGet();
+			}
+			while (!m_content->currentCursorSelectable());
+			m_content->cursorSet(m_selected);
+		}
+
 		if(dir == moveDown) {
 			if(oldline < (m_items_per_page - 1)) {
 				oldline+= m_selected - oldsel;
 			}
-			if (m_content->size()-m_selected == 2)
-			{
-				// special case last element is not selectable.
-				// I'm the last element then jump
-				m_content->cursorMove(1);
-				if (!m_content->currentCursorSelectable()) {
-					jumpBottom = true;
-					eDebug("[eListbox] moveSelection jumpBottom moveDown");
-				}
-				m_content->cursorSet(m_selected);
-			}
+			if (m_last_selectable_item != m_content->size()-1 && m_selected >= m_last_selectable_item)
+				jumpBottom = true;
 		}
 
 		if(jumpBottom) {
@@ -1050,14 +1055,17 @@ void eListbox::moveSelectionNew(long dir)
 		}
 		else if (dir == justCheck || dir == moveUp || dir == moveDown)
 		{
-			// check if first item is selectable
-			if(m_selected==1 && (dir == justCheck || dir == moveUp))
+			if(m_first_selectable_item==-1 && dir == justCheck && m_selected != 0)
 			{
-				m_content->cursorHome();
-				if (!m_content->currentCursorSelectable())
-					oldline = 1;
-				m_content->cursorSet(m_selected);
+				m_first_selectable_item = m_selected;
+				oldline = m_selected;
 			}
+			
+			if(m_first_selectable_item>0 && dir == moveUp && m_selected == m_first_selectable_item)
+			{
+				oldline = m_selected;
+			}
+			
 			m_top = m_selected - oldline;
 			eDebug("[eListbox] moveSelection new m_top=%d", m_top);
 		}

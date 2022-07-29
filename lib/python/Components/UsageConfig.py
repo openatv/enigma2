@@ -450,7 +450,6 @@ def InitUsageConfig():
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
 
-
 	choicelist = [("0", _("Disabled"))]
 	for i in (10, 50, 100, 500, 1000, 2000):
 		choicelist.append(("%d" % i, _("%d ms") % i))
@@ -1088,7 +1087,6 @@ def InitUsageConfig():
 
 	harddiskmanager.on_partition_list_change.append(partitionListChanged)
 
-
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 
@@ -1118,7 +1116,7 @@ def InitUsageConfig():
 		if isfile(kmfile):
 			keymapchoices.append((kmfile, KM.get(kmap)))
 
-	if not isfile(keymapdefault): # BIG PROBLEM
+	if not isfile(keymapdefault):  # BIG PROBLEM
 		keymapchoices.append((keymapdefault, KM.get('xml')))
 
 	config.usage.keymap = ConfigSelection(default=keymapdefault, choices=keymapchoices)
@@ -1722,6 +1720,8 @@ def InitUsageConfig():
 		("slow", _("slow"))
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+
+	config.usage.new_navigation = ConfigYesNo(default=False)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
