@@ -1,24 +1,22 @@
 from __future__ import print_function
+from Components.AVSwitch import iAVSwitch
+from Components.config import config, ConfigBoolean, configfile
+from Components.Pixmap import Pixmap
+from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
+from Screens.Screen import Screen
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
-from Components.AVSwitch import iAVSwitch
-from Screens.Screen import Screen
-
-from Components.Pixmap import Pixmap
-from Components.config import config, ConfigBoolean, configfile
-from Components.SystemInfo import BoxInfo
-
 from Tools.Directories import resolveFilename, SCOPE_SKINS, SCOPE_GUISKIN
 from Tools.HardwareInfo import HardwareInfo
 
 
 config.misc.showtestcard = ConfigBoolean(default=False)
 
-has_scart = BoxInfo.getItem("scart")
-has_rca = BoxInfo.getItem("rca")
-has_jack = BoxInfo.getItem("avjack")
-has_dvi = BoxInfo.getItem("dvi")
+has_scart = BoxInfo.getItem("scart", False)
+has_rca = BoxInfo.getItem("rca", False)
+has_jack = BoxInfo.getItem("avjack", False)
+has_dvi = BoxInfo.getItem("dvi", False)
 
 
 class VideoWizardSummary(WizardSummary):

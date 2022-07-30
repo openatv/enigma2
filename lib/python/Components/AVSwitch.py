@@ -1,25 +1,25 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigOnOff, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from Components.About import about
-from Tools.CList import CList
-from Tools.HardwareInfo import HardwareInfo
-from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
-from boxbranding import getBrandOEM
-from Components.SystemInfo import BoxInfo
 import os
 from time import sleep
+from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
+from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigOnOff, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
+from Components.About import about
+from Components.SystemInfo import BoxInfo
+from Tools.CList import CList
+from Tools.HardwareInfo import HardwareInfo
 
-has_hdmi = BoxInfo.getItem("hdmi")
-has_scart = BoxInfo.getItem("scart")
-has_yuv = BoxInfo.getItem("yuv")
-has_rca = BoxInfo.getItem("rca")
-has_avjack = BoxInfo.getItem("avjack")
-has_scartyuv = BoxInfo.getItem("scartyuv")
-has_dvi = BoxInfo.getItem("dvi")
+has_hdmi = BoxInfo.getItem("hdmi", False)
+has_scart = BoxInfo.getItem("scart", False)
+has_yuv = BoxInfo.getItem("yuv", False)
+has_rca = BoxInfo.getItem("rca", False)
+has_avjack = BoxInfo.getItem("avjack", False)
+has_scartyuv = BoxInfo.getItem("scartyuv", False)
+has_dvi = BoxInfo.getItem("dvi", False)
+BRAND = BoxInfo.getItem("brand")
 
 config.av = ConfigSubsection()
-if getBrandOEM() in ('azbox',):
+if BRAND in ('azbox',):
 	config.av.edid_override = ConfigYesNo(default=True)
 else:
 	config.av.edid_override = ConfigYesNo(default=False)
@@ -27,31 +27,31 @@ else:
 
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
-	rates = {} # high-level, use selectable modes.
+	rates = {}  # high-level, use selectable modes.
 	modes = {}  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] = { "50Hz": {50: "pal"},
+	rates["PAL"] = {"50Hz": {50: "pal"},
 							"60Hz": {60: "pal60"},
 							"multi": {50: "pal", 60: "pal60"}}
 
-	rates["NTSC"] = { "60Hz": {60: "ntsc"}}
+	rates["NTSC"] = {"60Hz": {60: "ntsc"}}
 
-	rates["Multi"] = { "multi": {50: "pal", 60: "ntsc"}}
+	rates["Multi"] = {"multi": {50: "pal", 60: "ntsc"}}
 
-	rates["480i"] = { "60Hz": {60: "480i"}}
+	rates["480i"] = {"60Hz": {60: "480i"}}
 
-	rates["576i"] = { "50Hz": {50: "576i"}}
+	rates["576i"] = {"50Hz": {50: "576i"}}
 
-	rates["480p"] = { "60Hz": {60: "480p"}}
+	rates["480p"] = {"60Hz": {60: "480p"}}
 
-	rates["576p"] = { "50Hz": {50: "576p"}}
+	rates["576p"] = {"50Hz": {50: "576p"}}
 
-	rates["720p"] = { "50Hz": {50: "720p50"},
+	rates["720p"] = {"50Hz": {50: "720p50"},
 							"60Hz": {60: "720p"},
 							"multi": {50: "720p50", 60: "720p"},
 							"auto": {50: "720p50", 60: "720p", 24: "720p24"}}
 
-	rates["1080i"] = { "50Hz": {50: "1080i50"},
+	rates["1080i"] = {"50Hz": {50: "1080i50"},
 							"60Hz": {60: "1080i"},
 							"multi": {50: "1080i50", 60: "1080i"},
 							"auto": {50: "1080i50", 60: "1080i", 24: "1080p24"}}
@@ -78,7 +78,7 @@ class AVSwitch:
 							"auto": {50: "2160p25", 60: "2160p30", 24: "2160p24"}}
 
 	rates["PC"] = {
-		"1024x768": {60: "1024x768"}, # not possible on DM7025
+		"1024x768": {60: "1024x768"},  # not possible on DM7025
 		"800x600": {60: "800x600"},  # also not possible
 		"720x480": {60: "720x480"},
 		"720x576": {60: "720x576"},
@@ -102,7 +102,7 @@ class AVSwitch:
 	elif (about.getChipSetString() in ('7252', '7251', '7251S', '7252S', '7251s', '7252s', '72604', '7278', '7444s', '3798mv200', '3798mv200h', '3798cv200', 'hi3798mv200', 'hi3798mv200h', 'hi3798cv200')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p", "2160p30"}
-	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '75845', '7585', 'pnx8493', '7162', '7111', '3716mv410', 'hi3716mv410', 'hi3716mv430', '3716mv430')) or (getBrandOEM() in ('azbox')):
+	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '75845', '7585', 'pnx8493', '7162', '7111', '3716mv410', 'hi3716mv410', 'hi3716mv430', '3716mv430')) or (BRAND in ('azbox')):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	elif about.getChipSetString() in ('meson-6',):
@@ -184,7 +184,7 @@ class AVSwitch:
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
-			self.on_hotplug("HDMI") # must be HDMI
+			self.on_hotplug("HDMI")  # must be HDMI
 
 	def is24hzAvailable(self):
 		try:
@@ -199,7 +199,7 @@ class AVSwitch:
 		rate = self.rates[mode][rate]
 		for mode in list(rate.values()):
 			if port == "DVI":
-				if getBrandOEM() in ('azbox',):
+				if BRAND in ('azbox',):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print("[AVSwitch] no, not preferred")
 						return False
@@ -257,7 +257,7 @@ class AVSwitch:
 			except OSError:
 				print("[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
 
-		if getBrandOEM() in ('gigablue',):
+		if BRAND in ('gigablue',):
 			try:
 				# use 50Hz mode (if available) for booting
 				f = open("/etc/videomode", "w")
@@ -449,7 +449,7 @@ class AVSwitch:
 			elif is_auto:
 				try:
 					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
-					if aspect_str == "1": # 4:3
+					if aspect_str == "1":  # 4:3
 						ret = (4, 3)
 				except OSError:
 					pass
@@ -492,7 +492,7 @@ def InitAVSwitch():
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255)) # Make openATV compatible with some plugins who still use config.av.osd_alpha
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openATV compatible with some plugins who still use config.av.osd_alpha
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.value:
@@ -694,7 +694,7 @@ def InitAVSwitch():
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
 		iAVSwitch.setAspectRatio(map[configElement.value])
 
-	iAVSwitch.setInput("ENCODER") # init on startup
+	iAVSwitch.setInput("ENCODER")  # init on startup
 	if (BoxInfo.getItem("model") in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd')) or about.getModelString() == 'et6000':
 		detected = False
 	else:
