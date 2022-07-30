@@ -3,7 +3,7 @@
 int eSlider::defaultSliderBorderWidth = eSlider::DefaultBorderWidth;
 
 eSlider::eSlider(eWidget *parent)
-	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false),
+	:eWidget(parent), m_have_border_color(false), m_have_foreground_color(false), m_have_background_color(false), m_scrollbar(false), m_pixel_mode(false),
 	m_min(0), m_max(0), m_value(0), m_start(0), m_orientation(orHorizontal), m_orientation_swapped(0),
 	m_border_width(0)
 {
@@ -133,11 +133,17 @@ int eSlider::event(int event, void *data, void *data2)
 
 		if (m_min < m_max)
 		{
-
 			int val_range = m_max - m_min;
-			// calculate the start_pix and num_pix with correct scaling and repective borderwidth
-			start_pix = (m_start * pixsize / val_range) + m_border_width;
-			num_pix = (m_value * pixsize / val_range) + m_border_width - start_pix;
+			if(m_pixel_mode) {
+				// don't round
+				start_pix = m_start + m_border_width;
+				num_pix = m_value - m_start + m_border_width;
+			}
+			else {
+				// calculate the start_pix and num_pix with correct scaling and repective borderwidth
+				start_pix = (m_start * pixsize / val_range) + m_border_width;
+				num_pix = (m_value * pixsize / val_range) + m_border_width - start_pix;
+			}
 
 			if (m_orientation_swapped)
 				start_pix = pixsize - num_pix - start_pix;
@@ -176,8 +182,9 @@ void eSlider::setValue(int value)
 	event(evtChangedSlider);
 }
 
-void eSlider::setStartEnd(int start, int end)
+void eSlider::setStartEnd(int start, int end, bool pixel)
 {
+	m_pixel_mode = pixel;
 	m_value = end;
 	m_start = start;
 	event(evtChangedSlider);
