@@ -426,15 +426,17 @@ void eListbox::updateScrollBar()
 				// calculate thumb only if needed
 				if (entries > 1 && entries > m_items_per_page)
 				{
-					int thumb = (int)((float)m_items_per_page / (float)entries * (range + 1));
-					start = (m_selected > 0) ? (range + 1 - thumb) * m_selected / entries : 0;
-					int visblethumb = thumb < 4 ? 4 : thumb;
+					float fthumb = (float)m_items_per_page / (float)entries * range;
+					int steps = (int)(((float)(range - fthumb) / (float)entries) + 0.5);
+					start = m_selected * steps;
+					int thumb = range - (steps * (entries - 1));
+					int visblethumb = (int)thumb < 4 ? 4 : (int)thumb;
 					end = start + visblethumb;
 					if (end > range) {
 						end = range;
 						start = range - visblethumb;
 					}
-					eDebug("[eListbox] updateScrollBar thumb=%d start=%d end=%d range=%d m_items_per_page=%d entries=%d m_selected=%d", thumb, start, end, range, m_items_per_page, entries, m_selected);
+					eDebug("[eListbox] updateScrollBar thumb=%d steps=%d start=%d end=%d range=%d m_items_per_page=%d entries=%d m_selected=%d", thumb, steps, start, end, range, m_items_per_page, entries, m_selected);
 				}
 
 				m_scrollbar->setStartEnd(start, end, true);
