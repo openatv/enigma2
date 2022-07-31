@@ -221,7 +221,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["colouractions"].csel = self
 		self["recordingactions"] = HelpableActionMap(self, ["InfobarInstantRecord"], {
 			"ShortRecord": (self.recButtonPressed, _("Add a RecordTimer for current event")),
-			"LongRecord": (self.recButtonPressedLong, _("Add a zap timer for current event"))
+			"LongRecord": (self.recButtonPressedLong, _("Add a ZapTimer for current event"))
 		}, prio=-1, description=_("Record Actions"))
 		self["recordingactions"].csel = self
 		if self.type == EPG_TYPE_SIMILAR:
@@ -1422,9 +1422,9 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			if not manual:
 				cb_func1 = lambda ret: self.doRecordTimer(True)
-				menu = [(_("Add Record Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
-						(_("Add Zap Timer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
-						(_("Add Zap+Record Timer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapRecordTimer),
+				menu = [(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
+						(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
+						(_("Add Zap+RecordTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapRecordTimer),
 						(_("Add AutoTimer"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)
 						]
 				title = "%s?" % event.getEventName()
