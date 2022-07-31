@@ -1065,19 +1065,35 @@ void eListbox::moveSelectionNew(long dir)
 		if(jumpBottom) {
 			m_top = max;
 		}
-		else if (dir == justCheck || dir == moveUp)
+		else if (dir == justCheck)
 		{
-			if(m_first_selectable_item==-1 && dir == justCheck && m_selected != 0)
+			if(m_first_selectable_item==-1)
 			{
-				m_first_selectable_item = m_selected;
+				m_first_selectable_item = 0;
+				if(m_selected>0)
+				{
+					m_content->cursorHome();
+					if (!m_content->currentCursorSelectable()) {
+						do
+						{
+							m_content->cursorMove(1);
+							m_first_selectable_item = m_content->cursorGet();
+						}
+						while (!m_content->currentCursorSelectable());
+					}
+					m_content->cursorSet(m_selected);
+					if(oldline==0)
+						oldline = m_selected;
+				}
+			}
+			m_top = m_selected - oldline;
+		}
+		else if (dir == moveUp)
+		{
+			if(m_first_selectable_item>0 && m_selected == m_first_selectable_item)
+			{
 				oldline = m_selected;
 			}
-			
-			if(m_first_selectable_item>0 && dir == moveUp && m_selected == m_first_selectable_item)
-			{
-				oldline = m_selected;
-			}
-			
 			m_top = m_selected - oldline;
 		}
 
