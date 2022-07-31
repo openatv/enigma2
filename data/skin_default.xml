@@ -203,7 +203,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 	<screen name="Mute" position="center,50" zPosition="10" size="45,45" flags="wfNoBorder" title="Mute">
 		<ePixmap pixmap="skin_default/infobar/mute.png" position="0,0" size="45,45"/>
 	</screen>
-	<screen name="SecondInfoBar" position="0,0" size="720,96" flags="wfNoBorder"  title="SecondInfoBar">
+	<screen name="SecondInfoBar" position="0,0" size="720,96" flags="wfNoBorder" title="2nd InfoBar">
 		<widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
 			<convert type="PliExtraInfo">All</convert>
 		</widget>

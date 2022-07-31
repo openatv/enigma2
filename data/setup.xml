@@ -62,12 +62,12 @@
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
-		<item level="1" text="Always show bouquets" description="With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
+		<item level="1" text="Always show bouquets" description="Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet.">config.usage.show_bouquetalways</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
-		<item level="1" text="Channel list preview" description="If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at.">config.usage.servicelistpreview_mode</item>
+		<item level="1" text="Channel list preview" description="Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel.>config.usage.servicelistpreview_mode</item>
 		<item level="1" text="Channel list show MiniTV*" description="Channel list show MiniTV when Skin use.">config.usage.use_pig</item>
 		<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available." requires="!config.usage.use_pig">config.usage.servicelist_mode</item>
-		<item level="1" text="Channel list on mode change" description="If set to 'yes' the channel list will be shown after switching between radio and TV modes.">config.usage.show_servicelist</item>
+		<item level="1" text="Channel list on mode change" description="Select 'Yes' to show the channel list after switching between Radio and TV modes.">config.usage.show_servicelist</item>
 		<item level="1" text="Channel list cursor behavior" description="Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet.">config.usage.multibouquet</item>
 		<item level="2" text="Enable unlinked bouquets" description="When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
@@ -174,7 +174,7 @@
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every (in hours)" description="The %s %s stores the EPG data every (hours)." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
-		<item level="2" text="Show EIT now/next in infobar" description="Display the EIT now/next eventdata in infobar.">config.usage.show_eit_nownext</item>
+		<item level="2" text="Show EIT now/next in infobar" description="Display the EIT Now/Next event data in InfoBar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
 		<item level="2" text="Enable freesat EPG" description="Use FreeSat EPG information when it is available.">config.epg.freesat</item>
@@ -191,8 +191,8 @@
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
 	</setup>
 	<setup key="EPGEnhanced" title="SingleEPG Settings" level="2" showOpenWebif="1">
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.enhanced_preview_mode</item>
-		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.enhanced_preview_mode</item>
+		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.enhanced_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.enhanced_oklong</item>
@@ -202,8 +202,8 @@
 	<setup key="EPGGraphical" title="GraphicalEPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Unless set to 'disabled' you get a preview of channels inside the EPG list.">config.epgselection.graph_preview_mode</item>
-		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.graph_showbouquet</item>
-		<item level="2" text="Picture in graphics" description="If set to 'yes' shows a small TV-screen in the EPG.">config.epgselection.graph_pig</item>
+		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.graph_showbouquet</item>
+		<item level="2" text="Picture in graphics" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen.">config.epgselection.graph_pig</item>
 		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.graph_servicetitle_mode</item>
 		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.graph_info</item>
 		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.graph_infolong</item>
@@ -215,7 +215,7 @@
 		<item level="2" text="BLUE button" description="Set to what you want the button to do.">config.epgselection.graph_blue</item>
 		<item level="2" text="CHANNEL +/-" description="Set to what you want the button to do.">config.epgselection.graph_channelbtn</item>
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used.">config.epgselection.graph_startmode</item>
-		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.graph_roundto</item>
 		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.graph_primetimehour</item>
 		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.graph_primetimemins</item>
@@ -233,23 +233,23 @@
 		<item level="2" text="Time history" description="Configure the history of time that will be presented.">config.epgselection.graph_histminutes</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
-	<setup key="EPGInfobar" title="InfobarEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
-		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.infobar_preview_mode</item>
+		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar_oklong</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="EPGInfobarGraphical" title="Graphical InfobarEPG Settings" level="2" showOpenWebif="1">
+	<setup key="EPGInfobarGraphical" title="Graphical InfoBar EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show channel names, numbers, picons or all three inside EPG.">config.epgselection.infobar_servicetitle_mode</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.infobar_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.infobar_oklong</item>
-		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.infobar_roundto</item>
 		<item level="2" text="Primetime hour" description="Set to the desired primetime (hour).">config.epgselection.infobar_primetimehour</item>
 		<item level="2" text="Primetime minute" description="Set to the desired primetime (minutes.">config.epgselection.infobar_primetimemins</item>
@@ -268,9 +268,9 @@
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="1">
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.multi_preview_mode</item>
-		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.multi_showbouquet</item>
-		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.multi_preview_mode</item>
+		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG.">config.epgselection.multi_showbouquet</item>
+		<item level="2" text="Skip empty services" description="Select 'Yes' to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.multi_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.multi_oklong</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
@@ -283,8 +283,8 @@
 	</setup>
 	<setup key="EPGVertical" title="VerticalEPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used.">config.epgselection.vertical_startmode</item>
-		<item level="2" text="Picture in EPG" description="If set to 'yes' shows a small TV-screen in the EPG.">config.epgselection.vertical_pig</item>
-		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.vertical_preview_mode</item>
+		<item level="2" text="Picture in EPG" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen.">config.epgselection.vertical_pig</item>
+		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.vertical_preview_mode</item>
 		<item level="2" text="Show parting lines" description="Show parting lines between events.">config.epgselection.vertical_showlines</item>
 		<item level="2" text="Show marked events" description="Show marked events in all rows.">config.epgselection.vertical_eventmarker</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.vertical_itemsperpage</item>
@@ -338,7 +338,7 @@
 				<item level="0" text="Even if a 'Wakeup' power timer starting?" description="">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
-			<item level="0" text="Switch off the TV to correct input" description="Some TV devices can't swich to correct input if a another HDMI port active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of wake-up commands.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
+			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wakeup from TV" description="When enabled the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle standby from TV" description="When enabled the receiver will automatically return to standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
@@ -400,7 +400,7 @@
 		<!--item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item-->
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB)" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
-		<item level="2" text="Crash at skin error for debug reasons" description="if set to 'no', only an debug message is written to the Debug log ">config.crash.skin_error_crash</item>
+		<item level="2" text="Crash at skin error for debug reasons" description="Select 'No' to only write a log message to the debug log file.">config.crash.skin_error_crash</item>
 		<item level="2" text="Log python stack trace on spinner" description="Set to yes for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
 		<item level="2" text="Debug log time format *" description="This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted.">config.crash.debugTimeFormat</item>
 		<item level="2" text="Enable GStreamer debug log *" description="Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does.">config.crash.gstdebug</item>
@@ -477,8 +477,8 @@
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>
 	<setup key="PluginBrowser" title="Plugin Browser Settings" level="2" showOpenWebif="1">
-		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
-		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
+		<item level="2" text="Show translation packages" description="Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen.">config.pluginbrowser.po</item>
+		<item level="2" text="Show source packages" description="Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen.">config.pluginbrowser.src</item>
 	</setup>
 	<setup key="PluginFilter" title="Plugin Filter Settings" showOpenWebif="1">
 		<item level="0" text="Show development packages in opkg" description="When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list.">config.misc.extraopkgpackages</item>
@@ -653,13 +653,13 @@
 		<item level="2" text="Show status messages when switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showlivetvmsg</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop timeshift while recording" description="Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopwhilerecording</item>
-		<item level="2" text="Use timeshift seekbar while timeshifting" description="If set to 'yes', allows you use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>
+		<item level="2" text="Use timeshift seekbar while timeshifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showinfobar</item>
 		<item level="2" text="Timeshift buffer limit [in hours]" description="Older files in the timeshift directory are removed on every event change.">config.timeshift.timeshiftMaxHours</item>
 		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority.">config.timeshift.timeshiftMaxEvents</item>
 		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.timeshiftCheckEvents</item>
 		<item level="2" text="Timeshift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old timeshift files.">config.timeshift.timeshiftCheckFreeSpace</item>
-		<item level="2" text="Timeshift buffer delete after zap" description="If set to 'no', can you save older events even after zapping or interruption of the timeshift.">config.timeshift.deleteAfterZap</item>
-		<item level="2" text="Timeshift event based file splitting" description="If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust.">config.timeshift.filesplitting</item>
+		<item level="2" text="Timeshift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting.">config.timeshift.deleteAfterZap</item>
+		<item level="2" text="Timeshift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file.">config.timeshift.filesplitting</item>
 	</setup>
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
@@ -732,24 +732,24 @@
 		<item level="0" text="Show animation while busy" description="Show a spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<item level="2" text="Show screensaver" description="Configure the duration in minutes before the screen saver will be displayed.">config.usage.screen_saver</item>
 		<item level="2" text="Show extra spacing in Information" description="Enable to add some extra spacing to the Information screens.  This can improve readability.">config.usage.informationExtraSpacing</item>
-		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
-		<item level="0" text="2nd infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
-		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
+		<item level="0" text="1st InfoBar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
+		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information.">config.usage.show_second_infobar</item>
+		<item level="0" text="2nd InfoBar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
 		<item level="0" text="Show infobar lite *" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
-		<item level="0" text="Enable infobar fade-out" description="Fade the Infobar on hide">config.usage.show_infobar_do_dimming</item>
-		<item level="0" text="Infobar fade-out speed" description="Control the Infobar fading speed">config.usage.show_infobar_dimming_speed</item>
+		<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide">config.usage.show_infobar_do_dimming</item>
+		<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (BLUE button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Position of finished Timers in Timerlist" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
-		<item level="2" text="Show infobar on channel change" description="If set to 'yes' the infobar will be displayed when changing channels.">config.usage.show_infobar_on_zap</item>
-		<item level="1" text="Show infobar on skip forward/backward" description="If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback.">config.usage.show_infobar_on_skip</item>
-		<item level="1" text="Show infobar permanently while paused" description="If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout).">config.usage.show_infobar_locked_on_pause</item>
-		<item level="1" text="Show infobar on event change" description="If set to 'yes' the infobar will be displayed when a new event starts.">config.usage.show_infobar_on_event_change</item>
-		<item level="1" text="Show channel number in infobar" description="If set to 'yes' the channel number will be displayed in the infobar.">config.usage.show_infobar_channel_number</item>
+		<item level="2" text="Show infobar on channel change" description="Select 'Yes' to display the InfoBar when changing channels.">config.usage.show_infobar_on_zap</item>
+		<item level="1" text="Show infobar on skip forward/backward" description="Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback.">config.usage.show_infobar_on_skip</item>
+		<item level="1" text="Show infobar permanently while paused" description="Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused.">config.usage.show_infobar_locked_on_pause</item>
+		<item level="1" text="Show infobar on event change" description="Select 'Yes' to display the InfoBar when a new event starts.">config.usage.show_infobar_on_event_change</item>
+		<item level="1" text="Show channel number in infobar" description="Select 'Yes' to display the channel number in the InfoBar.">config.usage.show_infobar_channel_number</item>
 		<item level="0" text="Show picon background colour" description="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show event genre information" description="This option allows you to choose whether or not to display genre information for the event.">config.usage.show_genre_info</item>
 		<item level="2" text="Show background in Radio Mode" description="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
@@ -759,7 +759,7 @@
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
-		<item level="2" text="Infobar frontend data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
+		<item level="2" text="InfoBar front end data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PiP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the separate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
