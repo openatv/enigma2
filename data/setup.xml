@@ -174,7 +174,7 @@
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every (in hours)" description="The %s %s stores the EPG data every (hours)." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
-		<item level="2" text="Show EIT now/next in infobar" description="Display the EIT Now/Next event data in InfoBar.">config.usage.show_eit_nownext</item>
+		<item level="2" text="Show the EIT Now/Next data in the InfoBar." description="Display the EIT Now/Next event data in InfoBar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
 		<item level="2" text="Enable freesat EPG" description="Use FreeSat EPG information when it is available.">config.epg.freesat</item>
@@ -335,7 +335,7 @@
 			<if conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_wakeup.value">
 				<item level="0" text="Even if a 'Zap' recording timer starting?" description="">config.hdmicec.tv_wakeup_zaptimer</item>
 				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
-				<item level="0" text="Even if a 'Wakeup' power timer starting?" description="">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
+				<item level="0" text="Even if a 'Wakeup' PowerTimer starting?" description="">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
@@ -595,12 +595,12 @@
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner).">config.sat.diseqcc</item>
 	</setup>
-	<setup key="SleepTimer" title="Sleep Timer Settings" showOpenWebif="1">
-		<item text="Sleep timer activation delay" description="Configure the duration, in minutes, before the sleep timer activates.">config.usage.sleepTimer</item>
-		<item text="Sleep timer action" description="Select the type of shutdown desired when the steep timer activates.">config.usage.sleepTimerAction</item>
+	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
+		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the sleep timer activates.">config.usage.sleepTimer</item>
+		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates."">config.usage.sleepTimerAction</item>
 		<if conditional="self.setupMode">
 			<item text="Energy saver activation delay" description="Configure the duration, in minutes, before the energy saver timer activates.">config.usage.energyTimer</item>
-			<item text="Energy saver action" description="Select the type of shutdown desired when the energy timer activates.">config.usage.energyTimerAction</item>
+			<item text="Energy saver action" description="Select the type of shutdown desired when the Energy Timer activates.">config.usage.energyTimerAction</item>
 		</if>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
@@ -735,8 +735,8 @@
 		<item level="0" text="1st InfoBar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd InfoBar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
-		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
-		<item level="0" text="Show infobar lite *" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
+		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
+		<item level="0" text="Show InfoBar lite *" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
 		<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide">config.usage.show_infobar_do_dimming</item>
 		<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
@@ -745,11 +745,11 @@
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Position of finished Timers in Timerlist" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
-		<item level="2" text="Show infobar on channel change" description="Select 'Yes' to display the InfoBar when changing channels.">config.usage.show_infobar_on_zap</item>
-		<item level="1" text="Show infobar on skip forward/backward" description="Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback.">config.usage.show_infobar_on_skip</item>
-		<item level="1" text="Show infobar permanently while paused" description="Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused.">config.usage.show_infobar_locked_on_pause</item>
-		<item level="1" text="Show infobar on event change" description="Select 'Yes' to display the InfoBar when a new event starts.">config.usage.show_infobar_on_event_change</item>
-		<item level="1" text="Show channel number in infobar" description="Select 'Yes' to display the channel number in the InfoBar.">config.usage.show_infobar_channel_number</item>
+		<item level="2" text="Show InfoBar on channel change" description="Select 'Yes' to display the InfoBar when changing channels.">config.usage.show_infobar_on_zap</item>
+		<item level="1" text="Show InfoBar on skip forward/backward" description="Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback.">config.usage.show_infobar_on_skip</item>
+		<item level="1" text="Show persistent InfoBar while paused" description="Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused.">config.usage.show_infobar_locked_on_pause</item>
+		<item level="1" text="Show InfoBar on event change" description="Select 'Yes' to display the InfoBar when a new event starts.">config.usage.show_infobar_on_event_change</item>
+		<item level="1" text="Show channel number in InfoBar" description="Select 'Yes' to display the channel number in the InfoBar.">config.usage.show_infobar_channel_number</item>
 		<item level="0" text="Show picon background colour" description="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show event genre information" description="This option allows you to choose whether or not to display genre information for the event.">config.usage.show_genre_info</item>
 		<item level="2" text="Show background in Radio Mode" description="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
@@ -758,11 +758,11 @@
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
-		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
+		<item level="2" text="Show crypto info in InfoBar" description="Show encryption information in the InfoBar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="InfoBar front end data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PiP is active.">config.usage.pip_zero_button</item>
-		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the separate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
+		<item level="1" text="Show PVR status in MoviePlayer InfoBar" description="This option moves the PVR status display from a separate window into the MoviePlayer InfoBar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>

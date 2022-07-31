@@ -68,6 +68,8 @@ def resetTimerWakeup():
 # Parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # The begin and end will be corrected to include margin padding.
 #
+
+
 def parseEvent(event, description=True):
 	if description:
 		name = event.getEventName()
@@ -355,7 +357,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			elif config.recording.filename_composition.value == "long":
 				filename += " - " + name + " - " + self.description
 			else:
-				filename += " - " + name # standard
+				filename += " - " + name  # standard
 
 		if config.recording.ascii_filenames.value:
 			filename = legacyEncode(filename)
@@ -476,18 +478,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		if next_state == self.StatePrepared:
 			if self.messageBoxAnswerPending:
-				self.start_prepare = int(time()) + 1 # call again in 1 second
+				self.start_prepare = int(time()) + 1  # call again in 1 second
 				return False
 
 			if self.justTriedFreeingTuner:
-				self.start_prepare = int(time()) + 5 # tryPrepare in 5 seconds
+				self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds
 				self.justTriedFreeingTuner = False
 				return False
 
 			if not self.justplay and not self.freespace():
 				if self.MountPathErrorNumber < 3 and self.MountPathRetryCounter < 3:
 					self.MountPathRetryCounter += 1
-					self.start_prepare = int(time()) + 5 # tryPrepare in 5 seconds
+					self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
 				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber - 1], self.name)
@@ -518,7 +520,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(5, "Wakeup and zap to recording service")
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
+					if cur_zap_ref and not cur_zap_ref.getPath():  # we do not zap away if it is no live service
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 						self.log(5, "zap to recording service")
@@ -657,7 +659,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
 							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
-					else: # zap without asking
+					else:  # zap without asking
 						self.log(9, "Zap without asking")
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
@@ -803,7 +805,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				print("[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_notactive=%s" % tv_notactive, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "isRecordTime=%s" % isRecordTime)
 
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
-				if not box_instandby and not tv_notactive:# not already in standby
+				if not box_instandby and not tv_notactive:  # not already in standby
 					callback = self.sendStandbyNotification
 					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					messageboxtyp = MessageBox.TYPE_YESNO
@@ -829,8 +831,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
-				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
-					if not box_instandby and not tv_notactive: # not already in standby
+				if not Screens.Standby.inTryQuitMainloop:  # no shutdown messagebox is open
+					if not box_instandby and not tv_notactive:  # not already in standby
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
@@ -844,8 +846,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						print("[RecordTimer] quitMainloop #1")
 						quitMainloop(1)
 			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
-				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
-					if Screens.Standby.inStandby: # in standby
+				if not Screens.Standby.inTryQuitMainloop:  # no shutdown messagebox is open
+					if Screens.Standby.inStandby:  # in standby
 						print("[RecordTimer] quitMainloop #2")
 						quitMainloop(1)
 			self.wasInStandby = False
@@ -966,7 +968,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.messageString += _("Disabled PiP.\n")
 			else:
 				self.log(14, "tried to disable PiP, suddenly found no InfoBar.instance")
-				self.messageString += _("Tried to disable PiP, suddenly found no InfoBar.instance.\n")
+				self.messageString += _("Tried to disable PiP, but found no InfoBar instance!\n")
 			if config.recording.ask_to_abort_pip.value in ("ask", "abort_msg"):
 				self.messageStringShow = True
 			self.justTriedFreeingTuner = True
@@ -1100,7 +1102,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def timeChanged(self):
 		old_prepare = self.start_prepare
-		self.start_prepare = int(self.begin) - config.recording.prepare_time.value #self.prepare_time
+		self.start_prepare = int(self.begin) - config.recording.prepare_time.value  # self.prepare_time
 		self.backoff = 0
 
 		if old_prepare > 60 and old_prepare != self.start_prepare:
@@ -1271,10 +1273,10 @@ class RecordTimer(timer.Timer):
 			if w.repeated:
 				w.processRepeated()
 				w.state = RecordTimerEntry.StateWaiting
-				w.first_try_prepare = 0 # changed from a bool to a counter, not renamed for compatibility with openWebif
+				w.first_try_prepare = 0  # changed from a bool to a counter, not renamed for compatibility with openWebif
 				w.messageBoxAnswerPending = False
 				w.justTriedFreeingTuner = False
-				w.messageString = "" # incremental MessageBox string
+				w.messageString = ""  # incremental MessageBox string
 				w.messageStringShow = False
 				self.addTimerEntry(w)
 			else:
@@ -1335,7 +1337,7 @@ class RecordTimer(timer.Timer):
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
 				Notifications.AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
-				checkit = False # at the moment it is enough when the message is displayed once
+				checkit = False  # at the moment it is enough when the message is displayed once
 
 	def saveTimer(self):
 		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
@@ -1473,7 +1475,7 @@ class RecordTimer(timer.Timer):
 				return True
 		return False
 
-	def record(self, entry, ignoreTSC=False, dosave=True): # is called by loadTimer with argument dosave=False
+	def record(self, entry, ignoreTSC=False, dosave=True):  # is called by loadTimer with argument dosave=False
 		entry.check_justplay()
 		timersanitycheck = TimerSanityCheck(self.timer_list, entry)
 		if not timersanitycheck.check():
@@ -1627,7 +1629,7 @@ class RecordTimer(timer.Timer):
 							type = type_offset + 4
 							if timer.justplay:
 								type = type_offset + 2
-						else: # recording whole event
+						else:  # recording whole event
 							timeMatch = end - begin
 							type = type_offset + 2
 
@@ -1636,7 +1638,7 @@ class RecordTimer(timer.Timer):
 						returnValue = (timeMatch, type, isAutoTimer, timer)
 					else:
 						returnValue = (timeMatch, type, isAutoTimer)
-					if type in (2, 7, 12): # when full recording do not look further
+					if type in (2, 7, 12):  # when full recording do not look further
 						break
 		return returnValue
 

@@ -58,7 +58,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.usage.show_infobar_lite.value and (config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.value.startswith('MetrixHD/')):
 			self.skinName = "InfoBarLite"
 
-		self["actions"] = HelpableActionMap(self, "InfobarActions",{
+		self["actions"] = HelpableActionMap(self, "InfobarActions", {
 			"showMovies": (self.showMovies, _("Play recorded movies")),
 			"showRadio": (self.showRadioButton, _("Show the radio player")),
 			"showTv": (self.showTvButton, _("Show the tv player")),
@@ -70,8 +70,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch")),
 			"openIMDB": (self.openIMDB, _("Open IMDb")),
 			"showMC": (self.showMediaCenter, _("Show the media center")),
-			"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer")),
-			"openPowerTimerList": (self.openPowerTimerList, _("Show the Power Timer")),
+			"openSleepTimer": (self.openSleepTimer, _("Show the SleepTimer")),
+			"openPowerTimerList": (self.openPowerTimerList, _("Show the PowerTimer")),
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 			"HarddiskSetup": (self.HarddiskSetup, _("Select HDD")),
@@ -217,7 +217,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			else:
 				self.showRadioChannelList(True)
 		else:
-			self.rds_display.hide() # in InfoBarRdsDecoder
+			self.rds_display.hide()  # in InfoBarRdsDecoder
 			from Screens.ChannelSelection import ChannelSelectionRadio
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
 
@@ -245,7 +245,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		#	self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
 			self.showMoviePlayer(defaultRef)
 
-	def showMoviePlayer(self, defaultRef=None): #for using with hotkeys (ButtonSetup.py) regardless of plugins which overwrite the showMovies function
+	def showMoviePlayer(self, defaultRef=None):  # for using with hotkeys (ButtonSetup.py) regardless of plugins which overwrite the showMovies function
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.lastservice and ':0:/' in self.lastservice.toString():
 			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
@@ -517,7 +517,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
 
-		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",{
+		self["actions"] = HelpableActionMap(self, "MoviePlayerActions", {
 			"leavePlayer": (self.leavePlayer, _("leave movie player")),
 			"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player"))
 		}, prio=0, description=_("Movie Player Actions"))
@@ -588,7 +588,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 	def handleLeave(self, how):
 		self.is_closing = True
 		if how == "ask":
-			if config.usage.setup_level.index < 2: # -expert
+			if config.usage.setup_level.index < 2:  # -expert
 				list = (
 					(_("Yes"), "quit"),
 					(_("No"), "continue")
@@ -834,7 +834,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref and ':0:/' not in ref.toString():
-			self.playingservice = ref # movie list may change the currently playing
+			self.playingservice = ref  # movie list may change the currently playing
 		else:
 			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)

@@ -38,15 +38,16 @@ except:
 mepg_config_initialized = False
 
 epgTypes = {
-	"single" : EPG_TYPE_SINGLE,
-	"infobar" : EPG_TYPE_INFOBAR,
-	"enhanced" : EPG_TYPE_ENHANCED,
-	"graph" : EPG_TYPE_GRAPH,
-	"infobargraph" : EPG_TYPE_INFOBARGRAPH,
-	"multi" : EPG_TYPE_MULTI,
-	"vertical" : EPG_TYPE_VERTICAL,
-	"similar" : EPG_TYPE_SIMILAR
+	"single": EPG_TYPE_SINGLE,
+	"infobar": EPG_TYPE_INFOBAR,
+	"enhanced": EPG_TYPE_ENHANCED,
+	"graph": EPG_TYPE_GRAPH,
+	"infobargraph": EPG_TYPE_INFOBARGRAPH,
+	"multi": EPG_TYPE_MULTI,
+	"vertical": EPG_TYPE_VERTICAL,
+	"similar": EPG_TYPE_SIMILAR
 }
+
 
 class EPGSelection(Screen, HelpableScreen):
 	EMPTY = 0
@@ -61,8 +62,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
 		self.bouquets = bouquets
-		graphic = ((config.epgselection.infobar_type_mode.value == "graphics" and "infobargraph" == EPGtype) \
-			or ( config.epgselection.graph_type_mode.value == "graphics" and "graph" == EPGtype))
+		graphic = ((config.epgselection.infobar_type_mode.value == "graphics" and "infobargraph" == EPGtype)
+			or (config.epgselection.graph_type_mode.value == "graphics" and "graph" == EPGtype))
 
 		if EPGtype is None and eventid == None and isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
@@ -125,7 +126,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self["key_yellow"] = StaticText(_("EPG Search"))
 			self["key_blue"] = StaticText(_("Add AutoTimer"))
 
-
 		epgCursoractions = {
 			"up": (self.moveUp, _("Goto previous channel")),
 			"down": (self.moveDown, _("Goto next channel"))
@@ -155,13 +155,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self["epgcursoractions"] = HelpableActionMap(self, ["DirectionActions"], epgCursoractions, prio=-1, description=_("EPG Navigation Actions"))
 			self["epgcursoractions"].csel = self
 
-
 		epgActions = {
 			"menu": (self.createSetup, _("Setup menu")),
 			"info": (self.Info, _("Show detailed event info")),
 			"infolong": (self.InfoLong, _("Show single EPG for current channel"))
 		}
-		
+
 		if self.type == EPG_TYPE_SINGLE:
 			epgActions["epg"] = (self.Info, _("Show detailed event info"))
 			del epgActions["infolong"]
@@ -221,7 +220,7 @@ class EPGSelection(Screen, HelpableScreen):
 		}, -1, description=_("EPG Actions"))
 		self["colouractions"].csel = self
 		self["recordingactions"] = HelpableActionMap(self, ["InfobarInstantRecord"], {
-			"ShortRecord": (self.recButtonPressed, _("Add a record timer for current event")),
+			"ShortRecord": (self.recButtonPressed, _("Add a RecordTimer for current event")),
 			"LongRecord": (self.recButtonPressedLong, _("Add a zap timer for current event"))
 		}, prio=-1, description=_("Record Actions"))
 		self["recordingactions"].csel = self
@@ -446,9 +445,9 @@ class EPGSelection(Screen, HelpableScreen):
 		if not servicelist is None:
 			while True:
 				service = servicelist.getNext()
-				if not service.valid(): #check if end of list
+				if not service.valid():  # check if end of list
 					break
-				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker): #ignore non playable services
+				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):  # ignore non playable services
 					continue
 				services.append(ServiceReference(service))
 		return services
@@ -517,7 +516,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["bouquetlist"].recalcEntrySize()
 			self["bouquetlist"].fillBouquetList(self.bouquets)
 			self["bouquetlist"].moveToService(self.StartBouquet)
-			self["bouquetlist"].setCurrentBouquet(self.StartBouquet	)
+			self["bouquetlist"].setCurrentBouquet(self.StartBouquet)
 			self.setTitle(self["bouquetlist"].getCurrentBouquet())
 			if self.type == EPG_TYPE_MULTI:
 				self["list"].fillMultiEPG(self.services, self.ask_time)
@@ -1745,7 +1744,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def closeScreen(self, NOCLOSE=False):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
-			return # stop and do not continue.
+			return  # stop and do not continue.
 		if hasattr(self, "servicelist") and self.servicelist:
 			selected_ref = str(ServiceReference(self.servicelist.getCurrentSelection()))
 			current_ref = str(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()))
@@ -2348,13 +2347,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 		primetime = self.setPrimetime(ev_begin)
 
-		onlyPT = False #key press primetime always sync
-		gotoNow = False #False -> -24h List expanded, True -> got to current event and sync (onlyPT must set to False!)
+		onlyPT = False  # key press primetime always sync
+		gotoNow = False  # False -> -24h List expanded, True -> got to current event and sync (onlyPT must set to False!)
 		rPM = self.isInTimeRange(primetime - oneDay)
 		rPT = self.isInTimeRange(primetime)
 		rPP = self.isInTimeRange(primetime + oneDay)
 		if rPM or rPT or rPP:
-			if onlyPT or idx or not (primetime >= ev_begin and primetime < ev_end): #not sync or not primetime:
+			if onlyPT or idx or not (primetime >= ev_begin and primetime < ev_end):  # not sync or not primetime:
 				if rPT:
 					self.ask_time = primetime
 				elif rPP:
@@ -2427,7 +2426,7 @@ class EPGSelection(Screen, HelpableScreen):
 		tmp = self["list" + str(_list)].l.getCurrentSelection()
 		if tmp is None:
 			return None, None
-		return tmp[2], tmp[2] + tmp[3] #event begin, event end
+		return tmp[2], tmp[2] + tmp[3]  # event begin, event end
 
 
 class SingleEPG(EPGSelection):

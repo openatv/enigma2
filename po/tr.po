@@ -2327,10 +2327,10 @@ msgstr "Yeni bir etiket ekle"
 msgid "Add a new title"
 msgstr "Yeni başlık ekle"
 
-msgid "Add a record timer"
+msgid "Add a RecordTimer"
 msgstr "Kayıt zamanlayıcı ekle"
 
-msgid "Add a record timer for current event"
+msgid "Add a RecordTimer for current event"
 msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
 
 msgid "Add a service to the Volume Offsets list"
@@ -7367,16 +7367,16 @@ msgid "Energy timer"
 msgstr "Enerji zamanlayıcı"
 
 #, python-format
-msgid "Energy timer: %d minute remains."
-msgid_plural "Energy timer: %d minutes remain."
+msgid "Energy Timer: %d minute remains."
+msgid_plural "Energy Timer: %d minutes remain."
 msgstr[0] "Enerji zamanlayıcısı: %d dakika kaldı."
 
 #, python-format
-msgid "Energy timer: %d second remains."
-msgid_plural "Energy timer: %d seconds remain."
+msgid "Energy Timer: %d second remains."
+msgid_plural "Energy Timer: %d seconds remain."
 msgstr[0] "Enerji zamanlayıcısı: %d saniye kaldı."
 
-msgid "Energy timer: Inactive."
+msgid "Energy Timer: Inactive."
 msgstr "Enerji zamanlayıcısı: Aktif değil."
 
 #
@@ -7731,7 +7731,7 @@ msgstr "Etiyopya"
 msgid "Even if TV has another input active?"
 msgstr "TV'de başka bir giriş aktif olsa bile mi?"
 
-msgid "Even if a 'Wakeup' power timer starting?"
+msgid "Even if a 'Wakeup' PowerTimer starting?"
 msgstr "Bir 'uyandırma' güç zamanlayıcısı başlasa bile?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -13707,7 +13707,7 @@ msgstr "Bekleme sırasında Güç LED'i durumu."
 msgid "Power On Display"
 msgstr "Göstergedeki güç"
 
-msgid "Power Timers"
+msgid "PowerTimers"
 msgstr "Güç Zamanlayıcıları"
 
 msgid "Power long"
@@ -16124,10 +16124,10 @@ msgstr "Kullanılan LNB / cihaz türünü seçin (normalde 'Evrensel'). LNB tipi
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Kullanmakta olduğunuz Tek Kablo Alma cihazının türünü seçin."
 
-msgid "Select the type of shutdown desired when the energy timer activates."
+msgid "Select the type of shutdown desired when the Energy Timer activates."
 msgstr "Enerji zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
 
-msgid "Select the type of shutdown desired when the steep timer activates."
+msgid "Select the type of shutdown desired when the SleepTimer activates.""
 msgstr "Dik zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
 
 #
@@ -16968,7 +16968,7 @@ msgstr "Dizin boyutunu göster"
 msgid "Show Display Icons"
 msgstr "Görüntü ikonlarını göster"
 
-msgid "Show EIT now/next in infobar"
+msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "Bilgi-çubuğunda EIT şimdiki/sonraki göster"
 
 msgid "Show EPG"
@@ -16998,7 +16998,7 @@ msgstr "HDMI Çıkışını Göster Res"
 msgid "Show HDMIRecord setup..."
 msgstr "HDMIRecord kurulumunu göster ..."
 
-msgid "Show Infobar"
+msgid "Show InfoBar"
 msgstr "Bilgi Çubuğunu göster"
 
 msgid "Show Information"
@@ -17038,7 +17038,7 @@ msgstr "OScam Bilgilerini Göster"
 msgid "Show OScam in extensions"
 msgstr "OScam'i uzantılarda göster"
 
-msgid "Show PVR status in MoviePlayer infobar"
+msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "FilmPlayer bilgi çubuğunda PVR durumunu göster"
 
 msgid "Show PiP"
@@ -17121,7 +17121,7 @@ msgstr "Bir radyo kanalı çalarken arkaplanı göster."
 msgid "Show bouquet on launch"
 msgstr "Başlangıçta buket göster"
 
-msgid "Show channel number in infobar"
+msgid "Show channel number in InfoBar"
 msgstr "Bilgi çubuğunda kanal numaralarını göster"
 
 msgid "Show channel numbers in channel selection"
@@ -17158,7 +17158,7 @@ msgstr "Çarpışma bilgilerini ekranda göster ve çarpışma günlüğünü x 
 msgid "Show crypto icons"
 msgstr "Kripto simgelerini göster"
 
-msgid "Show crypto info in infobar"
+msgid "Show crypto info in InfoBar"
 msgstr "Bilgi çubuğunda şifrelemeyi göster"
 
 msgid "Show debug log information"
@@ -17186,7 +17186,7 @@ msgstr "Önce dizinleri göster"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Dizinleri listedeki ilk veya son listede göster. (Dosya Komutanını yeniden başlatmalı)"
 
-msgid "Show encryption info in the infobar (when supported by the skin)."
+msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Bilgi çubuğunda şifre bilgisi göster (arayüz destekliyorsa)."
 
 #
@@ -17247,26 +17247,26 @@ msgstr "Bilgi Göster"
 msgid "Show info line"
 msgstr "Bilgi satırını göster"
 
-msgid "Show infobar lite *"
+msgid "Show InfoBar lite *"
 msgstr "Bilgi çubuğunu göster *"
 
 #
-msgid "Show infobar on channel change"
+msgid "Show InfoBar on channel change"
 msgstr "Kanal değiştirildiğinde bilgi-çubuğunu göster"
 
 #
-msgid "Show infobar on event change"
+msgid "Show InfoBar on event change"
 msgstr "Etkinlik değişikliklerinde bilgi-çubuğunu göster"
 
 #
-msgid "Show infobar on skip forward/backward"
+msgid "Show InfoBar on skip forward/backward"
 msgstr "İleri/geri sardırmada bilgi-çubuğunu göster"
 
 #
-msgid "Show infobar permanently while paused"
+msgid "Show persistent InfoBar while paused"
 msgstr "Duraklatıldığında bilgi çubuğunu kalıcı olarak göster"
 
-msgid "Show infobar picons"
+msgid "Show InfoBar picons"
 msgstr "Bilgi çubuğu piksilerini göster"
 
 msgid "Show job tasks in extensions"
@@ -17468,10 +17468,10 @@ msgstr ""
 msgid "Show the OScamInfo Screen"
 msgstr "OScamInfo Ekranını Göster"
 
-msgid "Show the Power Timer"
+msgid "Show the PowerTimer"
 msgstr "Güç Zamanlayıcısını Göster"
 
-msgid "Show the Sleep Timer"
+msgid "Show the SleepTimer"
 msgstr "Uyku Zamanlayıcısını Göster"
 
 msgid "Show the information on current event."
@@ -17761,7 +17761,7 @@ msgstr "Uyku"
 msgid "Sleep Timer"
 msgstr "Uyku Zamanlayıcısı"
 
-msgid "Sleep Timer Settings"
+msgid "SleepTimer Settings"
 msgstr "Uyku Zamanlayıcı Ayarları"
 
 msgid "Sleep Timers"
@@ -17777,23 +17777,23 @@ msgstr "Uzun uyu"
 msgid "Sleep timer"
 msgstr "Uyku Zamanlayıcısı"
 
-msgid "Sleep timer action"
+msgid "SleepTimer action"
 msgstr "Uyku zamanlayıcı eylemi"
 
-msgid "Sleep timer activation delay"
+msgid "SleepTimer activation delay"
 msgstr "Uyku zamanlayıcısı aktivasyon gecikmesi"
 
 #, python-format
-msgid "Sleep timer: %d minute remains."
-msgid_plural "Sleep timer: %d minutes remain."
+msgid "SleepTimer: %d minute remains."
+msgid_plural "SleepTimer: %d minutes remain."
 msgstr[0] "Uyku zamanlayıcısı: %d dakika kaldı."
 
 #, python-format
-msgid "Sleep timer: %d second remains."
-msgid_plural "Sleep timer: %d seconds remain."
+msgid "SleepTimer: %d second remains."
+msgid_plural "SleepTimer: %d seconds remain."
 msgstr[0] "Uyku zamanlayıcısı: %d saniye kaldı."
 
-msgid "Sleep timer: Inactive."
+msgid "SleepTimer: Inactive."
 msgstr "Uyku zamanlayıcısı: Etkin değil."
 
 msgid "SleepTimer"
@@ -19646,7 +19646,7 @@ msgstr "3D kipinin seçilmesini sağlar"
 msgid "This option lets you show the option in the extension screen."
 msgstr "Eklentiler ekranında seçeneğin görüntülenmesini sağlar."
 
-msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
+msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Bu seçenek, PVR durumunu septat penceresinden MoviePlayer bilgi çubuğuna taşır."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
@@ -20195,7 +20195,7 @@ msgstr "Çöp Sepeti:"
 msgid "Travel"
 msgstr "Seyahat"
 
-msgid "Tried to disable PiP, suddenly found no InfoBar.instance.\n"
+msgid "Tried to disable PiP, but found no InfoBar instance!\n"
 msgstr "PIP'i devre dışı bırakmaya çalıştı, aniden bir InfoBar.instance bulunamadı.\n"
 
 #
