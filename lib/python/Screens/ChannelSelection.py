@@ -784,7 +784,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a RecordTimer")),
-				"LongRecord": (self.doZapTimer, _("Add a zap timer for next event"))
+				"LongRecord": (self.doZapTimer, _("Add a ZapTimer for next event"))
 			}, -1)
 		self["dialogactions"] = ActionMap(["SetupActions"],
 			{
