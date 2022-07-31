@@ -597,7 +597,7 @@
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the sleep timer activates.">config.usage.sleepTimer</item>
-		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates."">config.usage.sleepTimerAction</item>
+		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates.">config.usage.sleepTimerAction</item>
 		<if conditional="self.setupMode">
 			<item text="Energy saver activation delay" description="Configure the duration, in minutes, before the energy saver timer activates.">config.usage.energyTimer</item>
 			<item text="Energy saver action" description="Select the type of shutdown desired when the Energy Timer activates.">config.usage.energyTimerAction</item>
