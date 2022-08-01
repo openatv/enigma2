@@ -2234,13 +2234,18 @@ class ConfigFile:
 			return self.__resolveValue(pickles[1:], cmap[key].dict()) if len(pickles) > 1 else str(cmap[key].value)
 		return None
 
-	def getResolvedKey(self, key):
+	# If silent is True don't display an error on a missing key just return None
+	# to indicate this fact to the calling code.
+	#
+	def getResolvedKey(self, key, silent=False):
 		names = key.split(".")
 		if len(names) > 1:
 			if names[0] == "config":
 				val = self.__resolveValue(names[1:], config.content.items)
 				if val and len(val) or val == "":
 					return val
+		if silent:
+			return None
 		print("[Config] Error: getResolvedKey '%s' failed!  (Typo?)" % key)
 		return ""
 
