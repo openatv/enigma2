@@ -473,6 +473,35 @@
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth">config.osd.threeDznorm</item>
 		<item level="0" text="Show in extensions list" description="This option lets you show the option in the extension screen.">config.osd.show3dextensions</item>
 	</setup>
+	<setup key="ParentalControlChangePin" title="Change pin code">
+		<item level="0" text="New PIN" description="New PIN">self.pin1</item>
+		<item level="0" text="Re-enter new PIN" description="Re-enter new PIN">self.pin2</item>
+	<setup>
+	<setup key="ParentalControlSetup" title="Parental control setup">
+		<item level="0" text="Protect services" description="Protect services">config.ParentalControl.servicepinactive</item>
+		<if conditional="config.ParentalControl.servicepinactive.value">
+			<item level="0" text="Change PIN" description="Change PIN">self.changePin</item>
+			<item level="0" text="Remember service PIN" description="Remember service PIN">config.ParentalControl.storeservicepin</item>
+			<item level="0" text="Hide parental locked services" description="Hide parental locked services" conditional="config.ParentalControl.storeservicepin.value!='never'">config.ParentalControl.hideBlacklist</item>
+			<item level="0" text="Protect on epg age" description="Protect on epg age">config.ParentalControl.age</item>
+			<item level="0" text="Reload blacklists" description="Reload blacklists">self.reloadLists</item>
+		</if>
+		<item level="0" text="Protect Screens" description="Protect Screens">config.ParentalControl.setuppinactive</item>
+		<if conditional="config.ParentalControl.setuppinactive.value">
+			<item level="0" text="Change PIN" description="Change PIN" conditional="!config.ParentalControl.servicepinactive.value">self.changePin</item>
+			<item level="0" text="Protect main menu" description="Protect main menu">config.ParentalControl.config_sections.main_menu</item>
+			<if conditional="config.ParentalControl.config_sections.main_menu.value">
+				<item level="0" text="Protect timer menu" description="Protect timer menu">config.ParentalControl.config_sections.timer_menu</item>
+				<item level="0" text="Protect plugin browser" description="Protect plugin browser">config.ParentalControl.config_sections.plugin_browser</item>
+				<item level="0" text="Protect configuration" description="Protect configuration">config.ParentalControl.config_sections.configuration</item>
+				<item level="0" text="Protect standby menu" description="Protect standby menu">config.ParentalControl.config_sections.standby_menu</item>
+				<item level="0" text="Protect software update screen" description="Protect software update screen">config.ParentalControl.config_sections.software_update</item>
+			</if>
+			<item level="0" text="Protect movie list" description="Protect movie list">config.ParentalControl.config_sections.movie_list</item>
+			<item level="0" text="Protect context menus" description="Protect context menus">config.ParentalControl.config_sections.context_menus</item>
+			<item level="0" text="Protect Quickmenu" description="Protect Quickmenu">config.ParentalControl.config_sections.quickmenu</item>
+		</if>
+	</setup>
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>

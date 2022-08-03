@@ -1,14 +1,8 @@
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import NumberActionMap
-from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN, configfile
-from Components.Sources.StaticText import StaticText
+from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
-from Screens.ChannelSelection import service_types_tv
+from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
-from enigma import eServiceCenter, eTimer, eServiceReference
-from operator import itemgetter
 
 
 class ProtectedScreen:
@@ -29,66 +23,17 @@ class ProtectedScreen:
 		self.close(None)
 
 
-class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
+class ParentalControlSetup(Setup, ProtectedScreen):
 	def __init__(self, session):
-		Screen.__init__(self, session)
+		self.changePin = ConfigNothing()
+		self.reloadLists = ConfigNothing()
+		Setup.__init__(self, session, "ParentalControlSetup")
 		ProtectedScreen.__init__(self)
-		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlSetup", "Setup"]
-		self.setTitle(_("Parental control setup"))
-		self.onChangedEntry = []
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-		{
-		  "cancel": self.keyCancel,
-		  "save": self.keySave,
-		  "menu": self.closeRecursive,
-		}, -2)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
-		self.recursive = False
 
 	def isProtected(self):
 		return (not config.ParentalControl.setuppinactive.value and config.ParentalControl.servicepinactive.value) or\
 			(not config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.configuration.value) or\
 			(not config.ParentalControl.config_sections.configuration.value and config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value)
-
-	def createSetup(self):
-		self.changePin = None
-		self.reloadLists = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Protect services"), config.ParentalControl.servicepinactive))
-		if config.ParentalControl.servicepinactive.value:
-			self.changePin = getConfigListEntry(_("Change PIN"), NoSave(ConfigNothing()))
-			self.list.append(self.changePin)
-			self.list.append(getConfigListEntry(_("Remember service PIN"), config.ParentalControl.storeservicepin))
-			if config.ParentalControl.storeservicepin.value != "never":
-				self.list.append(getConfigListEntry(_("Hide parental locked services"), config.ParentalControl.hideBlacklist))
-			self.list.append(getConfigListEntry(_("Protect on epg age"), config.ParentalControl.age))
-			self.reloadLists = getConfigListEntry(_("Reload blacklists"), NoSave(ConfigNothing()))
-			self.list.append(self.reloadLists)
-		self.list.append(getConfigListEntry(_("Protect Screens"), config.ParentalControl.setuppinactive))
-		if config.ParentalControl.setuppinactive.value:
-			if not self.changePin:
-				self.changePin = getConfigListEntry(_("Change PIN"), NoSave(ConfigNothing()))
-				self.list.append(self.changePin)
-			self.list.append(getConfigListEntry(_("Protect main menu"), config.ParentalControl.config_sections.main_menu))
-			if not config.ParentalControl.config_sections.main_menu.value:
-				self.list.append(getConfigListEntry(_("Protect timer menu"), config.ParentalControl.config_sections.timer_menu))
-				self.list.append(getConfigListEntry(_("Protect plugin browser"), config.ParentalControl.config_sections.plugin_browser))
-				self.list.append(getConfigListEntry(_("Protect configuration"), config.ParentalControl.config_sections.configuration))
-				self.list.append(getConfigListEntry(_("Protect standby menu"), config.ParentalControl.config_sections.standby_menu))
-				self.list.append(getConfigListEntry(_("Protect software update screen"), config.ParentalControl.config_sections.software_update))
-			self.list.append(getConfigListEntry(_("Protect movie list"), config.ParentalControl.config_sections.movie_list))
-			self.list.append(getConfigListEntry(_("Protect context menus"), config.ParentalControl.config_sections.context_menus))
-			self.list.append(getConfigListEntry(_("Protect Quickmenu"), config.ParentalControl.config_sections.quickmenu))
-			# self.list.append(getConfigListEntry(_("Protect InfoPanel"), config.ParentalControl.config_sections.infopanel))
-		self["config"].list = self.list
-		self["config"].setList(self.list)
 
 	def keySelect(self):
 		if self["config"].l.getCurrentSelection() == self.changePin:
@@ -98,72 +43,17 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			parentalControl.open()
 			self.session.open(MessageBox, _("Lists reloaded!"), MessageBox.TYPE_INFO, timeout=3)
 		else:
-			ConfigListScreen.keyRight(self)
-			self.createSetup()
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createSetup()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
-
-	def cancelCB(self, value):
-		self.keySave()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
-	def cancelConfirm(self, answer):
-		if answer:
-			for x in self["config"].list:
-				x[1].cancel()
-			self.close()
+			Setup.keySelect(self)
 
 	def keySave(self):
 		if self["config"].isChanged():
-			for x in self["config"].list:
-				x[1].save()
-			configfile.save()
 			from Components.ParentalControl import parentalControl
 			parentalControl.hideBlacklist()
-		self.close(self.recursive)
-
-	def closeRecursive(self):
-		self.recursive = True
-		self.keySave()
-
-	def keyNumberGlobal(self, number):
-		pass
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
+		Setup.keySave(self)
 
 
-class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
+class ParentalControlChangePin(Setup, ProtectedScreen):
 	def __init__(self, session, pin, pinname):
-		Screen.__init__(self, session)
-		# for the skin: first try ParentalControlChangePin, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlChangePin", "Setup"]
-		self.setTitle(_("Change pin code"))
-		self.onChangedEntry = []
-
 		self.pin = pin
 		self.list = []
 		self.pin1 = ConfigPIN(default=1111, censor="*")
@@ -172,56 +62,28 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append(getConfigListEntry(_("New PIN"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Re-enter new PIN"), NoSave(self.pin2)))
-		ConfigListScreen.__init__(self, self.list)
+		Setup.__init__(self, session, "ParentalControlChangePin")
 		ProtectedScreen.__init__(self)
-
-		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions", "MenuActions"],
-		{
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"save": self.keyOK,
-			"menu": self.closeRecursive,
-		}, -1)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
 
 	def valueChanged(self, pin, value):
 		if pin == 1:
 			self["config"].setCurrentIndex(1)
 		elif pin == 2:
-			self.keyOK()
+			self.keySelect()
 
-	def getPinText(self):
-		return _("Please enter the old PIN code")
+#	def getPinText(self):
+#		return _("Please enter the old PIN code")
 
 	def isProtected(self):
 		return self.pin.value != "aaaa"
 
-	def protectedWithPin(self):
-		return self.pin.value
+#	def protectedWithPin(self):
+#		return self.pin.value
 
-	def keyOK(self):
+	def keySelect(self):
 		if self.pin1.value == self.pin2.value:
 			self.pin.value = self.pin1.value
 			self.pin.save()
 			self.session.openWithCallback(self.close, MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO)
 		else:
 			self.session.open(MessageBox, _("The PIN codes you entered are different."), MessageBox.TYPE_ERROR)
-
-	def keyNumberGlobal(self, number):
-		ConfigListScreen.keyNumberGlobal(self, number)
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
