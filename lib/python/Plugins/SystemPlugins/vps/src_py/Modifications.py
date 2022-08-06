@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
-
-from . import _
 from RecordTimer import RecordTimerEntry, RecordTimer
 from Screens.TimerEntry import TimerEntry
-from Components.ConfigList import ConfigList
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
+from Components.config import config, ConfigSelection, ConfigDateTime, ConfigClock, getConfigListEntry
 from Tools import Directories
 from Tools.XMLTools import stringToXML
-from Tools import Notifications
-from Screens.MessageBox import MessageBox
 from Screens.InfoBarGenerics import InfoBarInstantRecord
 from time import time
 from enigma import getBestPlayableServiceReference, eServiceReference
@@ -23,13 +17,8 @@ vps_already_registered = False
 # of which takes a positional parameter whilst the other does not).
 # In both Py2 and Py3. It's not pretty as we have to count the args...
 #
-import sys
 import inspect
-if sys.version_info[0] == 2:
-	__getargs = inspect.getargspec
-else:
-# getargspec is deprecated in Py3 in favour of getfullargspec
-	__getargs = inspect.getfullargspec
+__getargs = inspect.getfullargspec
 
 __vps_TimerEntry_createSetup_has_widget = len(__getargs(TimerEntry.createSetup).args) > 1
 
