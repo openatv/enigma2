@@ -107,6 +107,10 @@ class TIMERTYPE:
 	def __init__(self):
 		pass
 
+	RECORD = 0
+	ZAP = 1
+	ZAP_RECORD = 2
+	
 	JUSTPLAY = config.recording.default_timertype.value == "zap"
 	ALWAYS_ZAP = config.recording.default_timertype.value == "zap+record"
 
