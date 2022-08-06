@@ -324,7 +324,7 @@
 		<item level="0" text="Use Harddisk Hardware Standby Timer" description="Option to enable the Hardware Standby Timer">config.usage.hdd_timer</item>
 	</setup>
 	<setup key="HDMICEC" title="HDMI-CEC Settings">
-		<item level="0"	text="Enabled" description="Enable or disable using HDMI-CEC.">config.hdmicec.enabled</item>
+		<item level="0" text="Enabled" description="Enable or disable using HDMI-CEC.">config.hdmicec.enabled</item>
 		<if conditional="config.hdmicec.enabled.value">
 			<item level="0" text="Advanced Settings" description="Enable the advanced HDMI-CEC setting options.">config.hdmicec.advanced_settings</item>
 			<item level="0" text="Regard deep standby as standby" description="If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events.">config.hdmicec.handle_deepstandby_events</item>
