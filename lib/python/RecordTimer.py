@@ -237,6 +237,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.ice_timer_id = ice_timer_id
 		self.wasInStandby = False
 
+		# add vps
+		self.vpsplugin_enabled = None
+		self.vpsplugin_overwrite = None
+		self.vpsplugin_time = None
+
 		#workaround for vmc crash - only a dummy entry!!!
 		self.justremind = False
 		'''
@@ -1211,6 +1216,15 @@ def createTimer(xml):
 	isAutoTimer=isAutoTimer, ice_timer_id=ice_timer_id, always_zap=always_zap, rename_repeat=rename_repeat)
 	entry.repeated = int(repeated)
 
+	# vps
+	vps_overwrite = xml.get("vps_overwrite")
+	vps_enabled = xml.get("vps_enabled")
+	vps_time = xml.get("vps_time")
+	if vps_time and vps_time != "None":
+		entry.vpsplugin_time = int(vps_time)
+	entry.vpsplugin_overwrite = (vps_overwrite and vps_overwrite == "1")
+	entry.vpsplugin_enabled = (vps_enabled and vps_enabled == "1")
+
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
 		code = int(l.get("code"))
@@ -1373,6 +1387,13 @@ class RecordTimer(timer.Timer):
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			if timer.ice_timer_id is not None:
 				list.append(' ice_timer_id="' + str(timer.ice_timer_id) + '"')
+
+			# vps
+			if timer.vpsplugin_enabled:
+				list.append(' vps_enabled="1"')
+				list.append(' vps_overwrite="%s"' % "1" if timer.vpsplugin_overwrite else "0")
+				list.append(' vps_time="%s"' % str(timer.vpsplugin_time) if timer.vpsplugin_time is not None else "0")
+
 			list.append('>\n')
 
 			for time, code, msg in timer.log_entries:

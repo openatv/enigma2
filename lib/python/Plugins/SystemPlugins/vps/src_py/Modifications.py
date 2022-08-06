@@ -1,14 +1,9 @@
-from RecordTimer import RecordTimerEntry, RecordTimer
 from Screens.TimerEntry import TimerEntry
 from Components.config import config, ConfigSelection, ConfigDateTime, ConfigClock, getConfigListEntry
-from Tools import Directories
-from Tools.XMLTools import stringToXML
 from Screens.InfoBarGenerics import InfoBarInstantRecord
 from time import time
 from enigma import getBestPlayableServiceReference, eServiceReference
-import xml.etree.cElementTree
 from .Vps_setup import VPS_show_info
-import six
 
 vps_already_registered = False
 
@@ -21,112 +16,6 @@ import inspect
 __getargs = inspect.getfullargspec
 
 __vps_TimerEntry_createSetup_has_widget = len(__getargs(TimerEntry.createSetup).args) > 1
-
-# We cater for any parameters thrown at us and pass it all on.
-#
-
-
-def new_RecordTimer_saveTimer(self, *args, **kwargs):
-	self._saveTimer_old_rn_vps(*args, **kwargs)
-
-	# added by VPS-Plugin
-	list = []
-	list.append('<?xml version="1.0" ?>\n')
-	list.append('<vps_timers>\n')
-
-	try:
-		for timer in self.timer_list:
-			if timer.dontSave or timer.vpsplugin_enabled is None or timer.vpsplugin_enabled == False:
-				continue
-
-			list.append('<timer')
-			list.append(' begin="' + str(int(timer.begin)) + '"')
-			list.append(' end="' + str(int(timer.end)) + '"')
-			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
-			list.append(' vps_enabled="1"')
-
-			if timer.vpsplugin_overwrite is not None:
-				list.append(' vps_overwrite="' + str(int(timer.vpsplugin_overwrite)) + '"')
-			else:
-				list.append(' vps_overwrite="0"')
-
-			if timer.vpsplugin_time is not None:
-				list.append(' vps_time="' + str(timer.vpsplugin_time) + '"')
-			else:
-				list.append(' vps_time="0"')
-
-			list.append('>\n')
-			list.append('</timer>\n')
-
-		list.append('</vps_timers>\n')
-
-		file = open(Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers_vps.xml"), "w")
-		for x in list:
-			file.write(x)
-		file.close()
-	except Exception as exc:
-		print("[VPS] new_RecordTimer_saveTimer : %s" % exc)
-		pass
-	# added by VPS-Plugin
-
-
-# We cater for any parameters thrown at us and pass it all on.
-#
-def new_RecordTimer_loadTimer(self, *args, **kwargs):
-	# added by VPS-Plugin
-	xmlroot = None
-	try:
-		global xml
-		doc = xml.etree.cElementTree.parse(Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers_vps.xml"))
-		xmlroot = doc.getroot()
-	except Exception as exc:
-		print("[VPS] new_RecordTimer_loadTimer : %s" % exc)
-		pass
-	# added by VPS-Plugin
-
-# Pass on all we were given
-	self._loadTimer_old_rn_vps(*args, **kwargs)
-
-	# added by VPS-Plugin
-	try:
-		vps_timers = {}
-
-		if xmlroot is not None:
-			for xml in xmlroot.findall("timer"):
-				begin = xml.get("begin")
-				end = xml.get("end")
-				serviceref = xml.get("serviceref")
-				serviceref = six.ensure_str(serviceref)
-				vps_timers[serviceref + begin + end] = {}
-				vps_overwrite = xml.get("vps_overwrite")
-				if vps_overwrite and vps_overwrite == "1":
-					vps_timers[serviceref + begin + end]["overwrite"] = True
-				else:
-					vps_timers[serviceref + begin + end]["overwrite"] = False
-
-				vps_time = xml.get("vps_time")
-				if vps_time and vps_time != "None":
-					vps_timers[serviceref + begin + end]["time"] = int(vps_time)
-				else:
-					vps_timers[serviceref + begin + end]["time"] = 0
-
-			for timer in self.timer_list:
-				begin = str(timer.begin)
-				end = str(timer.end)
-				serviceref = str(timer.service_ref)
-
-				if vps_timers.get(serviceref + begin + end, None) is not None:
-					timer.vpsplugin_enabled = True
-					timer.vpsplugin_overwrite = vps_timers[serviceref + begin + end]["overwrite"]
-					if vps_timers[serviceref + begin + end]["time"] != 0:
-						timer.vpsplugin_time = vps_timers[serviceref + begin + end]["time"]
-				else:
-					timer.vpsplugin_enabled = False
-					timer.vpsplugin_overwrite = False
-	except Exception as exc:
-		print("[VPS] new_RecordTimer_loadTimer : %s" % exc)
-		pass
-	# added by VPS-Plugin
 
 # We cater for any parameters thrown at us and pass it all on.
 #
@@ -379,15 +268,6 @@ def register_vps():
 	global vps_already_registered
 
 	if vps_already_registered == False:
-		RecordTimerEntry.vpsplugin_enabled = None
-		RecordTimerEntry.vpsplugin_overwrite = None
-		RecordTimerEntry.vpsplugin_time = None
-
-		RecordTimer._saveTimer_old_rn_vps = RecordTimer.saveTimer
-		RecordTimer.saveTimer = new_RecordTimer_saveTimer
-
-		RecordTimer._loadTimer_old_rn_vps = RecordTimer.loadTimer
-		RecordTimer.loadTimer = new_RecordTimer_loadTimer
 
 		TimerEntry._createConfig_old_rn_vps = TimerEntry.createConfig
 		TimerEntry.createConfig = new_TimerEntry_createConfig
