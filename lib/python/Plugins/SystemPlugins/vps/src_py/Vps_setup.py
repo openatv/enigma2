@@ -4,8 +4,6 @@ from Screens.Setup import Setup
 from Components.ScrollLabel import ScrollLabel
 from Components.ActionMap import ActionMap
 
-VERSION = "1.34"
-
 
 class VPS_Setup(Setup):
 	def __init__(self, session):
@@ -42,7 +40,3 @@ class VPS_Screen_Info(Screen):
 
 	def setCustomTitle(self):
 		self.setTitle(self.info_title)
-
-
-def VPS_show_info(session):
-	session.open(VPS_Screen_Info)

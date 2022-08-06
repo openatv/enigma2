@@ -22,16 +22,20 @@ config.plugins.vps.infotext = ConfigInteger(default=0)
 #
 config.plugins.vps.enabled.save_forced = True
 
+vps_already_registered = False
+
 
 def autostart(reason, **kwargs):
+	global vps_already_registered
 	if reason == 0:
 		if "session" in kwargs:
 			session = kwargs["session"]
 			vps_timers.session = session
 			vps_timers.checkNextAfterEventAuto()
 			vps_timers.checkTimer()
-		else:
+		elif not vps_already_registered:
 			register_vps()
+			vps_already_registered = True
 
 	elif reason == 1:
 		vps_timers.shutdown()

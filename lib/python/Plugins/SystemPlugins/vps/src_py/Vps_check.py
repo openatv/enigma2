@@ -264,10 +264,8 @@ class VPS_check_PDC_Screen(VPS_check):
 	def finish_callback(self, result):
 		if not result:
 			self.timer_entry.timerentry_vpsplugin_enabled.value = "no"
-			self.timer_entry.createSetup("config")
+			self.timer_entry.createSetup()
 			self.timer_entry.timerentry_vpsplugin_dontcheck_pdc = False
-			#self.timer_entry["config"].setCurrentIndex(self.timer_entry["config"].getCurrentIndex() + 1)
-
 		self.close()
 
 	def finish_callback2(self, result):
