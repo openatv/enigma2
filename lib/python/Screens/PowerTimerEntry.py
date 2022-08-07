@@ -136,7 +136,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerrntry_autosleepdelay = ConfigSelection(choices=time_table, default=self.timer.autosleepdelay)
 		self.timerentry_autosleeprepeat = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=self.timer.autosleeprepeat)
 		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices=[("yes", _("only in Standby")), ("no", _("Standard (always)")), ("noquery", _("without Query"))], default=self.timer.autosleepinstandbyonly)
-		self.timerrntry_autosleepwindow = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=self.timer.autosleepwindow)
+		self.timerrntry_autosleepwindow = ConfigYesNo(default=self.timer.autosleepwindow)
 		self.timerrntry_autosleepbegin = ConfigClock(default=self.timer.autosleepbegin)
 		self.timerrntry_autosleepend = ConfigClock(default=self.timer.autosleepend)
 
@@ -153,10 +153,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		for x in (0, 1, 2, 3, 4, 5, 6):
 			self.timerentry_day.append(ConfigYesNo(default=days[x]))
 
-		self.timerrntry_showExtended = ConfigSelection(default=(self.timer.nettraffic == "yes" or self.timer.netip == "yes"), choices=[(True, _("Yes")), (False, _("No"))])
-		self.timerrntry_nettraffic = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=self.timer.nettraffic)
+		self.timerrntry_showExtended = ConfigYesNo(default=self.timer.nettraffic or self.timer.netip)
+		self.timerrntry_nettraffic = ConfigYesNo(default=self.timer.nettraffic)
 		self.timerrntry_trafficlimit = ConfigSelection(choices=traffic_table, default=self.timer.trafficlimit)
-		self.timerrntry_netip = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=self.timer.netip)
+		self.timerrntry_netip = ConfigYesNo(default=self.timer.netip)
 		self.timerrntry_ipadress = self.timer.ipadress.split(',')
 		self.ipcount = ConfigSelectionNumber(default=len(self.timerrntry_ipadress), stepwidth=1, min=1, max=5)
 		self.ipadressEntry = ConfigSubList()
@@ -191,7 +191,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
 
 			self.list.append(self.autosleepwindowEntry)
-			if self.timerrntry_autosleepwindow.value == "yes":
+			if self.timerrntry_autosleepwindow.value:
 				self.list.append(getConfigListEntry(_("Start time"), self.timerrntry_autosleepbegin))
 				self.list.append(getConfigListEntry(_("End time"), self.timerrntry_autosleepend))
 
@@ -199,11 +199,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.list.append(self.netExtendedEntry)
 				if self.timerrntry_showExtended.value:
 					self.list.append(self.nettrafficEntry)
-					if self.timerrntry_nettraffic.value == "yes":
+					if self.timerrntry_nettraffic.value:
 						self.list.append(getConfigListEntry(_("Lower limit in kilobits per seconds [kbit/s]"), self.timerrntry_trafficlimit))
 
 					self.list.append(self.netipEntry)
-					if self.timerrntry_netip.value == "yes":
+					if self.timerrntry_netip.value:
 						self.list.append(self.ipcountEntry)
 						for x in list(range(0, self.ipcount.value)):
 							self.list.append(getConfigListEntry(("%d. " + _("IP address")) % (x + 1), self.ipadressEntry[x]))
