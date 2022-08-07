@@ -7,6 +7,8 @@ from .Vps_setup import VPS_Screen_Info
 from .Vps_check import Check_PDC, VPS_check_PDC_Screen, VPS_check_on_instanttimer
 from .Vps import vps_timers
 
+timerentry_vpsplugin_enabled_index = 0
+
 
 def timerCreateHook(self):
 
@@ -20,7 +22,7 @@ def timerCreateHook(self):
 				default_value = {False: "yes_safe", True: "yes"}[self.timer.vpsplugin_overwrite]
 
 		elif config.plugins.vps.vps_default.value != "no" and self.timer.eit is not None and self.timer.name != "" and self.timer not in self.session.nav.RecordTimer.timer_list and self.timer not in self.session.nav.RecordTimer.processed_timers:
-			service = self.timerentry_service_ref.ref
+			service = self.timerServiceReference.ref
 			if service and service.flags & eServiceReference.isGroup:
 				service = getBestPlayableServiceReference(service, eServiceReference())
 			has_pdc, last_check, default_vps = Check_PDC.check_service(service)
@@ -43,19 +45,19 @@ def timerCreateHook(self):
 
 
 def timerSetupHook(self):
-	try:
-		currentItem = self["config"].getCurrent()
-	except:
-		currentItem = 0
-
+	global timerentry_vpsplugin_enabled_index
+	currentIndex = self["config"].getCurrentIndex()
+	if currentIndex == 0 and timerentry_vpsplugin_enabled_index > 0:
+		currentIndex = timerentry_vpsplugin_enabled_index
+		timerentry_vpsplugin_enabled_index = 0
 	self.timerVps_enabled_Entry = None
 	try:
-		if self.timerentry_justplay.value != "zap" and self.timerentry_type.value == "once" and config.plugins.vps.enabled.value == True:
+		if self.timerType.value != "zap" and self.timerRepeat.value == "once" and config.plugins.vps.enabled.value == True:
 			self.timerVps_enabled_Entry = getConfigListEntry(_("Enable VPS"), self.timerentry_vpsplugin_enabled)
 			self.list.append(self.timerVps_enabled_Entry)
 
 			if self.timerentry_vpsplugin_enabled.value != "no":
-				service = self.timerentry_service_ref.ref
+				service = self.timerServiceReference.ref
 				if service and service.flags & eServiceReference.isGroup:
 					service = getBestPlayableServiceReference(service, eServiceReference())
 
@@ -84,15 +86,14 @@ def timerSetupHook(self):
 		print("[VPS] timerSetupHook : %s" % exc)
 		pass
 	self["config"].list = self.list
-	self.moveToItem(currentItem)
+	self["config"].setCurrentIndex(currentIndex)
 
 
 def timerVps_enabled_Entry_Changed(configElement, self):
-	if self.timerentry_vpsplugin_enabled.value == "no":
+	global timerentry_vpsplugin_enabled_index
+	timerentry_vpsplugin_enabled_index = self["config"].getCurrentIndex()
+	if configElement.value == "no":
 		self.timerentry_vpsplugin_dontcheck_pdc = False
-
-	self.createSetup()
-	self["config"].setCurrentIndex(self["config"].getCurrentIndex() + 1)
 
 
 def timerSaveHook(self):
