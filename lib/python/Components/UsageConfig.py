@@ -1721,8 +1721,6 @@ def InitUsageConfig():
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
-	config.usage.new_navigation = ConfigYesNo(default=False)
-
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
 	elem = config_priority.value
