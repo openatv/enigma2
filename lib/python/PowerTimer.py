@@ -217,13 +217,13 @@ class PowerTimer(Timer):
 		entry.autosleepinstandbyonly = timerDom.get("autosleepinstandbyonly", "no")
 		entry.autosleepdelay = int(timerDom.get("autosleepdelay", "0"))
 		entry.autosleeprepeat = timerDom.get("autosleeprepeat", "once")
-		entry.autosleepwindow = timerDom.get("autosleepwindow", "no")
+		entry.autosleepwindow = timerDom.get("autosleepwindow", "false").lower() in ("true", "yes")
 		entry.autosleepbegin = autosleepbegin
 		entry.autosleepend = autosleepend
 
-		entry.nettraffic = timerDom.get("nettraffic", "no")
+		entry.nettraffic = timerDom.get("nettraffic", "no").lower() in ("true", "yes")
 		entry.trafficlimit = int(timerDom.get("trafficlimit", "100"))
-		entry.netip = timerDom.get("netip", "no")
+		entry.netip = timerDom.get("netip", "false").lower() in ("true", "yes")
 		entry.ipadress = timerDom.get("ipadress", "0.0.0.0")
 
 		for log in timerDom.findall("log"):
@@ -269,7 +269,7 @@ class PowerTimer(Timer):
 				if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 					if timer.begin <= now + 900:
 						ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
-					elif timer.autosleepwindow == 'yes':
+					elif timer.autosleepwindow:
 						ret = timer.autosleepbegin <= now + 900
 				if not ret:
 					break
@@ -439,6 +439,8 @@ class PowerTimerEntry(TimerEntry, object):
 			self.end = self.begin
 
 		self.dontSave = False
+		self.name = ""
+		self.description = ""
 		self.disabled = disabled
 		self.timer = None
 		self.__record_service = None
@@ -450,13 +452,13 @@ class PowerTimerEntry(TimerEntry, object):
 		self.autosleepinstandbyonly = "no"
 		self.autosleepdelay = autosleepdelay
 		self.autosleeprepeat = "once"
-		self.autosleepwindow = "no"
+		self.autosleepwindow = False
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
 
-		self.nettraffic = "no"
+		self.nettraffic = False
 		self.trafficlimit = 100
-		self.netip = "no"
+		self.netip = False
 		self.ipadress = "0.0.0.0"
 
 		self.log_entries = []
@@ -513,7 +515,7 @@ class PowerTimerEntry(TimerEntry, object):
 		self.log(5, "Activating state %d." % next_state)
 		if next_state == self.StatePrepared and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
-			if self.autosleepwindow == 'yes':
+			if self.autosleepwindow:
 				ltm = localtime(now)
 				asb = strftime("%H:%M", localtime(self.autosleepbegin)).split(':')
 				ase = strftime("%H:%M", localtime(self.autosleepend)).split(':')
@@ -1028,7 +1030,7 @@ class PowerTimerEntry(TimerEntry, object):
 
 	def getAutoSleepWindow(self):
 		now = time()
-		if self.autosleepwindow == 'yes':
+		if self.autosleepwindow:
 			if now < self.autosleepbegin and now < self.autosleepend:
 				self.begin = self.autosleepbegin
 				self.end = self.autosleepend
@@ -1136,7 +1138,7 @@ class PowerTimerEntry(TimerEntry, object):
 
 	def getNetworkAdress(self):
 		ret = False
-		if self.netip == 'yes':
+		if self.netip:
 			try:
 				for ip in self.ipadress.split(','):
 					if not system("ping -q -w1 -c1 " + ip):
@@ -1149,7 +1151,7 @@ class PowerTimerEntry(TimerEntry, object):
 	def getNetworkTraffic(self, getInitialValue=False):
 		now = time()
 		newbytes = 0
-		if self.nettraffic == 'yes':
+		if self.nettraffic:
 			try:
 				if exists('/proc/net/dev'):
 					f = open('/proc/net/dev', 'r')
