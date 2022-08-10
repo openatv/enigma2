@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-04 20:08+0000\n"
-"PO-Revision-Date: 2022-08-07 08:33+0000\n"
+"PO-Revision-Date: 2022-08-10 14:51+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2254,22 +2254,22 @@ msgid "Add a RecordTimer"
 msgstr "Aggiungi un timer di registrazione"
 
 msgid "Add a RecordTimer for current event"
-msgstr "Aggiungi un timer di registrazione per l'evento attuale"
+msgstr "Aggiungi un timer di registrazione per l'evento in corso"
 
 msgid "Add a service to the Volume Offsets list"
 msgstr "Aggiungi un servizio all'elenco Offset volume"
 
 msgid "Add a timer for the current event"
-msgstr "Aggiungi un timer per l'evento attuale"
+msgstr "Aggiungi un timer per l'evento in corso"
 
 msgid "Add a ZapTimer for current event"
-msgstr "Aggiungi un timer di zapping per l'evento attuale"
+msgstr "Aggiungi un timer di zapping per l'evento in corso"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Aggiungi un timer di zapping per il prossimo evento"
 
 msgid "Add an AutoTimer for the current event"
-msgstr "Aggiungi un timer automatico per l'evento attuale"
+msgstr "Aggiungi un timer automatico per l'evento in corso"
 
 msgid "Add bookmark"
 msgstr "Aggiungi segnalibro"
@@ -2314,7 +2314,7 @@ msgid "Add recording (indefinitely)"
 msgstr "Aggiungi registrazione (a tempo indeterminato)"
 
 msgid "Add recording (stop after current event)"
-msgstr "Aggiungi registrazione (interrompi dopo l'evento attuale)"
+msgstr "Aggiungi registrazione (interrompi dopo l'evento in corso)"
 
 msgid "Add selected folder to bookmarks"
 msgstr "Aggiungi la cartella selezionata ai segnalibri"
@@ -2332,7 +2332,7 @@ msgid "Add/Remove Timer"
 msgstr "Aggiungi o rimuovi timer"
 
 msgid "Add/Remove a timer for the current event"
-msgstr "Aggiungi o rimuovi un timer per l'evento attuale"
+msgstr "Aggiungi o rimuovi un timer per l'evento in corso"
 
 msgid "Adding schedule..."
 msgstr "Aggiungi pianificazione..."
@@ -6431,7 +6431,7 @@ msgid "Don't show default"
 msgstr "Non mostrare l'impostazione predefinita"
 
 msgid "Don't stop current event but disable future events"
-msgstr "Non interrompere l'evento attuale ma disabilita gli eventi futuri"
+msgstr "Non interrompere l'evento in corso ma disabilita gli eventi futuri"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7253,8 +7253,8 @@ msgid "Error executing plugin"
 msgstr "Errore durante l'esecuzione del plugin"
 
 #, python-format
-msgid "Error getting link via %s/n%s"
-msgstr "Errore durante l'ottenimento del collegamento tramite %s/n%s"
+msgid "Error getting link via %s\n%s"
+msgstr "Errore durante l'ottenimento del collegamento tramite %s\n%s"
 
 #, python-format
 msgid ""
@@ -7839,7 +7839,7 @@ msgid "File write error: '%s'"
 msgstr "Errore di scrittura file: '%s'"
 
 msgid "File/Directory Status Information"
-msgstr "Informazione di stato del file/cartella"
+msgstr "Informazioni sullo stato di file/directory"
 
 msgid "Filename"
 msgstr "Nome del file"
@@ -8827,7 +8827,7 @@ msgid "IMDb Search"
 msgstr "Ricerca IMDb"
 
 msgid "IMDb search for current event"
-msgstr "Cerca IMDb per evento attuale"
+msgstr "Cerca IMDb per evento in corso"
 
 msgid "INFO"
 msgstr "INFO"
@@ -9257,7 +9257,7 @@ msgid "InfoBar EPG Settings"
 msgstr "Configurazione barra informazioni EPG"
 
 msgid "Information"
-msgstr "Informazione"
+msgstr "Informazioni"
 
 msgid "Infotainment"
 msgstr "Infotainment"
@@ -11145,7 +11145,7 @@ msgid "Network Information"
 msgstr "Informazioni sulla rete"
 
 msgid "Network Information Actions"
-msgstr "Azioni di informazione sulla rete"
+msgstr "Azioni di informazione di rete"
 
 msgid "Network Interface"
 msgstr "Interfaccia di rete"
@@ -14691,7 +14691,7 @@ msgid "Search"
 msgstr "Ricerca"
 
 msgid "Search IMDb for information about current event."
-msgstr "Cerca IMDb per informazioni su evento attuale."
+msgstr "Cerca in IMDb informazioni sull'evento in corso."
 
 msgid "Search Sats"
 msgstr "Ricerca transponder"
@@ -14709,7 +14709,7 @@ msgid "Search for similar events"
 msgstr "Ricerca per eventi similari"
 
 msgid "Search the epg for current event."
-msgstr "Cerca nell'EPG l'evento attuale."
+msgstr "Cerca nell'EPG l'evento in corso."
 
 msgid "Search weather location ID"
 msgstr "Ricerca ID della località per il meteo"
@@ -16455,7 +16455,7 @@ msgid "Show shutdown menu"
 msgstr "Mostra menu di spegnimento"
 
 msgid "Show single EPG for current channel"
-msgstr "Mostra EPG singolo per l'evento attuale"
+msgstr "Mostra EPG singolo per l'evento in corso"
 
 msgid "Show single EPG for current channel (setup in menu)"
 msgstr "Mostra EPG singolo per il canale attuale (menu impostazione)"
@@ -16503,7 +16503,7 @@ msgid "Show the SleepTimer"
 msgstr "Mostra timer di spegnimento"
 
 msgid "Show the information on current event."
-msgstr "Mostra l'informazione sul programma attuale."
+msgstr "Mostra le informazioni sull'evento in corso."
 
 msgid "Show the list of AutoTimers."
 msgstr "Mostra l'elenco dei timer automatici."
@@ -17207,7 +17207,7 @@ msgid "Start offline decode"
 msgstr "Avviare decodifica offline"
 
 msgid "Start recording current event"
-msgstr "Inizia a registrare l'evento attuale"
+msgstr "Inizia a registrare l'evento in corso"
 
 msgid "Start recording?"
 msgstr "Avviare registrazione?"
@@ -17301,10 +17301,10 @@ msgid "Stop Streams"
 msgstr "Ferma gli stream"
 
 msgid "Stop current event and disable future events"
-msgstr "Interrompi l'evento attuale e disabilita gli eventi futuri"
+msgstr "Interrompi l'evento in corso e disabilita gli eventi futuri"
 
 msgid "Stop current event but not future events"
-msgstr "Arrestare l'evento attuale ma non i futuri"
+msgstr "Interrompi l'evento in corso ma non gli eventi futuri"
 
 msgid "Stop entry"
 msgstr "Arrestare ingresso"
@@ -17352,7 +17352,7 @@ msgid "Stop timeshift and save timeshift buffer as movie"
 msgstr "Arrestare timeshift e salvare il buffer timeshift come registrazione"
 
 msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
-msgstr "Interrompi il timeshift, salva il buffer del timeshift come film e avvia la registrazione dell'evento attuale"
+msgstr "Interrompi il timeshift, salva il buffer del timeshift come film e avvia la registrazione dell'evento in corso"
 
 msgid "Stop timeshift while recording"
 msgstr "Interrompi il timeshift durante la registrazione"
@@ -18008,7 +18008,7 @@ msgid ""
 "Please install it."
 msgstr ""
 "Il plugin IMDb non è installato!\n"
-"Provvedere a installarlo."
+"Si prega di installarlo."
 
 #, python-format
 msgid ""
@@ -18881,7 +18881,7 @@ msgid "Timeshift save recording (Select event)"
 msgstr "Registrazione di salvataggio Time Shift (Seleziona evento)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "Registrazione di salvataggio Time Shift (stop dopo evento attuale)"
+msgstr "Salva come timeshift (stop dopo evento in corso)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift salvato sul tuo Harddisk!"
@@ -20885,8 +20885,8 @@ msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
-"Si è scelto di salvare l'evento timeshift attuale, ma l'evento non è ancora terminato\n"
-"Che cosa vuoi fare?"
+"Hai scelto di salvare l'evento timeshift in corso, ma l'evento non è ancora terminato\n"
+"Cosa vuoi fare ?"
 
 msgid "You have no script to run."
 msgstr "Non ci sono script da avviare."

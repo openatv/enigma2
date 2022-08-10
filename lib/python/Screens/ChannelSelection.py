@@ -2364,7 +2364,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
 			(newurl, errormsg) = p(session=self.session, service=nref)
 			if errormsg:
-				self.session.open(MessageBox, _("Error getting link via %s/n%s") % (p.name, errormsg), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Error getting link via %s\n%s") % (p.name, errormsg), MessageBox.TYPE_ERROR)
 				break
 			elif newurl:
 				nref.setAlternativeUrl(newurl)
