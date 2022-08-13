@@ -92,8 +92,6 @@ void eListbox::setWrapAround(bool state)
 
 void eListbox::setContent(iListboxContent *content)
 {
-	m_first_selectable_item = -1;
-	m_last_selectable_item = -1;
 	m_content = content;
 	if (content)
 		m_content->setListbox(this);
@@ -413,6 +411,8 @@ void eListbox::setSelectionEnable(int en)
 
 void eListbox::entryAdded(int index)
 {
+	m_first_selectable_item = -1;
+	m_last_selectable_item = -1;
 	if (m_content && (m_content->size() % m_items_per_page) == 1)
 		m_content_changed=true;
 	/* manage our local pointers. when the entry was added before the current position, we have to advance. */
@@ -437,6 +437,8 @@ void eListbox::entryAdded(int index)
 
 void eListbox::entryRemoved(int index)
 {
+	m_first_selectable_item = -1;
+	m_last_selectable_item = -1;
 	if (m_content && !(m_content->size() % m_items_per_page))
 		m_content_changed=true;
 
@@ -466,6 +468,8 @@ void eListbox::entryChanged(int index)
 
 void eListbox::entryReset(bool selectionHome)
 {
+	m_first_selectable_item = -1;
+	m_last_selectable_item = -1;
 	m_content_changed = true;
 	m_prev_scrollbar_page = -1;
 	int oldsel;
@@ -827,6 +831,10 @@ void eListbox::moveSelection(long dir)
 		//eDebug("[eListbox] moveSelection 1 dir=%d oldline=%d oldsel=%d m_selected=%d m_items_per_page=%d sz=%d max=%d", dir, oldline, oldsel, m_selected, m_items_per_page, m_content->size(), max);
 
 		bool jumpBottom = (dir == moveBottom);
+
+		if(dir == movePageDown && m_selected > max) {
+			jumpBottom = true;
+		}
 
 		if(dir == moveUp) {
 			if(m_selected > oldsel) {
