@@ -5,6 +5,7 @@ try:
 except ImportError:
     YoutubeDL = None
 
+
 def zap(session, service, **kwargs):
 	errormsg = None
 	if service and "http" in service.toString():
@@ -16,7 +17,7 @@ def zap(session, service, **kwargs):
 				url = url.replace("YT-DLP%3a//", "")
 				url = url.replace("%3a", ":")
 				try:
-					ydl = YoutubeDL({"format": "b"})
+					ydl = YoutubeDL({"format": "b", "no_color": True})
 					result = ydl.extract_info(url, download=False)
 					result = ydl.sanitize_info(result)
 					if result and result.get("url"):
@@ -35,6 +36,6 @@ def zap(session, service, **kwargs):
 
 def Plugins(**kwargs):
 	if YoutubeDL:
-		return [PluginDescriptor(name="YTDLPWrapper", description="YTDLPWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart = False, fnc=zap)]
+		return [PluginDescriptor(name="YTDLPWrapper", description="YTDLPWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
 	else:
 		return []
