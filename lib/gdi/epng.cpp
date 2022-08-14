@@ -14,6 +14,7 @@
 
 extern "C" {
 #include <jpeglib.h>
+#include <gif_lib.h>
 }
 
 #include <nanosvg.h>
@@ -458,7 +459,8 @@ int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width,
 		return loadSVG(result, filename, 1, width, height, 0);
 	else if (endsWith(filename, ".jpg"))
 		return loadJPG(result, filename, 0);
-
+	else if (endsWith(filename, ".gif"))
+		return loadGIF(result, filename, 0);
 	return 0;
 }
 
@@ -476,4 +478,210 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	if (result != 0)
 		::unlink(filename);
 	return result;
+}
+
+int loadGIF(ePtr<gPixmap> &result, const char *filename, int cached)
+{
+	return loadGIF(result, filename, ePtr<gPixmap>(), cached);
+}
+
+int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, int cached)
+{
+
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
+	unsigned char *pic_buffer = NULL;
+	int px, py, i, j;
+	unsigned char *fbptr;
+	unsigned char *slb=NULL;
+	GifFileType *gft;
+	GifRecordType rt;
+	GifByteType *extension;
+	ColorMapObject *cmap;
+	int cmaps;
+	int extcode;
+
+	gRGB *palette;
+	int palette_size;
+	int ox;
+	int oy;
+	int max_x = 1280;
+	int max_y = 720;
+
+
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5)
+	gft = DGifOpenFileName(filename);
+#else
+	{
+		int err;
+		gft = DGifOpenFileName(filename, &err);
+	}
+#endif
+	if (gft == NULL)
+		return 0;
+	do
+	{
+		if (DGifGetRecordType(gft, &rt) == GIF_ERROR)
+			goto ERROR_R;
+		switch(rt)
+		{
+			case IMAGE_DESC_RECORD_TYPE:
+				if (DGifGetImageDesc(gft) == GIF_ERROR)
+					goto ERROR_R;
+				ox = px = gft->Image.Width;
+				oy = py = gft->Image.Height;
+				pic_buffer = new unsigned char[px * py];
+				slb = pic_buffer;
+
+				if (pic_buffer != NULL)
+				{
+					cmap = (gft->Image.ColorMap ? gft->Image.ColorMap : gft->SColorMap);
+					cmaps = cmap->ColorCount;
+					palette_size = cmaps;
+					palette = new gRGB[cmaps];
+					for (i = 0; i != cmaps; ++i)
+					{
+						palette[i].a = 0;
+						palette[i].r = cmap->Colors[i].Red;
+						palette[i].g = cmap->Colors[i].Green;
+						palette[i].b = cmap->Colors[i].Blue;
+					}
+
+					fbptr = pic_buffer;
+					if (!(gft->Image.Interlace))
+					{
+						for (i = 0; i < py; i++, fbptr += px * 3)
+						{
+							if (DGifGetLine(gft, slb, px) == GIF_ERROR)
+								goto ERROR_R;
+							slb += px;
+						}
+					}
+					else
+					{
+						for (j = 0; j < 4; j++)
+						{
+							slb = pic_buffer;
+							for (i = 0; i < py; i++)
+							{
+								if (DGifGetLine(gft, slb, px) == GIF_ERROR)
+									goto ERROR_R;
+								slb += px;
+							}
+						}
+					}
+				}
+				break;
+			case EXTENSION_RECORD_TYPE:
+				if (DGifGetExtension(gft, &extcode, &extension) == GIF_ERROR)
+					goto ERROR_R;
+				while (extension != NULL)
+					if (DGifGetExtensionNext(gft, &extension) == GIF_ERROR)
+						goto ERROR_R;
+				break;
+			default:
+				break;
+		}
+	}
+	while (rt != TERMINATE_RECORD_TYPE);
+
+
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
+	DGifCloseFile(gft);
+#else
+	{
+		int err;
+		DGifCloseFile(gft, &err);
+	}
+#endif
+
+	if(pic_buffer == NULL)
+	{
+		result = 0;
+		return 0;
+	}
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	{
+		result=new gPixmap(eSize(max_x, max_y), 8, gPixmap::accelAlways);
+		gUnmanagedSurface *surface = result->surface;
+		surface->clut.data = palette;
+		surface->clut.colors = palette_size;
+		palette = NULL; // transfer ownership
+		int o_y=0, u_y=0, v_x=0, h_x=0;
+		int extra_stride = surface->stride - surface->x;
+
+		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+		unsigned char *origin = pic_buffer;
+
+		if(oy < max_y)
+		{
+			o_y = (max_y - oy) / 2;
+			u_y = max_y - oy - o_y;
+		}
+		if(ox < max_x)
+		{
+			v_x = (max_x - ox) / 2;
+			h_x = max_x - ox - v_x;
+		}
+
+		gColor background;
+//		gRGB bg(m_conf.background);
+		gRGB bg(0,0,0);
+		background = surface->clut.findColor(bg);
+
+		if(oy < max_y)
+		{
+			memset(tmp_buffer, background, o_y * surface->stride);
+			tmp_buffer += o_y * surface->stride;
+		}
+
+		for(int a = oy; a > 0; --a)
+		{
+			if(ox < max_x)
+			{
+				memset(tmp_buffer, background, v_x);
+				tmp_buffer += v_x;
+			}
+
+			memcpy(tmp_buffer, origin, ox);
+			tmp_buffer += ox;
+			origin += ox;
+
+			if(ox < max_x)
+			{
+				memset(tmp_buffer, background, h_x);
+				tmp_buffer += h_x;
+			}
+			tmp_buffer += extra_stride;
+		}
+
+		if(oy < max_y)
+		{
+			memset(tmp_buffer, background, u_y * surface->stride);
+		}
+	}
+
+	if (pic_buffer != NULL)	delete pic_buffer;
+	if (palette != NULL) delete palette;
+
+	return 0;
+ERROR_R:
+	eDebug("[loadGIF] <Error gif>");
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
+	DGifCloseFile(gft);
+#else
+	{
+		int err;
+		DGifCloseFile(gft, &err);
+	}
+#endif
+
+	if (pic_buffer != NULL)	delete pic_buffer;
+	if (palette != NULL) delete palette;
+
+	return 0;
 }
