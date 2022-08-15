@@ -460,7 +460,7 @@ int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width,
 	else if (endsWith(filename, ".jpg"))
 		return loadJPG(result, filename, 0);
 	else if (endsWith(filename, ".gif"))
-		return loadGIF(result, filename, 0);
+		return loadGIF(result, filename, accel, 0);
 	return 0;
 }
 
@@ -480,12 +480,7 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	return result;
 }
 
-int loadGIF(ePtr<gPixmap> &result, const char *filename, int cached)
-{
-	return loadGIF(result, filename, ePtr<gPixmap>(), cached);
-}
-
-int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, int cached)
+int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 {
 
 	if (cached && (result = PixmapCache::Get(filename)))
@@ -504,11 +499,10 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 
 	gRGB *palette;
 	int palette_size;
-	int ox;
-	int oy;
-	int max_x = 1280;
-	int max_y = 720;
+	int max_x = 100;
+	int max_y = 100;
 
+	eDebug("[loadGIF] %s", filename);
 
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5)
 	gft = DGifOpenFileName(filename);
@@ -529,13 +523,16 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 			case IMAGE_DESC_RECORD_TYPE:
 				if (DGifGetImageDesc(gft) == GIF_ERROR)
 					goto ERROR_R;
-				ox = px = gft->Image.Width;
-				oy = py = gft->Image.Height;
+				px = gft->Image.Width;
+				py = gft->Image.Height;
 				pic_buffer = new unsigned char[px * py];
 				slb = pic_buffer;
 
 				if (pic_buffer != NULL)
 				{
+
+					eDebug("[loadGIF] pic_buffer");
+
 					cmap = (gft->Image.ColorMap ? gft->Image.ColorMap : gft->SColorMap);
 					cmaps = cmap->ColorCount;
 					palette_size = cmaps;
@@ -596,17 +593,14 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 	}
 #endif
 
-	if(pic_buffer == NULL)
+	if(pic_buffer != NULL)
 	{
-		result = 0;
-		return 0;
-	}
+		eDebug("[loadGIF] gPixmap 1");
 
-	if (cached)
-		PixmapCache::Set(filename, result);
+		result = new gPixmap(max_x, max_y,8,cached ? PixmapCache::PixmapDisposed : NULL, accel);
 
-	{
-		result=new gPixmap(eSize(max_x, max_y), 8, gPixmap::accelAlways);
+		eDebug("[loadGIF] gPixmap 2");
+
 		gUnmanagedSurface *surface = result->surface;
 		surface->clut.data = palette;
 		surface->clut.colors = palette_size;
@@ -614,44 +608,48 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 		int o_y=0, u_y=0, v_x=0, h_x=0;
 		int extra_stride = surface->stride - surface->x;
 
+		eDebug("[loadGIF] gPixmap 3");
+
 		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 		unsigned char *origin = pic_buffer;
 
-		if(oy < max_y)
+		if(py < max_y)
 		{
-			o_y = (max_y - oy) / 2;
-			u_y = max_y - oy - o_y;
+			o_y = (max_y - py) / 2;
+			u_y = max_y - py - o_y;
 		}
-		if(ox < max_x)
+		if(px < max_x)
 		{
-			v_x = (max_x - ox) / 2;
-			h_x = max_x - ox - v_x;
+			v_x = (max_x - px) / 2;
+			h_x = max_x - px - v_x;
 		}
 
 		gColor background;
 //		gRGB bg(m_conf.background);
-		gRGB bg(0,0,0);
+		gRGB bg(0,0,0,255);
 		background = surface->clut.findColor(bg);
 
-		if(oy < max_y)
+		eDebug("[loadGIF] gPixmap 4");
+
+		if(py < max_y)
 		{
 			memset(tmp_buffer, background, o_y * surface->stride);
 			tmp_buffer += o_y * surface->stride;
 		}
 
-		for(int a = oy; a > 0; --a)
+		for(int a = py; a > 0; --a)
 		{
-			if(ox < max_x)
+			if(px < max_x)
 			{
 				memset(tmp_buffer, background, v_x);
 				tmp_buffer += v_x;
 			}
 
-			memcpy(tmp_buffer, origin, ox);
-			tmp_buffer += ox;
-			origin += ox;
+			memcpy(tmp_buffer, origin, px);
+			tmp_buffer += px;
+			origin += px;
 
-			if(ox < max_x)
+			if(px < max_x)
 			{
 				memset(tmp_buffer, background, h_x);
 				tmp_buffer += h_x;
@@ -659,14 +657,28 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 			tmp_buffer += extra_stride;
 		}
 
-		if(oy < max_y)
+		if(py < max_y)
 		{
 			memset(tmp_buffer, background, u_y * surface->stride);
 		}
+
+		eDebug("[loadGIF] gPixmap 5");
+
+		if (cached)
+			PixmapCache::Set(filename, result);
+
+	}
+	else {
+		eDebug("[loadGIF] Failed");
+		result = 0;
 	}
 
-	if (pic_buffer != NULL)	delete pic_buffer;
+	eDebug("[loadGIF] gPixmap 6");
+	if (pic_buffer != NULL) delete pic_buffer;
+	eDebug("[loadGIF] gPixmap 7");
 	if (palette != NULL) delete palette;
+
+	eDebug("[loadGIF] DONE");
 
 	return 0;
 ERROR_R:
@@ -682,6 +694,7 @@ ERROR_R:
 
 	if (pic_buffer != NULL)	delete pic_buffer;
 	if (palette != NULL) delete palette;
+	result = 0;
 
 	return 0;
 }
