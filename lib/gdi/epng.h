@@ -3,6 +3,39 @@
 
 #include <lib/gdi/gpixmap.h>
 
+#ifndef SWIG
+struct GifFile
+{
+	char *file;
+	unsigned char *pic_buffer;
+	gRGB *palette;
+	int palette_size;
+	int ox;
+	int oy;
+
+	GifFile(const char *mfile):
+		file(strdup(mfile)),
+		pic_buffer(NULL),
+		palette(NULL),
+		palette_size(0),
+		ox(0),
+		oy(0)
+	{
+	}
+
+	~GifFile()
+	{
+		if (pic_buffer != NULL)	delete pic_buffer;
+		if (palette != NULL) delete palette;
+		free(file);
+	}
+
+};
+
+static void loadGIFFile(GifFile* filepara);
+
+#endif
+
 SWIG_VOID(int) loadPNG(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int accel = 0, int cached = 1);
 SWIG_VOID(int) loadJPG(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int cached = 0);
 SWIG_VOID(int) loadJPG(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, ePtr<gPixmap> alpha, int cached = 0);

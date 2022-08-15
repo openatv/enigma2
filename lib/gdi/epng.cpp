@@ -467,7 +467,6 @@ int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width,
 int savePNG(const char *filename, gPixmap *pixmap)
 {
 	int result;
-
 	{
 		eDebug("[ePNG] saving to %s",filename);
 		CFile fp(filename, "wb");
@@ -486,6 +485,54 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 	if (cached && (result = PixmapCache::Get(filename)))
 		return 0;
 
+	GifFile * m_filepara = new GifFile(filename);
+
+	loadGIFFile(m_filepara);
+
+	if(m_filepara->pic_buffer == NULL)
+	{
+		delete m_filepara;
+		m_filepara = NULL;
+		result = 0;
+		return 0;
+	}
+
+	result = new gPixmap(m_filepara->ox, m_filepara->oy, 8, cached ? PixmapCache::PixmapDisposed : NULL, accel);
+	gUnmanagedSurface *surface = result->surface;
+	surface->clut.data = m_filepara->palette;
+	surface->clut.colors = m_filepara->palette_size;
+	m_filepara->palette = NULL; // transfer ownership
+	int o_y=0, u_y=0, v_x=0, h_x=0;
+	int extra_stride = surface->stride - surface->x;
+
+	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+	unsigned char *origin = m_filepara->pic_buffer;
+
+	gColor background;
+	gRGB bg(0,0,0,255);
+	//gRGB bg(m_conf.background);
+	background = surface->clut.findColor(bg);
+
+	for(int a = m_filepara->oy; a > 0; --a)
+	{
+
+		memcpy(tmp_buffer, origin, m_filepara->ox);
+		tmp_buffer += m_filepara->ox;
+		origin += m_filepara->ox;
+		tmp_buffer += extra_stride;
+	}
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	delete m_filepara;
+	m_filepara = NULL;
+	return 0;
+}
+
+
+static void loadGIFFile(GifFile* filepara)
+{
 	unsigned char *pic_buffer = NULL;
 	int px, py, i, j;
 	unsigned char *fbptr;
@@ -497,23 +544,16 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 	int cmaps;
 	int extcode;
 
-	gRGB *palette;
-	int palette_size;
-	int max_x = 100;
-	int max_y = 100;
-
-	eDebug("[loadGIF] %s", filename);
-
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5)
-	gft = DGifOpenFileName(filename);
+	gft = DGifOpenFileName(filepara->file);
 #else
 	{
 		int err;
-		gft = DGifOpenFileName(filename, &err);
+		gft = DGifOpenFileName(filepara->file, &err);
 	}
 #endif
 	if (gft == NULL)
-		return 0;
+		return;
 	do
 	{
 		if (DGifGetRecordType(gft, &rt) == GIF_ERROR)
@@ -523,26 +563,24 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 			case IMAGE_DESC_RECORD_TYPE:
 				if (DGifGetImageDesc(gft) == GIF_ERROR)
 					goto ERROR_R;
-				px = gft->Image.Width;
-				py = gft->Image.Height;
+				filepara->ox = px = gft->Image.Width;
+				filepara->oy = py = gft->Image.Height;
 				pic_buffer = new unsigned char[px * py];
+				filepara->pic_buffer = pic_buffer;
 				slb = pic_buffer;
 
 				if (pic_buffer != NULL)
 				{
-
-					eDebug("[loadGIF] pic_buffer");
-
 					cmap = (gft->Image.ColorMap ? gft->Image.ColorMap : gft->SColorMap);
 					cmaps = cmap->ColorCount;
-					palette_size = cmaps;
-					palette = new gRGB[cmaps];
+					filepara->palette_size = cmaps;
+					filepara->palette = new gRGB[cmaps];
 					for (i = 0; i != cmaps; ++i)
 					{
-						palette[i].a = 0;
-						palette[i].r = cmap->Colors[i].Red;
-						palette[i].g = cmap->Colors[i].Green;
-						palette[i].b = cmap->Colors[i].Blue;
+						filepara->palette[i].a = 0;
+						filepara->palette[i].r = cmap->Colors[i].Red;
+						filepara->palette[i].g = cmap->Colors[i].Green;
+						filepara->palette[i].b = cmap->Colors[i].Blue;
 					}
 
 					fbptr = pic_buffer;
@@ -583,7 +621,6 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 	}
 	while (rt != TERMINATE_RECORD_TYPE);
 
-
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
 	DGifCloseFile(gft);
 #else
@@ -592,97 +629,9 @@ int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
 		DGifCloseFile(gft, &err);
 	}
 #endif
-
-	if(pic_buffer != NULL)
-	{
-		eDebug("[loadGIF] gPixmap 1");
-
-		result = new gPixmap(max_x, max_y,8,cached ? PixmapCache::PixmapDisposed : NULL, accel);
-
-		eDebug("[loadGIF] gPixmap 2");
-
-		gUnmanagedSurface *surface = result->surface;
-		surface->clut.data = palette;
-		surface->clut.colors = palette_size;
-		palette = NULL; // transfer ownership
-		int o_y=0, u_y=0, v_x=0, h_x=0;
-		int extra_stride = surface->stride - surface->x;
-
-		eDebug("[loadGIF] gPixmap 3");
-
-		unsigned char *tmp_buffer=((unsigned char *)(surface->data));
-		unsigned char *origin = pic_buffer;
-
-		if(py < max_y)
-		{
-			o_y = (max_y - py) / 2;
-			u_y = max_y - py - o_y;
-		}
-		if(px < max_x)
-		{
-			v_x = (max_x - px) / 2;
-			h_x = max_x - px - v_x;
-		}
-
-		gColor background;
-//		gRGB bg(m_conf.background);
-		gRGB bg(0,0,0,255);
-		background = surface->clut.findColor(bg);
-
-		eDebug("[loadGIF] gPixmap 4");
-
-		if(py < max_y)
-		{
-			memset(tmp_buffer, background, o_y * surface->stride);
-			tmp_buffer += o_y * surface->stride;
-		}
-
-		for(int a = py; a > 0; --a)
-		{
-			if(px < max_x)
-			{
-				memset(tmp_buffer, background, v_x);
-				tmp_buffer += v_x;
-			}
-
-			memcpy(tmp_buffer, origin, px);
-			tmp_buffer += px;
-			origin += px;
-
-			if(px < max_x)
-			{
-				memset(tmp_buffer, background, h_x);
-				tmp_buffer += h_x;
-			}
-			tmp_buffer += extra_stride;
-		}
-
-		if(py < max_y)
-		{
-			memset(tmp_buffer, background, u_y * surface->stride);
-		}
-
-		eDebug("[loadGIF] gPixmap 5");
-
-		if (cached)
-			PixmapCache::Set(filename, result);
-
-	}
-	else {
-		eDebug("[loadGIF] Failed");
-		result = 0;
-	}
-
-	eDebug("[loadGIF] gPixmap 6");
-	if (pic_buffer != NULL) delete pic_buffer;
-	eDebug("[loadGIF] gPixmap 7");
-	if (palette != NULL) delete palette;
-
-	eDebug("[loadGIF] DONE");
-
-	return 0;
+	return;
 ERROR_R:
-	eDebug("[loadGIF] <Error gif>");
+	eDebug("[loadGIFFile] <Error gif>");
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
 	DGifCloseFile(gft);
 #else
@@ -691,10 +640,4 @@ ERROR_R:
 		DGifCloseFile(gft, &err);
 	}
 #endif
-
-	if (pic_buffer != NULL)	delete pic_buffer;
-	if (palette != NULL) delete palette;
-	result = 0;
-
-	return 0;
 }
