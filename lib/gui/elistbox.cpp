@@ -831,16 +831,16 @@ void eListbox::moveSelection(long dir)
 
 		int oldline = m_content->cursorRestoreLine();
 		int max = m_content->size() - m_items_per_page;
-		bool costumPageSize = pageOffset != m_items_per_page;
+		bool customPageSize = pageOffset != m_items_per_page;
 		//eDebug("[eListbox] moveSelection 1 dir=%d oldline=%d oldsel=%d m_selected=%d m_items_per_page=%d sz=%d max=%d", dir, oldline, oldsel, m_selected, m_items_per_page, m_content->size(), max);
 
 		bool jumpBottom = (dir == moveBottom);
 
-		if(dir == movePageDown && m_selected > max && !costumPageSize) {
+		if(dir == movePageDown && m_selected > max && !customPageSize) {
 			jumpBottom = true;
 		}
 
-		if(dir == moveUp || (costumPageSize && dir == movePageUp) ) {
+		if(dir == moveUp || (customPageSize && dir == movePageUp) ) {
 			if(m_selected > oldsel) {
 				jumpBottom = true;
 			}
@@ -864,7 +864,7 @@ void eListbox::moveSelection(long dir)
 			m_content->cursorSet(m_selected);
 		}
 
-		if(dir == moveDown || (costumPageSize && dir == movePageDown)) {
+		if(dir == moveDown || (customPageSize && dir == movePageDown)) {
 
 			int newline = oldline + (m_selected - oldsel);
 			if(newline < m_items_per_page && newline > 0) {
@@ -906,7 +906,7 @@ void eListbox::moveSelection(long dir)
 			}
 			m_top = m_selected - oldline;
 		}
-		else if (dir == moveUp || (costumPageSize && dir == movePageUp))
+		else if (dir == moveUp || (customPageSize && dir == movePageUp))
 		{
 			if(m_first_selectable_item>0 && m_selected == m_first_selectable_item)
 			{
