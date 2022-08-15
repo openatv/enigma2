@@ -479,58 +479,6 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	return result;
 }
 
-int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
-{
-
-	if (cached && (result = PixmapCache::Get(filename)))
-		return 0;
-
-	GifFile * m_filepara = new GifFile(filename);
-
-	loadGIFFile(m_filepara);
-
-	if(m_filepara->pic_buffer == NULL)
-	{
-		delete m_filepara;
-		m_filepara = NULL;
-		result = 0;
-		return 0;
-	}
-
-	result = new gPixmap(m_filepara->ox, m_filepara->oy, 8, cached ? PixmapCache::PixmapDisposed : NULL, accel);
-	gUnmanagedSurface *surface = result->surface;
-	surface->clut.data = m_filepara->palette;
-	surface->clut.colors = m_filepara->palette_size;
-	m_filepara->palette = NULL; // transfer ownership
-	int o_y=0, u_y=0, v_x=0, h_x=0;
-	int extra_stride = surface->stride - surface->x;
-
-	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
-	unsigned char *origin = m_filepara->pic_buffer;
-
-	gColor background;
-	gRGB bg(0,0,0,255);
-	//gRGB bg(m_conf.background);
-	background = surface->clut.findColor(bg);
-
-	for(int a = m_filepara->oy; a > 0; --a)
-	{
-
-		memcpy(tmp_buffer, origin, m_filepara->ox);
-		tmp_buffer += m_filepara->ox;
-		origin += m_filepara->ox;
-		tmp_buffer += extra_stride;
-	}
-
-	if (cached)
-		PixmapCache::Set(filename, result);
-
-	delete m_filepara;
-	m_filepara = NULL;
-	return 0;
-}
-
-
 static void loadGIFFile(GifFile* filepara)
 {
 	unsigned char *pic_buffer = NULL;
@@ -641,3 +589,55 @@ ERROR_R:
 	}
 #endif
 }
+
+int loadGIF(ePtr<gPixmap> &result, const char *filename, int accel,int cached)
+{
+
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
+	GifFile * m_filepara = new GifFile(filename);
+
+	loadGIFFile(m_filepara);
+
+	if(m_filepara->pic_buffer == NULL)
+	{
+		delete m_filepara;
+		m_filepara = NULL;
+		result = 0;
+		return 0;
+	}
+
+	result = new gPixmap(m_filepara->ox, m_filepara->oy, 8, cached ? PixmapCache::PixmapDisposed : NULL, accel);
+	gUnmanagedSurface *surface = result->surface;
+	surface->clut.data = m_filepara->palette;
+	surface->clut.colors = m_filepara->palette_size;
+	m_filepara->palette = NULL; // transfer ownership
+	int o_y=0, u_y=0, v_x=0, h_x=0;
+	int extra_stride = surface->stride - surface->x;
+
+	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
+	unsigned char *origin = m_filepara->pic_buffer;
+
+	gColor background;
+	gRGB bg(0,0,0,255);
+	//gRGB bg(m_conf.background);
+	background = surface->clut.findColor(bg);
+
+	for(int a = m_filepara->oy; a > 0; --a)
+	{
+
+		memcpy(tmp_buffer, origin, m_filepara->ox);
+		tmp_buffer += m_filepara->ox;
+		origin += m_filepara->ox;
+		tmp_buffer += extra_stride;
+	}
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	delete m_filepara;
+	m_filepara = NULL;
+	return 0;
+}
+

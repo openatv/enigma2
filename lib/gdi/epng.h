@@ -31,9 +31,6 @@ struct GifFile
 	}
 
 };
-
-static void loadGIFFile(GifFile* filepara);
-
 #endif
 
 SWIG_VOID(int) loadPNG(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int accel = 0, int cached = 1);
