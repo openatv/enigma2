@@ -12,13 +12,14 @@ int eListbox::defaultScrollBarOffset = eListbox::DefaultScrollBarOffset;
 int eListbox::defaultScrollBarBorderWidth = eListbox::DefaultScrollBarBorderWidth;
 int eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
 int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
+int eListbox::defaultPageSize = eListbox::DefaultPageSize;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_list_orientation(listVertical), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
-	m_items_per_page(0), m_selection_enabled(1), m_native_keys_bound(false), m_first_selectable_item(-1),m_last_selectable_item(-1),m_scrollbar(nullptr)
+	m_items_per_page(0), m_selection_enabled(1), m_page_size(0), m_native_keys_bound(false), m_first_selectable_item(-1),m_last_selectable_item(-1),m_scrollbar(nullptr)
 {
 	m_scrollbar_width = eListbox::defaultScrollBarWidth;
 	m_scrollbar_offset = eListbox::defaultScrollBarOffset;
@@ -26,6 +27,7 @@ eListbox::eListbox(eWidget *parent) :
 	m_scrollbar_scroll = eListbox::defaultScrollBarScroll;
 	m_enabled_wrap_around = eListbox::defaultWrapAround;
 	m_scrollbar_mode = eListbox::defaultScrollBarMode;
+	m_page_size = eListbox::defaultPageSize;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
@@ -675,6 +677,7 @@ void eListbox::moveSelection(long dir)
 	int oldsel = m_selected;
 	int prevsel = oldsel;
 	int newsel;
+	int pageOffset = (m_page_size > 0 && m_scrollbar_scroll == byLine) ? m_page_size : m_items_per_page;
 
 #ifdef USE_LIBVUGLES2
 	m_dir = dir;
@@ -735,7 +738,7 @@ void eListbox::moveSelection(long dir)
 		int pageind;
 		do
 		{
-			m_content->cursorMove(-m_items_per_page);
+			m_content->cursorMove(-pageOffset);
 			newsel = m_content->cursorGet();
 			pageind = newsel % m_items_per_page; // rememer were we land in thsi page (could be different on topmost page)
 			prevsel = newsel - pageind; // get top of page index
@@ -775,7 +778,7 @@ void eListbox::moveSelection(long dir)
 		int pageind;
 		do
 		{
-			m_content->cursorMove(m_items_per_page);
+			m_content->cursorMove(pageOffset);
 			if (!m_content->cursorValid())
 				m_content->cursorMove(-1);
 			newsel = m_content->cursorGet();
@@ -828,20 +831,25 @@ void eListbox::moveSelection(long dir)
 
 		int oldline = m_content->cursorRestoreLine();
 		int max = m_content->size() - m_items_per_page;
+		bool customPageSize = pageOffset != m_items_per_page;
 		//eDebug("[eListbox] moveSelection 1 dir=%d oldline=%d oldsel=%d m_selected=%d m_items_per_page=%d sz=%d max=%d", dir, oldline, oldsel, m_selected, m_items_per_page, m_content->size(), max);
 
 		bool jumpBottom = (dir == moveBottom);
 
-		if(dir == movePageDown && m_selected > max) {
+		if(dir == movePageDown && m_selected > max && !customPageSize) {
 			jumpBottom = true;
 		}
 
-		if(dir == moveUp) {
+		if(dir == moveUp || (customPageSize && dir == movePageUp) ) {
 			if(m_selected > oldsel) {
 				jumpBottom = true;
 			}
 			else if (oldline > 0)
 				oldline-= oldsel - m_selected;
+
+			if(oldline < 0 && m_selected > m_items_per_page)
+				oldline = 0;
+
 		}
 
 		if(m_last_selectable_item==-1 && dir == justCheck)
@@ -856,7 +864,7 @@ void eListbox::moveSelection(long dir)
 			m_content->cursorSet(m_selected);
 		}
 
-		if(dir == moveDown) {
+		if(dir == moveDown || (customPageSize && dir == movePageDown)) {
 
 			int newline = oldline + (m_selected - oldsel);
 			if(newline < m_items_per_page && newline > 0) {
@@ -898,7 +906,7 @@ void eListbox::moveSelection(long dir)
 			}
 			m_top = m_selected - oldline;
 		}
-		else if (dir == moveUp)
+		else if (dir == moveUp || (customPageSize && dir == movePageUp))
 		{
 			if(m_first_selectable_item>0 && m_selected == m_first_selectable_item)
 			{
