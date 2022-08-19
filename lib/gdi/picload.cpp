@@ -859,8 +859,8 @@ ePicLoad::ePicLoad():
 	m_filepara(NULL),
 	threadrunning(false),
 	m_conf(),
-	msg_thread(this,1),
-	msg_main(eApp,1)
+	msg_thread(this,1,"ePicLoad_thread"),
+	msg_main(eApp,1,"ePicLoad_main")
 {
 	CONNECT(msg_thread.recv_msg, ePicLoad::gotMessage);
 	CONNECT(msg_main.recv_msg, ePicLoad::gotMessage);
