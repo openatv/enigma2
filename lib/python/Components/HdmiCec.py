@@ -1108,10 +1108,10 @@ class HdmiCec:
 		tmp = ""
 		if len(data):
 			if cmd in [0x32, 0x47]:
-				for item in enumerate(data):
+				for idx, item in enumerate(data):
 					tmp += "%s" % item
 			else:
-				for item in enumerate(data):
+				for idx, item in enumerate(data):
 					tmp += "%02X" % ord(item) + " "
 		tmp += 48 * " "
 		self.CECwritedebug(txt + tmp[:48] + "[0x%02X]" % (address))
