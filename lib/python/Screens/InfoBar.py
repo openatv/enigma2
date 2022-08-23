@@ -675,7 +675,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
-				msg += _("Do you really want to delete %s?") % name
+				msg += _("Do you really want to delete '%s'?") % name
 				if answer == "quitanddelete":
 					self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
 				elif answer == "deleteandmovielist":
