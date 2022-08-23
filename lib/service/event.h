@@ -71,13 +71,67 @@ public:
 SWIG_TEMPLATE_TYPEDEF(ePtr<eParentalData>, eParentalDataPtr);
 
 
+struct eCridData_ENUMS
+{
+	// CRID matches are for all CRIDs of that class:
+	// SERIES_MATCH matches both SERIES and SERIES_AU
+	enum {
+		EPISODE = 0x1,
+		SERIES = 0x2,
+		RECOMMENDATION = 0x3,
+
+		// Australian CRID types are 0x31-0x33
+		// FreeTV Australia Operational Practice
+		// OP-72: Implementation of Content Reference
+		// IDs by Australian Television Broadcasters
+
+		OFFSET_AU = 0x30,
+		EPISODE_AU = EPISODE + OFFSET_AU,
+		SERIES_AU = SERIES + OFFSET_AU,
+		RECOMMENDATION_AU = RECOMMENDATION + OFFSET_AU,
+	};
+};
+
+SWIG_IGNORE(eCridData);
+struct eCridData: public eCridData_ENUMS
+{
+	friend class eServiceEvent;
+	DECLARE_REF(eCridData);
+	uint8_t m_type;
+	uint8_t m_location;
+	std::string m_crid;
+public:
+	eCridData(const eCridData& d) { *this = d; }
+	eCridData() { m_crid = ""; m_type = 0; m_location = 0; }
+	int getLocation(void) const { return m_location; }
+	int getType(void) const { return m_type; }
+	std::string getCrid(void) const { return m_crid; }
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<eCridData>, eCridDataPtr);
+
+
 SWIG_ALLOW_OUTPUT_SIMPLE(eServiceReference);  // needed for SWIG_OUTPUT in eServiceEvent::getLinkageService
+
+struct eServiceEventEnums
+{
+public:
+	// CRID matches are for all CRIDs of that class:
+	// SERIES_MATCH matches both SERIES and SERIES_AU
+	enum {
+		SERIES_MATCH = 1 << eCridData::SERIES,
+		EPISODE_MATCH = 1 << eCridData::EPISODE,
+		RECOMMENDATION_MATCH = 1 << eCridData::RECOMMENDATION,
+		ALL_MATCH = SERIES_MATCH | EPISODE_MATCH | RECOMMENDATION_MATCH,
+	};
+};
 
 SWIG_IGNORE(eServiceEvent);
 class eServiceEvent: public iObject
 {
 	DECLARE_REF(eServiceEvent);
-	bool loadLanguage(Event *event, const std::string &lang, int tsidonid);
+	static std::string crid_scheme;
+	static std::string normalise_crid(std::string crid, ePtr<eDVBService> service);
+	bool loadLanguage(Event *event, const std::string &lang, int tsidonid, int sid);
 	std::list<eComponentData> m_component_data;
 	std::list<eServiceReference> m_linkage_services;
 	std::list<eGenreData> m_genres;
@@ -90,13 +144,16 @@ class eServiceEvent: public iObject
 	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source, m_extended_description_items;
 	std::string m_series_crid, m_episode_crid;
 	static std::string m_language, m_language_alternative;
+	std::list<eCridData> m_crids;
 	// .. additional info
 public:
 	eServiceEvent();
 #ifndef SWIG
+	RESULT parseFrom(Event *evt, int tsidonid, int sid);
 	RESULT parseFrom(Event *evt, int tsidonid=0);
 	RESULT parseFrom(ATSCEvent *evt);
 	RESULT parseFrom(const ExtendedTextTableSection *sct);
+	RESULT parseFrom(const std::string& filename, int tsidonid, int sid);
 	RESULT parseFrom(const std::string& filename, int tsidonid=0);
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
@@ -139,6 +196,8 @@ public:
 	{
 		return getParentalDataList();
 	}
+
+	PyObject *getCridData(int mask) const;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,

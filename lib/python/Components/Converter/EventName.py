@@ -1,5 +1,5 @@
 from __future__ import print_function
-from enigma import eEPGCache
+from enigma import eEPGCache, eServiceEventEnums
 
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -109,6 +109,10 @@ class EventName(Converter):
 	RATINGCOUNTRY = 32
 	RATINGICON = 33
 
+	CRID_SERIES = 41
+	CRID_EPISODE = 42
+	CRID_RECOMMENDATION = 43
+
 	KEYWORDS = {
 		# Arguments...
 		"Name": ("type", NAME),
@@ -126,6 +130,9 @@ class EventName(Converter):
 		"GenreList": ("type", GENRELIST),
 		"Rating": ("type", RATING),
 		"SmallRating": ("type", SRATING),
+		"CridSeries": ("type", CRID_SERIES),
+		"CridEpisode": ("type", CRID_EPISODE),
+		"CridRecommendation": ("type", CRID_RECOMMENDATION),
 		"Pdc": ("type", PDC),
 		"PdcTime": ("type", PDCTIME),
 		"PdcTimeShort": ("type", PDCTIMESHORT),
@@ -179,6 +186,12 @@ class EventName(Converter):
 			return str(text).strip()
 		else:
 			return str(text)
+
+	def getCrid(self, event, types):
+		print "[EventName] getCrid", types
+		crids = event.getCridData(types)
+		print "[EventName] getCrid", crids
+		return crids and crids[0][2] or ""
 
 	def formatDescription(self, description, extended):
 		description = self.trimText(description)
@@ -240,6 +253,12 @@ class EventName(Converter):
 				if config.misc.epggenrecountry.value:
 					country = config.misc.epggenrecountry.value
 				return self.separator.join((genretext for genretext in (self.trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
+		elif self.type == self.CRID_EPISODE:
+			return self.getCrid(event, eServiceEventEnums.EPISODE_MATCH)
+		elif self.type == self.CRID_SERIES:
+			return self.getCrid(event, eServiceEventEnums.SERIES_MATCH)
+		elif self.type == self.CRID_RECOMMENDATION:
+			return self.getCrid(event, eServiceEventEnums.RECOMMENDATION_MATCH)
 		elif self.type == self.NAME_NOW:
 			return pgettext("now/next: 'now' event label", "Now") + ": " + self.trimText(event.getEventName())
 		elif self.type == self.SHORT_DESCRIPTION:
