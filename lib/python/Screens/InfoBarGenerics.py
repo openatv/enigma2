@@ -51,7 +51,7 @@ from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RassInteractive, RdsInfoDisplay
 from Screens.Screen import Screen
-from Screens.ScreenSaver import Screensaver  # TODO: Make this ScreenSaver!
+from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
 from Screens.Standby import Standby, TryQuitMainloop
@@ -330,7 +330,7 @@ class InfoBarScreenSaver:
 		self.onExecEnd.append(self.__onExecEnd)
 		self.screenSaverTimer = eTimer()
 		self.screenSaverTimer.callback.append(self.screensaverTimeout)
-		self.screensaver = self.session.instantiateDialog(Screensaver)  # TODO: Make this ScreenSaver!
+		self.screensaver = self.session.instantiateDialog(ScreenSaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
