@@ -500,6 +500,60 @@
 		<item level="0" text="Kernel Modules" description="This allows you to show kernel modules in downloads">config.pluginfilter.kernel</item>
 		<item level="0" text="User Feed URL" description="Please enter your personal feed URL">config.pluginfilter.userfeed</item>
 	</setup>
+	<setup key="PowerTimer" title="PowerTimer Settings">
+		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
+		<!--item level="0" text="Description" description="Enter a description for this timer.">self.timerDescription</item-->
+		<if conditional="self.timerType.value in ('autostandby', 'autodeepstandby')">
+			<item level="0" text="Execution condition" description="The setting 'Without query' is the same as 'Standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) persist." conditional="self.timerType.value == 'autodeepstandby'">self.timerActiveInStandby</item>
+			<item level="0" text="Sleep delay (in minutes)" description="Select the delay before the timer activates.">self.timerSleepDelay</item>
+			<item level="0" text="Repeat type" description="Select if this timer is to be repeated.">self.timerRepeat</item>
+			<item level="0" text="Restrict the active time range" description="Select if there is to be a time window within which this timer can be active.">self.timerSleepWindow</item>
+			<if conditional="self.timerSleepWindow.value">
+				<item level="0" text="Start time" description="Select the time after which this timer can start.">self.timerSleepStart</item>
+				<item level="0" text="End time" description="Select the time before which this timer should end.">self.timerSleepEnd</item>
+			</if>
+			<if conditional="self.timerType.value == 'autodeepstandby'">
+				<item level="0" text="Show advanced settings" description="Select 'Yes' to show the advanced setting options.">self.timerShowExtended</item>
+				<if conditional="self.timerShowExtended.value">
+					<item level="0" text="Enable network traffic check" description="Select 'Yes' if network traffic should be checked before activating the timer.">self.timerNetTraffic</item>
+					<item level="0" text="Lower limit (in kilobits per seconds)" description="Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer." conditional="self.timerNetTraffic.value">self.timerNetTrafficLimit</item>
+					<item level="0" text="Enable Network IP address check" description="Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated.">self.timerNetIP</item>
+					<item level="0" text="Number of IP Addresses" description="Nominate how many IP Addresses are to be checked for active connections." conditional="self.timerNetIP.value">self.timerNetIPCount</item>
+					<item level="0" text="IP Address 1" description="IP Address to be checked on timer activation." conditional="self.timerNetIP.value and self.timerNetIPCount.value > 0">self.timerIPAddress[0]</item>
+					<item level="0" text="IP Address 2" description="IP Address to be checked on timer activation." conditional="self.timerNetIP.value and self.timerNetIPCount.value > 1">self.timerIPAddress[1]</item>
+					<item level="0" text="IP Address 3" description="IP Address to be checked on timer activation." conditional="self.timerNetIP.value and self.timerNetIPCount.value > 2">self.timerIPAddress[2]</item>
+					<item level="0" text="IP Address 4" description="IP Address to be checked on timer activation." conditional="self.timerNetIP.value and self.timerNetIPCount.value > 3">self.timerIPAddress[3]</item>
+					<item level="0" text="IP Address 5" description="IP Address to be checked on timer activation." conditional="self.timerNetIP.value and self.timerNetIPCount.value > 4">self.timerIPAddress[4]</item>
+				</if>
+			</if>
+		<else />
+			<item level="0" text="Repeat type" description="Select if this timer is to be repeated.">self.timerRepeat</item>
+			<if conditional="self.timerRepeat.value == 'once'">
+				<item level="0" text="Date" description="Select the date when this timer will activate.">self.timerRepeatStartDate</item>
+			<else />
+				<item level="0" text="Repeats" description="Select how often this timer is to be repeated.">self.timerRepeatPeriod</item>
+				<item level="0" text="Starting date" description="Select the date from which this timer will become active.">self.timerRepeatStartDate</item>
+				<if conditional="self.timerRepeatPeriod.value == 'weekly'">
+					<item level="0" text="Day of week" description="Select the day of the week that this timer will activate.">self.timerWeekday</item>
+				</if>
+				<if conditional="self.timerRepeatPeriod.value == 'user'">
+					<item level="0" text="Monday" description="Select if this timer activates on a Monday.">self.timerDay['Mon']</item>
+					<item level="0" text="Tuesday" description="Select if this timer activates on a Tuesday.">self.timerDay['Tue']</item>
+					<item level="0" text="Wednesday" description="Select if this timer activates on a Wednesday.">self.timerDay['Wed']</item>
+					<item level="0" text="Thursday" description="Select if this timer activates on a Thursday.">self.timerDay['Thu']</item>
+					<item level="0" text="Friday" description="Select if this timer activates on a Friday.">self.timerDay['Fri']</item>
+					<item level="0" text="Saturday" description="Select if this timer activates on a Saturday.">self.timerDay['Sat']</item>
+					<item level="0" text="Sunday" description="Select if this timer activates on a Sunday.">self.timerDay['Sun']</item>
+				</if>
+			</if>
+			<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
+			<item level="0" text="Set end time" description="Select 'Yes' if an end time is required for this timer.">self.timerSetEndTime</item>
+			<if conditional="self.timerSetEndTime.value">
+				<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
+				<item level="0" text="After event" description="Select the action to perform when the timer ends.">self.timerAfterEvent</item>
+			</if>
+		</if>
+	</setup>
 	<setup key="Recording" title="Recording Settings" showOpenWebif="1">
 		<item level="0" text="Default movie location" description="Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.default_path</item>
 		<item level="2" text="Timer recording location" description="Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.timer_path</item>
@@ -557,6 +611,49 @@
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
 		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
+	</setup>
+	<setup key="RecordTimer" title="RecordTimer Settings">
+		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
+		<item level="0" text="Name" description="Enter a name for this timer.">self.timerName</item>
+		<item level="0" text="Description" description="Enter a description for this timer.">self.timerDescription</item>
+		<item level="0" text="Repeat type" description="Select if this timer is to be repeated.">self.timerRepeat</item>
+		<if conditional="self.timerRepeat.value == 'once'">
+			<item level="0" text="Start date" description="Select the date when this timer will start.">self.timerStartDate</item>
+		<else />
+			<item level="0" text="Repeats" description="Select how often this timer is to be repeated.">self.timerRepeatPeriod</item>
+			<item level="0" text="Starting date" description="Select the date from which this timer will become active.">self.timerRepeatStartDate</item>
+			<if conditional="self.timerRepeatPeriod.value == 'weekly'">
+				<item level="0" text="Day of week" description="Select the day of the week that this timer will activate.">self.timerWeekday</item>
+			</if>
+			<if conditional="self.timerRepeatPeriod.value == 'user'">
+				<item level="0" text="Monday" description="Select if this timer activates on a Monday.">self.timerDay['Mon']</item>
+				<item level="0" text="Tuesday" description="Select if this timer activates on a Tuesday.">self.timerDay['Tue']</item>
+				<item level="0" text="Wednesday" description="Select if this timer activates on a Wednesday.">self.timerDay['Wed']</item>
+				<item level="0" text="Thursday" description="Select if this timer activates on a Thursday.">self.timerDay['Thu']</item>
+				<item level="0" text="Friday" description="Select if this timer activates on a Friday.">self.timerDay['Fri']</item>
+				<item level="0" text="Saturday" description="Select if this timer activates on a Saturday.">self.timerDay['Sat']</item>
+				<item level="0" text="Sunday" description="Select if this timer activates on a Sunday.">self.timerDay['Sun']</item>
+			</if>
+			<item level="0" text="Rename name and description for new events" description="Select if the timer name and description modification code is run on repeating timers." conditional="self.timerType.value != 'zap'">self.timerRename</item>
+		</if>
+		<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
+		<!--item level="0" text="Margin before recording" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item-->
+		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerShowEndTime</item>
+		<if conditional="self.timerType.value != 'zap' or self.timerShowEndTime.value">
+			<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
+			<!--item level="0" text="Margin after recording" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item-->
+		</if>
+		<item level="0" text="Channel / Service" description="Select the channel or service to be used for this timer.">self.timerService</item>
+		<if conditional="self.timerType.value != 'zap'">
+			<item level="0" text="Recording type" description="'Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">self.timerRecordingType</item>
+			<item level="2" text="Recording location" description="Select where the recording should be saved.">self.timerLocation</item>
+		</if>
+		<if conditional="self.timerType.value == 'zap'">
+			<item level="0" text="After event" description="Select what do do after the timer has completed.">self.timerAfterEvent</item>
+		<else />
+			<item level="0" text="Tags" description="Select the tags that should be used for this recording.">self.timerTags</item>
+			<item level="0" text="After recording" description="Select what do do after the timer recording has completed.">self.timerAfterEvent</item>
+		</if>
 	</setup>
 	<setup key="RemoteButton" title="Remote Control Button Settings" showOpenWebif="1">
 		<item level="2" text="Use Keymap *" description="Configure the current keymap file.">config.usage.keymap</item>

@@ -22,7 +22,7 @@ def InitRecordingConfig():
 	config.recording.always_ecm = ConfigYesNo(default=False)
 	config.recording.never_decrypt = ConfigYesNo(default=False)
 	config.recording.offline_decode_delay = ConfigInteger(default=1000, limits=(1, 10000))
-	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("Normal")), ("descrambled+ecm", _("Descramble and record ecm")), ("scrambled+ecm", _("Don't descramble, record ecm"))], default="normal")
+	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("Normal")), ("descrambled+ecm", _("Descramble and record ECM")), ("scrambled+ecm", _("Don't descramble, record ECM"))], default="normal")
 	config.recording.default_timertype = ConfigSelection(choices=[("zap", _("Zap")), ("record", _("Record")), ("zap+record", _("Zap and record"))], default="record")
 	if BoxInfo.getItem("DeepstandbySupport"):
 		shutdownString = _("Go to deep standby")

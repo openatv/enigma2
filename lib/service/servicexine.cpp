@@ -97,7 +97,7 @@ int eStaticServiceXineInfo::getLength(const eServiceReference &ref)
 
 // eServiceXine
 
-eServiceXine::eServiceXine(const char *filename): m_filename(filename), m_pump(eApp, 1)
+eServiceXine::eServiceXine(const char *filename): m_filename(filename), m_pump(eApp, 1,"eServiceXine")
 {
 	m_state = stError;
 	stream = 0;

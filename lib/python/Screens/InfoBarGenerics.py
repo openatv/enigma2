@@ -527,7 +527,7 @@ class SecondInfoBar(Screen):
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
 				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete '%s'?") % event.getEventName())
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
