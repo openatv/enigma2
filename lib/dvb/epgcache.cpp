@@ -1517,7 +1517,7 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 			Event ev((uint8_t*)timemap_it->second->get());
 			result = new eServiceEvent();
 			int currentQueryTsidOnid = (m_timeQueryRef->getTransportStreamID().get()<<16) | m_timeQueryRef->getOriginalNetworkID().get();
-			int currentQuerySid = m_timeQueryRef.getServiceID().get();
+			int currentQuerySid = m_timeQueryRef->getServiceID().get();
 			m_timeQueryCount++;
 			return result->parseFrom(&ev, currentQueryTsidOnid, currentQuerySid);
 		}
