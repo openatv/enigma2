@@ -35,6 +35,9 @@ public:
 	RESULT getEvent(ePtr<eServiceEvent> &event, int nownext);
 
 	PSignal1<void, int> m_eit_changed;
+
+private: // Down here for backward binary compatibility
+	int m_sid;
 };
 
 #endif

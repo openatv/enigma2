@@ -18,6 +18,7 @@
 #include <lib/dvb/epgtransponderdatareader.h>
 #include <lib/dvb/lowlevel/eit.h>
 #include <lib/base/nconfig.h>
+#include <dvbsi++/content_identifier_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <unordered_set>
 
@@ -129,6 +130,7 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 				case LINKAGE_DESCRIPTOR:
 				case COMPONENT_DESCRIPTOR:
 				case CONTENT_DESCRIPTOR:
+				case CONTENT_IDENTIFIER_DESCRIPTOR:
 				case PARENTAL_RATING_DESCRIPTOR:
 				case PDC_DESCRIPTOR:
 				{
@@ -1290,7 +1292,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
 		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
-		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get());
+		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get(), ref.getServiceID().get());
 	}
 	return ret;
 }
@@ -1380,7 +1382,7 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
 		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
-		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get());
+		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get(), ref.getServiceID().get());
 	}
 	return ret;
 }
@@ -1515,8 +1517,9 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 			Event ev((uint8_t*)timemap_it->second->get());
 			result = new eServiceEvent();
 			int currentQueryTsidOnid = (m_timeQueryRef->getTransportStreamID().get()<<16) | m_timeQueryRef->getOriginalNetworkID().get();
+			int currentQuerySid = ref.getServiceID().get();
 			m_timeQueryCount++;
-			return result->parseFrom(&ev, currentQueryTsidOnid);
+			return result->parseFrom(&ev, currentQueryTsidOnid, currentQuerySid);
 		}
 	}
 	return -1;
@@ -1855,7 +1858,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					{
 						const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
 						Event ev((uint8_t*)ev_data->get());
-						evt.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+						evt.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get(), dref.getServiceID().get());
 					}
 				}
 				if (ev_data)
@@ -2394,6 +2397,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     3 = search events starting with title name (START_TITLE_SEARCH)
 //     4 = search events ending with title name (END_TITLE_SEARCH)
 //     5 = search events with text in description (PARTIAL_DESCRIPTION_SEARCH)
+//     6 = search events with matching CRID (CRID_SEARCH)
 //  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
 //   the fourth is the servicereference string
 //   the fifth is the eventid
@@ -2403,6 +2407,11 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     0 = case sensitive (CASE_CHECK)
 //     1 = case insensitive (NO_CASE_CHECK)
 //     2 = regex search (REGEX_CHECK)
+//  when type is 6 (CRID_SEARCH)
+//   the fourth is the CRID to search for
+//   the fifth is
+//     1 = search episode CRIDs (CRID_EPISODE)
+//     2 = search series CRIDs (CRID_SERIES)
 
 const char* eEPGCache::casetypestr(int value)
 {
@@ -2530,7 +2539,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					return NULL;
 				}
 			}
-			else if (tuplesize > 4 && ((querytype == EXAKT_TITLE_SEARCH) || (querytype==START_TITLE_SEARCH)  || (querytype==END_TITLE_SEARCH) || (querytype==PARTIAL_TITLE_SEARCH)))
+			else if (tuplesize > 4 && ((querytype == EXAKT_TITLE_SEARCH) || (querytype==START_TITLE_SEARCH)  || (querytype==END_TITLE_SEARCH) || (querytype==PARTIAL_TITLE_SEARCH) || (querytype==CRID_SEARCH)))
 			{
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
@@ -2556,6 +2565,9 @@ PyObject *eEPGCache::search(ePyObject arg)
 						case PARTIAL_DESCRIPTION_SEARCH:
 							eDebug("[eEPGCache] lookup events with '%s' in the description (%s)", str, ctype);
 							break;
+						case CRID_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' in CRID %02x", str, casetype);
+							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
@@ -2565,6 +2577,28 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
+							if ( querytype == CRID_SEARCH ) { 
+								if (data[0] == CONTENT_IDENTIFIER_DESCRIPTOR )
+								{
+									auto cid = ContentIdentifierDescriptor(data);
+									auto cril = cid.getIdentifier();
+									for (auto crit = cril->begin(); crit != cril->end(); ++crit)
+									{
+										// UK broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
+										// the specification's 1 and 2 for episode and series respectively
+										if (((*crit)->getType() & 0xf) == casetype)
+										{
+											// Exact match required for CRID data
+											if ((*crit)->getLength() == strlen && memcmp((*crit)->getBytes()->data(), str, strlen) == 0)
+											{
+												descr.push_back(it->first);
+											}
+										}
+									}
+								}								
+								continue;
+							}
+														
 							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
 							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
@@ -2852,7 +2886,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 								{
 									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
 									Event ev((uint8_t*)ev_data->get());
-									ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+									ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get(), dref.getServiceID().get());
 								}
 							}
 						// create service name
