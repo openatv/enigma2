@@ -294,8 +294,8 @@ class PowerKey:
 		self.addSleepTimer(PowerTimerEntry(checkOldTimers=True, *data, timerType=val, autosleepdelay=sleeptime))
 
 	def addSleepTimer(self, timer):
-		from Screens.PowerTimerEntry import TimerEntry
-		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+		from Screens.Timers import PowerTimerEdit
+		self.session.openWithCallback(self.finishedAdd, PowerTimerEdit, timer)
 
 	def finishedAdd(self, answer):
 		if answer[0]:

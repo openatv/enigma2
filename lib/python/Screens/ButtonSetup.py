@@ -265,7 +265,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
 	if BoxInfo.getItem("LCDSKINSetup"):
 		ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", "Setup"))
-	ButtonSetupFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
+	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", "Setup"))
 	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
@@ -275,7 +275,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	ButtonSetupFunctions.append((_("Deep Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
 	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", "Power"))
-	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Power"))
+	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.Timers/PowerTimerOverview", "Power"))
 	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", "Setup"))
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", "Setup"))
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", "Setup"))

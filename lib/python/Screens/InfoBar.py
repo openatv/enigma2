@@ -285,8 +285,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(TimerEditList)
 
 	def openPowerTimerList(self):
-		from Screens.PowerTimerEdit import PowerTimerEditList
-		self.session.open(PowerTimerEditList)
+		from Screens.Timers import PowerTimerOverview
+		self.session.open(PowerTimerOverview)
 
 	@staticmethod
 	def _getAutoTimerPluginFunc():
