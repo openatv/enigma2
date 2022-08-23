@@ -2589,7 +2589,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 										if (((*crit)->getType() & 0xf) == casetype)
 										{
 											// Exact match required for CRID data
-											if ((*crit)->getLength() == strlen && memcmp((*crit)->getBytes()->data(), str, strlen) == 0)
+											if ((*crit)->getLength() == textlen && memcmp((*crit)->getBytes()->data(), str, textlen) == 0)
 											{
 												descr.push_back(it->first);
 											}
