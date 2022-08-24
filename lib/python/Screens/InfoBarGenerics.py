@@ -2,74 +2,67 @@
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
+
+from bisect import insort
+from datetime import datetime
+from itertools import groupby
+from os import listdir
+from os.path import exists, isfile, ismount, realpath, splitext
+import pickle
+from sys import maxsize
+from time import localtime, strftime, time
+
+from boxbranding import getMachineBrand, getMachineBuild, getMachineName
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
+
+from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
+from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
+from ServiceReference import ServiceReference, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
-from Components.Harddisk import harddiskmanager, findMountPoint
+from Components.config import ConfigBoolean, ConfigClock, config, configfile
+from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
-from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, MOVIE_EXTENSIONS
+from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.ServiceEvent import ServiceEvent
-from Components.Sources.Boolean import Boolean
-from Components.config import config, configfile, ConfigBoolean, ConfigClock
 from Components.SystemInfo import BoxInfo
+from Components.TimerList import TimerList  # Deprecated!
+from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.VolumeControl import VolumeControl
-from Components.Pixmap import MovingPixmap, MultiPixmap
+from Components.Sources.Boolean import Boolean
+from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.ScrollLabel import ScrollLabel
-from Components.TimerList import TimerList
 from Plugins.Plugin import PluginDescriptor
-
-from Components.Timeshift import InfoBarTimeshift
-
-from Screens.Screen import Screen
-from Screens import ScreenSaver
 from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector, service_types_tv
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.EpgSelection import EPGSelection
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.InputBox import InputBox
+from Screens.Menu import Menu, findMenu
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
-from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
+from Screens.RdsDisplay import RassInteractive, RdsInfoDisplay
+from Screens.Screen import Screen
+from Screens.ScreenSaver import ScreenSaver
+from Screens.Setup import Setup
+import Screens.Standby
 from Screens.Standby import Standby, TryQuitMainloop
 from Screens.TimeDateInput import TimeDateInput
-from Screens.TimerEdit import TimerEditList
+from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
-from ServiceReference import ServiceReference, isPlayableForCur
-from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
-from Screens.TimerEntry import TimerEntry as TimerEntry
-
 from Tools import Notifications
 from Tools.Directories import pathExists, fileReadLine, fileWriteLine, isPluginInstalled
 from Tools.ServiceReference import hdmiInServiceRef
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getMachineBuild, getMachineBrand, getMachineName
-
-from time import time, localtime, strftime
-from os import listdir
-from os.path import exists, realpath, ismount, isfile, splitext
-from bisect import insort
-from keyids import KEYFLAGS, KEYIDS, KEYIDNAMES
-from datetime import datetime
-from itertools import groupby
-
-import pickle
-
-from sys import maxsize
 
 MODULE_NAME = __name__.split(".")[-1]
-
-
-# hack alert!
-from Screens.Menu import Menu, findMenu
-from Screens.Setup import Setup
-import Screens.Standby
 
 AUDIO = False
 seek_withjumps_muted = False
@@ -337,7 +330,7 @@ class InfoBarScreenSaver:
 		self.onExecEnd.append(self.__onExecEnd)
 		self.screenSaverTimer = eTimer()
 		self.screenSaverTimer.callback.append(self.screensaverTimeout)
-		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
+		self.screensaver = self.session.instantiateDialog(ScreenSaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
@@ -531,7 +524,7 @@ class SecondInfoBar(Screen):
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
-			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+			self.session.openWithCallback(self.finishedAdd, RecordTimerEdit, newEntry)
 
 	def finishedAdd(self, answer):
 		# print "finished add"
@@ -3247,7 +3240,7 @@ class InfoBarExtensions:
 		self.session.open(OscamInfoMenu)
 
 	def showTimerList(self):
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
 
 	def openLogManager(self):
 		from Screens.LogManager import LogManager
@@ -3783,8 +3776,7 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			from Screens.TimerEdit import TimerEditList
-			self.session.open(TimerEditList)
+			self.session.open(RecordTimerOverview)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
@@ -4136,7 +4128,7 @@ class InfoBarSubserviceSelection:
 			pass
 
 	def openTimerList(self):
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
 
 
 from Components.Sources.HbbtvApplication import HbbtvApplication
@@ -4203,8 +4195,7 @@ class InfoBarTimerButton:
 		}, prio=0, description=_("Timer Actions"))
 
 	def timerSelection(self):
-		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
 
 
 class InfoBarAspectSelection:
