@@ -1215,7 +1215,8 @@ class PowerTimerEdit(Setup):
 			(5, "5"),
 			(10, "10")
 		] + [(x, str(x)) for x in range(15, 301, 15)])
-		self.timerRepeat = ConfigSelection(default=self.timer.autosleeprepeat, choices=REPEAT_CHOICES)
+		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
+		self.timerAutoSleepRepeat = ConfigSelection(default=self.timer.autosleeprepeat, choices=REPEAT_CHOICES)
 		self.timerSleepWindow = ConfigYesNo(default=self.timer.autosleepwindow)
 		self.timerSleepStart = ConfigClock(default=self.timer.autosleepbegin)
 		self.timerSleepEnd = ConfigClock(default=self.timer.autosleepend)
@@ -1298,7 +1299,7 @@ class PowerTimerEdit(Setup):
 			self.timer.end = self.timer.begin
 			self.timer.autosleepinstandbyonly = self.timerActiveInStandby.value
 			self.timer.autosleepdelay = self.timerSleepDelay.value
-			self.timer.autosleeprepeat = self.timerRepeat.value
+			self.timer.autosleeprepeat = self.timerAutoSleepRepeat.value
 			if self.timerRepeat.value == "repeated":  # Ensure that the timer repeated is cleared if we have an autosleeprepeat.
 				self.timer.resetRepeated()
 				self.timerRepeat.value = "once"  # Stop it being set again.
