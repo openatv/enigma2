@@ -11,7 +11,7 @@ config.plugins.vps.initial_time = ConfigInteger(default=10, limits=(0, 120))
 config.plugins.vps.allow_wakeup = ConfigYesNo(default=False)
 config.plugins.vps.allow_seeking_multiple_pdc = ConfigYesNo(default=True)
 config.plugins.vps.vps_default = ConfigSelection(choices=[("no", _("No")), ("yes_safe", _("Yes (safe mode)")), ("yes", _("Yes"))], default="no")
-config.plugins.vps.instanttimer = ConfigSelection(choices=[("no", _("No")), ("yes_safe", _("Yes (safe mode)")), ("yes", _("Yes")), ("ask", _("always ask"))], default="ask")
+config.plugins.vps.instanttimer = ConfigSelection(choices=[("no", _("No")), ("yes_safe", _("Yes (safe mode)")), ("yes", _("Yes")), ("ask", _("Always ask"))], default="ask")
 config.plugins.vps.infotext = ConfigInteger(default=0)
 
 # 04 Feb 2021.  If we don't force-save this then
