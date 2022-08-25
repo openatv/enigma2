@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 
 
 Monitoring_epg::Monitoring_epg(int argc, char *argv[])
+:fd_demux(0), b(nullptr),pdc_time(0),timeout(0),pid(0),table_id(0),table_mask(0),received_event_last_time(0),section_length(0),section_number(0),only_header(false)
 {
 	f_demux = argv[1];
 	onid = atoi(argv[3]);
