@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1173,6 +1173,9 @@ msgstr "%d.%B %Y"
 msgid "%d.%03d GB"
 msgstr "%d GB"
 
+msgid "%d.%B %Y"
+msgstr ""
+
 #, fuzzy
 msgid "%d.%m"
 msgstr "%d.%B %Y"
@@ -1415,6 +1418,9 @@ msgid "'%s' not installed and no known package"
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgstr ""
+
+msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr ""
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
@@ -1815,6 +1821,14 @@ msgstr ""
 msgid "29.97"
 msgstr "29.97"
 
+msgid "2nd InfoBar"
+msgstr ""
+
+#
+#, fuzzy
+msgid "2nd InfoBar Actions"
+msgstr "Inställningar för EPG's infofält"
+
 msgid "2nd InfoBar ECM"
 msgstr ""
 
@@ -1823,14 +1837,6 @@ msgstr ""
 
 msgid "2nd InfoBar timeout"
 msgstr ""
-
-msgid "2nd InfoBar"
-msgstr ""
-
-#
-#, fuzzy
-msgid "2nd InfoBar Actions"
-msgstr "Inställningar för EPG's infofält"
 
 msgid "2s"
 msgstr ""
@@ -2081,10 +2087,6 @@ msgid "<Last timer location>"
 msgstr "<Timerns senaste plats>"
 
 #
-msgid "<Unknown>"
-msgstr "<okänd>"
-
-#
 #, fuzzy
 msgid "?"
 msgstr "??"
@@ -2192,9 +2194,6 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-
-msgid "A repeating timer or just once?"
-msgstr "En upprepad timer eller bara en gång?"
 
 #
 #, python-format
@@ -2458,15 +2457,27 @@ msgid "Add Timer"
 msgstr "Lägg till Timer"
 
 #, fuzzy
-msgid "Add ZapTimer"
-msgstr "Lägg till Timer"
-
-#, fuzzy
 msgid "Add Zap+RecordTimer"
 msgstr "Lägg till en inspelningstimer."
 
+#, fuzzy
+msgid "Add ZapTimer"
+msgstr "Lägg till Timer"
+
 msgid "Add a DNS entry"
 msgstr ""
+
+msgid "Add a RecordTimer"
+msgstr "Lägg till en inspelningstimer."
+
+msgid "Add a RecordTimer for current event"
+msgstr "Lägg till en inspelningstimer för pågående händelse."
+
+msgid "Add a ZapTimer for current event"
+msgstr "Lägg till en zaptimer för pågående händelse"
+
+msgid "Add a ZapTimer for next event"
+msgstr "Lägg till en zaptimer för nästa händelse"
 
 #
 msgid "Add a mark"
@@ -2475,27 +2486,18 @@ msgstr "Lägg till markör"
 msgid "Add a new tag"
 msgstr ""
 
+msgid "Add a new timer"
+msgstr ""
+
 #
 msgid "Add a new title"
 msgstr "Lägg till ny titel"
-
-msgid "Add a RecordTimer"
-msgstr "Lägg till en inspelningstimer."
-
-msgid "Add a RecordTimer for current event"
-msgstr "Lägg till en inspelningstimer för pågående händelse."
 
 msgid "Add a service to the Volume Offsets list"
 msgstr ""
 
 msgid "Add a timer for the current event"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Lägg till en zaptimer för pågående händelse"
-
-msgid "Add a ZapTimer for next event"
-msgstr "Lägg till en zaptimer för nästa händelse"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "Lägg till en AutoTimer för pågående händelse"
@@ -2652,16 +2654,16 @@ msgid "After PowerLost"
 msgstr ""
 
 #
-#, fuzzy
-msgid "After recording"
-msgstr "Spelar in"
-
-#
 msgid "After event"
 msgstr "Efter program"
 
 msgid "After pressing OK, please wait!"
 msgstr ""
+
+#
+#, fuzzy
+msgid "After recording"
+msgstr "Spelar in"
 
 msgid "Akan"
 msgstr ""
@@ -3108,10 +3110,11 @@ msgstr ""
 msgid "Astra 3 23.5e"
 msgstr ""
 
-msgid "At End:"
-msgstr "Vid Slut:"
-
 msgid "At end of current program"
+msgstr ""
+
+#, python-format
+msgid "At end: %s"
 msgstr ""
 
 #, fuzzy
@@ -3208,10 +3211,6 @@ msgid "Auto"
 msgstr "Auto"
 
 #
-msgid "Auto deep standby"
-msgstr "AutoAvstängning"
-
-#
 #, fuzzy
 msgid "Auto Detect"
 msgstr "AutoAvstängning"
@@ -3230,10 +3229,6 @@ msgstr "Automatiskt språkval"
 msgid "Auto Modes Selected."
 msgstr "ingen CAId vald"
 
-#
-msgid "Auto standby"
-msgstr "AutoViloläge"
-
 #, fuzzy
 msgid "Auto Timer"
 msgstr "Lägg till AutoTimer"
@@ -3248,6 +3243,10 @@ msgstr "Auto volym nivå"
 #
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Auto kapitelsplit varje ? minut (0=aldrig)"
+
+#
+msgid "Auto deep standby"
+msgstr "AutoAvstängning"
 
 #
 msgid "Auto flesh"
@@ -3266,6 +3265,13 @@ msgstr ""
 #
 msgid "Auto scart switching"
 msgstr "Auto scart växling"
+
+msgid "Auto shut down"
+msgstr ""
+
+#
+msgid "Auto standby"
+msgstr "AutoViloläge"
 
 msgid "Auto(not available)"
 msgstr ""
@@ -4242,6 +4248,9 @@ msgstr ""
 msgid "Cancel any text changes and exit"
 msgstr ""
 
+msgid "Cancel conflict resolution"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel execution?"
@@ -4429,6 +4438,9 @@ msgstr "Kanal"
 msgid "Channel +/- button mode"
 msgstr "Kanal +/-  knappinställning"
 
+msgid "Channel / Service"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Channel 1"
@@ -4488,10 +4500,6 @@ msgstr "Markörbeteende i kanallista"
 
 msgid "Channel list type"
 msgstr "Typ av kanallista"
-
-#
-msgid "Channel not in services list"
-msgstr "Kanalen finns ej i kanallistan"
 
 msgid "Channel preview mode"
 msgstr "Förhansgranskning av kanal"
@@ -4562,6 +4570,12 @@ msgid "Check"
 msgstr "Kontrollera"
 
 msgid "Check HDD"
+msgstr ""
+
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
 msgstr ""
 
 msgid "Check power and input state from TV"
@@ -4646,12 +4660,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a tag for easy finding a recording."
-msgstr "Välj en tagg för att lättare hitta en inspelning."
-
-msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr "Välj mellan Daglig, Veckovis, Veckodagar, eller egendefinierad"
-
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
 
@@ -4735,9 +4743,6 @@ msgstr ""
 msgid "Choose which tuner to configure."
 msgstr "Välj vilken tuner som skall konfigureras."
 
-msgid "Chose between record and ZAP."
-msgstr "Välj mellan inspelning och ZAP."
-
 msgid "Christmas Island"
 msgstr ""
 
@@ -4768,6 +4773,15 @@ msgstr ""
 msgid "Clean network 'Trash'"
 msgstr "Töm nätverks papperskorgar"
 
+msgid "Clean up (delete) all completed timers?"
+msgstr ""
+
+msgid "Clean up and remove all completed timers"
+msgstr ""
+
+msgid "Clean up and remove all completed timers?"
+msgstr ""
+
 msgid "Cleaning Trashes"
 msgstr "Rensar skräp"
 
@@ -4780,6 +4794,10 @@ msgid "Clear"
 msgstr "Rensa"
 
 #
+msgid "Clear Log"
+msgstr "Rensa logg"
+
+#
 msgid "Clear before scan"
 msgstr "Rensa före sökning"
 
@@ -4787,12 +4805,11 @@ msgid "Clear fixed"
 msgstr "Rensning klar"
 
 #
-msgid "Clear Log"
-msgstr "Rensa logg"
-
-#
 msgid "Clear playlist"
 msgstr "Rensa spellista"
+
+msgid "Clear the logs for this timer"
+msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr ""
@@ -4852,6 +4869,9 @@ msgid "Close the screen"
 msgstr ""
 
 msgid "Close the screen and exit all menus"
+msgstr ""
+
+msgid "Close the screen without saving any changes"
 msgstr ""
 
 msgid "Close the window"
@@ -5401,6 +5421,9 @@ msgstr "Konfigurera vilken videoutgång som ska användas."
 msgid "Configuring"
 msgstr "Konfigurering"
 
+msgid "ConflictTimer Actions"
+msgstr ""
+
 #
 msgid "ConflictTimer Overview"
 msgstr "Timerkonflikt"
@@ -5751,9 +5774,6 @@ msgstr ""
 msgid "Current installed"
 msgstr "Nuvarande installerad image"
 
-msgid "Current location"
-msgstr ""
-
 #, python-format
 msgid "Current mode: %s \n"
 msgstr "Nuvarande läge : %s \n"
@@ -6031,6 +6051,9 @@ msgstr ""
 msgid "Day Mon-DD"
 msgstr ""
 
+msgid "Day of week"
+msgstr ""
+
 msgid "Dayname D Month Year"
 msgstr ""
 
@@ -6151,6 +6174,9 @@ msgstr "Föräldrakontroll"
 #
 msgid "Deep Standby"
 msgstr "Avstängd"
+
+msgid "Deep standby"
+msgstr ""
 
 #
 msgid "Default"
@@ -6328,6 +6354,10 @@ msgstr "Fördröjning"
 msgid "Delay:"
 msgstr "Fördröjning"
 
+#, python-format
+msgid "Delay: %s"
+msgstr ""
+
 #
 msgid "Delete"
 msgstr "Ta bort"
@@ -6436,6 +6466,9 @@ msgid "Delete the currently displayed log file"
 msgstr ""
 
 msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr ""
+
+msgid "Delete the currently selected timer"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6721,12 +6754,12 @@ msgstr "Visa 16:9 sändning som"
 msgid "Display Settings"
 msgstr ""
 
-msgid "Display Setup"
-msgstr ""
-
 #
 msgid "Display and user interface"
 msgstr "Bildskärm och användargränssnitt"
+
+msgid "Display log for the currently selected timer"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Visa meddelande innan nästa film spelas"
@@ -6850,9 +6883,6 @@ msgid ""
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
 
-msgid "Do you really want to delete the recording?"
-msgstr ""
-
 #
 msgid "Do you really want to delete this timer?"
 msgstr "Vill du verkligen ta bort denna timerinspelning?"
@@ -6900,6 +6930,10 @@ msgstr "Vill du verkligen ta BORT plugin \"%s\"?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Vill du verkligen ta bort bokmärket från %s?"
+
+#, python-format
+msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
 
 #
 #, fuzzy
@@ -7317,10 +7351,6 @@ msgid "Edit Mode On"
 msgstr "Ändra timer"
 
 #
-msgid "Edit New Entry"
-msgstr "Ändra ny post"
-
-#
 #, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "Ändra ny post"
@@ -7372,6 +7402,9 @@ msgid "Edit the DNS configuration of your %s %s."
 msgstr "Ändra Namnserver konfiguration för din %s %s."
 
 msgid "Edit the NewCamd DES Key."
+msgstr ""
+
+msgid "Edit the currently selected timer"
 msgstr ""
 
 #
@@ -7482,6 +7515,9 @@ msgstr ""
 msgid "Enable IceTV"
 msgstr "Aktivera EIT EPG"
 
+msgid "Enable InfoBar fade-out"
+msgstr "Tona bort infofält"
+
 msgid "Enable MHW EPG"
 msgstr "Aktivera MHW EPG"
 
@@ -7492,9 +7528,6 @@ msgid "Enable Netmed EPG"
 msgstr "Aktivera Netmed EPG"
 
 msgid "Enable Network IP address check"
-msgstr ""
-
-msgid "Enable network traffic check"
 msgstr ""
 
 #, fuzzy
@@ -7510,6 +7543,18 @@ msgid "Enable Swap at startup"
 msgstr ""
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
+msgstr ""
+
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
 msgstr ""
 
 msgid "Enable ViaSat EPG"
@@ -7574,15 +7619,15 @@ msgstr "Aktivera reserv fjärrmottagare"
 msgid "Enable freesat EPG"
 msgstr ""
 
-msgid "Enable InfoBar fade-out"
-msgstr "Tona bort infofält"
-
 msgid "Enable intro screen"
 msgstr ""
 
 #
 msgid "Enable multiple bouquets"
 msgstr "Aktivera flera favoritlistor"
+
+msgid "Enable network traffic check"
+msgstr ""
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr ""
@@ -7695,15 +7740,6 @@ msgstr "Sluttid"
 msgid "Energy Timer"
 msgstr ""
 
-msgid "Energy saver action"
-msgstr ""
-
-msgid "Energy saver activation delay"
-msgstr ""
-
-msgid "Energy timer"
-msgstr ""
-
 #, python-format
 msgid "Energy Timer: %d minute remains."
 msgid_plural "Energy Timer: %d minutes remain."
@@ -7717,6 +7753,21 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Energy Timer: Inactive."
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+msgid "EnergyTimer Actions"
+msgstr ""
+
+msgid "EnergyTimer Overview"
 msgstr ""
 
 #
@@ -7772,6 +7823,12 @@ msgstr ""
 
 msgid "Enter PIN"
 msgstr "Ange PIN"
+
+msgid "Enter a description for this timer."
+msgstr ""
+
+msgid "Enter a name for this timer."
+msgstr ""
 
 msgid "Enter a new name for this device."
 msgstr ""
@@ -8009,6 +8066,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Inga uppdateringar tillgängliga. V.v. försök igen senare. "
+
+msgid "Error: A location to save the recording has not been selected!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -8264,9 +8324,6 @@ msgstr "Utökad installation..."
 
 msgid "Extended Shares"
 msgstr "Utökade Delningar"
-
-msgid "Extended settings"
-msgstr ""
 
 #
 #, fuzzy
@@ -9702,6 +9759,24 @@ msgstr ""
 msgid "IP"
 msgstr "IP:"
 
+msgid "IP Address 1"
+msgstr ""
+
+msgid "IP Address 2"
+msgstr ""
+
+msgid "IP Address 3"
+msgstr ""
+
+msgid "IP Address 4"
+msgstr ""
+
+msgid "IP Address 5"
+msgstr ""
+
+msgid "IP Address to be checked on timer activation."
+msgstr ""
+
 #
 msgid "IP address"
 msgstr "IP adress"
@@ -9807,10 +9882,16 @@ msgstr ""
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+msgstr ""
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
@@ -9834,61 +9915,11 @@ msgstr ""
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr ""
-
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr ""
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "Om 'Ja' är valt  så kommer kanaler utan EPG inte att visas"
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Satt till 'Ja' så visas 'PO' paketen i browsern."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Om satt till 'Ja' så kommer 'SRC' paketen att visas i browsern"
-
-msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
-msgstr "Om 'Ja' är valt  så  visas en liten TV-bild i EPG:n."
-
-msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr ""
-
-msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "Om 'Ja' är valt  så visas favoritlistorna varje gång du öppnar EPG:n."
-
-msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
-msgstr "Om 'Ja' är valt  så visas kanallistan efter byte mellan Radio och TV lägena"
-
-#, fuzzy
-msgid "Select 'Yes' to display the channel number in the InfoBar."
-msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
-
-msgid "Select 'Yes' to display the InfoBar when a new event starts."
-msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
-
-msgid "Select 'Yes' to display the InfoBar when changing channels."
-msgstr "Om 'Ja' är valt  så visas Informationsfältet vid kanalbyte"
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list."
-msgstr "Om 'Ja' är valt  så  kan du förhandsgranska  kanalerna i EPG listan"
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
-msgstr "Om 'Ja' är valt  så kan du förhandsgranska kanallistan. Tryck 'OK' för att förhandsgranska vald kanal, tryck en andra gång på 'OK' för att gå till den kanalen, tryck 'EXIT' för att återgå till kanalen du startade på."
-
-msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
-msgstr ""
-
-msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
-msgstr ""
-
-#, fuzzy
-msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
@@ -9931,6 +9962,9 @@ msgstr ""
 "När du är nöjd med resultatet, tryck OK."
 
 msgid "Igbo"
+msgstr ""
+
+msgid "Ignore"
 msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
@@ -9987,6 +10021,9 @@ msgstr ""
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
 "\n"
+msgstr ""
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 
 #
@@ -10111,10 +10148,17 @@ msgstr "Picon bredd"
 msgid "InfoBar"
 msgstr ""
 
+msgid "InfoBar EPG"
+msgstr "Infofält EPG"
+
 #
 #, fuzzy
 msgid "InfoBar EPG Actions"
 msgstr "Infofält EPG läge"
+
+#
+msgid "InfoBar EPG Settings"
+msgstr "Inställningar för EPG's infofält"
 
 #
 msgid "InfoBar EPG mode"
@@ -10131,22 +10175,11 @@ msgstr "Information"
 msgid "InfoBar Show/Hide Actions"
 msgstr ""
 
-msgid "InfoBar EPG"
-msgstr "Infofält EPG"
-
 msgid "InfoBar fade-out speed"
 msgstr "Borttoningshastighet för infofält"
 
 msgid "InfoBar front end data source"
 msgstr "Infobalk frontend datakälla"
-
-#, fuzzy
-msgid "Infobar:"
-msgstr "Infofält EPG"
-
-#
-msgid "InfoBar EPG Settings"
-msgstr "Inställningar för EPG's infofält"
 
 #
 msgid "Information"
@@ -12431,10 +12464,10 @@ msgstr "visa programinformation..."
 msgid "New version:"
 msgstr "Ny version:"
 
-msgid "NewCamd DES Key"
+msgid "NewCamd"
 msgstr ""
 
-msgid "NewCamd"
+msgid "NewCamd DES Key"
 msgstr ""
 
 msgid "News"
@@ -12793,6 +12826,9 @@ msgstr "NodeID"
 msgid "NodeID: "
 msgstr "NodeID: "
 
+msgid "Nominate how many IP Addresses are to be checked for active connections."
+msgstr ""
+
 #
 msgid "None"
 msgstr "Inga"
@@ -12936,6 +12972,9 @@ msgstr "Nu, använd kontrastinställningen för att öka ljusstyrkan på bakgrun
 msgid "Number"
 msgstr "Nummer"
 
+msgid "Number of IP Addresses"
+msgstr ""
+
 msgid "Number of digits in channel number"
 msgstr ""
 
@@ -13057,6 +13096,10 @@ msgstr "I slutet av filmen (som meny)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
+#
+msgid "Once"
+msgstr "en gång"
+
 msgid "Once per day"
 msgstr "En gång per dag"
 
@@ -13085,6 +13128,9 @@ msgstr "Endast utökningar."
 msgid "Only free scan"
 msgstr "Bara fri sökning"
 
+msgid "Only in standby"
+msgstr ""
+
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr ""
 
@@ -13100,9 +13146,6 @@ msgstr "Endast vid uppstart"
 #, fuzzy
 msgid "Only provider"
 msgstr "leverantör:"
-
-msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
-msgstr ""
 
 msgid "Open"
 msgstr ""
@@ -13857,10 +13900,6 @@ msgid "Please enter name of the new symlink"
 msgstr "Vänligen ange namn till det nya biblioteket"
 
 #
-msgid "Please enter new description:"
-msgstr "Vänligen ange ny beskrivning :"
-
-#
 msgid "Please enter new name:"
 msgstr "Vänligen ange nytt namn :"
 
@@ -13954,10 +13993,6 @@ msgid "Please select a sub service..."
 msgstr "Vänligen välj en tjänst..."
 
 #
-msgid "Please select the sub-service to record:"
-msgstr "Vänligen välj en tjänst för inspelning..."
-
-#
 msgid "Please select a subservice..."
 msgstr "Vänligen välj en tjänst..."
 
@@ -14002,6 +14037,10 @@ msgstr ""
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr ""
+
+#
+msgid "Please select the sub-service to record:"
+msgstr "Vänligen välj en tjänst för inspelning..."
 
 #
 msgid ""
@@ -14324,9 +14363,6 @@ msgstr "LED ljustyrka under viloläge"
 msgid "Power On Display"
 msgstr ""
 
-msgid "PowerTimers"
-msgstr "Strömtimers"
-
 #, fuzzy
 msgid "Power long"
 msgstr "StrömtimerHanterare logg"
@@ -14344,21 +14380,26 @@ msgstr ""
 msgid "PowerTimer"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
+msgid "PowerTimer Actions"
 msgstr ""
 
-#
-msgid "PowerTimer Entry"
-msgstr "StrömtimerHanterare"
-
-msgid "PowerTimer log"
-msgstr "StrömtimerHanterare logg"
+msgid "PowerTimer DeepStandby"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr "Översikt Strömtimer"
 
+msgid "PowerTimer Settings"
+msgstr ""
+
 msgid "PowerTimer Standby"
 msgstr ""
+
+msgid "PowerTimer log"
+msgstr "StrömtimerHanterare logg"
+
+msgid "PowerTimers"
+msgstr "Strömtimers"
 
 #
 msgid "Predefined"
@@ -14973,10 +15014,6 @@ msgid "Really close without saving settings?"
 msgstr "Verkligen stänga utan att spara inställningarna?"
 
 #
-msgid "Really delete completed timers?"
-msgstr "Verkligen ta bort färdiga timerinspelningar?"
-
-#
 #, fuzzy
 msgid "Really delete this entry?"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
@@ -15100,6 +15137,21 @@ msgstr "Inspelningstid begränsad på grund av timerkonflikt med %s"
 msgid "Record write error (no space on disk?)"
 msgstr ""
 
+msgid "RecordTimer"
+msgstr ""
+
+msgid "RecordTimer Actions"
+msgstr ""
+
+msgid "RecordTimer Overview"
+msgstr ""
+
+msgid "RecordTimer Settings"
+msgstr ""
+
+msgid "RecordTimers"
+msgstr ""
+
 msgid "Recordable media toolbox"
 msgstr ""
 
@@ -15133,6 +15185,9 @@ msgstr "Inspelningar"
 
 msgid "Recording in progress"
 msgstr "Inspelning pågår"
+
+msgid "Recording location"
+msgstr ""
 
 #
 #, fuzzy
@@ -15505,6 +15560,13 @@ msgstr ""
 #
 msgid "Repeat type"
 msgstr "Upprepningstyp"
+
+#
+msgid "Repeated"
+msgstr "repeterande"
+
+msgid "Repeating event is currently active, what do you want to do?"
+msgstr ""
 
 #
 msgid "Repeating event is currently recording, what do you want to do?"
@@ -16043,6 +16105,9 @@ msgstr "Lör"
 msgid "Sat Finder"
 msgstr ""
 
+msgid "Sat-Sun"
+msgstr ""
+
 #
 msgid "Satellite"
 msgstr "Satellit"
@@ -16150,6 +16215,9 @@ msgid ""
 msgstr ""
 
 msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the log changes and exit"
 msgstr ""
 
 msgid "Save the right folder list location on exit."
@@ -16348,17 +16416,9 @@ msgstr "Söker väst..."
 msgid "Second cable of motorized LNB"
 msgstr "Kabel två för motoriserad LNB"
 
-msgid "SecondInfoBar"
-msgstr ""
-
 #
 msgid "Secondary DNS"
 msgstr "Sekundär DNS"
-
-#
-#, fuzzy
-msgid "Secondinfobar:"
-msgstr "Visa det 2:a infofältet"
 
 msgid "Security"
 msgstr ""
@@ -16407,6 +16467,9 @@ msgstr "Aktivering sökfält"
 msgid "Seekbar sensibility"
 msgstr "Sökfältets noggrannhet"
 
+msgid "Seeking connected events"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Välj"
@@ -16417,11 +16480,70 @@ msgstr ""
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr ""
 
+msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+msgstr ""
+
+msgid "Select 'No' to only write a log message to the debug log file."
+msgstr ""
+
+msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+msgstr ""
+
+msgid "Select 'Yes' if an end time is required for this timer."
+msgstr ""
+
+msgid "Select 'Yes' if network traffic should be checked before activating the timer."
+msgstr ""
+
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
+msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
+msgstr ""
+
+#, fuzzy
+msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
+msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
+
+msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
+msgstr ""
+
+msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
+msgstr ""
+
+msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
+msgstr ""
+
+msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
+msgstr "Om 'Ja' är valt  så  visas en liten TV-bild i EPG:n."
+
+msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
+msgstr "Satt till 'Ja' så visas 'PO' paketen i browsern."
+
+msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
+msgstr "Om satt till 'Ja' så kommer 'SRC' paketen att visas i browsern"
+
+msgid "Select 'Yes' to display the InfoBar when a new event starts."
+msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
+
+msgid "Select 'Yes' to display the InfoBar when changing channels."
+msgstr "Om 'Ja' är valt  så visas Informationsfältet vid kanalbyte"
+
+#, fuzzy
+msgid "Select 'Yes' to display the channel number in the InfoBar."
+msgstr "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list."
+msgstr "Om 'Ja' är valt  så  kan du förhandsgranska  kanalerna i EPG listan"
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr "Om 'Ja' är valt  så kan du förhandsgranska kanallistan. Tryck 'OK' för att förhandsgranska vald kanal, tryck en andra gång på 'OK' för att gå till den kanalen, tryck 'EXIT' för att återgå till kanalen du startade på."
+
+msgid "Select 'Yes' to hide channels without EPG data."
+msgstr "Om 'Ja' är valt  så kommer kanaler utan EPG inte att visas"
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -16454,6 +16576,21 @@ msgid "Select 'Yes' to remove all user interface data. Selecting this option wil
 msgstr ""
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
+msgid "Select 'Yes' to show the advanced setting options."
+msgstr ""
+
+msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
+msgstr "Om 'Ja' är valt  så visas favoritlistorna varje gång du öppnar EPG:n."
+
+msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
+msgstr "Om 'Ja' är valt  så visas kanallistan efter byte mellan Radio och TV lägena"
+
+msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
+msgstr ""
+
+msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr ""
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
@@ -16609,10 +16746,6 @@ msgstr ""
 msgid "Select channel audio"
 msgstr "Välj kanal att spela in från"
 
-#
-msgid "Select channel to record from"
-msgstr "Välj kanal att spela in från"
-
 msgid "Select copy destination for:"
 msgstr "Välj destination för kopia :"
 
@@ -16629,6 +16762,9 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "Ange filer / bibliotek att ta säkerhetskopia på"
 
+msgid "Select how often this timer is to be repeated."
+msgstr ""
+
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -16641,10 +16777,43 @@ msgstr "Välj metod att aktivera 'Quick EPG' läge"
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select if an end time is required."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
+msgid "Select if the timer name and description modification code is run on repeating timers."
+msgstr ""
+
+msgid "Select if there is to be a time window within which this timer can be active."
+msgstr ""
+
+msgid "Select if this timer activates on a Friday."
+msgstr ""
+
+msgid "Select if this timer activates on a Monday."
+msgstr ""
+
+msgid "Select if this timer activates on a Saturday."
+msgstr ""
+
+msgid "Select if this timer activates on a Sunday."
+msgstr ""
+
+msgid "Select if this timer activates on a Thursday."
+msgstr ""
+
+msgid "Select if this timer activates on a Tuesday."
+msgstr ""
+
+msgid "Select if this timer activates on a Wednesday."
+msgstr ""
+
+msgid "Select if this timer is to be repeated."
 msgstr ""
 
 msgid "Select if timeshift must continue when set to record."
@@ -16669,9 +16838,6 @@ msgstr ""
 #
 msgid "Select movie"
 msgstr "Välj en film"
-
-msgid "Select of the number"
-msgstr ""
 
 #
 msgid "Select provider to add..."
@@ -16702,10 +16868,6 @@ msgstr "Välj sorteringsmetod :"
 msgid "Select system information to view:"
 msgstr ""
 
-#
-msgid "Select target folder"
-msgstr "Välj målkatalog"
-
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16733,7 +16895,16 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr ""
 
+msgid "Select the action to perform when the timer ends."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
+msgid "Select the channel from which to record:"
+msgstr ""
+
+msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
@@ -16746,6 +16917,21 @@ msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid "Select the currently highlighted service"
+msgstr ""
+
+msgid "Select the date from which this timer will become active."
+msgstr ""
+
+msgid "Select the date when this timer will activate."
+msgstr ""
+
+msgid "Select the date when this timer will start."
+msgstr ""
+
+msgid "Select the day of the week that this timer will activate."
+msgstr ""
+
+msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
@@ -16771,6 +16957,9 @@ msgstr ""
 msgid "Select the locale from a menu"
 msgstr "Vänligen ange filmens sökväg"
 
+msgid "Select the location in which to store the recording:"
+msgstr ""
+
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr ""
 
@@ -16783,6 +16972,9 @@ msgstr ""
 #
 msgid "Select the movie path"
 msgstr "Välj film sökväg"
+
+msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
+msgstr ""
 
 msgid "Select the next item in list or move cursor right"
 msgstr ""
@@ -16831,10 +17023,25 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
+msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the time after which this timer can start."
+msgstr ""
+
+msgid "Select the time before which this timer should end."
+msgstr ""
+
 msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
 msgid "Select the time delay between each repeat of the button."
+msgstr ""
+
+msgid "Select the time when this timer should end."
+msgstr ""
+
+msgid "Select the time when this timer will start."
 msgstr ""
 
 #, fuzzy
@@ -16862,6 +17069,9 @@ msgstr ""
 msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
+msgid "Select the type of this timer."
+msgstr ""
+
 #
 msgid "Select video input with up/down buttons"
 msgstr "Välj videoingång med upp / ner knapparna"
@@ -16872,6 +17082,12 @@ msgstr "Välj videoläge"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "När slutet på en fil nåtts under uppspelning, så kan du välja boxens beteende."
+
+msgid "Select what do do after the timer has completed."
+msgstr ""
+
+msgid "Select what do do after the timer recording has completed."
+msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr ""
@@ -16895,6 +17111,9 @@ msgid "Select what you want the TV button to activate."
 msgstr ""
 
 msgid "Select what you want the Up/Down button to activate."
+msgstr ""
+
+msgid "Select where the recording should be saved."
 msgstr ""
 
 #
@@ -17272,12 +17491,6 @@ msgstr "Ändra Namnserver konfiguration för din %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ange en innehållsbeskrivning om inspelningen."
 
-msgid "Set the channel for this timer."
-msgstr "Välj kanal för denna timerinspelning."
-
-msgid "Set the date the timer must start."
-msgstr "Välj datum för timerinspelningens start. "
-
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Ange standardsökväg för dina direktinspelningar. Tryck 'OK' för att lägga till en ny position, välj vänster/höger för att välja en befintlig position."
 
@@ -17296,14 +17509,8 @@ msgstr "Använd standardsortering."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr ""
 
-msgid "Set the description of the recording."
-msgstr "Ange en innehållsbeskrivning om inspelningen."
-
 msgid "Set the jump-size of the seekbar."
 msgstr "Ställ in avståndet för att stega i sökfältet."
-
-msgid "Set the name the recording will get."
-msgstr "Ange ett på inspelningen."
 
 #, fuzzy
 msgid "Set the position of the recording icons"
@@ -17320,12 +17527,6 @@ msgstr "Ställ in scrollningshastigheten av text på frontdisplayen."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
-
-msgid "Set the time the timer must start."
-msgstr "Ställ in tiden som timern måste starta."
-
-msgid "Set the time the timer must stop."
-msgstr "Ställ in tiden som timern måste stoppa"
 
 msgid "Set the time to hide the infobar."
 msgstr ""
@@ -17538,6 +17739,9 @@ msgstr ""
 msgid "Setup your LCD"
 msgstr ""
 
+msgid "Setup your LCD Skin"
+msgstr ""
+
 msgid "Setup your OSD"
 msgstr ""
 
@@ -17724,9 +17928,6 @@ msgstr ""
 msgid "Show Display Icons"
 msgstr "Visa statusikoner i filmlistan"
 
-msgid "Show the EIT Now/Next data in the InfoBar."
-msgstr "Visa EIT nu / nästa i infobalken"
-
 msgid "Show EPG"
 msgstr ""
 
@@ -17757,6 +17958,24 @@ msgid "Show HDMIRecord setup..."
 msgstr "Visa RFmod inställning..."
 
 msgid "Show InfoBar"
+msgstr ""
+
+msgid "Show InfoBar lite *"
+msgstr ""
+
+#
+msgid "Show InfoBar on channel change"
+msgstr "Visa infobalk vid kanalbyte"
+
+#
+msgid "Show InfoBar on event change"
+msgstr "Visa infobalk vid programändring"
+
+#
+msgid "Show InfoBar on skip forward/backward"
+msgstr "Visa infobalk vid hopp framåt / bakåt"
+
+msgid "Show InfoBar picons"
 msgstr ""
 
 #, fuzzy
@@ -17887,6 +18106,9 @@ msgstr "Visa bakgrund när du lyssnar på radiokanaler."
 
 msgid "Show bouquet on launch"
 msgstr "Visa favoritlista vid start"
+
+msgid "Show build information"
+msgstr ""
 
 msgid "Show channel number in InfoBar"
 msgstr "Visa kanalnummer i infofält"
@@ -18029,29 +18251,6 @@ msgstr "Visa Info"
 msgid "Show info line"
 msgstr "Visa Infolinje"
 
-msgid "Show InfoBar lite *"
-msgstr ""
-
-#
-msgid "Show InfoBar on channel change"
-msgstr "Visa infobalk vid kanalbyte"
-
-#
-msgid "Show InfoBar on event change"
-msgstr "Visa infobalk vid programändring"
-
-#
-msgid "Show InfoBar on skip forward/backward"
-msgstr "Visa infobalk vid hopp framåt / bakåt"
-
-#
-#, fuzzy
-msgid "Show persistent InfoBar while paused"
-msgstr "Visa infofält vid händelseändring"
-
-msgid "Show InfoBar picons"
-msgstr ""
-
 msgid "Show job tasks in extensions"
 msgstr "Visa arbetsuppgifter i utökningar"
 
@@ -18124,6 +18323,11 @@ msgstr "Visa info line"
 msgid "Show parting lines between events."
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show persistent InfoBar while paused"
+msgstr "Visa infofält vid händelseändring"
+
 msgid "Show picon background colour"
 msgstr ""
 
@@ -18161,7 +18365,7 @@ msgstr ""
 msgid "Show quickmenu..."
 msgstr ""
 
-msgid "Show receiver image(s)"
+msgid "Show receiver image information"
 msgstr ""
 
 #
@@ -18256,6 +18460,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Visa DreamPlex spelaren..."
+
+msgid "Show the EIT Now/Next data in the InfoBar."
+msgstr "Visa EIT nu / nästa i infobalken"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -18582,21 +18789,29 @@ msgstr "Fördröjning"
 msgid "Sleep Timer"
 msgstr ""
 
-msgid "SleepTimer Settings"
-msgstr ""
-
 msgid "Sleep Timers"
 msgstr ""
 
-#
-msgid "Sleep delay"
-msgstr "Fördröjning"
+msgid "Sleep delay (in minutes)"
+msgstr ""
 
 #, fuzzy
 msgid "Sleep long"
 msgstr "Hjälp lång"
 
 msgid "Sleep timer"
+msgstr ""
+
+msgid "SleepTimer"
+msgstr ""
+
+msgid "SleepTimer Actions"
+msgstr ""
+
+msgid "SleepTimer Overview"
+msgstr ""
+
+msgid "SleepTimer Settings"
 msgstr ""
 
 msgid "SleepTimer action"
@@ -18618,9 +18833,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "SleepTimer: Inactive."
-msgstr ""
-
-msgid "SleepTimer"
 msgstr ""
 
 msgid "Sleeping"
@@ -18960,6 +19172,10 @@ msgstr "Syd"
 msgid "Space to reserve for recordings (in GB)"
 msgstr "Diskutrymme att reservera för inspelningar (i GB)"
 
+#, python-format
+msgid "Space total %s, used %s, free %s (%0.f%%)."
+msgstr ""
+
 msgid "Space used:"
 msgstr "Använt utrymme:"
 
@@ -19049,6 +19265,9 @@ msgstr "Starttid"
 msgid "Start RDS interactive"
 msgstr "Visa Rass interaktivitet..."
 
+msgid "Start date"
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Spela upp från början"
@@ -19102,13 +19321,15 @@ msgstr ""
 msgid "Starting Softcam"
 msgstr ""
 
+msgid "Starting date"
+msgstr ""
+
 #
 msgid "Starting directory"
 msgstr "startbibliotek"
 
-#
-msgid "Starting on"
-msgstr "Startar på"
+msgid "Starting time"
+msgstr ""
 
 #, fuzzy
 msgid "Starts in a few seconds"
@@ -20016,6 +20237,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20041,6 +20267,11 @@ msgstr ""
 msgid ""
 "The buffer time for timeshift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
+msgstr ""
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
 msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
@@ -20111,6 +20342,11 @@ msgstr "Resultatet har skrivits till %s."
 
 msgid "The saved PIN was cleared."
 msgstr "Den sparade PIN-koden har tagits bort."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr ""
@@ -20561,6 +20797,9 @@ msgstr "Det här alternativet ställer in dämpningen av falska digitala konture
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Det här alternativet ändrar bildens skärpa, används när bilden har uppskalats. "
 
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
 #
 msgid "This plugin is installed."
 msgstr "Detta plugin är installerat."
@@ -20744,9 +20983,6 @@ msgstr ""
 msgid "Time long"
 msgstr "Timer log"
 
-msgid "Time range:"
-msgstr ""
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr ""
@@ -20785,17 +21021,13 @@ msgstr "Tidslinje 24 timmars"
 msgid "Timeline font size"
 msgstr "Fontstorlek för tidslinjen"
 
-msgid "Timer"
-msgstr "Timer"
-
 #
 #, fuzzy
 msgid "Timer Actions"
 msgstr "Timer val"
 
-#
-msgid "Timer Overview"
-msgstr "Översikt av timer(s)"
+msgid "Timer Log Actions"
+msgstr ""
 
 #
 msgid "Timer Sanity Error"
@@ -20972,6 +21204,9 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Växla mellan kanallista/epglista"
 
 msgid "Toggle display of the InfoBar"
+msgstr ""
+
+msgid "Toggle enable/disable of the currently selected timer"
 msgstr ""
 
 msgid "Toggle hide/show of the current item"
@@ -21509,6 +21744,9 @@ msgstr ""
 msgid "Unknown user: %d"
 msgstr "okänd kanal"
 
+msgid "Unknown!"
+msgstr ""
+
 #, fuzzy
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Om 'Ja' är valt  så  kan du förhandsgranska  kanalerna i EPG listan"
@@ -21984,6 +22222,59 @@ msgstr "F2 lång"
 msgid "VPN"
 msgstr ""
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr ""
 
@@ -22417,6 +22708,9 @@ msgstr "Väck"
 msgid "Wakeup TV from standby"
 msgstr "Väck TV från viloläge"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr ""
 
@@ -22490,14 +22784,11 @@ msgstr "Ons"
 msgid "Wednesday"
 msgstr "Onsdag"
 
-#
-msgid "Weekday"
-msgstr "Veckodag"
+msgid "Weekdays"
+msgstr ""
 
-#
-#, fuzzy
-msgid "Weekend"
-msgstr "Veckodag"
+msgid "Weekends"
+msgstr ""
 
 #
 msgid "Weekly"
@@ -22571,9 +22862,6 @@ msgstr "Väst"
 
 msgid "Western Sahara"
 msgstr ""
-
-msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "Vilken åtgärd skall göras efter det att timern är slutförd? 'Auto' gör att boxen går tillbaka till tillståndet den hade innan timern startade. 'Gör ingenting'/'Viloläge' eller 'Avstängd' kan också väljas."
 
 msgid "What day of month?"
 msgstr ""
@@ -22774,12 +23062,12 @@ msgstr ""
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
-
-msgid "Where should the recording be saved?"
-msgstr "Var skall inspelningen sparas?"
 
 #
 msgid "Where to save temporary timeshift recordings?"
@@ -22835,9 +23123,6 @@ msgstr "Med fel :"
 msgid "With popup"
 msgstr "Med popup"
 
-msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr ""
-
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "Med detta alternativ kan du dölja arbetsuppgifter i vyn utökningar (kort tryck på blå knapp)."
 
@@ -22858,6 +23143,9 @@ msgstr ""
 
 msgid "Without popup"
 msgstr "Utan popup"
+
+msgid "Without query"
+msgstr ""
 
 msgid "Wolof"
 msgstr ""
@@ -22947,6 +23235,9 @@ msgstr "Förflyttning"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 #
 msgid "Yes to all"
 msgstr "Ja till allt"
@@ -22977,12 +23268,6 @@ msgstr "Ja, men spara timeshift som film och fortsätt inspelning"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, men spara timeshift som film och stoppa inspelning"
 
-msgid "Yes, delete from timer list"
-msgstr ""
-
-msgid "Yes, delete from timer list and delete recording"
-msgstr ""
-
 #
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Ja, radera denna film och återgå till filmlistan"
@@ -22998,6 +23283,9 @@ msgstr "Ja, utför automatisk sökning nu"
 #
 msgid "Yes, do another manual scan now"
 msgstr "Ja, utför manuell sökning igen"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 #
 msgid "Yes, restore the settings now"
@@ -23089,9 +23377,6 @@ msgstr ""
 #
 msgid "You cannot delete this!"
 msgstr "Du kan inte ta bort detta!"
-
-msgid "You didn't select a channel to record from."
-msgstr "Du valde ingen kanal att spela in från."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "Du har redan skickat den här loggen, är du säker på att du vill skicka den igen\n"
@@ -23405,6 +23690,9 @@ msgstr ""
 msgid "ZAP"
 msgstr ""
 
+msgid "ZAP as PiP"
+msgstr ""
+
 msgid "ZOOM"
 msgstr ""
 
@@ -23482,10 +23770,6 @@ msgstr "Zappa upp"
 #, fuzzy
 msgid "Zap+Record next"
 msgstr "Spela in nästa"
-
-#
-msgid "Zapped"
-msgstr "zappad"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
@@ -23720,14 +24004,6 @@ msgstr "ljudspår"
 msgid "auto"
 msgstr "auto"
 
-#
-msgid "auto deepstandby"
-msgstr "autoavstängning"
-
-#
-msgid "auto standby"
-msgstr "autoviloläge"
-
 msgid "automatic"
 msgstr "automatisk"
 
@@ -23878,10 +24154,6 @@ msgstr ""
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "nyheter/aktuella frågor (allmänt)"
-
-#
-msgid "daily"
-msgstr "daglig"
 
 #
 msgid "day"
@@ -24275,9 +24547,6 @@ msgstr ""
 msgid "hops:"
 msgstr "hops:"
 
-msgid "Select 'No' to only write a log message to the debug log file."
-msgstr ""
-
 msgid "increase uphop by 1"
 msgstr "utöka uphop med 1"
 
@@ -24407,10 +24676,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "min"
-msgstr "min"
-
-#
-msgid "mins"
 msgstr "min"
 
 #
@@ -24612,15 +24877,8 @@ msgstr "på READ ONLY media."
 msgid "on how to restore the image"
 msgstr "Vill du avinstallera paketet:\n"
 
-#
-msgid "Once"
-msgstr "en gång"
-
 msgid "only HD"
 msgstr "endast HD"
-
-msgid "Only in standby"
-msgstr ""
 
 msgid "original"
 msgstr "original"
@@ -24704,9 +24962,6 @@ msgstr ""
 msgid "real recordings or streaming"
 msgstr ""
 
-msgid "reboot system"
-msgstr "starta om systemet"
-
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr ""
@@ -24789,10 +25044,6 @@ msgstr "byt namn"
 #
 msgid "rename entry"
 msgstr "byt namn på post"
-
-#
-msgid "Repeated"
-msgstr "repeterande"
 
 msgid "restore deleted userbouquets"
 msgstr ""
@@ -25233,19 +25484,8 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "vänta på mmi..."
 
-msgid "wakeup"
-msgstr "starta upp"
-
-#
-msgid "wakeup to standby"
-msgstr "starta upp till viloläge"
-
 msgid "water sport"
 msgstr "vattensport"
-
-#
-msgid "weekly"
-msgstr "veckovis"
 
 #
 msgid "west"
@@ -25306,9 +25546,6 @@ msgstr "med_fel"
 msgid "without"
 msgstr "Utan popup"
 
-msgid "Without query"
-msgstr ""
-
 #
 msgid "working"
 msgstr "pågående"
@@ -25332,3 +25569,144 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "<Unknown>"
+#~ msgstr "<okänd>"
+
+#~ msgid "A repeating timer or just once?"
+#~ msgstr "En upprepad timer eller bara en gång?"
+
+#~ msgid "At End:"
+#~ msgstr "Vid Slut:"
+
+#
+#~ msgid "Channel not in services list"
+#~ msgstr "Kanalen finns ej i kanallistan"
+
+#~ msgid "Choose a tag for easy finding a recording."
+#~ msgstr "Välj en tagg för att lättare hitta en inspelning."
+
+#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
+#~ msgstr "Välj mellan Daglig, Veckovis, Veckodagar, eller egendefinierad"
+
+#~ msgid "Chose between record and ZAP."
+#~ msgstr "Välj mellan inspelning och ZAP."
+
+#
+#~ msgid "Edit New Entry"
+#~ msgstr "Ändra ny post"
+
+#, fuzzy
+#~ msgid "Infobar:"
+#~ msgstr "Infofält EPG"
+
+#
+#~ msgid "Please enter new description:"
+#~ msgstr "Vänligen ange ny beskrivning :"
+
+#
+#~ msgid "PowerTimer Entry"
+#~ msgstr "StrömtimerHanterare"
+
+#
+#~ msgid "Really delete completed timers?"
+#~ msgstr "Verkligen ta bort färdiga timerinspelningar?"
+
+#
+#, fuzzy
+#~ msgid "Secondinfobar:"
+#~ msgstr "Visa det 2:a infofältet"
+
+#
+#~ msgid "Select channel to record from"
+#~ msgstr "Välj kanal att spela in från"
+
+#
+#~ msgid "Select target folder"
+#~ msgstr "Välj målkatalog"
+
+#~ msgid "Set the channel for this timer."
+#~ msgstr "Välj kanal för denna timerinspelning."
+
+#~ msgid "Set the date the timer must start."
+#~ msgstr "Välj datum för timerinspelningens start. "
+
+#~ msgid "Set the description of the recording."
+#~ msgstr "Ange en innehållsbeskrivning om inspelningen."
+
+#~ msgid "Set the name the recording will get."
+#~ msgstr "Ange ett på inspelningen."
+
+#~ msgid "Set the time the timer must start."
+#~ msgstr "Ställ in tiden som timern måste starta."
+
+#~ msgid "Set the time the timer must stop."
+#~ msgstr "Ställ in tiden som timern måste stoppa"
+
+#
+#~ msgid "Sleep delay"
+#~ msgstr "Fördröjning"
+
+#
+#~ msgid "Starting on"
+#~ msgstr "Startar på"
+
+#~ msgid "Timer"
+#~ msgstr "Timer"
+
+#
+#~ msgid "Timer Overview"
+#~ msgstr "Översikt av timer(s)"
+
+#
+#~ msgid "Weekday"
+#~ msgstr "Veckodag"
+
+#
+#, fuzzy
+#~ msgid "Weekend"
+#~ msgstr "Veckodag"
+
+#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
+#~ msgstr "Vilken åtgärd skall göras efter det att timern är slutförd? 'Auto' gör att boxen går tillbaka till tillståndet den hade innan timern startade. 'Gör ingenting'/'Viloläge' eller 'Avstängd' kan också väljas."
+
+#~ msgid "Where should the recording be saved?"
+#~ msgstr "Var skall inspelningen sparas?"
+
+#~ msgid "You didn't select a channel to record from."
+#~ msgstr "Du valde ingen kanal att spela in från."
+
+#
+#~ msgid "Zapped"
+#~ msgstr "zappad"
+
+#
+#~ msgid "auto deepstandby"
+#~ msgstr "autoavstängning"
+
+#
+#~ msgid "auto standby"
+#~ msgstr "autoviloläge"
+
+#
+#~ msgid "daily"
+#~ msgstr "daglig"
+
+#
+#~ msgid "mins"
+#~ msgstr "min"
+
+#~ msgid "reboot system"
+#~ msgstr "starta om systemet"
+
+#~ msgid "wakeup"
+#~ msgstr "starta upp"
+
+#
+#~ msgid "wakeup to standby"
+#~ msgstr "starta upp till viloläge"
+
+#
+#~ msgid "weekly"
+#~ msgstr "veckovis"

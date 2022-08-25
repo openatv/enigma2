@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 13:02+0000\n"
-"PO-Revision-Date: 2022-08-23 15:55+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"PO-Revision-Date: 2022-08-25 19:23+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1076,6 +1076,9 @@ msgstr "%d.%-m.%Y"
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
+
+msgid "%d.%B %Y"
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -4390,6 +4393,12 @@ msgstr "Prüfung"
 msgid "Check HDD"
 msgstr "Prüfen der Festplatte"
 
+msgid "Check for PDC"
+msgstr "Auf PDC prüfen"
+
+msgid "Check for PDC availability on each service"
+msgstr "Auf PDC bei allen Anbietern prüfen"
+
 msgid "Check power and input state from TV"
 msgstr "Überprüfe den Betriebszustand vom TV"
 
@@ -4473,7 +4482,7 @@ msgid "Choose dvb wait delay for ci response."
 msgstr "Wählen Sie die DVB-Warteverzögerung für die CI-Antwort."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
-msgstr "Wählen Sie das Intervall aus, wie oft eine Verbindung zum IceTV-Server hergestellt werden soll, um nach Updates zu suchen."
+msgstr "Wählen Sie das Intervall, wie oft eine Verbindung zum IceTV-Server hergestellt werden soll, um nach Updates zu suchen."
 
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wählen Sie das CI-Protokoll, für CI-Normal- oder CI-Plus-Module."
@@ -4680,7 +4689,7 @@ msgid "Close the screen and exit all menus"
 msgstr "Screen schließen und alle Menüs verlassen"
 
 msgid "Close the screen without saving any changes"
-msgstr "Bildschirm schliessen ohne die Änderungen zu speichern"
+msgstr "Bildschirm schließen, ohne die Änderungen zu speichern"
 
 msgid "Close the window"
 msgstr "Fenster schließen"
@@ -7269,6 +7278,18 @@ msgstr "Aktiviere Swap beim Hochfahren"
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Aktivieren Sie die Tasten Hoch/Runter für die Funktion 'Alle Hoch/Runter' (am Anfang/Ende der Spalte)."
 
+msgid "Enable VPS"
+msgstr "VPS aktivieren"
+
+msgid "Enable VPS by default (new timers)"
+msgstr "Soll VPS bei neuen Timern standardmäßig aktiviert sein?"
+
+msgid "Enable VPS on instant records"
+msgstr "VPS bei Sofortaufnahmen aktivieren"
+
+msgid "Enable VPS-Plugin"
+msgstr "VPS-Plugin eingeschaltet"
+
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat-EPG aktivieren"
 
@@ -9514,11 +9535,18 @@ msgstr "Auch bei 'niemals' wird trotzdem nach 100 Abstürzen ein Neustart der Be
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr "Im EPG wird nach weiteren Einträgen gesucht, die zur aufzunehmenden Sendung gehören. Wenn eine Sendung z.B. durch Nachrichten unterbrochen wird, versucht das Plugin trotzdem die komplette Sendung aufzunehmen."
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wählen Sie, ob der Cursor beim Bearbeiten einer Datei am Anfang oder Ende der Zeile stehen soll."
+
+#, fuzzy
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr "Wenn eingeschaltet und notwendig, wird das Plugin den Receiver für die Kontroll-Vorlaufzeit aus dem Deep-Standby holen, um zu überprüfen, ob die Sendung früher anfängt."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Wenn die Ausgabeauflösung aktiviert ist, wird Ihr Receiver versuchen, der Auflösung des Videoinhalts zu entsprechen."
@@ -9541,6 +9569,9 @@ msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Datei
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Legt fest, ob das Anzeigesymbol oder die Information der Stummschaltung nach wenigen Sekunden ausgeblendet wird."
+
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr "Wenn möglich, wird x Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt (0 deaktiviert das Feature)."
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
@@ -9643,7 +9674,7 @@ msgid ""
 msgstr ""
 "Um alle Funktionen vom IceTV-Smart-Aufnahmedienst nutzen zu können, werden einige persönliche Daten benötigt.\n"
 "\n"
-"Wenn Sie schon ein IceTV-Abonnement haben oder ein Testbenutzer sind, wählen Sie bitte 'Bestehender oder Testbenutzer', wenn nicht, wählen Sie 'Neuer Benutzer'."
+"Wenn Sie schon ein IceTV-Abonnement haben oder ein Testbenutzer sind, wählen Sie 'Bestehender oder Testbenutzer', wenn nicht, wählen Sie 'Neuer Benutzer'."
 
 # RecordTimer.py
 msgid ""
@@ -9652,6 +9683,9 @@ msgid ""
 msgstr ""
 "Um eine Timeraufnahme zu starten, wurde erfolgreich ein Tuner frei gemacht:\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Der Receiver wurde für eine Aufnahme auf den entsprechenden Kanal umgeschaltet!\n"
 
 msgid "In progress"
 msgstr "In Arbeit"
@@ -12633,6 +12667,9 @@ msgstr "Nur Erweiterungen."
 msgid "Only free scan"
 msgstr "Nur frei empfangbare"
 
+msgid "Only in standby"
+msgstr "nur im Standby"
+
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Nur Meldungen der ausgewählten GStreamer-Kategorie schreiben. * Bedeutet alle."
 
@@ -13437,10 +13474,10 @@ msgid "Please select a default EPG type..."
 msgstr "Bitte einen Standard-EPG-Typ auswählen..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
-msgstr "Bitte wählen Sie eine Distribution aus, von der Sie ein Image flashen möchten:"
+msgstr "Wählen Sie eine Distribution, von der Sie ein Image flashen möchten:"
 
 msgid "Please select a line to edit or select add to create new line."
-msgstr "Bitte wählen Sie eine Line aus, die Sie bearbeiten möchten, oder wählen Sie Hinzufügen, um eine neue Line zu erstellen."
+msgstr "Wählen Sie eine Line, die Sie bearbeiten möchten, oder wählen Sie 'Hinzufügen', um eine neue Line zu erstellen."
 
 #
 msgid "Please select a playlist to delete..."
@@ -13506,7 +13543,7 @@ msgstr "Bitte die Region auswählen, die Ihrem physischen Standort am ehesten en
 
 #
 msgid "Please select the sub-service to record:"
-msgstr "Bitte einen Unterkanal zur Aufnahme auswählen..."
+msgstr "Bitte einen Unterkanal zur Aufnahme auswählen:"
 
 #
 msgid ""
@@ -13519,7 +13556,7 @@ msgstr ""
 "Drücken Sie OK, um fortzufahren."
 
 msgid "Please select what to do after flash of the following image:"
-msgstr "Bitte wählen, was nach dem Flashen mit dem folgenden Image passieren soll:"
+msgstr "Wählen Sie, was nach dem Flashen mit dem folgenden Image passieren soll:"
 
 msgid "Please set up tuner A"
 msgstr "Bitte Tuner A einrichten"
@@ -14597,16 +14634,16 @@ msgid "RecordTimer"
 msgstr "AufnahmeTimer"
 
 msgid "RecordTimer Actions"
-msgstr "RecordTimer-Aktionen"
+msgstr "Aufnahmetimer-Aktionen"
 
 msgid "RecordTimer Overview"
-msgstr "RecordTimer Übersicht"
+msgstr "Timerübersicht"
 
 msgid "RecordTimer Settings"
-msgstr "RecordTimer-Einstellungen"
+msgstr "Aufnahmetimer-Einstellungen"
 
 msgid "RecordTimers"
-msgstr "AufnahmeTimer"
+msgstr "Timer"
 
 msgid "Recordable media toolbox"
 msgstr "Toolbox für beschreibbare Medien"
@@ -15002,13 +15039,11 @@ msgid "Repeated"
 msgstr "Wiederholend"
 
 msgid "Repeating event is currently active, what do you want to do?"
-msgstr "Wiederholtes Ereignis ist derzeit aktiv, was möchten Sie tun?"
+msgstr "Wiederholendes Ereignis ist derzeit aktiv! Was möchten Sie tun?"
 
 #
 msgid "Repeating event is currently recording, what do you want to do?"
-msgstr ""
-"Wiederholender Aufnahmetimer ist zurzeit aktiv!\n"
-"Was möchten Sie tun?"
+msgstr "Wiederholender Aufnahmetimer ist zurzeit aktiv! Was möchten Sie tun?"
 
 #
 msgid "Repeats"
@@ -15880,6 +15915,9 @@ msgstr "Aktivierung der Suchleiste"
 msgid "Seekbar sensibility"
 msgstr "Sprungweite der Suchleiste"
 
+msgid "Seeking connected events"
+msgstr "Nach zusammenhängenden EPG-Einträgen suchen"
+
 #
 msgid "Select"
 msgstr "Auswählen"
@@ -16098,7 +16136,7 @@ msgid "Select a debug log file to view:"
 msgstr "Wählen Sie ein Debug-Log zur Ansicht aus:"
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr "Wählen Sie eine Distribution aus, von der Images bezogen werden sollen"
+msgstr "Wählen Sie eine Distribution, von der Images bezogen werden sollen"
 
 #
 msgid "Select a movie"
@@ -16163,7 +16201,7 @@ msgid "Select files/folders to backup"
 msgstr "Dateien/Ordner auswählen"
 
 msgid "Select how often this timer is to be repeated."
-msgstr "Wählen Sie aus, wie oft dieser Timer wiederholt werden soll."
+msgstr "Wählen Sie, wie oft dieser Timer wiederholt werden soll."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Wählen Sie, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
@@ -16187,18 +16225,17 @@ msgstr "Einstellen, ob der Standardwert angezeigt wird, und wenn ja, wo er im Ve
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Wählen Sie, ob die Historie des Bildschirmmenüpfades angezeigt wird, und wenn ja, wie."
 
-#, fuzzy
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr "Wählen Sie aus, ob der Timername und der Beschreibung auf wiederholten Timern ausgeführt werden."
+msgstr "Wählen Sie, ob Titel und Beschreibung bei wiederholenden Timern angepasst werden sollen."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr "Wählen Sie aus, ob es ein Zeitfenster geben soll, in dem dieser Timer aktiv sein kann."
+msgstr "Wählen Sie, ob es ein Zeitfenster geben soll, in dem dieser Timer aktiv sein kann."
 
 msgid "Select if this timer activates on a Friday."
-msgstr "Wählen Sie aus, ob dieser Timer an einem Freitag aktiviert werden soll."
+msgstr "Wählen Sie, ob dieser Timer an einem Freitag aktiviert werden soll."
 
 msgid "Select if this timer activates on a Monday."
-msgstr "Wählen Sie aus, ob dieser Timer an einem Montag aktiviert werden soll."
+msgstr "Wählen Sie, ob dieser Timer an einem Montag aktiviert werden soll."
 
 msgid "Select if this timer activates on a Saturday."
 msgstr "Wählen Sie, ob dieser Timer an einem Samstag aktiviert werden soll."
@@ -16207,7 +16244,7 @@ msgid "Select if this timer activates on a Sunday."
 msgstr "Wählen Sie, ob dieser Timer an einem Sonntag aktiviert werden soll."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr "Wählen Sie aus, ob dieser Timer an einem Donnerstag aktiviert werden soll."
+msgstr "Wählen Sie, ob dieser Timer an einem Donnerstag aktiviert werden soll."
 
 msgid "Select if this timer activates on a Tuesday."
 msgstr "Wählen Sie, ob dieser Timer an einem Dienstag aktiviert werden soll."
@@ -16279,19 +16316,19 @@ msgid "Select the Unicable channel to be assigned to this tuner. This is a uniqu
 msgstr "Wählen Sie den Unicable-Kanal, der diesem Tuner zugeordnet werden soll. Das ist eine eindeutige Nummer. Stellen Sie sicher, dass kein anderes Gerät in Ihrem System demselben Kanal zugeordnet wurde."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie den User-Band-Kanal aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+msgstr "Wählen Sie den User-Band-Kanal, der diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie den User-Band-Kanal aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-Schalter verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+msgstr "Wählen Sie den User-Band-Kanal, der diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-Schalter verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+msgstr "Wählen Sie die User-Band-Frequenz, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr "Wählen Sie die Frequenz, die diesem Empfänger zugewiesen werden soll. Dies ist die Frequenz, welche der SCR-Switch oder SCR-LNB verwendet, um den angeforderten Transponder an den Empfänger zu übertragen."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Mit dieser Frequenz leitet der Unicable-Switch den angeforderten Transponder an den Tuner weiter."
+msgstr "Wählen Sie die User-Band-Frequenz, die diesem Tuner zugewiesen werden soll. Mit dieser Frequenz leitet der Unicable-Switch den angeforderten Transponder an den Tuner weiter."
 
 msgid "Select the Yes / True response"
 msgstr "Wähle Ja / Positive Antwort"
@@ -16305,10 +16342,10 @@ msgstr ""
 "Bei 'Standard' gibt es keine Animation."
 
 msgid "Select the channel from which to record:"
-msgstr "Wählen Sie den Kanal aus, auf dem Sie aufnehmen möchten:"
+msgstr "Wählen Sie den Kanal, auf dem Sie aufnehmen möchten:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr "Wählen Sie den Kanal/Service aus, der für diesen Timer verwendet werden soll."
+msgstr "Wählen Sie den Kanal/Service, der für diesen Timer verwendet werden soll."
 
 #
 msgid "Select the character or action under the keyboard cursor"
@@ -16330,7 +16367,7 @@ msgid "Select the date when this timer will activate."
 msgstr "Wählen Sie das Datum, an dem der Timer aktiviert werden soll."
 
 msgid "Select the date when this timer will start."
-msgstr "Wählen Sie das Datum aus, an dem dieser Timer starten soll."
+msgstr "Wählen Sie das Datum, an dem dieser Timer starten soll."
 
 msgid "Select the day of the week that this timer will activate."
 msgstr "Wählen Sie den Wochentag, an dem dieser Timer aktiviert werden soll."
@@ -16363,7 +16400,7 @@ msgid "Select the locale from a menu"
 msgstr "Wählen Sie ein anderes Tastaturlayout"
 
 msgid "Select the location in which to store the recording:"
-msgstr "Wählen Sie den Speicherort aus, an dem die Aufzeichnung gespeichert werden soll:"
+msgstr "Wählen Sie den Speicherort, wo die Aufzeichnung gespeichert werden soll:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wählen Sie den Hersteller Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
@@ -16391,19 +16428,19 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Wählen Sie das Protokoll Ihres Unicable/SCR-Geräts. Zur Auswahl stehen 'SCR Unicable' (Unicable I-Format) oder 'SCR JESS' (Unicable II-Format)."
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wählen Sie den Satelliten aus, der an Port A Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
+msgstr "Wählen Sie den Satelliten, der an Port A Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
 
 msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wählen Sie den Satelliten aus, der an Port B Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
+msgstr "Wählen Sie den Satelliten, der an Port B Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
 
 msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wählen Sie den Satelliten aus, der an Port C Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
+msgstr "Wählen Sie den Satelliten, der an Port C Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
 
 msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wählen Sie den Satelliten aus, der an Port D Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
+msgstr "Wählen Sie den Satelliten, der an Port D Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln. Ist dieser Port nicht belegt, wählen Sie 'Nichts angeschlossen'."
 
 msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
-msgstr "Wählen Sie den Satelliten aus, den Sie konfigurieren möchten. Sobald dieser Satellit konfiguriert ist, können Sie andere Satelliten auswählen und konfigurieren, auf die mit demselben Tuner zugegriffen wird."
+msgstr "Wählen Sie den Satelliten, den Sie konfigurieren möchten. Sobald dieser Satellit konfiguriert ist, können Sie andere Satelliten auswählen und konfigurieren, auf die mit demselben Tuner zugegriffen wird."
 
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr "Wählen Sie den Satelliten, von dem Ihr Receiver empfängt. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Receiver wird versuchen, dies für Sie zu ermitteln."
@@ -16429,10 +16466,10 @@ msgid "Select the source of the default DNS settings."
 msgstr "Wählen Sie die Quelle der Standard-DNS-Einstellungen aus."
 
 msgid "Select the tags that should be used for this recording."
-msgstr "Wählen Sie die Tags aus, die für diese Aufnahme verwendet werden sollen."
+msgstr "Wählen Sie die Tags, die für diese Aufnahme verwendet werden sollen."
 
 msgid "Select the time after which this timer can start."
-msgstr "Wählen Sie die Zeit aus, nach der dieser Timer starten kann."
+msgstr "Wählen Sie die Zeit, nach der dieser Timer starten kann."
 
 msgid "Select the time before which this timer should end."
 msgstr "Wählen Sie die Zeit, vor der dieser Timer enden soll."
@@ -16465,7 +16502,7 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr "Wählen Sie den Typ des verwendeten LNB / Gerätes (normalerweise 'Universal'). Wenn Ihr LNB-Typ nicht verfügbar ist, wählen Sie 'benutzerdefiniert'."
 
 msgid "Select the type of Single Cable Reception device you are using."
-msgstr "Wählen Sie den Typ des Unicable/SCR-Geräts aus, das Sie verwenden."
+msgstr "Wählen Sie den Typ des Unicable/SCR-Geräts, das Sie verwenden."
 
 msgid "Select the type of shutdown desired when the Energy Timer activates."
 msgstr "Wählen Sie die Art der Abschaltung bei Aktivierung der Energiesparfunktion."
@@ -16488,10 +16525,10 @@ msgid "Select what action to take when reaching the end of a media file during p
 msgstr "Das Verhalten des Receivers beim Ende einer Filmwiedergabe kann hier ausgewählt werden."
 
 msgid "Select what do do after the timer has completed."
-msgstr "Wählen Sie aus, was nach Ablauf des Timers geschehen soll."
+msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr "Wählen Sie aus, was nach Abschluss der Timer-Aufnahme geschehen soll."
+msgstr "Wählen Sie, was nach Abschluss der Timer-Aufnahme geschehen soll."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird."
@@ -16519,7 +16556,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "Wählen Sie, was die Tasten Hoch/Runter bewirken sollen."
 
 msgid "Select where the recording should be saved."
-msgstr "Wählen Sie aus, wo die Aufnahme gespeichert werden soll."
+msgstr "Wählen Sie, wo die Aufnahme gespeichert werden soll."
 
 msgid "Select wireless network"
 msgstr "WLAN-Netzwerk auswählen"
@@ -18446,7 +18483,7 @@ msgid ""
 "Please select a different one."
 msgstr ""
 "Das Sicherungsziel ist leider nicht beschreibbar!\n"
-"Bitte wählen Sie ein anderes aus."
+"Wählen Sie ein anderes aus."
 
 msgid "Sort"
 msgstr "Sortierung"
@@ -18664,6 +18701,9 @@ msgstr "Startdatum"
 #
 msgid "Starting directory"
 msgstr "Anfangsverzeichnis mit OK auswählen"
+
+msgid "Starting time"
+msgstr "Kontroll-Vorlaufzeit"
 
 msgid "Starts in a few seconds"
 msgstr "Startet in wenigen Sekunden"
@@ -19551,6 +19591,13 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "Es wurde auf den Sender umgeschaltet, auf dem die Aufnahme läuft.\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Das VPS-Plugin konnte nicht überprüfen, ob der Sender für manuell programmierte Timer VPS unterstützt.\n"
+"VPS wirklich aktivieren?"
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19585,6 +19632,13 @@ msgid ""
 msgstr ""
 "Der Zeitpuffer für Timeshift übersteigt die in den Einstellungen festgelegte Grenze!\n"
 "Was möchten Sie tun?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
+"Der Sender unterstützt vermutlich VPS.\n"
+"Soll VPS aktiviert werden?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Das Aufwachkommando vom Standby wird wiederholend gesendet."
@@ -19661,6 +19715,13 @@ msgstr "Die Ergebnisse des Tests wurden in der Datei %s gespeichert."
 
 msgid "The saved PIN was cleared."
 msgstr "Die PIN wurde zurückgesetzt."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Der Sender unterstützt kein VPS für manuell programmierte Timer!\n"
+"VPS wirklich aktivieren?"
 
 #
 msgid "The servicelist is reloaded."
@@ -20099,6 +20160,9 @@ msgstr "Die Unterdrückung falscher, digitaler Umrisse einstellen. Diese Fehler 
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Die Skalierschärfe einstellen. Dieser Punkt wirkt sich aus, wenn ein Bild vergrößert werden muss."
+
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr "Das VPS-Plugin kann feststellen, ob eine Sendung früher beginnt oder länger dauert als im Timer programmiert wurde. Der Sender muss verlässliche Daten liefern!"
 
 #
 msgid "This plugin is installed."
@@ -21016,7 +21080,6 @@ msgstr "Unbekannter Service!"
 msgid "Unknown user: %d"
 msgstr "Unbekannter Benutzer: %d"
 
-#, fuzzy
 msgid "Unknown!"
 msgstr "Unbekannt!"
 
@@ -21508,6 +21571,86 @@ msgstr "VOD lang"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr "VPS Einstellungen"
+
+msgid "VPS enabled by default"
+msgstr "VPS standardmäßig aktivieren"
+
+msgid "VPS-Plugin Information"
+msgstr "VPS-Plugin Information"
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+"VPS dient dazu, bei Aufnahmen von Sendungen auf Verschiebungen der Anfangszeit und Überziehungen der Sendedauer zu reagieren. VPS wird nur von bestimmten Sendern unterstützt!\n"
+"\n"
+"Wenn VPS aktiviert wird, startet die Aufnahme erst dann, wenn der Sender angibt, dass die Sendung begonnen hat. Die Aufnahme endet, wenn angegeben wird, dass die Sendung vorbei ist.\n"
+"\n"
+"Wenn der Sicherheitsmodus verwendet wird, wird die programmierte Start- und Endzeit eingehalten. Die Aufnahme wird nur ggf. früher starten bzw. länger dauern, aber niemals kürzer.\n"
+"\n"
+"\n"
+"Unterstützte Sender\n"
+"\n"
+"Deutschland:\n"
+"ARD und ZDF einschließlich aller dritten Programme: 3sat, arte, Phoenix, KiKa, ZDFinfo, zdf_neo, zdf.kultur, EinsExtra, EinsPlus, Einsfestival\n"
+"\n"
+"Österreich:\n"
+"ORF\n"
+"\n"
+"Schweiz:\n"
+"SF\n"
+"\n"
+"Tschechien:\n"
+"CT\n"
+"\n"
+"\n"
+"Bei Timern, die manuell (nicht über den EPG) programmiert werden, muss eine VPS-Zeit angegeben werden, um VPS nutzen zu können Die VPS-Zeit ist z.B. die veröffentlichte Startzeit in Zeitschriften. Zur Nutzung der Funktion darf bei manuell angelegten Timern kein Timer-Name angegeben werden."
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr "Das VPS-Plugin prüft gerade, ob der Sender VPS unterstützt ..."
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+"Das VPS-Plugin konnte nicht eindeutig feststellen, ob der Sender VPS unterstützt.\n"
+"Soll VPS trotzdem aktiviert werden?"
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Das VPS-Plugin konnte nicht eindeutig feststellen, ob der Sender VPS unterstützt.\n"
+"VPS wirklich aktivieren?"
+
+msgid "VPS-Time (date)"
+msgstr "VPS-Zeit (Datum)"
+
+msgid "VPS-Time (time)"
+msgstr "VPS-Zeit (Uhrzeit)"
+
 msgid "Valid"
 msgstr "Gültig"
 
@@ -21928,6 +22071,9 @@ msgstr "Aufwecken"
 msgid "Wakeup TV from standby"
 msgstr "TV aus dem Standby aufwecken"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr "Starten aus dem Deep-Standby erlaubt"
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Aufwachzeit bevor ein Timer beginnt (Min)"
 
@@ -22301,6 +22447,9 @@ msgstr "Wenn der Receiver aus dem Standby oder Deep-Standby aufwacht, wird auch 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht das System den Transponder nach Änderungen und speichert diese. Wählen Sie 'Ja' nur, wenn Sie sich über die Auswirkungen bewusst sind!"
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr "Wenn ja ausgewählt, wird VPS automatisch bei Sofortaufnahmen (aktuelle Sendung) aktiviert, soweit VPS vom Sender unterstützt wird."
+
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin möchten Sie die Einstellungen sichern?"
@@ -22378,6 +22527,9 @@ msgstr "Mit dieser Einstellung kann man wahrscheinlich die Signalqualität verbe
 #
 msgid "Without popup"
 msgstr "Ohne Meldung"
+
+msgid "Without query"
+msgstr "ohne Rückfrage"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -22460,6 +22612,9 @@ msgstr "Jemen"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes (safe mode)"
+msgstr "Ja (Sicherheitsmodus)"
+
 #
 msgid "Yes to all"
 msgstr "Ja zu allen"
@@ -22505,6 +22660,9 @@ msgstr "Ja, jetzt einen automatischen Suchlauf durchführen."
 #
 msgid "Yes, do another manual scan now"
 msgstr "Ja, jetzt einen weiteren manuellen Suchlauf durchführen."
+
+msgid "Yes, don't ask again"
+msgstr "Ja, nicht wieder fragen"
 
 #
 msgid "Yes, restore the settings now"
@@ -22907,8 +23065,7 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 "Ihre Internetverbindung funktioniert nicht!\n"
-"\n"
-"Bitte wählen Sie eine Option, um fortzufahren."
+"Wählen Sie eine Option, um fortzufahren."
 
 #
 msgid "Your network configuration has been activated."
@@ -22938,7 +23095,7 @@ msgstr ""
 "Ihre WLAN-Internetverbindung konnte nicht gestartet werden!\n"
 "Ist Ihr WLAN-USB-Stick korrekt angeschlossen?\n"
 "\n"
-"Bitte wählen Sie eine Option, um fortzufahren."
+"Wählen Sie eine Option, um fortzufahren."
 
 #
 msgid "Youth"
@@ -24778,183 +24935,6 @@ msgstr "Umschalten"
 msgid "®"
 msgstr "®"
 
-#
-#~ msgid "<Unknown>"
-#~ msgstr "<unbekannt>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Wählen Sie, ob dieser Timer einmalig oder wiederholt ausgeführt werden soll."
-
-#~ msgid "At End:"
-#~ msgstr "Am Ende:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Kanal nicht in der Gesamtliste"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Wählen Sie einen Tag aus, um die Aufnahme später leichter wiederzufinden."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierten Tagen."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Wählen Sie, ob der Timer nur aufnehmen, nur umschalten, oder aufnehmen und dabei umschalten soll."
-
-#~ msgid "Current location"
-#~ msgstr "Aktuelles Zielverzeichnis"
-
-# Quick Menue
-#~ msgid "Display Setup"
-#~ msgstr "Display einstellen"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Möchten Sie die Aufnahme wirklich löschen?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Timer bearbeiten"
-
-#
-#~ msgid "Extended settings"
-#~ msgstr "Erweiterte Einstellungen"
-
-#~ msgid "Infobar:"
-#~ msgstr "Infoleiste:"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Bitte eine neue Beschreibung eingeben:"
-
-#
-#~ msgid "PowerTimer Entry"
-#~ msgstr "PowerTimer-Eintrag"
-
-#
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Erledigte Timer wirklich löschen?"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "Zweite Infoleiste"
-
-#~ msgid "Secondinfobar:"
-#~ msgstr "Zweite Infoleiste:"
-
-#
-#~ msgid "Select channel to record from"
-#~ msgstr "Kanal auswählen, von dem aufgenommen werden soll"
-
-# PowerTimerEntry.py
-#~ msgid "Select of the number"
-#~ msgstr "Wählen Sie die Anzahl"
-
-#~ msgid "Select target folder"
-#~ msgstr "Wählen Sie das Zielverzeichnis"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Wählen Sie den Kanal, von dem aufgenommen werden soll."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Wählen Sie das Startdatum der Aufnahme."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr ""
-#~ "Wählen Sie die Beschreibung der Aufnahme.\n"
-#~ "\n"
-#~ "Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr ""
-#~ "Wählen Sie den Namen der Aufnahme.\n"
-#~ "\n"
-#~ "Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr ""
-#~ "Wählen Sie die Startzeit der Aufnahme.\n"
-#~ "\n"
-#~ "Mit den Tasten VOL +/- können Sie die Startzeit minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr ""
-#~ "Wählen Sie die Endzeit der Aufnahme.\n"
-#~ "\n"
-#~ "Mit den Tasten P+/CH+ und P-/CH- können Sie die Endzeit minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
-
-#~ msgid "Show receiver image(s)"
-#~ msgstr "Receiver Bild(er) anzeigen"
-
-#
-#~ msgid "Sleep delay"
-#~ msgstr "Ausschaltzeit"
-
-#
-#~ msgid "Starting on"
-#~ msgstr "Beginnend ab"
-
-# PowerTimerList.py
-#~ msgid "Time range:"
-#~ msgstr "Zeitbereich:"
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#
-#~ msgid "Timer Overview"
-#~ msgstr "Timerübersicht"
-
-#
-#~ msgid "Weekday"
-#~ msgstr "Wochentag"
-
-#
-#~ msgid "Weekend"
-#~ msgstr "Wochenende"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Wählen Sie, was nach dem ausgeführten Timer geschehen soll. 'Automatisch' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Wählen Sie das Zielverzeichnis für die Aufnahme."
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Ja, aus der Timerliste löschen und die Aufnahme beenden."
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Ja, aus der Timerliste löschen und die Aufnahme löschen."
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Sie haben keinen Sender zum Aufnehmen ausgewählt."
-
-#~ msgid "Zapped"
-#~ msgstr "Umgeschaltet"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "Automatisch in Deep-Standby gehen"
-
-#~ msgid "auto standby"
-#~ msgstr "Automatisch in Standby gehen"
-
-#
-#~ msgid "daily"
-#~ msgstr "Täglich"
-
-#
-#~ msgid "mins"
-#~ msgstr "Minuten"
-
-msgid "Only in standby"
-msgstr "nur im Standby"
-
-#~ msgid "reboot system"
-#~ msgstr "Systemneustart"
-
-#~ msgid "wakeup"
-#~ msgstr "Aufwachen"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "Aufwachen und in den Standby gehen"
-
-#
-#~ msgid "weekly"
-#~ msgstr "Wöchentlich"
-
-msgid "Without query"
-msgstr "ohne Rückfrage"
+#, python-format
+#~ msgid "VPS Setup Version %s"
+#~ msgstr "VPS Einstellungen Version %s"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 13:02+0000\n"
-"PO-Revision-Date: 2022-08-24 05:50+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"PO-Revision-Date: 2022-08-25 18:32+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1083,6 +1083,9 @@ msgstr "%d.%-m.%Y"
 msgid "%d.%03d GB"
 msgstr "%d.%03d ГБ"
 
+msgid "%d.%B %Y"
+msgstr ""
+
 msgid "%d.%m"
 msgstr "%d.%m"
 
@@ -1320,7 +1323,7 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshif
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
+msgstr "'Декодувати та записувати ECM' дає можливість дешифрувати пізніше, якщо дешифрування під час запису не вдалося. 'Не декодувати, записати ECM' зберігає кодований запис, який можна декодувати під час відтворення. 'Звичайний' означає дешифрування запису та відсутність запису ECM."
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Обробка режиму очікування з телевізора' має вищий пріоритет, ніж 'Обробка введення з телевізора'."
@@ -2280,7 +2283,7 @@ msgid "Add a new tag"
 msgstr "Додати новий тег"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "Додати новий таймер"
 
 msgid "Add a new title"
 msgstr "Додати нову назву"
@@ -2847,7 +2850,7 @@ msgstr "В кінці поточної програми"
 
 #, python-format
 msgid "At end: %s"
-msgstr ""
+msgstr "Наприкінці: %s"
 
 msgid "Athletics"
 msgstr "Легка атлетика"
@@ -4189,6 +4192,12 @@ msgstr "Перевірити"
 
 msgid "Check HDD"
 msgstr "Перевірити HDD"
+
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
 
 msgid "Check power and input state from TV"
 msgstr "Перевірити живлення та стан входу від телевізора"
@@ -6884,6 +6893,18 @@ msgstr "Вкл. Swap при старті"
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Включити дію кнопок вгору/вниз для функції 'все вгору/вниз\"? (на початок/в кінець колонки)"
 
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
+msgstr ""
+
 msgid "Enable ViaSat EPG"
 msgstr "Включити ViaSat ЕПГ"
 
@@ -9020,11 +9041,17 @@ msgstr "Якщо встановлено 'ніколи', перезапуск в�
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Якщо встановлено 'ніколи', буде написано журнал аварії, незважаючи на те, що це перший раз."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Якщо дію можна налаштувати користувачем, запис про неї буде позначено символом '(C)'."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Якщо Ви редагуєте файл, Ви можете встановити початкову позицію курсору в кінці або на початку рядка."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Якщо включено, вихідна роздільність приймача буде адаптована до роздільності відеоконтенту"
@@ -9046,6 +9073,9 @@ msgstr "Якщо логи займають занадто багато пам'я
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Якщо відключено, приховати значок відключення звуку або відключення інформації після декількох секунд."
+
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Якщо встановлено значення 'Так', для подій глибокого очікування на телевізор надсилатимуться ті самі команди, що й під час звичайних подій очікування."
@@ -9153,6 +9183,9 @@ msgid ""
 msgstr ""
 "Тюнер звільнений для запису за таймером:\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
 
 msgid "In progress"
 msgstr "В процесі"
@@ -11886,6 +11919,9 @@ msgstr "Тільки розширення."
 
 msgid "Only free scan"
 msgstr "Сканувати тільки відкриті"
+
+msgid "Only in standby"
+msgstr "лише в режимі очікування"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Записувати лише інформацію про налагодження категорії GStreamer. * означає всі категорії."
@@ -14855,6 +14891,9 @@ msgstr "Активація Seekbar"
 msgid "Seekbar sensibility"
 msgstr "Крок Seekbar"
 
+msgid "Seeking connected events"
+msgstr ""
+
 msgid "Select"
 msgstr "Вибрати"
 
@@ -17470,6 +17509,9 @@ msgstr ""
 msgid "Starting directory"
 msgstr "початкова директорія"
 
+msgid "Starting time"
+msgstr ""
+
 msgid "Starts in a few seconds"
 msgstr "Починається через кілька секунд"
 
@@ -18298,6 +18340,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "ТБ переключено на записуваний канал!\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18329,6 +18376,11 @@ msgid ""
 msgstr ""
 "Розмір буфера таймшифта перевищує ліміт, зазначений в налаштуваннях.\n"
 "Що ви хочете зробити?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Команда пробудження з режиму очікування буде надіслано кілька разів."
@@ -18401,6 +18453,11 @@ msgstr "Результати були записані до %s."
 
 msgid "The saved PIN was cleared."
 msgstr "Збережений Пін-код очищено."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "Список каналів перезавантажений."
@@ -18812,6 +18869,9 @@ msgstr "Ця опція встановлює придушення фіктивн
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ця опція налаштовує різкість зображення, має значення, якщо зображення має бути збільшено."
+
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
 
 msgid "This plugin is installed."
 msgstr "Плагін встановлений."
@@ -20089,6 +20149,59 @@ msgstr "VOD довге натискання"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr "Коректна"
 
@@ -20464,6 +20577,9 @@ msgstr "Включення"
 msgid "Wakeup TV from standby"
 msgstr "Пробудити ТВ з режиму очікування"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Час включення до початку таймера [хв]"
 
@@ -20806,6 +20922,9 @@ msgstr "Коли приймач виходить із режиму очікув�
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "При від'ємному значенні, система буде сканувати транспондер у фоновому режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно впевнені, що робите."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Де хочете зробити копію своїх налаштувань?"
 
@@ -20877,6 +20996,9 @@ msgstr "За допомогою цієї опції Ви може попробу
 
 msgid "Without popup"
 msgstr "Без спливаючих вікон"
+
+msgid "Without query"
+msgstr "без Запиту"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -20954,6 +21076,9 @@ msgstr "Йємен"
 msgid "Yes"
 msgstr "Так"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 msgid "Yes to all"
 msgstr "Так для всіх"
 
@@ -20992,6 +21117,9 @@ msgstr "Так, розпочати автоматичний пошук"
 
 msgid "Yes, do another manual scan now"
 msgstr "Так, почати інший ручний пошук"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 msgid "Yes, restore the settings now"
 msgstr "Так, відновити мої налаштування зараз"
@@ -23180,9 +23308,6 @@ msgstr "®"
 #~ msgid "mins"
 #~ msgstr "хвилин"
 
-msgid "Only in standby"
-msgstr "лише в режимі очікування"
-
 #~ msgid "reboot system"
 #~ msgstr "перезавантажити систему"
 
@@ -23194,6 +23319,3 @@ msgstr "лише в режимі очікування"
 
 #~ msgid "weekly"
 #~ msgstr "щотижня"
-
-msgid "Without query"
-msgstr "без Запиту"

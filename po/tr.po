@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1061,6 +1061,9 @@ msgstr "%d.%-m.%Y"
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
+msgid "%d.%B %Y"
+msgstr ""
+
 msgid "%d.%m"
 msgstr "%d.%m"
 
@@ -1308,6 +1311,9 @@ msgstr "'%s' yüklü değil ve bilinen bir paket yok"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
 msgstr "'Saatler içinde tampon' veya 'son olayların sayısı'. Eski zaman kayması dosyalarını silmek için, önce oluşan koşul önceliğe sahiptir."
+
+msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr ""
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Beklemeyi TV'den işleme', 'TV'den girişi işleme'den daha yüksek önceliğe sahiptir."
@@ -1683,6 +1689,12 @@ msgstr "25p/60p"
 msgid "29.97"
 msgstr "29.97"
 
+msgid "2nd InfoBar"
+msgstr "2. bilgi çubuğu"
+
+msgid "2nd InfoBar Actions"
+msgstr "2.Bilgi Çubuğu Eylemleri"
+
 msgid "2nd InfoBar ECM"
 msgstr "2. bilgi çubuğu ECM"
 
@@ -1691,12 +1703,6 @@ msgstr "2. bilgi çubuğu BİLGİ"
 
 msgid "2nd InfoBar timeout"
 msgstr "2. bilgi çubuğu zaman aşımı"
-
-msgid "2nd InfoBar"
-msgstr "2. bilgi çubuğu"
-
-msgid "2nd InfoBar Actions"
-msgstr "2.Bilgi Çubuğu Eylemleri"
 
 msgid "2s"
 msgstr "2s"
@@ -1938,10 +1944,6 @@ msgid "<Last timer location>"
 msgstr "<Son zamanlayıcı konumu>"
 
 #
-msgid "<Unknown>"
-msgstr "<bilinmiyor>"
-
-#
 msgid "?"
 msgstr "?"
 
@@ -2051,9 +2053,6 @@ msgstr ""
 "Bir kayıt, kayıt zamanlayıcısı veya güç zamanlayıcısı çalışıyor veya 15 dakika içinde başlayacak. %s 30 dakikaya uzatıldı. %s %s cihazınız, kayıt veya güç zamanlayıcı olayından sonra Derin Bekleme moduna geçecektir.\n"
 "\n"
 "Şimdi Derin Bekleme'ye geçilsin mi?"
-
-msgid "A repeating timer or just once?"
-msgstr "Tekrarlanan bir zamanlayıcı mı, yoksa sadece bir kez mi?"
 
 #
 #, python-format
@@ -2307,14 +2306,26 @@ msgstr "Kayıt Zamanlayıcı Ekle"
 msgid "Add Timer"
 msgstr "Zamanlayıcı ekle"
 
-msgid "Add ZapTimer"
-msgstr "Zap Zamanlayıcı Ekle"
-
 msgid "Add Zap+RecordTimer"
 msgstr "Zap + Kayıt Zamanlayıcısı Ekle"
 
+msgid "Add ZapTimer"
+msgstr "Zap Zamanlayıcı Ekle"
+
 msgid "Add a DNS entry"
 msgstr "DNS girişi ekleyin"
+
+msgid "Add a RecordTimer"
+msgstr "Kayıt zamanlayıcı ekle"
+
+msgid "Add a RecordTimer for current event"
+msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
+
+msgid "Add a ZapTimer for current event"
+msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
+
+msgid "Add a ZapTimer for next event"
+msgstr "Sonraki etkinliğe zap zamanlayıcı ekle"
 
 #
 msgid "Add a mark"
@@ -2323,27 +2334,18 @@ msgstr "İşaret ekle"
 msgid "Add a new tag"
 msgstr "Yeni bir etiket ekle"
 
+msgid "Add a new timer"
+msgstr ""
+
 #
 msgid "Add a new title"
 msgstr "Yeni başlık ekle"
-
-msgid "Add a RecordTimer"
-msgstr "Kayıt zamanlayıcı ekle"
-
-msgid "Add a RecordTimer for current event"
-msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
 
 msgid "Add a service to the Volume Offsets list"
 msgstr "Birim Ofsetleri listesine bir hizmet ekleyin"
 
 msgid "Add a timer for the current event"
 msgstr "Mevcut etkinlik için bir zamanlayıcı ekleyin"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
-
-msgid "Add a ZapTimer for next event"
-msgstr "Sonraki etkinliğe zap zamanlayıcı ekle"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
@@ -2495,15 +2497,15 @@ msgid "After PowerLost"
 msgstr "PowerLost'dan sonra"
 
 #
-msgid "After recording"
-msgstr "Kayıttan Sonra"
-
-#
 msgid "After event"
 msgstr "Etkinlikten sonra"
 
 msgid "After pressing OK, please wait!"
 msgstr "OK tuşuna bastıktan sonra lütfen bekleyin!"
+
+#
+msgid "After recording"
+msgstr "Kayıttan Sonra"
 
 msgid "Akan"
 msgstr "İrade"
@@ -2931,11 +2933,12 @@ msgstr "Astra 2 28.2e"
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
 
-msgid "At End:"
-msgstr "Sonda:"
-
 msgid "At end of current program"
 msgstr "Mevcut programın sonunda"
+
+#, python-format
+msgid "At end: %s"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atletizm"
@@ -3023,10 +3026,6 @@ msgid "Auto"
 msgstr "Otomatik"
 
 #
-msgid "Auto deep standby"
-msgstr "Oto Derin Uyku"
-
-#
 msgid "Auto Detect"
 msgstr "Otomatik algılama"
 
@@ -3043,10 +3042,6 @@ msgstr "Otomatik dil seçimi"
 msgid "Auto Modes Selected."
 msgstr "Seçilen Otomatik Modlar."
 
-#
-msgid "Auto standby"
-msgstr "Oto Bekleme"
-
 msgid "Auto Timer"
 msgstr "Otomatik Zamanlayıcı"
 
@@ -3059,6 +3054,10 @@ msgstr "Otomatik Ses Seviyesi"
 #
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Belirtilen sürelerde otomatik bölümlere ayrılsın mı? dakika (0=ayırma)"
+
+#
+msgid "Auto deep standby"
+msgstr "Oto Derin Uyku"
 
 #
 msgid "Auto flesh"
@@ -3077,6 +3076,13 @@ msgstr "Otomatik yükleme günlüğü"
 #
 msgid "Auto scart switching"
 msgstr "Otomatik scart anahtarlama"
+
+msgid "Auto shut down"
+msgstr ""
+
+#
+msgid "Auto standby"
+msgstr "Oto Bekleme"
 
 msgid "Auto(not available)"
 msgstr "Otomatik (mevcut değil)"
@@ -4042,6 +4048,9 @@ msgstr "Halihazırda aktif olan dış görünümdeki değişiklikleri iptal edin
 msgid "Cancel any text changes and exit"
 msgstr "Metin değişikliklerini iptal et ve çık"
 
+msgid "Cancel conflict resolution"
+msgstr ""
+
 #
 msgid "Cancel execution?"
 msgstr "Yürütmeyi iptal mi ettin?"
@@ -4225,6 +4234,9 @@ msgstr "Kanal"
 msgid "Channel +/- button mode"
 msgstr "+/- tuş kipini değiştir"
 
+msgid "Channel / Service"
+msgstr ""
+
 #
 msgid "Channel 1"
 msgstr "Kanal 1"
@@ -4277,10 +4289,6 @@ msgstr "Kanal Liste imleç davranışı*"
 
 msgid "Channel list type"
 msgstr "Kanal liste tipi"
-
-#
-msgid "Channel not in services list"
-msgstr "Kanal, kanal listesinde yok"
 
 msgid "Channel preview mode"
 msgstr "Kanal önizleme kipi"
@@ -4347,6 +4355,12 @@ msgstr "Kontrol et"
 
 msgid "Check HDD"
 msgstr "HDD denetimi"
+
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
 
 msgid "Check power and input state from TV"
 msgstr "TV'den güç ve giriş durumunu kontrol edin"
@@ -4428,12 +4442,6 @@ msgstr "EPG olaylarında derecelendirme bilgilerinin kodunu çözmek için bir �
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "IceTV hizmetlerinde bu cihazı tanımlayacak bir etiket seçin."
 
-msgid "Choose a tag for easy finding a recording."
-msgstr "Kaydı kolay bulmak için etiket seç."
-
-msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr "Günlük, Haftalık, Haftaiçi veya tanımladığınız birini seçin."
-
 msgid "Choose dvb wait delay for ci response."
 msgstr "Ci yanıtı için dvb bekleme gecikmesini seçin."
 
@@ -4512,9 +4520,6 @@ msgstr "Hangi menü / ayar seviyesinin görüntüleneceğini seçin. 'Uzman' sev
 msgid "Choose which tuner to configure."
 msgstr "Yapılandırılacak tuneri seçin."
 
-msgid "Chose between record and ZAP."
-msgstr "Kayıt ve ZAP tan birini seç."
-
 msgid "Christmas Island"
 msgstr "Noel Adası"
 
@@ -4544,6 +4549,15 @@ msgstr "Temiz (Sadece yanıp sön ve temizlemeye başla)"
 msgid "Clean network 'Trash'"
 msgstr "Temiz ağ çöp kutuları"
 
+msgid "Clean up (delete) all completed timers?"
+msgstr ""
+
+msgid "Clean up and remove all completed timers"
+msgstr ""
+
+msgid "Clean up and remove all completed timers?"
+msgstr ""
+
 msgid "Cleaning Trashes"
 msgstr "Çöpler boşaltılıyor"
 
@@ -4556,6 +4570,10 @@ msgid "Clear"
 msgstr "Temizle"
 
 #
+msgid "Clear Log"
+msgstr "Günlüğünü temizle"
+
+#
 msgid "Clear before scan"
 msgstr "Tarama öncesinde kanal listesini temizle"
 
@@ -4563,12 +4581,11 @@ msgid "Clear fixed"
 msgstr "Sabiti temizle"
 
 #
-msgid "Clear Log"
-msgstr "Günlüğünü temizle"
-
-#
 msgid "Clear playlist"
 msgstr "Oynatma listesini temizle"
+
+msgid "Clear the logs for this timer"
+msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr "Sanal bellek önbelleklerini temizleyin"
@@ -4626,6 +4643,9 @@ msgstr "Ekranı kapat"
 
 msgid "Close the screen and exit all menus"
 msgstr "Ekranı kapatın ve tüm menülerden çıkın"
+
+msgid "Close the screen without saving any changes"
+msgstr ""
 
 msgid "Close the window"
 msgstr "Pencereyi kapat"
@@ -5151,6 +5171,9 @@ msgstr "Hangi video çıkış konektörü kullanılacağını belirleyin."
 msgid "Configuring"
 msgstr "Yapılandırılıyor"
 
+msgid "ConflictTimer Actions"
+msgstr ""
+
 #
 msgid "ConflictTimer Overview"
 msgstr "Çakışan zamanlama"
@@ -5484,9 +5507,6 @@ msgstr "Mevcut kilitlenme günlüğü"
 msgid "Current installed"
 msgstr "Mevcut yüklü"
 
-msgid "Current location"
-msgstr "Geçerli konum"
-
 #, python-format
 msgid "Current mode: %s \n"
 msgstr "Mevcut kip: %s \n"
@@ -5754,6 +5774,9 @@ msgstr "Gün Mon-D"
 msgid "Day Mon-DD"
 msgstr "Pzt-DD Gün"
 
+msgid "Day of week"
+msgstr ""
+
 msgid "Dayname D Month Year"
 msgstr "Gün Adı D Ay Yıl"
 
@@ -5873,6 +5896,9 @@ msgstr "Şifre Çözme ve Ebeveyn Kontrolü"
 #
 msgid "Deep Standby"
 msgstr "Derin Uyku"
+
+msgid "Deep standby"
+msgstr ""
 
 #
 msgid "Default"
@@ -6041,6 +6067,10 @@ msgstr "Gecikme zamanı"
 msgid "Delay:"
 msgstr "Gecikme:"
 
+#, python-format
+msgid "Delay: %s"
+msgstr ""
+
 #
 msgid "Delete"
 msgstr "Sil"
@@ -6145,6 +6175,9 @@ msgstr "Şu anda görüntülenen günlük dosyasını silin"
 
 msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr "Şu anda vurgulanan hizmeti Hacim Ofsetleri listesinden silin"
+
+msgid "Delete the currently selected timer"
+msgstr ""
 
 msgid "Delete the selected files or directories"
 msgstr "Seçilen dosyaları veya dizinleri silin"
@@ -6419,12 +6452,12 @@ msgstr ">16:9 içeriği şu şekilde göster"
 msgid "Display Settings"
 msgstr "Görünüm Ayarları"
 
-msgid "Display Setup"
-msgstr "Görünüm Kurulumu"
-
 #
 msgid "Display and user interface"
 msgstr "Görünüm ve kullanıcı arayüzü"
+
+msgid "Display log for the currently selected timer"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Sonraki filmi oynatmadan önce mesaj göster"
@@ -6550,9 +6583,6 @@ msgstr ""
 "Tüm etiketleri gerçekten silmek istiyor musunuz?\n"
 "('İptal'in bunu geri almayacağını unutmayın!)"
 
-msgid "Do you really want to delete the recording?"
-msgstr "Kayıtları gerçekten silmek istiyor musunuz?"
-
 msgid "Do you really want to delete this timer?"
 msgstr "Bu zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
@@ -6598,6 +6628,10 @@ msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "%s adlı yer imini kaldırmak istiyor musunuz?"
+
+#, python-format
+msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
 
 msgid "Do you want change rights?\n"
 msgstr "Değişiklik hakları istiyor musunuz?\n"
@@ -7003,9 +7037,6 @@ msgstr "Düzenleme modu kapalı"
 msgid "Edit Mode On"
 msgstr "Düzenleme modu açık"
 
-msgid "Edit New Entry"
-msgstr "Yeni girişi düzenle"
-
 msgid "Edit Quad Channel Entry"
 msgstr "Dört Kanal Girişini Düzenle"
 
@@ -7050,6 +7081,9 @@ msgid "Edit the DNS configuration of your %s %s."
 msgstr ""
 
 msgid "Edit the NewCamd DES Key."
+msgstr ""
+
+msgid "Edit the currently selected timer"
 msgstr ""
 
 #, python-format
@@ -7154,6 +7188,9 @@ msgstr "GStreamer ardışık düzen grafiklerini etkinleştir *"
 msgid "Enable IceTV"
 msgstr "IceTV'yi etkinleştir"
 
+msgid "Enable InfoBar fade-out"
+msgstr "Bilgi çubuğu soldurmayı etkinleştir"
+
 msgid "Enable MHW EPG"
 msgstr "MHW EPG etkinleştir"
 
@@ -7165,9 +7202,6 @@ msgstr "Netmed EPG etkinleştir"
 
 msgid "Enable Network IP address check"
 msgstr "Ağ İP adresi denetimini etkinleştir"
-
-msgid "Enable network traffic check"
-msgstr "Ağ Trafiği kontrolünü etkinleştir"
 
 msgid "Enable OpenTV EPG"
 msgstr "OpenTV EPG'yi etkinleştir"
@@ -7181,6 +7215,18 @@ msgstr "Başlangıçta Takas Etkinleştir"
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "'Tümü yukarı / aşağı' işlevi için Yukarı / Aşağı düğmelerini etkinleştir? (sütunun başında / sonunda)"
+
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
+msgstr ""
 
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG etkinleştir"
@@ -7240,15 +7286,15 @@ msgstr "Yedek uzaktan alıcıyı etkinleştir"
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG etkinleştir"
 
-msgid "Enable InfoBar fade-out"
-msgstr "Bilgi çubuğu soldurmayı etkinleştir"
-
 msgid "Enable intro screen"
 msgstr "Giriş ekranını etkinleştir"
 
 #
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
+
+msgid "Enable network traffic check"
+msgstr "Ağ Trafiği kontrolünü etkinleştir"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "HDMI-CEC kullanarak etkinleştirin veya devre dışı bırakın."
@@ -7357,15 +7403,6 @@ msgstr "Bitiş zamanı"
 msgid "Energy Timer"
 msgstr "Enerji Zamanlayıcı"
 
-msgid "Energy saver action"
-msgstr "Enerji tasarrufu eylemi"
-
-msgid "Energy saver activation delay"
-msgstr "Enerji tasarrufu etkinleştirme gecikmesi"
-
-msgid "Energy timer"
-msgstr "Enerji zamanlayıcı"
-
 #, python-format
 msgid "Energy Timer: %d minute remains."
 msgid_plural "Energy Timer: %d minutes remain."
@@ -7378,6 +7415,21 @@ msgstr[0] "Enerji zamanlayıcısı: %d saniye kaldı."
 
 msgid "Energy Timer: Inactive."
 msgstr "Enerji zamanlayıcısı: Aktif değil."
+
+msgid "Energy saver action"
+msgstr "Enerji tasarrufu eylemi"
+
+msgid "Energy saver activation delay"
+msgstr "Enerji tasarrufu etkinleştirme gecikmesi"
+
+msgid "Energy timer"
+msgstr "Enerji zamanlayıcı"
+
+msgid "EnergyTimer Actions"
+msgstr ""
+
+msgid "EnergyTimer Overview"
+msgstr ""
 
 #
 msgid "English"
@@ -7435,6 +7487,12 @@ msgstr "DNS (Dinamik Ad Sunucusu) %d'nin IP adresini girin."
 
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
+
+msgid "Enter a description for this timer."
+msgstr ""
+
+msgid "Enter a name for this timer."
+msgstr ""
 
 msgid "Enter a new name for this device."
 msgstr "Yeni buket için isim girin."
@@ -7682,6 +7740,9 @@ msgstr ""
 #, python-format
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Hata: %s %s, %s değil! Lütfen daha sonra tekrar deneyiniz."
+
+msgid "Error: A location to save the recording has not been selected!"
+msgstr ""
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -7934,9 +7995,6 @@ msgstr "Gelişmiş Kurulum..."
 
 msgid "Extended Shares"
 msgstr "Genişletilmiş paylaşımlar"
-
-msgid "Extended settings"
-msgstr "Genişletilmiş ayarlar"
 
 #
 msgid "Extension Actions"
@@ -9303,6 +9361,24 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP"
 
+msgid "IP Address 1"
+msgstr ""
+
+msgid "IP Address 2"
+msgstr ""
+
+msgid "IP Address 3"
+msgstr ""
+
+msgid "IP Address 4"
+msgstr ""
+
+msgid "IP Address 5"
+msgstr ""
+
+msgid "IP Address to be checked on timer activation."
+msgstr ""
+
 #
 msgid "IP address"
 msgstr "IP Adresi"
@@ -9400,11 +9476,17 @@ msgstr "Eğer 'asla' ise, 100 çarpışmadan sonra buna rağmen tekrar çalışm
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Eğer 'asla' ise, ilk çarpışma için buna rağmen çarpışma günlüğü yazacaktır."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Bir eylem kullanıcı tarafından yapılandırılabilirse, yardım girişi bir '(C)' soneki ile işaretlenecektir."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın sonunda veya başında ayarlayabilirsiniz."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Etkinleştirilirse alıcının çıkış çözünürlüğü video içerik çözünürlüğüne uygun olmaya çalışacak"
@@ -9427,59 +9509,11 @@ msgstr "Günlükler kullanılan maksimum alanı kullanıyorsa, en büyük siline
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Ses kapalıysa, birkaç saniye sonra sessiz simgesini gizleyin veya bilgileri kapatın."
 
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "'Hayır' olarak ayarlanırsa, zaman kaymasını duraklattıktan veya kesintiye uğrattıktan sonra bile eski olayları kaydedebilirsiniz."
-
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "'Hayır' olarak ayarlanırsa, zaman kayması yalnızca bir arabellek dosyası kullanılır. 'Eski dosyalara [dakika]] ve' Timeshift boş alan kontrolü 'için Timeshift'i kontrol etmenizi tavsiye ederiz. ayarlamak."
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "'evet' EPG bilgisi olmayan kanallar gösterilmez."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "'Evet' seçilirse tarayıcıda 'PO' paketlerini gösterecek."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "'Evet' seçilirse tarayıcıda 'SRC' paketlerini gösterecek."
-
-msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
-msgstr "'evet' EPG'de küçük TV ekranı gösterir."
-
-msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr "'Evet' olarak ayarlanmışsa sinyal değerleri (SNR, vb.) API V3'ten hesaplanacaktır. Bu, şimdi değiştirilen eski bir API sürümüdür."
-
-msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "'evet' EPG her açıldığında buketler görüntülenir."
-
-msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
-msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görüntülenir."
-
-msgid "Select 'Yes' to display the channel number in the InfoBar."
-msgstr "Eğer 'evet' seçilirse bilgi çubuğunda kanal numarası görülür."
-
-msgid "Select 'Yes' to display the InfoBar when a new event starts."
-msgstr "'evet' Yeni bir etkinlik başladığında bilgi-çubuğu görüntülenir."
-
-msgid "Select 'Yes' to display the InfoBar when changing channels."
-msgstr "'evet' Kanal değiştirildiğinde bilgi-çubuğu görüntülenir."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list."
-msgstr "'evet' EPG listesinde kanal önizlemesi görüntülenir."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
-msgstr "Eğer 'evet' ayarlanırsa kanal listesinde kanal önizlemesi görüntülenir. Seçilen kanalın önizlemesi için OK tuşuna basın, listeden çıkmak ve o kanalı izlemek için OK tuşuna bir daha basın. Kanalı değiştirmek istemiyorsanız EXIT' tuşuna basın."
-
-msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
-msgstr "'Evet' olarak ayarlanırsa, etkinlik içinde bir noktaya atlamak için arama çubuğunu kullanmanıza izin verir."
-
-msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
-msgstr "'Yes olarak ayarlanırsa; Medya oynatma sırasında Hızlı Yönlendirme veya Geri Sarma sırasında bilgi çubuğu görüntülenecektir."
-
-msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Eğer 'evet' olarak ayarlandıysa; bilgi çubuğu 'duraklatıldı' durumunda kalıcı olarak gösterilmeye devam edecek (zaman aşımı yok)."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam eder."
@@ -9524,6 +9558,9 @@ msgstr ""
 
 msgid "Igbo"
 msgstr "İgbo Dili"
+
+msgid "Ignore"
+msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "DVB-C ad alanı alt ağını yoksay"
@@ -9582,6 +9619,9 @@ msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
 "\n"
 msgstr "Bir zamanlayıcıyı kaydetmek için bir radyo başarılı bir şekilde serbest bırakıldı:\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
 
 #
 msgid "In progress"
@@ -9697,9 +9737,15 @@ msgstr "Bilgi simgesi genişliği"
 msgid "InfoBar"
 msgstr "Bilgi Çubuğu"
 
+msgid "InfoBar EPG"
+msgstr "Bilgi çubuğu EPGsi"
+
 #
 msgid "InfoBar EPG Actions"
 msgstr "Bilgi Çubuğu EPG Eylemleri"
+
+msgid "InfoBar EPG Settings"
+msgstr "EPG bilgi çubuğu ayarları"
 
 #
 msgid "InfoBar EPG mode"
@@ -9715,20 +9761,11 @@ msgstr "Bilgi Çubuğu RDS Eylemleri"
 msgid "InfoBar Show/Hide Actions"
 msgstr "Bilgi Çubuğu Eylemleri Göster/Gizle"
 
-msgid "InfoBar EPG"
-msgstr "Bilgi çubuğu EPGsi"
-
 msgid "InfoBar fade-out speed"
 msgstr "Bilgi çubuğu soldurma hızı"
 
 msgid "InfoBar front end data source"
 msgstr "Bilgi çubuğu önyüz veri kaynağı"
-
-msgid "Infobar:"
-msgstr "Bilgi Çubuğu:"
-
-msgid "InfoBar EPG Settings"
-msgstr "EPG bilgi çubuğu ayarları"
 
 #
 msgid "Information"
@@ -11886,10 +11923,10 @@ msgstr "Yeni program bilgisi"
 msgid "New version:"
 msgstr "Yeni sürüm:"
 
-msgid "NewCamd DES Key"
+msgid "NewCamd"
 msgstr ""
 
-msgid "NewCamd"
+msgid "NewCamd DES Key"
 msgstr ""
 
 msgid "News"
@@ -12236,6 +12273,9 @@ msgstr "NodeID"
 msgid "NodeID: "
 msgstr "NodeID: "
 
+msgid "Nominate how many IP Addresses are to be checked for active connections."
+msgstr ""
+
 #
 msgid "None"
 msgstr "Yok"
@@ -12372,6 +12412,9 @@ msgstr "Şimdi, arka planın parlaklığını mümkün olduğunca açmak için k
 msgid "Number"
 msgstr "Sayı"
 
+msgid "Number of IP Addresses"
+msgstr ""
+
 msgid "Number of digits in channel number"
 msgstr "Kanal numarasındaki basamak sayısı"
 
@@ -12490,6 +12533,10 @@ msgstr "Filmin sonunda (menü olarak)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Geçerli ONID'lerde, frekans alt ağ bölümünü yoksay"
 
+#
+msgid "Once"
+msgstr "birkez"
+
 msgid "Once per day"
 msgstr "Günde bir"
 
@@ -12518,6 +12565,9 @@ msgstr "Yalnızca eklentiler."
 msgid "Only free scan"
 msgstr "Yanlızca şifresiz arama"
 
+msgid "Only in standby"
+msgstr "sadece Beklemede"
+
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Yalnızca GStreamer kategorisinin hata ayıklama bilgilerini günlüğe kaydedin. * tüm kategorileri ifade eder."
 
@@ -12532,9 +12582,6 @@ msgstr "Sadece başlangıçta"
 
 msgid "Only provider"
 msgstr "Yalnızca sağlayıcı"
-
-msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
-msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
 
 msgid "Open"
 msgstr "Aç"
@@ -13237,9 +13284,6 @@ msgstr "Lütfen yeni kasör için bir ad girin"
 msgid "Please enter name of the new symlink"
 msgstr "Lütfen yeni bağlantının adını girin"
 
-msgid "Please enter new description:"
-msgstr "Lütfen yeni açıklama girin:"
-
 #
 msgid "Please enter new name:"
 msgstr "Lütfen yeni bir isim girin:"
@@ -13326,10 +13370,6 @@ msgid "Please select a sub service..."
 msgstr "Lütfen bir alt servis seçin..."
 
 #
-msgid "Please select the sub-service to record:"
-msgstr "Lütfen kaydetmek istediğiniz alt servisi seçin..."
-
-#
 msgid "Please select a subservice..."
 msgstr "Lütfen bir alt servis seçin..."
 
@@ -13374,6 +13414,10 @@ msgstr ""
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr "Lütfen fiziksel konumunuza en yakın olan bölgeyi seçin. Bölge, alabileceğiniz kanallar için doğru rehber bilgilerini sağlamamız için gereklidir."
+
+#
+msgid "Please select the sub-service to record:"
+msgstr "Lütfen kaydetmek istediğiniz alt servisi seçin..."
 
 #
 msgid ""
@@ -13711,9 +13755,6 @@ msgstr "Bekleme sırasında Güç LED'i durumu."
 msgid "Power On Display"
 msgstr "Göstergedeki güç"
 
-msgid "PowerTimers"
-msgstr "Güç Zamanlayıcıları"
-
 msgid "Power long"
 msgstr "Power long"
 
@@ -13730,21 +13771,26 @@ msgstr "Güç eşik Daha fazla bilgi için alıcınızın kullanım kılavuzuna 
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
+msgid "PowerTimer Actions"
+msgstr ""
+
 msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer DeepStandby"
-
-#
-msgid "PowerTimer Entry"
-msgstr "Zamanlayıcı girişi"
-
-msgid "PowerTimer log"
-msgstr "Zamanlayıcı günlüğü"
 
 msgid "PowerTimer Overview"
 msgstr "Zamanlayıcı genel bakış"
 
+msgid "PowerTimer Settings"
+msgstr ""
+
 msgid "PowerTimer Standby"
 msgstr "PowerTimer Standby"
+
+msgid "PowerTimer log"
+msgstr "Zamanlayıcı günlüğü"
+
+msgid "PowerTimers"
+msgstr "Güç Zamanlayıcıları"
 
 #
 msgid "Predefined"
@@ -14333,10 +14379,6 @@ msgid "Really close without saving settings?"
 msgstr "Ayarlarınızı saklamadan çıkmak istediğinizden emin misiniz?"
 
 #
-msgid "Really delete completed timers?"
-msgstr "İşi bitmiş zamanlayıcıları silmek istiyor musunuz?"
-
-#
 msgid "Really delete this entry?"
 msgstr "Bu girişi gerçekten sil?"
 
@@ -14453,6 +14495,21 @@ msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırland
 msgid "Record write error (no space on disk?)"
 msgstr "Kayıt yazma hatası (diskte yer yok mu?)"
 
+msgid "RecordTimer"
+msgstr ""
+
+msgid "RecordTimer Actions"
+msgstr ""
+
+msgid "RecordTimer Overview"
+msgstr ""
+
+msgid "RecordTimer Settings"
+msgstr ""
+
+msgid "RecordTimers"
+msgstr ""
+
 msgid "Recordable media toolbox"
 msgstr "Kaydedilebilir medya araç kutusu"
 
@@ -14480,6 +14537,9 @@ msgstr "Kayıt tamamlandı"
 
 msgid "Recording in progress"
 msgstr "Kayıt devam ediyor"
+
+msgid "Recording location"
+msgstr ""
 
 msgid "Recording running"
 msgstr "Koşu kaydı"
@@ -14834,6 +14894,13 @@ msgstr "Bekleme komutlarını tekrarla"
 #
 msgid "Repeat type"
 msgstr "Tekrar Tipi"
+
+#
+msgid "Repeated"
+msgstr "tekrarlandı"
+
+msgid "Repeating event is currently active, what do you want to do?"
+msgstr ""
 
 #
 msgid "Repeating event is currently recording, what do you want to do?"
@@ -15348,6 +15415,9 @@ msgstr "Cti"
 msgid "Sat Finder"
 msgstr "Sat Bulucu"
 
+msgid "Sat-Sun"
+msgstr ""
+
 #
 msgid "Satellite"
 msgstr "Uydu"
@@ -15452,6 +15522,9 @@ msgstr ""
 
 msgid "Save the left folder list location on exit."
 msgstr "Çıkışta soldaki klasör listesi konumunu kaydedin."
+
+msgid "Save the log changes and exit"
+msgstr ""
 
 msgid "Save the right folder list location on exit."
 msgstr "Çıkışta doğru klasör listesi konumunu kaydedin."
@@ -15646,15 +15719,9 @@ msgstr "Batı aranıyor ..."
 msgid "Second cable of motorized LNB"
 msgstr "Motorlu LNB'nin ikinci kablosu"
 
-msgid "SecondInfoBar"
-msgstr "İkinci Bilgi Çubuğu"
-
 #
 msgid "Secondary DNS"
 msgstr "İkincil DNS"
-
-msgid "Secondinfobar:"
-msgstr "İkinci Bilgi Çubuğu:"
 
 msgid "Security"
 msgstr "Güvenlik"
@@ -15697,6 +15764,9 @@ msgstr "Arama çubuğu etkinleştirme"
 msgid "Seekbar sensibility"
 msgstr "Arama-çubuğu duyarlılığı"
 
+msgid "Seeking connected events"
+msgstr ""
+
 #
 msgid "Select"
 msgstr "Seç"
@@ -15707,11 +15777,68 @@ msgstr "Standart taahhütlü anahtarlar için '1.0', kabul edilmeyen anahtarlar 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, aksi halde 'none' seçeneğini seçin. Emin değilseniz 'none' seçeneğini seçin."
 
+msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+msgstr "'Hayır' olarak ayarlanırsa, zaman kayması yalnızca bir arabellek dosyası kullanılır. 'Eski dosyalara [dakika]] ve' Timeshift boş alan kontrolü 'için Timeshift'i kontrol etmenizi tavsiye ederiz. ayarlamak."
+
+msgid "Select 'No' to only write a log message to the debug log file."
+msgstr "'hayır' olarak ayarlanırsa, Hata Ayıklama günlüğüne yalnızca bir hata ayıklama mesajı yazılır "
+
+msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+msgstr "'Hayır' olarak ayarlanırsa, zaman kaymasını duraklattıktan veya kesintiye uğrattıktan sonra bile eski olayları kaydedebilirsiniz."
+
+msgid "Select 'Yes' if an end time is required for this timer."
+msgstr ""
+
+msgid "Select 'Yes' if network traffic should be checked before activating the timer."
+msgstr ""
+
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçin."
 
+msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
+msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
+
+msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
+msgstr "Eğer 'evet' olarak ayarlandıysa; bilgi çubuğu 'duraklatıldı' durumunda kalıcı olarak gösterilmeye devam edecek (zaman aşımı yok)."
+
+msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
+msgstr "'Evet' olarak ayarlanırsa, etkinlik içinde bir noktaya atlamak için arama çubuğunu kullanmanıza izin verir."
+
+msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
+msgstr "Bu seçenek 'evet' olarak ayarlandığında, kanal listeleri her zaman ilk önce buket ekranını gösterir. 'Hayır' olarak ayarlanırsa mevcut buket açılacaktır."
+
+msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
+msgstr ""
+
+msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
+msgstr "'evet' EPG'de küçük TV ekranı gösterir."
+
+msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
+msgstr "'Evet' seçilirse tarayıcıda 'PO' paketlerini gösterecek."
+
+msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
+msgstr "'Evet' seçilirse tarayıcıda 'SRC' paketlerini gösterecek."
+
+msgid "Select 'Yes' to display the InfoBar when a new event starts."
+msgstr "'evet' Yeni bir etkinlik başladığında bilgi-çubuğu görüntülenir."
+
+msgid "Select 'Yes' to display the InfoBar when changing channels."
+msgstr "'evet' Kanal değiştirildiğinde bilgi-çubuğu görüntülenir."
+
+msgid "Select 'Yes' to display the channel number in the InfoBar."
+msgstr "Eğer 'evet' seçilirse bilgi çubuğunda kanal numarası görülür."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Bu cihazın ayarlarının düzenlenmesini etkinleştirmek için 'Evet'i seçin. 'Hayır'ın seçilmesi, cihaz ayarlarını varsayılan değerlerine sıfırlar."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list."
+msgstr "'evet' EPG listesinde kanal önizlemesi görüntülenir."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr "Eğer 'evet' ayarlanırsa kanal listesinde kanal önizlemesi görüntülenir. Seçilen kanalın önizlemesi için OK tuşuna basın, listeden çıkmak ve o kanalı izlemek için OK tuşuna bir daha basın. Kanalı değiştirmek istemiyorsanız EXIT' tuşuna basın."
+
+msgid "Select 'Yes' to hide channels without EPG data."
+msgstr "'evet' EPG bilgisi olmayan kanallar gösterilmez."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Tüm ana ayarlar yapılandırma verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, tüm Enigma2 ayarlarını varsayılan değerlerine geri getirecektir. Bu aynı zamanda Enigma2'nin yeniden başlatma sırasında Hoş Geldiniz Sihirbazını çalıştırmasına neden olacaktır."
@@ -15745,6 +15872,21 @@ msgstr "Tüm kullanıcı arayüzü verilerini kaldırmak için 'Evet'i seçin. B
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Ağ yapılandırmasını varsayılana sıfırlamak için 'Evet'i seçin. Bu, varsa Ethernet bağlantı noktasını etkinleştirecek ve alıcıyı DHCP kullanacak şekilde ayarlayacaktır. Diğer tüm ağ arayüzleri silinecektir."
+
+msgid "Select 'Yes' to show the advanced setting options."
+msgstr ""
+
+msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
+msgstr "'evet' EPG her açıldığında buketler görüntülenir."
+
+msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
+msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görüntülenir."
+
+msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
+msgstr "'Evet' olarak ayarlanmışsa sinyal değerleri (SNR, vb.) API V3'ten hesaplanacaktır. Bu, şimdi değiştirilen eski bir API sürümüdür."
+
+msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
+msgstr "'Yes olarak ayarlanırsa; Medya oynatma sırasında Hızlı Yönlendirme veya Geri Sarma sırasında bilgi çubuğu görüntülenecektir."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, aksi takdirde LNB teknik tablonuza bakın."
@@ -15889,10 +16031,6 @@ msgstr "Kart sunucusu seçin"
 msgid "Select channel audio"
 msgstr "Kanal sesini seçin"
 
-#
-msgid "Select channel to record from"
-msgstr "Kaydın yapılacağı kanalı seçin"
-
 msgid "Select copy destination for:"
 msgstr "Kopya için hedef seçin:"
 
@@ -15909,6 +16047,9 @@ msgstr "Yedeklemeden hariç tutulacak dosyaları seçin"
 msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosya/klasörleri seç"
 
+msgid "Select how often this timer is to be repeated."
+msgstr ""
+
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Çanağın uydular arasında ne kadar hızlı hareket etmesi gerektiğini seçin."
 
@@ -15921,10 +16062,43 @@ msgstr "Quick EPG kipini nasıl etkinleştireceğinizi seçin."
 msgid "Select how your box will upgrade."
 msgstr "Kutunuzun nasıl yükseltileceğini seçin."
 
+msgid "Select if an end time is required."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Bu seçenek, bir kurulum öğesi için varsayılan değerin gösterilip gösterilmeyeceğini ve gösteriliyorsa, açıklamaya göre nerede görüntüleneceğini seçmenizi sağlar."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
+msgid "Select if the timer name and description modification code is run on repeating timers."
+msgstr ""
+
+msgid "Select if there is to be a time window within which this timer can be active."
+msgstr ""
+
+msgid "Select if this timer activates on a Friday."
+msgstr ""
+
+msgid "Select if this timer activates on a Monday."
+msgstr ""
+
+msgid "Select if this timer activates on a Saturday."
+msgstr ""
+
+msgid "Select if this timer activates on a Sunday."
+msgstr ""
+
+msgid "Select if this timer activates on a Thursday."
+msgstr ""
+
+msgid "Select if this timer activates on a Tuesday."
+msgstr ""
+
+msgid "Select if this timer activates on a Wednesday."
+msgstr ""
+
+msgid "Select if this timer is to be repeated."
 msgstr ""
 
 msgid "Select if timeshift must continue when set to record."
@@ -15949,9 +16123,6 @@ msgstr ""
 #
 msgid "Select movie"
 msgstr "Bir film seçin"
-
-msgid "Select of the number"
-msgstr "Numaranın seçilmesi"
 
 #
 msgid "Select provider to add..."
@@ -15980,9 +16151,6 @@ msgstr "Sıralama yöntemini seç:"
 msgid "Select system information to view:"
 msgstr ""
 
-msgid "Select target folder"
-msgstr "Hedef klasörü seç"
-
 msgid "Select the No / False response"
 msgstr "Hayır / Yanlış yanıtını seçin"
 
@@ -16010,8 +16178,17 @@ msgstr "Bu alıcıya atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR an
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
 
+msgid "Select the action to perform when the timer ends."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Yardım ekranındaki düğme göstergelerinin animasyon hızını kontrol edin. 'Devre Dışı', göstergelerin düğmeler arasında geçiş yapması için animasyonu kapatır."
+
+msgid "Select the channel from which to record:"
+msgstr ""
+
+msgid "Select the channel or service to be used for this timer."
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Klavye imlecinin altındaki karakteri veya eylemi seçin"
@@ -16024,6 +16201,21 @@ msgstr "Kullanıcı arayüzü için şu anda vurgulanan yerel ayarı/dili seçin
 
 msgid "Select the currently highlighted service"
 msgstr "Şu anda vurgulanan hizmeti seçin"
+
+msgid "Select the date from which this timer will become active."
+msgstr ""
+
+msgid "Select the date when this timer will activate."
+msgstr ""
+
+msgid "Select the date when this timer will start."
+msgstr ""
+
+msgid "Select the day of the week that this timer will activate."
+msgstr ""
+
+msgid "Select the delay before the timer activates."
+msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "İstediğiniz işlevi seçin ve atamak için \"Tamam\" a tıklayın. Listeler arasında geçiş yapmak için \"CH +/-\" kullanın. Atanan bir işlevi seçin ve atamayı iptal etmek için \"Tamam\" a tıklayın. Atanan işlevlerin sırasını değiştirmek için \"Sonraki / Önceki\" yi kullanın."
@@ -16046,6 +16238,9 @@ msgstr "Vurgulanan yuvayı seçin ve yeniden başlatın"
 msgid "Select the locale from a menu"
 msgstr "Bir menüden yerel ayarı seçin"
 
+msgid "Select the location in which to store the recording:"
+msgstr ""
+
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "SCR cihazınızın üreticisini seçin. Üretici listelenmemişse, 'SCR'yi' kullanıcı tanımlı 'olarak ayarlayın ve cihaz parametrelerini özellik tablosuna göre manuel olarak girin."
 
@@ -16058,6 +16253,9 @@ msgstr "Unicable cihazınızın model numarasını seçin. Model numarası liste
 #
 msgid "Select the movie path"
 msgstr "Film yolunu seçin"
+
+msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
+msgstr ""
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Listedeki sonraki öğeyi seçin veya imleci sağa hareket ettirin"
@@ -16104,11 +16302,26 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr "Varsayılan DNS ayarlarının kaynağını seçin."
 
+msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the time after which this timer can start."
+msgstr ""
+
+msgid "Select the time before which this timer should end."
+msgstr ""
+
 msgid "Select the time delay before the button starts repeating."
 msgstr "Düğmenin tekrar etmeye başlamasından önceki zaman gecikmesini seçin."
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "Düğmenin her tekrarı arasındaki zaman gecikmesini seçin."
+
+msgid "Select the time when this timer should end."
+msgstr ""
+
+msgid "Select the time when this timer will start."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Alan veya bölge içindeki saat dilimini seçin."
@@ -16134,6 +16347,9 @@ msgstr "Enerji zamanlayıcı etkinleştirildiğinde istenen kapatma türünü se
 msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Dik zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
 
+msgid "Select the type of this timer."
+msgstr ""
+
 #
 msgid "Select video input with up/down buttons"
 msgstr "Yukarı/aşağı tuşlarıyla görüntü girişini seçin"
@@ -16144,6 +16360,12 @@ msgstr "Görüntü kipini seç"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Playback sırasında bir dosyanın sonuna gelince, alıcının tavrını seçebilirsiniz."
+
+msgid "Select what do do after the timer has completed."
+msgstr ""
+
+msgid "Select what do do after the timer recording has completed."
+msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Önyükleme %s %s, normal çalma veya bekleme modundayken yapılması gerekenleri seçin."
@@ -16168,6 +16390,9 @@ msgstr "Etkinleştirmek için TV düğmesinin ne istediğini seçin."
 
 msgid "Select what you want the Up/Down button to activate."
 msgstr "Etkinleştirmek için Yukarı / Aşağı düğmelerini istediğinizi seçin."
+
+msgid "Select where the recording should be saved."
+msgstr ""
 
 #
 msgid "Select wireless network"
@@ -16532,12 +16757,6 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr "Servis pikonlarının en boy oranını ayarlayın."
 
-msgid "Set the channel for this timer."
-msgstr "Kanalı bu zamanlayıcıya ayarla."
-
-msgid "Set the date the timer must start."
-msgstr "Zamanlayıcının başlaması gereken tarihi ayarlayın."
-
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
@@ -16556,14 +16775,8 @@ msgstr "Varsayılan sıralama yöntemini ayarlayın."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Tekrarlanan döngüler arasındaki gecikme süresini ayarlayın, bu, bazı derilerde yazılım oluşturucu tarafından kullanılır."
 
-msgid "Set the description of the recording."
-msgstr "Kayıt tanımını ayarla."
-
 msgid "Set the jump-size of the seekbar."
 msgstr "Arama çubuğunun atlama boyunu belirleyin."
-
-msgid "Set the name the recording will get."
-msgstr "Kaydın alacağı adı belirleyin."
 
 msgid "Set the position of the recording icons"
 msgstr "Kayıt simgelerinin konumunu ayarla"
@@ -16579,12 +16792,6 @@ msgstr "Ön panelde metin kayma hızını ayarla."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Çözünürlük bilgisi için video kaynağını kontrol etmeden önceki zamanı belirleyin."
-
-msgid "Set the time the timer must start."
-msgstr "Zamanlayıcının başlaması gereken süreyi ayarlayın."
-
-msgid "Set the time the timer must stop."
-msgstr "Zamanlayıcının durması gereken saati ayarla."
 
 msgid "Set the time to hide the infobar."
 msgstr "Bilgi çubuğunu gizlemek için zamanı ayarlayın."
@@ -16793,6 +17000,9 @@ msgstr "Harddisk'inizi kurun"
 msgid "Setup your LCD"
 msgstr "LCD'nizi kurun"
 
+msgid "Setup your LCD Skin"
+msgstr ""
+
 msgid "Setup your OSD"
 msgstr "OSD'nizi kurun"
 
@@ -16972,9 +17182,6 @@ msgstr "Dizin boyutunu göster"
 msgid "Show Display Icons"
 msgstr "Görüntü ikonlarını göster"
 
-msgid "Show the EIT Now/Next data in the InfoBar."
-msgstr "Bilgi-çubuğunda EIT şimdiki/sonraki göster"
-
 msgid "Show EPG"
 msgstr "EPG Göster"
 
@@ -17004,6 +17211,24 @@ msgstr "HDMIRecord kurulumunu göster ..."
 
 msgid "Show InfoBar"
 msgstr "Bilgi Çubuğunu göster"
+
+msgid "Show InfoBar lite *"
+msgstr "Bilgi çubuğunu göster *"
+
+#
+msgid "Show InfoBar on channel change"
+msgstr "Kanal değiştirildiğinde bilgi-çubuğunu göster"
+
+#
+msgid "Show InfoBar on event change"
+msgstr "Etkinlik değişikliklerinde bilgi-çubuğunu göster"
+
+#
+msgid "Show InfoBar on skip forward/backward"
+msgstr "İleri/geri sardırmada bilgi-çubuğunu göster"
+
+msgid "Show InfoBar picons"
+msgstr "Bilgi çubuğu piksilerini göster"
 
 msgid "Show Information"
 msgstr "Bilgi göster"
@@ -17124,6 +17349,9 @@ msgstr "Bir radyo kanalı çalarken arkaplanı göster."
 
 msgid "Show bouquet on launch"
 msgstr "Başlangıçta buket göster"
+
+msgid "Show build information"
+msgstr ""
 
 msgid "Show channel number in InfoBar"
 msgstr "Bilgi çubuğunda kanal numaralarını göster"
@@ -17251,28 +17479,6 @@ msgstr "Bilgi Göster"
 msgid "Show info line"
 msgstr "Bilgi satırını göster"
 
-msgid "Show InfoBar lite *"
-msgstr "Bilgi çubuğunu göster *"
-
-#
-msgid "Show InfoBar on channel change"
-msgstr "Kanal değiştirildiğinde bilgi-çubuğunu göster"
-
-#
-msgid "Show InfoBar on event change"
-msgstr "Etkinlik değişikliklerinde bilgi-çubuğunu göster"
-
-#
-msgid "Show InfoBar on skip forward/backward"
-msgstr "İleri/geri sardırmada bilgi-çubuğunu göster"
-
-#
-msgid "Show persistent InfoBar while paused"
-msgstr "Duraklatıldığında bilgi çubuğunu kalıcı olarak göster"
-
-msgid "Show InfoBar picons"
-msgstr "Bilgi çubuğu piksilerini göster"
-
 msgid "Show job tasks in extensions"
 msgstr "İş görevlerini uzantılarda göster"
 
@@ -17341,6 +17547,10 @@ msgstr "Ayrılık çizgilerini göster"
 msgid "Show parting lines between events."
 msgstr "Olaylar arasındaki bölüm çizgilerini göster."
 
+#
+msgid "Show persistent InfoBar while paused"
+msgstr "Duraklatıldığında bilgi çubuğunu kalıcı olarak göster"
+
 msgid "Show picon background colour"
 msgstr "Picon arka plan rengini göster"
 
@@ -17376,7 +17586,7 @@ msgstr ""
 msgid "Show quickmenu..."
 msgstr "Hızlı menü göster ..."
 
-msgid "Show receiver image(s)"
+msgid "Show receiver image information"
 msgstr ""
 
 msgid "Show record indicator"
@@ -17465,6 +17675,9 @@ msgstr "CCcam Bilgi Ekranını Göster"
 
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex oynatıcısını göster ..."
+
+msgid "Show the EIT Now/Next data in the InfoBar."
+msgstr "Bilgi-çubuğunda EIT şimdiki/sonraki göster"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -17765,21 +17978,29 @@ msgstr "Uyku"
 msgid "Sleep Timer"
 msgstr "Uyku Zamanlayıcısı"
 
-msgid "SleepTimer Settings"
-msgstr "Uyku Zamanlayıcı Ayarları"
-
 msgid "Sleep Timers"
 msgstr "Uyku Zamanlayıcıları"
 
-#
-msgid "Sleep delay"
-msgstr "Uyku geciktirme"
+msgid "Sleep delay (in minutes)"
+msgstr ""
 
 msgid "Sleep long"
 msgstr "Uzun uyu"
 
 msgid "Sleep timer"
 msgstr "Uyku Zamanlayıcısı"
+
+msgid "SleepTimer"
+msgstr "Uyku Zamanlayıcı"
+
+msgid "SleepTimer Actions"
+msgstr ""
+
+msgid "SleepTimer Overview"
+msgstr ""
+
+msgid "SleepTimer Settings"
+msgstr "Uyku Zamanlayıcı Ayarları"
 
 msgid "SleepTimer action"
 msgstr "Uyku zamanlayıcı eylemi"
@@ -17799,9 +18020,6 @@ msgstr[0] "Uyku zamanlayıcısı: %d saniye kaldı."
 
 msgid "SleepTimer: Inactive."
 msgstr "Uyku zamanlayıcısı: Etkin değil."
-
-msgid "SleepTimer"
-msgstr "Uyku Zamanlayıcı"
 
 msgid "Sleeping"
 msgstr "Uyuyor"
@@ -18138,6 +18356,10 @@ msgstr "Güney Sudan"
 msgid "Space to reserve for recordings (in GB)"
 msgstr "Kayıtlar için ayrılcak disk boyutu (GB)"
 
+#, python-format
+msgid "Space total %s, used %s, free %s (%0.f%%)."
+msgstr ""
+
 msgid "Space used:"
 msgstr "Kullanılan alan:"
 
@@ -18217,6 +18439,9 @@ msgstr "Kodi'yi başlat"
 msgid "Start RDS interactive"
 msgstr "RDS etkileşimini başlat"
 
+msgid "Start date"
+msgstr ""
+
 #
 msgid "Start from the beginning"
 msgstr "Baştan başla"
@@ -18265,13 +18490,15 @@ msgstr "Başlatma sihirbazı"
 msgid "Starting Softcam"
 msgstr "Softcami Başlat"
 
+msgid "Starting date"
+msgstr ""
+
 #
 msgid "Starting directory"
 msgstr "Başlangıç dizini"
 
-#
-msgid "Starting on"
-msgstr "Başlangıç"
+msgid "Starting time"
+msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "Birkaç saniye içinde başlar"
@@ -19150,6 +19377,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV kayıt servisine geçti!\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19182,6 +19414,11 @@ msgid ""
 msgstr ""
 "Zaman kayması için tampon süresi, ayarlarda belirtilen sınırı aşıyor.\n"
 "Ne yapmak istiyorsun ?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Bekleme modundan uyanma komutu birden çok kez gönderilecektir."
@@ -19258,6 +19495,11 @@ msgstr "Test sonuçları %s dosyasına yazıldı."
 
 msgid "The saved PIN was cleared."
 msgstr "Kaydedilen PIN temizlendi."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "Hizmet uzmanı yeniden yüklenir."
@@ -19683,6 +19925,9 @@ msgstr "Bu seçenek, sınırlı sayıdaki ayrık değerlerin sonucu oluşan yanl
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Bu seçenek resim keskinliğini ayarlar, resim çözünürlüğü arttırılırken kullanılır."
 
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
 #
 msgid "This plugin is installed."
 msgstr "Bu eklenti yüklü."
@@ -19854,9 +20099,6 @@ msgstr "Zaman atlama: Hız için normal hızlı ileri sar"
 msgid "Time long"
 msgstr "Zaman uzun"
 
-msgid "Time range:"
-msgstr "Zaman aralığı:"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Bu işlem için gereken süre: %s"
@@ -19888,14 +20130,11 @@ msgstr "Zaman Çizelgesi 24 Saat"
 msgid "Timeline font size"
 msgstr "Zaman-satırı yazı tipi boyutu"
 
-msgid "Timer"
-msgstr "Zamanlayıcı"
-
 msgid "Timer Actions"
 msgstr "Zamanlayıcı Eylemleri"
 
-msgid "Timer Overview"
-msgstr "Zamanlayıcı Görünümü"
+msgid "Timer Log Actions"
+msgstr ""
 
 #
 msgid "Timer Sanity Error"
@@ -20064,6 +20303,9 @@ msgstr "Buket / epg listeleri arasında geçiş yap"
 
 msgid "Toggle display of the InfoBar"
 msgstr "Bilgi Çubuğunun görüntüsünü aç/kapat"
+
+msgid "Toggle enable/disable of the currently selected timer"
+msgstr ""
 
 msgid "Toggle hide/show of the current item"
 msgstr ""
@@ -20581,6 +20823,9 @@ msgstr ""
 msgid "Unknown user: %d"
 msgstr "Bilinmeyen kullanıcı: %d"
 
+msgid "Unknown!"
+msgstr ""
+
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "'Disabled' olarak ayarlanmadıkça, EPG listesindeki kanalların önizlemesini alabilirsiniz."
 
@@ -21048,6 +21293,59 @@ msgstr "VOD uzun"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr "Geçerli"
 
@@ -21460,6 +21758,9 @@ msgstr "Uyandır"
 msgid "Wakeup TV from standby"
 msgstr "TV'yi uyandır"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Bir zamanlayıcı başlamadan önce uyanma süresi [dk]"
 
@@ -21534,13 +21835,11 @@ msgstr "Çar"
 msgid "Wednesday"
 msgstr "Çarşamba"
 
-#
-msgid "Weekday"
-msgstr "Haftaiçi"
+msgid "Weekdays"
+msgstr ""
 
-#
-msgid "Weekend"
-msgstr "Hafta sonu"
+msgid "Weekends"
+msgstr ""
 
 #
 msgid "Weekly"
@@ -21619,9 +21918,6 @@ msgstr "Batı Frizcesi"
 
 msgid "Western Sahara"
 msgstr "Batı Sahra"
-
-msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "Zamanlama bitiminde hangi eylem gerekiyor? 'Auto': alıcı kayıt başladığındaki durumuna döner. 'Hiçbirşey yapma', 'Beklemeye geç' ve 'Derin uykuya geç' aynen uygulanır."
 
 msgid "What day of month?"
 msgstr ""
@@ -21820,12 +22116,12 @@ msgstr "Alıcı bekleme modundan veya derin bekleme modundan çıktığında, TV
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Bir servise ayarlandığında, sistem normal olarak herhangi bir değişiklik için transponder tarar ve bunları kaydeder. Ne yaptığınızdan kesinlikle eminseniz sadece “evet” e ayarlayınız."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
-
-msgid "Where should the recording be saved?"
-msgstr "Kayıt nereye kaydedilmeli?"
 
 #
 msgid "Where to save temporary timeshift recordings?"
@@ -21878,9 +22174,6 @@ msgstr "Hata ile:"
 msgid "With popup"
 msgstr "Açılır pencere ile"
 
-msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "Bu seçenek 'evet' olarak ayarlandığında, kanal listeleri her zaman ilk önce buket ekranını gösterir. 'Hayır' olarak ayarlanırsa mevcut buket açılacaktır."
-
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa basış)."
 
@@ -21901,6 +22194,9 @@ msgstr "Bu ayar ile, muhtemelen sinyal kalitesini artırabilir veya daha uzun HD
 
 msgid "Without popup"
 msgstr "Popup olmadan"
+
+msgid "Without query"
+msgstr "sorgulamadan"
 
 msgid "Wolof"
 msgstr "Wolof Dili"
@@ -21984,6 +22280,9 @@ msgstr "Yemen"
 msgid "Yes"
 msgstr "Evet"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 #
 msgid "Yes to all"
 msgstr "Tümüne evet"
@@ -22014,12 +22313,6 @@ msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 
-msgid "Yes, delete from timer list"
-msgstr "Evet, Zamanlayıcı listesinden sil"
-
-msgid "Yes, delete from timer list and delete recording"
-msgstr "Evet, Zamanlayıcı listesinden sil ve kaydı sil"
-
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Evet, bu filmi sil ve film listesine dön"
 
@@ -22034,6 +22327,9 @@ msgstr "Evet, şimdi otomatik kanal taraması yap"
 #
 msgid "Yes, do another manual scan now"
 msgstr "Evet, şimdi başka bir el ile kanal taraması yap"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 #
 msgid "Yes, restore the settings now"
@@ -22125,9 +22421,6 @@ msgstr "'%s' dizinini faydalı bir şekilde çalıştıramazsınız."
 #
 msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
-
-msgid "You didn't select a channel to record from."
-msgstr "Kayıt yapılacak kanalı seçmediniz."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "Bu günlük gönderilmiş, tekrar gönderilsin mi?:\n"
@@ -22459,6 +22752,9 @@ msgstr "Youtube TV"
 msgid "ZAP"
 msgstr "ZAP"
 
+msgid "ZAP as PiP"
+msgstr ""
+
 msgid "ZOOM"
 msgstr "ZOOM"
 
@@ -22529,10 +22825,6 @@ msgstr "Zap yukarı"
 #
 msgid "Zap+Record next"
 msgstr "Zap + Sonraki kayıt"
-
-#
-msgid "Zapped"
-msgstr "Zapped"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 eski Model"
@@ -22754,14 +23046,6 @@ msgstr "ses izleri"
 msgid "auto"
 msgstr "otomatik"
 
-#
-msgid "auto deepstandby"
-msgstr "oto derin uyku"
-
-#
-msgid "auto standby"
-msgstr "oto bekleme"
-
 msgid "automatic"
 msgstr "otomatik"
 
@@ -22908,10 +23192,6 @@ msgstr "sembolik link oluştur ..."
 
 msgid "current affairs (general)"
 msgstr "haber / güncel olaylar (genel)"
-
-#
-msgid "daily"
-msgstr "günlük"
 
 #
 msgid "day"
@@ -23289,9 +23569,6 @@ msgstr "hlg"
 msgid "hops:"
 msgstr "hops:"
 
-msgid "Select 'No' to only write a log message to the debug log file."
-msgstr "'hayır' olarak ayarlanırsa, Hata Ayıklama günlüğüne yalnızca bir hata ayıklama mesajı yazılır "
-
 msgid "increase uphop by 1"
 msgstr "uphop 1 arttır"
 
@@ -23416,10 +23693,6 @@ msgstr "orta"
 #
 msgid "min"
 msgstr "dk"
-
-#
-msgid "mins"
-msgstr "dak"
 
 #
 msgid "minute"
@@ -23610,15 +23883,8 @@ msgstr "sadece okuyun."
 msgid "on how to restore the image"
 msgstr "resmin nasıl geri yükleneceği"
 
-#
-msgid "Once"
-msgstr "birkez"
-
 msgid "only HD"
 msgstr "sadece HD"
-
-msgid "Only in standby"
-msgstr "sadece Beklemede"
 
 msgid "original"
 msgstr "özgün"
@@ -23697,9 +23963,6 @@ msgstr "gerçek kayıtlar"
 
 msgid "real recordings or streaming"
 msgstr "gerçek kayıtlar veya akış"
-
-msgid "reboot system"
-msgstr "sistemi yeniden başlatma"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -23781,10 +24044,6 @@ msgstr "ad değiştir"
 #
 msgid "rename entry"
 msgstr "yeniden adlandır"
-
-#
-msgid "Repeated"
-msgstr "tekrarlandı"
 
 msgid "restore deleted userbouquets"
 msgstr "silinen userbouquets'i geri yükle"
@@ -24215,18 +24474,8 @@ msgstr "mor"
 msgid "wait for mmi..."
 msgstr "mmi bekle..."
 
-msgid "wakeup"
-msgstr "uyandır"
-
-msgid "wakeup to standby"
-msgstr "beklemeye uyandır"
-
 msgid "water sport"
 msgstr "su sporları"
-
-#
-msgid "weekly"
-msgstr "haftalık"
 
 #
 msgid "west"
@@ -24285,9 +24534,6 @@ msgstr "hata_ile"
 msgid "without"
 msgstr "olmaksızın"
 
-msgid "Without query"
-msgstr "sorgulamadan"
-
 #
 msgid "working"
 msgstr "çalışıyor"
@@ -24309,3 +24555,162 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "<Unknown>"
+#~ msgstr "<bilinmiyor>"
+
+#~ msgid "A repeating timer or just once?"
+#~ msgstr "Tekrarlanan bir zamanlayıcı mı, yoksa sadece bir kez mi?"
+
+#~ msgid "At End:"
+#~ msgstr "Sonda:"
+
+#
+#~ msgid "Channel not in services list"
+#~ msgstr "Kanal, kanal listesinde yok"
+
+#~ msgid "Choose a tag for easy finding a recording."
+#~ msgstr "Kaydı kolay bulmak için etiket seç."
+
+#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
+#~ msgstr "Günlük, Haftalık, Haftaiçi veya tanımladığınız birini seçin."
+
+#~ msgid "Chose between record and ZAP."
+#~ msgstr "Kayıt ve ZAP tan birini seç."
+
+#~ msgid "Current location"
+#~ msgstr "Geçerli konum"
+
+#~ msgid "Display Setup"
+#~ msgstr "Görünüm Kurulumu"
+
+#~ msgid "Do you really want to delete the recording?"
+#~ msgstr "Kayıtları gerçekten silmek istiyor musunuz?"
+
+#~ msgid "Edit New Entry"
+#~ msgstr "Yeni girişi düzenle"
+
+#~ msgid "Extended settings"
+#~ msgstr "Genişletilmiş ayarlar"
+
+#~ msgid "Infobar:"
+#~ msgstr "Bilgi Çubuğu:"
+
+#~ msgid "Please enter new description:"
+#~ msgstr "Lütfen yeni açıklama girin:"
+
+#
+#~ msgid "PowerTimer Entry"
+#~ msgstr "Zamanlayıcı girişi"
+
+#
+#~ msgid "Really delete completed timers?"
+#~ msgstr "İşi bitmiş zamanlayıcıları silmek istiyor musunuz?"
+
+#~ msgid "SecondInfoBar"
+#~ msgstr "İkinci Bilgi Çubuğu"
+
+#~ msgid "Secondinfobar:"
+#~ msgstr "İkinci Bilgi Çubuğu:"
+
+#
+#~ msgid "Select channel to record from"
+#~ msgstr "Kaydın yapılacağı kanalı seçin"
+
+#~ msgid "Select of the number"
+#~ msgstr "Numaranın seçilmesi"
+
+#~ msgid "Select target folder"
+#~ msgstr "Hedef klasörü seç"
+
+#~ msgid "Set the channel for this timer."
+#~ msgstr "Kanalı bu zamanlayıcıya ayarla."
+
+#~ msgid "Set the date the timer must start."
+#~ msgstr "Zamanlayıcının başlaması gereken tarihi ayarlayın."
+
+#~ msgid "Set the description of the recording."
+#~ msgstr "Kayıt tanımını ayarla."
+
+#~ msgid "Set the name the recording will get."
+#~ msgstr "Kaydın alacağı adı belirleyin."
+
+#~ msgid "Set the time the timer must start."
+#~ msgstr "Zamanlayıcının başlaması gereken süreyi ayarlayın."
+
+#~ msgid "Set the time the timer must stop."
+#~ msgstr "Zamanlayıcının durması gereken saati ayarla."
+
+#
+#~ msgid "Sleep delay"
+#~ msgstr "Uyku geciktirme"
+
+#
+#~ msgid "Starting on"
+#~ msgstr "Başlangıç"
+
+#~ msgid "Time range:"
+#~ msgstr "Zaman aralığı:"
+
+#~ msgid "Timer"
+#~ msgstr "Zamanlayıcı"
+
+#~ msgid "Timer Overview"
+#~ msgstr "Zamanlayıcı Görünümü"
+
+#
+#~ msgid "Weekday"
+#~ msgstr "Haftaiçi"
+
+#
+#~ msgid "Weekend"
+#~ msgstr "Hafta sonu"
+
+#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
+#~ msgstr "Zamanlama bitiminde hangi eylem gerekiyor? 'Auto': alıcı kayıt başladığındaki durumuna döner. 'Hiçbirşey yapma', 'Beklemeye geç' ve 'Derin uykuya geç' aynen uygulanır."
+
+#~ msgid "Where should the recording be saved?"
+#~ msgstr "Kayıt nereye kaydedilmeli?"
+
+#~ msgid "Yes, delete from timer list"
+#~ msgstr "Evet, Zamanlayıcı listesinden sil"
+
+#~ msgid "Yes, delete from timer list and delete recording"
+#~ msgstr "Evet, Zamanlayıcı listesinden sil ve kaydı sil"
+
+#~ msgid "You didn't select a channel to record from."
+#~ msgstr "Kayıt yapılacak kanalı seçmediniz."
+
+#
+#~ msgid "Zapped"
+#~ msgstr "Zapped"
+
+#
+#~ msgid "auto deepstandby"
+#~ msgstr "oto derin uyku"
+
+#
+#~ msgid "auto standby"
+#~ msgstr "oto bekleme"
+
+#
+#~ msgid "daily"
+#~ msgstr "günlük"
+
+#
+#~ msgid "mins"
+#~ msgstr "dak"
+
+#~ msgid "reboot system"
+#~ msgstr "sistemi yeniden başlatma"
+
+#~ msgid "wakeup"
+#~ msgstr "uyandır"
+
+#~ msgid "wakeup to standby"
+#~ msgstr "beklemeye uyandır"
+
+#
+#~ msgid "weekly"
+#~ msgstr "haftalık"

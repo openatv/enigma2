@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 13:02+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2022-08-24 05:50+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
@@ -1084,6 +1084,9 @@ msgstr "%d.%-m.%Y"
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
+
+msgid "%d.%B %Y"
+msgstr ""
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -4195,6 +4198,12 @@ msgstr "Sprawdź"
 msgid "Check HDD"
 msgstr "Sprawdź HDD"
 
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
+
 msgid "Check power and input state from TV"
 msgstr "Sprawdź stan zasilania i wejścia z telewizora"
 
@@ -6890,6 +6899,18 @@ msgstr "Uruchom plik wymiany przy starcie"
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Włącz przyciski góra / dół dla funkcji 'wszystko w górę / w dół'? (na początku / końcu kolumny)"
 
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
+msgstr ""
+
 msgid "Enable ViaSat EPG"
 msgstr "Włącz ViaSat EPG"
 
@@ -9026,11 +9047,17 @@ msgstr "Jeśli 'nigdy', wymusi restart pomimo tego po 100 awariach."
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Jeśli 'nigdy', mimo to zapisze dziennik awarii dla pierwszej awarii."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jeśli akcja jest konfigurowalna przez użytkownika, jej wpis pomocy zostanie oznaczony sufiksem „(C)”."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "W przypadku edytowania pliku można ustawić pozycję początkową kursora na końcu lub na początku wiersza."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Jeśli włączone - rozdzielczość wideo tunera spróbuje się dostosować do rozdzielczości wideo materiału"
@@ -9052,6 +9079,9 @@ msgstr "Jeśli zostanie przekroczona przestrzeń maksymalna,najstarsze zostaną 
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Jeśli odbiornik jest wyciszony, ukryj ikonę/informacje o wyciszeniu po kilku sekundach."
+
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla głębokiego czuwania jaka jest wysyłana dla normalnego czuwania."
@@ -9159,6 +9189,9 @@ msgid ""
 msgstr ""
 "Aby nagrać timer, tuner został pomyślnie zwolniony:\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
 
 msgid "In progress"
 msgstr "W toku"
@@ -14866,6 +14899,9 @@ msgstr "Aktywacja paska stanu"
 msgid "Seekbar sensibility"
 msgstr "Czułość paska stanu"
 
+msgid "Seeking connected events"
+msgstr ""
+
 msgid "Select"
 msgstr "Wybierz"
 
@@ -17482,6 +17518,9 @@ msgstr "Data początkowa"
 msgid "Starting directory"
 msgstr "katalog początkowy"
 
+msgid "Starting time"
+msgstr ""
+
 msgid "Starts in a few seconds"
 msgstr "Zaczyna się za kilka sekund"
 
@@ -18310,6 +18349,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "Telewizor został przełączony na kanał nagrywania!\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18341,6 +18385,11 @@ msgid ""
 msgstr ""
 "Czas buforowania dla timeshiftu przekracza określony limit w ustawieniach\n"
 "Co chcesz robić?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Komenda wybudzania z trybu czuwania będzie wysyłana wielokrotnie."
@@ -18413,6 +18462,11 @@ msgstr "Wyniki zostały zapisane w %s."
 
 msgid "The saved PIN was cleared."
 msgstr "Zapisany PIN został wyczyszczony."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "Listy kanałów została przeładowana."
@@ -18824,6 +18878,9 @@ msgstr "Ta opcja ustawia tłumienia fałszywych konturów cyfrowych, które są 
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ta opcja ustawia ostrość obrazu, używana gdy obraz jest powiększony."
+
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
 
 msgid "This plugin is installed."
 msgstr "Wtyczka zainstalowana."
@@ -20101,6 +20158,59 @@ msgstr "VOD (długo)"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr "Prawidłowa"
 
@@ -20476,6 +20586,9 @@ msgstr "Wybudzenie"
 msgid "Wakeup TV from standby"
 msgstr "Wybudzaj TV ze stanu czuwania"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Czas wybudzenia przed rozpoczęciem timera [min]"
 
@@ -20818,6 +20931,9 @@ msgstr "Po uruchomieniu tunera, tuner wyśle komendę wybudzenia do telewizora."
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Gdy nastawiony na kanał będzie normalnie skanować zmiany na transponderze i zapisze je. Tylko ustawiony na 'tak', jeśli jesteś absolutnie pewien, co robisz."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Gdzie chcesz utworzyć kopię zapasową ustawień?"
 
@@ -20889,6 +21005,9 @@ msgstr "Przy tym ustawieniu prawdopodobnie można poprawić jakość sygnału lu
 
 msgid "Without popup"
 msgstr "Bez okienka"
+
+msgid "Without query"
+msgstr "bez warunku"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -20966,6 +21085,9 @@ msgstr "Jemen"
 msgid "Yes"
 msgstr "Tak"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 msgid "Yes to all"
 msgstr "Tak dla wszystkich"
 
@@ -21004,6 +21126,9 @@ msgstr "Tak, rozpocznij automatyczne skanowanie"
 
 msgid "Yes, do another manual scan now"
 msgstr "Tak, rozpocznij kolejne ręczne skanowanie teraz"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 msgid "Yes, restore the settings now"
 msgstr "Tak, przywróć ustawienia teraz"
@@ -23203,6 +23328,3 @@ msgstr "®"
 
 #~ msgid "weekly"
 #~ msgstr "Co tydzień"
-
-msgid "Without query"
-msgstr "bez warunku"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1059,6 +1059,9 @@ msgstr "%d.%-m.%Y"
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
+msgid "%d.%B %Y"
+msgstr ""
+
 msgid "%d.%m"
 msgstr "%d.%m"
 
@@ -1294,6 +1297,9 @@ msgstr "“%s”未安装且未找到对应安装包"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
 msgstr "'缓冲时间'或'最后事件',删除旧的时移文件时,发生第一条件优先."
+
+msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr ""
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'处理来自电视的待机'比'处理来自电视的输入'具有更高的优先级."
@@ -1644,6 +1650,12 @@ msgstr "25p/60p"
 msgid "29.97"
 msgstr "29.97"
 
+msgid "2nd InfoBar"
+msgstr "第二信息栏"
+
+msgid "2nd InfoBar Actions"
+msgstr "第二信息栏操作"
+
 msgid "2nd InfoBar ECM"
 msgstr "第二信息栏ECM"
 
@@ -1652,12 +1664,6 @@ msgstr "第二信息栏信息"
 
 msgid "2nd InfoBar timeout"
 msgstr "第二信息栏超时"
-
-msgid "2nd InfoBar"
-msgstr "第二信息栏"
-
-msgid "2nd InfoBar Actions"
-msgstr "第二信息栏操作"
 
 msgid "2s"
 msgstr "2秒"
@@ -1890,9 +1896,6 @@ msgstr "<默认录像位置>"
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
-msgid "<Unknown>"
-msgstr "<未知>"
-
 msgid "?"
 msgstr "?"
 
@@ -1989,9 +1992,6 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-
-msgid "A repeating timer or just once?"
-msgstr "是否重复定时器或只运行一次？"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -2228,23 +2228,14 @@ msgstr "添加录制定时器"
 msgid "Add Timer"
 msgstr "添加定时器"
 
-msgid "Add ZapTimer"
-msgstr "添加换台定时器"
-
 msgid "Add Zap+RecordTimer"
 msgstr "添加快速定时器+录制定时器"
 
+msgid "Add ZapTimer"
+msgstr "添加换台定时器"
+
 msgid "Add a DNS entry"
 msgstr ""
-
-msgid "Add a mark"
-msgstr "添加一个标记"
-
-msgid "Add a new tag"
-msgstr "增加新标签"
-
-msgid "Add a new title"
-msgstr "添加新的标题"
 
 msgid "Add a RecordTimer"
 msgstr "添加录制定时器"
@@ -2252,17 +2243,29 @@ msgstr "添加录制定时器"
 msgid "Add a RecordTimer for current event"
 msgstr "为当前事件添加录制定时器"
 
-msgid "Add a service to the Volume Offsets list"
-msgstr ""
-
-msgid "Add a timer for the current event"
-msgstr "为当前事件添加定时器"
-
 msgid "Add a ZapTimer for current event"
 msgstr "为当前事件添加换台定时器"
 
 msgid "Add a ZapTimer for next event"
 msgstr "添加下个事件切换定时器"
+
+msgid "Add a mark"
+msgstr "添加一个标记"
+
+msgid "Add a new tag"
+msgstr "增加新标签"
+
+msgid "Add a new timer"
+msgstr ""
+
+msgid "Add a new title"
+msgstr "添加新的标题"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr ""
+
+msgid "Add a timer for the current event"
+msgstr "为当前事件添加定时器"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "为当前事件添加自动计时器"
@@ -2399,14 +2402,14 @@ msgstr "南非荷兰语"
 msgid "After PowerLost"
 msgstr "关闭电源后"
 
-msgid "After recording"
-msgstr "录像后"
-
 msgid "After event"
 msgstr "事件之后"
 
 msgid "After pressing OK, please wait!"
 msgstr "按下OK键,请稍等!"
+
+msgid "After recording"
+msgstr "录像后"
 
 msgid "Akan"
 msgstr "阿肯语"
@@ -2815,10 +2818,11 @@ msgstr "Astra 2 28.2e"
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
 
-msgid "At End:"
-msgstr "结束位置:"
-
 msgid "At end of current program"
+msgstr ""
+
+#, python-format
+msgid "At end: %s"
 msgstr ""
 
 msgid "Athletics"
@@ -2900,9 +2904,6 @@ msgstr "编辑模式"
 msgid "Auto"
 msgstr "自动"
 
-msgid "Auto deep standby"
-msgstr "自动深度待机"
-
 msgid "Auto Detect"
 msgstr "自动检测"
 
@@ -2918,9 +2919,6 @@ msgstr "自动选择语言"
 msgid "Auto Modes Selected."
 msgstr "已选择自动模式."
 
-msgid "Auto standby"
-msgstr "自动待机"
-
 msgid "Auto Timer"
 msgstr "自动定时器"
 
@@ -2932,6 +2930,9 @@ msgstr "自动音量级别"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "每隔?分钟自动分割章节(0=从不)"
+
+msgid "Auto deep standby"
+msgstr "自动深度待机"
 
 msgid "Auto flesh"
 msgstr "自动刷写"
@@ -2947,6 +2948,12 @@ msgstr "自动安装日志"
 
 msgid "Auto scart switching"
 msgstr "自动转换开关"
+
+msgid "Auto shut down"
+msgstr ""
+
+msgid "Auto standby"
+msgstr "自动待机"
 
 msgid "Auto(not available)"
 msgstr "自动(不可用)"
@@ -3876,6 +3883,9 @@ msgstr "取消对区域和语言的全部更改并退出当前菜单"
 msgid "Cancel any text changes and exit"
 msgstr "取消所有文本更改并退出当前菜单"
 
+msgid "Cancel conflict resolution"
+msgstr ""
+
 msgid "Cancel execution?"
 msgstr "是否取消执行?"
 
@@ -4045,6 +4055,9 @@ msgstr "频道"
 msgid "Channel +/- button mode"
 msgstr "频道+/-键 模式"
 
+msgid "Channel / Service"
+msgstr ""
+
 msgid "Channel 1"
 msgstr "频道 1"
 
@@ -4095,9 +4108,6 @@ msgstr "频道列表显示小窗口(MiniTV)*"
 
 msgid "Channel list type"
 msgstr "频道列表类型"
-
-msgid "Channel not in services list"
-msgstr "频道不在列表中"
 
 msgid "Channel preview mode"
 msgstr "频道预览模式"
@@ -4155,6 +4165,12 @@ msgstr "检查"
 
 msgid "Check HDD"
 msgstr "检查硬盘"
+
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
 
 msgid "Check power and input state from TV"
 msgstr "检查电视电源和输入状态"
@@ -4235,12 +4251,6 @@ msgstr "选择用于解码EPG事件中的评级信息的国家方案."
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "选择将在IceTV服务中识别此设备的标签."
 
-msgid "Choose a tag for easy finding a recording."
-msgstr "选择容易找到录制标签."
-
-msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr "在每日,每周,平日或用户定义之间进行选择."
-
 msgid "Choose dvb wait delay for ci response."
 msgstr "为ci响应选择dvb等待延迟."
 
@@ -4319,9 +4329,6 @@ msgstr "选择要显示的菜单/设置的级别.专家级显示所有项目."
 msgid "Choose which tuner to configure."
 msgstr "选择要配置的调谐器."
 
-msgid "Chose between record and ZAP."
-msgstr "在录像和切换之间选择."
-
 msgid "Christmas Island"
 msgstr "圣诞岛"
 
@@ -4349,6 +4356,15 @@ msgstr "清理(不恢复任何东西)"
 msgid "Clean network 'Trash'"
 msgstr "清理网络垃圾桶"
 
+msgid "Clean up (delete) all completed timers?"
+msgstr ""
+
+msgid "Clean up and remove all completed timers"
+msgstr ""
+
+msgid "Clean up and remove all completed timers?"
+msgstr ""
+
 msgid "Cleaning Trashes"
 msgstr "清理垃圾"
 
@@ -4358,17 +4374,20 @@ msgstr "清理"
 msgid "Clear"
 msgstr "清除"
 
+msgid "Clear Log"
+msgstr "清理日志"
+
 msgid "Clear before scan"
 msgstr "扫描前清理"
 
 msgid "Clear fixed"
 msgstr "定期清理"
 
-msgid "Clear Log"
-msgstr "清理日志"
-
 msgid "Clear playlist"
 msgstr "清理播放列表"
+
+msgid "Clear the logs for this timer"
+msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr "清除虚拟内存缓存"
@@ -4424,6 +4443,9 @@ msgstr "关闭屏幕"
 
 msgid "Close the screen and exit all menus"
 msgstr "关闭屏幕并退出所有菜单"
+
+msgid "Close the screen without saving any changes"
+msgstr ""
 
 msgid "Close the window"
 msgstr "关闭此窗口"
@@ -4925,6 +4947,9 @@ msgstr "配置将使用哪个视频输出连接器."
 msgid "Configuring"
 msgstr "配置"
 
+msgid "ConflictTimer Actions"
+msgstr ""
+
 msgid "ConflictTimer Overview"
 msgstr "配置定时器"
 
@@ -5238,9 +5263,6 @@ msgstr "当前崩溃日志"
 msgid "Current installed"
 msgstr "当前已安装"
 
-msgid "Current location"
-msgstr "当前位置"
-
 #, python-format
 msgid "Current mode: %s \n"
 msgstr "当前模式: %s\n"
@@ -5487,6 +5509,9 @@ msgstr "Day Mon-D"
 msgid "Day Mon-DD"
 msgstr "Day Mon-DD"
 
+msgid "Day of week"
+msgstr ""
+
 msgid "Dayname D Month Year"
 msgstr "格式 日 月 年"
 
@@ -5604,6 +5629,9 @@ msgstr "解密/家长控制"
 
 msgid "Deep Standby"
 msgstr "深度待机"
+
+msgid "Deep standby"
+msgstr ""
 
 msgid "Default"
 msgstr "默认值"
@@ -5765,6 +5793,10 @@ msgstr "延迟时间"
 msgid "Delay:"
 msgstr "延迟:"
 
+#, python-format
+msgid "Delay: %s"
+msgstr ""
+
 msgid "Delete"
 msgstr "删除"
 
@@ -5858,6 +5890,9 @@ msgid "Delete the currently displayed log file"
 msgstr "删除当前显示的日志文件"
 
 msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr ""
+
+msgid "Delete the currently selected timer"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6111,11 +6146,11 @@ msgstr "显示>16:9的内容为"
 msgid "Display Settings"
 msgstr "显示选项"
 
-msgid "Display Setup"
-msgstr "显示设置"
-
 msgid "Display and user interface"
 msgstr "显示和用户界面"
+
+msgid "Display log for the currently selected timer"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "在播放下一部电影之前显示消息"
@@ -6236,9 +6271,6 @@ msgstr ""
 "是否要删除所有标签?\n"
 "(请注意,选择 '取消' 将不会撤消此操作!)"
 
-msgid "Do you really want to delete the recording?"
-msgstr "是否确定删除这个录制?"
-
 msgid "Do you really want to delete this timer?"
 msgstr "是否确定删除这个定时器?"
 
@@ -6281,6 +6313,10 @@ msgstr "是否确定要删除 %s 的定时器?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "是否确定要删除 %s 的书签?"
+
+#, python-format
+msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
 
 msgid "Do you want change rights?\n"
 msgstr "是否要更改权限?\n"
@@ -6663,9 +6699,6 @@ msgstr "关闭编辑模式"
 msgid "Edit Mode On"
 msgstr "打开编辑模式"
 
-msgid "Edit New Entry"
-msgstr "编辑新条目"
-
 msgid "Edit Quad Channel Entry"
 msgstr "编辑四画面频道条目"
 
@@ -6707,6 +6740,9 @@ msgid "Edit the DNS configuration of your %s %s."
 msgstr "编辑 %s %s 的DNS服务器配置."
 
 msgid "Edit the NewCamd DES Key."
+msgstr ""
+
+msgid "Edit the currently selected timer"
 msgstr ""
 
 #, python-format
@@ -6804,6 +6840,9 @@ msgstr "启用GStreamer柱状图*"
 msgid "Enable IceTV"
 msgstr "启用IceTV"
 
+msgid "Enable InfoBar fade-out"
+msgstr "启用信息栏淡出"
+
 msgid "Enable MHW EPG"
 msgstr "启用MHW公司EPG"
 
@@ -6816,9 +6855,6 @@ msgstr "启用网络中的EPG"
 msgid "Enable Network IP address check"
 msgstr "启用网络IP地址检查"
 
-msgid "Enable network traffic check"
-msgstr "启用网络流量检查"
-
 msgid "Enable OpenTV EPG"
 msgstr "启用OpenTV EPG"
 
@@ -6830,6 +6866,18 @@ msgstr "启动时启用磁盘交换空间"
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "是否启用'全部向上/向下'功能的向上/向下按钮?(在该列的开头/结尾)"
+
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
+msgstr ""
 
 msgid "Enable ViaSat EPG"
 msgstr "启用ViaSat公司EPG"
@@ -6889,14 +6937,14 @@ msgstr "启用备用遥控接收器"
 msgid "Enable freesat EPG"
 msgstr "启用免费EPG"
 
-msgid "Enable InfoBar fade-out"
-msgstr "启用信息栏淡出"
-
 msgid "Enable intro screen"
 msgstr "启用简介界面"
 
 msgid "Enable multiple bouquets"
 msgstr "启用多自定义组"
+
+msgid "Enable network traffic check"
+msgstr "启用网络流量检查"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "启用或禁用使用HDMI-CEC."
@@ -6997,15 +7045,6 @@ msgstr "结束时间"
 msgid "Energy Timer"
 msgstr ""
 
-msgid "Energy saver action"
-msgstr ""
-
-msgid "Energy saver activation delay"
-msgstr ""
-
-msgid "Energy timer"
-msgstr ""
-
 #, python-format
 msgid "Energy Timer: %d minute remains."
 msgid_plural "Energy Timer: %d minutes remain."
@@ -7019,6 +7058,21 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Energy Timer: Inactive."
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+msgid "EnergyTimer Actions"
+msgstr ""
+
+msgid "EnergyTimer Overview"
 msgstr ""
 
 msgid "English"
@@ -7078,6 +7132,12 @@ msgstr ""
 
 msgid "Enter PIN"
 msgstr "输入PIN"
+
+msgid "Enter a description for this timer."
+msgstr ""
+
+msgid "Enter a name for this timer."
+msgstr ""
 
 msgid "Enter a new name for this device."
 msgstr "输入此设备的新名称."
@@ -7314,6 +7374,9 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "错误: %s %s 不是 %s!  请稍后再试."
 
+msgid "Error: A location to save the recording has not been selected!"
+msgstr ""
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7544,9 +7607,6 @@ msgstr "扩展设置..."
 
 msgid "Extended Shares"
 msgstr "扩展共享"
-
-msgid "Extended settings"
-msgstr "扩展设置"
 
 msgid "Extension Actions"
 msgstr "扩展操作"
@@ -8841,6 +8901,24 @@ msgstr "INS"
 msgid "IP"
 msgstr "本机地址"
 
+msgid "IP Address 1"
+msgstr ""
+
+msgid "IP Address 2"
+msgstr ""
+
+msgid "IP Address 3"
+msgstr ""
+
+msgid "IP Address 4"
+msgstr ""
+
+msgid "IP Address 5"
+msgstr ""
+
+msgid "IP Address to be checked on timer activation."
+msgstr ""
+
 msgid "IP address"
 msgstr "IP地址"
 
@@ -8933,11 +9011,17 @@ msgstr "如果选择'否',将在100次崩溃后强制重新启动."
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "如果选择'从不',尽管第一次崩溃,仍会写入崩溃日志."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某选项是用户可配置的,则其帮助条目将被标记为'(C)'后缀."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "如果编辑一个文件,是否可以将光标开始位置设置在行尾或行首."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "如果此项启用, 机顶盒的输出分辨率将随播放视频分辨率的变化而变化"
@@ -8960,59 +9044,11 @@ msgstr "如果日志文件设置了最大空间,旧有的将会删除."
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "如果静音,几秒钟后将隐藏静音图标或静音信息."
 
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "如果设置为'是',则将向电视发送与在常规待机事件期间发送的深度待机事件相同的命令."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "如果设为'否',即使在切换或中断时移后,您也可以保存较旧的事件."
-
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "如果设置为'否',则时移仅使用一个缓冲文件. 建议'时移检查旧文件 [以分钟为单位]'和'时移检查可用空间?' 调整."
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "如果设为'是',没有EPG的频道将不显示."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "如果设置为'是'它将在浏览器显示'po'软件包."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "如果设置为'是'它会在浏览器中显示'SRC' 包."
-
-msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
-msgstr "如果设置为'是',显示EPG小电视屏幕."
-
-msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr "如果设置为'是',信号值(信噪比等)将根据API v3计算. 这是一个旧的API版本,现已被取代."
-
-msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "如果设置为'是'每次打开EPG将显示自定义."
-
-msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
-msgstr "如果设置为'是'的频道列表将显示在广播和电视模式之间切换."
-
-msgid "Select 'Yes' to display the channel number in the InfoBar."
-msgstr "如果设置为'是'的频道数将显示在看到信息栏."
-
-msgid "Select 'Yes' to display the InfoBar when a new event starts."
-msgstr "如果设置为'是'的信息栏将显示在一个新的事件的开始."
-
-msgid "Select 'Yes' to display the InfoBar when changing channels."
-msgstr "如果设置为'是'时,将看到信息栏显示变化的频道."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list."
-msgstr "如果设置为'是',则可以预览EPG列表中的频道."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
-msgstr "如果设置为'是'您可以预览频道列表中的频道.请按'OK'键预览选定的频道,按第二次'OK'键将切换到此频道并退出菜单,按'EXIT'回到你开始的频道."
-
-msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
-msgstr "如果设置为'是',则允许您使用搜索栏跳转到事件中的某个点."
-
-msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
-msgstr "如果设置为'是'在媒体播放中快进或快退将会显示信息栏."
-
-msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "如果信息栏显示设置为'是'；将保持永久的暂停状态(无超时)."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方法,则会等待系统时间同步.根据要求,设备唤醒将在最多2分钟后继续."
@@ -9055,6 +9091,9 @@ msgstr ""
 
 msgid "Igbo"
 msgstr "伊博语"
+
+msgid "Ignore"
+msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "忽略DVB-C命名空间的子网络"
@@ -9114,6 +9153,9 @@ msgid ""
 msgstr ""
 "成功释放一个调谐器以启动录制:\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
 
 msgid "In progress"
 msgstr "进行中"
@@ -9226,8 +9268,14 @@ msgstr "信息图标宽度"
 msgid "InfoBar"
 msgstr "信息栏"
 
+msgid "InfoBar EPG"
+msgstr "信息栏EPG"
+
 msgid "InfoBar EPG Actions"
 msgstr "信息栏EPG操作"
+
+msgid "InfoBar EPG Settings"
+msgstr "EPG信息栏设置"
 
 msgid "InfoBar EPG mode"
 msgstr "信息栏EPG模式"
@@ -9241,20 +9289,11 @@ msgstr "信息栏RDS操作"
 msgid "InfoBar Show/Hide Actions"
 msgstr "信息栏显示/隐藏操作"
 
-msgid "InfoBar EPG"
-msgstr "信息栏EPG"
-
 msgid "InfoBar fade-out speed"
 msgstr "信息栏淡入淡出速度"
 
 msgid "InfoBar front end data source"
 msgstr "信息栏前端数据来源"
-
-msgid "Infobar:"
-msgstr "信息栏:"
-
-msgid "InfoBar EPG Settings"
-msgstr "EPG信息栏设置"
 
 msgid "Information"
 msgstr "信息"
@@ -11262,10 +11301,10 @@ msgstr "新节目信息"
 msgid "New version:"
 msgstr "新版本:"
 
-msgid "NewCamd DES Key"
+msgid "NewCamd"
 msgstr ""
 
-msgid "NewCamd"
+msgid "NewCamd DES Key"
 msgstr ""
 
 msgid "News"
@@ -11577,6 +11616,9 @@ msgstr "节点ID"
 msgid "NodeID: "
 msgstr "节点ID: "
 
+msgid "Nominate how many IP Addresses are to be checked for active connections."
+msgstr ""
+
 msgid "None"
 msgstr "无"
 
@@ -11703,6 +11745,9 @@ msgstr "现在,使用'对比度'设置尽可能提高背景的亮度,但请确�
 msgid "Number"
 msgstr "编号"
 
+msgid "Number of IP Addresses"
+msgstr ""
+
 msgid "Number of digits in channel number"
 msgstr "频道序号位数"
 
@@ -11817,6 +11862,9 @@ msgstr "电影结束时(作为菜单)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "在有效的ONID上,忽略频率子网络部分"
 
+msgid "Once"
+msgstr "一次"
+
 msgid "Once per day"
 msgstr "每天一次"
 
@@ -11841,6 +11889,9 @@ msgstr "仅扩展."
 msgid "Only free scan"
 msgstr "仅扫描免费频道"
 
+msgid "Only in standby"
+msgstr "仅待机"
+
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr ""
 
@@ -11855,9 +11906,6 @@ msgstr "仅在启动时"
 
 msgid "Only provider"
 msgstr "仅供应商"
-
-msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
-msgstr "仅当您使用需要DiSEqC Port-A命令信号的多路开关时才选择'是'.对于所有其他设置,请选择'否'."
 
 msgid "Open"
 msgstr "打开"
@@ -12518,9 +12566,6 @@ msgstr "请输入新目录的名称"
 msgid "Please enter name of the new symlink"
 msgstr "请输入新符号链接的名称"
 
-msgid "Please enter new description:"
-msgstr "请输入新描述:"
-
 msgid "Please enter new name:"
 msgstr "请输入新名称:"
 
@@ -12594,9 +12639,6 @@ msgstr "请选择一个分辨率..."
 msgid "Please select a sub service..."
 msgstr "请选择一个子频道..."
 
-msgid "Please select the sub-service to record:"
-msgstr "请选择要录制的子频道..."
-
 msgid "Please select a subservice..."
 msgstr "请选择一个子频道..."
 
@@ -12635,6 +12677,9 @@ msgstr ""
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr "请选择与您的实际位置最匹配的区域.我们需要该地区为您可以接收的频道提供正确的指南信息."
+
+msgid "Please select the sub-service to record:"
+msgstr "请选择要录制的子频道..."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -12943,9 +12988,6 @@ msgstr "待机期间电源LED的状态."
 msgid "Power On Display"
 msgstr "LCD电源控制"
 
-msgid "PowerTimers"
-msgstr "电源定时器"
-
 msgid "Power long"
 msgstr "电源键 长按"
 
@@ -12961,20 +13003,26 @@ msgstr "功率阈值.有关更多信息,请查阅您的接收器手册."
 msgid "PowerTimer"
 msgstr "电源定时器"
 
+msgid "PowerTimer Actions"
+msgstr ""
+
 msgid "PowerTimer DeepStandby"
 msgstr "电源定时器深度待机"
-
-msgid "PowerTimer Entry"
-msgstr "电源管理项"
-
-msgid "PowerTimer log"
-msgstr "电源管理器日志"
 
 msgid "PowerTimer Overview"
 msgstr "电源定时器概述"
 
+msgid "PowerTimer Settings"
+msgstr ""
+
 msgid "PowerTimer Standby"
 msgstr "电源定时器待机"
+
+msgid "PowerTimer log"
+msgstr "电源管理器日志"
+
+msgid "PowerTimers"
+msgstr "电源定时器"
 
 msgid "Predefined"
 msgstr "预定义"
@@ -13528,9 +13576,6 @@ msgstr "是否马上网络唤醒？"
 msgid "Really close without saving settings?"
 msgstr "是否关闭而不保存设置？"
 
-msgid "Really delete completed timers?"
-msgstr "是否要删除已完成的定时器？"
-
 msgid "Really delete this entry?"
 msgstr "是否删除这个条目？"
 
@@ -13637,6 +13682,21 @@ msgstr "由于定时器 %s 冲突导致录像时间受限"
 msgid "Record write error (no space on disk?)"
 msgstr "录制写入出错(磁盘上没有空间?)"
 
+msgid "RecordTimer"
+msgstr ""
+
+msgid "RecordTimer Actions"
+msgstr ""
+
+msgid "RecordTimer Overview"
+msgstr ""
+
+msgid "RecordTimer Settings"
+msgstr ""
+
+msgid "RecordTimers"
+msgstr ""
+
 msgid "Recordable media toolbox"
 msgstr "可录制的媒体工具箱"
 
@@ -13663,6 +13723,9 @@ msgstr "录制完成"
 
 msgid "Recording in progress"
 msgstr "录制进行中"
+
+msgid "Recording location"
+msgstr ""
 
 msgid "Recording running"
 msgstr "正在录制"
@@ -13991,6 +14054,12 @@ msgstr "重复待机命令？"
 
 msgid "Repeat type"
 msgstr "重复类型"
+
+msgid "Repeated"
+msgstr "重复"
+
+msgid "Repeating event is currently active, what do you want to do?"
+msgstr ""
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "正在重复当前正在录制的事件...你想做什么?"
@@ -14472,6 +14541,9 @@ msgstr "周六"
 msgid "Sat Finder"
 msgstr "寻星仪"
 
+msgid "Sat-Sun"
+msgstr ""
+
 msgid "Satellite"
 msgstr "卫星"
 
@@ -14560,6 +14632,9 @@ msgstr ""
 
 msgid "Save the left folder list location on exit."
 msgstr "退出时保存左侧文件夹列表位置."
+
+msgid "Save the log changes and exit"
+msgstr ""
 
 msgid "Save the right folder list location on exit."
 msgstr "退出时保存正确的文件夹列表位置."
@@ -14741,14 +14816,8 @@ msgstr "向西搜索..."
 msgid "Second cable of motorized LNB"
 msgstr "电动LNB的第二根电缆"
 
-msgid "SecondInfoBar"
-msgstr "第二信息栏"
-
 msgid "Secondary DNS"
 msgstr "备用DNS"
-
-msgid "Secondinfobar:"
-msgstr "第二信息栏:"
 
 msgid "Security"
 msgstr "安全"
@@ -14789,6 +14858,9 @@ msgstr "搜索栏激活"
 msgid "Seekbar sensibility"
 msgstr "搜索栏灵敏度"
 
+msgid "Seeking connected events"
+msgstr ""
+
 msgid "Select"
 msgstr "选择"
 
@@ -14798,11 +14870,68 @@ msgstr "为标准开关选择'1.0',为非固定开关选择'1.1,'为使用定位
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "如果天线系统需要,请选择'A'或'B',否则请选择’无'.如果不确定,请选择'无'."
 
+msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+msgstr "如果设置为'否',则时移仅使用一个缓冲文件. 建议'时移检查旧文件 [以分钟为单位]'和'时移检查可用空间?' 调整."
+
+msgid "Select 'No' to only write a log message to the debug log file."
+msgstr "如果设置为'否',则仅将调试消息写入调试日志 "
+
+msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+msgstr "如果设为'否',即使在切换或中断时移后,您也可以保存较旧的事件."
+
+msgid "Select 'Yes' if an end time is required for this timer."
+msgstr ""
+
+msgid "Select 'Yes' if network traffic should be checked before activating the timer."
+msgstr ""
+
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
+msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
+msgstr "仅当您使用需要DiSEqC Port-A命令信号的多路开关时才选择'是'.对于所有其他设置,请选择'否'."
+
+msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
+msgstr "如果信息栏显示设置为'是'；将保持永久的暂停状态(无超时)."
+
+msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
+msgstr "如果设置为'是',则允许您使用搜索栏跳转到事件中的某个点."
+
+msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
+msgstr "该选项设为'是',频道列表将始终首先向您显示自定义组频道.设为'否',当前自定义分组频道列表将会被打开."
+
+msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
+msgstr ""
+
+msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
+msgstr "如果设置为'是',显示EPG小电视屏幕."
+
+msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
+msgstr "如果设置为'是'它将在浏览器显示'po'软件包."
+
+msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
+msgstr "如果设置为'是'它会在浏览器中显示'SRC' 包."
+
+msgid "Select 'Yes' to display the InfoBar when a new event starts."
+msgstr "如果设置为'是'的信息栏将显示在一个新的事件的开始."
+
+msgid "Select 'Yes' to display the InfoBar when changing channels."
+msgstr "如果设置为'是'时,将看到信息栏显示变化的频道."
+
+msgid "Select 'Yes' to display the channel number in the InfoBar."
+msgstr "如果设置为'是'的频道数将显示在看到信息栏."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择'是'可编辑此设备的设置.选择'否'会将设备设置重置为默认值."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list."
+msgstr "如果设置为'是',则可以预览EPG列表中的频道."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr "如果设置为'是'您可以预览频道列表中的频道.请按'OK'键预览选定的频道,按第二次'OK'键将切换到此频道并退出菜单,按'EXIT'回到你开始的频道."
+
+msgid "Select 'Yes' to hide channels without EPG data."
+msgstr "如果设为'是',没有EPG的频道将不显示."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -14836,6 +14965,21 @@ msgstr ""
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
+
+msgid "Select 'Yes' to show the advanced setting options."
+msgstr ""
+
+msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
+msgstr "如果设置为'是'每次打开EPG将显示自定义."
+
+msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
+msgstr "如果设置为'是'的频道列表将显示在广播和电视模式之间切换."
+
+msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
+msgstr "如果设置为'是',信号值(信噪比等)将根据API v3计算. 这是一个旧的API版本,现已被取代."
+
+msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
+msgstr "如果设置为'是'在媒体播放中快进或快退将会显示信息栏."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "如果使用'通用”高频头,请选择'波段',否则请查阅高频头规格表."
@@ -14973,9 +15117,6 @@ msgstr "选择卡服务器"
 msgid "Select channel audio"
 msgstr "选择频道音频"
 
-msgid "Select channel to record from"
-msgstr "选择要录制的频道"
-
 msgid "Select copy destination for:"
 msgstr "选择复制目标为:"
 
@@ -14991,6 +15132,9 @@ msgstr "选择要从备份中排除的文件"
 msgid "Select files/folders to backup"
 msgstr "选择要备份的文件/文件夹"
 
+msgid "Select how often this timer is to be repeated."
+msgstr ""
+
 msgid "Select how quickly the dish should move between satellites."
 msgstr "选择碟形天线在卫星之间移动的速度."
 
@@ -15003,10 +15147,43 @@ msgstr "选择如何激活快速EPG模式："
 msgid "Select how your box will upgrade."
 msgstr "如何选择升级你的机顶盒."
 
+msgid "Select if an end time is required."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "此选项允许您选择是否显示设置项的默认值,如果显示,则选择与描述相关的显示位置."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
+msgid "Select if the timer name and description modification code is run on repeating timers."
+msgstr ""
+
+msgid "Select if there is to be a time window within which this timer can be active."
+msgstr ""
+
+msgid "Select if this timer activates on a Friday."
+msgstr ""
+
+msgid "Select if this timer activates on a Monday."
+msgstr ""
+
+msgid "Select if this timer activates on a Saturday."
+msgstr ""
+
+msgid "Select if this timer activates on a Sunday."
+msgstr ""
+
+msgid "Select if this timer activates on a Thursday."
+msgstr ""
+
+msgid "Select if this timer activates on a Tuesday."
+msgstr ""
+
+msgid "Select if this timer activates on a Wednesday."
+msgstr ""
+
+msgid "Select if this timer is to be repeated."
 msgstr ""
 
 msgid "Select if timeshift must continue when set to record."
@@ -15029,9 +15206,6 @@ msgstr ""
 
 msgid "Select movie"
 msgstr "选择影片"
-
-msgid "Select of the number"
-msgstr "选择号码"
 
 msgid "Select provider to add..."
 msgstr "选择并添加供应商..."
@@ -15056,9 +15230,6 @@ msgstr "选择排序方法:"
 
 msgid "Select system information to view:"
 msgstr ""
-
-msgid "Select target folder"
-msgstr "选择目标文件夹"
 
 msgid "Select the No / False response"
 msgstr "选择否/错误响应"
@@ -15087,8 +15258,17 @@ msgstr "选择要分配给此调谐器的用户波段频率.这是SCR开关用�
 msgid "Select the Yes / True response"
 msgstr "选择是/正确答案"
 
+msgid "Select the action to perform when the timer ends."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "控制帮助屏幕中按键指针的动画速度,使用'禁用'关闭动画,以便指针在按键之间切换."
+
+msgid "Select the channel from which to record:"
+msgstr ""
+
+msgid "Select the channel or service to be used for this timer."
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
@@ -15100,6 +15280,21 @@ msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "为用户界面选择当前突出显示的区域设置/语言"
 
 msgid "Select the currently highlighted service"
+msgstr ""
+
+msgid "Select the date from which this timer will become active."
+msgstr ""
+
+msgid "Select the date when this timer will activate."
+msgstr ""
+
+msgid "Select the date when this timer will start."
+msgstr ""
+
+msgid "Select the day of the week that this timer will activate."
+msgstr ""
+
+msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
@@ -15123,6 +15318,9 @@ msgstr ""
 msgid "Select the locale from a menu"
 msgstr "从菜单中选择区域设置"
 
+msgid "Select the location in which to store the recording:"
+msgstr ""
+
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "选择SCR设备的制造商.如果制造商未列出,请将'SCR'设置为'用户定义',并根据其规格表手动输入设备参数."
 
@@ -15134,6 +15332,9 @@ msgstr "选择Unicable设备的型号.如果未列出型号,请将'SCR'设置为
 
 msgid "Select the movie path"
 msgstr "选择电影路径"
+
+msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
+msgstr ""
 
 msgid "Select the next item in list or move cursor right"
 msgstr "选择列表中的下一项或向右移动光标"
@@ -15180,11 +15381,26 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
+msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the time after which this timer can start."
+msgstr ""
+
+msgid "Select the time before which this timer should end."
+msgstr ""
+
 msgid "Select the time delay before the button starts repeating."
 msgstr "选择按键开始重复之前的时间延迟."
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "选择每次重复按键之间的时间延迟."
+
+msgid "Select the time when this timer should end."
+msgstr ""
+
+msgid "Select the time when this timer will start."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "选择区域或区域内的时区."
@@ -15210,6 +15426,9 @@ msgstr ""
 msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
+msgid "Select the type of this timer."
+msgstr ""
+
 msgid "Select video input with up/down buttons"
 msgstr "使用上/下键选择视频输入"
 
@@ -15218,6 +15437,12 @@ msgstr "选择视频模式"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "在播放过程中达到文件的结尾时可以选择的行为."
+
+msgid "Select what do do after the timer has completed."
+msgstr ""
+
+msgid "Select what do do after the timer recording has completed."
+msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "选择在%s %s启动,正常播放或转到待机状态时应执行的操作."
@@ -15242,6 +15467,9 @@ msgstr "选择TV键要激活的内容:"
 
 msgid "Select what you want the Up/Down button to activate."
 msgstr "选择按上/下键激活的内容:"
+
+msgid "Select where the recording should be saved."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "选择无线网络"
@@ -15581,12 +15809,6 @@ msgstr "设置%s %s的MAC地址."
 msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道picon的宽高比."
 
-msgid "Set the channel for this timer."
-msgstr "设置该频道定时器."
-
-msgid "Set the date the timer must start."
-msgstr "设置定时器必须启动的日期."
-
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "设置您的即时录音的默认位置.按'OK'键添加新的位置,选择左/右键选择一个现有的位置."
 
@@ -15605,14 +15827,8 @@ msgstr "设置默认的排序方法."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "设置重复循环之间的延迟时间,用于某些皮肤中的软件渲染器."
 
-msgid "Set the description of the recording."
-msgstr "设置录像的描述."
-
 msgid "Set the jump-size of the seekbar."
 msgstr "设置搜索栏的跳跃大小."
-
-msgid "Set the name the recording will get."
-msgstr "设置要获取的录像名称."
 
 msgid "Set the position of the recording icons"
 msgstr "设置录像图标的位置"
@@ -15628,12 +15844,6 @@ msgstr "设置前端显示屏上文本的滚动速度."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "设置在检查视频源以获取分辨率信息之前的时间."
-
-msgid "Set the time the timer must start."
-msgstr "设置定时器必须开始的时间."
-
-msgid "Set the time the timer must stop."
-msgstr "设置定时器必须停止的时间."
 
 msgid "Set the time to hide the infobar."
 msgstr "设置隐藏信息栏的时间."
@@ -15838,6 +16048,9 @@ msgstr "设置硬盘"
 msgid "Setup your LCD"
 msgstr "LCD显示设置"
 
+msgid "Setup your LCD Skin"
+msgstr ""
+
 msgid "Setup your OSD"
 msgstr "OSD显示设置"
 
@@ -16015,9 +16228,6 @@ msgstr ""
 msgid "Show Display Icons"
 msgstr "显示图标"
 
-msgid "Show the EIT Now/Next data in the InfoBar."
-msgstr "信息栏显示当前/下一个EIT信息"
-
 msgid "Show EPG"
 msgstr "显示EPG"
 
@@ -16047,6 +16257,21 @@ msgstr "显示HDMI录制设置…"
 
 msgid "Show InfoBar"
 msgstr "显示信息栏"
+
+msgid "Show InfoBar lite *"
+msgstr "显示精简信息栏 *"
+
+msgid "Show InfoBar on channel change"
+msgstr "在频道更改时显示信息栏"
+
+msgid "Show InfoBar on event change"
+msgstr "显示事件更改信息栏"
+
+msgid "Show InfoBar on skip forward/backward"
+msgstr "快进/快退时显示信息栏"
+
+msgid "Show InfoBar picons"
+msgstr "显示信息栏picon图标"
 
 msgid "Show Information"
 msgstr "显示信息"
@@ -16162,6 +16387,9 @@ msgstr "当调谐到广播信道时显示背景."
 
 msgid "Show bouquet on launch"
 msgstr "启动时显示频道自定义分组"
+
+msgid "Show build information"
+msgstr ""
 
 msgid "Show channel number in InfoBar"
 msgstr "在信息栏上显示频道编号"
@@ -16283,24 +16511,6 @@ msgstr "显示信息"
 msgid "Show info line"
 msgstr "显示信息行"
 
-msgid "Show InfoBar lite *"
-msgstr "显示精简信息栏 *"
-
-msgid "Show InfoBar on channel change"
-msgstr "在频道更改时显示信息栏"
-
-msgid "Show InfoBar on event change"
-msgstr "显示事件更改信息栏"
-
-msgid "Show InfoBar on skip forward/backward"
-msgstr "快进/快退时显示信息栏"
-
-msgid "Show persistent InfoBar while paused"
-msgstr "暂停时一直显示信息栏"
-
-msgid "Show InfoBar picons"
-msgstr "显示信息栏picon图标"
-
 msgid "Show job tasks in extensions"
 msgstr "在扩展中显示工作任务"
 
@@ -16367,6 +16577,9 @@ msgstr "显示分界线"
 msgid "Show parting lines between events."
 msgstr "显示事件之间的分隔线."
 
+msgid "Show persistent InfoBar while paused"
+msgstr "暂停时一直显示信息栏"
+
 msgid "Show picon background colour"
 msgstr "显示台标背景颜色"
 
@@ -16400,7 +16613,7 @@ msgstr ""
 msgid "Show quickmenu..."
 msgstr "显示快速菜单..."
 
-msgid "Show receiver image(s)"
+msgid "Show receiver image information"
 msgstr ""
 
 msgid "Show record indicator"
@@ -16486,6 +16699,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "显示DreamPlex播放器……"
+
+msgid "Show the EIT Now/Next data in the InfoBar."
+msgstr "信息栏显示当前/下一个EIT信息"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -16763,19 +16979,28 @@ msgstr "睡眠"
 msgid "Sleep Timer"
 msgstr "睡眠定时器"
 
-msgid "SleepTimer Settings"
-msgstr ""
-
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay"
-msgstr "睡眠延迟"
+msgid "Sleep delay (in minutes)"
+msgstr ""
 
 msgid "Sleep long"
 msgstr "Sleep键 长按"
 
 msgid "Sleep timer"
+msgstr ""
+
+msgid "SleepTimer"
+msgstr "休眠定时器"
+
+msgid "SleepTimer Actions"
+msgstr ""
+
+msgid "SleepTimer Overview"
+msgstr ""
+
+msgid "SleepTimer Settings"
 msgstr ""
 
 msgid "SleepTimer action"
@@ -16798,9 +17023,6 @@ msgstr[1] ""
 
 msgid "SleepTimer: Inactive."
 msgstr ""
-
-msgid "SleepTimer"
-msgstr "休眠定时器"
 
 msgid "Sleeping"
 msgstr "休眠"
@@ -17117,6 +17339,10 @@ msgstr "南苏丹"
 msgid "Space to reserve for recordings (in GB)"
 msgstr "预留录制磁盘空间(以GB为单位)"
 
+#, python-format
+msgid "Space total %s, used %s, free %s (%0.f%%)."
+msgstr ""
+
 msgid "Space used:"
 msgstr "使用空间:"
 
@@ -17192,6 +17418,9 @@ msgstr "启动Kodi"
 msgid "Start RDS interactive"
 msgstr "启动RDS交互"
 
+msgid "Start date"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "从头开始"
 
@@ -17237,11 +17466,14 @@ msgstr "开始向导"
 msgid "Starting Softcam"
 msgstr "正在启动 Softcam"
 
+msgid "Starting date"
+msgstr ""
+
 msgid "Starting directory"
 msgstr "启动目录"
 
-msgid "Starting on"
-msgstr "开始于"
+msgid "Starting time"
+msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
@@ -18071,6 +18303,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "电视已切换到录像频道！\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18102,6 +18339,11 @@ msgid ""
 msgstr ""
 "时移的缓冲时间超过了设置中指定的限制.\n"
 "你想要做什么?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "从待机状态唤醒的命令将被发送多次."
@@ -18171,6 +18413,11 @@ msgstr "结果已被写入 %s."
 
 msgid "The saved PIN was cleared."
 msgstr "保存的PIN被清除."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "频道列表已重新加载."
@@ -18580,6 +18827,9 @@ msgstr "这个选项设置的虚假数字轮廓的抑制,这是一个数量有�
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "这个选项设置图片的清晰度,使用时的照片被放大."
 
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
 msgid "This plugin is installed."
 msgstr "此插件已安装."
 
@@ -18743,9 +18993,6 @@ msgstr "时间跳转:使用正常快进速度"
 msgid "Time long"
 msgstr "Time键 长按"
 
-msgid "Time range:"
-msgstr "时间范围:"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "此过程所需的时间：%s"
@@ -18777,14 +19024,11 @@ msgstr "时间线24小时"
 msgid "Timeline font size"
 msgstr "时间线字体大小"
 
-msgid "Timer"
-msgstr "定时器"
-
 msgid "Timer Actions"
 msgstr "定时器操作"
 
-msgid "Timer Overview"
-msgstr "定时器预览"
+msgid "Timer Log Actions"
+msgstr ""
 
 msgid "Timer Sanity Error"
 msgstr "定时器完整性错误"
@@ -18940,6 +19184,9 @@ msgstr "在 自定义组/EPG列表 之间切换"
 
 msgid "Toggle display of the InfoBar"
 msgstr "切换信息栏的显示"
+
+msgid "Toggle enable/disable of the currently selected timer"
+msgstr ""
 
 msgid "Toggle hide/show of the current item"
 msgstr ""
@@ -19411,6 +19658,9 @@ msgstr ""
 msgid "Unknown user: %d"
 msgstr "未知用户: %d"
 
+msgid "Unknown!"
+msgstr ""
+
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "除非设置为'禁用',否则将在EPG列表中预览频道."
 
@@ -19856,6 +20106,59 @@ msgstr "VOD键 长按"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr "有效"
 
@@ -20231,6 +20534,9 @@ msgstr "唤醒"
 msgid "Wakeup TV from standby"
 msgstr "从待机状态中唤醒电视机"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "定时器开始前[分钟]唤醒"
 
@@ -20301,11 +20607,11 @@ msgstr "周三"
 msgid "Wednesday"
 msgstr "星期三"
 
-msgid "Weekday"
-msgstr "工作日"
+msgid "Weekdays"
+msgstr ""
 
-msgid "Weekend"
-msgstr "周末"
+msgid "Weekends"
+msgstr ""
 
 msgid "Weekly"
 msgstr "每周"
@@ -20377,9 +20683,6 @@ msgstr "西弗里斯兰语"
 
 msgid "Western Sahara"
 msgstr "西撒哈拉"
-
-msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "定时器完成后需要采取什么行动?'自动'让机顶盒返回到 定时器启动时的状态.‘什么都不做’,'进入待机'和'进入深度待机'正是如此."
 
 msgid "What day of month?"
 msgstr ""
@@ -20576,11 +20879,11 @@ msgstr "当接收器从待机或深度待机中唤醒时,它将向电视发送�
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "当调谐到频道时,系统通常将扫描转发器的任何改动并保存它们.仅当你在对确定自己在做什么时设为'是'."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "要备份你的设置到哪里？"
-
-msgid "Where should the recording be saved?"
-msgstr "录制要保存到哪里?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "临时时移录像要保存到哪里？"
@@ -20630,9 +20933,6 @@ msgstr "出现错误:"
 msgid "With popup"
 msgstr "弹出"
 
-msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "该选项设为'是',频道列表将始终首先向您显示自定义组频道.设为'否',当前自定义分组频道列表将会被打开."
-
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "该选项可从扩展屏幕隐藏工作任务(短按蓝色键)."
 
@@ -20653,6 +20953,9 @@ msgstr "通过这种设置,您可以提高信号质量或消除较长HDMI电缆�
 
 msgid "Without popup"
 msgstr "不弹出"
+
+msgid "Without query"
+msgstr "无需查询"
 
 msgid "Wolof"
 msgstr "沃洛夫"
@@ -20730,6 +21033,9 @@ msgstr "也门"
 msgid "Yes"
 msgstr "是"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 msgid "Yes to all"
 msgstr "全部"
 
@@ -20757,12 +21063,6 @@ msgstr "是,但保存时移为影片并继续录制"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "是,但保存时移为影片并停止录制"
 
-msgid "Yes, delete from timer list"
-msgstr "是,从定时器列表中删除"
-
-msgid "Yes, delete from timer list and delete recording"
-msgstr "是,从定时器列表中删除和删除录制"
-
 msgid "Yes, delete this movie and return to movie list"
 msgstr "是,删除这部电影.并返回到电影列表"
 
@@ -20774,6 +21074,9 @@ msgstr "是,马上开始自动扫描"
 
 msgid "Yes, do another manual scan now"
 msgstr "是,.马上手动扫描其他"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 msgid "Yes, restore the settings now"
 msgstr "是,马上恢复设置"
@@ -20857,9 +21160,6 @@ msgstr "您无法在目录上运行\"%s\"."
 
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
-
-msgid "You didn't select a channel to record from."
-msgstr "您没有选择要录制的频道."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "你已发送过此日志,确定要重新发送这篇日志:\n"
@@ -21179,6 +21479,9 @@ msgstr "优兔视频"
 msgid "ZAP"
 msgstr "切换"
 
+msgid "ZAP as PiP"
+msgstr ""
+
 msgid "ZOOM"
 msgstr "缩放"
 
@@ -21247,9 +21550,6 @@ msgstr "向上切换"
 
 msgid "Zap+Record next"
 msgstr "换台+录制下一个"
-
-msgid "Zapped"
-msgstr "切换"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 旧型号"
@@ -21452,12 +21752,6 @@ msgstr "音轨"
 msgid "auto"
 msgstr "自动"
 
-msgid "auto deepstandby"
-msgstr "自动深度待机"
-
-msgid "auto standby"
-msgstr "自动待机"
-
 msgid "automatic"
 msgstr "自动"
 
@@ -21594,9 +21888,6 @@ msgstr "创建符号链接..."
 
 msgid "current affairs (general)"
 msgstr "新闻/时事(一般)"
-
-msgid "daily"
-msgstr "每天"
 
 msgid "day"
 msgstr "天"
@@ -21945,9 +22236,6 @@ msgstr "hlg"
 msgid "hops:"
 msgstr "链路数目:"
 
-msgid "Select 'No' to only write a log message to the debug log file."
-msgstr "如果设置为'否',则仅将调试消息写入调试日志 "
-
 msgid "increase uphop by 1"
 msgstr "向上增加1"
 
@@ -22057,9 +22345,6 @@ msgid "middle"
 msgstr "中等"
 
 msgid "min"
-msgstr "分钟"
-
-msgid "mins"
 msgstr "分钟"
 
 msgid "minute"
@@ -22224,14 +22509,8 @@ msgstr "只读介质."
 msgid "on how to restore the image"
 msgstr "关于如何恢复镜像"
 
-msgid "Once"
-msgstr "一次"
-
 msgid "only HD"
 msgstr "仅高清"
-
-msgid "Only in standby"
-msgstr "仅待机"
 
 msgid "original"
 msgstr "原始"
@@ -22308,9 +22587,6 @@ msgstr "录像"
 msgid "real recordings or streaming"
 msgstr "录像或串流"
 
-msgid "reboot system"
-msgstr "重启系统"
-
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "录制时间已更改,现在开始准备: %s"
@@ -22377,9 +22653,6 @@ msgstr "重命名"
 
 msgid "rename entry"
 msgstr "重命名节目"
-
-msgid "Repeated"
-msgstr "重复"
 
 msgid "restore deleted userbouquets"
 msgstr "恢复已删除的用户自定义组"
@@ -22773,17 +23046,8 @@ msgstr "紫色"
 msgid "wait for mmi..."
 msgstr "等待mmi..."
 
-msgid "wakeup"
-msgstr "唤醒"
-
-msgid "wakeup to standby"
-msgstr "唤醒到待机"
-
 msgid "water sport"
 msgstr "水上运动"
-
-msgid "weekly"
-msgstr "每周"
 
 msgid "west"
 msgstr "西"
@@ -22842,9 +23106,6 @@ msgstr "有错误"
 msgid "without"
 msgstr "无需"
 
-msgid "Without query"
-msgstr "无需查询"
-
 msgid "working"
 msgstr "工作"
 
@@ -22863,3 +23124,147 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "<Unknown>"
+#~ msgstr "<未知>"
+
+#~ msgid "A repeating timer or just once?"
+#~ msgstr "是否重复定时器或只运行一次？"
+
+#~ msgid "At End:"
+#~ msgstr "结束位置:"
+
+#~ msgid "Channel not in services list"
+#~ msgstr "频道不在列表中"
+
+#~ msgid "Choose a tag for easy finding a recording."
+#~ msgstr "选择容易找到录制标签."
+
+#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
+#~ msgstr "在每日,每周,平日或用户定义之间进行选择."
+
+#~ msgid "Chose between record and ZAP."
+#~ msgstr "在录像和切换之间选择."
+
+#~ msgid "Current location"
+#~ msgstr "当前位置"
+
+#~ msgid "Display Setup"
+#~ msgstr "显示设置"
+
+#~ msgid "Do you really want to delete the recording?"
+#~ msgstr "是否确定删除这个录制?"
+
+#~ msgid "Edit New Entry"
+#~ msgstr "编辑新条目"
+
+#~ msgid "Extended settings"
+#~ msgstr "扩展设置"
+
+#~ msgid "Infobar:"
+#~ msgstr "信息栏:"
+
+#~ msgid "Please enter new description:"
+#~ msgstr "请输入新描述:"
+
+#~ msgid "PowerTimer Entry"
+#~ msgstr "电源管理项"
+
+#~ msgid "Really delete completed timers?"
+#~ msgstr "是否要删除已完成的定时器？"
+
+#~ msgid "SecondInfoBar"
+#~ msgstr "第二信息栏"
+
+#~ msgid "Secondinfobar:"
+#~ msgstr "第二信息栏:"
+
+#~ msgid "Select channel to record from"
+#~ msgstr "选择要录制的频道"
+
+#~ msgid "Select of the number"
+#~ msgstr "选择号码"
+
+#~ msgid "Select target folder"
+#~ msgstr "选择目标文件夹"
+
+#~ msgid "Set the channel for this timer."
+#~ msgstr "设置该频道定时器."
+
+#~ msgid "Set the date the timer must start."
+#~ msgstr "设置定时器必须启动的日期."
+
+#~ msgid "Set the description of the recording."
+#~ msgstr "设置录像的描述."
+
+#~ msgid "Set the name the recording will get."
+#~ msgstr "设置要获取的录像名称."
+
+#~ msgid "Set the time the timer must start."
+#~ msgstr "设置定时器必须开始的时间."
+
+#~ msgid "Set the time the timer must stop."
+#~ msgstr "设置定时器必须停止的时间."
+
+#~ msgid "Sleep delay"
+#~ msgstr "睡眠延迟"
+
+#~ msgid "Starting on"
+#~ msgstr "开始于"
+
+#~ msgid "Time range:"
+#~ msgstr "时间范围:"
+
+#~ msgid "Timer"
+#~ msgstr "定时器"
+
+#~ msgid "Timer Overview"
+#~ msgstr "定时器预览"
+
+#~ msgid "Weekday"
+#~ msgstr "工作日"
+
+#~ msgid "Weekend"
+#~ msgstr "周末"
+
+#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
+#~ msgstr "定时器完成后需要采取什么行动?'自动'让机顶盒返回到 定时器启动时的状态.‘什么都不做’,'进入待机'和'进入深度待机'正是如此."
+
+#~ msgid "Where should the recording be saved?"
+#~ msgstr "录制要保存到哪里?"
+
+#~ msgid "Yes, delete from timer list"
+#~ msgstr "是,从定时器列表中删除"
+
+#~ msgid "Yes, delete from timer list and delete recording"
+#~ msgstr "是,从定时器列表中删除和删除录制"
+
+#~ msgid "You didn't select a channel to record from."
+#~ msgstr "您没有选择要录制的频道."
+
+#~ msgid "Zapped"
+#~ msgstr "切换"
+
+#~ msgid "auto deepstandby"
+#~ msgstr "自动深度待机"
+
+#~ msgid "auto standby"
+#~ msgstr "自动待机"
+
+#~ msgid "daily"
+#~ msgstr "每天"
+
+#~ msgid "mins"
+#~ msgstr "分钟"
+
+#~ msgid "reboot system"
+#~ msgstr "重启系统"
+
+#~ msgid "wakeup"
+#~ msgstr "唤醒"
+
+#~ msgid "wakeup to standby"
+#~ msgstr "唤醒到待机"
+
+#~ msgid "weekly"
+#~ msgstr "每周"

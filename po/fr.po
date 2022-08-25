@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-04 20:08+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1060,6 +1060,9 @@ msgstr "%d.%-m.%Y"
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
+msgid "%d.%B %Y"
+msgstr ""
+
 msgid "%d.%m"
 msgstr "%d.%m"
 
@@ -1295,6 +1298,9 @@ msgstr "'%s' non installé et aucun package connu"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
 msgstr "'Tampon en heure(s)' ou 'nombre de derniers évènements'. Pour effacer les anciens fichiers PauseDirect, la première condition est prioritaire."
+
+msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgstr ""
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Gérer la veille du téléviseur' a une priorité plus élevée que 'Gérer l'entrée du téléviseur'."
@@ -1645,6 +1651,12 @@ msgstr "25p/60p"
 msgid "29.97"
 msgstr "29.97"
 
+msgid "2nd InfoBar"
+msgstr "2ème infobarre"
+
+msgid "2nd InfoBar Actions"
+msgstr "Actions de la 2eInfobar"
+
 msgid "2nd InfoBar ECM"
 msgstr "2ème Infobarre ECM"
 
@@ -1653,12 +1665,6 @@ msgstr "2ème Infobarre INFO"
 
 msgid "2nd InfoBar timeout"
 msgstr "Délai d'expiration de la 2ème infobarre"
-
-msgid "2nd InfoBar"
-msgstr "2ème infobarre"
-
-msgid "2nd InfoBar Actions"
-msgstr "Actions de la 2eInfobar"
 
 msgid "2s"
 msgstr "2s"
@@ -1891,9 +1897,6 @@ msgstr "<Emplacement par défaut des films>"
 msgid "<Last timer location>"
 msgstr "<Emplacement dernière programmation>"
 
-msgid "<Unknown>"
-msgstr "<inconnu>"
-
 msgid "?"
 msgstr "?"
 
@@ -1993,9 +1996,6 @@ msgstr ""
 "Un enregistrement, une minuterie d'enregistrement ou une minuterie d'alimentation est en cours ou commencera dans les 15 minutes. %s prolongée jusqu'à 30 minutes. Votre %s %s passera en veille profonde après l'événement de la minuterie d'enregistrement ou d'alimentation.\n"
 "\n"
 "Passer en veille profonde maintenant ?"
-
-msgid "A repeating timer or just once?"
-msgstr "Un timer répétitif ou unique?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -2232,23 +2232,14 @@ msgstr "Ajouter un minuteur d'enregistrement"
 msgid "Add Timer"
 msgstr "Ajouter un Timer"
 
-msgid "Add ZapTimer"
-msgstr "Ajouter un minuteur Zap"
-
 msgid "Add Zap+RecordTimer"
 msgstr "Ajouter un minuteur Zap+Record"
 
+msgid "Add ZapTimer"
+msgstr "Ajouter un minuteur Zap"
+
 msgid "Add a DNS entry"
 msgstr "Ajouter une entrée DNS"
-
-msgid "Add a mark"
-msgstr "Ajouter un marqueur"
-
-msgid "Add a new tag"
-msgstr "Ajouter un nouveau tag"
-
-msgid "Add a new title"
-msgstr "Ajouter un nouveau titre"
 
 msgid "Add a RecordTimer"
 msgstr "Ajouter un timer d'enregistrement"
@@ -2256,17 +2247,29 @@ msgstr "Ajouter un timer d'enregistrement"
 msgid "Add a RecordTimer for current event"
 msgstr "Ajouter un timer d'enregistrement pour l'évènement courant"
 
-msgid "Add a service to the Volume Offsets list"
-msgstr "Ajouter un service à la liste des décalages de volume"
-
-msgid "Add a timer for the current event"
-msgstr "Ajouter une minuterie pour l'événement en cours"
-
 msgid "Add a ZapTimer for current event"
 msgstr "Ajouter un timer de zap pour l'évènement courant"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Ajouter un timer de zap pour l'évènement suivant"
+
+msgid "Add a mark"
+msgstr "Ajouter un marqueur"
+
+msgid "Add a new tag"
+msgstr "Ajouter un nouveau tag"
+
+msgid "Add a new timer"
+msgstr ""
+
+msgid "Add a new title"
+msgstr "Ajouter un nouveau titre"
+
+msgid "Add a service to the Volume Offsets list"
+msgstr "Ajouter un service à la liste des décalages de volume"
+
+msgid "Add a timer for the current event"
+msgstr "Ajouter une minuterie pour l'événement en cours"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "Ajouter un timer automatique pour l'évènement courant"
@@ -2403,14 +2406,14 @@ msgstr "Afrikaans"
 msgid "After PowerLost"
 msgstr "Après perte du secteur"
 
-msgid "After recording"
-msgstr "Après Enregistrement"
-
 msgid "After event"
 msgstr "Après l'émission"
 
 msgid "After pressing OK, please wait!"
 msgstr "Après avoir appuyé sur OK, veuillez patienter !"
+
+msgid "After recording"
+msgstr "Après Enregistrement"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2819,11 +2822,12 @@ msgstr "Astra 2 28.2e"
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
 
-msgid "At End:"
-msgstr "A la fin :"
-
 msgid "At end of current program"
 msgstr "A la fin du programme en cours"
+
+#, python-format
+msgid "At end: %s"
+msgstr ""
 
 msgid "Athletics"
 msgstr "athlétisme"
@@ -2904,9 +2908,6 @@ msgstr "Mode création"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto deep standby"
-msgstr "Veille profonde auto"
-
 msgid "Auto Detect"
 msgstr "Détection automatique"
 
@@ -2922,9 +2923,6 @@ msgstr "Sélection automatique de la langue"
 msgid "Auto Modes Selected."
 msgstr "Modes automatiques sélectionnés."
 
-msgid "Auto standby"
-msgstr "Veille auto"
-
 msgid "Auto Timer"
 msgstr "Timer Auto"
 
@@ -2936,6 +2934,9 @@ msgstr "Niveau de volume auto"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Diviser automatiquement en chapitre toutes les ? minutes (0 = jamais)"
+
+msgid "Auto deep standby"
+msgstr "Veille profonde auto"
 
 msgid "Auto flesh"
 msgstr "Correction couleurs auto (Auto flesh)"
@@ -2951,6 +2952,12 @@ msgstr "Journal d’installation automatique"
 
 msgid "Auto scart switching"
 msgstr "Commutation auto péritel"
+
+msgid "Auto shut down"
+msgstr ""
+
+msgid "Auto standby"
+msgstr "Veille auto"
 
 msgid "Auto(not available)"
 msgstr "Auto (non disponible)"
@@ -3880,6 +3887,9 @@ msgstr "Annulez les modifications apportées à la langue locale active et qui"
 msgid "Cancel any text changes and exit"
 msgstr "Annuler toute modification du texte et quitter"
 
+msgid "Cancel conflict resolution"
+msgstr ""
+
 msgid "Cancel execution?"
 msgstr "Annuler l'exécution ?"
 
@@ -4049,6 +4059,9 @@ msgstr "Chaîne"
 msgid "Channel +/- button mode"
 msgstr "Mode des touches Chaîne +/-"
 
+msgid "Channel / Service"
+msgstr ""
+
 msgid "Channel 1"
 msgstr "Chaîne 1"
 
@@ -4101,9 +4114,6 @@ msgstr "Affichage de la liste des chaînes MiniTV*"
 
 msgid "Channel list type"
 msgstr "Type de liste des chaînes"
-
-msgid "Channel not in services list"
-msgstr "Chaîne absente de la liste services"
 
 msgid "Channel preview mode"
 msgstr "Mode prévisualisation chaîne"
@@ -4161,6 +4171,12 @@ msgstr "Vérification"
 
 msgid "Check HDD"
 msgstr "Vérification du disque dur"
+
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
 
 msgid "Check power and input state from TV"
 msgstr "Vérifiez l'alimentation et l'état d'entrée du téléviseur"
@@ -4241,12 +4257,6 @@ msgstr "Choisissez un schéma de pays pour décoder les informations de classeme
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Choisissez une étiquette qui identifiera cet appareil dans les services IceTV."
 
-msgid "Choose a tag for easy finding a recording."
-msgstr "Choisir un tag pour retrouver facilement un enregistrement."
-
-msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr "Choisir entre Journalier, Hebdomadaire, Jour de la semaine ou défini par l'utilisateur."
-
 msgid "Choose dvb wait delay for ci response."
 msgstr "Choisir le délai d'attente DVB pour réponse CI."
 
@@ -4325,9 +4335,6 @@ msgstr "Choisir quel niveau de menu / paramètres afficher. Le niveau 'Expert' a
 msgid "Choose which tuner to configure."
 msgstr "Choisissez le tuner à configurer."
 
-msgid "Chose between record and ZAP."
-msgstr "Choisir entre enregistrer ou zapper."
-
 msgid "Christmas Island"
 msgstr "L'île de noël"
 
@@ -4355,6 +4362,15 @@ msgstr "Nettoyer (il suffit de flasher et de commencer à nettoyer)"
 msgid "Clean network 'Trash'"
 msgstr "Nettoyer les corbeilles réseaux"
 
+msgid "Clean up (delete) all completed timers?"
+msgstr ""
+
+msgid "Clean up and remove all completed timers"
+msgstr ""
+
+msgid "Clean up and remove all completed timers?"
+msgstr ""
+
 msgid "Cleaning Trashes"
 msgstr "Vider la corbeille"
 
@@ -4364,6 +4380,9 @@ msgstr "Nettoyage"
 msgid "Clear"
 msgstr "Effacer"
 
+msgid "Clear Log"
+msgstr "Effacer le log"
+
 msgid "Clear before scan"
 msgstr "Effacer avant de chercher"
 
@@ -4371,11 +4390,11 @@ msgstr "Effacer avant de chercher"
 msgid "Clear fixed"
 msgstr "Nouvelle adresse"
 
-msgid "Clear Log"
-msgstr "Effacer le log"
-
 msgid "Clear playlist"
 msgstr "Effacer liste de lecture"
+
+msgid "Clear the logs for this timer"
+msgstr ""
 
 msgid "Clear the virtual memory caches"
 msgstr "Effacer les caches de la mémoire virtuelle"
@@ -4431,6 +4450,9 @@ msgstr "Fermer l'écran"
 
 msgid "Close the screen and exit all menus"
 msgstr "Fermer l'écran et quitter tous les menus"
+
+msgid "Close the screen without saving any changes"
+msgstr ""
 
 msgid "Close the window"
 msgstr "Ferme la fenêtre"
@@ -4932,6 +4954,9 @@ msgstr "Configure le type de sortie vidéo qui sera utilisé."
 msgid "Configuring"
 msgstr "Configuration"
 
+msgid "ConflictTimer Actions"
+msgstr ""
+
 msgid "ConflictTimer Overview"
 msgstr "Timer en conflit"
 
@@ -5245,9 +5270,6 @@ msgstr ""
 msgid "Current installed"
 msgstr "Actuellement installé"
 
-msgid "Current location"
-msgstr "Emplacement actuel"
-
 #, python-format
 msgid "Current mode: %s \n"
 msgstr "Mode actuel : %s \n"
@@ -5494,6 +5516,9 @@ msgstr "Jour Mois-D"
 msgid "Day Mon-DD"
 msgstr "Jour Mois-DD"
 
+msgid "Day of week"
+msgstr ""
+
 msgid "Dayname D Month Year"
 msgstr "Nom du jour J Mois Année"
 
@@ -5611,6 +5636,9 @@ msgstr "Décryptage et contrôle parental"
 
 msgid "Deep Standby"
 msgstr "Veille profonde"
+
+msgid "Deep standby"
+msgstr ""
 
 msgid "Default"
 msgstr "Par défaut"
@@ -5772,6 +5800,10 @@ msgstr "Durée du délai"
 msgid "Delay:"
 msgstr "Délai :"
 
+#, python-format
+msgid "Delay: %s"
+msgstr ""
+
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -5865,6 +5897,9 @@ msgid "Delete the currently displayed log file"
 msgstr ""
 
 msgid "Delete the currently highlighted service from the Volume Offsets list"
+msgstr ""
+
+msgid "Delete the currently selected timer"
 msgstr ""
 
 msgid "Delete the selected files or directories"
@@ -6119,11 +6154,11 @@ msgstr "Afficher contenu >16:9 comme"
 msgid "Display Settings"
 msgstr "Paramètres d'affichage"
 
-msgid "Display Setup"
-msgstr "Configuration d'affichage"
-
 msgid "Display and user interface"
 msgstr "Affichage et interface utilisateur"
+
+msgid "Display log for the currently selected timer"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Afficher un message avant de lancer le prochain film"
@@ -6244,9 +6279,6 @@ msgstr ""
 "Voulez-vous vraiment supprimer toutes les balises ?\n"
 "(Notez que 'Annuler' ; n'annulera pas cela!)"
 
-msgid "Do you really want to delete the recording?"
-msgstr "Voulez-vous vraiment effacer l'enregistrement ?"
-
 msgid "Do you really want to delete this timer?"
 msgstr "Voulez-vous vraiment effacer ce timer ?"
 
@@ -6289,6 +6321,10 @@ msgstr "Voulez-vous vraiment effacer le timer %s ?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Voulez-vous vraiment supprimer votre signet de %s ?"
+
+#, python-format
+msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
 
 msgid "Do you want change rights?\n"
 msgstr "Voulez-vous avoir le droit de changer ?\n"
@@ -6672,9 +6708,6 @@ msgstr "Mode édition inactif"
 msgid "Edit Mode On"
 msgstr "Mode édition actif"
 
-msgid "Edit New Entry"
-msgstr "Editer une nouvelle entrée"
-
 msgid "Edit Quad Channel Entry"
 msgstr "Modifier l'entrée du canal quadruple"
 
@@ -6717,6 +6750,9 @@ msgid "Edit the DNS configuration of your %s %s."
 msgstr "Editer la configuration nom serveur de votre %s %s."
 
 msgid "Edit the NewCamd DES Key."
+msgstr ""
+
+msgid "Edit the currently selected timer"
 msgstr ""
 
 #, python-format
@@ -6814,6 +6850,9 @@ msgstr ""
 msgid "Enable IceTV"
 msgstr "Activer IceTV"
 
+msgid "Enable InfoBar fade-out"
+msgstr "Activer l'effacement progressif de la barre d'info"
+
 msgid "Enable MHW EPG"
 msgstr "Activer EPG MHW"
 
@@ -6826,9 +6865,6 @@ msgstr "Activer EPG Netmed"
 msgid "Enable Network IP address check"
 msgstr "Activer la vérification de l'adresse IP"
 
-msgid "Enable network traffic check"
-msgstr "Activer la vérification du trafic réseau"
-
 msgid "Enable OpenTV EPG"
 msgstr "Activer EPG OpenTV"
 
@@ -6840,6 +6876,18 @@ msgstr "Activer le swap au démarrage"
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Activer les boutons haut/bas pour la fonction « tout haut/bas » ? (au début/à la fin de la colonne)"
+
+msgid "Enable VPS"
+msgstr ""
+
+msgid "Enable VPS by default (new timers)"
+msgstr ""
+
+msgid "Enable VPS on instant records"
+msgstr ""
+
+msgid "Enable VPS-Plugin"
+msgstr ""
 
 msgid "Enable ViaSat EPG"
 msgstr "Activer EPG ViaSat"
@@ -6899,14 +6947,14 @@ msgstr "Activer le récepteur distant de repli"
 msgid "Enable freesat EPG"
 msgstr "Activer EPG freesat"
 
-msgid "Enable InfoBar fade-out"
-msgstr "Activer l'effacement progressif de la barre d'info"
-
 msgid "Enable intro screen"
 msgstr "Activer l'écran d'accueil"
 
 msgid "Enable multiple bouquets"
 msgstr "Activer bouquets multiples"
+
+msgid "Enable network traffic check"
+msgstr "Activer la vérification du trafic réseau"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Activez ou désactivez l'utilisation de HDMI-CEC."
@@ -7007,15 +7055,6 @@ msgstr "Heure de fin"
 msgid "Energy Timer"
 msgstr ""
 
-msgid "Energy saver action"
-msgstr ""
-
-msgid "Energy saver activation delay"
-msgstr ""
-
-msgid "Energy timer"
-msgstr ""
-
 #, python-format
 msgid "Energy Timer: %d minute remains."
 msgid_plural "Energy Timer: %d minutes remain."
@@ -7029,6 +7068,21 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Energy Timer: Inactive."
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+msgid "EnergyTimer Actions"
+msgstr ""
+
+msgid "EnergyTimer Overview"
 msgstr ""
 
 msgid "English"
@@ -7088,6 +7142,12 @@ msgstr ""
 
 msgid "Enter PIN"
 msgstr "Saisir le code PIN"
+
+msgid "Enter a description for this timer."
+msgstr ""
+
+msgid "Enter a name for this timer."
+msgstr ""
 
 msgid "Enter a new name for this device."
 msgstr "Saisissez un nouveau nom pour cet appareil."
@@ -7325,6 +7385,9 @@ msgstr ""
 msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Erreur : %s %s pas %s !  Veuillez réessayer plus tard."
 
+msgid "Error: A location to save the recording has not been selected!"
+msgstr ""
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7557,9 +7620,6 @@ msgstr "Paramètre avancé..."
 
 msgid "Extended Shares"
 msgstr "Partages étendus"
-
-msgid "Extended settings"
-msgstr "Paramètres étendus"
 
 msgid "Extension Actions"
 msgstr "Actions d'extension"
@@ -8855,6 +8915,24 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP"
 
+msgid "IP Address 1"
+msgstr ""
+
+msgid "IP Address 2"
+msgstr ""
+
+msgid "IP Address 3"
+msgstr ""
+
+msgid "IP Address 4"
+msgstr ""
+
+msgid "IP Address 5"
+msgstr ""
+
+msgid "IP Address to be checked on timer activation."
+msgstr ""
+
 msgid "IP address"
 msgstr "Adresse IP"
 
@@ -8947,11 +9025,17 @@ msgstr "Si \"jamais\", forcera le redémarrage malgré cela après 100 crashes."
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Si 'jamais', écrira le journal des plantages malgré cela pour le premier crash."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr ""
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Si une action est configurable par l'utilisateur, son entrée d'aide sera marquée d'un suffixe '(C)'."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Si vous modifiez un fichier, pouvez-vous définir la position de départ du curseur à la fin ou au début de la ligne."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Si activé la résolution de sortie du récepteur va essayer de correspondre à la résolution du contenu vidéo"
@@ -8974,59 +9058,11 @@ msgstr "Si les logs utilisent le maximum d'espace le plus vieux sera supprimé."
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "En cas de mise en sourdine, l'icône de mise en sourdine ou les informations relatives à la mise en sourdine sont masquées après quelques secondes."
 
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront envoyées au téléviseur pour les événements de mise en veille profonde que pour les événements de mise en veille normale."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Si mis à 'non', vous pouvez sauver les événements plus anciens même après un zap ou une interruption du PauseDirect."
-
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Si mis à 'non', PauseDirect utilise seulement le fichier de buffer. Il est recommandé d'ajuster 'PauseDirect vérifie les fichiers plus anciens [en minutes]' et 'PauseDirect vérifie l'espace libre ?'."
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "Si mis à 'oui' les chaînes sans EPG ne seront pas affichées."
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr "Si mis à 'oui' cela affichera les paquets 'PO' dans le navigateur."
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
-msgstr "Si mis à 'oui' cela affichera les paquets 'SRC' dans le navigateur."
-
-msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
-msgstr "Si mis à 'oui' cela affichera une petite fenêtre TV dans l'EPG."
-
-msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr "Si défini à ‘oui’ les valeurs du signal (SNR,etc) seront calculés depuis l’API v3. Ceci est une ancienne version de l’API qui a maintenant été remplacée."
-
-msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "Si mis à 'oui' les bouquets seront afficher à chaque fois que l'EPG est ouvert."
-
-msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
-msgstr "Si mis à 'oui' la liste des chaînes sera affichée après avoir basculé entre les modes radio et TV."
-
-msgid "Select 'Yes' to display the channel number in the InfoBar."
-msgstr "Si mis à 'oui' le numéro de la chaîne sera affichée dans la barre d'info."
-
-msgid "Select 'Yes' to display the InfoBar when a new event starts."
-msgstr "Si mis à 'oui' la barre d'informations s'affiche quand un nouvel événement commence."
-
-msgid "Select 'Yes' to display the InfoBar when changing channels."
-msgstr "Lorsqu'activé, la barre d'informations s'affiche lors du changement de chaîne."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list."
-msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste EPG."
-
-msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
-msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste des chaînes. En appuyant sur OK pour prévisualiser la chaîne, appuyer une deuxième fois sur OK pour quitter et zapper sur cette chaîne, en appuyant sur EXIT vous retournerez sur la chaîne de départ."
-
-msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
-msgstr "Si mis à 'oui' cela permets à la barre de recherche de sauter à un point d'un évènement."
-
-msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
-msgstr "Si mis à 'oui' la barre d'info sera affichée en avance et recul rapide lors de la lecture d'un média."
-
-msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pause' (aucun délai d'attente)."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solution de contournement de la mise en veille profonde est activée, attendez que l'heure du système soit synchronisée. Selon les besoins, le réveil du dispositif se poursuivra après un maximum de 2 minutes."
@@ -9069,6 +9105,9 @@ msgstr ""
 
 msgid "Igbo"
 msgstr "Igbo"
+
+msgid "Ignore"
+msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Ignorer le sous-réseau de l’espace de noms DVB-C"
@@ -9128,6 +9167,9 @@ msgid ""
 msgstr ""
 "Afin d'enregistrer une émission programmée, un tuner a été libéré avec succès :\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
 
 msgid "In progress"
 msgstr "En cours"
@@ -9240,8 +9282,14 @@ msgstr "Largeur des icônes d'info"
 msgid "InfoBar"
 msgstr "Barre d'infos"
 
+msgid "InfoBar EPG"
+msgstr "Barre d'info EPG"
+
 msgid "InfoBar EPG Actions"
 msgstr "Actions EPG de la barre d'information"
+
+msgid "InfoBar EPG Settings"
+msgstr "InfoBar EPG mode"
 
 msgid "InfoBar EPG mode"
 msgstr "Mode infobarre EPG"
@@ -9255,20 +9303,11 @@ msgstr "Actions de la barre d'information RDS"
 msgid "InfoBar Show/Hide Actions"
 msgstr "InfoBar Afficher/Masquer les actions"
 
-msgid "InfoBar EPG"
-msgstr "Barre d'info EPG"
-
 msgid "InfoBar fade-out speed"
 msgstr "Vitesse de l'effacement progressif de la barre d'info"
 
 msgid "InfoBar front end data source"
 msgstr "Source des données du frontend dans la barre d'information"
-
-msgid "Infobar:"
-msgstr "Barre d’informations :"
-
-msgid "InfoBar EPG Settings"
-msgstr "InfoBar EPG mode"
 
 msgid "Information"
 msgstr "Informations"
@@ -11279,10 +11318,10 @@ msgstr "Informations sur le nouveau programme"
 msgid "New version:"
 msgstr "Nouvelle version :"
 
-msgid "NewCamd DES Key"
+msgid "NewCamd"
 msgstr ""
 
-msgid "NewCamd"
+msgid "NewCamd DES Key"
 msgstr ""
 
 msgid "News"
@@ -11594,6 +11633,9 @@ msgstr "NodeID"
 msgid "NodeID: "
 msgstr "NodeID : "
 
+msgid "Nominate how many IP Addresses are to be checked for active connections."
+msgstr ""
+
 msgid "None"
 msgstr "Aucun"
 
@@ -11720,6 +11762,9 @@ msgstr "Maintenant, utilisez les paramètres de contraste pour indiquer la lumin
 msgid "Number"
 msgstr "Nombre"
 
+msgid "Number of IP Addresses"
+msgstr ""
+
 msgid "Number of digits in channel number"
 msgstr "Nombre de chiffres dans le numéro de la chaîne"
 
@@ -11834,6 +11879,9 @@ msgstr "À la fin du film (comme le menu)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Sur les ONIDs valides, ignorer la fréquence de la partie de sous-réseau"
 
+msgid "Once"
+msgstr "Une fois"
+
 msgid "Once per day"
 msgstr "Une fois par jour"
 
@@ -11858,6 +11906,9 @@ msgstr "Extensions seules."
 msgid "Only free scan"
 msgstr "Ne rechercher que ceux en clair"
 
+msgid "Only in standby"
+msgstr "uniquement en veille"
+
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr ""
 
@@ -11872,9 +11923,6 @@ msgstr "Seulement au démarrage"
 
 msgid "Only provider"
 msgstr "Seul fournisseur"
-
-msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
-msgstr "Choisir ‘oui’ uniquement si vous utilisez un multiswitch qui requière un signal de commande DiSEqC Port-A. Pour toutes les autres configuration choisir ‘non’."
 
 msgid "Open"
 msgstr "Ouvert"
@@ -12540,9 +12588,6 @@ msgstr "Veuillez saisir le nom pour le nouveau répertoire"
 msgid "Please enter name of the new symlink"
 msgstr "Entrez le nom du nouveau lien symbolique"
 
-msgid "Please enter new description:"
-msgstr "Veuillez entrer une nouvelle description :"
-
 msgid "Please enter new name:"
 msgstr "Veuillez entrer un nouveau nom :"
 
@@ -12616,9 +12661,6 @@ msgstr "Veuillez choisir une résolution…"
 msgid "Please select a sub service..."
 msgstr "Veuillez choisir un sous-service..."
 
-msgid "Please select the sub-service to record:"
-msgstr "Veuillez choisir un sous-service à enregistrer..."
-
 msgid "Please select a subservice..."
 msgstr "Veuillez choisir un sous-service..."
 
@@ -12657,6 +12699,9 @@ msgstr ""
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
 msgstr "Veuillez sélectionner la région qui correspond le mieux à votre emplacement physique. La région est nécessaire pour nous permettre de fournir les informations de guide correctes pour les canaux que vous pouvez recevoir."
+
+msgid "Please select the sub-service to record:"
+msgstr "Veuillez choisir un sous-service à enregistrer..."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -12965,9 +13010,6 @@ msgstr "État de la LED d'alimentation pendant la mise en veille."
 msgid "Power On Display"
 msgstr "Activer l'affichage"
 
-msgid "PowerTimers"
-msgstr "Programmations d'alimentation"
-
 msgid "Power long"
 msgstr "Alimentation long"
 
@@ -12983,20 +13025,26 @@ msgstr "Seuil de puissance. Consulter le manuel de votre récepteur pour plus d�
 msgid "PowerTimer"
 msgstr "Programmations d'alimentation"
 
+msgid "PowerTimer Actions"
+msgstr ""
+
 msgid "PowerTimer DeepStandby"
 msgstr "Programmations d'alimentation de veille profonde"
-
-msgid "PowerTimer Entry"
-msgstr "Entrée du gestionnaire d'alimentation"
-
-msgid "PowerTimer log"
-msgstr "Log du gestionnaire d'alimentation"
 
 msgid "PowerTimer Overview"
 msgstr "Aperçu des programmations d'alimentation"
 
+msgid "PowerTimer Settings"
+msgstr ""
+
 msgid "PowerTimer Standby"
 msgstr "Programmations d'alimentation de veille"
+
+msgid "PowerTimer log"
+msgstr "Log du gestionnaire d'alimentation"
+
+msgid "PowerTimers"
+msgstr "Programmations d'alimentation"
 
 msgid "Predefined"
 msgstr "Prédéfini"
@@ -13552,9 +13600,6 @@ msgstr "Voulez-vous vraiment WOL maintenant ?"
 msgid "Really close without saving settings?"
 msgstr "Fermer vraiment sans sauvegarder les paramètres ?"
 
-msgid "Really delete completed timers?"
-msgstr "Vous supprimez vraiment les minuteurs ?"
-
 msgid "Really delete this entry?"
 msgstr "Vraiment supprimer cette entrée ?"
 
@@ -13661,6 +13706,21 @@ msgstr "Temps d'enregistrement limité à cause d'un conflit de programmations %
 msgid "Record write error (no space on disk?)"
 msgstr "Erreur d’écriture d’enregistrement (pas d’espace sur le disque ?)"
 
+msgid "RecordTimer"
+msgstr ""
+
+msgid "RecordTimer Actions"
+msgstr ""
+
+msgid "RecordTimer Overview"
+msgstr ""
+
+msgid "RecordTimer Settings"
+msgstr ""
+
+msgid "RecordTimers"
+msgstr ""
+
 msgid "Recordable media toolbox"
 msgstr "Boite outils média enregistrable"
 
@@ -13687,6 +13747,9 @@ msgstr "Enregistrement terminé"
 
 msgid "Recording in progress"
 msgstr "Enregistrement en cours"
+
+msgid "Recording location"
+msgstr ""
 
 msgid "Recording running"
 msgstr "Enregistrement en cours"
@@ -14018,6 +14081,12 @@ msgstr "Répéter les commandes de veille ?"
 
 msgid "Repeat type"
 msgstr "Type de répétition"
+
+msgid "Repeated"
+msgstr "Répété"
+
+msgid "Repeating event is currently active, what do you want to do?"
+msgstr ""
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "Répétition de l'événement en cours d'enregistrement... Que voulez-vous faire ?"
@@ -14500,6 +14569,9 @@ msgstr "Sam"
 msgid "Sat Finder"
 msgstr "Pointeur satellites"
 
+msgid "Sat-Sun"
+msgstr ""
+
 msgid "Satellite"
 msgstr "Satellite"
 
@@ -14588,6 +14660,9 @@ msgstr ""
 
 msgid "Save the left folder list location on exit."
 msgstr "Enregistrez l'emplacement de la liste des dossiers de gauche à la sortie."
+
+msgid "Save the log changes and exit"
+msgstr ""
 
 msgid "Save the right folder list location on exit."
 msgstr "Enregistrez le bon emplacement de la liste des dossiers à la sortie."
@@ -14769,14 +14844,8 @@ msgstr "Recherche à l'ouest ..."
 msgid "Second cable of motorized LNB"
 msgstr "Deuxième câble d'un LNB motorisé"
 
-msgid "SecondInfoBar"
-msgstr "SecondeInfobarre"
-
 msgid "Secondary DNS"
 msgstr "DNS secondaire"
-
-msgid "Secondinfobar:"
-msgstr "Deuxièmeinfobar :"
 
 msgid "Security"
 msgstr "sécurité"
@@ -14817,6 +14886,9 @@ msgstr "Activation de la barre de recherche"
 msgid "Seekbar sensibility"
 msgstr "Sensibilité de la barre de recherche"
 
+msgid "Seeking connected events"
+msgstr ""
+
 msgid "Select"
 msgstr "Sélectionner"
 
@@ -14826,11 +14898,68 @@ msgstr "Sélectionnez ‘1.0’ pour un commutateur commité standard, ‘1.1’
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
 msgstr "Sélectionnez ‘A’ ou ‘B’ si votre système aérien nécessite cela, sinon laissez sur ‘aucun’. Si vous n’êtes pas certain sélectionnez ‘aucun’."
 
+msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+msgstr "Si mis à 'non', PauseDirect utilise seulement le fichier de buffer. Il est recommandé d'ajuster 'PauseDirect vérifie les fichiers plus anciens [en minutes]' et 'PauseDirect vérifie l'espace libre ?'."
+
+msgid "Select 'No' to only write a log message to the debug log file."
+msgstr "s'il est défini sur « non », seul un message de débogage est écrit dans le journal de débogage "
+
+msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+msgstr "Si mis à 'non', vous pouvez sauver les événements plus anciens même après un zap ou une interruption du PauseDirect."
+
+msgid "Select 'Yes' if an end time is required for this timer."
+msgstr ""
+
+msgid "Select 'Yes' if network traffic should be checked before activating the timer."
+msgstr ""
+
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
+msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
+msgstr "Choisir ‘oui’ uniquement si vous utilisez un multiswitch qui requière un signal de commande DiSEqC Port-A. Pour toutes les autres configuration choisir ‘non’."
+
+msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
+msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pause' (aucun délai d'attente)."
+
+msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
+msgstr "Si mis à 'oui' cela permets à la barre de recherche de sauter à un point d'un évènement."
+
+msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
+msgstr "Si cette option est réglée sur 'oui', les listes de chaînes vous montreront toujours l'écran du bouquet en premier. Si elle est réglée sur \"non\", le bouquet actuel sera ouvert."
+
+msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
+msgstr ""
+
+msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
+msgstr "Si mis à 'oui' cela affichera une petite fenêtre TV dans l'EPG."
+
+msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
+msgstr "Si mis à 'oui' cela affichera les paquets 'PO' dans le navigateur."
+
+msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
+msgstr "Si mis à 'oui' cela affichera les paquets 'SRC' dans le navigateur."
+
+msgid "Select 'Yes' to display the InfoBar when a new event starts."
+msgstr "Si mis à 'oui' la barre d'informations s'affiche quand un nouvel événement commence."
+
+msgid "Select 'Yes' to display the InfoBar when changing channels."
+msgstr "Lorsqu'activé, la barre d'informations s'affiche lors du changement de chaîne."
+
+msgid "Select 'Yes' to display the channel number in the InfoBar."
+msgstr "Si mis à 'oui' le numéro de la chaîne sera affichée dans la barre d'info."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Sélectionnez « Oui » pour activer la modification des paramètres de cet appareil. Sélectionner « Non » réinitialise les paramètres de l’appareil à leurs valeurs par défaut."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list."
+msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste EPG."
+
+msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr "Si mis à 'oui' vous pouvez prévisualiser une chaîne depuis la liste des chaînes. En appuyant sur OK pour prévisualiser la chaîne, appuyer une deuxième fois sur OK pour quitter et zapper sur cette chaîne, en appuyant sur EXIT vous retournerez sur la chaîne de départ."
+
+msgid "Select 'Yes' to hide channels without EPG data."
+msgstr "Si mis à 'oui' les chaînes sans EPG ne seront pas affichées."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
@@ -14864,6 +14993,21 @@ msgstr ""
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
+
+msgid "Select 'Yes' to show the advanced setting options."
+msgstr ""
+
+msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
+msgstr "Si mis à 'oui' les bouquets seront afficher à chaque fois que l'EPG est ouvert."
+
+msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
+msgstr "Si mis à 'oui' la liste des chaînes sera affichée après avoir basculé entre les modes radio et TV."
+
+msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
+msgstr "Si défini à ‘oui’ les valeurs du signal (SNR,etc) seront calculés depuis l’API v3. Ceci est une ancienne version de l’API qui a maintenant été remplacée."
+
+msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
+msgstr "Si mis à 'oui' la barre d'info sera affichée en avance et recul rapide lors de la lecture d'un média."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Sélectionnez ‘bande’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
@@ -15001,9 +15145,6 @@ msgstr "Sélectionnez le serveur de cartes"
 msgid "Select channel audio"
 msgstr "Sélectionnez le canal audio"
 
-msgid "Select channel to record from"
-msgstr "Sélectionner la chaîne à enregistrer"
-
 msgid "Select copy destination for:"
 msgstr "Sélectionnez la destination de la copie pour :"
 
@@ -15019,6 +15160,9 @@ msgstr "Choisir les fichiers à exclure de la sauvegarde"
 msgid "Select files/folders to backup"
 msgstr "Sélectionner les fichiers/dossiers pour sauvegarde"
 
+msgid "Select how often this timer is to be repeated."
+msgstr ""
+
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Sélectionnez à quelle vitesse l’antenne doit se déplacer entre les satellites."
 
@@ -15031,10 +15175,43 @@ msgstr "Choisir comment activer le mode Quick EPG :"
 msgid "Select how your box will upgrade."
 msgstr "Choisir comment votre récepteur va se mettre à jour."
 
+msgid "Select if an end time is required."
+msgstr ""
+
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Cette option vous permet de sélectionner si la valeur par défaut d'un élément de configuration est affichée et, le cas échéant, où elle est affichée par rapport à la description."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
+msgstr ""
+
+msgid "Select if the timer name and description modification code is run on repeating timers."
+msgstr ""
+
+msgid "Select if there is to be a time window within which this timer can be active."
+msgstr ""
+
+msgid "Select if this timer activates on a Friday."
+msgstr ""
+
+msgid "Select if this timer activates on a Monday."
+msgstr ""
+
+msgid "Select if this timer activates on a Saturday."
+msgstr ""
+
+msgid "Select if this timer activates on a Sunday."
+msgstr ""
+
+msgid "Select if this timer activates on a Thursday."
+msgstr ""
+
+msgid "Select if this timer activates on a Tuesday."
+msgstr ""
+
+msgid "Select if this timer activates on a Wednesday."
+msgstr ""
+
+msgid "Select if this timer is to be repeated."
 msgstr ""
 
 msgid "Select if timeshift must continue when set to record."
@@ -15057,9 +15234,6 @@ msgstr ""
 
 msgid "Select movie"
 msgstr "Sélectionner un film"
-
-msgid "Select of the number"
-msgstr "Choisir le nombre"
 
 msgid "Select provider to add..."
 msgstr "Sélectionner l’opérateur à ajouter..."
@@ -15084,9 +15258,6 @@ msgstr "Sélectionnez la méthode de tri :"
 
 msgid "Select system information to view:"
 msgstr ""
-
-msgid "Select target folder"
-msgstr "Sélectionner le dossier cible"
 
 msgid "Select the No / False response"
 msgstr "Sélectionnez la réponse Non / Faux"
@@ -15115,8 +15286,17 @@ msgstr "Sélectionnez la fréquence de la bande utilisateur à attribuer à ce t
 msgid "Select the Yes / True response"
 msgstr "Sélectionnez la réponse Oui / Vrai"
 
+msgid "Select the action to perform when the timer ends."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Contrôlez la vitesse d'animation des indicateurs de bouton dans l'écran d'aide. « Désactivé » désactive l'animation afin que les indicateurs sautent entre les boutons."
+
+msgid "Select the channel from which to record:"
+msgstr ""
+
+msgid "Select the channel or service to be used for this timer."
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Sélectionnez le caractère ou l'action sous le curseur du clavier"
@@ -15128,6 +15308,21 @@ msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Sélectionnez les locales/la langue actuellement mis en surbrillance pour l’interface utilisateur"
 
 msgid "Select the currently highlighted service"
+msgstr ""
+
+msgid "Select the date from which this timer will become active."
+msgstr ""
+
+msgid "Select the date when this timer will activate."
+msgstr ""
+
+msgid "Select the date when this timer will start."
+msgstr ""
+
+msgid "Select the day of the week that this timer will activate."
+msgstr ""
+
+msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
@@ -15151,6 +15346,9 @@ msgstr ""
 msgid "Select the locale from a menu"
 msgstr "Sélectionnez les paramètres régionaux à partir d’un menu"
 
+msgid "Select the location in which to store the recording:"
+msgstr ""
+
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Sélectionnez le fabricant de votre appareil SCR. Si le fabricant n’est pas listé, définir ‘SCR’ ou ‘défini par l’utilisateur’ et entrez les paramètres de l’appareil en fonction de la fiche technique."
 
@@ -15162,6 +15360,9 @@ msgstr "Sélectionnez le numéro de modèle de votre appareil Unicable. Si le nu
 
 msgid "Select the movie path"
 msgstr "Sélectionner le chemin d’accès au film"
+
+msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
+msgstr ""
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Sélectionnez l'élément suivant dans la liste ou déplacez le curseur vers la droite"
@@ -15208,11 +15409,26 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
+msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the time after which this timer can start."
+msgstr ""
+
+msgid "Select the time before which this timer should end."
+msgstr ""
+
 msgid "Select the time delay before the button starts repeating."
 msgstr "Sélectionnez le délai avant que le bouton ne commence à se répéter."
 
 msgid "Select the time delay between each repeat of the button."
 msgstr "Sélectionnez le délai entre chaque répétition du bouton."
+
+msgid "Select the time when this timer should end."
+msgstr ""
+
+msgid "Select the time when this timer will start."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Sélectionnez le fuseau horaire dans la zone ou la région."
@@ -15238,6 +15454,9 @@ msgstr ""
 msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
+msgid "Select the type of this timer."
+msgstr ""
+
 msgid "Select video input with up/down buttons"
 msgstr "Sélectionner l’entrée vidéo avec les boutons haut/bas"
 
@@ -15246,6 +15465,12 @@ msgstr "Sélectionner le mode vidéo"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "A la fin de la lecture d'un fichier, vous pouvez choisir le comportement du récepteur."
+
+msgid "Select what do do after the timer has completed."
+msgstr ""
+
+msgid "Select what do do after the timer recording has completed."
+msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Choisir quoi faire lorsque le %s %s est démarré, resté allumé ou se mettre en veille."
@@ -15270,6 +15495,9 @@ msgstr "Choisir ce que le bouton TV doit activer :"
 
 msgid "Select what you want the Up/Down button to activate."
 msgstr "Choisir ce que les boutons Haut/Bas doivent activer :"
+
+msgid "Select where the recording should be saved."
+msgstr ""
 
 msgid "Select wireless network"
 msgstr "Sélectionner l'interface sans fil"
@@ -15610,12 +15838,6 @@ msgstr "Définir l'adresse MAC votre %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Définissez les proportions des picons de service."
 
-msgid "Set the channel for this timer."
-msgstr "Définir la chaîne pour cette programmation."
-
-msgid "Set the date the timer must start."
-msgstr "Définir la date et l'heure de départ."
-
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Définir l'emplacement par défaut pour vos enregistrements instantanés. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
 
@@ -15634,14 +15856,8 @@ msgstr "Définir la méthode de tri par défaut."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Définir le délai avant de répéter une boucle, cela est utilisé par le rendu logiciel dans certains thèmes/skins."
 
-msgid "Set the description of the recording."
-msgstr "Définir la description de l'enregistrement."
-
 msgid "Set the jump-size of the seekbar."
 msgstr "Définir les sauts de temps de la barre de recherche."
-
-msgid "Set the name the recording will get."
-msgstr "Définir le nom de l'enregistrement."
 
 msgid "Set the position of the recording icons"
 msgstr "Définir la position des icônes d'enregistrement"
@@ -15657,12 +15873,6 @@ msgstr "Définir de défilement du texte sur la face avant."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Définir le temps avant vérification de l'information de résolution de la vidéo source."
-
-msgid "Set the time the timer must start."
-msgstr "Définir l'heure à laquelle la programmation doit démarrer."
-
-msgid "Set the time the timer must stop."
-msgstr "Définir l'heure à laquelle la programmation doit s'arrêter."
 
 msgid "Set the time to hide the infobar."
 msgstr "Définir la durée pour masquer la barre d'info."
@@ -15867,6 +16077,9 @@ msgstr "Configurer votre disque dur"
 msgid "Setup your LCD"
 msgstr "Configurer votre LCD"
 
+msgid "Setup your LCD Skin"
+msgstr ""
+
 msgid "Setup your OSD"
 msgstr "Configurer votre OSD"
 
@@ -16044,9 +16257,6 @@ msgstr ""
 msgid "Show Display Icons"
 msgstr "Afficher les icônes à l'écran"
 
-msgid "Show the EIT Now/Next data in the InfoBar."
-msgstr "Afficher EIT maintenant/suivant dans barre d'information"
-
 msgid "Show EPG"
 msgstr "Afficher l'EPG"
 
@@ -16076,6 +16286,21 @@ msgstr "Afficher la configuration de HDMIRecord..."
 
 msgid "Show InfoBar"
 msgstr "Afficher l'infobarre"
+
+msgid "Show InfoBar lite *"
+msgstr "Afficher la barre d'info légère *"
+
+msgid "Show InfoBar on channel change"
+msgstr "Afficher barre d'infos au changement de chaîne"
+
+msgid "Show InfoBar on event change"
+msgstr "Afficher barre d'infos au changement d'émission"
+
+msgid "Show InfoBar on skip forward/backward"
+msgstr "Afficher barre d'infos sur saut avant/arrière"
+
+msgid "Show InfoBar picons"
+msgstr "Afficher picon dans infobarre"
 
 msgid "Show Information"
 msgstr "Afficher les informations"
@@ -16192,6 +16417,9 @@ msgstr "Afficher l'écran de fond lorsqu'on écoute une radio."
 
 msgid "Show bouquet on launch"
 msgstr "Afficher les bouquets au lancement"
+
+msgid "Show build information"
+msgstr ""
 
 msgid "Show channel number in InfoBar"
 msgstr "Afficher numéro des chaînes dans infobarre"
@@ -16314,24 +16542,6 @@ msgstr "Afficher info"
 msgid "Show info line"
 msgstr "Afficher informations"
 
-msgid "Show InfoBar lite *"
-msgstr "Afficher la barre d'info légère *"
-
-msgid "Show InfoBar on channel change"
-msgstr "Afficher barre d'infos au changement de chaîne"
-
-msgid "Show InfoBar on event change"
-msgstr "Afficher barre d'infos au changement d'émission"
-
-msgid "Show InfoBar on skip forward/backward"
-msgstr "Afficher barre d'infos sur saut avant/arrière"
-
-msgid "Show persistent InfoBar while paused"
-msgstr "Afficher l'infobarre en permanence en pause"
-
-msgid "Show InfoBar picons"
-msgstr "Afficher picon dans infobarre"
-
 msgid "Show job tasks in extensions"
 msgstr "Afficher les tâches (job) dans les extensions"
 
@@ -16398,6 +16608,9 @@ msgstr "Afficher les lignes de part"
 msgid "Show parting lines between events."
 msgstr "Afficher les lignes de séparation entre les événements."
 
+msgid "Show persistent InfoBar while paused"
+msgstr "Afficher l'infobarre en permanence en pause"
+
 msgid "Show picon background colour"
 msgstr "Afficher la couleur de fond des picons"
 
@@ -16432,7 +16645,7 @@ msgstr ""
 msgid "Show quickmenu..."
 msgstr "Afficher Menu Rapide…"
 
-msgid "Show receiver image(s)"
+msgid "Show receiver image information"
 msgstr ""
 
 msgid "Show record indicator"
@@ -16518,6 +16731,9 @@ msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Afficher le lecteur DreamPlex…"
+
+msgid "Show the EIT Now/Next data in the InfoBar."
+msgstr "Afficher EIT maintenant/suivant dans barre d'information"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -16797,19 +17013,28 @@ msgstr "Veille programmée"
 msgid "Sleep Timer"
 msgstr "Programmation de mise en veille"
 
-msgid "SleepTimer Settings"
-msgstr ""
-
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay"
-msgstr "Délai de la veille programmée"
+msgid "Sleep delay (in minutes)"
+msgstr ""
 
 msgid "Sleep long"
 msgstr "Mode veille profond"
 
 msgid "Sleep timer"
+msgstr ""
+
+msgid "SleepTimer"
+msgstr "Programmation de mise en veille"
+
+msgid "SleepTimer Actions"
+msgstr ""
+
+msgid "SleepTimer Overview"
+msgstr ""
+
+msgid "SleepTimer Settings"
 msgstr ""
 
 msgid "SleepTimer action"
@@ -16832,9 +17057,6 @@ msgstr[1] ""
 
 msgid "SleepTimer: Inactive."
 msgstr ""
-
-msgid "SleepTimer"
-msgstr "Programmation de mise en veille"
 
 msgid "Sleeping"
 msgstr ""
@@ -17149,6 +17371,10 @@ msgstr "Sud Soudan"
 msgid "Space to reserve for recordings (in GB)"
 msgstr "Espace disque à réserver pour les enregistrements (en Go)"
 
+#, python-format
+msgid "Space total %s, used %s, free %s (%0.f%%)."
+msgstr ""
+
 msgid "Space used:"
 msgstr "Espace utilisé :"
 
@@ -17224,6 +17450,9 @@ msgstr "Démarrer Kodi"
 msgid "Start RDS interactive"
 msgstr "Démarrer RDS interactif"
 
+msgid "Start date"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Démarrer depuis le début"
 
@@ -17269,11 +17498,14 @@ msgstr "Assistant de démarrage"
 msgid "Starting Softcam"
 msgstr "Démarrer Softcam"
 
+msgid "Starting date"
+msgstr ""
+
 msgid "Starting directory"
 msgstr "répertoire départ"
 
-msgid "Starting on"
-msgstr "Démarre sur"
+msgid "Starting time"
+msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "Démarre en quelques secondes"
@@ -18111,6 +18343,11 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "La TV a zappé sur la chaîne enregistrée !\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18142,6 +18379,11 @@ msgid ""
 msgstr ""
 "La durée du tampon pour le PauseDirect dépasse la limite spécifiée dans les paramètres.\n"
 "Que voulez-vous faire ?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "La commande de réveil de la mise en veille sera envoyée plusieurs fois."
@@ -18211,6 +18453,11 @@ msgstr "Les résultats ont été écrits sur %s."
 
 msgid "The saved PIN was cleared."
 msgstr "Le code PIN sauvegardé a été effacé."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
 
 msgid "The servicelist is reloaded."
 msgstr "La liste des services a été rechargée."
@@ -18622,6 +18869,9 @@ msgstr "Cette option définit la supression de faux contours numériques, qui so
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Cette option définit la netteté de l'image, utilisée lorsque l'image est rehaussée."
 
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
 msgid "This plugin is installed."
 msgstr "Ce plugin est installé."
 
@@ -18786,9 +19036,6 @@ msgstr "Saut dans le temps : utiliser l'avance rapide pour la vitesse"
 msgid "Time long"
 msgstr "Temps long"
 
-msgid "Time range:"
-msgstr "Laps de temps :"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Temps requis pour ce processus : %s"
@@ -18820,15 +19067,12 @@ msgstr "Ligne de temps 24 heures"
 msgid "Timeline font size"
 msgstr "Police de caractère de la ligne de temps"
 
-msgid "Timer"
-msgstr "Programmation"
-
 # TODO
 msgid "Timer Actions"
 msgstr "Actions de la minuterie"
 
-msgid "Timer Overview"
-msgstr "Aperçu des programmations"
+msgid "Timer Log Actions"
+msgstr ""
 
 # TODO
 msgid "Timer Sanity Error"
@@ -18991,6 +19235,9 @@ msgstr "Basculer entre les listes bouquets/EPG"
 
 msgid "Toggle display of the InfoBar"
 msgstr "Basculer l'affichage de la barre d'informations"
+
+msgid "Toggle enable/disable of the currently selected timer"
+msgstr ""
 
 msgid "Toggle hide/show of the current item"
 msgstr ""
@@ -19465,6 +19712,9 @@ msgstr ""
 msgid "Unknown user: %d"
 msgstr "Utilisateur inconnu : %d"
 
+msgid "Unknown!"
+msgstr ""
+
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "À moins qu'il ne soit réglé sur \"désactivé\", vous obtenez un aperçu des chaînes dans la liste EPG."
 
@@ -19910,6 +20160,59 @@ msgstr "VOD longue"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr ""
+
+msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS-Plugin Information"
+msgstr ""
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+
+msgid "VPS-Time (date)"
+msgstr ""
+
+msgid "VPS-Time (time)"
+msgstr ""
+
 msgid "Valid"
 msgstr ""
 
@@ -20285,6 +20588,9 @@ msgstr "Réveil"
 msgid "Wakeup TV from standby"
 msgstr "Réveil de la TV depuis le mode veille"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr ""
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Heure de réveil avant qu'un timer démarre [mins]"
 
@@ -20355,11 +20661,11 @@ msgstr "Mer"
 msgid "Wednesday"
 msgstr "Mercredi"
 
-msgid "Weekday"
-msgstr "Jour de la semaine"
+msgid "Weekdays"
+msgstr ""
 
-msgid "Weekend"
-msgstr "Week-end"
+msgid "Weekends"
+msgstr ""
 
 msgid "Weekly"
 msgstr "Hebdomadaire"
@@ -20431,9 +20737,6 @@ msgstr "Frison occidental"
 
 msgid "Western Sahara"
 msgstr "Sahara Occidental"
-
-msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "Quelle est action requise à la fin d'une programmation ? 'Auto' laisse le récepteur retourner dans son état avant démarrage de la programmation. 'Ne rien faire', 'Aller en veille' et 'Aller en veille profonde' font ce qu'ils décrivent."
 
 msgid "What day of month?"
 msgstr ""
@@ -20630,11 +20933,11 @@ msgstr "Lorsque le récepteur sort de la veille ou de la veille profonde, il env
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Lorsque que vous êtes sur un service le système va normalement scanner le transpondeur à la recherche de changement et les sauvegarder. Seulement le mettre sur 'oui' si vous êtes absolument certain de ce que vous faites."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres ?"
-
-msgid "Where should the recording be saved?"
-msgstr "Où l'enregistrement doit-il être sauvegardé ?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Où sauvegarder les enregistrements temporaires de timeshift ?"
@@ -20684,9 +20987,6 @@ msgstr "Avec erreurs:"
 msgid "With popup"
 msgstr "Avec le popup"
 
-msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "Si cette option est réglée sur 'oui', les listes de chaînes vous montreront toujours l'écran du bouquet en premier. Si elle est réglée sur \"non\", le bouquet actuel sera ouvert."
-
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "Avec cette option vous pouvez cacher Job Tasks du menu des extensions (appui bref sur le bouton bleu)."
 
@@ -20707,6 +21007,9 @@ msgstr "Avec ce paramètre, vous pouvez probablement améliorer la qualité du s
 
 msgid "Without popup"
 msgstr "Sans le popup"
+
+msgid "Without query"
+msgstr "sans demander"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -20784,6 +21087,9 @@ msgstr "Yémen"
 msgid "Yes"
 msgstr "Oui"
 
+msgid "Yes (safe mode)"
+msgstr ""
+
 msgid "Yes to all"
 msgstr "Oui à tout"
 
@@ -20811,12 +21117,6 @@ msgstr "Oui, mais sauvegarder PauseDirect comme film et continuer l'enregistreme
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Oui, mais sauvegarder PauseDirect comme film et arrêter l'enregistrement"
 
-msgid "Yes, delete from timer list"
-msgstr "Oui, supprimer de la liste des programmations"
-
-msgid "Yes, delete from timer list and delete recording"
-msgstr "Oui, supprimer de la liste des programmations et effacer l'enregistrement"
-
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Oui, supprimer ce film et revenir à la liste des films"
 
@@ -20828,6 +21128,9 @@ msgstr "Oui, faire une analyse automatique maintenant"
 
 msgid "Yes, do another manual scan now"
 msgstr "Oui, faire une autre analyse manuelle maintenant"
+
+msgid "Yes, don't ask again"
+msgstr ""
 
 msgid "Yes, restore the settings now"
 msgstr "Oui, restaurer les paramètres maintenant"
@@ -20911,9 +21214,6 @@ msgstr "Vous ne pouvez pas exécuter utilement '%s' sur un répertoire."
 
 msgid "You cannot delete this!"
 msgstr "Vous ne pouvez pas l'effacer !"
-
-msgid "You didn't select a channel to record from."
-msgstr "Vous n'avez pas sélectionné une chaîne à enregistrer."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "Vous avez déjà envoyé ce log, êtes-vous sûr de vouloir renvoyer ce log :\n"
@@ -21237,6 +21537,9 @@ msgstr "Youtube TV"
 msgid "ZAP"
 msgstr "ZAP"
 
+msgid "ZAP as PiP"
+msgstr ""
+
 msgid "ZOOM"
 msgstr "ZOOM"
 
@@ -21305,9 +21608,6 @@ msgstr "Zap haut"
 
 msgid "Zap+Record next"
 msgstr "Zap+Enregistrer suivant"
-
-msgid "Zapped"
-msgstr "Zappé"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 ancien modèle"
@@ -21511,12 +21811,6 @@ msgstr "pistes audio"
 msgid "auto"
 msgstr "auto"
 
-msgid "auto deepstandby"
-msgstr "mise veille profonde auto"
-
-msgid "auto standby"
-msgstr "mise en veille auto"
-
 msgid "automatic"
 msgstr "automatique"
 
@@ -21653,9 +21947,6 @@ msgstr "créer un lien symbolique..."
 
 msgid "current affairs (general)"
 msgstr "affaires courantes (général)"
-
-msgid "daily"
-msgstr "Quotidien"
 
 msgid "day"
 msgstr "Jour"
@@ -22005,9 +22296,6 @@ msgstr "hlg"
 msgid "hops:"
 msgstr "hops :"
 
-msgid "Select 'No' to only write a log message to the debug log file."
-msgstr "s'il est défini sur « non », seul un message de débogage est écrit dans le journal de débogage "
-
 msgid "increase uphop by 1"
 msgstr "augmenter le uphop de 1"
 
@@ -22118,9 +22406,6 @@ msgstr "centre"
 
 msgid "min"
 msgstr "min"
-
-msgid "mins"
-msgstr "Mins"
 
 msgid "minute"
 msgstr "minute"
@@ -22284,14 +22569,8 @@ msgstr "Sur support en LECTURE SEULE."
 msgid "on how to restore the image"
 msgstr "sur la façon de restaurer l'image"
 
-msgid "Once"
-msgstr "Une fois"
-
 msgid "only HD"
 msgstr "seulement HD"
-
-msgid "Only in standby"
-msgstr "uniquement en veille"
 
 msgid "original"
 msgstr "original"
@@ -22368,9 +22647,6 @@ msgstr "Enregistrements réels"
 msgid "real recordings or streaming"
 msgstr "Enregistrements réels ou streaming"
 
-msgid "reboot system"
-msgstr "redémarrer le système"
-
 #, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "temps d'enregistrement modifié, début de préparation est maintenant : %s"
@@ -22437,9 +22713,6 @@ msgstr "renommer"
 
 msgid "rename entry"
 msgstr "Renommer l'entrée"
-
-msgid "Repeated"
-msgstr "Répété"
 
 msgid "restore deleted userbouquets"
 msgstr "Restaurer les bouquets effacés"
@@ -22833,17 +23106,8 @@ msgstr "violet"
 msgid "wait for mmi..."
 msgstr "Attente pour mmi..."
 
-msgid "wakeup"
-msgstr "réveil"
-
-msgid "wakeup to standby"
-msgstr "Réveiller en mode veille"
-
 msgid "water sport"
 msgstr "Sport nautique"
-
-msgid "weekly"
-msgstr "Hebdomadaire"
 
 msgid "west"
 msgstr "Ouest"
@@ -22902,9 +23166,6 @@ msgstr "Avec_erreurs"
 msgid "without"
 msgstr "sans"
 
-msgid "Without query"
-msgstr "sans demander"
-
 msgid "working"
 msgstr "travail en cours"
 
@@ -22923,3 +23184,147 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "<Unknown>"
+#~ msgstr "<inconnu>"
+
+#~ msgid "A repeating timer or just once?"
+#~ msgstr "Un timer répétitif ou unique?"
+
+#~ msgid "At End:"
+#~ msgstr "A la fin :"
+
+#~ msgid "Channel not in services list"
+#~ msgstr "Chaîne absente de la liste services"
+
+#~ msgid "Choose a tag for easy finding a recording."
+#~ msgstr "Choisir un tag pour retrouver facilement un enregistrement."
+
+#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
+#~ msgstr "Choisir entre Journalier, Hebdomadaire, Jour de la semaine ou défini par l'utilisateur."
+
+#~ msgid "Chose between record and ZAP."
+#~ msgstr "Choisir entre enregistrer ou zapper."
+
+#~ msgid "Current location"
+#~ msgstr "Emplacement actuel"
+
+#~ msgid "Display Setup"
+#~ msgstr "Configuration d'affichage"
+
+#~ msgid "Do you really want to delete the recording?"
+#~ msgstr "Voulez-vous vraiment effacer l'enregistrement ?"
+
+#~ msgid "Edit New Entry"
+#~ msgstr "Editer une nouvelle entrée"
+
+#~ msgid "Extended settings"
+#~ msgstr "Paramètres étendus"
+
+#~ msgid "Infobar:"
+#~ msgstr "Barre d’informations :"
+
+#~ msgid "Please enter new description:"
+#~ msgstr "Veuillez entrer une nouvelle description :"
+
+#~ msgid "PowerTimer Entry"
+#~ msgstr "Entrée du gestionnaire d'alimentation"
+
+#~ msgid "Really delete completed timers?"
+#~ msgstr "Vous supprimez vraiment les minuteurs ?"
+
+#~ msgid "SecondInfoBar"
+#~ msgstr "SecondeInfobarre"
+
+#~ msgid "Secondinfobar:"
+#~ msgstr "Deuxièmeinfobar :"
+
+#~ msgid "Select channel to record from"
+#~ msgstr "Sélectionner la chaîne à enregistrer"
+
+#~ msgid "Select of the number"
+#~ msgstr "Choisir le nombre"
+
+#~ msgid "Select target folder"
+#~ msgstr "Sélectionner le dossier cible"
+
+#~ msgid "Set the channel for this timer."
+#~ msgstr "Définir la chaîne pour cette programmation."
+
+#~ msgid "Set the date the timer must start."
+#~ msgstr "Définir la date et l'heure de départ."
+
+#~ msgid "Set the description of the recording."
+#~ msgstr "Définir la description de l'enregistrement."
+
+#~ msgid "Set the name the recording will get."
+#~ msgstr "Définir le nom de l'enregistrement."
+
+#~ msgid "Set the time the timer must start."
+#~ msgstr "Définir l'heure à laquelle la programmation doit démarrer."
+
+#~ msgid "Set the time the timer must stop."
+#~ msgstr "Définir l'heure à laquelle la programmation doit s'arrêter."
+
+#~ msgid "Sleep delay"
+#~ msgstr "Délai de la veille programmée"
+
+#~ msgid "Starting on"
+#~ msgstr "Démarre sur"
+
+#~ msgid "Time range:"
+#~ msgstr "Laps de temps :"
+
+#~ msgid "Timer"
+#~ msgstr "Programmation"
+
+#~ msgid "Timer Overview"
+#~ msgstr "Aperçu des programmations"
+
+#~ msgid "Weekday"
+#~ msgstr "Jour de la semaine"
+
+#~ msgid "Weekend"
+#~ msgstr "Week-end"
+
+#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
+#~ msgstr "Quelle est action requise à la fin d'une programmation ? 'Auto' laisse le récepteur retourner dans son état avant démarrage de la programmation. 'Ne rien faire', 'Aller en veille' et 'Aller en veille profonde' font ce qu'ils décrivent."
+
+#~ msgid "Where should the recording be saved?"
+#~ msgstr "Où l'enregistrement doit-il être sauvegardé ?"
+
+#~ msgid "Yes, delete from timer list"
+#~ msgstr "Oui, supprimer de la liste des programmations"
+
+#~ msgid "Yes, delete from timer list and delete recording"
+#~ msgstr "Oui, supprimer de la liste des programmations et effacer l'enregistrement"
+
+#~ msgid "You didn't select a channel to record from."
+#~ msgstr "Vous n'avez pas sélectionné une chaîne à enregistrer."
+
+#~ msgid "Zapped"
+#~ msgstr "Zappé"
+
+#~ msgid "auto deepstandby"
+#~ msgstr "mise veille profonde auto"
+
+#~ msgid "auto standby"
+#~ msgstr "mise en veille auto"
+
+#~ msgid "daily"
+#~ msgstr "Quotidien"
+
+#~ msgid "mins"
+#~ msgstr "Mins"
+
+#~ msgid "reboot system"
+#~ msgstr "redémarrer le système"
+
+#~ msgid "wakeup"
+#~ msgstr "réveil"
+
+#~ msgid "wakeup to standby"
+#~ msgstr "Réveiller en mode veille"
+
+#~ msgid "weekly"
+#~ msgstr "Hebdomadaire"

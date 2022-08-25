@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 13:02+0000\n"
+"POT-Creation-Date: 2022-08-25 18:37+0000\n"
 "PO-Revision-Date: 2022-08-24 04:31+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
@@ -1059,6 +1059,9 @@ msgstr "%d.%-m.%Y"
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
+
+msgid "%d.%B %Y"
+msgstr ""
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -4167,6 +4170,12 @@ msgstr "Verifica"
 msgid "Check HDD"
 msgstr "Verifica integrità HDD"
 
+msgid "Check for PDC"
+msgstr ""
+
+msgid "Check for PDC availability on each service"
+msgstr ""
+
 msgid "Check power and input state from TV"
 msgstr "Controlla lo stato di accensione e di input dalla TV"
 
@@ -6860,6 +6869,18 @@ msgstr "Abilita Swap all'avvio"
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Abilita i tasti Su/Giù per la funzione 'Tutto su/giù'? (all'inizio o alla fine della colonna)"
 
+msgid "Enable VPS"
+msgstr "Abilitare VPS"
+
+msgid "Enable VPS by default (new timers)"
+msgstr "Abilitare VPS di default (su nuovi timer)"
+
+msgid "Enable VPS on instant records"
+msgstr "Abilitare VPS per le registrazioni istantanee"
+
+msgid "Enable VPS-Plugin"
+msgstr "Abilitare il plugin VPS"
+
 msgid "Enable ViaSat EPG"
 msgstr "Abilita ViaSat EPG"
 
@@ -8994,11 +9015,17 @@ msgstr "Se \"mai\", forzerà comunque il riavvio dopo 100 arresti anomali."
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Se è “MAI” sarà comunque scritto il registro errori di sistema per il primo crash."
 
+msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgstr "Se un programma viene interrotto o diviso in eventi separati, VPS cercherà di ricostruire gli eventi collegati."
+
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Se un'azione è configurabile dall'utente, la relativa voce della guida verrà contrassegnata con un suffisso '(C)'."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Durante la modifica di un file, puoi impostare la posizione iniziale del cursore all'inizio o alla fine del linea."
+
+msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgstr "Se abilitata, la funzione riavvierà il ricevitore dallo stato di spegnimento all'ora prestabilita per verificare che il programma non inizi in anticipo."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Se abilitata, la risoluzione di uscita del ricevitore cercherà di corrispondere alla risoluzione del contenuto video"
@@ -9020,6 +9047,9 @@ msgstr "Se i registri utilizzano lo spazio massimo impostato utilizzato, il più
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Se disattivato, nasconde l'icona muto o le informazioni mute dopo pochi secondi."
+
+msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr "Se possibile, VPS verificherà n minuti prima dell'avvio di un timer che il programma non inizi in anticipo (0 >> disabilita la funzione)"
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Se impostato su \"Sì\", gli stessi comandi verranno inviati alla TV per gli eventi di spegnimento che vengono inviati durante i normali eventi di standby."
@@ -9127,6 +9157,9 @@ msgid ""
 msgstr ""
 "Per registrare un timer, un sintonizzatore è stato liberato con successo:\n"
 "\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "In seguito a registrazione programmata, è stato sintonizzato il canale da registrare.\n"
 
 msgid "In progress"
 msgstr "In corso"
@@ -14829,6 +14862,9 @@ msgstr "Attivazione della barra di ricerca"
 msgid "Seekbar sensibility"
 msgstr "Sensibilità della barra di ricerca"
 
+msgid "Seeking connected events"
+msgstr "Ricerca eventi collegati in corso"
+
 msgid "Select"
 msgstr "Seleziona"
 
@@ -17442,6 +17478,9 @@ msgstr "Data di inizio"
 msgid "Starting directory"
 msgstr "cartella di avvio"
 
+msgid "Starting time"
+msgstr "Minuti MAX di anticipo sull'orario previsto"
+
 msgid "Starts in a few seconds"
 msgstr "Inizia in pochi secondi"
 
@@ -18270,6 +18309,13 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "La TV è passata al servizio di registrazione!\n"
 
 msgid ""
+"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Impossibile verificare se questo canale supporti la funzione VPS per i timer programmati manualmente.\n"
+"Abilitare comunque il VPS?"
+
+msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18301,6 +18347,13 @@ msgid ""
 msgstr ""
 "La durata del buffer del timeshift supera il limite specificato nelle impostazioni.\n"
 "Cosa vuoi fare?"
+
+msgid ""
+"The channel may support VPS\n"
+" Do you want to enable VPS?"
+msgstr ""
+"Il canale potrebbe supportare il VPS.\n"
+"Abilitare la funzione?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Il comando di riattivazione dalla modalità standby verrà inviato più volte."
@@ -18373,6 +18426,13 @@ msgstr "Risultati salvati su %s."
 
 msgid "The saved PIN was cleared."
 msgstr "Il codice PIN salvato è stato cancellato."
+
+msgid ""
+"The selected channel doesn't support VPS for manually programmed timers!\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Questo canale non supporta la funzione VPS per i timer programmati manualmente.\n"
+"Abilitare comunque il VPS?"
 
 msgid "The servicelist is reloaded."
 msgstr "L'elenco dei servizi viene ricaricato."
@@ -18784,6 +18844,9 @@ msgstr "Questa opzione imposta la soppressione di contorni digitali falsi, che s
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Questa opzione imposta la nitidezza dell'immagine, utilizzato quando l'immagine è in fase upscaling."
+
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr "Questo plugin è in grado di determinare se un programma inizi in anticipo o duri più a lungo. Perché sia efficace, però, il canale deve fornire informazioni attendibili."
 
 msgid "This plugin is installed."
 msgstr "Questo plugin è installato."
@@ -20061,6 +20124,86 @@ msgstr "VOD lungo"
 msgid "VPN"
 msgstr "VPN"
 
+msgid "VPS Settings"
+msgstr "Configurazione VPS"
+
+msgid "VPS enabled by default"
+msgstr "Abilitazione di default di VPS"
+
+msgid "VPS-Plugin Information"
+msgstr "Plugin VPS: informazioni"
+
+msgid ""
+"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+"\n"
+"If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
+"\n"
+"If you select \"yes (safe mode)\", the recording is definitely starting at the latest at the startTime you defined. The recording may start earlier or last longer.\n"
+"\n"
+"\n"
+"Supported channels\n"
+"\n"
+"Germany:\n"
+" ARD and ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Switzerland:\n"
+" SF\n"
+"\n"
+"Czech Republic:\n"
+" CT\n"
+"\n"
+"If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
+msgstr ""
+"Il plugin VPS è in grado di ovviare al mancato rispetto degli orari di inizio e fine di un programma. Tuttavia, solo alcuni canali supportano questa funzione.\n"
+"\n"
+"Abilitando VPS, una registrazione programmata verrà avviata solo quando il canale segnalerà il programma come iniziato .\n"
+"\n"
+"Abilitando l'opzione \"Sì (modalità sicura)\", le registrazioni si avvieranno comunque all'ora di inizio programmata (anche se il programma non fosse ancora iniziato)\n"
+"Tale registrazione però potrebbe avviarsi in anticipo o durare più a lungo..\n"
+"\n"
+"\n"
+"Canali supportati:\n"
+"\n"
+"Germania:\n"
+"ARD, ZDF\n"
+"\n"
+"Austria:\n"
+" ORF\n"
+"\n"
+"Svizzera:\n"
+" SF\n"
+"\n"
+"Repubblica Ceca:\n"
+" CT\n"
+"\n"
+"Se un timer viene programmato manualmente (non tramite EPG) sarà necessario configurare un Orario-VPS per abilitare la funzione. L'Orario-VPS (noto anche come PDC) consiste in un orario di avvio pubblicato (ad es. da una rivista). Configurando un Orario-VPS, il nome del timer non andrà inserito."
+
+msgid "VPS-Plugin checks if the channel supports VPS ..."
+msgstr "È in corso la verifica del supporto VPS in questo canale..."
+
+msgid ""
+"VPS-Plugin couldn't check if the channel supports VPS.\n"
+" Do you want to enable VPS anyway?"
+msgstr ""
+"Impossibile verificare se il canale supporti VPS.\n"
+"Abilitarlo comunque?"
+
+msgid ""
+"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+" Do you really want to enable VPS?"
+msgstr ""
+"Impossibile verificare se questo canale supporti la funzione VPS.\n"
+"Abilitare comunque il VPS?"
+
+msgid "VPS-Time (date)"
+msgstr "Data VPS"
+
+msgid "VPS-Time (time)"
+msgstr "Ora VPS"
+
 msgid "Valid"
 msgstr "Valido"
 
@@ -20436,6 +20579,9 @@ msgstr "Riattivare"
 msgid "Wakeup TV from standby"
 msgstr "Riattivare la TV dallo Standby"
 
+msgid "Wakeup from Deep-Standby is allowed"
+msgstr "Abilitare il riavvio da spegnimento"
+
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Risveglio prima dell'inizio di un timer [min]"
 
@@ -20778,6 +20924,9 @@ msgstr "Quando il ricevitore si riattiva dallo standby o dallo spegnimento, invi
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Quando è sintonizzato su un servizio, il sistema normalmente eseguirà la scansione del transponder per eventuali modifiche e le salverà. Imposta su 'sì' solo se sei assolutamente sicuro di quello che stai facendo."
 
+msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgstr "Se attivata, la funzione abiliterà VPS sulle registrazioni istantanee (arresto al termine dell'evento in corso), se il canale lo supporta."
+
 msgid "Where do you want to backup your settings?"
 msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"
 
@@ -20849,6 +20998,9 @@ msgstr "Con questa impostazione, puoi probabilmente migliorare la qualità del s
 
 msgid "Without popup"
 msgstr "Senza popup"
+
+msgid "Without query"
+msgstr "senza interrogazione"
 
 msgid "Wolof"
 msgstr "Wolof"
@@ -20926,6 +21078,9 @@ msgstr "Yemen"
 msgid "Yes"
 msgstr "Sì"
 
+msgid "Yes (safe mode)"
+msgstr "Sì (modalità sicura)"
+
 msgid "Yes to all"
 msgstr "Sì a tutto"
 
@@ -20964,6 +21119,9 @@ msgstr "Sì, fare una ricerca automatica ora"
 
 msgid "Yes, do another manual scan now"
 msgstr "Sì, fare un'altra ricerca manuale ora"
+
+msgid "Yes, don't ask again"
+msgstr "Sì: la richiesta non verrà ripetuta."
 
 msgid "Yes, restore the settings now"
 msgstr "Sì, ripristinare la configurazione"
@@ -23016,152 +23174,6 @@ msgstr "zapping"
 msgid "®"
 msgstr "®"
 
-#~ msgid "<Unknown>"
-#~ msgstr "<sconosciuto>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Un timer ripetuto o solo una volta?"
-
-#~ msgid "At End:"
-#~ msgstr "Alla fine:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Canale non nell'elenco dei servizi"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Scegli un tag per trovare facilmente una registrazione."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Scegli tra giornaliero, settimanale, fine settimana o personalizzato."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Scegli tra registrare e zapping."
-
-#~ msgid "Current location"
-#~ msgstr "Posizione attuale"
-
-#~ msgid "Display Setup"
-#~ msgstr "Configurazione dello schermo"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Vuoi davvero eliminare la registrazione?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Modifica la nuova voce"
-
-#~ msgid "Extended settings"
-#~ msgstr "Configurazione avanzata"
-
-#~ msgid "Infobar:"
-#~ msgstr "Infobar:"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Inserire una nuova descrizione:"
-
-#~ msgid "PowerTimer Entry"
-#~ msgstr "Voce timer di avvio"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Rimuovere i timer conclusi?"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "Seconda InfoBar"
-
-#~ msgid "Secondinfobar:"
-#~ msgstr "Seconda barra delle informazioni:"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "Seleziona il canale da cui registrare"
-
-#~ msgid "Select of the number"
-#~ msgstr "Seleziona il numero"
-
-#~ msgid "Select target folder"
-#~ msgstr "Seleziona la cartella destinazione"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Impostare il canale per questo timer."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Seleziona la data di avvio timer."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "Imposta la descrizione della registrazione."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "Impostare il nome assegnato alla registrazione."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "Impostare l'orario di avvio del timer."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "Impostare l'orario d'arresto del timer."
-
-#~ msgid "Show receiver image(s)"
-#~ msgstr "Mostra immagini del ricevitore"
-
-#~ msgid "Sleep delay"
-#~ msgstr "Ritardo del sonno"
-
-#~ msgid "Starting on"
-#~ msgstr "Avviare il"
-
-#~ msgid "Time range:"
-#~ msgstr "Arco di tempo:"
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#~ msgid "Timer Overview"
-#~ msgstr "Sommario timer"
-
-#~ msgid "Weekday"
-#~ msgstr "Giorno feriale"
-
-#~ msgid "Weekend"
-#~ msgstr "Fine settimana"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Quale azione è richiesta al completamento del timer? 'Auto' consente al ricevitore di tornare allo stato che aveva all'avvio del timer. \"Non fare nulla\", \"Vai in standby\" e \"Spegni ricevitore\" fanno esattamente questo."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Dove salvo la registrazione?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Si, cancella dalla lista dei timer"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Si, cancella dalla lista dei timer e cancella la registrazione"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Non hai selezionato un canale da cui registrare."
-
-#~ msgid "Zapped"
-#~ msgstr "Zap eseguito"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "spegnimento automatico"
-
-#~ msgid "auto standby"
-#~ msgstr "standby automatico"
-
-#~ msgid "daily"
-#~ msgstr "giornaliero"
-
-#~ msgid "mins"
-#~ msgstr "min"
-
-#~ msgid "reboot system"
-#~ msgstr "riavvio del sistema"
-
-#~ msgid "wakeup"
-#~ msgstr "riattivare"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "riattivare in standby"
-
-#~ msgid "weekly"
-#~ msgstr "settimanale"
-
-msgid "Without query"
-msgstr "senza interrogazione"
+#, python-format
+#~ msgid "VPS Setup Version %s"
+#~ msgstr "Configurazione VPS versione %s"
