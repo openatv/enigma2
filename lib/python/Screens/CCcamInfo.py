@@ -45,6 +45,7 @@ AuthHeaders = {
 sf = getSkinFactor()
 ###global
 
+
 def searchConfig():
 	global CFG, CFG_path
 	files = glob("/etc/**/CCcam.cfg", recursive=True)
@@ -102,9 +103,9 @@ def getPage(url, callback, errback):
 			callback(data)
 	else:
 		try:
-			data = response.content.decode(encoding = 'UTF-8')
+			data = response.content.decode(encoding='UTF-8')
 		except:
-			data = response.content.decode(encoding = 'latin-1')
+			data = response.content.decode(encoding='latin-1')
 		callback(data)
 #############################################################
 
@@ -254,6 +255,7 @@ config.cccamlineedit.username = NoSave(ConfigText(fixed_size=False))
 config.cccamlineedit.password = NoSave(ConfigText(fixed_size=False))
 config.cccamlineedit.deskey = NoSave(ConfigNumber())
 
+
 class CCcamLineEdit(Setup):
 	def __init__(self, session, line):
 		self.line = line
@@ -285,7 +287,7 @@ class CCcamLineEdit(Setup):
 		config.cccamlineedit.username.value = self.username
 		config.cccamlineedit.password.value = self.password
 		config.cccamlineedit.deskey.value = int(self.deskey)
-		
+
 		Setup.__init__(self, session=session, setup="CCcamLineEdit")
 		self.setTitle(_("CCcam Line Editor"))
 		if "new" not in self.line:
@@ -307,7 +309,7 @@ class CCcamLineEdit(Setup):
 			newline = " ".join(elements)
 			if config.cccamlineedit.protocol.value == "N:":
 				des = "%028d" % config.cccamlineedit.deskey.value
-				des = " ".join([des[x:x+2] for x in range(0, len(des), 2)])
+				des = " ".join([des[x:x + 2] for x in range(0, len(des), 2)])
 				# N: 127.0.0.1 10000 dummy dummy 01 02 03 04 05 06 07 08 09 10 11 12 13 14
 				# des = des[0] + des[1] + " " + des[2] + des[3] + " " + des[4] + des[5] + " " + des[6] + des[7] + " " + des[8] + des[9] + " " + des[10] + des[11] + " " + des[12] + des[13] + " " + des[14] + des[15] + " " + des[16] + des[17] + " " + des[18] + des[19] + " " + des[20] + des[21] + " " + des[22] + des[23] + " " + des[24] + des[25] + " " + des[26] + des[27]
 				newline = "%s %s" % (newline, des)
@@ -319,7 +321,7 @@ class CCcamLineEdit(Setup):
 				if "new" in self.line:
 					lines = [x.strip() for x in lines]
 					# add new line at the beginning
-					lines.insert(0,newline)
+					lines.insert(0, newline)
 				else:
 					destlines = []
 					for line in lines:
@@ -615,7 +617,6 @@ class CCcamInfoMain(Screen):
 			else:
 				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis screen shows you the status of CCcam.") % (VERSION, DATE), _("About"))
 
-
 	def showCfgSelection(self):
 		cfgLines = []
 		lines = fileReadLines(CFG)
@@ -624,7 +625,7 @@ class CCcamInfoMain(Screen):
 			lines = [x for x in lines if x.startswith('C:') or x.startswith('N:')]
 			for line in lines:
 				lineElements = line.split(" ")
-				lineDescription = "%s %s %s" % (lineElements[0],lineElements[1],lineElements[2])
+				lineDescription = "%s %s %s" % (lineElements[0], lineElements[1], lineElements[2])
 				cfgLines.append((lineDescription, line))
 			cfgLines.append((_("Add new CCcam line"), "newC"))
 			cfgLines.append((_("Add new NewCamd line"), "newN"))
@@ -1074,7 +1075,6 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 
 								totalcards += 1
 
-
 		self.instance.setTitle("%s (%s %d) %s %s" % (_("Share View"), _("Total cards:"), totalcards, _("Hops:"), ulevel))
 		self["title"].setText("%s (%s %d) %s %s" % (_("Share View"), _("Total cards:"), totalcards, _("Hops:"), ulevel))
 		self["list"].setList(shareList)
@@ -1222,11 +1222,11 @@ class CCcamInfoServerMenu(Screen):
 
 		items = []
 		for x in self.infoList:
-			if x[5].replace(_("Connected: "), "") == "": #offline - red
+			if x[5].replace(_("Connected: "), "") == "":  # offline - red
 				items.append(CCcamServerListEntry(x[0], "red"))
-			elif x[1] == _("Cards: 0"): #online with no card - blue
+			elif x[1] == _("Cards: 0"):  # online with no card - blue
 				items.append(CCcamServerListEntry(x[0], "blue"))
-			else: #online with cards - green
+			else:  # online with cards - green
 				items.append(CCcamServerListEntry(x[0], "green"))
 		self["list"] = CCcamMenuList(items)
 		self["info"] = Label()
@@ -1270,6 +1270,7 @@ class CCcamInfoRemoteBox:
 		self.port = port
 
 #############################################################
+
 
 class CCcamInfoProfileSetup(Setup):
 	def __init__(self, session, profile):
@@ -1372,7 +1373,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 			self["list"].setList(self.list)
 
 	def new(self):
-		self.session.openWithCallback(self.newCallback, CCcamInfoProfileSetup, CCcamInfoRemoteBox("Profile", "192.168.2.12", "", "", 16001))
+		self.session.openWithCallback(self.newCallback, CCcamInfoProfileSetup, CCcamInfoRemoteBox("Profile", "192.168.2.12", "", "", 16001))  # NOSONAR
 
 	def newCallback(self, callback):
 		if callback:
@@ -1482,7 +1483,6 @@ class CCcamInfoShareInfo(Screen):
 							while tempstr.startswith(" "):
 								tempstr = tempstr[1:]
 							maxdown = tempstr
-
 
 							shareList.append(CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown))
 							self.list.append([hostname, type, caid, system, uphops, maxdown])
