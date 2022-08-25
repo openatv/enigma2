@@ -578,9 +578,9 @@ class FlashImage(Screen, HelpableScreen):
 
 	def startUnzip(self):
 		try:
-			zip = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
-			zip.extractall(self.unzippedImage)  # ZipFile.extractall(path=None, members=None, pwd=None)
-			zip.close()
+			zipfile = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
+			zipfile.extractall(self.unzippedImage)  # NOSONAR (python:S5042)
+			zipfile.close()
 			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))
