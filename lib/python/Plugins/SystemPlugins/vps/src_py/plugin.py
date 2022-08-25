@@ -42,17 +42,18 @@ def autostart(reason, **kwargs):
 
 
 def setup(session, **kwargs):
-	session.openWithCallback(doneConfig, VPS_Setup)
+	session.openWithCallback(setupCallback, VPS_Setup)
 
 
-def doneConfig(session, **kwargs):
-	vps_timers.checkTimer()
+def setupCallback(result):
+	if result is None:
+		vps_timers.checkTimer()
 
 
 def startSetup(menuid):
-	if menuid != "system":
+	if menuid != "timermenu":
 		return []
-	return [(_("VPS Settings"), setup, "vps", 50)]
+	return [(_("VPS Settings"), setup, "vps", 90)]
 
 
 def getNextWakeup():
