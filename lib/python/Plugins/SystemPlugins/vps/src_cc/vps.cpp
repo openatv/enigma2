@@ -103,17 +103,6 @@ Monitoring_epg::Monitoring_epg(int argc, char *argv[])
 	tsid = atoi(argv[4]);
 	sid = atoi(argv[5]);
 	event_id = atoi(argv[6]);
-	fd_demux = 0;
-	b = nullptr;
-	pdc_time = 0;
-	timeout = 0;
-	pid = 0;
-	table_id = 0;
-	table_mask = 0;
-	received_event_last_time = 0;
-	section_length = 0;
-	section_number = 0;
-	only_header = false;
 }
 
 Monitoring_epg::~Monitoring_epg() { }
