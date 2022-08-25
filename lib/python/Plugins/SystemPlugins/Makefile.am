@@ -5,7 +5,7 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
 	SatelliteEquipmentControl DiseqcTester FastScan LCNScanner IceTV \
-	FastChannelChange
+	FastChannelChange vps
 
 if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
