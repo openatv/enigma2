@@ -69,7 +69,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 			else:
 				data.append(line)
 		data.append("")
-		result = md5(bytearray("\n".join(data), "UTF-8", errors="ignore")).hexdigest()
+		result = md5(bytearray("\n".join(data), "UTF-8", errors="ignore")).hexdigest()  # NOSONAR
 		return value != result
 
 	def processValue(self, value):
