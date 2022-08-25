@@ -1359,7 +1359,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				if ((iframe[3] >> 4) != 0xE) // no pes header
 					writeAll(m_video_clip_fd, pes_header, sizeof(pes_header));
 				else
-					iframe[4] = iframe[5] = 0x00;
+					iframe[4] = iframe[5] = 0x00; // NOSONAR
 				writeAll(m_video_clip_fd, iframe, s.st_size);
 				if (!seq_end_avail)
 				{
