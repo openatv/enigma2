@@ -409,7 +409,7 @@ class Pic_Full_View(Screen):
 			<widget name="point" position="{space + 5},{space + 5}" size="20,20" zPosition="2" pixmap="skin_default/icons/record.png" alphatest="on" />
 			<widget name="play_icon" position="{space + 25},{space + 2}" size="20,20" zPosition="2" pixmap="skin_default/icons/ico_mp_play.png"  alphatest="on" />
 			<widget source="file" render="Label" position="{space + 45},{space}" size="{size_w - (space * 2) - 50},25" font="Regular;20" borderWidth="1" borderColor="#000000" halign="left" foregroundColor="{self.textcolor}" zPosition="2" noWrap="1" transparent="1" />
-			</screen>"
+			</screen>
 		"""
 
 		Screen.__init__(self, session)
