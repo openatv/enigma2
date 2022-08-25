@@ -799,10 +799,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
 		for menu_count in list(range(1, job.nr_menus + 1)):
-			if menu_count == 1:
-				authorxml.append('    <pgc>\n')
-			else:
-				authorxml.append('    <pgc>\n')
+			authorxml.append('    <pgc>\n')
 			menu_start_title = (menu_count - 1) * job.titles_per_menu + 1
 			menu_end_title = (menu_count) * job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
