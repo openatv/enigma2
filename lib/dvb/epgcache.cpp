@@ -690,7 +690,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s, bool lock) // lock only affects
 	eDebug("[eEPGCache] flushEPG %d", (int)(bool)s);
 	if (s)  // clear only this service
 	{
-		singleLock l(cache_lock);
+		singleLock l(cache_lock);  // TODO : Probably double lock ( Sonar : This lock has already been acquired elock.h line 13)
 		eDebug("[eEPGCache] flushEPG svc(%04x:%04x:%04x)", s.onid, s.tsid, s.sid);
 		eventCache::iterator it = eventDB.find(s);
 		if (it != eventDB.end())
@@ -3279,7 +3279,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	}
 
 	ret = fread(&aliases_groups_count, sizeof (int), 1, aliases);
-	epgdb_aliases_t all_aliases[aliases_groups_count];
+	epgdb_aliases_t all_aliases[aliases_groups_count]; // NOSONAR
 	for (int i=0; i<aliases_groups_count; i++)
 	{
 		int j;

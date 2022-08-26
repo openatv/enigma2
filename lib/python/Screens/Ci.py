@@ -1,4 +1,4 @@
-from os import remove, unlink, rename, chmod, access, X_OK
+from os import rename, access, R_OK
 from os.path import isfile
 import time
 from Components.ActionMap import ActionMap
@@ -17,15 +17,14 @@ from Tools.Directories import fileReadLines, fileWriteLines
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
-BRAND = BoxInfo.getItem("brand")
 
-if BoxInfo.getItem("model") in ("zgemmah9combo", "pulse4kmini"):
-	MAX_NUM_CI = 1
-else:
-	MAX_NUM_CI = 4
 relevantPidsRoutingChoices = None
 
+BRAND = BoxInfo.getItem("brand")
+MAX_NUM_CI = 1 if BoxInfo.getItem("model") in ("zgemmah9combo", "pulse4kmini") else 4
 CI_HELPER_CONF = "/etc/cihelper.conf"
+CI_HELPER_CONF_TMP = "/etc/cihelper.conf.tmp"
+
 
 def setCIBitrate(configElement):
 	if not configElement.value:
@@ -33,27 +32,27 @@ def setCIBitrate(configElement):
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+
 def setCIEnabled(configElement):
     eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
 
+
 def setdvbCiDelay(configElement):
-	f = open("/proc/stb/tsmux/rmx_delay", "w")
-	f.write(configElement.value)
-	f.close()
+	with open("/proc/stb/tsmux/rmx_delay", "w") as fd:
+		fd.write(configElement.value)
 
 
 def setRelevantPidsRouting(configElement):
 	fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing" % (configElement.slotid)
 	if isfile(fileName):
-		f = open(fileName, "w")
-		f.write(configElement.value)
-		f.close()
+		with open(fileName, "w") as fd:
+			fd.write(configElement.value)
 
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
-	for slot in list(range(MAX_NUM_CI)):
+	for slot in range(MAX_NUM_CI):
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].enabled = ConfigYesNo(default=True)
 		config.ci[slot].enabled.slotid = slot
@@ -74,11 +73,11 @@ def InitCiConfig():
 			if not relevantPidsRoutingChoices:
 				relevantPidsRoutingChoices = [("no", _("No")), ("yes", _("Yes"))]
 				default = "no"
-				fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing_choices"
+				fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing_choices" % slot
 			if isfile(fileName):
 				relevantPidsRoutingChoices = []
-				fd = open(fileName, "r")
-				data = fd.read()
+				with open(fileName, "r") as fd:
+					data = fd.read()
 				data = data.split()
 				for x in data:
 					relevantPidsRoutingChoices.append((x, _(x)))
@@ -248,22 +247,22 @@ class MMIDialog(Screen):
 			self.is_pin_list += 1
 		self.keyConfigEntry(KEY_RIGHT)
 
-	def updateList(self, list):
+	def updateList(self, items):
 		List = self["entries"]
 		try:
 			List.instance.moveSelectionTo(0)
 		except:
 			pass
-		List.l.setList(list)
+		List.l.setList(items)
 
 	def showWait(self):
 		self.tag = "WAIT"
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = []
-		list.append((self.wait_text, ConfigNothing()))
-		self.updateList(list)
+		items = []
+		items.append((self.wait_text, ConfigNothing()))
+		self.updateList(items)
 
 	def showScreen(self):
 		if self.screen_data is not None:
@@ -272,7 +271,7 @@ class MMIDialog(Screen):
 		else:
 			screen = self.handler.getMMIScreen(self.slotid)
 
-		list = []
+		items = []
 
 		self.timer.stop()
 		if len(screen) > 0 and screen[0][0] == "CLOSE":
@@ -298,7 +297,7 @@ class MMIDialog(Screen):
 						break
 					else:
 						self.is_pin_list = 0
-						self.addEntry(list, entry)
+						self.addEntry(items, entry)
 				else:
 					if entry[0] == "TITLE":
 						self["title"].setText(entry[1])
@@ -307,8 +306,8 @@ class MMIDialog(Screen):
 					elif entry[0] == "BOTTOM":
 						self["bottom"].setText(entry[1])
 					elif entry[0] == "TEXT":
-						self.addEntry(list, entry)
-			self.updateList(list)
+						self.addEntry(items, entry)
+			self.updateList(items)
 
 	def ciStateChanged(self):
 		do_close = False
@@ -340,24 +339,10 @@ class CiMessageHandler:
 			BoxInfo.setItem("CommonInterface", False)
 		else:
 			BoxInfo.setItem("CommonInterface", eDVBCIInterfaces.getInstance().getNumOfSlots() > 0)
-		try:
-			file = open("/proc/stb/tsmux/ci0_tsclk", "r")
-			file.close()
-			BoxInfo.setItem("CommonInterfaceSupportsHighBitrates", True)
-		except:
-			BoxInfo.setItem("CommonInterfaceSupportsHighBitrates", False)
-		try:
-			file = open("/proc/stb/tsmux/rmx_delay", "r")
-			file.close()
-			BoxInfo.setItem("CommonInterfaceCIDelay", True)
-		except:
-			BoxInfo.setItem("CommonInterfaceCIDelay", False)
-		try:
-			file = open("/proc/stb/tsmux/ci0_relevant_pids_routing", "r")
-			file.close()
-			BoxInfo.setItem("RelevantPidsRoutingSupport", True)
-		except:
-			BoxInfo.setItem("RelevantPidsRoutingSupport", False)
+
+		BoxInfo.setItem("CommonInterfaceSupportsHighBitrates", access("/proc/stb/tsmux/ci0_tsclk", R_OK))
+		BoxInfo.setItem("CommonInterfaceCIDelay", access("/proc/stb/tsmux/rmx_delay", R_OK))
+		BoxInfo.setItem("RelevantPidsRoutingSupport", access("/proc/stb/tsmux/ci0_relevant_pids_routing", R_OK))
 
 	def setSession(self, session):
 		self.session = session
@@ -439,7 +424,7 @@ class CiSelection(Screen):
 		self.onLayoutFinish.append(self.initialUpdate)
 
 	def initialUpdate(self):
-		for slot in list(range(MAX_NUM_CI)):
+		for slot in range(MAX_NUM_CI):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				self.slots.append(slot)
@@ -549,7 +534,7 @@ class CiSelection(Screen):
 		pass
 
 	def cancel(self):
-		for slot in list(range(MAX_NUM_CI)):
+		for slot in range(MAX_NUM_CI):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)
@@ -710,7 +695,7 @@ class CIHelper(Screen):
 					else:
 						self["ci0active"].show()
 						self["ci0inactive"].hide()
-				elif line.startswith("ENABLE_CI1=") and access("/dev/ci1"):
+				elif line.startswith("ENABLE_CI1=") and access("/dev/ci1", R_OK):
 					self["ci1"].show()
 					if line[11:] == "no":
 						self["ci1active"].hide()
@@ -750,7 +735,7 @@ class CIHelperSetup(Screen, ConfigListScreen):
 	def updateList(self, ret=None):
 		self.list = []
 		self.cihelper_ci0 = NoSave(ConfigYesNo(default=True))
-		self.cihelper_ci1 = NoSave(ConfigYesNo(default=True)) if access("/dev/ci1") else ConfigNothing()
+		self.cihelper_ci1 = NoSave(ConfigYesNo(default=True)) if access("/dev/ci1", R_OK) else ConfigNothing()
 
 		if isfile(CI_HELPER_CONF):
 			helperConfig = fileReadLines(CI_HELPER_CONF)
@@ -758,12 +743,12 @@ class CIHelperSetup(Screen, ConfigListScreen):
 				helperConfig = [x.strip() for x in helperConfig if x.strip().startswith("ENABLE_CI")]
 				for line in helperConfig:
 					if line.startswith("ENABLE_CI0="):
-						self.cihelper_ci0.value = not (line[11:] == "no")
+						self.cihelper_ci0.value = (line[11:] != "no")
 						cihelper_ci0x = getConfigListEntry(_("Enable CIHelper for SLOT CI0") + ":", self.cihelper_ci0)
 						self.list.append(cihelper_ci0x)
 					elif line.startswith("ENABLE_CI1="):
-						self.cihelper_ci1.value = not (line[11:] == "no")
-						if access("/dev/ci1"):
+						self.cihelper_ci1.value = (line[11:] != "no")
+						if access("/dev/ci1", R_OK):
 							cihelper_ci1x = getConfigListEntry(_("Enable CIHelper for SLOT CI1") + ":", self.cihelper_ci1)
 							self.list.append(cihelper_ci1x)
 		self["config"].list = self.list
@@ -778,13 +763,13 @@ class CIHelperSetup(Screen, ConfigListScreen):
 					line = "ENABLE_CI0%s" % ("yes" if self.cihelper_ci0.value else "no")
 				elif line.startswith("ENABLE_CI1="):
 					line = "ENABLE_CI1%s" % ("yes" if self.cihelper_ci1.value else "no")
-				newhelperConfig.append("%\n" % line)
-			fileWriteLines("/etc/cihelper.conf.tmp", newhelperConfig)
+				newhelperConfig.append("%s\n" % line)
+			fileWriteLines(CI_HELPER_CONF_TMP, newhelperConfig)
 		else:
 			errorText = _("Sorry CIHelper Config is Missing")
 			with open("/tmp/CIHelper.log", "a") as fd:
 				fd.write("%s\n" % errorText)
 			self.session.open(MessageBox, errorText, MessageBox.TYPE_INFO)
-		if isfile("/etc/cihelper.conf.tmp"):
-			rename("/etc/cihelper.conf.tmp", "/etc/cihelper.conf")
+		if isfile(CI_HELPER_CONF_TMP):
+			rename(CI_HELPER_CONF_TMP, CI_HELPER_CONF)
 		self.close()

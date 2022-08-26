@@ -285,8 +285,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(TimerEditList)
 
 	def openPowerTimerList(self):
-		from Screens.PowerTimerEdit import PowerTimerEditList
-		self.session.open(PowerTimerEditList)
+		from Screens.Timers import PowerTimerOverview
+		self.session.open(PowerTimerOverview)
 
 	@staticmethod
 	def _getAutoTimerPluginFunc():
@@ -675,7 +675,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
-				msg += _("Do you really want to delete %s?") % name
+				msg += _("Do you really want to delete '%s'?") % name
 				if answer == "quitanddelete":
 					self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
 				elif answer == "deleteandmovielist":

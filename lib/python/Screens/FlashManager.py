@@ -1,6 +1,6 @@
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
-from os.path import exists, isdir, isfile, islink, ismount, splitext, join as pathjoin
+from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join as pathjoin
 from shutil import rmtree
 from time import time
 from urllib.request import urlopen, Request
@@ -108,7 +108,7 @@ class FlashManager(Screen, HelpableScreen):
 			return result[0] if result else None
 
 		def getImages(path, files):
-			for file in [x for x in files if splitext(x)[1] == ".zip" and self.box in x]:
+			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and self.box in x]:
 				try:
 					zip = ZipFile(file, mode="r")  # ZipFile.open(name, mode="r", pwd=None, force_zip64=False)
 					zipFiles = zip.namelist()
@@ -578,9 +578,9 @@ class FlashImage(Screen, HelpableScreen):
 
 	def startUnzip(self):
 		try:
-			zip = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
-			zip.extractall(self.unzippedImage)  # ZipFile.extractall(path=None, members=None, pwd=None)
-			zip.close()
+			zipfile = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
+			zipfile.extractall(self.unzippedImage)  # NOSONAR (python:S5042)
+			zipfile.close()
 			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))

@@ -880,8 +880,11 @@ std::string eDVBRdsDecoder::getRassPicture(int page, int subpage)
 int eDVBRdsDecoder::start(int pid)
 {
 	int ret = -1;
-	if (m_pes_reader && !(ret = m_pes_reader->start(pid)) && m_mode == 0)
-		m_abortTimer->startLongTimer(20);
+	if(m_pes_reader) {
+		bool abort = !(ret = m_pes_reader->start(pid));
+		if (abort && m_mode == 0)
+			m_abortTimer->startLongTimer(20);
+	}
 	m_pid = pid;
 	return ret;
 }

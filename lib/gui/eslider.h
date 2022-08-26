@@ -16,7 +16,7 @@ public:
 	void setBorderWidth(int width);
 	void setBorderColor(const gRGB &color);
 	void setForegroundColor(const gRGB &color);
-	void setBackgroundColor(const gRGB &color);
+	void setBackgroundColor(const gRGB &color); // FIXME overwrite setBackgroundColor and m_have_background_color from eWidget
 	void setPixmap(gPixmap *pixmap);
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setBackgroundPixmap(gPixmap *pixmap);

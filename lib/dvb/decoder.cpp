@@ -1359,7 +1359,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				if ((iframe[3] >> 4) != 0xE) // no pes header
 					writeAll(m_video_clip_fd, pes_header, sizeof(pes_header));
 				else
-					iframe[4] = iframe[5] = 0x00;
+					iframe[4] = iframe[5] = 0x00; // NOSONAR
 				writeAll(m_video_clip_fd, iframe, s.st_size);
 				if (!seq_end_avail)
 				{
@@ -1457,16 +1457,16 @@ int eTSMPEGDecoder::getVideoGamma()
 	return -1;
 }
 
-#define FCC_SET_VPID 100
-#define FCC_SET_APID 101
-#define FCC_SET_PCRPID 102
-#define FCC_SET_VCODEC 103
-#define FCC_SET_ACODEC 104
-#define FCC_SET_FRONTEND_ID 105
-#define FCC_START 106
-#define FCC_STOP 107
-#define FCC_DECODER_START 108
-#define FCC_DECODER_STOP 109
+#define FCC_SET_VPID 100 // NOSONAR
+#define FCC_SET_APID 101 // NOSONAR
+#define FCC_SET_PCRPID 102 // NOSONAR
+#define FCC_SET_VCODEC 103 // NOSONAR
+#define FCC_SET_ACODEC 104 // NOSONAR
+#define FCC_SET_FRONTEND_ID 105 // NOSONAR
+#define FCC_START 106 // NOSONAR
+#define FCC_STOP 107 // NOSONAR
+#define FCC_DECODER_START 108 // NOSONAR
+#define FCC_DECODER_STOP 109 // NOSONAR
 
 RESULT eTSMPEGDecoder::prepareFCC(int fe_id, int vpid, int vtype, int pcrpid)
 {

@@ -46,7 +46,7 @@ protected:
 
 protected:
 	ePyObject m_list;
-	int m_cursor, m_saved_cursor, m_saved_cursor_line;
+	int m_cursor, m_saved_cursor, m_saved_cursor_line; // NOSONAR
 	eSize m_itemsize;
 	ePtr<gFont> m_font;
 	int m_itemheight;

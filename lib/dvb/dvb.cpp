@@ -266,7 +266,7 @@ void eDVBAdapterLinux::scanDevices()
 			if (ok)
 				m_frontend.push_back(ePtr<eDVBFrontend>(fe));
 		}
-		++num_fe;
+		++num_fe; // NOSONAR
 	}
 
 		// scan demux
