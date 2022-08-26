@@ -302,7 +302,7 @@ int eSDLInputDevice::translateKey(SDL_Keycode key)
 	P2(F8,AUDIO);
 	P2(F9,PVR);
 	P2(F10,POWER);
-	P(F11);
+	P2(F11,EPG);
 	P(F12);
 	P(F13);
 	P(F14);
