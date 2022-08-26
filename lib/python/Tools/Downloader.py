@@ -5,6 +5,7 @@ from urllib.request import urlopen, Request
 
 from enigma import eTimer
 
+
 class DownloadWithProgress:
 	def __init__(self, url, outputFile):
 		self.url = url
@@ -23,12 +24,19 @@ class DownloadWithProgress:
 		self.timer.callback.append(self.reportProgress)
 
 	def start(self):
-		request = Request(self.url, None, {"User-agent": self.userAgent})
-		feedFile = urlopen(request)
-		metaData = feedFile.headers
-		self.totalSize = int(metaData.get("Content-Length", 0))
-		# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
-		self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
+		try:
+			request = Request(self.url, None, {"User-agent": self.userAgent})
+			feedFile = urlopen(request)
+			metaData = feedFile.headers
+			self.totalSize = int(metaData.get("Content-Length", 0))
+			# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
+			self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
+		except OSError as err:
+			if self.errorCallback:
+				self.errorCallback(err.errno, err.strerror)
+			if self.errorCallback2:  # Deprecated
+				self.errorCallback2(err, err.strerror)
+			return self
 		reactor.callInThread(self.run)
 		return self
 
@@ -50,13 +58,12 @@ class DownloadWithProgress:
 			if self.endCallback:
 				# self.endCallback(self.url, self.outputFile, self.progress)
 				self.endCallback()
-			if self.endCallback2: # Deprecated
+			if self.endCallback2:  # Deprecated
 				self.endCallback2(self.outputFile)
 		except OSError as err:
 			if self.errorCallback:
-				# self.errorCallback(self.url, self.outputFile, err.errno, err.strerror)
 				self.errorCallback(err.errno, err.strerror)
-			if self.errorCallback2: # Deprecated
+			if self.errorCallback2:  # Deprecated
 				self.errorCallback2(err, err.strerror)
 		return False
 
