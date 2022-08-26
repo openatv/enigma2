@@ -30,23 +30,23 @@ class Monitoring_epg
 {
 	protected:
 		char *f_demux;
-		int fd_demux;
+		int fd_demux = 0;
 		uint8_t buf[READ_BUF_SIZE];
-		uint8_t *b;
+		uint8_t *b = nullptr;
 		uint16_t onid;
 		uint16_t tsid;
 		uint16_t sid;
 		uint16_t event_id;
-		int pdc_time;
-		int timeout;
-		uint16_t pid;
-		uint8_t table_id;
-		uint8_t table_mask;
+		int pdc_time = 0;
+		int timeout = 0;
+		uint16_t pid = 0;
+		uint8_t table_id = 0;
+		uint8_t table_mask = 0;
 		struct dmx_sct_filter_params demux_filter;
-		time_t received_event_last_time;
-		uint16_t section_length;
-		uint8_t section_number;
-		bool only_header;
+		time_t received_event_last_time = 0;
+		uint16_t section_length = 0;
+		uint8_t section_number = 0;
+		bool only_header = false;
 		
 		void virtual process() = 0;
 		bool openDemux();
