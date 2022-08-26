@@ -3245,7 +3245,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	}
 
 	ret = fread(&aliases_groups_count, sizeof (int), 1, aliases);
-	epgdb_aliases_t all_aliases[aliases_groups_count];
+	epgdb_aliases_t all_aliases[aliases_groups_count]; // NOSONAR
 	for (int i=0; i<aliases_groups_count; i++)
 	{
 		int j;
