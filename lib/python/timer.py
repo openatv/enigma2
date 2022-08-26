@@ -81,7 +81,7 @@ class Timer:
 
 	def setNextActivation(self, now, when):
 		delay = (when - now) * 1000
-		self.timer.start(delay, True)
+		self.timer.start(int(delay), True)
 		self.next = when
 
 	def timeChanged(self, timer):
