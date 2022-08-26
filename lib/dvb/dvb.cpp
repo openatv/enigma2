@@ -1757,9 +1757,9 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 				eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 				if (ii->m_channel_id == i->first)
 				{
-					eDVBChannel *channel = (eDVBChannel*) &(*ii->m_channel);
+					eDVBChannel *channel = (eDVBChannel*) ii->m_channel;
 
-					int check_usecount = channel == &(*m_cached_channel) ? 1 : 0;
+					int check_usecount = channel == m_cached_channel ? 1 : 0;
 					check_usecount += i->second * 2; // one is used in eDVBServicePMTHandler and another is used in eDVBScan.
 					//eDebug("[eDVBResourceManager::canAllocateChannel] channel->getUseCount() : %d , check_usecount : %d (cached : %d)", channel->getUseCount(), check_usecount, channel == &(*m_cached_channel));
 					if (channel->getUseCount() == check_usecount)
@@ -1769,13 +1769,13 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 						{
 							for (eSmartPtrList<eDVBRegisteredFrontend>::iterator iii(frontends.begin()); iii != frontends.end(); ++iii)
 							{
-								if ( &(*fe) == &(*iii->m_frontend) )
+								if ( fe == iii->m_frontend )
 								{
 									//eDebug("[eDVBResourceManager::canAllocateChannel] fcc : decrease fcc fe use_count! feid : %d (%d -> %d)", iii->m_frontend->getSlotID(), iii->m_inuse, iii->m_inuse-1);
 									--iii->m_inuse;
 									int *tmp_decremented_fe_usecount = &iii->m_inuse;
 									fcc_decremented_fe_usecounts.push_back(tmp_decremented_fe_usecount);
-									if (channel == &(*m_cached_channel))
+									if (channel == m_cached_channel)
 										decremented_cached_channel_fe_usecount = tmp_decremented_fe_usecount;
 									break;
 								}
