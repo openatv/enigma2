@@ -30,11 +30,9 @@ class VolumeControl:
 		config.audio.volume = ConfigInteger(default=50, limits=(0, 100))
 
 		self.volumeDialog = session.instantiateDialog(Volume)
-		if BoxInfo.getItem("OSDAnimation"):
-			self.volumeDialog.setAnimationMode(0)
+		self.volumeDialog.setAnimationMode(0)
 		self.muteDialog = session.instantiateDialog(Mute)
-		if BoxInfo.getItem("OSDAnimation"):
-			self.muteDialog.setAnimationMode(0)
+		self.muteDialog.setAnimationMode(0)
 
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.callback.append(self.volHide)
@@ -132,9 +130,9 @@ class VolumeControl:
 		self.last_vol = vol
 		self.volumeDialog.show()
 		if is_muted:
-			self.volMute() # unmute
+			self.volMute()  # unmute
 		elif not vol:
-			self.volMute(False, True) # mute but dont show mute symbol
+			self.volMute(False, True)  # mute but dont show mute symbol
 		if self.volctrl.isMuted():
 			self.volumeDialog.setValue(0)
 		else:
