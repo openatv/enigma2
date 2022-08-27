@@ -142,7 +142,7 @@ class eServiceEvent: public iObject
 	int m_pdc_pil;
 	int m_running_status;
 	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source, m_extended_description_items;
-	std::string m_series_crid, m_episode_crid;
+	std::string m_series_crid, m_episode_crid, m_recommendation_crid;
 	static std::string m_language, m_language_alternative;
 	std::list<eCridData> m_crids;
 	// .. additional info
@@ -171,6 +171,7 @@ public:
 	std::string getBeginTimeString() const;
 	std::string getSeriesCrid() const { return m_series_crid; }
 	std::string getEpisodeCrid() const { return m_episode_crid; }
+	std::string getRecommendationCrid() const { return m_recommendation_crid; }
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	// Naming to parallel getGenreDataList & getParentalDataList
 	PyObject *getComponentDataList() const;

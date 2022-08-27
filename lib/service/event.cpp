@@ -145,6 +145,7 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 		int onid = tsidonid & 0xffff;
 		m_series_crid = "";
 		m_episode_crid = "";
+		m_recommendation_crid = "";
 		std::string channelName;
 		ePtr<eDVBDB> db = eDVBDB::getInstance();
 		for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
@@ -215,12 +216,15 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 							//eDebug("[Event] crid %02x %01x %s %d <%.*s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), (*it)->getLength(), (*it)->getBytes()->data());
 							data.m_crid  = normalise_crid(std::string((char*)(*it)->getBytes()->data(), (*it)->getLength()), service);
 							m_crids.push_back(data);
-							if(eServiceEvent::m_Debug)
+							if(eServiceEvent::m_Debug) {
 								eDebug("[Event] crid %02x %01x %s %d <%s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), data.m_crid.c_str());
-							if (data.m_type == eCridData::EPISODE_AU)
-								m_episode_crid = data.m_crid;
-							else if (data.m_type == eCridData::SERIES_AU)
-								m_series_crid = data.m_crid;
+								if (data.m_type == eCridData::EPISODE_AU || data.m_type == eCridData::EPISODE)
+									m_episode_crid = data.m_crid;
+								else if (data.m_type == eCridData::SERIES_AU || data.m_type == eCridData::SERIES)
+									m_series_crid = data.m_crid;
+								else if (data.m_type == eCridData::RECOMMENDATION_AU || data.m_type == eCridData::RECOMMENDATION)
+									m_recommendation_crid = data.m_crid;
+							}
 						}
 						else if (data.m_location == 1)
 						{
@@ -257,9 +261,9 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 				}
 			}
 		}
-		if (eServiceEvent::m_Debug && !m_episode_crid.empty() || !m_series_crid.empty())
+		if (eServiceEvent::m_Debug && (!m_episode_crid.empty() || !m_series_crid.empty() || !m_recommendation_crid.empty()))
 		{
-			eDebug("[Event] crid  %04x:%04x:%04x  %-18s  %s  %-49s  %-49s  %s", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), m_series_crid.c_str(), m_episode_crid.c_str(), m_event_name.c_str());
+			eDebug("[Event] crid  %04x:%04x:%04x  %-18s  %s  %-49s  %-49s %s %s", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), m_series_crid.c_str(), m_episode_crid.c_str(), m_recommendation_crid.c_str(), m_event_name.c_str());
 		}
 	}
 	if ( m_extended_description.find(m_short_description) == 0 )
