@@ -1,12 +1,11 @@
-from __future__ import print_function
+from time import localtime, mktime, strftime
 from enigma import eEPGCache, eServiceEventEnums
 
-from Components.Converter.Converter import Converter
-from Components.Element import cached
-from Components.Converter.genre import getGenreStringSub
 from Components.config import config
+from Components.Converter.Converter import Converter
+from Components.Converter.genre import getGenreStringSub
+from Components.Element import cached
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from time import localtime, mktime, strftime
 
 
 class ETSIClassifications(dict):
@@ -182,15 +181,12 @@ class EventName(Converter):
 			self.separator = self.KEYWORDS[default_sep][1]
 
 	def trimText(self, text):
-		if self.trim:
-			return str(text).strip()
-		else:
-			return str(text)
+		return str(text).strip() if self.trim else str(text)
 
 	def getCrid(self, event, types):
-		print "[EventName] getCrid", types
+		print("[EventName] getCrid %s" % types)
 		crids = event.getCridData(types)
-		print "[EventName] getCrid", crids
+		print("[EventName] getCrid %s" % crids)
 		return crids and crids[0][2] or ""
 
 	def formatDescription(self, description, extended):
@@ -205,10 +201,7 @@ class EventName(Converter):
 	@cached
 	def getBoolean(self):
 		event = self.source.event
-		if event:
-			if self.type == self.PDC and event.getPdcPil():
-				return True
-		return False
+		return True if event and self.type == self.PDC and event.getPdcPil() else False
 
 	boolean = property(getBoolean)
 
@@ -225,10 +218,7 @@ class EventName(Converter):
 			if rating:
 				age = rating.getRating()
 				country = rating.getCountryCode().upper()
-				if country in countries:
-					c = countries[country]
-				else:
-					c = countries["INT"]
+				c = countries[country] if country in countries else countries["INT"]
 				if config.misc.epgratingcountry.value:
 					c = countries[config.misc.epgratingcountry.value]
 				rating = c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
@@ -324,8 +314,7 @@ class EventName(Converter):
 							return self.trimText(self.list[2][1])
 						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
 							return self.formatDescription(self.list[2][2], self.list[2][3])
-			except:
-				# Failed to return any EPG data.
+			except:  # Failed to return any EPG data.
 				if self.type == self.NAME_NEXT:
 					return pgettext("now/next: 'next' event label", "Next") + ": " + self.trimText(event.getEventName())
 		elif self.type == self.RAWRATING:
