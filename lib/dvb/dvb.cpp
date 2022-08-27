@@ -1757,7 +1757,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 				eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 				if (ii->m_channel_id == i->first)
 				{
-					eDVBChannel *channel = (eDVBChannel*) ii->m_channel;
+					eDVBChannel *channel = ii->m_channel;
 
 					int check_usecount = channel == &(*m_cached_channel) ? 1 : 0;
 					check_usecount += i->second * 2; // one is used in eDVBServicePMTHandler and another is used in eDVBScan.
