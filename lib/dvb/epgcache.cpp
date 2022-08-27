@@ -396,7 +396,7 @@ eEPGCache::eEPGCache()
 		onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
-	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEpg");
+	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
 	
 	instance = this;
 }

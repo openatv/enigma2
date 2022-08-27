@@ -169,9 +169,9 @@ public:
 	std::string getExtraEventData() const { return m_extra_event_data; }
 	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
-	std::string getSeriesCrid() const { return m_series_crid; }
-	std::string getEpisodeCrid() const { return m_episode_crid; }
-	std::string getRecommendationCrid() const { return m_recommendation_crid; }
+	std::string getSeriesCRID() const { return m_series_crid; }
+	std::string getEpisodeCRID() const { return m_episode_crid; }
+	std::string getRecommendationCRID() const { return m_recommendation_crid; }
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	// Naming to parallel getGenreDataList & getParentalDataList
 	PyObject *getComponentDataList() const;

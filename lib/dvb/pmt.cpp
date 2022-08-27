@@ -1124,7 +1124,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 
 			if (ref.path.empty())
 			{
-				bool scandebug = eConfigManager::getConfigBoolValue("config.crash.debugDvbScan");
+				bool scandebug = eConfigManager::getConfigBoolValue("config.crash.debugDVBScan");
 				m_dvb_scan = new eDVBScan(m_channel, true, scandebug);
 				if (!eConfigManager::getConfigBoolValue("config.misc.disable_background_scan"))
 				{

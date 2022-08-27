@@ -714,8 +714,8 @@ config.crash.debugKeyboards = ConfigYesNo(default=False)
 config.crash.debugOpkg = ConfigYesNo(default=False)
 config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
-config.crash.debugEpg = ConfigYesNo(default=False)
-config.crash.debugDvbScan = ConfigYesNo(default=False)
+config.crash.debugEPG = ConfigYesNo(default=False)
+config.crash.debugDVBScan = ConfigYesNo(default=False)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()
