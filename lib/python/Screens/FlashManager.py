@@ -110,9 +110,9 @@ class FlashManager(Screen, HelpableScreen):
 		def getImages(path, files):
 			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and self.box in x]:
 				try:
-					zip = ZipFile(file, mode="r")  # ZipFile.open(name, mode="r", pwd=None, force_zip64=False)
-					zipFiles = zip.namelist()
-					zip.close
+					zipData = ZipFile(file, mode="r")
+					zipFiles = zipData.namelist()
+					zipData.close()
 					if checkImageFiles([x.split(sep)[-1] for x in zipFiles]):
 						imageType = _("Downloaded images")
 						if "backup" in file.split(sep)[-1]:
@@ -578,9 +578,9 @@ class FlashImage(Screen, HelpableScreen):
 
 	def startUnzip(self):
 		try:
-			zipfile = ZipFile(self.zippedImage, "r")  # class ZipFile(file, mode="r", compression=ZIP_STORED, allowZip64=True, compresslevel=None, strict_timestamps=True)
-			zipfile.extractall(self.unzippedImage)  # NOSONAR (python:S5042)
-			zipfile.close()
+			zipData = ZipFile(self.zippedImage, mode="r")
+			zipData.extractall(self.unzippedImage)  # NOSONAR
+			zipData.close()
 			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))
