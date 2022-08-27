@@ -4721,10 +4721,10 @@ msgstr "Nastavte rozlíšenie zobrazovacieho panela a písmo používané pre te
 msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr "Nastavte čas v minútach pre šetrič obrazovky."
 
-msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Nakonfigurujte trvanie v minútach, skôr než sa aktivuje časovač pre šetrenie energie."
 
-msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Nakonfigurujte trvanie, v minútach, skôr než sa aktivuje časovač uspania."
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -7009,7 +7009,7 @@ msgstr "Povolením tejto možnosti pridáte do súboru denníka ladenia názvy o
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ak váš anténny systém vyžaduje energiu, zapnite toto nastavenie"
 
-msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Ak chcete do informačných obrazoviek vložiť väčšie riadkovanie či medzery, aktivujte túto voľbu. Zlepší sa tým čitateľnosť."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
@@ -7083,10 +7083,10 @@ msgstr[2] "Časovač pre energiu: zostáva %d sekúnd."
 msgid "Energy Timer: Inactive."
 msgstr "Časovač pre energiu: neaktívny."
 
-msgid "Energy saver action"
+msgid "EnergySaver action"
 msgstr "Akcia šetriča energie"
 
-msgid "Energy saver activation delay"
+msgid "EnergySaver activation delay"
 msgstr "Oneskorenie aktivácie šetriča energie"
 
 msgid "Energy timer"
@@ -14961,7 +14961,7 @@ msgstr "Ak je nastavené na 'áno', môžete zobraziť náhľady kanálov v zozn
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Ak je nastavené na 'áno', nezobrazia sa kanály, pri ktorých nie je dostupné EPG."
 
-msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Ak chcete odstrániť všetky hlavné konfiguračné údaje pre nastavenia, vyberte možnosť 'Áno'. Výberom tejto možnosti sa Enigma2 nastaví na predvolené hodnoty. Pri reštartovaní sa zobrazí aj uvítací sprievodca."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
@@ -15400,10 +15400,10 @@ msgstr "Vybrať súpravu veľkých písmen len pre ďalšie písmeno"
 msgid "Select the softcam protocol."
 msgstr "Vyberte protokol softcam."
 
-msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Vyberte poradie zoraďovania položiek menu v prehliadači pluginov. Používateľsky definované umožňuje skrytie položiek menu."
 
-msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Vyberte poradie zoraďovania položiek menu. Používateľsky definované umožňuje aj skrytie položiek menu."
 
 msgid "Select the source of the default DNS settings."
@@ -15448,7 +15448,7 @@ msgstr "Vyberte typ používaného LNB/zariadenia (obvykle 'Univerzálne'). Ak n
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vyberte typ zariadenia na príjem pomocou jedného kábla, ktoré používate."
 
-msgid "Select the type of shutdown desired when the Energy Timer activates."
+msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr "Vyberte typ požadovaného vypnutia v prípade, že sa aktivuje časovač pre energiu."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
@@ -15882,7 +15882,7 @@ msgstr "Nastavte čas skrytia informačného panela."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Nastavte čas skrývania druhého info-panela. Panel zmizne aj po stlačení 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr "Nastaviť čas čakania na vyvolanie predvolenej akcie pri vypnutí, pohotovostnom režime alebo správach o reštartovaní (používa sa napríklad v časovači, časovači napájania, uspania...)"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -15928,7 +15928,7 @@ msgstr "Pre ladenie hlavnej príčiny zobrazenia prvku spinner, nastavte túto v
 msgid "Set voltage and 22KHz"
 msgstr "Nastaviť napätie a 22KHz"
 
-msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
+msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Nastavenie hlavného priečinka zoznamu filmov, na odstránenie '..' zo zobrazovania v tomto priečinku."
 
 msgid "Setting Restored "
@@ -19013,7 +19013,7 @@ msgstr "Čas pre Slideshow"
 msgid "Time for next LCD scrolling"
 msgstr "Čas pre ďalšie rolovanie LCD"
 
-msgid "Time history"
+msgid "Timeline marker"
 msgstr "Čas. história"
 
 msgid "Time jump avoid zero step size"
@@ -19038,7 +19038,7 @@ msgstr "Čas - dlho"
 msgid "Time required for this process: %s"
 msgstr "Čas vyžadovaný pre tento proces: %s"
 
-msgid "Time scale"
+msgid "Timeline scale"
 msgstr "Časové rozpätie"
 
 msgid "Time style"

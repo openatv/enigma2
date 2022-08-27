@@ -4975,10 +4975,10 @@ msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext
 msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr "Die Verzögerungszeit des Bildschirmschoners, falls aktiviert, einstellen."
 
-msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Legen Sie die Dauer in Minuten fest, bevor die Energiesparfunktion aktiviert wird."
 
-msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Legen Sie die Dauer in Minuten fest, bevor der Ausschalttimer aktiviert wird."
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -7401,7 +7401,7 @@ msgstr "Aktivieren, um dem Debug-Log Bildschirmnamen und Auflösungsdaten hinzuz
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
 
-msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Aktivieren Sie diese Option, um den Informationsbildschirmen zusätzliche Abstände hinzuzufügen. Dies kann die Lesbarkeit verbessern."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
@@ -7478,10 +7478,10 @@ msgstr[1] "Energiesparfunktion: Noch %d Sekunden."
 msgid "Energy Timer: Inactive."
 msgstr "Energiesparfunktion: Nicht aktiv."
 
-msgid "Energy saver action"
+msgid "EnergySaver action"
 msgstr "Energiespar-Aktionen"
 
-msgid "Energy saver activation delay"
+msgid "EnergySaver activation delay"
 msgstr "Aktivierungsverzögerung der Energiesparfunktion"
 
 msgid "Energy timer"
@@ -15998,7 +15998,7 @@ msgstr "Bei 'Ja' wird in der Senderliste mit OK im Hintergrund auf den markierte
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Bei 'Ja' werden Sender ohne EPG nicht angezeigt."
 
-msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt.  Dies führt auch dazu, dass Enigma2 beim Neustart den Willkommensassistenten ausführt."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
@@ -16462,10 +16462,10 @@ msgstr "Shift nur für das nächste Zeichen benutzen"
 msgid "Select the softcam protocol."
 msgstr "Wählen Sie das Softcam-Protokoll aus."
 
-msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Einträge im Plugin-Manager einstellen."
 
-msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Menüeinträge einstellen."
 
 msgid "Select the source of the default DNS settings."
@@ -16510,7 +16510,7 @@ msgstr "Wählen Sie den Typ des verwendeten LNB / Gerätes (normalerweise 'Unive
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wählen Sie den Typ des Unicable/SCR-Geräts, das Sie verwenden."
 
-msgid "Select the type of shutdown desired when the Energy Timer activates."
+msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr "Wählen Sie die Art der Abschaltung bei Aktivierung der Energiesparfunktion."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
@@ -16978,7 +16978,7 @@ msgstr "Die Anzeigedauer der Infoleiste einstellen."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Die Anzeigedauer der zweiten Infoleiste einstellen. Sie kann aber auch mit OK beendet werden."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr "Die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart einstellen (z.B. verwendet in Timer, PowerTimer, Ausschalttimer, etc.)."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17025,7 +17025,7 @@ msgstr "Aktivieren, um die Ursache eines Spinners (Beschäftigungsanzeige) zu er
 msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
 
-msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
+msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um '..' in der Ansicht zu unterdrücken."
 
 msgid "Setting Restored "
@@ -20327,7 +20327,7 @@ msgstr "Zeit für die Diashow"
 msgid "Time for next LCD scrolling"
 msgstr "Zeit bis zum nächsten Scrollen des Displays"
 
-msgid "Time history"
+msgid "Timeline marker"
 msgstr "Zeithistorie"
 
 #
@@ -20358,7 +20358,7 @@ msgstr "Time lang"
 msgid "Time required for this process: %s"
 msgstr "Zeit für den gesamten Vorgang: %s"
 
-msgid "Time scale"
+msgid "Timeline scale"
 msgstr "Zeitskala"
 
 msgid "Time style"

@@ -230,8 +230,8 @@
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
-		<item level="2" text="Time history" description="Configure the history of time that will be presented.">config.epgselection.graph_histminutes</item>
-		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
+		<item level="2" text="Timeline marker" description="Configure the history of time that will be presented.">config.epgselection.graph_histminutes</item>
+		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
@@ -264,8 +264,8 @@
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
-		<item level="2" text="Time history" description="Configure the history of time that will be presented.">config.epgselection.infobar_histminutes</item>
-		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
+		<item level="2" text="Timeline marker" description="Configure the history of time that will be presented.">config.epgselection.infobar_histminutes</item>
+		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.multi_preview_mode</item>
@@ -312,7 +312,7 @@
 			<item level="0" text="Remove all network mount data" description="Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources." conditional="self.mounts">config.factory.resetMounts</item>
 			<item level="0" text="Remove all plugin setting data" description="Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured." conditional="self.plugins">config.factory.resetPlugins</item>
 			<item level="0" text="Remove all resume point data" description="Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected." conditional="self.resumePoints">config.factory.resetResumePoints</item>
-			<item level="0" text="Remove all settings data" description="Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart." conditional="self.settings">config.factory.resetSettings</item>
+			<item level="0" text="Remove all settings data" description="Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart." conditional="self.settings">config.factory.resetSettings</item>
 			<item level="0" text="Remove all skin data" description="Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops." conditional="self.skins">config.factory.resetSkins</item>
 			<item level="0" text="Remove all timer data" description="Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers." conditional="len(self.timers)">config.factory.resetTimers</item>
 			<item level="0" text="Remove all other data" description="Select 'Yes' to remove all other files and directories not covered by the options above." conditional="len(self.others)">config.factory.resetOthers</item>
@@ -393,7 +393,7 @@
 		<item level="2" text="Include action map data" description="Enable this option to add action map / remote control mapping data to the debug log file.">config.crash.debugActionMaps</item>
 		<item level="2" text="Include screen load data" description="Enable this option to add screen names and resolution data to the debug log file.">config.crash.debugScreens</item>
 		<item level="2" text="Include opkg output data" description="Enable this option to add opkg output data to the debug log file.">config.crash.debugOpkg</item>
-		<item level="2" text="Include epg data" description="Enable this option to add extra epg data to the debug log file.">config.crash.debugEPG</item>
+		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file.">config.crash.debugEPG</item>
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list" description="Allows you to show/hide Log Manager in extensions (BLUE button).">config.logmanager.showinextensions</item>
@@ -432,7 +432,7 @@
 		<item level="0" text="Show watch status" description="Shows the watched status of the media.">config.usage.show_icons_in_movielist</item>
 		<item level="0" text="Show icon for new/unseen items" description="Shows the icons when new/unseen, else will not show an icon." conditional="config.usage.show_icons_in_movielist.value">config.usage.movielist_unseen</item>
 		<item level="0" text="Play audio in background" description="Keeps MovieList open whilst playing audio files.">config.movielist.play_audio_internal</item>
-		<item level="0" text="Root directory" description="Sets the root directory of media list.  This removes the '..' entry from being shown in that directory.">config.movielist.root</item>
+		<item level="0" text="Root directory" description="Sets the root directory of media list. This removes the '..' entry from being shown in that directory.">config.movielist.root</item>
 		<item level="0" text="Hide known extensions" description="Allows you to hide the extensions of known file types.">config.movielist.hide_extensions</item>
 		<item level="0" text="Show underscore characters" description="Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces.">config.movielist.show_underscores</item>
 		<item level="0" text="Show live TV when movie stopped" description="When set the PIG will return to live after a movie has stopped playing.">config.movielist.show_live_tv_in_movielist</item>
@@ -695,11 +695,11 @@
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner).">config.sat.diseqcc</item>
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
-		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the sleep timer activates.">config.usage.sleepTimer</item>
+		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
 		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates.">config.usage.sleepTimerAction</item>
 		<if conditional="self.setupMode">
-			<item text="Energy saver activation delay" description="Configure the duration, in minutes, before the energy saver timer activates.">config.usage.energyTimer</item>
-			<item text="Energy saver action" description="Select the type of shutdown desired when the Energy Timer activates.">config.usage.energyTimerAction</item>
+			<item text="EnergySaver activation delay" description="Configure the duration, in minutes, before the EnergySaver timer activates.">config.usage.energyTimer</item>
+			<item text="EnergySaver action" description="Select the type of shutdown desired when the EnergySaver timer activates.">config.usage.energyTimerAction</item>
 		</if>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
@@ -816,11 +816,11 @@
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
 		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
-		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
+		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries. User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
 		<item level="1" text="Sort Extensions menu" description="Enable to display the Extension menu entries alphabetically.">config.usage.sort_extensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extensions menu.">config.usage.show_restart_network_extensionslist</item>
-		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
+		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>
 		<item level="1" text="Show setup default value" description="Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description.">config.usage.setupShowDefault</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch.">config.usage.boolean_graphic</item>
@@ -829,7 +829,7 @@
 		<item level="0" text="Help animation speed" description="Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons.">config.usage.helpAnimationSpeed</item>
 		<item level="0" text="Show animation while busy" description="Show a spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<item level="2" text="Show screensaver" description="Configure the duration in minutes before the screen saver will be displayed.">config.usage.screen_saver</item>
-		<item level="2" text="Show extra spacing in Information" description="Enable to add some extra spacing to the Information screens.  This can improve readability.">config.usage.informationExtraSpacing</item>
+		<item level="2" text="Show extra spacing in Information" description="Enable to add some extra spacing to the Information screens. This can improve readability.">config.usage.informationExtraSpacing</item>
 		<item level="0" text="1st InfoBar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd InfoBar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
@@ -838,7 +838,7 @@
 		<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide">config.usage.show_infobar_do_dimming</item>
 		<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
-		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)">config.usage.shutdown_msgbox_timeout</item>
+		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (BLUE button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>

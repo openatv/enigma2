@@ -4735,10 +4735,10 @@ msgstr "Konfigūruokite ekrano rezoliuciją ir šriftą, naudojamą teletekstui.
 msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr "Konfigūruokite trukmę minutėmis prieš rodydami ekrano užsklandą."
 
-msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Sukonfigūruokite trukmę minutėmis, prieš aktyvuojant energijos taupymo laikmatį."
 
-msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Sukonfigūruokite trukmę minutėmis prieš aktyvuojant miego laikmatį."
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -7023,7 +7023,7 @@ msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtrau
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Įjunkite šį nustatymą, jei jūsų antenos sistemai reikia galios"
 
-msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
@@ -7097,10 +7097,10 @@ msgstr[2] "Energijos laikmatis: liko %d sekundžių"
 msgid "Energy Timer: Inactive."
 msgstr "Energijos laikmatis: neaktyvus."
 
-msgid "Energy saver action"
+msgid "EnergySaver action"
 msgstr "Energijos taupymo priemonės veiksmas"
 
-msgid "Energy saver activation delay"
+msgid "EnergySaver activation delay"
 msgstr "Energijos taupymo aktyvavimo vėlavimas"
 
 msgid "Energy timer"
@@ -14978,7 +14978,7 @@ msgstr "Jei nustatyta 'taip', kanalų sąrašo lange jūs galite peržiūrėti k
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Jei nustatyta 'taip', kanalai be EPG duomenų nebus rodomi."
 
-msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Norėdami pašalinti visus pagrindinius parametrus konfigūracijos duomenis, pasirinkite 'Taip'. Pasirinkus šią parinktį, visi Enigma2 parametrai bus grąžinti į numatytąsias reikšmes.  Tai taip pat paskatins Enigma2 paleisti pasveikinimo vedlį iš naujo."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
@@ -15417,10 +15417,10 @@ msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 msgid "Select the softcam protocol."
 msgstr ""
 
-msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite papildinių naršyklės meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
 
-msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
 
 msgid "Select the source of the default DNS settings."
@@ -15465,7 +15465,7 @@ msgstr "Pasirinkite naudojamo LNB/įrenginio tipą (paprastai 'Universal'). Jei 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Pasirinkite vieno kabelio priėmimo įrenginio tipą, kurį jūs naudojate."
 
-msgid "Select the type of shutdown desired when the Energy Timer activates."
+msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmatis."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
@@ -15899,7 +15899,7 @@ msgstr "Nustatykite laiką, kad paslėpti info juostą."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -15945,7 +15945,7 @@ msgstr "Nustatykite taip, kad būtų pašalinta pagrindinė sukimosi priežastis
 msgid "Set voltage and 22KHz"
 msgstr "Nustatykite įtampą ir 22 KHz"
 
-msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
+msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Nustato pagrindinį laikmenų sąrašo katalogą.  Tai pašalina įrašą '..' kad jis nebūtų rodomas tame kataloge."
 
 msgid "Setting Restored "
@@ -19031,7 +19031,7 @@ msgstr "Skaidrių rodymo laikas"
 msgid "Time for next LCD scrolling"
 msgstr "Laikas kito LCD slinkimui"
 
-msgid "Time history"
+msgid "Timeline marker"
 msgstr "Laiko istorija"
 
 msgid "Time jump avoid zero step size"
@@ -19056,7 +19056,7 @@ msgstr "Laikas ilgai"
 msgid "Time required for this process: %s"
 msgstr "Laikas, reikalingas šiam procesui: %s"
 
-msgid "Time scale"
+msgid "Timeline scale"
 msgstr "Laiko skalė"
 
 msgid "Time style"

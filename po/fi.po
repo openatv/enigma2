@@ -4709,10 +4709,10 @@ msgstr "Määritä näytön resoluutio ja teksti-tv:lle käytetty fontti."
 msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
-msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Määritä kesto minuutteina ennen kuin energian säästöajastin aktivoituu."
 
-msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Määritä kesto minuutteina, ennen kuin uniajastin aktivoituu."
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6996,7 +6996,7 @@ msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä j
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa"
 
-msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin.  Tämä voi parantaa luettavuutta."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
@@ -7068,10 +7068,10 @@ msgstr[1] "Energia-ajastin: %d sekuntia jäljellä."
 msgid "Energy Timer: Inactive."
 msgstr "Energia-ajastin: Ei käytössä."
 
-msgid "Energy saver action"
+msgid "EnergySaver action"
 msgstr "Energiansäästö toiminto"
 
-msgid "Energy saver activation delay"
+msgid "EnergySaver activation delay"
 msgstr "Energiansäästäjän aktivoinnin viive"
 
 msgid "Energy timer"
@@ -14958,7 +14958,7 @@ msgstr "'Kyllä' valinnalla voit esikatsella kanavia kanavalistassa. Esikatsele 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
 
-msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki pääasetusten konfigurointitiedot. Tämän vaihtoehdon valitseminen palauttaa kaikki Enigma2:n asetukset oletusarvoihinsa.  Tämä aiheuttaa myös sen, että Enigma2 suorittaa Asennus Avustaja uudelleenkäynnistyksen yhteydessä."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
@@ -15407,10 +15407,10 @@ msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 msgid "Select the softcam protocol."
 msgstr "Valitse softcam protokolla."
 
-msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Valitse Plugin selaimen valikko lajittelujärjestys.  Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
 
-msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Valitse valikon lajittelujärjestys.  Käyttäjän määrittelemä mahdollistaa myös tietyn valikko kohdan piilottamisen."
 
 msgid "Select the source of the default DNS settings."
@@ -15455,7 +15455,7 @@ msgstr "\"Valitse käytetyn LNB:n / laitteen tyyppi (yleensä\" Universal \"). J
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Valitse käyttämäsi laitteen tyyppi."
 
-msgid "Select the type of shutdown desired when the Energy Timer activates."
+msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr "Valitse haluamasi sammutus tyyppi, kun energia ajastin aktivoituu."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
@@ -15891,7 +15891,7 @@ msgstr "Määrittää, kuinka kauan tietopalkki näytetään kuvaruudulla."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Määrittää, kuinka kauan 2. tietopalkki näytetään kuvaruudulla. Sen voi piilottaa samantien painamalla 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr "Aseta aika joka odotettaan ennen kuin suoritettaan oletustoiminto sammutuksessa, valmiustilassa tai uudelleenkäynnistyksessä. (esim .uniajastin, ...)"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -15937,7 +15937,7 @@ msgstr "Aseta Kyllä asetukseksi debugging root perus syyn virheen selvittämise
 msgid "Set voltage and 22KHz"
 msgstr "Aseta jännite ja 22KHz"
 
-msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
+msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Määrittää tallenteiden juurihakemiston, poistaa '..' sen hakemiston alusta."
 
 msgid "Setting Restored "
@@ -19027,7 +19027,7 @@ msgstr "Diaesityksen aika"
 msgid "Time for next LCD scrolling"
 msgstr "Aika seuraavaan näytön vieritykseen"
 
-msgid "Time history"
+msgid "Timeline marker"
 msgstr "Aikahistoria"
 
 msgid "Time jump avoid zero step size"
@@ -19052,7 +19052,7 @@ msgstr "Aika pitkä"
 msgid "Time required for this process: %s"
 msgstr "Tähän tehtävään kulunut aika: %s"
 
-msgid "Time scale"
+msgid "Timeline scale"
 msgstr "Näytettävä aikaväli"
 
 msgid "Time style"

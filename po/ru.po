@@ -4722,10 +4722,10 @@ msgstr "Установите разрешение экрана и выберит
 msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr "Настройте продолжительность заставки в минутах."
 
-msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Настройте продолжительность в минутах до активации таймера энергосбережения."
 
-msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Настройте продолжительность в минутах до активации таймера сна."
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -7010,7 +7010,7 @@ msgstr "Включите эту опцию, чтобы добавить имен
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Включите этот параметр, если Вашей антенной системе требуется питание"
 
-msgid "Enable to add some extra spacing to the Information screens.  This can improve readability."
+msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Включите, чтобы добавить дополнительный интервал к информационным экранам.  Это может улучшить читаемость."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
@@ -7084,10 +7084,10 @@ msgstr[2] "Таймер энергии: осталось %d секунд."
 msgid "Energy Timer: Inactive."
 msgstr "Таймер питания: неактивен."
 
-msgid "Energy saver action"
+msgid "EnergySaver action"
 msgstr "Действие по энергосбережению"
 
-msgid "Energy saver activation delay"
+msgid "EnergySaver activation delay"
 msgstr "Задержка активации энергосбережения"
 
 msgid "Energy timer"
@@ -14962,7 +14962,7 @@ msgstr "Если выберите 'Да', в списке каналов буд�
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Если установлено значение 'да', каналы без EPG не будут отображаться."
 
-msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr "Выберите 'Да', чтобы удалить все данные конфигурации основных параметров. Выбор этой опции вернет все настройки Enigma2 к значениям по умолчанию. Это также заставит Enigma2 запускать мастер приветствия при перезапуске."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
@@ -15401,10 +15401,10 @@ msgstr "Выберите смещённый набор символов толь
 msgid "Select the softcam protocol."
 msgstr "Выберать протокол softcam."
 
-msgid "Select the sort order of the Plugin Browser menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
 
-msgid "Select the sort order of the menu entries.  User defined also allows the menu entries to be hidden."
+msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню. Определяемый пользователем также позволяет скрывать пункты меню."
 
 msgid "Select the source of the default DNS settings."
@@ -15449,7 +15449,7 @@ msgstr "Выберите тип используемого LNB/устройст�
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Выберите тип используемого устройства однокабельного приёма."
 
-msgid "Select the type of shutdown desired when the Energy Timer activates."
+msgid "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr "Выберите желаемый тип выключения при активации таймера питания."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
@@ -15883,7 +15883,7 @@ msgstr "Время показа инфобара."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Время показа второго инфобара."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr "Установите время ожидания выполнения действия по умолчанию в сообщениях о выключении, режиме ожидания или перезапуске. (например, используется в Timer, PowerTimer, Sleeptimer, ...)"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -15929,7 +15929,7 @@ msgstr "Установите значение 'да' для устранения
 msgid "Set voltage and 22KHz"
 msgstr "Установить напряжение и 22КГц"
 
-msgid "Sets the root directory of media list.  This removes the '..' entry from being shown in that directory."
+msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Устанавливает корневую папку списка фильмов, чтобы удалить '..' из неопасных, показанных в этой папке."
 
 msgid "Setting Restored "
@@ -19011,7 +19011,7 @@ msgstr "Обзор таймеров"
 msgid "Time for next LCD scrolling"
 msgstr "Пауза между прокруткой текста на LCD"
 
-msgid "Time history"
+msgid "Timeline marker"
 msgstr "Редактор таймеров"
 
 msgid "Time jump avoid zero step size"
@@ -19036,7 +19036,7 @@ msgstr "Время долго"
 msgid "Time required for this process: %s"
 msgstr "Время, необходимое для этого процесса: %s"
 
-msgid "Time scale"
+msgid "Timeline scale"
 msgstr "Шкала времени"
 
 msgid "Time style"
