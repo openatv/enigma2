@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-25 18:37+0000\n"
-"PO-Revision-Date: 2022-08-25 18:32+0000\n"
+"PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 msgid ""
 "\n"
@@ -1060,7 +1060,7 @@ msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1299,7 +1299,7 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshif
 msgstr "Puskuri tunteina tai viimeaikaisten tapahtumien määrä. Etusijalla poistaa vanhemmat aikasiirtotiedostot."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
+msgstr "'Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Tottele sammutuskäskyä TV:ltä' korkeampi prioriteetti kuin 'Tottele tulo käskyä TV:ltä'."
@@ -2261,7 +2261,7 @@ msgid "Add a new tag"
 msgstr "Lisää uusi tunniste"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "Lisää uusi ajastus"
 
 msgid "Add a new title"
 msgstr "Lisää uusi tallenne"
@@ -2832,7 +2832,7 @@ msgstr "Nykyisen ohjelman lopussa"
 
 #, python-format
 msgid "At end: %s"
-msgstr ""
+msgstr "Lopussa: %s"
 
 msgid "Athletics"
 msgstr "Yleisurheilu"
@@ -2959,7 +2959,7 @@ msgid "Auto scart switching"
 msgstr "Autom. SCARTin kytkentä"
 
 msgid "Auto shut down"
-msgstr ""
+msgstr "Automaattinen sammutus"
 
 msgid "Auto standby"
 msgstr "Automaattinen valmiustila"
@@ -3894,7 +3894,7 @@ msgid "Cancel any text changes and exit"
 msgstr "Peruuta kaikki tekstimuutokset ja poistu"
 
 msgid "Cancel conflict resolution"
-msgstr ""
+msgstr "Peruuta ristiriitojen ratkaisu"
 
 msgid "Cancel execution?"
 msgstr "Peruutetaanko suoritus?"
@@ -4066,7 +4066,7 @@ msgid "Channel +/- button mode"
 msgstr "Kanavanäppäimien (+/-) toiminto"
 
 msgid "Channel / Service"
-msgstr ""
+msgstr "Kanava / Palvelu"
 
 msgid "Channel 1"
 msgstr "Kanava 1"
@@ -4177,10 +4177,10 @@ msgid "Check HDD"
 msgstr "Tarkista Kiintolevy"
 
 msgid "Check for PDC"
-msgstr ""
+msgstr "Tarkista PDC"
 
 msgid "Check for PDC availability on each service"
-msgstr ""
+msgstr "Tarkista PDC:n saatavuus jokaisessa palvelussa"
 
 msgid "Check power and input state from TV"
 msgstr "Tarkista virta ja tulo tila tv:eltä"
@@ -4367,13 +4367,13 @@ msgid "Clean network 'Trash'"
 msgstr "Tyhjennä verkkolevyllä olevat roskakorit"
 
 msgid "Clean up (delete) all completed timers?"
-msgstr ""
+msgstr "Puhdistaa (poistaa) kaikki valmiit ajastukset?"
 
 msgid "Clean up and remove all completed timers"
-msgstr ""
+msgstr "Puhdista ja poista kaikki valmiit ajastukset"
 
 msgid "Clean up and remove all completed timers?"
-msgstr ""
+msgstr "Puhdista ja poista kaikki valmiit ajastukset?"
 
 msgid "Cleaning Trashes"
 msgstr "Tyhjennetään roskakoreja"
@@ -4397,7 +4397,7 @@ msgid "Clear playlist"
 msgstr "Tyhjennä soittolista"
 
 msgid "Clear the logs for this timer"
-msgstr ""
+msgstr "Tyhjennä tämän ajastuksen lokit"
 
 msgid "Clear the virtual memory caches"
 msgstr "Tyhjennä virtuaalimuistin välimuisti"
@@ -4455,7 +4455,7 @@ msgid "Close the screen and exit all menus"
 msgstr "Sulje ikkuna ja poistu kaikista valikoista"
 
 msgid "Close the screen without saving any changes"
-msgstr ""
+msgstr "Sulje näyttö tallentamatta muutoksia"
 
 msgid "Close the window"
 msgstr "Sulje ikkuna"
@@ -4956,7 +4956,7 @@ msgid "Configuring"
 msgstr "Muokataan"
 
 msgid "ConflictTimer Actions"
-msgstr ""
+msgstr "Ristiriita-Ajastukset Toiminnot"
 
 msgid "ConflictTimer Overview"
 msgstr "Ristiriita ajastusten välillä"
@@ -5518,7 +5518,7 @@ msgid "Day Mon-DD"
 msgstr "Päivä KK-PP"
 
 msgid "Day of week"
-msgstr ""
+msgstr "Viikonpäivä"
 
 msgid "Dayname D Month Year"
 msgstr "Viikonpäivä kuukausi"
@@ -5639,7 +5639,7 @@ msgid "Deep Standby"
 msgstr "Virransäästötila"
 
 msgid "Deep standby"
-msgstr ""
+msgstr "Virransäästötila"
 
 msgid "Default"
 msgstr "Oletus"
@@ -5803,7 +5803,7 @@ msgstr "Viive:"
 
 #, python-format
 msgid "Delay: %s"
-msgstr ""
+msgstr "Viive: %s"
 
 msgid "Delete"
 msgstr "Poista"
@@ -5901,7 +5901,7 @@ msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta"
 
 msgid "Delete the currently selected timer"
-msgstr ""
+msgstr "Poistaaksesi vain valittu ajastus"
 
 msgid "Delete the selected files or directories"
 msgstr "Poista valitut tiedostot tai hakemistot"
@@ -6158,7 +6158,7 @@ msgid "Display and user interface"
 msgstr "Näyttö ja käyttöliittymä"
 
 msgid "Display log for the currently selected timer"
-msgstr ""
+msgstr "Näytä parhaillaan valitun ajastuksen loki"
 
 msgid "Display message before playing next movie"
 msgstr "Näytä viesti ennen seuraavan tallenteen toistoa"
@@ -6324,7 +6324,7 @@ msgstr "Haluatko poistaa kirjanmerkin %s?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
-msgstr ""
+msgstr "Haluatko todella pysäyttää ja poistaa ajastuksen '%s'?"
 
 msgid "Do you want change rights?\n"
 msgstr "Haluatko muuttaa oikeuksia?\n"
@@ -6751,7 +6751,7 @@ msgid "Edit the NewCamd DES Key."
 msgstr "Muokkaa NewCamd DES Avainta."
 
 msgid "Edit the currently selected timer"
-msgstr ""
+msgstr "Muokkaa valittuna olevaa ajastusta"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
@@ -6876,16 +6876,16 @@ msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginn
 msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikki ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
 
 msgid "Enable VPS"
-msgstr ""
+msgstr "Ota VPS käyttöön"
 
 msgid "Enable VPS by default (new timers)"
-msgstr ""
+msgstr "Ota VPS käyttöön oletuksena (uudet ajastukset)"
 
 msgid "Enable VPS on instant records"
-msgstr ""
+msgstr "Ota VPS käyttöön pikatallennuksissa"
 
 msgid "Enable VPS-Plugin"
-msgstr ""
+msgstr "Ota VPS-Plugin käyttöön"
 
 msgid "Enable ViaSat EPG"
 msgstr "Ota käyttöön ViaSat EPG"
@@ -7078,10 +7078,10 @@ msgid "Energy timer"
 msgstr "Energia ajastin"
 
 msgid "EnergyTimer Actions"
-msgstr ""
+msgstr "Virransäästö ajastuksien Toiminnot"
 
 msgid "EnergyTimer Overview"
-msgstr ""
+msgstr "Virransäästö ajastuksen Yleiskatsaus"
 
 msgid "English"
 msgstr "Englanti"
@@ -7142,10 +7142,10 @@ msgid "Enter PIN"
 msgstr "Syötä PIN"
 
 msgid "Enter a description for this timer."
-msgstr ""
+msgstr "Anna kuvaus tälle ajastukselle."
 
 msgid "Enter a name for this timer."
-msgstr ""
+msgstr "Anna tälle ajastukselle nimi."
 
 msgid "Enter a new name for this device."
 msgstr "Anna tälle laitteelle uusi nimi."
@@ -7385,7 +7385,7 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ei päivityksiä saatavilla. Yritä myöhemmin uudelleen."
 
 msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
+msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Virhe: Yhtään ohjelmistoa ei löydy!"
@@ -8912,22 +8912,22 @@ msgid "IP"
 msgstr "IP"
 
 msgid "IP Address 1"
-msgstr ""
+msgstr "IP Osoite 1"
 
 msgid "IP Address 2"
-msgstr ""
+msgstr "IP Osoite 2"
 
 msgid "IP Address 3"
-msgstr ""
+msgstr "IP Osoite 3"
 
 msgid "IP Address 4"
-msgstr ""
+msgstr "IP Osoite 4"
 
 msgid "IP Address 5"
-msgstr ""
+msgstr "IP Osoite 5"
 
 msgid "IP Address to be checked on timer activation."
-msgstr ""
+msgstr "IP Osoite, joka tarkistetaan ajastimen aktivoinnin yhteydessä."
 
 msgid "IP address"
 msgstr "IP osoite"
@@ -9022,7 +9022,7 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Jos `ei koskaan` kirjoita kaatumislokin ensimmäisestä kaatumisesta huolimatta."
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr ""
+msgstr "Jos ohjelma keskeytetään ja jaetaan erillisiin tapahtumiin, laajennus etsii yhdistettyjä tapahtumia."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jos toiminto on käyttäjän määritettävissä, se merkitään ohjekirjaan (C) -päätteellä."
@@ -9031,7 +9031,7 @@ msgid "If editing a file, can you set the cursor start position at end or begin 
 msgstr "Jos tiedostoa muokataan, voit määrittää tässä, onko kohdistin rivin alussa vai lopussa."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr ""
+msgstr "Jos tämä on käytössä, lisäosa herättää vastaanottimen Virransäästö tilasta määritetym alkamisajan kohdalla ajaksi, jotta voidaan valvoa, alkaako ohjelma aikaisemmin."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Jos päällä, ulostulon resoluutio pyritään pitämään samana kuin kanavalla tai tallenteessa"
@@ -9057,7 +9057,7 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Määrittää piilotetaanko mykystys symboli tai mykistystiedot muutaman sekunnin kuluttua."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr ""
+msgstr "Jos mahdollista, x minuuttia ennen ajastuksen käynnistymistä VPS Plugin, alkaako ohjelma aikaisemmin. (0 poistaa toiminnon käytöstä)"
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
@@ -9108,7 +9108,7 @@ msgid "Igbo"
 msgstr "Igbo"
 
 msgid "Ignore"
-msgstr ""
+msgstr "Älä välitä"
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Ohita DVB-C aliverkko"
@@ -9170,7 +9170,7 @@ msgstr ""
 "\n"
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
+msgstr "Vastaanotin vaihdetaan kanavalle tallennusta varten!\n"
 
 msgid "In progress"
 msgstr "Käynnissä"
@@ -11640,7 +11640,7 @@ msgid "NodeID: "
 msgstr "NodeID: "
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
-msgstr ""
+msgstr "Määritä, kuinka monta IP Osoitetta tarkistetaan aktiivisten yhteyksien varalta."
 
 msgid "None"
 msgstr "Ei mitään"
@@ -11769,7 +11769,7 @@ msgid "Number"
 msgstr "Numero"
 
 msgid "Number of IP Addresses"
-msgstr ""
+msgstr "IP Osoitteiden määrä"
 
 msgid "Number of digits in channel number"
 msgstr "Kanavanumerossa maksimissaan numeroita"
@@ -13027,7 +13027,7 @@ msgid "PowerTimer"
 msgstr "Virta ajastusasetukset"
 
 msgid "PowerTimer Actions"
-msgstr ""
+msgstr "Virta-ajastus Toiminnot"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Virta ajastin virransäästötila"
@@ -13036,7 +13036,7 @@ msgid "PowerTimer Overview"
 msgstr "Virta ajastukset Yhteenveto"
 
 msgid "PowerTimer Settings"
-msgstr ""
+msgstr "Virta-ajastus Asetukset"
 
 msgid "PowerTimer Standby"
 msgstr "Virta ajastukset Valmistila"
@@ -13706,19 +13706,19 @@ msgid "Record write error (no space on disk?)"
 msgstr "Tallennus kirjoitusvirhe (levy täynnä?)"
 
 msgid "RecordTimer"
-msgstr ""
+msgstr "Tallennusajastin"
 
 msgid "RecordTimer Actions"
-msgstr ""
+msgstr "Tallennusajastin Toiminnot"
 
 msgid "RecordTimer Overview"
-msgstr ""
+msgstr "Tallennusajastin Yleiskatsaus"
 
 msgid "RecordTimer Settings"
-msgstr ""
+msgstr "Tallennusajastin Asetukset"
 
 msgid "RecordTimers"
-msgstr ""
+msgstr "Tallennus Ajastukset"
 
 msgid "Recordable media toolbox"
 msgstr "Tallennettavan median työkalupakki"
@@ -13748,7 +13748,7 @@ msgid "Recording in progress"
 msgstr "Tallennus käynnissä"
 
 msgid "Recording location"
-msgstr ""
+msgstr "Talennus sijainti"
 
 msgid "Recording running"
 msgstr "Tallennus käynnissä"
@@ -14082,7 +14082,7 @@ msgid "Repeated"
 msgstr "useita kertoja"
 
 msgid "Repeating event is currently active, what do you want to do?"
-msgstr ""
+msgstr "Toistuva ajastusta on tällä hetkellä aktiivinen, mitä haluat tehdä?"
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
@@ -14565,7 +14565,7 @@ msgid "Sat Finder"
 msgstr "Satelliittien haku"
 
 msgid "Sat-Sun"
-msgstr ""
+msgstr "La-su"
 
 msgid "Satellite"
 msgstr "Satelliitti"
@@ -14657,7 +14657,7 @@ msgid "Save the left folder list location on exit."
 msgstr "Tallenna vasemman kansiolista sijainti poistuttaessa."
 
 msgid "Save the log changes and exit"
-msgstr ""
+msgstr "Tallenna lokimuutokset ja poistu"
 
 msgid "Save the right folder list location on exit."
 msgstr "Tallenna oikealla kansiolista sijainti poistuttaessa."
@@ -14882,7 +14882,7 @@ msgid "Seekbar sensibility"
 msgstr "Hakupalkin hypyn pituus (sek)"
 
 msgid "Seeking connected events"
-msgstr ""
+msgstr "Etsitään yhdistettyjä tapahtumia"
 
 msgid "Select"
 msgstr "Valitse"
@@ -14903,10 +14903,10 @@ msgid "Select 'No' to save older events even after zapping or interrupting time 
 msgstr "Jos valittuna 'ei', ajansiirron puskuria ei tyhjennetä kanavanvaihdon yhteydessä. Tämä mahdollistaa ajansiirron muunnon tallenteeksi myös kanavanvaihdon jälkeen."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr ""
+msgstr "Valitse \"Kyllä\", jos tälle ajastimelle tarvitaan päättymisaika."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr ""
+msgstr "Valitse Kyllä, jos verkkoliikenne tulee tarkistaa ennen ajastimen aktivointia."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Valitse 'Kyllä' jos äänenvoimakkuuden säätöjä tulee soveltaa Dolby ääni raitoihin."
@@ -14926,7 +14926,7 @@ msgid "Select 'Yes' to always show the bouquet screen first when opening the cha
 msgstr "Kun valinta on 'kyllä', kanavalista näytä aina ensin suosikkilistat. Kun valinta on 'ei', nykyinen suosikkilista avataan."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr ""
+msgstr "Valitse \"Kyllä\", jos haluat tarkistaa, tulevatko verkkoyhteydet nimetyistä IP Osoitteista ajastimen aktivointiaikana. Jos näin on, ajastin poistetaan käytöstä."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "'Kyllä' valinnalla näytetään pieni TV-kuva EPG:ssä."
@@ -14992,7 +14992,7 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Valitse 'Kyllä', jos haluat palauttaa verkon oletusasetukset. Tämä ottaa Ethernet portin käyttöön, jos se on olemassa, ja asettaa vastaanottimen käyttämään DHCP:tä. Kaikki muut verkkoliitännät poistetaan."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Valitse 'Kyllä' näyttääksesi lisäasetukset."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
 msgstr "'Kyllä' valinnalla suosikkilista(t) näytetään joka kerta, kun avaat EPG:n."
@@ -15166,7 +15166,7 @@ msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
 
 msgid "Select how often this timer is to be repeated."
-msgstr ""
+msgstr "Valitse, kuinka usein tämä ajastin toistetaan."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Valitse kuinka nopeasti antennin pitäisi liikkua satelliittien välillä."
@@ -15183,7 +15183,7 @@ msgid "Select how your box will upgrade."
 msgstr "Valitse, kuinka vastaanottimesi päivittyy."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Valitse, tarvitaanko lopetusaika."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Tämän vaihtoehdon avulla voit valita, näytetäänkö asetuskohteen oletusarvo, ja jos näytetään, missä se näytetään suhteessa kuvaukseen."
@@ -15192,34 +15192,34 @@ msgid "Select if the screen menu path history is displayed and, if so, how it is
 msgstr "Valitse, näytetäänkö näyttö valikon polku historia ja jos näytetään, miten se näytetään."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr ""
+msgstr "Valitse, suoritetaanko ajastimen nimen ja kuvauksen muokkaus toistuvissa ajastimissa."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr ""
+msgstr "Valitse, halutaanko ajastimelle asettaa aika ikkuna, jonka sisällä se voi olla aktiivinen."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus perjantaina."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus maanantaina."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus lauantaina."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus sunnuntaina."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus torstaina."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus tiistaina."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Valitse, aktivoituuko tämä ajastus keskiviikkona."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Valitse, toistetaanko tämä ajastus."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Valitse jatkuuko ajansiirto kun tallennus aloitetaan."
@@ -15294,16 +15294,16 @@ msgid "Select the Yes / True response"
 msgstr "Valitse Kyllä / Tosi vastaus"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Valitse toiminto, joka suoritetaan ajastuksen päättyessä."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Ohjaa Ohje näytön painikkeiden animaatioiden nopeutta. 'Pois käytöstä' poistaa animaation käytöstä niin, että ilmaisimet hyppäävät painikkeiden välillä."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Valitse kanava, jolta tallennetaan:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Valitse tälle ajastimelle käytettävä kanava."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Valitse kursorin alla oleva merkki tai toiminta"
@@ -15318,19 +15318,19 @@ msgid "Select the currently highlighted service"
 msgstr "Valitse parhaillaan korostettu kanava"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Valitse päivämäärä, josta alkaen ajastus on aktiivinen."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Valitse päivämäärä, jolloin tämä ajastus aktivoituu."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Valitse päivämäärä, jolloin ajastus käynnistyy."
 
 msgid "Select the day of the week that this timer will activate."
-msgstr ""
+msgstr "Valitse viikonpäivä, jolloin ajastus aktivoituu."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Valitse viive ennen kuin ajastus aktivoituu."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Valitse haluamasi toiminto ja napsauta OK vaihda listoja painamalla \"CH+/-\" siirtyäksesi luetteloiden välillä. Valitse määritetty toiminto ja paina OK määrittää sen \"Seuraava / Edellinen\" näppäimiä vaihtaaksesi toimintojen järjestystä."
@@ -15354,7 +15354,7 @@ msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Valitse paikka, johon tallennus tallennetaan:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
@@ -15369,7 +15369,7 @@ msgid "Select the movie path"
 msgstr "Valitse tallennus hakemisto"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
+msgstr "Valitse verkon tiedonsiirtonopeus, milloin ajastus tulee aktivoida määritetyllä tavalla. Tämän nopeuden ylittävä liikenne poistaa ajastuksen käytöstä."
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Valitse seuraava kohde luettelosta tai siirrä kursori oikealle"
@@ -15417,13 +15417,13 @@ msgid "Select the source of the default DNS settings."
 msgstr "Valitse lähde oletus DNS asetuksille."
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
+msgstr "Valitse tässä tallenteessa käytettävät tunnisteet."
 
 msgid "Select the time after which this timer can start."
-msgstr ""
+msgstr "Valitse aika, jonka jälkeen ajastus voi käynnistyä."
 
 msgid "Select the time before which this timer should end."
-msgstr ""
+msgstr "Valitse aika, johon mennessä ajastuksen pitäisi päättyä."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Valitse aikaviive ennen kuin painike alkaa toistua."
@@ -15432,10 +15432,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Valitse aikaviive kunkin painikkeen toistamisen välillä."
 
 msgid "Select the time when this timer should end."
-msgstr ""
+msgstr "Valitse aika, jolloin ajastuksen pitäisi päättyä."
 
 msgid "Select the time when this timer will start."
-msgstr ""
+msgstr "Valitse aika, jolloin ajastin käynnistyy."
 
 msgid "Select the time zone within the area or region."
 msgstr "Valitse aikavyöhyke."
@@ -15462,7 +15462,7 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
 msgid "Select the type of this timer."
-msgstr ""
+msgstr "Valitse ajastimen tyyppi."
 
 msgid "Select video input with up/down buttons"
 msgstr "Valitse video sisäänmeno ylös/alas näppäimillä"
@@ -15474,10 +15474,10 @@ msgid "Select what action to take when reaching the end of a media file during p
 msgstr "Tallenteen lopussa voit valita mitä tehdään."
 
 msgid "Select what do do after the timer has completed."
-msgstr ""
+msgstr "Valitse, mitä tehdään ajastuksen päättymisen jälkeen."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "Valitse, mitä tehdään ajastustallennuksen päätyttyä."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Valitse mitä pitäisi tehdä, kun %s %s oli käynnistynyt normaalisti tai mennyt valmiustilaan."
@@ -15504,7 +15504,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "Määrittää, mitä ylös/alas -näppäimien painallus tekee."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "Valitse, mihin tallennus tallennetaan."
 
 msgid "Select wireless network"
 msgstr "Valitse Langaton verkko"
@@ -16089,7 +16089,7 @@ msgid "Setup your LCD"
 msgstr "Aseta etunäyttö teema"
 
 msgid "Setup your LCD Skin"
-msgstr ""
+msgstr "Aseta LCD teema"
 
 msgid "Setup your OSD"
 msgstr "Määritä kuvaruudun asetukset"
@@ -16429,7 +16429,7 @@ msgid "Show bouquet on launch"
 msgstr "Näytä avattaessa suosikkilistat"
 
 msgid "Show build information"
-msgstr ""
+msgstr "Näytä koontiversion tiedot"
 
 msgid "Show channel number in InfoBar"
 msgstr "Näytä kanavanumero tietopalkissa"
@@ -16654,7 +16654,7 @@ msgid "Show quickmenu..."
 msgstr "Näytä pikavalikko"
 
 msgid "Show receiver image information"
-msgstr ""
+msgstr "Näytä vastaanottimen ohjelmiston tiedot"
 
 msgid "Show record indicator"
 msgstr "Tallennusmerkki"
@@ -17023,7 +17023,7 @@ msgid "Sleep Timers"
 msgstr "Uniajastimet"
 
 msgid "Sleep delay (in minutes)"
-msgstr ""
+msgstr "Uni viive (minuutteina)"
 
 msgid "Sleep long"
 msgstr "Nuku pitkään"
@@ -17035,10 +17035,10 @@ msgid "SleepTimer"
 msgstr "Uniajastin"
 
 msgid "SleepTimer Actions"
-msgstr ""
+msgstr "Uniajastimen Toiminnot"
 
 msgid "SleepTimer Overview"
-msgstr ""
+msgstr "Uniajastimen yleiskatsaus"
 
 msgid "SleepTimer Settings"
 msgstr "Uniajastimen asetukset"
@@ -17380,7 +17380,7 @@ msgstr "Tallennuksille varattu levytila (GB)"
 
 #, python-format
 msgid "Space total %s, used %s, free %s (%0.f%%)."
-msgstr ""
+msgstr "Tila yhteensä %s, käytetty %s, vapaa %s (%0.f%%)."
 
 msgid "Space used:"
 msgstr "Käytetty tila:"
@@ -17458,7 +17458,7 @@ msgid "Start RDS interactive"
 msgstr "Avaa interaktiivinen tv (HbbTV)"
 
 msgid "Start date"
-msgstr ""
+msgstr "Aloituspäivä"
 
 msgid "Start from the beginning"
 msgstr "Aloita alusta"
@@ -17506,13 +17506,13 @@ msgid "Starting Softcam"
 msgstr "Käynnistetään Softcam"
 
 msgid "Starting date"
-msgstr ""
+msgstr "Aloituspäivä"
 
 msgid "Starting directory"
 msgstr "Avataan hakemistoa"
 
 msgid "Starting time"
-msgstr ""
+msgstr "Aloitusaika"
 
 msgid "Starts in a few seconds"
 msgstr "Alkaa 5 sekunnissa"
@@ -18027,7 +18027,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 29.06.2022\n"
+"Suomenkielinen käännös: 27.08.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18347,6 +18347,8 @@ msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"VPS-Plugin ei voinut tarkistaa, tukeeko valittu kanava VPS:ää manuaalisesti ohjelmoituja ajastusta varten!\n"
+" Haluatko todella ottaa VPS:n käyttöön?"
 
 msgid ""
 "The VideoMode plugin is not installed!\n"
@@ -18385,6 +18387,8 @@ msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
+"Kanava voi tukea VPS\n"
+" Haluatko ottaa VPS:n käyttöön?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Valmiustilasta herätyskomento lähetetään useita kertoja."
@@ -18462,6 +18466,8 @@ msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"Valittu kanava ei tue VPS:ää manuaalisesti ohjelmoituja ajastusta varten!\n"
+" Haluatko todella ottaa VPS:n käyttöön?"
 
 msgid "The servicelist is reloaded."
 msgstr "Kanavalista ladattu uudelleen."
@@ -18877,7 +18883,7 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva skaalataan suurempaan tarkkuuteen."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
+msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
 
 msgid "This plugin is installed."
 msgstr "Tämä lisäosa on asennettu."
@@ -19077,7 +19083,7 @@ msgid "Timer Actions"
 msgstr "Ajastin Toiminnot"
 
 msgid "Timer Log Actions"
-msgstr ""
+msgstr "Ajastimen loki toiminnot"
 
 msgid "Timer Sanity Error"
 msgstr "Päällekkäinen ajastus"
@@ -19235,7 +19241,7 @@ msgid "Toggle display of the InfoBar"
 msgstr "Näytä ohjelman tiedot"
 
 msgid "Toggle enable/disable of the currently selected timer"
-msgstr ""
+msgstr "Ota käyttöön / poista käytöstä valittuna oleva ajastus"
 
 msgid "Toggle hide/show of the current item"
 msgstr "Nykyisen kohteen piilottamisen/näyttämisen vaihtaminen"
@@ -19711,7 +19717,7 @@ msgid "Unknown user: %d"
 msgstr "Tuntematon käyttäjä: %d"
 
 msgid "Unknown!"
-msgstr ""
+msgstr "Tuntematon!"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "'Kyllä' valinnalla EPG-listassa voi esikatsella kanavia."
@@ -20159,13 +20165,13 @@ msgid "VPN"
 msgstr "VPN"
 
 msgid "VPS Settings"
-msgstr ""
+msgstr "VPS Asetukset"
 
 msgid "VPS enabled by default"
-msgstr ""
+msgstr "VPS käytössä oletuksena"
 
 msgid "VPS-Plugin Information"
-msgstr ""
+msgstr "VPS laajennuksen tiedot"
 
 msgid ""
 "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
@@ -20191,25 +20197,51 @@ msgid ""
 "\n"
 "If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
 msgstr ""
+"VPS-Plugin voi reagoida ohjelman aloitus aikaan tai lopetusaikaan, ajoissa ilmeneviin muutoksiin. VPS on tuettu vain tietyillä kanavilla!\n"
+"\n"
+"Jos otat VPS:n käyttöön, tallennus alkaa vasta, kun kanava merkitsee ohjelman olevan käynnissä.\n"
+"\n"
+"Jos valitset \"kyllä (vikasietotila)\", tallennus alkaa varmasti viimeistään määrittämässäsi aloitus ajassa. Tallennus voi alkaa aikaisemmin tai kestää pidempään.\n"
+"\n"
+"\n"
+"Tuetut kanavat\n"
+"\n"
+"Saksa:\n"
+" ARD ja ZDF\n"
+"\n"
+"Itävalta:\n"
+" ORF\n"
+"\n"
+"Sveitsi:\n"
+" SF\n"
+"\n"
+"Tšekki:\n"
+" CT\n"
+"\n"
+"Jos ajastin on ohjelmoitu manuaalisesti (ei EPG:n kautta), on tarpeen asettaa VPS-aika, jotta VPS voidaan ottaa käyttöön. VPS-aika (tunnetaan myös nimellä PDC) on ensimmäinen julkaistu aloitusaika, joka on annettu esimerkiksi aikakauslehdissä. Jos asetat VPS-ajan, sinun on jätettävä ajastimen nimi tyhjäksi."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
-msgstr ""
+msgstr "VPS-Plugin tarkistaa, tukeeko kanava VPS:ää..."
 
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
+"VPS-Plugin ei voinut tarkistaa, tukeeko kanava VPS:ää.\n"
+" Haluatko kuitenkin ottaa VPS:n käyttöön?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"VPS-Plugin ei voinut tarkistaa, tukeeko valittu kanava VPS:ää.\n"
+" Haluatko todella ottaa VPS:n käyttöön?"
 
 msgid "VPS-Time (date)"
-msgstr ""
+msgstr "VPS-aika (päivämäärä)"
 
 msgid "VPS-Time (time)"
-msgstr ""
+msgstr "VPS-Time (aika)"
 
 msgid "Valid"
 msgstr "Voimassa"
@@ -20587,7 +20619,7 @@ msgid "Wakeup TV from standby"
 msgstr "Käynnistä TV valmiustilasta"
 
 msgid "Wakeup from Deep-Standby is allowed"
-msgstr ""
+msgstr "Herätys valmiustilasta on sallittu"
 
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Herätysaika ennen ajastimen alkamista [minuutteina]"
@@ -20660,10 +20692,10 @@ msgid "Wednesday"
 msgstr "Keskiviikko"
 
 msgid "Weekdays"
-msgstr ""
+msgstr "Arkipäivisin"
 
 msgid "Weekends"
-msgstr ""
+msgstr "Viikonloppuisin"
 
 msgid "Weekly"
 msgstr "Viikoittain"
@@ -20932,7 +20964,7 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset ja tallentaa ne. Valitse 'kyllä' Vain edistynemmille käyttäjille."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr ""
+msgstr "Kun kyllä, VPS otetaan käyttöön pikatallenteissa (pysäytetään nykyisen ohjelman jälkeen), jos kanava tukee VPS:ää."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Minne haluat varmuuskopioida asetukset?"
@@ -21086,7 +21118,7 @@ msgid "Yes"
 msgstr "Kyllä"
 
 msgid "Yes (safe mode)"
-msgstr ""
+msgstr "Kyllä (vikasietotila)"
 
 msgid "Yes to all"
 msgstr "Kyllä kaikkiin"
@@ -21128,7 +21160,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Kyllä, tee toinen manuaalihaku nyt"
 
 msgid "Yes, don't ask again"
-msgstr ""
+msgstr "Kyllä, älä kysy uudelleen"
 
 msgid "Yes, restore the settings now"
 msgstr "Kyllä, palauta asetukset nyt"
@@ -21538,7 +21570,7 @@ msgid "ZAP"
 msgstr "Vaihda"
 
 msgid "ZAP as PiP"
-msgstr ""
+msgstr "ZAP kuin PiP"
 
 msgid "ZOOM"
 msgstr "Suurenna"
