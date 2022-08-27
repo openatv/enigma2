@@ -183,7 +183,7 @@
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
 		<item level="2" text="Enable OpenTV EPG" description="Use OpenTV EPG information when it is available.">config.epg.opentv</item>
 		<item level="2" text="Maximum number of days in EPG" description="Use for load only x days in EPG">config.epg.maxdays</item>
-		<item level="2" text="Maintain old EPG data for" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
+		<item level="2" text="Keep EPG history (in minutes)" description="Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished.">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include SDT, BAT in http streams" description="When enabled, SDT, BAT data will be included in http streams.">config.streaming.stream_sdtbat</item>
@@ -230,7 +230,7 @@
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
-		<item level="2" text="Timeline marker" description="Configure the history of time that will be presented.">config.epgselection.graph_histminutes</item>
+		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events.">config.epgselection.graph_histminutes</item>
 		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="1">
@@ -264,7 +264,7 @@
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
-		<item level="2" text="Timeline marker" description="Configure the history of time that will be presented.">config.epgselection.infobar_histminutes</item>
+		<item level="2" text="Timeline marker" description="Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events.">config.epgselection.infobar_histminutes</item>
 		<item level="2" text="Timeline scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="EPGMulti" title="MultiEPG Settings" level="2" showOpenWebif="1">
