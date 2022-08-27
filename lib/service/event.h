@@ -200,7 +200,7 @@ public:
 	PyObject *getCridData(int mask) const;
 	static void setDebug(bool debug) {m_Debug = debug;}
 	private:
-		static m_Debug;
+		static bool m_Debug;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,
