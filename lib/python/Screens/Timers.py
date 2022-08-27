@@ -425,7 +425,8 @@ class RecordTimerList(TimerListBase):
 			if timer.end > timer.begin + 3:
 				text = "%s %s ... %s (%s, %s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], _("ZAP"), ngettext("%d Min", "%d Mins", duration) % duration)
 			else:
-				text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP as PiP") if timer.pipzap else _("ZAP"))
+				# text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP as PiP") if timer.pipzap else _("ZAP"))
+				text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP"))
 		else:
 			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], ngettext("%d Min", "%d Mins", duration) % duration)
 		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
