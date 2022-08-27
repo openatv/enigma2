@@ -305,13 +305,13 @@ class EventName(Converter):
 					self.epgData = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 					if self.epgData:
 						if self.type == self.NAME_NEXT and self.epgData[1][1]:
-							return "%s: %s" % (pgettext("now/next: 'next' event label", "Next"), self.trimText(self.epgList[1][1]))
+							return "%s: %s" % (pgettext("now/next: 'next' event label", "Next"), self.trimText(self.epgData[1][1]))
 						elif self.type == self.NAME_NEXT2 and self.epgData[1][1]:
 							return self.trimText(self.epgData[1][1])
 						elif self.type == self.NEXT_DESCRIPTION and (self.epgData[1][2] or self.epgData[1][3]):
 							return self.formatDescription(self.epgData[1][2], self.epgData[1][3])
 						if self.type == self.THIRD_NAME and self.epgData[2][1]:
-							return "%s: %s" % (pgettext("third event: 'third' event label", "Later"), self.trimText(self.epgList[2][1]))
+							return "%s: %s" % (pgettext("third event: 'third' event label", "Later"), self.trimText(self.epgData[2][1]))
 						elif self.type == self.THIRD_NAME2 and self.epgData[2][1]:
 							return self.trimText(self.epgData[2][1])
 						elif self.type == self.THIRD_DESCRIPTION and (self.epgData[2][2] or self.epgData[2][3]):
