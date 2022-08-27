@@ -45,7 +45,7 @@ def setup(session, **kwargs):
 	session.openWithCallback(setupCallback, VPS_Setup)
 
 
-def setupCallback(result):
+def setupCallback(result=None):
 	if result is None:
 		vps_timers.checkTimer()
 
