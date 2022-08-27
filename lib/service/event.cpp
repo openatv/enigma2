@@ -199,12 +199,10 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 				}
 				case CONTENT_IDENTIFIER_DESCRIPTOR:
 				{
-					if(eServiceEvent::m_Debug) {
-						eServiceReference ref = db->searchReference(tsid, onid, sid);
-						ePtr<eDVBService> service;
-						db->getService(*(eServiceReferenceDVB*) &ref, service);
-						channelName = service->m_service_name;
-					}
+					eServiceReference ref = db->searchReference(tsid, onid, sid);
+					ePtr<eDVBService> service;
+					db->getService(*(eServiceReferenceDVB*) &ref, service);
+					channelName = service->m_service_name;
 					auto cridd = (ContentIdentifierDescriptor *)*desc;
 					auto crid = cridd->getIdentifier();
 					for (auto it = crid->begin(); it != crid->end(); ++it)
