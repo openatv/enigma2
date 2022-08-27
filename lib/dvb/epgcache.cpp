@@ -2564,9 +2564,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 						case END_TITLE_SEARCH:
 							eDebug("[eEPGCache] lookup events, title ending with '%s' (%s)", str, ctype);
 							break;
-						case PARTIAL_DESCRIPTION_SEARCH:
-							eDebug("[eEPGCache] lookup events with '%s' in the description (%s)", str, ctype);
-							break;
 						case CRID_SEARCH:
 							eDebug("[eEPGCache] lookup events with '%s' in CRID %02x", str, casetype);
 							break;
@@ -2586,7 +2583,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 									auto cril = cid.getIdentifier();
 									for (auto crit = cril->begin(); crit != cril->end(); ++crit)
 									{
-										// UK broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
+										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
 										// the specification's 1 and 2 for episode and series respectively
 										if (((*crit)->getType() & 0xf) == casetype)
 										{
@@ -2691,7 +2688,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					const char *str = PyUnicode_AsUTF8AndSize(obj, &textlen);
 					int lloop=0;
 					const char *ctype = casetypestr(casetype);
-					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
+					eDebug("[eEPGCache] lookup events with '%s' in description (%s)", str, ctype);
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
 						singleLock s(cache_lock);
