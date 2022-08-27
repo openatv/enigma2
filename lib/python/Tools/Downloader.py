@@ -5,6 +5,7 @@ from urllib.request import urlopen, Request
 
 from enigma import eTimer
 
+
 class DownloadWithProgress:
 	def __init__(self, url, outputFile):
 		self.url = url
@@ -16,19 +17,22 @@ class DownloadWithProgress:
 		self.progressCallback = None
 		self.endCallback = None
 		self.errorCallback = None
-		self.endCallback2 = None  # Temporary support for deprecated callbacks.
-		self.errorCallback2 = None  # Temporary support for deprecated callbacks.
 		self.stopFlag = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.reportProgress)
 
 	def start(self):
-		request = Request(self.url, None, {"User-agent": self.userAgent})
-		feedFile = urlopen(request)
-		metaData = feedFile.headers
-		self.totalSize = int(metaData.get("Content-Length", 0))
-		# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
-		self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
+		try:
+			request = Request(self.url, None, {"User-agent": self.userAgent})
+			feedFile = urlopen(request)
+			metaData = feedFile.headers
+			self.totalSize = int(metaData.get("Content-Length", 0))
+			# Set the transfer block size to a minimum of 1K and a maximum of 1% of the file size (or 128KB if the size is unknown) else use 64K.
+			self.blockSize = max(min(self.totalSize // 100, 1024), 131071) if self.totalSize else 65536
+		except OSError as err:
+			if self.errorCallback:
+				self.errorCallback(err)
+			return self
 		reactor.callInThread(self.run)
 		return self
 
@@ -48,16 +52,10 @@ class DownloadWithProgress:
 						self.timer.start(0, True)
 					fd.write(buffer)
 			if self.endCallback:
-				# self.endCallback(self.url, self.outputFile, self.progress)
-				self.endCallback()
-			if self.endCallback2: # Deprecated
-				self.endCallback2(self.outputFile)
+				self.endCallback(self.outputFile)
 		except OSError as err:
 			if self.errorCallback:
-				# self.errorCallback(self.url, self.outputFile, err.errno, err.strerror)
-				self.errorCallback(err.errno, err.strerror)
-			if self.errorCallback2: # Deprecated
-				self.errorCallback2(err, err.strerror)
+				self.errorCallback(err)
 		return False
 
 	def stop(self):
@@ -78,15 +76,14 @@ class DownloadWithProgress:
 	def setAgent(self, userAgent):
 		self.userAgent = userAgent
 
-	# Temporary supprt for deprecated callbacks.
-	def addErrback(self, errorCallback):
+	def addErrback(self, errorCallback):  # Temporary supprt for deprecated callbacks.
 		print("[Downloader] Warning: DownloadWithProgress 'addErrback' is deprecated use 'addError' instead!")
-		self.errorCallback2 = errorCallback
+		self.errorCallback = errorCallback
 		return self
 
-	def addCallback(self, endCallback):
+	def addCallback(self, endCallback):  # Temporary supprt for deprecated callbacks.
 		print("[Downloader] Warning: DownloadWithProgress 'addCallback' is deprecated use 'addEnd' instead!")
-		self.endCallback2 = endCallback
+		self.endCallback = endCallback
 		return self
 
 
