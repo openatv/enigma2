@@ -9,7 +9,16 @@
 eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
-	m_animation_mode = 0x11;
+	if (access("/proc/stb/fb/animation_mode", R_OK))
+	{
+		m_animation_mode = 0x11;
+		m_has_animation_mode=true;
+	}
+	else {
+		m_animation_mode = 0;
+		m_has_animation_mode=false;
+	}
+	
 	m_desktop = desktop;
 		/* ask style manager for current style */
 	ePtr<eWindowStyleManager> mgr;
@@ -130,12 +139,12 @@ void eWindow::hide()
 }
 
 void eWindow::setAnimationMode(int mode)
-{
+{ 
 	/*
 	 * 0x00 = animation off
 	 * 0x01 = show on
 	 * 0x10 = hide on
 	 * 0x11 = animation on
 	 */
-	m_animation_mode = mode;
+	m_animation_mode = (m_has_animation_mode) ? mode : 0;
 }

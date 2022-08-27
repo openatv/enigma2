@@ -39,6 +39,7 @@ private:
 	int m_flags;
 	eWidgetDesktop *m_desktop;
 	int m_animation_mode;
+	bool m_has_animation_mode;
 };
 
 #endif
