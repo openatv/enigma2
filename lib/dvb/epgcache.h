@@ -154,6 +154,7 @@ private:
 	ePtr<eTimer> cleanTimer;
 	bool load_epg;
 	PSignal0<void> epgCacheStarted;
+	bool m_debug;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;
@@ -223,7 +224,12 @@ public:
 		PARTIAL_TITLE_SEARCH,
 		START_TITLE_SEARCH,
 		END_TITLE_SEARCH,
-		PARTIAL_DESCRIPTION_SEARCH
+		PARTIAL_DESCRIPTION_SEARCH,
+		CRID_SEARCH
+	};
+	enum {
+		CRID_EPISODE = 1,
+		CRID_SERIES = 2
 	};
 	enum {
 		CASE_CHECK,

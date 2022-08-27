@@ -1,12 +1,11 @@
-from __future__ import print_function
-from enigma import eEPGCache
-
-from Components.Converter.Converter import Converter
-from Components.Element import cached
-from Components.Converter.genre import getGenreStringSub
-from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from time import localtime, mktime, strftime
+from enigma import eEPGCache, eServiceEventEnums
+
+from Components.config import config
+from Components.Converter.Converter import Converter
+from Components.Converter.genre import getGenreStringSub
+from Components.Element import cached
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 
 
 class ETSIClassifications(dict):
@@ -109,6 +108,10 @@ class EventName(Converter):
 	RATINGCOUNTRY = 32
 	RATINGICON = 33
 
+	CRID_SERIES = 41
+	CRID_EPISODE = 42
+	CRID_RECOMMENDATION = 43
+
 	KEYWORDS = {
 		# Arguments...
 		"Name": ("type", NAME),
@@ -126,6 +129,9 @@ class EventName(Converter):
 		"GenreList": ("type", GENRELIST),
 		"Rating": ("type", RATING),
 		"SmallRating": ("type", SRATING),
+		"CridSeries": ("type", CRID_SERIES),
+		"CridEpisode": ("type", CRID_EPISODE),
+		"CridRecommendation": ("type", CRID_RECOMMENDATION),
 		"Pdc": ("type", PDC),
 		"PdcTime": ("type", PDCTIME),
 		"PdcTimeShort": ("type", PDCTIMESHORT),
@@ -175,10 +181,13 @@ class EventName(Converter):
 			self.separator = self.KEYWORDS[default_sep][1]
 
 	def trimText(self, text):
-		if self.trim:
-			return str(text).strip()
-		else:
-			return str(text)
+		return str(text).strip() if self.trim else str(text)
+
+	def getCrid(self, event, types):
+		print("[EventName] getCrid %s" % types)
+		crids = event.getCridData(types)
+		print("[EventName] getCrid %s" % crids)
+		return crids and crids[0][2] or ""
 
 	def formatDescription(self, description, extended):
 		description = self.trimText(description)
@@ -192,10 +201,7 @@ class EventName(Converter):
 	@cached
 	def getBoolean(self):
 		event = self.source.event
-		if event:
-			if self.type == self.PDC and event.getPdcPil():
-				return True
-		return False
+		return True if event and self.type == self.PDC and event.getPdcPil() else False
 
 	boolean = property(getBoolean)
 
@@ -212,10 +218,7 @@ class EventName(Converter):
 			if rating:
 				age = rating.getRating()
 				country = rating.getCountryCode().upper()
-				if country in countries:
-					c = countries[country]
-				else:
-					c = countries["INT"]
+				c = countries[country] if country in countries else countries["INT"]
 				if config.misc.epgratingcountry.value:
 					c = countries[config.misc.epgratingcountry.value]
 				rating = c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
@@ -240,6 +243,12 @@ class EventName(Converter):
 				if config.misc.epggenrecountry.value:
 					country = config.misc.epggenrecountry.value
 				return self.separator.join((genretext for genretext in (self.trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
+		elif self.type == self.CRID_EPISODE:
+			return self.getCrid(event, eServiceEventEnums.EPISODE_MATCH)
+		elif self.type == self.CRID_SERIES:
+			return self.getCrid(event, eServiceEventEnums.SERIES_MATCH)
+		elif self.type == self.CRID_RECOMMENDATION:
+			return self.getCrid(event, eServiceEventEnums.RECOMMENDATION_MATCH)
 		elif self.type == self.NAME_NOW:
 			return pgettext("now/next: 'now' event label", "Now") + ": " + self.trimText(event.getEventName())
 		elif self.type == self.SHORT_DESCRIPTION:
@@ -305,8 +314,7 @@ class EventName(Converter):
 							return self.trimText(self.list[2][1])
 						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
 							return self.formatDescription(self.list[2][2], self.list[2][3])
-			except:
-				# Failed to return any EPG data.
+			except:  # Failed to return any EPG data.
 				if self.type == self.NAME_NEXT:
 					return pgettext("now/next: 'next' event label", "Next") + ": " + self.trimText(event.getEventName())
 		elif self.type == self.RAWRATING:

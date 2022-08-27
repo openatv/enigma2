@@ -502,7 +502,7 @@ RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, e
 			std::string filename = ref.path;
 			filename.erase(filename.length()-2, 2);
 			filename+="eit";
-			if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get()))
+			if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get(), m_parser.m_ref.getServiceID().get()))
 			{
 				evt = event;
 				return 0;
@@ -1406,7 +1406,7 @@ RESULT eDVBServicePlay::start()
 		filename.erase(filename.length()-2, 2);
 		filename+="eit";
 		ePtr<eServiceEvent> event = new eServiceEvent;
-		if (!event->parseFrom(filename, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get()))
+		if (!event->parseFrom(filename, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get(), service.getServiceID().get()))
 		{
 			ePtr<eServiceEvent> empty;
 			m_event_handler.inject(event, 0);
