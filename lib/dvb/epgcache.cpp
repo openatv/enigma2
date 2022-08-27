@@ -2,10 +2,7 @@
 
 #undef EPG_DEBUG
 
-#ifdef EPG_DEBUG
 #include <lib/service/event.h>
-#endif
-
 #include <fcntl.h>
 #include <fstream>
 #include <regex>
@@ -378,7 +375,7 @@ static pthread_mutex_t cache_lock =
 DEFINE_REF(eEPGCache)
 
 eEPGCache::eEPGCache()
-	:messages(this,1,"eEPGCache"), m_running(false), m_enabledEpgSources(0), cleanTimer(eTimer::create(this)), m_timeQueryRef(nullptr), m_Debug(false)
+	:messages(this,1,"eEPGCache"), m_running(false), m_enabledEpgSources(0), cleanTimer(eTimer::create(this)), m_timeQueryRef(nullptr), m_debug(false)
 {
 	eDebug("[eEPGCache] Initialized EPGCache (wait for setCacheFile call now)");
 
@@ -399,7 +396,7 @@ eEPGCache::eEPGCache()
 		onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
-	m_Debug = eConfigManager::getConfigBoolValue("config.crash.debugEpg");
+	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEpg");
 	
 	instance = this;
 }
@@ -552,9 +549,9 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 				delete new_evt;
 				goto next;
 			}
-#ifdef EPG_DEBUG
-//			eDebug("[eEPGCache] created event %04x at %ld", new_evt->getEventID(), new_start);
-#endif
+
+//			if(m_debug)
+//				eDebug("[eEPGCache] created event %04x at %ld", new_evt->getEventID(), new_start);
 
 			// Remove existing event if the id matches
 			eventMap::iterator ev_it = eventmap.find(event_id);
@@ -562,16 +559,15 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			{
 				if ((source & ~EPG_IMPORT) > (ev_it->second->type & ~EPG_IMPORT))
 				{
-#ifdef EPG_DEBUG
-					eDebug("[eEPGCache] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
-#endif
+					if(m_debug)
+						eDebug("[eEPGCache] event %04x skip update: source=0x%x > type=0x%x", event_id, source, ev_it->second->type);
 					delete new_evt;
 					goto next;
 				}
 
-#ifdef EPG_DEBUG
-				eDebug("[eEPGCache] removing event %04x at %ld", ev_it->second->getEventID(), ev_it->second->getStartTime());
-#endif
+				if(m_debug)
+					eDebug("[eEPGCache] removing event %04x at %ld", ev_it->second->getEventID(), ev_it->second->getStartTime());
+
 				// Remove existing event
 				if (timemap.erase(ev_it->second->getStartTime()) == 0)
 				{
@@ -598,17 +594,20 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			{
 				time_t old_start = it->second->getStartTime();
 				time_t old_end = old_start + it->second->getDuration();
-#ifdef EPG_DEBUG
-//				eDebug("[eEPGCache] checking against event %04x at %ld", it->second->getEventID(), it->second->getStartTime());
-#endif
+
+//				if(m_debug)
+//					eDebug("[eEPGCache] checking against event %04x at %ld", it->second->getEventID(), it->second->getStartTime());
+
 				if ((old_start < new_end) && (old_end > new_start))
 				{
-#ifdef EPG_DEBUG
-					eDebug("[eEPGCache] removing old overlapping event %04x\n"
-							"       old %ld ~ %ld\n"
-							"       new %ld ~ %ld",
-							it->second->getEventID(), old_start, old_end, new_start, new_end);
-#endif
+
+					if(m_debug) {
+						eDebug("[eEPGCache] removing old overlapping event %04x\n"
+								"       old %ld ~ %ld\n"
+								"       new %ld ~ %ld",
+								it->second->getEventID(), old_start, old_end, new_start, new_end);
+					}
+
 					if (eventmap.erase(it->second->getEventID()) == 0)
 					{
 						eDebug("[eEPGCache] Event %04x not found in eventMap at %ld", it->second->getEventID(), it->second->getStartTime());
@@ -624,9 +623,9 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 					break;
 			}
 
-#ifdef EPG_DEBUG
-			eDebug("[eEPGCache] Inserting event %04x at %ld", event_id, new_start);
-#endif
+			if(m_debug)
+				eDebug("[eEPGCache] Inserting event %04x at %ld", event_id, new_start);
+
 			eventmap[event_id] = new_evt;
 			timemap[new_start] = new_evt;
 		}
@@ -776,11 +775,12 @@ void eEPGCache::cleanLoop()
 				time_t end_time = start_time + It->second->getDuration();
 				if (end_time < now)
 				{
-#ifdef EPG_DEBUG
-					eDebug("[eEPGCache] cleanLoop: svc(%04x:%04x:%04x) delete old event %04x at time %ld",
-						DBIt->first.onid, DBIt->first.tsid, DBIt->first.sid,
-						It->second->getEventID(), (long)start_time);
-#endif
+					if(m_debug) {
+						eDebug("[eEPGCache] cleanLoop: svc(%04x:%04x:%04x) delete old event %04x at time %ld",
+							DBIt->first.onid, DBIt->first.tsid, DBIt->first.sid,
+							It->second->getEventID(), (long)start_time);
+					}
+
 					if (eventmap.erase(It->second->getEventID()) == 0)
 					{
 						eDebug("[eEPGCache] Event %04x not found in timeMap at %ld", It->second->getEventID(), start_time);
@@ -876,9 +876,9 @@ const static unsigned int EPG_MAGIC = 0x98765432;
 
 void eEPGCache::load()
 {
-#ifdef EPG_DEBUG
-	eDebug("[eEPGCache] load()");
-#endif
+	if(m_debug)
+		eDebug("[eEPGCache] load()");
+
 	if (m_filename.empty())
 		m_filename = "/hdd/epg.dat";
 
@@ -1035,11 +1035,11 @@ void eEPGCache::load()
 					time_t end_time = start_time + It->second->getDuration();
 					if (start_time < last_end || start_time == end_time)
 					{
-#ifdef EPG_DEBUG
-						eDebug("[eEPGCache] load: svc(%04x:%04x:%04x) delete overlapping/zero-length event %04x at time %ld",
-							it->onid, it->tsid, it->sid,
-							It->second->getEventID(), (long)start_time);
-#endif
+						if(m_debug) {
+							eDebug("[eEPGCache] load: svc(%04x:%04x:%04x) delete overlapping/zero-length event %04x at time %ld",
+								it->onid, it->tsid, it->sid,
+								It->second->getEventID(), (long)start_time);
+						}
 						if (eventmap.erase(It->second->getEventID()) == 0)
 						{
 							eDebug("[eEPGCache] Event %04x not found in timeMap at %ld", It->second->getEventID(), start_time);
@@ -1067,16 +1067,15 @@ void eEPGCache::load()
 		}
 	}
 	(void)ret;
-#ifdef EPG_DEBUG
-	eDebug("[eEPGCache] load() - finished");
-#endif
+	if(m_debug)
+		eDebug("[eEPGCache] load() - finished");
 }
 
 void eEPGCache::save()
 {
-#ifdef EPG_DEBUG
-	eDebug("[eEPGCache] save()");
-#endif
+	if(m_debug)
+		eDebug("[eEPGCache] save()");
+
 	bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg", true);
 	if (save_epg)
 	{
@@ -1111,9 +1110,10 @@ void eEPGCache::save()
 			fclose(f);
 			return;
 		}
-#ifdef EPG_DEBUG
-		eDebug("[eEPGCache] store epg to realpath '%s'", buf);
-#endif
+
+		if(m_debug)
+			eDebug("[eEPGCache] store epg to realpath '%s'", buf);
+
 		struct statfs st;
 		off64_t tmp;
 		if (statfs(buf, &st) < 0) {
@@ -1161,9 +1161,10 @@ void eEPGCache::save()
 				++cnt;
 			}
 		}
-#ifdef EPG_DEBUG
-		eDebug("[eEPGCache] %d events written to %s", cnt, EPGDAT);
-#endif
+
+		if(m_debug)
+			eDebug("[eEPGCache] %d events written to %s", cnt, EPGDAT);
+
 		eventData::save(f);
 #ifdef ENABLE_PRIVATE_EPG
 		const char* text3 = "PRIVATE_EPG";
@@ -1315,9 +1316,8 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 		else
 		{
 			result = 0;
-#ifdef EPG_DEBUG
-			eDebug("[eEPGCache] event %04x not found in epgcache", event_id);
-#endif
+			if(m_debug)
+				eDebug("[eEPGCache] event %04x not found in epgcache", event_id);
 		}
 	}
 	return -1;
