@@ -627,7 +627,7 @@ try:  # Configure the twisted logging
 		text = log.textFromEventDict(eventDict)
 		if text is None:
 			return
-		if "/api/statusinfo" in text: # do not log OWF statusinfo
+		if "/api/statusinfo" in text:  # do not log OWF statusinfo
 			return
 		# Log with time stamp.
 		#
@@ -714,6 +714,8 @@ config.crash.debugKeyboards = ConfigYesNo(default=False)
 config.crash.debugOpkg = ConfigYesNo(default=False)
 config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
+config.crash.debugEpg = ConfigYesNo(default=False)
+config.crash.debugDvbScan = ConfigYesNo(default=False)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()
@@ -734,8 +736,10 @@ config.expert.autoinfo = ConfigOnOff(default=True)
 profile("Keyboard")
 from Components.InputDevice import keyboard
 
+
 def keyboardNotifier(configElement):
 	keyboard.activateKeyboardMap(configElement.index)
+
 
 config.keyboard = ConfigSubsection()
 config.keyboard.keymap = ConfigSelection(default=keyboard.getDefaultKeyboardMap(), choices=keyboard.getKeyboardMaplist())

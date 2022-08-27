@@ -19,6 +19,8 @@
 #include <sys/types.h>
 #include <fcntl.h>
 
+bool eServiceEvent::m_Debug = false;
+
 // static members / methods
 std::string eServiceEvent::m_language = "---";
 std::string eServiceEvent::m_language_alternative = "---";
@@ -197,10 +199,12 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 				}
 				case CONTENT_IDENTIFIER_DESCRIPTOR:
 				{
-					eServiceReference ref = db->searchReference(tsid, onid, sid);
-					ePtr<eDVBService> service;
-					db->getService(*(eServiceReferenceDVB*) &ref, service);
-					channelName = service->m_service_name;
+					if(eServiceEvent::m_Debug) {
+						eServiceReference ref = db->searchReference(tsid, onid, sid);
+						ePtr<eDVBService> service;
+						db->getService(*(eServiceReferenceDVB*) &ref, service);
+						channelName = service->m_service_name;
+					}
 					auto cridd = (ContentIdentifierDescriptor *)*desc;
 					auto crid = cridd->getIdentifier();
 					for (auto it = crid->begin(); it != crid->end(); ++it)
@@ -213,7 +217,8 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 							//eDebug("[Event] crid %02x %01x %s %d <%.*s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), (*it)->getLength(), (*it)->getBytes()->data());
 							data.m_crid  = normalise_crid(std::string((char*)(*it)->getBytes()->data(), (*it)->getLength()), service);
 							m_crids.push_back(data);
-							eDebug("[Event] crid %02x %01x %s %d <%s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), data.m_crid.c_str());
+							if(eServiceEvent::m_Debug)
+								eDebug("[Event] crid %02x %01x %s %d <%s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), data.m_crid.c_str());
 							if (data.m_type == eCridData::EPISODE_AU)
 								m_episode_crid = data.m_crid;
 							else if (data.m_type == eCridData::SERIES_AU)
@@ -221,11 +226,13 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 						}
 						else if (data.m_location == 1)
 						{
-							eDebug("[Event] crid references not supported %04x:%04x:%04x  %-18s  %s %02x %01x %d", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation(), (*it)->getReference());
+							if(eServiceEvent::m_Debug)
+								eDebug("[Event] crid references not supported %04x:%04x:%04x  %-18s  %s %02x %01x %d", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation(), (*it)->getReference());
 						}
 						else
 						{
-							eDebug("[Event] crid unknown location %04x:%04x:%04x  %-18s  %s %02x %01x", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation());
+							if(eServiceEvent::m_Debug)
+								eDebug("[Event] crid unknown location %04x:%04x:%04x  %-18s  %s %02x %01x", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation());
 						}
 					}
 					break;
@@ -252,7 +259,7 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 				}
 			}
 		}
-		if (!m_episode_crid.empty() || !m_series_crid.empty())
+		if (eServiceEvent::m_Debug && !m_episode_crid.empty() || !m_series_crid.empty())
 		{
 			eDebug("[Event] crid  %04x:%04x:%04x  %-18s  %s  %-49s  %-49s  %s", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), m_series_crid.c_str(), m_episode_crid.c_str(), m_event_name.c_str());
 		}
