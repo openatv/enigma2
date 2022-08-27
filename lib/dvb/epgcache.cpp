@@ -2581,15 +2581,17 @@ PyObject *eEPGCache::search(ePyObject arg)
 								{
 									auto cid = ContentIdentifierDescriptor(data);
 									auto cril = cid.getIdentifier();
-									for (auto crit = cril->begin(); crit != cril->end(); ++crit)
+									for (auto crid = cril->begin(); crid != cril->end(); ++crid)
 									{
 										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
 										// the specification's 1 and 2 for episode and series respectively
-										if (((*crit)->getType() & 0xf) == casetype)
+										if (((*crid)->getType() & 0xf) == casetype)
 										{
-											// Exact match required for CRID data
-											if ((*crit)->getLength() == textlen && memcmp((*crit)->getBytes()->data(), str, textlen) == 0)
+											std::string cridData = std::string((char*)(*crid)->getBytes()->data());
+											if(cridData.find(str)!=std::string::npos)
 											{
+												if(m_debug)
+													eDebug("[eEPGCache] crid casetype=%X gridtype=%X crid=%s", casetype, (*crid)->getType(), cridData.c_str());
 												descr.push_back(it->first);
 											}
 										}
