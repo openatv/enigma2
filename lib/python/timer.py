@@ -81,7 +81,12 @@ class Timer:
 
 	def setNextActivation(self, now, when):
 		delay = (when - now) * 1000
-		self.timer.start(int(delay), True)
+		if isinstance(delay, float):
+			print("[Timer] DEBUG: The 'delay' variable is a float!  (It should be an integer.)")
+			from traceback import print_stack
+			print_stack()
+			delay = int(delay)
+		self.timer.start(delay, True)
 		self.next = when
 
 	def timeChanged(self, timer):
