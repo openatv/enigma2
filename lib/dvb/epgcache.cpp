@@ -2585,7 +2585,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 									{
 										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
 										// the specification's 1 and 2 for episode and series respectively
-										if (((*crid)->getType() & 0xf) == casetype)
+										if (((*crid)->getType() & 0xf) == casetype && (*crid)->getBytes()->data() != NULL)
 										{
 											std::string cridData = std::string((char*)(*crid)->getBytes()->data());
 											if(cridData.find(str)!=std::string::npos)
