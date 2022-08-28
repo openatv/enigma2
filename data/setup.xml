@@ -20,6 +20,8 @@
 		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
 		<item level="1" text="Audio volume step size" description="Configure the general audio volume step size (limit 1-10).">config.av.volume_stepsize</item>
 		<item level="1" text="Audio volume step size fast mode" description="Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.">config.av.volume_stepsize_fastmode</item>
+		<item level="1" text="Use logarithmic steps" description="Select to use logarithmic step size with more steps at the lower volume levels.">config.audio.volumeLogSteps</item>
+		<item level="1" text="Volume display timer" description="Select how long, in seconds, that the volume display is shown before it automatically hides.">config.audio.volumeHideTimer</item>
 		<item level="1" text="Hide mute notification" description="If muted, hide mute icon or mute information after few seconds.">config.av.volume_hide_mute</item>
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
