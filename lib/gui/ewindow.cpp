@@ -6,17 +6,25 @@
 
 #include <lib/gdi/epng.h>
 
+int eWindow::m_has_animation_mode = -1;
+
 eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 {
 	m_flags = 0;
-	if (access("/proc/stb/fb/animation_mode", R_OK))
-	{
-		m_animation_mode = 0x11;
-		m_has_animation_mode=true;
-	}
-	else {
-		m_animation_mode = 0;
-		m_has_animation_mode=false;
+
+	// check animation_mode once
+	if(eWindow::m_has_animation_mode==-1) {
+		if (::access("/proc/stb/fb/animation_mode", R_OK) < 0)
+		{
+			eDebug("[eWindow] animation mode not supported");
+			m_animation_mode = 0;
+			eWindow::m_has_animation_mode=0;
+		}
+		else {
+			eDebug("[eWindow] animation mode supported");
+			m_animation_mode = 0x11;
+			eWindow::m_has_animation_mode=1;
+		}
 	}
 	
 	m_desktop = desktop;
@@ -146,5 +154,5 @@ void eWindow::setAnimationMode(int mode)
 	 * 0x10 = hide on
 	 * 0x11 = animation on
 	 */
-	m_animation_mode = (m_has_animation_mode) ? mode : 0;
+	m_animation_mode = (eWindow::m_has_animation_mode==1) ? mode : 0;
 }
