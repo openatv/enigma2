@@ -1,6 +1,6 @@
 from datetime import datetime
 from functools import cmp_to_key
-from os import statvfs
+from os import stat, statvfs
 from time import localtime, mktime, strftime, time
 
 from enigma import BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eEPGCache, eLabel, eListbox, eListboxPythonMultiContent, eServiceReference, eSize, eTimer, getBestPlayableServiceReference, iRecordableServicePtr
@@ -23,7 +23,7 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
@@ -1452,10 +1452,17 @@ class RecordTimerEdit(Setup):
 			self.getSpace()
 
 	def getSpace(self):
-		stat = statvfs(self.timerLocation.value)
-		total = stat.f_blocks * stat.f_bsize
-		free = stat.f_bavail * stat.f_bsize
-		self.setFootnote(_("Space total %s, used %s, free %s (%0.f%%).") % (scaleNumber(total), scaleNumber(total - free), scaleNumber(free), 100.0 * free / total))
+		try:
+			device = stat(self.timerLocation.value).st_dev
+			if device in DEFAULT_INHIBIT_DEVICES:
+				self.setFootnote(_("Warning: Recordings should not be stored on the Flash disk!"))
+			else:
+				status = statvfs(self.timerLocation.value)
+				total = status.f_blocks * status.f_bsize
+				free = status.f_bavail * status.f_bsize
+				self.setFootnote(_("Space total %s, used %s, free %s (%0.f%%).") % (scaleNumber(total), scaleNumber(total - free), scaleNumber(free), 100.0 * free / total))
+		except OSError as err:
+			self.setFootnote(_("Error %d: Unable to check space!  (%s)") % (err.errno, err.strerror))
 
 	def keySelect(self):
 		current = self["config"].getCurrent()[1]
@@ -1477,6 +1484,7 @@ class RecordTimerEdit(Setup):
 			if config.movielist.videodirs.value != self.timerLocation.choices:
 				self.timerLocation.setChoices(config.movielist.videodirs.value, default=result)
 			self.timerLocation.value = result
+		self.getSpace()
 
 	def channelCallback(self, *result):
 		if result:
