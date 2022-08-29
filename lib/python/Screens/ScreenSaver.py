@@ -33,11 +33,9 @@ class ScreenSaver(Screen):
 		pictureSize = self["picture"].getSize()
 		self.maxX = self.instance.size().width() - pictureSize[0]
 		self.maxY = self.instance.size().height() - pictureSize[1]
-		print("[ScreenSaver] layoutFinished DEBUG: X=%d, Y=%d." % (self.maxX, self.maxY))
 		self.doMovePicture()
 
 	def doMovePicture(self):
-		print("[ScreenSaver] doMovePicture DEBUG: X=%d, Y=%d." % (self.maxX, self.maxY))
 		self.posX = randrange(self.maxX)
 		self.posY = randrange(self.maxY)
 		self["picture"].instance.move(ePoint(self.posX, self.posY))
