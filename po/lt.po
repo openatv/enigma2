@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2297,7 +2297,7 @@ msgstr "Įtraukti dabartinio įvykio laikmatį"
 msgid "Add an AutoTimer for the current event"
 msgstr "Pridėkite dabartinio įvykio automatinį laikmatį"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Pridėti žymę"
 
 msgid "Add current folder to bookmarks"
@@ -4283,6 +4283,9 @@ msgstr "Pasirinkite etiketę, kuri atpažins šį įrenginį IceTV paslaugose."
 msgid "Choose dvb wait delay for ci response."
 msgstr "Pasirinkite DVB laukimo delsą CI atsakymui."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Pasirinkite, kaip dažnai prisijungti prie IceTV serverio, kad patikrintumėte atnaujinimus."
 
@@ -4617,9 +4620,6 @@ msgstr "Sukonfigūruokite papildomą delsą, kad pagerintumėte subtitrų sinchr
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Konfigūruoti numatytus nustatymus naujiems laikmačiams. Reikia paleisti iš naujo po keitimo."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Konfigūruokite, kiek minučių pasibaigę įvykiai išliks matomi EPG sąraše. Naudinga, kai prireikia informacijos apie ką tik pasibaigusį, ar ilgiau užtrukusį įvykį."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Konfigūruokite, kokiems įrašų tipams, bandant iš naujo paleisti imtuvą arba grafinę aplinką, turi būti rodomas įspėjimas, kad vyksta įrašymas."
 
@@ -4794,9 +4794,6 @@ msgstr "Konfigūruokite, kiek laiko lauks kietas diskas, kad pereiti į budėjim
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Konfigūruokite TrueType šrifto raidžių aukštį, naudojamą teletekstui."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Konfigūruokite pateikiamo laiko istoriją."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Konfigūruokite subtitrų horizontalų lygiavimą."
@@ -7008,6 +7005,12 @@ msgstr "Įjunkite išplėstines HDMI-CEC parametrų parinktis."
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei norite pridėti veiksmų schemą / nuotolinio valdymo susiejimo duomenis į derinimo žurnalo failą."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti klaviatūros klavišų plano duomenis."
 
@@ -7019,6 +7022,9 @@ msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtrau
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti ekrano pavadinimus ir skiriamosios gebos duomenis."
+
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Įjunkite šį nustatymą, jei jūsų antenos sistemai reikia galios"
@@ -7097,14 +7103,14 @@ msgstr[2] "Energijos laikmatis: liko %d sekundžių"
 msgid "Energy Timer: Inactive."
 msgstr "Energijos laikmatis: neaktyvus."
 
+msgid "Energy timer"
+msgstr "Energijos laikmatis"
+
 msgid "EnergySaver action"
 msgstr "Energijos taupymo priemonės veiksmas"
 
 msgid "EnergySaver activation delay"
 msgstr "Energijos taupymo aktyvavimo vėlavimas"
-
-msgid "Energy timer"
-msgstr "Energijos laikmatis"
 
 msgid "EnergyTimer Actions"
 msgstr ""
@@ -9235,11 +9241,17 @@ msgstr "Įtraukti AIT į įrašus"
 msgid "Include CI assignment"
 msgstr "Įtraukti CI priskyrimą"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "Įtraukti ECM http srautus"
 
 msgid "Include EIT in http streams"
 msgstr "Įtraukti EIT į http srautus"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Įtraukite SDT, BAT į http srautus"
@@ -9258,6 +9270,9 @@ msgstr "Įtraukti nuotolinio valdymo duomenis"
 
 msgid "Include screen load data"
 msgstr "Įtraukti ekrano įkėlimo duomenis"
+
+msgid "Include timer data"
+msgstr ""
 
 msgid "Incorrect type service for PiP!"
 msgstr "Kanalas netinkamas PiP!"
@@ -9730,6 +9745,9 @@ msgstr "Kazachų"
 
 msgid "Kazakhstan"
 msgstr "Kazachstanas"
+
+msgid "Keep EPG history (in minutes)"
+msgstr ""
 
 msgid "Keep service"
 msgstr "Išlaikyti kanalą"
@@ -10357,9 +10375,6 @@ msgstr "Magija ilgai"
 
 msgid "Main Menu"
 msgstr "Pagrindinis Meniu"
-
-msgid "Maintain old EPG data for"
-msgstr "Senus EPG duomenis saugoti"
 
 msgid "Maintain your multi boot device."
 msgstr "Tvarkykite savo daugialypės terpės įkrovos įrenginį"
@@ -14012,7 +14027,7 @@ msgstr "Šalinti visus laikmačio duomenis"
 msgid "Remove all user interface data"
 msgstr "Pašalinti visus vartotojo sąsajos duomenis"
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
 
 msgid "Remove completed timers after (days)"
@@ -15177,6 +15192,9 @@ msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
 msgid "Select files/folders to backup"
 msgstr "Pasirinkite failus ir katalogus atsarginei kopijai"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -15360,6 +15378,9 @@ msgstr "Pasirinkite paryškintą atvaizdą ir pereikite prie laiko tarpsnio pasi
 msgid "Select the highlighted slot and reboot"
 msgstr "Pasirinkite paryškintą lizdą ir perkraukite"
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Pasirinkite lokalę iš meniu"
 
@@ -15472,6 +15493,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -19031,9 +19055,6 @@ msgstr "Skaidrių rodymo laikas"
 msgid "Time for next LCD scrolling"
 msgstr "Laikas kito LCD slinkimui"
 
-msgid "Timeline marker"
-msgstr "Laiko istorija"
-
 msgid "Time jump avoid zero step size"
 msgstr "Laiko šuolis, kad išvengti nulinio žingsnio dydžio"
 
@@ -19055,9 +19076,6 @@ msgstr "Laikas ilgai"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Laikas, reikalingas šiam procesui: %s"
-
-msgid "Timeline scale"
-msgstr "Laiko skalė"
 
 msgid "Time style"
 msgstr "Laiko stilius"
@@ -19082,6 +19100,12 @@ msgstr "Laiko juosta 24 val"
 
 msgid "Timeline font size"
 msgstr "Laiko juostos šrifto dydis"
+
+msgid "Timeline marker"
+msgstr "Laiko istorija"
+
+msgid "Timeline scale"
+msgstr "Laiko skalė"
 
 msgid "Timer Actions"
 msgstr "Laikmačio veiksmai"
@@ -19993,6 +20017,9 @@ msgstr "Naudoti geografinę vietą norint nustatyti dabartinę laiko juostos vie
 msgid "Use interface"
 msgstr "Naudoti sąsają"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Naudokite oficialų kanalų numeravimą"
 
@@ -20533,6 +20560,9 @@ msgstr "Garsumo reguliavimo paslaugos pasirinkimas"
 
 msgid "Volume Adjust Settings"
 msgstr "Garsumo reguliavimo nustatymai"
+
+msgid "Volume display timer"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Sumažinti garsumą"
@@ -22706,9 +22736,6 @@ msgstr "pašalinti visus naujai rastus žymeklius"
 msgid "remove before this position"
 msgstr "pašalinti po šios vietos"
 
-msgid "remove bookmark"
-msgstr "pašalinti žymę"
-
 msgid "remove bouquet from parental protection"
 msgstr "pašalinti paketą iš tėvų apsaugos"
 
@@ -23214,6 +23241,15 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Konfigūruokite, kiek minučių pasibaigę įvykiai išliks matomi EPG sąraše. Naudinga, kai prireikia informacijos apie ką tik pasibaigusį, ar ilgiau užtrukusį įvykį."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Konfigūruokite pateikiamo laiko istoriją."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Senus EPG duomenis saugoti"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<Nežinoma>"

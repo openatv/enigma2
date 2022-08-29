@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2308,7 +2308,7 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Thêm dấu trang"
 
 msgid "Add current folder to bookmarks"
@@ -4313,6 +4313,9 @@ msgstr ""
 msgid "Choose dvb wait delay for ci response."
 msgstr "Chọn độ trễ chờ dvb cho phản hồi ci."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
@@ -4653,9 +4656,6 @@ msgstr "Định cấu hình độ trễ bổ sung để cải thiện đồng b�
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Định cấu hình cài đặt mặc định cho bộ hẹn giờ mới. Cần khởi động lại sau khi thay đổi."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Định cấu hình cho bao nhiêu phút sự kiện đã hoàn thành sẽ vẫn hiển thị trong EPG. Hữu ích khi bạn cần thông tin về một sự kiện vừa kết thúc hoặc đã bị trì hoãn."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Định cấu hình cho loại bản ghi cảnh báo về bản ghi hoạt động được hiển thị khi cố gắng khởi động lại hộp hoặc GUI."
 
@@ -4823,9 +4823,6 @@ msgstr "Định cấu hình ổ đĩa cứng để chuyển sang chế độ ch�
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Định cấu hình chiều cao của các chữ cái phông chữ TrueType được sử dụng cho teletext."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Cấu hình lịch sử thời gian sẽ được trình bày."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Cấu hình căn chỉnh ngang của phụ đề."
@@ -7082,6 +7079,12 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
@@ -7092,6 +7095,9 @@ msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
@@ -7168,13 +7174,13 @@ msgstr[0] ""
 msgid "Energy Timer: Inactive."
 msgstr ""
 
+msgid "Energy timer"
+msgstr ""
+
 msgid "EnergySaver action"
 msgstr ""
 
 msgid "EnergySaver activation delay"
-msgstr ""
-
-msgid "Energy timer"
 msgstr ""
 
 msgid "EnergyTimer Actions"
@@ -9337,11 +9343,17 @@ msgstr "Bao gồm AIT trong bản ghi âm"
 msgid "Include CI assignment"
 msgstr "Bao gồm phân công CI"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "Bao gồm ECM trong luồng http"
 
 msgid "Include EIT in http streams"
 msgstr "Bao gồm thuế TNDN trong các luồng http"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr ""
@@ -9362,6 +9374,9 @@ msgid "Include remote control data"
 msgstr "Cấu hình loại điều khiển từ xa"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include timer data"
 msgstr ""
 
 msgid "Incorrect type service for PiP!"
@@ -9844,6 +9859,9 @@ msgstr "Kazakhstan"
 
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
+
+msgid "Keep EPG history (in minutes)"
+msgstr ""
 
 msgid "Keep service"
 msgstr "Giữ dịch vụ"
@@ -10488,9 +10506,6 @@ msgstr "Truyền thông"
 
 msgid "Main Menu"
 msgstr "Menu chính"
-
-msgid "Maintain old EPG data for"
-msgstr "Duy trì dữ liệu EPG cũ cho"
 
 msgid "Maintain your multi boot device."
 msgstr "Duy trì thiết bị đa khởi động của bạn."
@@ -14240,7 +14255,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Xóa dấu trang"
 
 msgid "Remove completed timers after (days)"
@@ -15414,6 +15429,9 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -15598,6 +15616,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr ""
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Chọn ngôn ngữ bàn phím ảo từ menu"
@@ -15714,6 +15735,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -19319,9 +19343,6 @@ msgstr "Thời gian bắt đầu"
 msgid "Time for next LCD scrolling"
 msgstr "Thời gian để cuộn LCD tiếp theo"
 
-msgid "Timeline marker"
-msgstr "Lịch sử thời gian"
-
 msgid "Time jump avoid zero step size"
 msgstr "Thời gian nhảy tránh kích thước bước không"
 
@@ -19343,9 +19364,6 @@ msgstr "Thời gian dài"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Thời gian cần thiết cho quá trình này:% s"
-
-msgid "Timeline scale"
-msgstr "Quy mô thời gian"
 
 msgid "Time style"
 msgstr "Phong cách thời gian"
@@ -19372,6 +19390,12 @@ msgstr "Mốc thời gian 24 giờ"
 
 msgid "Timeline font size"
 msgstr "Cỡ chữ thời gian"
+
+msgid "Timeline marker"
+msgstr "Lịch sử thời gian"
+
+msgid "Timeline scale"
+msgstr "Quy mô thời gian"
 
 #, fuzzy
 msgid "Timer Actions"
@@ -20301,6 +20325,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "Sử dụng giao diện"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Sử dụng đánh số kênh chính thức"
 
@@ -20824,6 +20851,9 @@ msgid "Volume Adjust Service Selection"
 msgstr ""
 
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume display timer"
 msgstr ""
 
 msgid "Volume down"
@@ -23026,9 +23056,6 @@ msgstr "xóa tất cả các cờ mới tìm thấy"
 msgid "remove before this position"
 msgstr "loại bỏ trước vị trí này"
 
-msgid "remove bookmark"
-msgstr "xóa dấu trang"
-
 msgid "remove bouquet from parental protection"
 msgstr "loại bỏ bó hoa khỏi sự bảo vệ của cha mẹ"
 
@@ -23535,6 +23562,15 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Định cấu hình cho bao nhiêu phút sự kiện đã hoàn thành sẽ vẫn hiển thị trong EPG. Hữu ích khi bạn cần thông tin về một sự kiện vừa kết thúc hoặc đã bị trì hoãn."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Cấu hình lịch sử thời gian sẽ được trình bày."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Duy trì dữ liệu EPG cũ cho"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<không rõ>"

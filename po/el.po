@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2309,7 +2309,7 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Προσθήκη ενός αυτόματου χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Προσθήκη σελιδοδείκτη"
 
 msgid "Add current folder to bookmarks"
@@ -4298,6 +4298,9 @@ msgstr "Επιλέξτε μία ετικέτα αναγνώρισης αυτής
 msgid "Choose dvb wait delay for ci response."
 msgstr "Επιλογή καθυστέρησης αναμονής dvb για απάντηση ci."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Επιλέξτε πόσο συχνά θα γίνεται σύνδεση στον διακομιστή IceTV για έλεγχο ενημερώσεων."
 
@@ -4636,9 +4639,6 @@ msgstr "Ρύθμιση πρόσθετης καθυστέρησης για βελ
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Ρύθμιση προεπιλογής για νέους χρονοδιακόπτες. Απαιτείται επανεκκίνηση μετά την αλλαγή."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Ρυθμίστε για πόσα λεπτά τα προγράμματα που έχουν ολοκληρωθεί θα παραμένουν ορατά στο EPG. Χρήσιμο όταν χρειάζεστε πληροφορίες για ένα πρόγραμμα που τελείωσε ή καθυστέρησε."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Ρύθμιση του τύπου των εγγραφών για τις οποίες θα εμφανίζεται προειδοποίηση για ενεργές εγγραφές κατά την προσπάθεια επανεκκίνησης του δέκτη ή του Ε2."
 
@@ -4806,9 +4806,6 @@ msgstr "Ρυθμίστε τον σκληρό δίσκο να μεταβαίνε�
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Ρύθμιση του ύψους της γραμματοσειράς του τηλεκειμένου."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Ρύθμιση του ιστορικού χρόνου που θα παρουσιάζεται."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Ρύθμιση της οριζόντιας στοίχισης των υποτίτλων."
@@ -7041,6 +7038,12 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
@@ -7051,6 +7054,9 @@ msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
@@ -7129,13 +7135,13 @@ msgstr[1] ""
 msgid "Energy Timer: Inactive."
 msgstr ""
 
+msgid "Energy timer"
+msgstr ""
+
 msgid "EnergySaver action"
 msgstr ""
 
 msgid "EnergySaver activation delay"
-msgstr ""
-
-msgid "Energy timer"
 msgstr ""
 
 msgid "EnergyTimer Actions"
@@ -9281,11 +9287,17 @@ msgstr "Συμπερίληψη του AIT στις εγγραφές"
 msgid "Include CI assignment"
 msgstr "Συμπερίληψη ανάθεσης CI"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "Συμπερίληψη του ECM στις ροές http"
 
 msgid "Include EIT in http streams"
 msgstr "Συμπερίληψη του ΕΙΤ στις ροές http"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr ""
@@ -9306,6 +9318,9 @@ msgid "Include remote control data"
 msgstr "Ρύθμιση τύπου τηλεχειριστηρίου"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include timer data"
 msgstr ""
 
 msgid "Incorrect type service for PiP!"
@@ -9787,6 +9802,9 @@ msgstr "Καζακστάν"
 
 msgid "Kazakhstan"
 msgstr "Καζακστάν"
+
+msgid "Keep EPG history (in minutes)"
+msgstr ""
 
 msgid "Keep service"
 msgstr "Διατήρηση υπηρεσίας"
@@ -10429,9 +10447,6 @@ msgstr "Πολυμέσα παρατεταμένο"
 
 msgid "Main Menu"
 msgstr "Κύριο μενού"
-
-msgid "Maintain old EPG data for"
-msgstr "Διατήρηση των παλιών δεδομένων EPG για"
 
 msgid "Maintain your multi boot device."
 msgstr "Διατήρηση της συσκευής πολλαπλής εκκίνησης."
@@ -14146,7 +14161,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Διαγραφή σελιδοδείκτη"
 
 msgid "Remove completed timers after (days)"
@@ -15320,6 +15335,9 @@ msgstr "Επιλογή αρχείων για εξαίρεση από την εφ
 msgid "Select files/folders to backup"
 msgstr "Επιλογή αρχείων/φακέλων για αντίγραφα ασφαλείας"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -15504,6 +15522,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr ""
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Επιλογή της γλώσσας του εικονικού πληκτρολογίου μέσω μενού"
@@ -15620,6 +15641,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -19213,9 +19237,6 @@ msgstr "Χρόνος για προβολή διαφανειών"
 msgid "Time for next LCD scrolling"
 msgstr "Χρόνος επόμενου σκρολαρίσματος LCD"
 
-msgid "Timeline marker"
-msgstr "Ιστορικό χρόνου"
-
 msgid "Time jump avoid zero step size"
 msgstr "Αποφυγή μηδενικού μεγέθους βήματος για τον χρόνο υπερπήδησης"
 
@@ -19237,9 +19258,6 @@ msgstr "Χρόνος παρατεταμένο"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Χρόνος που απαιτήθηκε για τη διαδικασία: %s"
-
-msgid "Timeline scale"
-msgstr "Κλίμακα χρόνου"
 
 msgid "Time style"
 msgstr "Στυλ χρόνου"
@@ -19266,6 +19284,12 @@ msgstr "24ωρη γραμμή χρόνου"
 
 msgid "Timeline font size"
 msgstr "Μέγεθος γραμματοσειράς γραμμής χρόνου"
+
+msgid "Timeline marker"
+msgstr "Ιστορικό χρόνου"
+
+msgid "Timeline scale"
+msgstr "Κλίμακα χρόνου"
 
 #, fuzzy
 msgid "Timer Actions"
@@ -20190,6 +20214,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "Χρήση διεπαφής"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Χρήση της επίσημης αρίθμησης των καναλιών"
 
@@ -20711,6 +20738,9 @@ msgid "Volume Adjust Service Selection"
 msgstr ""
 
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume display timer"
 msgstr ""
 
 msgid "Volume down"
@@ -22892,9 +22922,6 @@ msgstr "διαγραφή όλων των νέων σημαιών"
 msgid "remove before this position"
 msgstr "διαγραφή πριν από αυτό το σημείο"
 
-msgid "remove bookmark"
-msgstr "διαγραφή σελιδοδείκτη"
-
 msgid "remove bouquet from parental protection"
 msgstr "αφαίρεση μπουκέτου από τη γονική προστασία"
 
@@ -23399,6 +23426,15 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Ρυθμίστε για πόσα λεπτά τα προγράμματα που έχουν ολοκληρωθεί θα παραμένουν ορατά στο EPG. Χρήσιμο όταν χρειάζεστε πληροφορίες για ένα πρόγραμμα που τελείωσε ή καθυστέρησε."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Ρύθμιση του ιστορικού χρόνου που θα παρουσιάζεται."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Διατήρηση των παλιών δεδομένων EPG για"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<άγνωστο>"

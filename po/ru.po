@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
-"PO-Revision-Date: 2022-08-01 08:27+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"PO-Revision-Date: 2022-08-28 18:07+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1080,7 +1080,7 @@ msgid "%d.%03d GB"
 msgstr "%d. %03d ГБ"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1319,7 +1319,7 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshif
 msgstr "'Буфер в часах' или 'количество последних событий'. При удалении старых файлов таймшифта приоритет имеет условие, возникшее первым."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
+msgstr "'Дескремблирование и запись ECM' даёт возможность последующего дескремблирования, если дескремблирование при записи не удалось. 'Не дескремблировать, записывать ECM' сохраняет закодированную запись, которую можно дескремблировать при воспроизведении. 'Нормальный' означает дескремблировать запись и не записывать ECM."
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Обрабатывать режим ожидания от телевизора' имеет более высокий приоритет, чем 'Обрабатывать ввод от телевизора'."
@@ -2279,7 +2279,7 @@ msgid "Add a new tag"
 msgstr "Добавить новый тег"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "Добавить новый таймер"
 
 msgid "Add a new title"
 msgstr "Добавить новое название"
@@ -2293,7 +2293,7 @@ msgstr "Добавить таймер для текущего события"
 msgid "Add an AutoTimer for the current event"
 msgstr "Добавить автотаймер для текущей передачи"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Добавить закладку"
 
 msgid "Add current folder to bookmarks"
@@ -2846,7 +2846,7 @@ msgstr "В конце текущей программы"
 
 #, python-format
 msgid "At end: %s"
-msgstr ""
+msgstr "В конце: %s"
 
 msgid "Athletics"
 msgstr "Легкая атлетика"
@@ -2973,7 +2973,7 @@ msgid "Auto scart switching"
 msgstr "Автопереключение SCART"
 
 msgid "Auto shut down"
-msgstr ""
+msgstr "Автоматическое выключение"
 
 msgid "Auto standby"
 msgstr "Автопереход в режим ожидания"
@@ -3907,7 +3907,7 @@ msgid "Cancel any text changes and exit"
 msgstr "Отменить все изменения текста и выйти"
 
 msgid "Cancel conflict resolution"
-msgstr ""
+msgstr "Отменить разрешение конфликта"
 
 msgid "Cancel execution?"
 msgstr "Отменить выполнение?"
@@ -4079,7 +4079,7 @@ msgid "Channel +/- button mode"
 msgstr "Кнопки Channel +/-"
 
 msgid "Channel / Service"
-msgstr ""
+msgstr "Канал/Сервис"
 
 msgid "Channel 1"
 msgstr "Канал 1"
@@ -4190,10 +4190,10 @@ msgid "Check HDD"
 msgstr "Проверить HDD"
 
 msgid "Check for PDC"
-msgstr ""
+msgstr "Проверить наличие PDC"
 
 msgid "Check for PDC availability on each service"
-msgstr ""
+msgstr "Проверка доступности PDC для каждого канала"
 
 msgid "Check power and input state from TV"
 msgstr "Проверьте питание и состояние входа с телевизора"
@@ -4276,6 +4276,9 @@ msgstr "Выберите ярлык, который будет идентифи�
 
 msgid "Choose dvb wait delay for ci response."
 msgstr "Выберите задержку ожидания dvb для ответа ci."
+
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr "Выберите, сколько истории EPG, если таковая имеется, будет храниться в кэше EPG. Эти данные истории можно просматривать в любом из представлений EPG. Это может быть полезно, когда Вам нужна информация о недавно завершившемся событии."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Выберите, как часто нужно подключаться к серверу IceTV для проверки обновлений."
@@ -4380,13 +4383,13 @@ msgid "Clean network 'Trash'"
 msgstr "Очистить сетевую корзину"
 
 msgid "Clean up (delete) all completed timers?"
-msgstr ""
+msgstr "Очистить (удалить) все завершённые таймеры?"
 
 msgid "Clean up and remove all completed timers"
-msgstr ""
+msgstr "Очистить и удалить все завершённые таймеры"
 
 msgid "Clean up and remove all completed timers?"
-msgstr ""
+msgstr "Очистить и удалить все завершённые таймеры?"
 
 msgid "Cleaning Trashes"
 msgstr "Очистить корзину"
@@ -4410,7 +4413,7 @@ msgid "Clear playlist"
 msgstr "Очистить плейлист"
 
 msgid "Clear the logs for this timer"
-msgstr ""
+msgstr "Очистить логи для этого таймера"
 
 msgid "Clear the virtual memory caches"
 msgstr "Очистить кэши виртуальной памяти"
@@ -4468,7 +4471,7 @@ msgid "Close the screen and exit all menus"
 msgstr "Закрыть экран и выйти из всех меню"
 
 msgid "Close the screen without saving any changes"
-msgstr ""
+msgstr "Закрыть экран без сохранения изменений"
 
 msgid "Close the window"
 msgstr "Закрыть окно"
@@ -4610,9 +4613,6 @@ msgstr "Настройка дополнительной задержки для 
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Значение по умолчанию для новых таймеров. После изменения необходима перезагрузка."
-
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Позволяет показать данные ТВ-гида о прошедших событиях. Удобно когда хотите знать что-то о передаче, которая вот-вот закончится либо только что закончилась (в минутах)."
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Укажите, для каких типов записей следует выводить предупреждение, когда будет выбрана перезагрузка ресивера или пользовательского интерфейса."
@@ -4781,9 +4781,6 @@ msgstr "Настройка жёсткого диска для перехода �
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Установите высоту шрифта TrueType, используемого для телетекста."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Установка времени отображения."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Настройка горизонтального выравнивания субтитров."
@@ -4969,7 +4966,7 @@ msgid "Configuring"
 msgstr "Настройка"
 
 msgid "ConflictTimer Actions"
-msgstr ""
+msgstr "Действия таймера конфликта"
 
 msgid "ConflictTimer Overview"
 msgstr "Конфликт таймеров"
@@ -5531,7 +5528,7 @@ msgid "Day Mon-DD"
 msgstr "День Мес-ДД"
 
 msgid "Day of week"
-msgstr ""
+msgstr "День недели"
 
 msgid "Dayname D Month Year"
 msgstr "Имя дня День Месяц Год"
@@ -5652,7 +5649,7 @@ msgid "Deep Standby"
 msgstr "Выключить"
 
 msgid "Deep standby"
-msgstr ""
+msgstr "Глубокий режим ожидания"
 
 msgid "Default"
 msgstr "По умолчанию"
@@ -5816,7 +5813,7 @@ msgstr "Задержка"
 
 #, python-format
 msgid "Delay: %s"
-msgstr ""
+msgstr "Задержка: %s"
 
 msgid "Delete"
 msgstr "Удалить"
@@ -5914,7 +5911,7 @@ msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr "Удалить текущую выделенный канал из списка наборов выключения громкости"
 
 msgid "Delete the currently selected timer"
-msgstr ""
+msgstr "Удалить текущий выбранный таймер"
 
 msgid "Delete the selected files or directories"
 msgstr "Удалить выбранные файлы или каталоги"
@@ -6171,7 +6168,7 @@ msgid "Display and user interface"
 msgstr "Дисплей и пользовательский интерфейс"
 
 msgid "Display log for the currently selected timer"
-msgstr ""
+msgstr "Показать лог для текущего выбранного таймера"
 
 msgid "Display message before playing next movie"
 msgstr "Сообщение перед воспроизведением следующей записи"
@@ -6337,7 +6334,7 @@ msgstr "Действительно хотите удалить закладку 
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
-msgstr ""
+msgstr "Вы действительно хотите остановить и удалить таймер '%s'?"
 
 msgid "Do you want change rights?\n"
 msgstr "Вы хотите изменить права?\n"
@@ -6765,7 +6762,7 @@ msgid "Edit the NewCamd DES Key."
 msgstr "Отредактировать ключ NewCamd DES."
 
 msgid "Edit the currently selected timer"
-msgstr ""
+msgstr "Изменить текущий выбранный таймер"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
@@ -6890,16 +6887,16 @@ msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginn
 msgstr "Включить кнопки ВВЕРХ/ВНИЗ для функции 'все вверх/вниз'? (в начале/конце столбца)"
 
 msgid "Enable VPS"
-msgstr ""
+msgstr "Включить VPS"
 
 msgid "Enable VPS by default (new timers)"
-msgstr ""
+msgstr "Включить VPS по умолчанию (новые таймеры)"
 
 msgid "Enable VPS on instant records"
-msgstr ""
+msgstr "Включить VPS для мгновенных записей"
 
 msgid "Enable VPS-Plugin"
-msgstr ""
+msgstr "Включить VPS-плагин"
 
 msgid "Enable ViaSat EPG"
 msgstr "Включить ТВ-гид ViaSat"
@@ -6995,6 +6992,12 @@ msgstr "Включить расширенные параметры настро�
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные сопоставления карты действий / удалённого управления в файл лога отладки."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr "Включите этот параметр, чтобы добавить дополнительные данные сканирования DVB в файл лога отладки."
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr "Включите этот параметр, чтобы добавить дополнительные данные EPG в файл лога отладки."
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные раскладки клавиатуры в файл лога отладки."
 
@@ -7007,11 +7010,14 @@ msgstr "Включите этот параметр, чтобы добавить 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить имена экранов и данные о разрешении в файл лога отладки."
 
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Включите этот параметр, если Вашей антенной системе требуется питание"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
-msgstr "Включите, чтобы добавить дополнительный интервал к информационным экранам.  Это может улучшить читаемость."
+msgstr "Включите, чтобы добавить дополнительный интервал к информационным экранам. Это может улучшить читаемость."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Включите отображение всех параметров true/false, yes/no, on/off и включите/отключите параметры настройки в качестве графического переключателя."
@@ -7084,20 +7090,20 @@ msgstr[2] "Таймер энергии: осталось %d секунд."
 msgid "Energy Timer: Inactive."
 msgstr "Таймер питания: неактивен."
 
+msgid "Energy timer"
+msgstr "Таймер питания"
+
 msgid "EnergySaver action"
 msgstr "Действие по энергосбережению"
 
 msgid "EnergySaver activation delay"
 msgstr "Задержка активации энергосбережения"
 
-msgid "Energy timer"
-msgstr "Таймер питания"
-
 msgid "EnergyTimer Actions"
-msgstr ""
+msgstr "Действия EnergyTimer"
 
 msgid "EnergyTimer Overview"
-msgstr ""
+msgstr "Обзор EnergyTimer"
 
 msgid "English"
 msgstr "Английский"
@@ -7158,10 +7164,10 @@ msgid "Enter PIN"
 msgstr "Введите PIN-код"
 
 msgid "Enter a description for this timer."
-msgstr ""
+msgstr "Введите описание для этого таймера."
 
 msgid "Enter a name for this timer."
-msgstr ""
+msgstr "Введите имя для этого таймера."
 
 msgid "Enter a new name for this device."
 msgstr "Введите новое имя для этого устройства."
@@ -7401,7 +7407,7 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ошибка: %s %s, а не %s! Пожалуйста, попробуйте позже."
 
 msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
+msgstr "Ошибка: Не выбрано место для сохранения записи!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Ошибка: Не удаётся найти имидж!"
@@ -8928,22 +8934,22 @@ msgid "IP"
 msgstr "IP"
 
 msgid "IP Address 1"
-msgstr ""
+msgstr "IP-адрес 1"
 
 msgid "IP Address 2"
-msgstr ""
+msgstr "IP-адрес 2"
 
 msgid "IP Address 3"
-msgstr ""
+msgstr "IP-адрес 3"
 
 msgid "IP Address 4"
-msgstr ""
+msgstr "IP-адрес 4"
 
 msgid "IP Address 5"
-msgstr ""
+msgstr "IP-адрес 5"
 
 msgid "IP Address to be checked on timer activation."
-msgstr ""
+msgstr "IP-адрес, который будет проверяться при активации таймера."
 
 msgid "IP address"
 msgstr "IP-адрес"
@@ -9038,7 +9044,7 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Если 'никогда', несмотря на это, будет записываться лог сбоев при первом сбое."
 
 msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr ""
+msgstr "Если программа прерывается и делится на отдельные события, плагин будет искать связанные события."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Если действие настраивается пользователем, его запись в справке будет помечена суффиксом '(C)'."
@@ -9047,7 +9053,7 @@ msgid "If editing a file, can you set the cursor start position at end or begin 
 msgstr "При редактировании файла Вы можете установить начальную позицию курсора в конце или начале строки."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr ""
+msgstr "Если включено и необходимо, подключаемый модуль будет пробуждать ресивер из глубокого резерва на определённое время запуска, чтобы контролировать, запустится ли программа раньше."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Если включено, выходное разрешение ресивера будет адаптировано к разрешению видеоконтента"
@@ -9071,7 +9077,7 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Если звук отключен, скрыть значок отключения звука или отключить информацию через несколько секунд."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr ""
+msgstr "Если возможно, за Х минут до запуска таймера VPS-плагин будет контролировать, начнётся ли программа раньше. (0 отключает функцию)"
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Если установлено 'Да', для событий глубокого ожидания на телевизор будут отправляться те же команды, что и во время обычных событий ожидания."
@@ -9119,7 +9125,7 @@ msgid "Igbo"
 msgstr "Игбо"
 
 msgid "Ignore"
-msgstr ""
+msgstr "Игнорировать"
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Игнорировать подсеть пространства имён DVB-C"
@@ -9181,7 +9187,7 @@ msgstr ""
 "\n"
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr ""
+msgstr "Для записи по таймеру TV был переключён на сервис записи!\n"
 
 msgid "In progress"
 msgstr "В процессе"
@@ -9219,11 +9225,17 @@ msgstr "Включить AIT в записи"
 msgid "Include CI assignment"
 msgstr "Включить назначение CI"
 
+msgid "Include DVB scan data"
+msgstr "Включить данные сканирования DVB"
+
 msgid "Include ECM in http streams"
 msgstr "Включить ECM в http потоки"
 
 msgid "Include EIT in http streams"
 msgstr "Включать EIT в http потоки"
+
+msgid "Include EPG data"
+msgstr "Включить данные EPG"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Включить SDT, BAT в потоки http"
@@ -9242,6 +9254,9 @@ msgstr "Указать тип пульта управления"
 
 msgid "Include screen load data"
 msgstr "Включить данные о загрузке экрана"
+
+msgid "Include timer data"
+msgstr ""
 
 msgid "Incorrect type service for PiP!"
 msgstr "Неправильный тип сервиса для PiP!"
@@ -9714,6 +9729,9 @@ msgstr "Казахский"
 
 msgid "Kazakhstan"
 msgstr "Казахстан"
+
+msgid "Keep EPG history (in minutes)"
+msgstr "Хранить историю EPG (в минутах)"
 
 msgid "Keep service"
 msgstr "Сохранить канал"
@@ -10341,9 +10359,6 @@ msgstr "Магия длинная"
 
 msgid "Main Menu"
 msgstr "Главное меню"
-
-msgid "Maintain old EPG data for"
-msgstr "Сохранять старые данные ТВ-гида (Мин)"
 
 msgid "Maintain your multi boot device."
 msgstr "Поддерживать мультизагрузочное устройство."
@@ -11644,7 +11659,7 @@ msgid "NodeID: "
 msgstr "NodeID "
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
-msgstr ""
+msgstr "Укажите, сколько IP-адресов должно быть проверено на наличие активных подключений."
 
 msgid "None"
 msgstr "Нет"
@@ -11773,7 +11788,7 @@ msgid "Number"
 msgstr "Номер"
 
 msgid "Number of IP Addresses"
-msgstr ""
+msgstr "Количество IP-адресов"
 
 msgid "Number of digits in channel number"
 msgstr "Количество цифр в номере канала"
@@ -12706,7 +12721,7 @@ msgid "Please select the region that most closely matches your physical location
 msgstr "Пожалуйста, выберите регион, наиболее точно соответствующий Вашему физическому местонахождению. Регион необходим, чтобы мы могли предоставить правильную справочную информацию для каналов, которые Вы можете получать."
 
 msgid "Please select the sub-service to record:"
-msgstr "Пожалуйста, выберите подсервис для записи..."
+msgstr "Пожалуйста, выберите подсервис для записи:"
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -13031,7 +13046,7 @@ msgid "PowerTimer"
 msgstr "Таймер питания"
 
 msgid "PowerTimer Actions"
-msgstr ""
+msgstr "Действия PowerTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Таймер питания в 'Глубокий сон'"
@@ -13040,7 +13055,7 @@ msgid "PowerTimer Overview"
 msgstr "Просмотр таймеров питания"
 
 msgid "PowerTimer Settings"
-msgstr ""
+msgstr "Настройки PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Таймер питания в 'Режим ожидания'"
@@ -13710,19 +13725,19 @@ msgid "Record write error (no space on disk?)"
 msgstr "Ошибка записи (нет места на диске?)"
 
 msgid "RecordTimer"
-msgstr ""
+msgstr "Таймер записи"
 
 msgid "RecordTimer Actions"
-msgstr ""
+msgstr "Действия таймера записи"
 
 msgid "RecordTimer Overview"
-msgstr ""
+msgstr "Обзор таймера записи"
 
 msgid "RecordTimer Settings"
-msgstr ""
+msgstr "Настройки таймера записи"
 
 msgid "RecordTimers"
-msgstr ""
+msgstr "Таймеры записи"
 
 msgid "Recordable media toolbox"
 msgstr "Записываемый медиа-носитель"
@@ -13752,7 +13767,7 @@ msgid "Recording in progress"
 msgstr "Идёт запись"
 
 msgid "Recording location"
-msgstr ""
+msgstr "Местоположение записи"
 
 msgid "Recording running"
 msgstr "Запись идёт"
@@ -13996,7 +14011,7 @@ msgstr "Удалить все данные таймера"
 msgid "Remove all user interface data"
 msgstr "Удалить все данные пользовательского интерфейса"
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Удалить закладку"
 
 msgid "Remove completed timers after (days)"
@@ -14086,7 +14101,7 @@ msgid "Repeated"
 msgstr "Повторять"
 
 msgid "Repeating event is currently active, what do you want to do?"
-msgstr ""
+msgstr "Повторяющееся событие в настоящее время активно, что Вы хотите сделать?"
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "Повторяющееся событие записывается. Что Вы хотите сделать?"
@@ -14569,7 +14584,7 @@ msgid "Sat Finder"
 msgstr "Поиск спутников"
 
 msgid "Sat-Sun"
-msgstr ""
+msgstr "Сб-Вс"
 
 msgid "Satellite"
 msgstr "Спутник"
@@ -14661,7 +14676,7 @@ msgid "Save the left folder list location on exit."
 msgstr "Сохраните левое расположение списка папок при выходе."
 
 msgid "Save the log changes and exit"
-msgstr ""
+msgstr "Сохраните изменения лога и выйдите"
 
 msgid "Save the right folder list location on exit."
 msgstr "Сохраните правильное расположение списка папок при выходе."
@@ -14888,7 +14903,7 @@ msgid "Seekbar sensibility"
 msgstr "Шаг Seekbar"
 
 msgid "Seeking connected events"
-msgstr ""
+msgstr "Поиск связанных событий"
 
 msgid "Select"
 msgstr "Выбрать"
@@ -14909,10 +14924,10 @@ msgid "Select 'No' to save older events even after zapping or interrupting time 
 msgstr "Если выбрано 'Нет', можете сохранять старые записи даже после переключения или прерывания таймшифта."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr ""
+msgstr "Выберите 'Да', если для этого таймера требуется время окончания."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr ""
+msgstr "Выберите 'Да', если перед активацией таймера необходимо проверить сетевой трафик."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Выберите 'ДА', если к звуковым дорожкам Dolby следует применить регулировки громкости."
@@ -14930,7 +14945,7 @@ msgid "Select 'Yes' to always show the bouquet screen first when opening the cha
 msgstr "Если выбрано 'Да', список каналов будет открываться в первом фаворите. Если выбрано 'Нет', список каналов будет открываться в текущем фаворите."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr ""
+msgstr "Выберите 'Да', чтобы проверить, исходят ли сетевые подключения с назначенных IP-адресов во время активации таймера. В этом случае таймер будет деактивирован."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Если выберите 'Да', в ТВ-гиде будет показываться PiG-окно."
@@ -14996,7 +15011,7 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Выберите 'Да', чтобы восстановить настройки сети по умолчанию. Это активирует порт Ethernet, если он существует, и настроит ресивер на использование DHCP. Все остальные сетевые интерфейсы будут удалены."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Выберите 'Да', чтобы отобразить дополнительные параметры настройки."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
 msgstr "Если выберите 'Да', фавориты будут показаны каждый раз при открытии ТВ-гида."
@@ -15161,8 +15176,11 @@ msgstr "Выбор исключаемых файлов из резервных �
 msgid "Select files/folders to backup"
 msgstr "Файлы/папки для копирования"
 
-msgid "Select how often this timer is to be repeated."
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr ""
+
+msgid "Select how often this timer is to be repeated."
+msgstr "Выберите, как часто этот таймер должен повторяться."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Выберите, как быстро тарелка должна перемещаться между спутниками."
@@ -15177,7 +15195,7 @@ msgid "Select how your box will upgrade."
 msgstr "Выберите способ обновления Вашего ресивера."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Выберите, требуется ли время окончания."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Эта опция позволяет Вам выбрать, будет ли отображаться значение по умолчанию для элемента настройки, и если да, то где оно будет отображаться по отношению к описанию."
@@ -15186,34 +15204,34 @@ msgid "Select if the screen menu path history is displayed and, if so, how it is
 msgstr "Выберите, будет ли отображаться история пути к экранному меню, и если да, то как она должна отображаться."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr ""
+msgstr "Выберите, если имя таймера и код изменения описания запускаются на повторяющихся таймерах."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr ""
+msgstr "Выберите, должно ли существовать временное окно, в пределах которого этот таймер может быть активен."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в пятницу."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в Понедельник."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в Субботу."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в Воскресенье."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в Четверг."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер во Вторник."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Выберите, активируется ли этот таймер в Среду."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Выберите, должен ли этот таймер повторяться."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Выберите из вариантов, как следует сохранять буфер идущего таймшифта, если Вы нажали на запись."
@@ -15288,16 +15306,16 @@ msgid "Select the Yes / True response"
 msgstr "Выберите Да / Верный ответ"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Выберите действие, которое будет выполняться по окончании таймера."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Управляйте скоростью анимации индикаторов кнопок на экране справки. 'Отключено' отключает анимацию, чтобы индикаторы переходили между кнопками."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Выберите канал для записи:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Выберите канал или сервис, которые будут использоваться для этого таймера."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Выберите символ или действие под курсором клавиатуры"
@@ -15312,19 +15330,19 @@ msgid "Select the currently highlighted service"
 msgstr "Выберите текущий выделенный канал"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Выберите дату, с которой этот таймер станет активным."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Выберите дату, когда этот таймер будет активирован."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Выберите дату запуска этого таймера."
 
 msgid "Select the day of the week that this timer will activate."
-msgstr ""
+msgstr "Выберите день недели, в который будет активироваться этот таймер."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Выберите задержку перед активацией таймера."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Выберите желаемую функцию и нажмите 'ОК', чтобы назначить её. Используйте 'CH +/-' для переключения между списками. Выберите назначенную функцию и нажмите 'ОК', чтобы отменить её назначение. Используйте 'Далее/Назад', чтобы изменить порядок назначенных функций."
@@ -15344,11 +15362,14 @@ msgstr "Выберите выделенный имидж и перейдите �
 msgid "Select the highlighted slot and reboot"
 msgstr "Выберите выделенный слот и перезагрузитесь"
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr "Выберите начальное положение маркера временной шкалы. Маркер — это вертикальная линия, нарисованная в EPG, которая показывает текущее время. Чем больше значение, тем больше маркер будет двигаться вправо, показывая больше истории и меньше предстоящих событий."
+
 msgid "Select the locale from a menu"
 msgstr "Выберите локаль из меню"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Выберите место для хранения записи:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Выберите производителя Вашего устройства SCR. Если производитель не указан, установите для 'SCR' значение 'user defined' и введите параметры устройства вручную в соответствии с его спецификацией."
@@ -15363,7 +15384,7 @@ msgid "Select the movie path"
 msgstr "Выбрать папку для фильмов"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
+msgstr "Выберите скорость передачи данных по сети, ниже которой таймер должен активироваться, как указано. Трафик выше этой скорости с отключенным таймером."
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Выберите следующий элемент в списке или переместите курсор вправо"
@@ -15411,13 +15432,13 @@ msgid "Select the source of the default DNS settings."
 msgstr "Выберите источник настроек DNS по умолчанию."
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
+msgstr "Выберите теги, которые следует использовать для этой записи."
 
 msgid "Select the time after which this timer can start."
-msgstr ""
+msgstr "Выберите время, после которого этот таймер может запуститься."
 
 msgid "Select the time before which this timer should end."
-msgstr ""
+msgstr "Выберите время, до которого должен закончиться этот таймер."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Выберите время задержки до того, как кнопка начнёт повторяться."
@@ -15426,10 +15447,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Выберите время задержки между каждым повторением кнопки."
 
 msgid "Select the time when this timer should end."
-msgstr ""
+msgstr "Выберите время, когда этот таймер должен закончиться."
 
 msgid "Select the time when this timer will start."
-msgstr ""
+msgstr "Выберите время запуска этого таймера."
 
 msgid "Select the time zone within the area or region."
 msgstr "Выберите часовой пояс в пределах области или региона."
@@ -15456,6 +15477,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Выберите желаемый тип выключения при срабатывании таймера быстрого отсчёта."
 
 msgid "Select the type of this timer."
+msgstr "Выберите тип этого таймера."
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -15468,10 +15492,10 @@ msgid "Select what action to take when reaching the end of a media file during p
 msgstr "Действие в конце воспроизведения записи."
 
 msgid "Select what do do after the timer has completed."
-msgstr ""
+msgstr "Выберите, что делать после завершения таймера."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "Выберите, что делать после завершения записи по таймеру."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Выберите, что делать, когда %s%s загружается, воспроизводится в обычном режиме или переходит в режим ожидания."
@@ -15498,7 +15522,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "Выбор действия для красной кнопок Вверх/Вниз."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "Выберите, где запись должна быть сохранена."
 
 msgid "Select wireless network"
 msgstr "Выберите беспроводную сеть"
@@ -16081,7 +16105,7 @@ msgid "Setup your LCD"
 msgstr "Настройки LCD"
 
 msgid "Setup your LCD Skin"
-msgstr ""
+msgstr "Настройте скин LCD"
 
 msgid "Setup your OSD"
 msgstr "Настройки OSD"
@@ -16421,7 +16445,7 @@ msgid "Show bouquet on launch"
 msgstr "Показать фаворит при запуске"
 
 msgid "Show build information"
-msgstr ""
+msgstr "Показать информацию о сборке"
 
 msgid "Show channel number in InfoBar"
 msgstr "Показать номер канала в инфобаре"
@@ -16646,7 +16670,7 @@ msgid "Show quickmenu..."
 msgstr "Показать быстрое меню..."
 
 msgid "Show receiver image information"
-msgstr ""
+msgstr "Показать информацию об имидже ресивера"
 
 msgid "Show record indicator"
 msgstr "Показать индикатор записи"
@@ -17015,7 +17039,7 @@ msgid "Sleep Timers"
 msgstr "Таймеры сна"
 
 msgid "Sleep delay (in minutes)"
-msgstr ""
+msgstr "Задержка сна (в минутах)"
 
 msgid "Sleep long"
 msgstr "Долгий сон"
@@ -17027,10 +17051,10 @@ msgid "SleepTimer"
 msgstr "Таймер сна"
 
 msgid "SleepTimer Actions"
-msgstr ""
+msgstr "Действия таймера сна"
 
 msgid "SleepTimer Overview"
-msgstr ""
+msgstr "Обзор таймера сна"
 
 msgid "SleepTimer Settings"
 msgstr "Настройки таймера сна"
@@ -17374,7 +17398,7 @@ msgstr "Резервировать место на диске для запис�
 
 #, python-format
 msgid "Space total %s, used %s, free %s (%0.f%%)."
-msgstr ""
+msgstr "Всего места %s, занято %s, свободно %s (%0.f%%)."
 
 msgid "Space used:"
 msgstr "Занято"
@@ -17452,7 +17476,7 @@ msgid "Start RDS interactive"
 msgstr "Запустить интерактивную службу RDS"
 
 msgid "Start date"
-msgstr ""
+msgstr "Дата начала"
 
 msgid "Start from the beginning"
 msgstr "Начать с самого начала"
@@ -17500,13 +17524,13 @@ msgid "Starting Softcam"
 msgstr "Запускается эмулятор"
 
 msgid "Starting date"
-msgstr ""
+msgstr "Начало"
 
 msgid "Starting directory"
 msgstr "Начальный каталог"
 
 msgid "Starting time"
-msgstr ""
+msgstr "Время начала"
 
 msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
@@ -18020,7 +18044,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 01.08.2022"
+msgstr "Коррекция перевода Monja 28.08.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18339,6 +18363,8 @@ msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"Плагин VPS не смог проверить, поддерживает ли выбранный канал VPS для таймеров, запрограммированных вручную! \n"
+" Вы действительно хотите включить VPS?"
 
 msgid ""
 "The VideoMode plugin is not installed!\n"
@@ -18377,6 +18403,8 @@ msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
+"Канал может поддерживать VPS \n"
+" Вы хотите включить VPS?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Команда на выход из режима ожидания будет отправлена несколько раз."
@@ -18454,6 +18482,8 @@ msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"Выбранный канал не поддерживает VPS для таймеров, запрограммированных вручную!\n"
+" Вы действительно хотите включить VPS?"
 
 msgid "The servicelist is reloaded."
 msgstr "Список каналов перезагружен."
@@ -18867,7 +18897,7 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr "Этот параметр устанавливает резкость изображения, используемую при масштабировании изображения."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
+msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
 
 msgid "This plugin is installed."
 msgstr "Этот плагин установлен."
@@ -19011,9 +19041,6 @@ msgstr "Обзор таймеров"
 msgid "Time for next LCD scrolling"
 msgstr "Пауза между прокруткой текста на LCD"
 
-msgid "Timeline marker"
-msgstr "Редактор таймеров"
-
 msgid "Time jump avoid zero step size"
 msgstr "Интервал времени во избежание нулевого размера шага"
 
@@ -19035,9 +19062,6 @@ msgstr "Время долго"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Время, необходимое для этого процесса: %s"
-
-msgid "Timeline scale"
-msgstr "Шкала времени"
 
 msgid "Time style"
 msgstr "Стиль времени"
@@ -19063,11 +19087,17 @@ msgstr "Линия времени 24 часа"
 msgid "Timeline font size"
 msgstr "Размер шрифта для шкалы времени"
 
+msgid "Timeline marker"
+msgstr "Редактор таймеров"
+
+msgid "Timeline scale"
+msgstr "Шкала времени"
+
 msgid "Timer Actions"
 msgstr "Действия по таймеру"
 
 msgid "Timer Log Actions"
-msgstr ""
+msgstr "Действия лога таймера"
 
 msgid "Timer Sanity Error"
 msgstr "Ошибка состояния таймера"
@@ -19225,7 +19255,7 @@ msgid "Toggle display of the InfoBar"
 msgstr "Переключение отображения информационной панели"
 
 msgid "Toggle enable/disable of the currently selected timer"
-msgstr ""
+msgstr "Включить/выключить текущий выбранный таймер"
 
 msgid "Toggle hide/show of the current item"
 msgstr "Скрыть/показать текущий элемент"
@@ -19698,7 +19728,7 @@ msgid "Unknown user: %d"
 msgstr "Неизвестный пользователь: %d"
 
 msgid "Unknown!"
-msgstr ""
+msgstr "Неизвестно!"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Если выберите 'Да', в ТВ-гиде будет включен предпросмотр каналов."
@@ -19973,6 +20003,9 @@ msgstr "Используйте геолокацию для установки т
 msgid "Use interface"
 msgstr "Использовать интерфейс"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Использовать обычную нумерацию каналов"
 
@@ -20146,13 +20179,13 @@ msgid "VPN"
 msgstr "VPN"
 
 msgid "VPS Settings"
-msgstr ""
+msgstr "Настройки VPS"
 
 msgid "VPS enabled by default"
-msgstr ""
+msgstr "VPS включён по умолчанию"
 
 msgid "VPS-Plugin Information"
-msgstr ""
+msgstr "Информация о VPS-плагине"
 
 msgid ""
 "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
@@ -20178,25 +20211,51 @@ msgid ""
 "\n"
 "If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
 msgstr ""
+"VPS-Plugin может реагировать на задержки, возникающие в startTime или endTime программы. VPS поддерживается только некоторыми каналами!\n"
+"\n"
+"Если вы включите VPS, запись начнется только тогда, когда канал пометит программу как запущенную.\n"
+"\n"
+"Если вы выберете «да (безопасный режим)», запись определенно начнется не позднее указанного вами startTime. Запись может начаться раньше или длиться дольше.\n"
+"\n"
+"\n"
+"Поддерживаемые каналы\n"
+"\n"
+"Германия:\n"
+" ARD и ZDF\n"
+"\n"
+"Австрия:\n"
+" ORF\n"
+"\n"
+"Швейцария:\n"
+" SF\n"
+"\n"
+"Чешская Республика:\n"
+" CT\n"
+"\n"
+"Если таймер запрограммирован вручную (не через EPG), необходимо установить VPS-Time для включения VPS. VPS-Time (также известное как PDC) — это первое опубликованное время начала, т.е. даны в журналах. Если Вы устанавливаете VPS-Time, вы должны оставить имя таймера пустым."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
-msgstr ""
+msgstr "VPS-плагин проверяет, поддерживает ли канал VPS..."
 
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
+"VPS-плагин не смог проверить, поддерживает ли канал VPS.\n"
+" Вы все равно хотите включить VPS?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"VPS-плагин не смог проверить, поддерживает ли выбранный канал VPS.\n"
+" Вы действительно хотите включить VPS?"
 
 msgid "VPS-Time (date)"
-msgstr ""
+msgstr "VPS-Time (дата)"
 
 msgid "VPS-Time (time)"
-msgstr ""
+msgstr "VPS-Time (время)"
 
 msgid "Valid"
 msgstr "Действительный"
@@ -20488,6 +20547,9 @@ msgstr "Выбор канала регулировки громкости"
 msgid "Volume Adjust Settings"
 msgstr "Настройки регулировки громкости"
 
+msgid "Volume display timer"
+msgstr ""
+
 msgid "Volume down"
 msgstr "Громкость ниже"
 
@@ -20574,7 +20636,7 @@ msgid "Wakeup TV from standby"
 msgstr "Пробудить ТВ из режима ожидания"
 
 msgid "Wakeup from Deep-Standby is allowed"
-msgstr ""
+msgstr "Пробуждение из режима глубокого ожидания разрешено"
 
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Включить до начала таймера за [мин]"
@@ -20647,10 +20709,10 @@ msgid "Wednesday"
 msgstr "Среда"
 
 msgid "Weekdays"
-msgstr ""
+msgstr "Будние дни"
 
 msgid "Weekends"
-msgstr ""
+msgstr "Выходные дни"
 
 msgid "Weekly"
 msgstr "Еженедельно"
@@ -20919,7 +20981,7 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr "При отрицательном значении, система будет сканировать транспондер в фоновом режиме на предмет изменений и сохранять их. Выберите 'Да', если только абсолютно уверены, что делаете."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr ""
+msgstr "Если да, VPS будет включён для мгновенных записей (остановка после текущего события), если канал поддерживает VPS."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Где Вы хотите сохранить настройки?"
@@ -21073,7 +21135,7 @@ msgid "Yes"
 msgstr "Да"
 
 msgid "Yes (safe mode)"
-msgstr ""
+msgstr "Да (безопасный режим)"
 
 msgid "Yes to all"
 msgstr "Да для всех"
@@ -21115,7 +21177,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Да, продолжить ручной поиск"
 
 msgid "Yes, don't ask again"
-msgstr ""
+msgstr "Да, больше не спрашивать"
 
 msgid "Yes, restore the settings now"
 msgstr "Да, восстановить настройки сейчас"
@@ -21523,7 +21585,7 @@ msgid "ZAP"
 msgstr "Переключить"
 
 msgid "ZAP as PiP"
-msgstr ""
+msgstr "ZAP как PiP"
 
 msgid "ZOOM"
 msgstr "УВЕЛИЧИТЬ"
@@ -22661,9 +22723,6 @@ msgstr "Удалить все найденные флаги"
 msgid "remove before this position"
 msgstr "Удалить перед этой позицией"
 
-msgid "remove bookmark"
-msgstr "Удалить закладку"
-
 msgid "remove bouquet from parental protection"
 msgstr "Удалить фаворит из родительского контроля"
 
@@ -23168,6 +23227,15 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Позволяет показать данные ТВ-гида о прошедших событиях. Удобно когда хотите знать что-то о передаче, которая вот-вот закончится либо только что закончилась (в минутах)."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Установка времени отображения."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Сохранять старые данные ТВ-гида (Мин)"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<Неизвестно>"

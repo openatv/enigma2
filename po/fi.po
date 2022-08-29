@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2275,7 +2275,7 @@ msgstr "Lisää ajastin nykyiselle ohjelmalle"
 msgid "Add an AutoTimer for the current event"
 msgstr "Lisää automaattiajastus tähän ohjelmaan"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Lisää kirjanmerkki"
 
 msgid "Add current folder to bookmarks"
@@ -4264,6 +4264,9 @@ msgstr "Valitse etiketti, joka tunnistaa tämän laitteen IceTV palveluista."
 msgid "Choose dvb wait delay for ci response."
 msgstr "Valitse kauanko kanava odottaa CI vastausta."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
 
@@ -4598,9 +4601,6 @@ msgstr "Määritä ylimääräinen viive parantaaksesi tekstitysten ajoitusta."
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Määritä oletusasetukset uusille ajastimille. Tarvitaan uudelleenkäynnistys vaihdon jälkeen."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Määrittää, kuinka monta minuuttia päättyneiden ohjelmien ohjelmatietoja pidetään näkyvillä ohjelmaoppaassa. Käytännöllinen, kun haluat tietoja ohjelmasta joka on juuri päättynyt tai kun ohjelma on viivästynyt."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Määrittää, millaisten tallennusten yhteydessä näytetään varoitus, jos laitetta tai järjestelmällä yritetään käynnistää uudelleen."
 
@@ -4768,9 +4768,6 @@ msgstr "Määrittää, sammutetaanko kiintolevy tietyn ajan jälkeen."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Määritä teksti-tv:ssä käytettyjen kirjainten korkeus."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Määrittää aikahistoria, jolta ohjelmatiedot näytetään."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Määrittää tekstityksen vaakasijainnin."
@@ -6981,6 +6978,12 @@ msgstr "Ota käyttöön HDMI CEC:n laajennetut asetus vaihtoehdot."
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä toimintakarttatietoja virheenkorjauslokiin."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näppäimistön tietoja virheenkorjauksen lokitiedostoon."
 
@@ -6992,6 +6995,9 @@ msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä kaukosäätimen tietoja v
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä ja tarkkuustietoja virheenkorjauksen lokitiedostoon."
+
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa"
@@ -7068,14 +7074,14 @@ msgstr[1] "Energia-ajastin: %d sekuntia jäljellä."
 msgid "Energy Timer: Inactive."
 msgstr "Energia-ajastin: Ei käytössä."
 
+msgid "Energy timer"
+msgstr "Energia ajastin"
+
 msgid "EnergySaver action"
 msgstr "Energiansäästö toiminto"
 
 msgid "EnergySaver activation delay"
 msgstr "Energiansäästäjän aktivoinnin viive"
-
-msgid "Energy timer"
-msgstr "Energia ajastin"
 
 msgid "EnergyTimer Actions"
 msgstr "Virransäästö ajastuksien Toiminnot"
@@ -9208,11 +9214,17 @@ msgstr "Sisällytä AIT tallennuksiin"
 msgid "Include CI assignment"
 msgstr "SIsällytä CI määritys"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "Sisällytä ECM http striimeihin"
 
 msgid "Include EIT in http streams"
 msgstr "Sisällytä EIT http striimeihin"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Sisällytä SDT, BAT http striimeihin"
@@ -9231,6 +9243,9 @@ msgstr "Sisällytä kaukosäädin tiedot"
 
 msgid "Include screen load data"
 msgstr "Sisällytä näytön kuormitustiedot"
+
+msgid "Include timer data"
+msgstr ""
 
 msgid "Incorrect type service for PiP!"
 msgstr "Ei yhteensopiva ohjelmalähde PiP-kuvalle!"
@@ -9703,6 +9718,9 @@ msgstr "Kazakhstan"
 
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
+
+msgid "Keep EPG history (in minutes)"
+msgstr ""
 
 msgid "Keep service"
 msgstr "Säilytä kanava"
@@ -10329,9 +10347,6 @@ msgstr "Taika pitkä"
 
 msgid "Main Menu"
 msgstr "Päävalikko"
-
-msgid "Maintain old EPG data for"
-msgstr "Säilytä vanhoja ohjelmatietoja (minuuttia)"
 
 msgid "Maintain your multi boot device."
 msgstr "Ylläpidä multiboot image paikkoja."
@@ -13992,7 +14007,7 @@ msgstr "Poista kaikki ajastukset"
 msgid "Remove all user interface data"
 msgstr "Poista kaikki käyttöliittymän tiedot"
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Poista kirjanmerkki"
 
 msgid "Remove completed timers after (days)"
@@ -15165,6 +15180,9 @@ msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Valitse, kuinka usein tämä ajastin toistetaan."
 
@@ -15350,6 +15368,9 @@ msgstr "Valitse korostettu ohjelmisto ja siirry paikka valintaan"
 msgid "Select the highlighted slot and reboot"
 msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
 
@@ -15463,6 +15484,9 @@ msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
 msgid "Select the type of this timer."
 msgstr "Valitse ajastimen tyyppi."
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+msgstr ""
 
 msgid "Select video input with up/down buttons"
 msgstr "Valitse video sisäänmeno ylös/alas näppäimillä"
@@ -19027,9 +19051,6 @@ msgstr "Diaesityksen aika"
 msgid "Time for next LCD scrolling"
 msgstr "Aika seuraavaan näytön vieritykseen"
 
-msgid "Timeline marker"
-msgstr "Aikahistoria"
-
 msgid "Time jump avoid zero step size"
 msgstr "Aikahyppy vältä nolla askelkokoa"
 
@@ -19051,9 +19072,6 @@ msgstr "Aika pitkä"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Tähän tehtävään kulunut aika: %s"
-
-msgid "Timeline scale"
-msgstr "Näytettävä aikaväli"
 
 msgid "Time style"
 msgstr "Ajan näyttömuoto"
@@ -19078,6 +19096,12 @@ msgstr "Kellonaika 24 tunnin muodossa"
 
 msgid "Timeline font size"
 msgstr "Aika asteikon tekstikoko"
+
+msgid "Timeline marker"
+msgstr "Aikahistoria"
+
+msgid "Timeline scale"
+msgstr "Näytettävä aikaväli"
 
 msgid "Timer Actions"
 msgstr "Ajastin Toiminnot"
@@ -19992,6 +20016,9 @@ msgstr "Nykyisen aikavyöhykkeen sijainnin asettaminen geopaikannuksen avulla"
 msgid "Use interface"
 msgstr "Käytä sovitinta"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Käytä virallista kanavanumerointia"
 
@@ -20532,6 +20559,9 @@ msgstr "Äänenvoimakkuuden säätö valinta palvelu"
 
 msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
+
+msgid "Volume display timer"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
@@ -22712,9 +22742,6 @@ msgstr "poista kaikki uusi kanava-liput"
 msgid "remove before this position"
 msgstr "Poista kaikki ennen tätä kohtaa"
 
-msgid "remove bookmark"
-msgstr "poista kirjanmerkki"
-
 msgid "remove bouquet from parental protection"
 msgstr "poista kanavan lapsilukkosuojaus"
 
@@ -23218,6 +23245,15 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Määrittää, kuinka monta minuuttia päättyneiden ohjelmien ohjelmatietoja pidetään näkyvillä ohjelmaoppaassa. Käytännöllinen, kun haluat tietoja ohjelmasta joka on juuri päättynyt tai kun ohjelma on viivästynyt."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Määrittää aikahistoria, jolta ohjelmatiedot näytetään."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Säilytä vanhoja ohjelmatietoja (minuuttia)"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<tuntematon>"

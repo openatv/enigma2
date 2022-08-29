@@ -299,7 +299,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if self.currList == "filelist":
 				menu = [
 					(_("switch to bookmarks"), self.switchToBookList),
-					(_("Add bookmark"), self.addRemoveBookmark)
+					(_("Add Bookmark"), self.addRemoveBookmark)
 				]
 				if self.editDir:
 					menu.extend((
@@ -309,7 +309,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				menu = (
 					(_("Switch to filelist"), self.switchToFileList),
-					(_("remove bookmark"), self.addRemoveBookmark)
+					(_("Remove Bookmark"), self.addRemoveBookmark)
 				)
 			self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 

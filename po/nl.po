@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
-"PO-Revision-Date: 2022-08-27 16:02+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"PO-Revision-Date: 2022-08-28 18:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -2229,13 +2229,13 @@ msgid "Add New Quad Channel Entry"
 msgstr "Nieuwe Quad zender toevoegen"
 
 msgid "Add RecordTimer"
-msgstr "Opname Timer toevoegen"
+msgstr "Timer voor een opname toevoegen"
 
 msgid "Add Timer"
 msgstr "Timer toevoegen"
 
 msgid "Add Zap+RecordTimer"
-msgstr "Zap+Opname timer toevoegen"
+msgstr "Timer voor 'Zappen + Opnemen' toevoegen"
 
 msgid "Add ZapTimer"
 msgstr "Zap timer toevoegen"
@@ -2276,7 +2276,7 @@ msgstr "Zaptimer toevoegen voor het huidige programma"
 msgid "Add an AutoTimer for the current event"
 msgstr "Een AutoTimer toevoegen voor het huidige programma"
 
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Bookmark toevoegen"
 
 msgid "Add current folder to bookmarks"
@@ -3877,7 +3877,7 @@ msgid "Cancel any changed settings and exit all menus"
 msgstr "Annuleer alle gewijzigde instellingen en Exit alle menu's"
 
 msgid "Cancel any changed tags and exit"
-msgstr "Bewaar geen gewijzigde tags en Exit"
+msgstr "Bewaar geen gewijzigde markeringen en Exit"
 
 msgid "Cancel any changes the active locale/language and exit all menus"
 msgstr "Annuleer alle wijzigingen aan de ingestelde taal en Exit alle menu's"
@@ -4259,6 +4259,9 @@ msgstr "Kies een omschrijving waarmee dit apparaat in de IceTV instellingen word
 msgid "Choose dvb wait delay for ci response."
 msgstr "Selecteer de dvb wachttijd voor CI reactie."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr "Kies hoeveel EPG historie bewaard moet worden in de EPG cache. Deze historische gegevens kunnen in elk EPG-overzicht worden bekeken. Dit kan handig zijn wanneer u informatie zoekt over een programma dat net is afgelopen."
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Hoe vaak moet bij de IceTV server gecontroleerd worden op updates."
 
@@ -4598,9 +4601,6 @@ msgstr ""
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Stel hier in welke waarde als standaard moet worden gebruikt in het Timerinvoer-menu, dus zichtbaar bij het aanmaken van een nieuwe timer. Voor deze wijziging is een herstart noodzakelijk."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Hoe lang moeten afgelopen programma's zichtbaar moet blijven in de EPG. Dit is vooral handig indien u informatie wenst over een programma dat net afgelopen of vertraagd is. U kunt kiezen tussen 0-120 min in stappen van 15 min."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Stel in voor welke soorten opnames een waarschuwing wordt gegeven wanneer u probeert de ontvanger/GUI te herstarten tijdens een lopende opname."
 
@@ -4750,7 +4750,7 @@ msgid "Configure the duration, in minutes, before the EnergySaver timer activate
 msgstr "Stel de tijdsduur in minuten in, voordat de Energie spaar timer wordt geactiveerd."
 
 msgid "Configure the duration, in minutes, before the SleepTimer activates."
-msgstr "Stel de tijdsduur in minuten in, voordat de Slaaptimer wordt geactiveerd."
+msgstr "Stel de tijdsduur in minuten in, voordat de SlaapTimer wordt geactiveerd."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configureer de eind-coördinaat in x van het weergavegebied van Teletekst."
@@ -4819,9 +4819,6 @@ msgstr "Configureer de harde schijf om in stand-by te gaan, na de verstreken ina
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Configureer de hoogte van de TrueType-lettertype letters gebruikt voor Teletekst."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Hoeveel minuten wilt u op de tijdlijn 'terug in de tijd' kijken?"
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr ""
@@ -5945,7 +5942,7 @@ msgid "Delete all logs"
 msgstr "Verwijder alle logbestanden"
 
 msgid "Delete all tags"
-msgstr "Verwijder alle tags"
+msgstr "Verwijder alle markeringen"
 
 msgid "Delete all the text"
 msgstr "Verwijder alle tekst"
@@ -6019,7 +6016,7 @@ msgid "Delete this tag"
 msgstr "Verwijder deze tag"
 
 msgid "Delete unused tags"
-msgstr "Verwijder ongebruikte tags"
+msgstr "Verwijder ongebruikte markeringen"
 
 msgid "Deleted"
 msgstr "Verwijderd"
@@ -6282,7 +6279,7 @@ msgid "Display the base locales or all locales for a language."
 msgstr "Toon alleen de basis 'locales' of alle 'locales' voor een taal."
 
 msgid "Display the tags context menu"
-msgstr "Toon het contextmenu voor de tags"
+msgstr "Toon het contextmenu voor de markeringen"
 
 msgid "Display the virtual keyboard for data entry"
 msgstr "Toon het virtuele toetsenbord"
@@ -6375,14 +6372,14 @@ msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
-"Wilt u echt alle '%s' tags verwijderen?\n"
+"Wilt u echt alle '%s' markeringen verwijderen?\n"
 "(Let op: 'Annuleren' kan dit niet ongedaan maken!)"
 
 msgid ""
 "Do you really want to delete all tags?\n"
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
-"Wilt u echt alle tags verwijderen?\n"
+"Wilt u echt alle markeringen verwijderen?\n"
 "(Let op: 'Annuleren' kan dit niet ongedaan maken!)"
 
 msgid "Do you really want to delete this timer?"
@@ -6819,7 +6816,7 @@ msgid "Edit Quad Channel Entry"
 msgstr "Wijzig Quad zender"
 
 msgid "Edit Tags"
-msgstr "Tags wijzigen"
+msgstr "Markeringen wijzigen"
 
 msgid "Edit Timer"
 msgstr "Pas een timer aan"
@@ -7089,6 +7086,12 @@ msgstr "Activeer de geavanceerde instellingen voor HDMI-CEC."
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Activeer deze optie om gebruik van de afstandsbediening mee te nemen in het debug log bestand."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr "Activeer deze optie om extra DVB scan gegevens toe te voegen aan het debug log-bestand."
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr "Activeer deze optie om extra EPG gegevens toe te voegen aan het debug log-bestand."
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Activeer deze optie om gebruik van het toetsenbord mee te nemen in het debug log bestand."
 
@@ -7101,11 +7104,14 @@ msgstr "Activeer deze optie om gegevens van de afstandsbediening mee te nemen in
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in het debug log bestand."
 
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
+
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Schakel deze optie in indien de antenne een externe voeding nodig heeft"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
-msgstr "Inschakelen om wat extra ruimte toe te voegen aan de informatieschermen.  Dit kan de leesbaarheid verbeteren."
+msgstr "Inschakelen om wat extra ruimte toe te voegen aan de informatie-schermen. Dit kan de leesbaarheid verbeteren."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
@@ -7180,14 +7186,14 @@ msgstr[1] "Energie spaar timer: %d seconden resterend."
 msgid "Energy Timer: Inactive."
 msgstr "Energie spaar timer: Gedeactiveerd."
 
+msgid "Energy timer"
+msgstr "Energie spaar timer"
+
 msgid "EnergySaver action"
 msgstr "Energie spaar timer actie"
 
 msgid "EnergySaver activation delay"
 msgstr "Energie spaar timer tijdsduur"
-
-msgid "Energy timer"
-msgstr "Energie spaar timer"
 
 msgid "EnergyTimer Actions"
 msgstr "EnergieTimer Acties"
@@ -7255,9 +7261,15 @@ msgstr "Voer pincode in"
 
 msgid "Enter a description for this timer."
 msgstr ""
+"Een omschrijving voor deze timer opgeven.\n"
+"\n"
+"Via de TXT-toets (Videotekst) kunt u het virtuele toetsenbord gebruiken."
 
 msgid "Enter a name for this timer."
 msgstr ""
+"Een naam voor deze timer opgeven.\n"
+"\n"
+"Via de TXT-toets (Videotekst) kunt u het virtuele toetsenbord gebruiken."
 
 msgid "Enter a new name for this device."
 msgstr "Geef een nieuwe naam op voor dit apparaat."
@@ -7497,7 +7509,7 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Fout: %s %s niet %s!  A.u.b. later nog een keer proberen."
 
 msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
+msgstr "Fout: Er is geen locatie opgegeven om de opname op te slaan!"
 
 msgid "Error: Cannot find any images!"
 msgstr "Fout: Kan geen images vinden!"
@@ -9027,22 +9039,22 @@ msgid "IP"
 msgstr "IP"
 
 msgid "IP Address 1"
-msgstr ""
+msgstr "IP-adres 1"
 
 msgid "IP Address 2"
-msgstr ""
+msgstr "IP-adres 2"
 
 msgid "IP Address 3"
-msgstr ""
+msgstr "IP-adres 3"
 
 msgid "IP Address 4"
-msgstr ""
+msgstr "IP-adres 4"
 
 msgid "IP Address 5"
-msgstr ""
+msgstr "IP-adres 5"
 
 msgid "IP Address to be checked on timer activation."
-msgstr ""
+msgstr "IP-adres dat bij het activeren van de timer gecontroleerd moet worden."
 
 msgid "IP address"
 msgstr "IP-adres"
@@ -9145,9 +9157,8 @@ msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gema
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
 
-#, fuzzy
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Indien ingeschakeld en noodzakelijk, zal de plugin uw Dreambox uit Deep-Standby halen voor de bepaalde starttijd, om te controleren of het programma eerder begint."
+msgstr "Wanneer geactiveerd, zal de Plug-in uw ontvanger eerder dan de opgegeven Starttijd inschakelen om te controleren of het programma eventueel eerder begint."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Instellen, of en hoe de video-resolutie van uw ontvanger aan de resolutie van de video inhoud moet worden aangepast."
@@ -9223,7 +9234,7 @@ msgid "Igbo"
 msgstr "Igbo"
 
 msgid "Ignore"
-msgstr ""
+msgstr "Negeren"
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Negeer DVB-C subnetwerk"
@@ -9323,11 +9334,17 @@ msgstr "AIT aan opnames toevoegen"
 msgid "Include CI assignment"
 msgstr "CI toewijzingen gebruiken"
 
+msgid "Include DVB scan data"
+msgstr "DVB scan gegevens meenemen"
+
 msgid "Include ECM in http streams"
 msgstr "ECM toevoegen aan http-streams"
 
 msgid "Include EIT in http streams"
 msgstr "EIT toevoegen aan http-streams"
+
+msgid "Include EPG data"
+msgstr "EPG gegevens meenemen"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "SDT en BAT in http streams opnemen"
@@ -9346,6 +9363,9 @@ msgstr "Inclusief afstandsbediening data"
 
 msgid "Include screen load data"
 msgstr "Inclusief scherm data"
+
+msgid "Include timer data"
+msgstr ""
 
 msgid "Incorrect type service for PiP!"
 msgstr "Onjuist zendertype voor PiP!"
@@ -9819,6 +9839,9 @@ msgstr "Kazachs"
 msgid "Kazakhstan"
 msgstr "Kazachstan"
 
+msgid "Keep EPG history (in minutes)"
+msgstr "EPG historie bewaren (in minuten)"
+
 msgid "Keep service"
 msgstr "Huidige zender"
 
@@ -10196,7 +10219,7 @@ msgid "Load playlist"
 msgstr "Afspeellijst laden"
 
 msgid "Load tags from the timer and recordings"
-msgstr "Laad tags van timers en opnames"
+msgstr "Laad markeringen van Timers en opnames"
 
 msgid "Load unlinked userbouquets"
 msgstr "Niet gelinkte favorietenlijsten gebruiken"
@@ -10444,9 +10467,6 @@ msgstr "Magic lang"
 
 msgid "Main Menu"
 msgstr "Hoofdmenu"
-
-msgid "Maintain old EPG data for"
-msgstr "Oude EPG data bewaren voor"
 
 msgid "Maintain your multi boot device."
 msgstr "Uw multi-boot device handhaven."
@@ -11635,7 +11655,7 @@ msgid "No suitable sat tuner found!"
 msgstr "Geen passende satelliettuner gevonden!"
 
 msgid "No tags are set on these movies."
-msgstr "Geen markeringen geplaatst op deze opnames."
+msgstr "Geen markeringen geplaatst in deze opnames."
 
 msgid "No timeout"
 msgstr "Geen timeout"
@@ -11747,7 +11767,7 @@ msgid "NodeID: "
 msgstr "NodeID: "
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
-msgstr ""
+msgstr "Opgeven hoeveel IP-adressen op actieve verbindingen moeten worden gecontroleerd."
 
 msgid "None"
 msgstr "Geen"
@@ -11879,7 +11899,7 @@ msgid "Number"
 msgstr "Nummer"
 
 msgid "Number of IP Addresses"
-msgstr ""
+msgstr "Aantal IP-adressen"
 
 msgid "Number of digits in channel number"
 msgstr "Aantal cijfers in het zendernummer"
@@ -13138,7 +13158,7 @@ msgid "PowerTimer"
 msgstr "PowerTimer"
 
 msgid "PowerTimer Actions"
-msgstr ""
+msgstr "PowerTimer Acties"
 
 msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer uitschakelen"
@@ -13147,7 +13167,7 @@ msgid "PowerTimer Overview"
 msgstr "PowerTimer overzicht"
 
 msgid "PowerTimer Settings"
-msgstr ""
+msgstr "PowerTimer instellingen"
 
 msgid "PowerTimer Standby"
 msgstr "PowerTimer stand-by"
@@ -13819,19 +13839,19 @@ msgid "Record write error (no space on disk?)"
 msgstr "Opname schrijffout (onvoldoende ruimte op de HDD?)"
 
 msgid "RecordTimer"
-msgstr ""
+msgstr "OpnameTimer"
 
 msgid "RecordTimer Actions"
-msgstr ""
+msgstr "Timer Acties"
 
 msgid "RecordTimer Overview"
-msgstr ""
+msgstr "Timer overzicht"
 
 msgid "RecordTimer Settings"
-msgstr ""
+msgstr "Timer instellingen"
 
 msgid "RecordTimers"
-msgstr ""
+msgstr "Timers"
 
 msgid "Recordable media toolbox"
 msgstr "Opneembare media gereedschap"
@@ -13861,7 +13881,7 @@ msgid "Recording in progress"
 msgstr "Opnemen bezig"
 
 msgid "Recording location"
-msgstr ""
+msgstr "Opnamelocatie"
 
 msgid "Recording running"
 msgstr "Opname bezig"
@@ -14105,7 +14125,7 @@ msgstr "Verwijder alle timer data"
 msgid "Remove all user interface data"
 msgstr "Verwijder alle gebruikers interface data"
 
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Verwijder bookmark"
 
 msgid "Remove completed timers after (days)"
@@ -14195,7 +14215,7 @@ msgid "Repeated"
 msgstr "herhalen"
 
 msgid "Repeating event is currently active, what do you want to do?"
-msgstr ""
+msgstr "Een herhalende opname is op dit moment aktief! Wat wilt u doen?"
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "Een herhaalde timer is bezig met een opname... Wat wilt u doen?"
@@ -14211,7 +14231,7 @@ msgid ""
 "Replace all '%s' tags with:\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
-"Vervang alle '%s' tags door:\n"
+"Vervang alle '%s' markeringen door:\n"
 "(Opmerking: 'Annuleren' kan dit niet ongedaan maken!)"
 
 msgid "Require authentication for http streams"
@@ -14678,7 +14698,7 @@ msgid "Sat Finder"
 msgstr "Signaal zoeken"
 
 msgid "Sat-Sun"
-msgstr ""
+msgstr "Zat-Zon"
 
 msgid "Satellite"
 msgstr "Satelliet"
@@ -14729,7 +14749,7 @@ msgid "Save all changed settings and exit"
 msgstr "Alle gewijzigde instellingen opslaan en Exit"
 
 msgid "Save all changed tags and exit"
-msgstr "Alle gewijzigde tags opslaan en Exit"
+msgstr "Alle gewijzigde markeringen opslaan en Exit"
 
 msgid "Save and record"
 msgstr "Opslaan en opnemen"
@@ -14770,7 +14790,7 @@ msgid "Save the left folder list location on exit."
 msgstr "Linker mappenlijst locatie opslaan bij verlaten."
 
 msgid "Save the log changes and exit"
-msgstr ""
+msgstr "Log wijzigingen opslaan en exit"
 
 msgid "Save the right folder list location on exit."
 msgstr "Rechter mappenlijst locatie opslaan bij verlaten."
@@ -15020,10 +15040,10 @@ msgid "Select 'No' to save older events even after zapping or interrupting time 
 msgstr "Kiest u voor 'nee', dan worden de Timeshift-opnames niet verwijderd na het overschakelen naar een andere zender of na een onderbreking."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr ""
+msgstr "Kies 'Ja' wanneer een eindtijd noodzakelijk is voor deze timer."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr ""
+msgstr "Kies 'Ja' wanneer het netwerkverkeer gecontroleerd moet worden voor het activeren van de timer."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Kies 'Ja' wanneer de volumewijzigingen toegepast moeten worden op het Dolby geluid spoor."
@@ -15043,7 +15063,7 @@ msgstr ""
 "Bij 'Nee' wordt direct de actuele favorietenlijst geopend."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr ""
+msgstr "Kies 'Ja' om te controleren of bij het activeren van de timer de netwerkverbindingen via de opgegeven IP-adressen komen. Wanneer ja, dan wordt de timer gedeactiveerd."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bij 'Ja' ziet u een Mini-TV in de EPG."
@@ -15109,7 +15129,7 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Kies 'Ja' om de netwerkconfiguratie te herstellen naar default. Hierdoor zal de Ethernet poort worden geactiveerd (wanneer beschikbaar) en zal de ontvanger DHCP gebruiken. Alle andere netwerk interfaces worden verwijderd."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Kies 'Ja' om de geavanceerde instellingen te tonen."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
 msgstr ""
@@ -15276,8 +15296,11 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
 
-msgid "Select how often this timer is to be repeated."
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr ""
+
+msgid "Select how often this timer is to be repeated."
+msgstr "Opgeven hoe vaak deze timer herhaald moet worden."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Selecteer hoe snel de schotel beweegt tussen satellieten."
@@ -15294,7 +15317,7 @@ msgid "Select how your box will upgrade."
 msgstr "Selecteer hoe u de box wilt updaten."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Opgeven of een Eindtijd noodzakelijk is."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Met deze optie kunt u selecteren of de standaardwaarde voor een instellingsitem wordt weergegeven en, wanneer ja, waar deze wordt weergegeven t.o.v. de beschrijving."
@@ -15303,34 +15326,34 @@ msgid "Select if the screen menu path history is displayed and, if so, how it is
 msgstr "Selecteer of de menupad geschiedenis moet worden getoond en wanneer ja, hoe."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr ""
+msgstr "Opgeven of de naam en omschrijving van herhalende Timers gewijzigd moeten worden."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr ""
+msgstr "Opgeven of deze timer alleen binnen een tijdvenster actief mag zijn."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een vrijdag actief moet worden."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een maandag actief moet worden."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een zaterdag actief moet worden."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een zondag actief moet worden."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een donderdag actief moet worden."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een dinsdag actief moet worden."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Opgeven of deze Timer op een woensdag actief moet worden."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Opgeven of deze Timer herhaald moet worden."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wat moet er met de Timeshift opname gebeuren wanneer u overschakelt naar een andere zender."
@@ -15405,16 +15428,16 @@ msgid "Select the Yes / True response"
 msgstr "Selecteer het juiste antwoord"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Kies de zender waarvan u wilt opnemen:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Kies de zender die voor deze timer gebruikt moet worden."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Selecteer het karakter of de actie onder de cursor van het virtuele toetsenbord"
@@ -15429,19 +15452,19 @@ msgid "Select the currently highlighted service"
 msgstr "Kies de nu geselecteerde zender"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Kies de datum vanaf wanneer deze timer actief moet worden."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Kies de datum wanneer deze timer actief moet worden."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Kies de datum, wanneer deze timer moet starten."
 
 msgid "Select the day of the week that this timer will activate."
-msgstr ""
+msgstr "Selecteer de weekdag, wanneer deze timer actief moet worden."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Kies de vertraging voordat de timer actief moet worden."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
@@ -15463,11 +15486,14 @@ msgstr "Selecteer het gemarkeerde image en ga verder met de slot-selectie"
 msgid "Select the highlighted slot and reboot"
 msgstr "Selecteer het actuele slot en herstarten"
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr "Selecteer de positie van de tijdlijn in de Grafische EPG. Dit is de verticale lijn die de actuele tijd markeert. Bij een hoger getal zal de tijdlijn naar rechts schuiven en meer historie tonen en minder komende programma's."
+
 msgid "Select the locale from a menu"
 msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Selecteer de locatie waar de opname moeten worden opgeslagen:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Selecteer de fabrikant van uw SCR-apparaat. Wanneer deze niet in de lijst voorkomt, stelt u 'SCR' in op 'door gebruiker gedefinieerd' en geeft u vervolgens de parameters handmatig in volgens de specs van het apparaat."
@@ -15482,7 +15508,7 @@ msgid "Select the movie path"
 msgstr "Selecteer het opnamepad"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
+msgstr "Selecteer het netwerkverkeer waaronder de Timer moet worden geactiveerd als opgegeven. Bij netwerkverkeer boven deze waarde zal de Timer worden gedeactiveerd."
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Selecteer het volgende item in de lijst of ga met de cursor naar rechts"
@@ -15530,13 +15556,13 @@ msgid "Select the source of the default DNS settings."
 msgstr "De locatie van de default DNS instellingen selecteren."
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
+msgstr "Selecteer de markeringen die voor deze opname gebruikt moeten worden."
 
 msgid "Select the time after which this timer can start."
-msgstr ""
+msgstr "Kies de tijd waarna deze Timer mag starten."
 
 msgid "Select the time before which this timer should end."
-msgstr ""
+msgstr "Kies de tijd waarvoor deze Timer moet eindigen."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Stel een tijdvertraging in voor de knop repeat-functie."
@@ -15545,10 +15571,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Stel een tijdvertraging in tussen elke repeat-functie van de knop."
 
 msgid "Select the time when this timer should end."
-msgstr ""
+msgstr "Kies de tijd waarna deze Timer moet eindigen."
 
 msgid "Select the time when this timer will start."
-msgstr ""
+msgstr "Kies de tijd wanneer deze Timer moet starten."
 
 msgid "Select the time zone within the area or region."
 msgstr "Selecteer de tijdzone binnen uw gebied of regio."
@@ -15572,9 +15598,12 @@ msgid "Select the type of shutdown desired when the EnergySaver timer activates.
 msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie spaar timer actief wordt."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
-msgstr "Hoe wilt u de ontvanger afsluiten wanneer de Slaaptimer actief wordt."
+msgstr "Hoe wilt u de ontvanger afsluiten wanneer de SlaapTimer actief wordt."
 
 msgid "Select the type of this timer."
+msgstr "Selecteer het type Timer."
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -15587,10 +15616,10 @@ msgid "Select what action to take when reaching the end of a media file during p
 msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
 
 msgid "Select what do do after the timer has completed."
-msgstr ""
+msgstr "Selecteer wat er na het uitvoeren van de Timer moet gebeuren."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "Selecteer wat er na het uitvoeren van de Opname Timer moet gebeuren."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr ""
@@ -15619,7 +15648,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "Selecteer wat de omhoog/omlaag-knop moet doen."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "Selecteer waar de opname opgeslagen moet worden."
 
 msgid "Select wireless network"
 msgstr "Secteer draadloos netwerk"
@@ -16005,7 +16034,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Stel de tijd in waarna de tweede informatiebalk verdwijnt. Door op OK te drukken verdwijnt de informatiebalk."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
-msgstr "Stel de tijdsduur in voor het uitschakelen, inschakelen van Stand-by, of het herstarten van uw ontvanger. Deze tijdsduur wordt o.a. gebruikt voor een Timer, PowerTimer en Slaaptimer."
+msgstr "Stel de tijdsduur in voor het uitschakelen, inschakelen van Stand-by, of het herstarten van uw ontvanger. (Deze tijdsduur wordt o.a. gebruikt voor een Timer, PowerTimer, SlaapTimer enz.)"
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
@@ -16208,7 +16237,7 @@ msgid "Setup your LCD"
 msgstr "Wijzig LCD-scherm instellingen"
 
 msgid "Setup your LCD Skin"
-msgstr ""
+msgstr "De LCD-Skin instellen"
 
 msgid "Setup your OSD"
 msgstr ""
@@ -16556,7 +16585,7 @@ msgid "Show bouquet on launch"
 msgstr "Toon eerst de favorietenlijsten"
 
 msgid "Show build information"
-msgstr ""
+msgstr "Toon de build-informatie"
 
 msgid "Show channel number in InfoBar"
 msgstr "Toon zendernummers op de informatiebalk"
@@ -16783,7 +16812,7 @@ msgid "Show quickmenu..."
 msgstr "Open snel menu..."
 
 msgid "Show receiver image information"
-msgstr ""
+msgstr "Toon informatie over de image op uw ontvanger"
 
 msgid "Show record indicator"
 msgstr "Toon een opname indicatie in de zenderlijst"
@@ -16884,7 +16913,7 @@ msgid "Show the PowerTimer"
 msgstr "Toon de PowerTimer"
 
 msgid "Show the SleepTimer"
-msgstr "Toon de Slaaptimer"
+msgstr "Toon de SlaapTimer"
 
 msgid "Show the information on current event."
 msgstr "Toon de informatie van huidig programma."
@@ -17156,7 +17185,7 @@ msgid "Sleep Timers"
 msgstr "Slaaptimers"
 
 msgid "Sleep delay (in minutes)"
-msgstr ""
+msgstr "Slaap vertraging (in minuten)"
 
 msgid "Sleep long"
 msgstr "Sleep lang"
@@ -17168,34 +17197,34 @@ msgid "SleepTimer"
 msgstr "SlaapTimer"
 
 msgid "SleepTimer Actions"
-msgstr ""
+msgstr "SlaapTimer Acties"
 
 msgid "SleepTimer Overview"
-msgstr ""
+msgstr "SlaapTimer overzicht"
 
 msgid "SleepTimer Settings"
-msgstr "Slaaptimer instellingen"
+msgstr "SlaapTimer instellingen"
 
 msgid "SleepTimer action"
-msgstr "Slaaptimer actie"
+msgstr "SlaapTimer actie"
 
 msgid "SleepTimer activation delay"
-msgstr "Slaaptimer tijdsduur"
+msgstr "Vertraging voor activering SlaapTimer"
 
 #, python-format
 msgid "SleepTimer: %d minute remains."
 msgid_plural "SleepTimer: %d minutes remain."
-msgstr[0] "Slaaptimer: %d minuut resterend."
-msgstr[1] "Slaaptimer: %d minuten resterend."
+msgstr[0] "SlaapTimer: %d minuut resterend."
+msgstr[1] "SlaapTimer: %d minuten resterend."
 
 #, python-format
 msgid "SleepTimer: %d second remains."
 msgid_plural "SleepTimer: %d seconds remain."
-msgstr[0] "Slaaptimer: %d seconde resterend."
-msgstr[1] "Slaaptimer: %d seconden resterend."
+msgstr[0] "SlaapTimer: %d seconde resterend."
+msgstr[1] "SlaapTimer: %d seconden resterend."
 
 msgid "SleepTimer: Inactive."
-msgstr "Slaaptimer: Gedeactiveerd."
+msgstr "SlaapTimer: Gedeactiveerd."
 
 msgid "Sleeping"
 msgstr "Slapen"
@@ -17512,7 +17541,7 @@ msgstr "Reserveer schijfruimte voor opnames (in GB)"
 
 #, python-format
 msgid "Space total %s, used %s, free %s (%0.f%%)."
-msgstr ""
+msgstr "Opslagcapaciteit totaal %s, gebruikt %s, beschikbaar %s (%0.f%%)."
 
 msgid "Space used:"
 msgstr "Gebruikte ruimte:"
@@ -17590,7 +17619,7 @@ msgid "Start RDS interactive"
 msgstr "Start RDS interactief"
 
 msgid "Start date"
-msgstr ""
+msgstr "Startdatum"
 
 msgid "Start from the beginning"
 msgstr "Start vanaf het begin"
@@ -17638,7 +17667,7 @@ msgid "Starting Softcam"
 msgstr "Starten Softcam"
 
 msgid "Starting date"
-msgstr ""
+msgstr "Startdatum"
 
 msgid "Starting directory"
 msgstr "Start map"
@@ -18515,13 +18544,12 @@ msgstr ""
 "De buffertijd voor Timeshift groter is dan de opgegeven limiet in de instellingen.\n"
 "Wat wilt u doen?"
 
-#, fuzzy
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
-"VPS-Plugin kon niet controleren of het geselecteerde kanaal VPS ondersteunt.\n"
-"Wilt u VPS echt inschakelen?"
+"Deze zender ondersteund waarschijnlijk VPS.\n"
+"Wilt u VPS activeren?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Het commando voor opstarten uit standby zal meerdere keren verstuurd worden."
@@ -19196,9 +19224,6 @@ msgstr "Tussenpauze voor slideshow afbeeldingen"
 msgid "Time for next LCD scrolling"
 msgstr "Tijd tussen volgende scrollen LCD"
 
-msgid "Timeline marker"
-msgstr "Tijdlijn historie"
-
 msgid "Time jump avoid zero step size"
 msgstr "Tijdsprong vermijden nul stapgrootte"
 
@@ -19220,9 +19245,6 @@ msgstr "Tijd lang"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Benodigde tijd voor het maken van deze back-up was: %s"
-
-msgid "Timeline scale"
-msgstr "Tijdschaal"
 
 msgid "Time style"
 msgstr "Tijdstijl"
@@ -19248,11 +19270,17 @@ msgstr "Tijdlijn 24 uur"
 msgid "Timeline font size"
 msgstr "Tijdlijn lettergrootte"
 
+msgid "Timeline marker"
+msgstr "Tijdlijn historie"
+
+msgid "Timeline scale"
+msgstr "Tijdschaal"
+
 msgid "Timer Actions"
 msgstr "Timer acties"
 
 msgid "Timer Log Actions"
-msgstr ""
+msgstr "Timer-Log Acties"
 
 msgid "Timer Sanity Error"
 msgstr "Timerlogica fout"
@@ -19410,7 +19438,7 @@ msgid "Toggle display of the InfoBar"
 msgstr "Wissel de weergave van de Informatiebalk"
 
 msgid "Toggle enable/disable of the currently selected timer"
-msgstr ""
+msgstr "Activeer of deactiveer de geselecteerde Timer"
 
 msgid "Toggle hide/show of the current item"
 msgstr "Tonen of verbergen van het huidige item kiezen"
@@ -19883,7 +19911,7 @@ msgid "Unknown user: %d"
 msgstr "Onbekende gebruiker: %d"
 
 msgid "Unknown!"
-msgstr ""
+msgstr "Onbekend!"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Wanneer geactiveerd dan ziet u de zender als voorbeeld achter de EPG. Als u op 'OK' drukt wordt de gekozen zender getoond; na een tweede keer op 'OK', gaat u naar die zender. Drukt u op 'EXIT', dan gaat u terug naar de zender waar u vandaan kwam."
@@ -20158,6 +20186,9 @@ msgstr "Gebruik geolocatie om de huidige tijdzone locatie in te stellen"
 msgid "Use interface"
 msgstr "Netwerk interface inschakelen"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Gebruik officiële zendernummers"
 
@@ -20333,16 +20364,14 @@ msgid "VPN"
 msgstr "VPN"
 
 msgid "VPS Settings"
-msgstr ""
+msgstr "VPS instellingen"
 
 msgid "VPS enabled by default"
 msgstr "VPS standaard ingeschakeld"
 
-#, fuzzy
 msgid "VPS-Plugin Information"
-msgstr "Informatie"
+msgstr "VPS Plug-in informatie"
 
-#, fuzzy
 msgid ""
 "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
 "\n"
@@ -20367,39 +20396,38 @@ msgid ""
 "\n"
 "If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
 msgstr ""
-"De VPS-Plugin kan reageren op vertraging van de starttijd en/pf de eindtijd van een programma. VPS wordt alleen ondersteund door bepaalde kanalen!\n"
+"De VPS Plug-in kan reageren op vertraging van de start- en eindtijd van een programma. VPS wordt alleen ondersteund door bepaalde zenders!\n"
 "\n"
-"Als u VPS inschakelt, start de opname beslist op zijn laatst op het moment dat het programma daadwerkelijk begint. De opname kan eerder starten of langer duren.\n"
+"Wanneer u VPS inschakelt, start de opname alleen wanneer de zender het programma markeert als begonnen.\n"
 "\n"
-"Als u ook \"Recording controlled by channel\" inschakelt, zal de opname alleen beginnen, als het kanaal aangeeft dat het ptogramma loopt.\n"
+"Kiest u 'Ja' (Veilige modus), dan zal de opname uiterlijk starten op de Starttijd die u hebt opgegeven. De opname kan ook eerder starten of langer duren,\n"
+"maar nooit korter.\n"
 "\n"
-"\n"
-"Ondersteunde kanalen\n"
+"Ondersteunde zenders:\n"
 "\n"
 "Duitsland:\n"
-" ARD, ZDF, Sky and DMAX\n"
+"ARD, ZDF, Sky and DMAX\n"
 "\n"
 "Oostenrijk:\n"
-" ORF and Servus TV\n"
+"ORF and Servus TV\n"
 "\n"
 "Zwitzerland:\n"
-" SF\n"
+"SF\n"
 "\n"
 "Tsjechië:\n"
-" CT\n"
+"CT\n"
 "\n"
-"Als een timer handmatig is ingesteld (niet via de EPG), is het noodzakelijk om  VPS-Time in te stellen om VPS in te schakelen. VPS-Time (ook bekend als PDC) is de eerst gepubliceerde starttijd, zoals die b.v. in tijdschriften staat. Als u een VPS-Time instelt, moet u de timer naam leeg laten."
+"Als een Timer handmatig is ingesteld (niet via de EPG), is het noodzakelijk om VPS-Time in te stellen om VPS in te schakelen. VPS-Time (ook bekend als PDC) is de eerst gepubliceerde starttijd, zoals die b.v. in tijdschriften staat. Als u een VPS-Time instelt, moet u de timer naam leeg laten."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
 msgstr "VPS-Plugin controleert of het kanaal VPS ondersteunt..."
 
-#, fuzzy
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
-"VPS-Plugin kon niet controleren of het geselecteerde kanaal VPS ondersteunt.\n"
-"Wilt u VPS echt inschakelen?"
+"De VPS Plug-in kon niet controleren of het geselecteerde kanaal VPS ondersteunt.\n"
+"VPS (of PDC) wordt in Nederland niet meer gebruikt, wilt u VPS toch inschakelen?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
@@ -20703,6 +20731,9 @@ msgstr "Volume aanpassing zender selectie"
 msgid "Volume Adjust Settings"
 msgstr "Volume Offset instellingen"
 
+msgid "Volume display timer"
+msgstr ""
+
 msgid "Volume down"
 msgstr "Volume -"
 
@@ -20862,10 +20893,10 @@ msgid "Wednesday"
 msgstr "Woensdag"
 
 msgid "Weekdays"
-msgstr ""
+msgstr "Weekdagen"
 
 msgid "Weekends"
-msgstr ""
+msgstr "Weekenden"
 
 msgid "Weekly"
 msgstr "Wekelijks"
@@ -21152,7 +21183,7 @@ msgstr ""
 "A.u.b. alleen activeren, wanneer u weet wat u doet!"
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr ""
+msgstr "Wanneer 'Ja' zal VPS worden ingeschakeld bij directe opnamen (en stoppen na het actuele programma), wanneer de zender VPS ondersteund."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u een back-up maken van de instellingen?"
@@ -21308,7 +21339,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Yes (safe mode)"
-msgstr ""
+msgstr "Ja (veilige modus)"
 
 msgid "Yes to all"
 msgstr "Ja op alles"
@@ -21760,7 +21791,7 @@ msgid "ZAP"
 msgstr "ZAP"
 
 msgid "ZAP as PiP"
-msgstr ""
+msgstr "ZAP als PiP"
 
 msgid "ZOOM"
 msgstr "ZOOM"
@@ -22898,9 +22929,6 @@ msgstr "Verwijder alle 'nieuw gevonden' markeringen"
 msgid "remove before this position"
 msgstr "Verwijder voor deze positie"
 
-msgid "remove bookmark"
-msgstr "Bookmark verwijderen"
-
 msgid "remove bouquet from parental protection"
 msgstr "Kinderslot van favorietenlijst verwijderen"
 
@@ -23028,7 +23056,7 @@ msgid "show all cards"
 msgstr "Toon alle kaarten"
 
 msgid "show all tags"
-msgstr "Laat alle tags zien"
+msgstr "Laat alle markeringen zien"
 
 msgid "show alternatives"
 msgstr "Alternatieven weergeven"
@@ -23404,6 +23432,15 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Hoe lang moeten afgelopen programma's zichtbaar moet blijven in de EPG. Dit is vooral handig indien u informatie wenst over een programma dat net afgelopen of vertraagd is. U kunt kiezen tussen 0-120 min in stappen van 15 min."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Hoeveel minuten wilt u op de tijdlijn 'terug in de tijd' kijken?"
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Oude EPG data bewaren voor"
 
 #~ msgid "<Unknown>"
 #~ msgstr "<onbekend>"

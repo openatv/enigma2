@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: Yon Esmit <yonesmit@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2379,7 +2379,7 @@ msgid "Add an AutoTimer for the current event"
 msgstr "Añadir autotemporizador para el programa actual"
 
 # MovieSelection.py
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Añadir marcador"
 
 msgid "Add current folder to bookmarks"
@@ -4479,6 +4479,9 @@ msgstr "Seleccionar la etiqueta que identificará a este dispositivo en el servi
 msgid "Choose dvb wait delay for ci response."
 msgstr "Elegir el retardo de espera dvb para la respuesta ci."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Elegir la frecuencia con la que se conectará al servidor IceTV para comprobar si hay actualizaciones."
 
@@ -4832,9 +4835,6 @@ msgstr "Configuar retraso adicional para mejorar la sincronización de subtítul
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Configurar el ajuste por defecto para los nuevos temporizadores. Necesita un reinicio después de cambiarlo."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Configura durante cuántos minutos siguen visibles los programas terminados en el EPG. Es útil cuando necesitas información de un programa que acaba de terminar o se ha retrasado."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Configurar para cada tipo de grabación un aviso sobre las grabaciones activas cuando se intente reiniciar el sistema o la interfaz."
 
@@ -5010,10 +5010,6 @@ msgstr "Configurar el tiempo sin uso tras el cual el disco duro irá a modo de e
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Configurar la altura de las letras de la fuente TrueType utilizadas para el teletexto."
-
-#
-msgid "Configure the history of time that will be presented."
-msgstr "Configurar como será presentando el historial de tiempo."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Configurar la alineación horizontal de los subtítulos."
@@ -7371,6 +7367,12 @@ msgstr "Habilitar las opciones de ajuste avanzadas de HDMI-CEC."
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo de registro de depuración."
 
@@ -7382,6 +7384,9 @@ msgstr "Habilitar esta opción para añadir los datos del control remoto al arch
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
+
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Habilitar esta opción si su sistema de antena necesita energía"
@@ -7464,14 +7469,14 @@ msgstr[1] "Temporizador de energía: faltan %d segundos."
 msgid "Energy Timer: Inactive."
 msgstr "Temporizador de energía: Inactivo."
 
+msgid "Energy timer"
+msgstr "Temporizador de energía"
+
 msgid "EnergySaver action"
 msgstr "Acción de ahorro de energía"
 
 msgid "EnergySaver activation delay"
 msgstr "Retraso en la activación del ahorro de energía"
-
-msgid "Energy timer"
-msgstr "Temporizador de energía"
 
 msgid "EnergyTimer Actions"
 msgstr "Acciones de Temporizador de energía"
@@ -9802,11 +9807,17 @@ msgstr "Incluir AIT en grabaciones"
 msgid "Include CI assignment"
 msgstr "Incluir asignación CI"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "Incluir ECM en retransmisiones http"
 
 msgid "Include EIT in http streams"
 msgstr "Incluir EIT en retransmisiones http"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr ""
@@ -9828,6 +9839,9 @@ msgid "Include remote control data"
 msgstr "Configurar el tipo de mando a distancia"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include timer data"
 msgstr ""
 
 msgid "Incorrect type service for PiP!"
@@ -10356,6 +10370,9 @@ msgid "Kazakh"
 msgstr ""
 
 msgid "Kazakhstan"
+msgstr ""
+
+msgid "Keep EPG history (in minutes)"
 msgstr ""
 
 msgid "Keep service"
@@ -11070,9 +11087,6 @@ msgstr "Mágico largo"
 #
 msgid "Main Menu"
 msgstr "Menú principal"
-
-msgid "Maintain old EPG data for"
-msgstr "Conservar los datos EPG antiguos por"
 
 msgid "Maintain your multi boot device."
 msgstr "Mantenga su dispositivo de arranque múltiple."
@@ -15182,7 +15196,7 @@ msgid "Remove all user interface data"
 msgstr ""
 
 #
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Borrar marcador"
 
 #
@@ -16489,6 +16503,9 @@ msgstr "Seleccionar los archivos a excluir de la copia de seguridad"
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el copiado de seguridad"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -16679,6 +16696,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr ""
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Seleccione los archivos que desea excluir de la copia de seguridad"
@@ -16794,6 +16814,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 #
@@ -20709,10 +20732,6 @@ msgstr "Vista de temporizadores"
 msgid "Time for next LCD scrolling"
 msgstr "Tiempo para el próximo scroll del LCD"
 
-#, fuzzy
-msgid "Timeline marker"
-msgstr "Editor de temporizador"
-
 #
 msgid "Time jump avoid zero step size"
 msgstr "Evitar ruido de imagen durante el tiempo de salto"
@@ -20741,9 +20760,6 @@ msgstr "Historial de temporizadores"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr ""
-
-msgid "Timeline scale"
-msgstr "Escala de tiempo"
 
 #, fuzzy
 msgid "Time style"
@@ -20774,6 +20790,13 @@ msgstr "Cronología 24 horas"
 #
 msgid "Timeline font size"
 msgstr "Tamaño de fuente de la cronología"
+
+#, fuzzy
+msgid "Timeline marker"
+msgstr "Editor de temporizador"
+
+msgid "Timeline scale"
+msgstr "Escala de tiempo"
 
 #, fuzzy
 msgid "Timer Actions"
@@ -21799,6 +21822,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "Usar interfaz"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Usar la numeración oficial de canales"
 
@@ -22395,6 +22421,9 @@ msgid "Volume Adjust Service Selection"
 msgstr ""
 
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume display timer"
 msgstr ""
 
 msgid "Volume down"
@@ -24825,10 +24854,6 @@ msgstr "Borrar todas las marcas nuevas encontradas"
 msgid "remove before this position"
 msgstr "Borrar antes de esta posición"
 
-#
-msgid "remove bookmark"
-msgstr "Borrar marcador"
-
 msgid "remove bouquet from parental protection"
 msgstr "eliminar grupo del control paterno"
 
@@ -25399,6 +25424,16 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Configura durante cuántos minutos siguen visibles los programas terminados en el EPG. Es útil cuando necesitas información de un programa que acaba de terminar o se ha retrasado."
+
+#
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Configurar como será presentando el historial de tiempo."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Conservar los datos EPG antiguos por"
 
 #
 #~ msgid "<Unknown>"

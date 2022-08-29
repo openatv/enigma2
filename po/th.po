@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -2321,7 +2321,7 @@ msgid "Add an AutoTimer for the current event"
 msgstr ""
 
 #, fuzzy
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "เพิ่มบุ๊คมาร์ค"
 
 msgid "Add current folder to bookmarks"
@@ -4353,6 +4353,9 @@ msgstr ""
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
@@ -4701,9 +4704,6 @@ msgstr ""
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr ""
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr ""
 
@@ -4872,9 +4872,6 @@ msgid "Configure the hard disk drive to go to standby after the specified idle t
 msgstr ""
 
 msgid "Configure the height of the TrueType font letters used for teletext."
-msgstr ""
-
-msgid "Configure the history of time that will be presented."
 msgstr ""
 
 msgid "Configure the horizontal alignment of the subtitles."
@@ -7135,6 +7132,12 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
@@ -7145,6 +7148,9 @@ msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
@@ -7225,13 +7231,13 @@ msgstr[1] ""
 msgid "Energy Timer: Inactive."
 msgstr ""
 
+msgid "Energy timer"
+msgstr ""
+
 msgid "EnergySaver action"
 msgstr ""
 
 msgid "EnergySaver activation delay"
-msgstr ""
-
-msgid "Energy timer"
 msgstr ""
 
 msgid "EnergyTimer Actions"
@@ -9385,10 +9391,16 @@ msgstr ""
 msgid "Include CI assignment"
 msgstr ""
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr ""
 
 msgid "Include EIT in http streams"
+msgstr ""
+
+msgid "Include EPG data"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -9409,6 +9421,9 @@ msgid "Include remote control data"
 msgstr "กดปุ่ม OK ที่รีโมทเพื่อทำงานต่อ"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include timer data"
 msgstr ""
 
 msgid "Incorrect type service for PiP!"
@@ -9908,6 +9923,9 @@ msgid "Kazakh"
 msgstr ""
 
 msgid "Kazakhstan"
+msgstr ""
+
+msgid "Keep EPG history (in minutes)"
 msgstr ""
 
 #, fuzzy
@@ -10572,9 +10590,6 @@ msgstr "ข้อมูลการตั้งเวลา"
 
 msgid "Main Menu"
 msgstr "เมนูหลัก"
-
-msgid "Maintain old EPG data for"
-msgstr ""
 
 msgid "Maintain your multi boot device."
 msgstr ""
@@ -14352,7 +14367,7 @@ msgid "Remove all user interface data"
 msgstr ""
 
 #, fuzzy
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "ลบบุ๊คมาร์ค"
 
 msgid "Remove completed timers after (days)"
@@ -15559,6 +15574,9 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr "เลือกไฟล์/โฟล์เดอร์ที่จะสำรอง"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -15743,6 +15761,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr ""
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "เลือกพาธของภาพยนต์"
@@ -15858,6 +15879,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select video input with up/down buttons"
@@ -19465,10 +19489,6 @@ msgstr "ตั้งเวลา"
 msgid "Time for next LCD scrolling"
 msgstr ""
 
-#, fuzzy
-msgid "Timeline marker"
-msgstr "ตั้งเวลา"
-
 msgid "Time jump avoid zero step size"
 msgstr ""
 
@@ -19491,10 +19511,6 @@ msgstr "ข้อมูลการตั้งเวลา"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr ""
-
-#, fuzzy
-msgid "Timeline scale"
-msgstr "เลือกการตั้งเวลา"
 
 #, fuzzy
 msgid "Time style"
@@ -19522,6 +19538,14 @@ msgstr ""
 
 msgid "Timeline font size"
 msgstr ""
+
+#, fuzzy
+msgid "Timeline marker"
+msgstr "ตั้งเวลา"
+
+#, fuzzy
+msgid "Timeline scale"
+msgstr "เลือกการตั้งเวลา"
 
 #, fuzzy
 msgid "Timer Actions"
@@ -20457,6 +20481,9 @@ msgstr ""
 msgid "Use interface"
 msgstr "เลือกใช้อินเตอร์เฟซนี้"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr ""
 
@@ -20982,6 +21009,9 @@ msgid "Volume Adjust Service Selection"
 msgstr ""
 
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume display timer"
 msgstr ""
 
 msgid "Volume down"
@@ -23143,9 +23173,6 @@ msgstr "ลบเครื่องหมาย\"ใหม่\" ออกทั�
 
 msgid "remove before this position"
 msgstr "ลบก่อนหน้าตำแหน่งนี้ออก"
-
-msgid "remove bookmark"
-msgstr "ลบบุ๊คมาร์ค"
 
 msgid "remove bouquet from parental protection"
 msgstr ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-25 18:37+0000\n"
+"POT-Creation-Date: 2022-08-28 18:18+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2351,7 +2351,7 @@ msgid "Add an AutoTimer for the current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
 #
-msgid "Add bookmark"
+msgid "Add Bookmark"
 msgstr "Imi eklemek"
 
 msgid "Add current folder to bookmarks"
@@ -4445,6 +4445,9 @@ msgstr "IceTV hizmetlerinde bu cihazı tanımlayacak bir etiket seçin."
 msgid "Choose dvb wait delay for ci response."
 msgstr "Ci yanıtı için dvb bekleme gecikmesini seçin."
 
+msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Güncellemeleri kontrol etmek için IceTV sunucusuna ne sıklıkla bağlanacağınızı seçin."
 
@@ -4805,9 +4808,6 @@ msgstr "Altyazı eşlemesini iyileştirmek için ek gecikme yapılandır."
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Yeni zamanlayıcılar için varsayılan ayarları yapılandırın. Değiştirdikten sonra yeniden başlatmanız gerekir."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Biten olayların EPGde kaç dakika görünmesi gerektiğini yapılandır. Henüz bitmiş veya geciktirilmiş olay hakkında bilgi gerekince yararlıdır."
-
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Kutuyu veya GUI'yi yeniden başlatmaya çalışırken, hangi kayıt türlerinin aktif kayıtlarla ilgili bir uyarı gösterildiğini yapılandırın."
 
@@ -4979,9 +4979,6 @@ msgstr "Belirtilen boşta kalma süresinden sonra bekleme moduna geçmek için s
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Teletekst için kullanılan TrueType yazı tipi harflerinin yüksekliğini yapılandırın."
-
-msgid "Configure the history of time that will be presented."
-msgstr "Sunulacak zamanın geçmişini yapılandırın."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Altyazının yatay hizalanmasını yapılandırın."
@@ -7323,6 +7320,12 @@ msgstr "Gelişmiş HDMI-CEC ayar seçeneklerini etkinleştirin."
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına eylem haritası / uzaktan kumanda eşleme verileri eklemek için bu seçeneği etkinleştirin."
 
+msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra EPG data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına klavye tuş haritası verilerini eklemek için bu seçeneği etkinleştirin."
 
@@ -7334,6 +7337,9 @@ msgstr "Hata ayıklama günlük dosyasına uzaktan kontrol verileri eklemek içi
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına ekran adları ve çözünürlük verileri eklemek için bu seçeneği etkinleştirin."
+
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Anten sisteminiz güç gerektiriyorsa bu ayarı etkinleştirin"
@@ -7416,14 +7422,14 @@ msgstr[0] "Enerji zamanlayıcısı: %d saniye kaldı."
 msgid "Energy Timer: Inactive."
 msgstr "Enerji zamanlayıcısı: Aktif değil."
 
+msgid "Energy timer"
+msgstr "Enerji zamanlayıcı"
+
 msgid "EnergySaver action"
 msgstr "Enerji tasarrufu eylemi"
 
 msgid "EnergySaver activation delay"
 msgstr "Enerji tasarrufu etkinleştirme gecikmesi"
-
-msgid "Energy timer"
-msgstr "Enerji zamanlayıcı"
 
 msgid "EnergyTimer Actions"
 msgstr ""
@@ -9660,11 +9666,17 @@ msgstr "AIT'yi kayıtlara dahil et"
 msgid "Include CI assignment"
 msgstr "CI ödevi ekle"
 
+msgid "Include DVB scan data"
+msgstr ""
+
 msgid "Include ECM in http streams"
 msgstr "ECM http akımına dahil edilsin"
 
 msgid "Include EIT in http streams"
 msgstr "EIT http akımına dahil edilsin"
+
+msgid "Include EPG data"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr ""
@@ -9683,6 +9695,9 @@ msgstr "Uzaktan kumanda verilerini dahil et"
 
 msgid "Include screen load data"
 msgstr "Ekran yükleme verilerini dahil et"
+
+msgid "Include timer data"
+msgstr ""
 
 msgid "Incorrect type service for PiP!"
 msgstr "PiP yanlış tip hizmet!"
@@ -10191,6 +10206,9 @@ msgstr "Kazak"
 
 msgid "Kazakhstan"
 msgstr "Kazakistan"
+
+msgid "Keep EPG history (in minutes)"
+msgstr ""
 
 #
 msgid "Keep service"
@@ -10864,9 +10882,6 @@ msgstr "Sihirli uzun"
 #
 msgid "Main Menu"
 msgstr "Ana menü"
-
-msgid "Maintain old EPG data for"
-msgstr "Eski EPG bilgisini tut"
 
 msgid "Maintain your multi boot device."
 msgstr "Çoklu önyükleme cihazınızı koruyun."
@@ -14798,7 +14813,7 @@ msgid "Remove all user interface data"
 msgstr "Tüm kullanıcı arayüzü verilerini kaldır"
 
 #
-msgid "Remove bookmark"
+msgid "Remove Bookmark"
 msgstr "Yer işaretini kaldır"
 
 msgid "Remove completed timers after (days)"
@@ -16047,6 +16062,9 @@ msgstr "Yedeklemeden hariç tutulacak dosyaları seçin"
 msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosya/klasörleri seç"
 
+msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -16235,6 +16253,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr "Vurgulanan yuvayı seçin ve yeniden başlatın"
 
+msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Bir menüden yerel ayarı seçin"
 
@@ -16348,6 +16369,9 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Dik zamanlayıcı etkinleştirildiğinde istenen kapatma türünü seçin."
 
 msgid "Select the type of this timer."
+msgstr ""
+
+msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 #
@@ -20077,9 +20101,6 @@ msgstr "Slayt Gösterisi Zamanı"
 msgid "Time for next LCD scrolling"
 msgstr "Bir sonraki LCD kaydırma zamanı"
 
-msgid "Timeline marker"
-msgstr "Zaman geçmişi"
-
 msgid "Time jump avoid zero step size"
 msgstr "Zaman atlama sıfır adım boyutu kaçının"
 
@@ -20102,9 +20123,6 @@ msgstr "Zaman uzun"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Bu işlem için gereken süre: %s"
-
-msgid "Timeline scale"
-msgstr "Zaman Ölçeği"
 
 msgid "Time style"
 msgstr "Zaman tarzı"
@@ -20129,6 +20147,12 @@ msgstr "Zaman Çizelgesi 24 Saat"
 
 msgid "Timeline font size"
 msgstr "Zaman-satırı yazı tipi boyutu"
+
+msgid "Timeline marker"
+msgstr "Zaman geçmişi"
+
+msgid "Timeline scale"
+msgstr "Zaman Ölçeği"
 
 msgid "Timer Actions"
 msgstr "Zamanlayıcı Eylemleri"
@@ -21110,6 +21134,9 @@ msgstr "Geçerli saat dilimi konumunu ayarlamak için coğrafi konumu kullanın"
 msgid "Use interface"
 msgstr "Arayüzü Kullan"
 
+msgid "Use logarithmic steps"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Resmi kanal numaralama kullan"
 
@@ -21665,6 +21692,9 @@ msgstr "Ses Ayarı Servis Seçimi"
 
 msgid "Volume Adjust Settings"
 msgstr "Ses Ayarı Ayarları"
+
+msgid "Volume display timer"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Ses azalt"
@@ -24001,10 +24031,6 @@ msgstr "yeni bulunan işaretlerin tümünü kaldır"
 msgid "remove before this position"
 msgstr "bu konumdan öncekileri kaldır"
 
-#
-msgid "remove bookmark"
-msgstr "yer imini kaldır"
-
 msgid "remove bouquet from parental protection"
 msgstr "buketleri ebeveyn korumasından çıkarın"
 
@@ -24555,6 +24581,15 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#~ msgstr "Biten olayların EPGde kaç dakika görünmesi gerektiğini yapılandır. Henüz bitmiş veya geciktirilmiş olay hakkında bilgi gerekince yararlıdır."
+
+#~ msgid "Configure the history of time that will be presented."
+#~ msgstr "Sunulacak zamanın geçmişini yapılandırın."
+
+#~ msgid "Maintain old EPG data for"
+#~ msgstr "Eski EPG bilgisini tut"
 
 #
 #~ msgid "<Unknown>"

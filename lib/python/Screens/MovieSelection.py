@@ -84,6 +84,7 @@ l_desc = [
 
 config.movielist.description = ConfigSelection(default=MovieList.SHOW_DESCRIPTION, choices=l_desc)
 
+
 def defaultMoviePath():
 	result = config.usage.default_path.value
 	if not isdir(result):
@@ -259,7 +260,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		if not timeshiftEnabled:
-			InfoBarBase.__init__(self) # For ServiceEventTracker
+			InfoBarBase.__init__(self)  # For ServiceEventTracker
 		ProtectedScreen.__init__(self)
 		self.protectContextMenu = True
 
@@ -312,7 +313,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 
-		self.playGoTo = None #1 - preview next item / -1 - preview previous
+		self.playGoTo = None  # 1 - preview next item / -1 - preview previous
 
 		title = _("Movie selection")
 		self.setTitle(title)
@@ -439,7 +440,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"copy": _("Copy"),
 				"reset": _("Reset"),
 				"tags": _("Tags"),
-				"addbookmark": _("Add bookmark"),
+				"addbookmark": _("Add Bookmark"),
 				"bookmarks": _("Bookmarks"),
 				"rename": _("Rename"),
 				"gohome": _("Home"),
@@ -1445,7 +1446,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def tageditorCallback(self, tags):
 		return
 
-
 	def do_rename(self):
 		item = self.getCurrentSelection()
 		if not canMove(item):
@@ -1994,7 +1994,6 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		self['description'] = Label("")
 		self["status"] = StaticText()
 
-
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
 				"red": self.cancelClick,
@@ -2011,9 +2010,9 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				(_("Create directory"), csel.do_createdir),
 				(_("Sort by") + "...", csel.selectSortby)]
 		if csel.exist_bookmark():
-			menu.append((_("Remove bookmark"), csel.do_addbookmark))
+			menu.append((_("Remove Bookmark"), csel.do_addbookmark))
 		else:
-			menu.append((_("Add bookmark"), csel.do_addbookmark))
+			menu.append((_("Add Bookmark"), csel.do_addbookmark))
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
