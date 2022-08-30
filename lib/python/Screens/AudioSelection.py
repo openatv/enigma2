@@ -115,12 +115,12 @@ class AudioSelection(Screen, ConfigListScreen):
 				else:
 					self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call=False)
-				conflist.append(getConfigListEntry(_("AC3 downmix"), self.settings.downmix_ac3, None))
+				conflist.append(getConfigListEntry(_("AC3 down mix"), self.settings.downmix_ac3, None))
 
 			if BoxInfo.getItem("CanDownmixDTS"):
 				self.settings.downmix_dts = ConfigOnOff(default=config.av.downmix_dts.value)
 				self.settings.downmix_dts.addNotifier(self.changeDTSDownmix, initial_call=False)
-				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
+				conflist.append(getConfigListEntry(_("DTS down mix"), self.settings.downmix_dts, None))
 
 			if BoxInfo.getItem("CanDownmixAAC"):
 				if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
@@ -132,13 +132,13 @@ class AudioSelection(Screen, ConfigListScreen):
 				else:
 					self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call=False)
-				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
+				conflist.append(getConfigListEntry(_("AAC down mix"), self.settings.downmix_aac, None))
 
 			if BoxInfo.getItem("CanDownmixAACPlus"):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 				self.settings.downmix_aacplus = ConfigSelection(choices=choice_list, default=config.av.downmix_aacplus.value)
 				self.settings.downmix_aacplus.addNotifier(self.changeAACDownmixPlus, initial_call=False)
-				conflist.append(getConfigListEntry(_("AAC plus downmix"), self.settings.downmix_aacplus, None))
+				conflist.append(getConfigListEntry(_("AAC plus down mix"), self.settings.downmix_aacplus, None))
 
 			if BoxInfo.getItem("CanAACTranscode"):
 				choice_list = BoxInfo.getItem("CanAACTranscode")
@@ -175,13 +175,13 @@ class AudioSelection(Screen, ConfigListScreen):
 					choice_list = [("downmix", _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps", _("controlled by HDMI")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 				self.settings.dtshd = ConfigSelection(choices=choice_list, default=config.av.dtshd.value)
 				self.settings.dtshd.addNotifier(self.setDTSHD, initial_call=False)
-				conflist.append(getConfigListEntry(_("DTS HD downmix"), self.settings.dtshd, None))
+				conflist.append(getConfigListEntry(_("DTS HD down mix"), self.settings.dtshd, None))
 
 			if BoxInfo.getItem("CanWMAPRO"):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 				self.settings.wmapro = ConfigSelection(choices=choice_list, default=config.av.wmapro.value)
 				self.settings.wmapro.addNotifier(self.setWMAPro, initial_call=False)
-				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
+				conflist.append(getConfigListEntry(_("WMA Pro down mix"), self.settings.wmapro, None))
 
 			if BoxInfo.getItem("CanBTAudio"):
 				self.settings.btaudio = ConfigOnOff(default=config.av.btaudio.value)
@@ -256,7 +256,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
-						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
+						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
 							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
@@ -600,7 +600,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
 				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
-		elif sub[0] == 1: # teletext
+		elif sub[0] == 1:  # teletext
 			menu = [
 				getConfigMenuItem("config.subtitles.ttx_subtitle_colors"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
@@ -661,19 +661,19 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		maxDelay = int(configItem.choices[len(configItem.choices) - 1])
 
 		if number == 1:
-			delay -= 45000 # -0.5sec
+			delay -= 45000  # -0.5sec
 		elif number == 3:
-			delay += 45000 # +0.5sec
+			delay += 45000  # +0.5sec
 		elif number == 4:
-			delay -= 90000 * 5 # -5sec
+			delay -= 90000 * 5  # -5sec
 		elif number == 6:
-			delay += 90000 * 5 # +5sec
+			delay += 90000 * 5  # +5sec
 		elif number == 7:
-			delay -= 90000 * 30 # -30sec
+			delay -= 90000 * 30  # -30sec
 		elif number == 9:
-			delay += 90000 * 30 # +30sec
+			delay += 90000 * 30  # +30sec
 		elif number == 0:
-			delay = 0 # reset to "No delay"
+			delay = 0  # reset to "No delay"
 
 		delay = min(max(delay, minDelay), maxDelay)
 

@@ -56,7 +56,7 @@ class FSBLUpdater(Console):
 		return False
 
 	def __init__(self, session, boxtype):
-		Console.__init__(self, session, title=_("!! Bootloader Upgrade !!"), cmdlist=(self.FLASH_FSBL_BINARY,), finishedCallback=None, closeOnSuccess=False)
+		Console.__init__(self, session, title=_("!! Boot loader Upgrade !!"), cmdlist=(self.FLASH_FSBL_BINARY,), finishedCallback=None, closeOnSuccess=False)
 		self.skinName = "Console"
 		self._boxtype = boxtype
 
