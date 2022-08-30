@@ -366,7 +366,7 @@ class TimeshiftLocationBox(LocationBox):
 		LocationBox.__init__(
 				self,
 				session,
-				text=_("Where to save temporary timeshift recordings?"),
+				text=_("Where to save temporary time shift recordings?"),
 				currDir=config.usage.timeshift_path.value,
 				bookmarks=config.usage.allowed_timeshift_paths,
 				autoAdd=True,

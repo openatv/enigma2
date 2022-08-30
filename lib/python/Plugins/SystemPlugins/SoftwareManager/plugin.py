@@ -370,7 +370,7 @@ class PluginManager(Screen, PackageInfoHandler):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packetlist. Please try again."), "", "", statuspng, divpng, None, ""))
+				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packet list. Please try again."), "", "", statuspng, divpng, None, ""))
 			self["list"].style = "default"
 			self["list"].setList(self.statuslist)
 
@@ -1128,7 +1128,7 @@ class UpdatePlugin(Screen):
 				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n" + _("For more information see https://www.opena.tv")  # + "\n\n" + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				default = False
 			elif "rot.png" in tmpStatus:
-				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n" + _("For more information see https://www.opena.tv")  # + "\n\n" + _("Last Status Date") + ": " + statusDate
+				message = _("Update is reported as faulty !!") + "\n" + _("Aborting update progress") + "\n" + _("For more information see https://www.opena.tv")  # + "\n\n" + _("Last Status Date") + ": " + statusDate
 				default = False
 				doUpdate = False
 		except:
@@ -1554,14 +1554,14 @@ class PacketManager(Screen, NumericalTextInput):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), "", _("Trying to download a new packetlist. Please wait..."), "", statuspng, divpng))
+				self.statuslist.append((_("Package list update"), "", _("Trying to download a new packet list. Please wait..."), "", statuspng, divpng))
 				self["list"].setList(self.statuslist)
 			elif status == "error":
 				if isfile(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packetlist. Please try again."), "", statuspng, divpng))
+				self.statuslist.append((_("Error"), "", _("An error occurred while downloading the packet list. Please try again."), "", statuspng, divpng))
 				self["list"].setList(self.statuslist)
 
 	def rebuildList(self):
@@ -1812,7 +1812,7 @@ class BackupHelper(Screen):
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.callLater(self.doAction)
-	
+
 	def doAction(self):
 		doClose = True
 		if self.args == 1:
@@ -1878,7 +1878,6 @@ class BackupHelper(Screen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 		self.close()
-
 
 	def backupDone(self, retval=None):
 		message = _("Backup completed.") if retval else _("Backup failed.")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -182,7 +182,7 @@ msgstr " és"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " elérhető !!\n"
 "\n"
@@ -1329,7 +1329,7 @@ msgstr "A(z) '%s' tartalmaz %d fájlt és %d alkönyvtárat.\n"
 msgid "'%s' not installed and no known package"
 msgstr "A(z) '%s' nincs telepítve, és nincs ismert csomag"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a rendszer Timeshift fájlt törölni."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1928,7 +1928,7 @@ msgstr "< Alapértelmezett Picon-al >"
 msgid "< User Skin >"
 msgstr "< Felhasználói kinézet >"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Felvételek listájának aktuális helye>"
 
 msgid "<Default movie location>"
@@ -1947,7 +1947,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Összeomlási napló %s létrehozva a '%s'"
 
 msgid "A file from media is in use!"
@@ -2163,7 +2163,7 @@ msgstr "Pszeudo felvétel megszakítása.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Streaming megszakítása.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Frissítési folyamat megszakítása"
 
 msgid "About"
@@ -2205,7 +2205,7 @@ msgstr "Be/Ki gomb röviden lenyomva"
 msgid "Activate"
 msgstr "Bekapcsolás"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "HbbTV Aktiválása (Piros gomb)"
 
 msgid "Activate MAC address configuration"
@@ -2238,10 +2238,10 @@ msgstr "Jobb oldali fájllista aktiválása forrásként"
 msgid "Activate the configured network settings."
 msgstr "A megadott hálózati beállítások aktiválása."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Timeshift végének aktiválása"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Timeshift végének aktiválása és megállítás"
 
 msgid "Active"
@@ -2258,6 +2258,9 @@ msgstr "Hozzáadás"
 
 msgid "Add AutoTimer"
 msgstr "AutoTimer hozzáadása"
+
+msgid "Add Bookmark"
+msgstr "Könyvjelző hozzáadása"
 
 msgid "Add Current"
 msgstr "aktuális hozzáadása"
@@ -2313,19 +2316,16 @@ msgstr "Időzítés hozzáadása az aktuális eseményről"
 msgid "Add an AutoTimer for the current event"
 msgstr "AutoTimer időzítő hozzáadása az aktuális eseményhez"
 
-msgid "Add Bookmark"
-msgstr "Könyvjelző hozzáadása"
-
 msgid "Add current folder to bookmarks"
 msgstr "Aktuális mappa hozzáadása könyvjelzőkhöz"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Mappa hozzáadása a lejátszási listához"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Fájl hozzáadása a lejátszási listához"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Fájlok hozzáadása a lejátszási listához"
 
 msgid "Add new CCcam line"
@@ -2531,7 +2531,7 @@ msgstr "A 10bit engedélyezése"
 msgid "Allow 12bit"
 msgstr "A 12bit engedélyezése"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Média lejátszó bezárása kilépés gombbal"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2564,7 +2564,7 @@ msgstr "Lehetővé teszi a GStreamer folyamatgrafikonok engedélyezését. Ezek 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Engedélyezheti a hibakeresési naplót. A naplók nagyon részletes információt tartalmaznak a rendszer mindennemű működéséről."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Engedélyezi/Tiltja az ikonok megjelenítését az előlapon."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2654,7 +2654,7 @@ msgstr "Kísérlet történik a TV aktuális állapotának rögzítésére. Ha e
 msgid "An empty filename is illegal."
 msgstr "Egy üres fájlnév érvénytelen."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Hiba keletkezett a szoftvercsomag listájának letöltése közben. Kérem, próbálja meg újra."
 
 msgid "An unknown error occurred!"
@@ -2717,7 +2717,7 @@ msgstr "Biztosan megszakítja az összes módosítást?"
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Biztosan törli az összes vágást és jelölést?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Biztos benne, hogy véglegesen eltávolítja az összes törölt csatornacsomagot?"
 
 #, python-format
@@ -3033,7 +3033,7 @@ msgstr "Automatikus keresése a csatornáknak"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Timeshift automatikus indítása ennyi idő múlva"
 
 msgid "Automatically turn on external subtitles"
@@ -3083,10 +3083,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (csak HDTV-címek)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV Compatible Bludisc (csak HDTV)"
 
 msgid "BER:"
@@ -3369,9 +3369,6 @@ msgid "Biography"
 msgstr "Életrajz"
 
 msgid "Bislama"
-msgstr ""
-
-msgid "Bit rate"
 msgstr ""
 
 msgid "Bitrate"
@@ -3881,14 +3878,14 @@ msgstr ""
 "Nem lehet lejátszani a következő Timeshift fájlt!\n"
 "Váltson az élő adásra és indítsa újra a Timeshift-t?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Nem lehet lejátszani az előző Timeshift fájlt! Megpróbálhatja újra."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "A hivatkozás tartalma nem olvasható: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Nem lehet leválasztani a partíciót, győződjen meg róla, hogy nem használják Swap vagy Felvételi/Timeshift útvonalakat"
 
 msgid "Canada"
@@ -3928,7 +3925,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Végrehajtás megszakítva?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Timeshift felvételének megszakítása"
 
 #, fuzzy
@@ -4070,7 +4067,7 @@ msgstr "PIN-kód cseréje"
 msgid "Change recording (duration)"
 msgstr "Felvétel módosítása (hossz)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Felvétel módosítása (befejezés időpontja)"
 
 msgid "Change repeat and delay settings?"
@@ -4220,13 +4217,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Áramellátás és bemeneti állapot ellenőrzése a TV-készüléken"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Internetkapcsolat ellenőrzése"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Internetkapcsolat ismételt ellenőrzése"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Online frissítések Ellenőrzése/Telepítése (egy működő internet kapcsolat kell hozzá)"
 
 msgid "Checking Feeds"
@@ -4235,10 +4232,10 @@ msgstr "Szolgáltatások ellenőrzése"
 msgid "Checking Logs..."
 msgstr "Naplók ellenőrzése ..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Fájlrendszer ellenőrzése..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Internetkapcsolat ellenőrzése"
 
 #, python-format
@@ -4258,7 +4255,7 @@ msgstr "Gyermek"
 msgid "Children/Youth"
 msgstr "Gyermek/Fiatalság"
 
-msgid "Childrens"
+msgid "Children's"
 msgstr "Gyerekek"
 
 msgid "Chile"
@@ -4272,8 +4269,8 @@ msgid "Chinese"
 msgstr "Kína"
 
 #, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
+msgstr "Chip set: BCM%s"
 
 msgid "Choice Box"
 msgstr "Készülék választás"
@@ -4432,7 +4429,7 @@ msgstr "Keresés előtt törlés"
 msgid "Clear fixed"
 msgstr "Rögzítettek törlése"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Lejátszási lista törlése"
 
 msgid "Clear the logs for this timer"
@@ -5105,7 +5102,7 @@ msgstr "Konvertálás ext3-ról ext4-re"
 msgid "Convert ext3 to ext4"
 msgstr "Konvertálás ext3-ról ext4-re"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Konvertálás ext3-ról ext4-re"
 
 msgid "Converting ext3 to ext4..."
@@ -5247,7 +5244,7 @@ msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
 msgid "Creating directory %s failed."
 msgstr "A %s mappa létrehozása nem sikerült."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Fájlrendszer létrehozása"
 
 msgid "Creating partition"
@@ -5927,10 +5924,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Lejátszási lista bejegyzés törlése"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Mentett lejátszási lista törlése"
 
 #, fuzzy
@@ -5941,7 +5938,7 @@ msgstr "A karakter törlése a szövegpuffer kurzortól balra"
 msgid "Delete the character under the text cursor"
 msgstr "Karakter törlése a szövegpuffer kurzor alatt"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Törölje az aktuális Timeshift puffert, és indítsa újra a Timeshift-et"
 
 msgid "Delete the currently displayed log file"
@@ -6121,10 +6118,6 @@ msgstr ""
 msgid "Directory '%s' not writable!"
 msgstr ""
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr ""
-
 msgid "Directory browser"
 msgstr "Mappa tallózása"
 
@@ -6292,14 +6285,14 @@ msgid "Do nothing"
 msgstr "ne csináljon semmit"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Biztos benne, hogy le szeretné ellenőrizni a fájlrendszert?\n"
 "Ez hosszú ideig is eltarthat!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Biztos benne, hogy konvertálni szeretné a fájlrendszert?\n"
@@ -7304,6 +7297,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -7866,9 +7863,6 @@ msgstr "Kedvencek"
 msgid "Favorites long"
 msgstr "Kedvencek hosszan"
 
-msgid "Favourites"
-msgstr "Kedvencek"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8040,7 +8034,7 @@ msgstr "Finnország"
 msgid "Finnish"
 msgstr "Finn"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Ez az első lejátszható Timeshift fájl!"
 
 msgid "Fishing"
@@ -9013,7 +9007,7 @@ msgstr "IPK Telepítő"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "Az ISO fájl túl nagy ehhez a fájlrendszerhez!"
 
 msgid "ISO path"
@@ -9139,7 +9133,7 @@ msgstr ""
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Ha be van állítva az érték, s ha a szabad terület kisebb, mint a beállított érték, akkor a rendszer megpróbálja törölni a régi Timeshift fájlokat."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9682,7 +9676,7 @@ msgstr "Nem lehet megállapítani a fájl státuszát a <List of Storage Devices
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "Nem lehet futtatni a(z) '%s' <List of Storage Devices>"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "A root fájlrendszer átnevezése nem lehetséges."
 
 msgid "Italian"
@@ -10181,13 +10175,13 @@ msgstr "Betöltés"
 msgid "Load EPG"
 msgstr "EPG betöltése"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Lejátszási lista betöltése"
 
 msgid "Load tags from the timer and recordings"
 msgstr ""
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Leválasztott felhasználói csatornacsomagok betöltése"
 
 msgid "Load/Save/Delete"
@@ -11899,7 +11893,7 @@ msgstr "Most"
 msgid "Now building the Backup Image"
 msgstr "Most készítem a biztonsági másolatot"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Timeshift mentése most és a felvétel folytatása"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -12001,7 +11995,7 @@ msgstr "Offline dekódolási késleltetés (ms)"
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
 
 msgid "Olympics"
@@ -12641,10 +12635,10 @@ msgstr "Bejegyzés lejátszása"
 msgid "Play folder"
 msgstr "Mappa lejátszása"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Lejátszás a következő jelölőtől vagy lépjen be a lejátszási listába"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Lejátszás az előző jelölőtől vagy lépjen be a lejátszási listába"
 
 msgid "Play music..."
@@ -12710,13 +12704,13 @@ msgstr ""
 "Befejezés után, nyomja le az OK gombot a folytatáshoz."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Kérem, állítsa be az interket kapcsolatát a kért adatok kitöltésével.\n"
 "Befejezés után, nyomja le az OK gombot a folytatáshoz."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Kérem, csatlakoztassa a(z) %s %s készüléket az internethez"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -12804,10 +12798,10 @@ msgstr ""
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Válasszon egy lejátszási listát amit törölni szeretne..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Válasszon egy lejátszási listát..."
 
 msgid "Please select a resolution..."
@@ -12844,7 +12838,7 @@ msgid "Please select the movie path..."
 msgstr "Válassza ki a felvételek útvonalát..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13080,9 +13074,6 @@ msgstr "Bővítmények"
 
 msgid "Poland"
 msgstr "Lengyelország"
-
-msgid "Polarisation"
-msgstr "Polarizáció"
 
 msgid "Polarization"
 msgstr "Polarizáció"
@@ -13619,10 +13610,6 @@ msgstr "Gyorsindító Menü"
 msgid "Quick Menu..."
 msgstr "Gyors menü..."
 
-#, fuzzy
-msgid "Quick Select Actions"
-msgstr "Gyors műveletek"
-
 msgid "Quick zap"
 msgstr "Gyors ugrás"
 
@@ -13638,6 +13625,9 @@ msgstr "Gyors műveletek"
 
 msgid "QuickMenu/Extensions"
 msgstr "Gyors Menü/Bővítmények"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "Rádió"
@@ -13851,7 +13841,7 @@ msgstr "Következőt felveszi"
 msgid "Record now"
 msgstr "Felvesz most"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
 
 #, python-format
@@ -14095,6 +14085,9 @@ msgstr "Távirányító típusa"
 msgid "Remove"
 msgstr "Eltávolítás"
 
+msgid "Remove Bookmark"
+msgstr "Könyvjelző eltávolítása"
+
 msgid "Remove Confirmation"
 msgstr "Törlés megerősítése"
 
@@ -14148,9 +14141,6 @@ msgstr ""
 
 msgid "Remove all user interface data"
 msgstr ""
-
-msgid "Remove Bookmark"
-msgstr "Könyvjelző eltávolítása"
 
 msgid "Remove completed timers after (days)"
 msgstr "Lejárt időzítések törlése ennyi nap után"
@@ -14223,7 +14213,7 @@ msgstr "Ismétlés"
 msgid "Repeat Display Message"
 msgstr "Kijelzett Üzenet Ismétlése"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "lejátszási lista ismétlése"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -14796,10 +14786,10 @@ msgstr "Mentés ideje (órában)"
 msgid "Save left folder on exit"
 msgstr "Bal oldali mappa mentése kilépéskor"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Lejátszási lista mentése"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "lejátszási lista mentése kilépéskor"
 
 msgid "Save right folder on exit"
@@ -14825,10 +14815,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Mentse a jobb oldali mappalista helyét kilépéskor."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Timeshift mentése és a felvétel folytatása"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Timeshift mentése és a felvétel megállítása"
 
 msgid "Saving EPG Cache..."
@@ -14837,7 +14827,7 @@ msgstr "EPG gyorsítótár mentése..."
 msgid "Saving Timeshift files"
 msgstr "Timeshift fájljának mentése"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
 
 msgid "Scaler sharpness"
@@ -15379,7 +15369,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Mi történjen akkor, mikor más esemény történik a Timeshift-t közben."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -15710,7 +15700,7 @@ msgstr "Ugrás a kijelölt csatornára"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15726,7 +15716,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -15736,7 +15726,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -16031,7 +16021,7 @@ msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáad
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
 msgid "Set the default sorting method."
@@ -16080,13 +16070,13 @@ msgstr ""
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr ""
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr ""
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr ""
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -17018,7 +17008,7 @@ msgstr "Függőleges Műsorújság megjelenítése"
 msgid "Show warning before restart"
 msgstr "Figyelmeztetés mutatása újraindítás előtt"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Figyelmeztetés Timeshift megállításakor"
 
 msgid "Show watch status"
@@ -17054,7 +17044,7 @@ msgstr "Megjeleníti a vezeték nélküli kapcsolat aktuális állapotát."
 msgid "Shows the watched status of the media."
 msgstr "Megjeleníti a Film megnézettségi állapotát (meg volt nézve, vagy nem)."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Lejátszási lista megkeverése"
 
 msgid "Shut down"
@@ -17157,12 +17147,6 @@ msgstr "Méret"
 msgid "Size reverse"
 msgstr "Méret fordított"
 
-msgid "Size:"
-msgstr "Méret:"
-
-msgid "Size: "
-msgstr "Méret: "
-
 msgid "Skin"
 msgstr "Kinézet"
 
@@ -17196,7 +17180,7 @@ msgstr "Üres csatornák átugrása"
 msgid "Skip forward"
 msgstr "Előre kihagyása"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Internet-kapcsolat ellenőrzésének mellőzése (automatikus csomag-telepítés is tiltva lesz)"
 
 msgid "Skip selection"
@@ -17680,7 +17664,7 @@ msgstr "Teszt indítása"
 msgid "Start time"
 msgstr "Kezdési időpont"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Timeshift elindítása"
 
 msgid "Start/stop slide show"
@@ -17807,16 +17791,16 @@ msgstr ""
 msgid "Stop timer recording"
 msgstr "Az időzített felvétel megállítása"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Timeshift leállítása"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Állítsa le a Timeshift-et, és mentse el a Timeshift puffert, mint Felvételt"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Állítsa le a Timeshift-et, és mentse el a Timeshift puffert, mint Felvételt és az aktuális eseményt kezdje felvenni"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Felvétel indításakor a Timeshift megálljon?"
 
 msgid "Stopped"
@@ -17825,7 +17809,7 @@ msgstr "Leállítva"
 msgid "Stopping Softcam"
 msgstr "Softcam leállítása"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
 
 msgid "Storage / Disk Information"
@@ -18069,7 +18053,7 @@ msgstr "TV-bemenet kiválasztása"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Váltás a Hang és a Feliratozás megjelenítése között"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Fájllista és lejátszási lista közötti váltás"
 
 msgid "Switch config"
@@ -18106,7 +18090,7 @@ msgstr "Következő csatorna az előzményekben"
 msgid "Switch to next sub service"
 msgstr "Ugrás a következő alcsatornára"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Kapcsolás a lejátszási listára"
 
 #, fuzzy
@@ -18134,7 +18118,7 @@ msgstr ""
 msgid "Switchable tuner types:"
 msgstr "Cserélhető tuner típusok:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Váltás élő TV adásra - a Timeshift még aktív!"
 
 msgid "Switzerland"
@@ -18162,7 +18146,7 @@ msgstr "Szinkronhiba 0-hoz visszatérésk!"
 msgid "Sync time using"
 msgstr "Az idő szinkronizálás módja"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "A rendszer idő szinkronizálása a Transzponder ideje alapján vagy az internetről (NTP szerver) történjen."
 
 msgid "Syrian Arab Republic"
@@ -18574,7 +18558,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "A szerzők NEM FELELŐSEK"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "A Timeshift-hez rendelkezésre álló lemezterület kisebb, mint a beállításokban megadott.\n"
@@ -18587,7 +18571,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "A videó kódolás bitrátája. A nagyobb érték javítja a minőséget és növeli a fájlméretet."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "A Timeshift pufferidő meghaladja a beállított határértéket.\n"
@@ -19101,7 +19085,7 @@ msgstr ""
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Ez a beállítás lehetővé teszi, hogy a tuner konfigurációja egy másik tuner már konfigurált megkettőzése legyen."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Ez a beállítás a kábel szolgáltatótól és a helyétől függ. Ha nem tudja a helyes beállítást, olvassa el a hivatalos kábel vevőkészülék menüjét, vagy szerezze be azt a kábelszolgáltatójától, vagy keressen segítséget az internetes fórumon."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19605,7 +19589,7 @@ msgstr "Próbálja meg megakadályozni a szoftverhibák miatti újraindítást a
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Az új csomaglista letöltése folyamatban. Kérem, várjon..."
 
 #, fuzzy
@@ -20275,7 +20259,7 @@ msgstr "Alkalmazhatók a Videó-beállítások?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Az idő ugrással gyors Előre/Hátra ugrik"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Használja a Timeshift keresősávot a Timeshift közben?"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -20838,6 +20822,9 @@ msgstr "Figyelmeztetés"
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
@@ -20981,7 +20968,7 @@ msgstr "Mit szeretne beolvasni?"
 msgid "What would you like to do?"
 msgstr ""
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Ha engedélyezi, a leválasztott felhasználói csatornacsomagok is betöltődnek. Ez azt jelenti, hogy az olyan felhasználói csatornacsomagok is betöltődnek, amelyek léteznek, de nincsnek benne a bouquets.tv vagy bouquets.radio fájlban. Ez lehetőséget ad arra, hogy a saját csatornacsomagjait megtartsa, ha a csatornák frissülnek"
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -21029,7 +21016,7 @@ msgstr "Ha engedélyezve van, a felvétel megszakíthatja az adatfolyamot (Strea
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Egy felvétel megszakíthatja a TV-nézést, ha nem áll rendelkezésre másik szabad tuner a felvételhez."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -21065,7 +21052,7 @@ msgstr "A DVB felirat eredeti helyen történő megjelenítése."
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "A DVB felirat átszínezése sárgára, az eredeti szín helyett."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Lehessen kilépni a lejátszóból az EXIT gomb megnyomásával."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -21119,7 +21106,7 @@ msgstr "A készülék egy AC3 hangsávot válasszon mindig, amikor ilyen van a c
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Ha engedélyezi, a készülék egy AC3+ hangsávot fog választani (amennyiben elérhető)."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérben."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -21167,7 +21154,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Hova szeretné elmenteni a beállításait?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
 
 msgid "Which event do you want to save permanently?"
@@ -21330,7 +21317,7 @@ msgstr "Igen, és felvétel törlése"
 msgid "Yes, backup my settings!"
 msgstr "Igen, mentse el a beállításaim!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Igen, de ne mentsen el semmit"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21339,10 +21326,10 @@ msgstr "Igen, de ha nem áll rendelkezésre, akkor a bővítmény böngésző mu
 msgid "Yes, but if not available show the timer list"
 msgstr "Igen, de ha nem érhető el, mutassa meg az időzítőlistát"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Igen, de mentse a Timeshift-et felvételként és folytassa a Timeshift-t további működését"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Igen, de mentse a Timeshift-et felvételként és a Timeshift-t álljon le"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21453,11 +21440,11 @@ msgstr "Ön azt választotta, hogy a beállításairól egy biztonsági másolat
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ön azt választotta, hogy a beállításokat visszaállítja egy korábbi biztonsági mentésből. A folyamat végén az Enigma2 újra fog indulni. Kérem, nyomja le az OK gombot a folytatáshoz."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Úgy döntött, hogy menti az aktuális Timeshift-et"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Úgy döntött, hogy menti az aktuális Timeshift eseményt, de az esemény még nem fejeződött be\n"
@@ -21496,13 +21483,13 @@ msgstr ""
 "Csatlakoztasson egy számítógépet a(z) %s %s készülékéhez. További információkért látogassa meg a https://openpli.org honlapot.\n"
 "A(z) %s %s készülék most leáll. Miután végrehajtotta a frissítést a honlapon található útmutatás szerint, az új firmware lehetőséget fog adni az Ön beállításainak helyreállítására."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Úgy tűnik, Timeshift módban van!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Ki szeretne lépni a Timeshift módból?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr ""
 
 msgid "You should flash a new image!"
@@ -21514,7 +21501,7 @@ msgstr ""
 msgid "YouTube long"
 msgstr ""
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "A(z) %s %s készüléknek nincs kapcsolata az internettel"
 
 #, python-format
@@ -21529,18 +21516,18 @@ msgstr "%s %s WOL-ra változik"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "A(z) %s %s nem kapcsolódik az internethez"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "A(z) %s %s nem kapcsolódik az internethez, ellenőrizze a hálózati beállításokat, és próbálja újra."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "A(z) %s %s készülék most már használható állapotban van.\n"
@@ -21551,7 +21538,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -21720,7 +21707,7 @@ msgstr ""
 "Még frissíteni szeretné?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Az internetkapcsolata nem működik!\n"
@@ -21743,7 +21730,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr ""
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -22055,7 +22042,7 @@ msgstr "balett"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "mert a használt fájlrendszer a biztonsági mentés\n"
 
 msgid "better"
@@ -22863,7 +22850,7 @@ msgstr "szolgáltató Id:"
 msgid "provider:"
 msgstr "szolgáltató:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "törölt felhasználói csatornacsomagok végleges eltávolítása"
 
 msgid "python"
@@ -22942,7 +22929,7 @@ msgstr "átnevez"
 msgid "rename entry"
 msgstr "átnevezés"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "törölt felhasználói csatornacsomagok visszaállítása"
 
 msgid "restoring satellites.xml not possible!"
@@ -23413,6 +23400,22 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Favourites"
+#~ msgstr "Kedvencek"
+
+#~ msgid "Polarisation"
+#~ msgstr "Polarizáció"
+
+#, fuzzy
+#~ msgid "Quick Select Actions"
+#~ msgstr "Gyors műveletek"
+
+#~ msgid "Size:"
+#~ msgstr "Méret:"
+
+#~ msgid "Size: "
+#~ msgstr "Méret: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Ennyi percig maradjon látható az EPG-ben a múlt. Hasznos lehet ha egy lejárt, vagy egy elcsúszott műsorról szeretne tájékozódni."

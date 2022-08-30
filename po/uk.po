@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2022-08-30 15:39+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -184,7 +184,7 @@ msgstr " і"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " доступні!!\n"
 "\n"
@@ -1319,7 +1319,7 @@ msgstr "'%s' містить %d файл(ів) і %d підкаталог(ів).\
 msgid "'%s' not installed and no known package"
 msgstr "'%s' не встановлено і не відомий пакет"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1911,7 +1911,7 @@ msgstr "< Пікон за умовчанням >"
 msgid "< User Skin >"
 msgstr "< Скін Користувача >"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Розташування поточного списку фільмів>"
 
 msgid "<Default movie location>"
@@ -1930,7 +1930,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Журнал аварійного завершення роботи %s створено в '%s'"
 
 msgid "A file from media is in use!"
@@ -2147,7 +2147,7 @@ msgstr "Псевдо запис перервано.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Відтворення стрім-каналу перервано.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Переривання процесу оновлення"
 
 msgid "About"
@@ -2189,7 +2189,7 @@ msgstr "Дія при короткому натисканні кнопки ви�
 msgid "Activate"
 msgstr "Активувати"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Запуск HbbTV (червона кнопка)"
 
 msgid "Activate MAC address configuration"
@@ -2222,10 +2222,10 @@ msgstr "Активувати правий список файлів як дже�
 msgid "Activate the configured network settings."
 msgstr "Активуйте налаштовані параметри мережі."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Вказати закінчення таймшифта"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Вказати закінчення таймшифта і паузу"
 
 msgid "Active"
@@ -2242,6 +2242,9 @@ msgstr "Додати"
 
 msgid "Add AutoTimer"
 msgstr "Додати АвтоТаймер"
+
+msgid "Add Bookmark"
+msgstr "Додати закладку"
 
 msgid "Add Current"
 msgstr "додати поточний"
@@ -2297,19 +2300,16 @@ msgstr "Додати таймер для поточної передачы"
 msgid "Add an AutoTimer for the current event"
 msgstr "Додати авто таймер для поточного події"
 
-msgid "Add Bookmark"
-msgstr "Додати закладку"
-
 msgid "Add current folder to bookmarks"
 msgstr "Додати поточну теку в закладки"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Додати каталог в плейлист"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Додати файл в плейлист"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Додати файли в плейлист"
 
 msgid "Add new CCcam line"
@@ -2513,7 +2513,7 @@ msgstr "Вихід 10біт"
 msgid "Allow 12bit"
 msgstr "Вихід 12біт"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Вихід по кнопці exit в програвачі"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2546,7 +2546,7 @@ msgstr "Дозволяє ввімкнути графіки конвеєра GStr
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Дозволити лог налагодження. Лог налагодження містить докладну інформацію про всі дії системи."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Дозволити відображення іконок на дисплеї передньої панелі."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2636,7 +2636,7 @@ msgstr "Зроблено спробу зафіксувати поточний с
 msgid "An empty filename is illegal."
 msgstr "Пусте ім'я файлу є недопустимим."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Виникла помилка при завантаженні списку пакетів. Спробуйте ще раз."
 
 msgid "An unknown error occurred!"
@@ -2699,7 +2699,7 @@ msgstr "Ви впевнені, що хочете скасувати всі зм�
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Ви впевнені, що потрібно видалити всі розрізи та позначки?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Дійсно хочете остаточно видалити ці фаворити?"
 
 #, python-format
@@ -3012,7 +3012,7 @@ msgstr "Автосканування каналів"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Автозапуск таймшифта після"
 
 msgid "Automatically turn on external subtitles"
@@ -3061,10 +3061,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Блю-рей диски (HDTV тільки заголовки)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV Блю-рей диски (тільки HDTV)"
 
 msgid "BER:"
@@ -3345,9 +3345,6 @@ msgstr "Біографія"
 
 msgid "Bislama"
 msgstr "Креольська"
-
-msgid "Bit rate"
-msgstr "Бітрейт"
 
 msgid "Bitrate"
 msgstr "Бітрейт"
@@ -3873,14 +3870,14 @@ msgstr ""
 "Неможливо запустити наступний файл таймшифта!\n"
 "Знову підключитися до каналу і перезапустити таймшифт?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Неможливо запустити попередній файл таймшифта! Спробуйте знову."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Не вдається прочитати вміст посилання: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Неможливо демонтувати розділ, переконайтеся що він не використовується під файл підкачки або для запису/таймшифта"
 
 msgid "Canada"
@@ -3916,7 +3913,7 @@ msgstr "Скасувати вирішення конфлікту"
 msgid "Cancel execution?"
 msgstr "Скасувати виконання?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Скасувати збереження таймшифт як фільм"
 
 msgid "Cancel selection"
@@ -4053,7 +4050,7 @@ msgstr "Змінити пін-код"
 msgid "Change recording (duration)"
 msgstr "Змінити запис (тривалість)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Змінити запис (час закінчення)"
 
 msgid "Change repeat and delay settings?"
@@ -4202,13 +4199,13 @@ msgstr "Перевірте доступність PDC для кожного ка
 msgid "Check power and input state from TV"
 msgstr "Перевірити живлення та стан входу від телевізора"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Перевірка інтернет-з'єднання"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Перевірити підключення до Інтернету ще раз"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Перевірка/Установка оновлень (потрібно інтернет-з'єднання)"
 
 msgid "Checking Feeds"
@@ -4217,10 +4214,10 @@ msgstr "Перевірка Серверів"
 msgid "Checking Logs..."
 msgstr "Перевірка Логів ..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Перевірка файлової системи..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Перевірка інтернет-з'єднання"
 
 #, python-format
@@ -4240,7 +4237,7 @@ msgstr "Дитяча"
 msgid "Children/Youth"
 msgstr "Діти/Юнаки"
 
-msgid "Childrens"
+msgid "Children's"
 msgstr "Дитячі"
 
 msgid "Chile"
@@ -4253,7 +4250,7 @@ msgid "Chinese"
 msgstr "Китайська"
 
 #, python-format
-msgid "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
 msgstr "Чіпсет: BCM%s"
 
 msgid "Choice Box"
@@ -4413,7 +4410,7 @@ msgstr "Очистити перед пошуком"
 msgid "Clear fixed"
 msgstr "Скинути фіксування"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Очистити список відтворення"
 
 msgid "Clear the logs for this timer"
@@ -5082,7 +5079,7 @@ msgstr "Перетворити файлову систему ext3 в ext4"
 msgid "Convert ext3 to ext4"
 msgstr "Перетворення ext3 в ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Перетворити файлову систему ext3 на ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5222,7 +5219,7 @@ msgstr "Помилка створення посилання на файл Times
 msgid "Creating directory %s failed."
 msgstr "Створення директорії %s невдале."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Створення файлової системи"
 
 msgid "Creating partition"
@@ -5893,10 +5890,10 @@ msgstr "Видалити лог"
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Видаліть, або затріть виділений слот"
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Видалити запис з списку відтворення"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Видалити збережений список відтворення"
 
 msgid "Delete the character to the left of text cursor"
@@ -5905,7 +5902,7 @@ msgstr "Видалити символ ліворуч від текстового
 msgid "Delete the character under the text cursor"
 msgstr "Видалити символ під текстовим курсором"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Видалити файл поточного таймшифта і перезапустити таймшифт"
 
 msgid "Delete the currently displayed log file"
@@ -6083,10 +6080,6 @@ msgstr "Каталог '%s' не існує!"
 msgid "Directory '%s' not writable!"
 msgstr "Каталог '%s' не для запису!"
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr "Директорія '%s' не для записів!"
-
 msgid "Directory browser"
 msgstr "Провідник каталогів"
 
@@ -6254,14 +6247,14 @@ msgid "Do nothing"
 msgstr "нічого не робити"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Дійсно хочете перевірити файлову систему?\n"
 "Це займе деякий час!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Дійсно хочете перетворити файлову систему?\n"
@@ -7270,6 +7263,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Помилка %d: Не вдається змінити пароль!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Помилка %d: неможливо видалити завантажений імідж '%s'!  (%s)"
 
@@ -7832,9 +7829,6 @@ msgstr "Фаворити"
 msgid "Favorites long"
 msgstr "Fav довге натискання"
 
-msgid "Favourites"
-msgstr "Фаворити"
-
 msgid "Feed URL"
 msgstr "URL фіду"
 
@@ -8004,7 +7998,7 @@ msgstr "Фінляндія"
 msgid "Finnish"
 msgstr "Фінська"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Перший відтворений файл таймшифта!"
 
 msgid "Fishing"
@@ -8964,7 +8958,7 @@ msgstr "IPK Інсталятор"
 msgid "IPv6 address"
 msgstr "IPv6 адреса"
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "Розмір ISO файлу завеликий для цієї файлової системи!"
 
 msgid "ISO path"
@@ -9089,7 +9083,7 @@ msgstr "Якщо встановлено значення 'Так', для под
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Якщо обхідний шлях для глибокого очікування ввімкнено, дочекайтеся синхронізації системного часу. Залежно від вимоги пробудження пристрою триватиме максимум через 2 хвилини."
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Якщо вільний простір менше, ніж необхідне значення, будуть видалені старі файли таймшифта."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9623,7 +9617,7 @@ msgstr "Неможливо отримати статус файлу <Списо�
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "Неможливо запустити '%s' у <Список пристроїв зберігання>"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Неможливо перейменувати корінь файлової системи."
 
 msgid "Italian"
@@ -10111,13 +10105,13 @@ msgstr "Завантажити"
 msgid "Load EPG"
 msgstr "Завантаження ЕПГ"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Завантаження списку відтворення"
 
 msgid "Load tags from the timer and recordings"
 msgstr "Завантажте теги з таймера і записів"
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Завантаження невибраних фаворитів користувача"
 
 msgid "Load/Save/Delete"
@@ -11782,7 +11776,7 @@ msgstr "Тепер"
 msgid "Now building the Backup Image"
 msgstr "Тепер створюємо резервну копію іміджу"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Зберегти таймшифт зараз як фільм і продовжувати запис"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -11884,7 +11878,7 @@ msgstr "Затримка оффлайн декодування (мс)"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Старі файли таймшифта будуть видалені при кожній зміні передачі."
 
 msgid "Olympics"
@@ -12511,10 +12505,10 @@ msgstr "Відтворити запис"
 msgid "Play folder"
 msgstr "Відтворення теки"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Відтворення з наступної мітки або списку записів"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Відтворення з попередньої мітки або списку записів"
 
 msgid "Play music..."
@@ -12579,13 +12573,13 @@ msgstr ""
 "Коли буде готово, натисніть ОК для продовження."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Будь ласка, налаштуйте Ваше інтернет з'єднання, заповнивши необхідні значення.\n"
 "Коли буде готово, натисніть ОК для продовження."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Будь ласка, з'єднайте Ваш %s %s з інтернетом"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -12673,10 +12667,10 @@ msgstr "Будь ласка, виберіть дистрибутив, з яко�
 msgid "Please select a line to edit or select add to create new line."
 msgstr "Виберіть рядок для редагування, або виберіть 'Додати', щоб створити новий рядок."
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Будь ласка, виберіть список відтворення для видалення..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Будь ласка, виберіть список відтворення..."
 
 msgid "Please select a resolution..."
@@ -12713,7 +12707,7 @@ msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -12952,9 +12946,6 @@ msgstr "Плагіни"
 
 msgid "Poland"
 msgstr "Польша"
-
-msgid "Polarisation"
-msgstr "Поляризація"
 
 msgid "Polarization"
 msgstr "Поляризація"
@@ -13488,9 +13479,6 @@ msgstr "Швидкий запуск меню"
 msgid "Quick Menu..."
 msgstr "Швидке меню..."
 
-msgid "Quick Select Actions"
-msgstr "Дії для Швидкого вибору"
-
 msgid "Quick zap"
 msgstr "Швидке переключення"
 
@@ -13505,6 +13493,9 @@ msgstr "Дії для QuickMenu"
 
 msgid "QuickMenu/Extensions"
 msgstr "Швидке меню/Розширення"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "Радіо"
@@ -13718,7 +13709,7 @@ msgstr "Записати наступне"
 msgid "Record now"
 msgstr "Записати зараз"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Розпочато запис! Зупинка таймшифта ..."
 
 #, python-format
@@ -13961,6 +13952,9 @@ msgstr "Тип пульта управління"
 msgid "Remove"
 msgstr "Видалити"
 
+msgid "Remove Bookmark"
+msgstr "Видалити закладку"
+
 msgid "Remove Confirmation"
 msgstr "Підтвердіть видалення"
 
@@ -14014,9 +14008,6 @@ msgstr "Видалити всі дані таймера"
 
 msgid "Remove all user interface data"
 msgstr "Видалити усі дані інтерфейсу користувача"
-
-msgid "Remove Bookmark"
-msgstr "Видалити закладку"
 
 msgid "Remove completed timers after (days)"
 msgstr "Видалення завершених таймерів через (в днях)"
@@ -14089,7 +14080,7 @@ msgstr "Повторити"
 msgid "Repeat Display Message"
 msgstr "Повторювати повідомлення дисплея"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "повторне відтворення плейлиста"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -14656,10 +14647,10 @@ msgstr "Зберігати кожні (в годинах)"
 msgid "Save left folder on exit"
 msgstr "Зберегти ліву теку при виході"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Зберегти список відтворення"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "зберегти плейлист при виході"
 
 msgid "Save right folder on exit"
@@ -14685,10 +14676,10 @@ msgstr "Зберегти зміни у денник і вийти"
 msgid "Save the right folder list location on exit."
 msgstr "Зберегти розташування списку тек справа під час виходу."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Зберегти таймшифт як запис і продовжити запис"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Зберегти таймшифт як запис і зупинити запис"
 
 msgid "Saving EPG Cache..."
@@ -14697,7 +14688,7 @@ msgstr "Збереження кеша ЕПГ..."
 msgid "Saving Timeshift files"
 msgstr "Збереження файлів таймшифта"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Файл тайшифта зберігається як фільм. Це займе деякий час!"
 
 msgid "Scaler sharpness"
@@ -15237,7 +15228,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Виберіть з варіантів, як слід зберігати буфер йде таймшифта, якщо ви натиснули на запис."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -15563,7 +15554,7 @@ msgstr "Вибір/Перекл. на обраний канал"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15579,7 +15570,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -15589,7 +15580,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -15878,7 +15869,7 @@ msgstr "Призначте розташування для файлів запи
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Призначте розташування для файлів таймера. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Призначте розташування для файлів таймшифта. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
 msgid "Set the default sorting method."
@@ -15927,13 +15918,13 @@ msgstr "Встановіть для цього значення 'Так', щоб
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr "Встановіть для цього значення 'Так', щоб відобразити пункт меню медіапрогравача в головному меню. Якщо встановлено значення 'Ні', медіаплеєр все ще можна запустити зі списку плагінів."
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr "Встановіть для цього значення 'Так', щоб продовжувати відтворювати цей список відтворення в циклі, що повторюється. Якщо встановлено значення 'Ні', список відтворення відтворюватиметься лише один раз."
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr "Встановіть для цього значення 'Так', щоб зберегти поточний каталог під час виходу з медіапрогравача."
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr "Встановіть для цього значення 'Так', щоб зберегти поточний список відтворення під час виходу з медіапрогравача."
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -16850,7 +16841,7 @@ msgstr "Показати Вертикальний Електронний Гід"
 msgid "Show warning before restart"
 msgstr "Показати попередження перед перезавантаженням"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Показати попередження при зупинці таймшифта"
 
 msgid "Show watch status"
@@ -16886,7 +16877,7 @@ msgstr "Відображає стан підключення до бездрот
 msgid "Shows the watched status of the media."
 msgstr "Показується статус переглянутого запису."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Перемішати список відтворення"
 
 msgid "Shut down"
@@ -16988,12 +16979,6 @@ msgstr "Розмір"
 msgid "Size reverse"
 msgstr "У зворотньому розмірі"
 
-msgid "Size:"
-msgstr "Розмір:"
-
-msgid "Size: "
-msgstr "Розмір: "
-
 msgid "Skin"
 msgstr "Скін"
 
@@ -17027,7 +17012,7 @@ msgstr "Пропускати порожні канали"
 msgid "Skip forward"
 msgstr "Перейти вперед"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Пропустити перевірку інтернет з'єднання (вимикає автоматичну установку пакетів)"
 
 msgid "Skip selection"
@@ -17509,7 +17494,7 @@ msgstr "Почати тест"
 msgid "Start time"
 msgstr "Час початку"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Почати таймшифт"
 
 msgid "Start/stop slide show"
@@ -17636,16 +17621,16 @@ msgstr "Зупинити оновлення, якщо воно запущене,
 msgid "Stop timer recording"
 msgstr "Зупинити запис таймера"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Зупинити таймшифт"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Зупинити тайм-шифт і зберегти його буфер як запис"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Зупинити тайм-шифт і зберегти його буфер як запис і почати запис поточної передачі"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Зупинити таймшифт на час запису"
 
 msgid "Stopped"
@@ -17654,7 +17639,7 @@ msgstr "Зупинено"
 msgid "Stopping Softcam"
 msgstr "Зупинка Softcam"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Зупинити запущений таймшифт, якщо триває запис (бажано, якщо використовується USB)"
 
 msgid "Storage / Disk Information"
@@ -17894,7 +17879,7 @@ msgstr "Переключити ТВ на коректний вхід"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Переключити між сторінками Аудіо і Субтитрів"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Перемикатися між списки файлів/відтворення"
 
 msgid "Switch config"
@@ -17930,7 +17915,7 @@ msgstr "Переключити на наступний канал в істор�
 msgid "Switch to next sub service"
 msgstr "Переключити на наступний підканал"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Переключити на список відтворення"
 
 msgid "Switch to previous EPG Event"
@@ -17957,7 +17942,7 @@ msgstr "Перейдіть на доступні телевізійні кана
 msgid "Switchable tuner types:"
 msgstr "Типи тюнерів що перемикаються:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Перехід на телевізійні програми - таймшифт все ще активна!"
 
 msgid "Switzerland"
@@ -17984,7 +17969,7 @@ msgstr "Повернення до початку при збої синхрон�
 msgid "Sync time using"
 msgstr "Синхронізувати час використовуючи"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Синхронізація часу з транспондера або з інтернету."
 
 msgid "Syrian Arab Republic"
@@ -18382,7 +18367,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Автори НЕ БУДУТЬ НЕСТИ ВІДПОВІДАЛЬНІСТЬ"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Вільне місце на диску менше ніж вказано в налаштуваннях.\n"
@@ -18395,7 +18380,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Бітрейт відеокодера. Велике значення покращує якість і збільшує розмір файлу."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Розмір буфера таймшифта перевищує ліміт, зазначений в налаштуваннях.\n"
@@ -18915,7 +18900,7 @@ msgstr "Це встановлює префікс для кожного рядк�
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Ці налаштування дозволяють дублювати конфігурацію одного тюнера на інший."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Це налаштування залежить від постачальника кабельного телебачення та місцезнаходження. Якщо ви не знаєте правильні установки отримайте їх у свого постачальника кабельного телебачення, або зверніться за допомогою через інтернет-форум."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19413,7 +19398,7 @@ msgstr "Спробуйте запобігти перезавантаження �
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr "Спробуйте надіслати повторювані команди, якщо не всі команди виконуються. (наприклад, пробудження телевізора, але не перемикання на правильний вхід.)"
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Спроба завантажити новий список пакетів. Зачекайте..."
 
 msgid "Tsonga"
@@ -20076,7 +20061,7 @@ msgstr "Використати ці налаштування для покращ
 msgid "Use time jumps for fast forward/backward"
 msgstr "Кроки для швидкого перемотування вперед/назад"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Використовувати Seekbar під час роботи таймшифта"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -20631,6 +20616,9 @@ msgstr "Попередження"
 msgid "Warning: Overrides are currently active!"
 msgstr "Попередження: перевизначення наразі активні!"
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Попередження: є %d пакетів оновлень!"
@@ -20772,7 +20760,7 @@ msgstr "Що Ви хочете сканувати?"
 msgid "What would you like to do?"
 msgstr "Що Ви хочете зробити?"
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам тримати свій власний фаворит в існуючому списку фаворитів"
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -20820,7 +20808,7 @@ msgstr "При активації, запис перерве потокове м
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Якщо включено, запис дозволяє переривати перегляд поточної передачі, якщо немає вільного тюнера."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Якщо включено, виводитиметься попередження з вибором про зупинку або продовження роботи таймшифта."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -20856,7 +20844,7 @@ msgstr "Якщо включено, графічні DVB субтитри буд�
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Якщо включено, графічні DVB субтитри будуть відображатися жовтим, а не оригінальним кольором."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Якщо включено, можливо закрити медіапрогравач кнопкою exit."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -20910,7 +20898,7 @@ msgstr "Якщо ця функція включена, то приймач бу�
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Якщо ця функція включена, то приймач буде використовувати AC3+ звук (якщо доступно)."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "При включенні таймшифт автоматично буде запущений у фоновому режимі через обраний час."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -20958,7 +20946,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Де хочете зробити копію своїх налаштувань?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Де зберігати тимчасові записи timeshift?"
 
 msgid "Which event do you want to save permanently?"
@@ -21121,7 +21109,7 @@ msgstr "Так і видалити цей запис"
 msgid "Yes, backup my settings!"
 msgstr "Так, зробити копію моїх налаштувань!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Так, але не зберігати таймшифт як фільм"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21130,10 +21118,10 @@ msgstr "Так, але якщо доступно, покажіть перегл�
 msgid "Yes, but if not available show the timer list"
 msgstr "Так, але якщо недоступно, покажіть список таймера"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Так, але зберегти таймшифт як фільм і продовжити запис"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Так, але зберегти таймшифт як фільм і перервати запис"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21243,11 +21231,11 @@ msgstr "Ви вибрали копіювання ваших налаштуван
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ви вибрали відновлення налаштувань. Enigma2 буде перезавантажена відразу після відновлення. Натисніть ОК для відновлення."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Ви вибрали збереження поточного таймшифту"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Ви обрали поточний таймшифт для збереження, але передача ще не закінчена\n"
@@ -21286,13 +21274,13 @@ msgstr ""
 "Необхідно з'єднання вашого %s %s з комп'ютером. Якщо потрібні докладні інструкції, будь ласка відвідайте сайт https://www.opena.tv.\n"
 "Ваш %s %s зараз буде вимкнений. Після того, як ви виконаєте інструкції по оновленню від веб-сайту, Ваш новий імідж попросить, щоб Ви відновили ваші налаштування."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Спочатку завершіть таймшифт!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Спочатку завершіть таймшифт, бажаєте відключити таймшифт?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr "Ви, здається, перебуваєте у timeshift, канал ненадовго зупиниться, коли зупинитьсяtimeshift."
 
 msgid "You should flash a new image!"
@@ -21304,7 +21292,7 @@ msgstr "You Tube"
 msgid "YouTube long"
 msgstr "YouTube довго"
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "У Вашому %s %s немає працюючого інтернет-з'єднання"
 
 #, python-format
@@ -21319,18 +21307,18 @@ msgstr "Ваш %s %s йде в WOL"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Ваш %s %s не підключено до Інтернету, перевірте налаштування мережі та повторіть спробу."
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Ваш %s %s не підключений до Інтернету"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Ваш %s %s не підключений до Інтернету, будь ласка, перевірте налаштування мережі та повторіть спробу."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "Ваш %s %s готовий до роботи.\n"
@@ -21341,7 +21329,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -21514,7 +21502,7 @@ msgstr ""
 "Все ще хочете оновити імідж?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Ваше інтернет з'єднання не працює!\n"
@@ -21537,7 +21525,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr "Зараз Ваш приймач може бути непридатним. Будь ласка, зверніться до посібника для отримання додаткової допомоги перед перезавантаженням %s %s."
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -21845,7 +21833,7 @@ msgstr "балет"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "через використовувану файлову систему резервне копіювання\n"
 
 msgid "better"
@@ -22649,7 +22637,7 @@ msgstr "пров.:"
 msgid "provider:"
 msgstr "провайдер:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "очистити видалені фаворити"
 
 msgid "python"
@@ -22728,7 +22716,7 @@ msgstr "перейменувати"
 msgid "rename entry"
 msgstr "перейменувати канал"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "відновити видалені фаворити"
 
 msgid "restoring satellites.xml not possible!"
@@ -23199,6 +23187,28 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bit rate"
+#~ msgstr "Бітрейт"
+
+#, python-format
+#~ msgid "Directory '%s' not writeable!"
+#~ msgstr "Директорія '%s' не для записів!"
+
+#~ msgid "Favourites"
+#~ msgstr "Фаворити"
+
+#~ msgid "Polarisation"
+#~ msgstr "Поляризація"
+
+#~ msgid "Quick Select Actions"
+#~ msgstr "Дії для Швидкого вибору"
+
+#~ msgid "Size:"
+#~ msgstr "Розмір:"
+
+#~ msgid "Size: "
+#~ msgstr "Розмір: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Дозволяє показати дані телегіда про минулі події. Зручно коли хочете знати щось про передачу, яка ось-ось закінчиться або тільки що закінчилася (у хвилинах)."

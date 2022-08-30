@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -189,7 +189,7 @@ msgstr " ve"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " mevcut !!\n"
 "\n"
@@ -1309,7 +1309,7 @@ msgstr "'%s' %d dosya ve %d alt-klasör içeriyor.\n"
 msgid "'%s' not installed and no known package"
 msgstr "'%s' yüklü değil ve bilinen bir paket yok"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Saatler içinde tampon' veya 'son olayların sayısı'. Eski zaman kayması dosyalarını silmek için, önce oluşan koşul önceliğe sahiptir."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1932,7 +1932,7 @@ msgstr "<Picon ile Varsayılan>"
 msgid "< User Skin >"
 msgstr "< kullanıcı Skin >"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Geçerli film listesi konumu>"
 
 #
@@ -1955,7 +1955,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Bir crashlog içinde %s oluşturuldu '%s'"
 
 msgid "A file from media is in use!"
@@ -2189,7 +2189,7 @@ msgstr "Sözde bir kaydı iptal ettim.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Bir akış hizmeti iptal edildi.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Güncelleme işleminin iptal edilmesi"
 
 #
@@ -2237,7 +2237,7 @@ msgstr "Güç düğmesine kısa basıldığında eylem"
 msgid "Activate"
 msgstr "Etkinleştir"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "HbbTV etkin (Kırmızı tuş)"
 
 msgid "Activate MAC address configuration"
@@ -2272,10 +2272,10 @@ msgstr "Sağ dosya listesini kaynak olarak etkinleştir"
 msgid "Activate the configured network settings."
 msgstr "Yapılandırılmış ağ ayarlarını etkinleştirin."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Timeshift End'i etkinleştir"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Zaman kayması sonunu etkinleştir ve duraklat"
 
 msgid "Active"
@@ -2293,6 +2293,10 @@ msgstr "Ekle"
 
 msgid "Add AutoTimer"
 msgstr "Oto-zamanlayıcı ekle"
+
+#
+msgid "Add Bookmark"
+msgstr "Imi eklemek"
 
 msgid "Add Current"
 msgstr "Geçerli ekle"
@@ -2350,23 +2354,19 @@ msgstr "Mevcut etkinlik için bir zamanlayıcı ekleyin"
 msgid "Add an AutoTimer for the current event"
 msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
-#
-msgid "Add Bookmark"
-msgstr "Imi eklemek"
-
 msgid "Add current folder to bookmarks"
 msgstr "Yer işaretlerine geçerli klasör ekle"
 
 #
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Oynatma listesine dizin ekle"
 
 #
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Dosyayı oynatma listesine ekle"
 
 #
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Dosyaları oynatma listesine ekle"
 
 msgid "Add new CCcam line"
@@ -2587,7 +2587,7 @@ msgstr "10 bit'e izin ver"
 msgid "Allow 12bit"
 msgstr "12 bit'e izin ver"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Çıkışlı movieplayer çıkışına izin ver"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2620,7 +2620,7 @@ msgstr "GStreamer ardışık düzen grafiklerini etkinleştirmenizi sağlar. Bun
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Hata ayıklama günlüğünü etkinleştirmenizi sağlar. Sistemin yaptığı her şeyin çok ayrıntılı bilgilerini içerir."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Ön paneldeki görüntüleme simgelerini etkinleştirmenizi / devre dışı bırakmanızı sağlar."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2716,7 +2716,7 @@ msgstr "Mevcut TV durumunu yakalama girişiminde bulunuldu. Yanlış veya eksik 
 msgid "An empty filename is illegal."
 msgstr "Boş dosya adı geçersiz."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Paket listesi indirilirken hata oluştu. Tekrar deneyin."
 
 #
@@ -2781,7 +2781,7 @@ msgstr "Tüm değişiklikleri iptal ettiğinizden emin misiniz?"
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Tüm kesimleri ve işaretleri silmek istediğinize emin misiniz?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Tüm silinmiş kullanıcı buketlerini temizlemek için emin misiniz?"
 
 #, python-format
@@ -3116,7 +3116,7 @@ msgstr "Kanallar için otomatik arama"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Zaman kaydırmayı sonra otomatik başlat"
 
 msgid "Automatically turn on external subtitles"
@@ -3167,10 +3167,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Blu Disk (HDTV başlıkları yalnızca)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV Uyumlu Blu Disk (HDTV sadece)"
 
 msgid "BER:"
@@ -3467,9 +3467,6 @@ msgstr "Biyografi"
 
 msgid "Bislama"
 msgstr "Bislamaca"
-
-msgid "Bit rate"
-msgstr "Bit hızı"
 
 #
 msgid "Bitrate"
@@ -4008,14 +4005,14 @@ msgstr ""
 "Bir sonraki Timeshift dosyasını çalamaz!\n"
 "Canlı TV'ye geçin ve Timeshift'i yeniden başlatın ?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Önceki timeshift dosyasını çalamaz! Tekrar deneyebilirsin."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Bağlantı içeriği okunamıyor: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Bölümü kaldıramıyor, takas veya kayıt / timeshift yolları için kullanılmadığından emin olun"
 
 msgid "Canada"
@@ -4055,7 +4052,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Yürütmeyi iptal mi ettin?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Zaman-kaydırmayı film olarak saklama"
 
 #
@@ -4202,7 +4199,7 @@ msgstr "PIN değiştir"
 msgid "Change recording (duration)"
 msgstr "Kayıt değiştir (süre)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Kayıt değiştir (bitiş zamanı)"
 
 msgid "Change repeat and delay settings?"
@@ -4365,13 +4362,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "TV'den güç ve giriş durumunu kontrol edin"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "İnternet bağlantısını kontrol et"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "İnternet bağlantısını tekrar kontrol et"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Çevrimiçi güncellemeleri kontrol et / yükle (çalışan bir internet bağlantınız olmalı)"
 
 msgid "Checking Feeds"
@@ -4381,10 +4378,10 @@ msgid "Checking Logs..."
 msgstr "Günlükler kontrol ediliyor..."
 
 #
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Dosya sistemi kontrol ediliyor..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "İnternet bağlantısı kontrol ediliyor"
 
 #, python-format
@@ -4404,7 +4401,7 @@ msgstr "Çocuk"
 msgid "Children/Youth"
 msgstr "Çocuk/Gençlik"
 
-msgid "Childrens"
+msgid "Children's"
 msgstr "Çocuklar"
 
 msgid "Chile"
@@ -4417,8 +4414,8 @@ msgid "Chinese"
 msgstr "Çince"
 
 #, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
+msgstr "Chip set: BCM%s"
 
 msgid "Choice Box"
 msgstr "Seçim Kutusu"
@@ -4584,7 +4581,7 @@ msgid "Clear fixed"
 msgstr "Sabiti temizle"
 
 #
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Oynatma listesini temizle"
 
 msgid "Clear the logs for this timer"
@@ -5291,7 +5288,7 @@ msgstr "Ext3 dosya sistemini ext4'e dönüştürün"
 msgid "Convert ext3 to ext4"
 msgstr "Ext3'ü ext4'e dönüştür"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Dosya sistemi ext3'ü ext4'e dönüştürme"
 
 msgid "Converting ext3 to ext4..."
@@ -5438,7 +5435,7 @@ msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
 msgid "Creating directory %s failed."
 msgstr "%s klasörü oluşturulamadı."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Dosya sistemi yarat"
 
 msgid "Creating partition"
@@ -6151,11 +6148,11 @@ msgid "Delete or Wipe the highlighted slot"
 msgstr "Vurgulanan yuvayı Sil veya Sil"
 
 #
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Çalma listesi girişini sil"
 
 #
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Kayıtlı oynatma listesini sil"
 
 msgid "Delete the character to the left of text cursor"
@@ -6164,7 +6161,7 @@ msgstr "Metin imlecinin solundaki karakteri sil"
 msgid "Delete the character under the text cursor"
 msgstr "Metin imlecinin altındaki karakteri sil"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Mevcut zaman kayması tamponunu silin ve zaman kaymasını yeniden başlatın"
 
 msgid "Delete the currently displayed log file"
@@ -6355,10 +6352,6 @@ msgstr "klasörü '%s' yok!"
 msgid "Directory '%s' not writable!"
 msgstr "Dizini '%s' yazılabilir değil!"
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr "Dizini '%s' yazılabilir değil!"
-
 #
 msgid "Directory browser"
 msgstr "Klasör görüntüleyici"
@@ -6540,14 +6533,14 @@ msgstr "Hiçbir sey yapma"
 
 #
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Dosya sistemini kontrol etmek istiyor musunuz?\n"
 "Bu işlem çok uzun sürebilir!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Dosya sistemini dönüştürmek istiyor musunuz?\n"
@@ -7602,6 +7595,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Hata %d: Şifre değiştirilemiyor! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -8202,10 +8199,6 @@ msgstr "Favoriler"
 msgid "Favorites long"
 msgstr "Sık Kullanılanlar"
 
-#
-msgid "Favourites"
-msgstr "Favoriler"
-
 msgid "Feed URL"
 msgstr "Feed URL"
 
@@ -8383,7 +8376,7 @@ msgstr "Finlandiya"
 msgid "Finnish"
 msgstr "Fince"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "İlk oynanabilir timeshift dosyası!"
 
 msgid "Fishing"
@@ -9396,7 +9389,7 @@ msgid "IPv6 address"
 msgstr ""
 
 #
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "ISO dosyası bu dosya sistemi için çok büyük!"
 
 #
@@ -9524,7 +9517,7 @@ msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönder
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam eder."
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Boş alan ayar değerinden daha azsa, eski zaman kayması dosyalarını silmek için bir girişimde bulunulur."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -10092,7 +10085,7 @@ msgstr "<Depolama Aygıtları Listesi> 'nin dosya durumunu elde etmek mümkün d
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "'%s' öğesinin <Depolama Aygıtları Listesi> 'nde çalıştırılması mümkün değil"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Dosya sistemi kökünü yeniden adlandırmak mümkün değildir."
 
 #
@@ -10621,13 +10614,13 @@ msgid "Load EPG"
 msgstr "EPG yükle"
 
 #
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Oynatma listesi yükle"
 
 msgid "Load tags from the timer and recordings"
 msgstr "Zamanlayıcıdan ve kayıtlardan etiketleri yükleyin"
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Bağlanmamış kullanıcı kitaplarını yükle"
 
 msgid "Load/Save/Delete"
@@ -12417,7 +12410,7 @@ msgstr "Şimdi"
 msgid "Now building the Backup Image"
 msgstr "Şimdi Yedek İmajı oluştur"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Şimdi zaman kaymasını film olarak kaydedin ve kaydetmeye devam edin"
 
 #
@@ -12523,7 +12516,7 @@ msgstr "Çevrimdışı çözme gecikmesi (ms)"
 msgid "Ojibwa"
 msgstr "Ojibwa Dili"
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Zaman kayması dizinindeki eski dosyalar her olay değişikliğinde kaldırılır."
 
 msgid "Olympics"
@@ -13182,11 +13175,11 @@ msgid "Play folder"
 msgstr "Oyun klasörü"
 
 #
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Bir sonraki işaretten veya çalma listesi girişinden oynat"
 
 #
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Önceki işaretten veya çalma listesi girişinden oynat"
 
 #
@@ -13259,13 +13252,13 @@ msgstr ""
 
 #
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Lütfen internet bağlantınızı, gerekli alanları doldurarak yapılandırın.\n"
 "Hazır olduğunuzda, devam etmek için OK tuşuna basın."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Lütfen %s %s internete bağlayın"
 
 #
@@ -13370,11 +13363,11 @@ msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
 #
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Lütfen silmek için bir oynatma listesi seçin..."
 
 #
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Lütfen bir oynatma listesi seçin..."
 
 msgid "Please select a resolution..."
@@ -13419,7 +13412,7 @@ msgstr "Lütfen film yolunu seçin..."
 
 #
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13677,10 +13670,6 @@ msgstr "Eklentiler"
 
 msgid "Poland"
 msgstr "Polonya"
-
-#
-msgid "Polarisation"
-msgstr "Polarizasyon"
 
 #
 msgid "Polarization"
@@ -14252,9 +14241,6 @@ msgstr "Hızlı Başlat Menüsü"
 msgid "Quick Menu..."
 msgstr "Hızlı Menü..."
 
-msgid "Quick Select Actions"
-msgstr "Hızlı Seçim Eylemleri"
-
 #
 msgid "Quick zap"
 msgstr "Hızlızap"
@@ -14270,6 +14256,9 @@ msgstr "Hızlı Menü Eylemleri"
 
 msgid "QuickMenu/Extensions"
 msgstr "QuickMenu / Uzantıları"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "Radyo"
@@ -14499,7 +14488,7 @@ msgstr "Sonrakini kaydet"
 msgid "Record now"
 msgstr "Şimdikini kaydet"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 #
@@ -14754,6 +14743,10 @@ msgstr "Uzaktan kumanda tipi"
 msgid "Remove"
 msgstr "Kaldır"
 
+#
+msgid "Remove Bookmark"
+msgstr "Yer işaretini kaldır"
+
 msgid "Remove Confirmation"
 msgstr "Silme Onayı"
 
@@ -14811,10 +14804,6 @@ msgstr "Tüm zamanlayıcı verilerini kaldır"
 
 msgid "Remove all user interface data"
 msgstr "Tüm kullanıcı arayüzü verilerini kaldır"
-
-#
-msgid "Remove Bookmark"
-msgstr "Yer işaretini kaldır"
 
 msgid "Remove completed timers after (days)"
 msgstr "Biten zamanlayıcıları (gün) sonra kaldır"
@@ -14897,7 +14886,7 @@ msgid "Repeat Display Message"
 msgstr "Mesaj görüntülemeyi tekrarla"
 
 #
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "Oynatma listesini tekrarla"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -15513,11 +15502,11 @@ msgid "Save left folder on exit"
 msgstr "Çıkışta soldaki klasörü kaydet"
 
 #
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Oynatma listesini kaydet"
 
 #
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "Çıkışta oynatma listesini kaydedin"
 
 #
@@ -15544,10 +15533,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Çıkışta doğru klasör listesi konumunu kaydedin."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 
 msgid "Saving EPG Cache..."
@@ -15556,7 +15545,7 @@ msgstr "EPG önbelleği saklanıyor..."
 msgid "Saving Timeshift files"
 msgstr "Zaman-kaydırma dosyaları saklanıyor"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Zaman-kaydırma film olarak saklanıyor. Bu biraz uzun sürebilir!"
 
 #
@@ -16119,7 +16108,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Kayıt için ayarlandığında timeshift'in devam etmesi gerekip gerekmediğini seçin."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -16455,7 +16444,7 @@ msgstr "Seç/Seçilen hizmete Zap"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -16471,7 +16460,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -16482,7 +16471,7 @@ msgstr ""
 #
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -16790,7 +16779,7 @@ msgstr "Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek 
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
 msgid "Set the default sorting method."
@@ -16839,13 +16828,13 @@ msgstr "Medya oynatılmaya başladığında Bilgi Çubuğunu otomatik olarak giz
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr "Ana Menü'de Medya Oynatıcı menü öğesini görüntülemek için bunu 'Evet' olarak ayarlayın. 'Hayır' olarak ayarlanırsa Media Player, Eklentiler listesinden başlatılabilir."
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr "Bu oynatma listesini sürekli tekrar eden bir döngüde oynatmaya devam etmek için bunu 'Evet' olarak ayarlayın. 'Hayır' olarak ayarlanırsa, çalma listesi yalnızca bir kez oynatılacaktır."
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr "Media Player'dan çıkarken mevcut dizini kaydetmek için bunu 'Evet' olarak ayarlayın."
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr "Media Player'dan çıkarken mevcut çalma listesini kaydetmek için bunu 'Evet' olarak ayarlayın."
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -17794,7 +17783,7 @@ msgid "Show warning before restart"
 msgstr "Yeniden başlatmadan önce uyarı göster"
 
 #
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Film durdurulduğu zaman uyar"
 
 msgid "Show watch status"
@@ -17831,7 +17820,7 @@ msgid "Shows the watched status of the media."
 msgstr "Filmin seyredilmiş durumunu göster."
 
 #
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Oynatma listesini karıştır"
 
 #
@@ -17949,12 +17938,6 @@ msgstr "Boyut"
 msgid "Size reverse"
 msgstr "Boyut ters"
 
-msgid "Size:"
-msgstr "Boyut:"
-
-msgid "Size: "
-msgstr "Boyut: "
-
 msgid "Skin"
 msgstr "Arayüz"
 
@@ -17989,7 +17972,7 @@ msgstr "Boş Kanalları atla"
 msgid "Skip forward"
 msgstr "Ileri atlamak"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "İnternet bağlantısını atla (otomatik paket yüklemeyi engeller)"
 
 #
@@ -18496,7 +18479,7 @@ msgstr "Test'i başlat"
 msgid "Start time"
 msgstr "Başlama zamanı"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Zamankaydırmayı başlat"
 
 msgid "Start/stop slide show"
@@ -18638,16 +18621,16 @@ msgstr "Çalışıyorsa güncellemeyi durdurun, ardından çıkın"
 msgid "Stop timer recording"
 msgstr "Kaydı durdur"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Zamankaydırmayı durdur"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
-msgstr "Zaman kaymasını durdur ve timeshift arabelleğini film olarak kaydet"
+msgid "Stop time shift and save time shift buffer as movie"
+msgstr "Zaman kaymasını durdur ve time shift arabelleğini film olarak kaydet"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
-msgstr "Zaman kaymasını durdurun ve timeshift arabelleğini film olarak kaydedin ve mevcut etkinliğin kaydını başlatmaya başlayın"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgstr "Zaman kaymasını durdurun ve time shift arabelleğini film olarak kaydedin ve mevcut etkinliğin kaydını başlatmaya başlayın"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Kayıt yapılırken zaman-kaydırma durdurulsun mu"
 
 msgid "Stopped"
@@ -18656,7 +18639,7 @@ msgstr "Durduruldu"
 msgid "Stopping Softcam"
 msgstr "Softcam'ı durdurma"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Bir kaydın devam etmesi durumunda durdurmanın zaman kayması kullanılır. (USB çubukları için tavsiye edilir)"
 
 msgid "Storage / Disk Information"
@@ -18912,7 +18895,7 @@ msgid "Switch between Audio-, Subtitlepage"
 msgstr "Ses, Altyazı sayfası arasında geçiş yap"
 
 #
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Dosya/play listelerine git"
 
 msgid "Switch config"
@@ -18952,7 +18935,7 @@ msgid "Switch to next sub service"
 msgstr "Sonraki alt servise geç"
 
 #
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Oynatma listesine geç"
 
 #
@@ -18981,7 +18964,7 @@ msgstr "Mevcut TV servislerine geçin"
 msgid "Switchable tuner types:"
 msgstr "Seçilebilir tuner tipleri:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Canlı TV'ye geçme - zaman kayması hala aktif!"
 
 msgid "Switzerland"
@@ -19008,7 +18991,7 @@ msgstr "Senkron hatası kaynağa dönülüyor !"
 msgid "Sync time using"
 msgstr "Zamanı eşzamanla (kullanarak)"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "İnternet veya transponder kullanarak sistem saatini senkronize et."
 
 msgid "Syrian Arab Republic"
@@ -19419,7 +19402,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Yazarlar SORUMLU DEĞİLDİR"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Zaman kayması için kullanılabilir disk alanı, ayarlarda belirtilenden daha azdır.\n"
@@ -19433,7 +19416,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Zaman kayması için tampon süresi, ayarlarda belirtilen sınırı aşıyor.\n"
@@ -19972,7 +19955,7 @@ msgstr "Bu, hata ayıklama günlüğündeki her satırın önekini ayarlar. 'Ön
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Bu ayar, tuner yapılandırmasının, başka bir tunerin zaten yapılandırıldığının bir kopyası olmasını sağlar."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Bu ayar, kablo sağlayıcınıza ve bulunduğunuz yere göre değişir. Doğru ayarı bilmiyorsanız, resmi kablo alıcısındaki menüye bakın ya da kablo sağlayıcınızdan alın ya da internet forumundan yardım alın."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -20501,7 +20484,7 @@ msgid "Try to send repeated commands if not all commands are executed. (e.g. TV 
 msgstr "Tüm komutlar yürütülmezse, tekrarlanan komutlar göndermeyi deneyin. (ör. TV uyandırma, ancak doğru girişe geçmemiş.)"
 
 #
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
 
 msgid "Tsonga"
@@ -21212,7 +21195,7 @@ msgstr "Bu görüntü iyileştirme ayarları kullanılsın mı?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Hızlı ileri / geri almak için zaman atlamalarını kullanın"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Kayıt yapılırken zaman-kaydırma arama çubuğu kullanılsın mı"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -21812,6 +21795,9 @@ msgstr "Uyarı"
 msgid "Warning: Overrides are currently active!"
 msgstr "Uyarı: Geçersiz kılmalar şu anda etkin!"
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Uyarı: %d güncelleme paketi var!"
@@ -21966,7 +21952,7 @@ msgstr "Ne taramak istiyorsunuz?"
 msgid "What would you like to do?"
 msgstr "Ne yapmak istersin?"
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Etkinleştirildiğinde, enigma2, bağlantısız kullanıcı önyüklemelerini yükler. Bu, mevcut olan ancak buketler.tv veya buketler.radio dosyalarına dahil olmayan kullanıcı buketlerinin yükleneceği anlamına gelir. Bu, örneğin kurulu ayarlar yükseltilirken kendi kullanıcı buketinizi korumanıza izin verir"
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -22014,7 +22000,7 @@ msgstr "Etkinleştirildiğinde, serbest tuner olmadığında kayıt akışını 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Etkinleştirildiğinde, serbest tuner olmadığında bir kaydın canlı TV'yi kesmesine izin verilir."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Etkinleşince, bir uyarı görünür, kullanıcı devam eder veya zamankaydırmayı durdurur."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -22050,7 +22036,7 @@ msgstr "Etkinleşince, grafik altyazılar özgün konumlarında görünecektir."
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Etkinleşince, grafik altyazılar özgün rengi yerine sarı olacaktır."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Etkinleştirildiğinde, movieplayer'ı çıkışla bırakmak mümkündür."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -22104,7 +22090,7 @@ msgstr "Etkinleştirilince, alıcı bir AC3 izi seçecek (varsa)."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Etkinleştirildiğinde, alıcı bir AC3 + pisti (mevcut olduğunda) seçecektir."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Etkinleştirildiğinde, zaman kayması belirlenen süre sonunda arka planda otomatik olarak başlar."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -22154,7 +22140,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
 
 #
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Geçici zaman-kaydırma kayıtları nerede saklansın?"
 
 msgid "Which event do you want to save permanently?"
@@ -22328,7 +22314,7 @@ msgstr "Evet, ve bu filmi sil"
 msgid "Yes, backup my settings!"
 msgstr "Evet, ayarlarımın yedeğini al!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Zaman-kaydırmayı film olarak saklama"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -22337,10 +22323,10 @@ msgstr "Evet, ancak mevcut değilse eklenti tarayıcısını göster"
 msgid "Yes, but if not available show the timer list"
 msgstr "Evet, ancak uygun değilse zamanlayıcı listesini göster"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -22463,11 +22449,11 @@ msgstr "Ayarlarınızı yedeklemeyi seçtiniz. Yedeklemeyi başlatmak için lüt
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ayarlarınızı geri yüklemeyi seçtiniz. Geri yüklemeden sonra Enigma2 yeniden başlayacaktır. Lütfen geri yüklemeyi şimdi başlatmak için OK tuşuna basın."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Mevcut zaman kaymasını kaydetmeyi seçtiniz"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Şimdiki zaman kaydırma programını seçtiniz, ama program henüz bitmedi\n"
@@ -22507,13 +22493,13 @@ msgstr ""
 "Öğesine bağlı bir PC'ye ihtiyacınız var %s% s. Daha fazla bilgiye ihtiyacınız varsa, lütfen https://www.opena.tv adresini ziyaret edin.\n"
 "%s% s artık durdurulacak. Güncelleme talimatlarını web sitesinden gerçekleştirdikten sonra, yeni ürün yazılımınız ayarlarınızı geri yüklemenizi isteyecektir."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Zaman kaydırmada görünüyorsunuz!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Zaman kaydırmada görünüyorsunuz, zaman kaydırmadan ayrılmak ister misiniz ?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr "Zaman kaymasında görünüyorsunuz, zaman kayması durduğunda hizmet kısaca duracaktır."
 
 msgid "You should flash a new image!"
@@ -22525,7 +22511,7 @@ msgstr "YouTube"
 msgid "YouTube long"
 msgstr "YouTube uzun"
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Internet bağlantısı %s%s  yok"
 
 #, python-format
@@ -22540,11 +22526,11 @@ msgstr "WOL'ye gider %s%s"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Internet'e bağlı %s% s değil"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "%s %s niz internete bağlı değil, lütfen ağ ayarlarınızı kontrol edin ve tekrar deneyin."
 
 #
@@ -22552,7 +22538,7 @@ msgstr "%s %s niz internete bağlı değil, lütfen ağ ayarlarınızı kontrol 
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "%s %s kullanımınız için hazır.\n"
@@ -22564,7 +22550,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -22737,7 +22723,7 @@ msgstr ""
 
 #
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "İnternet bağlantınız çalışmıyor!\n"
@@ -22762,7 +22748,7 @@ msgstr "Alıcınız şu anda kullanılamaz durumda olabilir. %s %s cihazınızı
 
 #
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -23094,7 +23080,7 @@ msgstr "balet"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "kullanılan dosya sistemi nedeniyle yedekleme\n"
 
 #
@@ -23979,7 +23965,7 @@ msgstr "provid:"
 msgid "provider:"
 msgstr "sağlayıcı:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "silinmiş userbouquets"
 
 msgid "python"
@@ -24071,7 +24057,7 @@ msgstr "ad değiştir"
 msgid "rename entry"
 msgstr "yeniden adlandır"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "silinen userbouquets'i geri yükle"
 
 msgid "restoring satellites.xml not possible!"
@@ -24581,6 +24567,30 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bit rate"
+#~ msgstr "Bit hızı"
+
+#, python-format
+#~ msgid "Directory '%s' not writeable!"
+#~ msgstr "Dizini '%s' yazılabilir değil!"
+
+#
+#~ msgid "Favourites"
+#~ msgstr "Favoriler"
+
+#
+#~ msgid "Polarisation"
+#~ msgstr "Polarizasyon"
+
+#~ msgid "Quick Select Actions"
+#~ msgstr "Hızlı Seçim Eylemleri"
+
+#~ msgid "Size:"
+#~ msgstr "Boyut:"
+
+#~ msgid "Size: "
+#~ msgstr "Boyut: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Biten olayların EPGde kaç dakika görünmesi gerektiğini yapılandır. Henüz bitmiş veya geciktirilmiş olay hakkında bilgi gerekince yararlıdır."

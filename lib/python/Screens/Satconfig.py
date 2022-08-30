@@ -268,7 +268,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbc.configMode, _("Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."))
 			self.list.append(self.configMode)
 			if self.nimConfig.dvbc.configMode.value == "enabled":
-				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.dvbc.scan_networkid, _("This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum.")))
+				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.dvbc.scan_networkid, _("This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum.")))
 				self.cableScanType = getConfigListEntry(_("Used service scan type"), self.nimConfig.dvbc.scan_type, _("Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."))
 				self.list.append(self.cableScanType)
 				if self.nimConfig.dvbc.scan_type.value == "provider":

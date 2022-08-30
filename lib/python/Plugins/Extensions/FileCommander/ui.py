@@ -809,7 +809,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		filename = os.path.basename(os.path.normpath(filename))
 		if not filename:
-			self.session.open(MessageBox, _("It's not possible to rename the filesystem root."), type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("It's not possible to rename the file system root."), type=MessageBox.TYPE_ERROR)
 			return
 		fname = _("Please enter the new file name")
 		if sourceDir in filename:

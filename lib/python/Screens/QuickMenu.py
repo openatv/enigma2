@@ -301,7 +301,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftware(self):
 		model = BoxInfo.getItem("model")
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working internet connection)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)")))
 		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
 		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
@@ -331,7 +331,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Initialization", _("Format HDD"), _("Format your Harddisk")))
 		self.sublist.append(QuickSubMenuEntryComponent("File System Check", _("Check HDD"), _("Filesystem check your Harddisk")))
 		if isFileSystemSupported("ext4"):
-			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert filesystem ext3 to ext4"), _("Convert filesystem ext3 to ext4")))
+			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system ext3 to ext4"), _("Convert file system ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):

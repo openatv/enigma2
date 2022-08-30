@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -168,7 +168,7 @@ msgstr " a"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr "Chcete nainstalovat seznam programů?"
 
 msgid " of "
@@ -1407,7 +1407,7 @@ msgstr "'%s' obsahuje %d soubor(ů) a %d pod adresářů.\n"
 msgid "'%s' not installed and no known package"
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer v hodinách' nebo 'počet posledních událostí'. Pro smazání starších Timeshift souborů. Stav, který nastal dčíve má prioritu."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -2042,7 +2042,7 @@ msgstr "< Standard s Piconem >"
 msgid "< User Skin >"
 msgstr ""
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Současný seznam souborů>"
 
 msgid "<Default movie location>"
@@ -2062,7 +2062,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Kontrola aktualizace na pozadí probíhá, prosím vyčkejte několik minut a zkuste to znovu."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr ""
 
 msgid "A file from media is in use!"
@@ -2289,7 +2289,7 @@ msgid "Aborted a streaming service.\n"
 msgstr "Přepnout na nahrávaný program! \n"
 
 #, fuzzy
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Probíhá nahrávání"
 
 msgid "About"
@@ -2333,7 +2333,7 @@ msgstr "Akce na krátký stisk tlačítka 'VYPNOUT'"
 msgid "Activate"
 msgstr "Aktivovat"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Aktivovat HbbTV (Červené tl.)"
 
 #, fuzzy
@@ -2367,10 +2367,10 @@ msgstr ""
 msgid "Activate the configured network settings."
 msgstr "Aktivovat konfiguraci nastavení sítě."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Aktivuje timeshift přehrávání (od začátku)"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Aktivuje timeshift pauzu"
 
 msgid "Active"
@@ -2387,6 +2387,9 @@ msgstr "Přidat"
 
 msgid "Add AutoTimer"
 msgstr "Auto-Časovač"
+
+msgid "Add Bookmark"
+msgstr "K oblíbeným"
 
 msgid "Add Current"
 msgstr "Přidat aktuální"
@@ -2445,20 +2448,17 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Přidat Auto timer aktuálnímu pořadu"
 
-msgid "Add Bookmark"
-msgstr "K oblíbeným"
-
 #, fuzzy
 msgid "Add current folder to bookmarks"
 msgstr "Přidat adresář do záložek"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Přidat adresář do playlistu"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Přidat soubor do playlistu"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Přidat soubory do playlistu"
 
 msgid "Add new CCcam line"
@@ -2680,7 +2680,7 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Povolit ukončení a opuštění MoviePlayeru"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2713,7 +2713,7 @@ msgstr ""
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Umožňuje povolit zprávu o chybách. Ta obsahuje detailní informace všech událostí systému."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Umožňuje povolit/zakázat zobrazování ikon na předním panelu."
 
 #, fuzzy
@@ -2808,7 +2808,7 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Neplatný název souboru."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
 
 msgid "An unknown error occurred!"
@@ -2875,7 +2875,7 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "Opravdu chcete zrušit všechny změny"
 
 #, fuzzy
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Obnovit smazané uživatelské přehledy"
 
 #, python-format
@@ -3212,7 +3212,7 @@ msgstr "Autonaticky vyhledá dostupné programy"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Automaticky spustit timeshift za"
 
 msgid "Automatically turn on external subtitles"
@@ -3262,10 +3262,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr ""
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr ""
 
 msgid "BER:"
@@ -3558,9 +3558,6 @@ msgid "Biography"
 msgstr ""
 
 msgid "Bislama"
-msgstr ""
-
-msgid "Bit rate"
 msgstr ""
 
 #, fuzzy
@@ -4090,7 +4087,7 @@ msgstr ""
 "Nelze přehrát další soubor Timeshift!\n"
 "Přepnout do aktuálního vysílání TV a restartovat Timeshift?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr ""
 "Nelze přehrát předchozí soubor Timeshiftu!\n"
 "Můžete to zkusit znovu?"
@@ -4099,7 +4096,7 @@ msgstr ""
 msgid "Can't read link contents: %s"
 msgstr ""
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Nemohu odpojit oddíl, ujistěte se, že se nejedná oodkládací soubor, soubor nahrávání nebo soubot Timeshiftu."
 
 msgid "Canada"
@@ -4139,7 +4136,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Výběr kanálú"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Zrušit uložení timeshiftu jako filmu"
 
 #, fuzzy
@@ -4282,7 +4279,7 @@ msgstr "Změnit PIN kód"
 msgid "Change recording (duration)"
 msgstr "Změnit záznam (Délku trvání)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Změnit záznam (Čas ukončení)"
 
 msgid "Change repeat and delay settings?"
@@ -4441,13 +4438,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr ""
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Zkontrolujte připojení k internetu"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Ještě jednou zkontrolujte připojení k internetu"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Kontrola / Instalace aktualizací (musí být funkční internetové spojení)"
 
 msgid "Checking Feeds"
@@ -4456,10 +4453,10 @@ msgstr "Kontrola zdrojů"
 msgid "Checking Logs..."
 msgstr "Hledání zpráv..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Kontrola souborového systému..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Kontrola připojení k internetu"
 
 #, python-format
@@ -4481,7 +4478,7 @@ msgid "Children/Youth"
 msgstr "Děti/mládež"
 
 #, fuzzy
-msgid "Childrens"
+msgid "Children's"
 msgstr "Chillout"
 
 #, fuzzy
@@ -4495,8 +4492,8 @@ msgid "Chinese"
 msgstr ""
 
 #, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
+msgstr "Chip set: BCM%s"
 
 msgid "Choice Box"
 msgstr "Vyberte si:"
@@ -4663,7 +4660,7 @@ msgstr "Před hledáním smazat"
 msgid "Clear fixed"
 msgstr "Uvolnit adresu"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Prázdný playlist"
 
 msgid "Clear the logs for this timer"
@@ -5365,7 +5362,7 @@ msgstr "Konvertovat HDD z ext3 na ext4"
 msgid "Convert ext3 to ext4"
 msgstr "Konverze ext3 na ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Konvertovat HDD z ext3 na ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5519,7 +5516,7 @@ msgstr "Vytvoření hardlinku na soubor Timeshiftu selhalo!"
 msgid "Creating directory %s failed."
 msgstr "Založení adresáře %s se nezdařilo."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Zakládá se souborový systém"
 
 msgid "Creating partition"
@@ -6220,10 +6217,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Smazat položku playlistu"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Smazat uložený playlist"
 
 msgid "Delete the character to the left of text cursor"
@@ -6233,7 +6230,7 @@ msgid "Delete the character under the text cursor"
 msgstr ""
 
 #, fuzzy
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr ""
 "Nelze přehrát další soubor Timeshift!\n"
 "Přepnout do aktuálního vysílání TV a restartovat Timeshift?"
@@ -6419,10 +6416,6 @@ msgstr ""
 msgid "Directory '%s' not writable!"
 msgstr ""
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr ""
-
 msgid "Directory browser"
 msgstr "Prohlížeč adresářů"
 
@@ -6601,14 +6594,14 @@ msgid "Do nothing"
 msgstr "Nedělat nic"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Opravdu chcete zkontrolovat souborový systém?\n"
 "Může to chvíli trvat?!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Opravdu chcete změnit souborový systém?\n"
@@ -7648,6 +7641,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -8233,9 +8230,6 @@ msgstr "Oblíbené"
 msgid "Favorites long"
 msgstr "Oblíbené - dlouhý stisk"
 
-msgid "Favourites"
-msgstr "Oblíbené"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8412,7 +8406,7 @@ msgid "Finnish"
 msgstr "Finsky"
 
 #, fuzzy
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Uložit timeshift soubor"
 
 #, fuzzy
@@ -9435,7 +9429,7 @@ msgstr "Instalovat místní rozšíření"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "Soubor ISO je příliš veliký pro tento systém"
 
 msgid "ISO path"
@@ -9566,7 +9560,7 @@ msgstr ""
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Pokud je volný prostor je menší než nastavená hodnota, pokusí se odstranit staré Timeshift soubory."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -10126,7 +10120,7 @@ msgstr ""
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr ""
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr ""
 
 msgid "Italian"
@@ -10641,13 +10635,13 @@ msgstr "Načíst"
 msgid "Load EPG"
 msgstr "Načíst EPG"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Načíst playlist"
 
 msgid "Load tags from the timer and recordings"
 msgstr ""
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Načíst nepropojené uživatelské přehledy"
 
 #, fuzzy
@@ -12432,7 +12426,7 @@ msgid "Now building the Backup Image"
 msgstr "Právě vytvářím USB-Image!"
 
 #, fuzzy
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Uložit timeshift jako film a pokračovat v nahrávání"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -12538,7 +12532,7 @@ msgstr "Zpoždění offline dekódování (ms)"
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr " Při každé změně události jsou starší soubory v adresáři timeshift odstraněny."
 
 msgid "Olympics"
@@ -13219,10 +13213,10 @@ msgstr "Přehrát položku"
 msgid "Play folder"
 msgstr "Přehrát položku"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Přehrát od další značky/položky v playlistu"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Přehrát od předchozí značky/položky v playlistu"
 
 msgid "Play music..."
@@ -13291,14 +13285,14 @@ msgstr ""
 "Pro pokračování stiskněte OK."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Nakonfigurujte internetové připojení vyplněním požadovaných hodnot.\n"
 "Pro pokračování stiskněte OK."
 
 #, fuzzy
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Připojte přijímač do internetu"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -13391,10 +13385,10 @@ msgstr ""
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Prosím, vyberte playlist ke smazání..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Prosím, vyberte playlist"
 
 msgid "Please select a resolution..."
@@ -13432,7 +13426,7 @@ msgid "Please select the movie path..."
 msgstr "Vyberte cestu k filmům..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13649,9 +13643,6 @@ msgstr "Pluginy"
 
 msgid "Poland"
 msgstr ""
-
-msgid "Polarisation"
-msgstr "Polarizace"
 
 msgid "Polarization"
 msgstr "Polarizace"
@@ -14211,10 +14202,6 @@ msgstr "Rychlé Menu"
 msgid "Quick Menu..."
 msgstr "Rychlé Menu"
 
-#, fuzzy
-msgid "Quick Select Actions"
-msgstr "Rychle"
-
 msgid "Quick zap"
 msgstr "Rychlé přepínání"
 
@@ -14231,6 +14218,9 @@ msgstr "Rychle"
 
 msgid "QuickMenu/Extensions"
 msgstr "Rychlé Menu / Rozšířená nabídka"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "Rádio"
@@ -14455,7 +14445,7 @@ msgstr "Nahrát další"
 msgid "Record now"
 msgstr "Nová nahrávka"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Záznam spuštěn! Zastavuji nyní Timeshift..."
 
 #, python-format
@@ -14719,6 +14709,9 @@ msgstr "Typ dálkového ovládání"
 msgid "Remove"
 msgstr "Smazat"
 
+msgid "Remove Bookmark"
+msgstr "Smazat záložku"
+
 msgid "Remove Confirmation"
 msgstr "Odstranit potvrzení"
 
@@ -14774,9 +14767,6 @@ msgstr ""
 
 msgid "Remove all user interface data"
 msgstr ""
-
-msgid "Remove Bookmark"
-msgstr "Smazat záložku"
 
 msgid "Remove completed timers after (days)"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
@@ -14853,7 +14843,7 @@ msgstr "Opakovat"
 msgid "Repeat Display Message"
 msgstr "Opak. zprávu na displeji"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "Opakovat playlist"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -15450,10 +15440,10 @@ msgstr "Uložit každých (v hod.)"
 msgid "Save left folder on exit"
 msgstr "Uložit poslední adresář při ukončení"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Uložit playlist"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "Při ukončení uložit playlist"
 
 #, fuzzy
@@ -15479,10 +15469,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr ""
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Uložit timeshift jako film a pokračovat v nahrávání"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Uložit timeshift jako film a ukončit nahrávání"
 
 msgid "Saving EPG Cache..."
@@ -15491,7 +15481,7 @@ msgstr "Uložit cache EPG..."
 msgid "Saving Timeshift files"
 msgstr "Ukládám soubory Timeshift"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Ukládám nyní TimeShift jako film .To může chvíli trvat!"
 
 msgid "Scaler sharpness"
@@ -16047,7 +16037,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Vyberte, jak dále pokračovat s Timeshiftem při přepnutí na jiný kanál."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -16380,7 +16370,7 @@ msgstr "Přepnout na vybraný kanál"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -16390,14 +16380,14 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
 
 #, fuzzy, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr "Chcete obnovit Vaše nastavení?"
@@ -16704,7 +16694,7 @@ msgstr "Nastavení výchozího umístění pro nahrávání.Stiskem OK přidáte
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Nastavení výchozího umístění pro časovače.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Nastavení výchozího umístění pro soubory Timeshiftu.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
 msgid "Set the default sorting method."
@@ -16754,13 +16744,13 @@ msgstr ""
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr ""
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr ""
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr ""
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -17736,7 +17726,7 @@ msgstr "EPG"
 msgid "Show warning before restart"
 msgstr "Varovat před restartem přijímače při nahrávání"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Při zastavení timeshiftu zobrazit upozornění"
 
 msgid "Show watch status"
@@ -17774,7 +17764,7 @@ msgstr "Zobrazit stav vaší bezdrátové sítě."
 msgid "Shows the watched status of the media."
 msgstr "Zobrazit stav přehrávaného videa."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Promíchat playlist"
 
 msgid "Shut down"
@@ -17882,13 +17872,6 @@ msgid "Size reverse"
 msgstr "Servery"
 
 #, fuzzy
-msgid "Size:"
-msgstr "Velikost:"
-
-msgid "Size: "
-msgstr "Velikost:"
-
-#, fuzzy
 msgid "Skin"
 msgstr "Skiny"
 
@@ -17923,7 +17906,7 @@ msgstr "Přeskakovat prázdné programy"
 msgid "Skip forward"
 msgstr "Přeskočit vpřed"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Přeskočit test internetového připojení (zakáže automatickou instalaci balíčků)."
 
 #, fuzzy
@@ -18432,7 +18415,7 @@ msgstr "Otestovat"
 msgid "Start time"
 msgstr "Čas začátku"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Spustit timeshift"
 
 #, fuzzy
@@ -18565,18 +18548,18 @@ msgstr ""
 msgid "Stop timer recording"
 msgstr "Ukončit nahrávání časovače"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Ukončit timeshift"
 
 #, fuzzy
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Neukládat Timeshift jako film"
 
 #, fuzzy
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Uložit Timeshift jako film a zastavit záznam"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Ukončit timeshift při záznamu"
 
 msgid "Stopped"
@@ -18586,7 +18569,7 @@ msgstr "Zastaveno"
 msgid "Stopping Softcam"
 msgstr "Stáhnout Softcamy"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Ukončit časový posun v případě, že probíhá nahrávání. (Vhodné pro USB flash)"
 
 msgid "Storage / Disk Information"
@@ -18839,7 +18822,7 @@ msgstr "Přepnout TV na správný vstup"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Přepnout Výběr Zvuku <--> Výběr Titulků"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Přepínat mezi seznamem/playlistem"
 
 msgid "Switch config"
@@ -18880,7 +18863,7 @@ msgstr "Přepnout na další program v historii"
 msgid "Switch to next sub service"
 msgstr "Přepnout na další podprogram"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Přepnout na playlist"
 
 #, fuzzy
@@ -18908,7 +18891,7 @@ msgstr ""
 msgid "Switchable tuner types:"
 msgstr "Přepínatelné typy tunerů:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr ""
 
 msgid "Switzerland"
@@ -18936,7 +18919,7 @@ msgstr "Selhání synchronizace přesouvá zpět na původní !"
 msgid "Sync time using"
 msgstr "Čas synchronizovat s"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Synchronizovat systémový čas pomocí transpondéru nebo internetu."
 
 msgid "Syrian Arab Republic"
@@ -19361,7 +19344,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr ""
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 
@@ -19373,7 +19356,7 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Rozhodli jste se pro uložení aktuálně prováděného timeshiftu, ale událost ještě neskončila \n"
@@ -19917,7 +19900,7 @@ msgstr ""
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr ""
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -20432,7 +20415,7 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Snažím se stáhnout nový seznam balíčků. Prosím, čekejte..."
 
 msgid "Tsonga"
@@ -21128,7 +21111,7 @@ msgstr "Použít toto rozšířené nastavení?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Použít časové skoky pro posun vpřed/vzad"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Při timeshiftu použít panel PTS"
 
 #, fuzzy
@@ -21757,6 +21740,9 @@ msgstr "zahradnictví"
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
@@ -21902,7 +21888,7 @@ msgstr "Co chcete prohledat?"
 msgid "What would you like to do?"
 msgstr ""
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Je povoleno načtení nepropojených uživatelských přehledů. Tj. přehledů které jsou k dispozici, ale nejsou zahrnuty v přehledech TV/Radia a budou tedy trvale načteny. To vám například umožní použití vlastních uživatelských přehledů, zatímco instalovaná nastavení jsou aktualizována."
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -21950,7 +21936,7 @@ msgstr "Jestliže je povoleno, pak nahrávání může zrušit streamování vid
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Jestliže je povoleno, pak nahrávání může přerušit živé vysílání, pokud není k dispozici žádný volný tuner."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Jestliže je povoleno, bude zobrazeno varování a uživatel bude mít možnost timeshift ukončit nebo pokračovat."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -21986,7 +21972,7 @@ msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány na jejic
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány žlutě namísto jejich původní barvy."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Jestliže je povoleno, je možné opouštět movieplayer pomocí Exit."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -22041,7 +22027,7 @@ msgstr "Jestliže je povoleno, přijímač bude vybírat AC3 stopu (je-li dostup
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Jestliže je povoleno, přijímač bude vybírat AC3+ stopu (je-li dostupná)."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Jestliže je povoleno, timeshift se na pozadí automaticky spustí po nastavené době."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -22089,7 +22075,7 @@ msgstr "Jestliže ano, pak v případě, že kanál podporuje VPS bude VPS povol
 msgid "Where do you want to backup your settings?"
 msgstr "Kam chcete zazálohovat Vaše nastavení?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Kam ukládat dočasný záznam timeshiftu?"
 
 msgid "Which event do you want to save permanently?"
@@ -22259,7 +22245,7 @@ msgstr "Ano, a smazat tento film"
 msgid "Yes, backup my settings!"
 msgstr "Ano, zálohuj moje nastavení!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Neukládat Timeshift jako film"
 
 #, fuzzy
@@ -22269,10 +22255,10 @@ msgstr "Tato volba umožňuje vypnout třídění v pluginu Prohlížeč plugin�
 msgid "Yes, but if not available show the timer list"
 msgstr ""
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Uložit Timeshift jako film a pokračovat v záznamu"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Uložit Timeshift jako film a zastavit záznam"
 
 #, fuzzy
@@ -22385,11 +22371,11 @@ msgid "You have chosen to restore your settings. Enigma2 will restart after rest
 msgstr "Zvolili jste obnovení Vašich nastavení. Enigma2 se po obnově zrestartuje. Prosím, stiskněte OK pro spuštění obnovy."
 
 #, fuzzy
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Připomínáme, že jste se rozhodli uložit timeshift soubor."
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Rozhodli jste se pro uložení aktuálně prováděného timeshiftu, ale událost ještě neskončila \n"
@@ -22429,13 +22415,13 @@ msgstr ""
 "Zkopírujte obraz (image) na USB disk a vložte jej do předního portu. Váš %s %s se za chvíli vypne. Poté jej zapněte a na požádání stiskněte tlačítko OK (Power).\n"
 "Po provedení aktualizace se Vás přijímač zeptá na obnovu nastavení. Pokud potřebujete další pokyny, navštivte prosím webové stránky https://www.opena.tv."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Zdá se, že je to timeshift!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Zdá se, že je to timeshift. Chcete ho ukončit ?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr ""
 
 msgid "You should flash a new image!"
@@ -22448,7 +22434,7 @@ msgid "YouTube long"
 msgstr ""
 
 #, fuzzy
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Přijímač není připojen k internetu"
 
 #, fuzzy, python-format
@@ -22464,18 +22450,18 @@ msgid "Your %s %s is not connected to the Internet, please check your network se
 msgstr ""
 
 #, fuzzy
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Přijímač není připojen k internetu"
 
 #, fuzzy, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Váš% %s %s není připojen k internetu, zkontrolujte prosím vaše síťové nastavení a zkuste to znovu."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "Váš %s %s je nyní připraven k používání.\n"
@@ -22486,7 +22472,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -22656,7 +22642,7 @@ msgstr ""
 "Opravdu chcete provést aktualizaci?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Vaše internetové připojení nepracuje!\n"
@@ -22679,7 +22665,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr ""
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -23010,7 +22996,7 @@ msgstr "balet"
 msgid "bc%d"
 msgstr ""
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "Podle použitého souborového systému bude vytvoření\n"
 
 msgid "better"
@@ -23862,7 +23848,7 @@ msgstr "Posk.:"
 msgid "provider:"
 msgstr "Poskyt.:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "Uvolnit odstaněné uživatelské přehledy"
 
 msgid "python"
@@ -23944,7 +23930,7 @@ msgstr "Přejmenovat"
 msgid "rename entry"
 msgstr "Přejmenovat"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "Obnovit smazané uživatelské přehledy"
 
 msgid "restoring satellites.xml not possible!"
@@ -24432,6 +24418,23 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Favourites"
+#~ msgstr "Oblíbené"
+
+#~ msgid "Polarisation"
+#~ msgstr "Polarizace"
+
+#, fuzzy
+#~ msgid "Quick Select Actions"
+#~ msgstr "Rychle"
+
+#, fuzzy
+#~ msgid "Size:"
+#~ msgstr "Velikost:"
+
+#~ msgid "Size: "
+#~ msgstr "Velikost:"
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Nastavuje, kolik minut může zůstat ukončená událost viditelná v EPG. Užitečné, když potřebujete informace o události, která právě skončila nebo byla zpožděná."

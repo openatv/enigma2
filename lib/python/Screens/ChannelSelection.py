@@ -281,8 +281,8 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
 					self.removeFunction = self.removeBouquet
 					if removed_userbouquets_available():
-						append_when_current_valid(current, menu, (_("purge deleted userbouquets"), self.purgeDeletedBouquets), level=0)
-						append_when_current_valid(current, menu, (_("restore deleted userbouquets"), self.restoreDeletedBouquets), level=0)
+						append_when_current_valid(current, menu, (_("purge deleted user bouquets"), self.purgeDeletedBouquets), level=0)
+						append_when_current_valid(current, menu, (_("restore deleted user bouquets"), self.restoreDeletedBouquets), level=0)
 		if self.inBouquet:  # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if csel.movemode:
@@ -417,7 +417,7 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def purgeDeletedBouquets(self):
-		self.session.openWithCallback(self.purgeDeletedBouquetsCallback, MessageBox, _("Are you sure to purge all deleted userbouquets?"))
+		self.session.openWithCallback(self.purgeDeletedBouquetsCallback, MessageBox, _("Are you sure to purge all deleted user bouquets?"))
 
 	def purgeDeletedBouquetsCallback(self, answer):
 		if answer:

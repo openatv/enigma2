@@ -2556,7 +2556,7 @@ class InfoBarSeek:
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
-			#return 0 # if 'return 0', plays timeshift again from the beginning
+			#return 0 # if 'return 0', plays time shift again from the beginning
 			return
 		self.doPause(False)
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -3883,7 +3883,7 @@ class InfoBarInstantRecord:
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 				((_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),)
+				(_("Change recording (end time)"), "changeendtime"),)
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
 		else:
@@ -5247,7 +5247,7 @@ class InfoBarHandleBsod:
 			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
 			if writelog:
 				txt += "\n" + "-" * 80 + "\n"
-				txt += _("A crashlog was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
+				txt += _("A crash log was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
 			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("never"))

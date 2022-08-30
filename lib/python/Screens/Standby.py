@@ -35,7 +35,7 @@ QUIT_UPGRADE_FRONTPANEL = 44
 QUIT_WOLSHUTDOWN = 45
 
 
-class TVstate: #load in Navigation
+class TVstate:  # load in Navigation
 	def __init__(self):
 		global TVinStandby
 		if TVinStandby is not None:
@@ -236,7 +236,7 @@ class Standby2(Screen):
 			except:
 				pass
 
-		if int(config.usage.hdd_standby_in_standby.value) != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
+		if int(config.usage.hdd_standby_in_standby.value) != -1:  # HDD standby timer value (box in standby) / -1 = same as when box is active
 			for hdd in harddiskmanager.HDDList():
 				hdd[1].setIdleTime(int(config.usage.hdd_standby_in_standby.value))
 
@@ -261,7 +261,7 @@ class Standby2(Screen):
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 		for hdd in harddiskmanager.HDDList():
-			hdd[1].setIdleTime(int(config.usage.hdd_standby.value)) # HDD standby timer value (box active)
+			hdd[1].setIdleTime(int(config.usage.hdd_standby.value))  # HDD standby timer value (box active)
 
 	def __onFirstExecBegin(self):
 		global inStandby
@@ -367,7 +367,7 @@ class TryQuitMainloop(MessageBox):
 #			else:
 #				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 		if inTimeshift:
-			reason = _("You seem to be in timeshift!") + '\n'
+			reason = _("You seem to be in time shift!") + '\n'
 			default_yes = True
 			timeout = 30
 		elif recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
@@ -416,12 +416,12 @@ class TryQuitMainloop(MessageBox):
 		else:
 			if event == iRecordableService.evEnd:
 				recordings = self.session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
-				if not recordings: # no more recordings exist
+				if not recordings:  # no more recordings exist
 					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 					if rec_time > 0 and (rec_time - time()) < 360:
-						self.timer.start(360) # wait for next starting timer
+						self.timer.start(360)  # wait for next starting timer
 					else:
-						self.close(True) # immediate shutdown
+						self.close(True)  # immediate shutdown
 			elif event == iRecordableService.evStart:
 				self.stopTimer("getRecordEvent")
 
@@ -461,4 +461,3 @@ class TryQuitMainloop(MessageBox):
 
 	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
  		return None
-		

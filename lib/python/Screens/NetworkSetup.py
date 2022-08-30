@@ -41,6 +41,7 @@ BASE_GROUP = "packagegroup-base" if float(getVersionString()) >= 4.0 else "task-
 BRAND = BoxInfo.getItem("displaybrand")
 MODEL = BoxInfo.getItem("displaymodel")
 
+
 class NetworkAdapterSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -1723,7 +1724,7 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		if "bad address" in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
@@ -1895,7 +1896,7 @@ class NetworkSABnzbd(NetworkBaseScreen):
 		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -3548,7 +3549,7 @@ class NetworkSATPI(NetworkBaseScreen):
 		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
 

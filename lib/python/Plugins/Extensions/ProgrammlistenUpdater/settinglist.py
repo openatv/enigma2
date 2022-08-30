@@ -134,7 +134,7 @@ class CheckTimer:
             pass
 
         now = time.time()
-        ttime = now + 28800 # Check each 8 hours for new version
+        ttime = now + 28800  # Check each 8 hours for new version
         delta1 = int(ttime - now)
 
         if Auto:
@@ -179,7 +179,7 @@ class CheckTimer:
                             self.startDownload(self.name, self.link, ConverDate(self.date))
                         else:
                             # Auto update with confrimation
-                            self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settingslist?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
+                            self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settings list?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
                     else:
                         print("Programmlisten-Updater: NO NEW UPDATE AVAILBLE")
                     break

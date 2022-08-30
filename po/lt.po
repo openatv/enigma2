@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -182,7 +182,7 @@ msgstr " ir"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " galimi !!\n"
 "\n"
@@ -1319,7 +1319,7 @@ msgstr ""
 msgid "'%s' not installed and no known package"
 msgstr "'%s' neįdiegta ir nėra žinomo paketo"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "\"Kaupimas valandomis\" arba \"paskutinių įvykių skaičius\". Ištrinant senesnius laiko poslinkio failus, sąlygos, esančios pirmoje eilėje, turi pirmenybę."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1911,7 +1911,7 @@ msgstr "< Numatyta su logotipu >"
 msgid "< User Skin >"
 msgstr "< Vartotojo tema >"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Dabartinė filmų sąrašo vieta>"
 
 msgid "<Default movie location>"
@@ -1930,7 +1930,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Gedimų žurnalų %s buvo sukurta į '%s'"
 
 msgid "A file from media is in use!"
@@ -2147,7 +2147,7 @@ msgstr "Nutrauktas pseudo įrašymą.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Transliacija nutraukta.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Atnaujinimas nutraukiamas"
 
 msgid "About"
@@ -2189,7 +2189,7 @@ msgstr "Veiksmas trumpu POWER mygtuko paspaudimu"
 msgid "Activate"
 msgstr "Aktyvuoti"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Aktyvuokite HbbTV (raudonas mygtukas)"
 
 msgid "Activate MAC address configuration"
@@ -2222,10 +2222,10 @@ msgstr "Aktyvuokite dešinįjį failų sąrašą kaip šaltinį"
 msgid "Activate the configured network settings."
 msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Aktyvuoti laiko poslinkio pabaigą"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Įjungti laiko poslinkio pabaigą ir pristabdyti"
 
 msgid "Active"
@@ -2242,6 +2242,9 @@ msgstr "Pridėti"
 
 msgid "Add AutoTimer"
 msgstr "Pridėti auto laikmatį"
+
+msgid "Add Bookmark"
+msgstr "Pridėti žymę"
 
 msgid "Add Current"
 msgstr "Įtraukti dabartinį"
@@ -2297,19 +2300,16 @@ msgstr "Įtraukti dabartinio įvykio laikmatį"
 msgid "Add an AutoTimer for the current event"
 msgstr "Pridėkite dabartinio įvykio automatinį laikmatį"
 
-msgid "Add Bookmark"
-msgstr "Pridėti žymę"
-
 msgid "Add current folder to bookmarks"
 msgstr "Įtraukite dabartinį aplanką į žymes"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Pridėti katalogą į grojaraštį"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Pridėti failą į grojaraštį"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Pridėti failus į grojaraštį"
 
 msgid "Add new CCcam line"
@@ -2513,7 +2513,7 @@ msgstr "Leisti 10 bitų"
 msgid "Allow 12bit"
 msgstr "Leisti 12 bitų"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Leisti užverti filmų grotuvą su exit"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2546,7 +2546,7 @@ msgstr "Leidžia įjungti GStreamer vamzdynų grafikus. Tai yra .dot failai, api
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Leidžia įjungti klaidų žurnalus. Juose yra labai išsami informacija apie visos sistemos darbą."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Leidžia įjungti/išjungti piktogramų rodymą priekinio skydelio ekrane."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2638,7 +2638,7 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Tuščias failo pavadinimas negalimas."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Parsisiunčiant paketų sąrašą, įvyko klaida. Pabandykite dar kartą."
 
 msgid "An unknown error occurred!"
@@ -2701,7 +2701,7 @@ msgstr "Ar tikrai norite atšaukti visus pakeitimus?"
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Ar tikrai norite ištrinti visus iškirpimus ir žymeklius?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Ar tikrai norite išvalyti visus pašalintus vartotojo paketus?"
 
 #, python-format
@@ -3014,7 +3014,7 @@ msgstr "Automatinė kanalų paieška"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automatiškai nustatykite televizorių į budėjimo režimą, kai imtuvas pereina į budėjimo režimą arba gilų budėjimo režimą."
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Automatiškai paleisti laiko poslinkį po"
 
 msgid "Automatically turn on external subtitles"
@@ -3063,10 +3063,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Blu-ray diskas (HDTV tik pavadinimai)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV suderinamas Blu-ray diskas (tik HDTV)"
 
 msgid "BER:"
@@ -3347,9 +3347,6 @@ msgstr "Biografija"
 
 msgid "Bislama"
 msgstr "Bislama"
-
-msgid "Bit rate"
-msgstr "Bitų dažnis"
 
 msgid "Bitrate"
 msgstr "Sparta bitais"
@@ -3875,14 +3872,14 @@ msgstr ""
 "Nepavyksta rodyti sekančio laiko poslinkio failo!\n"
 "Perjungti į tiesioginę transliaciją ir paleisti laiko poslinkį iš naujo?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Nepavyksta rodyti ankstesnio laiko poslinkio failo! Pabandykite dar kartą."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Negalima skaityti nuorodų turinio: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Nepavyksta atjungti skirsnio. Patikrinkite, ar jis nenaudojamas mainų failui, įrašams/laiko poslinkiui"
 
 msgid "Canada"
@@ -3918,7 +3915,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Atšaukti vykdymą?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 
 msgid "Cancel selection"
@@ -4055,7 +4052,7 @@ msgstr "Keisti PIN kodą"
 msgid "Change recording (duration)"
 msgstr "Keisti įrašymą (nurodyti trukmę)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Keisti įrašymą (nurodyti pabaigos laiką)"
 
 msgid "Change repeat and delay settings?"
@@ -4204,13 +4201,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Tikrinkite interneto ryšį"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Tikrinkite interneto ryšį dar kartą"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Tikrinkite/įdiekite atnaujinimus internetu (reikalingas interneto ryšys)"
 
 msgid "Checking Feeds"
@@ -4219,10 +4216,10 @@ msgstr "Tikrinami šaltiniai"
 msgid "Checking Logs..."
 msgstr "Tikrinami žurnalai..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Failų sistemos tikrinimas..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Tikrinamas interneto ryšys"
 
 #, python-format
@@ -4242,7 +4239,7 @@ msgstr "Vaikų"
 msgid "Children/Youth"
 msgstr "Vaikams/jaunimui"
 
-msgid "Childrens"
+msgid "Children's"
 msgstr "Vaikams"
 
 msgid "Chile"
@@ -4255,7 +4252,7 @@ msgid "Chinese"
 msgstr "Kinų"
 
 #, python-format
-msgid "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
 msgstr "Lustų rinkinys: BCM%s"
 
 msgid "Choice Box"
@@ -4415,7 +4412,7 @@ msgstr "Išvalyti prieš paiešką"
 msgid "Clear fixed"
 msgstr "Išvalyti nustatytus"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Išvalyti grojaraštį"
 
 msgid "Clear the logs for this timer"
@@ -5091,7 +5088,7 @@ msgstr "Konvertuoti EXT3 failų sistemą į EXT4"
 msgid "Convert ext3 to ext4"
 msgstr "Konvertuoti ext3 į ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Konvertuoti ext3 failų sistemą į ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5231,7 +5228,7 @@ msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
 msgid "Creating directory %s failed."
 msgstr "Katalogo sukurti %s nepavyko."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Kuriama failų sistema"
 
 msgid "Creating partition"
@@ -5902,10 +5899,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Naikinti arba išvalyti paryškintą lizdą"
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Trinti įrašą iš grojaraščio"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Trinti išsaugotą grojaraštį"
 
 msgid "Delete the character to the left of text cursor"
@@ -5914,7 +5911,7 @@ msgstr "Trinti simbolį teksto žymeklio kairėje"
 msgid "Delete the character under the text cursor"
 msgstr "Trinti po teksto žymekliu esantį simbolį"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Valyti šio laiko poslinkio atmintinę ir laiko poslinkį paleisti iš naujo"
 
 msgid "Delete the currently displayed log file"
@@ -6092,10 +6089,6 @@ msgstr "Katalogo %s nėra!"
 msgid "Directory '%s' not writable!"
 msgstr "Katalogas \"%s\" neįrašomas!"
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr "Katalogas \"%s\" nerašomas!"
-
 msgid "Directory browser"
 msgstr "Katalogų naršyklė"
 
@@ -6263,14 +6256,14 @@ msgid "Do nothing"
 msgstr "Nieko nedaryti"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Ar tikrai norite tikrinti failų sistemą?\n"
 "Tai gali užtrukti labai ilgai!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Ar tikrai norite konvertuoti failų sistemą?\n"
@@ -7279,6 +7272,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr "Klaida %d: slaptažodžio keisti neįmanoma!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Klaida %d: neįmanoma ištrinti atsisiųsto atvaizdo \"%s\"!  (%s)"
 
@@ -7843,9 +7840,6 @@ msgstr "Mėgstamiausi"
 msgid "Favorites long"
 msgstr "Mėgstamiausi (ilgai spausti)"
 
-msgid "Favourites"
-msgstr "Mėgstamiausi"
-
 msgid "Feed URL"
 msgstr "Šaltinių internetinis adresas"
 
@@ -8015,7 +8009,7 @@ msgstr "Suomija"
 msgid "Finnish"
 msgstr "Suomių"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Pirmas rodytinas laiko poslinkio failas!"
 
 msgid "Fishing"
@@ -8975,7 +8969,7 @@ msgstr "IPK įdiegėjas"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "ISO failas yra per didelis šiai failų sistemai!"
 
 msgid "ISO path"
@@ -9101,7 +9095,7 @@ msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios kom
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jei įjungtas gilus pristabdymo sprendimas, palaukite, kol bus sinchronizuojamas sistemos laikas. Priklausomai nuo reikalavimo, prietaisas pabus po 2 minučių."
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma ištrinti senus laiko poslinkio failus."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9635,7 +9629,7 @@ msgstr "Negalima gauti failo būsenos <Saugojimo įrenginių sąrašas>"
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "'%s' neįmanoma paleisti <Saugojimo įrenginių sąrašas>"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Negalima pervardyti failų sistemos šaknies."
 
 msgid "Italian"
@@ -10123,13 +10117,13 @@ msgstr "Įkėlimas"
 msgid "Load EPG"
 msgstr "Įkelti EPG"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Įkelti grojaraštį"
 
 msgid "Load tags from the timer and recordings"
 msgstr "Įkelti žymes iš laikmačio ir įrašų"
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Įjungti daugiau vartotojo paketų"
 
 msgid "Load/Save/Delete"
@@ -11794,7 +11788,7 @@ msgstr "Dabar"
 msgid "Now building the Backup Image"
 msgstr "Dabar kuriama atsarginė atvaizdo kopija"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Dabar išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -11896,7 +11890,7 @@ msgstr "Dekodavimo delsa neprisijungus (ms)"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Senesni failai iš laiko poslinkio katalogo pašalinami kiekvienam įvykiui pasikeitus."
 
 msgid "Olympics"
@@ -12523,10 +12517,10 @@ msgstr "Atkurti turinį"
 msgid "Play folder"
 msgstr "Leisti aplanką"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Paleisti nuo kito žymeklio arba grojaraščio užduoties"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Paleisti nuo ankstesnio žymeklio arba grojaraščio užduoties"
 
 msgid "Play music..."
@@ -12591,13 +12585,13 @@ msgstr ""
 "Tai atlikę, spauskite 'OK', kad tęsti."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Sukonfigūruokite savo interneto prisijungimą, užpildydami reikiamas reikšmes.\n"
 "Tai atlikę, spauskite 'OK', kad tęsti."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Prijunkite %s %s prie interneto"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -12685,10 +12679,10 @@ msgstr "Pasirinkite platintoją, iš kurio norite paleisti vaizdą:"
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Prašome pasirinkti grojaraštį, kurį norite ištrinti..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Pasirinkite grojaraštį..."
 
 msgid "Please select a resolution..."
@@ -12725,7 +12719,7 @@ msgid "Please select the movie path..."
 msgstr "Prašome išsirinkti filmo kelią..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -12964,9 +12958,6 @@ msgstr "Priedai"
 
 msgid "Poland"
 msgstr "Lenkija"
-
-msgid "Polarisation"
-msgstr "Poliarizacija"
 
 msgid "Polarization"
 msgstr "Poliarizacija"
@@ -13500,9 +13491,6 @@ msgstr "Greitosios paleisties meniu"
 msgid "Quick Menu..."
 msgstr "Greitasis meniu..."
 
-msgid "Quick Select Actions"
-msgstr "Sparčiosios atrankos veiksmai"
-
 msgid "Quick zap"
 msgstr "Greitasis perjungimas"
 
@@ -13517,6 +13505,9 @@ msgstr "Greito menlu veiksmai"
 
 msgid "QuickMenu/Extensions"
 msgstr "Greitasis meniu/plėtiniai"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "RADIJAS"
@@ -13730,7 +13721,7 @@ msgstr "Įrašyti sekantį"
 msgid "Record now"
 msgstr "Įrašyti dabar"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Įrašas pradėtas! Laiko poslinkis stabdomas..."
 
 #, python-format
@@ -13973,6 +13964,9 @@ msgstr "Nuotolinio valdymo tipas"
 msgid "Remove"
 msgstr "Pašalinti"
 
+msgid "Remove Bookmark"
+msgstr "Pašalinti žymę"
+
 msgid "Remove Confirmation"
 msgstr "Pašalinimo patvirtinimas"
 
@@ -14026,9 +14020,6 @@ msgstr "Šalinti visus laikmačio duomenis"
 
 msgid "Remove all user interface data"
 msgstr "Pašalinti visus vartotojo sąsajos duomenis"
-
-msgid "Remove Bookmark"
-msgstr "Pašalinti žymę"
 
 msgid "Remove completed timers after (days)"
 msgstr "Pašalinti užbaigtus laikmačius po (dienų)"
@@ -14101,7 +14092,7 @@ msgstr "Pakartoti"
 msgid "Repeat Display Message"
 msgstr "Pakartokite ekrano pranešimą"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "Kartoti grojaraštį"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -14668,10 +14659,10 @@ msgstr "Išsaugoti kiekvieną (valandomis)"
 msgid "Save left folder on exit"
 msgstr "Išsaugoti kairįjį aplanką"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Išsaugoti grojaraštį"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "Įrašyti grojaraštį išeinant"
 
 msgid "Save right folder on exit"
@@ -14697,10 +14688,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Užveriant išsaugokite dešinio aplanko sąrašo vietą."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 
 msgid "Saving EPG Cache..."
@@ -14709,7 +14700,7 @@ msgstr "Išsaugoma EPG talpykla..."
 msgid "Saving Timeshift files"
 msgstr "Išsaugomi laiko poslinkio failai"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Laiko poslinkis išsaugomas, kaip filmas. Tai gali šiek tiek užtrukti!"
 
 msgid "Scaler sharpness"
@@ -15249,7 +15240,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Pasirinkite, ar laiko poslinkis bus tęsiamas, kai nustatytas įrašymas."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -15575,7 +15566,7 @@ msgstr "Pasirinkti/Zap pasirinktai paslaugai"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15591,7 +15582,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -15601,7 +15592,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -15890,7 +15881,7 @@ msgstr "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vieta
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid "Set the default sorting method."
@@ -15939,13 +15930,13 @@ msgstr "Nustatykite tai į 'Taip', kad automatiškai paslėptumėte informacijos
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr "Nustatykite tai į 'Taip', kad pagrindiniame meniu būtų rodomas meniu Medija leistuvo elementas. Jei nustatyta kaip 'Ne' Medija leistuvas vis tiek gali būti paleistas iš priedo sąrašo."
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr "Nustatykite tai į 'Taip', kad toliau paleistumėte šį grojaraštį nuolat pasikartojančiu ciklu. Jei nustatyta į 'Ne', grojaraštis bus leidžiamas tik vieną kartą."
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr "Nustatykite tai į 'Taip', kad įrašytumėte dabartinį katalogą išeidami iš Medijos leistuvo."
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr "Nustatykite tai į 'Taip', kad įrašytumėte dabartinį grojaraštį išeidami iš Medijos leistuvo."
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -16862,7 +16853,7 @@ msgstr "Rodyti vertikalų programos vadovą"
 msgid "Show warning before restart"
 msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Rodyti perspėjimą, sustojus laiko poslinkiui"
 
 msgid "Show watch status"
@@ -16898,7 +16889,7 @@ msgstr "Rodo belaidžio LAN ryšio būseną."
 msgid "Shows the watched status of the media."
 msgstr "Rodo stebimą laikmenos būseną."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Sumaišyti grojaraštį"
 
 msgid "Shut down"
@@ -17000,12 +16991,6 @@ msgstr "Dydis"
 msgid "Size reverse"
 msgstr "Atvirkštinis dydis"
 
-msgid "Size:"
-msgstr "Dydis:"
-
-msgid "Size: "
-msgstr "Dydis: "
-
 msgid "Skin"
 msgstr "Tema"
 
@@ -17039,7 +17024,7 @@ msgstr "Praleisti tuščius kanalus"
 msgid "Skip forward"
 msgstr "Praleisti į priekį"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Praleisti interneto ryšio tikrinimą (išjungs automatinį paketų diegimą)"
 
 msgid "Skip selection"
@@ -17521,7 +17506,7 @@ msgstr "Pradėti testą"
 msgid "Start time"
 msgstr "Pradžios laikas"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Pradėti laiko poslinkį"
 
 msgid "Start/stop slide show"
@@ -17648,16 +17633,16 @@ msgstr "Sustabdykite naujinimą, jei naudojate, tada išeikite"
 msgid "Stop timer recording"
 msgstr "Stabdyti įrašymą pagal laikmatį"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Stabdyti laiko poslinkį"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Stabdyti laiko poslinkį ir išsaugoti įsimintą laiko poslinkį, kaip filmą"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Stabdyti laiko poslinkį, išsaugoti įsimintą laiko poslinkį, kaip filmą ir pradėti dabartinio įvykio įrašymą"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Stabdyti laiko poslinkį įrašinėjant"
 
 msgid "Stopped"
@@ -17666,7 +17651,7 @@ msgstr "Sustabdyta"
 msgid "Stopping Softcam"
 msgstr "Stabdomas emuliatorius"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
 
 msgid "Storage / Disk Information"
@@ -17906,7 +17891,7 @@ msgstr "Perjungti TV į teisingą įvestį"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Perjungti iš garso į subtitrų puslapį < >"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Perjungti iš failų sąrašo į grojaraštį"
 
 msgid "Switch config"
@@ -17942,7 +17927,7 @@ msgstr "Perjungti į kitą kanalą istorijoje"
 msgid "Switch to next sub service"
 msgstr "Perjungti į kitą subkanalą"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Perjungti į grojaraštį"
 
 msgid "Switch to previous EPG Event"
@@ -17969,7 +17954,7 @@ msgstr "Perjungti į galimas TV paslaugas"
 msgid "Switchable tuner types:"
 msgstr "Perjungiamų imtuvų tipai:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Perjungiama į tiesioginę TV transliaciją - laiko poslinkis vis dar veikia!"
 
 msgid "Switzerland"
@@ -17996,7 +17981,7 @@ msgstr "Sinchronizavimo klaida, grįžtame prie originalo!"
 msgid "Sync time using"
 msgstr "Sinchronizavimui naudoti"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Sinchronizuokite sistemos laiką, naudodami transponderį arba internetą."
 
 msgid "Syrian Arab Republic"
@@ -18394,7 +18379,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Autoriai NĖRA ATSAKINGI"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Laisvos vietos, skirtos laiko poslinkiui, diske mažiau, nei nurodyta nustatymuose.\n"
@@ -18407,7 +18392,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Vaizdo kodavimo duomenų srautas. Didesnė reikšmė pagerina kokybę ir padidina failo dydį."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Įsiminimo laikas, skirtas laiko poslinkiui, didesnis, negu nurodyt nustatymuose.\n"
@@ -18931,7 +18916,7 @@ msgstr "Taip nustatomas kiekvienos derinimo žurnalo eilutės priešdėlis. 'Įk
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Šis nustatymas leidžia nustatyti imtuvo konfigūraciją, kad dubliuoti kito imtuvo nustatymus."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Šis nustatymas priklauso nuo kabelinės televizijos teikėjo ir vietos. Jei nežinote teisingo nustatymo, skaitykite oficialaus kabelinio imtuvo meniu arba gaukite jį iš savo kabelinės televizijos paslaugų teikėjo arba kreipkitės pagalbos per interneto forumą."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19429,7 +19414,7 @@ msgstr "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir i�
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr "Pabandykite siųsti pasikartojančias komandas, jei vykdomos ne visos komandos. (pvz., TV pažadinimas, bet neperjungiamas į teisingą įvestį.)"
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
 
 msgid "Tsonga"
@@ -20092,7 +20077,7 @@ msgstr "Naudoti šiuos vaizdo stiprinimo nustatymus?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Naudoti laiko šuolius greitam persukimui pirmyn/atgal"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Naudokite laiko juostą, kai laikas keičiasi"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -20673,6 +20658,9 @@ msgstr "Įspėjimas"
 msgid "Warning: Overrides are currently active!"
 msgstr "Įspėjimas: nepaisymas šiuo metu aktyvus!"
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr "Įspėjimas: yra %d atnaujinimo paketų!"
@@ -20814,7 +20802,7 @@ msgstr "Ko Jūs norite ieškoti?"
 msgid "What would you like to do?"
 msgstr "Ką norėtumėte daryti?"
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -20862,7 +20850,7 @@ msgstr "Kai čia įjungta, įrašymui leidžiama nutraukti vaizdo transliaciją,
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Įjungus įrašą leidžiama nutraukti tiesioginę televiziją, kai nėra laisvų imtuvų."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -20898,7 +20886,7 @@ msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi jų numatytojoje v
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi ne numatytosios, bet geltonos spalvos."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kai čia įjungta, filmų grotuvą galima uždaryti 'EXIT' mygtuku."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -20952,7 +20940,7 @@ msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3 takelį."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3+ garso takelį."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automatiškai."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -21000,7 +20988,7 @@ msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams į
 msgid "Where do you want to backup your settings?"
 msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Kur norite išsaugoti laikinus laiko poslinkio įrašus?"
 
 msgid "Which event do you want to save permanently?"
@@ -21163,7 +21151,7 @@ msgstr "Taip, ir ištrinti šį filmą"
 msgid "Yes, backup my settings!"
 msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Taip, bet neišsaugoti laiko poslinkio, kaip įrašo"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21172,10 +21160,10 @@ msgstr "Taip, bet jei nėra, parodyti priedų naršyklę"
 msgid "Yes, but if not available show the timer list"
 msgstr "Taip, bet jei nėra, parodyti laikmačio sąrašą"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą toliau"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21285,11 +21273,11 @@ msgstr "Jūs nusprendėte padaryti atsarginę kopiją savo nustatymų. Prašome 
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Jūs pasirinkote išsaugoti esamą laiko poslinkį"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Jūs pasirinkote išsaugoti dabartinį įvykio laiko poslinkį, bet įvykis dar nėra baigtas\n"
@@ -21328,13 +21316,13 @@ msgstr ""
 "Jums reikia kompiuterio, pajungto prie jūsų %s %s. Išsamesnių instrukcijų ieškokite https://www.opena.tv.\n"
 "Jūsų %s %s dabar bus sustabdytas. Kai atliksite šio internetinio puslapio atnaujinimo instrukcijas, naujoji programinė įranga paklaus, ar atkurti jūsų nustatymus."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Panašu, kad naudojamas laiko poslinkis!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Panašu, kad naudojamas laiko poslinkis. Ar norite išjungti laiko poslinkį?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr "Jums, atrodo, kad kanalas bus trumpai sustabdytas, laiko poslinkio nustatytais sustojimais."
 
 msgid "You should flash a new image!"
@@ -21346,7 +21334,7 @@ msgstr "YouTube"
 msgid "YouTube long"
 msgstr "YouTube ilgai spausti"
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Jūsų %s %s neturi interneto ryšio"
 
 #, python-format
@@ -21361,18 +21349,18 @@ msgstr "Jūsų %s %s eina į WOL"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Jūsų %s %s neprijungtas prie interneto, patikrinkite tinklo parametrus ir bandykite dar kartą."
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Jūsų %s %s neprijungtas prie interneto"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Jūsų %s %s neprijungtas prie interneto. Patikrinkite nustatymus ir bandykite dar kartą."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "Jūsų %s %s dabar paruoštas naudoti.\n"
@@ -21382,7 +21370,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -21555,7 +21543,7 @@ msgstr ""
 "Ar jūs vis dar norite atnaujinti?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Jūsų interneto ryšys neveikia!\n"
@@ -21578,7 +21566,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr "Jūsų imtuvas gali būti nenaudojamas dabar.  Prieš perkraudami %s %s, pasikonsultuokite su vadovu dėl tolesnės pagalbos."
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -21886,7 +21874,7 @@ msgstr "baletas"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "priklausomai nuo naudojamos failų sistemos, atsarginis kopijavimas\n"
 
 msgid "better"
@@ -22690,7 +22678,7 @@ msgstr "tiekėjas:"
 msgid "provider:"
 msgstr "teikėjas:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "išvalyti ištrintus paketus"
 
 msgid "python"
@@ -22769,7 +22757,7 @@ msgstr "pervardinti"
 msgid "rename entry"
 msgstr "pervardinti įrašą"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "atkurti ištrintus mėgiamų kanalų paketus"
 
 msgid "restoring satellites.xml not possible!"
@@ -23241,6 +23229,28 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bit rate"
+#~ msgstr "Bitų dažnis"
+
+#, python-format
+#~ msgid "Directory '%s' not writeable!"
+#~ msgstr "Katalogas \"%s\" nerašomas!"
+
+#~ msgid "Favourites"
+#~ msgstr "Mėgstamiausi"
+
+#~ msgid "Polarisation"
+#~ msgstr "Poliarizacija"
+
+#~ msgid "Quick Select Actions"
+#~ msgstr "Sparčiosios atrankos veiksmai"
+
+#~ msgid "Size:"
+#~ msgstr "Dydis:"
+
+#~ msgid "Size: "
+#~ msgstr "Dydis: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Konfigūruokite, kiek minučių pasibaigę įvykiai išliks matomi EPG sąraše. Naudinga, kai prireikia informacijos apie ką tik pasibaigusį, ar ilgiau užtrukusį įvykį."

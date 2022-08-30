@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -178,7 +178,7 @@ msgstr " og"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " tilgængelig !!\n"
 "\n"
@@ -1294,7 +1294,7 @@ msgstr "'%s' indeholder %d fil(er) og %d undermapper.\n"
 msgid "'%s' not installed and no known package"
 msgstr "'%s' er ikke installeret og ingen kendt pakke"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer i timer' eller 'antal af sidste begivenheder'. For sletning af ældre Timeshift-filer, har den betingelse der først forekommer prioritet."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1887,7 +1887,7 @@ msgstr "< Standard med Pikon >"
 msgid "< User Skin >"
 msgstr "< Bruger-Tema >"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Nuværende filmliste placering>"
 
 msgid "<Default movie location>"
@@ -1906,7 +1906,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "En opdateringskontrol er i gang i baggrund, vent venligst nogle minutter og prøv igen."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "En nedbrudslog %s blev oprettet i '%s'"
 
 msgid "A file from media is in use!"
@@ -2120,7 +2120,7 @@ msgstr "Afbrød en pseudooptagelse.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Afbrød en streaming-tjeneste.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Afbryder opdateringsfremgang"
 
 msgid "About"
@@ -2162,7 +2162,7 @@ msgstr "Handling ved kort tænd-knap tryk"
 msgid "Activate"
 msgstr "Aktiver"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Aktiver HbbTV (Rød knap)"
 
 msgid "Activate MAC address configuration"
@@ -2195,10 +2195,10 @@ msgstr "Aktiver højre filliste som kilde"
 msgid "Activate the configured network settings."
 msgstr "Aktiver de kunfigurerede netværksinstillinger."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Aktiver Timeshift slut"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Aktiver Timeshift slut og pause"
 
 msgid "Active"
@@ -2215,6 +2215,9 @@ msgstr "Tilføj"
 
 msgid "Add AutoTimer"
 msgstr "Tilføj AutoTimer"
+
+msgid "Add Bookmark"
+msgstr "Tilføj bogmærke"
 
 msgid "Add Current"
 msgstr "Tilføj nuværende"
@@ -2270,19 +2273,16 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Tilføj en AutoTimer for nuværende begivenhed"
 
-msgid "Add Bookmark"
-msgstr "Tilføj bogmærke"
-
 msgid "Add current folder to bookmarks"
 msgstr "Tilføj nuværende mappe til bogmærker"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Tilføj mappe til afspilningsliste"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Tilføj fil til afspilningsliste"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Tilføj filer til afspilningsliste"
 
 msgid "Add new CCcam line"
@@ -2486,7 +2486,7 @@ msgstr "Tillad 10bit"
 msgid "Allow 12bit"
 msgstr "Tillad 12bit"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Tillad at afslutte Filmafspiller med EXIT"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2519,7 +2519,7 @@ msgstr ""
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Tillader dig at aktivere fejlsøgningslogge. De indeholder en meget detaljeret information af alt hvad systemet gør."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Tillader dig at aktivere/deaktivere visning af ikoner på frontpladen."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2609,7 +2609,7 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ugyldigt."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Der opstod en fejl under download af pakkelisten. Prøv venligst igen."
 
 msgid "An unknown error occurred!"
@@ -2672,7 +2672,7 @@ msgstr "Vil du virkelig fotryde alle ændringer ?"
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Vil du virkelig slette alle klip og mærker ?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Vil du virkelig rydde alle slettede brugerbuketter ?"
 
 #, python-format
@@ -2987,7 +2987,7 @@ msgstr "Automatisk søgning efter kanaler"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Start automatisk Timeshift efter"
 
 msgid "Automatically turn on external subtitles"
@@ -3036,10 +3036,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (kun HDTV titler)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV Compatible Bludisc (kun HDTV)"
 
 msgid "BER:"
@@ -3321,9 +3321,6 @@ msgid "Biography"
 msgstr "Biografi"
 
 msgid "Bislama"
-msgstr ""
-
-msgid "Bit rate"
 msgstr ""
 
 msgid "Bitrate"
@@ -3850,14 +3847,14 @@ msgstr ""
 "Kan ikke afspille den næste TimeShift fil!\n"
 "Skift til Live TV og genstart TimeShift ?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Kan ikke afspille forrige Timeshift fil! Du kan prøve igen."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Kan ikke læse lænkeindhold: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Kan ikke afmounte partition, tilse at den ikke anvendes til swap eller Optagelse/Timeshift stier"
 
 msgid "Canada"
@@ -3893,7 +3890,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Afbryd eksekvering ?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Afbryd gem Timeshift som film"
 
 msgid "Cancel selection"
@@ -4030,7 +4027,7 @@ msgstr "Skift PIN kode"
 msgid "Change recording (duration)"
 msgstr "Ændre optagelse (varighed)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Ændre optagelse (sluttid)"
 
 msgid "Change repeat and delay settings?"
@@ -4180,13 +4177,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Kontroller strøm og inddata tilstand fra TV"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Kontroller Internetforbindelse"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Kontroller Internetforbindelse igen"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Kontroller/Installer online opdateringer (kræver en fungerende Internetforbindelse)"
 
 msgid "Checking Feeds"
@@ -4195,10 +4192,10 @@ msgstr "Kontrollere Feeds"
 msgid "Checking Logs..."
 msgstr "Kontrollere Logs..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Kontrollere filsystem..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Kontrollere Internetforbindelse"
 
 #, python-format
@@ -4218,7 +4215,7 @@ msgstr "Børn"
 msgid "Children/Youth"
 msgstr "Børn/Ung"
 
-msgid "Childrens"
+msgid "Children's"
 msgstr "Børn"
 
 msgid "Chile"
@@ -4231,8 +4228,8 @@ msgid "Chinese"
 msgstr "Kinesisk"
 
 #, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
+msgstr "Chip set: BCM%s"
 
 msgid "Choice Box"
 msgstr "Valgmuligheder"
@@ -4391,7 +4388,7 @@ msgstr "Ryd før søgning"
 msgid "Clear fixed"
 msgstr "Ryd faste"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Ryd afspilningsliste"
 
 msgid "Clear the logs for this timer"
@@ -5063,7 +5060,7 @@ msgstr "Konverter ext3 filsystem til ext4"
 msgid "Convert ext3 to ext4"
 msgstr "Konverter ext3 til ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Konverter filsystemet ext3 til ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5204,7 +5201,7 @@ msgstr "Oprettelse af hårdlænke til Timeshift-fil mislykkedes!"
 msgid "Creating directory %s failed."
 msgstr "Oprettelse af mappen %s mislykkedes."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Opretter filsystem"
 
 msgid "Creating partition"
@@ -5875,10 +5872,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Slet afspilningsliste post"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Slet gemt afspilningsliste"
 
 msgid "Delete the character to the left of text cursor"
@@ -5887,7 +5884,7 @@ msgstr "Slet tegnet til venstre for tekstmarkøren"
 msgid "Delete the character under the text cursor"
 msgstr "Slet tegnet til under tekstmarkøren"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Slet nuværende Timeshift buffer og genstart Timeshift"
 
 msgid "Delete the currently displayed log file"
@@ -6065,10 +6062,6 @@ msgstr "Mappen '%s' eksistere ikke!"
 msgid "Directory '%s' not writable!"
 msgstr "Mappen '%s' ikke skrivbar!"
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr "Mappen '%s' ikke skrivbar!"
-
 msgid "Directory browser"
 msgstr "Mappebrowser"
 
@@ -6236,14 +6229,14 @@ msgid "Do nothing"
 msgstr "Gør intet"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Vil du virkelig kontrolere filsystemet?\n"
 "Dette kan tage lang tid!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Vil du virkelig konvertere filsystemet?\n"
@@ -7245,6 +7238,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -7810,9 +7807,6 @@ msgstr "Favoritter"
 msgid "Favorites long"
 msgstr "Favoritter lang"
 
-msgid "Favourites"
-msgstr "Favoritter"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -7983,7 +7977,7 @@ msgstr "Finland"
 msgid "Finnish"
 msgstr "Finsk"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Første afspilbare Timeshift fil!"
 
 msgid "Fishing"
@@ -8950,7 +8944,7 @@ msgstr "IPK installation"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "ISO filen er for stor til dette filsystem!"
 
 msgid "ISO path"
@@ -9076,7 +9070,7 @@ msgstr ""
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Hvis fri plads er mindre end den fastsatte værdi, så gøres et forsøg på at slette de gamle Timeshift filer."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9620,7 +9614,7 @@ msgstr "Det er ikke mulig at hente filstatus på <List of Storage Devices>"
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "Der er ikke mulig at køre '%s' på <List of Storage Devices>"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Det er ikke mulig at omdøbe rodfilsystemet rod."
 
 msgid "Italian"
@@ -10118,13 +10112,13 @@ msgstr "Indlæs"
 msgid "Load EPG"
 msgstr "Indlæs EPG"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Hent afspilningsliste"
 
 msgid "Load tags from the timer and recordings"
 msgstr ""
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Hent ulænket brugerbuketter"
 
 msgid "Load/Save/Delete"
@@ -11834,7 +11828,7 @@ msgstr "Nu"
 msgid "Now building the Backup Image"
 msgstr "Bygger nu Image sikkerhedskopi"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Gem nu Timeshift som film og fortsæt optagelse"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -11936,7 +11930,7 @@ msgstr "Offline afkodningsforsinkelse (ms)"
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Ældre filer i Timeshift mappen bliver fjernet ved hver begivenhedsændring."
 
 msgid "Olympics"
@@ -12578,10 +12572,10 @@ msgstr "Afspil post"
 msgid "Play folder"
 msgstr "Afspil mappe"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Afspil fra næste mærke eller afspilningsliste post"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Afspil fra forrige mærke eller afspilningsliste post"
 
 msgid "Play music..."
@@ -12648,13 +12642,13 @@ msgstr ""
 "Tryk på OK når du er færdig, for at fortsætte."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Opsæt venligst din internetforbindelse ved at udfylde de ønskede værdier.\n"
 "Tryk på OK når du er færdig, for at fortsætte."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Forbind venligst din %s %s til Internettet"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -12742,10 +12736,10 @@ msgstr ""
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Vælg venligst en afspilningsliste til sletning..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Vælg venligst en afspilningsliste..."
 
 msgid "Please select a resolution..."
@@ -12783,7 +12777,7 @@ msgid "Please select the movie path..."
 msgstr "Vælg venligst stien til film..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13022,9 +13016,6 @@ msgstr "Plugins"
 
 msgid "Poland"
 msgstr "Polen"
-
-msgid "Polarisation"
-msgstr "Polarisering"
 
 msgid "Polarization"
 msgstr "Polarisation"
@@ -13563,10 +13554,6 @@ msgstr "Kvikstart menu"
 msgid "Quick Menu..."
 msgstr "Kvik Menu..."
 
-#, fuzzy
-msgid "Quick Select Actions"
-msgstr "Kvik handlinger"
-
 msgid "Quick zap"
 msgstr "KvikZap"
 
@@ -13582,6 +13569,9 @@ msgstr "Kvik handlinger"
 
 msgid "QuickMenu/Extensions"
 msgstr "KvikMenu/Udvidelser"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
@@ -13795,7 +13785,7 @@ msgstr "Optag næste"
 msgid "Record now"
 msgstr "Optag nu"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Optagelse startet! Stopper Timeshift nu..."
 
 #, python-format
@@ -14040,6 +14030,9 @@ msgstr "Fjernbetjeningstype"
 msgid "Remove"
 msgstr "Fjern"
 
+msgid "Remove Bookmark"
+msgstr "Fjern bogmærke"
+
 msgid "Remove Confirmation"
 msgstr "Fjern konfiguration"
 
@@ -14093,9 +14086,6 @@ msgstr ""
 
 msgid "Remove all user interface data"
 msgstr ""
-
-msgid "Remove Bookmark"
-msgstr "Fjern bogmærke"
 
 msgid "Remove completed timers after (days)"
 msgstr "Fjern afsluttede Timers efter (dage)"
@@ -14168,7 +14158,7 @@ msgstr "Gentag"
 msgid "Repeat Display Message"
 msgstr "Gentag skærmbesked"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "Gentag afspilningsliste"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -14742,10 +14732,10 @@ msgstr "Gem hver (i timer)"
 msgid "Save left folder on exit"
 msgstr "Gem venstre mappe ved afslut"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Gem afspilningslist"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "Gem afspilningsliste ved afslutning"
 
 msgid "Save right folder on exit"
@@ -14771,10 +14761,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Gem placeringen af højre mappeliste ved afslut."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Gem Timeshift som film og fortsæt med optagelse"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Gem Timeshift som film og stands optagelse"
 
 msgid "Saving EPG Cache..."
@@ -14783,7 +14773,7 @@ msgstr "Gemmer EPG mellemlager..."
 msgid "Saving Timeshift files"
 msgstr "Gemmer Timeshift filer"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Gemmer Timeshift som film nu. Dette kan tage et noget tid!"
 
 msgid "Scaler sharpness"
@@ -15326,7 +15316,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Vælg om Timeshift skal fortsætte når sat til optagelse."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -15656,7 +15646,7 @@ msgstr "Zap til valgte kanal"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15672,7 +15662,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -15682,7 +15672,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -15979,7 +15969,7 @@ msgstr "Sæt standardplaceringen for dine optagelsesfiler. Tryk 'OK' for at tilf
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Sæt standardplaceringen for dine Timere. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Sæt standardplaceringen for dine Timeshift-filer. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
 
 msgid "Set the default sorting method."
@@ -16028,13 +16018,13 @@ msgstr ""
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr ""
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr ""
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr ""
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -16967,7 +16957,7 @@ msgstr "Vis lodret Program Guide"
 msgid "Show warning before restart"
 msgstr "Vis advarsel før genstart"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Vis advarsel når Timeshift stoppes"
 
 msgid "Show watch status"
@@ -17003,7 +16993,7 @@ msgstr "Vis tilstanden af din trådløse LAN opkobling."
 msgid "Shows the watched status of the media."
 msgstr "Vis filmens viste status."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Bland afspilningslist"
 
 msgid "Shut down"
@@ -17108,12 +17098,6 @@ msgstr "Størrelse"
 msgid "Size reverse"
 msgstr "Størrelse baglæns"
 
-msgid "Size:"
-msgstr "Størrelse:"
-
-msgid "Size: "
-msgstr "Størrelse: "
-
 msgid "Skin"
 msgstr "Grafisk Tema"
 
@@ -17147,7 +17131,7 @@ msgstr "Hop over tomme kanaler"
 msgid "Skip forward"
 msgstr "Hop fremad"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Hop internet forbindelseskontrol over (deaktivere automatisk pakkeinstallation)"
 
 msgid "Skip selection"
@@ -17631,7 +17615,7 @@ msgstr "Start test"
 msgid "Start time"
 msgstr "Starttid"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Start Timeshift"
 
 msgid "Start/stop slide show"
@@ -17758,16 +17742,16 @@ msgstr ""
 msgid "Stop timer recording"
 msgstr "Stop Timeroptagelse"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Stop Timeshift"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Stop Timeshift og gem Timeshift buffer som film"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Stop Timeshift, gem Timeshift buffer som film og start optagelse af nuværende begivenhed"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Stop Timeshift mens der optages ?"
 
 msgid "Stopped"
@@ -17776,7 +17760,7 @@ msgstr "Stoppet"
 msgid "Stopping Softcam"
 msgstr "Stopper Softcam"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
 
 msgid "Storage / Disk Information"
@@ -18023,7 +18007,7 @@ msgstr "Skift TV til rigtig indgang"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Skift mellem Lyd- og Undertekstside"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Skift mellem filliste/afspilningsliste"
 
 msgid "Switch config"
@@ -18060,7 +18044,7 @@ msgstr "Skift til næste kanal i historik"
 msgid "Switch to next sub service"
 msgstr "Skift til næste underkanal"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Skift til afspilningsliste"
 
 #, fuzzy
@@ -18088,7 +18072,7 @@ msgstr ""
 msgid "Switchable tuner types:"
 msgstr "Udskiftelig Tuner typer:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Skifter til Live TV - Timeshift er stadig aktiv!"
 
 msgid "Switzerland"
@@ -18115,7 +18099,7 @@ msgstr "Sync fejl, flytter tilbage til start !"
 msgid "Sync time using"
 msgstr "Synkroniser tid med"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Synkroniser systemtid med transponder eller Internet."
 
 msgid "Syrian Arab Republic"
@@ -18518,7 +18502,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Forfatterne er IKKE ANSVARLIGE"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Den tilgængelige diskplads for Timeshift er mindre en angivet i indstillingerne.\n"
@@ -18531,7 +18515,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Bithastigheden af videoindkoder. Høje værdier forbedre kvalitet og øger filstørelse."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Buffertiden for Timeshift er overstiger den grænse der er angivet i indstillingerne.\n"
@@ -19045,7 +19029,7 @@ msgstr "Dette sætter præfiks for hver linje i fejlsøgningsloggen. 'Boot time'
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Denne indstilling tillader at Tuner-konfigurationen at blive en kopi af hvordan en anden Tuner allerede er konfigureret."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Denne indstilling afhænger af din kabeludbyder og placering. Referer til menuen i den officielle kabelmodtager, hvis du ikke har de rigtige indstillinger eller få dem fra din kabeludbyder, eller søg hjælp via forum på Internette."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19546,7 +19530,7 @@ msgstr "Prøv at undgå genstart ved software-fejl og bevar tilgængeligheden af
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Prøver at downloade en ny pakkeliste. Vent venligst..."
 
 #, fuzzy
@@ -20218,7 +20202,7 @@ msgstr "Anvend denne opsætning af videoforbedring ?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Brug tidshop for hurtig fremspoling/tilbagespoling"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Brug Timeshift søgebjælke under timeshifting ?"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -20777,6 +20761,9 @@ msgstr "Advarsel"
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
@@ -20919,7 +20906,7 @@ msgstr "Hvad vil du søge efter ?"
 msgid "What would you like to do?"
 msgstr ""
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Når dette aktiveres, vil Enigma2 hente ulænkede brugerbuketter. Dette betyder at brugerbuketter som er tilgængelige, men ikke inkluderet i bouquets.tv eller bouquets.radio filerne, alligevel hentes. Dette tillader dig f.eks. at beholde dine egne brugerbuketter mens installerede indstillinger bliver opgraderet."
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -20967,7 +20954,7 @@ msgstr "Når dette aktiveres, har en optagelse tilladelse til at afbryde streami
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Når dette aktiveres, har en optagelse tilladelse til at afbryde Live TV, når der ikke er nogen frie Tunere."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Når dette aktiveres, vil en advarsel blive vist og brugeren får mulighed for at stoppe eller fortsætte med Timeshift."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -21003,7 +20990,7 @@ msgstr "Når dette aktiveres, vil grafiske undertekster blive vist på deres ori
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Når dette aktiveres, vil grafiske undertekster blive vist i gul i stedet for den originale farve."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Når dette aktiveres, er det muligt at forlade Filmafspilleren med EXIT."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -21057,7 +21044,7 @@ msgstr "Når dette aktiveres, vil modtageren vælge et AC3 spor (når tilgængel
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Når dette aktiveres, vil modtageren vælge et AC3+ spor (når tilgængelig)"
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Når dette aktiveres, Starter Timeshift automatisk i baggrunden efter angivet tid."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -21105,7 +21092,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lave en kopi af dine indstillinger ?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Hvor skal midleridige Timeshift optagelser gemmes ?"
 
 msgid "Which event do you want to save permanently?"
@@ -21268,7 +21255,7 @@ msgstr "Ja, og slet denne film"
 msgid "Yes, backup my settings!"
 msgstr "Ja, start kopiering af mine indstillinger!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Ja, men gem ikke Timeshift som film"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21277,10 +21264,10 @@ msgstr "Ja, men vis Pluginbrowseren hvis ikke tilgængelig"
 msgid "Yes, but if not available show the timer list"
 msgstr "Ja, men vis Timerliste hvis ikke tilgængelig"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Ja, men gem Timeshift som film og fortsæt optagelse"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Ja, men gem Timeshift som film og stop optagelse"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21391,11 +21378,11 @@ msgstr "Du har valgt ar sikkerhedskopiere dine indstillinger. Tryk venligst på 
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Du har valgt at gendanne dine indstillinger. Enigma2 vil genstarte efter gendannelsen. Tryk venligst på OK for at starte gendannelsen nu."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Du har vlagt at gemme nuværende Timeshift"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Du har valgt at gemme den aktuelle Timeshift-begivenhed, men begivenheden er ikke slut endnu\n"
@@ -21434,13 +21421,13 @@ msgstr ""
 "Du behøver en PC forbundet til din %s %s. Besøg venligst websiden http://www.opena.tv, hvis du har behov for yderligere anvisninger.\n"
 "Din %s %s vil nu blive stoppet. Efter du har udført opdaterinsanvisningerne fra websiden, vil din nye firmware spørge dig after om du vil gendanne dine indstillinger."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Du ser ud til at være i Timeshift!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Du ser ud til at være i Timeshift, ønsker du at forlade Timeshift ?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr "Du ser ud til at være i Timeshift, kanalen stopper kort når Timeshift stopper."
 
 msgid "You should flash a new image!"
@@ -21452,7 +21439,7 @@ msgstr ""
 msgid "YouTube long"
 msgstr ""
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Din %s %s har ikke en Internetforbindelse"
 
 #, python-format
@@ -21467,18 +21454,18 @@ msgstr "Din %s %s går til WOL"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Din %s %s er ikke forbundet til Internettet"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Din %s %s er ikke forbundet til Internettet, kontroller venligst dine netværksindstillinger og prøv igen."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "Din %s %s er nu klar til brug.\n"
@@ -21489,7 +21476,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -21658,7 +21645,7 @@ msgstr ""
 "Ønsker du fortsat at opdatere ?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Din internetforbindelse virker ikke!\n"
@@ -21681,7 +21668,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr ""
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -21989,7 +21976,7 @@ msgstr "Ballet"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "sikkerhedeskopien er som følge af det brugte filsystem\n"
 
 msgid "better"
@@ -22802,7 +22789,7 @@ msgstr "Giver:"
 msgid "provider:"
 msgstr "Udbyder:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "Ryd slettede brugerbuketter"
 
 msgid "python"
@@ -22881,7 +22868,7 @@ msgstr "Omdøb"
 msgid "rename entry"
 msgstr "Omdøb post"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "Gendan slettede brugerbuketter"
 
 msgid "restoring satellites.xml not possible!"
@@ -23362,6 +23349,26 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Directory '%s' not writeable!"
+#~ msgstr "Mappen '%s' ikke skrivbar!"
+
+#~ msgid "Favourites"
+#~ msgstr "Favoritter"
+
+#~ msgid "Polarisation"
+#~ msgstr "Polarisering"
+
+#, fuzzy
+#~ msgid "Quick Select Actions"
+#~ msgstr "Kvik handlinger"
+
+#~ msgid "Size:"
+#~ msgstr "Størrelse:"
+
+#~ msgid "Size: "
+#~ msgstr "Størrelse: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Konfigurer i hvor mange minutter gennemførte begivenheder skal forblive synlig i EPG'en. Nyttig når du har behov for information om en begivenhed der netop er gennemført eller som er blevet forsinket."

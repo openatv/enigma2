@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -178,7 +178,7 @@ msgstr " ja"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " saadaval!!\n"
 "\n"
@@ -1297,7 +1297,7 @@ msgstr "'%s' sisaldab %d faili ja %d alamkataloogi.\n"
 msgid "'%s' not installed and no known package"
 msgstr "'%s' ei ole paigaldatud ja on tundmatu"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Ajavaru tundides' või 'viimaste saadete arv'. Vanemate ajanihke failide kustutamisel saab eelise esimesena täidetud tingimus."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1907,7 +1907,7 @@ msgstr "< Vaikimisi koos pikoniga >"
 msgid "< User Skin >"
 msgstr ""
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Filmilisti praegune asukoht >"
 
 msgid "<Default movie location>"
@@ -1926,7 +1926,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Krahhilogi %s loodi '%s'"
 
 msgid "A file from media is in use!"
@@ -2143,7 +2143,7 @@ msgstr "Võltssalvestus katkestati.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Voogesitus katkestati.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Uuendamine katkestatakse"
 
 msgid "About"
@@ -2186,7 +2186,7 @@ msgstr "Toitenupu vajutus"
 msgid "Activate"
 msgstr "Käivita"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Käivita HbbTV (punane nupp)"
 
 msgid "Activate MAC address configuration"
@@ -2219,10 +2219,10 @@ msgstr "Aktiveeri parem pool allikana"
 msgid "Activate the configured network settings."
 msgstr "Jõusta määratud võrguseaded."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Määra ajanihke lõpp"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Määra ajanihke lõpp ja paus"
 
 msgid "Active"
@@ -2239,6 +2239,9 @@ msgstr "Lisa"
 
 msgid "Add AutoTimer"
 msgstr "Lisa autotaimer"
+
+msgid "Add Bookmark"
+msgstr "Lisa järjehoidja"
 
 msgid "Add Current"
 msgstr "Lisa aktiivne"
@@ -2294,19 +2297,16 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Lisa käesolevale saatele autotaimer"
 
-msgid "Add Bookmark"
-msgstr "Lisa järjehoidja"
-
 msgid "Add current folder to bookmarks"
 msgstr "Lisa kataloog järjehoidjatesse"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Lisa kataloog mängukavva"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Lisa fail mängukavva"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Lisa failid mängukavva"
 
 msgid "Add new CCcam line"
@@ -2516,7 +2516,7 @@ msgid "Allow 12bit"
 msgstr "Luba 12bit"
 
 #
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "'EXIT' nupp lõpetab taasesituse"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2549,7 +2549,7 @@ msgstr ""
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Võimaldab lubada silumislogid. Need sisaldavad väga üksikasjalikku teavet kõigist süsteemi tegevustest."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Võimaldab lubada/keelata ikoonide kuvamise esipaneelil."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2640,7 +2640,7 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Tühi failinimi ei ole lubatud."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
 
 msgid "An unknown error occurred!"
@@ -2705,7 +2705,7 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "Kas kustutada kõik märgid ja lõikekohad?"
 
 # ChannelSelection.py
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Kas puhastada kõik kustutatud lemmiknimekirjad?"
 
 #, python-format
@@ -3028,7 +3028,7 @@ msgstr "Kanalite automaatotsing"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Ajanihke automaatne käivitus"
 
 msgid "Automatically turn on external subtitles"
@@ -3077,10 +3077,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "eKr%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (ainult HDTV)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "BDMV ühilduv Bludisc (ainult HDTV)"
 
 #
@@ -3370,9 +3370,6 @@ msgid "Biography"
 msgstr ""
 
 msgid "Bislama"
-msgstr ""
-
-msgid "Bit rate"
 msgstr ""
 
 msgid "Bitrate"
@@ -3895,14 +3892,14 @@ msgstr ""
 "Järgmise ajanihkefaili taasesitus ei ole võimalik!\n"
 "Kas lülituda otsesaatele ja taaskäivitada ajanihe?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Eelmise ajanihkefaili taasesitus nurjus! Võid proovida uuesti."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Lingi sisu pole võimalik lugeda: %s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Partitsiooni lahtihaakimine nurjus. Veendu, et seda ei kasutata saale või salvestamise/ajanihke tarbeks"
 
 msgid "Canada"
@@ -3942,7 +3939,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Kas katkestada käivitus?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Tühista ajanihke salvestuseks muutmine"
 
 #, fuzzy
@@ -4084,7 +4081,7 @@ msgstr "Muuda PIN"
 msgid "Change recording (duration)"
 msgstr "Muuda salvestuse kestust"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Muuda salvestuse lõpuaega"
 
 msgid "Change repeat and delay settings?"
@@ -4236,13 +4233,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Kontrolli teleri toidet ja sisendit"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Kontrolli internetiühendust"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Kontrolli uuesti internetiühendust"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Otsi ja paigalda internetiuuendusi (vajalik on töötav netiühendus)"
 
 msgid "Checking Feeds"
@@ -4251,10 +4248,10 @@ msgstr "Hoidlate kontroll"
 msgid "Checking Logs..."
 msgstr "Logide uurimine."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Failisüsteemi kontroll."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Internetiühenduse kontroll"
 
 #, python-format
@@ -4276,7 +4273,7 @@ msgid "Children/Youth"
 msgstr "Lapsed/noored"
 
 #, fuzzy
-msgid "Childrens"
+msgid "Children's"
 msgstr "Tšiili"
 
 msgid "Chile"
@@ -4290,7 +4287,7 @@ msgid "Chinese"
 msgstr "Hiina"
 
 #, python-format
-msgid "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
 msgstr "Kiibistik: BCM%s"
 
 msgid "Choice Box"
@@ -4450,7 +4447,7 @@ msgstr "Kustuta kanalid enne otsingut"
 msgid "Clear fixed"
 msgstr "Eemalda püsiaadress"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Tühjenda pleilist"
 
 msgid "Clear the logs for this timer"
@@ -5137,7 +5134,7 @@ msgstr "Teisenda ext3 > ext4"
 msgid "Convert ext3 to ext4"
 msgstr "Teisenda ext3 > ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Teisenda ext3 > ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5283,7 +5280,7 @@ msgstr "Ajanihke failile püsiviida loomine nurjus!"
 msgid "Creating directory %s failed."
 msgstr "Kataloogi %s loomine nurjus."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Failisüsteemi loomine"
 
 msgid "Creating partition"
@@ -5972,10 +5969,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Kustuta kirje pleilistist"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Kustuta talletud pleilist"
 
 #, fuzzy
@@ -5986,7 +5983,7 @@ msgstr "Kustuta teksti puhvri kursorist vasakule jääv tähemärk"
 msgid "Delete the character under the text cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Kustuta ajanihke puhver ja taaskäivita ajanihe"
 
 msgid "Delete the currently displayed log file"
@@ -6169,10 +6166,6 @@ msgstr ""
 msgid "Directory '%s' not writable!"
 msgstr ""
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr ""
-
 msgid "Directory browser"
 msgstr "Kataloogilehitseja"
 
@@ -6348,14 +6341,14 @@ msgid "Do nothing"
 msgstr "Ära tee midagi"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Kas kontrollida failisüsteemi?\n"
 "Selleks kulub palju aega!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Kas teisendada failisüsteem?\n"
@@ -7385,6 +7378,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -7958,9 +7955,6 @@ msgstr "Favorites"
 msgid "Favorites long"
 msgstr "Favorites - pikk"
 
-msgid "Favourites"
-msgstr "Lemmikud"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8134,7 +8128,7 @@ msgstr "Soome"
 msgid "Finnish"
 msgstr "Soome"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Esimene esituskõlbulik ajanihkefail!"
 
 #, fuzzy
@@ -9128,7 +9122,7 @@ msgstr "IPK paigaldamine"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "ISO fail on selle failisüsteemi jaoks liiga suur!"
 
 msgid "ISO path"
@@ -9259,7 +9253,7 @@ msgstr ""
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Kui vaba kettaruumi on määratud väärtusest vähem, üritatakse kustutada vanu ajanihke faile."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9811,7 +9805,7 @@ msgstr ""
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr ""
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Failisüsteemi juurt pole võimalik ümber nimetada."
 
 msgid "Italian"
@@ -10312,14 +10306,14 @@ msgstr "Laadi"
 msgid "Load EPG"
 msgstr "Laadi EPG"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Laadi pleilist"
 
 msgid "Load tags from the timer and recordings"
 msgstr ""
 
 # Customize neu 5.1
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Sidumata lemmiknimekirjad kuvatakse"
 
 msgid "Load/Save/Delete"
@@ -12093,7 +12087,7 @@ msgstr "Hetkel"
 msgid "Now building the Backup Image"
 msgstr "Algab püsivaratõmmise loomine"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Talleta ajanihe ja jätka salvestamist"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -12197,7 +12191,7 @@ msgstr "Võrguta dekodeerimise viiteaeg (ms)"
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Vanemad failid ajanihke kataloogis eemaldatakse päras iga kanalivahetust."
 
 msgid "Olympics"
@@ -12866,10 +12860,10 @@ msgstr "Esita"
 msgid "Play folder"
 msgstr "Esita kataloog"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Esita alates järgmisest märgist või pleilisti kirjest"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Esita alates eelmisest märgist või pleilisti kirjest"
 
 msgid "Play music..."
@@ -12936,14 +12930,14 @@ msgstr ""
 "Kui oled valmis, vajuta jätkamiseks OK."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Täida võrguühenduse seadistamiseks nõutavad väljad.\n"
 "Kui oled valmis, vajuta jätkamiseks OK."
 
 # Erstassi
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Ühenda %s %s internetti"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -13030,10 +13024,10 @@ msgstr ""
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Vali kustutatav pleilist"
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Vali pleilist"
 
 #
@@ -13074,7 +13068,7 @@ msgid "Please select the movie path..."
 msgstr "Vali salvestuskataloog"
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13315,9 +13309,6 @@ msgstr "Pluginad"
 
 msgid "Poland"
 msgstr "Poola"
-
-msgid "Polarisation"
-msgstr "Polarisatsioon"
 
 msgid "Polarization"
 msgstr "Polarisatsioon"
@@ -13866,11 +13857,6 @@ msgstr "Kiirmenüü"
 msgid "Quick Menu..."
 msgstr "Kiirmenüü"
 
-# UsageConfig.py:295
-#, fuzzy
-msgid "Quick Select Actions"
-msgstr "Kiirtegevused"
-
 msgid "Quick zap"
 msgstr "Kiirkanalivalik"
 
@@ -13887,6 +13873,9 @@ msgstr "Kiirtegevused"
 
 msgid "QuickMenu/Extensions"
 msgstr "Kiirmenüü/laiendused"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "Raadio"
@@ -14101,7 +14090,7 @@ msgstr "Salvesta järgmine"
 msgid "Record now"
 msgstr "Salvesta kohe"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Salvestamine algas! Ajanihe peatatakse..."
 
 #, python-format
@@ -14359,6 +14348,9 @@ msgstr "Puldi tüüp"
 msgid "Remove"
 msgstr "Eemalda"
 
+msgid "Remove Bookmark"
+msgstr "Eemalda järjehoidja"
+
 msgid "Remove Confirmation"
 msgstr "Eemaldamise kinnitamine"
 
@@ -14413,9 +14405,6 @@ msgstr ""
 
 msgid "Remove all user interface data"
 msgstr ""
-
-msgid "Remove Bookmark"
-msgstr "Eemalda järjehoidja"
 
 msgid "Remove completed timers after (days)"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
@@ -14489,7 +14478,7 @@ msgstr "Korda"
 msgid "Repeat Display Message"
 msgstr "Korda teadet ekraanil"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "Pleilisti kordamine"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -15074,10 +15063,10 @@ msgstr "Talleta iga (tundides)"
 msgid "Save left folder on exit"
 msgstr "Salvesta väljumisel vasak kaust"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Talleta pleilist"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "Väljumisel talleta pleilist"
 
 msgid "Save right folder on exit"
@@ -15103,10 +15092,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Salvesta väljumisel parempoolse kausta loend."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Talleta ajanihe ja jätka salvestamist"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Talleta ajanihe ja lõpeta salvestamine"
 
 msgid "Saving EPG Cache..."
@@ -15115,7 +15104,7 @@ msgstr "EPG talletamine..."
 msgid "Saving Timeshift files"
 msgstr "Ajanihke failide talletamine"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Ajanihke salvestuseks muutmine. Võib minna veidi aega!"
 
 msgid "Scaler sharpness"
@@ -15667,7 +15656,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Määra, kas ajanihe jätkub pärast selle salvestuseks määramist."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -16002,7 +15991,7 @@ msgstr "Mine valitud kanalile"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -16018,7 +16007,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -16028,7 +16017,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -16327,7 +16316,7 @@ msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', ole
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid "Set the default sorting method."
@@ -16377,13 +16366,13 @@ msgstr ""
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr ""
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr ""
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr ""
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -17338,7 +17327,7 @@ msgstr "Vertikaalne EPG"
 msgid "Show warning before restart"
 msgstr "Hoiatus enne taaskäivitamist"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Teavitus ajanihke lõppemisest"
 
 msgid "Show watch status"
@@ -17375,7 +17364,7 @@ msgstr "Näitab WiFi olekut."
 msgid "Shows the watched status of the media."
 msgstr "Tähista vaadatud salvestised."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Segatud pleilist"
 
 msgid "Shut down"
@@ -17478,12 +17467,6 @@ msgstr "Suurus"
 msgid "Size reverse"
 msgstr "Väiksemad ees"
 
-msgid "Size:"
-msgstr "Suurus:"
-
-msgid "Size: "
-msgstr "Maht: "
-
 #
 msgid "Skin"
 msgstr "Kujundus"
@@ -17519,7 +17502,7 @@ msgstr "Tühje kanaleid ei kuvata"
 msgid "Skip forward"
 msgstr "Edasihüpe"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
 
 msgid "Skip selection"
@@ -18013,7 +17996,7 @@ msgstr "Käivita test"
 msgid "Start time"
 msgstr "Algusaeg"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Käivita ajanihe"
 
 msgid "Start/stop slide show"
@@ -18143,16 +18126,16 @@ msgstr ""
 msgid "Stop timer recording"
 msgstr "Peata taimeriga salvestamine"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Peata ajanihe"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Lõpeta ajanihe ja talleta ajanihke puhver"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Lõpeta ajanihe, talleta ajanihke puhver ja alusta käesoleva saate salvestamist"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Ajanihke peatamine salvestamise ajal"
 
 msgid "Stopped"
@@ -18161,7 +18144,7 @@ msgstr "Peatatud"
 msgid "Stopping Softcam"
 msgstr "EMU peatamine"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
 
 msgid "Storage / Disk Information"
@@ -18412,7 +18395,7 @@ msgstr "Lülita teler õigele sisendile"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Heli ja subtiitrite menüü vahetamine"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Faililoendi/pleilisti vahetus"
 
 msgid "Switch config"
@@ -18449,7 +18432,7 @@ msgstr "Järgmisele kanalile ajaloos"
 msgid "Switch to next sub service"
 msgstr "Järgmisele alamkanalile"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Mine mängukavva"
 
 #, fuzzy
@@ -18477,7 +18460,7 @@ msgstr ""
 msgid "Switchable tuner types:"
 msgstr "Hübriidtuuneri tüübid:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Lülitumine otsesaatele - ajanihe on endiselt töös!"
 
 msgid "Switzerland"
@@ -18506,7 +18489,7 @@ msgid "Sync time using"
 msgstr "Aja sünkroonimiseks"
 
 # Zeitenstellung
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Sünkrooni süsteemi aeg kasutades transponderit või internetti."
 
 msgid "Syrian Arab Republic"
@@ -18918,7 +18901,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Autorid EI OLE VASTUTAVAD"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Ajanihke kasutuses on kettaruumi vähem kui seadistustes määratud.\n"
@@ -18931,7 +18914,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Videokooderi bitikiirus. Suurema väärtusega tuleb parema kvaliteediga suurem fail."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Ajanihke puhver ületab sätetes määratud piiri.\n"
@@ -19460,7 +19443,7 @@ msgstr ""
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "See säte võimaldab kasutada juba seadistatud teise tuuneri seadistusi."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "See säte sõltub kaabel-tv operaatorist ja levitajast. Õigete seadete leidmiseks uuri ametliku vastuvõtja käsiraamatut, võta ühendust oma operaatoriga või otsi abi foorumist digi-tv.ee."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19982,7 +19965,7 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Uue tarkvaraloendi hankimine. Oota..."
 
 #, fuzzy
@@ -20671,7 +20654,7 @@ msgstr "Kas kasutada neid pildiparanduse seadeid?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Kasuta edasi/tagasikerimisel ajahüpet"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Otsiriba kasutamine ajanihke ajal"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -21249,6 +21232,9 @@ msgstr "Hoiatus"
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
@@ -21399,7 +21385,7 @@ msgid "What would you like to do?"
 msgstr ""
 
 # Customize neu 5.1
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Kui lubatud, laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii saab oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel"
 
 # /data/setup.xml
@@ -21451,7 +21437,7 @@ msgstr "Kui lubatud, katkestab algav salvestus voogesituse juhul, kui ei leidu v
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Kui lubatud, võivad salvestused vaba tuuneri puudumisel saate vaatamise katkestada."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -21488,7 +21474,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Kui lubatud, kuvatakse DVB subtiitrid nende tõelise värvi asemel kollasena."
 
 #
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kui lubatud, saab lõpetada taasesituse EXIT nupuga."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -21543,7 +21529,7 @@ msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3 heli."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3+ heli."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Kui lubatud, algab ajanihe taustal automaatselt pärast määratud aega."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -21591,7 +21577,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha varukoopia seadistustest?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Kuhu talletada ajutised ajanihke failid?"
 
 msgid "Which event do you want to save permanently?"
@@ -21756,7 +21742,7 @@ msgstr "Jah ja kustuta see salvestis"
 msgid "Yes, backup my settings!"
 msgstr "Jah, tee seadistustest varukoopia!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Jah ning ajanihke faile ära talleta"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21765,10 +21751,10 @@ msgstr "Jah, aga kui pole saadaval kuva pluginate menüü"
 msgid "Yes, but if not available show the timer list"
 msgstr "Jah, aga kui pole saadaval kuva taimerinimekiri"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Jah, aga talleta ajanihe ja jätka salvestamist"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Jah, aga talleta ajanihe ja lõpeta salvestamine"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21880,11 +21866,11 @@ msgstr "Otsustasid luua varukoopia kõvakettale. Vajuta OK alustamiseks nüüd."
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Oled otsustanud seadistused taastada. Selle lõpetuseks vastuvõtja taaskäivitub. Taastamise alustamiseks vajuta OK."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Oled valinud ajanihke faili talletamise"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Otsustasid selle saate ajanihke failid talletada, aga saade ei ole veel lõppenud\n"
@@ -21926,13 +21912,13 @@ msgstr ""
 "Nüüd on vaja ühendada %s %s arvutiga. Kui on vaja abi, siis vaata : https://www.opena.tv.\n"
 "%s %s peatatakse. Kui on täidetud uuendamise juhised veebilehelt, siis uus püsivara pakub seadistuste taastamist."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Ajanihe on kasutusel!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Ajanihe on kasutusel. Kas see tuleks peatada?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr ""
 
 msgid "You should flash a new image!"
@@ -21944,7 +21930,7 @@ msgstr ""
 msgid "YouTube long"
 msgstr ""
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Vastuvõtjal puudub internetiühendus"
 
 #, python-format
@@ -21959,11 +21945,11 @@ msgstr "%s %s läheb WOL"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "%s %s ei ole internetiga ühendatud"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "%s %s ei ole internetti ühendatud. Kontrolli võrgu seadeid ja ürita uuesti."
 
 #
@@ -21971,7 +21957,7 @@ msgstr "%s %s ei ole internetti ühendatud. Kontrolli võrgu seadeid ja ürita u
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "%s %s on kasutamiseks valmis.\n"
@@ -21982,7 +21968,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -22153,7 +22139,7 @@ msgstr ""
 "Kas oled kindel, et soovid uuendada?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Internetiühendus ei tööta!\n"
@@ -22176,7 +22162,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr ""
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -22499,7 +22485,7 @@ msgid "bc%d"
 msgstr "eKr%d"
 
 #
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "Sõltuvalt kasutuses olevast failisüsteemist\n"
 
 msgid "better"
@@ -23333,7 +23319,7 @@ msgid "provider:"
 msgstr "levitaja:"
 
 # ChannelSelection.py
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "Puhasta kustutatud lemmiknimekirjad"
 
 msgid "python"
@@ -23416,7 +23402,7 @@ msgid "rename entry"
 msgstr "Nimeta ümber"
 
 # ChannelSelection.py
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "Taasta kustutatud lemmiknimekirjad"
 
 msgid "restoring satellites.xml not possible!"
@@ -23892,6 +23878,23 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Favourites"
+#~ msgstr "Lemmikud"
+
+#~ msgid "Polarisation"
+#~ msgstr "Polarisatsioon"
+
+# UsageConfig.py:295
+#, fuzzy
+#~ msgid "Quick Select Actions"
+#~ msgstr "Kiirtegevused"
+
+#~ msgid "Size:"
+#~ msgstr "Suurus:"
+
+#~ msgid "Size: "
+#~ msgstr "Maht: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Määra, mitu minutit lõppenud saateid veel saatekavas näidatakse. Kasulik, kui soovid midagi teada saatest, mis on just lõppenud või mille algus hilineb."

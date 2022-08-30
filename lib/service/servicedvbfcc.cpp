@@ -166,7 +166,7 @@ void eDVBServiceFCCPlay::changeFCCMode()
 		eDebug("[eDVBServiceFCCPlay] changeFCCMode [%s] disable FCC decoding.", m_reference.toString().c_str());
 		m_fcc_mode = fcc_mode_preparing;
 
-		/* stop timeshift */
+		/* stop time shift */
 		eDVBServicePlay::stopTimeshift();
 
 		/* remove CaHandler */
@@ -473,7 +473,7 @@ void eDVBServiceFCCPlay::switchToLive()
 
 	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
 
-	/* free the timeshift service handler, we need the resources */
+	/* free the time shift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 
 	m_fcc_flag &=~fcc_ready;

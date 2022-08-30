@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-28 18:18+0000\n"
+"POT-Creation-Date: 2022-08-30 15:56+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -182,7 +182,7 @@ msgstr " và"
 msgid ""
 " available !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Do you want to install the new settings list?"
 msgstr ""
 " có sẵn !!\n"
 "\n"
@@ -1315,7 +1315,7 @@ msgstr "'% s' chứa%d tập tin và%d thư mục con.\n"
 msgid "'%s' not installed and no known package"
 msgstr "'%s' chưa được cài đặt và không có gói nào được biết đến"
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
 
 msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
@@ -1923,7 +1923,7 @@ msgstr "<Mặc định với Picon>"
 msgid "< User Skin >"
 msgstr "<Da người dùng>"
 
-msgid "<Current movielist location>"
+msgid "<Current movie list location>"
 msgstr "<Vị trí di chuyển hiện tại>"
 
 msgid "<Default movie location>"
@@ -1942,7 +1942,7 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
 
 #, python-format
-msgid "A crashlog was %s created in '%s'"
+msgid "A crash log was %s created in '%s'"
 msgstr "Một crashlog được %s tạo ra trong '%s'"
 
 msgid "A file from media is in use!"
@@ -2157,7 +2157,7 @@ msgstr "Đã hủy bỏ một bản ghi giả.\n"
 msgid "Aborted a streaming service.\n"
 msgstr "Đã hủy bỏ một dịch vụ phát trực tuyến.\n"
 
-msgid "Aborting updateprogress"
+msgid "Aborting update progress"
 msgstr "Hủy bỏ cập nhật"
 
 msgid "About"
@@ -2200,7 +2200,7 @@ msgstr "Thao tác nhấn nút nguồn ngắn"
 msgid "Activate"
 msgstr "Kích hoạt"
 
-msgid "Activate HbbTV (Redbutton)"
+msgid "Activate HbbTV (RED button)"
 msgstr "Kích hoạt HbbTV (Nút màu đỏ)"
 
 msgid "Activate MAC address configuration"
@@ -2233,10 +2233,10 @@ msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn"
 msgid "Activate the configured network settings."
 msgstr "Kích hoạt cài đặt mạng được cấu hình."
 
-msgid "Activate timeshift End"
+msgid "Activate time shift End"
 msgstr "Kích hoạt kết thúc timeshift"
 
-msgid "Activate timeshift end and pause"
+msgid "Activate time shift end and pause"
 msgstr "Kích hoạt kết thúc timeshift và tạm dừng"
 
 msgid "Active"
@@ -2253,6 +2253,9 @@ msgstr "Thêm vào"
 
 msgid "Add AutoTimer"
 msgstr "Thêm vThêm tự động trả lờiào"
+
+msgid "Add Bookmark"
+msgstr "Thêm dấu trang"
 
 msgid "Add Current"
 msgstr "thêm hiện tại"
@@ -2308,19 +2311,16 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
-msgid "Add Bookmark"
-msgstr "Thêm dấu trang"
-
 msgid "Add current folder to bookmarks"
 msgstr "Thêm thư mục hiện tại vào bookmark"
 
-msgid "Add directory to playlist"
+msgid "Add directory to play list"
 msgstr "Thêm thư mục vào danh sách phát"
 
-msgid "Add file to playlist"
+msgid "Add file to play list"
 msgstr "Thêm tập tin vào danh sách phát"
 
-msgid "Add files to playlist"
+msgid "Add files to play list"
 msgstr "Thêm tệp vào danh sách phát"
 
 msgid "Add new CCcam line"
@@ -2528,7 +2528,7 @@ msgstr "Cho phép 10 bit"
 msgid "Allow 12bit"
 msgstr "Cho phép 12 bit"
 
-msgid "Allow quit movieplayer with exit"
+msgid "Allow quit movie player with exit"
 msgstr "Cho phép thoát khỏi trình phát phim với lối ra"
 
 msgid "Allow subtitle language to equal audio language"
@@ -2561,7 +2561,7 @@ msgstr ""
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Cho phép bạn kích hoạt nhật ký gỡ lỗi. Chúng chứa thông tin rất chi tiết về mọi thứ hệ thống làm."
 
-msgid "Allows you to enable/disable displaying icons on the frontpanel."
+msgid "Allows you to enable/disable displaying icons on the front panel."
 msgstr "Cho phép bạn bật / tắt hiển thị các biểu tượng trên frontpanel."
 
 msgid "Allows you to hide the extensions of known file types."
@@ -2652,7 +2652,7 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr "Một tên tệp trống là bất hợp pháp."
 
-msgid "An error occurred while downloading the packetlist. Please try again."
+msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Đã xảy ra lỗi trong khi tải xuống danh sách gói. Vui lòng thử lại."
 
 msgid "An unknown error occurred!"
@@ -2716,7 +2716,7 @@ msgstr "Bạn có chắc chắn hủy tất cả các thay đổi?"
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Bạn có chắc chắn để xóa tất cả các vết cắt và dấu?"
 
-msgid "Are you sure to purge all deleted userbouquets?"
+msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Bạn có chắc chắn để xóa tất cả các gói kênh đã xóa?"
 
 #, python-format
@@ -3035,7 +3035,7 @@ msgstr "Tự động quét dịch vụ"
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
 
-msgid "Automatically start timeshift after"
+msgid "Automatically start time shift after"
 msgstr "Tự động bắt đầu timeshift sau"
 
 msgid "Automatically turn on external subtitles"
@@ -3085,10 +3085,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Bludisc (HDTV titles only)"
+msgid "BDMV Blue-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (chỉ tiêu đề HDTV)"
 
-msgid "BDMV Compatible Bludisc (HDTV only)"
+msgid "BDMV Compatible Blue-ray disk (HDTV only)"
 msgstr "Bludisc tương thích BDMV (chỉ HDTV)"
 
 msgid "BER:"
@@ -3372,9 +3372,6 @@ msgid "Biography"
 msgstr ""
 
 msgid "Bislama"
-msgstr ""
-
-msgid "Bit rate"
 msgstr ""
 
 msgid "Bitrate"
@@ -3892,14 +3889,14 @@ msgstr ""
 "Không thể phát tệp Timeshift tiếp theo!\n"
 "Chuyển sang truyền hình trực tiếp và khởi động lại Timeshift?"
 
-msgid "Can't play the previous timeshift file! You can try again."
+msgid "Can't play the previous time shift file! You can try again."
 msgstr "Không thể phát tệp timeshift trước đó! Bạn có thể thử lại."
 
 #, python-format
 msgid "Can't read link contents: %s"
 msgstr "Không thể đọc nội dung liên kết:%s"
 
-msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
+msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Không thể ngắt kết nối phân vùng, đảm bảo rằng nó không được sử dụng cho các đường dẫn trao đổi hoặc ghi / timeshift"
 
 msgid "Canada"
@@ -3939,7 +3936,7 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "Hủy thực thi?"
 
-msgid "Cancel save timeshift as movie"
+msgid "Cancel save time shift as movie"
 msgstr "Hủy lưu timeshift như phim"
 
 #, fuzzy
@@ -4081,7 +4078,7 @@ msgstr "Thay đổi bộ đếm thời gian tiếp theo"
 msgid "Change recording (duration)"
 msgstr "Thay đổi bản ghi (thời lượng)"
 
-msgid "Change recording (endtime)"
+msgid "Change recording (end time)"
 msgstr "Thay đổi ghi âm (thời gian kết thúc)"
 
 msgid "Change repeat and delay settings?"
@@ -4231,13 +4228,13 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr "Kiểm tra nguồn và trạng thái đầu vào từ TV"
 
-msgid "Check the internet connection"
+msgid "Check the Internet connection"
 msgstr "Kiểm tra kết nối internet"
 
-msgid "Check the internet connection again"
+msgid "Check the Internet connection again"
 msgstr "Kiểm tra lại kết nối internet"
 
-msgid "Check/Install online updates (you must have a working internet connection)"
+msgid "Check/Install online updates (you must have a working Internet connection)"
 msgstr "Kiểm tra / Cài đặt các bản cập nhật trực tuyến (bạn phải có kết nối internet hoạt động)"
 
 msgid "Checking Feeds"
@@ -4246,10 +4243,10 @@ msgstr "Kiểm tra chương trình"
 msgid "Checking Logs..."
 msgstr "Kiểm tra nhật ký ..."
 
-msgid "Checking filesystem..."
+msgid "Checking file system..."
 msgstr "Kiểm tra hệ thống tập tin ..."
 
-msgid "Checking the internet connection"
+msgid "Checking the Internet connection"
 msgstr "Kiểm tra kết nối internet"
 
 #, python-format
@@ -4271,7 +4268,7 @@ msgid "Children/Youth"
 msgstr "Trẻ em / Thanh niên"
 
 #, fuzzy
-msgid "Childrens"
+msgid "Children's"
 msgstr "Chile"
 
 msgid "Chile"
@@ -4285,8 +4282,8 @@ msgid "Chinese"
 msgstr "Trung Quốc"
 
 #, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chip set: BCM%s"
+msgstr "Chip set: BCM%s"
 
 msgid "Choice Box"
 msgstr "Hộp lựa chọn"
@@ -4445,7 +4442,7 @@ msgstr "Xóa trước khi quét"
 msgid "Clear fixed"
 msgstr "Xóa cố định"
 
-msgid "Clear playlist"
+msgid "Clear play list"
 msgstr "Xóa danh sách phát"
 
 msgid "Clear the logs for this timer"
@@ -5123,7 +5120,7 @@ msgstr "Chuyển đổi hệ thống tập tin ext3 sang ext4"
 msgid "Convert ext3 to ext4"
 msgstr "Chuyển đổi ext3 thành ext4"
 
-msgid "Convert filesystem ext3 to ext4"
+msgid "Convert file system ext3 to ext4"
 msgstr "Chuyển đổi hệ thống tập tin ext3 thành ext4"
 
 msgid "Converting ext3 to ext4..."
@@ -5268,7 +5265,7 @@ msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
 msgid "Creating directory %s failed."
 msgstr "Tạo thư mục%s không thành công."
 
-msgid "Creating filesystem"
+msgid "Creating file system"
 msgstr "Tạo hệ thống tập tin"
 
 msgid "Creating partition"
@@ -5951,10 +5948,10 @@ msgstr ""
 msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
-msgid "Delete playlist entry"
+msgid "Delete play list entry"
 msgstr "Xóa mục nhập danh sách phát"
 
-msgid "Delete saved playlist"
+msgid "Delete saved play list"
 msgstr "Xóa danh sách phát đã lưu"
 
 #, fuzzy
@@ -5965,7 +5962,7 @@ msgstr "Xóa ký tự bên trái con trỏ bộ đệm văn bản"
 msgid "Delete the character under the text cursor"
 msgstr "Xóa ký tự dưới con trỏ bộ đệm văn bản"
 
-msgid "Delete the current timeshift buffer and restart timeshift"
+msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Xóa bộ đệm timeshift hiện tại và khởi động lại timeshift"
 
 msgid "Delete the currently displayed log file"
@@ -6145,10 +6142,6 @@ msgstr ""
 msgid "Directory '%s' not writable!"
 msgstr ""
 
-#, python-format
-msgid "Directory '%s' not writeable!"
-msgstr ""
-
 msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
 
@@ -6321,14 +6314,14 @@ msgid "Do nothing"
 msgstr "không làm gì cả"
 
 msgid ""
-"Do you really want to check the filesystem?\n"
+"Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 "Bạn có thực sự muốn kiểm tra hệ thống tập tin?\n"
 "Điều này có thể mất nhiều thời gian!"
 
 msgid ""
-"Do you really want to convert the filesystem?\n"
+"Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 "Bạn có thực sự muốn chuyển đổi hệ thống tập tin?\n"
@@ -7351,6 +7344,10 @@ msgid "Error %d: Unable to change password!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to check space!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
@@ -7917,9 +7914,6 @@ msgstr "Yêu thích"
 msgid "Favorites long"
 msgstr "Yêu thích dài"
 
-msgid "Favourites"
-msgstr "Yêu thích"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8092,7 +8086,7 @@ msgstr "Phần Lan"
 msgid "Finnish"
 msgstr "Phần Lan"
 
-msgid "First playable timeshift file!"
+msgid "First playable time shift file!"
 msgstr "Tập tin timeshift đầu tiên có thể chơi!"
 
 #, fuzzy
@@ -9078,7 +9072,7 @@ msgstr "Trình cài đặt IPK"
 msgid "IPv6 address"
 msgstr ""
 
-msgid "ISO file is too large for this filesystem!"
+msgid "ISO file is too large for this file system!"
 msgstr "Tập tin ISO quá lớn cho hệ thống tập tin này!"
 
 msgid "ISO path"
@@ -9208,7 +9202,7 @@ msgstr ""
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
-msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr "Nếu không gian trống nhỏ hơn giá trị cài đặt, thì sẽ thực hiện một nỗ lực để xóa các tệp timeshift cũ."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
@@ -9746,7 +9740,7 @@ msgstr "Không thể có được trạng thái tệp của <Danh sách thiết 
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "Không thể chạy '% s' trên <Danh sách thiết bị lưu trữ>"
 
-msgid "It's not possible to rename the filesystem root."
+msgid "It's not possible to rename the file system root."
 msgstr "Không thể đổi tên root hệ thống tập tin."
 
 msgid "Italian"
@@ -10245,13 +10239,13 @@ msgstr "Tải"
 msgid "Load EPG"
 msgstr "Tải EPG"
 
-msgid "Load playlist"
+msgid "Load play list"
 msgstr "Tải danh sách phát"
 
 msgid "Load tags from the timer and recordings"
 msgstr ""
 
-msgid "Load unlinked userbouquets"
+msgid "Load unlinked user bouquets"
 msgstr "Tải các tập tin người dùng không liên kết"
 
 msgid "Load/Save/Delete"
@@ -11984,7 +11978,7 @@ msgstr "Hiện nay"
 msgid "Now building the Backup Image"
 msgstr "Hiện đang xây dựng hình ảnh sao lưu"
 
-msgid "Now save timeshift as movie and continues recording"
+msgid "Now save time shift as movie and continues recording"
 msgstr "Bây giờ hãy lưu timeshift dưới dạng phim và tiếp tục ghi"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -12086,7 +12080,7 @@ msgstr "Độ trễ giải mã ngoại tuyến (ms)"
 msgid "Ojibwa"
 msgstr ""
 
-msgid "Older files in the timeshift directory are removed on every event change."
+msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Các tệp cũ hơn trong thư mục timeshift được xóa trên mỗi thay đổi sự kiện."
 
 msgid "Olympics"
@@ -12730,10 +12724,10 @@ msgstr "Chơi nhập cảnh"
 msgid "Play folder"
 msgstr "Chơi thư mục"
 
-msgid "Play from next mark or playlist entry"
+msgid "Play from next mark or play list entry"
 msgstr "Phát từ mục tiếp theo hoặc danh sách phát"
 
-msgid "Play from previous mark or playlist entry"
+msgid "Play from previous mark or play list entry"
 msgstr "Phát từ mục trước hoặc danh sách phát"
 
 msgid "Play music..."
@@ -12799,13 +12793,13 @@ msgstr ""
 "Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your Internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Vui lòng định cấu hình kết nối internet của bạn bằng cách điền vào các giá trị cần thiết.\n"
 "Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
 
-msgid "Please connect your %s %s to the internet"
+msgid "Please connect your %s %s to the Internet"
 msgstr "Vui lòng kết nối % s% s của bạn với internet"
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -12891,10 +12885,10 @@ msgstr ""
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
-msgid "Please select a playlist to delete..."
+msgid "Please select a play list to delete..."
 msgstr "Vui lòng chọn danh sách phát để xóa ..."
 
-msgid "Please select a playlist..."
+msgid "Please select a play list..."
 msgstr "Vui lòng chọn danh sách phát ..."
 
 msgid "Please select a resolution..."
@@ -12932,7 +12926,7 @@ msgid "Please select the movie path..."
 msgstr "Vui lòng chọn đường dẫn phim ..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your Internet connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -13169,9 +13163,6 @@ msgstr "Ứng dụng tiện ích"
 
 msgid "Poland"
 msgstr "Ba Lan"
-
-msgid "Polarisation"
-msgstr "Phân cực"
 
 msgid "Polarization"
 msgstr "Phân cực"
@@ -13714,10 +13705,6 @@ msgstr "Menu khởi động nhanh"
 msgid "Quick Menu..."
 msgstr "Menu nhanh ..."
 
-#, fuzzy
-msgid "Quick Select Actions"
-msgstr "Thao tác nhanh"
-
 msgid "Quick zap"
 msgstr "Nhanh chóng"
 
@@ -13733,6 +13720,9 @@ msgstr "Thao tác nhanh"
 
 msgid "QuickMenu/Extensions"
 msgstr "QuickMothy / Tiện ích mở rộng"
+
+msgid "QuickSelect Actions"
+msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
@@ -13946,7 +13936,7 @@ msgstr "Ghi lại tiếp theo"
 msgid "Record now"
 msgstr "Ghi lại ngay"
 
-msgid "Record started! Stopping timeshift now ..."
+msgid "Record started! Stopping time shift now ..."
 msgstr "Ghi lại bắt đầu! Dừng timeshift ngay bây giờ ..."
 
 #, python-format
@@ -14201,6 +14191,9 @@ msgstr "Loại điều khiển từ xa"
 msgid "Remove"
 msgstr "Tẩy"
 
+msgid "Remove Bookmark"
+msgstr "Xóa dấu trang"
+
 msgid "Remove Confirmation"
 msgstr "Xóa xác nhận"
 
@@ -14254,9 +14247,6 @@ msgstr ""
 
 msgid "Remove all user interface data"
 msgstr ""
-
-msgid "Remove Bookmark"
-msgstr "Xóa dấu trang"
 
 msgid "Remove completed timers after (days)"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
@@ -14330,7 +14320,7 @@ msgstr "Nói lại"
 msgid "Repeat Display Message"
 msgstr "Lặp lại tin nhắn hiển thị"
 
-msgid "Repeat playlist"
+msgid "Repeat play list"
 msgstr "phát lại danh sách"
 
 msgid "Repeat the sent standby and wakeup commands"
@@ -14905,10 +14895,10 @@ msgstr "Tiết kiệm mỗi (tính theo giờ)"
 msgid "Save left folder on exit"
 msgstr "Lưu thư mục bên trái khi thoát"
 
-msgid "Save playlist"
+msgid "Save play list"
 msgstr "Lưu danh sách phát"
 
-msgid "Save playlist on EXIT"
+msgid "Save play list on EXIT"
 msgstr "lưu danh sách phát khi thoát"
 
 msgid "Save right folder on exit"
@@ -14934,10 +14924,10 @@ msgstr ""
 msgid "Save the right folder list location on exit."
 msgstr "Lưu đúng vị trí danh sách thư mục khi thoát."
 
-msgid "Save timeshift as movie and continue recording"
+msgid "Save time shift as movie and continue recording"
 msgstr "Lưu timeshift như phim và tiếp tục ghi"
 
-msgid "Save timeshift as movie and stop recording"
+msgid "Save time shift as movie and stop recording"
 msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
 
 msgid "Saving EPG Cache..."
@@ -14946,7 +14936,7 @@ msgstr "Lưu bộ nhớ cache EPG ..."
 msgid "Saving Timeshift files"
 msgstr "Lưu tập tin Timeshift"
 
-msgid "Saving timeshift as movie now. This might take a while!"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Tiết kiệm timeshift như phim bây giờ. Có lẽ sẽ mất một lúc!"
 
 msgid "Scaler sharpness"
@@ -15486,7 +15476,7 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if timeshift must continue when set to record."
+msgid "Select if time shift must continue when set to record."
 msgstr "Chọn nếu timeshift phải tiếp tục khi được đặt thành ghi."
 
 msgid "Select if you want the Subservice mode to be activated."
@@ -15819,7 +15809,7 @@ msgstr "Chuyển sang kênh đã chọn"
 
 #, python-format
 msgid ""
-"Selected settingslist:\n"
+"Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15835,7 +15825,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
@@ -15845,7 +15835,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Selected settingslist: %s\n"
+"Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
@@ -16141,7 +16131,7 @@ msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' đ
 msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid "Set the default sorting method."
@@ -16190,13 +16180,13 @@ msgstr ""
 msgid "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
 
-msgid "Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once."
+msgid "Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once."
 msgstr ""
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
 msgstr ""
 
-msgid "Set this to 'Yes' to save the current playlist when exiting the Media Player."
+msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr ""
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
@@ -17133,7 +17123,7 @@ msgstr "Hiển thị Hướng dẫn chương trình dọc"
 msgid "Show warning before restart"
 msgstr "Hiển thị cảnh báo trước khi khởi động lại"
 
-msgid "Show warning when timeshift is stopped"
+msgid "Show warning when time shift is stopped"
 msgstr "Hiển thị cảnh báo khi dừng timeshift"
 
 msgid "Show watch status"
@@ -17170,7 +17160,7 @@ msgstr "Hiển thị trạng thái kết nối mạng LAN không dây của bạ
 msgid "Shows the watched status of the media."
 msgstr "Hiển thị trạng thái đã xem của bộ phim."
 
-msgid "Shuffle playlist"
+msgid "Shuffle play list"
 msgstr "Danh sách phát ngẫu nhiên"
 
 msgid "Shut down"
@@ -17273,12 +17263,6 @@ msgstr "Kích thước"
 msgid "Size reverse"
 msgstr "Kích thước ngược"
 
-msgid "Size:"
-msgstr "Kích thước:"
-
-msgid "Size: "
-msgstr "Kích thước: "
-
 msgid "Skin"
 msgstr "Da"
 
@@ -17312,7 +17296,7 @@ msgstr "Bỏ qua các dịch vụ trống"
 msgid "Skip forward"
 msgstr "Bỏ qua"
 
-msgid "Skip internet connection check (disables automatic package installation)"
+msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr "Bỏ qua kiểm tra kết nối internet (vô hiệu hóa cài đặt gói tự động)"
 
 msgid "Skip selection"
@@ -17796,7 +17780,7 @@ msgstr "Bắt đầu kiểm tra"
 msgid "Start time"
 msgstr "Thời gian bắt đầu"
 
-msgid "Start timeshift"
+msgid "Start time shift"
 msgstr "Bắt đầu timeshift"
 
 msgid "Start/stop slide show"
@@ -17924,16 +17908,16 @@ msgstr ""
 msgid "Stop timer recording"
 msgstr "Dừng ghi âm hẹn giờ"
 
-msgid "Stop timeshift"
+msgid "Stop time shift"
 msgstr "Dừng timeshift"
 
-msgid "Stop timeshift and save timeshift buffer as movie"
+msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Dừng timeshift và lưu bộ đệm timeshift như phim"
 
-msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
 msgstr "Dừng timeshift và lưu bộ đệm timeshift dưới dạng phim và bắt đầu ghi sự kiện hiện tại"
 
-msgid "Stop timeshift while recording"
+msgid "Stop time shift while recording"
 msgstr "Dừng timeshift trong khi ghi âm?"
 
 msgid "Stopped"
@@ -17943,7 +17927,7 @@ msgid "Stopping Softcam"
 msgstr "Dừng Softcam"
 
 #, fuzzy
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Mốc timeshift trong khi ghi âm?"
 
 msgid "Storage / Disk Information"
@@ -18188,7 +18172,7 @@ msgstr "Chuyển TV sang đầu vào chính xác"
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Chuyển đổi giữa Audio-, Subtitlepage"
 
-msgid "Switch between filelist/playlist"
+msgid "Switch between file list/play list"
 msgstr "Chuyển đổi giữa filelist / danh sách phát"
 
 msgid "Switch config"
@@ -18225,7 +18209,7 @@ msgstr "Chuyển sang kênh tiếp theo trong lịch sử"
 msgid "Switch to next sub service"
 msgstr "Chuyển sang dịch vụ phụ tiếp theo"
 
-msgid "Switch to playlist"
+msgid "Switch to play list"
 msgstr "Chuyển sang danh sách phát"
 
 #, fuzzy
@@ -18253,7 +18237,7 @@ msgstr ""
 msgid "Switchable tuner types:"
 msgstr "Các loại tuner có thể chuyển đổi:"
 
-msgid "Switching to live TV - timeshift is still active!"
+msgid "Switching to live TV - time shift is still active!"
 msgstr "Chuyển sang truyền hình trực tiếp - timeshift vẫn hoạt động!"
 
 msgid "Switzerland"
@@ -18281,7 +18265,7 @@ msgstr "Lỗi đồng bộ di chuyển trở lại nguồn gốc!"
 msgid "Sync time using"
 msgstr "Đồng bộ hóa thời gian sử dụng"
 
-msgid "Synchronize systemtime using transponder or internet."
+msgid "Synchronize systemtime using transponder or Internet."
 msgstr "Đồng bộ hóa thời gian hệ thống bằng cách sử dụng transponder hoặc internet."
 
 msgid "Syrian Arab Republic"
@@ -18686,7 +18670,7 @@ msgid "The authors are NOT RESPONSIBLE"
 msgstr "Các tác giả KHÔNG TRÁCH NHIỆM"
 
 msgid ""
-"The available disk space for timeshift is less than specified in the settings.\n"
+"The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Không gian đĩa khả dụng cho timeshift ít hơn chỉ định trong cài đặt.\n"
@@ -18699,7 +18683,7 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Tốc độ bit của bộ mã hóa video. Giá trị lớn hơn cải thiện chất lượng và tăng kích thước tệp."
 
 msgid ""
-"The buffer time for timeshift exceeds the specified limit in the settings.\n"
+"The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 "Thời gian bộ đệm cho timeshift vượt quá giới hạn chỉ định trong cài đặt.\n"
@@ -19218,7 +19202,7 @@ msgstr ""
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Cài đặt này cho phép cấu hình bộ chỉnh tần trùng lặp với cách cấu hình bộ chỉnh khác."
 
-msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Cài đặt này phụ thuộc vào nhà cung cấp cáp và vị trí của bạn. Nếu bạn không biết cài đặt chính xác, hãy tham khảo menu trong bộ thu cáp chính thức hoặc lấy từ nhà cung cấp cáp của bạn hoặc tìm kiếm trợ giúp qua diễn đàn internet."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
@@ -19725,7 +19709,7 @@ msgstr "Cố gắng ngăn chặn khởi động lại cho lỗi phần mềm và
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
 msgstr ""
 
-msgid "Trying to download a new packetlist. Please wait..."
+msgid "Trying to download a new packet list. Please wait..."
 msgstr "Đang cố gắng tải xuống một danh sách gói mới. Xin vui lòng chờ ..."
 
 #, fuzzy
@@ -20400,7 +20384,7 @@ msgstr "Sử dụng cài đặt nâng cao video này?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Sử dụng thời gian để nhảy nhanh / lùi"
 
-msgid "Use timeshift seekbar while timeshifting"
+msgid "Use time shift seekbar while timeshifting"
 msgstr "Sử dụng thanh tìm kiếm timeshift trong khi timeshifting?"
 
 msgid "Use workaround for wakeup from deep-standby"
@@ -20966,6 +20950,9 @@ msgstr "Cảnh báo"
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
+msgid "Warning: Recordings should not be stored on the Flash disk!"
+msgstr ""
+
 #, python-format
 msgid "Warning: There are %d update packages!"
 msgstr ""
@@ -21111,7 +21098,7 @@ msgstr "Bạn muốn loại dịch vụ quét nào?"
 msgid "What would you like to do?"
 msgstr ""
 
-msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Khi được bật enigma2 sẽ tải các tập tin người dùng không liên kết. Điều này có nghĩa là các userbouquets có sẵn, nhưng không được bao gồm trong các tập tin bouquets.tv hoặc bouquets.radio, vẫn sẽ được tải. Điều này cho phép bạn lấy ví dụ để giữ bó hoa người dùng của riêng bạn trong khi cài đặt được cài đặt được nâng cấp"
 
 msgid "When enabled the PiP can be closed by the exit button."
@@ -21159,7 +21146,7 @@ msgstr "Khi được bật, một bản ghi được phép làm gián đoạn tr
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Khi được bật, một bản ghi được phép làm gián đoạn truyền hình trực tiếp, khi không có bộ chỉnh miễn phí."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Khi được bật, một cảnh báo sẽ được hiển thị và người dùng sẽ có tùy chọn dừng hoặc tiếp tục chuyển đổi thời gian."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
@@ -21195,7 +21182,7 @@ msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được hiển th�
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được hiển thị màu vàng, thay vì màu gốc."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Khi được bật, có thể rời khỏi trình phát phim với lối ra."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
@@ -21249,7 +21236,7 @@ msgstr "Khi được bật, người nhận sẽ chọn một bản nhạc AC3 (
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Khi được bật, người nhận sẽ chọn bản nhạc AC3 + (khi khả dụng)."
 
-msgid "When enabled, timeshift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after specified time."
 msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau thời gian được chỉ định."
 
 msgid "When enabled, use DHCP for the IP configuration."
@@ -21297,7 +21284,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
 
-msgid "Where to save temporary timeshift recordings?"
+msgid "Where to save temporary time shift recordings?"
 msgstr "Lưu bản ghi timeshift tạm thời ở đâu?"
 
 msgid "Which event do you want to save permanently?"
@@ -21462,7 +21449,7 @@ msgstr "Có, và xóa bộ phim này"
 msgid "Yes, backup my settings!"
 msgstr "Có, sao lưu cài đặt của tôi!"
 
-msgid "Yes, but don't save timeshift as movie"
+msgid "Yes, but don't save time shift as movie"
 msgstr "Có, nhưng đừng lưu timeshift như phim"
 
 msgid "Yes, but if not available show the plugin browser"
@@ -21471,10 +21458,10 @@ msgstr "Có, nhưng nếu không có sẵn, hãy hiển thị trình duyệt plu
 msgid "Yes, but if not available show the timer list"
 msgstr "Có, nhưng nếu không có sẵn, hãy hiển thị danh sách hẹn giờ"
 
-msgid "Yes, but save timeshift as movie and continue recording"
+msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Có, nhưng lưu timeshift như phim và tiếp tục ghi"
 
-msgid "Yes, but save timeshift as movie and stop recording"
+msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Có, nhưng lưu timeshift dưới dạng phim và dừng ghi"
 
 msgid "Yes, delete this movie and return to movie list"
@@ -21585,11 +21572,11 @@ msgstr "Bạn đã chọn sao lưu các thiết lập của bạn. Vui lòng nh�
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Bạn đã chọn để khôi phục cài đặt của bạn. Enigma2 sẽ khởi động lại sau khi khôi phục. Vui lòng nhấn OK để bắt đầu khôi phục ngay bây giờ."
 
-msgid "You have chosen to save the current timeshift"
+msgid "You have chosen to save the current time shift"
 msgstr "Bạn đã chọn lưu bảng thời gian hiện tại"
 
 msgid ""
-"You have chosen to save the current timeshift event, but the event has not yet finished\n"
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 "Bạn đã chọn lưu sự kiện timeshift hiện tại, nhưng sự kiện vẫn chưa kết thúc\n"
@@ -21628,13 +21615,13 @@ msgstr ""
 "Bạn cần một PC được kết nối với% s% s của bạn. Nếu bạn cần hướng dẫn thêm, vui lòng truy cập trang web https://www.opena.tv.\n"
 "% S% s của bạn bây giờ sẽ bị dừng. Sau khi bạn thực hiện các hướng dẫn cập nhật từ trang web, phần mềm mới của bạn sẽ yêu cầu bạn khôi phục cài đặt của mình."
 
-msgid "You seem to be in timeshift!"
+msgid "You seem to be in time shift!"
 msgstr "Bạn dường như đang ở trong timeshift!"
 
-msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Bạn dường như đang ở trong timeshift, Bạn có muốn rời khỏi timeshift?"
 
-msgid "You seem to be in timeshift, the service will briefly stop as timeshift stops."
+msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
 msgstr ""
 
 msgid "You should flash a new image!"
@@ -21646,7 +21633,7 @@ msgstr ""
 msgid "YouTube long"
 msgstr ""
 
-msgid "Your %s %s does not have an internet connection"
+msgid "Your %s %s does not have an Internet connection"
 msgstr "Máy thu của bạn %s%s không có kết nối internet"
 
 #, python-format
@@ -21661,18 +21648,18 @@ msgstr "Của bạn % s% s chuyển đến WOL"
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
-msgid "Your %s %s is not connected to the internet"
+msgid "Your %s %s is not connected to the Internet"
 msgstr "Đầu thu của bạn % s% s không được kết nối với internet"
 
 #, python-format
-msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
+msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr "Của bạn % s% s không được kết nối với internet, vui lòng kiểm tra cài đặt mạng của bạn và thử lại."
 
 #, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 msgstr ""
 "Của bạn % s% s hiện đã sẵn sàng để được sử dụng.\n"
@@ -21682,7 +21669,7 @@ msgstr ""
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your Internet connection is working now.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -21849,7 +21836,7 @@ msgstr ""
 "Bạn vẫn muốn cập nhật?"
 
 msgid ""
-"Your internet connection is not working!\n"
+"Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 "Kết nối internet của bạn không hoạt động!\n"
@@ -21872,7 +21859,7 @@ msgid "Your receiver might be unusable now.  Please consult the manual for furth
 msgstr ""
 
 msgid ""
-"Your wireless LAN internet connection could not be started!\n"
+"Your wireless LAN Internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
@@ -22189,7 +22176,7 @@ msgstr "vở ballet"
 msgid "bc%d"
 msgstr "bc%d"
 
-msgid "because of the used filesystem the back-up\n"
+msgid "because of the used file system the back-up\n"
 msgstr "bởi vì hệ thống tập tin được sử dụng sao lưu\n"
 
 msgid "better"
@@ -23010,7 +22997,7 @@ msgstr "cung cấp:"
 msgid "provider:"
 msgstr "nhà cung cấp:"
 
-msgid "purge deleted userbouquets"
+msgid "purge deleted user bouquets"
 msgstr "thanh lọc người dùng đã xóa"
 
 msgid "python"
@@ -23089,7 +23076,7 @@ msgstr "đổi tên"
 msgid "rename entry"
 msgstr "đổi tên mục nhập"
 
-msgid "restore deleted userbouquets"
+msgid "restore deleted user bouquets"
 msgstr "khôi phục lại những người dùng đã xóa"
 
 msgid "restoring satellites.xml not possible!"
@@ -23562,6 +23549,22 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Favourites"
+#~ msgstr "Yêu thích"
+
+#~ msgid "Polarisation"
+#~ msgstr "Phân cực"
+
+#, fuzzy
+#~ msgid "Quick Select Actions"
+#~ msgstr "Thao tác nhanh"
+
+#~ msgid "Size:"
+#~ msgstr "Kích thước:"
+
+#~ msgid "Size: "
+#~ msgstr "Kích thước: "
 
 #~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 #~ msgstr "Định cấu hình cho bao nhiêu phút sự kiện đã hoàn thành sẽ vẫn hiển thị trong EPG. Hữu ích khi bạn cần thông tin về một sự kiện vừa kết thúc hoặc đã bị trì hoãn."

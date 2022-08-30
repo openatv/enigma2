@@ -209,7 +209,7 @@ private:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 
 public:
-	/* Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file */
+	/* Used by servicedvbrecord.cpp, time shift, etc. to write the EIT file */
 	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
 	// Events are parsed epg events.. it's safe to use them after cache unlock

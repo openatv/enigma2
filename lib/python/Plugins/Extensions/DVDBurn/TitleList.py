@@ -371,7 +371,7 @@ class TitleList(Screen, HelpableScreen):
 			text = _("The DVD standard doesn't support H.264 (HDTV) video streams.")
 
 			if all_hd == True:
-				choices.append((_("BDMV Bludisc (HDTV titles only)"), "bdmv"))
+				choices.append((_("BDMV Blue-ray disk (HDTV titles only)"), "bdmv"))
 
 			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"), "data_ts"))
 			choices.append((_("Don't add this recording"), None))
