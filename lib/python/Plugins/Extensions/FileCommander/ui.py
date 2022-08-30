@@ -150,9 +150,9 @@ class FileCommanderConfigScreen(Setup):
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
-	sD = ('n', 'd', 's')[sortDirs] #name, date, size
+	sD = ('n', 'd', 's')[sortDirs]  # name, date, size
 	sF = ('n', 'd', 's')[sortFiles]
-	rD = ('+', '-')[reverseDirs] #normal, reverse
+	rD = ('+', '-')[reverseDirs]  # normal, reverse
 	rF = ('+', '-')[reverseFiles]
 	return '[D]%s%s[F]%s%s' % (sD, rD, sF, rF)
 
@@ -975,11 +975,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if dir is not None:
 				file = self[side].getFilename() or ''
 				if file.startswith(dir):
-					pathname = file # subfolder
+					pathname = file  # subfolder
 				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+					pathname = dir + file  # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = dir  # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side], self.calculate_directorysize))
 			else:
@@ -1424,11 +1424,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			if dir is not None:
 				file = self[side].getFilename() or ''
 				if file.startswith(dir):
-					pathname = file # subfolder
+					pathname = file  # subfolder
 				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+					pathname = dir + file  # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = dir  # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1579,7 +1579,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
 		self.list.append((_("Permissions:"), _("%s (%04o)") % (self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
-			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
+			self.list.append(("%s:" % _("Size"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
 		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))
 		self.list.append((_("Accessed:"), self.formatTime(st.st_atime)))
 		self.list.append((_("Metadata changed:"), self.formatTime(st.st_ctime)))

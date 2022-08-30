@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-28 18:18+0000\n"
-"PO-Revision-Date: 2022-08-27 16:02+0000\n"
+"PO-Revision-Date: 2022-08-30 15:39+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -4265,7 +4265,7 @@ msgid "Choose dvb wait delay for ci response."
 msgstr "Valitse kauanko kanava odottaa CI vastausta."
 
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
-msgstr ""
+msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilytetään. Näitä historiatietoja voi selata missä tahansa EPG näkymässä. Tämä voi olla hyödyllistä, kun tarvitset tietoja äskettäin päättyneestä tapahtumasta."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
@@ -6979,10 +6979,10 @@ msgid "Enable this option to add action map / remote control mapping data to the
 msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä toimintakarttatietoja virheenkorjauslokiin."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr ""
+msgstr "Ota tämä asetus käyttöön, jos haluat lisätä ylimääräisiä DVB skannaus tietoja virheenkorjauslokitiedostoon."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr ""
+msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ylimääräisiä EPG tietoja vianmäärityslokitiedostoon."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näppäimistön tietoja virheenkorjauksen lokitiedostoon."
@@ -6997,13 +6997,13 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä ja tarkkuustietoja virheenkorjauksen lokitiedostoon."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
-msgstr ""
+msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ajastin tiedot vianmääritys lokitiedostoon."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
-msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin.  Tämä voi parantaa luettavuutta."
+msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin. Tämä voi parantaa luettavuutta."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päältä asetukset näkyvät graafisena kytkimenä."
@@ -9215,7 +9215,7 @@ msgid "Include CI assignment"
 msgstr "SIsällytä CI määritys"
 
 msgid "Include DVB scan data"
-msgstr ""
+msgstr "Sisällytä DVB skannaus tiedot"
 
 msgid "Include ECM in http streams"
 msgstr "Sisällytä ECM http striimeihin"
@@ -9224,7 +9224,7 @@ msgid "Include EIT in http streams"
 msgstr "Sisällytä EIT http striimeihin"
 
 msgid "Include EPG data"
-msgstr ""
+msgstr "Sisällytä EPG tiedot"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Sisällytä SDT, BAT http striimeihin"
@@ -9245,7 +9245,7 @@ msgid "Include screen load data"
 msgstr "Sisällytä näytön kuormitustiedot"
 
 msgid "Include timer data"
-msgstr ""
+msgstr "Sisällytä ajastimen tiedot"
 
 msgid "Incorrect type service for PiP!"
 msgstr "Ei yhteensopiva ohjelmalähde PiP-kuvalle!"
@@ -9720,7 +9720,7 @@ msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
 msgid "Keep EPG history (in minutes)"
-msgstr ""
+msgstr "Säilytä EPG historia (minuutteina)"
 
 msgid "Keep service"
 msgstr "Säilytä kanava"
@@ -14974,7 +14974,7 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr "Valitse 'Kyllä' poistaaksesi kaikki pääasetusten konfigurointitiedot. Tämän vaihtoehdon valitseminen palauttaa kaikki Enigma2:n asetukset oletusarvoihinsa.  Tämä aiheuttaa myös sen, että Enigma2 suorittaa Asennus Avustaja uudelleenkäynnistyksen yhteydessä."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki pääasetusten konfigurointitiedot. Tämän vaihtoehdon valitseminen palauttaa kaikki järjestelmän asetukset oletusarvoihinsa. Tämä aiheuttaa myös sen, että Asennus Avustaja näytetään uudelleenkäynnistyksen yhteydessä."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki toisto soittimen jatko tiedot. Tämän vaihtoehdon valitseminen poistaa tiedot, joiden avulla mediatiedostojen toistoa voidaan jatkaa siitä kohdasta, jossa toisto viimeksi pysäytettiin. Tämä ei vaikuta tallenteiden toistoasentoon."
@@ -15181,7 +15181,7 @@ msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr ""
+msgstr "Valitse, kuinka kauan (sekunteina) äänenvoimakkuuden näyttö näkyy ennen kuin se piilotetaan automaattisesti."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Valitse, kuinka usein tämä ajastin toistetaan."
@@ -15369,7 +15369,7 @@ msgid "Select the highlighted slot and reboot"
 msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
-msgstr ""
+msgstr "Valitse aikajana merkin alkuasento. Merkki on EPG:hen piirretty pystysuora viiva, joka näyttää nykyisen ajan. Mitä suurempi arvo on, sitä enemmän merkki siirtyy oikealle ja näyttää enemmän historiaa ja vähemmän tulevia ohjelmia."
 
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
@@ -15429,10 +15429,10 @@ msgid "Select the softcam protocol."
 msgstr "Valitse softcam protokolla."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Valitse Plugin selaimen valikko lajittelujärjestys.  Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
+msgstr "Valitse Plugin selaimen valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Valitse valikon lajittelujärjestys.  Käyttäjän määrittelemä mahdollistaa myös tietyn valikko kohdan piilottamisen."
+msgstr "Valitse valikon lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös tietyn valikko kohdan piilottamisen."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Valitse lähde oletus DNS asetuksille."
@@ -15486,7 +15486,7 @@ msgid "Select the type of this timer."
 msgstr "Valitse ajastimen tyyppi."
 
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr ""
+msgstr "Valitse äänenvoimakkuuden askelkoko, jolloin pienemmillä äänenvoimakkuustasoilla on enemmän askelia."
 
 msgid "Select video input with up/down buttons"
 msgstr "Valitse video sisäänmeno ylös/alas näppäimillä"
@@ -20017,7 +20017,7 @@ msgid "Use interface"
 msgstr "Käytä sovitinta"
 
 msgid "Use logarithmic steps"
-msgstr ""
+msgstr "Käytä logaritmisia askeleita"
 
 msgid "Use official channel numbering"
 msgstr "Käytä virallista kanavanumerointia"
@@ -20561,7 +20561,7 @@ msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
 
 msgid "Volume display timer"
-msgstr ""
+msgstr "Äänenvoimakkuuden näyttö aika"
 
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"

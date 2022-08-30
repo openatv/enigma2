@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-28 18:18+0000\n"
-"PO-Revision-Date: 2022-08-29 09:05+0000\n"
+"PO-Revision-Date: 2022-08-29 22:04+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2705,7 +2705,7 @@ msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
-msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard ist 'Nein'."
+msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt."
 
 msgid "Always show bouquets"
 msgstr "Favoritenlisten anzeigen"
@@ -4857,7 +4857,7 @@ msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur b
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
 msgstr ""
-"Zusammensetzung des Dateinamens von Aufnahmen.\n"
+"Zusammensetzung des Dateinamens:\n"
 "Standard: Datum Zeit - Sender - Titel\n"
 "Extrem kurz: Titel\n"
 "Sehr kurz: Titel - Datum Zeit\n"
@@ -4928,18 +4928,18 @@ msgstr "Das Seitenverhältnis des Bildschirms einstellen."
 
 #
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "Verhalten der Play oder Play/Pausetaste bei Standbild."
+msgstr "Verhalten der Play oder Play/Pausetaste bei Standbild einstellen."
 
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr "Verhalten beim Stoppen eines Films."
+msgstr "Verhalten beim Stoppen eines Films einstellen."
 
 #
 msgid "Configure the behavior when movie playback is started."
-msgstr "Verhalten beim Start eines Films."
+msgstr "Verhalten beim Start eines Films einstellen."
 
 #
 msgid "Configure the behavior when reaching the end of a movie, during movie playback."
-msgstr "Verhalten bei Filmende."
+msgstr "Verhalten bei Filmende einstellen."
 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Die Rahmenbreite für die Untertitel einstellen. Der dunkle Rand verbessert die Lesbarkeit bei hellerem Hintergrund."
@@ -5101,13 +5101,13 @@ msgid "Configure the secondary EPG language."
 msgstr "EPG-Sprachwahl 2 einstellen."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
-msgstr "Das Zeitintervall für das Springen mit den Tasten '1' und '3' einstellen (in Sekunden)."
+msgstr "Das Zeitintervall (in Sekunden) für das Springen mit den Tasten '1' und '3' einstellen."
 
 msgid "Configure the skip time interval for the '4'/'6' buttons."
-msgstr "Das Zeitintervall für das Springen mit den Tasten '4' und '6' einstellen (in Sekunden)."
+msgstr "Das Zeitintervall (in Sekunden) für das Springen mit den Tasten '4' und '6' einstellen."
 
 msgid "Configure the skip time interval for the '7'/'9' buttons."
-msgstr "Das Zeitintervall für das Springen mit den Tasten '7' und '9' einstellen (in Sekunden)."
+msgstr "Das Zeitintervall (in Sekunden) für das Springen mit den Tasten '7' und '9' einstellen."
 
 msgid "Configure the slow motion speeds."
 msgstr "Die Zeitlupengeschwindigkeiten einstellen."
@@ -9573,7 +9573,9 @@ msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are
 msgstr "Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befinden sich zusammen mit den anderen Logs, haben jedoch den Namen 'Enigma2-hdmicec-[date].log'."
 
 msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
-msgstr "Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist 'Nein' und verwendet ein spezielles Signal von Ihrem Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
+msgstr ""
+"Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen.\n"
+"Bei 'Nein' wird ein spezielles Signal von Ihrem Receiver verwendet. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Dateien gelöscht."
@@ -11990,7 +11992,7 @@ msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino ('keymap.ntr')"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden. Standard ist 'Nein'."
+msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden."
 
 msgid "Never decrypt while recording"
 msgstr "Bei der Aufnahme niemals entschlüsseln"
@@ -16013,34 +16015,34 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Bei 'Ja' werden Sender ohne EPG nicht angezeigt."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt.  Dies führt auch dazu, dass Enigma2 beim Neustart den Willkommensassistenten ausführt."
+msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Dann werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt. Dies führt auch dazu, dass Enigma2 beim Neustart den Willkommensassistenten ausführt."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
-msgstr "Wählen Sie 'Ja', um alle Fortsetzungsdaten des Mediaplayers zu entfernen. Wenn Sie diese Option wählen, werden die Daten entfernt, mit denen die Wiedergabe von Mediendateien an der Stelle fortgesetzt werden kann, an der die Wiedergabe zuletzt gestoppt wurde. Die Wiedergabeposition von Aufnahmen ist davon nicht betroffen."
+msgstr "Wählen Sie 'Ja', um alle Fortsetzungsdaten des Mediaplayers zu entfernen. Dann werden die Daten entfernt, mit denen die Wiedergabe von Mediendateien an der Stelle fortgesetzt werden kann, an der die Wiedergabe zuletzt gestoppt wurde. Die Wiedergabeposition von Aufnahmen ist davon nicht betroffen."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr "Wählen Sie 'Ja', um alle Netzwerk-Mount-Daten zu entfernen. Wenn Sie diese Option wählen, werden alle Netzwerkdaten einschließlich Autoaktivierungen und Netzwerkverbindungsdaten einschließlich Verbindungskonten und Passwörtern entfernt. Dies kann dazu führen, dass einige Enigma2-Funktionen fehlschlagen, wenn sie für die Verwendung dieser Netzwerkressourcen konfiguriert sind."
+msgstr "Wählen Sie 'Ja', um alle Netzwerk-Mount-Daten zu entfernen. Dann werden alle Netzwerkdaten einschließlich Autoaktivierungen und Netzwerkverbindungsdaten einschließlich Verbindungskonten und Passwörtern entfernt. Dies kann dazu führen, dass einige Enigma2-Funktionen fehlschlagen, wenn sie für die Verwendung dieser Netzwerkressourcen konfiguriert sind."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
 msgstr "Wählen Sie 'Ja', um alle anderen Dateien und Verzeichnisse zu entfernen, die nicht von den oben genannten Optionen abgedeckt werden."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Wenn Sie diese Option wählen, werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht. Dies führt dazu, dass alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt werden. Dies kann dazu führen, dass einige Plugins nicht funktionieren, bis sie konfiguriert sind."
+msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Dann werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht. Dies führt dazu, dass alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt werden. Es kann aber sein, dass einige Plugins nicht funktionieren, bis sie konfiguriert sind."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Wenn Sie diese Option wählen, wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form für die Werkseinstellungen."
+msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Dann wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Timer, AutoTimer und PowerTimer gelöscht."
+msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Dann werden alle Timer, AutoTimer und PowerTimer gelöscht."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
-msgstr "Wählen Sie 'Ja', um alle Empfangsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Empfangs- und Bouquetdaten gelöscht und die Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde."
+msgstr "Wählen Sie 'Ja', um alle Empfangsdaten zu löschen. Dann werden alle Empfangs- und Bouquetdaten gelöscht und die Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde."
 
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
-msgstr "Wählen Sie 'Ja', um alle Benutzeranpassungen der Skin-Daten zu entfernen. Wenn Sie diese Option wählen, werden alle benutzerbasierten Skin-Anpassungen entfernt. Alle betroffenen Skins werden auf ihre Standardeinstellungen zurückgesetzt. Dadurch werden auch alle benutzerdefinierten Boot-Logos und Hintergrundbilder gelöscht."
+msgstr "Wählen Sie 'Ja', um alle Benutzeranpassungen der Skin-Daten zu entfernen. Dann werden alle benutzerbasierten Skin-Anpassungen entfernt. Alle betroffenen Skins werden auf ihre Standardeinstellungen zurückgesetzt. Dadurch werden auch alle benutzerdefinierten Boot-Logos und Hintergrundbilder gelöscht."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
-msgstr "Wählen Sie 'Ja', um alle Daten der Benutzeroberfläche zu entfernen. Wenn Sie diese Option wählen, werden alle Tastaturbelegungs-, Menü- und Setup-Überschreibungsdaten entfernt und die Standarddefinitionen wiederhergestellt."
+msgstr "Wählen Sie 'Ja', um alle Daten der Benutzeroberfläche zu entfernen. Dann werden alle Tastaturbelegungs-, Menü- und Setup-Überschreibungsdaten entfernt und die Standarddefinitionen wiederhergestellt."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Wählen Sie 'Ja', um die Netzwerkkonfiguration auf die Standardwerte zurückzusetzen. Dadurch wird der Ethernet-Anschluss aktiviert, sofern er vorhanden ist, und der Empfänger auf die Verwendung von DHCP eingestellt. Alle anderen Netzwerkschnittstellen werden gelöscht."
@@ -16313,7 +16315,7 @@ msgid "Select satellites"
 msgstr "Satelliten auswählen"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Die Tasten für die Suchleistenaktivierung einstellen: Pfeil Links/Rechts lang oder <</>> lang."
+msgstr "Die Tasten für die Suchleistenaktivierung einstellen, Pfeil Links/Rechts lang oder <</>> lang."
 
 #
 msgid "Select service to add..."
@@ -16551,7 +16553,7 @@ msgid "Select video mode"
 msgstr "Videomodus auswählen"
 
 msgid "Select what action to take when reaching the end of a media file during playback."
-msgstr "Das Verhalten des Receivers beim Ende einer Filmwiedergabe kann hier ausgewählt werden."
+msgstr "Verhalten bei Filmende einstellen."
 
 msgid "Select what do do after the timer has completed."
 msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll."
@@ -16600,7 +16602,7 @@ msgid "Select your backup device."
 msgstr "Wählen Sie das Sicherungsgerät."
 
 msgid "Select your country. If not available select 'all'."
-msgstr "Wählen Sie Ihr Land. Wenn nicht verfügbar wählen Sie 'Alle'."
+msgstr "Wählen Sie Ihr Land. Wenn nicht verfügbar, wählen Sie 'Alle'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "Wählen Sie Ihren Anbieter und die Region aus. Wenn Sie in dieser Liste nicht vorhanden sind, müssen Sie einen der anderen Suchläufe auswählen."
@@ -16609,7 +16611,7 @@ msgid "Select your provider, and press OK to start the scan"
 msgstr "Wählen Sie den Anbieter und drücken dann OK, um den Suchlauf zu starten."
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
-msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar ändern Sie 'Land' in 'alle' und wählen Sie eine der Standardalternativen."
+msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar, ändern Sie 'Land' in 'Alle' und wählen Sie eine der Standardalternativen."
 
 # Zeitenstellung
 msgid "Select your time zone area or region."
@@ -22329,15 +22331,15 @@ msgid "When enabled, a pop up message will be shown when a recording starts."
 msgstr "Bei 'Ja' wird eine Info angezeigt, sobald eine Aufnahme startet."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Bei 'Ja' darf eine Aufnahme das Bild im Bild unterbrechen, falls kein freier Tuner zur Verfügung steht."
+msgstr "Wenn aktiviert, darf eine Aufnahme das Bild im Bild unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 # Record neu 5.1
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
-msgstr "Bei 'Ja' darf eine Aufnahme die Pseudo-Aufnahme unterbrechen, falls kein freier Tuner zur Verfügung steht."
+msgstr "Wenn aktiviert, darf eine Aufnahme die Pseudo-Aufnahme unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 # Record neu 5.1
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
-msgstr "Bei 'Ja' darf eine Aufnahme das Streaming unterbrechen, falls kein freier Tuner zur Verfügung steht."
+msgstr "Wenn aktiviert, darf eine Aufnahme das Streaming unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Bei 'Ja' darf eine Aufnahme das Live-TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
@@ -22382,7 +22384,7 @@ msgstr "Bei 'Ja' werden grafische DVB-Untertitel in Gelb statt der Originalfarbe
 
 #
 msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Bei 'Ja' kann der Movieplayer mit EXIT beendet werden."
+msgstr "Wenn aktiviert, kann der Movieplayer mit EXIT beendet werden."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Wenn aktiviert, wird der Stromverbrauch gemessen, um festzustellen, wann der Rotor aufhört, sich zu drehen (wenn dies vom Tuner unterstützt wird)."
@@ -22669,10 +22671,10 @@ msgid "Yes, but don't save timeshift as movie"
 msgstr "Ja, nicht als Aufnahme speichern."
 
 msgid "Yes, but if not available show the plugin browser"
-msgstr "Wenn nicht verfügbar den Plugin-Manager anzeigen"
+msgstr "Wenn nicht verfügbar zum Plugin-Manager"
 
 msgid "Yes, but if not available show the timer list"
-msgstr "Wenn nicht verfügbar die Timerliste anzeigen"
+msgstr "Wenn nicht verfügbar zur Timerliste"
 
 msgid "Yes, but save timeshift as movie and continue recording"
 msgstr "Ja, als Aufnahme speichern und weiter aufnehmen."

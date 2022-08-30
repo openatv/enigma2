@@ -1534,7 +1534,7 @@ class ChannelSelectionBase(Screen):
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Reception lists"))
 		self["key_yellow"] = Button(_("Providers"))
-		self["key_blue"] = Button(_("Favourites"))
+		self["key_blue"] = Button(_("Favorites"))
 
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]

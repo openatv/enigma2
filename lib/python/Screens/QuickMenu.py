@@ -57,6 +57,7 @@ POSSETUP = isPluginInstalled("PositionerSetup")
 
 SATFINDER = isPluginInstalled("Satfinder")
 
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -226,9 +227,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist = []
 		if isPluginInstalled("NetworkWizard"):
 			self.sublist.append(QuickSubMenuEntryComponent("Network Wizard", _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
-		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
+		if len(self.adapters) > 1:  # show only adapter selection if more as 1 adapter is installed
 			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection", _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
-		if not self.activeInterface == None: # show only if there is already a adapter up
+		if not self.activeInterface == None:  # show only if there is already a adapter up
 			self.sublist.append(QuickSubMenuEntryComponent("Network Interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Restart", _("Restart network to with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent("Network Services", _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)")))
@@ -262,11 +263,11 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Softcam Menu ##############################
 	def Qsoftcam(self):
 		self.sublist = []
-		if BoxInfo.getItem("SoftCam"): # show only when there is a softcam installed
+		if BoxInfo.getItem("SoftCam"):  # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Settings", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
-			if BoxInfo.getItem("ShowOscamInfo"): # show only when oscam or ncam is active
+			if BoxInfo.getItem("ShowOscamInfo"):  # show only when oscam or ncam is active
 				self.sublist.append(QuickSubMenuEntryComponent("OScam Information", _("Show OScam Info"), _("Show the OScamInfo Screen")))
-			if BoxInfo.getItem("ShowCCCamInfo"): # show only when CCcam is active
+			if BoxInfo.getItem("ShowCCCamInfo"):  # show only when CCcam is active
 				self.sublist.append(QuickSubMenuEntryComponent("CCcam Information", _("Show CCcam Info"), _("Show the CCcam Info Screen")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
@@ -617,7 +618,6 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(ImageBackup)
 
 
-
 ######## Create MENULIST format #######################
 def QuickMenuEntryComponent(name, description, long_description=None, width=540):
 	pngname = name.replace(" ", "_")
@@ -721,7 +721,7 @@ class QuickMenuDevices(Screen):
 			self['lab1'].hide()
 
 	def buildMy_rec(self, device):
-		device2 = device[:-1]	#strip device number
+		device2 = device[:-1]  # strip device number
 		devicetype = realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
@@ -751,7 +751,6 @@ class QuickMenuDevices(Screen):
 				dtype = parts[2]
 				rw = parts[3]
 				break
-				continue
 			else:
 				if device in swapdevices:
 					parts = line.strip().split()
@@ -759,7 +758,6 @@ class QuickMenuDevices(Screen):
 					dtype = 'swap'
 					rw = _("None")
 					break
-					continue
 				else:
 					d1 = _("None")
 					dtype = _("unavailable")
@@ -780,9 +778,9 @@ class QuickMenuDevices(Screen):
 					size = 0
 
 			if ((size / 1024) / 1024) > 1:
-				des = _("Size: ") + str((size // 1024) // 1024) + " " + _("GB")
+				des = "%s: %s %s" % (_("Size"), str((size // 1024) // 1024), _("GB"))
 			else:
-				des = _("Size: ") + str(size // 1024) + " " + _("MB")
+				des = "%s: %s %s" % (_("Size"), str(size // 1024), _("MB"))
 
 		f.close()
 		if des != '':

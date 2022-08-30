@@ -61,6 +61,8 @@ AUTO_REFRESH_TIME = 5000  # Streaming auto refresh timer (in milliseconds).
 
 # This code is all to move into SystemInfo.py when it can handle translated text...
 #
+
+
 def getBoxProcTypeName():
 	boxProcTypes = {
 		"00": _("OTT Model"),
@@ -73,6 +75,7 @@ def getBoxProcTypeName():
 	if procType == "unknown":
 		return _("Unknown")
 	return "%s  -  %s" % (procType, boxProcTypes.get(procType, _("Unknown")))
+
 
 welcome = [
 	_("Welcome to %s") % BoxInfo.getItem("displaydistro", "Enigma2")
@@ -1281,7 +1284,7 @@ class NetworkInformation(InformationBase):
 					if "accessPoint" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Access point"), self.interfaceData[interface]["accessPoint"]))
 					if "bitrate" in self.interfaceData[interface]:
-						info.append(formatLine("P1", _("Bit rate"), self.interfaceData[interface]["bitrate"]))
+						info.append(formatLine("P1", _("Bitrate"), self.interfaceData[interface]["bitrate"]))
 					if "signalQuality" in self.interfaceData[interface]:
 						info.append(formatLine("P1", _("Signal quality"), self.interfaceData[interface]["signalQuality"]))
 					if "signalStrength" in self.interfaceData[interface]:
