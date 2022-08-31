@@ -285,7 +285,7 @@ class Swap(Screen):
 			if partition.filesystem(mounts) in supported_filesystems:
 				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
-			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swapfile location"), list=candidates)
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swap file location"), list=candidates)
 		else:
 			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout=10)
 
@@ -298,7 +298,7 @@ class Swap(Screen):
 	def doCSsize(self, swapsize):
 		if swapsize:
 			self["actions"].setEnabled(False)
-			scanning = _("Wait please while creating swapfile...")
+			scanning = _("Wait please while creating swap file...")
 			self['lab1'].setText(scanning)
 			self['lab1'].show()
 			swapsize = swapsize[1]

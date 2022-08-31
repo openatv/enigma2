@@ -97,7 +97,7 @@ BUTTON_SETUP_KEYS = [
 	(_("Stop"), "stop", ""),
 	(_("Pause"), "pause", ""),
 	(_("Rewind"), "rewind", ""),
-	(_("Fastforward"), "fastforward", ""),
+	(_("Fast forward"), "fastforward", ""),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
 	(_("activatePiP"), "activatePiP", ""),
@@ -205,7 +205,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show InfoBar"), "Infobar/toggleShow", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
-	ButtonSetupFunctions.append((_("Show favourites list"), "Infobar/openBouquets", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show favorites list"), "Infobar/openBouquets", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
 	ButtonSetupFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	ButtonSetupFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))

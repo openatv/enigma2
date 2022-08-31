@@ -1348,7 +1348,7 @@ class InfoBarChannelSelection:
 			"historyNext": (self.historyNext, _("Switch to next channel in history")),
 			"openServiceList": (self.openServiceList, _("Open service list")),
 			"openSatellites": (self.openSatellites, _("Open satellites list")),
-			"openBouquets": (self.openBouquets, _("Open favourites list")),
+			"openBouquets": (self.openBouquets, _("Open favorites list")),
 			"LeftPressed": self.LeftPressed,
 			"RightPressed": self.RightPressed,
 			"ChannelPlusPressed": self.ChannelPlusPressed,
@@ -4078,9 +4078,9 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1:
 				self.addSubserviceToBouquet(self.bouquets[0][1])
-				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, _("Service has been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 		else:
-			self.session.open(MessageBox, _("Service cant been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+			self.session.open(MessageBox, _("Service cant been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 
 	def bouquetSelClosed(self, confirmed):
 		self.bouquets = self.bsel = self.selectedSubservice = None

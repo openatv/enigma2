@@ -240,7 +240,7 @@ class ChannelContextMenu(Screen):
 							self.removeFunction = self.removeSatelliteService
 					else:
 						if not self.inBouquet:
-							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level=0, key="5")
+							append_when_current_valid(current, menu, (_("add service to favorites"), self.addServiceToBouquetSelected), level=0, key="5")
 							self.addFunction = self.addServiceToBouquetSelected
 					if BoxInfo.getItem("PIPAvailable"):
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
@@ -296,7 +296,7 @@ class ChannelContextMenu(Screen):
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("enable favourite edit"), self.bouquetMarkStart), level=0)
+							append_when_current_valid(current, menu, (_("enable favorite edit"), self.bouquetMarkStart), level=0)
 					if current_sel_flags & eServiceReference.isGroup:
 						append_when_current_valid(current, menu, (_("edit alternatives"), self.editAlternativeServices), level=2)
 						append_when_current_valid(current, menu, (_("show alternatives"), self.showAlternativeServices), level=2)
@@ -309,8 +309,8 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end bouquet edit"), self.bouquetMarkEnd), level=0)
 						append_when_current_valid(current, menu, (_("abort bouquet edit"), self.bouquetMarkAbort), level=0)
 					else:
-						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level=0)
-						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level=0)
+						append_when_current_valid(current, menu, (_("end favorites edit"), self.bouquetMarkEnd), level=0)
+						append_when_current_valid(current, menu, (_("abort favorites edit"), self.bouquetMarkAbort), level=0)
 					if current_sel_flags & eServiceReference.isMarker:
 						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
 						append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
@@ -1333,7 +1333,7 @@ class ChannelSelectionEdit:
 			if config.usage.multibouquet.value:
 				new_title += ' ' + _("[bouquet edit]")
 			else:
-				new_title += ' ' + _("[favourite edit]")
+				new_title += ' ' + _("[Favorite Edit]")
 		self.setTitle(new_title)
 		self.__marked = self.servicelist.getRootServices()
 		for x in self.__marked:

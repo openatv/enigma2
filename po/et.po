@@ -1306,7 +1306,7 @@ msgstr ""
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
-msgid "'weatherplugin' is not installed!"
+msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ei ole paigaldatud!"
 
 msgid "( All readers)"
@@ -1934,14 +1934,14 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished powertimer wants to reboot your %s %s.\n"
+"A finished PowerTimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s taaskäivitada.\n"
 "Kas nõustud?"
 
 msgid ""
-"A finished powertimer wants to restart the user interface.\n"
+"A finished PowerTimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s kasutajaliidese taaskäivitada.\n"
@@ -1949,7 +1949,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished powertimer wants to set your\n"
+"A finished PowerTimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
@@ -1957,7 +1957,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished powertimer wants to shutdown your %s %s.\n"
+"A finished PowerTimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
@@ -2003,7 +2003,7 @@ msgstr "Toimub salvestamine. Enne ajami häälestamist peata salvestamine."
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "Toimub salvestamine. Peata salvestamine enne signaalimõõdiku kasutamist."
 
 #, python-format
@@ -2167,7 +2167,7 @@ msgstr ""
 msgid "Accessed:"
 msgstr "Pöördutud:"
 
-msgid "Accesspoint:"
+msgid "Access point:"
 msgstr "Tugijaam:"
 
 msgid "Action"
@@ -2506,7 +2506,7 @@ msgstr "Kõik toetatud"
 msgid "Allocate"
 msgstr "Jaota"
 
-msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Määra seadistatava reaalse LNB number. Sama LNB saab määrata uuesti teistele satelliitidele (nt. ajamiga antenn), et salvestada sätted sama LNB jaoks mitu korda."
 
 msgid "Allow 10bit"
@@ -3174,7 +3174,7 @@ msgstr "Taustal kustutamise kiirus"
 msgid "Background:"
 msgstr "Taust:"
 
-msgid "Backgroundselected:"
+msgid "Background selected:"
 msgstr "Valitud taust:"
 
 msgid "Backup"
@@ -4193,13 +4193,13 @@ msgid "ChannelEPG Settings"
 msgstr "Kanali EPG seaded"
 
 #
-msgid "Channellist menu"
+msgid "Channel List Menu"
 msgstr "Kanalinimekirja menüü"
 
-msgid "Channelname"
+msgid "Channel name"
 msgstr "Kanali nimi"
 
-msgid "Channelselection:"
+msgid "Channel selection:"
 msgstr "Kanalivalik:"
 
 msgid "Chap."
@@ -4632,7 +4632,7 @@ msgid "Config file name (ok to change):"
 msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
 
 #, python-format
-msgid "Configfile %s saved."
+msgid "Config file %s saved."
 msgstr "Seadistusfail %s talletati."
 
 #, fuzzy
@@ -4694,7 +4694,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Määra, kas kanalinimekirjas kuvatakse pikonid."
 
 # Subtitle neu 5.1
-msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic"
 msgstr "Määra, kas subtiitrite kirjapilti vahetatakse tavalise, kaldkirja, rasvase ja rasvase kaldkirja vahel"
 
 msgid "Configure interface"
@@ -5208,7 +5208,7 @@ msgid "Could not record due to invalid service %s"
 msgstr "Salvestamine nurjus. Kehtetu kanal %s"
 
 #, python-format
-msgid "Could not save config file %s!"
+msgid "Could not save configuration file %s!"
 msgstr "Seadistusfaili %s talletamine nurjus!"
 
 msgid "Country"
@@ -5254,7 +5254,7 @@ msgstr "Loo kataloog"
 msgid "Create directory/folder"
 msgstr "Loo kataloog"
 
-msgid "Create separate radio userbouquet"
+msgid "Create separate radio user bouquet"
 msgstr "Loo eraldi lemmiknimekiri raadiokanalitele"
 
 msgid "Create symlink to file"
@@ -5515,7 +5515,7 @@ msgid "DVD Menu"
 msgstr "DVD menüü"
 
 #
-msgid "DVD Titlelist"
+msgid "DVD Title list"
 msgstr "DVD nimekiri"
 
 msgid "DVD player"
@@ -5823,13 +5823,13 @@ msgstr "Määrab, milliseid kiirusi kasutatakse tavalisel kerimisel. Kõik muud 
 msgid "Delay after change voltage before switch command"
 msgstr "Viiteaeg pinge muutuse ja lülituskäsu vahel"
 
-msgid "Delay after continuous tone disable before diseqc"
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr "Viiteaeg pidevtooni keelamise ja diseqc käsu vahel"
 
-msgid "Delay after diseqc peripherial poweron command"
+msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Viiteaeg pärast diseqc perifeerset sisselülituskäsku"
 
-msgid "Delay after diseqc reset command"
+msgid "Delay after DiSEqC reset command"
 msgstr "Viiteaeg pärast diseqc lähtestamise käsku"
 
 msgid "Delay after enable voltage before motor command"
@@ -5841,7 +5841,7 @@ msgstr "Viiteaeg pinge lubamise ja lülituskäsu vahel"
 msgid "Delay after final continuous tone change"
 msgstr "Viiteaeg pärast viimast pidevtooni muutust"
 
-msgid "Delay after last diseqc command"
+msgid "Delay after last DiSEqC command"
 msgstr "Viiteaeg pärast viimast diseqc käsku"
 
 msgid "Delay after last voltage change"
@@ -5853,7 +5853,7 @@ msgstr "Viiteaeg pärast ajami peatuskäsku"
 msgid "Delay after set voltage before measure motor power"
 msgstr "Viiteaeg pinge määramise ja mootori võimsuse mõõtmise vahel"
 
-msgid "Delay after toneburst"
+msgid "Delay after tone burst"
 msgstr "Viiteaeg pärast toonimpulssi"
 
 msgid "Delay after voltage change before motor command"
@@ -5868,7 +5868,7 @@ msgstr "Viiteaeg enne jada kordust"
 msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
 msgstr ""
 
-msgid "Delay between diseqc commands"
+msgid "Delay between DiSEqC commands"
 msgstr "Viiteaeg diseqc käskude vahel"
 
 msgid "Delay between switch and motor command"
@@ -6078,7 +6078,7 @@ msgstr "Haakepunktid"
 msgid "Device: "
 msgstr "Andmekandja: "
 
-msgid "Devicename:"
+msgid "Device name:"
 msgstr "Seadme nimi:"
 
 msgid "Devices"
@@ -7611,10 +7611,10 @@ msgstr "Saateinfo menüü"
 msgid "EventViewEPG Actions"
 msgstr ""
 
-msgid "Eventname only"
+msgid "Event name only"
 msgstr "Ainult saate nimi"
 
-msgid "Eventview:"
+msgid "Event view:"
 msgstr "Saateinfo:"
 
 msgid "Everyday"
@@ -7623,7 +7623,7 @@ msgstr "Iga päev"
 msgid ""
 "Everything in one place - IceTV does it for you!\n"
 "\n"
-"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favourite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
+"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favorite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
 "\n"
 "Everything in one place. Simply select something new and press Record.\n"
 "\n"
@@ -7946,7 +7946,7 @@ msgstr "Kiire kerimine"
 msgid "Fast forward speeds"
 msgstr "Edasikerimise kiirused"
 
-msgid "Fastforward"
+msgid "Fast forward"
 msgstr "Edasikerimine"
 
 msgid "Favorites"
@@ -8065,7 +8065,7 @@ msgstr "faili nimi"
 msgid "Files/folders to exclude from backup"
 msgstr "Varukoopiast välja jäetavad failid/kataloogid"
 
-msgid "Filesystem check your Harddisk"
+msgid "Filesystem check your hard drive"
 msgstr "Kontrolli kõvaketta failisüsteemi"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -8110,7 +8110,7 @@ msgstr ""
 msgid "Fine movement"
 msgstr "Täppisliigutamine"
 
-msgid "Finetune"
+msgid "Fine-tune"
 msgstr "Täppishäälestus"
 
 msgid "Finished"
@@ -8253,7 +8253,7 @@ msgstr "Vorming"
 msgid "Format HDD"
 msgstr "Vorminda kõvaketas"
 
-msgid "Format your Harddisk"
+msgid "Format your hard drive"
 msgstr "Vorminda vastuvõtja kõvaketas"
 
 msgid "Forward volume keys"
@@ -8382,7 +8382,7 @@ msgid "FullHD Test"
 msgstr "FullHD test"
 
 #
-msgid "Fullscreen"
+msgid "Full screen"
 msgstr "Täisekraan"
 
 #, fuzzy
@@ -8713,13 +8713,13 @@ msgstr "HD kanalid"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colordepth"
+msgid "HDMI color depth"
 msgstr "HDMI värvisügavus"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI värviprofiil"
 
-msgid "HDMI Colorspace"
+msgid "HDMI color space"
 msgstr "HDMI värviruum"
 
 msgid "HDMI HDR Type"
@@ -8786,7 +8786,7 @@ msgstr "Halda teleri sisendit"
 msgid "Handle standby from TV"
 msgstr "Ooteseisundisse teleri kaudu"
 
-msgid "Handle wakeup from TV"
+msgid "Handle wake up from TV"
 msgstr "Käivitamine teleri kaudu"
 
 msgid "Hard Disk Settings"
@@ -9235,7 +9235,7 @@ msgstr "Kui lubatud, kaasatakse salvestistesse AIT andmed."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
 
-msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "Kui lubatud, kasutatakse ajaakent tuvastamaks puhkeseisundist äratamist taimeri poolt. Vaikimisi on see keelatud ja kasutatakse signaali vastuvõtjast. Kuid mõned vastuvõtjad saadavad vale signaali või ei saada mingit signaali. Siis äratuse tuvastus nurjub."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -9304,7 +9304,7 @@ msgstr "Eira DVB-S nimeruumi alamvõrku"
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Eira DVB-T nimeruumi alamvõrku"
 
-msgid "Ignore unexpectedly wakeup and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Eira ootamatut äratust ja püsi ooteseisundis"
 
 msgid "Image Backup"
@@ -11875,7 +11875,7 @@ msgstr ""
 "Tuuneri vabastamiseks prooviti edutult järgnevaid meetodeid:\n"
 "\n"
 
-msgid "No tuner is configured for use with a diseqc positioner!"
+msgid "No tuner is configured for use with a DiSEqC positioner!"
 msgstr "Ükski tuuner pole seadistatud DISEqC-ajamit kasutama!"
 
 msgid ""
@@ -12300,7 +12300,7 @@ msgstr "Kuva lemmiknimekirjad."
 msgid "Open context menu"
 msgstr ""
 
-msgid "Open favourites list"
+msgid "Open favorites list"
 msgstr "Lemmiknimekirjad"
 
 msgid "Open long"
@@ -13048,7 +13048,7 @@ msgid "Please select an aspect ratio..."
 msgstr "Vali kuvasuhe"
 
 #
-msgid "Please select device to use as swapfile location"
+msgid "Please select device to use as swap file location"
 msgstr "Vali saalefaili asukoht"
 
 msgid "Please select medium to be scanned"
@@ -14018,7 +14018,7 @@ msgstr "Kas lülitada vastuvõtja välja?"
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Kas uuendada esipaneel ja taaskäivitada vastuvõtja?"
 
-msgid "Really upgrade the frontprocessor and reboot now?"
+msgid "Really upgrade the front panel processor and reboot now?"
 msgstr "Kas uuendada esiprotsessor ja taaskäivitada vastuvõtja?"
 
 #, python-format
@@ -14481,7 +14481,7 @@ msgstr "Korda teadet ekraanil"
 msgid "Repeat play list"
 msgstr "Pleilisti kordamine"
 
-msgid "Repeat the sent standby and wakeup commands"
+msgid "Repeat the sent standby and wake up commands"
 msgstr "Korda saadetud ooteseisundi ja äratuse käsud"
 
 msgid "Repeat the standby commands"
@@ -15884,7 +15884,7 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "Määra aeg inforiba peitmiseks."
 
-msgid "Select the tuner that controls the motorised dish."
+msgid "Select the tuner that controls the motorized dish."
 msgstr "Vali tuuner, mis juhib ajamiga antenni."
 
 msgid "Select the tuner that this loopthrough depends on."
@@ -16136,13 +16136,13 @@ msgstr "Kanalinime kuju"
 msgid "Service Zap Actions"
 msgstr "Edastusmooduse tähistamine"
 
-msgid "Service cant been added to the favourites."
+msgid "Service cant been added to the favorites."
 msgstr "Kanalit ei saa lemmiknimekirja lisada."
 
 msgid "Service font size"
 msgstr "Kanali tähesuurus"
 
-msgid "Service has been added to the favourites."
+msgid "Service has been added to the favorites."
 msgstr "Kanal on lisatud lemmiknimekirja."
 
 msgid "Service has been added to the selected bouquet."
@@ -17005,7 +17005,7 @@ msgstr "Laiendused"
 msgid "Show extra spacing in Information"
 msgstr ""
 
-msgid "Show favourites list"
+msgid "Show favorites list"
 msgstr "Kuva lemmiknimekirjad"
 
 msgid "Show files backed up by default"
@@ -18735,7 +18735,7 @@ msgstr ""
 msgid "Testscreens"
 msgstr "Testtabelid"
 
-msgid "Testscreens that are helpfully to fine-tune your display"
+msgid "Testscreens that are helpful to fine-tune your display"
 msgstr "Testtabelid on abiks pildi peenhäälestusel"
 
 msgid "Text"
@@ -18935,10 +18935,10 @@ msgstr ""
 "Seda valikut ei saa muuta.\n"
 "Kasuta lisafailide ja välja jäetud failide menüüsi."
 
-msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgid "The default settings are 5 minutes earlier to wake up from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr "Vaikeväärtuseks on äratada puhkeseisundist 5 minutit varem. Võimalik, et seda tuleb muuta. (Nt. tegelik äratamise aeg on vale või liiga hiline, oodatakse võrgukettaid jne.)"
 
-msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
+msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 minutit'. See säte muudab ajaakent enne äratusaega. Nii tuvastatakse taimeriga äratamine ka väga vara käivituvatel vastuvõtjatel."
 
 msgid "The detailed information is intended for developers only."
@@ -19196,7 +19196,7 @@ msgstr "See lubab saadaolevate veebilinkide kuvamise"
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "See väli võimaldab otsida täiendavalt sümbolikiirusi kuni %s."
 
-msgid "This is a workaround for some devices that wakeup again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
+msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr ""
 
 #, python-format
@@ -19416,7 +19416,7 @@ msgstr "See valik määrab pildi küllastuse."
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
 msgstr "See valik määrab skaleerija teravuse 4:3 > 16:9 pildi venitamisel."
 
-msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "See valik summutab digitaalsed võltskontuurid, mis on vähese diskreetsete väärtuste tagajärjeks."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
@@ -19609,7 +19609,7 @@ msgstr "Skripti või käsu käivitamise aeg"
 msgid "Time update in minutes"
 msgstr "Kellaaja uuendamine (min)"
 
-msgid "Time window for detection of the wakeup by a timer [mins]"
+msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Ajaaken taimeri poolt käivitamise tuvastamiseks (min)"
 
 #, fuzzy
@@ -19764,7 +19764,7 @@ msgid "Today"
 msgstr "Täna"
 
 #, fuzzy
-msgid "Toggels between tv and radio"
+msgid "Toggles between tv and radio"
 msgstr "TV / Raadio lüliti"
 
 msgid "Toggle Digital downmix..."
@@ -19834,10 +19834,10 @@ msgstr "22KHz-helitugevus"
 msgid "Tone mode"
 msgstr "22KHz-toon"
 
-msgid "Toneburst"
+msgid "Tone burst"
 msgstr "Toonimpulss"
 
-msgid "Toneburst A/B"
+msgid "Tone burst A/B"
 msgstr "Toonimpulss A/B"
 
 msgid "Tonga"
@@ -19962,7 +19962,7 @@ msgstr "Maapealse võrgu sageduste otsing. Oota..."
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
 msgstr ""
 
-msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
+msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr ""
 
 msgid "Trying to download a new packet list. Please wait..."
@@ -20170,7 +20170,7 @@ msgstr "Kaugvastuvõtja URL"
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS liigutab ajamiga mootori õige satelliidi peale automaatselt vastavalt kasutaja antud koordinaatidele. USALS'ita tuleb iga satelliit eraldi seadistada ja salvestada."
 
 #
@@ -20403,7 +20403,7 @@ msgstr ""
 msgid "Updated version unknown"
 msgstr ""
 
-msgid "Updatefeed not available."
+msgid "Update feed not available."
 msgstr "Uuenduslink pole saadaval."
 
 #
@@ -20654,10 +20654,10 @@ msgstr "Kas kasutada neid pildiparanduse seadeid?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Kasuta edasi/tagasikerimisel ajahüpet"
 
-msgid "Use time shift seekbar while timeshifting"
+msgid "Use time shift SeekBar while time shifting"
 msgstr "Otsiriba kasutamine ajanihke ajal"
 
-msgid "Use workaround for wakeup from deep-standby"
+msgid "Use workaround for wake up from deep-standby"
 msgstr "Erilahendus ooteseisundist käivitumisel"
 
 msgid "Used"
@@ -20704,7 +20704,7 @@ msgstr "Kasutajaliidese seaded"
 msgid "User interface visibility"
 msgstr "Ekraanigraafika nähtavus"
 
-msgid "Userlogo:"
+msgid "User logo:"
 msgstr ""
 
 msgid "Username"
@@ -21026,7 +21026,7 @@ msgstr "Näita saadaolevaid andmevahetuse laiendusi."
 msgid "View list of available default settings"
 msgstr "Näita saadaolevaid kanalinimekirju"
 
-msgid "View list of available display and userinterface extensions."
+msgid "View list of available display and user interface extensions."
 msgstr "Kuva saadaolevad esipaneeli ja kasutajaliidese rakendused."
 
 msgid "View list of available multimedia extensions."
@@ -21173,7 +21173,7 @@ msgid "Wait for timesync at startup"
 msgstr "Oota aja sünkroonimist alglaadimisel"
 
 #
-msgid "Wait please while creating swapfile..."
+msgid "Wait please while creating swap file..."
 msgstr "Saalefaili loomine..."
 
 msgid "Wait please while scanning for devices..."
@@ -21204,16 +21204,16 @@ msgstr "Ärata ooteseisundisse"
 msgid "Wakeup"
 msgstr "Käivita"
 
-msgid "Wakeup TV from standby"
+msgid "Wake up TV from standby"
 msgstr "Käivita teler ooteseisundist"
 
-msgid "Wakeup from Deep-Standby is allowed"
+msgid "Wake up from Deep-Standby is allowed"
 msgstr ""
 
-msgid "Wakeup time before a timer begins [mins]"
+msgid "Wake up time before a timer begins [mins]"
 msgstr "Käivitus enne taimeri algust (min)"
 
-msgid "Wakeup your AV Receiver from standby"
+msgid "Wake up your AV Receiver from standby"
 msgstr "AV ressiiveri äratus ooteseisundist"
 
 msgid "Wallis and Futuna"
@@ -22092,7 +22092,7 @@ msgstr ""
 "See võib kesta mõne minuti"
 
 msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
+"Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Esiprotsessori püsivara tuleb uuendada.\n"
@@ -22100,7 +22100,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your frontprocessor will be upgraded\n"
+"Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
@@ -22308,7 +22308,7 @@ msgstr "[asenduskanalite muutmine]"
 msgid "[bouquet edit]"
 msgstr "[lemmiknimekirjade muutmine]"
 
-msgid "[favourite edit]"
+msgid "[Favorite Edit]"
 msgstr "[lemmikute muutmine]"
 
 msgid "[move mode]"
@@ -22326,7 +22326,7 @@ msgstr "Tühista muudatused"
 msgid "abort bouquet edit"
 msgstr "Tühista muudatused"
 
-msgid "abort favourites edit"
+msgid "abort favorites edit"
 msgstr "Tühista muudatused"
 
 msgid "ac3"
@@ -22354,7 +22354,7 @@ msgstr "Lisa märgis"
 msgid "add service to bouquet"
 msgstr "Lisa kanal lemmiknimekirja"
 
-msgid "add service to favourites"
+msgid "add service to favorites"
 msgstr "Lisa kanal lemmikutesse"
 
 msgid "add to parental protection"
@@ -22705,7 +22705,7 @@ msgstr "PIP lubatud, HDR puudub"
 msgid "enable bouquet edit"
 msgstr "Muuda lemmiknimekirju"
 
-msgid "enable favourite edit"
+msgid "enable favorite edit"
 msgstr "Muuda lemmikuid"
 
 msgid "enable move mode"
@@ -22723,7 +22723,7 @@ msgstr "Salvesta muudatused ja välju"
 msgid "end cut here"
 msgstr "Lõpeta lõige siin"
 
-msgid "end favourites edit"
+msgid "end favorites edit"
 msgstr "Salvesta muudatused ja välju"
 
 msgid "end zapping"
@@ -23606,7 +23606,7 @@ msgstr "Alusta lõiget siit"
 msgid "start recording"
 msgstr "Käivita salvestamine"
 
-msgid "stepsize"
+msgid "step size"
 msgstr "Sammu suurus"
 
 msgid "stereo"

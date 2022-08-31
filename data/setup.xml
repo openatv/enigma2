@@ -333,7 +333,7 @@
 			<item level="0" text="Wait for timesync at startup" description="If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.handle_deepstandby_events.value and config.workaround.deeprecord.value">config.hdmicec.deepstandby_waitfortimesync</item>
 			<item level="0" text="Put TV in standby" description="Automatically put the TV in standby whenever the receiver goes into standby or deep standby.">config.hdmicec.control_tv_standby</item>
 			<item level="0" text="Even if TV has another input active?" description="You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_standby.value">config.hdmicec.tv_standby_notinputactive</item>
-			<item level="0" text="Wakeup TV from standby" description="When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby.">config.hdmicec.control_tv_wakeup</item>
+			<item level="0" text="Wake up TV from standby" description="When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby.">config.hdmicec.control_tv_wakeup</item>
 			<if conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_wakeup.value">
 				<item level="0" text="Even if a 'Zap' recording timer starting?" description="">config.hdmicec.tv_wakeup_zaptimer</item>
 				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
@@ -341,7 +341,7 @@
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
-			<item level="0" text="Handle wakeup from TV" description="When enabled the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
+			<item level="0" text="Handle wake up from TV" description="When enabled the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle standby from TV" description="When enabled the receiver will automatically return to standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
 				<item level="0" text="Handle input from TV" description="Allows the TV remote to be used to control the receiver.">config.hdmicec.handle_tv_input</item>
@@ -349,17 +349,17 @@
 			</if>
 			<item level="0" text="Forward volume keys" description="Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!">config.hdmicec.volume_forwarding</item>
 			<item level="0" text="Put your AV Receiver in standby" description="When enabled the receiver will automatically be switched off.">config.hdmicec.control_receiver_standby</item>
-			<item level="0" text="Wakeup your AV Receiver from standby" description="When enabled the receiver will automatically be switched on.">config.hdmicec.control_receiver_wakeup</item>
+			<item level="0" text="Wake up your AV Receiver from standby" description="When enabled the receiver will automatically be switched on.">config.hdmicec.control_receiver_wakeup</item>
 			<item level="0" text="Use TV remote control" description="Allows the TV remote to be used to control the receiver.">config.hdmicec.report_active_menu</item>
 			<item level="0" text="Minimum send interval" description="Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms.">config.hdmicec.minimum_send_interval</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
-				<item level="0" text="Repeat the sent standby and wakeup commands" description="Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)">config.hdmicec.messages_repeat</item>
+				<item level="0" text="Repeat the sent standby and wake up commands" description="Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)">config.hdmicec.messages_repeat</item>
 				<if conditional="int(config.hdmicec.messages_repeat.value)">
 					<item level="0" text="Time delay for the repeated transmission" description="The time is multiplied by the current repeat counter.">config.hdmicec.messages_repeat_slowdown</item>
 					<item level="0" text="Repeat the standby commands" description="The command to wake from standby will be sent multiple times.">config.hdmicec.messages_repeat_standby</item>
 				</if>
 				<item level="0" text="Check power and input state from TV" description="An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions.">config.hdmicec.check_tv_state</item>
-				<item level="0" text="Ignore unexpectedly wakeup and stay in standby" description="This is a workaround for some devices that wakeup again after switching to standby. The wake up command's from other devices will be ignored for few seconds.">config.hdmicec.workaround_turnbackon</item>
+				<item level="0" text="Ignore unexpectedly wake up and stay in standby" description="This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds.">config.hdmicec.workaround_turnbackon</item>
 			</if>
 			<item level="0" text="Use HDMI-preemphasis" description="With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables." requires="HDMI-PreEmphasis">config.hdmicec.preemphasis</item>
 			<item level="0" text="Enable command line function" description="Activate a way to send individual or specific internal HDMI-CEC commands from the command line.">config.hdmicec.commandline</item>
@@ -687,7 +687,7 @@
 		<item level="2" text="Sound">config.rfmod.sound</item>
 		<item level="2" text="Sound carrier">config.rfmod.soundcarrier</item>
 		<item level="1" text="Channel">config.rfmod.channel</item>
-		<item level="1" text="Finetune">config.rfmod.finetune</item>
+		<item level="1" text="Fine-tune">config.rfmod.finetune</item>
 	</setup>
 	<setup key="Satellite" title="Satellite Dish Settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
@@ -730,7 +730,7 @@
 		<item level="2" text="Subtitle delay when timing is bad" description="Configure an additional delay to improve subtitle synchronization.">config.subtitles.subtitle_bad_timing_delay</item>
 		<item level="2" text="DVB subtitle black transparency" description="Configure the transparency of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
 		<item level="2" text="External subtitle color" description="Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow.">config.subtitles.pango_subtitle_colors</item>
-		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bolditalic">config.subtitles.pango_subtitle_fontswitch</item>
+		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bold italic">config.subtitles.pango_subtitle_fontswitch</item>
 		<item level="2" text="External subtitle dialog colorization" description="Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)">config.subtitles.colourise_dialogs</item>
 		<item level="2" text="Delay for external subtitles" description="Configure an additional delay to improve external subtitle synchronization.">config.subtitles.pango_subtitles_delay</item>
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
@@ -755,7 +755,7 @@
 		<item level="2" text="Show status messages when switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showlivetvmsg</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopwhilerecording</item>
-		<item level="2" text="Use time shift seekbar while timeshifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showinfobar</item>
+		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showinfobar</item>
 		<item level="2" text="Timeshift buffer limit [in hours]" description="Older files in the time shift directory are removed on every event change.">config.timeshift.timeshiftMaxHours</item>
 		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.timeshiftMaxEvents</item>
 		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.timeshiftCheckEvents</item>
@@ -808,9 +808,9 @@
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
-		<item level="2" text="Wakeup time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
-		<item level="1" text="Use workaround for wakeup from deep-standby" description="If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails.">config.workaround.deeprecord</item>
-		<item level="2" text="Time window for detection of the wakeup by a timer [mins]" description="The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers." requires="config.workaround.deeprecord">config.workaround.wakeupwindow</item>
+		<item level="2" text="Wake up time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wake up from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
+		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails.">config.workaround.deeprecord</item>
+		<item level="2" text="Time window for detection of the wake up by a timer [mins]" description="The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers." requires="config.workaround.deeprecord">config.workaround.wakeupwindow</item>
 		<!--item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item-->
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files. (e.g. mp4)">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files. (e.g. mp3)">config.usage.useAudioCuesheet</item>

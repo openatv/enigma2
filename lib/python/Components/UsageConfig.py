@@ -162,7 +162,7 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
 	# just merge note, config.usage.servicelist_column was allready there
-	choicelist = [("-1", _("Disable")), ("0", _("Eventname only"))]
+	choicelist = [("-1", _("Disable")), ("0", _("Event name only"))]
 	for i in list(range(100, 1325, 25)):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
@@ -572,7 +572,7 @@ def InitUsageConfig():
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
 						("Rec", _("REC Symbol")),
 						("RecBlink", _("Blinking REC Symbol")),
-						("Channel", _("Channelname"))])
+						("Channel", _("Channel name"))])
 	if getDisplayType() in ('7segment',):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Rec", choices=[
 						("Rec", _("REC")),
@@ -1508,9 +1508,9 @@ def InitUsageConfig():
 	config.epgselection.overjump = ConfigYesNo(default=False)
 	config.epgselection.infobar_type_mode = ConfigSelection(choices=[("text", _("Text")), ("graphics", _("Multi EPG")), ("single", _("Single EPG"))], default="text")
 	if BoxInfo.getItem("NumVideoDecoders", 1) > 1:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default="1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Full screen")), ("2", _("PiP"))], default="1")
 	else:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen"))], default="1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Full screen"))], default="1")
 	config.epgselection.infobar_ok = ConfigSelection(choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap")
 	config.epgselection.infobar_oklong = ConfigSelection(choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default=2, stepwidth=1, min=1, max=4, wraparound=True)

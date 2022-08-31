@@ -1663,7 +1663,7 @@ class IceTVLogin(Screen, IceTVUIBase):
             self["message"].setText(_("Everything in one place - IceTV does it for you!\n\n"
                                       "Using the IceTV app or website, 'My Shows' is your place to go to."
                                       " See the next 7 days of your recordings,"
-                                      " favourite shows, keyword notifications,"
+                                      " favorite shows, keyword notifications,"
                                       " new series broadcasts, and our recommendations.\n\n"
                                       "Everything in one place. Simply select something new and press Record.\n\n"
                                       "IceTV's smartphone and tablet apps can be downloaded by scanning the code above."))

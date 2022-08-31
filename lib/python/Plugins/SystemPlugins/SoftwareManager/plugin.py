@@ -393,7 +393,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				if iSoftwareTools.lastDownloadDate is None:
 					self.setState("error")
 					if iSoftwareTools.NetworkConnectionAvailable:
-						self["status"].setText(_("Updatefeed not available."))
+						self["status"].setText(_("Update feed not available."))
 					else:
 						self["status"].setText(_("No network connection available."))
 				else:
@@ -617,7 +617,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif tag == "Multimedia":
 				return((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
 			elif tag == "Display":
-				return((_("Display and user interface"), _("View list of available display and userinterface extensions."), tag, divpng))
+				return((_("Display and user interface"), _("View list of available display and user interface extensions."), tag, divpng))
 			elif tag == "EPG":
 				return((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
 			elif tag == "Communication":

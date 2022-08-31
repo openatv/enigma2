@@ -1304,7 +1304,7 @@ msgstr ""
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'处理来自电视的待机'比'处理来自电视的输入'具有更高的优先级."
 
-msgid "'weatherplugin' is not installed!"
+msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件'未安装!"
 
 msgid "( All readers)"
@@ -1914,14 +1914,14 @@ msgstr "来自媒体的文件正在使用中!"
 
 #, python-format
 msgid ""
-"A finished powertimer wants to reboot your %s %s.\n"
+"A finished PowerTimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启你 %s %s .\n"
 "是否现在就重启？"
 
 msgid ""
-"A finished powertimer wants to restart the user interface.\n"
+"A finished PowerTimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启用户界面\n"
@@ -1929,7 +1929,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished powertimer wants to set your\n"
+"A finished PowerTimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 "已完成的电源定时器\n"
@@ -1937,7 +1937,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished powertimer wants to shutdown your %s %s.\n"
+"A finished PowerTimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
 "已完成的电源定时器要关闭 %s %s\n"
@@ -1983,7 +1983,7 @@ msgstr "当前正在运行录制. 请在配置极轴之前停止录制."
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "当前正在运行录制. 在尝试扫描前请停止录像."
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr "当前正在运行录制.请在设置寻星之前停止录像."
 
 #, python-format
@@ -2144,7 +2144,7 @@ msgstr "访问地理位置信息需要互联网连接."
 msgid "Accessed:"
 msgstr "最后访问时间:"
 
-msgid "Accesspoint:"
+msgid "Access point:"
 msgstr "无线接入点:"
 
 msgid "Action"
@@ -2477,7 +2477,7 @@ msgstr "全支持"
 msgid "Allocate"
 msgstr "分配"
 
-msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "为正在配置的物理LNB分配一个数字.您可以再次为其他卫星(如极轴)选择此LNB,以节省多次设置相同的LNB."
 
 msgid "Allow 10bit"
@@ -3129,7 +3129,7 @@ msgstr "后台删除速度"
 msgid "Background:"
 msgstr "背景:"
 
-msgid "Backgroundselected:"
+msgid "Background selected:"
 msgstr "背景选择:"
 
 msgid "Backup"
@@ -4133,13 +4133,13 @@ msgstr "频道:"
 msgid "ChannelEPG Settings"
 msgstr "频道EPG设置"
 
-msgid "Channellist menu"
+msgid "Channel List Menu"
 msgstr "频道列表菜单"
 
-msgid "Channelname"
+msgid "Channel name"
 msgstr "频道名称"
 
-msgid "Channelselection:"
+msgid "Channel selection:"
 msgstr "频道选择:"
 
 msgid "Chap."
@@ -4562,7 +4562,7 @@ msgid "Config file name (ok to change):"
 msgstr "配置文件名(按ok键更改):"
 
 #, python-format
-msgid "Configfile %s saved."
+msgid "Config file %s saved."
 msgstr "配置文件 %s 已保存."
 
 msgctxt "Abbreviation of 'Configurable'"
@@ -4620,7 +4620,7 @@ msgstr "配置picon图标是否将在快速切换中显示."
 msgid "Configure if service picons will be shown in the service list."
 msgstr "配置picon图标是否将显示在频道列表中."
 
-msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic"
 msgstr "配置字幕是否应在正常、斜体、粗体和粗体斜体之间切换"
 
 msgid "Configure interface"
@@ -5125,7 +5125,7 @@ msgid "Could not record due to invalid service %s"
 msgstr "由于 %s 频道无效,无法录制"
 
 #, python-format
-msgid "Could not save config file %s!"
+msgid "Could not save configuration file %s!"
 msgstr "无法保存配置文件 %s!"
 
 msgid "Country"
@@ -5168,7 +5168,7 @@ msgstr "创建目录"
 msgid "Create directory/folder"
 msgstr "创建目录/文件夹"
 
-msgid "Create separate radio userbouquet"
+msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户自定义组"
 
 msgid "Create symlink to file"
@@ -5421,7 +5421,7 @@ msgstr "DVD文件浏览器"
 msgid "DVD Menu"
 msgstr "DVD菜单"
 
-msgid "DVD Titlelist"
+msgid "DVD Title list"
 msgstr "DVD标题列表"
 
 msgid "DVD player"
@@ -5721,13 +5721,13 @@ msgstr "定义哪个快进速度使用时间缩进.其他快进速度和所有�
 msgid "Delay after change voltage before switch command"
 msgstr "在切换命令之前改变电压后延迟"
 
-msgid "Delay after continuous tone disable before diseqc"
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr "在disqc之前连续音调禁用后延迟"
 
-msgid "Delay after diseqc peripherial poweron command"
+msgid "Delay after DiSEqC peripheral power on command"
 msgstr "diseqc外围加电指令之后的延迟"
 
-msgid "Delay after diseqc reset command"
+msgid "Delay after DiSEqC reset command"
 msgstr "diseqc复位命令后的延迟"
 
 msgid "Delay after enable voltage before motor command"
@@ -5739,7 +5739,7 @@ msgstr "开启电压之后,开关指令之前的延迟"
 msgid "Delay after final continuous tone change"
 msgstr "最后连续Tone变化后的延迟"
 
-msgid "Delay after last diseqc command"
+msgid "Delay after last DiSEqC command"
 msgstr "最后的diseqc指令后的延迟"
 
 msgid "Delay after last voltage change"
@@ -5751,7 +5751,7 @@ msgstr "电机停止命令后的延迟"
 msgid "Delay after set voltage before measure motor power"
 msgstr "测量电机功率之前,设置电压之后的延迟"
 
-msgid "Delay after toneburst"
+msgid "Delay after tone burst"
 msgstr "toneburst命令后的延迟"
 
 msgid "Delay after voltage change before motor command"
@@ -5766,7 +5766,7 @@ msgstr "序列命令重复前的延迟"
 msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
 msgstr "发送一系列命令时CEC命令之间的延迟.有些设备需要这种延迟才能正常工作,通常在50-150毫秒之间."
 
-msgid "Delay between diseqc commands"
+msgid "Delay between DiSEqC commands"
 msgstr "diseqc指令之间的延迟"
 
 msgid "Delay between switch and motor command"
@@ -5970,7 +5970,7 @@ msgstr "设备挂载"
 msgid "Device: "
 msgstr "设备: "
 
-msgid "Devicename:"
+msgid "Device name:"
 msgstr "设备名称:"
 
 msgid "Devices"
@@ -7459,10 +7459,10 @@ msgstr "事件视图菜单"
 msgid "EventViewEPG Actions"
 msgstr "事件视图EPG操作"
 
-msgid "Eventname only"
+msgid "Event name only"
 msgstr "仅事件名称"
 
-msgid "Eventview:"
+msgid "Event view:"
 msgstr "事件视图:"
 
 msgid "Everyday"
@@ -7471,7 +7471,7 @@ msgstr "每天"
 msgid ""
 "Everything in one place - IceTV does it for you!\n"
 "\n"
-"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favourite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
+"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favorite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
 "\n"
 "Everything in one place. Simply select something new and press Record.\n"
 "\n"
@@ -7790,7 +7790,7 @@ msgstr "快速纪元"
 msgid "Fast forward speeds"
 msgstr "快进速度"
 
-msgid "Fastforward"
+msgid "Fast forward"
 msgstr "快进"
 
 msgid "Favorites"
@@ -7907,7 +7907,7 @@ msgstr "文件名"
 msgid "Files/folders to exclude from backup"
 msgstr "要从备份中排除的文件/文件夹"
 
-msgid "Filesystem check your Harddisk"
+msgid "Filesystem check your hard drive"
 msgstr "检查硬盘里的文件系统"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -7950,7 +7950,7 @@ msgstr ""
 msgid "Fine movement"
 msgstr "精细运动"
 
-msgid "Finetune"
+msgid "Fine-tune"
 msgstr "微调"
 
 msgid "Finished"
@@ -8087,7 +8087,7 @@ msgstr "格式化"
 msgid "Format HDD"
 msgstr "格式化硬盘"
 
-msgid "Format your Harddisk"
+msgid "Format your hard drive"
 msgstr "格式化你的硬盘"
 
 msgid "Forward volume keys"
@@ -8208,7 +8208,7 @@ msgstr "全视图分辨率"
 msgid "FullHD Test"
 msgstr "全高清测试"
 
-msgid "Fullscreen"
+msgid "Full screen"
 msgstr "全屏显示"
 
 msgid "G"
@@ -8532,13 +8532,13 @@ msgstr "高清列表"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colordepth"
+msgid "HDMI color depth"
 msgstr "HDMI色彩深度"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI比色法"
 
-msgid "HDMI Colorspace"
+msgid "HDMI color space"
 msgstr "HDMI颜色空间"
 
 msgid "HDMI HDR Type"
@@ -8604,7 +8604,7 @@ msgstr "处理来自电视的输入"
 msgid "Handle standby from TV"
 msgstr "从电视上处理待机"
 
-msgid "Handle wakeup from TV"
+msgid "Handle wake up from TV"
 msgstr "从电视上处理唤醒"
 
 msgid "Hard Disk Settings"
@@ -9035,7 +9035,7 @@ msgstr "如果启用,AIT数据将包含在录制中."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "如果启用,将保留CEC协议流量的日志.日志文件位于其他日志文件中,但名为'Enigma2-hdmicec-[date].log'."
 
-msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr "如果启用,使用时间窗口检测定时器从深度待机 状态唤醒.默认设置是禁用的,并使用了 来自接收器 的特殊信号.但有些设备设置错误或没有信号,唤醒检测可能会失败."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -9104,7 +9104,7 @@ msgstr "忽略DVB-S命名空间的子网络"
 msgid "Ignore DVB-T namespace sub network"
 msgstr "忽略DVB-T命名空间的子网络"
 
-msgid "Ignore unexpectedly wakeup and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "忽略意外唤醒并保持待机状态"
 
 msgid "Image Backup"
@@ -11539,7 +11539,7 @@ msgstr ""
 "以下方法释放调谐器进行尝试没有成功:\n"
 "\n"
 
-msgid "No tuner is configured for use with a diseqc positioner!"
+msgid "No tuner is configured for use with a DiSEqC positioner!"
 msgstr "没有调谐器被配置为极轴！"
 
 msgid ""
@@ -11946,7 +11946,7 @@ msgstr "打开自定义组列表"
 msgid "Open context menu"
 msgstr "打开上下文菜单"
 
-msgid "Open favourites list"
+msgid "Open favorites list"
 msgstr "打开收藏夹列表"
 
 msgid "Open long"
@@ -12657,7 +12657,7 @@ msgstr "请选择一个合适的目录."
 msgid "Please select an aspect ratio..."
 msgstr "请选择宽高比..."
 
-msgid "Please select device to use as swapfile location"
+msgid "Please select device to use as swap file location"
 msgstr "请选择设备作为内存交换的位置"
 
 msgid "Please select medium to be scanned"
@@ -13607,7 +13607,7 @@ msgstr "是否现在关机?"
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "是否升级前面板并重新启动?"
 
-msgid "Really upgrade the frontprocessor and reboot now?"
+msgid "Really upgrade the front panel processor and reboot now?"
 msgstr "是否升级前处理器并重新启动?"
 
 #, python-format
@@ -14052,7 +14052,7 @@ msgstr "重复显示信息"
 msgid "Repeat play list"
 msgstr "重复播放列表"
 
-msgid "Repeat the sent standby and wakeup commands"
+msgid "Repeat the sent standby and wake up commands"
 msgstr "重复发送待机和唤醒命令"
 
 msgid "Repeat the standby commands"
@@ -15417,7 +15417,7 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "选择区域或区域内的时区."
 
-msgid "Select the tuner that controls the motorised dish."
+msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动极轴的调谐器."
 
 msgid "Select the tuner that this loopthrough depends on."
@@ -15661,13 +15661,13 @@ msgstr "频道标题模式"
 msgid "Service Zap Actions"
 msgstr "频道切换动作"
 
-msgid "Service cant been added to the favourites."
+msgid "Service cant been added to the favorites."
 msgstr "频道无法添加到收藏夹."
 
 msgid "Service font size"
 msgstr "频道字体大小"
 
-msgid "Service has been added to the favourites."
+msgid "Service has been added to the favorites."
 msgstr "频道已添加到收藏夹."
 
 msgid "Service has been added to the selected bouquet."
@@ -16496,7 +16496,7 @@ msgstr "显示扩展名..."
 msgid "Show extra spacing in Information"
 msgstr ""
 
-msgid "Show favourites list"
+msgid "Show favorites list"
 msgstr "显示收藏夹列表"
 
 msgid "Show files backed up by default"
@@ -18164,7 +18164,7 @@ msgstr ""
 msgid "Testscreens"
 msgstr "测试屏幕"
 
-msgid "Testscreens that are helpfully to fine-tune your display"
+msgid "Testscreens that are helpful to fine-tune your display"
 msgstr "测试屏幕有助于微调显示效果"
 
 msgid "Text"
@@ -18364,10 +18364,10 @@ msgstr ""
 "无法更改默认的备份选择.\n"
 "请使用'其他'和'已排除'备份选择."
 
-msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgid "The default settings are 5 minutes earlier to wake up from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr "默认设置是从深度待机唤醒前5分钟.可能有必要更改此设置.(例如:实际的唤醒时间不正 确或太晚,等待网络驱动器等.)"
 
-msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
+msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "默认设置为唤醒时间-5分钟和定时器开始时间+5分钟.此设置更改了唤醒时间之前的时间窗口. 因此,即使在非常早的启动接收器处,也可以通过定时器检测到唤醒."
 
 msgid "The detailed information is intended for developers only."
@@ -18618,7 +18618,7 @@ msgstr "此配置选项允许你在下载中显示网页链接模块"
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "此字段使您可以搜索最多 %s 的附加符号率."
 
-msgid "This is a workaround for some devices that wakeup again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
+msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "这是一些在切换到待机状态后再次唤醒的设备的解决方法.来自其他设备的唤醒命令将被忽略几秒钟."
 
 #, python-format
@@ -18830,7 +18830,7 @@ msgstr "此选项设置图片的饱和度."
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
 msgstr "此选项允许在4:3到16:9的图像拉伸时启用缩放清晰度."
 
-msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "这个选项设置的虚假数字轮廓的抑制,这是一个数量有限的离散值的结果."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
@@ -19012,7 +19012,7 @@ msgstr "执行命令或脚本的时间"
 msgid "Time update in minutes"
 msgstr "以分钟为单位更新"
 
-msgid "Time window for detection of the wakeup by a timer [mins]"
+msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "由定时器模式唤醒检测时间(分钟)"
 
 msgid "Time zone"
@@ -19158,7 +19158,7 @@ msgstr "要恢复固件:"
 msgid "Today"
 msgstr "今天"
 
-msgid "Toggels between tv and radio"
+msgid "Toggles between tv and radio"
 msgstr "在电视和广播之间切换"
 
 msgid "Toggle Digital downmix..."
@@ -19227,10 +19227,10 @@ msgstr "22k振幅"
 msgid "Tone mode"
 msgstr "22K模式"
 
-msgid "Toneburst"
+msgid "Tone burst"
 msgstr "22K切换开关"
 
-msgid "Toneburst A/B"
+msgid "Tone burst A/B"
 msgstr "22k切换开关A/B"
 
 msgid "Tonga"
@@ -19352,7 +19352,7 @@ msgstr "尝试查找地面波网络中使用的转发器.请稍等..."
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
 msgstr "尝试防止软件错误重新启动并保持接收器的可用性."
 
-msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
+msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "如果不是所有命令都被执行,尝试发送重复的命令.(例如,电视唤醒,但未切换到正确的输入.)"
 
 msgid "Trying to download a new packet list. Please wait..."
@@ -19549,7 +19549,7 @@ msgstr "备用远程接收机地址"
 msgid "USALS"
 msgstr "极轴"
 
-msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS会根据用户输入的坐标自动将机动天线移至正确的卫星.如果没有USALS,则需要分别设置和保存每个卫星."
 
 msgid "USB Stick"
@@ -19774,7 +19774,7 @@ msgstr "更新"
 msgid "Updated version unknown"
 msgstr "更新版本未知"
 
-msgid "Updatefeed not available."
+msgid "Update feed not available."
 msgstr "没有可供更新的订阅源."
 
 msgid "Updates available:"
@@ -20018,10 +20018,10 @@ msgstr "是否使用此视频增强设置?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "快进/快退时使用时间跳跃方式"
 
-msgid "Use time shift seekbar while timeshifting"
+msgid "Use time shift SeekBar while time shifting"
 msgstr "时移时是否使用时移搜索栏?"
 
-msgid "Use workaround for wakeup from deep-standby"
+msgid "Use workaround for wake up from deep-standby"
 msgstr "使用解决方案从深度待机状态唤醒？"
 
 msgid "Used"
@@ -20067,7 +20067,7 @@ msgstr "用户界面设置"
 msgid "User interface visibility"
 msgstr "用户界面可见性"
 
-msgid "Userlogo:"
+msgid "User logo:"
 msgstr "用户标志:"
 
 msgid "Username"
@@ -20373,7 +20373,7 @@ msgstr "查看可用的通讯附件."
 msgid "View list of available default settings"
 msgstr "查看可用的默认设置"
 
-msgid "View list of available display and userinterface extensions."
+msgid "View list of available display and user interface extensions."
 msgstr "查看可用显示和用户界面扩展的列表."
 
 msgid "View list of available multimedia extensions."
@@ -20515,7 +20515,7 @@ msgstr "4:3宽高比时显示宽屏幕信号"
 msgid "Wait for timesync at startup"
 msgstr "在启动时等待时间同步"
 
-msgid "Wait please while creating swapfile..."
+msgid "Wait please while creating swap file..."
 msgstr "正在创建交换文件,请稍候..."
 
 msgid "Wait please while scanning for devices..."
@@ -20546,16 +20546,16 @@ msgstr "唤醒待机"
 msgid "Wakeup"
 msgstr "唤醒"
 
-msgid "Wakeup TV from standby"
+msgid "Wake up TV from standby"
 msgstr "从待机状态中唤醒电视机"
 
-msgid "Wakeup from Deep-Standby is allowed"
+msgid "Wake up from Deep-Standby is allowed"
 msgstr ""
 
-msgid "Wakeup time before a timer begins [mins]"
+msgid "Wake up time before a timer begins [mins]"
 msgstr "定时器开始前[分钟]唤醒"
 
-msgid "Wakeup your AV Receiver from standby"
+msgid "Wake up your AV Receiver from standby"
 msgstr "从待机状态唤醒你的AV接收机"
 
 msgid "Wallis and Futuna"
@@ -21408,7 +21408,7 @@ msgstr ""
 "这可能需要几分钟时间"
 
 msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
+"Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "您的前处理器固件必须升级.\n"
@@ -21416,7 +21416,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your frontprocessor will be upgraded\n"
+"Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
@@ -21616,7 +21616,7 @@ msgstr "[编辑替代项目]"
 msgid "[bouquet edit]"
 msgstr "[编辑自定义组]"
 
-msgid "[favourite edit]"
+msgid "[Favorite Edit]"
 msgstr "[喜爱频道编辑]"
 
 msgid "[move mode]"
@@ -21634,7 +21634,7 @@ msgstr "取消备选项目编辑"
 msgid "abort bouquet edit"
 msgstr "取消自定义组编辑"
 
-msgid "abort favourites edit"
+msgid "abort favorites edit"
 msgstr "取消喜爱频道编辑"
 
 msgid "ac3"
@@ -21661,7 +21661,7 @@ msgstr "添加标记"
 msgid "add service to bouquet"
 msgstr "添加频道到自定义组"
 
-msgid "add service to favourites"
+msgid "add service to favorites"
 msgstr "频道添加到收藏夹"
 
 msgid "add to parental protection"
@@ -21997,7 +21997,7 @@ msgstr "启用PIP无HDR"
 msgid "enable bouquet edit"
 msgstr "启用自定义组编辑"
 
-msgid "enable favourite edit"
+msgid "enable favorite edit"
 msgstr "启用收藏夹编辑"
 
 msgid "enable move mode"
@@ -22015,7 +22015,7 @@ msgstr "结束自定义组编辑"
 msgid "end cut here"
 msgstr "结束剪切"
 
-msgid "end favourites edit"
+msgid "end favorites edit"
 msgstr "结束收藏编辑"
 
 msgid "end zapping"
@@ -22871,7 +22871,7 @@ msgstr "从这里开始剪切"
 msgid "start recording"
 msgstr "开始录制"
 
-msgid "stepsize"
+msgid "step size"
 msgstr "步长"
 
 msgid "stereo"

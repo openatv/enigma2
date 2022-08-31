@@ -1324,7 +1324,7 @@ msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abs
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'."
 
-msgid "'weatherplugin' is not installed!"
+msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ist nicht installiert!"
 
 msgid "( All readers)"
@@ -1970,7 +1970,7 @@ msgstr "Eine Mediendatei ist in Benutzung!"
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid ""
-"A finished powertimer wants to reboot your %s %s.\n"
+"A finished PowerTimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
 "Ein PowerTimer möchte Ihre %s %s neu starten.\n"
@@ -1978,7 +1978,7 @@ msgstr ""
 
 # /usr/lib/enigma2/python/PowerTimer.py
 msgid ""
-"A finished powertimer wants to restart the user interface.\n"
+"A finished PowerTimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
 "Ein PowerTimer möchte die Benutzeroberfläche neu starten.\n"
@@ -1987,7 +1987,7 @@ msgstr ""
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid ""
-"A finished powertimer wants to set your\n"
+"A finished PowerTimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 "Ein PowerTimer möchte Ihre %s %s in den Standby versetzen.\n"
@@ -1996,7 +1996,7 @@ msgstr ""
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid ""
-"A finished powertimer wants to shutdown your %s %s.\n"
+"A finished PowerTimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
 "Ein PowerTimer möchte Ihre %s %s ausschalten.\n"
@@ -2052,7 +2052,7 @@ msgstr ""
 "Bitte beenden Sie die Aufnahme, bevor Sie einen Scan starten."
 
 #
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr ""
 "Zurzeit läuft eine Aufnahme!\n"
 "Bitte beenden Sie die Aufnahme, bevor Sie den Signal-Finder starten."
@@ -2239,7 +2239,7 @@ msgid "Accessed:"
 msgstr "Zugegriffen:"
 
 #
-msgid "Accesspoint:"
+msgid "Access point:"
 msgstr "Access Point MAC:"
 
 msgid "Action"
@@ -2598,7 +2598,7 @@ msgstr "Alle unterstützten"
 msgid "Allocate"
 msgstr "Zuweisen"
 
-msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."
 msgstr "Weisen Sie dem physikalischen LNB, den Sie konfigurieren, eine Nummer zu. Sie können diesen LNB erneut für andere Satelliten (z.B. motorisierte Satelliten) auswählen, um die Einrichtung desselben LNB mehrere Male zu speichern."
 
 msgid "Allow 10bit"
@@ -3293,7 +3293,7 @@ msgstr "Geschwindigkeit beim Löschen im Hintergrund"
 msgid "Background:"
 msgstr "Hintergrund:"
 
-msgid "Backgroundselected:"
+msgid "Background selected:"
 msgstr "Hintergrund ausgewählt:"
 
 msgid "Backup"
@@ -4355,13 +4355,13 @@ msgid "ChannelEPG Settings"
 msgstr "Sender-EPG-Einstellungen"
 
 #
-msgid "Channellist menu"
+msgid "Channel List Menu"
 msgstr "Senderliste-Menü"
 
-msgid "Channelname"
+msgid "Channel name"
 msgstr "Kanalname"
 
-msgid "Channelselection:"
+msgid "Channel selection:"
 msgstr "Senderliste:"
 
 #
@@ -4818,7 +4818,7 @@ msgid "Config file name (ok to change):"
 msgstr "Konfigurationsdateiname (kann geändert werden):"
 
 #, python-format
-msgid "Configfile %s saved."
+msgid "Config file %s saved."
 msgstr "Konfigurationsdatei %s gespeichert."
 
 msgctxt "Abbreviation of 'Configurable'"
@@ -4888,7 +4888,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Bei 'Ja' werden Senderlogos (Picons) falls vorhanden in der Senderliste angezeigt."
 
 # Subtitle neu 5.1
-msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic"
 msgstr "Einstellen, ob die Schriftart der externen Untertitel zwischen Normal, Kursiv, Fett oder Fettkursiv wechseln soll."
 
 msgid "Configure interface"
@@ -5420,7 +5420,7 @@ msgid "Could not record due to invalid service %s"
 msgstr "Ungültiger Dienst %s konnte nicht aufgezeichnet werden"
 
 #, python-format
-msgid "Could not save config file %s!"
+msgid "Could not save configuration file %s!"
 msgstr "Konnte Konfigurationsdatei nicht speichern %s!"
 
 msgid "Country"
@@ -5467,7 +5467,7 @@ msgstr "Verzeichnis anlegen"
 msgid "Create directory/folder"
 msgstr "Verzeichnis erstellen"
 
-msgid "Create separate radio userbouquet"
+msgid "Create separate radio user bouquet"
 msgstr "Separates Radiobouquet erstellen"
 
 msgid "Create symlink to file"
@@ -5740,7 +5740,7 @@ msgid "DVD Menu"
 msgstr "DVD-Menü"
 
 #
-msgid "DVD Titlelist"
+msgid "DVD Title list"
 msgstr "DVD-Titelliste"
 
 msgid "DVD player"
@@ -6044,13 +6044,13 @@ msgstr "Legt fest, welche Spulgeschwindigkeiten vorwärts normales Spulen benutz
 msgid "Delay after change voltage before switch command"
 msgstr "Pause nach Spannungsänderung vor Switch-Befehl"
 
-msgid "Delay after continuous tone disable before diseqc"
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr "Pause nach Ausschalten vom kontinuierlichen Tonsignal vor DiSEqC-Befehl"
 
-msgid "Delay after diseqc peripherial poweron command"
+msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Pause nach Einschaltbefehl für DiSEqC-Peripherie"
 
-msgid "Delay after diseqc reset command"
+msgid "Delay after DiSEqC reset command"
 msgstr "Pause nach DiSEqC-Reset-Befehl"
 
 msgid "Delay after enable voltage before motor command"
@@ -6062,7 +6062,7 @@ msgstr "Pause nachdem Spannung anliegt vor Switch-Befehl"
 msgid "Delay after final continuous tone change"
 msgstr "Pause nach letzter kontinuierlichen Tonänderung"
 
-msgid "Delay after last diseqc command"
+msgid "Delay after last DiSEqC command"
 msgstr "Pause nach letztem DiSEqC-Befehl"
 
 msgid "Delay after last voltage change"
@@ -6074,7 +6074,7 @@ msgstr "Pause nach Motorstopp-Befehl"
 msgid "Delay after set voltage before measure motor power"
 msgstr "Pause nachdem Spannung anliegt vor Messung der Motorkraft"
 
-msgid "Delay after toneburst"
+msgid "Delay after tone burst"
 msgstr "Pause nach Schallimpuls"
 
 msgid "Delay after voltage change before motor command"
@@ -6089,7 +6089,7 @@ msgstr "Verzögerung bevor Sequenz wiederholt wird"
 msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
 msgstr "Verzögerung zwischen CEC-Befehlen, wenn mehrere Befehle hintereinander gesendet werden. Einige Geräte benötigen diese Verzögerung für eine korrekte Funktion, normalerweise zwischen 50 und 150ms."
 
-msgid "Delay between diseqc commands"
+msgid "Delay between DiSEqC commands"
 msgstr "Pause zwischen DiSEqC-Befehle"
 
 msgid "Delay between switch and motor command"
@@ -6308,7 +6308,7 @@ msgstr "Gerätemounts"
 msgid "Device: "
 msgstr "Gerät: "
 
-msgid "Devicename:"
+msgid "Device name:"
 msgstr "Gerätename:"
 
 msgid "Devices"
@@ -7902,10 +7902,10 @@ msgstr "Sendungsanzeigenmenü"
 msgid "EventViewEPG Actions"
 msgstr "Sendungsinfo EPG Aktionen"
 
-msgid "Eventname only"
+msgid "Event name only"
 msgstr "Nur Sendungsname"
 
-msgid "Eventview:"
+msgid "Event view:"
 msgstr "Sendungsinformation:"
 
 #
@@ -7915,7 +7915,7 @@ msgstr "Täglich"
 msgid ""
 "Everything in one place - IceTV does it for you!\n"
 "\n"
-"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favourite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
+"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favorite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
 "\n"
 "Everything in one place. Simply select something new and press Record.\n"
 "\n"
@@ -8258,7 +8258,7 @@ msgstr "Schneller Zeitraum"
 msgid "Fast forward speeds"
 msgstr "Vorlaufgeschwindigkeiten"
 
-msgid "Fastforward"
+msgid "Fast forward"
 msgstr "Vorlauf"
 
 msgid "Favorites"
@@ -8377,7 +8377,7 @@ msgstr "Dateiname"
 msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
 
-msgid "Filesystem check your Harddisk"
+msgid "Filesystem check your hard drive"
 msgstr "Dateisystem der Festplatte überprüfen"
 
 #
@@ -8429,7 +8429,7 @@ msgid "Fine movement"
 msgstr "Fein-Steuerung"
 
 #
-msgid "Finetune"
+msgid "Fine-tune"
 msgstr "Feineinstellung"
 
 #
@@ -8578,7 +8578,7 @@ msgstr "Formatieren"
 msgid "Format HDD"
 msgstr "Formatieren der Festplatte"
 
-msgid "Format your Harddisk"
+msgid "Format your hard drive"
 msgstr "Formatieren der Festplatte"
 
 msgid "Forward volume keys"
@@ -8711,7 +8711,7 @@ msgid "FullHD Test"
 msgstr "FullHD-Test"
 
 #
-msgid "Fullscreen"
+msgid "Full screen"
 msgstr "Vollbild"
 
 msgid "G"
@@ -9046,13 +9046,13 @@ msgstr "HD-Liste"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI Colordepth"
+msgid "HDMI color depth"
 msgstr "HDMI-Farbtiefe"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI-Farbprofile"
 
-msgid "HDMI Colorspace"
+msgid "HDMI color space"
 msgstr "HDMI-Farbraum"
 
 msgid "HDMI HDR Type"
@@ -9118,7 +9118,7 @@ msgstr "TV-Eingänge verwalten"
 msgid "Handle standby from TV"
 msgstr "TV-Standby verwalten"
 
-msgid "Handle wakeup from TV"
+msgid "Handle wake up from TV"
 msgstr "TV-Wakeup verwalten"
 
 msgid "Hard Disk Settings"
@@ -9565,7 +9565,7 @@ msgstr "Bei 'Ja' sind in den Aufzeichnungen AIT-Daten enthalten."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befinden sich zusammen mit den anderen Logs, haben jedoch den Namen 'Enigma2-hdmicec-[date].log'."
 
-msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
 msgstr ""
 "Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen.\n"
 "Bei 'Nein' wird ein spezielles Signal von Ihrem Receiver verwendet. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
@@ -9636,7 +9636,7 @@ msgstr "Ignoriere DVB-S Subnetzwerk"
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignoriere DVB-T Subnetzwerk"
 
-msgid "Ignore unexpectedly wakeup and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Unerwartetes Aufwachen ignorieren und im Standby bleiben"
 
 msgid "Image Backup"
@@ -12290,7 +12290,7 @@ msgstr ""
 "\n"
 
 #
-msgid "No tuner is configured for use with a diseqc positioner!"
+msgid "No tuner is configured for use with a DiSEqC positioner!"
 msgstr "Es wurde kein Tuner für die Benutzung eines DiSEqC-Rotors konfiguriert!"
 
 #
@@ -12735,7 +12735,7 @@ msgstr "Öffne Favoritenliste"
 msgid "Open context menu"
 msgstr "Kontextmenü öffnen"
 
-msgid "Open favourites list"
+msgid "Open favorites list"
 msgstr "Öffne Favoritenliste"
 
 msgid "Open long"
@@ -13521,7 +13521,7 @@ msgid "Please select an aspect ratio..."
 msgstr "Bitte ein Bild-Seitenverhältnis auswählen..."
 
 #
-msgid "Please select device to use as swapfile location"
+msgid "Please select device to use as swap file location"
 msgstr "Bitte ein Gerät als Speicherort auswählen"
 
 #
@@ -14558,7 +14558,7 @@ msgstr "Möchten Sie wirklich herunterfahren?"
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Möchten Sie wirklich das Display aktualisieren und jetzt neu starten?"
 
-msgid "Really upgrade the frontprocessor and reboot now?"
+msgid "Really upgrade the front panel processor and reboot now?"
 msgstr "Möchten Sie wirklich den Frontprozessor aktualisieren und jetzt neu starten?"
 
 #, python-format
@@ -15035,7 +15035,7 @@ msgstr "Display-Nachricht wiederholen"
 msgid "Repeat play list"
 msgstr "Playlist wiederholen"
 
-msgid "Repeat the sent standby and wakeup commands"
+msgid "Repeat the sent standby and wake up commands"
 msgstr "Sende wiederholende Aufwach- und Standby-Befehle"
 
 msgid "Repeat the standby commands"
@@ -16506,7 +16506,7 @@ msgstr "Wählen Sie die Uhrzeit, zu der der Timer starten soll."
 msgid "Select the time zone within the area or region."
 msgstr "Wählen Sie die Zeitzone in Ihrem Gebiet."
 
-msgid "Select the tuner that controls the motorised dish."
+msgid "Select the tuner that controls the motorized dish."
 msgstr "Wählen Sie den Tuner, der die motorisierte Schüssel steuert."
 
 msgid "Select the tuner that this loopthrough depends on."
@@ -16767,14 +16767,14 @@ msgid "Service Zap Actions"
 msgstr "Kanal-Umschaltaktionen"
 
 #
-msgid "Service cant been added to the favourites."
+msgid "Service cant been added to the favorites."
 msgstr "Kanal kann nicht zu den Favoriten hinzugefügt werden."
 
 msgid "Service font size"
 msgstr "Schriftgröße für Sendernamen"
 
 #
-msgid "Service has been added to the favourites."
+msgid "Service has been added to the favorites."
 msgstr "Kanal wurde den Favoriten zugefügt."
 
 #
@@ -17659,7 +17659,7 @@ msgstr "Erweiterungen anzeigen..."
 msgid "Show extra spacing in Information"
 msgstr "Zusätzlichen Abstand in Informationen"
 
-msgid "Show favourites list"
+msgid "Show favorites list"
 msgstr "Favoritenliste anzeigen"
 
 msgid "Show files backed up by default"
@@ -19449,7 +19449,7 @@ msgid "Testscreens"
 msgstr "Testbilder"
 
 #
-msgid "Testscreens that are helpfully to fine-tune your display"
+msgid "Testscreens that are helpful to fine-tune your display"
 msgstr "Testbilder zur Feinabstimmung des Displays."
 
 msgid "Text"
@@ -19664,10 +19664,10 @@ msgstr ""
 "Die Standardliste der zu sichernden Dateien kann nicht verändert werden!\n"
 "Bitte die 'Zusätze' und 'Ausschlüsse' verwenden."
 
-msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgid "The default settings are 5 minutes earlier to wake up from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr "Die Standardeinstellung ist 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein, dies zu ändern (z.B.: Die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk etc.)."
 
-msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
+msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Die Standardeinstellungen sind Aufwachzeit -5 Minuten und Timerbeginn +5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das Aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
 
 msgid "The detailed information is intended for developers only."
@@ -19940,7 +19940,7 @@ msgstr "Weblinks im Downloadbereich anzeigen."
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "In diesem Feld können Sie eine zusätzliche Symbolrate bis zu %s suchen."
 
-msgid "This is a workaround for some devices that wakeup again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
+msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "Dies ist ein Workaround für einige Geräte, die nach dem Umschalten in den Standby wieder geweckt werden. Damit wird das Aufwecken durch andere Geräte für einige Sekunden ignoriert."
 
 #, python-format
@@ -20169,7 +20169,7 @@ msgstr "Die Farbsättigung einstellen."
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
 msgstr "Die Skalierschärfe die verwendet wird einstellen, wenn von 4:3 auf 16:9 skaliert wird."
 
-msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
+msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Die Unterdrückung falscher, digitaler Umrisse einstellen. Diese Fehler entstehen durch zu wenige diskrete Werte."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
@@ -20372,7 +20372,7 @@ msgstr "Startzeit für Befehls- / Skript-Ausführung"
 msgid "Time update in minutes"
 msgstr "Updatezeit in Minuten"
 
-msgid "Time window for detection of the wakeup by a timer [mins]"
+msgid "Time window for detection of the wake up by a timer [mins]"
 msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer (Min)"
 
 msgid "Time zone"
@@ -20536,7 +20536,7 @@ msgstr "Um das Image wiederherzustellen:"
 msgid "Today"
 msgstr "Heute"
 
-msgid "Toggels between tv and radio"
+msgid "Toggles between tv and radio"
 msgstr "Zwischen TV und Radio wechseln"
 
 msgid "Toggle Digital downmix..."
@@ -20610,12 +20610,12 @@ msgid "Tone mode"
 msgstr "Tone-Modus"
 
 #
-msgid "Toneburst"
-msgstr "Toneburst"
+msgid "Tone burst"
+msgstr "Tone burst"
 
 #
-msgid "Toneburst A/B"
-msgstr "Toneburst A/B"
+msgid "Tone burst A/B"
+msgstr "Tone burst A/B"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -20744,7 +20744,7 @@ msgstr "Versuche Transponder im terrestrischen Netz zu finden. Bitte warten..."
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
 msgstr "Bei Softwarefehlern wird versucht, die Benutzeroberfläche nicht neu zu starten."
 
-msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wakeup, but not switched to correct input.)"
+msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
 msgstr "Versuchen Sie wiederholte Befehle zu senden, wenn nicht alle Befehle ausgeführt werden (z.B. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)."
 
 #
@@ -20964,7 +20964,7 @@ msgstr ""
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS bewegt automatisch eine motorisierte Schüssel auf den richtigen Satelliten, basierend auf den vom Benutzer eingegebenen Koordinaten. Ohne USALS muss jeder Satellit individuell eingerichtet und gespeichert werden."
 
 #
@@ -21205,7 +21205,7 @@ msgid "Updated version unknown"
 msgstr "Aktualisierte Version unbekannt"
 
 #
-msgid "Updatefeed not available."
+msgid "Update feed not available."
 msgstr "Updatefeed nicht verfügbar."
 
 #
@@ -21477,10 +21477,10 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Zeitsprünge für schnellen Vorlauf/Rücklauf ('>>'/'<<') benutzen"
 
 # Timeshift Einstellungen
-msgid "Use time shift seekbar while timeshifting"
+msgid "Use time shift SeekBar while time shifting"
 msgstr "Timeshift-Suchleiste bei Timeshift verwenden *"
 
-msgid "Use workaround for wakeup from deep-standby"
+msgid "Use workaround for wake up from deep-standby"
 msgstr "Workaround für das Aufwachen aus dem Deep-Standby"
 
 msgid "Used"
@@ -21532,7 +21532,7 @@ msgstr "Einstellungen für die Benutzeroberfläche"
 msgid "User interface visibility"
 msgstr "Deckkraft der Benutzeroberfläche"
 
-msgid "Userlogo:"
+msgid "User logo:"
 msgstr "Benutzerlogo:"
 
 #
@@ -21893,7 +21893,7 @@ msgid "View list of available default settings"
 msgstr "Verfügbare Standardbouquets anzeigen."
 
 # SoftwareManager/plugin.py
-msgid "View list of available display and userinterface extensions."
+msgid "View list of available display and user interface extensions."
 msgstr "Verfügbare Anzeige/Benutzeroberfläche-Erweiterungen anzeigen."
 
 #
@@ -22056,7 +22056,7 @@ msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsynchronisation"
 
 #
-msgid "Wait please while creating swapfile..."
+msgid "Wait please while creating swap file..."
 msgstr "Swap-File wird erstellt. Bitte warten..."
 
 msgid "Wait please while scanning for devices..."
@@ -22088,16 +22088,16 @@ msgstr "In Standby aufwachen"
 msgid "Wakeup"
 msgstr "Aufwecken"
 
-msgid "Wakeup TV from standby"
+msgid "Wake up TV from standby"
 msgstr "TV aus dem Standby aufwecken"
 
-msgid "Wakeup from Deep-Standby is allowed"
+msgid "Wake up from Deep-Standby is allowed"
 msgstr "Starten aus dem Deep-Standby erlaubt"
 
-msgid "Wakeup time before a timer begins [mins]"
+msgid "Wake up time before a timer begins [mins]"
 msgstr "Aufwachzeit bevor ein Timer beginnt (Min)"
 
-msgid "Wakeup your AV Receiver from standby"
+msgid "Wake up your AV Receiver from standby"
 msgstr "AV-Receiver aus dem Standby aufwecken"
 
 msgid "Wallis and Futuna"
@@ -23035,7 +23035,7 @@ msgstr "Das Display wird aktualisiert. Dies kann einige Minuten dauern..."
 
 #
 msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
+"Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
@@ -23043,7 +23043,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your frontprocessor will be upgraded\n"
+"Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
@@ -23253,7 +23253,7 @@ msgid "[bouquet edit]"
 msgstr "[Bouquet-Editor]"
 
 #
-msgid "[favourite edit]"
+msgid "[Favorite Edit]"
 msgstr "[Favoriten-Editor]"
 
 #
@@ -23277,7 +23277,7 @@ msgid "abort bouquet edit"
 msgstr "Bouquet editieren abbrechen"
 
 #
-msgid "abort favourites edit"
+msgid "abort favorites edit"
 msgstr "Favoriten editieren abbrechen"
 
 msgid "ac3"
@@ -23309,7 +23309,7 @@ msgid "add service to bouquet"
 msgstr "Kanal zu Bouquet hinzufügen"
 
 #
-msgid "add service to favourites"
+msgid "add service to favorites"
 msgstr "Kanal zu Favoriten hinzufügen"
 
 #
@@ -23682,7 +23682,7 @@ msgid "enable bouquet edit"
 msgstr "Bouquet editieren aktivieren"
 
 #
-msgid "enable favourite edit"
+msgid "enable favorite edit"
 msgstr "Favoriten editieren aktivieren"
 
 #
@@ -23706,7 +23706,7 @@ msgid "end cut here"
 msgstr "Schnitt endet hier"
 
 #
-msgid "end favourites edit"
+msgid "end favorites edit"
 msgstr "Favoriten editieren beenden"
 
 msgid "end zapping"
@@ -24656,7 +24656,7 @@ msgstr "Schnitt hier starten"
 msgid "start recording"
 msgstr "Aufnahme starten"
 
-msgid "stepsize"
+msgid "step size"
 msgstr "Schrittweite"
 
 #

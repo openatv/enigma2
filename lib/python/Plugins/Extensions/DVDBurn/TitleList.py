@@ -110,7 +110,7 @@ class TitleList(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("DVD Titlelist"))
+		self.setTitle(_("DVD Title list"))
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
