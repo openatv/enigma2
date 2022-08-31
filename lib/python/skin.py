@@ -162,7 +162,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 		# the other in order of ascending priority.
 		loadSingleSkinData(desktop, screenID, domSkin, filename, scope=scope)
 		resolution = resolutions.get(screenID, (0, 0, 0))
-		print("[Skin] Skin resolution is %dx%d and colour depth is %d bits." % (resolution[0], resolution[1], resolution[2]))
+		print("[Skin] Skin resolution is %dx%d and color depth is %d bits." % (resolution[0], resolution[1], resolution[2]))
 		for element in domSkin:
 			if element.tag == "screen":  # Process all screen elements.
 				name = element.attrib.get("name", None)
@@ -462,7 +462,7 @@ def parseOrientation(value):
 # and value returned is based on the trigger.
 #
 # Usage:  *string   : The paramater is a string with the "*" is removed (Type: String).
-#         #aarrggbb : The parameter is a HEX colour string (Type: Integer).
+#         #aarrggbb : The parameter is a HEX color string (Type: Integer).
 #         0xABCD    : The parameter is a HEX integer (Type: Integer).
 #         5.3       : The parameter is a floating point number (Type: Float).
 #         red       : The parameter is a named color (Type: Integer).

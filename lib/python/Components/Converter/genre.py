@@ -179,7 +179,7 @@ class GenresAUS:
 		),
 		# Childrens
 		5: (
-			_("childrens (general)"),
+			_("children's (general)"),
 		),
 		# Music
 		6: (

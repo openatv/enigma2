@@ -644,7 +644,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if config.usage.setup_level.index >= 1:  # intermediate+
 				menulist.append((_("Delete file"), "deletefile"))
 		else:
-			menulist.append((_("Switch to filelist"), "filelist"))
+			menulist.append((_("Switch to file list"), "filelist"))
 			menulist.append((_("Clear play list"), "clear"))
 			menulist.append((_("Delete entry"), "deleteentry"))
 			if config.usage.setup_level.index >= 1:  # intermediate+

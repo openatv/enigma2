@@ -105,7 +105,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		}, prio=-2)
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions", {
 			"prevService": (self.switchToBookList, _("switch to bookmarks")),
-			"nextService": (self.switchToFileList, _("Switch to filelist")),
+			"nextService": (self.switchToFileList, _("Switch to file list")),
 		}, prio=-2)
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions", {
 			"menu": (self.showMenu, _("menu")),
@@ -308,7 +308,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					))
 			else:
 				menu = (
-					(_("Switch to filelist"), self.switchToFileList),
+					(_("Switch to file list"), self.switchToFileList),
 					(_("Remove Bookmark"), self.addRemoveBookmark)
 				)
 			self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
