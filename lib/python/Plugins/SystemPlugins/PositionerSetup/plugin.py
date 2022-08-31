@@ -1361,7 +1361,7 @@ def PositionerMain(session, **kwargs):
 			elif len(usableNims) > 1:
 				session.open(RotorNimSelection)
 			else:
-				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+				session.open(MessageBox, _("No tuner is configured for use with a DiSEqC positioner!"), MessageBox.TYPE_ERROR)
 
 
 def PositionerSetupStart(menuid, **kwargs):

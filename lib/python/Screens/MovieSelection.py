@@ -1770,7 +1770,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if ".Trash" in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
+					are_you_sure = _("Do you really want to permanently remove '%s' from trash can ?") % name
 				else:
 					are_you_sure = _("Do you really want to delete %s ?") % name
 				msg = ""

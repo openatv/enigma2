@@ -1299,7 +1299,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			// attached to a frontend. That is, there
 			// should be one instance of dvr & demux
 			// devices more than of frontend devices.
-			// Otherwise, playback and timeshift might
+			// Otherwise, playback and time shift might
 			// interfere recording.
 			if (i->m_inuse)
 			{

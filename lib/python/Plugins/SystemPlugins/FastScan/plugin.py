@@ -195,7 +195,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.list.append(self.scanHD)
 		self.list.append(getConfigListEntry(_("Use fastscan channel numbering"), self.scan_keepnumbering))
 		self.list.append(getConfigListEntry(_("Use fastscan channel names"), self.scan_keepsettings))
-		self.list.append(getConfigListEntry(_("Create separate radio userbouquet"), self.scan_create_radio_bouquet))
+		self.list.append(getConfigListEntry(_("Create separate radio user bouquet"), self.scan_create_radio_bouquet))
 		self.list.append(getConfigListEntry(_("Enable auto fast scan"), config.misc.fastscan.auto))
 		if config.misc.fastscan.auto.value == "multi":
 			for provider in self.providers:
@@ -323,7 +323,7 @@ def FastScanMain(session, **kwargs):
 				continue
 			if n.config.dvbs.configMode in ("loopthrough", "satposdepends"):
 				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.dvbs.connectedTo.value))
-				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
+				if n.type == nimmanager.nim_slots[root_id].type:  # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
 			nimList.append((str(n.slot), n.friendly_full_description))
 		if nimList:

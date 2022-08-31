@@ -209,7 +209,7 @@ class EPGSelection(Screen, HelpableScreen):
 			"OKLong": (self.OKLong, _("Zap to channel and close (setup in menu)"))
 		}, prio=-1, description=_("EPG Actions"))
 		self["okactions"].csel = self
-		self["colouractions"] = HelpableActionMap(self, ["ColorActions"], {
+		self["coloractions"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.redButtonPressed, _("IMDb search for current event")),
 			"redlong": (self.redButtonPressedLong, _("Sort EPG List")),
 			"green": (self.greenButtonPressed, _("Add/Remove a timer for the current event")),
@@ -218,7 +218,7 @@ class EPGSelection(Screen, HelpableScreen):
 			"blue": (self.blueButtonPressed, _("Add an AutoTimer for the current event")),
 			"bluelong": (self.blueButtonPressedLong, _("Show AutoTimer List"))
 		}, -1, description=_("EPG Actions"))
-		self["colouractions"].csel = self
+		self["coloractions"].csel = self
 		self["recordingactions"] = HelpableActionMap(self, ["InfobarInstantRecord"], {
 			"ShortRecord": (self.recButtonPressed, _("Add a RecordTimer for current event")),
 			"LongRecord": (self.recButtonPressedLong, _("Add a ZapTimer for current event"))
@@ -1474,7 +1474,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["okactions"].setEnabled(False)
 		if "epgcursoractions" in self:
 			self["epgcursoractions"].setEnabled(False)
-		self["colouractions"].setEnabled(False)
+		self["coloractions"].setEnabled(False)
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
@@ -1491,7 +1491,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["okactions"].setEnabled(True)
 		if "epgcursoractions" in self:
 			self["epgcursoractions"].setEnabled(True)
-		self["colouractions"].setEnabled(True)
+		self["coloractions"].setEnabled(True)
 		self["recordingactions"].setEnabled(True)
 		self["epgactions"].setEnabled(True)
 		if "input_actions" in self:

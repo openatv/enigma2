@@ -148,7 +148,7 @@ class GenresAUS:
 		_("News"),
 		_("Entertainment"),
 		_("Sport"),
-		_("Childrens"),
+		_("Children's"),
 		_("Music"),
 		_("Arts/Culture"),
 		_("Current Affairs"),
@@ -179,7 +179,7 @@ class GenresAUS:
 		),
 		# Childrens
 		5: (
-			_("childrens (general)"),
+			_("children's (general)"),
 		),
 		# Music
 		6: (
@@ -392,7 +392,7 @@ class GenresAUSIceTV:
 			_("Rowing"),  # 0xf8 remapped from 0x48
 		),
 	}
-	
+
 
 def __getGenreStringMain(hn, ln, genres):
 	# if hn == 0:

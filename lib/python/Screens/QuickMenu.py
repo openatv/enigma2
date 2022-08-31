@@ -301,7 +301,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftware(self):
 		model = BoxInfo.getItem("model")
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working internet connection)")))
+		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)")))
 		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
 		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
@@ -328,10 +328,10 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qharddisk(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup", _("Harddisk Setup"), _("Setup your Harddisk")))
-		self.sublist.append(QuickSubMenuEntryComponent("Initialization", _("Format HDD"), _("Format your Harddisk")))
-		self.sublist.append(QuickSubMenuEntryComponent("File System Check", _("Check HDD"), _("Filesystem check your Harddisk")))
+		self.sublist.append(QuickSubMenuEntryComponent("Initialization", _("Format HDD"), _("Format your hard drive")))
+		self.sublist.append(QuickSubMenuEntryComponent("File System Check", _("Check HDD"), _("Filesystem check your hard drive")))
 		if isFileSystemSupported("ext4"):
-			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert filesystem ext3 to ext4"), _("Convert filesystem ext3 to ext4")))
+			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert file system ext3 to ext4"), _("Convert file system ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -585,11 +585,11 @@ class QuickMenu(Screen, ProtectedScreen):
 					from Plugins.SystemPlugins.PositionerSetup.plugin import RotorNimSelection
 					self.session.open(RotorNimSelection)
 				else:
-					self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, _("No tuner is configured for use with a DiSEqC positioner!"), MessageBox.TYPE_ERROR)
 
 	def SatfinderMain(self):
 		if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
-			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satellite finder."), MessageBox.TYPE_ERROR)
 		else:
 			from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 			self.session.open(Satfinder)

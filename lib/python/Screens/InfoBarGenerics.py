@@ -1348,7 +1348,7 @@ class InfoBarChannelSelection:
 			"historyNext": (self.historyNext, _("Switch to next channel in history")),
 			"openServiceList": (self.openServiceList, _("Open service list")),
 			"openSatellites": (self.openSatellites, _("Open satellites list")),
-			"openBouquets": (self.openBouquets, _("Open favourites list")),
+			"openBouquets": (self.openBouquets, _("Open favorites list")),
 			"LeftPressed": self.LeftPressed,
 			"RightPressed": self.RightPressed,
 			"ChannelPlusPressed": self.ChannelPlusPressed,
@@ -2556,7 +2556,7 @@ class InfoBarSeek:
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
-			#return 0 # if 'return 0', plays timeshift again from the beginning
+			#return 0 # if 'return 0', plays time shift again from the beginning
 			return
 		self.doPause(False)
 		self.setSeekState(self.SEEK_STATE_PLAY)
@@ -3871,7 +3871,7 @@ class InfoBarInstantRecord:
 			common = ((_("Add recording (stop after current event)"), "event"),
 				(_("Add recording (indefinitely)"), "indefinitely"),
 				(_("Add recording (enter recording duration)"), "manualduration"),
-				(_("Add recording (enter recording endtime)"), "manualendtime"),)
+				(_("Add recording (enter recording end time)"), "manualendtime"),)
 
 			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
 				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
@@ -3883,7 +3883,7 @@ class InfoBarInstantRecord:
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 				((_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),)
+				(_("Change recording (end time)"), "changeendtime"),)
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
 		else:
@@ -4078,9 +4078,9 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1:
 				self.addSubserviceToBouquet(self.bouquets[0][1])
-				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, _("Service has been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 		else:
-			self.session.open(MessageBox, _("Service cant been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+			self.session.open(MessageBox, _("Service cant been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 
 	def bouquetSelClosed(self, confirmed):
 		self.bouquets = self.bsel = self.selectedSubservice = None
@@ -5247,7 +5247,7 @@ class InfoBarHandleBsod:
 			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
 			if writelog:
 				txt += "\n" + "-" * 80 + "\n"
-				txt += _("A crashlog was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
+				txt += _("A crash log was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
 			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("never"))

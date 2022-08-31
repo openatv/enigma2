@@ -9,7 +9,7 @@
 # - user presses "yellow" button.         FILE     record      PAUSE              enable                disable              enable
 # - user presess pause again              FILE     record      PLAY               enable                disable              enable
 # - user fast forwards                    FILE     record      FF                 enable                disable              enable
-# - end of timeshift buffer reached       TUNER    record      PLAY               enable                enable               disable
+# - end of time shift buffer reached      TUNER    record      PLAY               enable                enable               disable
 # - user backwards                        FILE     record      BACK  # !!         enable                disable              enable
 #
 
@@ -19,12 +19,12 @@
 # now, the service becomes seekable, so "SeekActions" are enabled, "TimeshiftEnableActions" are disabled.
 # - the user can now PVR around
 # - if it hits the end, the service goes into live mode ("deactivates timeshift", it's of course still "enabled")
-# the service looses it's "seekable" state. It can still be paused, but just to activate timeshift right
+# the service looses it's "seekable" state. It can still be paused, but just to activate time shift right
 # after!
 # the seek actions will be disabled, but the timeshiftActivateActions will be enabled
-# - if the user rewinds, or press pause, timeshift will be activated again
+# - if the user rewinds, or press pause, time shift will be activated again
 
-# note that a timeshift can be enabled ("recording") and
+# note that a time shift can be enabled ("recording") and
 # activated (currently time-shifting).
 
 
@@ -65,8 +65,8 @@ class InfoBarTimeshift:
 	def __init__(self):
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions",
 			{
-				"timeshiftStart": (self.startTimeshift, _("Start timeshift")),  # the "yellow key"
-				"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),     # currently undefined :), probably 'TV'
+				"timeshiftStart": (self.startTimeshift, _("Start time shift")),  # the "yellow key"
+				"timeshiftStop": (self.stopTimeshift, _("Stop time shift")),     # currently undefined :), probably 'TV'
 				"instantRecord": self.instantRecord,
 				"restartTimeshift": self.restartTimeshift,
 				"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
@@ -80,9 +80,9 @@ class InfoBarTimeshift:
 			}, prio=1)
 		self["TimeshiftActivateActions"] = ActionMap(["InfobarTimeshiftActivateActions"],
 			{
-				"timeshiftActivateEnd": self.activateTimeshiftEnd, # something like "rewind key"
+				"timeshiftActivateEnd": self.activateTimeshiftEnd,  # something like "rewind key"
 				"timeshiftActivateEndAndPause": self.activateTimeshiftEndAndPause  # something like "pause key"
-			}, prio=-1) # priority over record
+			}, prio=-1)  # priority over record
 
 		self["TimeshiftSeekPointerActions"] = ActionMap(["InfobarTimeshiftSeekPointerActions"],
 			{
@@ -95,7 +95,7 @@ class InfoBarTimeshift:
 			{
 				"jumpPreviousFile": self.__evSOFjump,
 				"jumpNextFile": self.__evEOF
-			}, prio=-1) # priority over history
+			}, prio=-1)  # priority over history
 
 		self["TimeshiftActions"].setEnabled(False)
 		self["TimeshiftActivateActions"].setEnabled(False)
@@ -250,7 +250,7 @@ class InfoBarTimeshift:
 		self.service_changed = 0
 		#if not config.timeshift.isRecording.value:
 		#	self.__seekableStatusChanged()
-		self.__seekableStatusChanged() # fix: enable ready to start for standard timeshift after saving the event
+		self.__seekableStatusChanged()  # fix: enable ready to start for standard time shift after saving the event
 		self["TimeshiftActions"].setEnabled(False)
 
 	def __evSOFjump(self):
@@ -284,7 +284,7 @@ class InfoBarTimeshift:
 			self.posDiff = 0
 			if self.pts_FileJump_timer.isActive():
 				self.pts_FileJump_timer.stop()
-				Notifications.AddNotification(MessageBox, _("First playable timeshift file!"), MessageBox.TYPE_INFO, timeout=3)
+				Notifications.AddNotification(MessageBox, _("First playable time shift file!"), MessageBox.TYPE_INFO, timeout=3)
 			if not self.pts_FileJump_timer.isActive():
 				self.pts_FileJump_timer.start(5000, True)
 			return
@@ -329,7 +329,7 @@ class InfoBarTimeshift:
 			self.pts_file_changed = False
 		else:
 			if not int(config.timeshift.startdelay.value) and config.timeshift.showlivetvmsg.value:
-				Notifications.AddNotification(MessageBox, _("Switching to live TV - timeshift is still active!"), MessageBox.TYPE_INFO, timeout=3)
+				Notifications.AddNotification(MessageBox, _("Switching to live TV - time shift is still active!"), MessageBox.TYPE_INFO, timeout=3)
 			self.posDiff = 0
 			self.pts_lastposition = 0
 			self.pts_currplaying -= 1
@@ -388,7 +388,7 @@ class InfoBarTimeshift:
 
 	def seekdef(self, key):
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			return 0 # trade as unhandled action
+			return 0  # trade as unhandled action
 		time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
 			-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
 			-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
@@ -431,7 +431,7 @@ class InfoBarTimeshift:
 			return self.playpauseService2()
 
 		if ts.isTimeshiftEnabled():
-			print("[TIMESHIFT] - hu, timeshift already enabled?")
+			print("[TIMESHIFT] - hu, time shift already enabled?")
 			self.activateTimeshiftEndAndPause()
 		else:
 			self.activatePermanentTimeshift()
@@ -478,7 +478,7 @@ class InfoBarTimeshift:
 				ts.stopTimeshift(not self.event_changed)
 			self.__seekableStatusChanged()
 
-	# activates timeshift, and seeks to (almost) the end
+	# activates time shift, and seeks to (almost) the end
 	def activateTimeshiftEnd(self, back=True):
 		ts = self.getTimeshift()
 		if ts is None:
@@ -487,11 +487,11 @@ class InfoBarTimeshift:
 		if ts.isTimeshiftActive():
 			self.pauseService()
 		else:
-			ts.activateTimeshift() # activate timeshift will automatically pause
+			ts.activateTimeshift()  # activate time shift will automatically pause
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 			seekable = self.getSeek()
 			if seekable is not None:
-				seekable.seekTo(-90000) # seek approx. 1 sec before end
+				seekable.seekTo(-90000)  # seek approx. 1 sec before end
 		if back:
 			if getBrandOEM() == 'xtrend':
 				self.ts_rewind_timer.start(1000, 1)
@@ -519,38 +519,38 @@ class InfoBarTimeshift:
 		elif (self.isSeekable() or (self.timeshiftEnabled() and not int(config.timeshift.startdelay.value)) or self.save_current_timeshift) and config.usage.check_timeshift.value:
 			if config.timeshift.favoriteSaveAction.value == "askuser":
 				if self.save_current_timeshift:
-					message = _("You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?")
-					choice = [(_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-							(_("Save timeshift as movie and stop recording"), "savetimeshift"),
-							(_("Cancel save timeshift as movie"), "noSave"),
+					message = _("You have chosen to save the current time shift event, but the event has not yet finished\nWhat do you want to do ?")
+					choice = [(_("Save time shift as movie and continue recording"), "savetimeshiftandrecord"),
+							(_("Save time shift as movie and stop recording"), "savetimeshift"),
+							(_("Cancel save time shift as movie"), "noSave"),
 							(_("Nothing, just leave this menu"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 				else:
-					message = _("You seem to be in timeshift, Do you want to leave timeshift ?")
-					choice = [(_("Yes, but don't save timeshift as movie"), "noSave"),
-							(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-							(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
+					message = _("You seem to be in time shift, Do you want to leave time shift ?")
+					choice = [(_("Yes, but don't save time shift as movie"), "noSave"),
+							(_("Yes, but save time shift as movie and continue recording"), "savetimeshiftandrecord"),
+							(_("Yes, but save time shift as movie and stop recording"), "savetimeshift"),
 							(_("No"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 			else:
 				if self.save_current_timeshift:
 					# the user has previously activated "Timeshift save recording" of current event - so must be necessarily saved of the timeshift!
 					# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
-					message = _("You have chosen to save the current timeshift")
-					choice = [(_("Now save timeshift as movie and continues recording"), "savetimeshiftandrecord")]
+					message = _("You have chosen to save the current time shift")
+					choice = [(_("Now save time shift as movie and continues recording"), "savetimeshiftandrecord")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 					#InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
-					message = _("You seem to be in timeshift, Do you want to leave timeshift ?")
+					message = _("You seem to be in time shift, Do you want to leave time shift ?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
-			# the user has chosen "no warning" when timeshift is stopped (config.usage.check_timeshift=False)
+			# the user has chosen "no warning" when time shift is stopped (config.usage.check_timeshift=False)
 			# but the user has previously activated "Timeshift save recording" of current event
 			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
 			# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
-			message = _("You have chosen to save the current timeshift")
-			choice = [(_("Now save timeshift as movie and continues recording"), "savetimeshiftandrecord")]
+			message = _("You have chosen to save the current time shift")
+			choice = [(_("Now save time shift as movie and continues recording"), "savetimeshiftandrecord")]
 			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 			#InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 		else:
@@ -585,10 +585,10 @@ class InfoBarTimeshift:
 
 	def activatePermanentTimeshift(self):
 		self.createTimeshiftFolder()
-		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
-			self.ptsCleanTimeshiftFolder(justZapped=True)  #remove all timeshift files
+		if self.pts_eventcount == 0:  # only cleanup folder after switching channels, not when a new event starts, to allow saving old events from time shift buffer
+			self.ptsCleanTimeshiftFolder(justZapped=True)  #remove all time shift files
 		else:
-			self.ptsCleanTimeshiftFolder(justZapped=False) #only delete very old timeshift files based on config.usage.timeshiftMaxHours
+			self.ptsCleanTimeshiftFolder(justZapped=False)  # only delete very old time shift files based on config.usage.timeshiftMaxHours
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -717,7 +717,7 @@ class InfoBarTimeshift:
 			self.save_current_timeshift = False
 		elif action == "no":
 			pass
-		# Get rid of old timeshift file before E2 truncates its filesize
+		# Get rid of old time shift file before E2 truncates its filesize
 		if returnFunction is not None and action != "no":
 			self.eraseTimeshiftFile()
 
@@ -779,7 +779,7 @@ class InfoBarTimeshift:
 					metafile.close()
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
-					# Save stored timeshift by creating hardlink to ts file
+					# Save stored time shift by creating hardlink to ts file
 					readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "r")
 					servicerefname = readmetafile.readline()[0:-1]
 					eventname = readmetafile.readline()[0:-1]
@@ -853,7 +853,7 @@ class InfoBarTimeshift:
 						# Get Filesize for Free Space Check
 						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, timeshiftfile)) / (1024 * 1024))
 
-						# Save stored timeshift by copying it to the other device
+						# Save stored time shift by copying it to the other device
 						if filesize <= freespace:
 							os.link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s%s.%s.copy" % (config.usage.timeshift_path.value, timeshiftfile, randomint))
 							copyfile("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
@@ -883,7 +883,7 @@ class InfoBarTimeshift:
 
 						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value, copy_file, fullname), copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
-							Notifications.AddNotification(MessageBox, _("Saving timeshift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=30)
+							Notifications.AddNotification(MessageBox, _("Saving time shift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=30)
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
@@ -902,15 +902,15 @@ class InfoBarTimeshift:
 	def ptsAskUser(self, what):
 		if self.ptsAskUser_wait:
 			return
-		message_time = _("The buffer time for timeshift exceeds the specified limit in the settings.\nWhat do you want to do ?")
-		message_space = _("The available disk space for timeshift is less than specified in the settings.\nWhat do you want to do ?")
+		message_time = _("The buffer time for time shift exceeds the specified limit in the settings.\nWhat do you want to do ?")
+		message_space = _("The available disk space for time shift is less than specified in the settings.\nWhat do you want to do ?")
 		message_livetv = _("Can't going to live TV!\nSwitch to live TV and restart Timeshift ?")
 		message_nextfile = _("Can't play the next Timeshift file!\nSwitch to live TV and restart Timeshift ?")
-		choice_restart = [(_("Delete the current timeshift buffer and restart timeshift"), "restarttimeshift"),
+		choice_restart = [(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
 						(_("Nothing, just leave this menu"), "no")]
-		choice_save = [(_("Stop timeshift and save timeshift buffer as movie and start recording of current event"), "savetimeshiftandrecord"),
-					(_("Stop timeshift and save timeshift buffer as movie"), "savetimeshift"),
-					(_("Stop timeshift"), "noSave"),
+		choice_save = [(_("Stop time shift and save time shift buffer as movie and start recording of current event"), "savetimeshiftandrecord"),
+					(_("Stop time shift and save time shift buffer as movie"), "savetimeshift"),
+					(_("Stop time shift"), "noSave"),
 					(_("Nothing, just leave this menu"), "no")]
 		choice_livetv = [(_("No"), "nolivetv"),
 						(_("Yes"), "golivetv")]
@@ -1018,7 +1018,7 @@ class InfoBarTimeshift:
 		if freespace < int(config.timeshift.timeshiftCheckFreeSpace.value):
 			for i in list(range(1, self.pts_eventcount + 1)):
 				removeFiles.append(("pts_livebuffer_%s") % i)
-			print("[TIMESHIFT] - less than %s MByte disk space available - try to the deleting all unused timeshift files" % config.timeshift.timeshiftCheckFreeSpace.value)
+			print("[TIMESHIFT] - less than %s MByte disk space available - try to the deleting all unused time shift files" % config.timeshift.timeshiftCheckFreeSpace.value)
 		elif self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value >= 0:
 			if self.event_changed or len(lockedFiles) == 0:
 				for i in list(range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 2)):
@@ -1032,9 +1032,9 @@ class InfoBarTimeshift:
 				try:
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
 				except OSError:
-					statinfo = None # a .del file may have been deleted between 'os.path.exists' and 'os.stat'
+					statinfo = None  # a .del file may have been deleted between 'os.path.exists' and 'os.stat'
 				if (justZapped is True) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
-					# after zapping, remove all regular timeshift files
+					# after zapping, remove all regular time shift files
 					filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 				elif (statinfo is not None) and (filename.endswith(".eit") is False) and (filename.endswith(".meta") is False) and (filename.endswith(".sc") is False) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
@@ -1044,7 +1044,7 @@ class InfoBarTimeshift:
 					if not filename.startswith("timeshift."):
 						filecounter += 1
 					if ((statinfo.st_mtime < (time() - 3600 * config.timeshift.timeshiftMaxHours.value)) or any(filename in s for s in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
-						# print "[TIMESHIFT] - Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename
+						# print "[TIMESHIFT] - Erasing set of old time shift files (base file, .eit, .meta, .sc) %s" % filename
 						filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 						if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, filename)):
@@ -1061,7 +1061,7 @@ class InfoBarTimeshift:
 				elif (statinfo is not None):
 					# remove anything still left over another 24h later
 					if statinfo.st_mtime < (time() - 3600 * (24 + config.timeshift.timeshiftMaxHours.value)):
-						# print "[TIMESHIFT] - Erasing very old timeshift file %s" % filename
+						# print "[TIMESHIFT] - Erasing very old time shift file %s" % filename
 						if filename.endswith(".del") is True:
 							filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 							try:
@@ -1471,7 +1471,7 @@ class InfoBarTimeshift:
 			elif self.pts_lastplaying <= self.pts_currplaying:
 				self.ptsAskUser("nextfile")
 			else:
-				Notifications.AddNotification(MessageBox, _("Can't play the previous timeshift file! You can try again."), MessageBox.TYPE_INFO, timeout=3)
+				Notifications.AddNotification(MessageBox, _("Can't play the previous time shift file! You can try again."), MessageBox.TYPE_INFO, timeout=3)
 				self.doSeek(0)
 				self.setSeekState(self.SEEK_STATE_PLAY)
 
@@ -1542,7 +1542,7 @@ class InfoBarTimeshift:
 		self.posDiff = 0
 
 	def ptsSeekBackTimer(self):
-		self.doSeek(-90000 * 10) # seek ~10s before end
+		self.doSeek(-90000 * 10)  # seek ~10s before end
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.pts_StartSeekBackTimer.start(1000, True)
 
@@ -1579,7 +1579,7 @@ class InfoBarTimeshift:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 
 			if self.isSeekable():
-				Notifications.AddNotification(MessageBox, _("Record started! Stopping timeshift now ..."), MessageBox.TYPE_INFO, timeout=30)
+				Notifications.AddNotification(MessageBox, _("Record started! Stopping time shift now ..."), MessageBox.TYPE_INFO, timeout=30)
 
 			self.switchToLive = False
 			self.stopTimeshiftcheckTimeshiftRunningCallback(True)

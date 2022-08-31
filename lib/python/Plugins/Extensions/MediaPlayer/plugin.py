@@ -190,7 +190,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"ok": (self.ok, _("Add file to playlist")),
+				"ok": (self.ok, _("Add file to play list")),
 				"cancel": (self.exit, _("Exit mediaplayer")),
 			}, -2)
 
@@ -199,16 +199,16 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				"play": (self.xplayEntry, _("Play entry")),
 				"pause": (self.pauseEntry, _("Pause")),
 				"stop": (self.stopEntry, _("Stop entry")),
-				"previous": (self.previousMarkOrEntry, _("Play from previous mark or playlist entry")),
-				"next": (self.nextMarkOrEntry, _("Play from next mark or playlist entry")),
+				"previous": (self.previousMarkOrEntry, _("Play from previous mark or play list entry")),
+				"next": (self.nextMarkOrEntry, _("Play from next mark or play list entry")),
 				"menu": (self.showMenu, _("Menu")),
 				"skipListbegin": (self.skip_listbegin, _("Jump to beginning of list")),
 				"skipListend": (self.skip_listend, _("Jump to end of list")),
-				"prevBouquet": (self.switchLists, _("Switch between filelist/playlist")),
-				"nextBouquet": (self.switchLists, _("Switch between filelist/playlist")),
-				"delete": (self.deletePlaylistEntry, _("Delete playlist entry")),
-				"shift_stop": (self.clear_playlist, _("Clear playlist")),
-				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle playlist")),
+				"prevBouquet": (self.switchLists, _("Switch between file list/play list")),
+				"nextBouquet": (self.switchLists, _("Switch between file list/play list")),
+				"delete": (self.deletePlaylistEntry, _("Delete play list entry")),
+				"shift_stop": (self.clear_playlist, _("Clear play list")),
+				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle play list")),
 				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
 			}, -2)
 
@@ -637,23 +637,23 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			menulist.insert(0, (_("Play audio-CD..."), "audiocd"))
 		if self.currList == "filelist":
 			if self.filelist.canDescent():
-				menulist.append((_("Add directory to playlist"), "copydir"))
+				menulist.append((_("Add directory to play list"), "copydir"))
 			else:
-				menulist.append((_("Add files to playlist"), "copyfiles"))
-			menulist.append((_("Switch to playlist"), "playlist"))
+				menulist.append((_("Add files to play list"), "copyfiles"))
+			menulist.append((_("Switch to play list"), "playlist"))
 			if config.usage.setup_level.index >= 1:  # intermediate+
 				menulist.append((_("Delete file"), "deletefile"))
 		else:
-			menulist.append((_("Switch to filelist"), "filelist"))
-			menulist.append((_("Clear playlist"), "clear"))
+			menulist.append((_("Switch to file list"), "filelist"))
+			menulist.append((_("Clear play list"), "clear"))
 			menulist.append((_("Delete entry"), "deleteentry"))
 			if config.usage.setup_level.index >= 1:  # intermediate+
-				menulist.append((_("Shuffle playlist"), "shuffle"))
+				menulist.append((_("Shuffle play list"), "shuffle"))
 		menulist.append((_("Hide player"), "hide"))
-		menulist.append((_("Load playlist"), "loadplaylist"))
+		menulist.append((_("Load play list"), "loadplaylist"))
 		if config.usage.setup_level.index >= 1:  # intermediate+
-			menulist.append((_("Save playlist"), "saveplaylist"))
-			menulist.append((_("Delete saved playlist"), "deleteplaylist"))
+			menulist.append((_("Save play list"), "saveplaylist"))
+			menulist.append((_("Delete saved play list"), "deleteplaylist"))
 			menulist.append((_("Edit settings"), "settings"))
 		self.timerHideMediaPlayerInfoBar()
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menulist)
@@ -752,7 +752,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.updateCurrentInfo()
 
 	def save_playlist(self):
-		self.session.openWithCallback(self.save_playlist2, InputBox, title=_("Please enter filename (empty = use current date)"), windowTitle=_("Save playlist"), text=self.playlistname)
+		self.session.openWithCallback(self.save_playlist2, InputBox, title=_("Please enter filename (empty = use current date)"), windowTitle=_("Save play list"), text=self.playlistname)
 
 	def save_playlist2(self, name):
 		if name is not None:
@@ -776,7 +776,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			print("Error while scanning subdirs ", e)
 		if config.mediaplayer.sortPlaylists.value:
 			listpath.sort()
-		self.session.openWithCallback(self.PlaylistSelected, ChoiceBox, title=_("Please select a playlist..."), list=listpath)
+		self.session.openWithCallback(self.PlaylistSelected, ChoiceBox, title=_("Please select a play list..."), list=listpath)
 
 	def PlaylistSelected(self, path):
 		if path is not None:
@@ -800,7 +800,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			print("Error while scanning subdirs ", e)
 		if config.mediaplayer.sortPlaylists.value:
 			listpath.sort()
-		self.session.openWithCallback(self.DeletePlaylistSelected, ChoiceBox, title=_("Please select a playlist to delete..."), list=listpath)
+		self.session.openWithCallback(self.DeletePlaylistSelected, ChoiceBox, title=_("Please select a play list to delete..."), list=listpath)
 
 	def DeletePlaylistSelected(self, path):
 		if path is not None:

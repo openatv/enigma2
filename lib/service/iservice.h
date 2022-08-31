@@ -662,7 +662,7 @@ public:
 
 	virtual int isTimeshiftActive()=0;
 	virtual int isTimeshiftEnabled()=0;
-			/* this essentially seeks to the relative end of the timeshift buffer */
+			/* this essentially seeks to the relative end of the time shift buffer */
 	virtual RESULT activateTimeshift()=0;
 	virtual RESULT saveTimeshiftFile()=0;
 	virtual std::string getTimeshiftFilename()=0;

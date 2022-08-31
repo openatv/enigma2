@@ -1263,12 +1263,12 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			{
 				if (m_slowmotion)
 				{
-					eDebug("[eDVBServicePlay] re-apply slowmotion after timeshift file change");
+					eDebug("[eDVBServicePlay] re-apply slowmotion after time shift file change");
 					m_decoder->setSlowMotion(m_slowmotion);
 				}
 				if (m_fastforward)
 				{
-					eDebug("[eDVBServicePlay] re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
+					eDebug("[eDVBServicePlay] re-apply skip %d, ratio %d after time shift file change", m_skipmode, m_fastforward);
 					if (m_skipmode)
 						m_cue->setSkipmode(m_skipmode * 90000); /* convert to 90000 per second */
 					if (m_fastforward != 1)
@@ -1287,7 +1287,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 #if 0
 		if (!m_timeshift_file_next.empty())
 		{
-			eDebug("[eDVBServicePlay] timeshift SOF, switch to next file");
+			eDebug("[eDVBServicePlay] time shift SOF, switch to next file");
 			m_decoder->pause();
 
 			m_first_program_info |= 2;
@@ -1295,7 +1295,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 			r.path = m_timeshift_file_next;
 
-			/* free the timeshift service handler, we need the resources */
+			/* free the time shift service handler, we need the resources */
 			m_service_handler_timeshift.free();
 			resetTimeshift(1);
 
@@ -1315,19 +1315,19 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		{
 			if (m_timeshift_file_next.empty())
 			{
-				eDebug("[eDVBServicePlay] timeshift EOF, so let's go live");
+				eDebug("[eDVBServicePlay] time shift EOF, so let's go live");
 				switchToLive();
 			}
 			else
 			{
-				eDebug("[eDVBServicePlay] timeshift EOF, switch to next file");
+				eDebug("[eDVBServicePlay] time shift EOF, switch to next file");
 
 				m_first_program_info |= 2;
 
 				eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 				r.path = m_timeshift_file_next;
 
-				/* free the timeshift service handler, we need the resources */
+				/* free the time shift service handler, we need the resources */
 				m_service_handler_timeshift.free();
 				resetTimeshift(1);
 
@@ -1454,7 +1454,7 @@ RESULT eDVBServicePlay::stop()
 		saveCuesheet();
 	}
 
-	stopTimeshift(); /* in case timeshift was enabled, remove buffer etc. */
+	stopTimeshift(); /* in case time shift was enabled, remove buffer etc. */
 
 	m_service_handler_timeshift.free();
 	m_service_handler.free();
@@ -1480,7 +1480,7 @@ RESULT eDVBServicePlay::connectEvent(const sigc::slot2<void,iPlayableService*,in
 
 RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 {
-		/* note: we check for timeshift to be enabled,
+		/* note: we check for time shift to be enabled,
 		   not neccessary active. if you pause when timeshift
 		   is not active, you should activate it when unpausing */
 	if ((!m_is_pvr) && (!m_timeshift_enabled))
@@ -1598,7 +1598,7 @@ RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 	return -1;
 }
 
-	/* TODO: when timeshift is enabled but not active, this doesn't work. */
+	/* TODO: when time shift is enabled but not active, this doesn't work. */
 RESULT eDVBServicePlay::getLength(pts_t &len)
 {
 	ePtr<iDVBPVRChannel> pvr_channel;
@@ -1762,7 +1762,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
 			if(tspath == "")
 			{
-				eDebug("[eDVBServicePlay] timeshift could not query ts path from config");
+				eDebug("[eDVBServicePlay] time shift could not query ts path from config");
 				return -4;
 			}
 			tspath.append("/");
@@ -1770,21 +1770,21 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			struct statfs fs;
 			if (statfs(tspath.c_str(), &fs) < 0)
 			{
-				eDebug("[eDVBServicePlay] timeshift %s statfs failed: %m", tspath.c_str());
+				eDebug("[eDVBServicePlay] time shift %s statfs failed: %m", tspath.c_str());
 				return -2;
 			}
 
 			if (((off_t)fs.f_bavail) * ((off_t)fs.f_bsize) < 1024*1024*1024LL)
 			{
-				eDebug("[eDVBServicePlay] timeshift not enough diskspace for timeshift! (less than 1GB)");
+				eDebug("[eDVBServicePlay] time shift not enough diskspace for timeshift! (less than 1GB)");
 				return -3;
 			}
 		}
 		ptr = this;
-		eTrace("[eDVBServicePlay] timeshift return 0");
+		eTrace("[eDVBServicePlay] time shift return 0");
 		return 0;
 	}
-	eTrace("[eDVBServicePlay] timeshift return -1");
+	eTrace("[eDVBServicePlay] time shift return -1");
 	return -1;
 }
 
@@ -2246,7 +2246,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	int rdsPid = apid;
 
-	/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
+	/* if we are not in PVR mode, time shift is not active and we are not in pip mode, check if we need to enable the rds reader */
 	if (!(m_timeshift_active || m_decoder_index || m_have_video_pid || !m_is_primary))
 	{
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
@@ -2542,12 +2542,12 @@ RESULT eDVBServicePlay::startTimeshift()
 	std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
 	if (tspath == "")
 	{
-		eDebug("[eDVBServicePlay] could not query timeshift path");
+		eDebug("[eDVBServicePlay] could not query time shift path");
 		return -5;
 	}
 	if (tspath.empty())
 	{
-		eDebug("[eDVBServicePlay] timeshift path is empty");
+		eDebug("[eDVBServicePlay] time shift path is empty");
 		return -5;
 	}
 	if (tspath[tspath.length()-1] != '/')
@@ -2557,7 +2557,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	strcpy(templ, tspath.c_str());
 	m_timeshift_fd = mkstemp(templ);
 	m_timeshift_file = std::string(templ);
-	eDebug("[eDVBServicePlay] timeshift recording to %s", templ);
+	eDebug("[eDVBServicePlay] time shift recording to %s", templ);
 
 	ofstream fileout;
 	fileout.open("/proc/stb/lcd/symbol_timeshift");
@@ -2625,14 +2625,14 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 
 	if (!m_save_timeshift)
 	{
-		eDebug("[eDVBServicePlay] remove timeshift files");
+		eDebug("[eDVBServicePlay] remove time shift files");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".cuts");
 	}
 	else
 	{
-		eDebug("[eDVBServicePlay] timeshift files not deleted");
+		eDebug("[eDVBServicePlay] time shift files not deleted");
 		m_save_timeshift = 0;
 	}
 	return 0;
@@ -2878,7 +2878,7 @@ void eDVBServicePlay::switchToLive()
 
 	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
 
-	/* free the timeshift service handler, we need the resources */
+	/* free the time shift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 
 	updateDecoder(true);
@@ -2913,8 +2913,8 @@ ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref, int p
 {
 	/*
 	 * NOTE: we cannot use our m_is_stream status, instead we check the reference again.
-	 * It could be that createTsSource is called to start a timeshift on a stream,
-	 * in which case the ref passed here no longer is a url, but a timeshift file instead.
+	 * It could be that createTsSource is called to start a time shift on a stream,
+	 * in which case the ref passed here no longer is a url, but a time shift file instead.
 	 * (but m_is_stream would still be set, because of the ref which was passed to our
 	 * constructor)
 	 */

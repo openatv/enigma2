@@ -27,7 +27,7 @@ config.hdmicec.handle_tv_standby = ConfigSelection(default="standby", choices=ch
 config.hdmicec.handle_tv_input = ConfigSelection(default="disabled", choices=choicelist)
 config.hdmicec.handle_tv_wakeup = ConfigSelection(default="streamrequest", choices={
 	"disabled": _("Disabled"),
-	"wakeup": _("Wakeup"),
+	"wakeup": _("Wake up"),
 	"tvreportphysicaladdress": _("TV physical address report"),
 	"routingrequest": _("Routing request"),
 	"sourcerequest": _("Source request"),

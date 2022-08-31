@@ -13,7 +13,7 @@ self.selectInterface()
         </step>
 
         <step id="selectinterface">
-                <text value="Please select the network interface that you want to use for your internet connection.\n\nPlease press OK to continue." />
+                <text value="Please select the network interface that you want to use for your Internet connection.\n\nPlease press OK to continue." />
                 <displaytext value="Select interface" />
                 <list type="dynamic" source="listInterfaces" evaluation="InterfaceSelectionMade" onselect="InterfaceSelectionMoved" />
                 <code>
@@ -26,7 +26,7 @@ self.checkInterface(self.selectedInterface)
                 </code>
         </step>
         <step id="nwconfig">
-                <text value="Please configure your internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
+                <text value="Please configure your Internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
                 <displaytext value="Configure interface" />
                 <config screen="AdapterSetup" module="NetworkSetup" args="self.selectedInterface" type="ConfigList" />
                 <code>
@@ -53,7 +53,7 @@ self.checkNetwork()
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your %s %s is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
+                <text value="Your %s %s is now ready to use.\n\nYour Internet connection is working now.\n\nPlease press OK to continue." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()
@@ -70,7 +70,7 @@ self.close()
 		<condition>
 self.condition = (self.InterfaceState == False )
 		</condition>
-                <text value="Your internet connection is not working!\nPlease choose what you want to do next." />
+                <text value="Your Internet connection is not working!\nPlease choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()
@@ -118,7 +118,7 @@ self.checkWlanSelection()
                 <condition>
 self.condition = (self.isInterfaceUp == False and self.WlanPluginInstalled == True)
                 </condition>
-                <text value="Your wireless LAN internet connection could not be started!\nHave you attached your USB WLAN Stick?\n\nPlease choose what you want to do next." />
+                <text value="Your wireless LAN Internet connection could not be started!\nHave you attached your USB WLAN Stick?\n\nPlease choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
                 <code>
@@ -144,7 +144,7 @@ self.selectKey("DOWN")
                 </code>
         </step>
         <step id="wlanconfig">
-                <text value="Please configure your internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
+                <text value="Please configure your Internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
                 <displaytext value="Configure interface" />
                 <config screen="AdapterSetup" module="NetworkSetup" args="(self.selectedInterface,self.ap)" type="ConfigList" />
                 <code>
@@ -163,7 +163,7 @@ self.AdapterSetupEnd(self.selectedInterface)
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-                <text value="Your %s %s is now ready to use.\n\nYour internet connection is working now.\n\nPlease press OK to continue." />
+                <text value="Your %s %s is now ready to use.\n\nYour Internet connection is working now.\n\nPlease press OK to continue." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()
@@ -181,7 +181,7 @@ self.close()
 		<condition>
 self.condition = (self.InterfaceState == False )
 		</condition>
-                <text value="Your internet connection is not working!\nPlease choose what you want to do next." />
+                <text value="Your Internet connection is not working!\nPlease choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <code>
 self.clearSelectedKeys()

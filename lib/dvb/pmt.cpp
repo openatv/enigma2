@@ -1053,7 +1053,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 	m_no_pat_entry_delay->stop();
 	m_service_type = type;
 
-		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
+		/* use given service as backup. This is used for time shift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
 
 		/* is this a normal (non PVR) channel? */

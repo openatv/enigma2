@@ -28,6 +28,7 @@ MACHINENAME = BoxInfo.getItem("displaymodel")
 
 USEP = "_________________________________________________"
 
+
 class ImageBackup(Screen):
 
 	skin = """
@@ -214,7 +215,7 @@ class ImageBackup(Screen):
 				print("[Image Backup] SLOT = >%s< " % self.SLOT)
 
 				isNotCurrent = MultiBoot.getCurrentSlotCode() != answer[1]
-				
+
 				if self.RECOVERY and not isNotCurrent:
 					print("[Image Backup] IMAGEDISTRO = >%s<" % self.DISTRO)
 					print("[Image Backup] DISPLAYDISTRO = >%s<" % self.DISPLAYDISTRO)
@@ -310,7 +311,7 @@ class ImageBackup(Screen):
 
 					self.IMAGEVERSION = self.imageInfo(settingsFile, bouquetsTV, bouquetsRadio, isNotCurrent)
 				else:
-					self.IMAGEVERSION = "" # TODO TEST Recovery image
+					self.IMAGEVERSION = ""  # TODO TEST Recovery image
 
 				self.message = "echo -e '\n"
 				if MACHINEBRAND.startswith("A") or MACHINEBRAND.startswith("E") or MACHINEBRAND.startswith("I") or MACHINEBRAND.startswith("O") or MACHINEBRAND.startswith("U") or MACHINEBRAND.startswith("Xt"):
@@ -320,7 +321,7 @@ class ImageBackup(Screen):
 				self.message += _("Version %s %s") % (self.DISTRO, self.DISTROVERSION) + "\n"
 				self.message += "%s\n\n" % USEP
 				self.message += _("Please be patient, a backup will now be made,\n")
-				self.message += _("because of the used filesystem the back-up\n")
+				self.message += _("because of the used file system the back-up\n")
 				self.message += _("will take about 1-15 minutes for this system\n")
 				self.message += "%s\n\n" % USEP
 				if self.RECOVERY:
@@ -545,13 +546,13 @@ class ImageBackup(Screen):
 			self.close()
 
 	def makeEchoCreate(self, txt):
-		return self.makeEcho("%s %s" % (_("Create:"),txt))
+		return self.makeEcho("%s %s" % (_("Create:"), txt))
 
 	def makeEcho(self, txt):
 		return "echo \"%s\"" % txt
 
 	def makeEchoLine(self, nocr=False):
-		return "echo \"%s%s\"" % (USEP,"" if nocr else "\n")
+		return "echo \"%s%s\"" % (USEP, "" if nocr else "\n")
 
 	def makeSpace(self):
 		return "echo \" \""
@@ -729,7 +730,7 @@ class ImageBackup(Screen):
 
 		AboutText += _("Version: %s") % self.DISTROVERSION + "\n"
 		AboutText += _("Build: %s") % self.IMAGEBUILD + "\n"
-		if self.KERNEL: # TODO get slot info
+		if self.KERNEL:  # TODO get slot info
 			AboutText += "%s: %s\n" % (_("Kernel version"), self.KERNEL)
 
 		if self.DRIVERSDATE:
@@ -760,7 +761,7 @@ class ImageBackup(Screen):
 
 		if not isNotCurrent:
 			AboutText += _("\n[Installed Plugins]\n")
-			AboutText += getoutput("opkg list_installed | grep enigma2-plugin-") # TODO get slot info
+			AboutText += getoutput("opkg list_installed | grep enigma2-plugin-")  # TODO get slot info
 		return AboutText
 
 	def getImageData(self, imageDir, isNotCurrent):
