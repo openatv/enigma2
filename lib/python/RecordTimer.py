@@ -110,7 +110,7 @@ class TIMERTYPE:
 	RECORD = 0
 	ZAP = 1
 	ZAP_RECORD = 2
-	
+
 	JUSTPLAY = config.recording.default_timertype.value == "zap"
 	ALWAYS_ZAP = config.recording.default_timertype.value == "zap+record"
 
@@ -1396,7 +1396,8 @@ class RecordTimer(timer.Timer):
 			if timer.vpsplugin_enabled:
 				list.append(' vps_enabled="1"')
 				list.append(' vps_overwrite="%s"' % "1" if timer.vpsplugin_overwrite else "0")
-				list.append(' vps_time="%s"' % str(timer.vpsplugin_time) if timer.vpsplugin_time is not None else "0")
+				vpstime = str(timer.vpsplugin_time) if timer.vpsplugin_time is not None else "0"
+				list.append(' vps_time="%s"' % vpstime)
 
 			list.append('>\n')
 
