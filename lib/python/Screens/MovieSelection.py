@@ -1390,7 +1390,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if path in config.movielist.videodirs.value:
 			if len(path) > 40:
 				path = "...%s" % path[-40:]
-			mbox = self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+			mbox = self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark for '%s'?") % path)
 			mbox.setTitle(self.getTitle())
 		else:
 			config.movielist.videodirs.value += [path]
@@ -1410,7 +1410,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_createdir(self):
 		self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard,
-			title=_("Please enter name of the new directory"),
+			title=_("Please enter a name for the new directory:"),
 			text="")
 
 	def createDirCallback(self, name):
@@ -1428,7 +1428,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		except OSError as e:
 			print("[MovieSelection] Error %s:" % e.errno, e)
 			if e.errno == 17:
-				msg = _("The path %s already exists.") % name
+				msg = _("Error: The path '%s' already exists!") % name
 			else:
 				msg = "%s\n%s" % (_("Error"), str(e))
 		except Exception as e:
@@ -1518,7 +1518,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			except OSError as e:
 				print("[MovieSelection] Error %s:" % e.errno, e)
 				if e.errno == 17:
-					msg = _("The path %s already exists.") % name
+					msg = _("Error: The path '%s' already exists!") % name
 				else:
 					msg = "%s\n%s" % (_("Error"), str(e))
 			except Exception as e:

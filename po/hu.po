@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2181,14 +2181,14 @@ msgstr "Névjegy..."
 msgid "Access point"
 msgstr "Hozzáférési pont"
 
+msgid "Access point:"
+msgstr "Hozzáférési pont:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "A földrajzi helyadatok eléréséhez internetkapcsolat szükséges."
 
 msgid "Accessed:"
 msgstr "Hozzáférhető:"
-
-msgid "Access point:"
-msgstr "Hozzáférési pont:"
 
 msgid "Action"
 msgstr "Művelet"
@@ -2651,7 +2651,7 @@ msgstr "Amlogic távvezérlő"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Kísérlet történik a TV aktuális állapotának rögzítésére. Ha ez a hibás vagy hiányzó állapotüzenetek miatt nem lehetséges, a vevő váratlanul reagálhat. Másrészt igyekszik jobban reagálni a különböző működési feltételekre."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Egy üres fájlnév érvénytelen."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2967,6 +2967,9 @@ msgstr "Automatikus nyelvválasztás"
 msgid "Auto Modes Selected."
 msgstr "Automatikus módok kiválasztva."
 
+msgid "Auto SCART switching"
+msgstr "Automatikus SCART átkapcsolás"
+
 msgid "Auto Timer"
 msgstr "AutoTimer"
 
@@ -2993,9 +2996,6 @@ msgstr "Autofókusz kezdődik..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto SCART switching"
-msgstr "Automatikus SCART átkapcsolás"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3083,10 +3083,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (csak HDTV-címek)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Compatible Bludisc (csak HDTV)"
 
 msgid "BER:"
@@ -3175,11 +3175,11 @@ msgstr "Törlés a háttérben"
 msgid "Background delete speed"
 msgstr "Törlés sebessége"
 
-msgid "Background:"
-msgstr "Háttér:"
-
 msgid "Background selected:"
 msgstr "Háttér bejelölve:"
+
+msgid "Background:"
+msgstr "Háttér:"
 
 msgid "Backup"
 msgstr "Mentés"
@@ -3425,6 +3425,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr "Bootloader frissítése szükséges!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3440,9 +3443,6 @@ msgstr ""
 
 msgid "Boot-up action"
 msgstr "Indításkori művelet"
-
-msgid "Boot loader update required!"
-msgstr "Bootloader frissítése szükséges!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosznia-Hercegovina"
@@ -4111,6 +4111,9 @@ msgstr "Csatorna információ"
 msgid "Channel List"
 msgstr "Csatornalista"
 
+msgid "Channel List Menu"
+msgstr "Csatornalista menü"
+
 msgid "Channel Selection Settings"
 msgstr "Csatorna kiválasztás beállítása"
 
@@ -4150,6 +4153,9 @@ msgstr "MiniTV a csatornalistát mutatja*"
 msgid "Channel list type"
 msgstr "Csatornalista típusa"
 
+msgid "Channel name"
+msgstr "Csatornanév"
+
 msgid "Channel preview mode"
 msgstr "Csatorna előnézeti mód"
 
@@ -4158,6 +4164,9 @@ msgstr "Csatorna választás"
 
 msgid "Channel selection configuration"
 msgstr "Csatorna kiválasztás konfigurálása"
+
+msgid "Channel selection:"
+msgstr "Csatorna kiválasztás:"
 
 msgid "Channel up"
 msgstr "Csatorna léptetés felfelé"
@@ -4176,15 +4185,6 @@ msgstr "Csatorna:"
 
 msgid "ChannelEPG Settings"
 msgstr "Csatorna EPG beállítások"
-
-msgid "Channel List Menu"
-msgstr "Csatornalista menü"
-
-msgid "Channel name"
-msgstr "Csatornanév"
-
-msgid "Channel selection:"
-msgstr "Csatorna kiválasztás:"
 
 msgid "Chap."
 msgstr "Fej."
@@ -4252,11 +4252,11 @@ msgstr ""
 msgid "Children"
 msgstr "Gyermek"
 
-msgid "Children/Youth"
-msgstr "Gyermek/Fiatalság"
-
 msgid "Children's"
 msgstr "Gyerekek"
+
+msgid "Children/Youth"
+msgstr "Gyermek/Fiatalság"
 
 msgid "Chile"
 msgstr "Chile"
@@ -4605,12 +4605,12 @@ msgstr "A felvételi fájlnevek összeállítása"
 msgid "Config"
 msgstr "Konfigurálás"
 
-msgid "Config file name (ok to change):"
-msgstr "Konfig fájl neve (OK változtatás):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "%s konfigurációs fájl mentve."
+
+msgid "Config file name (ok to change):"
+msgstr "Konfig fájl neve (OK változtatás):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -5241,7 +5241,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "A %s mappa létrehozása nem sikerült."
 
 msgid "Creating file system"
@@ -5777,17 +5777,17 @@ msgstr "Megadja az ugrás távolságát a előre ugrásnál. Az értéket meg ke
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Meghatározza, hogy mely gyors előre tekerés sebességet használják a normál értékként. Minden más sebességek és az összes visszatekerési sebességek vannak használva az ugrási időnél."
 
-msgid "Delay after change voltage before switch command"
-msgstr "A feszültség váltás utáni késleltetés a kapcsolási parancs kiadása előtt"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Késleltetés a folyamatos hang némítása után a diseqc parancs előtt"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Késleltetés a diseqc periféria bekapcsolási parancsa után"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Késleltetés a diseqc reset parancs után"
+
+msgid "Delay after change voltage before switch command"
+msgstr "A feszültség váltás utáni késleltetés a kapcsolási parancs kiadása előtt"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Késleltetés a folyamatos hang némítása után a diseqc parancs előtt"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Késleltetés a motorvezérlés engedélyezése után"
@@ -6029,11 +6029,11 @@ msgstr ""
 msgid "Device mounts"
 msgstr "Csatlakoztatott eszközök listája"
 
-msgid "Device: "
-msgstr "Eszköznév: "
-
 msgid "Device name:"
 msgstr "Eszköznév:"
+
+msgid "Device: "
+msgstr "Eszköznév: "
 
 msgid "Devices"
 msgstr "Eszközök"
@@ -6348,7 +6348,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Biztos benne, hogy végleg el szeretné távolítani a kukából?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Biztos benne, hogy el szeretné távolítani a %s mappát a háttértárról?"
 
 #, python-format
@@ -6360,7 +6360,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
 
 #, python-format
@@ -7468,9 +7468,6 @@ msgstr "Nem lehet létrehozni a szükséges könyvtárakat az adathordozón (pl.
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
 
-msgid "Es folgt:"
-msgstr "Az alábbiak szerint:"
-
 msgid "Esperanto"
 msgstr ""
 
@@ -7517,17 +7514,17 @@ msgstr "Eseménynézet menü"
 msgid "Event font size"
 msgstr "Esemény betűmérete"
 
-msgid "Event view menu"
-msgstr "Esemény-nézet menü"
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr "Csak eseménynév"
 
+msgid "Event view menu"
+msgstr "Esemény-nézet menü"
+
 msgid "Event view:"
 msgstr "Eseménynézet:"
+
+msgid "EventViewEPG Actions"
+msgstr ""
 
 msgid "Everyday"
 msgstr "Minden nap"
@@ -7851,10 +7848,10 @@ msgstr "Szolgáltatói keresés"
 msgid "Fast epoch"
 msgstr "Gyors korszak"
 
-msgid "Fast forward speeds"
+msgid "Fast forward"
 msgstr "Előre tekerési sebességek"
 
-msgid "Fast forward"
+msgid "Fast forward speeds"
 msgstr "Előre tekerési sebességek"
 
 msgid "Favorites"
@@ -8271,6 +8268,9 @@ msgstr "Teljes mentés az %s -on"
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr "Teljes képernyős"
+
 msgid "Full transparency"
 msgstr "Teljesen áttetsző"
 
@@ -8279,9 +8279,6 @@ msgstr "Teljes képernyő felbontás"
 
 msgid "FullHD Test"
 msgstr "FullHD teszt"
-
-msgid "Full screen"
-msgstr "Teljes képernyős"
 
 #, fuzzy
 msgid "G"
@@ -8608,20 +8605,20 @@ msgstr "HD csatornák"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "HDMI színmélység"
-
 msgid "HDMI Colorimetry"
 msgstr "HDMI színmérés"
-
-msgid "HDMI color space"
-msgstr "HDMI színtér"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR típus"
 
 msgid "HDMI Recording Settings"
 msgstr "HDMI felvétel"
+
+msgid "HDMI color depth"
+msgstr "HDMI színmélység"
+
+msgid "HDMI color space"
+msgstr "HDMI színtér"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9604,7 +9601,7 @@ msgid "Invalid"
 msgstr "Érvénytelen"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "A kiválasztott mappa érvénytelen: %s"
 
 msgid "Invalid location"
@@ -12731,7 +12728,7 @@ msgstr "Adja meg az új fájlnevet"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Adja meg a fájlnevet (üres = jelenlegi adatok használata)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Kérem, adja meg az új mappa nevét"
 
 msgid "Please enter name of the new symlink"
@@ -14176,7 +14173,7 @@ msgid "Removing Service"
 msgstr "Csatorna Eltávolítása"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "%s mappák eltávolítása sikertelen. (Lehet nem üres)"
 
 msgid "Removing partition table"
@@ -16018,11 +16015,11 @@ msgstr "Állítsa be az azonnali felvételek alapértelmezett helyét. Új helye
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
 msgid "Set the default sorting method."
 msgstr "Alapértelmezett rendezési mód beállítása."
@@ -17171,6 +17168,9 @@ msgstr "Kinézet választó (Skin)"
 msgid "Skins"
 msgstr "Kinézetek"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Internet-kapcsolat ellenőrzésének mellőzése (automatikus csomag-telepítés is tiltva lesz)"
+
 msgid "Skip back"
 msgstr "Vissza kihagyása"
 
@@ -17179,9 +17179,6 @@ msgstr "Üres csatornák átugrása"
 
 msgid "Skip forward"
 msgstr "Előre kihagyása"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Internet-kapcsolat ellenőrzésének mellőzése (automatikus csomag-telepítés is tiltva lesz)"
 
 msgid "Skip selection"
 msgstr "Kinézet választás"
@@ -17788,9 +17785,6 @@ msgstr "Próbálkozások befejezése ennyi sikeres transzponder után"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-msgid "Stop timer recording"
-msgstr "Az időzített felvétel megállítása"
-
 msgid "Stop time shift"
 msgstr "Timeshift leállítása"
 
@@ -17802,6 +17796,9 @@ msgstr "Állítsa le a Timeshift-et, és mentse el a Timeshift puffert, mint Fel
 
 msgid "Stop time shift while recording"
 msgstr "Felvétel indításakor a Timeshift megálljon?"
+
+msgid "Stop timer recording"
+msgstr "Az időzített felvétel megállítása"
 
 msgid "Stopped"
 msgstr "Leállítva"
@@ -18638,7 +18635,7 @@ msgstr ""
 "Kérem, telepítse fel."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "A %s útvonal már létezik."
 
 msgid "The pin code you entered is wrong."
@@ -18756,9 +18753,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "Nincs jel!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Lehet, hogy nincs elég hely a kiválasztott partíción.\n"
 "Biztos, hogy folytatni szeretné?"
@@ -19390,10 +19385,6 @@ msgstr "A lemezkép visszaállítása:"
 msgid "Today"
 msgstr "Ma"
 
-#, fuzzy
-msgid "Toggles between tv and radio"
-msgstr "A tv és a rádió közötti váltás ..."
-
 msgid "Toggle Digital downmix..."
 msgstr "Váltás a Digitális lekeverésre..."
 
@@ -19449,6 +19440,10 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Csatorna nevek elrendezése"
 
+#, fuzzy
+msgid "Toggles between tv and radio"
+msgstr "A tv és a rádió közötti váltás ..."
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -19458,14 +19453,14 @@ msgstr "Tokelau-szigetek"
 msgid "Tone amplitude"
 msgstr "Tone erősítés"
 
-msgid "Tone mode"
-msgstr "Tone mód"
-
 msgid "Tone burst"
 msgstr "Tone burst"
 
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+msgid "Tone mode"
+msgstr "Tone mód"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -19987,6 +19982,9 @@ msgstr "Frissítési késleltetés az Eseményeknek a listában. A listában val
 msgid "Update failed!"
 msgstr "A frissítés sikertelen!"
 
+msgid "Update feed not available."
+msgstr "Frissítő szerver nem elérhető."
+
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
 
@@ -19998,7 +19996,7 @@ msgstr "A frissítés hibásnak bizonyult !!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Frissítés sikeres!\n"
 "A Bootloader aktuális!"
@@ -20014,9 +20012,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-msgid "Update feed not available."
-msgstr "Frissítő szerver nem elérhető."
 
 msgid "Updates available:"
 msgstr "Elérhető frissítések:"
@@ -20789,12 +20784,6 @@ msgstr "Várakozás a partícióra"
 msgid "Wake up"
 msgstr "Felébresztés"
 
-msgid "Wake up to standby"
-msgstr "Felébresztés készenléti módból"
-
-msgid "Wakeup"
-msgstr "Felébresztés"
-
 msgid "Wake up TV from standby"
 msgstr "A TV felébresztése készenléti módból"
 
@@ -20803,6 +20792,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Ébresztési idő mielőtt a Felvétel időzítő elindul [perc]"
+
+msgid "Wake up to standby"
+msgstr "Felébresztés készenléti módból"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Az AV vevő egység felébresztése a készenléti állapotból"
@@ -21154,7 +21146,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Hova szeretné elmenteni a beállításait?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
 
 msgid "Which event do you want to save permanently?"
@@ -21622,6 +21614,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "A készülék észleli a CI üzemmódot, vagy csak a beállított CI módban dolgozik."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Az internetkapcsolata nem működik!\n"
+"Kérem, válassza ki, mi legyen a teendő."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "A vevőberendezés szoftverproblémát észlelt. Az utolsó újraindítás óta %d alkalommal történt.\n"
@@ -21653,13 +21652,6 @@ msgid "Your existing IceTV password."
 msgstr "A meglévő IceTV jelszavad."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"A előlapi kijelző frissülni fog.\n"
-"Ez eltarthat néhány percig"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21674,6 +21666,13 @@ msgid ""
 msgstr ""
 "A frontprocesszor frissítve lesz.\n"
 "Kérem, várjon, míg a(z) %s %s készülék újraindul.\n"
+"Ez eltarthat néhány percig"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"A előlapi kijelző frissülni fog.\n"
 "Ez eltarthat néhány percig"
 
 #, python-format
@@ -21701,13 +21700,6 @@ msgstr ""
 "\n"
 "\n"
 "Még frissíteni szeretné?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Az internetkapcsolata nem működik!\n"
-"Kérem, válassza ki, mi legyen a teendő."
 
 msgid "Your network configuration has been activated."
 msgstr "A hálózati konfiguráció aktiválva lett."
@@ -21744,9 +21736,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "UGRÁS"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "NAGYÍTÁS"
@@ -21856,6 +21845,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 Beállítások]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[kedvencek módosítása]"
+
 msgid "[Image Info]\n"
 msgstr "[Lemezkép Információ]\n"
 
@@ -21870,9 +21862,6 @@ msgstr "[alternatív módosítás]"
 
 msgid "[bouquet edit]"
 msgstr "[Csatornacsomag szerkesztés]"
-
-msgid "[Favorite Edit]"
-msgstr "[kedvencek módosítása]"
 
 msgid "[move mode]"
 msgstr "[mozgatás mód]"
@@ -22105,11 +22094,11 @@ msgstr "hangerő fel"
 msgid "chapters"
 msgstr "jelenetek"
 
-msgid "children's/youth program (general)"
-msgstr "általános gyermekműsor"
-
 msgid "children's (general)"
 msgstr "gyermekek (általános)"
+
+msgid "children's/youth program (general)"
+msgstr "általános gyermekműsor"
 
 msgid "clip overscan / letterbox borders"
 msgstr "clip overscan / letterbox határok"
@@ -22898,7 +22887,7 @@ msgstr "csatornacsomag eltávolítása a gyermekzár védelem alól"
 msgid "remove cable services"
 msgstr "kábeles szolgáltatás eltávolítása"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "mappa eltávolítása"
 
 msgid "remove entry"
@@ -23152,7 +23141,7 @@ msgstr "kapcsoljon 12-esből 8 karakteres megjelenítési módra"
 msgid "switch Nand and SDcard"
 msgstr "kapcsoló Nand és SDcard"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "átkapcsolás a bookmarkokra"
 
 msgid "switch to the next angle"
@@ -23396,172 +23385,3 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Favourites"
-#~ msgstr "Kedvencek"
-
-#~ msgid "Polarisation"
-#~ msgstr "Polarizáció"
-
-#, fuzzy
-#~ msgid "Quick Select Actions"
-#~ msgstr "Gyors műveletek"
-
-#~ msgid "Size:"
-#~ msgstr "Méret:"
-
-#~ msgid "Size: "
-#~ msgstr "Méret: "
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Ennyi percig maradjon látható az EPG-ben a múlt. Hasznos lehet ha egy lejárt, vagy egy elcsúszott műsorról szeretne tájékozódni."
-
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Konfigurálja az idő előzményeit ami meg lesz jelenítve."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Elmúlt EPG adat tárolása eddig"
-
-#~ msgid "<Unknown>"
-#~ msgstr "<ismeretlen>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Ismétlődő időzítés vagy csak egyszeri?"
-
-#~ msgid "At End:"
-#~ msgstr "Vége:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "A csatorna nem szerepel a csatorna listában"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Válasszon egy címkét a felvétel könnyű megtalálásához."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Válasszon a Napi, Heti, Hétköznap vagy a felhasználó által definiált között."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Válasszon a felvétel és az odakapcsolás között."
-
-#~ msgid "Current location"
-#~ msgstr "Aktuális hely"
-
-#~ msgid "Display Setup"
-#~ msgstr "Kijelző beállítás"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Biztos benne, hogy törölni szeretné a felvételt?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Új elem hozzáadása"
-
-#~ msgid "Extended settings"
-#~ msgstr "Haladó beállítások"
-
-#~ msgid "Infobar:"
-#~ msgstr "Információs sáv:"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Kérem, adja meg az új leírást:"
-
-#~ msgid "PowerTimer Entry"
-#~ msgstr "PowerTimer bejegyzés"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Töröljem a befejezett idözítéseket?"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "Második infosáv"
-
-#~ msgid "Secondinfobar:"
-#~ msgstr "Második információs sáv:"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "Csatorna kiválasztása melyről fel szeretne venni"
-
-#~ msgid "Select of the number"
-#~ msgstr "Mennyi IP cím legyen"
-
-#~ msgid "Select target folder"
-#~ msgstr "Válassza ki a célmappát"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Állítsa be a csatornát ehhez a időzítőhez."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Állítsa be az időzítés kezdetének dátumát."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "Állítsa be a felvétel leírását."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "Állítsa be a felvétel nevét."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "Állítsa be az időzítés kezdetének dátumát., mikor induljon..."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "Állítsa be az időzítés záró dátumát., mikor álljon meg..."
-
-#~ msgid "Sleep delay"
-#~ msgstr "Elalvás késleltetése"
-
-#~ msgid "Starting on"
-#~ msgstr "Kezdve"
-
-#~ msgid "Time range:"
-#~ msgstr "Időskála:"
-
-#~ msgid "Timer"
-#~ msgstr "Időzítő"
-
-#~ msgid "Timer Overview"
-#~ msgstr "Időzítések áttekintése"
-
-#~ msgid "Weekday"
-#~ msgstr "Hétköznap"
-
-#~ msgid "Weekend"
-#~ msgstr "Hétvége"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Mi történjen a felvétel után."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Hova legyen elmentve a felvétel?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Igen, törölje az Időzítő listából"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Igen, törölje az Időzítő listáról és törölje a felvételt"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Nem választott ki csatornát, ahonnan történjen a felvétel."
-
-#~ msgid "Zapped"
-#~ msgstr "ugrott"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "automatikus kikapcsolás"
-
-#~ msgid "auto standby"
-#~ msgstr "automatikus készenléti mód"
-
-#~ msgid "daily"
-#~ msgstr "naponta"
-
-#~ msgid "mins"
-#~ msgstr "perc"
-
-#~ msgid "reboot system"
-#~ msgstr "újraindítsa a rendszert"
-
-#~ msgid "wakeup"
-#~ msgstr "felébresztés"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "felébresztés készenléti állapotba"
-
-#~ msgid "weekly"
-#~ msgstr "hetente"

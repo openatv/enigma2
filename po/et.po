@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2161,14 +2161,14 @@ msgstr "Süsteemist"
 msgid "Access point"
 msgstr ""
 
+msgid "Access point:"
+msgstr "Tugijaam:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
 msgstr "Pöördutud:"
-
-msgid "Access point:"
-msgstr "Tugijaam:"
 
 msgid "Action"
 msgstr ""
@@ -2637,7 +2637,7 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Tühi failinimi ei ole lubatud."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2960,6 +2960,9 @@ msgstr "Automaatsed keelevalikud"
 msgid "Auto Modes Selected."
 msgstr "Automaatsed režiimid valitud."
 
+msgid "Auto SCART switching"
+msgstr "Autom. SCART ümberlülitus"
+
 msgid "Auto Timer"
 msgstr "Autotaimer"
 
@@ -2986,9 +2989,6 @@ msgstr "Autofookus käivitub..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto SCART switching"
-msgstr "Autom. SCART ümberlülitus"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3077,10 +3077,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "eKr%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (ainult HDTV)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV ühilduv Bludisc (ainult HDTV)"
 
 #
@@ -3171,11 +3171,11 @@ msgstr "Taustal kustutamise valikud"
 msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
-msgid "Background:"
-msgstr "Taust:"
-
 msgid "Background selected:"
 msgstr "Valitud taust:"
+
+msgid "Background:"
+msgstr "Taust:"
 
 msgid "Backup"
 msgstr "Varundamine"
@@ -3426,6 +3426,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr "Vajalik on alglaaduri uuendus!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3442,9 +3445,6 @@ msgstr ""
 # boot-up action
 msgid "Boot-up action"
 msgstr "Tegevus alglaadimisel"
-
-msgid "Boot loader update required!"
-msgstr "Vajalik on alglaaduri uuendus!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia ja Hertsegoviina"
@@ -4125,6 +4125,10 @@ msgstr "Kanaliinfo"
 msgid "Channel List"
 msgstr "Kanalinimekiri"
 
+#
+msgid "Channel List Menu"
+msgstr "Kanalinimekirja menüü"
+
 msgid "Channel Selection Settings"
 msgstr "Kanalivaliku seaded"
 
@@ -4165,6 +4169,9 @@ msgstr "MiniTV kanalinimekirjas"
 msgid "Channel list type"
 msgstr "Kanalinimekirja stiil"
 
+msgid "Channel name"
+msgstr "Kanali nimi"
+
 msgid "Channel preview mode"
 msgstr "Kanali eelvaatlus"
 
@@ -4173,6 +4180,9 @@ msgstr "Kanalivalik"
 
 msgid "Channel selection configuration"
 msgstr "Kanalivaliku seaded"
+
+msgid "Channel selection:"
+msgstr "Kanalivalik:"
 
 msgid "Channel up"
 msgstr "CH"
@@ -4191,16 +4201,6 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanali EPG seaded"
-
-#
-msgid "Channel List Menu"
-msgstr "Kanalinimekirja menüü"
-
-msgid "Channel name"
-msgstr "Kanali nimi"
-
-msgid "Channel selection:"
-msgstr "Kanalivalik:"
 
 msgid "Chap."
 msgstr "Peatükk."
@@ -4269,12 +4269,12 @@ msgstr ""
 msgid "Children"
 msgstr "Tšiili"
 
-msgid "Children/Youth"
-msgstr "Lapsed/noored"
-
 #, fuzzy
 msgid "Children's"
 msgstr "Tšiili"
+
+msgid "Children/Youth"
+msgstr "Lapsed/noored"
 
 msgid "Chile"
 msgstr "Tšiili"
@@ -4628,12 +4628,12 @@ msgstr "Salvestuste nime kuju"
 msgid "Config"
 msgstr "Seadistamine"
 
-msgid "Config file name (ok to change):"
-msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Seadistusfail %s talletati."
+
+msgid "Config file name (ok to change):"
+msgstr "Seadistusfaili nimi (muutmiseks vajuta OK):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -5277,7 +5277,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Kataloogi %s loomine nurjus."
 
 msgid "Creating file system"
@@ -5820,17 +5820,17 @@ msgstr "Määrab edasihüppe pikkuse. Väärtus korrutatakse tagasikerimise kiir
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Määrab, milliseid kiirusi kasutatakse tavalisel kerimisel. Kõik muud edasi/tagasikerimise kiirused kasutavad ajahüppeid."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Viiteaeg pinge muutuse ja lülituskäsu vahel"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Viiteaeg pidevtooni keelamise ja diseqc käsu vahel"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Viiteaeg pärast diseqc perifeerset sisselülituskäsku"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Viiteaeg pärast diseqc lähtestamise käsku"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Viiteaeg pinge muutuse ja lülituskäsu vahel"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Viiteaeg pidevtooni keelamise ja diseqc käsu vahel"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Viiteaeg pinge lubamise ja ajamikäsu vahel"
@@ -6075,11 +6075,11 @@ msgstr ""
 msgid "Device mounts"
 msgstr "Haakepunktid"
 
-msgid "Device: "
-msgstr "Andmekandja: "
-
 msgid "Device name:"
 msgstr "Seadme nimi:"
+
+msgid "Device: "
+msgstr "Andmekandja: "
 
 msgid "Devices"
 msgstr "Seadmed"
@@ -6404,7 +6404,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Kas kustutada lõplikult prügikastist?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Kas kustutada kataloog %s kõvakettalt?"
 
 #, python-format
@@ -6416,7 +6416,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Kas eemaldada \"%s\" taimer?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Kas kustutada %s järjehoidja?"
 
 #, python-format
@@ -7555,9 +7555,6 @@ msgstr "Nõutud kataloogide loomine andmekandjal (USB pulk või kõvaketas) nurj
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -7605,17 +7602,17 @@ msgstr "Saateinfo menüü"
 msgid "Event font size"
 msgstr "Saatenime tähesuurus"
 
-msgid "Event view menu"
-msgstr "Saateinfo menüü"
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr "Ainult saate nimi"
 
+msgid "Event view menu"
+msgstr "Saateinfo menüü"
+
 msgid "Event view:"
 msgstr "Saateinfo:"
+
+msgid "EventViewEPG Actions"
+msgstr ""
 
 msgid "Everyday"
 msgstr "Iga päev"
@@ -7943,11 +7940,11 @@ msgstr "Kiirotsing"
 msgid "Fast epoch"
 msgstr "Kiire kerimine"
 
-msgid "Fast forward speeds"
-msgstr "Edasikerimise kiirused"
-
 msgid "Fast forward"
 msgstr "Edasikerimine"
+
+msgid "Fast forward speeds"
+msgstr "Edasikerimise kiirused"
 
 msgid "Favorites"
 msgstr "Favorites"
@@ -8371,6 +8368,10 @@ msgstr "Püsivaratõmmis asukohta %s"
 msgid "Full factory reset"
 msgstr ""
 
+#
+msgid "Full screen"
+msgstr "Täisekraan"
+
 msgid "Full transparency"
 msgstr "Täiesti läbipaistev"
 
@@ -8380,10 +8381,6 @@ msgstr "Täisekraani lahutus"
 
 msgid "FullHD Test"
 msgstr "FullHD test"
-
-#
-msgid "Full screen"
-msgstr "Täisekraan"
 
 #, fuzzy
 msgid "G"
@@ -8713,20 +8710,20 @@ msgstr "HD kanalid"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "HDMI värvisügavus"
-
 msgid "HDMI Colorimetry"
 msgstr "HDMI värviprofiil"
-
-msgid "HDMI color space"
-msgstr "HDMI värviruum"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR tüüp"
 
 msgid "HDMI Recording Settings"
 msgstr "HDMI salvestus"
+
+msgid "HDMI color depth"
+msgstr "HDMI värvisügavus"
+
+msgid "HDMI color space"
+msgstr "HDMI värviruum"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9732,7 +9729,7 @@ msgid "Invalid"
 msgstr "Vigane"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Valiti vigane kaust: %s"
 
 msgid "Invalid location"
@@ -12958,7 +12955,7 @@ msgstr "Sisesta uus faili nimi"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Sisesta faili nimi (tühi = tänane kuupäev)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Sisesta uue kataloogi nimi"
 
 msgid "Please enter name of the new symlink"
@@ -14440,7 +14437,7 @@ msgid "Removing Service"
 msgstr "Teenuse eemaldamine"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Kataloogi eemaldamine %s nurjus. (Ehk ei ole tühi?)"
 
 msgid "Removing partition table"
@@ -16313,11 +16310,11 @@ msgstr "Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta '
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid "Set the default sorting method."
 msgstr "Määra järjestusviis."
@@ -17493,6 +17490,9 @@ msgstr "Kujunduse valik"
 msgid "Skins"
 msgstr "Kujundused"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
+
 msgid "Skip back"
 msgstr "Tagasihüpe"
 
@@ -17501,9 +17501,6 @@ msgstr "Tühje kanaleid ei kuvata"
 
 msgid "Skip forward"
 msgstr "Edasihüpe"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
 
 msgid "Skip selection"
 msgstr "Jäta valitud vahele"
@@ -18123,9 +18120,6 @@ msgstr "Peata testimine pärast # leitud transponderit"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-msgid "Stop timer recording"
-msgstr "Peata taimeriga salvestamine"
-
 msgid "Stop time shift"
 msgstr "Peata ajanihe"
 
@@ -18137,6 +18131,9 @@ msgstr "Lõpeta ajanihe, talleta ajanihke puhver ja alusta käesoleva saate salv
 
 msgid "Stop time shift while recording"
 msgstr "Ajanihke peatamine salvestamise ajal"
+
+msgid "Stop timer recording"
+msgstr "Peata taimeriga salvestamine"
 
 msgid "Stopped"
 msgstr "Peatatud"
@@ -18981,7 +18978,7 @@ msgstr ""
 "Paigalda see."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Rada %s on juba olemas."
 
 msgid "The pin code you entered is wrong."
@@ -19100,9 +19097,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "Lukustamiseks puudub signaal!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Valitud partitsioonil ei pruugi olla piisavalt vaba ruumi.\n"
 "Kas soovid jätkata?"
@@ -19763,10 +19758,6 @@ msgstr "Püsivara taastamiseks:"
 msgid "Today"
 msgstr "Täna"
 
-#, fuzzy
-msgid "Toggles between tv and radio"
-msgstr "TV / Raadio lüliti"
-
 msgid "Toggle Digital downmix..."
 msgstr "Digital > stereo lüliti"
 
@@ -19822,6 +19813,10 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Kanalinime asukoht"
 
+#, fuzzy
+msgid "Toggles between tv and radio"
+msgstr "TV / Raadio lüliti"
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -19831,14 +19826,14 @@ msgstr "Tokelau"
 msgid "Tone amplitude"
 msgstr "22KHz-helitugevus"
 
-msgid "Tone mode"
-msgstr "22KHz-toon"
-
 msgid "Tone burst"
 msgstr "Toonimpulss"
 
 msgid "Tone burst A/B"
 msgstr "Toonimpulss A/B"
+
+msgid "Tone mode"
+msgstr "22KHz-toon"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -20375,6 +20370,9 @@ msgstr "Viiteaeg saadete uuendamiseks nimekirjas. Nimekirjas kerimine on suurema
 msgid "Update failed!"
 msgstr "Uuendamine nurjus!"
 
+msgid "Update feed not available."
+msgstr "Uuenduslink pole saadaval."
+
 msgid "Update finished!"
 msgstr "Uuendamine tehtud!"
 
@@ -20386,7 +20384,7 @@ msgstr "Uuendus on teatatud vigaseks !!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Uuendamine tehtud!\n"
 "Alglaadur on nüüd ajakohane!"
@@ -20402,9 +20400,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-msgid "Update feed not available."
-msgstr "Uuenduslink pole saadaval."
 
 #
 msgid "Updates available:"
@@ -21198,12 +21193,6 @@ msgstr "Partitsiooni ootel"
 msgid "Wake up"
 msgstr "Ärata"
 
-msgid "Wake up to standby"
-msgstr "Ärata ooteseisundisse"
-
-msgid "Wakeup"
-msgstr "Käivita"
-
 msgid "Wake up TV from standby"
 msgstr "Käivita teler ooteseisundist"
 
@@ -21212,6 +21201,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Käivitus enne taimeri algust (min)"
+
+msgid "Wake up to standby"
+msgstr "Ärata ooteseisundisse"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "AV ressiiveri äratus ooteseisundist"
@@ -21577,7 +21569,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha varukoopia seadistustest?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kuhu talletada ajutised ajanihke failid?"
 
 msgid "Which event do you want to save permanently?"
@@ -22054,6 +22046,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Vastuvõtja tuvastab CI režiimi ise või töötab ainult pärandrežiimis."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Internetiühendus ei tööta!\n"
+"Otsusta, mida soovid teha edasi."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Vastuvõtjal tuvastati tarkvaraline probleem. Pärast taaskäivitust on see juhtunud %d korda.\n"
@@ -22085,13 +22084,6 @@ msgid "Your existing IceTV password."
 msgstr ""
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Esipaneeli uuendamine\n"
-"See võib kesta mõne minuti"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -22107,6 +22099,13 @@ msgstr ""
 "Esiprotsessorit uuendatakse\n"
 "Oota %s %s taaskäivitumist\n"
 "See võib võtta mõne minuti"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Esipaneeli uuendamine\n"
+"See võib kesta mõne minuti"
 
 # SoftwareManager
 #, python-format
@@ -22133,13 +22132,6 @@ msgstr ""
 "\n"
 "\n"
 "Kas oled kindel, et soovid uuendada?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Internetiühendus ei tööta!\n"
-"Otsusta, mida soovid teha edasi."
 
 msgid "Your network configuration has been activated."
 msgstr "Võrguseadistus on aktiveeritud."
@@ -22178,9 +22170,6 @@ msgstr "Youtube TV"
 #
 msgid "ZAP"
 msgstr "Kanalivahetus"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "ZOOM"
@@ -22293,6 +22282,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 seadistused]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[lemmikute muutmine]"
+
 msgid "[Image Info]\n"
 msgstr "[Püsivara info]\n"
 
@@ -22307,9 +22299,6 @@ msgstr "[asenduskanalite muutmine]"
 
 msgid "[bouquet edit]"
 msgstr "[lemmiknimekirjade muutmine]"
-
-msgid "[Favorite Edit]"
-msgstr "[lemmikute muutmine]"
 
 msgid "[move mode]"
 msgstr "[liigutamine]"
@@ -22549,11 +22538,11 @@ msgstr "Heli kõvemaks"
 msgid "chapters"
 msgstr "peatükid"
 
-msgid "children's/youth program (general)"
-msgstr "laste/noortesaade"
-
 #, fuzzy
 msgid "children's (general)"
+msgstr "laste/noortesaade"
+
+msgid "children's/youth program (general)"
 msgstr "laste/noortesaade"
 
 msgid "clip overscan / letterbox borders"
@@ -23370,7 +23359,7 @@ msgstr "Eemalda lemmiknimekirja lukustus"
 msgid "remove cable services"
 msgstr "Eemalda kaabelvõrgu kanalid"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "Kustuta kataloog"
 
 msgid "remove entry"
@@ -23627,7 +23616,7 @@ msgstr "Vaheta 12 > 8 tähemärgi kuvamisele"
 msgid "switch Nand and SDcard"
 msgstr "Nand ja SD kaardi vahetus"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "Ava järjehoidjad"
 
 msgid "switch to the next angle"

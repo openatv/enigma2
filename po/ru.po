@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-08-30 15:39+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2161,14 +2161,14 @@ msgstr "О программе..."
 msgid "Access point"
 msgstr "Точка доступа"
 
+msgid "Access point:"
+msgstr "Точка доступа:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Для доступа к информации о геолокации требуется подключение к Интернету."
 
 msgid "Accessed:"
 msgstr "Доступ:"
-
-msgid "Access point:"
-msgstr "Точка доступа:"
 
 msgid "Action"
 msgstr "Действие"
@@ -2629,7 +2629,7 @@ msgstr "Amlogic пульт"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Предпринята попытка зафиксировать текущий статус ТВ. Если это невозможно из-за неправильных или отсутствующих сообщений о состоянии, это может привести к неожиданному ответу получателя. С другой стороны, старается лучше реагировать на разные условия эксплуатации."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Пустое имя недопустимо."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2942,6 +2942,9 @@ msgstr "Автоматический выбор языка"
 msgid "Auto Modes Selected."
 msgstr "Выбраны автоматические режимы."
 
+msgid "Auto SCART switching"
+msgstr "Автопереключение SCART"
+
 msgid "Auto Timer"
 msgstr "Авто таймер"
 
@@ -2968,9 +2971,6 @@ msgstr "Автофокусировка началась..."
 
 msgid "Auto install log"
 msgstr "Лог автоматической установки"
-
-msgid "Auto SCART switching"
-msgstr "Автопереключение SCART"
 
 msgid "Auto shut down"
 msgstr "Автоматическое выключение"
@@ -3057,10 +3057,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (Только для заголовков HDTV)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV совместимый Blu-ray диск (только HDTV)"
 
 msgid "BER:"
@@ -3149,11 +3149,11 @@ msgstr "Удаление в фоновом режиме"
 msgid "Background delete speed"
 msgstr "Скорость удаления в фоновом режиме"
 
-msgid "Background:"
-msgstr "Фон:"
-
 msgid "Background selected:"
 msgstr "Фон выбран:"
+
+msgid "Background:"
+msgstr "Фон:"
 
 msgid "Backup"
 msgstr "Рез.копирование"
@@ -3396,6 +3396,9 @@ msgstr "Идентификатор загрузки"
 msgid "Boot information"
 msgstr "Информация о загрузке"
 
+msgid "Boot loader update required!"
+msgstr "Требуется обновление загрузчика!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr "Информация о загруженном слоте для %s %s"
@@ -3411,9 +3414,6 @@ msgstr "Время загрузки и местное время"
 
 msgid "Boot-up action"
 msgstr "Действие при старте системы"
-
-msgid "Boot loader update required!"
-msgstr "Требуется обновление загрузчика!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Босния и Герцеговина"
@@ -4090,6 +4090,9 @@ msgstr "Информация канала"
 msgid "Channel List"
 msgstr "Список каналов"
 
+msgid "Channel List Menu"
+msgstr "Меню списка каналов"
+
 msgid "Channel Selection Settings"
 msgstr "Список каналов"
 
@@ -4129,6 +4132,9 @@ msgstr "Показать список каналов MiniTV*"
 msgid "Channel list type"
 msgstr "Тип списка каналов"
 
+msgid "Channel name"
+msgstr "Имя канала"
+
 msgid "Channel preview mode"
 msgstr "Режим предпросмотра канала"
 
@@ -4137,6 +4143,9 @@ msgstr "Выбор канала"
 
 msgid "Channel selection configuration"
 msgstr "Настройки селектора каналов"
+
+msgid "Channel selection:"
+msgstr "Выбор канала:"
 
 msgid "Channel up"
 msgstr "Канал вверх"
@@ -4155,15 +4164,6 @@ msgstr "Канал"
 
 msgid "ChannelEPG Settings"
 msgstr "Настройки ТВ-гида"
-
-msgid "Channel List Menu"
-msgstr "Меню списка каналов"
-
-msgid "Channel name"
-msgstr "Имя канала"
-
-msgid "Channel selection:"
-msgstr "Выбор канала:"
 
 msgid "Chap."
 msgstr "Глава."
@@ -4230,11 +4230,11 @@ msgstr "Чичева / Чева / Ньянджа"
 msgid "Children"
 msgstr "Дети"
 
-msgid "Children/Youth"
-msgstr "Дети/Молодежь"
-
 msgid "Children's"
 msgstr "Детский"
+
+msgid "Children/Youth"
+msgstr "Дети/Молодежь"
 
 msgid "Chile"
 msgstr "Чили"
@@ -4581,12 +4581,12 @@ msgstr "Тип наименования для записей"
 msgid "Config"
 msgstr "Опции"
 
-msgid "Config file name (ok to change):"
-msgstr "Имя файла конфигурации (можно изменить):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Конфигурационный файл %s сохранён."
+
+msgid "Config file name (ok to change):"
+msgstr "Имя файла конфигурации (можно изменить):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -5212,7 +5212,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Ошибка создания жёсткой ссылки таймшифта!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Не удалось создать каталог %s."
 
 msgid "Creating file system"
@@ -5739,17 +5739,17 @@ msgstr "Определяет временной интервал перемот�
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Определяет скорость перемотки вперёд в нормальном режиме. Остальные скорости (вперёд и назад) будут использовать временные интервалы."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Задержка после изменения напряжения команд переключения"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Задержка после непрерывного сигнала отключения до DiSEqC"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Задержка после вкл питания периферийной DiSEqC команды"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Задержка после команды сброса DiSEqC"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Задержка после изменения напряжения команд переключения"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Задержка после непрерывного сигнала отключения до DiSEqC"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Задержка команд после вкл повышенного напряжения мотора"
@@ -5988,11 +5988,11 @@ msgstr "Идентификатор устройства"
 msgid "Device mounts"
 msgstr "Подключение устройства"
 
-msgid "Device: "
-msgstr "Устройство "
-
 msgid "Device name:"
 msgstr "Имя устройства"
+
+msgid "Device: "
+msgstr "Устройство "
 
 msgid "Devices"
 msgstr "Устройства"
@@ -6310,7 +6310,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Действительно хотите навсегда удалить из корзины?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Действительно хотите удалить каталог %s с диска?"
 
 #, python-format
@@ -6322,7 +6322,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Действительно хотите удалить таймер %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Действительно хотите удалить закладку %s?"
 
 #, python-format
@@ -7431,9 +7431,6 @@ msgstr "Невозможно создать необходимые катало�
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
 
-msgid "Es folgt:"
-msgstr "Далее:"
-
 msgid "Esperanto"
 msgstr "Эсперанто"
 
@@ -7479,17 +7476,17 @@ msgstr "Меню просмотра описания передачи"
 msgid "Event font size"
 msgstr "Размер шрифта передачи"
 
-msgid "Event view menu"
-msgstr "Меню просмотра описания передачи"
-
-msgid "EventViewEPG Actions"
-msgstr "Действия EPG с просмотром событий"
-
 msgid "Event name only"
 msgstr "Только название передачи"
 
+msgid "Event view menu"
+msgstr "Меню просмотра описания передачи"
+
 msgid "Event view:"
 msgstr "Просмотр событий"
+
+msgid "EventViewEPG Actions"
+msgstr "Действия EPG с просмотром событий"
 
 msgid "Everyday"
 msgstr "Каждый день"
@@ -7813,11 +7810,11 @@ msgstr "Быстрый поиск по провайдеру"
 msgid "Fast epoch"
 msgstr "Время для быстрой скорости"
 
-msgid "Fast forward speeds"
-msgstr "Скорость перемотки вперёд"
-
 msgid "Fast forward"
 msgstr "Перемотать вперёд"
+
+msgid "Fast forward speeds"
+msgstr "Скорость перемотки вперёд"
 
 msgid "Favorites"
 msgstr "Избранное"
@@ -8225,6 +8222,9 @@ msgstr "Полное копирование на %s"
 msgid "Full factory reset"
 msgstr "Полный сброс до заводских настроек"
 
+msgid "Full screen"
+msgstr "Полноэкранный"
+
 msgid "Full transparency"
 msgstr "Полная прозрачность"
 
@@ -8233,9 +8233,6 @@ msgstr "Разрешение при просмотре на весь экран"
 
 msgid "FullHD Test"
 msgstr "Тест FullHD"
-
-msgid "Full screen"
-msgstr "Полноэкранный"
 
 msgid "G"
 msgstr "G"
@@ -8558,13 +8555,7 @@ msgstr "Список HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "Глубина цвета HDMI"
-
 msgid "HDMI Colorimetry"
-msgstr "Цветовое пространство HDMI"
-
-msgid "HDMI color space"
 msgstr "Цветовое пространство HDMI"
 
 msgid "HDMI HDR Type"
@@ -8572,6 +8563,12 @@ msgstr "Тип HDMI HDR"
 
 msgid "HDMI Recording Settings"
 msgstr "Запись по HDMI"
+
+msgid "HDMI color depth"
+msgstr "Глубина цвета HDMI"
+
+msgid "HDMI color space"
+msgstr "Цветовое пространство HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr "Настройка HDMI-CEC"
@@ -9543,7 +9540,7 @@ msgid "Invalid"
 msgstr "Недопустимый"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Выбран неправильный каталог %s"
 
 msgid "Invalid location"
@@ -12596,7 +12593,7 @@ msgstr "Пожалуйста, введите новое имя файла"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Пожалуйста, введите имя файла (Пусто = Текущая дата)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Пожалуйста, введите имя нового каталога"
 
 msgid "Please enter name of the new symlink"
@@ -14039,7 +14036,7 @@ msgid "Removing Service"
 msgstr "Удаление канала"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Ошибка удаления каталога %s (Возможно он не пуст)"
 
 msgid "Removing partition table"
@@ -15862,11 +15859,11 @@ msgstr "Назначьте расположение для файлов неме
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Назначьте расположение для файлов записи. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Назначьте расположение для файлов таймера. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Назначьте расположение для файлов таймшифта. Нажмите 'OK', чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО для выбора существующего каталога."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Назначьте расположение для файлов таймера. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
 
 msgid "Set the default sorting method."
 msgstr "Установите метод сортировки по умолчанию."
@@ -16999,6 +16996,9 @@ msgstr "Плагин SkinSelector"
 msgid "Skins"
 msgstr "Скины"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Пропустить проверку Интернет-соединения (Отключает автоматическую установку пакетов)"
+
 msgid "Skip back"
 msgstr "Перейти назад"
 
@@ -17007,9 +17007,6 @@ msgstr "Пропускать пустые каналы"
 
 msgid "Skip forward"
 msgstr "Перейти вперёд"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Пропустить проверку Интернет-соединения (Отключает автоматическую установку пакетов)"
 
 msgid "Skip selection"
 msgstr "Выбор пропуска"
@@ -17614,9 +17611,6 @@ msgstr "Остановить тестирование после # исправ�
 msgid "Stop the update, if running, then exit"
 msgstr "Остановить обновление, если запущено, то выйти"
 
-msgid "Stop timer recording"
-msgstr "Остановить запись таймера"
-
 msgid "Stop time shift"
 msgstr "Остановить таймшифт"
 
@@ -17628,6 +17622,9 @@ msgstr "Остановить таймшифт и сохранить буфер �
 
 msgid "Stop time shift while recording"
 msgstr "Остановить таймшифт на время записи"
+
+msgid "Stop timer recording"
+msgstr "Остановить запись таймера"
 
 msgid "Stopped"
 msgstr "Остановлено"
@@ -18450,7 +18447,7 @@ msgstr ""
 "Пожалуйста, сначала установите его."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Этот путь %s уже существует."
 
 msgid "The pin code you entered is wrong."
@@ -18573,9 +18570,7 @@ msgstr "Нет информации для отображения для '%s'."
 msgid "There is no signal to lock on !"
 msgstr "Нет сигнала по этому захвату!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Возможно, на выбранном разделе недостаточно места.\n"
 "Вы действительно хотите продолжить?"
@@ -19203,9 +19198,6 @@ msgstr "Чтобы восстановить имидж:"
 msgid "Today"
 msgstr "Сегодня"
 
-msgid "Toggles between tv and radio"
-msgstr "Переключение между ТВ и Радио"
-
 msgid "Toggle Digital downmix..."
 msgstr "Переключение цифрового микширования..."
 
@@ -19260,6 +19252,9 @@ msgstr "Переключить выделение текущего тега"
 msgid "Toggle service name display"
 msgstr "Переключить отображение названия канала"
 
+msgid "Toggles between tv and radio"
+msgstr "Переключение между ТВ и Радио"
+
 msgid "Togo"
 msgstr "Того"
 
@@ -19269,14 +19264,14 @@ msgstr "Токелау"
 msgid "Tone amplitude"
 msgstr "Амплитуда сигнала"
 
-msgid "Tone mode"
-msgstr "Тоновый режим"
-
 msgid "Tone burst"
 msgstr "Тоновый сигнал"
 
 msgid "Tone burst A/B"
 msgstr "Тоновый сигнал A/B"
+
+msgid "Tone mode"
+msgstr "Тоновый режим"
 
 msgid "Tonga"
 msgstr "Тонга"
@@ -19791,6 +19786,9 @@ msgstr "Более высокая задержка в больших списк�
 msgid "Update failed!"
 msgstr "Обновление не удалось!"
 
+msgid "Update feed not available."
+msgstr "Фид обновлений не доступен."
+
 msgid "Update finished!"
 msgstr "Обновление завершено!"
 
@@ -19802,7 +19800,7 @@ msgstr "Обновление отмечено как нестабильное!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Обновление удалось!\n"
 "Загрузчик обновлен!"
@@ -19818,9 +19816,6 @@ msgstr "Обновлено"
 
 msgid "Updated version unknown"
 msgstr "Обновлённая версия неизвестна"
-
-msgid "Update feed not available."
-msgstr "Фид обновлений не доступен."
 
 msgid "Updates available:"
 msgstr "Доступны обновления "
@@ -20611,12 +20606,6 @@ msgstr "Ожидание раздела"
 msgid "Wake up"
 msgstr "Пробуждение"
 
-msgid "Wake up to standby"
-msgstr "Пробуждение в режим ожидания"
-
-msgid "Wakeup"
-msgstr "Включение ТВ"
-
 msgid "Wake up TV from standby"
 msgstr "Пробудить ТВ из режима ожидания"
 
@@ -20625,6 +20614,9 @@ msgstr "Пробуждение из режима глубокого ожидан
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Включить до начала таймера за [мин]"
+
+msgid "Wake up to standby"
+msgstr "Пробуждение в режим ожидания"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Будить ресивер из режима ожидания"
@@ -20974,7 +20966,7 @@ msgstr "Если да, VPS будет включён для мгновенных
 msgid "Where do you want to backup your settings?"
 msgstr "Где Вы хотите сохранить настройки?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Куда сохранить временные файлы отложенного просмотра?"
 
 msgid "Which event do you want to save permanently?"
@@ -21445,6 +21437,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Ресивер может определить режим CI-plus автоматически или работать в режиме CI."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Ваше интернет-соединение не работает!\n"
+"Пожалуйста, выберите, что Вы хотите делать дальше."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "В Вашем ресивере обнаружена проблема с ПО. С момента последней перезагрузки это произошло %d раз.\n"
@@ -21476,13 +21475,6 @@ msgid "Your existing IceTV password."
 msgstr "Ваш существующий пароль IceTV."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Передняя панель будет обновлена\n"
-"Это может занять несколько минут"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21497,6 +21489,13 @@ msgid ""
 msgstr ""
 "Ваш фронтпроцессор обновляется\n"
 "Дождитесь перезагрузки Вашего %s %s\n"
+"Это может занять несколько минут"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Передняя панель будет обновлена\n"
 "Это может занять несколько минут"
 
 #, python-format
@@ -21524,13 +21523,6 @@ msgstr ""
 "\n"
 "\n"
 "Все ещё хотите обновить имидж?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Ваше интернет-соединение не работает!\n"
-"Пожалуйста, выберите, что Вы хотите делать дальше."
 
 msgid "Your network configuration has been activated."
 msgstr "Ваши сетевые настройки активированы."
@@ -21567,9 +21559,6 @@ msgstr "YouTube информация"
 
 msgid "ZAP"
 msgstr "Переключить"
-
-msgid "ZAP as PiP"
-msgstr "ZAP как PiP"
 
 msgid "ZOOM"
 msgstr "УВЕЛИЧИТЬ"
@@ -21676,6 +21665,9 @@ msgstr "Зулусский"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Настройки Enigma2]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[Редактирование избранного]"
+
 msgid "[Image Info]\n"
 msgstr "[Инфо имиджа]\n"
 
@@ -21690,9 +21682,6 @@ msgstr "[Альтернативное редактирование]"
 
 msgid "[bouquet edit]"
 msgstr "[Редактирование букетов]"
-
-msgid "[Favorite Edit]"
-msgstr "[Редактирование избранного]"
 
 msgid "[move mode]"
 msgstr "[Режим перемещения]"
@@ -21924,11 +21913,11 @@ msgstr "Понизить звук"
 msgid "chapters"
 msgstr "Разделы"
 
-msgid "children's/youth program (general)"
-msgstr "Детские/Юношеские программы (Общие)"
-
 msgid "children's (general)"
 msgstr "детские (общие)"
+
+msgid "children's/youth program (general)"
+msgstr "Детские/Юношеские программы (Общие)"
 
 msgid "clip overscan / letterbox borders"
 msgstr "Изменение границ overscan/letterbox"
@@ -22713,7 +22702,7 @@ msgstr "Удалить фаворит из родительского контр
 msgid "remove cable services"
 msgstr "Удалить кабельные каналы"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "Удалить каталог"
 
 msgid "remove entry"
@@ -22967,7 +22956,7 @@ msgstr "переключить режим дисплея с 12 на 8-симво
 msgid "switch Nand and SDcard"
 msgstr "переключить Nand и SDcard"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "Перейти на закладки"
 
 msgid "switch to the next angle"
@@ -23211,181 +23200,3 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Bit rate"
-#~ msgstr "Битрейт"
-
-#, python-format
-#~ msgid "Directory '%s' not writeable!"
-#~ msgstr "Каталог '%s' недоступен для записи!"
-
-#~ msgid "Favourites"
-#~ msgstr "Фавориты"
-
-#~ msgid "Polarisation"
-#~ msgstr "Поляризация"
-
-#~ msgid "Quick Select Actions"
-#~ msgstr "Действия быстрого меню"
-
-#~ msgid "Size:"
-#~ msgstr "Размер:"
-
-#~ msgid "Size: "
-#~ msgstr "Размер "
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Позволяет показать данные ТВ-гида о прошедших событиях. Удобно когда хотите знать что-то о передаче, которая вот-вот закончится либо только что закончилась (в минутах)."
-
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Установка времени отображения."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Сохранять старые данные ТВ-гида (Мин)"
-
-#~ msgid "<Unknown>"
-#~ msgstr "<Неизвестно>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Записать лишь однажды или периодически?"
-
-#~ msgid "At End:"
-#~ msgstr "В конце"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Канала нет в списке"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Выберите тег для облегчения поиска записи."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Выберите между ежедневным, еженедельным, по днями недели или пользовательским."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Выбор между записью и переключением."
-
-#~ msgid "Current location"
-#~ msgstr "Текущее расположение"
-
-#~ msgid "Display Setup"
-#~ msgstr "Настройки дисплея"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Действительно хотите удалить эту запись?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Редактировать новый пункт"
-
-#~ msgid "Extended settings"
-#~ msgstr "Расширенные настройки"
-
-#~ msgid "Infobar:"
-#~ msgstr "Инфобар:"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Введите новое описание"
-
-#~ msgid "PowerTimer Entry"
-#~ msgstr "Менеджер таймеров питания"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Действительно удалить выполненные таймеры?"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "Второй инфобар"
-
-#~ msgid "Secondinfobar:"
-#~ msgstr "Второй инфобар:"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "Выбрать канал для записи"
-
-#~ msgid "Select of the number"
-#~ msgstr "Выбор номера"
-
-#~ msgid "Select target folder"
-#~ msgstr "Выбрать папку назначения"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Назначение канала для этого таймера."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Назначение времени запуска таймера."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "Задайте описание записи."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "Назначение названия для предстоящей записи."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "Назначение времени запуска таймера."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "Назначение времени остановки таймера."
-
-#~ msgid "Show receiver image(s)"
-#~ msgstr "Показать имиджи ресивера"
-
-#~ msgid "Sleep delay"
-#~ msgstr "Задержка перед выключением"
-
-#~ msgid "Starting on"
-#~ msgstr "Начиная с"
-
-#~ msgid "Time range:"
-#~ msgstr "Временной диапазон"
-
-#~ msgid "Timer"
-#~ msgstr "Таймер"
-
-#~ msgid "Timer Overview"
-#~ msgstr "Обзор таймеров"
-
-#~ msgid "Weekday"
-#~ msgstr "День недели"
-
-#~ msgid "Weekend"
-#~ msgstr "Выходные"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Какое действие требуется по завершении таймера? 'Авто' позволяет ресиверу вернуться в то состояние, в котором он был при запуске таймера. 'Ничего не делать', 'Перейти в режим ожидания' и 'Перейти в режим глубокого ожидания' делают именно это."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Куда должны быть сохранены записи?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Да, удалить из списка таймеров"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Да, удалить из списка таймеров, удалить запись"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Не выбрали канал для записи."
-
-#~ msgid "Zapped"
-#~ msgstr "Переключено"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "Авто выключение"
-
-#~ msgid "auto standby"
-#~ msgstr "Авто режим ожидания"
-
-#~ msgid "daily"
-#~ msgstr "Ежедневно"
-
-#~ msgid "mins"
-#~ msgstr "Минут"
-
-#~ msgid "reboot system"
-#~ msgstr "Перезагрузка системы"
-
-#~ msgid "wakeup"
-#~ msgstr "Пробуждение"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "Пробуждение в режим ожидания"
-
-#~ msgid "weekly"
-#~ msgstr "Еженедельно"

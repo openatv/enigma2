@@ -934,8 +934,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
 			return
-		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter name of the new directory"), windowTitle=_("New folder"))
-		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter name of the new directory"), text=_('New folder'))
+		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter a name for the new directory:"), windowTitle=_("New folder"))
+		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_('New folder'))
 
 	def doMakedir(self, newname):
 		if newname:

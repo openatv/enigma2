@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -2383,16 +2383,16 @@ msgstr "Om..."
 msgid "Access point"
 msgstr ""
 
+#
+msgid "Access point:"
+msgstr "Tilgangspunkt:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #
 #, fuzzy
 msgid "Accessed:"
-msgstr "Tilgangspunkt:"
-
-#
-msgid "Access point:"
 msgstr "Tilgangspunkt:"
 
 #
@@ -2911,7 +2911,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 
 #
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Et tomt filnavn er ikke tillatt"
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -3256,6 +3256,10 @@ msgstr "Auto språk valg"
 msgid "Auto Modes Selected."
 msgstr "ingen CAId valgt"
 
+#
+msgid "Auto SCART switching"
+msgstr "Auto scart bytte"
+
 #, fuzzy
 msgid "Auto Timer"
 msgstr "Legg til AutoTimer"
@@ -3287,10 +3291,6 @@ msgstr "Auto fokus påbegynnes..."
 
 msgid "Auto install log"
 msgstr ""
-
-#
-msgid "Auto SCART switching"
-msgstr "Auto scart bytte"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3388,10 +3388,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr ""
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr ""
 
 msgid "BER:"
@@ -3485,14 +3485,14 @@ msgstr "Bakgrunns slette valg"
 msgid "Background delete speed"
 msgstr "Bakgrunns slette fart"
 
+#, fuzzy
+msgid "Background selected:"
+msgstr "Bakgrunns slette fart"
+
 #
 #, fuzzy
 msgid "Background:"
 msgstr "Bakgrunn"
-
-#, fuzzy
-msgid "Background selected:"
-msgstr "Bakgrunns slette fart"
 
 msgid "Backup"
 msgstr ""
@@ -3758,6 +3758,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr ""
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3772,9 +3775,6 @@ msgid "Boot time and local time"
 msgstr ""
 
 msgid "Boot-up action"
-msgstr ""
-
-msgid "Boot loader update required!"
 msgstr ""
 
 msgid "Bosnia and Herzegovina"
@@ -4484,6 +4484,9 @@ msgstr "Kanal info"
 msgid "Channel List"
 msgstr "Kanalliste"
 
+msgid "Channel List Menu"
+msgstr ""
+
 #
 msgid "Channel Selection Settings"
 msgstr "Kanalvalg innstillinger"
@@ -4529,6 +4532,9 @@ msgstr "Oppførselen til markøren i kanallisten"
 msgid "Channel list type"
 msgstr "Kanalliste type"
 
+msgid "Channel name"
+msgstr ""
+
 msgid "Channel preview mode"
 msgstr "Kanal forhåndsvisning"
 
@@ -4538,6 +4544,11 @@ msgstr "Kanalvalg"
 
 msgid "Channel selection configuration"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel selection:"
+msgstr "Kanalvalg"
 
 msgid "Channel up"
 msgstr ""
@@ -4558,17 +4569,6 @@ msgstr "Kanal:"
 #
 msgid "ChannelEPG Settings"
 msgstr "KanalEPG oppsett"
-
-msgid "Channel List Menu"
-msgstr ""
-
-msgid "Channel name"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Channel selection:"
-msgstr "Kanalvalg"
 
 #
 msgid "Chap."
@@ -4645,11 +4645,11 @@ msgstr ""
 msgid "Children"
 msgstr "Barn/Ungdom"
 
-msgid "Children/Youth"
-msgstr "Barn/Ungdom"
-
 #, fuzzy
 msgid "Children's"
+msgstr "Barn/Ungdom"
+
+msgid "Children/Youth"
 msgstr "Barn/Ungdom"
 
 msgid "Chile"
@@ -5035,12 +5035,12 @@ msgstr "Opptaks filnavn komposisjon"
 msgid "Config"
 msgstr "Konfigurerer"
 
-msgid "Config file name (ok to change):"
-msgstr ""
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Oppsett %s lagret."
+
+msgid "Config file name (ok to change):"
+msgstr ""
 
 #
 #, fuzzy
@@ -5720,7 +5720,7 @@ msgstr "Opprette hardlink til Timeshifts filen mislyktes!"
 
 #
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Laging av katalog %s feilet."
 
 #
@@ -6311,16 +6311,16 @@ msgstr ""
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr ""
 
-msgid "Delay after change voltage before switch command"
-msgstr ""
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr ""
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr ""
 
 msgid "Delay after DiSEqC reset command"
+msgstr ""
+
+msgid "Delay after change voltage before switch command"
+msgstr ""
+
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr ""
 
 msgid "Delay after enable voltage before motor command"
@@ -6581,11 +6581,11 @@ msgstr ""
 msgid "Device mounts"
 msgstr "Enhets mount"
 
-msgid "Device: "
-msgstr ""
-
 msgid "Device name:"
 msgstr "Enhetsnavn:"
+
+msgid "Device: "
+msgstr ""
 
 msgid "Devices"
 msgstr "Enheter"
@@ -6937,7 +6937,7 @@ msgstr "Ønsker du virkelig å permanent fjerne fra søppelbøtta?"
 
 #
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vil du virkelig fjerne katalog %s fra harddisken?"
 
 #
@@ -6952,7 +6952,7 @@ msgstr "Vil du virkelig slette timeren for %s"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Vil du virkelig fjerne ditt bokmerke %s?"
 
 #, python-format
@@ -8127,9 +8127,6 @@ msgstr ""
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Beklager feeds er nede for vedlikehold, vennligst prøv igjen senere."
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -8180,18 +8177,18 @@ msgstr ""
 msgid "Event font size"
 msgstr "Programmets skriftstørrelse"
 
-msgid "Event view menu"
-msgstr ""
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
+msgstr ""
+
+msgid "Event view menu"
 msgstr ""
 
 #, fuzzy
 msgid "Event view:"
 msgstr "Program visning"
+
+msgid "EventViewEPG Actions"
+msgstr ""
 
 msgid "Everyday"
 msgstr ""
@@ -8550,11 +8547,11 @@ msgstr "Hurtig Søk"
 msgid "Fast epoch"
 msgstr "Hurtig epoch"
 
-msgid "Fast forward speeds"
-msgstr "Hastigheter ved spoling framover"
-
 msgid "Fast forward"
 msgstr ""
+
+msgid "Fast forward speeds"
+msgstr "Hastigheter ved spoling framover"
 
 msgid "Favorites"
 msgstr ""
@@ -9016,6 +9013,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Full gjennomsiktighet"
 
@@ -9023,9 +9023,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Full screen"
 msgstr ""
 
 #, fuzzy
@@ -9384,13 +9381,7 @@ msgstr "HD list"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr ""
-
 msgid "HDMI Colorimetry"
-msgstr ""
-
-msgid "HDMI color space"
 msgstr ""
 
 msgid "HDMI HDR Type"
@@ -9400,6 +9391,12 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording Settings"
 msgstr "Spiller inn"
+
+msgid "HDMI color depth"
+msgstr ""
+
+msgid "HDMI color space"
+msgstr ""
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -10470,7 +10467,7 @@ msgstr "ugyldig type"
 
 #
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Feil katalog valgt: %s"
 
 #
@@ -13909,7 +13906,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Vennligst skriv filnavn (tomt=bruk nåværende dato)"
 
 #
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Vennligst sett navn på den nye katalogen"
 
 #
@@ -15504,7 +15501,7 @@ msgstr "Fjerner Kanal"
 
 #
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Fjerning av katalog %s feilet. (Kanskje ikke tom?)"
 
 msgid "Removing partition table"
@@ -17496,11 +17493,11 @@ msgstr "Angi standard plassering for dine innspillinger. Trykk 'OK' for å legge
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Angi standard plassering for opptakene dine. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Angi standard plassering for timeren. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Angi standard plassering for timeshift-filer. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Angi standard plassering for timeren. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
 msgid "Set the default sorting method."
 msgstr "Angi standard sorteringsmetoden."
@@ -18746,6 +18743,9 @@ msgstr ""
 msgid "Skins"
 msgstr "Skin"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Hoppe over sjekk av internettforbindelse (deaktiverer automatisk pakke installasjon)"
+
 msgid "Skip back"
 msgstr ""
 
@@ -18755,9 +18755,6 @@ msgstr "Hoppe over tomme kanaler"
 
 msgid "Skip forward"
 msgstr ""
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Hoppe over sjekk av internettforbindelse (deaktiverer automatisk pakke installasjon)"
 
 #
 #, fuzzy
@@ -19420,10 +19417,6 @@ msgstr "Stoppe teste plan etter # suksessfulle transpondere"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-#
-msgid "Stop timer recording"
-msgstr "Stopp timer innspillingen"
-
 msgid "Stop time shift"
 msgstr "Stopp time shift"
 
@@ -19435,6 +19428,10 @@ msgstr ""
 
 msgid "Stop time shift while recording"
 msgstr "Stopp timeshift under innspillingen?"
+
+#
+msgid "Stop timer recording"
+msgstr "Stopp timer innspillingen"
 
 msgid "Stopped"
 msgstr "Stoppet"
@@ -20304,7 +20301,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Banen %s er i bruk allerede"
 
 #
@@ -20432,9 +20429,7 @@ msgid "There is no signal to lock on !"
 msgstr "Det er ingen signal å låse på!"
 
 #
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Det er muligens ikke nok plass på den valgt partisjonen.\n"
 "Vil du virkelig fortsette?"
@@ -21131,9 +21126,6 @@ msgstr "Ja, legg tilbake innstillingene nå"
 msgid "Today"
 msgstr "Idag"
 
-msgid "Toggles between tv and radio"
-msgstr ""
-
 msgid "Toggle Digital downmix..."
 msgstr "Veksle Digital nedmix"
 
@@ -21189,6 +21181,9 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Rett fra kanalnavn"
 
+msgid "Toggles between tv and radio"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -21199,16 +21194,16 @@ msgid "Tone amplitude"
 msgstr "Tone utslag"
 
 #
-msgid "Tone mode"
-msgstr "Tone modus"
-
-#
 msgid "Tone burst"
 msgstr "Tone burst"
 
 #
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+#
+msgid "Tone mode"
+msgstr "Tone modus"
 
 msgid "Tonga"
 msgstr ""
@@ -21794,6 +21789,10 @@ msgid "Update failed!"
 msgstr "Skriving feilet!"
 
 #
+msgid "Update feed not available."
+msgstr "Updatefeed ikke tilgjengelig"
+
+#
 #, fuzzy
 msgid "Update finished!"
 msgstr "Oppdatering ferdig."
@@ -21806,7 +21805,7 @@ msgstr ""
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -21820,10 +21819,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-#
-msgid "Update feed not available."
-msgstr "Updatefeed ikke tilgjengelig"
 
 msgid "Updates available:"
 msgstr ""
@@ -22667,13 +22662,6 @@ msgstr "Venter på partisjonen"
 msgid "Wake up"
 msgstr "Oppvåkning"
 
-#
-msgid "Wake up to standby"
-msgstr "Våkn opp til dvalemodus"
-
-msgid "Wakeup"
-msgstr "Oppvåkning"
-
 msgid "Wake up TV from standby"
 msgstr "Vekke opp Tv fra dvalemodus"
 
@@ -22682,6 +22670,10 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr ""
+
+#
+msgid "Wake up to standby"
+msgstr "Våkn opp til dvalemodus"
 
 #
 #, fuzzy
@@ -23043,7 +23035,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lagre backup av dine innstillinger?"
 
 #
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hvor du vil lagre midlertidige timeshift-opptak?"
 
 msgid "Which event do you want to save permanently?"
@@ -23541,6 +23533,14 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
+#
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Din internett forbindelse virker ikke!\n"
+"Vennligst velg hva du vil gjøre nå."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
@@ -23574,11 +23574,6 @@ msgstr ""
 msgid "Your existing IceTV password."
 msgstr ""
 
-msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-
 #
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
@@ -23597,6 +23592,11 @@ msgstr ""
 "Vennligst vent til din %s %s starter om\n"
 "Dette kan ta noen minutter"
 
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+
 #, python-format
 msgid ""
 "Your image is out of date!\n"
@@ -23611,14 +23611,6 @@ msgid ""
 "\n"
 "Do you still want to update?"
 msgstr ""
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Din internett forbindelse virker ikke!\n"
-"Vennligst velg hva du vil gjøre nå."
 
 #
 msgid "Your network configuration has been activated."
@@ -23658,9 +23650,6 @@ msgid "Youtube TV"
 msgstr ""
 
 msgid "ZAP"
-msgstr ""
-
-msgid "ZAP as PiP"
 msgstr ""
 
 msgid "ZOOM"
@@ -23782,6 +23771,10 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
+#
+msgid "[Favorite Edit]"
+msgstr "[favoritt editering]"
+
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -23797,10 +23790,6 @@ msgstr "[alternativ editering]"
 
 #
 msgid "[bouquet edit]"
-msgstr "[favoritt editering]"
-
-#
-msgid "[Favorite Edit]"
 msgstr "[favoritt editering]"
 
 #
@@ -24061,11 +24050,11 @@ msgstr ""
 msgid "chapters"
 msgstr "kapittel"
 
-msgid "children's/youth program (general)"
-msgstr "barne/ungdoms program (generelt)"
-
 #, fuzzy
 msgid "children's (general)"
+msgstr "barne/ungdoms program (generelt)"
+
+msgid "children's/youth program (general)"
 msgstr "barne/ungdoms program (generelt)"
 
 msgid "clip overscan / letterbox borders"
@@ -24970,7 +24959,7 @@ msgid "remove cable services"
 msgstr ""
 
 #
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "fjern katalog"
 
 #
@@ -25254,7 +25243,7 @@ msgid "switch Nand and SDcard"
 msgstr ""
 
 #
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "bytt til bokmerker"
 
 #
@@ -25531,3 +25520,6 @@ msgstr "Zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Wakeup"
+#~ msgstr "Oppvåkning"

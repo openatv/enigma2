@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2136,14 +2136,14 @@ msgstr "Относно..."
 msgid "Access point"
 msgstr "Точка за достъп"
 
+msgid "Access point:"
+msgstr "Точка за достъп:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Достъпът до информация за геолокация изисква интернет връзка."
 
 msgid "Accessed:"
 msgstr "Достъп:"
-
-msgid "Access point:"
-msgstr "Точка за достъп:"
 
 msgid "Action"
 msgstr "Действие"
@@ -2604,7 +2604,7 @@ msgstr "Amlogic дистанционно"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Прави се опит за заснемане на текущото състояние на телевизора. Ако това не е възможно поради неправилни или липсващи съобщения за състоянието, това може да накара приемника да отговори неочаквано. От друга страна, се опитва да реагира по-добре на различни условия на работа."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Празно име на файла е недопустимо."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2917,6 +2917,9 @@ msgstr "Автоматични езикови настройки"
 msgid "Auto Modes Selected."
 msgstr "Избрани автоматични режими."
 
+msgid "Auto SCART switching"
+msgstr "Автоматично превключване на scart"
+
 msgid "Auto Timer"
 msgstr "Автоматичен таймер"
 
@@ -2943,9 +2946,6 @@ msgstr "Автоматичното фокусиране е започнало ..
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto SCART switching"
-msgstr "Автоматично превключване на scart"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3032,10 +3032,10 @@ msgstr ""
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (HDTV заглавия само)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Съвместим Bludisc (HDTV само)"
 
 msgid "BER:"
@@ -3124,11 +3124,11 @@ msgstr "Опция за изтриване на фона"
 msgid "Background delete speed"
 msgstr "Скорост на изтриване на фона"
 
-msgid "Background:"
-msgstr "Фон:"
-
 msgid "Background selected:"
 msgstr "Избран фон:"
+
+msgid "Background:"
+msgstr "Фон:"
 
 msgid "Backup"
 msgstr "Архивиране"
@@ -3371,6 +3371,9 @@ msgstr "ID за зареждане"
 msgid "Boot information"
 msgstr "Информация за зареждане"
 
+msgid "Boot loader update required!"
+msgstr "Изисква се актуализация на буутлоудъра!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3386,9 +3389,6 @@ msgstr "Време за зареждане и местно време"
 
 msgid "Boot-up action"
 msgstr "Действие при зареждане"
-
-msgid "Boot loader update required!"
-msgstr "Изисква се актуализация на буутлоудъра!"
 
 msgid "Bosnia and Herzegovina"
 msgstr ""
@@ -4061,6 +4061,9 @@ msgstr "Информация за канала"
 msgid "Channel List"
 msgstr "Списък с канали"
 
+msgid "Channel List Menu"
+msgstr "Менюто на списъка с канали"
+
 msgid "Channel Selection Settings"
 msgstr "Настройки за избор на канал"
 
@@ -4100,6 +4103,9 @@ msgstr "Списък с канали, предаване на MiniTV*"
 msgid "Channel list type"
 msgstr "Тип списък с канали"
 
+msgid "Channel name"
+msgstr "Име на канала"
+
 msgid "Channel preview mode"
 msgstr "Режим на визуализация на канала"
 
@@ -4108,6 +4114,9 @@ msgstr "Избор на канал"
 
 msgid "Channel selection configuration"
 msgstr "Конфигурация за избор на канал"
+
+msgid "Channel selection:"
+msgstr "Избор на канали:"
 
 msgid "Channel up"
 msgstr "Канал нагоре"
@@ -4126,15 +4135,6 @@ msgstr "Канал:"
 
 msgid "ChannelEPG Settings"
 msgstr "Настройки за EPG на каналите"
-
-msgid "Channel List Menu"
-msgstr "Менюто на списъка с канали"
-
-msgid "Channel name"
-msgstr "Име на канала"
-
-msgid "Channel selection:"
-msgstr "Избор на канали:"
 
 msgid "Chap."
 msgstr "Глава."
@@ -4201,11 +4201,11 @@ msgstr ""
 msgid "Children"
 msgstr "Деца"
 
-msgid "Children/Youth"
-msgstr "Деца/Младежи"
-
 msgid "Children's"
 msgstr "На децата"
+
+msgid "Children/Youth"
+msgstr "Деца/Младежи"
 
 msgid "Chile"
 msgstr ""
@@ -4552,12 +4552,12 @@ msgstr "Състав на имената на запис на файлове"
 msgid "Config"
 msgstr "Конфиг"
 
-msgid "Config file name (ok to change):"
-msgstr "Име на конфигурационния файл (добре да промените):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Конфигурационния файл %s запазен."
+
+msgid "Config file name (ok to change):"
+msgstr "Име на конфигурационния файл (добре да промените):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -5185,7 +5185,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Създаване на Hardlink за Timeshift файл не успя!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Създаване на директория %s не успя."
 
 msgid "Creating file system"
@@ -5712,17 +5712,17 @@ msgstr "Определя разстоянието за скок за скоко�
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Определя кои бързи скорости напред използват нормално зареждане. Всички останали скорости и скорости пренавиване използват времеви скокове."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Закъснение след промяна на напрежението преди команда за превключване"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Закъснение след деактивиране на непрекъснат тон преди diseqc"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Закъснение след команда diseqc за включване на периферията"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Закъснение след команда за нулиране на diseqc"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Закъснение след промяна на напрежението преди команда за превключване"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Закъснение след деактивиране на непрекъснат тон преди diseqc"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Закъснение след активиране на напрежението преди команда на двигателя"
@@ -5961,11 +5961,11 @@ msgstr "Идентификационен номер на устройствот�
 msgid "Device mounts"
 msgstr "Устройства за монтиране"
 
-msgid "Device: "
-msgstr "Утройство: "
-
 msgid "Device name:"
 msgstr "Име на устройството:"
+
+msgid "Device: "
+msgstr "Утройство: "
 
 msgid "Devices"
 msgstr "Утройства"
@@ -6283,7 +6283,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Наистина ли искате да премахнете завинаги от кошчето за боклук?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Наистина ли искате да премахнете директория %s от диска?"
 
 #, python-format
@@ -6295,7 +6295,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Наистина ли искате да премахнете таймер за %s ?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Наистина ли искате да премахнете вашия bookmark от %s?"
 
 #, python-format
@@ -7399,9 +7399,6 @@ msgstr "Не може да се създадат необходимите дир
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Грешка: Не може да се обработи командата! Моля, опитайте отново по-късно."
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -7447,17 +7444,17 @@ msgstr "Контекстно меню за преглед на събития"
 msgid "Event font size"
 msgstr "Размер на шрифта за събитието"
 
-msgid "Event view menu"
-msgstr "Меню за преглед на събитие"
-
-msgid "EventViewEPG Actions"
-msgstr "Преглед на събития EPG Действия"
-
 msgid "Event name only"
 msgstr "Само име за събитие"
 
+msgid "Event view menu"
+msgstr "Меню за преглед на събитие"
+
 msgid "Event view:"
 msgstr "Преглед на събитието:"
+
+msgid "EventViewEPG Actions"
+msgstr "Преглед на събития EPG Действия"
 
 msgid "Everyday"
 msgstr "Всеки ден"
@@ -7781,11 +7778,11 @@ msgstr "Бързо сканиране"
 msgid "Fast epoch"
 msgstr "Бърза епоха"
 
-msgid "Fast forward speeds"
-msgstr "Бързи скорости напред"
-
 msgid "Fast forward"
 msgstr "Превъртане напред"
+
+msgid "Fast forward speeds"
+msgstr "Бързи скорости напред"
 
 msgid "Favorites"
 msgstr "Любими"
@@ -8193,6 +8190,9 @@ msgstr "Пълно архивиране на %s"
 msgid "Full factory reset"
 msgstr "Пълно нулиране на фабричните настройки"
 
+msgid "Full screen"
+msgstr "Цял екран"
+
 msgid "Full transparency"
 msgstr "Пълна прозрачност"
 
@@ -8201,9 +8201,6 @@ msgstr "Пълен HD тест"
 
 msgid "FullHD Test"
 msgstr "Full HD тест"
-
-msgid "Full screen"
-msgstr "Цял екран"
 
 msgid "G"
 msgstr ""
@@ -8526,20 +8523,20 @@ msgstr "HD списък"
 msgid "HDMI"
 msgstr ""
 
-msgid "HDMI color depth"
-msgstr "HDMI Дълбочина на цвета"
-
 msgid "HDMI Colorimetry"
 msgstr "HDMI Колориметрия"
-
-msgid "HDMI color space"
-msgstr "HDMI цветово пространство"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR тип"
 
 msgid "HDMI Recording Settings"
 msgstr "Настройки за HDMI запис"
+
+msgid "HDMI color depth"
+msgstr "HDMI Дълбочина на цвета"
+
+msgid "HDMI color space"
+msgstr "HDMI цветово пространство"
 
 msgid "HDMI-CEC Settings"
 msgstr "Настройки на HDMI-CEC"
@@ -9508,7 +9505,7 @@ msgid "Invalid"
 msgstr "Невалидно"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Избрана е невалидна директория: %s"
 
 msgid "Invalid location"
@@ -12560,7 +12557,7 @@ msgstr "Моля ,въведете ново име на файла"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Моля, въведете име за файла (празно = използвай текуща дата)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Моля, въведете име за новата директория"
 
 msgid "Please enter name of the new symlink"
@@ -14003,7 +14000,7 @@ msgid "Removing Service"
 msgstr "Премахване на сервиз"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Премахването на директория %s не успя. (Може би не е празна.)"
 
 msgid "Removing partition table"
@@ -15825,11 +15822,11 @@ msgstr "Задайте местоположението по подразбир�
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Задайте местоположението по подразбиране за записите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Задайте местоположението по подразбиране за таймерите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Задайте местоположението по подразбиране за файловете ви за временно преместване. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Задайте местоположението по подразбиране за таймерите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
 
 msgid "Set the default sorting method."
 msgstr "Задайте по подразбиране метода за сортиране."
@@ -16962,6 +16959,9 @@ msgstr "Селектор на кожа"
 msgid "Skins"
 msgstr "Кожи"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Пропуснете проверката на интернет връзката (деактивира автоматичната инсталация на пакета)"
+
 msgid "Skip back"
 msgstr "Прескачане обратно"
 
@@ -16970,9 +16970,6 @@ msgstr "Прескачане на празните сервизи"
 
 msgid "Skip forward"
 msgstr "Прескачане напред"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Пропуснете проверката на интернет връзката (деактивира автоматичната инсталация на пакета)"
 
 msgid "Skip selection"
 msgstr "Пропуснете селекцията"
@@ -17575,9 +17572,6 @@ msgstr "Стоп на тестване на нивото след # успешн
 msgid "Stop the update, if running, then exit"
 msgstr "Спрете актуализацията, ако се изпълнява, след това излезте"
 
-msgid "Stop timer recording"
-msgstr "Стоп на запис с таймер"
-
 msgid "Stop time shift"
 msgstr "Стоп на timeshift"
 
@@ -17589,6 +17583,9 @@ msgstr "Стоп на TimeShift и запази TimeShift буфер като ф
 
 msgid "Stop time shift while recording"
 msgstr "Спрете смяната на времето, докато записвате"
+
+msgid "Stop timer recording"
+msgstr "Стоп на запис с таймер"
 
 msgid "Stopped"
 msgstr "Спряно"
@@ -18404,7 +18401,7 @@ msgstr ""
 "Моля, инсталирайте го."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Пътят %s вeче съществува."
 
 msgid "The pin code you entered is wrong."
@@ -18522,9 +18519,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "Не съществува сигнал за заключване на !"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Може да няма достатъчно място на избрания дял..\n"
 "Наистина ли искате да продължите?"
@@ -19152,9 +19147,6 @@ msgstr "За да възстановите изображението:"
 msgid "Today"
 msgstr "Днес"
 
-msgid "Toggles between tv and radio"
-msgstr "Превключва между телевизия и радио"
-
 msgid "Toggle Digital downmix..."
 msgstr "Превключване на цифрово понижаващо миксиране..."
 
@@ -19209,6 +19201,9 @@ msgstr "Превключване на избора на текущия марк�
 msgid "Toggle service name display"
 msgstr "Превключване на показването на името на услугата"
 
+msgid "Toggles between tv and radio"
+msgstr "Превключва между телевизия и радио"
+
 msgid "Togo"
 msgstr ""
 
@@ -19218,14 +19213,14 @@ msgstr ""
 msgid "Tone amplitude"
 msgstr "Амплитуда на тона"
 
-msgid "Tone mode"
-msgstr "Тонов режим"
-
 msgid "Tone burst"
 msgstr ""
 
 msgid "Tone burst A/B"
 msgstr ""
+
+msgid "Tone mode"
+msgstr "Тонов режим"
 
 msgid "Tonga"
 msgstr ""
@@ -19740,6 +19735,9 @@ msgstr "Забавяне на актуализацията за събития �
 msgid "Update failed!"
 msgstr "Актуализацията не бе успешна!"
 
+msgid "Update feed not available."
+msgstr "Емисията за актуализиране не е налична."
+
 msgid "Update finished!"
 msgstr "Актуализацията завърши!"
 
@@ -19751,7 +19749,7 @@ msgstr "Актуализацията се отчита като дефектна
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Актуализирането е успешно!\n"
 "Вашият Bootloader вече е актуален!"
@@ -19767,9 +19765,6 @@ msgstr "Актуализиран"
 
 msgid "Updated version unknown"
 msgstr "Неизвестна актуализирана версия"
-
-msgid "Update feed not available."
-msgstr "Емисията за актуализиране не е налична."
 
 msgid "Updates available:"
 msgstr "Налични актуализации:"
@@ -20534,12 +20529,6 @@ msgstr "В очакване за деление"
 msgid "Wake up"
 msgstr "Събуждане"
 
-msgid "Wake up to standby"
-msgstr "Събуждане в режим на готовност"
-
-msgid "Wakeup"
-msgstr "Събуждане"
-
 msgid "Wake up TV from standby"
 msgstr "Събуждане на телевизора от режим на готовност"
 
@@ -20548,6 +20537,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Време за събуждане преди началото на таймера [мин]"
+
+msgid "Wake up to standby"
+msgstr "Събуждане в режим на готовност"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Събудете вашия AV приемник от режим на готовност"
@@ -20897,7 +20889,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Къде искате да архивирате вашите настройки?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Къде да запазя временните TimeShift записи?"
 
 msgid "Which event do you want to save permanently?"
@@ -21364,6 +21356,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Вашият хардуер може да открие CI режим или работи само в предишния режим."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Вашата интернет връзка не работи!\n"
+"Моля, изберете какво ще правите по-нататък."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Вашият приемник има открит софтуерен проблем. След последното рестартиране това се е случило %d пъти.\n"
@@ -21395,13 +21394,6 @@ msgid "Your existing IceTV password."
 msgstr "Вашата съществуваща парола за IceTV."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Вашият преден панел ще бъде надстроен\n"
-"Това може да отнеме няколко минути"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21416,6 +21408,13 @@ msgid ""
 msgstr ""
 "Вашият преден процесор ще бъде надстроен\n"
 "Моля, изчакайте докато вашият %s %s рестартира\n"
+"Това може да отнеме няколко минути"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Вашият преден панел ще бъде надстроен\n"
 "Това може да отнеме няколко минути"
 
 #, python-format
@@ -21443,13 +21442,6 @@ msgstr ""
 "\n"
 "\n"
 "Все още ли искате да актуализирате?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Вашата интернет връзка не работи!\n"
-"Моля, изберете какво ще правите по-нататък."
 
 msgid "Your network configuration has been activated."
 msgstr "Вашата мрежова конфигурация е активирана."
@@ -21486,9 +21478,6 @@ msgstr ""
 
 msgid "ZAP"
 msgstr "Превключване"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "Мащабиране"
@@ -21595,6 +21584,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 Настройки]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[редактиране любими]"
+
 msgid "[Image Info]\n"
 msgstr "[Инфо имидж ]\n"
 
@@ -21609,9 +21601,6 @@ msgstr "[алтернативно редактиране]"
 
 msgid "[bouquet edit]"
 msgstr "[редакттиране букети]"
-
-msgid "[Favorite Edit]"
-msgstr "[редактиране любими]"
 
 msgid "[move mode]"
 msgstr "[режим преместване]"
@@ -21845,11 +21834,11 @@ msgstr "промени звука нагоре"
 msgid "chapters"
 msgstr "глави"
 
-msgid "children's/youth program (general)"
-msgstr "детска/юношеска програма (обща)"
-
 msgid "children's (general)"
 msgstr "детско (общо)"
+
+msgid "children's/youth program (general)"
+msgstr "детска/юношеска програма (обща)"
 
 msgid "clip overscan / letterbox borders"
 msgstr ""
@@ -22632,7 +22621,7 @@ msgstr "премахнете букет от родителската защит
 msgid "remove cable services"
 msgstr "премахнете кабелните сервизи"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "премахнете директорията"
 
 msgid "remove entry"
@@ -22886,7 +22875,7 @@ msgstr "превключете режима на показване от 12 до
 msgid "switch Nand and SDcard"
 msgstr "превключи Nand и SDcard"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "превключете към отметки"
 
 msgid "switch to the next angle"
@@ -23129,3 +23118,4 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+

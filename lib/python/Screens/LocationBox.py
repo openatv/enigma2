@@ -88,7 +88,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Actions that will reset QuickSelect.
 		self["WizardActions"] = LocationBoxActionMap(self, "WizardActions", {
-			"ok": (self.ok, _("select")),
+			"ok": (self.ok, _("Select")),
 			"back": (self.cancel, _("Cancel")),
 		}, prio=-2)
 		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions", {
@@ -104,11 +104,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			"blue": self.addRemoveBookmark,
 		}, prio=-2)
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions", {
-			"prevService": (self.switchToBookList, _("switch to bookmarks")),
+			"prevService": (self.switchToBookList, _("Switch to bookmarks")),
 			"nextService": (self.switchToFileList, _("Switch to file list")),
 		}, prio=-2)
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions", {
-			"menu": (self.showMenu, _("menu")),
+			"menu": (self.showMenu, _("Menu")),
 		}, prio=-2)
 		# Actions used by QuickSelect
 		smsMsg = _("SMS style QuickSelect location selection")
@@ -166,7 +166,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		else:  # Remove bookmark.
 			if not self.userMode:
 				name = self["booklist"].getCurrent()
-				self.session.openWithCallback(boundFunction(self.removeBookmark, name), MessageBox, _("Do you really want to remove your bookmark of %s?") % name)
+				self.session.openWithCallback(boundFunction(self.removeBookmark, name), MessageBox, _("Do you really want to remove your bookmark for '%s'?") % name)
 
 	def removeBookmark(self, name, ret):
 		if not ret:
@@ -177,29 +177,29 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def createDir(self):
 		if self["filelist"].current_directory is not None:
-			self.session.openWithCallback(self.createDirCallback, InputBox, title=_("Please enter name of the new directory"), text="")
+			self.session.openWithCallback(self.createDirCallback, InputBox, title=_("Please enter a name for the new directory:"), text="")
 
 	def createDirCallback(self, res):
 		if res:
 			path = pathjoin(self["filelist"].current_directory, res)
 			if not pathExists(path):
 				if not createDir(path):
-					self.session.open(MessageBox, _("Creating directory %s failed.") % path, type=MessageBox.TYPE_ERROR, timeout=5)
+					self.session.open(MessageBox, _("Error: Creating directory '%s' failed!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
 				self["filelist"].refresh()
 			else:
-				self.session.open(MessageBox, _("The path %s already exists.") % path, type=MessageBox.TYPE_ERROR, timeout=5)
+				self.session.open(MessageBox, _("Error: The path '%s' already exists!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
 
 	def removeDir(self):
 		sel = self["filelist"].getSelection()
 		if sel and pathExists(sel[0]):
-			self.session.openWithCallback(boundFunction(self.removeDirCallback, sel[0]), MessageBox, _("Do you really want to remove directory %s from the disk?") % (sel[0]), type=MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.removeDirCallback, sel[0]), MessageBox, _("Do you really want to remove directory '%s' from the disk?") % (sel[0]), type=MessageBox.TYPE_YESNO)
 		else:
-			self.session.open(MessageBox, _("Invalid directory selected: %s") % (sel[0]), type=MessageBox.TYPE_ERROR, timeout=5)
+			self.session.open(MessageBox, _("Error: Invalid directory '%s' selected!") % (sel[0]), type=MessageBox.TYPE_ERROR, timeout=5)
 
 	def removeDirCallback(self, name, res):
 		if res:
 			if not removeDir(name):
-				self.session.open(MessageBox, _("Removing directory %s failed. (Maybe not empty.)") % name, type=MessageBox.TYPE_ERROR, timeout=5)
+				self.session.open(MessageBox, _("Error: Removing directory '%s' failed! (Maybe the directory is not empty.)") % name, type=MessageBox.TYPE_ERROR, timeout=5)
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
@@ -264,7 +264,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 						return self.selectConfirmed(True)  # Automatically confirm if we have enough free disk Space available.
 				except OSError as err:
 					pass
-				self.session.openWithCallback(self.selectConfirmed, MessageBox, _("There might not be enough space on the selected partition..\nDo you really want to continue?"), type=MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.selectConfirmed, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
 			else:  # No minimum free space means we can safely close.
 				self.selectConfirmed(True)
 
@@ -278,7 +278,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.filename = res
 				self.updateTarget()
 			else:
-				self.session.open(MessageBox, _("An empty filename is illegal."), type=MessageBox.TYPE_ERROR, timeout=5)
+				self.session.open(MessageBox, _("Error: An empty filename is illegal!"), type=MessageBox.TYPE_ERROR, timeout=5)
 
 	def updateTarget(self):
 		currFolder = self.getPreferredFolder()
@@ -298,13 +298,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if not self.userMode and self.realBookmarks:
 			if self.currList == "filelist":
 				menu = [
-					(_("switch to bookmarks"), self.switchToBookList),
+					(_("Switch to bookmarks"), self.switchToBookList),
 					(_("Add Bookmark"), self.addRemoveBookmark)
 				]
 				if self.editDir:
 					menu.extend((
 						(_("Create directory"), self.createDir),
-						(_("remove directory"), self.removeDir)
+						(_("Remove directory"), self.removeDir)
 					))
 			else:
 				menu = (
@@ -366,7 +366,7 @@ class TimeshiftLocationBox(LocationBox):
 		LocationBox.__init__(
 				self,
 				session,
-				text=_("Where to save temporary time shift recordings?"),
+				text=_("Where do you want to save temporary time shift recordings?"),
 				currDir=config.usage.timeshift_path.value,
 				bookmarks=config.usage.allowed_timeshift_paths,
 				autoAdd=True,

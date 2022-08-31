@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -2144,14 +2144,14 @@ msgstr "Rreth..."
 msgid "Access point"
 msgstr "Pika e hyrjes"
 
+msgid "Access point:"
+msgstr "Pika e hyrjes"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Qasja në informacionin e gjeolokacionit kërkon një lidhje interneti."
 
 msgid "Accessed:"
 msgstr "Disponuar:"
-
-msgid "Access point:"
-msgstr "Pika e hyrjes"
 
 msgid "Action"
 msgstr "Veprimi"
@@ -2612,7 +2612,7 @@ msgstr "Telekomandë amlogike"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Një përpjekje është bërë për të kapur statusin aktual të TV. Nëse kjo nuk është e mundur për shkak të mesazheve status të pasaktë ose të humbur kjo mund të shkaktojë që marrësi të përgjigjet në mënyrë të papritur. Nga ana tjetër, përpiqet t'u përgjigjet më mirë kushteve të ndryshme të funksionimit."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Një emër i zbrazët file është i paligjshëm."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2925,6 +2925,9 @@ msgstr "Rregullimet e gjuhës automatike"
 msgid "Auto Modes Selected."
 msgstr "Mënyrat automatike të zgjedhura."
 
+msgid "Auto SCART switching"
+msgstr "Ndërrimi i shenjave të makinave"
+
 msgid "Auto Timer"
 msgstr "Kohëmatësi automatik"
 
@@ -2951,9 +2954,6 @@ msgstr "Auto fokusin duke filluar ..."
 
 msgid "Auto install log"
 msgstr "Instalo auto log"
-
-msgid "Auto SCART switching"
-msgstr "Ndërrimi i shenjave të makinave"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3040,10 +3040,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (vetëm titujt HDTV)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Compatible Bludisc (HDTV vetëm)"
 
 msgid "BER:"
@@ -3132,11 +3132,11 @@ msgstr "Opsioni i fshirjes së sfondit"
 msgid "Background delete speed"
 msgstr "Shpejtësia e fshirjes së sfondit"
 
-msgid "Background:"
-msgstr "Sfond"
-
 msgid "Background selected:"
 msgstr "Sfondet e zgjedhura:"
+
+msgid "Background:"
+msgstr "Sfond"
 
 msgid "Backup"
 msgstr "Dublikatë"
@@ -3379,6 +3379,9 @@ msgstr "Boot ID"
 msgid "Boot information"
 msgstr "Informacioni i nisjes"
 
+msgid "Boot loader update required!"
+msgstr "Kërkohet përditësimi i ngarkuesit!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr "Informacioni i folesë së nisjes për %s %s"
@@ -3394,9 +3397,6 @@ msgstr "Koha e nisjes dhe koha lokale"
 
 msgid "Boot-up action"
 msgstr "Veprimi i nisjes"
-
-msgid "Boot loader update required!"
-msgstr "Kërkohet përditësimi i ngarkuesit!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnja dhe Hercegovina"
@@ -4073,6 +4073,9 @@ msgstr "Informacioni i kanalit"
 msgid "Channel List"
 msgstr "Lista e kanaleve"
 
+msgid "Channel List Menu"
+msgstr "Menuja e listës së kanaleve"
+
 msgid "Channel Selection Settings"
 msgstr "Konfigurimi i përzgjedhjes së kanaleve"
 
@@ -4112,6 +4115,9 @@ msgstr "Emisioni i listës së kanaleve MiniTV*"
 msgid "Channel list type"
 msgstr "Lloji i listës së kanaleve"
 
+msgid "Channel name"
+msgstr "Emri i kanalit"
+
 msgid "Channel preview mode"
 msgstr "Modaliteti i shikimit paraprak të kanalit"
 
@@ -4120,6 +4126,9 @@ msgstr "Zgjedhja e kanalit"
 
 msgid "Channel selection configuration"
 msgstr "Konfigurimi i zgjedhjes së kanalit"
+
+msgid "Channel selection:"
+msgstr "Përzgjedhja e kanaleve"
 
 msgid "Channel up"
 msgstr "Kanali lart"
@@ -4138,15 +4147,6 @@ msgstr "Kanali"
 
 msgid "ChannelEPG Settings"
 msgstr "Rregullimet ChannelEPG"
-
-msgid "Channel List Menu"
-msgstr "Menuja e listës së kanaleve"
-
-msgid "Channel name"
-msgstr "Emri i kanalit"
-
-msgid "Channel selection:"
-msgstr "Përzgjedhja e kanaleve"
 
 msgid "Chap."
 msgstr "Kapitull."
@@ -4213,11 +4213,11 @@ msgstr "Chichewa / Chewa / Nyanja"
 msgid "Children"
 msgstr "Fëmijë"
 
-msgid "Children/Youth"
-msgstr "Fëmijë/Të Rinj"
-
 msgid "Children's"
 msgstr "Fëmijët"
+
+msgid "Children/Youth"
+msgstr "Fëmijë/Të Rinj"
 
 msgid "Chile"
 msgstr "Kili"
@@ -4564,12 +4564,12 @@ msgstr "Përbërja e emrave të skedarëve të regjistrimit"
 msgid "Config"
 msgstr "Konfigurimi"
 
-msgid "Config file name (ok to change):"
-msgstr "Emri i skedarit të konfigurimit (në rregull për të ndryshuar):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Konfiguro %s të ruajtur."
+
+msgid "Config file name (ok to change):"
+msgstr "Emri i skedarit të konfigurimit (në rregull për të ndryshuar):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -5195,7 +5195,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Krijimi i skedarit Hardlink në Timeshift dështoi!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Krijimi i drejtorisë %s dështoi."
 
 msgid "Creating file system"
@@ -5722,17 +5722,17 @@ msgstr "Përcakton distancën e kërcimit për kërcimet përpara. Vlera shumëz
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Përcakton se cilat shpejtësi të shpejta përpara po përdorin sinjalizimin normal. Të gjitha shpejtësitë e tjera përpara dhe të gjitha shpejtësitë e kthimit prapa përdorin kërcime në kohë."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Vonesa pas ndryshimit të tensionit përpara komandës së ndërprerës"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Vonesa pas çaktivizimi i vazhdueshëm i tonit para diseqc"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Vonesa pas komandës së ndezjes periferike diseqc"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Vonesa pas komandës së rivendosjes diseqc"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Vonesa pas ndryshimit të tensionit përpara komandës së ndërprerës"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Vonesa pas çaktivizimi i vazhdueshëm i tonit para diseqc"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Vonesa pas aktivit të tensionit para komandës motorike"
@@ -5971,11 +5971,11 @@ msgstr "ID e pajisjes"
 msgid "Device mounts"
 msgstr "Montimet e pajisjes"
 
-msgid "Device: "
-msgstr "Pajisja:"
-
 msgid "Device name:"
 msgstr "Emri i pajisjes:"
+
+msgid "Device: "
+msgstr "Pajisja:"
 
 msgid "Devices"
 msgstr "Pajisjet"
@@ -6293,7 +6293,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Dëshiron vërtet ta heqësh përgjithmonë nga koshi i plehrave?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Dëshiron vërtet të heqësh directory %s nga disku?"
 
 #, python-format
@@ -6305,7 +6305,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Dëshiron vërtet të heqësh kohëmatësin për %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Dëshiron vërtet të heqësh faqeshënuesin tënd të %s?"
 
 #, python-format
@@ -7411,9 +7411,6 @@ msgstr "Gabim: Nuk mund të krijohen drejtoritë e kërkuara në pajisjen e synu
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Gabim: komanda nuk mund të përpunohet! Ju lutemi provoni sërish më vonë."
 
-msgid "Es folgt:"
-msgstr "Es folgt:"
-
 msgid "Esperanto"
 msgstr "Esperanto"
 
@@ -7459,17 +7456,17 @@ msgstr "Menuja e kontekstit të paraqitjes së ngjarjeve"
 msgid "Event font size"
 msgstr "Madhësia e shkronjave të ngjarjes"
 
-msgid "Event view menu"
-msgstr "Menuja e pamjes së ngjarjeve"
-
-msgid "EventViewEPG Actions"
-msgstr "Veprimet EventViewEPG"
-
 msgid "Event name only"
 msgstr "Emri i eventit vetëm"
 
+msgid "Event view menu"
+msgstr "Menuja e pamjes së ngjarjeve"
+
 msgid "Event view:"
 msgstr "Pamja e ngjarjes:"
+
+msgid "EventViewEPG Actions"
+msgstr "Veprimet EventViewEPG"
 
 msgid "Everyday"
 msgstr "Çdo ditë"
@@ -7793,11 +7790,11 @@ msgstr "Skanim i shpejtë"
 msgid "Fast epoch"
 msgstr "Epokë e shpejtë"
 
-msgid "Fast forward speeds"
-msgstr "Shpejtësi të shpejta përpara"
-
 msgid "Fast forward"
 msgstr "Shpejt përpara"
+
+msgid "Fast forward speeds"
+msgstr "Shpejtësi të shpejta përpara"
 
 msgid "Favorites"
 msgstr "Të preferuarat"
@@ -8205,6 +8202,9 @@ msgstr "Rezervimi i plotë në %s"
 msgid "Full factory reset"
 msgstr "Rivendosja e plotë e fabrikës"
 
+msgid "Full screen"
+msgstr "Ekran i plotë"
+
 msgid "Full transparency"
 msgstr "Transparencë e plotë"
 
@@ -8213,9 +8213,6 @@ msgstr "Rezolucioni i plotë i pamjes"
 
 msgid "FullHD Test"
 msgstr "Testi FullHD"
-
-msgid "Full screen"
-msgstr "Ekran i plotë"
 
 msgid "G"
 msgstr "G"
@@ -8538,20 +8535,20 @@ msgstr "Lista HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "Thellësia e ngjyrave HDMI"
-
 msgid "HDMI Colorimetry"
 msgstr "Ngjyra HDMI"
-
-msgid "HDMI color space"
-msgstr "Hapësira e ngjyrave HDMI"
 
 msgid "HDMI HDR Type"
 msgstr "Lloji HDMI HDR"
 
 msgid "HDMI Recording Settings"
 msgstr "Cilësimet e regjistrimit HDMI"
+
+msgid "HDMI color depth"
+msgstr "Thellësia e ngjyrave HDMI"
+
+msgid "HDMI color space"
+msgstr "Hapësira e ngjyrave HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr "Rregullimet HDMI-CEC"
@@ -9523,7 +9520,7 @@ msgid "Invalid"
 msgstr ""
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr ""
 
 msgid "Invalid location"
@@ -12545,7 +12542,7 @@ msgstr ""
 msgid "Please enter filename (empty = use current date)"
 msgstr ""
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr ""
 
 msgid "Please enter name of the new symlink"
@@ -13938,7 +13935,7 @@ msgid "Removing Service"
 msgstr ""
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr ""
 
 msgid "Removing partition table"
@@ -15734,10 +15731,10 @@ msgstr ""
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -16869,6 +16866,9 @@ msgstr "Përzgjedhësi i lëkurës"
 msgid "Skins"
 msgstr "Lëkura"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Kapërce kontrollin e lidhjes në internet (çaktivizon instalimin automatik të paketave)"
+
 msgid "Skip back"
 msgstr "Kalo prapa"
 
@@ -16877,9 +16877,6 @@ msgstr "Kapërceni shërbimet boshe"
 
 msgid "Skip forward"
 msgstr "Kalo përpara"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Kapërce kontrollin e lidhjes në internet (çaktivizon instalimin automatik të paketave)"
 
 msgid "Skip selection"
 msgstr "Kapërce zgjedhjen"
@@ -17475,9 +17472,6 @@ msgstr ""
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-msgid "Stop timer recording"
-msgstr ""
-
 msgid "Stop time shift"
 msgstr ""
 
@@ -17488,6 +17482,9 @@ msgid "Stop time shift and save time shift buffer as movie and start recording o
 msgstr ""
 
 msgid "Stop time shift while recording"
+msgstr ""
+
+msgid "Stop timer recording"
 msgstr ""
 
 msgid "Stopped"
@@ -18307,7 +18304,7 @@ msgstr ""
 "Ju lutemi instaloni atë."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Rruga %s ekziston tashmë."
 
 msgid "The pin code you entered is wrong."
@@ -18428,9 +18425,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "Nuk ka asnjë sinjal për t'u kyçur!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Mund të mos ketë hapësirë të mjaftueshme në ndarjen e zgjedhur..\n"
 "Dëshironi vërtet të vazhdoni?"
@@ -19034,9 +19029,6 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-msgid "Toggles between tv and radio"
-msgstr ""
-
 msgid "Toggle Digital downmix..."
 msgstr ""
 
@@ -19091,6 +19083,9 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr ""
 
+msgid "Toggles between tv and radio"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -19100,13 +19095,13 @@ msgstr ""
 msgid "Tone amplitude"
 msgstr ""
 
-msgid "Tone mode"
-msgstr ""
-
 msgid "Tone burst"
 msgstr ""
 
 msgid "Tone burst A/B"
+msgstr ""
+
+msgid "Tone mode"
 msgstr ""
 
 msgid "Tonga"
@@ -19617,6 +19612,9 @@ msgstr ""
 msgid "Update failed!"
 msgstr ""
 
+msgid "Update feed not available."
+msgstr ""
+
 msgid "Update finished!"
 msgstr ""
 
@@ -19628,7 +19626,7 @@ msgstr ""
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -19641,9 +19639,6 @@ msgid "Updated"
 msgstr ""
 
 msgid "Updated version unknown"
-msgstr ""
-
-msgid "Update feed not available."
 msgstr ""
 
 msgid "Updates available:"
@@ -20403,12 +20398,6 @@ msgstr "Në pritje të ndarjes"
 msgid "Wake up"
 msgstr "Zgjohu"
 
-msgid "Wake up to standby"
-msgstr "Zgjohuni në gatishmëri"
-
-msgid "Wakeup"
-msgstr "Zgjohu"
-
 msgid "Wake up TV from standby"
 msgstr "Zgjimi i televizorit nga gatishmëria"
 
@@ -20417,6 +20406,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Koha e zgjimit përpara se të fillojë një kohëmatës [min.]"
+
+msgid "Wake up to standby"
+msgstr "Zgjohuni në gatishmëri"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Zgjoni marrësin tuaj AV nga gatishmëria"
@@ -20766,7 +20758,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Ku dëshironi të bëni kopje rezervë të cilësimeve tuaja?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Ku t'i kursesh regjistrimet e përkohshme të kohës?"
 
 msgid "Which event do you want to save permanently?"
@@ -21237,6 +21229,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Pajisja juaj mund të zbulojë vetë modalitetin ci ose të funksionojë vetëm në modalitetin e vjetër."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Lidhja juaj e internetit nuk funksionon!\n"
+"Ju lutemi zgjidhni atë që dëshironi të bëni më pas."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Marrësi juaj ka një problem softuerik të zbuluar. Që nga ristartimi i fundit ka ndodhur %d herë.\n"
@@ -21268,13 +21267,6 @@ msgid "Your existing IceTV password."
 msgstr "Fjalëkalimi juaj ekzistues i IceTV."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Paneli juaj i përparmë do të përmirësohet\n"
-"Kjo mund të zgjasë disa minuta"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21289,6 +21281,13 @@ msgid ""
 msgstr ""
 "Procesori juaj i përparmë do të përmirësohet\n"
 "Ju lutemi prisni derisa %s %s të rindizet\n"
+"Kjo mund të zgjasë disa minuta"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Paneli juaj i përparmë do të përmirësohet\n"
 "Kjo mund të zgjasë disa minuta"
 
 #, python-format
@@ -21316,13 +21315,6 @@ msgstr ""
 "\n"
 "\n"
 "Dëshiron ende të përditësosh?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Lidhja juaj e internetit nuk funksionon!\n"
-"Ju lutemi zgjidhni atë që dëshironi të bëni më pas."
 
 msgid "Your network configuration has been activated."
 msgstr "Konfigurimi i rrjetit tuaj është aktivizuar."
@@ -21359,9 +21351,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "ZOOM"
@@ -21468,6 +21457,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
+msgid "[Favorite Edit]"
+msgstr ""
+
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -21481,9 +21473,6 @@ msgid "[alternative edit]"
 msgstr ""
 
 msgid "[bouquet edit]"
-msgstr ""
-
-msgid "[Favorite Edit]"
 msgstr ""
 
 msgid "[move mode]"
@@ -21714,10 +21703,10 @@ msgstr ""
 msgid "chapters"
 msgstr ""
 
-msgid "children's/youth program (general)"
+msgid "children's (general)"
 msgstr ""
 
-msgid "children's (general)"
+msgid "children's/youth program (general)"
 msgstr ""
 
 msgid "clip overscan / letterbox borders"
@@ -22501,7 +22490,7 @@ msgstr ""
 msgid "remove cable services"
 msgstr ""
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr ""
 
 msgid "remove entry"
@@ -22751,7 +22740,7 @@ msgstr ""
 msgid "switch Nand and SDcard"
 msgstr ""
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr ""
 
 msgid "switch to the next angle"
@@ -22994,6 +22983,12 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Es folgt:"
+#~ msgstr "Es folgt:"
+
+#~ msgid "Wakeup"
+#~ msgstr "Zgjohu"
 
 #~ msgid "Bit rate"
 #~ msgstr "Shpejtësia e bitit"

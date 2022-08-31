@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2175,14 +2175,14 @@ msgstr "Thông tin phần mền..."
 msgid "Access point"
 msgstr ""
 
+msgid "Access point:"
+msgstr "Điểm truy cập:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
 msgstr "Truy cập:"
-
-msgid "Access point:"
-msgstr "Điểm truy cập:"
 
 #, fuzzy
 msgid "Action"
@@ -2649,7 +2649,7 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Một tên tệp trống là bất hợp pháp."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2969,6 +2969,9 @@ msgstr "Chọn ngôn ngữ tự động"
 msgid "Auto Modes Selected."
 msgstr "Chế độ tự động được chọn."
 
+msgid "Auto SCART switching"
+msgstr "Tự động chuyển mạch"
+
 msgid "Auto Timer"
 msgstr "Hẹn giờ tự động"
 
@@ -2995,9 +2998,6 @@ msgstr "Tự động lấy nét bắt đầu .."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto SCART switching"
-msgstr "Tự động chuyển mạch"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3085,10 +3085,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (chỉ tiêu đề HDTV)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "Bludisc tương thích BDMV (chỉ HDTV)"
 
 msgid "BER:"
@@ -3177,11 +3177,11 @@ msgstr "Tùy chọn xóa nền"
 msgid "Background delete speed"
 msgstr "Tốc độ xóa nền"
 
-msgid "Background:"
-msgstr "Lý lịch:"
-
 msgid "Background selected:"
 msgstr "Hình nền được chọn:"
+
+msgid "Background:"
+msgstr "Lý lịch:"
 
 msgid "Backup"
 msgstr "Sao lưu cài đặt máy thu của bạn"
@@ -3428,6 +3428,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr "Yêu cầu cập nhật bộ nạp khởi động!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3443,9 +3446,6 @@ msgstr ""
 
 msgid "Boot-up action"
 msgstr "Hành động khởi động"
-
-msgid "Boot loader update required!"
-msgstr "Yêu cầu cập nhật bộ nạp khởi động!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia và Herzegovina"
@@ -4122,6 +4122,9 @@ msgstr "Thông tin kênh"
 msgid "Channel List"
 msgstr "Danh sách kênh"
 
+msgid "Channel List Menu"
+msgstr "Danh sách lít kênh"
+
 msgid "Channel Selection Settings"
 msgstr "Cài đặt chọn kênh"
 
@@ -4161,6 +4164,9 @@ msgstr "Danh sách kênh hiển thị MiniTV *"
 msgid "Channel list type"
 msgstr "Loại danh sách kênh"
 
+msgid "Channel name"
+msgstr "Tên kênh"
+
 msgid "Channel preview mode"
 msgstr "Chế độ xem trước kênh"
 
@@ -4169,6 +4175,9 @@ msgstr "Chọn kênh"
 
 msgid "Channel selection configuration"
 msgstr "Cấu hình lựa chọn kênh"
+
+msgid "Channel selection:"
+msgstr "Chọn kênh:"
 
 msgid "Channel up"
 msgstr "Chuyển kênh lên"
@@ -4187,15 +4196,6 @@ msgstr "Kênh:"
 
 msgid "ChannelEPG Settings"
 msgstr "Cài đặt ChannelEPG"
-
-msgid "Channel List Menu"
-msgstr "Danh sách lít kênh"
-
-msgid "Channel name"
-msgstr "Tên kênh"
-
-msgid "Channel selection:"
-msgstr "Chọn kênh:"
 
 msgid "Chap."
 msgstr "Chap."
@@ -4264,12 +4264,12 @@ msgstr ""
 msgid "Children"
 msgstr "Chile"
 
-msgid "Children/Youth"
-msgstr "Trẻ em / Thanh niên"
-
 #, fuzzy
 msgid "Children's"
 msgstr "Chile"
+
+msgid "Children/Youth"
+msgstr "Trẻ em / Thanh niên"
 
 msgid "Chile"
 msgstr "Chile"
@@ -4620,12 +4620,12 @@ msgstr "Thành phần của tên tệp ghi âm"
 msgid "Config"
 msgstr "Cấu hình"
 
-msgid "Config file name (ok to change):"
-msgstr "Tên tệp cấu hình (ok để thay đổi):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Cấu hình%s được lưu."
+
+msgid "Config file name (ok to change):"
+msgstr "Tên tệp cấu hình (ok để thay đổi):"
 
 #, fuzzy
 msgctxt "Abbreviation of 'Configurable'"
@@ -5262,7 +5262,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Tạo thư mục%s không thành công."
 
 msgid "Creating file system"
@@ -5801,17 +5801,17 @@ msgstr "Xác định khoảng cách nhảy cho bước nhảy về phía trướ
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Xác định tốc độ chuyển tiếp nhanh đang sử dụng cueing bình thường. Tất cả các tốc độ chuyển tiếp khác và tất cả các tốc độ tua lại đều sử dụng thời gian nhảy."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Trì hoãn sau khi thay đổi điện áp trước lệnh chuyển đổi"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Trì hoãn sau khi tắt âm liên tục trước khi diseqc"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Trì hoãn sau lệnh poweron ngoại vi diseqc"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Trì hoãn sau khi đặt lại lệnh diseqc"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Trì hoãn sau khi thay đổi điện áp trước lệnh chuyển đổi"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Trì hoãn sau khi tắt âm liên tục trước khi diseqc"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Độ trễ sau khi bật điện áp trước lệnh động cơ"
@@ -6053,11 +6053,11 @@ msgstr ""
 msgid "Device mounts"
 msgstr "Giá đỡ thiết bị"
 
-msgid "Device: "
-msgstr "Thiết bị: "
-
 msgid "Device name:"
 msgstr "Tên thiết bị:"
+
+msgid "Device: "
+msgstr "Thiết bị: "
 
 msgid "Devices"
 msgstr "Thiết bị"
@@ -6379,7 +6379,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Bạn có thực sự muốn xóa thư mục%s khỏi đĩa không?"
 
 #, python-format
@@ -6395,7 +6395,7 @@ msgstr ""
 "plugin % s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
 
 #, python-format
@@ -7520,9 +7520,6 @@ msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
 
-msgid "Es folgt:"
-msgstr "Es folgt:"
-
 msgid "Esperanto"
 msgstr ""
 
@@ -7569,17 +7566,17 @@ msgstr "Menu sự kiện"
 msgid "Event font size"
 msgstr "Cỡ chữ sự kiện"
 
-msgid "Event view menu"
-msgstr "Menu xem sự kiện"
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr "Chỉ tên sự kiện"
 
+msgid "Event view menu"
+msgstr "Menu xem sự kiện"
+
 msgid "Event view:"
 msgstr "Sự kiện:"
+
+msgid "EventViewEPG Actions"
+msgstr ""
 
 msgid "Everyday"
 msgstr "Mỗi ngày"
@@ -7902,11 +7899,11 @@ msgstr "Quét nhanh"
 msgid "Fast epoch"
 msgstr "Kỷ nguyên nhanh"
 
-msgid "Fast forward speeds"
-msgstr "Tốc độ chuyển tiếp nhanh"
-
 msgid "Fast forward"
 msgstr "Nhanh về phía trước"
+
+msgid "Fast forward speeds"
+msgstr "Tốc độ chuyển tiếp nhanh"
 
 msgid "Favorites"
 msgstr "Yêu thích"
@@ -8326,6 +8323,9 @@ msgstr "Sao lưu đầy đủ trên% s"
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr "Toàn màn hình"
+
 msgid "Full transparency"
 msgstr "Minh bạch đầy đủ"
 
@@ -8334,9 +8334,6 @@ msgstr "Nghị quyết Fulview"
 
 msgid "FullHD Test"
 msgstr "Toàn bộ RGB RGB"
-
-msgid "Full screen"
-msgstr "Toàn màn hình"
 
 #, fuzzy
 msgid "G"
@@ -8666,20 +8663,20 @@ msgstr "Danh sách HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "Cổng thông tin HDMI"
-
 msgid "HDMI Colorimetry"
 msgstr "Đo màu HDMI"
-
-msgid "HDMI color space"
-msgstr "Không gian màu HDMI"
 
 msgid "HDMI HDR Type"
 msgstr "Loại HDMI HDR"
 
 msgid "HDMI Recording Settings"
 msgstr "Ghi âm HDMI"
+
+msgid "HDMI color depth"
+msgstr "Cổng thông tin HDMI"
+
+msgid "HDMI color space"
+msgstr "Không gian màu HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9668,7 +9665,7 @@ msgid "Invalid"
 msgstr "Không hợp lệ"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Thư mục không hợp lệ được chọn:%s"
 
 msgid "Invalid location"
@@ -12820,7 +12817,7 @@ msgstr "Vui lòng nhập tên tệp mới"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Vui lòng nhập tên tệp (trống = sử dụng ngày hiện tại)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Vui lòng nhập tên của thư mục mới"
 
 msgid "Please enter name of the new symlink"
@@ -14282,7 +14279,7 @@ msgid "Removing Service"
 msgstr "Xóa dịch vụ"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
 
 msgid "Removing partition table"
@@ -16128,11 +16125,11 @@ msgstr "Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nh�
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid "Set the default sorting method."
 msgstr "Đặt phương thức sắp xếp mặc định."
@@ -17287,6 +17284,9 @@ msgstr "Chọn da"
 msgid "Skins"
 msgstr "Da"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Bỏ qua kiểm tra kết nối internet (vô hiệu hóa cài đặt gói tự động)"
+
 msgid "Skip back"
 msgstr "Bỏ lại"
 
@@ -17295,9 +17295,6 @@ msgstr "Bỏ qua các dịch vụ trống"
 
 msgid "Skip forward"
 msgstr "Bỏ qua"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Bỏ qua kiểm tra kết nối internet (vô hiệu hóa cài đặt gói tự động)"
 
 msgid "Skip selection"
 msgstr "Bỏ qua lựa chọn"
@@ -17905,9 +17902,6 @@ msgstr "Dừng máy bay thử nghiệm sau khi # bộ tiếp sóng thành công"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-msgid "Stop timer recording"
-msgstr "Dừng ghi âm hẹn giờ"
-
 msgid "Stop time shift"
 msgstr "Dừng timeshift"
 
@@ -17919,6 +17913,9 @@ msgstr "Dừng timeshift và lưu bộ đệm timeshift dưới dạng phim và 
 
 msgid "Stop time shift while recording"
 msgstr "Dừng timeshift trong khi ghi âm?"
+
+msgid "Stop timer recording"
+msgstr "Dừng ghi âm hẹn giờ"
 
 msgid "Stopped"
 msgstr "Ngừng"
@@ -18750,7 +18747,7 @@ msgstr ""
 "Vui lòng cài đặt nó."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Đường dẫn%s đã tồn tại."
 
 msgid "The pin code you entered is wrong."
@@ -18868,9 +18865,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "Không có tín hiệu để khóa!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Có thể không có đủ không gian trên phân vùng đã chọn ..\n"
 "Bạn có thực sự muốn tiếp tục?"
@@ -19510,10 +19505,6 @@ msgstr "Để khôi phục lại hình ảnh:"
 msgid "Today"
 msgstr "Hôm nay"
 
-#, fuzzy
-msgid "Toggles between tv and radio"
-msgstr "Chuyển đổi giữa tv và radio ..."
-
 msgid "Toggle Digital downmix..."
 msgstr "Chuyển đổi chế độ xuống kỹ thuật số ..."
 
@@ -19569,6 +19560,10 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Sắp xếp tên dịch vụ"
 
+#, fuzzy
+msgid "Toggles between tv and radio"
+msgstr "Chuyển đổi giữa tv và radio ..."
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -19578,14 +19573,14 @@ msgstr "Tokelau"
 msgid "Tone amplitude"
 msgstr "Biên độ âm"
 
-msgid "Tone mode"
-msgstr "Chế độ tone"
-
 msgid "Tone burst"
 msgstr "Tone burst"
 
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+msgid "Tone mode"
+msgstr "Chế độ tone"
 
 msgid "Tonga"
 msgstr "Lưỡi"
@@ -20111,6 +20106,9 @@ msgstr "Cập nhật độ trễ cho các sự kiện trong danh sách. Cuộn t
 msgid "Update failed!"
 msgstr "Cập nhật thất bại!"
 
+msgid "Update feed not available."
+msgstr "Cập nhật nguồn cấp dữ liệu không có sẵn."
+
 msgid "Update finished!"
 msgstr "Cập nhật xong!"
 
@@ -20122,7 +20120,7 @@ msgstr "Cập nhật được báo cáo là bị lỗi !!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Cập nhật thành công!\n"
 "Bootloader của bạn đã được cập nhật!"
@@ -20138,9 +20136,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-msgid "Update feed not available."
-msgstr "Cập nhật nguồn cấp dữ liệu không có sẵn."
 
 msgid "Updates available:"
 msgstr "Cập nhật có sẵn:"
@@ -20916,12 +20911,6 @@ msgstr "Chờ phân vùng"
 msgid "Wake up"
 msgstr "Thức dậy"
 
-msgid "Wake up to standby"
-msgstr "Thức dậy để chờ"
-
-msgid "Wakeup"
-msgstr "Thức dậy"
-
 msgid "Wake up TV from standby"
 msgstr "Wake Up TV từ chế độ chờ"
 
@@ -20930,6 +20919,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Thời gian thức dậy trước khi hẹn giờ bắt đầu [phút]"
+
+msgid "Wake up to standby"
+msgstr "Thức dậy để chờ"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Đánh thức bộ thu AV của bạn từ chế độ chờ"
@@ -21284,7 +21276,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Lưu bản ghi timeshift tạm thời ở đâu?"
 
 msgid "Which event do you want to save permanently?"
@@ -21751,6 +21743,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Phần cứng của bạn có thể tự phát hiện chế độ ci hoặc chỉ hoạt động ở chế độ cũ."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Kết nối internet của bạn không hoạt động!\n"
+"Vui lòng chọn những gì bạn muốn làm tiếp theo."
+
 #, fuzzy, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Đầu thu của bạn có vấn đề về Phần mềm được phát hiện. Kể từ lần khởi động lại cuối cùng, nó đã xảy ra % d lần.\n"
@@ -21782,13 +21781,6 @@ msgid "Your existing IceTV password."
 msgstr ""
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Bảng điều khiển phía trước của bạn sẽ được nâng cấp\n"
-"Có thể sẽ mất vài phút"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21803,6 +21795,13 @@ msgid ""
 msgstr ""
 "Bộ xử lý trước của bạn sẽ được nâng cấp\n"
 "Vui lòng đợi cho đến khi % s% s của bạn khởi động lại\n"
+"Có thể sẽ mất vài phút"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Bảng điều khiển phía trước của bạn sẽ được nâng cấp\n"
 "Có thể sẽ mất vài phút"
 
 #, python-format
@@ -21830,13 +21829,6 @@ msgstr ""
 "\n"
 "\n"
 "Bạn vẫn muốn cập nhật?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Kết nối internet của bạn không hoạt động!\n"
-"Vui lòng chọn những gì bạn muốn làm tiếp theo."
 
 msgid "Your network configuration has been activated."
 msgstr "Cấu hình mạng của bạn đã được kích hoạt."
@@ -21874,9 +21866,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "THU PHÓNG"
@@ -21989,6 +21978,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr "[Cài đặt Enigma2]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[chỉnh sửa yêu thích]"
+
 msgid "[Image Info]\n"
 msgstr "[Thông tin hình ảnh]\n"
 
@@ -22003,9 +21995,6 @@ msgstr "[chỉnh sửa thay thế]"
 
 msgid "[bouquet edit]"
 msgstr "[chỉnh sửa gói kênh]"
-
-msgid "[Favorite Edit]"
-msgstr "[chỉnh sửa yêu thích]"
 
 msgid "[move mode]"
 msgstr "[chế độ di chuyển]"
@@ -22239,11 +22228,11 @@ msgstr "thay đổi Tăng âm lượng"
 msgid "chapters"
 msgstr "chương"
 
-msgid "children's/youth program (general)"
-msgstr "chương trình trẻ em / thanh thiếu niên (nói chung)"
-
 #, fuzzy
 msgid "children's (general)"
+msgstr "chương trình trẻ em / thanh thiếu niên (nói chung)"
+
+msgid "children's/youth program (general)"
 msgstr "chương trình trẻ em / thanh thiếu niên (nói chung)"
 
 msgid "clip overscan / letterbox borders"
@@ -23045,7 +23034,7 @@ msgstr "loại bỏ bó hoa khỏi sự bảo vệ của cha mẹ"
 msgid "remove cable services"
 msgstr "loại bỏ dịch vụ cáp"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "xóa thư mục"
 
 msgid "remove entry"
@@ -23301,7 +23290,7 @@ msgstr "chuyển chế độ hiển thị 12 đến 8 ký tự"
 msgid "switch Nand and SDcard"
 msgstr "chuyển Nand và SDcard"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "chuyển sang đánh dấu"
 
 msgid "switch to the next angle"

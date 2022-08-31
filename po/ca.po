@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -2315,15 +2315,15 @@ msgstr "Quant a..."
 msgid "Access point"
 msgstr ""
 
+#
+msgid "Access point:"
+msgstr "Punt d'accés:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
 msgstr ""
-
-#
-msgid "Access point:"
-msgstr "Punt d'accés:"
 
 #
 #, fuzzy
@@ -2841,7 +2841,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 
 #
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Un nom de fitxer buit és il·legal."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -3179,6 +3179,10 @@ msgid "Auto Modes Selected."
 msgstr ""
 
 #
+msgid "Auto SCART switching"
+msgstr "Canvi automàtic de descart"
+
+#
 #, fuzzy
 msgid "Auto Timer"
 msgstr "Gravar"
@@ -3212,10 +3216,6 @@ msgstr "Enfocament automàtic que comença …"
 
 msgid "Auto install log"
 msgstr ""
-
-#
-msgid "Auto SCART switching"
-msgstr "Canvi automàtic de descart"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3314,10 +3314,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr ""
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr ""
 
 msgid "BER:"
@@ -3408,10 +3408,10 @@ msgstr "Opció suprimir el fons"
 msgid "Background delete speed"
 msgstr "Opcio suprimir velocitat"
 
-msgid "Background:"
+msgid "Background selected:"
 msgstr ""
 
-msgid "Background selected:"
+msgid "Background:"
 msgstr ""
 
 msgid "Backup"
@@ -3673,6 +3673,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr ""
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3687,9 +3690,6 @@ msgid "Boot time and local time"
 msgstr ""
 
 msgid "Boot-up action"
-msgstr ""
-
-msgid "Boot loader update required!"
 msgstr ""
 
 msgid "Bosnia and Herzegovina"
@@ -4415,6 +4415,9 @@ msgstr "Informació del canal"
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Menu"
+msgstr "Menú de llista de canals"
+
 #
 #, fuzzy
 msgid "Channel Selection Settings"
@@ -4458,6 +4461,9 @@ msgstr ""
 msgid "Channel list type"
 msgstr "Menú de llista de canal"
 
+msgid "Channel name"
+msgstr ""
+
 msgid "Channel preview mode"
 msgstr ""
 
@@ -4467,6 +4473,11 @@ msgstr "Selecció de canals"
 
 msgid "Channel selection configuration"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel selection:"
+msgstr "Selecció de canal"
 
 msgid "Channel up"
 msgstr ""
@@ -4487,17 +4498,6 @@ msgstr "Canal:"
 #
 #, fuzzy
 msgid "ChannelEPG Settings"
-msgstr "Selecció de canal"
-
-msgid "Channel List Menu"
-msgstr "Menú de llista de canals"
-
-msgid "Channel name"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Channel selection:"
 msgstr "Selecció de canal"
 
 #
@@ -4569,11 +4569,11 @@ msgstr ""
 msgid "Children"
 msgstr ""
 
-msgid "Children/Youth"
-msgstr "Infantil / juvenil"
-
 msgid "Children's"
 msgstr ""
+
+msgid "Children/Youth"
+msgstr "Infantil / juvenil"
 
 msgid "Chile"
 msgstr "Chile"
@@ -4950,11 +4950,11 @@ msgstr "Composició dels noms de fitxers de gravació"
 msgid "Config"
 msgstr "Configurant"
 
-msgid "Config file name (ok to change):"
-msgstr ""
-
 #, python-format
 msgid "Config file %s saved."
+msgstr ""
+
+msgid "Config file name (ok to change):"
 msgstr ""
 
 #
@@ -5608,7 +5608,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Ha fallat la creació del directori% s."
 
 msgid "Creating file system"
@@ -6189,17 +6189,17 @@ msgstr ""
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr ""
 
-msgid "Delay after change voltage before switch command"
-msgstr "Retardar després de canviar la tensió abans del comandament del commutador"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Retardar desactivar el to continu abans de diseqc"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Retardar el poder perifèric al comandament del comandament"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Retarda després de restablir l’ordre del diseqc"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Retardar després de canviar la tensió abans del comandament del commutador"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Retardar desactivar el to continu abans de diseqc"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Retardar l’activació de la tensió abans del comandament del motor"
@@ -6462,11 +6462,11 @@ msgstr ""
 msgid "Device mounts"
 msgstr ""
 
-msgid "Device: "
-msgstr ""
-
 msgid "Device name:"
 msgstr "Nom del dispositiu:"
+
+msgid "Device: "
+msgstr ""
 
 msgid "Devices"
 msgstr ""
@@ -6806,7 +6806,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Realment voleu eliminar el directori% s del disc?"
 
 #
@@ -6821,7 +6821,7 @@ msgstr "Segur que vols esborrar %s?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Voleu suprimir el marcador de% s?"
 
 #, python-format
@@ -7961,9 +7961,6 @@ msgstr "No es poden crear els directoris obligatoris al suport (per exemple, sti
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -8012,16 +8009,16 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Event view menu"
-msgstr "Menú de visualització d’esdeveniments"
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr ""
 
+msgid "Event view menu"
+msgstr "Menú de visualització d’esdeveniments"
+
 msgid "Event view:"
+msgstr ""
+
+msgid "EventViewEPG Actions"
 msgstr ""
 
 msgid "Everyday"
@@ -8374,11 +8371,11 @@ msgstr ""
 msgid "Fast epoch"
 msgstr "Època ràpida"
 
-msgid "Fast forward speeds"
-msgstr "Velocitats d’avanç ràpides"
-
 msgid "Fast forward"
 msgstr ""
+
+msgid "Fast forward speeds"
+msgstr "Velocitats d’avanç ràpides"
 
 msgid "Favorites"
 msgstr ""
@@ -8826,6 +8823,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Total transparència"
 
@@ -8833,9 +8833,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Full screen"
 msgstr ""
 
 msgid "G"
@@ -9180,14 +9177,8 @@ msgstr "HD list"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "Colordepth HDMI"
-
 msgid "HDMI Colorimetry"
 msgstr "Colorimetria HDMI"
-
-msgid "HDMI color space"
-msgstr "HDMI color space"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI tipus HDR"
@@ -9196,6 +9187,12 @@ msgstr "HDMI tipus HDR"
 #, fuzzy
 msgid "HDMI Recording Settings"
 msgstr "Gravant"
+
+msgid "HDMI color depth"
+msgstr "Colordepth HDMI"
+
+msgid "HDMI color space"
+msgstr "HDMI color space"
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -10250,7 +10247,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Directori no vàlid seleccionat:% s"
 
 msgid "Invalid location"
@@ -13642,7 +13639,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Sisplau introdueix el nom (buit=data actual)"
 
 #
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Introduïu el nom del directori nou"
 
 #
@@ -15217,7 +15214,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Ha fallat l’eliminació del directori% s. (Potser no està buida.)"
 
 #
@@ -17187,10 +17184,10 @@ msgstr ""
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -18416,6 +18413,9 @@ msgstr ""
 msgid "Skins"
 msgstr "Pells"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Omet la verificació de la connexió a Internet (desactiva la instal·lació automàtica de paquets)"
+
 msgid "Skip back"
 msgstr ""
 
@@ -18425,9 +18425,6 @@ msgstr "Omet els serveis buits"
 
 msgid "Skip forward"
 msgstr ""
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Omet la verificació de la connexió a Internet (desactiva la instal·lació automàtica de paquets)"
 
 #
 #, fuzzy
@@ -19078,10 +19075,6 @@ msgstr "Deixeu de provar l’avió després de # transponders amb èxit"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-#
-msgid "Stop timer recording"
-msgstr "Atureu la gravació del temporitzador"
-
 msgid "Stop time shift"
 msgstr "Cancel·lar pausa"
 
@@ -19093,6 +19086,10 @@ msgstr ""
 
 msgid "Stop time shift while recording"
 msgstr ""
+
+#
+msgid "Stop timer recording"
+msgstr "Atureu la gravació del temporitzador"
 
 msgid "Stopped"
 msgstr "Aturat"
@@ -19931,7 +19928,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "La ruta% s ja existeix."
 
 #
@@ -20056,9 +20053,7 @@ msgid "There is no signal to lock on !"
 msgstr "No hi ha cap senyal per bloquejar-lo."
 
 #
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 
 msgid "There was an error downloading current region details"
@@ -20721,9 +20716,6 @@ msgstr "Si, restaura la configuració ara"
 msgid "Today"
 msgstr "Avui"
 
-msgid "Toggles between tv and radio"
-msgstr ""
-
 msgid "Toggle Digital downmix..."
 msgstr ""
 
@@ -20780,6 +20772,9 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Recerca de canal"
 
+msgid "Toggles between tv and radio"
+msgstr ""
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -20790,16 +20785,16 @@ msgid "Tone amplitude"
 msgstr "Amplitud de tons"
 
 #
-msgid "Tone mode"
-msgstr "Mode del to"
-
-#
 msgid "Tone burst"
 msgstr "Tone burst"
 
 #
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+#
+msgid "Tone mode"
+msgstr "Mode del to"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -21380,6 +21375,10 @@ msgid "Update failed!"
 msgstr "Ha fallat l'eliminació!"
 
 #
+msgid "Update feed not available."
+msgstr "Actualització no disponible."
+
+#
 #, fuzzy
 msgid "Update finished!"
 msgstr "Ha finalitzat l'execució"
@@ -21392,7 +21391,7 @@ msgstr ""
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -21406,10 +21405,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-#
-msgid "Update feed not available."
-msgstr "Actualització no disponible."
 
 msgid "Updates available:"
 msgstr ""
@@ -22230,14 +22225,6 @@ msgstr "En espera de la partició"
 msgid "Wake up"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Wake up to standby"
-msgstr "Apagat complet"
-
-msgid "Wakeup"
-msgstr "Desperta"
-
 msgid "Wake up TV from standby"
 msgstr "TV despertador des del mode d’espera"
 
@@ -22246,6 +22233,11 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Wake up to standby"
+msgstr "Apagat complet"
 
 #
 #, fuzzy
@@ -22601,7 +22593,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "On vols guardar el backup de la configuració?"
 
 #
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "On desar els enregistraments temporals de temps?"
 
 msgid "Which event do you want to save permanently?"
@@ -23068,6 +23060,14 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
+#
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"La vostra connexió a Internet no funciona.\n"
+"Seleccioneu què voleu fer a continuació."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
@@ -23099,11 +23099,6 @@ msgstr ""
 msgid "Your existing IceTV password."
 msgstr ""
 
-msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-
 #
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
@@ -23116,6 +23111,11 @@ msgstr ""
 msgid ""
 "Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
+"Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
 
@@ -23133,14 +23133,6 @@ msgid ""
 "\n"
 "Do you still want to update?"
 msgstr ""
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"La vostra connexió a Internet no funciona.\n"
-"Seleccioneu què voleu fer a continuació."
 
 #
 msgid "Your network configuration has been activated."
@@ -23180,9 +23172,6 @@ msgid "Youtube TV"
 msgstr ""
 
 msgid "ZAP"
-msgstr ""
-
-msgid "ZAP as PiP"
 msgstr ""
 
 msgid "ZOOM"
@@ -23298,6 +23287,10 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
+#
+msgid "[Favorite Edit]"
+msgstr "[editar preferits]"
+
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -23314,10 +23307,6 @@ msgstr "[edició alternatives]"
 #
 msgid "[bouquet edit]"
 msgstr "[editar llista]"
-
-#
-msgid "[Favorite Edit]"
-msgstr "[editar preferits]"
 
 #
 msgid "[move mode]"
@@ -23573,10 +23562,10 @@ msgstr ""
 msgid "chapters"
 msgstr "capítols"
 
-msgid "children's/youth program (general)"
+msgid "children's (general)"
 msgstr ""
 
-msgid "children's (general)"
+msgid "children's/youth program (general)"
 msgstr ""
 
 msgid "clip overscan / letterbox borders"
@@ -24465,7 +24454,7 @@ msgid "remove cable services"
 msgstr ""
 
 #
-msgid "remove directory"
+msgid "Remove directory"
 msgstr ""
 
 #
@@ -24750,7 +24739,7 @@ msgid "switch Nand and SDcard"
 msgstr ""
 
 #
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr ""
 
 #
@@ -25014,3 +25003,6 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Wakeup"
+#~ msgstr "Desperta"

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
-"PO-Revision-Date: 2022-08-29 18:47+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"PO-Revision-Date: 2022-08-31 18:07+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2142,14 +2142,14 @@ msgstr "Informazioni..."
 msgid "Access point"
 msgstr "Punto di accesso"
 
+msgid "Access point:"
+msgstr "Punto di accesso:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "L'accesso alla geolocalizzazione richiede una connessione a Internet."
 
 msgid "Accessed:"
 msgstr "Accesso:"
-
-msgid "Access point:"
-msgstr "Punto di accesso:"
 
 msgid "Action"
 msgstr "Azione"
@@ -2610,7 +2610,7 @@ msgstr "Amlogico remoto"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Viene effettuato un tentativo di acquisire lo stato TV attuale. Se ciò non è possibile a causa di messaggi di stato errati o mancanti, il ricevitore potrebbe rispondere in modo imprevisto. D'altra parte, cerca di rispondere meglio alle diverse condizioni operative."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Un nome di file vuoto non è valido."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2923,6 +2923,9 @@ msgstr "Selezione lingua automatica"
 msgid "Auto Modes Selected."
 msgstr "Modalità automatiche selezionate."
 
+msgid "Auto SCART switching"
+msgstr "Commutazione automatica SCART"
+
 msgid "Auto Timer"
 msgstr "Timer automatico"
 
@@ -2949,9 +2952,6 @@ msgstr "Inizia messa a fuoco automatica..."
 
 msgid "Auto install log"
 msgstr "Registro di installazione automatica"
-
-msgid "Auto SCART switching"
-msgstr "Commutazione automatica SCART"
 
 msgid "Auto shut down"
 msgstr "Spegnimento automatico"
@@ -3038,10 +3038,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Bludisc (solo HDTV)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Compatible Bludisc (solo HDTV)"
 
 msgid "BER:"
@@ -3130,11 +3130,11 @@ msgstr "Opzione elimina in background"
 msgid "Background delete speed"
 msgstr "Velocità cancellazione in background"
 
-msgid "Background:"
-msgstr "Background:"
-
 msgid "Background selected:"
 msgstr "Selezionato background:"
+
+msgid "Background:"
+msgstr "Background:"
 
 msgid "Backup"
 msgstr "Backup"
@@ -3377,6 +3377,9 @@ msgstr "ID di avvio"
 msgid "Boot information"
 msgstr "Informazioni di avvio"
 
+msgid "Boot loader update required!"
+msgstr "Richiesto l'aggiornamento del bootloader!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr "Informazioni sullo slot di avvio per %s %s"
@@ -3392,9 +3395,6 @@ msgstr "Tempo di avvio e ora locale"
 
 msgid "Boot-up action"
 msgstr "Azione di avvio"
-
-msgid "Boot loader update required!"
-msgstr "Richiesto l'aggiornamento del bootloader!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia-Herzegovina"
@@ -4071,6 +4071,9 @@ msgstr "Info canale"
 msgid "Channel List"
 msgstr "Lista canali"
 
+msgid "Channel List Menu"
+msgstr "Menu Lista canali"
+
 msgid "Channel Selection Settings"
 msgstr "Impostazioni selezione canale"
 
@@ -4110,6 +4113,9 @@ msgstr "Lista canali mostra MiniTV*"
 msgid "Channel list type"
 msgstr "Tipo lista canali"
 
+msgid "Channel name"
+msgstr "Channel name"
+
 msgid "Channel preview mode"
 msgstr "Modalità anteprima canale"
 
@@ -4118,6 +4124,9 @@ msgstr "Lista canali"
 
 msgid "Channel selection configuration"
 msgstr "Configura la lista canali"
+
+msgid "Channel selection:"
+msgstr "Selezione canali:"
 
 msgid "Channel up"
 msgstr "Canale su"
@@ -4136,15 +4145,6 @@ msgstr "Canale:"
 
 msgid "ChannelEPG Settings"
 msgstr "Impostazioni canale EPG"
-
-msgid "Channel List Menu"
-msgstr "Menu Lista canali"
-
-msgid "Channel name"
-msgstr "Channel name"
-
-msgid "Channel selection:"
-msgstr "Selezione canali:"
 
 msgid "Chap."
 msgstr "Cap."
@@ -4211,11 +4211,11 @@ msgstr "Chichewa / Chewa / Nyanja"
 msgid "Children"
 msgstr "Bambini"
 
-msgid "Children/Youth"
-msgstr "Bambini/Giovani"
-
 msgid "Children's"
 msgstr "Bambini"
+
+msgid "Children/Youth"
+msgstr "Bambini/Giovani"
 
 msgid "Chile"
 msgstr "Cile"
@@ -4562,12 +4562,12 @@ msgstr "Struttura nomi dei file registrazione"
 msgid "Config"
 msgstr "Configurazione"
 
-msgid "Config file name (ok to change):"
-msgstr "File di configurazione (ok per modificare):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Configurazione del %s salvata."
+
+msgid "Config file name (ok to change):"
+msgstr "File di configurazione (ok per modificare):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -5193,7 +5193,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Creazione link al file TimeShift fallito!"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Creazione della directory %s non riuscita."
 
 msgid "Creating file system"
@@ -5720,17 +5720,17 @@ msgstr "Definisce l'intervallo di tempo per i salti avanti. Il valore è moltipl
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Definisce quali velocità di avanzamento veloce sono usate. Tutte le altre velocità di avanzamento e tutte quelle di riavvolgimento usano i salti temporali."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Ritardo dopo il cambio tensione prima del comando di commutazione"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Ritardo dopo il segnale continuo disabilitato via DiSEqC"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Ritardo dopo il comando DiSEqC Power ON periferico"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Ritardo dopo il comando di reset DiSEqC"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Ritardo dopo il cambio tensione prima del comando di commutazione"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Ritardo dopo il segnale continuo disabilitato via DiSEqC"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Ritardo dopo l'abilitazione del voltaggio prima di un comando al motore "
@@ -5969,11 +5969,11 @@ msgstr "ID del dispositivo"
 msgid "Device mounts"
 msgstr "Montaggio dispositivo"
 
-msgid "Device: "
-msgstr "Dispositivo: "
-
 msgid "Device name:"
 msgstr "Nome dispositivo:"
+
+msgid "Device: "
+msgstr "Dispositivo: "
 
 msgid "Devices"
 msgstr "Dispositivi"
@@ -6291,7 +6291,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vuoi davvero rimuovere la directory %s dal disco?"
 
 #, python-format
@@ -6303,7 +6303,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Vuoi davvero rimuovere il timer per %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Vuoi davvero rimuovere il tuo segnalibro di %s?"
 
 #, python-format
@@ -7238,7 +7238,7 @@ msgstr "Errore %d: Impossibile modificare la password! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Errore %d: Impossibile controllare lo spazio! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7409,9 +7409,6 @@ msgstr "Errore: impossibile creare le directory richieste sul dispositivo di des
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Errore: impossibile elaborare il comando! Per favore riprova più tardi."
 
-msgid "Es folgt:"
-msgstr "A seguire:"
-
 msgid "Esperanto"
 msgstr "Esperanto"
 
@@ -7457,17 +7454,17 @@ msgstr "Menu programmazione"
 msgid "Event font size"
 msgstr "Dimensione carattere programma"
 
-msgid "Event view menu"
-msgstr "Menu vista eventi"
-
-msgid "EventViewEPG Actions"
-msgstr "Azioni visualizzazione eventi EPG"
-
 msgid "Event name only"
 msgstr "Solo nome evento"
 
+msgid "Event view menu"
+msgstr "Menu vista eventi"
+
 msgid "Event view:"
 msgstr "Vista programmazione:"
+
+msgid "EventViewEPG Actions"
+msgstr "Azioni visualizzazione eventi EPG"
 
 msgid "Everyday"
 msgstr "Ogni giorno"
@@ -7791,11 +7788,11 @@ msgstr "Scan veloce"
 msgid "Fast epoch"
 msgstr "Epoch veloce"
 
-msgid "Fast forward speeds"
-msgstr "Velocità Avanti Veloce (FFW)"
-
 msgid "Fast forward"
 msgstr "Avanti veloce"
+
+msgid "Fast forward speeds"
+msgstr "Velocità Avanti Veloce (FFW)"
 
 msgid "Favorites"
 msgstr "Preferiti"
@@ -8203,6 +8200,9 @@ msgstr "Backup completo su %s"
 msgid "Full factory reset"
 msgstr "Ripristino di fabbrica completo"
 
+msgid "Full screen"
+msgstr "Schermo intero"
+
 msgid "Full transparency"
 msgstr "Piena trasparenza"
 
@@ -8211,9 +8211,6 @@ msgstr "Risoluzione schermo pieno"
 
 msgid "FullHD Test"
 msgstr "Test FullHD"
-
-msgid "Full screen"
-msgstr "Schermo intero"
 
 msgid "G"
 msgstr "G"
@@ -8536,20 +8533,20 @@ msgstr "Lista HD"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "Profondità colore HDMI"
-
 msgid "HDMI Colorimetry"
 msgstr "Colorimetria HDMI"
-
-msgid "HDMI color space"
-msgstr "Spazio colori HDMI"
 
 msgid "HDMI HDR Type"
 msgstr "Tipo HDMI HDR "
 
 msgid "HDMI Recording Settings"
 msgstr "Impostazioni di registrazione HDMI"
+
+msgid "HDMI color depth"
+msgstr "Profondità colore HDMI"
+
+msgid "HDMI color space"
+msgstr "Spazio colori HDMI"
 
 msgid "HDMI-CEC Settings"
 msgstr "Impostazioni HDMI-CEC"
@@ -9521,7 +9518,7 @@ msgid "Invalid"
 msgstr "Non valido"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "La cartella selezionata non è valida: %s"
 
 msgid "Invalid location"
@@ -12573,7 +12570,7 @@ msgstr "Inserire un nome per il nuovo file"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Inserire un nome per il file (nulla -> data attuale)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Inserire un nome per la nuova cartella"
 
 msgid "Please enter name of the new symlink"
@@ -13468,7 +13465,7 @@ msgid "QuickMenu/Extensions"
 msgstr "QuickMenu / Estensioni"
 
 msgid "QuickSelect Actions"
-msgstr ""
+msgstr "Azioni QuickSelect"
 
 msgid "RADIO"
 msgstr "RADIO"
@@ -14016,7 +14013,7 @@ msgid "Removing Service"
 msgstr "Rimozione del servizio"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Rimozione cartella %s fallita! (Forse non è vuota!)"
 
 msgid "Removing partition table"
@@ -15837,11 +15834,11 @@ msgstr "Imposta la posizione predefinita per le tue registrazioni istantanee. Pr
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Imposta la posizione predefinita per le tue registrazioni. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Imposta la posizione predefinita per i tuoi timer. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Imposta la posizione predefinita per i tuoi file timeshift. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Imposta la posizione predefinita per i tuoi timer. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
 msgid "Set the default sorting method."
 msgstr "Impostare il metodo di ordinamento predefinito."
@@ -16974,6 +16971,9 @@ msgstr "Selettore skin LCD"
 msgid "Skins"
 msgstr "Skin"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "Salta il controllo della connessione internet (disabilita la inst. automatica pacchetti)"
+
 msgid "Skip back"
 msgstr "Salta indietro"
 
@@ -16982,9 +16982,6 @@ msgstr "Salta i servizi vuoti"
 
 msgid "Skip forward"
 msgstr "Salta avanti"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "Salta il controllo della connessione internet (disabilita la inst. automatica pacchetti)"
 
 msgid "Skip selection"
 msgstr "Salta la selezione"
@@ -17587,9 +17584,6 @@ msgstr "Arrestare il test dopo # transponder controllati correttamente"
 msgid "Stop the update, if running, then exit"
 msgstr "Interrompi l'aggiornamento, se in esecuzione, quindi esci"
 
-msgid "Stop timer recording"
-msgstr "Arrestare la registrazione con timer"
-
 msgid "Stop time shift"
 msgstr "Arrestare TimeShift"
 
@@ -17601,6 +17595,9 @@ msgstr "Interrompi il timeshift, salva il buffer del timeshift come film e avvia
 
 msgid "Stop time shift while recording"
 msgstr "Interrompi il timeshift durante la registrazione"
+
+msgid "Stop timer recording"
+msgstr "Arrestare la registrazione con timer"
 
 msgid "Stopped"
 msgstr "Arrestato"
@@ -18423,7 +18420,7 @@ msgstr ""
 "Provvedere a installarla."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Percorso %s già esistente."
 
 msgid "The pin code you entered is wrong."
@@ -18546,9 +18543,7 @@ msgstr "Non ci sono informazioni da mostrare per '%s'."
 msgid "There is no signal to lock on !"
 msgstr "Non vi è alcun segnale da agganciare!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Potrebbe non esserci spazio sufficiente nella partizione selezionata..\n"
 "Vuoi davvero continuare?"
@@ -19176,9 +19171,6 @@ msgstr "Per ripristinare l'immagine:"
 msgid "Today"
 msgstr "Oggi"
 
-msgid "Toggles between tv and radio"
-msgstr "Alterna tra tv e radio"
-
 msgid "Toggle Digital downmix..."
 msgstr "Attiva o disattiva il downmix digitale..."
 
@@ -19233,6 +19225,9 @@ msgstr "Attiva/disattiva la selezione del tag attuale"
 msgid "Toggle service name display"
 msgstr "Attiva/disattiva la visualizzazione del nome del servizio"
 
+msgid "Toggles between tv and radio"
+msgstr "Alterna tra tv e radio"
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -19242,14 +19237,14 @@ msgstr "Tokelau"
 msgid "Tone amplitude"
 msgstr "Ampiezza del tono"
 
-msgid "Tone mode"
-msgstr "Modalità tono"
-
 msgid "Tone burst"
 msgstr "Tone burst"
 
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+msgid "Tone mode"
+msgstr "Modalità tono"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -19764,6 +19759,9 @@ msgstr "Ritardo di aggiornamento per gli eventi nell'elenco. Lo scorrimento nell
 msgid "Update failed!"
 msgstr "Aggiornamento fallito!"
 
+msgid "Update feed not available."
+msgstr "Feed di aggiornamento non disponibile."
+
 msgid "Update finished!"
 msgstr "Aggiornamento finito!"
 
@@ -19775,10 +19773,10 @@ msgstr "Si segnala che l'aggiornamento è fallito!!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
-"Update riuscito!\n"
-"Adesso il tuo Bootloader è aggiornato!"
+"Aggiornamento riuscito!\n"
+"Il tuo Bootloader è ora aggiornato!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aggiorna o esegui il backup del firmware, effettua il backup o il ripristino delle impostazioni"
@@ -19791,9 +19789,6 @@ msgstr "Aggiornato"
 
 msgid "Updated version unknown"
 msgstr "Versione aggiornata sconosciuta"
-
-msgid "Update feed not available."
-msgstr "Feed di aggiornamento non disponibile."
 
 msgid "Updates available:"
 msgstr "Aggiornamenti disponibili:"
@@ -20584,12 +20579,6 @@ msgstr "Attendere il partizionamento"
 msgid "Wake up"
 msgstr "Riattivare "
 
-msgid "Wake up to standby"
-msgstr "Riattivare in standby"
-
-msgid "Wakeup"
-msgstr "Riattivare"
-
 msgid "Wake up TV from standby"
 msgstr "Riattivare la TV dallo Standby"
 
@@ -20598,6 +20587,9 @@ msgstr "Abilitare il riavvio da spegnimento"
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Risveglio prima dell'inizio di un timer [min]"
+
+msgid "Wake up to standby"
+msgstr "Riattivare in standby"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "Riattiva il tuo ricevitore AV dallo standby"
@@ -20618,7 +20610,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "Attenzione: le sostituzioni sono attualmente attive!"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr ""
+msgstr "Avvertenza: le registrazioni non devono essere archiviate sulla memoria flash!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -20947,7 +20939,7 @@ msgstr "Se attivata, la funzione abiliterà VPS sulle registrazioni istantanee (
 msgid "Where do you want to backup your settings?"
 msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Dove salvo le registrazioni timeshift temporanee?"
 
 msgid "Which event do you want to save permanently?"
@@ -21418,6 +21410,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Il tuo hardware può determinare da solo la modalità CI o lavorare solo in modalità compatibile."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"La tua connessione Internet non funziona!\n"
+"Per favore scegli cosa vuoi fare dopo."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Il ricevitore ha rilevato un problema software. Dall'ultimo riavvio si è verificato %d volte.\n"
@@ -21449,13 +21448,6 @@ msgid "Your existing IceTV password."
 msgstr "La tua password IceTV esistente."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Il tuo pannello frontale sarà aggiornato \n"
-"Questa procedura dura pochi minuti"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21471,6 +21463,13 @@ msgstr ""
 "Il tuo frontprocessor viene aggiornato\n"
 "attendi che il %s %s riavvii\n"
 "Ci vorranno pochi minuti"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Il tuo pannello frontale sarà aggiornato \n"
+"Questa procedura dura pochi minuti"
 
 #, python-format
 msgid ""
@@ -21497,13 +21496,6 @@ msgstr ""
 "\n"
 "\n"
 "Vuoi ancora aggiornare?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"La tua connessione Internet non funziona!\n"
-"Per favore scegli cosa vuoi fare dopo."
 
 msgid "Your network configuration has been activated."
 msgstr "Configurazione di rete attivata correttamente."
@@ -21540,9 +21532,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZAP as PiP"
-msgstr "ZAP come PiP"
 
 msgid "ZOOM"
 msgstr "ZOOM"
@@ -21649,6 +21638,9 @@ msgstr "Zulù"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Impostazioni Enigma2]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[edit preferiti]"
+
 msgid "[Image Info]\n"
 msgstr "[Info immagine]\n"
 
@@ -21663,9 +21655,6 @@ msgstr "[edit alternative]"
 
 msgid "[bouquet edit]"
 msgstr "[edit bouquet]"
-
-msgid "[Favorite Edit]"
-msgstr "[edit preferiti]"
 
 msgid "[move mode]"
 msgstr "[modalità spostamento]"
@@ -21897,11 +21886,11 @@ msgstr "cambia Volume su"
 msgid "chapters"
 msgstr "capitoli"
 
-msgid "children's/youth program (general)"
-msgstr "programmi per bambini e giovani "
-
 msgid "children's (general)"
 msgstr "bambini (generale)"
+
+msgid "children's/youth program (general)"
+msgstr "programmi per bambini e giovani "
 
 msgid "clip overscan / letterbox borders"
 msgstr "clip overscan / letterbox borders"
@@ -22686,7 +22675,7 @@ msgstr "togli un bouquet dal controllo genitori"
 msgid "remove cable services"
 msgstr "rimuovere i servizi via cavo"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "rimuovere cartella"
 
 msgid "remove entry"
@@ -22940,7 +22929,7 @@ msgstr "cambia la modalità caratteri display da 12 a 8"
 msgid "switch Nand and SDcard"
 msgstr "commutare Nand e card SD"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "passa ai segnalibri"
 
 msgid "switch to the next angle"
@@ -23183,38 +23172,3 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Bit rate"
-#~ msgstr "Bit rate"
-
-#, python-format
-#~ msgid "Directory '%s' not writeable!"
-#~ msgstr "Directory '%s' non scrivibile!"
-
-#~ msgid "Favourites"
-#~ msgstr "Preferiti"
-
-#~ msgid "Polarisation"
-#~ msgstr "Polarizzazione"
-
-#~ msgid "Quick Select Actions"
-#~ msgstr "Azioni di selezione rapida"
-
-#~ msgid "Size:"
-#~ msgstr "Dimensioni:"
-
-#~ msgid "Size: "
-#~ msgstr "Dimensioni: "
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Configura per quanti minuti gli eventi terminati devono rimanere visibili nell'EPG. Utile quando hai bisogno di informazioni su un evento che è appena terminato o è stato ritardato."
-
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Configura la cronologia del tempo che verrà presentata."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Mantieni i vecchi dati EPG per"
-
-#, python-format
-#~ msgid "VPS Setup Version %s"
-#~ msgstr "Configurazione VPS versione %s"

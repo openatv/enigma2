@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2138,14 +2138,14 @@ msgstr "关于..."
 msgid "Access point"
 msgstr "接入点"
 
+msgid "Access point:"
+msgstr "无线接入点:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "访问地理位置信息需要互联网连接."
 
 msgid "Accessed:"
 msgstr "最后访问时间:"
-
-msgid "Access point:"
-msgstr "无线接入点:"
 
 msgid "Action"
 msgstr "动作"
@@ -2606,7 +2606,7 @@ msgstr "半导体遥控器"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "试图捕获当前的电视状态.如果由于状态消息不正确或丢失而无法执行此操作,则可能会导致接收器意外响应.另一方面,尝试更好地响应不同操作条件."
 
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "文件名不能为空."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -2919,6 +2919,9 @@ msgstr "自动选择语言"
 msgid "Auto Modes Selected."
 msgstr "已选择自动模式."
 
+msgid "Auto SCART switching"
+msgstr "自动转换开关"
+
 msgid "Auto Timer"
 msgstr "自动定时器"
 
@@ -2945,9 +2948,6 @@ msgstr "启动自动对焦..."
 
 msgid "Auto install log"
 msgstr "自动安装日志"
-
-msgid "Auto SCART switching"
-msgstr "自动转换开关"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3034,10 +3034,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV蓝光光盘(仅HDTV标题)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV兼容蓝光(HDTV专用)"
 
 msgid "BER:"
@@ -3126,11 +3126,11 @@ msgstr "后台删除选项"
 msgid "Background delete speed"
 msgstr "后台删除速度"
 
-msgid "Background:"
-msgstr "背景:"
-
 msgid "Background selected:"
 msgstr "背景选择:"
+
+msgid "Background:"
+msgstr "背景:"
 
 msgid "Backup"
 msgstr "备份"
@@ -3373,6 +3373,9 @@ msgstr "启动ID"
 msgid "Boot information"
 msgstr "启动信息"
 
+msgid "Boot loader update required!"
+msgstr "需要引导加载程序更新！"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3388,9 +3391,6 @@ msgstr "启动时间和本地时间"
 
 msgid "Boot-up action"
 msgstr "启动执行"
-
-msgid "Boot loader update required!"
-msgstr "需要引导加载程序更新！"
 
 msgid "Bosnia and Herzegovina"
 msgstr "波黑"
@@ -4067,6 +4067,9 @@ msgstr "频道信息"
 msgid "Channel List"
 msgstr "频道列表"
 
+msgid "Channel List Menu"
+msgstr "频道列表菜单"
+
 msgid "Channel Selection Settings"
 msgstr "频道选择设置"
 
@@ -4106,6 +4109,9 @@ msgstr "频道列表显示小窗口(MiniTV)*"
 msgid "Channel list type"
 msgstr "频道列表类型"
 
+msgid "Channel name"
+msgstr "频道名称"
+
 msgid "Channel preview mode"
 msgstr "频道预览模式"
 
@@ -4114,6 +4120,9 @@ msgstr "频道选择"
 
 msgid "Channel selection configuration"
 msgstr "频道选择配置"
+
+msgid "Channel selection:"
+msgstr "频道选择:"
 
 msgid "Channel up"
 msgstr "频道向上"
@@ -4132,15 +4141,6 @@ msgstr "频道:"
 
 msgid "ChannelEPG Settings"
 msgstr "频道EPG设置"
-
-msgid "Channel List Menu"
-msgstr "频道列表菜单"
-
-msgid "Channel name"
-msgstr "频道名称"
-
-msgid "Channel selection:"
-msgstr "频道选择:"
 
 msgid "Chap."
 msgstr "章."
@@ -4207,11 +4207,11 @@ msgstr "奇切瓦 / 切瓦"
 msgid "Children"
 msgstr "儿童"
 
-msgid "Children/Youth"
-msgstr "儿童/青少年"
-
 msgid "Children's"
 msgstr "儿童"
+
+msgid "Children/Youth"
+msgstr "儿童/青少年"
 
 msgid "Chile"
 msgstr "智利"
@@ -4558,12 +4558,12 @@ msgstr "录制文件名的组成"
 msgid "Config"
 msgstr "配置"
 
-msgid "Config file name (ok to change):"
-msgstr "配置文件名(按ok键更改):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "配置文件 %s 已保存."
+
+msgid "Config file name (ok to change):"
+msgstr "配置文件名(按ok键更改):"
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -5191,7 +5191,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "创建硬连接到时移文件失败！"
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "创建目录%s 失败."
 
 msgid "Creating file system"
@@ -5718,17 +5718,17 @@ msgstr "定义快进跳转的跳转距离.此数值乘以快进速度,如4x,数�
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "定义哪个快进速度使用时间缩进.其他快进速度和所有快退速度使用时间跳转."
 
-msgid "Delay after change voltage before switch command"
-msgstr "在切换命令之前改变电压后延迟"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "在disqc之前连续音调禁用后延迟"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "diseqc外围加电指令之后的延迟"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "diseqc复位命令后的延迟"
+
+msgid "Delay after change voltage before switch command"
+msgstr "在切换命令之前改变电压后延迟"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "在disqc之前连续音调禁用后延迟"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "启用电压之后, 电机指令之前的延迟"
@@ -5967,11 +5967,11 @@ msgstr "设备id"
 msgid "Device mounts"
 msgstr "设备挂载"
 
-msgid "Device: "
-msgstr "设备: "
-
 msgid "Device name:"
 msgstr "设备名称:"
+
+msgid "Device: "
+msgstr "设备: "
 
 msgid "Devices"
 msgstr "设备"
@@ -6289,7 +6289,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "是否确实要从垃圾桶永久删除？"
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "是否从磁盘上删除目录%s ?"
 
 #, python-format
@@ -6301,7 +6301,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "是否确定要删除 %s 的定时器?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "是否确定要删除 %s 的书签?"
 
 #, python-format
@@ -7405,9 +7405,6 @@ msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒�
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "错误:无法处理命令.请稍后再试."
 
-msgid "Es folgt:"
-msgstr "内容如下:"
-
 msgid "Esperanto"
 msgstr "世界语"
 
@@ -7453,17 +7450,17 @@ msgstr "事件视图上下文菜单"
 msgid "Event font size"
 msgstr "事件字体大小"
 
-msgid "Event view menu"
-msgstr "事件视图菜单"
-
-msgid "EventViewEPG Actions"
-msgstr "事件视图EPG操作"
-
 msgid "Event name only"
 msgstr "仅事件名称"
 
+msgid "Event view menu"
+msgstr "事件视图菜单"
+
 msgid "Event view:"
 msgstr "事件视图:"
+
+msgid "EventViewEPG Actions"
+msgstr "事件视图EPG操作"
 
 msgid "Everyday"
 msgstr "每天"
@@ -7787,11 +7784,11 @@ msgstr "快速搜索"
 msgid "Fast epoch"
 msgstr "快速纪元"
 
-msgid "Fast forward speeds"
-msgstr "快进速度"
-
 msgid "Fast forward"
 msgstr "快进"
+
+msgid "Fast forward speeds"
+msgstr "快进速度"
 
 msgid "Favorites"
 msgstr "Favorites键"
@@ -8199,6 +8196,9 @@ msgstr "%s的完整备份"
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr "全屏显示"
+
 msgid "Full transparency"
 msgstr "全透明"
 
@@ -8207,9 +8207,6 @@ msgstr "全视图分辨率"
 
 msgid "FullHD Test"
 msgstr "全高清测试"
-
-msgid "Full screen"
-msgstr "全屏显示"
 
 msgid "G"
 msgstr "G"
@@ -8532,20 +8529,20 @@ msgstr "高清列表"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "HDMI色彩深度"
-
 msgid "HDMI Colorimetry"
 msgstr "HDMI比色法"
-
-msgid "HDMI color space"
-msgstr "HDMI颜色空间"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR类型"
 
 msgid "HDMI Recording Settings"
 msgstr "HDMI录制"
+
+msgid "HDMI color depth"
+msgstr "HDMI色彩深度"
+
+msgid "HDMI color space"
+msgstr "HDMI颜色空间"
 
 msgid "HDMI-CEC Settings"
 msgstr "HDMI-CEC设置"
@@ -9517,7 +9514,7 @@ msgid "Invalid"
 msgstr "无效"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "选定的目录无效: %s"
 
 msgid "Invalid location"
@@ -12569,7 +12566,7 @@ msgstr "请输入一个新的文件名"
 msgid "Please enter filename (empty = use current date)"
 msgstr "请输入文件名(留空＝使用当前日期)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "请输入新目录的名称"
 
 msgid "Please enter name of the new symlink"
@@ -14012,7 +14009,7 @@ msgid "Removing Service"
 msgstr "删除频道"
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "删除目录 %s 失败.(文件夹是否为空?)"
 
 msgid "Removing partition table"
@@ -15830,11 +15827,11 @@ msgstr "设置您的即时录音的默认位置.按'OK'键添加新的位置,选
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "设置录像的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "设置定时器的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "设置时移文件的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "设置定时器的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
 
 msgid "Set the default sorting method."
 msgstr "设置默认的排序方法."
@@ -16967,6 +16964,9 @@ msgstr "皮肤选择器"
 msgid "Skins"
 msgstr "皮肤"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "跳过互联网连接检查(禁用自动包安装)"
+
 msgid "Skip back"
 msgstr "向后快退"
 
@@ -16975,9 +16975,6 @@ msgstr "跳过空频道"
 
 msgid "Skip forward"
 msgstr "向前快进"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "跳过互联网连接检查(禁用自动包安装)"
 
 msgid "Skip selection"
 msgstr "调过此选项"
@@ -17581,9 +17578,6 @@ msgstr "#个转发器调谐成功后将停止测试"
 msgid "Stop the update, if running, then exit"
 msgstr "停止更新(如果正在运行),然后退出"
 
-msgid "Stop timer recording"
-msgstr "停止定时录制"
-
 msgid "Stop time shift"
 msgstr "停止时移"
 
@@ -17595,6 +17589,9 @@ msgstr "停止时移并将时移缓冲区保存为电影同时开始录制当前
 
 msgid "Stop time shift while recording"
 msgstr "录制时停止时移？"
+
+msgid "Stop timer recording"
+msgstr "停止定时录制"
 
 msgid "Stopped"
 msgstr "已停止"
@@ -18410,7 +18407,7 @@ msgstr ""
 "请安装它."
 
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "路径 %s 已存在."
 
 msgid "The pin code you entered is wrong."
@@ -18528,9 +18525,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr "没有信号可以锁定!"
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "在选定的分区上可能没有足够的空间..\n"
 "你是否想继续?"
@@ -19158,9 +19153,6 @@ msgstr "要恢复固件:"
 msgid "Today"
 msgstr "今天"
 
-msgid "Toggles between tv and radio"
-msgstr "在电视和广播之间切换"
-
 msgid "Toggle Digital downmix..."
 msgstr "切换数字混音…"
 
@@ -19215,6 +19207,9 @@ msgstr "切换当前标签的选择"
 msgid "Toggle service name display"
 msgstr "切换服务名称显示"
 
+msgid "Toggles between tv and radio"
+msgstr "在电视和广播之间切换"
+
 msgid "Togo"
 msgstr "多哥"
 
@@ -19224,14 +19219,14 @@ msgstr "托克劳"
 msgid "Tone amplitude"
 msgstr "22k振幅"
 
-msgid "Tone mode"
-msgstr "22K模式"
-
 msgid "Tone burst"
 msgstr "22K切换开关"
 
 msgid "Tone burst A/B"
 msgstr "22k切换开关A/B"
+
+msgid "Tone mode"
+msgstr "22K模式"
 
 msgid "Tonga"
 msgstr "汤加"
@@ -19746,6 +19741,9 @@ msgstr "更新列表中事件的延迟.在列表中滚动速度更快,延迟更�
 msgid "Update failed!"
 msgstr "更新失败！"
 
+msgid "Update feed not available."
+msgstr "没有可供更新的订阅源."
+
 msgid "Update finished!"
 msgstr "更新完成!"
 
@@ -19757,7 +19755,7 @@ msgstr "软件升级报错！！"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "更新成功!\n"
 "您的引导加载程序现在是最新的!"
@@ -19773,9 +19771,6 @@ msgstr "更新"
 
 msgid "Updated version unknown"
 msgstr "更新版本未知"
-
-msgid "Update feed not available."
-msgstr "没有可供更新的订阅源."
 
 msgid "Updates available:"
 msgstr "可用更新:"
@@ -20540,12 +20535,6 @@ msgstr "正在等待分区"
 msgid "Wake up"
 msgstr "唤醒"
 
-msgid "Wake up to standby"
-msgstr "唤醒待机"
-
-msgid "Wakeup"
-msgstr "唤醒"
-
 msgid "Wake up TV from standby"
 msgstr "从待机状态中唤醒电视机"
 
@@ -20554,6 +20543,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "定时器开始前[分钟]唤醒"
+
+msgid "Wake up to standby"
+msgstr "唤醒待机"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "从待机状态唤醒你的AV接收机"
@@ -20903,7 +20895,7 @@ msgstr ""
 msgid "Where do you want to backup your settings?"
 msgstr "要备份你的设置到哪里？"
 
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "临时时移录像要保存到哪里？"
 
 msgid "Which event do you want to save permanently?"
@@ -21370,6 +21362,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "你可以自我检测硬件IC工作在传统模式或只读模式."
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"你的网络连接不工作!\n"
+"请选择下一步要做的事情."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "您的接收器检测到软件问题.自上次重新启动以来,已发生 %d 次.\n"
@@ -21401,13 +21400,6 @@ msgid "Your existing IceTV password."
 msgstr "您现有的IceTV密码."
 
 msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"即将升级您的前端面板\n"
-"这可能需要几分钟时间"
-
-msgid ""
 "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
@@ -21423,6 +21415,13 @@ msgstr ""
 "您的前端处理器即将进行升级\n"
 "请等待直到你的 %s %s 重新启动\n"
 "这可能需要几分钟"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"即将升级您的前端面板\n"
+"这可能需要几分钟时间"
 
 #, python-format
 msgid ""
@@ -21449,13 +21448,6 @@ msgstr ""
 "\n"
 "\n"
 "是否还要更新?"
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"你的网络连接不工作!\n"
-"请选择下一步要做的事情."
 
 msgid "Your network configuration has been activated."
 msgstr "您的网络配置已被激活."
@@ -21492,9 +21484,6 @@ msgstr "优兔视频"
 
 msgid "ZAP"
 msgstr "切换"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "缩放"
@@ -21601,6 +21590,9 @@ msgstr "祖鲁语"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2设置]\n"
 
+msgid "[Favorite Edit]"
+msgstr "[喜爱频道编辑]"
+
 msgid "[Image Info]\n"
 msgstr "[镜像信息]\n"
 
@@ -21615,9 +21607,6 @@ msgstr "[编辑替代项目]"
 
 msgid "[bouquet edit]"
 msgstr "[编辑自定义组]"
-
-msgid "[Favorite Edit]"
-msgstr "[喜爱频道编辑]"
 
 msgid "[move mode]"
 msgstr "[移动模式]"
@@ -21849,11 +21838,11 @@ msgstr "音量增大"
 msgid "chapters"
 msgstr "剧集"
 
-msgid "children's/youth program (general)"
-msgstr "儿童/青年计划(常规)"
-
 msgid "children's (general)"
 msgstr "儿童/青少年节目(常规)"
+
+msgid "children's/youth program (general)"
+msgstr "儿童/青年计划(常规)"
 
 msgid "clip overscan / letterbox borders"
 msgstr "剪辑过扫描/黑边"
@@ -22638,7 +22627,7 @@ msgstr "频道组取消家长控制"
 msgid "remove cable services"
 msgstr "删除有线节目"
 
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "删除目录"
 
 msgid "remove entry"
@@ -22892,7 +22881,7 @@ msgstr "切换12到8字符显示模式"
 msgid "switch Nand and SDcard"
 msgstr "切换Nand闪存和SD卡"
 
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "切换到书签"
 
 msgid "switch to the next angle"
@@ -23135,178 +23124,3 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Bit rate"
-#~ msgstr "比特率"
-
-#, python-format
-#~ msgid "Directory '%s' not writeable!"
-#~ msgstr "目录'%s'不可写！"
-
-#~ msgid "Favourites"
-#~ msgstr "收藏夹"
-
-#~ msgid "Polarisation"
-#~ msgstr "极化方式"
-
-#~ msgid "Quick Select Actions"
-#~ msgstr "快速选择操作"
-
-#~ msgid "Size:"
-#~ msgstr "大小:"
-
-#~ msgid "Size: "
-#~ msgstr "大小: "
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "配置EPG中已结束事件仍保持可见的分钟数.当您需要有关即时完成或已延迟事件的信息时,此选项非常有用."
-
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "配置将显示的时间历史记录."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "保留过期的EPG数据"
-
-#~ msgid "<Unknown>"
-#~ msgstr "<未知>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "是否重复定时器或只运行一次？"
-
-#~ msgid "At End:"
-#~ msgstr "结束位置:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "频道不在列表中"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "选择容易找到录制标签."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "在每日,每周,平日或用户定义之间进行选择."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "在录像和切换之间选择."
-
-#~ msgid "Current location"
-#~ msgstr "当前位置"
-
-#~ msgid "Display Setup"
-#~ msgstr "显示设置"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "是否确定删除这个录制?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "编辑新条目"
-
-#~ msgid "Extended settings"
-#~ msgstr "扩展设置"
-
-#~ msgid "Infobar:"
-#~ msgstr "信息栏:"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "请输入新描述:"
-
-#~ msgid "PowerTimer Entry"
-#~ msgstr "电源管理项"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "是否要删除已完成的定时器？"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "第二信息栏"
-
-#~ msgid "Secondinfobar:"
-#~ msgstr "第二信息栏:"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "选择要录制的频道"
-
-#~ msgid "Select of the number"
-#~ msgstr "选择号码"
-
-#~ msgid "Select target folder"
-#~ msgstr "选择目标文件夹"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "设置该频道定时器."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "设置定时器必须启动的日期."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "设置录像的描述."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "设置要获取的录像名称."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "设置定时器必须开始的时间."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "设置定时器必须停止的时间."
-
-#~ msgid "Sleep delay"
-#~ msgstr "睡眠延迟"
-
-#~ msgid "Starting on"
-#~ msgstr "开始于"
-
-#~ msgid "Time range:"
-#~ msgstr "时间范围:"
-
-#~ msgid "Timer"
-#~ msgstr "定时器"
-
-#~ msgid "Timer Overview"
-#~ msgstr "定时器预览"
-
-#~ msgid "Weekday"
-#~ msgstr "工作日"
-
-#~ msgid "Weekend"
-#~ msgstr "周末"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "定时器完成后需要采取什么行动?'自动'让机顶盒返回到 定时器启动时的状态.‘什么都不做’,'进入待机'和'进入深度待机'正是如此."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "录制要保存到哪里?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "是,从定时器列表中删除"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "是,从定时器列表中删除和删除录制"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "您没有选择要录制的频道."
-
-#~ msgid "Zapped"
-#~ msgstr "切换"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "自动深度待机"
-
-#~ msgid "auto standby"
-#~ msgstr "自动待机"
-
-#~ msgid "daily"
-#~ msgstr "每天"
-
-#~ msgid "mins"
-#~ msgstr "分钟"
-
-#~ msgid "reboot system"
-#~ msgstr "重启系统"
-
-#~ msgid "wakeup"
-#~ msgstr "唤醒"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "唤醒到待机"
-
-#~ msgid "weekly"
-#~ msgstr "每周"

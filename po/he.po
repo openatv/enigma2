@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -2229,16 +2229,16 @@ msgstr "...אודות"
 msgid "Access point"
 msgstr ""
 
+#
+msgid "Access point:"
+msgstr ":נקודת גישה"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 #
 #, fuzzy
 msgid "Accessed:"
-msgstr ":נקודת גישה"
-
-#
-msgid "Access point:"
 msgstr ":נקודת גישה"
 
 #, fuzzy
@@ -2756,7 +2756,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 
 #
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "קובץ ריק לא חוקי"
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -3073,6 +3073,9 @@ msgstr ""
 msgid "Auto Modes Selected."
 msgstr ""
 
+msgid "Auto SCART switching"
+msgstr "Auto SCART switching"
+
 #
 #, fuzzy
 msgid "Auto Timer"
@@ -3106,9 +3109,6 @@ msgstr ""
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto SCART switching"
-msgstr "Auto SCART switching"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3207,10 +3207,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr ""
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr ""
 
 msgid "BER:"
@@ -3302,11 +3302,11 @@ msgid "Background delete speed"
 msgstr ""
 
 #, fuzzy
-msgid "Background:"
+msgid "Background selected:"
 msgstr "רקע"
 
 #, fuzzy
-msgid "Background selected:"
+msgid "Background:"
 msgstr "רקע"
 
 msgid "Backup"
@@ -3561,6 +3561,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr ""
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3575,9 +3578,6 @@ msgid "Boot time and local time"
 msgstr ""
 
 msgid "Boot-up action"
-msgstr ""
-
-msgid "Boot loader update required!"
 msgstr ""
 
 msgid "Bosnia and Herzegovina"
@@ -4285,6 +4285,9 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Menu"
+msgstr "תפריט רשימת הערוצים"
+
 #, fuzzy
 msgid "Channel Selection Settings"
 msgstr "הגדרות האוסף"
@@ -4329,6 +4332,9 @@ msgstr ""
 msgid "Channel list type"
 msgstr ""
 
+msgid "Channel name"
+msgstr ""
+
 msgid "Channel preview mode"
 msgstr ""
 
@@ -4339,6 +4345,11 @@ msgstr "בחירת ערוץ"
 
 msgid "Channel selection configuration"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel selection:"
+msgstr "בחירת ערוץ"
 
 msgid "Channel up"
 msgstr ""
@@ -4359,17 +4370,6 @@ msgstr ":ערוץ"
 #
 #, fuzzy
 msgid "ChannelEPG Settings"
-msgstr "בחירת ערוץ"
-
-msgid "Channel List Menu"
-msgstr "תפריט רשימת הערוצים"
-
-msgid "Channel name"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Channel selection:"
 msgstr "בחירת ערוץ"
 
 msgid "Chap."
@@ -4439,10 +4439,10 @@ msgstr ""
 msgid "Children"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children's"
 msgstr ""
 
-msgid "Children's"
+msgid "Children/Youth"
 msgstr ""
 
 msgid "Chile"
@@ -4804,11 +4804,11 @@ msgstr ""
 msgid "Config"
 msgstr "מגדיר"
 
-msgid "Config file name (ok to change):"
-msgstr ""
-
 #, python-format
 msgid "Config file %s saved."
+msgstr ""
+
+msgid "Config file name (ok to change):"
 msgstr ""
 
 #, fuzzy
@@ -5456,7 +5456,7 @@ msgid "Creating Hardlink to Timeshift file failed!"
 msgstr ""
 
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr ".נכשלה %s יצירת תיקייה"
 
 #, fuzzy
@@ -6017,16 +6017,16 @@ msgstr ""
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr ""
 
-msgid "Delay after change voltage before switch command"
-msgstr ""
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr ""
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr ""
 
 msgid "Delay after DiSEqC reset command"
+msgstr ""
+
+msgid "Delay after change voltage before switch command"
+msgstr ""
+
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr ""
 
 msgid "Delay after enable voltage before motor command"
@@ -6282,10 +6282,10 @@ msgstr ""
 msgid "Device mounts"
 msgstr ""
 
-msgid "Device: "
+msgid "Device name:"
 msgstr ""
 
-msgid "Device name:"
+msgid "Device: "
 msgstr ""
 
 msgid "Devices"
@@ -6615,7 +6615,7 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "? מהכונן %s האם ברצונך למחוק את התיקיה"
 
 #, python-format
@@ -6627,7 +6627,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "האם ברצונך להסיר את הפלאגין \"%s\"?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "%s ?האם ברצונך להסיר את הסימניה "
 
 #, python-format
@@ -7743,9 +7743,6 @@ msgstr ""
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -7794,16 +7791,16 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Event view menu"
-msgstr ""
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr ""
 
+msgid "Event view menu"
+msgstr ""
+
 msgid "Event view:"
+msgstr ""
+
+msgid "EventViewEPG Actions"
 msgstr ""
 
 msgid "Everyday"
@@ -8140,10 +8137,10 @@ msgstr ""
 msgid "Fast epoch"
 msgstr ""
 
-msgid "Fast forward speeds"
+msgid "Fast forward"
 msgstr ""
 
-msgid "Fast forward"
+msgid "Fast forward speeds"
 msgstr ""
 
 msgid "Favorites"
@@ -8586,6 +8583,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr ""
+
 msgid "Full transparency"
 msgstr ""
 
@@ -8593,9 +8593,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Full screen"
 msgstr ""
 
 msgid "G"
@@ -8939,13 +8936,7 @@ msgstr ""
 msgid "HDMI"
 msgstr ""
 
-msgid "HDMI color depth"
-msgstr ""
-
 msgid "HDMI Colorimetry"
-msgstr ""
-
-msgid "HDMI color space"
 msgstr ""
 
 msgid "HDMI HDR Type"
@@ -8955,6 +8946,12 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording Settings"
 msgstr "מקליט"
+
+msgid "HDMI color depth"
+msgstr ""
+
+msgid "HDMI color space"
+msgstr ""
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -9988,7 +9985,7 @@ msgid "Invalid"
 msgstr "מיקום שגוי"
 
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "%s :נבחרה תיקיה שגויה"
 
 #, fuzzy
@@ -13326,7 +13323,7 @@ msgstr "בבקשה הכנס שם קובץ חדש"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Please enter filename (empty = use current date)"
 
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "בבקשה הכנס שם לתיקיה החדשה"
 
 #, fuzzy
@@ -14829,8 +14826,8 @@ msgid "Removing Service"
 msgstr ""
 
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 
 #, fuzzy
 msgid "Removing partition table"
@@ -16752,10 +16749,10 @@ msgstr ""
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -17986,6 +17983,9 @@ msgstr ""
 msgid "Skins"
 msgstr "Skins"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr ""
+
 msgid "Skip back"
 msgstr ""
 
@@ -17994,9 +17994,6 @@ msgid "Skip empty services"
 msgstr "Protect services"
 
 msgid "Skip forward"
-msgstr ""
-
-msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
 
 #, fuzzy
@@ -18645,10 +18642,6 @@ msgstr "Stop testing plane after # successful transponders"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-#, fuzzy
-msgid "Stop timer recording"
-msgstr "ההקלטה הזו"
-
 msgid "Stop time shift"
 msgstr ""
 
@@ -18660,6 +18653,10 @@ msgstr ""
 
 msgid "Stop time shift while recording"
 msgstr ""
+
+#, fuzzy
+msgid "Stop timer recording"
+msgstr "ההקלטה הזו"
 
 msgid "Stopped"
 msgstr ""
@@ -19500,8 +19497,8 @@ msgstr ""
 "Please install it."
 
 #, python-format
-msgid "The path %s already exists."
-msgstr "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
+msgstr "Error: The path '%s' already exists!"
 
 #
 msgid "The pin code you entered is wrong."
@@ -19625,9 +19622,7 @@ msgstr ""
 msgid "There is no signal to lock on !"
 msgstr ""
 
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "There might not be enough space on the selected partition..\n"
 "Do you really want to continue?"
@@ -20292,9 +20287,6 @@ msgstr "Yes, restore the settings now"
 msgid "Today"
 msgstr "היום"
 
-msgid "Toggles between tv and radio"
-msgstr ""
-
 msgid "Toggle Digital downmix..."
 msgstr ""
 
@@ -20351,6 +20343,9 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "סרוקת שירות"
 
+msgid "Toggles between tv and radio"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -20361,16 +20356,16 @@ msgid "Tone amplitude"
 msgstr ""
 
 #
-msgid "Tone mode"
-msgstr "Tone mode"
-
-#
 msgid "Tone burst"
 msgstr "Tone burst"
 
 #
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+#
+msgid "Tone mode"
+msgstr "Tone mode"
 
 msgid "Tonga"
 msgstr ""
@@ -20934,6 +20929,10 @@ msgstr ""
 msgid "Update failed!"
 msgstr "Write failed!"
 
+#
+msgid "Update feed not available."
+msgstr "Update feed not available."
+
 #, fuzzy
 msgid "Update finished!"
 msgstr ".שדרוג הסתיים"
@@ -20946,7 +20945,7 @@ msgstr ""
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -20960,10 +20959,6 @@ msgstr ""
 
 msgid "Updated version unknown"
 msgstr ""
-
-#
-msgid "Update feed not available."
-msgstr "Update feed not available."
 
 msgid "Updates available:"
 msgstr ""
@@ -21768,13 +21763,6 @@ msgstr ""
 msgid "Wake up"
 msgstr ""
 
-#, fuzzy
-msgid "Wake up to standby"
-msgstr "המתנה עמוקה"
-
-msgid "Wakeup"
-msgstr ""
-
 msgid "Wake up TV from standby"
 msgstr ""
 
@@ -21783,6 +21771,10 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr ""
+
+#, fuzzy
+msgid "Wake up to standby"
+msgstr "המתנה עמוקה"
 
 #, fuzzy
 msgid "Wake up your AV Receiver from standby"
@@ -22135,8 +22127,8 @@ msgid "Where do you want to backup your settings?"
 msgstr "Where do you want to backup your settings?"
 
 #
-msgid "Where to save temporary time shift recordings?"
-msgstr "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
+msgstr "Where do you want to save temporary time shift recordings?"
 
 msgid "Which event do you want to save permanently?"
 msgstr ""
@@ -22588,6 +22580,13 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
@@ -22618,11 +22617,6 @@ msgstr ""
 msgid "Your existing IceTV password."
 msgstr ""
 
-msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-
 #
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
@@ -22633,6 +22627,11 @@ msgstr ""
 msgid ""
 "Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
+"Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
 
@@ -22650,13 +22649,6 @@ msgid ""
 "\n"
 "Do you still want to update?"
 msgstr ""
-
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
 
 msgid "Your network configuration has been activated."
 msgstr "Your network configuration has been activated."
@@ -22691,9 +22683,6 @@ msgid "Youtube TV"
 msgstr ""
 
 msgid "ZAP"
-msgstr ""
-
-msgid "ZAP as PiP"
 msgstr ""
 
 msgid "ZOOM"
@@ -22808,6 +22797,9 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
+msgid "[Favorite Edit]"
+msgstr "[Favorite Edit]"
+
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -22822,9 +22814,6 @@ msgstr "[alternative edit]"
 
 msgid "[bouquet edit]"
 msgstr "[bouquet edit]"
-
-msgid "[Favorite Edit]"
-msgstr "[Favorite Edit]"
 
 #
 msgid "[move mode]"
@@ -23068,10 +23057,10 @@ msgstr ""
 msgid "chapters"
 msgstr "chapters"
 
-msgid "children's/youth program (general)"
+msgid "children's (general)"
 msgstr ""
 
-msgid "children's (general)"
+msgid "children's/youth program (general)"
 msgstr ""
 
 msgid "clip overscan / letterbox borders"
@@ -23901,8 +23890,8 @@ msgstr ""
 msgid "remove cable services"
 msgstr ""
 
-msgid "remove directory"
-msgstr "remove directory"
+msgid "Remove directory"
+msgstr "Remove directory"
 
 msgid "remove entry"
 msgstr "remove entry"
@@ -24164,7 +24153,7 @@ msgid "switch Nand and SDcard"
 msgstr ""
 
 #
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "העבר לסימניות"
 
 msgid "switch to the next angle"

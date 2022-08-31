@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -2316,15 +2316,15 @@ msgstr "Par..."
 msgid "Access point"
 msgstr ""
 
+#
+msgid "Access point:"
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
 msgid "Accessed:"
 msgstr "Piekļuve:"
-
-#
-msgid "Access point:"
-msgstr ""
 
 #
 #, fuzzy
@@ -2857,7 +2857,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 
 #
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Datnes nosaukums nevar būt tukšs"
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -3190,6 +3190,10 @@ msgid "Auto Modes Selected."
 msgstr ""
 
 #
+msgid "Auto SCART switching"
+msgstr "Automātiska SCART pārslēgšana"
+
+#
 #, fuzzy
 msgid "Auto Timer"
 msgstr "Pievienot taimeri"
@@ -3223,10 +3227,6 @@ msgstr ""
 
 msgid "Auto install log"
 msgstr ""
-
-#
-msgid "Auto SCART switching"
-msgstr "Automātiska SCART pārslēgšana"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3331,10 +3331,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr ""
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr ""
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr ""
 
 msgid "BER:"
@@ -3431,12 +3431,12 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Background:"
+msgid "Background selected:"
 msgstr "Fons"
 
 #
 #, fuzzy
-msgid "Background selected:"
+msgid "Background:"
 msgstr "Fons"
 
 msgid "Backup"
@@ -3702,6 +3702,9 @@ msgstr ""
 msgid "Boot information"
 msgstr ""
 
+msgid "Boot loader update required!"
+msgstr ""
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr ""
@@ -3716,9 +3719,6 @@ msgid "Boot time and local time"
 msgstr ""
 
 msgid "Boot-up action"
-msgstr ""
-
-msgid "Boot loader update required!"
 msgstr ""
 
 msgid "Bosnia and Herzegovina"
@@ -4436,6 +4436,9 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
+msgid "Channel List Menu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Channel Selection Settings"
@@ -4481,6 +4484,9 @@ msgstr ""
 msgid "Channel list type"
 msgstr ""
 
+msgid "Channel name"
+msgstr ""
+
 msgid "Channel preview mode"
 msgstr ""
 
@@ -4491,6 +4497,11 @@ msgstr "Kanālu izvēle"
 
 msgid "Channel selection configuration"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel selection:"
+msgstr "Kanālu izvēle"
 
 msgid "Channel up"
 msgstr ""
@@ -4511,17 +4522,6 @@ msgstr "Kanāls:"
 #
 #, fuzzy
 msgid "ChannelEPG Settings"
-msgstr "Kanālu izvēle"
-
-msgid "Channel List Menu"
-msgstr ""
-
-msgid "Channel name"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Channel selection:"
 msgstr "Kanālu izvēle"
 
 #
@@ -4597,10 +4597,10 @@ msgstr ""
 msgid "Children"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children's"
 msgstr ""
 
-msgid "Children's"
+msgid "Children/Youth"
 msgstr ""
 
 msgid "Chile"
@@ -4984,11 +4984,11 @@ msgstr ""
 msgid "Config"
 msgstr "Konfigurē"
 
-msgid "Config file name (ok to change):"
-msgstr ""
-
 #, python-format
 msgid "Config file %s saved."
+msgstr ""
+
+msgid "Config file name (ok to change):"
 msgstr ""
 
 #
@@ -5660,7 +5660,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "Veido mapi %s neizdevās."
 
 #
@@ -6256,16 +6256,16 @@ msgstr ""
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr ""
 
-msgid "Delay after change voltage before switch command"
-msgstr ""
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr ""
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr ""
 
 msgid "Delay after DiSEqC reset command"
+msgstr ""
+
+msgid "Delay after change voltage before switch command"
+msgstr ""
+
+msgid "Delay after continuous tone disable before DiSEqC"
 msgstr ""
 
 msgid "Delay after enable voltage before motor command"
@@ -6533,10 +6533,10 @@ msgstr ""
 msgid "Device mounts"
 msgstr ""
 
-msgid "Device: "
+msgid "Device name:"
 msgstr ""
 
-msgid "Device name:"
+msgid "Device: "
 msgstr ""
 
 msgid "Devices"
@@ -6888,7 +6888,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vai tiešām vēlaties dzēst mapi %s no diska?"
 
 #
@@ -6904,7 +6904,7 @@ msgstr "Vai tiešām vēlaties DZĒST spraudni \"%s \"?"
 #
 # ???
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Vai tiešām vēlaties dzēst grāmatzīmi %s?"
 
 #, python-format
@@ -8061,9 +8061,6 @@ msgstr ""
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
 
-msgid "Es folgt:"
-msgstr ""
-
 msgid "Esperanto"
 msgstr ""
 
@@ -8112,16 +8109,16 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Event view menu"
-msgstr ""
-
-msgid "EventViewEPG Actions"
-msgstr ""
-
 msgid "Event name only"
 msgstr ""
 
+msgid "Event view menu"
+msgstr ""
+
 msgid "Event view:"
+msgstr ""
+
+msgid "EventViewEPG Actions"
 msgstr ""
 
 msgid "Everyday"
@@ -8483,10 +8480,10 @@ msgstr ""
 msgid "Fast epoch"
 msgstr "Ātrā epoha"
 
-msgid "Fast forward speeds"
+msgid "Fast forward"
 msgstr ""
 
-msgid "Fast forward"
+msgid "Fast forward speeds"
 msgstr ""
 
 msgid "Favorites"
@@ -8949,6 +8946,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full screen"
+msgstr ""
+
 msgid "Full transparency"
 msgstr ""
 
@@ -8956,9 +8956,6 @@ msgid "Full view resolution"
 msgstr ""
 
 msgid "FullHD Test"
-msgstr ""
-
-msgid "Full screen"
 msgstr ""
 
 msgid "G"
@@ -9312,13 +9309,7 @@ msgstr ""
 msgid "HDMI"
 msgstr ""
 
-msgid "HDMI color depth"
-msgstr ""
-
 msgid "HDMI Colorimetry"
-msgstr ""
-
-msgid "HDMI color space"
 msgstr ""
 
 msgid "HDMI HDR Type"
@@ -9328,6 +9319,12 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording Settings"
 msgstr "Ieraksta"
+
+msgid "HDMI color depth"
+msgstr ""
+
+msgid "HDMI color space"
+msgstr ""
 
 msgid "HDMI-CEC Settings"
 msgstr ""
@@ -10405,7 +10402,7 @@ msgstr "Nederīga vieta"
 
 #
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Izvēlēts nepareizs katalogs: %s"
 
 #
@@ -13888,7 +13885,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Lūdzu ievadiet datnes nosaukumu (tukšs = lietot pašreizējo datumu)"
 
 #
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Lūdzu ievadiet jaunās mapes nosaukumu"
 
 #
@@ -15480,7 +15477,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Neizdevās dzēst mapi %s. (Varbūt nav tukša.)"
 
 #
@@ -17490,10 +17487,10 @@ msgstr ""
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -18757,6 +18754,9 @@ msgstr ""
 msgid "Skins"
 msgstr ""
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr ""
+
 msgid "Skip back"
 msgstr ""
 
@@ -18766,9 +18766,6 @@ msgid "Skip empty services"
 msgstr "Aizsargāt kanālus"
 
 msgid "Skip forward"
-msgstr ""
-
-msgid "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
 
 #
@@ -19433,11 +19430,6 @@ msgstr "Apturēt testēšanu pēc # atrastiem transponderiem"
 msgid "Stop the update, if running, then exit"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Stop timer recording"
-msgstr "šis ieraksts"
-
 msgid "Stop time shift"
 msgstr ""
 
@@ -19449,6 +19441,11 @@ msgstr ""
 
 msgid "Stop time shift while recording"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Stop timer recording"
+msgstr "šis ieraksts"
 
 msgid "Stopped"
 msgstr ""
@@ -20305,7 +20302,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "Ceļš %s jau eksistē."
 
 #
@@ -20438,9 +20435,7 @@ msgid "There is no signal to lock on !"
 msgstr ""
 
 #
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Izvēlētajā sadaļā var nebūt pietiekami daudz vietas.\n"
 "Vai tiešām vēlaties turpināt?"
@@ -21121,9 +21116,6 @@ msgstr "Jā, atjaunot iestatījumus tagad"
 msgid "Today"
 msgstr "Šodien"
 
-msgid "Toggles between tv and radio"
-msgstr ""
-
 msgid "Toggle Digital downmix..."
 msgstr ""
 
@@ -21180,6 +21172,9 @@ msgstr ""
 msgid "Toggle service name display"
 msgstr "Kanālu meklēšana"
 
+msgid "Toggles between tv and radio"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -21190,16 +21185,16 @@ msgid "Tone amplitude"
 msgstr ""
 
 #
-msgid "Tone mode"
-msgstr "Toņa režīms"
-
-#
 msgid "Tone burst"
 msgstr "Toņsignāls"
 
 #
 msgid "Tone burst A/B"
 msgstr "Toņsignāls A/B"
+
+#
+msgid "Tone mode"
+msgstr "Toņa režīms"
 
 msgid "Tonga"
 msgstr ""
@@ -21790,6 +21785,10 @@ msgid "Update failed!"
 msgstr "Rakstīšana neizdevās!"
 
 #
+msgid "Update feed not available."
+msgstr ""
+
+#
 #, fuzzy
 msgid "Update finished!"
 msgstr "Atjaunināšana pabeigta."
@@ -21802,7 +21801,7 @@ msgstr ""
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -21815,10 +21814,6 @@ msgid "Updated"
 msgstr ""
 
 msgid "Updated version unknown"
-msgstr ""
-
-#
-msgid "Update feed not available."
 msgstr ""
 
 msgid "Updates available:"
@@ -22652,14 +22647,6 @@ msgstr ""
 msgid "Wake up"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Wake up to standby"
-msgstr "Dziļā gaidstāve"
-
-msgid "Wakeup"
-msgstr ""
-
 msgid "Wake up TV from standby"
 msgstr ""
 
@@ -22668,6 +22655,11 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Wake up to standby"
+msgstr "Dziļā gaidstāve"
 
 #
 #, fuzzy
@@ -23022,7 +23014,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs vēlaties veidot savu iestatījumu dublējumkopiju?"
 
 #
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kur saglabāt pagaidu laikaiztures ierakstus?"
 
 msgid "Which event do you want to save permanently?"
@@ -23492,6 +23484,12 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
+#
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
@@ -23523,11 +23521,6 @@ msgstr ""
 msgid "Your existing IceTV password."
 msgstr ""
 
-msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-
 #
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
@@ -23540,6 +23533,11 @@ msgstr ""
 msgid ""
 "Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
+"This may take a few minutes"
+msgstr ""
+
+msgid ""
+"Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
 
@@ -23556,12 +23554,6 @@ msgid ""
 "\n"
 "\n"
 "Do you still want to update?"
-msgstr ""
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
 msgstr ""
 
 #
@@ -23598,9 +23590,6 @@ msgid "Youtube TV"
 msgstr ""
 
 msgid "ZAP"
-msgstr ""
-
-msgid "ZAP as PiP"
 msgstr ""
 
 msgid "ZOOM"
@@ -23717,6 +23706,10 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr ""
 
+#
+msgid "[Favorite Edit]"
+msgstr "[favorītu rediģēšana]"
+
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -23733,10 +23726,6 @@ msgstr "[alternatīvu rediģēšana]"
 #
 msgid "[bouquet edit]"
 msgstr "[buķešu rediģēšana]"
-
-#
-msgid "[Favorite Edit]"
-msgstr "[favorītu rediģēšana]"
 
 #
 msgid "[move mode]"
@@ -23993,10 +23982,10 @@ msgstr ""
 msgid "chapters"
 msgstr "nodaļas"
 
-msgid "children's/youth program (general)"
+msgid "children's (general)"
 msgstr ""
 
-msgid "children's (general)"
+msgid "children's/youth program (general)"
 msgstr ""
 
 msgid "clip overscan / letterbox borders"
@@ -24893,7 +24882,7 @@ msgid "remove cable services"
 msgstr ""
 
 #
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "dzēst mapi"
 
 #
@@ -25178,7 +25167,7 @@ msgid "switch Nand and SDcard"
 msgstr ""
 
 #
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "iet uz grāmatzīmēm"
 
 #

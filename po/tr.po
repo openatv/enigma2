@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 15:56+0000\n"
+"POT-Creation-Date: 2022-08-31 16:48+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2210,16 +2210,16 @@ msgstr "Hakkında..."
 msgid "Access point"
 msgstr "Erişim noktası"
 
+#
+msgid "Access point:"
+msgstr "Erişim noktası:"
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Coğrafi konum bilgilerine erişim, internet bağlantısı gerektirir."
 
 #
 msgid "Accessed:"
 msgstr "Erişilen:"
-
-#
-msgid "Access point:"
-msgstr "Erişim noktası:"
 
 msgid "Action"
 msgstr "Aksiyon"
@@ -2713,7 +2713,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr "Mevcut TV durumunu yakalama girişiminde bulunuldu. Yanlış veya eksik durum mesajları nedeniyle bu mümkün değilse, alıcının beklenmedik şekilde yanıt vermesine neden olabilir. Öte yandan, farklı çalışma koşullarına daha iyi yanıt vermeye çalışır."
 
 #
-msgid "An empty filename is illegal."
+msgid "Error: An empty filename is illegal!"
 msgstr "Boş dosya adı geçersiz."
 
 msgid "An error occurred while downloading the packet list. Please try again."
@@ -3042,6 +3042,10 @@ msgstr "Otomatik dil seçimi"
 msgid "Auto Modes Selected."
 msgstr "Seçilen Otomatik Modlar."
 
+#
+msgid "Auto SCART switching"
+msgstr "Otomatik scart anahtarlama"
+
 msgid "Auto Timer"
 msgstr "Otomatik Zamanlayıcı"
 
@@ -3072,10 +3076,6 @@ msgstr "Oto odaklanma başlıyor..."
 
 msgid "Auto install log"
 msgstr "Otomatik yükleme günlüğü"
-
-#
-msgid "Auto SCART switching"
-msgstr "Otomatik scart anahtarlama"
 
 msgid "Auto shut down"
 msgstr ""
@@ -3167,10 +3167,10 @@ msgstr "B"
 msgid "BC%d"
 msgstr "BC%d"
 
-msgid "BDMV Blue-ray disk (HDTV titles only)"
+msgid "BDMV Blu-ray disk (HDTV titles only)"
 msgstr "BDMV Blu Disk (HDTV başlıkları yalnızca)"
 
-msgid "BDMV Compatible Blue-ray disk (HDTV only)"
+msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Uyumlu Blu Disk (HDTV sadece)"
 
 msgid "BER:"
@@ -3262,12 +3262,12 @@ msgstr "Arkaplan silme seçimi"
 msgid "Background delete speed"
 msgstr "Arkaplan silme hızı"
 
+msgid "Background selected:"
+msgstr "Seçilen zemin:"
+
 #
 msgid "Background:"
 msgstr "Arka fon:"
-
-msgid "Background selected:"
-msgstr "Seçilen zemin:"
 
 msgid "Backup"
 msgstr "Yedekle"
@@ -3527,6 +3527,9 @@ msgstr "Önyükleme kimliği"
 msgid "Boot information"
 msgstr "Önyükleme bilgileri"
 
+msgid "Boot loader update required!"
+msgstr "Bootloader güncellemesi gerekli!"
+
 #, python-format
 msgid "Boot slot information for %s %s"
 msgstr "%s %s için önyükleme yuvası bilgileri"
@@ -3542,9 +3545,6 @@ msgstr "Önyükleme zamanı ve yerel saat"
 
 msgid "Boot-up action"
 msgstr "Önyükleme eylemi"
-
-msgid "Boot loader update required!"
-msgstr "Bootloader güncellemesi gerekli!"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosna Hersek"
@@ -4247,6 +4247,9 @@ msgstr "Kanal Bilgisi"
 msgid "Channel List"
 msgstr "Kanal Listesi"
 
+msgid "Channel List Menu"
+msgstr "Kanal listesi menüsü"
+
 #
 msgid "Channel Selection Settings"
 msgstr "Kanal seçim ayarları"
@@ -4287,6 +4290,9 @@ msgstr "Kanal Liste imleç davranışı*"
 msgid "Channel list type"
 msgstr "Kanal liste tipi"
 
+msgid "Channel name"
+msgstr "Kanal adı"
+
 msgid "Channel preview mode"
 msgstr "Kanal önizleme kipi"
 
@@ -4296,6 +4302,10 @@ msgstr "Kanal Seçimi"
 
 msgid "Channel selection configuration"
 msgstr "Kanal seçimi yapılandırması"
+
+#
+msgid "Channel selection:"
+msgstr "Kanal Seçimi:"
 
 msgid "Channel up"
 msgstr "Kanal yukarı"
@@ -4315,16 +4325,6 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "KanalEPG ayarları"
-
-msgid "Channel List Menu"
-msgstr "Kanal listesi menüsü"
-
-msgid "Channel name"
-msgstr "Kanal adı"
-
-#
-msgid "Channel selection:"
-msgstr "Kanal Seçimi:"
 
 #
 msgid "Chap."
@@ -4398,11 +4398,11 @@ msgstr "Chichewa / Chewa / Nyanja"
 msgid "Children"
 msgstr "Çocuk"
 
-msgid "Children/Youth"
-msgstr "Çocuk/Gençlik"
-
 msgid "Children's"
 msgstr "Çocuklar"
+
+msgid "Children/Youth"
+msgstr "Çocuk/Gençlik"
 
 msgid "Chile"
 msgstr "Şili"
@@ -4771,12 +4771,12 @@ msgstr "Kayıt işleminde dosya adı düzeni"
 msgid "Config"
 msgstr "Yapılandırma"
 
-msgid "Config file name (ok to change):"
-msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
-
 #, python-format
 msgid "Config file %s saved."
 msgstr "Kurulum dosyası %s saklandı."
+
+msgid "Config file name (ok to change):"
+msgstr "Yapılandırma dosya adı (değiştirmek için tamam):"
 
 #
 msgctxt "Abbreviation of 'Configurable'"
@@ -5432,7 +5432,7 @@ msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
 
 #
 #, python-format
-msgid "Creating directory %s failed."
+msgid "Error: Creating directory '%s' failed!"
 msgstr "%s klasörü oluşturulamadı."
 
 msgid "Creating file system"
@@ -5992,17 +5992,17 @@ msgstr "İleri atlamalar için atlama mesafesini tanımlar. Değer rüzgar hız�
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
 msgstr "Hangi hızlı ileri hızların normal işaretlemeyi kullandığını tanımlar. Diğer tüm ileri hızlar ve geri sarma hızları zaman atlamalarını kullanır."
 
-msgid "Delay after change voltage before switch command"
-msgstr "Anahtar komutundan önce değişiklik geriliminin ardından gecikme"
-
-msgid "Delay after continuous tone disable before DiSEqC"
-msgstr "Diseqc'ten önce sürekli ton devre dışı bırakıldıktan sonra gecikme"
-
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Diseqc periferik poweron komutundan sonra gecikme"
 
 msgid "Delay after DiSEqC reset command"
 msgstr "Diseqc reset komutundan sonra gecikme"
+
+msgid "Delay after change voltage before switch command"
+msgstr "Anahtar komutundan önce değişiklik geriliminin ardından gecikme"
+
+msgid "Delay after continuous tone disable before DiSEqC"
+msgstr "Diseqc'ten önce sürekli ton devre dışı bırakıldıktan sonra gecikme"
 
 msgid "Delay after enable voltage before motor command"
 msgstr "Motor komutundan önce gerilimi etkinleştirdikten sonra gecikme"
@@ -6255,11 +6255,11 @@ msgstr "Cihaz kimliği"
 msgid "Device mounts"
 msgstr "Aygıt Bağlantıları"
 
-msgid "Device: "
-msgstr "Aygıt: "
-
 msgid "Device name:"
 msgstr "Aygıt adı:"
+
+msgid "Device: "
+msgstr "Aygıt: "
 
 msgid "Devices"
 msgstr "Aygıtlar"
@@ -6603,7 +6603,7 @@ msgstr "Çöp sepetinden kalıcı olarak kaldırmak istiyor muzunuz?"
 
 #
 #, python-format
-msgid "Do you really want to remove directory %s from the disk?"
+msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "%s klasörünü kaldırmak istiyor musunuz?"
 
 #, python-format
@@ -6616,7 +6616,7 @@ msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark of %s?"
+msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "%s adlı yer imini kaldırmak istiyor musunuz?"
 
 #, python-format
@@ -7772,9 +7772,6 @@ msgstr "Medyada gerekli dizinler oluşturulamıyor (örn. USB bellek veya Sabit 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Hata: Komut işlenemiyor! Lütfen daha sonra tekrar deneyiniz."
 
-msgid "Es folgt:"
-msgstr "Bunu takip eder:"
-
 msgid "Esperanto"
 msgstr "Esperanto"
 
@@ -7823,17 +7820,17 @@ msgstr "Eventview menüsü"
 msgid "Event font size"
 msgstr "Etkinlik yazı tipi boyutu"
 
-msgid "Event view menu"
-msgstr "Etkinlik görünümü menüsü"
-
-msgid "EventViewEPG Actions"
-msgstr "EventViewEPG Eylemleri"
-
 msgid "Event name only"
 msgstr "Sadece olay adı"
 
+msgid "Event view menu"
+msgstr "Etkinlik görünümü menüsü"
+
 msgid "Event view:"
 msgstr "Olay görünümü:"
+
+msgid "EventViewEPG Actions"
+msgstr "EventViewEPG Eylemleri"
 
 msgid "Everyday"
 msgstr "Her gün"
@@ -8187,11 +8184,11 @@ msgstr "Hızlı Tarama"
 msgid "Fast epoch"
 msgstr "Hızlı tur"
 
-msgid "Fast forward speeds"
-msgstr "Hızlı ileri sarma hızları"
-
 msgid "Fast forward"
 msgstr "Hızlı ileri"
+
+msgid "Fast forward speeds"
+msgstr "Hızlı ileri sarma hızları"
 
 msgid "Favorites"
 msgstr "Favoriler"
@@ -8625,6 +8622,9 @@ msgstr "Üzerinde tam yedekleme %s"
 msgid "Full factory reset"
 msgstr "Tam fabrika ayarlarına sıfırlama"
 
+msgid "Full screen"
+msgstr "Tam Ekran"
+
 msgid "Full transparency"
 msgstr "Tam şeffaflık"
 
@@ -8633,9 +8633,6 @@ msgstr "Tam görünüm çözünürlüğü"
 
 msgid "FullHD Test"
 msgstr "FullHD testi"
-
-msgid "Full screen"
-msgstr "Tam Ekran"
 
 msgid "G"
 msgstr "G"
@@ -8974,14 +8971,8 @@ msgstr "HD listesi"
 msgid "HDMI"
 msgstr "HDMI"
 
-msgid "HDMI color depth"
-msgstr "HDMI Renk Düzeni"
-
 msgid "HDMI Colorimetry"
 msgstr "HDMI Kolorimetresi"
-
-msgid "HDMI color space"
-msgstr "HDMI Renk Alanı"
 
 msgid "HDMI HDR Type"
 msgstr "Hdmi HDR türü"
@@ -8989,6 +8980,12 @@ msgstr "Hdmi HDR türü"
 #
 msgid "HDMI Recording Settings"
 msgstr "HDMI Kaydı"
+
+msgid "HDMI color depth"
+msgstr "HDMI Renk Düzeni"
+
+msgid "HDMI color space"
+msgstr "HDMI Renk Alanı"
 
 msgid "HDMI-CEC Settings"
 msgstr "HDMI-CEC Ayarları"
@@ -10010,7 +10007,7 @@ msgstr "Geçersiz"
 
 #
 #, python-format
-msgid "Invalid directory selected: %s"
+msgid "Error: Invalid directory '%s' selected!"
 msgstr "Seçilen klasör geçersiz: %s"
 
 #
@@ -13285,7 +13282,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Lütfen dosya adı girin (boş = geçerli tarih)"
 
 #
-msgid "Please enter name of the new directory"
+msgid "Please enter a name for the new directory:"
 msgstr "Lütfen yeni kasör için bir ad girin"
 
 #
@@ -14844,7 +14841,7 @@ msgstr "Kanal Kaldırma"
 
 #
 #, python-format
-msgid "Removing directory %s failed. (Maybe not empty.)"
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "%s klasörü silinemedi. (Klasör boş olmayabilir.)"
 
 msgid "Removing partition table"
@@ -16776,11 +16773,11 @@ msgstr "Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar e
 msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
-
 msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
+
+msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgstr "Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
 msgid "Set the default sorting method."
 msgstr "Varsayılan sıralama yöntemini ayarlayın."
@@ -17963,6 +17960,9 @@ msgstr "SkinSelector"
 msgid "Skins"
 msgstr "Görsel-arayüzler"
 
+msgid "Skip Internet connection check (disables automatic package installation)"
+msgstr "İnternet bağlantısını atla (otomatik paket yüklemeyi engeller)"
+
 msgid "Skip back"
 msgstr "Geriye Atla"
 
@@ -17971,9 +17971,6 @@ msgstr "Boş Kanalları atla"
 
 msgid "Skip forward"
 msgstr "Ileri atlamak"
-
-msgid "Skip Internet connection check (disables automatic package installation)"
-msgstr "İnternet bağlantısını atla (otomatik paket yüklemeyi engeller)"
 
 #
 msgid "Skip selection"
@@ -18618,9 +18615,6 @@ msgstr "Başarılı transponder sayısına ulaşıldığında bitir"
 msgid "Stop the update, if running, then exit"
 msgstr "Çalışıyorsa güncellemeyi durdurun, ardından çıkın"
 
-msgid "Stop timer recording"
-msgstr "Kaydı durdur"
-
 msgid "Stop time shift"
 msgstr "Zamankaydırmayı durdur"
 
@@ -18632,6 +18626,9 @@ msgstr "Zaman kaymasını durdurun ve time shift arabelleğini film olarak kayde
 
 msgid "Stop time shift while recording"
 msgstr "Kayıt yapılırken zaman-kaydırma durdurulsun mu"
+
+msgid "Stop timer recording"
+msgstr "Kaydı durdur"
 
 msgid "Stopped"
 msgstr "Durduruldu"
@@ -19488,7 +19485,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "The path %s already exists."
+msgid "Error: The path '%s' already exists!"
 msgstr "%s yolu zaten var."
 
 #
@@ -19621,9 +19618,7 @@ msgid "There is no signal to lock on !"
 msgstr "Kilitlenecek hiç sinyal yok !"
 
 #
-msgid ""
-"There might not be enough space on the selected partition..\n"
-"Do you really want to continue?"
+msgid "There might not be enough space on the selected partition. Do you really want to continue?"
 msgstr ""
 "Seçtiğiniz disk bölüntüsü yeterli boş alana sahip olmayabilir.\n"
 "Devam etmek istiyor musunuz?"
@@ -20275,9 +20270,6 @@ msgstr "Görüntüyü geri yüklemek için:"
 msgid "Today"
 msgstr "Bugün"
 
-msgid "Toggles between tv and radio"
-msgstr "Tv ve radyo arasında geçiş yapar"
-
 msgid "Toggle Digital downmix..."
 msgstr "Dijital downmix'i değiştir ..."
 
@@ -20332,6 +20324,9 @@ msgstr "Geçerli etiketin seçimini aç/kapat"
 msgid "Toggle service name display"
 msgstr "Hizmet adı ekranını aç/kapat"
 
+msgid "Toggles between tv and radio"
+msgstr "Tv ve radyo arasında geçiş yapar"
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -20342,16 +20337,16 @@ msgid "Tone amplitude"
 msgstr "Ton genliği"
 
 #
-msgid "Tone mode"
-msgstr "Ton kipi"
-
-#
 msgid "Tone burst"
 msgstr "Tone burst"
 
 #
 msgid "Tone burst A/B"
 msgstr "Tone burst A/B"
+
+#
+msgid "Tone mode"
+msgstr "Ton kipi"
 
 msgid "Tonga"
 msgstr "Tonga"
@@ -20912,6 +20907,9 @@ msgstr "Listedeki Etkinlikler için gecikmeyi güncelle. Listede ilerlemek, büy
 msgid "Update failed!"
 msgstr "Güncelleme başarısız oldu!"
 
+msgid "Update feed not available."
+msgstr "Güncelleme beslemesi yok."
+
 #
 msgid "Update finished!"
 msgstr "Güncelleme bitti!"
@@ -20924,7 +20922,7 @@ msgstr "Güncelleme hatalı olarak bildirildi!"
 
 msgid ""
 "Update succeeded!\n"
-"Your boot loader is now up-to-date!"
+"Your Bootloader is now up-to-date!"
 msgstr ""
 "Güncelleme başarılı oldu!\n"
 "Bootloader'ınız şimdi güncel!"
@@ -20940,9 +20938,6 @@ msgstr "Güncellendi"
 
 msgid "Updated version unknown"
 msgstr "Güncellenmiş sürüm bilinmiyor"
-
-msgid "Update feed not available."
-msgstr "Güncelleme beslemesi yok."
 
 msgid "Updates available:"
 msgstr "Güncellemeler Mevcut:"
@@ -21762,12 +21757,6 @@ msgstr "Bölüntü için bekleyin"
 msgid "Wake up"
 msgstr "Uyandır"
 
-msgid "Wake up to standby"
-msgstr "Beklemeye uyandır"
-
-msgid "Wakeup"
-msgstr "Uyandır"
-
 msgid "Wake up TV from standby"
 msgstr "TV'yi uyandır"
 
@@ -21776,6 +21765,9 @@ msgstr ""
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Bir zamanlayıcı başlamadan önce uyanma süresi [dk]"
+
+msgid "Wake up to standby"
+msgstr "Beklemeye uyandır"
 
 msgid "Wake up your AV Receiver from standby"
 msgstr "AV Alıcınızı bekleme modundan uyandırın"
@@ -22140,7 +22132,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
 
 #
-msgid "Where to save temporary time shift recordings?"
+msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Geçici zaman-kaydırma kayıtları nerede saklansın?"
 
 msgid "Which event do you want to save permanently?"
@@ -22522,7 +22514,6 @@ msgstr "PiP HD'yi desteklemiyor %s%s"
 msgid "Your %s %s goes to WOL"
 msgstr "WOL'ye gider %s%s"
 
-
 msgid "Your %s %s is not connected to the Internet"
 msgstr "Internet'e bağlı %s% s değil"
 
@@ -22634,6 +22625,14 @@ msgstr ""
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Donanımınız ci modunu algılayabilir veya yalnızca eski modda çalışabilir."
 
+#
+msgid ""
+"Your Internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"İnternet bağlantınız çalışmıyor!\n"
+"Lütfen sonraki aşamada yapmak istediğiniz işlemi seçin."
+
 #, python-format
 msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Alıcınızda Yazılım sorunu tespit edildi. Son yeniden başlatmadan bu yana %d kez gerçekleşti.\n"
@@ -22667,13 +22666,6 @@ msgstr "E-posta adresiniz IceTV servislerine giriş yapmak için kullanılır."
 msgid "Your existing IceTV password."
 msgstr "Mevcut IceTV şifreniz."
 
-msgid ""
-"Your front panel will be upgraded\n"
-"This may take a few minutes"
-msgstr ""
-"Ön paneliniz yükseltilecek\n"
-"Bu bir kaç dakika alabilir"
-
 #
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
@@ -22691,6 +22683,13 @@ msgstr ""
 "Önişlemciniz yükseltilecek\n"
 "Lütfen %s %s nız yeniden başlayana kadar bekleyin\n"
 "Bu birkaç dakika sürebilir"
+
+msgid ""
+"Your front panel will be upgraded\n"
+"This may take a few minutes"
+msgstr ""
+"Ön paneliniz yükseltilecek\n"
+"Bu bir kaç dakika alabilir"
 
 #, python-format
 msgid ""
@@ -22717,14 +22716,6 @@ msgstr ""
 "\n"
 "\n"
 "Hala güncellemek istiyor musun?"
-
-#
-msgid ""
-"Your Internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"İnternet bağlantınız çalışmıyor!\n"
-"Lütfen sonraki aşamada yapmak istediğiniz işlemi seçin."
 
 #
 msgid "Your network configuration has been activated."
@@ -22764,9 +22755,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZAP as PiP"
-msgstr ""
 
 msgid "ZOOM"
 msgstr "ZOOM"
@@ -22875,6 +22863,10 @@ msgstr "Zulu dili"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 Ayarları]\n"
 
+#
+msgid "[Favorite Edit]"
+msgstr "[favori düzenle]"
+
 msgid "[Image Info]\n"
 msgstr "[Görüntü Bilgisi]\n"
 
@@ -22891,10 +22883,6 @@ msgstr "[alternatif düzenle]"
 #
 msgid "[bouquet edit]"
 msgstr "[buket düzenle]"
-
-#
-msgid "[Favorite Edit]"
-msgstr "[favori düzenle]"
 
 #
 msgid "[move mode]"
@@ -23149,11 +23137,11 @@ msgstr "ses seviyesini değiştir"
 msgid "chapters"
 msgstr "bölümler"
 
-msgid "children's/youth program (general)"
-msgstr "çocuk/gençlik programı (genel)"
-
 msgid "children's (general)"
 msgstr "çocuklar (genel)"
+
+msgid "children's/youth program (general)"
+msgstr "çocuk/gençlik programı (genel)"
 
 msgid "clip overscan / letterbox borders"
 msgstr "klip overscan / letterbox sınırları"
@@ -24021,7 +24009,7 @@ msgid "remove cable services"
 msgstr "kablo servislerini kaldırmak"
 
 #
-msgid "remove directory"
+msgid "Remove directory"
 msgstr "klasörü kaldır"
 
 #
@@ -24302,7 +24290,7 @@ msgid "switch Nand and SDcard"
 msgstr "nand ve SD kartı değiştir"
 
 #
-msgid "switch to bookmarks"
+msgid "Switch to bookmarks"
 msgstr "yer imlerine geç"
 
 #
@@ -24564,3 +24552,4 @@ msgstr "zaplama"
 
 msgid "®"
 msgstr ""
+
