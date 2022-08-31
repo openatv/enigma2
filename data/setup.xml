@@ -4,13 +4,13 @@
 	</setup>
 	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
 		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
-		<item level="1" text="AC3 down mix" description="Choose whether AC3 sound tracks should be down mixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
+		<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
-		<item level="1" text="DTS down mix" description="Choose whether DTS channel sound tracks should be down mixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
-		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Choose whether DTS channel sound tracks should be down mixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
-		<item level="1" text="WMA Pro" description="Choose whether WMA Pro channel sound tracks should be down mixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
-		<item level="1" text="AAC down mix" description="Choose whether multi channel sound tracks should be down mixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
-		<item level="1" text="AAC plus down mix" description="Configure whether multi channel sound tracks should be down mixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
+		<item level="1" text="DTS downmix" description="Choose whether DTS channel sound tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
+		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Choose whether DTS channel sound tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
+		<item level="1" text="WMA Pro" description="Choose whether WMA Pro channel sound tracks should be downmixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
+		<item level="1" text="AAC downmix" description="Choose whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
+		<item level="1" text="AAC plus downmix" description="Configure whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
 		<item level="1" text="AAC transcoding" description="Choose whether AAC sound tracks should be transcoded." requires="CanAACTranscode">config.av.transcodeaac</item>
 		<item level="1" text="Audio Source" description="Choose whether multi channel sound tracks should be convert to PCM or SPDIF." requires="Canaudiosource">config.av.audio_source</item>
 		<item level="1" text="General AC3 delay" description="This option configures the general audio delay of Dolby Digital sound tracks.">config.av.generalAC3delay</item>
@@ -78,7 +78,7 @@
 		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet.">config.usage.panicchannel</item>
 		<item level="2" text="show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. ">config.usage.show_channel_jump_in_servicelist</item>
-		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
+		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
 		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 		<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>

@@ -3871,7 +3871,7 @@ class InfoBarInstantRecord:
 			common = ((_("Add recording (stop after current event)"), "event"),
 				(_("Add recording (indefinitely)"), "indefinitely"),
 				(_("Add recording (enter recording duration)"), "manualduration"),
-				(_("Add recording (enter recording endtime)"), "manualendtime"),)
+				(_("Add recording (enter recording end time)"), "manualendtime"),)
 
 			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
 				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)

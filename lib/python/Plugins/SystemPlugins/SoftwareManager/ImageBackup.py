@@ -718,7 +718,7 @@ class ImageBackup(Screen):
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if exists("/proc/stb/info/chipset"):
-			AboutText += _("Chip set: BCM%s") % getChipSetString().lower().replace("\n", "").replace("bcm", "") + "\n"
+			AboutText += _("Chipset: BCM%s") % getChipSetString().lower().replace("\n", "").replace("bcm", "") + "\n"
 
 		cpu = getCPUInfoString()
 		AboutText += "%s: %s\n" % (_("CPU"), cpu[0])
