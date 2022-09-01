@@ -1,11 +1,12 @@
-#!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
-
-from __future__ import print_function
-from __future__ import absolute_import
+import os
+import stat
+from string import digits
+from re import compile
+import six
 
 # Components
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations, ConfigSelectionNumber
+from Components.config import config, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations, ConfigSelectionNumber
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
@@ -35,14 +36,7 @@ import Tools.Notifications
 # Various
 from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eTimer
 
-import os
-import stat
-import string
-import re
-import six
-
 # System mods
-from .InputBox import InputBox
 from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 
 # Addons
@@ -66,8 +60,6 @@ movie = _make_filter("movie")
 music = _make_filter("music")
 pictures = _make_filter("picture")
 records = _make_rec_filter()
-
-dmnapi_py = "/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/addons/dmnapi.py"
 ##################################
 
 pname = _("File Commander")
@@ -412,7 +404,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if self.disableActions_Timer.isActive():
 			return
 		dummy_to_translate_in_skin = _("File Commander menu")
-		buttons = ("menu", "info") + tuple(string.digits) + ("red", "green", "yellow", "blue")
+		buttons = ("menu", "info") + tuple(digits) + ("red", "green", "yellow", "blue")
 
 		# Map the listed button actions to their help texts and
 		# build a list of the contexts used by the selected buttons
@@ -520,8 +512,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if hasattr(self, "oldFilterSettings"):
 			if self.oldFilterSettings != self.filterSettings():
 				filter = self.fileFilter()
-				self["list_left"].matchingPattern = re.compile(filter)
-				self["list_right"].matchingPattern = re.compile(filter)
+				self["list_left"].matchingPattern = compile(filter)
+				self["list_right"].matchingPattern = compile(filter)
 				self.onLayout()
 			del self.oldFilterSettings
 
@@ -814,12 +806,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		fname = _("Please enter the new file name")
 		if sourceDir in filename:
 			fname = _("Please enter the new directory name")
-		#length = config.plugins.filecommander.input_length.value
-		#self.session.openWithCallback(self.doRename, InputBox, text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter file/folder name"), windowTitle=_("Rename file"))
-		# overwrite : False = insert mode (not overwrite) when InputBox is created
-		# firstpos_end : True = cursor at end of text on InputBox creation - False = cursor at start of text on InputBox creation
-		# visible_width : if this width is smaller than the skin width, the text will be scrolled if it is too long
-		# allmarked : text all selected at InputBox creation or not
 		self.session.openWithCallback(self.doRename, VirtualKeyBoard, title=fname, text=filename)
 
 	def doRename(self, newname):
@@ -867,7 +853,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				filename = os.path.basename(os.path.normpath(filename))
 		elif sourceDir is None:
 			return
-		#self.session.openWithCallback(self.doMakesym, InputBox, text=filename, title=_("Please enter name of the new symlink"), windowTitle=_("New symlink"))
 		self.session.openWithCallback(self.doMakesym, VirtualKeyBoard, title=_("Please enter name of the new symlink"), text=filename)
 
 	def doMakesym(self, newname):
@@ -934,7 +919,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
 			return
-		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter a name for the new directory:"), windowTitle=_("New folder"))
 		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_('New folder'))
 
 	def doMakedir(self, newname):
@@ -962,7 +946,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		subFile = sourceDir + testFileName
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
-			print("[FileCommander] Downloading subtitle for: ", subFile)
+			print("[FileCommander] Downloading subtitle for: %s" % subFile)
 			# For Future USE
 
 	def subCallback(self, answer=False):
@@ -1231,7 +1215,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.ACTIVELIST.changeSelectionState()
 			self.selectedFiles = self.ACTIVELIST.getSelectedList()
-			print("[FileCommander] selectedFiles:", self.selectedFiles)
+			print("[FileCommander] selectedFiles: %s" % self.selectedFiles)
 			self.goDown()
 
 	def exit(self, jobs=None, updateDirs=None):
@@ -1323,7 +1307,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	def doDelete(self, answer):
 		if answer:
 			for file in self.delete_files:
-				print('delete:', file)
+				print('delete: %s' % file)
 				os.remove(file)
 			self.exit([self.delete_dirs], self.delete_updateDirs)
 
@@ -1436,7 +1420,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
-		print("[FileCommander] selectedFiles:", self.selectedFiles)
+		print("[FileCommander] selectedFiles: %s" % self.selectedFiles)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()

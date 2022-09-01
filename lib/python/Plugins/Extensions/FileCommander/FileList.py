@@ -1,6 +1,5 @@
-from __future__ import absolute_import
 import os
-import re
+from re import match
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
@@ -47,7 +46,7 @@ def getPNGByExt(name):
 		_, ex = os.path.splitext(basename)
 		if ex == ".tar":
 			ext = "tgz"
-	elif re.match("^r\d+$", ext):
+	elif match("^r\d+$", ext):
 		ext = "rar"
 
 	if ext in EXTENSIONS:

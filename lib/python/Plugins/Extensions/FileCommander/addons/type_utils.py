@@ -1,8 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
+from os import system
 
 # Components
-from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import HelpableActionMap
@@ -21,13 +20,11 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import fileExists
 
 # Various
-from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
+from ..InputBox import InputBoxWide
 from enigma import eTimer, ePicLoad, getDesktop, gFont, eSize
 
 from Tools.TextBoundary import getTextBoundarySize
 import skin
-
-import os
 
 ##################################
 
@@ -161,7 +158,7 @@ class vEditor(Screen, HelpableScreen):
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
 				font = skin.fonts.get("FileList", ("Regular", 20, 30))
-				fieldwidth = int(1140 * skin.getSkinFactor()) #fhd?
+				fieldwidth = int(1140 * skin.getSkinFactor())  # fhd?
 				length = 1
 				if firstpos_end:
 					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText) - length:], True).width() <= fieldwidth:
@@ -235,7 +232,7 @@ class vEditor(Screen, HelpableScreen):
 		if answer is True:
 			try:
 				if fileExists(self.file_name):
-					os.system("cp " + self.file_name + " " + self.file_name + ".bak")
+					system("cp " + self.file_name + " " + self.file_name + ".bak")
 				eFile = open(self.file_name, "w")
 				for x in self.list:
 					my_x = x.partition(": ")[2]
@@ -428,7 +425,7 @@ class ImageViewer(Screen, HelpableScreen):
 		self["status"].show()
 
 	def cbSlideShow(self):
-		print("slide to next Picture index=" + str(self.lsatIndex))
+		print("slide to next Picture index=%s" % str(self.lsatIndex))
 		if not config.pic.loop.value and self.lsatIndex == self.fileListLen:
 			self.PlayPause()
 		self.displayNow = True

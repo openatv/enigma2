@@ -1,11 +1,11 @@
-#!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+import subprocess
 from Components.PluginComponent import plugins
-from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 from Screens.Console import Console
 from Tools.Directories import shellquote, fileExists, resolveFilename, SCOPE_PLUGINS
-import subprocess
+
+from .unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 
 pname = _("File Commander - ipk Addon")
 pdesc = _("install/unpack ipk Files")
