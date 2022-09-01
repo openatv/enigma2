@@ -1,23 +1,20 @@
-from __future__ import absolute_import
-from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
 from os import access, F_OK
 from os.path import exists
-import six
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
-	eDVBResourceManager, eDVBDB, eEnv, iDVBFrontend, pNavigation
+	eDVBResourceManager, eDVBDB, eEnv, iDVBFrontend
 
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
-from Components.About import about
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
+from Components.SystemInfo import BoxInfo
 
 maxFixedLnbPositions = 0
 
@@ -146,7 +143,7 @@ class SecConfigure:
 	def linkNIMs(self, sec, nim1, nim2):
 		print("[NimManager] link tuner %s to tuner %s" % (nim1, nim2))
 		# for internally connect tuner A to B
-		if getBoxType() == 'vusolo2' or nim2 == (nim1 - 1):
+		if BoxInfo.getItem("machinebuild") == 'vusolo2' or nim2 == (nim1 - 1):
 			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 
@@ -320,7 +317,7 @@ class SecConfigure:
 				if slot.isMultiType():
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False)  # to force a clear of m_delsys_whitelist
 					types = slot.getMultiTypeList()
-					for FeType in six.itervalues(types):
+					for FeType in iter(types.values()):
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -409,9 +406,9 @@ class SecConfigure:
 					sec.setLNBThreshold(11700000)
 				elif currLnb.lof.value == "unicable":
 					def setupUnicable(configManufacturer, ProductDict):
-						manufacturer_name = six.ensure_text(configManufacturer.value)
+						manufacturer_name = configManufacturer.value
 						manufacturer = ProductDict[manufacturer_name]
-						product_name = six.ensure_text(manufacturer.product.value)
+						product_name = manufacturer.product.value
 						if product_name == "None" and manufacturer.product.saved_value != "None":
 							product_name = manufacturer.product.value = manufacturer.product.saved_value
 						manufacturer_scr = manufacturer.scr
@@ -625,8 +622,6 @@ class SecConfigure:
 		if SDict is None:
 			return
 
-		if ManufacturerName is not None:
-			ManufacturerName = six.ensure_text(ManufacturerName)
 		print("[NimManager] ManufacturerName %s" % ManufacturerName)
 
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
@@ -1294,7 +1289,7 @@ class NimManager:
 			if "has_outputs" not in entry:
 				entry["has_outputs"] = True
 			if "frontend_device" in entry:  # check if internally connectable
-				if exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (getBoxType() == 'vusolo2')):
+				if exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (BoxInfo.getItem("machinebuild") == 'vusolo2')):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
 				else:
 					entry["internally_connectable"] = None
@@ -1721,7 +1716,7 @@ def InitNimManager(nimmgr, update_slots=None):
 		m = {}
 		m_update = m.update
 		for product in manufacturer:
-			p = {}												#new dict empty for new product
+			p = {}  # new dict empty for new product
 			p_update = p.update
 			scr = []
 			scr_append = scr.append
@@ -1734,17 +1729,17 @@ def InitNimManager(nimmgr, update_slots=None):
 				else:
 					break
 
-			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})  # add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction": tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})  # add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})  # add positionsoffset to dict product
 
 			positions = []
 			positions_append = positions.append
@@ -1756,12 +1751,12 @@ def InitNimManager(nimmgr, update_slots=None):
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions": tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})  # add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime": tuple([bootuptime])})							#add add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})  # add add boot up time
 
-			m_update({product.get("name"): p})								#add dict product to dict manufacturer
+			m_update({product.get("name"): p})  # add dict product to dict manufacturer
 		unicablelnbproducts.update({manufacturer.get("name"): m})
 
 	entry = root.find("matrix")
@@ -1769,7 +1764,7 @@ def InitNimManager(nimmgr, update_slots=None):
 		m = {}
 		m_update = m.update
 		for product in manufacturer:
-			p = {}												#new dict empty for new product
+			p = {}  # new dict empty for new product
 			p_update = p.update
 			scr = []
 			scr_append = scr.append
@@ -1782,17 +1777,17 @@ def InitNimManager(nimmgr, update_slots=None):
 				else:
 					break
 
-			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})  # add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction": tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})  # add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})  # add positionsoffset to dict product
 
 			positions = []
 			positions_append = positions.append
@@ -1804,13 +1799,13 @@ def InitNimManager(nimmgr, update_slots=None):
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions": tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})  # add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime": tuple([bootuptime])})							#add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})  # add boot up time
 
-			m_update({product.get("name"): p})								#add dict product to dict manufacturer
-		unicablematrixproducts.update({manufacturer.get("name"): m})						#add dict manufacturer to dict unicablematrixproducts
+			m_update({product.get("name"): p})  # add dict product to dict manufacturer
+		unicablematrixproducts.update({manufacturer.get("name"): m})  # add dict manufacturer to dict unicablematrixproducts
 
 	UnicableLnbManufacturers = list(unicablelnbproducts.keys())
 	UnicableLnbManufacturers.sort()
@@ -2272,7 +2267,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call=False)
 		if slot.canBeCompatible("DVB-C"):
 			nim = config.Nims[x].dvbc
-			default = getMachineBrand() == "Beyonwiz" and "nothing" or "enabled"
+			default = BoxInfo.getItem("displaybrand") == "Beyonwiz" and "nothing" or "enabled"
 			nim.configMode = ConfigSelection(
 				choices={
 					"enabled": _("enabled"),
@@ -2307,7 +2302,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	nimmgr.sec = SecConfigure(nimmgr)
 
 	def tunerTypeChanged(nimmgr, configElement):
-		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus',):
+		if int(iDVBFrontend.dvb_api_version) < 5 or BoxInfo.getItem("brand") in ('vuplus',):
 			print("[NimManager] dvb_api_version %s" % iDVBFrontend.dvb_api_version)
 			print("[NimManager] api <5 or old style tuner driver")
 			fe_id = configElement.fe_id
@@ -2362,7 +2357,7 @@ def InitNimManager(nimmgr, update_slots=None):
 						f = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w")
 						f.write(oldvalue)
 						f.close()
-					except:
+					except OSError:
 						print("[NimManager][info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
 					nimmgr.enumerateNIMs()
@@ -2390,7 +2385,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			for _id in list(slot.getMultiTypeList().keys()):
 				_type = slot.getMultiTypeList()[_id]
 				typeList.append((_id, _type))
-				if getMachineBrand() == "Beyonwiz" and _type.startswith("DVB-T"):
+				if BoxInfo.getItem("displaybrand") == "Beyonwiz" and _type.startswith("DVB-T"):
 					default = _id
 			nim.multiType = ConfigSelection(typeList, default)
 
