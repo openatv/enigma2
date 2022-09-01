@@ -1,5 +1,3 @@
-# -*- coding: iso-8859-1 -*-
-
 import subprocess
 from Components.PluginComponent import plugins
 from Screens.Console import Console
@@ -7,22 +5,19 @@ from Tools.Directories import shellquote, fileExists, resolveFilename, SCOPE_PLU
 
 from .unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 
-pname = _("File Commander - ipk Addon")
-pdesc = _("install/unpack ipk Files")
-pversion = "0.2-r1"
+ADDONINFO = (
+	_("File Commander - ipk Addon"),
+	_("install/unpack ipk Files"),
+	"0.3"
+)
 
 
 class ipkMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
-		super(ipkMenuScreen, self).__init__(session, sourcelist, targetlist)
-
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=ADDONINFO)
 		self.list.append((_("Show contents of ipk file"), 1))
 		self.list.append((_("Install"), 4))
-
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
 
 	def unpackModus(self, id):
 		if id == 1:
@@ -36,7 +31,7 @@ class ipkMenuScreen(ArchiverMenuScreen):
 				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
 			else:
 				cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
-			self.unpackPopen(cmd, UnpackInfoScreen)
+			self.unpackPopen(cmd, ArchiverInfoScreen, ADDONINFO)
 		elif id == 4:
 			self.ulist = []
 			if fileExists("/usr/bin/opkg"):
@@ -45,13 +40,3 @@ class ipkMenuScreen(ArchiverMenuScreen):
 	def doCallBack(self):
 		if self.filename.startswith("enigma2-plugin-"):
 			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-		return
-
-
-class UnpackInfoScreen(ArchiverInfoScreen):
-
-	def __init__(self, session, liste, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion

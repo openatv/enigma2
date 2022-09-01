@@ -1,5 +1,3 @@
-# -*- coding: iso-8859-1 -*-
-
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -12,9 +10,11 @@ import subprocess
 import skin
 import six
 
-pname = _("File Commander - generalised archive handler")
-pdesc = _("unpack archives")
-pversion = "0.0-r1"
+COMMONINFO = (
+	_("File Commander - generalised archive handler"),
+	_("unpack archives"),
+	"0.0-r1"
+)
 
 
 class ArchiverMenuScreen(Screen):
@@ -33,11 +33,12 @@ class ArchiverMenuScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, sourcelist, targetlist):
+	def __init__(self, session, sourcelist, targetlist, addoninfo=None):
 
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
+		addoninfo = addoninfo or COMMONINFO
+		self.pname = addoninfo[0]
+		self.pdesc = addoninfo[1]
+		self.pversion = addoninfo[2]
 
 		self.SOURCELIST = sourcelist
 		self.TARGETLIST = targetlist
@@ -46,9 +47,7 @@ class ArchiverMenuScreen(Screen):
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory() or '/tmp/'
 		self.list = []
-
 		self.commands = {}
-
 		self.errlog = ""
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -64,7 +63,6 @@ class ArchiverMenuScreen(Screen):
 		self['unpacking'].selectionEnabled(0)
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
-
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
 		self["key_yellow"] = Label("")
@@ -117,7 +115,7 @@ class ArchiverMenuScreen(Screen):
 	# unpackPopen and unpackEConsoleApp run unpack and info
 	# commands for the specific archive unpackers.
 
-	def unpackPopen(self, cmd, infoScreen):
+	def unpackPopen(self, cmd, infoScreen, addoninfo):
 
 		# cmd is either a string or a list/tuple
 		# containing the command name and arguments.
@@ -147,7 +145,7 @@ class ArchiverMenuScreen(Screen):
 		self.extractlist = [(l,) for l in output[1] + output[0]]
 		if not self.extractlist:
 			self.extractlist = [(_("No files found."),)]
-		self.session.open(infoScreen, self.extractlist, self.sourceDir, self.filename)
+		self.session.open(infoScreen, self.extractlist, self.sourceDir, self.filename, addoninfo)
 
 	def unpackEConsoleApp(self, cmd, exePath=None, logCallback=None):
 
@@ -220,11 +218,12 @@ class ArchiverInfoScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, liste, sourceDir, filename):
+	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
 
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
+		addoninfo = addoninfo or COMMONINFO
+		self.pname = addoninfo[0]
+		self.pdesc = addoninfo[1]
+		self.pversion = addoninfo[2]
 
 		self.list = liste
 		self.sourceDir = sourceDir

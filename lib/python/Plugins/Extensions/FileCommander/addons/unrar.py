@@ -1,15 +1,17 @@
-# -*- coding: iso-8859-1 -*-
 from re import findall
 import subprocess
 
-from Screens.MessageBox import MessageBox
 from Components.config import config
-from .unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
+from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 
-pname = _("File Commander - unrar Addon")
-pdesc = _("unpack Rar Files")
-pversion = "0.2-r1"
+from .unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
+
+ADDONINFO = (
+	_("File Commander - unrar Addon"),
+	_("unpack Rar Files"),
+	"0.3"
+)
 
 
 class RarMenuScreen(ArchiverMenuScreen):
@@ -17,7 +19,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 	DEFAULT_PW = "2D1U3MP!"
 
 	def __init__(self, session, sourcelist, targetlist):
-		super(RarMenuScreen, self).__init__(session, sourcelist, targetlist)
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=ADDONINFO)
 
 		self.unrar = "unrar"
 		self.defaultPW = self.DEFAULT_PW
@@ -26,10 +28,6 @@ class RarMenuScreen(ArchiverMenuScreen):
 		self.list.append((_("Unpack to current folder"), 2))
 		self.list.append((_("Unpack to %s") % self.targetDir, 3))
 		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
-
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
 
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
@@ -69,7 +67,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		print("[RarMenuScreen] unpackModus %s" % id)
 		if id == 1:
 			cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.sourceDir + self.filename)
-			self.unpackPopen(cmd, UnpackInfoScreen)
+			self.unpackPopen(cmd, ArchiverInfoScreen, ADDONINFO)
 		elif 2 <= id <= 4:
 			cmd = [self.unrar, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+"]
 			if id == 2:
@@ -112,12 +110,3 @@ class RarMenuScreen(ArchiverMenuScreen):
 				255: "User stopped the process.",
 			}.get(data, "Unknown error")
 		super(RarMenuScreen, self).extractDone(filename, data)
-
-
-class UnpackInfoScreen(ArchiverInfoScreen):
-
-	def __init__(self, session, liste, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion

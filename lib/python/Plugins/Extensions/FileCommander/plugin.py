@@ -1,4 +1,3 @@
-# -*- coding: iso-8859-1 -*-
 from Components.config import config, ConfigSubsection, ConfigYesNo
 from Plugins.Plugin import PluginDescriptor
 
