@@ -281,11 +281,11 @@ private:
 	int m_itemwidth;
 	int m_items_per_page;
 	int m_selection_enabled;
+	int m_page_size;
 
 	bool m_native_keys_bound;
 	int m_first_selectable_item;
 	int m_last_selectable_item;
-	int m_page_size;
 
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;

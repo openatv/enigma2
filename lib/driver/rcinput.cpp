@@ -13,7 +13,9 @@
 #include <lib/base/init_num.h>
 #include <lib/driver/input_fake.h>
 
+#if WETEKRC
 static bool bflag;
+#endif
 
 void eRCDeviceInputDev::handleCode(long rccode)
 {
@@ -75,8 +77,10 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			case KEY_TAB:
 			case KEY_BACKSPACE:
 /*
+#if WETEKRC
 				bflag = !bflag;
 				eDebug("[eRCDeviceInputDev] --> AFTER flip BackspaceFLAG %d", bflag);
+#endif
 */
 			case KEY_ENTER:
 			case KEY_INSERT:
