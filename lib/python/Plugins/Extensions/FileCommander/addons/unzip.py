@@ -1,4 +1,3 @@
-from Components.config import config
 from enigma import gFont
 from .unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 import skin
@@ -14,25 +13,16 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=ADDONINFO)
+		self.initList(_("Show contents of zip file"))
 
-		self.list.append((_("Show contents of zip file"), 1))
-		self.list.append((_("Unpack to current folder"), 2))
-		self.list.append((_("Unpack to %s") % self.targetDir, 3))
-		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
-
-	def unpackModus(self, id):
-		print("[UnzipMenuScreen] unpackModus %s" % id)
-		if id == 1:
+	def unpackModus(self, selectid):
+		print("[UnzipMenuScreen] unpackModus %s" % selectid)
+		if selectid == self.ID_SHOW:
 			cmd = ("unzip", "-l", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen, ADDONINFO)
-		elif 2 <= id <= 4:
+		else:
 			cmd = ["unzip", "-o", self.sourceDir + self.filename, "-d"]
-			if id == 2:
-				cmd.append(self.sourceDir)
-			elif id == 3:
-				cmd.append(self.targetDir)
-			elif id == 4:
-				cmd.append(config.usage.default_path.value)
+			cmd.append(self.getPathBySelectId(selectid))
 			self.unpackEConsoleApp(cmd)
 
 

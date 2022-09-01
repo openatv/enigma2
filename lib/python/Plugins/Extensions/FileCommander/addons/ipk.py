@@ -16,11 +16,11 @@ class ipkMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=ADDONINFO)
-		self.list.append((_("Show contents of ipk file"), 1))
-		self.list.append((_("Install"), 4))
+		self.list.append((_("Show contents of ipk file"), self.ID_SHOW))
+		self.list.append((_("Install"), self.ID_INSTALL))
 
-	def unpackModus(self, id):
-		if id == 1:
+	def unpackModus(self, selectid):
+		if selectid == self.ID_SHOW:
 			# This is done in a subshell because using two
 			# communicating Popen commands can deadlock on the
 			# pipe output. Using communicate() avoids deadlock
@@ -32,7 +32,7 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			else:
 				cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
 			self.unpackPopen(cmd, ArchiverInfoScreen, ADDONINFO)
-		elif id == 4:
+		elif selectid == self.ID_INSTALL:
 			self.ulist = []
 			if fileExists("/usr/bin/opkg"):
 				self.session.openWithCallback(self.doCallBack, Console, title=_("Installing Plugin ..."), cmdlist=(("opkg", "install", self.sourceDir + self.filename),))

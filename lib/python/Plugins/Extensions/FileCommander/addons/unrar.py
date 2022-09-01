@@ -1,7 +1,5 @@
 from re import findall
 import subprocess
-
-from Components.config import config
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 
@@ -24,10 +22,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		self.unrar = "unrar"
 		self.defaultPW = self.DEFAULT_PW
 
-		self.list.append((_("Show contents of rar file"), 1))
-		self.list.append((_("Unpack to current folder"), 2))
-		self.list.append((_("Unpack to %s") % self.targetDir, 3))
-		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 4))
+		self.initList(_("Show contents of rar file"))
 
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
@@ -63,19 +58,14 @@ class RarMenuScreen(ArchiverMenuScreen):
 		else:
 			self.checkPW(pwd)
 
-	def unpackModus(self, id):
-		print("[RarMenuScreen] unpackModus %s" % id)
-		if id == 1:
+	def unpackModus(self, selectid):
+		print("[RarMenuScreen] unpackModus %s" % selectid)
+		if selectid == self.ID_SHOW:
 			cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.sourceDir + self.filename)
 			self.unpackPopen(cmd, ArchiverInfoScreen, ADDONINFO)
-		elif 2 <= id <= 4:
+		else:
 			cmd = [self.unrar, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+"]
-			if id == 2:
-				cmd.append(self.sourceDir)
-			elif id == 3:
-				cmd.append(self.targetDir)
-			elif id == 4:
-				cmd.append(config.usage.default_path.value)
+			cmd.append(self.getPathBySelectId(selectid))
 			self.unpackEConsoleApp(cmd, exePath=self.unrar, logCallback=self.log)
 
 	def log(self, data):

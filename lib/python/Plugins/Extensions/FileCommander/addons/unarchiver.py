@@ -1,6 +1,7 @@
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Tools.BoundFunction import boundFunction
@@ -18,6 +19,12 @@ COMMONINFO = (
 
 
 class ArchiverMenuScreen(Screen):
+	ID_SHOW = 0
+	ID_CURRENTDIR = 1
+	ID_TARGETDIR = 2
+	ID_DEFAULTDIR = 3
+	ID_INSTALL = 4
+
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="1180,60" font="Regular;20" foregroundColor="#00fff000"/>
@@ -80,6 +87,21 @@ class ArchiverMenuScreen(Screen):
 		self.setTitle(self.pname)
 		self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
+	def getPathBySelectId(self, selectId):
+		if selectId == self.ID_CURRENTDIR:
+			return self.sourceDir
+		elif selectId == self.ID_TARGETDIR:
+			return self.targetDir
+		elif selectId == self.ID_DEFAULTDIR:
+			return config.usage.default_path.value
+
+	def initList(self, firstElement=None):
+		if firstElement:
+			self.list.append((firstElement, self.ID_SHOW))
+		self.list.append((_("Unpack to current folder"), self.ID_CURRENTDIR))
+		self.list.append((_("Unpack to %s") % self.targetDir, self.ID_TARGETDIR))
+		self.list.append((_("Unpack to %s") % config.usage.default_path.value, self.ID_DEFAULTDIR))
+
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
@@ -109,7 +131,7 @@ class ArchiverMenuScreen(Screen):
 		print("[ArchiverMenuScreen] Select: %s %s" % (selectName, self.selectId))
 		self.unpackModus(self.selectId)
 
-	def unpackModus(self, id):
+	def unpackModus(self, selectid):
 		return
 
 	# unpackPopen and unpackEConsoleApp run unpack and info

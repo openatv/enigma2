@@ -1,6 +1,5 @@
 from os.path import splitext
 
-from Components.config import config
 from Tools.Directories import shellquote
 from .unarchiver import ArchiverMenuScreen
 
@@ -15,24 +14,18 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=ADDONINFO)
+		self.initList()
 
-		self.list.append((_("Unpack to current folder"), 1))
-		self.list.append((_("Unpack to %s") % self.targetDir, 2))
-		self.list.append((_("Unpack to %s") % config.usage.default_path.value, 3))
-
-	def unpackModus(self, id):
-		print("[GunzipMenuScreen] unpackModus %s" % id)
+	def unpackModus(self, selectid):
+		print("[GunzipMenuScreen] unpackModus %s" % selectid)
 		pathName = self.sourceDir + self.filename
-		if id == 1:
+		if selectid == self.ID_CURRENTDIR:
 			cmd = ("gunzip", pathName)
-		elif id in (2, 3):
+		elif selectid in (self.ID_TARGETDIR, self.ID_DEFAULTDIR):
 			baseName, ext = splitext(self.filename)
 			if ext != ".gz":
 				return
-			if id == 2:
-				dest = self.targetDir
-			elif id == 3:
-				dest = config.usage.default_path.value
+			dest = self.getPathBySelectId(id)
 			dest += baseName
 			cmd = "gunzip -c %s > %s && rm %s" % (shellquote(pathName), shellquote(dest), shellquote(pathName))
 		self.unpackEConsoleApp(cmd)
