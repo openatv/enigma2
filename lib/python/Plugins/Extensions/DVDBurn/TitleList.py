@@ -312,10 +312,10 @@ class TitleList(Screen, HelpableScreen):
 			self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
 
 			if size > MAX_BD:
-				self["medium_label"].setText(_("Exceeds Blue-ray disc medium!"))
+				self["medium_label"].setText(_("Exceeds Blu-ray disc medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_BD:
-					self.session.open(MessageBox, text=_("Exceeds Blue-ray disc medium!"), type=MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text=_("Exceeds Blu-ray disc medium!"), type=MessageBox.TYPE_ERROR)
 			elif size < MAX_BD:
 				self["medium_label"].setText(_("Required medium type:") + " " + _("BLUDISC RECORDABLE") + ", %d MB " % (MAX_BD - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
