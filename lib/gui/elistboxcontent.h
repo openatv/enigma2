@@ -89,7 +89,7 @@ public:
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 private:
-	std::map<int, ePtr<gFont> > m_font;
+	std::map<int, ePtr<gFont> > m_fonts;
 };
 
 #ifdef SWIG

@@ -961,7 +961,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int fnt = PyInt_AsLong(pfnt);
 				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 0;
 
-				if (m_font.find(fnt) == m_font.end())
+				if (m_fonts.find(fnt) == m_fonts.end())
 				{
 					eDebug("[eListboxPythonMultiContent] specified font %d was not found!", fnt);
 					goto error_out;
@@ -976,7 +976,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear);
 				}
 
-				painter.setFont(m_font[fnt]);
+				painter.setFont(m_fonts[fnt]);
 				painter.renderText(rect, string, flags, border_color, border_size);
 				painter.clippop();
 
@@ -1310,9 +1310,9 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
 {
 	if (font)
-		m_font[fnt] = font;
+		m_fonts[fnt] = font;
 	else
-		m_font.erase(fnt);
+		m_fonts.erase(fnt);
 }
 
 void eListboxPythonMultiContent::setItemHeight(int height)
