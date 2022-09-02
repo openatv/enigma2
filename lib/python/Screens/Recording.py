@@ -88,25 +88,19 @@ class RecordingSettings(Setup):
 		self.changedEntry()
 
 	def pathStatus(self, path):
-		if path.startswith("<"):
-			self.errorItem = -1
-			footnote = ""
-			green = self.greenText
-		elif not isdir(path):
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' does not exist!") % path
-			green = ""
-		elif stat(path).st_dev in self.inhibitDevs:
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Flash directory '%s' not allowed!") % path
-			green = ""
-		elif not fileAccess(path, "w"):
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' not writable!") % path
-			green = ""
-		else:
-			self.errorItem = -1
-			footnote = ""
-			green = self.greenText
+		self.errorItem = -1
+		footnote = ""
+		green = self.greenText
+		if not path.startswith("<"):
+			if not isdir(path):
+				footnote = _("Directory '%s' does not exist!") % path
+			elif stat(path).st_dev in self.inhibitDevs:
+				self.errorItem = self["config"].getCurrentIndex()
+				footnote = _("Flash directory '%s' not allowed!") % path
+				green = ""
+			elif not fileAccess(path, "w"):
+				self.errorItem = self["config"].getCurrentIndex()
+				footnote = _("Directory '%s' not writable!") % path
+				green = ""
 		self.setFootnote(footnote)
 		self["key_green"].text = green
