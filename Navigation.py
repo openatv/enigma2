@@ -313,6 +313,11 @@ class Navigation:
 					self.stopService()
 					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
 						print "Failed to start", alternativeref
+						if oldref and "://" in oldref.getPath():
+							print "[Navigation] Streaming was active -> try again" # use timer to give the streamserver the time to deallocate the tuner
+							self.retryServicePlayTimer = eTimer()
+							self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
+							self.retryServicePlayTimer.start(500, True)
 					return 0
 				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl=False)):
 					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
@@ -327,9 +332,14 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				if self.pnav.playService(playref):
-					print "Failed to start", playref
+					print "[Navigation] Failed to start", playref.toString()
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
+					if oldref and "://" in oldref.getPath():
+						print "[Navigation] Streaming was active -> try again" # use timer to give the streamserver the time to deallocate the tuner
+						self.retryServicePlayTimer = eTimer()
+						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
+						self.retryServicePlayTimer.start(500, True)
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
