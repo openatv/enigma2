@@ -1,5 +1,5 @@
-	/* note: this requires gstreamer 0.10.x and a big list of plugins. */
-	/* it's currently hardcoded to use a big-endian alsasink as sink. */
+/* note: this requires gstreamer 0.10.x and a big list of plugins. */
+/* it's currently hardcoded to use a big-endian alsasink as sink. */
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init_num.h>
@@ -41,7 +41,7 @@ constexpr gint HTTP_TIMEOUT = 10;
  *
  * Progressive download requires buffering enabled, so it's mandatory to use flag 3 not 2
  */
-enum class eServiceMP3Flags
+enum eServiceMP3Flags
 {
 	BUFFERING_ENABLED	= 0x00000001,
 	PROGRESSIVE_DOWNLOAD	= 0x00000002
@@ -52,7 +52,7 @@ enum class eServiceMP3Flags
  * not publicly expose element-specific enums. That's why this
  * GstPlayFlags enum has been copied here.
  */
-enum class GstPlayFlags
+enum GstPlayFlags
 {
 	GST_PLAY_FLAG_VIDEO         = (1 << 0),
 	GST_PLAY_FLAG_AUDIO         = (1 << 1),
@@ -179,7 +179,7 @@ void eServiceFactoryMP3::create_gstreamer_sinks()
 	eServiceFactoryMP3::dvb_audiosink = gst_element_factory_make("dvbaudiosink", nullptr);
 	if(eServiceFactoryMP3::dvb_audiosink)
 	{
-		gst_object_ref_sink(dvb_audiosink);
+		gst_object_ref_sink(eServiceFactoryMP3::dvb_audiosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_audiosink created ***");
 		eServiceFactoryMP3::dvb_audiosink_ok = true;
 	}
@@ -188,7 +188,7 @@ void eServiceFactoryMP3::create_gstreamer_sinks()
 	eServiceFactoryMP3::dvb_videosink = gst_element_factory_make("dvbvideosink", nullptr);
 	if(eServiceFactoryMP3::dvb_videosink)
 	{
-		gst_object_ref_sink(dvb_videosink);
+		gst_object_ref_sink(eServiceFactoryMP3::dvb_videosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink created ***");
 		eServiceFactoryMP3::dvb_videosink_ok = true;
 	}
@@ -197,7 +197,7 @@ void eServiceFactoryMP3::create_gstreamer_sinks()
 	eServiceFactoryMP3::dvb_subsink = gst_element_factory_make("subsink", nullptr);
 	if(eServiceFactoryMP3::dvb_subsink)
 	{
-		gst_object_ref_sink(dvb_subsink);
+		gst_object_ref_sink(eServiceFactoryMP3::dvb_subsink);
 		eDebug("[eServiceFactoryMP3] **** dvb_subsink created ***");
 		eServiceFactoryMP3::dvb_subsink_ok = true;
 	}
@@ -801,7 +801,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 #if GST_VERSION_MAJOR < 1
 			g_object_set (eServiceFactoryMP3::dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
 #else
-			g_object_set (dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; subpicture/x-dvd; subpicture/x-pgs"), NULL);
+			g_object_set (eServiceFactoryMP3::dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; subpicture/x-dvd; subpicture/x-pgs"), NULL);
 #endif
 			g_object_set (m_gst_playbin, "text-sink", eServiceFactoryMP3::dvb_subsink, NULL);
 			g_object_set (m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
@@ -975,7 +975,6 @@ RESULT eServiceMP3::start()
 			eDebug("[eServiceMP3] failed to start pipeline");
 			stop();
 			return -1;
-			break;
 		case GST_STATE_CHANGE_SUCCESS:
 			m_is_live = false;
 			break;
