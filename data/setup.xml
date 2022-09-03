@@ -641,12 +641,12 @@
 			</if>
 			<item level="0" text="Rename name and description for new events" description="Select if the timer name and description modification code is run on repeating timers." conditional="self.timerType.value != 'zap'">self.timerRename</item>
 		</if>
+		<item level="0" text="Margin before recording" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item>
 		<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
-		<!--item level="0" text="Margin before recording" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item-->
-		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerShowEndTime</item>
-		<if conditional="self.timerType.value != 'zap' or self.timerShowEndTime.value">
+		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerHasEndTime</item>
+		<if conditional="self.timerType.value != 'zap' or self.timerHasEndTime.value">
 			<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
-			<!--item level="0" text="Margin after recording" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item-->
+			<item level="0" text="Margin after recording" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item>
 		</if>
 		<item level="0" text="Channel / Service" description="Select the channel or service to be used for this timer.">self.timerService</item>
 		<if conditional="self.timerType.value != 'zap'">
@@ -654,7 +654,7 @@
 			<item level="2" text="Recording location" description="Select where the recording should be saved.">self.timerLocation</item>
 		</if>
 		<if conditional="self.timerType.value == 'zap'">
-			<item level="0" text="After event" description="Select what do do after the timer has completed.">self.timerAfterEvent</item>
+			<item level="0" text="After zap" description="Select what do do after the timer zap has completed." conditional="self.timerHasEndTime.value">self.timerAfterEvent</item>
 		<else />
 			<item level="0" text="Tags" description="Select the tags that should be used for this recording.">self.timerTags</item>
 			<item level="0" text="After recording" description="Select what do do after the timer recording has completed.">self.timerAfterEvent</item>
