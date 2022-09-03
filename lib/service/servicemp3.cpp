@@ -69,9 +69,15 @@ enum class GstPlayFlags
 };
 
 /* static declarations */
-static const bool first_play_eServicemp3 = false;
-static const GstElement *dvb_audiosink, *dvb_videosink, *dvb_subsink;
-static const bool dvb_audiosink_ok, dvb_videosink_ok, dvb_subsink_ok;
+bool eServiceFactoryMP3::first_play_eServicemp3 = false;
+
+GstElement * eServiceFactoryMP3::dvb_audiosink = nullptr;
+GstElement * eServiceFactoryMP3::dvb_videosink = nullptr;
+GstElement * eServiceFactoryMP3::dvb_subsink = nullptr;
+
+bool eServiceFactoryMP3::dvb_audiosink_ok = false;
+bool eServiceFactoryMP3::dvb_videosink_ok = false;
+bool eServiceFactoryMP3::dvb_subsink_ok = false;
 
 /*static functions */
 
@@ -166,34 +172,34 @@ eServiceFactoryMP3::~eServiceFactoryMP3()
 
 DEFINE_REF(eServiceFactoryMP3)
 
-static void create_gstreamer_sinks()
+void eServiceFactoryMP3::create_gstreamer_sinks()
 {
-	dvb_subsink = dvb_audiosink = dvb_videosink = nullptr;
-	dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
-	dvb_audiosink = gst_element_factory_make("dvbaudiosink", nullptr);
-	if(dvb_audiosink)
+	//dvb_subsink = dvb_audiosink = dvb_videosink = nullptr;
+	//dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
+	eServiceFactoryMP3::dvb_audiosink = gst_element_factory_make("dvbaudiosink", nullptr);
+	if(eServiceFactoryMP3::dvb_audiosink)
 	{
 		gst_object_ref_sink(dvb_audiosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_audiosink created ***");
-		dvb_audiosink_ok = true;
+		eServiceFactoryMP3::dvb_audiosink_ok = true;
 	}
 	else
 		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin dvbaudiosink ****");
-	dvb_videosink = gst_element_factory_make("dvbvideosink", nullptr);
-	if(dvb_videosink)
+	eServiceFactoryMP3::dvb_videosink = gst_element_factory_make("dvbvideosink", nullptr);
+	if(eServiceFactoryMP3::dvb_videosink)
 	{
 		gst_object_ref_sink(dvb_videosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink created ***");
-		dvb_videosink_ok = true;
+		eServiceFactoryMP3::dvb_videosink_ok = true;
 	}
 	else
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin dvbvideosink ****");
-	dvb_subsink = gst_element_factory_make("subsink", nullptr);
-	if(dvb_subsink)
+	eServiceFactoryMP3::dvb_subsink = gst_element_factory_make("subsink", nullptr);
+	if(eServiceFactoryMP3::dvb_subsink)
 	{
 		gst_object_ref_sink(dvb_subsink);
 		eDebug("[eServiceFactoryMP3] **** dvb_subsink created ***");
-		dvb_subsink_ok = true;
+		eServiceFactoryMP3::dvb_subsink_ok = true;
 	}
 	else
 		eDebug("[eServiceFactoryMP3] **** dvb_subsink NOT created missing plugin subsink ****");
@@ -204,11 +210,11 @@ RESULT eServiceFactoryMP3::play(const eServiceReference &ref, ePtr<iPlayableServ
 {
 	// check resources...
 	// creating gstreamer sinks for the very first media
-	if(first_play_eServicemp3)
+	if(eServiceFactoryMP3::first_play_eServicemp3)
 		m_eServicemp3_counter++;
 	else
 	{
-		first_play_eServicemp3 = true;
+		eServiceFactoryMP3::first_play_eServicemp3 = true;
 		m_eServicemp3_counter = 1;
 		create_gstreamer_sinks();
 	}
@@ -735,25 +741,25 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 #endif
 	if ( m_gst_playbin )
 	{
-		if(dvb_audiosink)
+		if(eServiceFactoryMP3::dvb_audiosink)
 		{
 			if (m_sourceinfo.is_audio)
 			{
-				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
-				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
+				g_object_set(eServiceFactoryMP3::dvb_audiosink, "e2-sync", TRUE, NULL);
+				g_object_set(eServiceFactoryMP3::dvb_audiosink, "e2-async", TRUE, NULL);
 			}
 			else
 			{
-				g_object_set(dvb_audiosink, "e2-sync", FALSE, NULL);
-				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
+				g_object_set(eServiceFactoryMP3::dvb_audiosink, "e2-sync", FALSE, NULL);
+				g_object_set(eServiceFactoryMP3::dvb_audiosink, "e2-async", FALSE, NULL);
 			}
-			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
+			g_object_set(m_gst_playbin, "audio-sink", eServiceFactoryMP3::dvb_audiosink, NULL);
 		}
-		if(dvb_videosink && !m_sourceinfo.is_audio)
+		if(eServiceFactoryMP3::dvb_videosink && !m_sourceinfo.is_audio)
 		{
-			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
-			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
-			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
+			g_object_set(eServiceFactoryMP3::dvb_videosink, "e2-sync", FALSE, NULL);
+			g_object_set(eServiceFactoryMP3::dvb_videosink, "e2-async", FALSE, NULL);
+			g_object_set(m_gst_playbin, "video-sink", eServiceFactoryMP3::dvb_videosink, NULL);
 		}
 #if HAVE_ALIEN5
 		aml_set_mediaplay_source((void *)m_gst_playbin,(int)m_sourceinfo.is_audio);
@@ -789,15 +795,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		}
 		g_object_set (m_gst_playbin, "flags", flags, NULL);
 		g_object_set (m_gst_playbin, "uri", uri, NULL);
-		if (dvb_subsink)
+		if (eServiceFactoryMP3::dvb_subsink)
 		{
-			m_subs_to_pull_handler_id = g_signal_connect (dvb_subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+			m_subs_to_pull_handler_id = g_signal_connect (eServiceFactoryMP3::dvb_subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 #if GST_VERSION_MAJOR < 1
-			g_object_set (dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
+			g_object_set (eServiceFactoryMP3::dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"), NULL);
 #else
 			g_object_set (dvb_subsink, "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-raw; text/x-pango-markup; subpicture/x-dvd; subpicture/x-pgs"), NULL);
 #endif
-			g_object_set (m_gst_playbin, "text-sink", dvb_subsink, NULL);
+			g_object_set (m_gst_playbin, "text-sink", eServiceFactoryMP3::dvb_subsink, NULL);
 			g_object_set (m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
 		}
 		GstBus *bus = gst_pipeline_get_bus(GST_PIPELINE (m_gst_playbin));
@@ -841,9 +847,9 @@ eServiceMP3::~eServiceMP3()
 {
 	// disconnect subtitle callback
 
-	if (dvb_subsink)
+	if (eServiceFactoryMP3::dvb_subsink)
 	{
-		g_signal_handler_disconnect (dvb_subsink, m_subs_to_pull_handler_id);
+		g_signal_handler_disconnect (eServiceFactoryMP3::dvb_subsink, m_subs_to_pull_handler_id);
 		if (m_subtitle_widget)
 			disableSubtitles();
 	}
@@ -1572,14 +1578,14 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		pos *= 11111LL;
 #else
 #if GST_VERSION_MAJOR < 1
-	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_sourceinfo.is_hls)
+	if ((eServiceFactoryMP3::dvb_audiosink || eServiceFactoryMP3::dvb_videosink) && !m_paused && !m_sourceinfo.is_hls)
 #else
-	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
+	if ((eServiceFactoryMP3::dvb_audiosink || eServiceFactoryMP3::dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
 #endif
 	{
 		if (m_sourceinfo.is_audio)
 		{
-			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+			g_signal_emit_by_name(eServiceFactoryMP3::dvb_audiosink, "get-decoder-time", &pos);
 			if(!GST_CLOCK_TIME_IS_VALID(pos))
 				return -1;
 		}
@@ -1589,15 +1595,15 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			/* avoid taking the audio play position if audio sink is in state NULL */
 			if(!m_audiosink_not_running)
 			{
-				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+				g_signal_emit_by_name(eServiceFactoryMP3::dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
-				 	g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+				 	g_signal_emit_by_name(eServiceFactoryMP3::dvb_videosink, "get-decoder-time", &pos);
 				if(!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
 			}
 			else
 			{
-				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+				g_signal_emit_by_name(eServiceFactoryMP3::dvb_videosink, "get-decoder-time", &pos);
 				if(!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
 			}
@@ -1775,9 +1781,9 @@ int eServiceMP3::getInfo(int w)
 	case sBuffer: return m_bufferInfo.bufferPercent;
 	case sVideoType:
 	{
-		if (!dvb_videosink) return -1;
+		if (!eServiceFactoryMP3::dvb_videosink) return -1;
 		guint64 v = -1;
-		g_signal_emit_by_name(dvb_videosink, "get-video-codec", &v);
+		g_signal_emit_by_name(eServiceFactoryMP3::dvb_videosink, "get-video-codec", &v);
 		return (int) v;
 	}
 	case sSID: return m_ref.getData(1);
@@ -2255,7 +2261,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
 					m_state = stRunning;
-					if (dvb_subsink)
+					if (eServiceFactoryMP3::dvb_subsink)
 					{
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 						/*
@@ -2268,7 +2274,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						 * And not just once, but after each pause/resume / skip.
 						 * So as soon as gstreamer has been fixed to keep sync in sparse streams, sync needs to be re-enabled.
 						 */
-						g_object_set (dvb_subsink, "sync", FALSE, NULL);
+						g_object_set (eServiceFactoryMP3::dvb_subsink, "sync", FALSE, NULL);
 #endif
 
 #if 0
@@ -2287,7 +2293,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					if(!m_sourceinfo.is_streaming && !m_cuesheet_loaded) /* cuesheet CVR */
 						loadCuesheet();
 					/* avoid position taking on audiosink when audiosink is not running */
-					ret = gst_element_get_state(dvb_audiosink, &state, &pending, 3 * GST_SECOND);
+					ret = gst_element_get_state(eServiceFactoryMP3::dvb_audiosink, &state, &pending, 3 * GST_SECOND);
 					if (state == GST_STATE_NULL)
 						m_audiosink_not_running = true;
 					if(!m_is_live)
@@ -2304,7 +2310,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					updateEpgCacheNowNext();
 
-					if (!dvb_videosink || m_ref.getData(0) == 2) // show radio pic
+					if (!eServiceFactoryMP3::dvb_videosink || m_ref.getData(0) == 2) // show radio pic
 					{
 						bool showRadioBackground = eConfigManager::getConfigBoolValue("config.misc.showradiopic", true);
 						std::string radio_pic = eConfigManager::getConfigValue(showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic");
@@ -2372,9 +2378,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			if(!strncmp(warn->message , "Internal data flow problem", 26) && !strncmp(sourceName, "subtitle_sink", 13))
 			{
 				eWarning("[eServiceMP3] Gstreamer warning : %s (%i) from %s" , warn->message, warn->code, sourceName);
-				if(dvb_subsink)
+				if(eServiceFactoryMP3::dvb_subsink)
 				{
-					if (!gst_element_seek (dvb_subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
+					if (!gst_element_seek (eServiceFactoryMP3::dvb_subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
 						GST_SEEK_TYPE_SET, (gint64)(m_last_seek_pos * 11111LL),
 						GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 					{
@@ -3493,7 +3499,7 @@ void eServiceMP3::setAC3Delay(int delay)
 		 * If either the video or audio sink is of a different type,
 		 * we have no chance to get them synced anyway.
 		 */
-		if (dvb_videosink)
+		if (eServiceFactoryMP3::dvb_videosink)
 		{
 			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalAC3delay");
 		}
@@ -3503,7 +3509,7 @@ void eServiceMP3::setAC3Delay(int delay)
 			config_delay_int = 0;
 		}
 
-		if (dvb_audiosink)
+		if (eServiceFactoryMP3::dvb_audiosink)
 		{
 			eTSMPEGDecoder::setHwAC3Delay(config_delay_int);
 		}
@@ -3524,7 +3530,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		 * If either the video or audio sink is of a different type,
 		 * we have no chance to get them synced anyway.
 		 */
-		if (dvb_videosink)
+		if (eServiceFactoryMP3::dvb_videosink)
 		{
 			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalPCMdelay");
 		}
@@ -3534,7 +3540,7 @@ void eServiceMP3::setPCMDelay(int delay)
 			config_delay_int = 0;
 		}
 
-		if (dvb_audiosink)
+		if (eServiceFactoryMP3::dvb_audiosink)
 		{
 			eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
 		}

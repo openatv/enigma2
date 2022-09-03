@@ -29,6 +29,16 @@ public:
 	gint m_eServicemp3_counter;
 private:
 	ePtr<eStaticServiceMP3Info> m_service_info;
+	static bool first_play_eServicemp3;
+	static bool dvb_audiosink_ok;
+	static bool dvb_videosink_ok;
+	static bool dvb_subsink_ok;
+
+	static GstElement * dvb_audiosink;
+	static GstElement * dvb_videosink;
+	static GstElement * dvb_subsink;
+
+	static void create_gstreamer_sinks();
 };
 
 class eStaticServiceMP3Info: public iStaticServiceInformation
