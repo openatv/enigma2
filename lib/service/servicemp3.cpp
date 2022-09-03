@@ -29,7 +29,7 @@ extern "C" {
 }
 #endif
 
-#define HTTP_TIMEOUT 10
+constexpr gint HTTP_TIMEOUT = 10;
 
 /*
  * UNUSED variable from service reference is now used as buffer flag for gstreamer
@@ -41,18 +41,18 @@ extern "C" {
  *
  * Progressive download requires buffering enabled, so it's mandatory to use flag 3 not 2
  */
-typedef enum
+enum class eServiceMP3Flags
 {
 	BUFFERING_ENABLED	= 0x00000001,
 	PROGRESSIVE_DOWNLOAD	= 0x00000002
-} eServiceMP3Flags;
+};
 
 /*
  * GstPlayFlags flags from playbin2. It is the policy of GStreamer to
  * not publicly expose element-specific enums. That's why this
  * GstPlayFlags enum has been copied here.
  */
-typedef enum
+enum class GstPlayFlags
 {
 	GST_PLAY_FLAG_VIDEO         = (1 << 0),
 	GST_PLAY_FLAG_AUDIO         = (1 << 1),
@@ -66,17 +66,17 @@ typedef enum
 	GST_PLAY_FLAG_DEINTERLACE   = (1 << 9),
 	GST_PLAY_FLAG_SOFT_COLORBALANCE = (1 << 10),
 	GST_PLAY_FLAG_FORCE_FILTERS = (1 << 11),
-} GstPlayFlags;
+};
 
 /* static declarations */
-static bool first_play_eServicemp3 = false;
-static GstElement *dvb_audiosink, *dvb_videosink, *dvb_subsink;
-static bool dvb_audiosink_ok, dvb_videosink_ok, dvb_subsink_ok;
+static const bool first_play_eServicemp3 = false;
+static const GstElement *dvb_audiosink, *dvb_videosink, *dvb_subsink;
+static const bool dvb_audiosink_ok, dvb_videosink_ok, dvb_subsink_ok;
 
 /*static functions */
 
-/* Handy asyncrone timers for developpers */
-/* It could be used for a hack to set somewhere a timeout which does not interupt or blocks signals */
+/* Handy asynchronous timers for developers */
+/* It could be used for a hack to set somewhere a timeout which does not interrupt or blocks signals */
 static void gst_sleepms(uint32_t msec)
 {
 	//does not interfere with signals like sleep and usleep do
@@ -84,7 +84,7 @@ static void gst_sleepms(uint32_t msec)
 	req_ts.tv_sec = msec / 1000;
 	req_ts.tv_nsec = (msec % 1000) * 1000000L;
 	int32_t olderrno = errno; // Some OS seem to set errno to ETIMEDOUT when sleeping
-	while (1)
+	while (true)
 	{
 		/* Sleep for the time specified in req_ts. If interrupted by a
 		signal, place the remaining time left to sleep back into req_ts. */
@@ -93,8 +93,7 @@ static void gst_sleepms(uint32_t msec)
 			break; // Completed the entire sleep time; all done.
 		else if (errno == EINTR)
 			continue; // Interrupted by a signal. Try again.
-		else 
-			break; // Some other error; bail out.
+		break; // Some other error; bail out.
 	}
 	errno = olderrno;
 }
@@ -122,34 +121,34 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	if (sc)
 	{
 		std::list<std::string> extensions;
-		extensions.push_back("dts");
-		extensions.push_back("mp2");
-		extensions.push_back("mp3");
-		extensions.push_back("ogg");
-		extensions.push_back("ogm");
-		extensions.push_back("ogv");
-		extensions.push_back("mpg");
-		extensions.push_back("vob");
-		extensions.push_back("wav");
-		extensions.push_back("wave");
-		extensions.push_back("m4v");
-		extensions.push_back("mkv");
-		extensions.push_back("avi");
-		extensions.push_back("divx");
-		extensions.push_back("dat");
-		extensions.push_back("flac");
-		extensions.push_back("flv");
-		extensions.push_back("mp4");
-		extensions.push_back("mov");
-		extensions.push_back("m4a");
-		extensions.push_back("3gp");
-		extensions.push_back("3g2");
-		extensions.push_back("asf");
-		extensions.push_back("wmv");
-		extensions.push_back("wma");
-		extensions.push_back("webm");
-		extensions.push_back("m3u8");
-		extensions.push_back("stream");
+		extensions.emplace_back("dts");
+		extensions.emplace_back("mp2");
+		extensions.emplace_back("mp3");
+		extensions.emplace_back("ogg");
+		extensions.emplace_back("ogm");
+		extensions.emplace_back("ogv");
+		extensions.emplace_back("mpg");
+		extensions.emplace_back("vob");
+		extensions.emplace_back("wav");
+		extensions.emplace_back("wave");
+		extensions.emplace_back("m4v");
+		extensions.emplace_back("mkv");
+		extensions.emplace_back("avi");
+		extensions.emplace_back("divx");
+		extensions.emplace_back("dat");
+		extensions.emplace_back("flac");
+		extensions.emplace_back("flv");
+		extensions.emplace_back("mp4");
+		extensions.emplace_back("mov");
+		extensions.emplace_back("m4a");
+		extensions.emplace_back("3gp");
+		extensions.emplace_back("3g2");
+		extensions.emplace_back("asf");
+		extensions.emplace_back("wmv");
+		extensions.emplace_back("wma");
+		extensions.emplace_back("webm");
+		extensions.emplace_back("m3u8");
+		extensions.emplace_back("stream");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -169,9 +168,9 @@ DEFINE_REF(eServiceFactoryMP3)
 
 static void create_gstreamer_sinks()
 {
-	dvb_subsink = dvb_audiosink = dvb_videosink = NULL;
+	dvb_subsink = dvb_audiosink = dvb_videosink = nullptr;
 	dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
-	dvb_audiosink = gst_element_factory_make("dvbaudiosink", NULL);
+	dvb_audiosink = gst_element_factory_make("dvbaudiosink", nullptr);
 	if(dvb_audiosink)
 	{
 		gst_object_ref_sink(dvb_audiosink);
@@ -180,7 +179,7 @@ static void create_gstreamer_sinks()
 	}
 	else
 		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin dvbaudiosink ****");
-	dvb_videosink = gst_element_factory_make("dvbvideosink", NULL);
+	dvb_videosink = gst_element_factory_make("dvbvideosink", nullptr);
 	if(dvb_videosink)
 	{
 		gst_object_ref_sink(dvb_videosink);
@@ -189,7 +188,7 @@ static void create_gstreamer_sinks()
 	}
 	else
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin dvbvideosink ****");
-	dvb_subsink = gst_element_factory_make("subsink", NULL);
+	dvb_subsink = gst_element_factory_make("subsink", nullptr);
 	if(dvb_subsink)
 	{
 		gst_object_ref_sink(dvb_subsink);
@@ -204,7 +203,7 @@ static void create_gstreamer_sinks()
 RESULT eServiceFactoryMP3::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 	// check resources...
-	// creating gstreamer sinks for the very fisrt media
+	// creating gstreamer sinks for the very first media
 	if(first_play_eServicemp3)
 		m_eServicemp3_counter++;
 	else
@@ -225,17 +224,17 @@ RESULT eServiceFactoryMP3::record(const eServiceReference &ref, ePtr<iRecordable
 		ptr = new eServiceMP3Record((eServiceReference&)ref);
 		return 0;
 	}
-	ptr=0;
+	ptr=nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryMP3::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr=nullptr;
 	return -1;
 }
 
-RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
+RESULT eServiceFactoryMP3::info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr = m_service_info;
 	return 0;
@@ -2395,11 +2394,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			gst_message_parse_info (msg, &inf, &debug);
 			g_free (debug);
-			if ( inf->domain == GST_STREAM_ERROR && inf->code == GST_STREAM_ERROR_DECODE )
-			{
-				if ( g_strrstr(sourceName, "videosink") )
-					m_event((iPlayableService*)this, evUser+14);
-			}
+			if ( inf->domain == GST_STREAM_ERROR && inf->code == GST_STREAM_ERROR_DECODE && g_strrstr(sourceName, "videosink") )
+				m_event((iPlayableService*)this, evUser+14);
 			g_error_free(inf);
 			break;
 		}
@@ -2481,9 +2477,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			gint i, n_video = 0, n_audio = 0, n_text = 0;
 			//bool codec_tofix = false;
 
-			g_object_get (m_gst_playbin, "n-video", &n_video, NULL);
-			g_object_get (m_gst_playbin, "n-audio", &n_audio, NULL);
-			g_object_get (m_gst_playbin, "n-text", &n_text, NULL);
+			g_object_get (m_gst_playbin, "n-video", &n_video, nullptr);
+			g_object_get (m_gst_playbin, "n-audio", &n_audio, nullptr);
+			g_object_get (m_gst_playbin, "n-text", &n_text, nullptr);
 
 			//eDebug("[eServiceMP3] async-done - %d video, %d audio, %d subtitle", n_video, n_audio, n_text);
 
@@ -2497,8 +2493,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			{
 				audioStream audio;
 				gchar *g_codec, *g_lang;
-				GstTagList *tags = NULL;
-				GstPad* pad = 0;
+				GstTagList *tags = nullptr;
+				GstPad* pad = nullptr;
 				g_signal_emit_by_name (m_gst_playbin, "get-audio-pad", i, &pad);
 #if GST_VERSION_MAJOR < 1
 				GstCaps* caps = gst_pad_get_negotiated_caps(pad);
@@ -2543,8 +2539,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			for (i = 0; i < n_text; i++)
 			{
-				gchar *g_codec = NULL, *g_lang = NULL;
-				GstTagList *tags = NULL;
+				gchar *g_codec = nullptr, *g_lang = nullptr;
+				GstTagList *tags = nullptr;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-tags", i, &tags);
 				subtitleStream subs;
 				subs.language_code = "und";
@@ -3062,8 +3058,8 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 
 		if ( subs.type == stUnknown )
 		{
-			GstTagList *tags = NULL;
-			gchar *g_lang = NULL;
+			GstTagList *tags = nullptr;
+			gchar *g_lang = nullptr;
 			g_signal_emit_by_name (m_gst_playbin, "get-text-tags", m_currentSubtitleStream, &tags);
 
 			subs.language_code = "und";
