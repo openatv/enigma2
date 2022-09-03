@@ -1310,6 +1310,10 @@ class PowerTimerEdit(Setup):
 			if self.timerRepeat.value == "repeated":  # Ensure that the timer repeated is cleared if we have an autosleeprepeat.
 				self.timer.resetRepeated()
 				self.timerRepeat.value = "once"  # Stop it being set again.
+			self.timer.autosleepwindow = self.timerSleepWindow.value
+			if self.timerSleepWindow.value:
+				self.timer.autosleepbegin = self.timerSleepStart.value
+				self.timer.autosleepend = self.timerSleepEnd.value
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
 				for day in (0, 1, 2, 3, 4, 5, 6):
