@@ -44,9 +44,13 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 
+private:
+	int m_cursor
+	int m_saved_cursor
+	int m_saved_cursor_line;
+
 protected:
 	ePyObject m_list;
-	int m_cursor, m_saved_cursor, m_saved_cursor_line;
 	eSize m_itemsize;
 	int m_itemheight;
 #endif
