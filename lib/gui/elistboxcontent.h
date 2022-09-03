@@ -45,8 +45,8 @@ protected:
 	int getItemHeight() { return m_itemheight; }
 
 private:
-	int m_cursor
-	int m_saved_cursor
+	int m_cursor;
+	int m_saved_cursor;
 	int m_saved_cursor_line;
 
 protected:
