@@ -641,12 +641,12 @@
 			</if>
 			<item level="0" text="Rename name and description for new events" description="Select if the timer name and description modification code is run on repeating timers." conditional="self.timerType.value != 'zap'">self.timerRename</item>
 		</if>
-		<item level="0" text="Margin before recording" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item>
+		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item>
 		<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
 		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerHasEndTime</item>
 		<if conditional="self.timerType.value != 'zap' or self.timerHasEndTime.value">
 			<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
-			<item level="0" text="Margin after recording" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item>
+			<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item>
 		</if>
 		<item level="0" text="Channel / Service" description="Select the channel or service to be used for this timer.">self.timerService</item>
 		<if conditional="self.timerType.value != 'zap'">
