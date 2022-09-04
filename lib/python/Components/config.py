@@ -343,7 +343,7 @@ class choicesList():
 			elif isinstance(choices, dict):
 				self.type = choicesList.TYPE_DICT
 			else:
-				raise TypeError("[Config] Error: Choices must be dict or list!")
+				raise TypeError("[Config] Error: Choices must be a dictionary or a list!")
 		else:
 			self.type = type
 		# print("[Config] choicesList DEBUG: Choices=%s." % choices)
@@ -399,7 +399,7 @@ class choicesList():
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = list(choices.keys())[0]  # Shouldn't this be a single item?
+			default = list(choices.keys())[0]
 		return default
 
 	def index(self, value):
@@ -798,7 +798,7 @@ class ConfigLocations(ConfigElement):
 
 # This is the control, and base class, for selection list settings.
 #
-# ConfigSelection is a "one of.."-type.  It has the "choices", usually
+# ConfigSelection is a "one of ..."-type.  It has the "choices", usually
 # a list, which contains (id, desc)-tuples (or just only the ids, in
 # case str(id) will be used as description).
 #
@@ -921,59 +921,47 @@ class ConfigNothing(ConfigSelection):
 		ConfigSelection.__init__(self, choices=[("", "")])
 
 
-class ConfigSatlist(ConfigSelection):
-	def __init__(self, list, default=None):
-		if default is not None:
-			default = str(default)
-		ConfigSelection.__init__(self, choices=[(str(orbpos), desc) for (orbpos, desc, flags) in list], default=default)
+class ConfigSatellite(ConfigSelection):
+	def __init__(self, choices, default=None):
+		ConfigSelection.__init__(self, choices=[(orbpos, desc) for (orbpos, desc, flags) in choices], default=default)
 
 	def getOrbitalPosition(self):
-		if self.value == "":
-			return None
-		return int(self.value)
+		return None if self.value == "" else self.value
 
 	orbitalPosition = property(getOrbitalPosition)
 	orbital_position = property(getOrbitalPosition)
 
 
-# Lets the user select between [min, min + stepwidth, min + (stepwidth * 2)...,
-# maxval] with maxval <= max depending on the stepwidth. The min, max, stepwidth,
-# and default are int values.
+class ConfigSatlist(ConfigSatellite):
+	def __init__(self, list, default=None):
+		ConfigSatellite.__init__(self, choices=list, default=default)
+
+
+# Let the user select from [min, min + stepwidth, min + (stepwidth * 2), ..., maxVal]
+# with maxVal <= max depending on the stepwidth. The min, max, stepwidth, and default
+# are int values.
 #
-# wraparound: Pressing RIGHT key at max value brings you to min value and vice
-# versa if set to True.
+# wraparound: Pressing RIGHT key at max value brings you to min value and vice versa
+# if set to True.
+#
+# NOTE: If the units argument is used please ensure that the TranslationData.py
+# 	module is checked / updated to ensure that the unit strings are properly
+# 	available for translations.
 #
 class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default=None, wraparound=False):
-		choices = []
-		step = min
-		while step <= max:
-			choices.append(str(step))
-			step += stepwidth
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
 		if default is None:
 			default = min
-		self.wrap = wraparound
-		ConfigSelection.__init__(self, choices, str(default))
-		self.default = default
-		self.lastValue = default
-		self.value = default
+		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(min, max + 1, stepwidth)], default=default)
+		self.wrapAround = wraparound
 
 	def handleKey(self, key, callback=None):
-		if not self.wrap:
-			value = str(self.value)
-			if key == ACTIONKEY_RIGHT and self.choices.index(value) == len(self.choices) - 1:
+		if not self.wrapAround:
+			if key == ACTIONKEY_RIGHT and self.choices.index(self.value) == len(self.choices) - 1:
 				return
-			if key == ACTIONKEY_LEFT and self.choices.index(value) == 0:
+			if key == ACTIONKEY_LEFT and self.choices.index(self.value) == 0:
 				return
 		ConfigSelection.handleKey(self, key, callback)
-
-	def getValue(self):
-		return int(ConfigSelection.getValue(self))
-
-	def setValue(self, value):
-		ConfigSelection.setValue(self, str(value))
-
-	value = property(getValue, setValue)
 
 
 # This is the control, and base class, for formatted sequence settings.
