@@ -571,8 +571,8 @@
 		<item level="1" text="Recordings abort pseudo recordings" description="When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners.">config.recording.ask_to_abort_pseudo_rec</item>
 		<item level="1" text="Recordings abort streaming" description="When enabled, a recording is allowed to abort streaming, when there are no free tuners.">config.recording.ask_to_abort_streaming</item>
 		<item level="0" text="Preparation time for recording (seconds)" description="During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased.">config.recording.prepare_time</item>
-		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
-		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
+		<item level="0" text="Margin before recording" description="When nonzero, a recording will start the nominated period before the starting time indicated in the EPG.">config.recording.margin_before</item>
+		<item level="0" text="Margin after recording" description="When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a pop up message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
 		<item level="2" text="Show movie lengths in movie list" description="When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
 		<item level="2" text="Show watch status" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
@@ -641,12 +641,12 @@
 			</if>
 			<item level="0" text="Rename name and description for new events" description="Select if the timer name and description modification code is run on repeating timers." conditional="self.timerType.value != 'zap'">self.timerRename</item>
 		</if>
-		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item>
+		<item level="0" text="Margin before recording" description="When nonzero, a recording will start the nominated period before the starting time indicated in the EPG.">self.timerMarginBefore</item>
 		<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
 		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerHasEndTime</item>
 		<if conditional="self.timerType.value != 'zap' or self.timerHasEndTime.value">
 			<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
-			<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item>
+			<item level="0" text="Margin after recording" description="When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG.">self.timerMarginAfter</item>
 		</if>
 		<item level="0" text="Channel / Service" description="Select the channel or service to be used for this timer.">self.timerService</item>
 		<if conditional="self.timerType.value != 'zap'">
