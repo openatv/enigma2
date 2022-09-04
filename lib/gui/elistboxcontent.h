@@ -44,11 +44,14 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 
+private:
+	int m_cursor;
+	int m_saved_cursor;
+	int m_saved_cursor_line;
+
 protected:
 	ePyObject m_list;
-	int m_cursor, m_saved_cursor, m_saved_cursor_line; // NOSONAR
 	eSize m_itemsize;
-	ePtr<gFont> m_font;
 	int m_itemheight;
 #endif
 };
@@ -89,7 +92,7 @@ public:
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 private:
-	std::map<int, ePtr<gFont> > m_font;
+	std::map<int, ePtr<gFont> > m_fonts;
 };
 
 #ifdef SWIG
