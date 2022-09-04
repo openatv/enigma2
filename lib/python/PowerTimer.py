@@ -112,7 +112,7 @@ class PowerTimer(Timer):
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
 			newTimer = self.createTimer(timer)
-			if (self.record(newTimer, True, dosave=False) is not None) and (check == True):
+			if (self.record(newTimer, doSave=False) is not None) and (check == True):
 				AddPopup(_("Timer overlap in '%s' detected!\nPlease recheck it!") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				check = False  # At the moment it is enough if the message is only displayed once.
 
@@ -311,13 +311,13 @@ class PowerTimer(Timer):
 					ae.append(entry[2])
 				if DEBUG:
 					print("[PowerTimer] %s %s." % (ctime(entry[0]), str(entry)))
-			if not TIMERTYPE.RESTART in tt:
+			if TIMERTYPE.RESTART not in tt:
 				RSsave = False
-			if not TIMERTYPE.REBOOT in tt:
+			if TIMERTYPE.REBOOT not in tt:
 				RBsave = False
-			if not TIMERTYPE.DEEPSTANDBY in tt:
+			if TIMERTYPE.DEEPSTANDBY not in tt:
 				DSsave = False
-			if not AFTEREVENT.DEEPSTANDBY in ae:
+			if AFTEREVENT.DEEPSTANDBY not in ae:
 				aeDSsave = False
 			if DEBUG:
 				print("[PowerTimer] RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" % (RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup))
@@ -347,13 +347,12 @@ class PowerTimer(Timer):
 				return True
 		return False
 
-	# TODO: Rename "ignoreTSC" to be "ignoreConflict" to be more clear.
-	def record(self, timer, ignoreTSC=False, dosave=True):  # This is called by loadTimers with dosave=False.
+	def record(self, timer, doSave=True):
 		timer.timeChanged()
 		print("[PowerTimer] Timer '%s'." % str(timer))
 		timer.Timer = self
 		self.addTimerEntry(timer)
-		if dosave:
+		if doSave:
 			self.saveTimers()
 		return None
 
@@ -413,9 +412,8 @@ class PowerTimerEntry(TimerEntry, object):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
 		TimerEntry.__init__(self, int(begin), int(end))
 		print("[PowerTimerEntry] DEBUG: Running init code.")
-		if checkOldTimers:
-			if self.begin < int(time()) - 1209600:
-				self.begin = int(time())
+		if checkOldTimers and self.begin < int(time()) - 1209600:
+			self.begin = int(time())
 		# Check auto PowerTimer.
 		if (timerType == TIMERTYPE.AUTOSTANDBY or timerType == TIMERTYPE.AUTODEEPSTANDBY) and not disabled and int(time()) > 3600 and self.begin > int(time()):
 			self.begin = int(time())  # The begin is in the future -> set to current time = no start delay of this timer.
@@ -496,7 +494,7 @@ class PowerTimerEntry(TimerEntry, object):
 				self.getNetworkTraffic(getInitialValue=True)
 		if nextState in (self.StateRunning, self.StateEnded):
 			if NavigationInstance.instance.PowerTimer is None:
-				# TODO: Running/Ended timer at system start has no navigation instance.
+				# DEBUG: Running/Ended timer at system start has no navigation instance.
 				# First fix: Crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...).
 				# Second fix: Suppress the message "A finished PowerTimer wants to ...".
 				if DEBUG:
@@ -615,11 +613,11 @@ class PowerTimerEntry(TimerEntry, object):
 						print("[PowerTimer] Break #1.")
 					breakPT = True
 				# NOTE: This code can *NEVER* run!
-				if False:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
-					if DEBUG:
-						print("[PowerTimer] Shift #1.")
-					breakPT = False
-					shiftPT = True
+				# if False:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
+				# 	if DEBUG:
+				# 		print("[PowerTimer] Shift #1.")
+				# 	breakPT = False
+				# 	shiftPT = True
 				if isRecTimerWakeup or shiftPT or breakPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not RSsave:
 						self.savebegin = self.begin
@@ -732,10 +730,10 @@ class PowerTimerEntry(TimerEntry, object):
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.WAKEUPTOSTANDBY, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				# NOTE: This code can *NEVER* run!
-				if False:  # A timer with higher priority was shifted - no execution of current timer.
-					if DEBUG:
-						print("[PowerTimer] Break #1.")
-					breakPT = True
+				# if False:  # A timer with higher priority was shifted - no execution of current timer.
+				# 	if DEBUG:
+				# 		print("[PowerTimer] Break #1.")
+				# 	breakPT = True
 				if RSsave or RBsave or aeDSsave:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
 					if DEBUG:
 						print("[PowerTimer] Shift #1.")
@@ -1022,9 +1020,7 @@ class PowerTimerEntry(TimerEntry, object):
 					for day in range(-1, weekdayTimer - 1, -1):
 						countDay += 1
 						if int(weekdayRepeated[day]):
-							nextDay = day
 							break
-				# return self.begin + 86400 * countDay
 				return self.start_prepare + 86400 * countDay
 			elif nextState == 2 and self.timerType in (TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY):
 				return self.begin
@@ -1061,7 +1057,7 @@ class PowerTimerEntry(TimerEntry, object):
 			lines = fileReadLines("/proc/net/dev", source=MODULE_NAME)
 			if lines:
 				for line in lines:
-					data = lines.split()
+					data = line.split()
 					if data[0].endswith(":") and (data[0].startswith("eth") or data[0].startswith("wlan")):
 						newBytes += int(data[1]) + int(data[9])
 				if getInitialValue:
