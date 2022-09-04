@@ -141,25 +141,30 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE)) {
 			png_color *palette;
 			png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
-			if (num_palette)
+			if (num_palette) {
 				surface->clut.data = new gRGB[num_palette];
-			else
-				surface->clut.data = 0;
-			surface->clut.colors = num_palette;
+				surface->clut.colors = num_palette;
 
-			for (int i = 0; i < num_palette; i++) {
-				surface->clut.data[i].a = 0;
-				surface->clut.data[i].r = palette[i].red;
-				surface->clut.data[i].g = palette[i].green;
-				surface->clut.data[i].b = palette[i].blue;
-			}
-			if (trns) {
-				png_byte *trans;
-				png_get_tRNS(png_ptr, info_ptr, &trans, &num_trans, 0);
-				for (int i = 0; i < num_trans; i++)
-					surface->clut.data[i].a = 255 - trans[i];
-				for (int i = num_trans; i < num_palette; i++)
+				for (int i = 0; i < num_palette; i++) {
 					surface->clut.data[i].a = 0;
+					surface->clut.data[i].r = palette[i].red;
+					surface->clut.data[i].g = palette[i].green;
+					surface->clut.data[i].b = palette[i].blue;
+				}
+
+				if (trns) {
+					png_byte *trans;
+					png_get_tRNS(png_ptr, info_ptr, &trans, &num_trans, 0);
+					for (int i = 0; i < num_trans; i++)
+						surface->clut.data[i].a = 255 - trans[i];
+					for (int i = num_trans; i < num_palette; i++)
+						surface->clut.data[i].a = 0;
+				}
+
+			}
+			else {
+				surface->clut.data = 0;
+				surface->clut.colors = num_palette;
 			}
 		}
 		else {
