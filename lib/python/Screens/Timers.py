@@ -731,8 +731,9 @@ class PowerTimerOverview(TimerOverviewBase):
 			self["cleanupActions"].setEnabled(False)
 
 	def addTimer(self):
-		begin = time() + 60.0
-		end = time() + 120.0
+		now = int(time())
+		begin = now + 60
+		end = now + 120
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
@@ -925,7 +926,8 @@ class RecordTimerOverview(TimerOverviewBase):
 				event = info.getEvent(0)
 		# NOTE: Only works if already playing a service!
 		serviceRef = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		data = parseEvent(event, description=False) if event else (int(time()), int(time() + 60), "", "", None)
+		now = int(time())
+		data = parseEvent(event, description=False) if event else (now, now + 60), "", "", None)
 		self.session.openWithCallback(self.addTimerCallback, RecordTimerEdit, RecordTimerEntry(serviceRef, checkOldTimers=True, dirname=preferredTimerPath(), fixDescription=True, *data))
 
 	def addTimerCallback(self, result):
@@ -1288,6 +1290,7 @@ class PowerTimerEdit(Setup):
 			callback(self)
 		if not self.timerSetEndTime.value:
 			self.timerEndTime.value = self.timerStartTime.value
+		now = int(time())
 		self.timer.resetRepeated()
 		self.timer.timerType = POWERTIMER_VALUES.get(self.timerType.value, POWER_TIMERTYPE.WAKEUP)
 		self.timer.afterEvent = POWERTIMER_AFTER_VALUES.get(self.timerAfterEvent.value, POWER_AFTEREVENT.NONE)
@@ -1302,7 +1305,7 @@ class PowerTimerEdit(Setup):
 			self.timer.begin = begin
 			self.timer.end = end
 		if self.timerType.value in ("autostandby", "autodeepstandby"):
-			self.timer.begin = int(time()) + 10
+			self.timer.begin = now + 10
 			self.timer.end = self.timer.begin
 			self.timer.autosleepinstandbyonly = self.timerActiveInStandby.value
 			self.timer.autosleepdelay = self.timerSleepDelay.value
@@ -1312,8 +1315,8 @@ class PowerTimerEdit(Setup):
 				self.timerRepeat.value = "once"  # Stop it being set again.
 			self.timer.autosleepwindow = self.timerSleepWindow.value
 			if self.timerSleepWindow.value:
-				self.timer.autosleepbegin = self.timerSleepStart.value
-				self.timer.autosleepend = self.timerSleepEnd.value
+				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)	
+				self.timer.autosleepend = self.getTimeStamp(now, self.timerSleepEnd.value)
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
 				for day in (0, 1, 2, 3, 4, 5, 6):
@@ -1335,8 +1338,8 @@ class PowerTimerEdit(Setup):
 				self.timer.begin = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
 				self.timer.end = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerEndTime.value)
 			else:
-				self.timer.begin = self.getTimeStamp(time(), self.timerStartTime.value)
-				self.timer.end = self.getTimeStamp(time(), self.timerEndTime.value)
+				self.timer.begin = self.getTimeStamp(now, self.timerStartTime.value)
+				self.timer.end = self.getTimeStamp(now, self.timerEndTime.value)
 			if self.timer.end < self.timer.begin:  # If end is less than start then add 1 day to the end time.
 				self.timer.end += 86400
 		self.session.nav.PowerTimer.saveTimers()
@@ -1577,7 +1580,7 @@ class RecordTimerEdit(Setup):
 					if self.timerDay[DAY_LIST[day]].value:
 						self.timer.setRepeated(day)
 			self.timer.repeatedbegindate = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
-			startDate = self.timerRepeatStartDate.value if self.timer.repeated else time()
+			startDate = self.timerRepeatStartDate.value if self.timer.repeated else int(time())
 			# self.timer.begin = self.getTimeStamp(startDate, self.timerStartTime.value)
 			# self.timer.end = self.getTimeStamp(startDate, self.timerEndTime.value)
 		marginBefore = self.timerMarginBefore.value * 60
