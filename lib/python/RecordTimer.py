@@ -89,16 +89,16 @@ def parseEvent(event, description=True, newTimerData=False):  # Make this timerT
 	eventBegin = event.getBeginTime()
 	eventEnd = eventBegin + event.getDuration()
 	eit = event.getEventId()
-	if True:  # newTimerData:
+	if newTimerData:
 		cridSeries = event.getCridData(eServiceEventEnums.SERIES_MATCH)
 		cridSeries = cridSeries and cridSeries[0][2]
 		cridEpisode = event.getCridData(eServiceEventEnums.EPISODE_MATCH)
 		cridEpisode = cridEpisode and cridEpisode[0][2]
 		cridRecommendation = event.getCridData(eServiceEventEnums.RECOMMENDATION_MATCH)
-		cridRecommendation = cridRecommendation and cridRecommendation[0][2]  # TODO: DEBUG: (Type, Location, "Value")
+		cridRecommendation = cridRecommendation and cridRecommendation[0][2]  # DEBUG: (Type, Location, "Value")
 	marginBefore = config.recording.margin_before.value * 60
 	marginAfter = config.recording.margin_after.value * 60
-	print("[RecordTimer] DEBUG: series='%s', episode='%s', recommendation='%s', before=%d, after=%d." % (cridSeries, cridEpisode, cridRecommendation, marginBefore, marginAfter))
+	# print("[RecordTimer] DEBUG: series='%s', episode='%s', recommendation='%s', before=%d, after=%d." % (cridSeries, cridEpisode, cridRecommendation, marginBefore, marginAfter))
 	begin = eventBegin - marginBefore
 	end = eventEnd + marginAfter
 	if newTimerData:
@@ -382,7 +382,7 @@ class RecordTimer(Timer):
 				return True
 		return False
 
-	# TODO: Rename "ignoreTSC" to be "ignoreConflict" to be more clear.  This is used by MovieSelection.py.
+	# DEBUG: Rename "ignoreTSC" to be "ignoreConflict" to be more clear.  This is used by MovieSelection.py.
 	def record(self, timer, ignoreTSC=False, dosave=True):  # This is called by loadTimers with dosave=False.
 		timer.check_justplay()
 		timerSanityCheck = TimerSanityCheck(self.timer_list, timer)
@@ -435,7 +435,7 @@ class RecordTimer(Timer):
 
 	def isRecTimerWakeup(self):
 		global wasRecTimerWakeup
-		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False if exists(TIMER_FLAG_FILE) else False  # TODO: Use fileReadLine()
+		wasRecTimerWakeup = int(open(TIMER_FLAG_FILE, "r").read()) and True or False if exists(TIMER_FLAG_FILE) else False  # DEBUG: Use fileReadLine()
 		return wasRecTimerWakeup
 
 	def isRecording(self):
@@ -624,9 +624,8 @@ class RecordTimerEntry(TimerEntry, object):
 		self.marginAfter = config.recording.margin_after.value * 60
 		self.eventBegin = begin + self.marginBefore
 		self.eventEnd = end - self.marginAfter
-		if checkOldTimers:
-			if self.begin < int(time()) - 1209600:
-				self.begin = int(time())
+		if checkOldTimers and self.begin < int(time()) - 1209600:
+			self.begin = int(time())
 		if self.end < self.begin:
 			self.end = self.begin
 		self.hasEndTime = not justplay
@@ -734,7 +733,7 @@ class RecordTimerEntry(TimerEntry, object):
 		nextState = self.state + 1
 		if DEBUG:
 			self.log(5, "Activating state %d." % nextState)
-		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # TODO: remove.
+		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # DEBUG: remove.
 		if nextState == self.StatePrepared:
 			if self.messageBoxAnswerPending:
 				self.start_prepare = int(time()) + 1  # Call again in 1 second.
@@ -757,7 +756,7 @@ class RecordTimerEntry(TimerEntry, object):
 				self.failed = True
 				self.next_activation = int(time())
 				self.lastend = self.end
-				self.end = int(time()) + 5  # TODO: DEBUG: Check that this is the bug for 0Byte recordings!
+				self.end = int(time()) + 5  # DEBUG: Check that this is the bug for 0Byte recordings!
 				self.backoff = 0
 				return True
 			if self.always_zap:
@@ -928,7 +927,6 @@ class RecordTimerEntry(TimerEntry, object):
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
 						bqRootStr = getBqRootStr(self.service_ref.ref)
-						rootstr = ""
 						serviceHandler = eServiceCenter.getInstance()
 						rootBouquet = eServiceReference(bqRootStr)
 						bouquet = eServiceReference(bqRootStr)
@@ -936,7 +934,7 @@ class RecordTimerEntry(TimerEntry, object):
 						# We need a way out of the loop, if channel is not in bouquets.
 						bouquetCount = 0
 						bouquets = []
-						if not bouquetList is None:
+						if bouquetList is not None:
 							while True:
 								bouquet = bouquetList.getNext()
 								# Can we make it easier, or find a way to make another way?
@@ -955,7 +953,7 @@ class RecordTimerEntry(TimerEntry, object):
 									ChannelSelectionInstance.clearPath()
 									ChannelSelectionInstance.setRoot(bouquet)
 									servicelist = serviceHandler.list(bouquet)
-									if not servicelist is None:
+									if servicelist is not None:
 										serviceIterator = servicelist.getNext()
 										while serviceIterator.valid():
 											if self.service_ref.ref == serviceIterator:
@@ -1078,9 +1076,7 @@ class RecordTimerEntry(TimerEntry, object):
 					for day in range(-1, weekdayTimer - 1, -1):
 						countDay += 1
 						if int(weekdayRepeated[day]):
-							nextDay = day
 							break
-				# return self.begin + 86400 * countDay
 				return self.start_prepare + 86400 * countDay
 			elif nextState == 2:
 				return self.begin
@@ -1432,7 +1428,7 @@ class RecordTimerEntry(TimerEntry, object):
 							ChannelSelectionInstance.clearPath()
 							ChannelSelectionInstance.setRoot(bouquet)
 							servicelist = serviceHandler.list(bouquet)
-							if not servicelist is None:
+							if servicelist is not None:
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
 									if self.service_ref.ref == serviceIterator:
@@ -1492,7 +1488,7 @@ class RecordTimerEntry(TimerEntry, object):
 			self.always_zap = False
 
 	def gotRecordEvent(self, record, event):
-		# TODO: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
+		# DEBUG: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
 		if self.__record_service.__deref__() != record.__deref__():
 			return
 		# self.log(16, "Record event %d." % event)
@@ -1512,7 +1508,7 @@ class RecordTimerEntry(TimerEntry, object):
 			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
-			# TODO: This has to be done!
+			# DEBUG: This has to be done!
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
 			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
