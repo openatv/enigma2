@@ -11,7 +11,7 @@ from ServiceReference import ServiceReference
 from skin import parseBoolean, parseColor, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSelectionNumber, ConfigSubDict, ConfigText, ConfigYesNo, config
+from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -927,7 +927,7 @@ class RecordTimerOverview(TimerOverviewBase):
 		# NOTE: Only works if already playing a service!
 		serviceRef = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		now = int(time())
-		data = parseEvent(event, description=False) if event else (now, now + 60), "", "", None)
+		data = parseEvent(event, description=False) if event else (now, now + 60, "", "", None)
 		self.session.openWithCallback(self.addTimerCallback, RecordTimerEdit, RecordTimerEntry(serviceRef, checkOldTimers=True, dirname=preferredTimerPath(), fixDescription=True, *data))
 
 	def addTimerCallback(self, result):
@@ -1240,7 +1240,7 @@ class PowerTimerEdit(Setup):
 		])
 		self.timerNetIP = ConfigYesNo(default=self.timer.netip)
 		self.timerIPAddress = [x.strip() for x in self.timer.ipadress.split(",")]
-		self.timerNetIPCount = ConfigSelectionNumber(default=len(self.timerIPAddress), stepwidth=1, min=1, max=5)
+		self.timerNetIPCount = ConfigSelection(default=len(self.timerIPAddress), choices=[(x, str(x)) for x in range(1, 6)])
 		while len(self.timerIPAddress) < 6:
 			self.timerIPAddress.append("0.0.0.0")
 		self.timerIPAddress[0] = ConfigIP(default=[int(x) for x in self.timerIPAddress[0].split(".")])
@@ -1407,13 +1407,14 @@ class RecordTimerEdit(Setup):
 		self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		# self.timerStartTime = ConfigClock(default=self.timer.begin)
 		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
-		self.timerMarginBefore = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=self.timer.marginBefore // 60, wraparound=True)
+		marginChoices = [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(121)]
+		self.timerMarginBefore = ConfigSelection(default=self.timer.marginBefore // 60, choices=marginChoices)
 		print("[Timers] DEBUG: default=%d, value=%d, margin=%d." % (self.timerMarginBefore.value, self.timerMarginBefore.default, self.timer.marginBefore // 60))
 		# self.timerHasEndTime = ConfigYesNo(default=self.timer.end > self.timer.begin + 3 and self.timer.justplay != 0)
 		self.timerHasEndTime = ConfigYesNo(default=self.timer.hasEndTime)
 		# self.timerEndTime = ConfigClock(default=self.timer.end)
 		self.timerEndTime = ConfigClock(default=self.timer.eventEnd)
-		self.timerMarginAfter = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=self.timer.marginAfter // 60, wraparound=True)
+		self.timerMarginAfter = ConfigSelection(default=self.timer.marginAfter // 60, choices=marginChoices)
 		try:  # No current service available?  (FIXME: Some service-chooser needed here!)
 			serviceName = self.timer.service_ref.getServiceName()
 		except Exception:
