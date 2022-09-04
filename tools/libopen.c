@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#undef DEBUG
+//#define LIBOPEN_DEBUG
 
-int open64(const char *pathname, int flags, ...)
+int open64(const char *pathname, int flags, ...) //NOSONAR
 {
 	typedef int (*FUNC_PTR) (const char* pathname, int flags, ...);
 	static FUNC_PTR libc_open64;
@@ -38,7 +38,7 @@ int open64(const char *pathname, int flags, ...)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "open64 %s, flags %d returned fd %d\n", pathname, flags, fd);
 #endif
 	}
@@ -46,7 +46,7 @@ int open64(const char *pathname, int flags, ...)
 }
 
 #if _FILE_OFFSET_BITS != 64
-int open(const char *pathname, int flags, ...)
+int open(const char *pathname, int flags, ...) //NOSONAR
 {
 	typedef int (*FUNC_PTR) (const char* pathname, int flags, ...);
 	static FUNC_PTR libc_open;
@@ -76,7 +76,7 @@ int open(const char *pathname, int flags, ...)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "open %s, flags %d returned fd %d\n", pathname, flags, fd);
 #endif
 	}
@@ -115,7 +115,7 @@ FILE *fopen64(const char *pathname, const char *mode)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "fopen64 %s, mode %s returned FILE* %p fd %d\n", pathname, mode, f, fd);
 #endif
 	}
@@ -154,7 +154,7 @@ FILE *fopen(const char *pathname, const char *mode)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "fopen %s, mode %s returned FILE* %p fd %d\n", pathname, mode, f, fd);
 #endif
 	}
@@ -192,7 +192,7 @@ int socket(int domain, int type, int protocol)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "socket fd %d\n", fd);
 #endif
 	}
@@ -230,7 +230,7 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
 			fd_flags |= FD_CLOEXEC;
 			fcntl(fd, F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "accept fd %d\n", fd);
 #endif
 	}
@@ -273,7 +273,7 @@ int socketpair(int d, int type, int protocol, int sv[2])
 			fd_flags |= FD_CLOEXEC;
 			fcntl(sv[1], F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "socketpair fd %d %d\n", sv[0], sv[1]);
 #endif
 	}
@@ -316,7 +316,7 @@ int pipe(int modus[2])
 			fd_flags |= FD_CLOEXEC;
 			fcntl(modus[1], F_SETFD, fd_flags);
 		}
-#ifdef DEBUG
+#ifdef LIBOPEN_DEBUG
 		fprintf(stdout, "pipe fds[%d, %d]\n", modus[0], modus[1]);
 #endif
 	}

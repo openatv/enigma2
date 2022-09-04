@@ -107,10 +107,12 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 
 RESULT eDVBServiceFCCPlay::start()
 {
+	RESULT ret = 0;
+
 	if (!m_is_primary) // PiP mode
 	{
-		eDVBServicePlay::start();
-		return 0;
+		ret = eDVBServicePlay::start();
+		return ret;
 	}
 
 	if (m_fcc_flag & fcc_start) // already started
@@ -124,9 +126,9 @@ RESULT eDVBServiceFCCPlay::start()
 
 		/* disable CA Interfaces on fcc_mode_preparing */
 		m_service_handler.setCaDisable(true);
-		eDVBServicePlay::start();
+		ret = eDVBServicePlay::start();
 	}
-	return 0;
+	return ret;
 }
 
 void eDVBServiceFCCPlay::pushbackFCCEvents(int event)
