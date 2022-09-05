@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-08-30 15:39+0000\n"
+"PO-Revision-Date: 2022-09-04 12:20+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -2630,7 +2630,7 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr "Предпринята попытка зафиксировать текущий статус ТВ. Если это невозможно из-за неправильных или отсутствующих сообщений о состоянии, это может привести к неожиданному ответу получателя. С другой стороны, старается лучше реагировать на разные условия эксплуатации."
 
 msgid "Error: An empty filename is illegal!"
-msgstr "Пустое имя недопустимо."
+msgstr "Ошибка: пустое имя файла является недопустимым!"
 
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "При загрузке списка пакетов произошла ошибка. Попробуйте позже."
@@ -5213,7 +5213,7 @@ msgstr "Ошибка создания жёсткой ссылки таймшиф
 
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
-msgstr "Не удалось создать каталог %s."
+msgstr "Ошибка: не удалось создать каталог '%s'!"
 
 msgid "Creating file system"
 msgstr "Создание файловой системы"
@@ -7260,7 +7260,7 @@ msgstr "Ошибка %d: Невозможно изменить пароль! (%s
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Ошибка %d: невозможно проверить место! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -9541,7 +9541,7 @@ msgstr "Недопустимый"
 
 #, python-format
 msgid "Error: Invalid directory '%s' selected!"
-msgstr "Выбран неправильный каталог %s"
+msgstr "Ошибка: выбран недопустимый каталог '%s'!"
 
 msgid "Invalid location"
 msgstr "Каталог не существует"
@@ -13488,7 +13488,7 @@ msgid "QuickMenu/Extensions"
 msgstr "Быстрое меню/Дополнения"
 
 msgid "QuickSelect Actions"
-msgstr ""
+msgstr "Действия быстрого выбора"
 
 msgid "RADIO"
 msgstr "Радио"
@@ -18026,7 +18026,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 30.08.2022"
+msgstr "Коррекция перевода Monja 02.09.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18448,7 +18448,7 @@ msgstr ""
 
 #, python-format
 msgid "Error: The path '%s' already exists!"
-msgstr "Этот путь %s уже существует."
+msgstr "Ошибка: путь '%s' уже существует!"
 
 msgid "The pin code you entered is wrong."
 msgstr "Введён неверный пин-код."
@@ -18571,9 +18571,7 @@ msgid "There is no signal to lock on !"
 msgstr "Нет сигнала по этому захвату!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
-msgstr ""
-"Возможно, на выбранном разделе недостаточно места.\n"
-"Вы действительно хотите продолжить?"
+msgstr "Возможно, на выбранном разделе недостаточно места. Вы действительно хотите продолжить?"
 
 msgid "There was an error downloading current region details"
 msgstr "Произошла ошибка при загрузке сведений о текущем регионе"
@@ -20637,7 +20635,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "Внимание: переопределения в настоящее время активны!"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr ""
+msgstr "Внимание: записи не должны храниться на флешке!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"

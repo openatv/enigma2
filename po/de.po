@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-09-01 11:37+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2022-09-05 05:15+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1196,7 +1196,7 @@ msgstr "%s-Einrichtung"
 
 #, python-format
 msgid "%s - extraction errors."
-msgstr "%s - Extraktionsfehler."
+msgstr "%s - Extraktionsfehler!"
 
 #, python-format
 msgid "%s GHz"
@@ -4394,7 +4394,7 @@ msgid "Check for PDC"
 msgstr "Auf PDC prüfen"
 
 msgid "Check for PDC availability on each service"
-msgstr "Auf PDC bei allen Anbietern prüfen"
+msgstr "Auf PDC (Programme Delivery Control) bei allen Anbietern prüfen. PDC ist ein VPS-ähnliches digitales Signal, das in Form von Zusatzdaten über die DVB-Serviceinformationen gesendet wird."
 
 msgid "Check power and input state from TV"
 msgstr "Überprüfe den Betriebszustand vom TV"
@@ -5421,7 +5421,7 @@ msgstr "Ungültiger Dienst %s konnte nicht aufgezeichnet werden"
 
 #, python-format
 msgid "Could not save configuration file %s!"
-msgstr "Konnte Konfigurationsdatei nicht speichern %s!"
+msgstr "Konnte Konfigurationsdatei '%s' nicht speichern!"
 
 msgid "Country"
 msgstr "Land"
@@ -6605,7 +6605,7 @@ msgstr "Möchten Sie '%s' wirklich löschen?"
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
-msgstr "%s wirklich löschen?"
+msgstr "'%s' wirklich löschen?"
 
 msgid "Do you really want to delete ?"
 msgstr "Möchten Sie wirklich löschen?"
@@ -6657,7 +6657,7 @@ msgstr "Möchten Sie dies wirklich dauerhaft aus dem Papierkorb entfernen?"
 #
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
-msgstr "Das Verzeichnis %s wirklich von der Festplatte löschen?"
+msgstr "Das Verzeichnis '%s' wirklich von der Festplatte löschen?"
 
 #
 #, python-format
@@ -6671,7 +6671,7 @@ msgstr "Möchten Sie den Timer für '%s' wirklich entfernen?"
 #
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Das Lesezeichen %s wirklich löschen?"
+msgstr "Das Lesezeichen '%s' wirklich löschen?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7667,7 +7667,7 @@ msgstr "Fehler %d: Kennwort kann nicht geändert werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Fehler %d: Speicherplatz kann nicht überprüft werden! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -9545,9 +9545,8 @@ msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wählen Sie, ob der Cursor beim Bearbeiten einer Datei am Anfang oder Ende der Zeile stehen soll."
 
-#, fuzzy
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Wenn eingeschaltet und notwendig, wird das Plugin den Receiver für die Kontroll-Vorlaufzeit aus dem Deep-Standby holen, um zu überprüfen, ob die Sendung früher anfängt."
+msgstr "Wenn eingeschaltet und notwendig, wird der Receiver für die Kontroll-Vorlaufzeit aus dem Deep-Standby geholt, um zu überprüfen, ob die Sendung eventuell früher anfängt."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "Wenn die Ausgabeauflösung aktiviert ist, wird Ihr Receiver versuchen, der Auflösung des Videoinhalts zu entsprechen."
@@ -9574,7 +9573,7 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Legt fest, ob das Anzeigesymbol oder die Information der Stummschaltung nach wenigen Sekunden ausgeblendet wird."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr "Wenn möglich, wird x Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt (0 deaktiviert das Feature)."
+msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt. 0 deaktiviert diese Funktion."
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
@@ -10153,7 +10152,7 @@ msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr "%s kann nicht unter <Liste der Speichergeräte> ausgeführt werden!"
 
 msgid "It's not possible to rename the file system root."
-msgstr "Das Stammverzeichnis kann nicht umbenannt werden."
+msgstr "Das Stammverzeichnis kann nicht umbenannt werden!"
 
 msgid "Italian"
 msgstr "Italienisch"
@@ -13416,7 +13415,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Bitte den Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 msgid "Please enter a name for the new directory:"
-msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
+msgstr "Bitte den Namen des neuen Verzeichnisses eingeben:"
 
 msgid "Please enter name of the new symlink"
 msgstr "Bitte den Namen des neuen Symlinks eingeben"
@@ -14404,7 +14403,7 @@ msgid "QuickMenu/Extensions"
 msgstr "Schnellstartmenü/Erweiterungen"
 
 msgid "QuickSelect Actions"
-msgstr ""
+msgstr "Schnellauswahl-Aktionen"
 
 msgid "RADIO"
 msgstr "RADIO"
@@ -15470,7 +15469,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "Single-Layer-DVD"
 
 msgid "SMS style QuickSelect location selection"
-msgstr "QuickSelect-Auswahl im SMS-Stil"
+msgstr "Schnellauswahl im SMS-Stil"
 
 #
 msgid "SNR:"
@@ -15571,7 +15570,7 @@ msgid "Sat Finder"
 msgstr "Signal-Finder"
 
 msgid "Sat-Sun"
-msgstr "Sa-So"
+msgstr "Samstag und Sonntag"
 
 #
 msgid "Satellite"
@@ -16212,7 +16211,7 @@ msgid "Select how long, in seconds, that the volume display is shown before it a
 msgstr "Wählen Sie, wie lange (in Sekunden) das Lautstärkesymbol angezeigt werden soll, bevor es ausgeblendet wird."
 
 msgid "Select how often this timer is to be repeated."
-msgstr "Wählen Sie, wie oft dieser Timer wiederholt werden soll."
+msgstr "Wählen Sie, wie dieser Timer wiederholt werden soll."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Wählen Sie, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
@@ -16264,7 +16263,7 @@ msgid "Select if this timer activates on a Wednesday."
 msgstr "Wählen Sie, ob dieser Timer an einem Mittwoch aktiviert werden soll."
 
 msgid "Select if this timer is to be repeated."
-msgstr "Wählen Sie, ob dieser Timer wiederholt werden soll."
+msgstr "Wählen Sie, ob dieser Timer wiederholt werden soll oder nicht."
 
 msgid "Select if time shift must continue when set to record."
 msgstr "Wählen Sie, wie sich Timeshift verhalten bzw. was mit der Timeshift-Datei nach dem Umschalten geschehen soll."
@@ -16495,10 +16494,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Zeitverzögerung zwischen den Tastenwiederholungen wählen."
 
 msgid "Select the time when this timer should end."
-msgstr "Wählen Sie die Zeit, zu der dieser Timer enden soll."
+msgstr "Wählen Sie die Uhrzeit, zu der dieser Timer enden soll."
 
 msgid "Select the time when this timer will start."
-msgstr "Wählen Sie die Uhrzeit, zu der der Timer starten soll."
+msgstr "Wählen Sie die Uhrzeit, zu der dieser Timer starten soll."
 
 msgid "Select the time zone within the area or region."
 msgstr "Wählen Sie die Zeitzone in Ihrem Gebiet."
@@ -16525,7 +16524,7 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Wählen Sie die Art der Abschaltung bei Aktivierung des Ausschalttimers."
 
 msgid "Select the type of this timer."
-msgstr "Wählen Sie den Typ dieses Timers aus."
+msgstr "Wählen Sie den Typ dieses Timers."
 
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr "Wählen Sie, ob bei niedriger Lautstärke eine logarithmische Schrittweite mit mehr Schritten verwendet werden soll."
@@ -16542,10 +16541,10 @@ msgid "Select what action to take when reaching the end of a media file during p
 msgstr "Verhalten bei Filmende einstellen."
 
 msgid "Select what do do after the timer has completed."
-msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll."
+msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll. 'Auto' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr "Wählen Sie, was nach Abschluss der Timer-Aufnahme geschehen soll."
+msgstr "Wählen Sie, was nach Abschluss der Timer-Aufnahme geschehen soll. 'Auto' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird."
@@ -16765,7 +16764,7 @@ msgstr "Kanal-Umschaltaktionen"
 
 #
 msgid "Service cant been added to the favorites."
-msgstr "Kanal kann nicht zu den Favoriten hinzugefügt werden."
+msgstr "Kanal kann nicht zu den Favoriten hinzugefügt werden!"
 
 msgid "Service font size"
 msgstr "Schriftgröße für Sendernamen"
@@ -18714,7 +18713,7 @@ msgid "Starting directory"
 msgstr "Anfangsverzeichnis mit OK auswählen"
 
 msgid "Starting time"
-msgstr "Kontroll-Vorlaufzeit"
+msgstr "Kontroll-Vorlaufzeit in Minuten"
 
 msgid "Starts in a few seconds"
 msgstr "Startet in wenigen Sekunden"
@@ -21173,7 +21172,7 @@ msgstr "Update fehlgeschlagen!"
 
 #
 msgid "Update feed not available."
-msgstr "Updatefeed nicht verfügbar."
+msgstr "Updatefeed nicht verfügbar!"
 
 msgid "Update finished!"
 msgstr "Update fertig!"
@@ -21622,21 +21621,11 @@ msgstr ""
 "\n"
 "Wenn der Sicherheitsmodus verwendet wird, wird die programmierte Start- und Endzeit eingehalten. Die Aufnahme wird nur ggf. früher starten bzw. länger dauern, aber niemals kürzer.\n"
 "\n"
-"\n"
-"Unterstützte Sender\n"
-"\n"
-"Deutschland:\n"
-"ARD und ZDF einschließlich aller dritten Programme: 3sat, arte, Phoenix, KiKa, ZDFinfo, zdf_neo, zdf.kultur, EinsExtra, EinsPlus, Einsfestival\n"
-"\n"
-"Österreich:\n"
-"ORF\n"
-"\n"
-"Schweiz:\n"
-"SF\n"
-"\n"
-"Tschechien:\n"
-"CT\n"
-"\n"
+"Unterstützte Sender:\n"
+"Deutschland: ARD, ZDF, alle dritten Programme, 3sat, arte, Phoenix, KiKa, ZDFinfo, zdf_neo, zdf.kultur, EinsExtra, EinsPlus, Einsfestival\n"
+"Österreich: ORF\n"
+"Schweiz: SF\n"
+"Tschechien: CT\n"
 "\n"
 "Bei Timern, die manuell (nicht über den EPG) programmiert werden, muss eine VPS-Zeit angegeben werden, um VPS nutzen zu können. Die VPS-Zeit ist z.B. die veröffentlichte Startzeit in Zeitschriften. Zur Nutzung der Funktion darf bei manuell angelegten Timern kein Timer-Name angegeben werden."
 
@@ -22081,7 +22070,7 @@ msgid "Wake up TV from standby"
 msgstr "TV aus dem Standby aufwecken"
 
 msgid "Wake up from Deep-Standby is allowed"
-msgstr "Starten aus dem Deep-Standby erlaubt"
+msgstr "Starten aus dem Deep-Standby erlauben"
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Aufwachzeit bevor ein Timer beginnt (Min)"
@@ -22109,7 +22098,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "Warnung: Überschreibungen sind derzeit aktiv!"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr ""
+msgstr "Warnung: Aufnahmen sollten nicht im Flash gespeichert werden!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -22463,7 +22452,7 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr "Wenn ein Sender eingestellt ist, durchsucht das System den Transponder nach Änderungen und speichert diese. Wählen Sie 'Ja' nur, wenn Sie sich über die Auswirkungen bewusst sind!"
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "Wenn ja ausgewählt, wird VPS automatisch bei Sofortaufnahmen (aktuelle Sendung) aktiviert, soweit VPS vom Sender unterstützt wird."
+msgstr "Bei 'Ja' wird VPS automatisch bei Sofortaufnahmen (aktuelle Sendung) aktiviert, soweit es vom Sender unterstützt wird."
 
 #
 msgid "Where do you want to backup your settings?"
@@ -22883,7 +22872,7 @@ msgid ""
 msgstr ""
 "Ihre %s %s ist nun konfiguriert.\n"
 "\n"
-"Ihre Internetverbindung funktioniert nun.\n"
+"Ihre Internetverbindung funktioniert.\n"
 "\n"
 
 #
@@ -22896,7 +22885,7 @@ msgid ""
 msgstr ""
 "Ihre %s %s ist nun konfiguriert.\n"
 "\n"
-"Ihre Internetverbindung funktioniert nun.\n"
+"Ihre Internetverbindung funktioniert.\n"
 "\n"
 "Drücken Sie OK, um fortzufahren."
 
