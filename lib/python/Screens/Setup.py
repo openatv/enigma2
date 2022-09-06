@@ -151,7 +151,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		else:
 			itemText = _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " "))
-		item = eval(element.text or "") if element.text else ""
+		item = eval(element.text) if element.text else ""
 		if item == "":
 			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
 		elif not isinstance(item, ConfigNothing):
