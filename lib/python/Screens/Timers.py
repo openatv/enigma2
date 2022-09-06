@@ -314,7 +314,7 @@ class PowerTimerList(TimerListBase):
 		if timer.timerType in (POWER_TIMERTYPE.AUTOSTANDBY, POWER_TIMERTYPE.AUTODEEPSTANDBY):
 			repeatIcon = self.iconOnce if timer.autosleeprepeat == "once" else self.iconRepeat
 			topText = None
-			bottomText = _("Delay: %s") % ngettext("%d Min", "%d Mins", timer.autosleepdelay) % timer.autosleepdelay
+			bottomText = _("Delay: %s") % ngettext("%d Minute", "%d Minutes", timer.autosleepdelay) % timer.autosleepdelay
 		else:
 			repeatIcon = self.iconRepeat if timer.repeated else self.iconOnce
 			topText = _("At end: %s") % POWERTIMER_AFTER_EVENT_NAMES.get(timer.afterEvent, UNKNOWN)
@@ -426,7 +426,10 @@ class RecordTimerList(TimerListBase):
 		eventDuration = (timer.eventEnd - timer.eventBegin) // 60
 		marginAfter = timer.marginAfter // 60
 		duration = marginBefore + eventDuration + marginAfter
-		durationText = ngettext("%d + %d + %d Min", "%d + %d + %d Mins", duration) % (marginBefore, eventDuration, marginAfter)
+		if marginBefore + marginAfter == 0:
+			durationText = ngettext("%d Minute", "%d Minutes", duration) % eventDuration
+		else:
+			durationText = ngettext("%d + %d + %d Minute", "%d + %d + %d Minutes", duration) % (marginBefore, eventDuration, marginAfter)
 		if timer.justplay:
 			if timer.hasEndTime:
 				text = "%s %s ... %s (%s, %s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], _("ZAP"), durationText)
@@ -1219,11 +1222,11 @@ class PowerTimerEdit(Setup):
 		])
 		# self.timerSleepDelay = ConfigInteger(default=self.timer.autosleepdelay, limits=(1, 300))
 		self.timerSleepDelay = ConfigSelection(default=self.timer.autosleepdelay, choices=[
-			(1, "1"),
-			(3, "3"),
-			(5, "5"),
-			(10, "10")
-		] + [(x, str(x)) for x in range(15, 301, 15)])
+			(1, _("%d Minute") % 1),
+			(3, _("%d Minutes") % 3),
+			(5, _("%d Minutes") % 5),
+			(10, _("%d Minutes") % 10)
+		] + [(x, _("%d Minutes") % x) for x in range(15, 301, 15)])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerAutoSleepRepeat = ConfigSelection(default=self.timer.autosleeprepeat, choices=REPEAT_CHOICES)
 		self.timerSleepWindow = ConfigYesNo(default=self.timer.autosleepwindow)
