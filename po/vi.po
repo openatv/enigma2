@@ -1949,32 +1949,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại %s% s của bạn.\n"
 "Làm điều đó bây giờ?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại giao diện người dùng.\n"
 "Làm điều đó bây giờ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn thiết lập của bạn\n"
 "%s %s để chờ. Làm điều đó bây giờ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn tắt % s% s của bạn.\n"
 "Làm điều đó bây giờ?"
@@ -6016,16 +6008,16 @@ msgstr "Đan mạch"
 msgid "Depth"
 msgstr "Độ sâu"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Descramble & record ECM 'cung cấp tùy chọn để giải mã sau đó nếu việc giải mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản ghi và không ghi ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "giải mã và ghi lại ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Luồng http của Descramble"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Độ cao tính toán bằng mili"
 
 msgid "Description"
@@ -6537,7 +6529,7 @@ msgstr "Đừng thêm bản ghi này"
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "không giải mã, ghi lại ecm"
 
 msgid "Don't restart"
@@ -10591,10 +10583,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Ký quỹ sau khi ghi (phút)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Ký quỹ trước khi ghi (phút)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11751,8 +11743,8 @@ msgstr "Không cho tất cả"
 msgid "No transparency"
 msgstr "Không minh bạch"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Không có bộ chỉnh có sẵn để ghi lại một bộ đếm thời gian!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Không có bộ chỉnh có sẵn để ghi lại một bộ đếm thời gian!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13308,7 +13300,7 @@ msgstr "Bộ chỉnh ưu tiên cho bản ghi"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Bộ điều chỉnh ưa thích cho bản ghi, cho phép nhiều lựa chọn"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Thời gian chuẩn bị để ghi âm (giây)"
 
 msgid "Preparing... Please wait"
@@ -14245,7 +14237,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
 
 msgid "Remove current folder from bookmarks"
@@ -17308,7 +17300,7 @@ msgstr "Hẹn giờ ngủ"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17662,7 +17654,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Phía nam Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Dung lượng đĩa để dự trữ cho bản ghi (tính bằng GB)"
 
 #, python-format
@@ -21141,7 +21133,7 @@ msgstr "Khi được bật, một bản ghi được phép làm gián đoạn tr
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Khi được bật, một cảnh báo sẽ được hiển thị và người dùng sẽ có tùy chọn dừng hoặc tiếp tục chuyển đổi thời gian."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Khi được bật, luôn luôn giải mã các luồng http. Điều này chiếm nhiều tài nguyên hơn (giải mã giải mã), chỉ kích hoạt nếu cần thiết. Các luồng riêng lẻ luôn được giải mã nếu 0x100 được thêm vào loại dịch vụ, bất kể cài đặt này. Tắt mặc định."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21240,10 +21232,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Khi được bật, bộ thu của bạn sẽ phát hiện hoạt động trên đầu vào VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Khi khác, một bản ghi sẽ bắt đầu sớm hơn thời gian bắt đầu được chỉ định bởi EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Khi khác 0, bản ghi sẽ dừng muộn hơn thời gian kết thúc được chỉ định bởi EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22096,7 +22088,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "và không bao giờ hỏi lại phiên này một lần nữa"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "bất kỳ bản ghi âm"
 
 msgid ""
@@ -22685,10 +22677,10 @@ msgstr "nhảy tới tiêu đề tiếp theo"
 msgid "jump to chapter by number"
 msgstr "nhảy đến chương theo số"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "chỉ cần hủy bỏ, không có tin nhắn"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
 
 msgid "just boot"
@@ -22821,7 +22813,7 @@ msgstr "thiên nhiên / động vật / môi trường"
 msgid "never"
 msgstr "không bao giờ"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "không bao giờ"
 
 msgid "new media"
@@ -22988,13 +22980,13 @@ msgstr "thanh lọc người dùng đã xóa"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "ghi âm thật hay giả"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "ghi âm thực"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "ghi âm thực hoặc phát trực tuyến"
 
 #, python-format

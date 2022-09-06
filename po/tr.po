@@ -1963,35 +1963,27 @@ msgstr "Medyadan bir dosya kullanılıyor!"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Biten bir kayıt zamanlayıcısı %s %s'yu\n"
 "yeniden başlatmak istiyor. Şimdi alınsın mı?"
 
 #
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Biten bir güçzamanlayıcı kullanıcı arayüzünü başlatmak istiyor.\n"
 "Şimdi mi?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Biten bir güçzamanlayıcısı %s %s'yu\n"
 "bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Biten bi r güçzamanlayıcısı %s %s'yu\n"
 "kapatmak istiyor. Şimdi kapatılsın mı?"
@@ -6216,16 +6208,16 @@ msgstr "Danimarka"
 msgid "Depth"
 msgstr "Derinlik"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Karışıklığını ve kayıt ECM kayıt üzerinde çabalıyorlar başarısız olursa sonradan karışıklığının açılması için seçeneği sunar. 'Karışıklığını etmeyin, kayıt ECM' oynatma döndürülecek olan bir karıştırmak kayıt kaydedin. 'Normal' anlamına gelir kayıt karışıklığını ve ECM kayıt yoktur."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Şifreyi çöz ve ecm'yi kaydet"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Http akışlarını çözmek"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Http akışlarını alan şifresini çözmek"
 
 #
@@ -6770,7 +6762,7 @@ msgstr "Bu kaydı eklemeyin"
 msgid "Don't ask again!"
 msgstr "Bir daha sorma!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Karıştırmayın, ecm kaydedin"
 
 msgid "Don't restart"
@@ -10969,11 +10961,11 @@ msgid "Marathi"
 msgstr "Marathi"
 
 #
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Kayıt sonuna boşluk süresi ekle (dk.)"
 
 #
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Kayıt başına boşluk süresi ekle (dk.)"
 
 msgid "Mark service as dedicated 3D service"
@@ -12170,8 +12162,8 @@ msgstr "Tümüne hayır"
 msgid "No transparency"
 msgstr "Saydamlık yok"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Bir zamanlayıcı kaydetmek için tuner yok!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Bir zamanlayıcı kaydetmek için tuner yok!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13829,7 +13821,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Kayıtlar için tercih edilen tunerler, çoklu seçime izin verilir"
 
 #
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Kayıt için hazırlık süresi (saniye)"
 
 #
@@ -14802,7 +14794,7 @@ msgstr "Tüm zamanlayıcı verilerini kaldır"
 msgid "Remove all user interface data"
 msgstr "Tüm kullanıcı arayüzü verilerini kaldır"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Biten zamanlayıcıları (gün) sonra kaldır"
 
 msgid "Remove current folder from bookmarks"
@@ -17985,7 +17977,7 @@ msgstr "Uyku Zamanlayıcısı"
 msgid "Sleep Timers"
 msgstr "Uyku Zamanlayıcıları"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -18357,7 +18349,7 @@ msgstr "Güney Ndebele Dili"
 msgid "South Sudan"
 msgstr "Güney Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Kayıtlar için ayrılcak disk boyutu (GB)"
 
 #, python-format
@@ -21995,7 +21987,7 @@ msgstr "Etkinleştirildiğinde, serbest tuner olmadığında bir kaydın canlı 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Etkinleşince, bir uyarı görünür, kullanıcı devam eder veya zamankaydırmayı durdurur."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Etkinleştirildiğinde, her zaman http akışlarını alarak her zaman çözülür. Bu, daha fazla kaynak alır (karıştırıcı karıştırıcıları), yalnızca gerekirse etkinleştirin. Bu ayardan bağımsız olarak servis türüne 0x100 eklenirse, ayrı ayrı akışlar her zaman şifrelenir."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -22094,10 +22086,10 @@ msgstr "Etkinleştirildiğinde, opkg listesinde dev, staticdev, dbg, doc, src ve
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Etkinleştirilince, alıcınız VCR SCART girişindeki etkinliği algılayacak."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen başlangıç zamanından daha önce başlayacaktır."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen bitiş zamanından daha sonra duracaktır."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22997,7 +22989,7 @@ msgstr "ve"
 msgid "and never ask again this session again"
 msgstr "ve bir daha asla tekrar bu soruyu sorma"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "herhangi bir kayıt"
 
 msgid ""
@@ -23621,10 +23613,10 @@ msgstr "sonraki başlığa atla"
 msgid "jump to chapter by number"
 msgstr "sayıya göre bölüme atlamak"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "sadece iptal, mesaj yok"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "sadece iptal et, mesajı göster"
 
 msgid "just boot"
@@ -23773,7 +23765,7 @@ msgstr "doğa/hayvanlar/çevre"
 msgid "never"
 msgstr "hiç"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "asla iptal etme"
 
 msgid "new media"
@@ -23956,13 +23948,13 @@ msgstr "silinmiş userbouquets"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "gerçek veya sahte kayıtlar"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "gerçek kayıtlar"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "gerçek kayıtlar veya akış"
 
 #, python-format

@@ -1913,32 +1913,24 @@ msgid "A file from media is in use!"
 msgstr "来自媒体的文件正在使用中!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启你 %s %s .\n"
 "是否现在就重启？"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启用户界面\n"
 "是否现在就重启？"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "已完成的电源定时器\n"
 "要设置 %s %s 到待机状态,是否执行?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "已完成的电源定时器要关闭 %s %s\n"
 "是否执行?"
@@ -5930,16 +5922,16 @@ msgstr "丹麦"
 msgid "Depth"
 msgstr "深度"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "如果录制时解扰失败,'解扰和录制ECM'提供之后的解扰选项.'不要解扰,录制ECM'保存播 放时可以解扰的加扰录制.'正常'表示解扰录制,不录制ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "解扰并录制ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "解扰http串流"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "解扰http串流"
 
 msgid "Description"
@@ -6442,7 +6434,7 @@ msgstr "不添加此录像"
 msgid "Don't ask again!"
 msgstr "以后不再询问该会话!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "不解扰,录制ECM"
 
 msgid "Don't restart"
@@ -10411,10 +10403,10 @@ msgstr "毛利语"
 msgid "Marathi"
 msgstr "马拉地语"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "录制结束,延后多少时间结束录制(分钟)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "录制开始,提前多少时间开始录制(分钟)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11522,8 +11514,8 @@ msgstr "全否"
 msgid "No transparency"
 msgstr "不透明"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "没有多余的调谐器供录制定时器任务使用!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "没有多余的调谐器供录制定时器任务使用!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13060,7 +13052,7 @@ msgstr "录像首选调谐器"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "录制首选调谐器,允许的多重选择"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "录制准备时间(秒)"
 
 msgid "Preparing... Please wait"
@@ -13975,7 +13967,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "保留已完成定时器的天数"
 
 msgid "Remove current folder from bookmarks"
@@ -16988,7 +16980,7 @@ msgstr "睡眠定时器"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17342,7 +17334,7 @@ msgstr "南恩德贝勒"
 msgid "South Sudan"
 msgstr "南苏丹"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "预留录制磁盘空间(以GB为单位)"
 
 #, python-format
@@ -20760,7 +20752,7 @@ msgstr "启用后,当没有空闲的调谐器,允许录像中断直播电视."
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "启用后,警告将会显示,同时用户将获得一个选项来停止或继续时移."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "启用后,请始终解密接收的HTTP流.这会占用更多资源(解复用器解扰),仅在必要时启用.如果 将0x100添加到频道类型,则无论此设置如何,始终对单个流进行解密."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20859,10 +20851,10 @@ msgstr "启用后,您将在opkg列表中看到dev,staticdev,dbg,doc,src和po包.
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "启用后,接收机将检测VCR SCART输入活动."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "非零时,录制将早于EPG指示的开始时间开始."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "非零时,录制将晚于EPG指示的结束时间停止."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21707,7 +21699,7 @@ msgstr "和"
 msgid "and never ask again this session again"
 msgstr "以后不再询问该会话"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "任何录制"
 
 msgid ""
@@ -22284,10 +22276,10 @@ msgstr "跳转到下一个标题"
 msgid "jump to chapter by number"
 msgstr "通过数字跳到章节"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "仅中止,无信息"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "仅中止,显示信息"
 
 msgid "just boot"
@@ -22416,7 +22408,7 @@ msgstr "自然/动物/环境"
 msgid "never"
 msgstr "从不"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "从不中止"
 
 msgid "new media"
@@ -22581,13 +22573,13 @@ msgstr "清除已删除的用户频道组"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "录制或伪录制"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "录像"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "录像或串流"
 
 #, python-format

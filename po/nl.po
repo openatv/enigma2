@@ -1916,32 +1916,24 @@ msgid "A file from media is in use!"
 msgstr "Een mediabestand is in gebruik!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Een voltooide timer wil uw %s %s\n"
 "herstarten. Dat nu doen?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Een Powertimer wil de gebruikersinterface van uw %s %s herstarten.\n"
 "Wilt u dit toestaan?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Een voltooide timer wil uw %s %s\n"
 "in stand-by zetten. Dat nu doen?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Een voltooide timer wil uw\n"
 "%s %s uitschakelen. Wilt u dat nu doen?"
@@ -6044,16 +6036,16 @@ msgstr "Denemarken"
 msgid "Depth"
 msgstr "Diepte"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "decodeer en ECM opnemen"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Decoderen van http-streams"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Decoderen van ontvangen http-streams"
 
 msgid "Description"
@@ -6556,7 +6548,7 @@ msgstr "Deze opname niet toevoegen"
 msgid "Don't ask again!"
 msgstr "Niet meer vragen!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "niet decoderen, maar wel ECM opnemen"
 
 msgid "Don't restart"
@@ -10546,10 +10538,10 @@ msgstr "Maori"
 msgid "Marathi"
 msgstr "Marathi"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Marge na een opname (minuten)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Marge voor een opname (minuten)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11657,8 +11649,8 @@ msgstr "Nee op alles"
 msgid "No transparency"
 msgstr "Geen transparantie"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Geen tuner is beschikbaar voor het opnemen met de timer!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Geen tuner is beschikbaar voor het opnemen met de timer!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13199,7 +13191,7 @@ msgstr "Voorkeurstuner voor opnames"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Voorkeurstuners voor opnames, meerdere selecteren toegestaan"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Voorbereidingstijd voor opnames (seconden)"
 
 msgid "Preparing... Please wait"
@@ -14116,7 +14108,7 @@ msgstr "Verwijder alle timer data"
 msgid "Remove all user interface data"
 msgstr "Verwijder alle gebruikers interface data"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Verwijder voltooide timers na (aantal) dagen"
 
 msgid "Remove current folder from bookmarks"
@@ -17166,7 +17158,7 @@ msgstr "Slaaptimer"
 msgid "Sleep Timers"
 msgstr "Slaaptimers"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr "Slaap vertraging (in minuten)"
 
 msgid "Sleep long"
@@ -17518,7 +17510,7 @@ msgstr "South Ndebele"
 msgid "South Sudan"
 msgstr "Zuid Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Reserveer schijfruimte voor opnames (in GB)"
 
 #, python-format
@@ -21017,7 +21009,7 @@ msgstr "Indien geactiveerd, dan kan een opname live TV onderbreken indien er gee
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Bij het stoppen van Timeshift wordt gevraagd of u Timeshift echt wilt stoppen of dat de opname toch door moet lopen."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Wanneer geactiveerd, zullen ontvangen http-streams altijd gedecodeerd worden. Dit vraagt meer van het systeem (decoderen, demuxen), dus alleen inschakelen wanneer nodig. Individuele streams zullen altijd worden gedecodeerd als '0x100' is toegevoegd aan het zender-type, onafhankelijk van deze instelling."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21121,10 +21113,10 @@ msgstr "Wanneer ingeschakeld, dan ziet u dev, staticdev, dbg, doc, src en po pak
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Indien geactiveerd, herkent de ontvanger een signaal op de VCR SCART ingang."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Met deze optie stelt u het aantal minuten in dat de opname eerder moet starten t.o.v. het in de EPG aangegeven tijdstip."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Met deze optie stelt u het aantal minuten in dat de lopende opname later moet eindigen t.o.v. het in de EPG aangegeven tijdstip."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21987,7 +21979,7 @@ msgstr "en"
 msgid "and never ask again this session again"
 msgstr "en vraag dit niet meer deze sessie"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "Alle opnames"
 
 msgid ""
@@ -22564,10 +22556,10 @@ msgstr "vooruit naar volgende titel"
 msgid "jump to chapter by number"
 msgstr "Spring via nummer naar hoofdstuk"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "Alleen afbreken, geen bericht"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "Afbreken, bericht weergeven"
 
 msgid "just boot"
@@ -22696,7 +22688,7 @@ msgstr "natuur/dieren/milieu"
 msgid "never"
 msgstr "nooit"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "Nooit afbreken"
 
 msgid "new media"
@@ -22861,13 +22853,13 @@ msgstr "Gewiste favorietenlijsten opruimen"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "Echte of pseudo opnames"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "Echte opnamen"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "Echte opnamen of streams"
 
 #, python-format

@@ -1937,32 +1937,24 @@ msgid "A file from media is in use!"
 msgstr "Medijos failas yra naudojamas!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori paleisti iš naujo jūsų %s %s.\n"
 "Paleisti dabar?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori grafinę aplinką paleisti iš naujo.\n"
 "Paleisti dabar?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori perjungti Jūsų\n"
 " %s %s į budėjimo režimą. Perjungti dabar?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori išjungti jūsų %s %s.\n"
 "Išjungti dabar?"
@@ -5964,16 +5956,16 @@ msgstr "Danija"
 msgid "Depth"
 msgstr "Gylis"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Iškoduoti ir įrašyti ECM' leidžia iškoduoti vėliau, jeigu įrašant iškoduoti nepavyksta. 'Neiškoduoti, įrašyti ECM' išsaugo užkoduotą įrašą, kuris gali būti iškoduotas atkūrimo metu. 'Normalus' iškoduoja įrašą ir neįrašo ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Dekoduoti ir įrašyti ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Iškoduoti http srautus"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Iškoduoti http srautus"
 
 msgid "Description"
@@ -6476,7 +6468,7 @@ msgstr "Negalima pridėti šio įrašo"
 msgid "Don't ask again!"
 msgstr "Daugiau neklausti!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Nereikia dekoduoti, įrašyti ecm"
 
 msgid "Don't restart"
@@ -10454,10 +10446,10 @@ msgstr "Maoris"
 msgid "Marathi"
 msgstr "Maračių"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Intarpas po įrašymo (min.)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Intarpas prieš įrašymą (min.)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11565,8 +11557,8 @@ msgstr "'Ne' viskam"
 msgid "No transparency"
 msgstr "Nepermatomas"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Laikmačiui įrašyti nėra laisvo imtuvo!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Laikmačiui įrašyti nėra laisvo imtuvo!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13103,7 +13095,7 @@ msgstr "Pageidautinas imtuvas įrašams"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Įrašams pageidaujami imtuvai, galima pasirinkti keletą"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Pasirengimas įrašymui (sek.)"
 
 msgid "Preparing... Please wait"
@@ -14018,7 +14010,7 @@ msgstr "Šalinti visus laikmačio duomenis"
 msgid "Remove all user interface data"
 msgstr "Pašalinti visus vartotojo sąsajos duomenis"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Pašalinti užbaigtus laikmačius po (dienų)"
 
 msgid "Remove current folder from bookmarks"
@@ -17036,7 +17028,7 @@ msgstr "Miego laikmatis"
 msgid "Sleep Timers"
 msgstr "Miego laikmačiai"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17391,7 +17383,7 @@ msgstr "Pietų Ndebele"
 msgid "South Sudan"
 msgstr "Pietų Sudanas"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Įrašams rezervuota disko apimtis (GB)"
 
 #, python-format
@@ -20845,7 +20837,7 @@ msgstr "Įjungus įrašą leidžiama nutraukti tiesioginę televiziją, kai nėr
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo įrašyta 0x100, nepriklausomai nuo šio nustatymo."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20944,10 +20936,10 @@ msgstr "Kai įjungtas, pamatysite dev, staticdev, dbg, doc, src ir po paketus op
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kai čia įjungta, imtuvas aptiks aktyvų VCR SCART įvesties signalą."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Kai ne nulis, įrašymas prasidės anksčiau nei nurodytas EPG pradžios laikas."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kai ne nulis, įrašymas vėliau nei EPG nurodytas pabaigos laikas."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21795,7 +21787,7 @@ msgstr "ir"
 msgid "and never ask again this session again"
 msgstr "ir niekada neklausti šios sesijos dar kartą"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "bet kokie įrašai"
 
 msgid ""
@@ -22372,10 +22364,10 @@ msgstr "šuolis priekin į kitą pavadinimą"
 msgid "jump to chapter by number"
 msgstr "peršokti į skyrių pagal numerį"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "nutraukti, be pranešimo"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "nutraukti, rodyti pranešimą"
 
 msgid "just boot"
@@ -22504,7 +22496,7 @@ msgstr "gamta/gyvūnai/aplinka"
 msgid "never"
 msgstr "niekada"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "niekada nenutraukti"
 
 msgid "new media"
@@ -22669,13 +22661,13 @@ msgstr "išvalyti ištrintus paketus"
 msgid "python"
 msgstr "python versija"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "realūs ar pseudo įrašai"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "realūs įrašai"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "realūs įrašai arba transliacijos"
 
 #, python-format

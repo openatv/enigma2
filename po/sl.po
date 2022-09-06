@@ -2126,15 +2126,11 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
 #, fuzzy
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Vaš sprejemnik je zdaj pripravljen na uporabo.\n"
 "\n"
@@ -2142,15 +2138,11 @@ msgstr ""
 "\n"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 #, python-format
@@ -6579,18 +6571,18 @@ msgstr ""
 msgid "Depth"
 msgstr "Globina"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "odkodiraj in snemaj ECM paketke"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr ""
 
 #
 #, fuzzy
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Prisotnost AIT podatkov v HTTP toku"
 
 #
@@ -7140,7 +7132,7 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "ne odkodiran, snemaj ECM paketke"
 
 msgid "Don't restart"
@@ -11574,12 +11566,12 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Meja pred snemanjem (v minutah)"
 
 #
 #, fuzzy
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Meja pred snemanjem (v minutah)"
 
 msgid "Mark service as dedicated 3D service"
@@ -12876,7 +12868,7 @@ msgstr "Ne za vse"
 msgid "No transparency"
 msgstr "brez prosojnosti"
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -14617,7 +14609,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Meja pred snemanjem (v minutah)"
 
 #
@@ -15653,7 +15645,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr ""
 
 msgid "Remove current folder from bookmarks"
@@ -19030,7 +19022,7 @@ msgstr ""
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 #
@@ -19413,7 +19405,7 @@ msgid "South Sudan"
 msgstr "Jug"
 
 #
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Prostor na disku rezerviran za snemanje (v GB)"
 
 #, python-format
@@ -23172,7 +23164,7 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr ""
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -23271,10 +23263,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr ""
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -24165,7 +24157,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr ""
 
 msgid ""
@@ -24804,10 +24796,10 @@ msgstr "preskoči na naslednji naslov"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr ""
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "just boot"
@@ -24962,7 +24954,7 @@ msgstr ""
 msgid "never"
 msgstr "nikoli"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr ""
 
 msgid "new media"
@@ -25154,13 +25146,13 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr ""
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr ""
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr ""
 
 #, python-format

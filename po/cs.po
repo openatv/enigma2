@@ -1929,32 +1929,24 @@ msgid "A file from media is in use!"
 msgstr "Používá se soubor z média!"
 
 #, python-format
-msgid ""
-"A finished powertimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Nastavený časovač chce restartovat Vaše %s %s.\n"
 "Určitě, teď?"
 
-msgid ""
-"A finished powertimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Nastavený časovač chce restartovat uživatelské rozhraní.\n"
 "Určitě, teď?"
 
 #, python-format
-msgid ""
-"A finished powertimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Nastavený časovač chce nastavit %s %s pohotovostní režim.\n"
 "Určitě, teď?"
 
 #, python-format
-msgid ""
-"A finished powertimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Nastavený časovač chce vypnout Vaše %s %s.\n"
 "Určitě, teď?"
@@ -5963,16 +5955,16 @@ msgstr "Dánsko"
 msgid "Depth"
 msgstr "Hloubka"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Descramble & záznam ECM dává možnost dekódovat později, pokud dekódování při nahrávání selhalo.Záznam ECM uložte kódovaně a dekódujte při přehrávání."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Dekódovat a nahrávat ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Dekódovat http streamy"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekódovat příjem http streamů"
 
 msgid "Description"
@@ -6477,7 +6469,7 @@ msgstr "Nepřidávat tuto nahrávku"
 msgid "Don't ask again!"
 msgstr "Neptat se!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Nedekódovat a nahrávat ECM"
 
 msgid "Don't restart"
@@ -10454,10 +10446,10 @@ msgstr "Maorština"
 msgid "Marathi"
 msgstr "Maráthština"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Rezerva po nahrávání (minuty)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Rezerva před nahráváním (minuty)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11565,8 +11557,8 @@ msgstr "Ne pro všechny"
 msgid "No transparency"
 msgstr "Neprůhledné"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Žádný tuner není k dispozici pro nahrávání a časovač!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Žádný tuner není k dispozici pro nahrávání a časovač!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13106,7 +13098,7 @@ msgstr "Upřednostnit tuner pro nahrávání"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Preferované tunery pro nahrávání, vícenásobný výběr povolen"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Doba přípravy na nahrávání (sekundy)"
 
 msgid "Preparing... Please wait"
@@ -14021,7 +14013,7 @@ msgstr "Odstranit všechna data uživatelského rozhraní"
 msgid "Remove Bookmark"
 msgstr "Smazat záložku"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
 
 msgid "Remove current folder from bookmarks"
@@ -17045,7 +17037,7 @@ msgstr "Vypnout se zpožděním"
 msgid "Sleep Timers"
 msgstr "Časovače spánku"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr "Zpoždění spánku (v minutách)"
 
 msgid "Sleep long"
@@ -17400,7 +17392,7 @@ msgstr "Jižní Ndebele"
 msgid "South Sudan"
 msgstr "Jižní Súdán"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Rezerva volného místa pro nahrávání (v GB)"
 
 #, python-format
@@ -20861,7 +20853,7 @@ msgstr "Jestliže je povoleno, pak nahrávání může přerušit živé vysíl�
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Jestliže je povoleno, bude zobrazeno varování a uživatel bude mít možnost timeshift ukončit nebo pokračovat."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Pokud je tato možnost povolena, vždy dekódujte příjem http streamů. To zabírá více zdrojů (dekódování demuxerů), povolte pouze v případě potřeby. Jednotlivé streamy jsou vždy dekódovány, pokud je k typu služby přidáno 0x100, bez ohledu na toto nastavení."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20960,10 +20952,10 @@ msgstr "Když je povoleno, uvidíte v seznamu opkg balíčky dev, staticdev, dbg
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Jestliže je povoleno, přijímač bude detekovat aktivitu na vstupu VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Při nenulové hodnotě nahrávání začne dříve, než je čas začátku uvedený v EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Při nenulové hodnotě nahrávání skončí později, než je čas konce uvedený v EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21819,7 +21811,7 @@ msgstr "a"
 msgid "and never ask again this session again"
 msgstr "a již nikdy se znovu neptat"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "jakékoliv nahrávání"
 
 msgid ""
@@ -22398,10 +22390,10 @@ msgstr "přejít na další titul"
 msgid "jump to chapter by number"
 msgstr "skok na kapitolu podle čísla"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "stačí zrušit, žádná zpráva"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "stačí zrušit, zobrazit zprávu"
 
 msgid "just boot"
@@ -22530,7 +22522,7 @@ msgstr "příroda/zvířata/životní prostředí"
 msgid "never"
 msgstr "nikdy"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "nikdy nezrušit"
 
 msgid "new media"
@@ -22695,13 +22687,13 @@ msgstr "odstranit smazané uživatelské přehledy"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "opravdové nebo pseudo nahr."
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "opravdové nahrávání"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "opravdové nahr. nebo stream."
 
 #, python-format
@@ -23239,169 +23231,3 @@ msgstr "přepínání"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Nastavuje, kolik minut může zůstat ukončená událost viditelná v EPG. Užitečné, když potřebujete informace o události, která právě skončila nebo byla zpožděná."
-
-#, fuzzy
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Nastavuje dobu, po kterou bude prezentován."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Udržovat stará EPG data"
-
-#~ msgid "<Unknown>"
-#~ msgstr "<neznámý>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Opakovat časovač nebo jen jednou?"
-
-#~ msgid "At End:"
-#~ msgstr "Na konci:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Kanál není v seznamu stanic"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Vyberte jmenovku pro snadné nalezení záznamu."
-
-#, fuzzy
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Můžete si vybrat denní, týdenní, pracovní dny a definovat je."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Vyberte mezi záznamem a ZAP."
-
-#~ msgid "Current location"
-#~ msgstr "Aktuální místo"
-
-#~ msgid "Display Setup"
-#~ msgstr "Nastavení displeje VFD"
-
-#, fuzzy
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Opravdu chcete smazat tento časovač ?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Úprava nové položky"
-
-#~ msgid "Extended settings"
-#~ msgstr "Rozšířené nastavení"
-
-#, fuzzy
-#~ msgid "Infobar:"
-#~ msgstr "InfoBar"
-
-#, fuzzy
-#~ msgid "Please enter new description:"
-#~ msgstr "Zadejte nový název:"
-
-#~ msgid "PowerTimer Entry"
-#~ msgstr "Nastavení časovače napájení"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Opravdu smazat dokončené časovače?"
-
-#, fuzzy
-#~ msgid "SecondInfoBar"
-#~ msgstr "Druhý Infobar"
-
-#, fuzzy
-#~ msgid "Secondinfobar:"
-#~ msgstr "Zobrazit druhý infobar"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "Vyberte kanál z kterého chcete nahrávat"
-
-#~ msgid "Select of the number"
-#~ msgstr "Zvolte počet"
-
-#~ msgid "Select target folder"
-#~ msgstr "Vyberte cílovou složku"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Nastavte kanál pro tento časovač."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Nastavení data časovače musí začít."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "Nastavte popis záznamu."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "Nastavte název nahrávky."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "Nastavte čas začátku časovače."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "Nastavte čas konce časovače."
-
-#~ msgid "Sleep delay"
-#~ msgstr "Zpožděné uspání"
-
-#~ msgid "Starting on"
-#~ msgstr "Začíná"
-
-#, fuzzy
-#~ msgid "Time range:"
-#~ msgstr "Měřítko času"
-
-#~ msgid "Timer"
-#~ msgstr "Časovač"
-
-#~ msgid "Timer Overview"
-#~ msgstr "Přehled časovačů"
-
-#~ msgid "Weekday"
-#~ msgstr "Všední den "
-
-#, fuzzy
-#~ msgid "Weekend"
-#~ msgstr "Všední den "
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Co udělat po dokončení časovače? 'Auto' vrátí Váš %s %s do stavu v jakém byl před zahájením časovače. 'Nedělat nic' uspí Váš %s %s a 'Deep standby' jej úplně vypne. "
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Má být nahrávka uložena?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Ano, odstranit z časovače"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Ano, odstranit z časovače a smazat nahrávku"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Nezvolili jste kanál pro nahrávání."
-
-#~ msgid "Zapped"
-#~ msgstr "Přepnutý"
-
-#~ msgid "auto deepstandby"
-#~ msgstr "Přejít do hlubokého spánku"
-
-#~ msgid "auto standby"
-#~ msgstr "Automatcké vypnutí"
-
-#~ msgid "daily"
-#~ msgstr "Denně"
-
-#~ msgid "mins"
-#~ msgstr "Minut"
-
-#~ msgid "reboot system"
-#~ msgstr "Restartovat přijímač"
-
-#~ msgid "wakeup"
-#~ msgstr "Probudit"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "Probudit z pohotovosti"
-
-#~ msgid "weekly"
-#~ msgstr "Týdně"
-
-#, python-format
-#~ msgid "VPS Setup Version %s"
-#~ msgstr "Nastavení VPS - verze %s"

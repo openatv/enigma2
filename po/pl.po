@@ -1942,32 +1942,24 @@ msgid "A file from media is in use!"
 msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Wykonany timer zasilania chce ponownie uruchomić %s %s.\n"
 "Zrobić to teraz?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika.\n"
 "Czy chcesz to zrobić teraz?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Wykonany timer zasilania chce ustawić\n"
 "%s %s w stan czuwania. Zrobić to teraz?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Timer zasilania chce wyłączyć %s %s.\n"
 "Zrobić to teraz?"
@@ -5961,16 +5953,16 @@ msgstr "Dania"
 msgid "Depth"
 msgstr "Głębia"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Dekodowanie i nagrywanie ECM' daje możliwość późniejszego deszyfrowania, jeśli deszyfrowanie przy nagrywaniu zakończyło się niepowodzeniem. 'Nie dekoduj, nagrywaj ECM', zapisz nagranie, które można odszyfrować podczas odtwarzania. \"Normalny\" oznacza deszyfrowanie nagrania i nie rejestruje ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "dekoduj i nagrywaj ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Dekoduj strumienie http"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekoduj odbierane strumienie http"
 
 msgid "Description"
@@ -6473,7 +6465,7 @@ msgstr "Nie dodawaj tego nagrania"
 msgid "Don't ask again!"
 msgstr "Nie pytaj ponownie!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "nie dekoduj, nagrywaj ECM"
 
 msgid "Don't restart"
@@ -10449,10 +10441,10 @@ msgstr "Maoryjski"
 msgid "Marathi"
 msgstr "Marathi"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Margines po nagraniu (w min)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Margines przed nagraniem (w min)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11560,8 +11552,8 @@ msgstr "Nie dla wszystkich"
 msgid "No transparency"
 msgstr "Brak przezroczystości"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Nie jest dostępny tuner do nagrywania timera!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Nie jest dostępny tuner do nagrywania timera!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13099,7 +13091,7 @@ msgstr "Preferowany tuner nagrywania"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Preferowane tunery nagrywania, można zaznaczać kilka"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Czas przygotowania do nagrania (sekundy)"
 
 msgid "Preparing... Please wait"
@@ -14014,7 +14006,7 @@ msgstr "Usuń wszystkie dane timera"
 msgid "Remove all user interface data"
 msgstr "Usuń wszystkie dane interfejsu użytkownika"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Usuń wykonane timery po 'x' dniach"
 
 msgid "Remove current folder from bookmarks"
@@ -17032,7 +17024,7 @@ msgstr "Timer czuwania"
 msgid "Sleep Timers"
 msgstr "Timer Czuwania"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr "Opóźnienie (w minutach)"
 
 msgid "Sleep long"
@@ -17388,7 +17380,7 @@ msgstr "Południowe Ndebele"
 msgid "South Sudan"
 msgstr "Sudan Południowy"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Miejsce na dysku zarezerwowane do nagrań (w GB)"
 
 #, python-format
@@ -20812,7 +20804,7 @@ msgstr "Gdy włączone, nagranie może przerwać oglądanie TV, gdy nie ma wolny
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Po włączeniu, zostanie wyświetlone ostrzeżenie a użytkownik otrzyma możliwość zatrzymania lub kontynuowania timeshiftu."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Po włączeniu zawsze rozszyfruj odbieranie strumieni HTTP. Zajmuje to więcej zasobów (deszyfrowanie demultiplekserów), włącz tylko w razie potrzeby. Poszczególne strumienie są zawsze deszyfrowane, jeśli do typu usługi dodano 0x100, niezależnie od tego ustawienia."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20911,10 +20903,10 @@ msgstr "Gdy włączone, w liście pakietów będą widoczne pakiety dev, staticd
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Gdy włączone, odbiornik wykryje aktywność na wejściu SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Gdy różne od '0', nagrywanie rozpocznie się wcześniej niż w chwili startu określonego przez EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Gdy różne od '0', nagranie zakonczy się później niż czas zakończenia określony w EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21763,7 +21755,7 @@ msgstr "i"
 msgid "and never ask again this session again"
 msgstr "i nie pytaj ponownie"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "każde nagranie"
 
 msgid ""
@@ -22340,10 +22332,10 @@ msgstr "Przeskoczyć do następnego tytułu"
 msgid "jump to chapter by number"
 msgstr "przejdź do rozdziału według numeru"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "Przerwij, nie pokazuj komunikatu"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "Przerwij, pokaż komunikat"
 
 msgid "just boot"
@@ -22472,7 +22464,7 @@ msgstr "natura/zwierzęta/środowisko"
 msgid "never"
 msgstr "nigdy"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "Nie przerywaj"
 
 msgid "new media"
@@ -22637,13 +22629,13 @@ msgstr "Wyczyść usunięte listy kanałów"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "prawdziwe lub pseudo nagrania"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "prawdziwe nagrania"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "prawdziwe nagrywania lub strumieniowanie"
 
 #, python-format

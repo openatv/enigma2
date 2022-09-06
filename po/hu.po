@@ -1954,32 +1954,24 @@ msgid "A file from media is in use!"
 msgstr "Egy fájl még használatban van a hordozón!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a(z) %s %s készüléket.\n"
 "Engedélyezi?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a kezelőfelületet.\n"
 "Engedélyezi?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő készenléti állapotba\n"
 "akarja helyezni a(z) %s %s készüléket. Engedélyezi?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő ki akarja kapcsolni a(z) %s %s készüléket.\n"
 "Engedélyezi?"
@@ -5992,16 +5984,16 @@ msgstr "Dánia"
 msgid "Depth"
 msgstr "Mélység"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "A felvétel típusát lehet itt beállítani. 'Hagyományos' a felvétel dekódolása, és nem rögzíti az ECM-et."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "ecm felvétel és dekódolás"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "HTTP jelfolyamok dekódolása"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Fogadott HTTP stream dekódolása"
 
 msgid "Description"
@@ -6501,7 +6493,7 @@ msgstr "Ne vegye fel ezt a felvételt"
 msgid "Don't ask again!"
 msgstr "Ne kérdezze újra!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "ecm felvétel dekódolás nélkül"
 
 msgid "Don't restart"
@@ -10525,10 +10517,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Felvétel utáni ráhagyás (perc)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Felvétel előtti ráhagyás (perc)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11667,8 +11659,8 @@ msgstr "Mindenre NEM"
 msgid "No transparency"
 msgstr "Nincs áttetszőség"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Nincs szabad tuner a felvétel rögzítéséhez!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Nincs szabad tuner a felvétel rögzítéséhez!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13219,7 +13211,7 @@ msgstr "Felvételek számára előnyben részesített tuner"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Tuner(ek) kiválasztása"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "A felvétel előkészítésének ideje (másodperc)"
 
 msgid "Preparing... Please wait"
@@ -14139,7 +14131,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Lejárt időzítések törlése ennyi nap után"
 
 msgid "Remove current folder from bookmarks"
@@ -17192,7 +17184,7 @@ msgstr "Elalvás időzítő"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17548,7 +17540,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Dél-Szudán"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Felvételeknek fenntartott tárterület (GB-ban)"
 
 #, python-format
@@ -21011,7 +21003,7 @@ msgstr "Egy felvétel megszakíthatja a TV-nézést, ha nem áll rendelkezésre 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Ha engedélyezve van, akkor mindig dekódolva van a fogadott http adatfolyamok. Ez több erőforrást igényel, csak akkor választd, ha szükséges."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21110,10 +21102,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "A készülék figyelje, hogy történik-e valami a VCR Scart bemenetén."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Ennyivel korábban kezdje a felvételt, mint amit az EPG műsorújság kezdési időnek jelez ki."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Ennyivel később fejezze be a felvételt, mint amit az EPG műsorújság befejezési időnek jelez ki."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21963,7 +21955,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "és ne kérdezze újra ebben a munkamenetben"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "minden felvételkor"
 
 msgid ""
@@ -22543,10 +22535,10 @@ msgstr "előreugrás a következő címhez"
 msgid "jump to chapter by number"
 msgstr "ugrás fejezethez szám alapján"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "csak megállítás, nincs üzenet"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "csak megállítás, üzenet megjelenítése"
 
 msgid "just boot"
@@ -22676,7 +22668,7 @@ msgstr "természet/állatvilág/környezet"
 msgid "never"
 msgstr "soha"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "nincs megállítás"
 
 msgid "new media"
@@ -22841,13 +22833,13 @@ msgstr "törölt felhasználói csatornacsomagok végleges eltávolítása"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "felvételkor és a felvétel beállításánál"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "felvételkor"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "felvételkor vagy streaming"
 
 #, python-format

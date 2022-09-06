@@ -1913,32 +1913,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "En gennemført StrømTimer vil genstarte din %s %s.\n"
 "Gør det nu ?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "En afslutter StrømTimer ønsker at genstarte brugergrænsefladen.\n"
 "Gøre det nu ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "En gennemført StrømTimer ønsker at sætte\n"
 "din %s %s i Standby. Gør det nu ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "En gennemført StrømTimer ønsker at slukke din %s %s.\n"
 "Gør det nu ?"
@@ -5937,16 +5929,16 @@ msgstr "Danmark"
 msgid "Depth"
 msgstr "Dybde"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Afkod og optag ECM' giver mulighed for efterfølgende at afkode, hvis afkodning af optagelse mislykkedes. 'Afkod ikke, optag ECM' gemmer en kodet optagelse som kan afkodes ved afspilning. 'Normal' betyder at optagelsen afkodes og at ECM ikke optages."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Afkod og gem ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Dekrypter http streams"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekrypter modtaget http streams"
 
 msgid "Description"
@@ -6445,7 +6437,7 @@ msgstr "Tilføj ikke denne optagelse"
 msgid "Don't ask again!"
 msgstr "Spørg ikke igen!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Afkod ikke, gem ECM"
 
 msgid "Don't restart"
@@ -10462,10 +10454,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Margin efter optagelse (minutter)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Margin før optagelse (minutter)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11602,8 +11594,8 @@ msgstr "Nej til alle"
 msgid "No transparency"
 msgstr "Ingen gennemsigtighed"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Ingen Tuner tilgængelig til optagelse af en Timer!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Ingen Tuner tilgængelig til optagelse af en Timer!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13161,7 +13153,7 @@ msgstr "Foretrukken Tuner til optagelser"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Foretrukne Tunere til optagelser, valg af flere tilladt"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Forberedelsestid for optagelse (sekunder)"
 
 msgid "Preparing... Please wait"
@@ -14084,7 +14076,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Fjern afsluttede Timers efter (dage)"
 
 msgid "Remove current folder from bookmarks"
@@ -17143,7 +17135,7 @@ msgstr "DvaleTimer"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17499,7 +17491,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Sydsudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Plads der skal reseveres til optagelser (i GB)"
 
 #, python-format
@@ -20949,7 +20941,7 @@ msgstr "Når dette aktiveres, har en optagelse tilladelse til at afbryde Live TV
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Når dette aktiveres, vil en advarsel blive vist og brugeren får mulighed for at stoppe eller fortsætte med Timeshift."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Når dette aktiveres, dekrypteres modtagne http-Streams. Dette kræver flere resurser (dekryptering demuxere), aktiver kun hvis nødvendig. individuelle Streams bliver altid dekrypteret hvis 0x100 ertilføjet til kanaltypen, uanset denne indstilling."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21048,10 +21040,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Når dette er aktiveret, vil din modtager opdage aktivitet på VCR SCART indgangen."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Hvis ikke nul, vil en optagelse starte tidligere end den starttid der er oplyst i EGP."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Hvis ikke nul, vil en optagelse stoppe senere end den sluttid der er oplyst i EGP."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21897,7 +21889,7 @@ msgstr "og"
 msgid "and never ask again this session again"
 msgstr "og spørg aldrig igen i denne session"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "Enhver optagelse"
 
 msgid ""
@@ -22483,10 +22475,10 @@ msgstr "spring frem til næste titel"
 msgid "jump to chapter by number"
 msgstr "spring til kapitel med nummer"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "Afbryd bare, ingen besked"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "Afbryd bare, vis besked"
 
 msgid "just boot"
@@ -22615,7 +22607,7 @@ msgstr "Natur/Dyr/Miljø"
 msgid "never"
 msgstr "Aldrig"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "Afbryd aldrig"
 
 msgid "new media"
@@ -22780,13 +22772,13 @@ msgstr "Ryd slettede brugerbuketter"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "Ægte eller pseudooptagelser"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "Ægte optagelse"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "Ægte optagelser eller streaming"
 
 #, python-format

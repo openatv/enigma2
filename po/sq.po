@@ -1916,32 +1916,24 @@ msgid "A file from media is in use!"
 msgstr "Një skedar nga media është në përdorim!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Një kohëmatës i përfunduar i rrymës dëshiron të rindezë %s %s tuaj.\n"
 "Bëje atë tani?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Një powertimer i përfunduar dëshiron të rifillojë ndërfaqen e përdoruesit.\n"
 "E bën tani?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Një kohëmatës i përfunduar i fuqisë dëshiron të vendosë tuajën\n"
 "%s %s në gatishmëri. Bëje atë tani?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Një kohëmatës i përfunduar i rrymës dëshiron të fikur %s %s tuaj.\n"
 "Bëje atë tani?"
@@ -5934,16 +5926,16 @@ msgstr "Danimarka"
 msgid "Depth"
 msgstr "Thellesi"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Descramble & Regjistro ECM' jep opsionin për të deskrabuar më pas nëse deskratimi gjatë regjistrimit dështoi. 'Mos deskramble, regjistro ECM' ruaj një regjistrim të përbërjes që mund të deskrablehet gjatë riprodhimit. 'Normal' do të thotë të përshkruash regjistrimin dhe të mos regjistrosh ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Përshkruani dhe regjistroni ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Përshkruani transmetimet http"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Përshkruani transmetimet e marrjes http"
 
 msgid "Description"
@@ -6446,7 +6438,7 @@ msgstr "Mos e shto këtë regjistrim"
 msgid "Don't ask again!"
 msgstr "Mos pyet më!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Mos u deskramble, regjistro ecm"
 
 msgid "Don't restart"
@@ -10417,10 +10409,10 @@ msgstr ""
 msgid "Marathi"
 msgstr ""
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr ""
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr ""
 
 msgid "Mark service as dedicated 3D service"
@@ -11521,7 +11513,7 @@ msgstr ""
 msgid "No transparency"
 msgstr ""
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -12994,7 +12986,7 @@ msgstr ""
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr ""
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr ""
 
 msgid "Preparing... Please wait"
@@ -13901,7 +13893,7 @@ msgstr "Hiq të gjitha të dhënat e kohëmatësit"
 msgid "Remove all user interface data"
 msgstr "Hiq të gjitha të dhënat e ndërfaqes së përdoruesit"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Hiq kohëmatësit e përfunduar pas (ditësh)"
 
 msgid "Remove current folder from bookmarks"
@@ -16890,7 +16882,7 @@ msgstr "Kohëmatësi i gjumit"
 msgid "Sleep Timers"
 msgstr "Kohëmatësi i gjumit"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17236,7 +17228,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr ""
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr ""
 
 #, python-format
@@ -20623,7 +20615,7 @@ msgstr "Kur aktivizohet, një regjistrim lejohet të ndërpresë TV drejtpërdre
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kur aktivizohet, do të shfaqet një paralajmërim dhe përdoruesi do të ketë një opsion për të ndaluar ose për të vazhduar zhvendosjen e kohës."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Kur është i aktivizuar, deskralo gjithmonë marrjen e transmetimeve http. Kjo kërkon më shumë burime (përfshirja e demuksesorëve), aktivizohet vetëm nëse është e nevojshme. Transmetimet individuale fshihen gjithmonë nëse llojit të shërbimit i shtohet 0x100, pavarësisht nga ky cilësim."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20722,10 +20714,10 @@ msgstr "Kur aktivizohet, do të shihni paketat dev, staticdev, dbg, doc, src dhe
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kur aktivizohet, marrësi juaj do të zbulojë aktivitetin në hyrjen VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Kur nuk është zero, një regjistrim do të fillojë më herët se koha e fillimit e treguar nga EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kur nuk është zero, një regjistrim do të ndalojë më vonë se koha e përfundimit të treguar nga EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21574,7 +21566,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr ""
 
 msgid ""
@@ -22147,10 +22139,10 @@ msgstr ""
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr ""
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "just boot"
@@ -22279,7 +22271,7 @@ msgstr ""
 msgid "never"
 msgstr ""
 
-msgid "never abort"
+msgid "Never abort"
 msgstr ""
 
 msgid "new media"
@@ -22444,13 +22436,13 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr ""
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr ""
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr ""
 
 #, python-format
@@ -22983,106 +22975,3 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Es folgt:"
-#~ msgstr "Es folgt:"
-
-#~ msgid "Wakeup"
-#~ msgstr "Zgjohu"
-
-#~ msgid "Bit rate"
-#~ msgstr "Shpejtësia e bitit"
-
-#, python-format
-#~ msgid "Directory '%s' not writeable!"
-#~ msgstr "Drejtoria '%s' nuk mund të shkruhet!"
-
-#~ msgid "Favourites"
-#~ msgstr "Të preferuarat"
-
-#~ msgid "Size:"
-#~ msgstr "Përmasat"
-
-#~ msgid "Size: "
-#~ msgstr "Madhësia:"
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Konfiguro për sa minuta ngjarjet e përfunduara duhet të mbeten të dukshme në EPG. E dobishme kur keni nevojë për informacion në lidhje me një ngjarje që sapo ka përfunduar ose është vonuar."
-
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Konfiguro historinë e kohës që do të paraqitet."
-
-#~ msgid "<Unknown>"
-#~ msgstr "<E panjohur>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "Një kohëmatës i përsëritur apo vetëm një herë?"
-
-#~ msgid "At End:"
-#~ msgstr "Në fund:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Kanali nuk është në listën e shërbimeve"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Zgjidhni një etiketë për gjetjen e lehtë të një regjistrimi."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Zgjidhni midis Ditës, Javore, Ditëve të Javës ose të përcaktuar nga përdoruesi."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Zgjidhni midis regjistrimit dhe ZAP."
-
-#~ msgid "Current location"
-#~ msgstr "Vendndodhja aktuale"
-
-#~ msgid "Display Setup"
-#~ msgstr "Konfigurimi i ekranit"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "Dëshiron vërtet ta fshish regjistrimin?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Redakto hyrjen e re"
-
-#~ msgid "Extended settings"
-#~ msgstr "Cilësimet e zgjeruara"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Të fshihen vërtet kohëmatësit e përfunduar?"
-
-#~ msgid "Sleep delay"
-#~ msgstr "Vonesa e gjumit"
-
-#~ msgid "Weekday"
-#~ msgstr "Ditë jave"
-
-#~ msgid "Weekend"
-#~ msgstr "Fundjavë"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "Çfarë veprimi kërkohet pas përfundimit të kohëmatësit? \"Auto\" lejon që kutia të kthehet në gjendjen që kishte kur filloi kohëmatësi. 'Mos bëni asgjë', 'Shko në gatishmëri' dhe 'Shko në gatishmëri të thellë' bëjnë pikërisht këtë."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "Ku duhet të ruhet regjistrimi?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Po, fshije nga lista e kohëmatësve"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Po, fshi nga lista e kohëmatësit dhe fshi regjistrimin"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Nuk zgjodhët një kanal për të regjistruar."
-
-#~ msgid "daily"
-#~ msgstr "Ditore"
-
-#~ msgid "wakeup"
-#~ msgstr "zgjim"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "zgjimi në gatishmëri"
-
-#~ msgid "weekly"
-#~ msgstr "Javore"

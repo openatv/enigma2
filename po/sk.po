@@ -1932,32 +1932,24 @@ msgid "A file from media is in use!"
 msgstr "Súbor z daného média sa práve používa!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Časovač napájania skončil a chce reštartovať %s %s.\n"
 "Vykonať teraz?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Časovač napájania skončil a chce reštartovať použív. rozhranie.\n"
 "Vykonať teraz?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Časovač napájania skončil a chce prepnúť %s %s\n"
 "do pohotovostného režimu. Vykonať teraz?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Časovač napájania skončil a chce vypnúť %s %s.\n"
 "Vykonať teraz?"
@@ -5950,16 +5942,16 @@ msgstr "Dánsko"
 msgid "Depth"
 msgstr "Hĺbka"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Dekódovať a nahrať ECM' poskytuje možnosť dekódovania nahrávky aj dodatočne, ak zlyhá dekódovanie pri nahrávaní. Voľba 'Nedekódovať, nahrať ECM' uloží nahrávku kódovane a dekóduje sa pri prehrávaní. Voľba 'Normálne' znamená dekódovať nahrávku a nenahrávať ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "dekódovať a nahrať ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Dekódovať http streamy"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekódovať prijímané http streamy"
 
 msgid "Description"
@@ -6462,7 +6454,7 @@ msgstr "Nepridávať túto nahrávku"
 msgid "Don't ask again!"
 msgstr "Už sa nepýtať!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "nedekódovať, nahrať ECM"
 
 msgid "Don't restart"
@@ -10437,10 +10429,10 @@ msgstr "Maorčina"
 msgid "Marathi"
 msgstr "Maráthčina"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Rezerva po nahrávaní (minúty)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Rezerva pred nahrávaním (minúty)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11548,8 +11540,8 @@ msgstr "Nie pre všetko"
 msgid "No transparency"
 msgstr "Nepriehľadné"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Pre nahrávanie podľa časovača nie je dostupný žiadny tuner!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Pre nahrávanie podľa časovača nie je dostupný žiadny tuner!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13086,7 +13078,7 @@ msgstr "Preferovaný tuner pre nahrávky"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Preferované tunery pre nahrávky, je možný aj výber viacerých"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Čas prípravy pred nahrávaním (v sek.)"
 
 msgid "Preparing... Please wait"
@@ -14001,7 +13993,7 @@ msgstr "Odstrániť všetky údaje časovača"
 msgid "Remove all user interface data"
 msgstr "Odstrániť všetky údaje použ. rozhrania"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovať po (dňoch)"
 
 msgid "Remove current folder from bookmarks"
@@ -17019,7 +17011,7 @@ msgstr "Časovač uspania"
 msgid "Sleep Timers"
 msgstr "Časovače uspania"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17374,7 +17366,7 @@ msgstr "Južná ndebelčina"
 msgid "South Sudan"
 msgstr "Južný Sudán"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Rezerva voľného miesta pre nahrávanie (v GB)"
 
 #, python-format
@@ -20801,7 +20793,7 @@ msgstr "Ak je povolené, tak v prípade, že nie je už voľný žiadny tuner, m
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Ak je povolené, zobrazí sa výstraha a používateľ bude mať možnosť zastaviť alebo pokračovať v timeshifte."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Ak je povolené, vždy dekódovať prijímané streamy http. Spotrebuje sa viac zdrojov (demultiplexory pre dešifrovanie), zapnite iba v prípade potreby. Individuálne streamy sú vždy dešifrované, ak je k typu služby pridané 0x100, bez ohľadu na toto nastavenie."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20900,10 +20892,10 @@ msgstr "Ak je zapnuté, uvidíte v zozname opkg balíky dev, staticdev, dbg, doc
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Ak je povolené, prijímač bude detegovať aktivitu na vstupe VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Pri nenulovej hodnote začne nahrávanie skôr, ako je čas začiatku uvedený v EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Pri nenulovej hodnote skončí nahrávanie neskôr, ako je čas konca uvedený v EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21752,7 +21744,7 @@ msgstr "a"
 msgid "and never ask again this session again"
 msgstr "a počas tejto relácie sa už nepýtať"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "akékoľvek nahrávky"
 
 msgid ""
@@ -22329,10 +22321,10 @@ msgstr "preskočiť dopredu, na ďalší titul"
 msgid "jump to chapter by number"
 msgstr "preskočiť na kapitolu podľa čísla"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "len prerušiť, bez správy"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "len prerušiť, zobraziť správu"
 
 msgid "just boot"
@@ -22461,7 +22453,7 @@ msgstr "príroda/zvieratá/životné prostredie"
 msgid "never"
 msgstr "nikdy"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "nikdy neprerušiť"
 
 msgid "new media"
@@ -22626,13 +22618,13 @@ msgstr "vyčistiť vymazané používateľské prehľady"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "skutočné alebo pseudo-nahrávky"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "skutočné nahrávky"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "skutočné nahrávky alebo streamovanie"
 
 #, python-format

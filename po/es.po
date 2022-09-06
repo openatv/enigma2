@@ -1987,35 +1987,27 @@ msgstr "¡Hay un archivo de medios en uso!"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Un temporizador de alimentación quiere reiniciar tu %s %s.\n"
 "¿Reiniciar ahora?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Un temporizador de alimentación quiere reiniciar la interfaz de usuario.\n"
 "¿Hacerlo ahora?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Un temporizador de alimentación quiere poner tu \n"
 "%s %s en modo espera. ¿Hacerlo ahora?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Un temporizador de alimentación quiere apagar tu %s %s.\n"
 "¿Apagar ahora?"
@@ -6242,16 +6234,16 @@ msgstr "Dinamarca"
 msgid "Depth"
 msgstr "Profundidad"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "‘Descifrar y grabar ECM’ te da la opción de descifrar después si ha fallado el descifrado de la grabación. ‘No descifrar, grabar ECM’ permite guardar una grabación cifrada, descifrable en la reproducción. ‘Normal’ sirve para descifrar la grabación y no grabar el ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Descodificar y grabar ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Descodificar retransmisiones http"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Descodificar los flujos http recibidos"
 
 msgid "Description"
@@ -6804,7 +6796,7 @@ msgstr "No agregue esta grabación"
 msgid "Don't ask again!"
 msgstr "¡No volver a preguntar!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "No descodificar, grabar ECM"
 
 msgid "Don't restart"
@@ -11177,11 +11169,11 @@ msgid "Marathi"
 msgstr "MaraM9"
 
 #
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Margen después de grabar (minutos)"
 
 #
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Margen antes de grabar (minutos)"
 
 msgid "Mark service as dedicated 3D service"
@@ -12438,8 +12430,8 @@ msgstr "No a todo"
 msgid "No transparency"
 msgstr "Sin transparencia"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "No hay sintonizador disponible para grabar un temporizador!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "No hay sintonizador disponible para grabar un temporizador!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -14164,7 +14156,7 @@ msgstr "Sintonizador preferido para grabaciones"
 
 #
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Margen antes de grabar (minutos)"
 
 #
@@ -15185,7 +15177,7 @@ msgid "Remove all user interface data"
 msgstr ""
 
 #
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Eliminar temporizadores terminados después de (días)"
 
 msgid "Remove current folder from bookmarks"
@@ -18522,7 +18514,7 @@ msgstr "Temporizador de apagado"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 #, fuzzy
@@ -18905,7 +18897,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Sur"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Espacio en disco reservado para grabaciones (en GB)"
 
 #, python-format
@@ -22734,7 +22726,7 @@ msgstr "Cuando está activado, la grabación puede interrumpir la TV en directo 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Cuando está activado, aparecerá un aviso y el usuario tendrá la opción de parar o continuar con timeshift."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -22834,10 +22826,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Cuando está activado, su receptor detectará la actividad en la entrada SCART del VCR."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "En Nonzero, la grabación comenzará antes del tiempo de inicio indicado por EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "En Nonzero, la grabación se detendrá después del tiempo de finalización indicado por EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -23760,7 +23752,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "y no preguntar de nuevo en esta sesión"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "Cualquier grabación"
 
 msgid ""
@@ -24420,10 +24412,10 @@ msgstr "Avanzar al título siguiente"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "Salir sin mostrar mensaje"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "Salir y mostrar mensaje"
 
 # Powerlost usage.config
@@ -24579,7 +24571,7 @@ msgstr "Naturaleza / animales / recurso ambiente"
 msgid "never"
 msgstr "Nunca"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "No salir nunca"
 
 msgid "new media"
@@ -24776,13 +24768,13 @@ msgstr "Borrar definitivamente grupos eliminados"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "Grabación real o pseudo"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "Grabación real"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "Grabación real o retransmisión"
 
 #, python-format
@@ -25393,212 +25385,3 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Es folgt:"
-#~ msgstr "Es lo siguiente:"
-
-#~ msgid "Wakeup"
-#~ msgstr "Reactivar"
-
-#~ msgid "Bit rate"
-#~ msgstr "Tasa de bits"
-
-#, python-format
-#~ msgid "Directory '%s' not writeable!"
-#~ msgstr "¡No se puede escribir en el directorio '%s'!"
-
-#
-#~ msgid "Favourites"
-#~ msgstr "Favoritos"
-
-#
-#~ msgid "Polarisation"
-#~ msgstr "Polarización"
-
-#, fuzzy
-#~ msgid "Quick Select Actions"
-#~ msgstr "Acciones rápidas"
-
-#, fuzzy
-#~ msgid "Size:"
-#~ msgstr "Tamaño: "
-
-#~ msgid "Size: "
-#~ msgstr "Tamaño: "
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Configura durante cuántos minutos siguen visibles los programas terminados en el EPG. Es útil cuando necesitas información de un programa que acaba de terminar o se ha retrasado."
-
-#
-#~ msgid "Configure the history of time that will be presented."
-#~ msgstr "Configurar como será presentando el historial de tiempo."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Conservar los datos EPG antiguos por"
-
-#
-#~ msgid "<Unknown>"
-#~ msgstr "<Desconocido>"
-
-#~ msgid "A repeating timer or just once?"
-#~ msgstr "¿Temporizador de repetición o solo una vez?"
-
-#~ msgid "At End:"
-#~ msgstr "Al final:"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "El canal no está en la lista"
-
-#~ msgid "Choose a tag for easy finding a recording."
-#~ msgstr "Elija una etiqueta para encontrar fácilmente una grabación."
-
-#~ msgid "Choose between Daily, Weekly, Weekdays or user defined."
-#~ msgstr "Elija entre Diario, Semanal, Días de la semana o definido por el usuario."
-
-#~ msgid "Chose between record and ZAP."
-#~ msgstr "Elegir entre grabar y zapear."
-
-#~ msgid "Current location"
-#~ msgstr "Ubicación actual"
-
-# Quick Menue
-#~ msgid "Display Setup"
-#~ msgstr "Configurar LCD"
-
-#~ msgid "Do you really want to delete the recording?"
-#~ msgstr "¿Seguro que quiere borrar la grabación?"
-
-#~ msgid "Edit New Entry"
-#~ msgstr "Editar nueva entrada"
-
-#
-#~ msgid "Extended settings"
-#~ msgstr "Ajustes avanzados"
-
-#
-#, fuzzy
-#~ msgid "Infobar:"
-#~ msgstr "Barra de información"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Introduce una nueva descripción:"
-
-#
-#~ msgid "PowerTimer Entry"
-#~ msgstr "Añadir temporizador de alimentación"
-
-#
-#~ msgid "Really delete completed timers?"
-#~ msgstr "¿Seguro que quiere borrar los temporizadores terminados?"
-
-#~ msgid "SecondInfoBar"
-#~ msgstr "Segunda barra de información"
-
-#, fuzzy
-#~ msgid "Secondinfobar:"
-#~ msgstr "Segunda barra de información"
-
-#
-#~ msgid "Select channel to record from"
-#~ msgstr "Seleccionar canal a grabar"
-
-# PowerTimerEntry.py
-#~ msgid "Select of the number"
-#~ msgstr "Seleccione el número"
-
-#~ msgid "Select target folder"
-#~ msgstr "Seleccionar carpeta de destino"
-
-#~ msgid "Set the channel for this timer."
-#~ msgstr "Ajuste el canal para este temporizador."
-
-#~ msgid "Set the date the timer must start."
-#~ msgstr "Establezca la fecha en que el temporizador debe comenzar."
-
-#~ msgid "Set the description of the recording."
-#~ msgstr "Establezca la descripción de la grabación."
-
-#~ msgid "Set the name the recording will get."
-#~ msgstr "Establezca el nombre que recibirá la grabación."
-
-#~ msgid "Set the time the timer must start."
-#~ msgstr "Establezca el tiempo que el temporizador debe iniciar."
-
-#~ msgid "Set the time the timer must stop."
-#~ msgstr "Ajuste el tiempo que el temporizador debe detener."
-
-#
-#~ msgid "Sleep delay"
-#~ msgstr "Retraso nocturno"
-
-#
-#~ msgid "Starting on"
-#~ msgstr "Empezando desde"
-
-# PowerTimerList.py
-#~ msgid "Time range:"
-#~ msgstr "Intervalo de tiempo:"
-
-#~ msgid "Timer"
-#~ msgstr "Temporizador"
-
-#
-#~ msgid "Timer Overview"
-#~ msgstr "Vista de temporizadores"
-
-#
-#~ msgid "Weekday"
-#~ msgstr "Día de la semana"
-
-#
-#, fuzzy
-#~ msgid "Weekend"
-#~ msgstr "Día de la semana"
-
-#~ msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-#~ msgstr "¿Qué acción se requiere al finalizar el cronómetro? 'Auto' permite que la caja regrese al estado que tenía cuando comenzó el temporizador. \"No hacer nada\", \"Ir a espera\" y \"Ir a la espera profunda\" hacer exactamente eso."
-
-#~ msgid "Where should the recording be saved?"
-#~ msgstr "¿Dónde se debe guardar la grabación?"
-
-#~ msgid "Yes, delete from timer list"
-#~ msgstr "Sí, borrar de la lista de temporizadores"
-
-#~ msgid "Yes, delete from timer list and delete recording"
-#~ msgstr "Sí, borrar de la lista de temporizadores y borrar grabación"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "No has seleccionado un canal desde el que grabar."
-
-#
-#~ msgid "Zapped"
-#~ msgstr "Zapping"
-
-#
-#~ msgid "auto deepstandby"
-#~ msgstr "Apagado automático"
-
-#
-#~ msgid "auto standby"
-#~ msgstr "Modo de espera automático"
-
-#
-#~ msgid "daily"
-#~ msgstr "Diario"
-
-#
-#~ msgid "mins"
-#~ msgstr "Minutos"
-
-#~ msgid "reboot system"
-#~ msgstr "Reiniciar sistema"
-
-#~ msgid "wakeup"
-#~ msgstr "despertar"
-
-#~ msgid "wakeup to standby"
-#~ msgstr "despertar a modo de espera"
-
-#
-#~ msgid "weekly"
-#~ msgstr "Semanal"

@@ -2107,35 +2107,27 @@ msgstr ""
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Strömtimern vill starta om din %s %s.\n"
 "Utför det nu?"
 
 #
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Strömtimern vill starta om användargränssnittet.\n"
 "Vill du göra det nu?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Strömtimern vill försätta din %s %s i viloläge.\n"
 "Utför det nu?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Strömtimern vill stänga av din %s %s.\n"
 "Stänga av nu?"
@@ -6507,16 +6499,16 @@ msgstr ""
 msgid "Depth"
 msgstr "Djup"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Avkoda & spela in ECM' ger möjlighet att avkoda i efterhand om avkodning under inspelning misslyckades.'Avkoda inte, spela in ECM' sparar en kodad inspelning som kan avkodas vid uppspelning. 'Normal' betyder att inspelningen avkodas och spelar inte in ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "avkoda och spela in ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Avkoda http strömning "
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Avkoda mottagande http strömmar"
 
 #
@@ -7074,7 +7066,7 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr "Spara Inte"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "avkoda inte, spela in ecm"
 
 msgid "Don't restart"
@@ -11448,11 +11440,11 @@ msgid "Marathi"
 msgstr ""
 
 #
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Marginal efter inspelning (i minuter)"
 
 #
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Marginal innan inspelning (i minuter)"
 
 msgid "Mark service as dedicated 3D service"
@@ -12720,7 +12712,7 @@ msgstr "Nej till alla"
 msgid "No transparency"
 msgstr "Ingen transparens"
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -14439,7 +14431,7 @@ msgstr "Föredragen mottagare för inspelning"
 
 #
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Marginal innan inspelning (i minuter)"
 
 #
@@ -15462,7 +15454,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Ta bort färdiga timers efter (dagar)"
 
 msgid "Remove current folder from bookmarks"
@@ -18792,7 +18784,7 @@ msgstr ""
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 #, fuzzy
@@ -19169,7 +19161,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Syd"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Diskutrymme att reservera för inspelningar (i GB)"
 
 #, python-format
@@ -22936,7 +22928,7 @@ msgstr "Vid aktiverad kommer en inspelning avbryta direktsänd TV, när det inte
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Vid aktiverad kommer en varning att visas och användaren får ett val att avsluta eller fortsätta med timeshift."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -23036,10 +23028,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Vid aktiverad kommer din mottagare känna av aktivitet på VCR SCART ingången."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Vid icke noll kommer en inspelning starta tidigare än starttiden som anges av EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Vid icke noll kommer en inspelning stanna senare än sluttiden som anges av EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -23952,7 +23944,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr ""
 
 msgid ""
@@ -24599,10 +24591,10 @@ msgstr "hoppa framåt till nästa titel"
 msgid "jump to chapter by number"
 msgstr "hoppa till kapitel med nummer"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr ""
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "just boot"
@@ -24757,7 +24749,7 @@ msgstr "natur / djur / miljö"
 msgid "never"
 msgstr "aldrig"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr ""
 
 msgid "new media"
@@ -24950,13 +24942,13 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr ""
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr ""
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr ""
 
 #, python-format
@@ -25562,6 +25554,3 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "Wakeup"
-#~ msgstr "Väck"

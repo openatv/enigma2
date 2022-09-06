@@ -1895,26 +1895,18 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 #, python-format
@@ -5869,16 +5861,16 @@ msgstr "Danmark"
 msgid "Depth"
 msgstr "Dybde"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "avkode og spill inn ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr ""
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekode mottatt http strømmer"
 
 msgid "Description"
@@ -6361,7 +6353,7 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "ikke dekode, ta opp ecm"
 
 msgid "Don't restart"
@@ -10275,10 +10267,10 @@ msgstr ""
 msgid "Marathi"
 msgstr ""
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Stopptid etter opptak (minutter)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Start tid før opptak (minutter)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11381,7 +11373,7 @@ msgstr "Nei til alle"
 msgid "No transparency"
 msgstr "Ikke transparent"
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -12877,7 +12869,7 @@ msgstr "Foretrukket tuner for opptak"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr ""
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr ""
 
 msgid "Preparing... Please wait"
@@ -13779,7 +13771,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Slett ferdige timere etter (dager)"
 
 msgid "Remove current folder from bookmarks"
@@ -16774,7 +16766,7 @@ msgstr ""
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17122,7 +17114,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Sør Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Lagringsplass avsatt til opptak (i GB)"
 
 #, python-format
@@ -20456,7 +20448,7 @@ msgstr "Hvis aktivert, kan et opptak avbryte direktesendt TV når det ikke finne
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Hvis aktivert, vil en popup-melding vises med valget stopp eller fortsett timeskift."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20555,10 +20547,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Hvis aktivert, vil mottakeren oppdage aktivitet på VCR SCART inngangen."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Når annet tall enn null er valgt vil et opptak starte tidligere enn starttiden angitt av EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Når annet tall enn null er valgt vil et opptak stoppe senere enn sluttiden angitt av EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21353,7 +21345,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr ""
 
 msgid ""
@@ -21926,10 +21918,10 @@ msgstr "gå framover til neste tittel"
 msgid "jump to chapter by number"
 msgstr "gå til kapittel ved hjelp av nummer"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr ""
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "just boot"
@@ -22058,7 +22050,7 @@ msgstr "natur/dyr/miljø"
 msgid "never"
 msgstr "aldri"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr ""
 
 msgid "new media"
@@ -22223,13 +22215,13 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr ""
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr ""
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr ""
 
 #, python-format
@@ -22759,63 +22751,3 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
-
-#~ msgid "Wakeup"
-#~ msgstr "Våkne"
-
-#~ msgid "Favourites"
-#~ msgstr "Favorittlister"
-
-#~ msgid "Polarisation"
-#~ msgstr "Polarisasjon"
-
-#~ msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-#~ msgstr "Still inn hvor mange minutter avsluttede program skal vises i EPG. Nyttig når det ønskes informasjon om et program som akkurat er ferdig eller har blitt forsinket."
-
-#~ msgid "Maintain old EPG data for"
-#~ msgstr "Lagre gamle EPG data i min"
-
-#~ msgid "<Unknown>"
-#~ msgstr "<ukjent>"
-
-#~ msgid "Channel not in services list"
-#~ msgstr "Kanal finnes ikke i kanalliste"
-
-#~ msgid "Please enter new description:"
-#~ msgstr "Vennligst skriv inn ny beskrivelse:"
-
-#~ msgid "Really delete completed timers?"
-#~ msgstr "Er du sikker på å slette ferdige timere?"
-
-#~ msgid "Select channel to record from"
-#~ msgstr "Velg kanal for opptak"
-
-#~ msgid "Select target folder"
-#~ msgstr "Velg målmappe"
-
-#~ msgid "Starting on"
-#~ msgstr "Starter på"
-
-#~ msgid "Timer"
-#~ msgstr "Timer"
-
-#~ msgid "Timer Overview"
-#~ msgstr "Timer oversikt"
-
-#~ msgid "Weekday"
-#~ msgstr "Ukedag"
-
-#~ msgid "You didn't select a channel to record from."
-#~ msgstr "Du valgte ingen kanal til opptak."
-
-#~ msgid "Zapped"
-#~ msgstr "gått til"
-
-#~ msgid "daily"
-#~ msgstr "daglig"
-
-#~ msgid "mins"
-#~ msgstr "min"
-
-#~ msgid "weekly"
-#~ msgstr "ukentlig"

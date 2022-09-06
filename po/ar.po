@@ -2049,17 +2049,13 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب وضع \n"
 "الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
 
 #, fuzzy
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "الدريم بوكس جاهز للاستخدام الان.\n"
 "\n"
@@ -2067,17 +2063,13 @@ msgstr ""
 "\n"
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب وضع \n"
 "الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
 "أغلاق الان؟"
@@ -6270,16 +6262,16 @@ msgstr "الدنمارك"
 msgid "Depth"
 msgstr "العمق"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "فتح التشفير و تسجيل معلومات شفرة القنوات"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr ""
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "فتح تشفير إستقبال رابط التدفق"
 
 #
@@ -6786,7 +6778,7 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "لا تفتح التشفير ولا تسجل معلومات شفرة القنوات"
 
 msgid "Don't restart"
@@ -10953,10 +10945,10 @@ msgstr ""
 msgid "Marathi"
 msgstr ""
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "الهامش بعد تسجيل (بالدقائق)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "الهامش قبل التسجيل (بالدقائق)"
 
 msgid "Mark service as dedicated 3D service"
@@ -12162,7 +12154,7 @@ msgstr "لا للجميع"
 msgid "No transparency"
 msgstr "~بدون شفافية"
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -13769,7 +13761,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "الهامش قبل التسجيل (بالدقائق)"
 
 #
@@ -14735,7 +14727,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "إزالة المؤقتات المكتملة بعد (أيام)"
 
 msgid "Remove current folder from bookmarks"
@@ -17924,7 +17916,7 @@ msgstr ""
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 #
@@ -18298,7 +18290,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "جنوب السودان"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "مساحة القرص الصلب للتسجيلات (في الجيجابايت)"
 
 #, python-format
@@ -21879,7 +21871,7 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "عند التمكين، سيتم عرض تحذير وسيحصل المستخدم على خيار للتوقف أو لمتابعة التحكم الزمني في وقت البث المباشر."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21978,10 +21970,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "عند التمكين، سيقوم جهاز الاستقبال بكشف المفعل إذا أدخلت منفذ سكارت."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "عندما يتم التصفير، سيبدأ تسجيل في وقت سابق من وقت البدء المشار إليه من قبل دليل البرامج الإلكترونية."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "عندما يتم التصفير، سيتوقف التسجيل في وقت سابق من وقت النهاية المشار إليه من قبل دليل البرامج الإلكترونية."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22813,7 +22805,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr ""
 
 msgid ""
@@ -23411,10 +23403,10 @@ msgstr "الانتقال أماما للعنوان التالى"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr ""
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "just boot"
@@ -23552,7 +23544,7 @@ msgstr "طبيعة/الحيوانية/البيئة"
 msgid "never"
 msgstr "أبدا"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr ""
 
 msgid "new media"
@@ -23728,13 +23720,13 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr ""
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr ""
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr ""
 
 #, python-format
@@ -24300,6 +24292,3 @@ msgstr "تم الانتقال"
 
 msgid "®"
 msgstr ""
-
-#~ msgid "Wakeup"
-#~ msgstr "تنبيه"

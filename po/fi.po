@@ -1913,32 +1913,24 @@ msgid "A file from media is in use!"
 msgstr "Mediatiedosto on käytössä!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Juuri päättynyt virta-ajastus haluaa uudelleenkäynnistää\n"
 "%s %s:n. Tehdäänkö se nyt?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Juuri päättynyt virta-ajastus haluaa käynnistää\n"
 "käyttöliittymän uudelleen. Tehdäänkö se nyt?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Juuri päättynyt virta-ajastus haluaa sammuttaa\n"
 "%s %s:n valmiustilaan. Sammutetaanko nyt?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Juuri päättynyt virta-ajastus haluaa sammuttaa\n"
 "%s %s:n virransäästötilaan. Sammutetaanko nyt?"
@@ -5938,16 +5930,16 @@ msgstr "Tanska"
 msgid "Depth"
 msgstr "Syvyys"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Pura ja tallenna ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Pura http striimit"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Pura http striimit"
 
 msgid "Description"
@@ -6450,7 +6442,7 @@ msgstr "Älä lisää tätä tallennusta"
 msgid "Don't ask again!"
 msgstr "Älä kysy uudelleen!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Älä pura, tallenna ECM"
 
 msgid "Don't restart"
@@ -10426,10 +10418,10 @@ msgstr "Maori"
 msgid "Marathi"
 msgstr "MaraM9Marathi"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11543,8 +11535,8 @@ msgstr "Ei kaikkiin"
 msgid "No transparency"
 msgstr "Ei läpinäkyvyyttä"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Ei vapaita virittimiä ajastuksen suorittamiseksi!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Ei vapaita virittimiä ajastuksen suorittamiseksi!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13083,7 +13075,7 @@ msgstr "Tallennusten ensisijainen viritin"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Ensisijainen viritin tallennuksiin, monivalinta sallittu"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Tallennuksen valmisteluaika (sekuntia)"
 
 msgid "Preparing... Please wait"
@@ -13998,7 +13990,7 @@ msgstr "Poista kaikki ajastukset"
 msgid "Remove all user interface data"
 msgstr "Poista kaikki käyttöliittymän tiedot"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Poista tallennetut ajastukset päivän jälkeen"
 
 msgid "Remove current folder from bookmarks"
@@ -17028,7 +17020,7 @@ msgstr "Uniajastin"
 msgid "Sleep Timers"
 msgstr "Uniajastimet"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr "Uni viive (minuutteina)"
 
 msgid "Sleep long"
@@ -17381,7 +17373,7 @@ msgstr "Etelä Ndebelen"
 msgid "South Sudan"
 msgstr "Etelä Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Tallennuksille varattu levytila (GB)"
 
 #, python-format
@@ -20844,7 +20836,7 @@ msgstr "Kun päällä, tallennus saa keskeyttää suoran katselun, jos vapaita v
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai jatkaa ajansiirtoa."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Kun valittu, pura vastaanotettavat http streamit. Tämä vaatii enemmän resursseja. Käytä vain jos todella tarvitset. Yksittäiset streamit puretaan aina jos 0x100 on lisätty kanavatietoihin riippumatta tästä asetuksesta. Oletus: Ei."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20943,10 +20935,10 @@ msgstr "Kun se on käytössä, näet dev-, staticdev-, dbg-, doc-, src- ja po-pa
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kun päällä, vastaanotin tunnistaa aktiviteetin VCR SCART-sisäänmenossa."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Kun arvo ei ole nolla, tallennus alkaa aiemmin kuin ohjelmaoppaassa oleva aloitusaika."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21801,7 +21793,7 @@ msgstr "ja"
 msgid "and never ask again this session again"
 msgstr "älä kysy vahvistusta uudelleen"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "Kaikentyyppiset tallennukset"
 
 msgid ""
@@ -22378,10 +22370,10 @@ msgstr "hyppää eteenpäin seuraavaan kappaleeseen"
 msgid "jump to chapter by number"
 msgstr "Hyppää luku numeron mukaan"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "keskeytä, älä näytä viestiä"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "keskeytä, näytä viesti"
 
 msgid "just boot"
@@ -22510,7 +22502,7 @@ msgstr "luonto/eläimet/ympäristö"
 msgid "never"
 msgstr "ei koskaan"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "ei koskaan"
 
 msgid "new media"
@@ -22675,13 +22667,13 @@ msgstr "tyhjennä poistetut suosikkilistat"
 msgid "python"
 msgstr "python"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "todellinen tai näennäistallennukset"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "todellinen tallennukset"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "todellinen tallennukset tai suoratoisto"
 
 #, python-format

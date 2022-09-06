@@ -1933,32 +1933,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s taaskäivitada.\n"
 "Kas nõustud?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s kasutajaliidese taaskäivitada.\n"
 "Kas nõustud?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
 "panna %s %s ooteseisundisse. Kas nõustud?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
 "%s %s välja lülitada. Kas nõustud?"
@@ -6037,16 +6029,16 @@ msgstr "Taani"
 msgid "Depth"
 msgstr "Sügavus"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, talleta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Dekodeeri ja salvesta ecm"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Dekodeeri http vood"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Dekodeeri sisenevad http vood"
 
 msgid "Description"
@@ -6559,7 +6551,7 @@ msgstr "Ära lisa seda salvestust"
 msgid "Don't ask again!"
 msgstr "Ära enam küsi!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Ära dekodeeri, salvesta ecm"
 
 msgid "Don't restart"
@@ -10670,10 +10662,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Salvestuse lõppu lisatakse (min)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Salvestuse algusesse lisatakse (min)"
 
 #
@@ -11857,8 +11849,8 @@ msgid "No transparency"
 msgstr "Läbipaistmatu"
 
 # RecordTimer.py
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Salvestustaimeril puudub vaba tuuner!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Salvestustaimeril puudub vaba tuuner!"
 
 # RecordTimer.py
 msgid ""
@@ -13455,7 +13447,7 @@ msgstr "Eelistatud tuuner salvestamiseks"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Salvestuseks valmistumise aeg (sek)"
 
 msgid "Preparing... Please wait"
@@ -14403,7 +14395,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
 
 msgid "Remove current folder from bookmarks"
@@ -17515,7 +17507,7 @@ msgstr "Unetaimer"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17878,7 +17870,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Lõuna-Sudaan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Salvestistele tagatud kettaruum (GB)"
 
 #, python-format
@@ -21432,7 +21424,7 @@ msgstr "Kui lubatud, võivad salvestused vaba tuuneri puudumisel saate vaatamise
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse hoolimata seadistustes määratust alati, kui kanalitüübile lisatakse 0x100."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21533,10 +21525,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kui lubatud, tuvastab vastuvõtja VCR SCART sisendi kasutuse."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Salvestamist alustatakse enne saatekavas näidatud aega."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22401,7 +22393,7 @@ msgid "and never ask again this session again"
 msgstr "ja selle seansi jooksul enam ei küsita"
 
 # Record neu 5.1
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "Kõik salvestused"
 
 msgid ""
@@ -23003,11 +22995,11 @@ msgid "jump to chapter by number"
 msgstr "Hüpe peatükile  numbri järgi"
 
 # Record neu 5.1
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "Katkesta teavitamata"
 
 # Record neu 5.1
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "Katkesta ja teavita"
 
 # Powerlost usage.config
@@ -23142,7 +23134,7 @@ msgid "never"
 msgstr "Mitte kunagi"
 
 # Record neu 5.1
-msgid "never abort"
+msgid "Never abort"
 msgstr "Mitte kunagi"
 
 msgid "new media"
@@ -23311,15 +23303,15 @@ msgid "python"
 msgstr "python"
 
 # Record neu 5.1
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "Ehtsad või võltssalvestused"
 
 # Record neu 5.1
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "Ehtsad salvestused"
 
 # Record neu 5.1
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "Ehtsad salvestused või voogesitus"
 
 #, python-format
