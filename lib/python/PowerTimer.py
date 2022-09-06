@@ -431,7 +431,7 @@ class PowerTimerEntry(TimerEntry, object):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24  # One day.
 		self.autosleepinstandbyonly = "no"
-		self.autosleepdelay = int(autosleepdelay) * 60
+		self.autosleepdelay = autosleepdelay
 		self.autosleeprepeat = "once"
 		self.autosleepwindow = False
 		self.autosleepbegin = self.begin
@@ -473,6 +473,7 @@ class PowerTimerEntry(TimerEntry, object):
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = int(time())
 		nextState = self.state + 1
+		autoSleepDelay = self.autosleepdelay * 60
 		self.log(5, "Activating state %d." % nextState)
 		if nextState == self.StatePrepared and self.timerType in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction("", -maxsize, self.keyPressed)
@@ -486,7 +487,7 @@ class PowerTimerEntry(TimerEntry, object):
 					self.autosleepbegin -= 86400
 			if self.getAutoSleepWindow():
 				startingPoint = self.autosleepbegin if now < self.autosleepbegin and now > self.autosleepbegin - self.prepare_time - 3 else now  # Is begin in the prepare time window?
-				self.begin = startingPoint + self.autosleepdelay
+				self.begin = startingPoint + autoSleepDelay
 				self.end = self.begin
 			else:
 				return False
@@ -506,7 +507,7 @@ class PowerTimerEntry(TimerEntry, object):
 					if not self.getAutoSleepWindow():
 						return False
 					else:
-						self.begin = now + self.autosleepdelay
+						self.begin = now + autoSleepDelay
 						self.end = self.begin
 						return False
 				print("[PowerTimer] Time warp detected - timer %s ending without action." % self.__repr__(True))
@@ -566,10 +567,10 @@ class PowerTimerEntry(TimerEntry, object):
 						eActionMap.getInstance().unbindAction("", self.keyPressed)
 						return True
 					else:
-						self.begin = now + self.autosleepdelay
+						self.begin = now + autoSleepDelay
 						self.end = self.begin
 				else:
-					self.begin = now + self.autosleepdelay
+					self.begin = now + autoSleepDelay
 					self.end = self.begin
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				if DEBUG:
@@ -600,7 +601,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction("", self.keyPressed)
 							return True
-					self.begin = now + self.autosleepdelay
+					self.begin = now + autoSleepDelay
 					self.end = self.begin
 			elif self.timerType == TIMERTYPE.RESTART:
 				if DEBUG:
