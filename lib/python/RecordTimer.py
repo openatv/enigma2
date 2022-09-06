@@ -202,7 +202,7 @@ class RecordTimer(Timer):
 		except OSError as err:
 			print("[RecordTimer] Error %d: Unable to save timer entries to '%s'!  (%s)" % (err.errno, TIMER_XML_FILE, err.strerror))
 
-	def saveTimer(self):  # Deprecated method name only used by the IceTV and TagEditor.
+	def saveTimer(self):  # Deprecated method name only used by some plug ins.
 		return self.saveTimers()
 
 	def createTimer(self, timerDom):
