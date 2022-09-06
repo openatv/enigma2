@@ -949,10 +949,10 @@ class ConfigSatlist(ConfigSatellite):
 # 	available for translations.
 #
 class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False):
 		if default is None:
 			default = min
-		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(min, max + 1, stepwidth)], default=default)
+		ConfigSelection.__init__(self, choices=[(x, str(x)) for x in range(min, max + 1, stepwidth)], default=default)
 		self.wrapAround = wraparound
 
 	def handleKey(self, key, callback=None):
