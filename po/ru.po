@@ -5943,16 +5943,16 @@ msgstr "Дания"
 msgid "Depth"
 msgstr "Глубина"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "'Раскодировать и записать ECM' - позволяет записать и раскодировать при воспроизведении, когда при записи не удаётся раскодировать. 'Не раскодировать ЕСМ и записать' хранит зашифрованные записи, которые могут быть раскодированы во время воспроизведения. 'Обычный' расшифровывает записи без записи ЕСМ."
 
 msgid "Unscramble and record ECM"
 msgstr "Декодирование и запись ECM"
 
-msgid "Descramble http streams"
+msgid "Unscramble http streams"
 msgstr "Декодировать http потоки"
 
-msgid "Descramble receiving http streams"
+msgid "Unscramble receiving http streams"
 msgstr "Расшифровывать получаемые HTTP-потоки"
 
 msgid "Description"
@@ -20821,7 +20821,7 @@ msgstr "Если включено, при начале записи просма
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Если включено, будет выводиться предупреждение с выбором об остановке или продолжении работы таймшифта."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Если этот параметр включен, всегда дескремблируйте получение HTTP-потоков. Это требует дополнительных ресурсов (дескремблирование демультиплексоров), включайте только при необходимости. Отдельные потоки всегда дескремблируются, если к типу канала добавляется 0x100, независимо от этого параметра."
 
 msgid "When enabled, authentication is required to watch http streams."
