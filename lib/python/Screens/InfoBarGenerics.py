@@ -3705,6 +3705,8 @@ class InfoBarInstantRecord:
 			serviceref = ServiceReference(serviceref)
 
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
+		recording.marginBefore = 0
+		recording.marginAfter = 0
 		recording.dontSave = True
 
 		if event is None or limitEvent == False:
@@ -3840,6 +3842,8 @@ class InfoBarInstantRecord:
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
+			entry.eventBegin = entry.begin
+			entry.eventEnd = entry.end
 		#else:
 		#	if entry.end != int(time()):
 		#		entry.autoincrease = False

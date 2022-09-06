@@ -11,7 +11,7 @@ from ServiceReference import ServiceReference
 from skin import parseBoolean, parseColor, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSelectionNumber, ConfigSubDict, ConfigText, ConfigYesNo, config
+from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -420,15 +420,21 @@ class RecordTimerList(TimerListBase):
 				repeatedText = ", ".join([dict(SHORT_DAY_NAMES).get(x) for x in repeatedText])
 		else:
 			repeatedText = begin[0]  # Date.
-		duration = int((timer.end - timer.begin) / 60.0)
+		# duration = int((timer.end - timer.begin) / 60.0)
+		# durationText = ngettext("%d Min", "%d Mins", duration) % duration
+		marginBefore = timer.marginBefore // 60
+		eventDuration = (timer.eventEnd - timer.eventBegin) // 60
+		marginAfter = timer.marginAfter // 60
+		duration = marginBefore + eventDuration + marginAfter
+		durationText = ngettext("%d + %d + %d Min", "%d + %d + %d Mins", duration) % (marginBefore, eventDuration, marginAfter)
 		if timer.justplay:
-			if timer.end > timer.begin + 3:
-				text = "%s %s ... %s (%s, %s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], _("ZAP"), ngettext("%d Min", "%d Mins", duration) % duration)
+			if timer.hasEndTime:
+				text = "%s %s ... %s (%s, %s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], _("ZAP"), durationText)
 			else:
 				# text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP as PiP") if timer.pipzap else _("ZAP"))
 				text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP"))
 		else:
-			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], ngettext("%d Min", "%d Mins", duration) % duration)
+			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], durationText)
 		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			state = TIMER_STATES.get(timer.state, UNKNOWN)
 			if timer.state == TimerEntry.StateWaiting:
@@ -725,8 +731,9 @@ class PowerTimerOverview(TimerOverviewBase):
 			self["cleanupActions"].setEnabled(False)
 
 	def addTimer(self):
-		begin = time() + 60.0
-		end = time() + 120.0
+		now = int(time())
+		begin = now + 60
+		end = now + 120
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
@@ -919,7 +926,8 @@ class RecordTimerOverview(TimerOverviewBase):
 				event = info.getEvent(0)
 		# NOTE: Only works if already playing a service!
 		serviceRef = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		data = parseEvent(event, description=False) if event else (int(time()), int(time() + 60), "", "", None)
+		now = int(time())
+		data = parseEvent(event, description=False) if event else (now, now + 60, "", "", None)
 		self.session.openWithCallback(self.addTimerCallback, RecordTimerEdit, RecordTimerEntry(serviceRef, checkOldTimers=True, dirname=preferredTimerPath(), fixDescription=True, *data))
 
 	def addTimerCallback(self, result):
@@ -1232,7 +1240,7 @@ class PowerTimerEdit(Setup):
 		])
 		self.timerNetIP = ConfigYesNo(default=self.timer.netip)
 		self.timerIPAddress = [x.strip() for x in self.timer.ipadress.split(",")]
-		self.timerNetIPCount = ConfigSelectionNumber(default=len(self.timerIPAddress), stepwidth=1, min=1, max=5)
+		self.timerNetIPCount = ConfigSelection(default=len(self.timerIPAddress), choices=[(x, str(x)) for x in range(1, 6)])
 		while len(self.timerIPAddress) < 6:
 			self.timerIPAddress.append("0.0.0.0")
 		self.timerIPAddress[0] = ConfigIP(default=[int(x) for x in self.timerIPAddress[0].split(".")])
@@ -1282,6 +1290,7 @@ class PowerTimerEdit(Setup):
 			callback(self)
 		if not self.timerSetEndTime.value:
 			self.timerEndTime.value = self.timerStartTime.value
+		now = int(time())
 		self.timer.resetRepeated()
 		self.timer.timerType = POWERTIMER_VALUES.get(self.timerType.value, POWER_TIMERTYPE.WAKEUP)
 		self.timer.afterEvent = POWERTIMER_AFTER_VALUES.get(self.timerAfterEvent.value, POWER_AFTEREVENT.NONE)
@@ -1296,7 +1305,7 @@ class PowerTimerEdit(Setup):
 			self.timer.begin = begin
 			self.timer.end = end
 		if self.timerType.value in ("autostandby", "autodeepstandby"):
-			self.timer.begin = int(time()) + 10
+			self.timer.begin = now + 10
 			self.timer.end = self.timer.begin
 			self.timer.autosleepinstandbyonly = self.timerActiveInStandby.value
 			self.timer.autosleepdelay = self.timerSleepDelay.value
@@ -1304,6 +1313,10 @@ class PowerTimerEdit(Setup):
 			if self.timerRepeat.value == "repeated":  # Ensure that the timer repeated is cleared if we have an autosleeprepeat.
 				self.timer.resetRepeated()
 				self.timerRepeat.value = "once"  # Stop it being set again.
+			self.timer.autosleepwindow = self.timerSleepWindow.value
+			if self.timerSleepWindow.value:
+				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)	
+				self.timer.autosleepend = self.getTimeStamp(now, self.timerSleepEnd.value)
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
 				for day in (0, 1, 2, 3, 4, 5, 6):
@@ -1325,11 +1338,11 @@ class PowerTimerEdit(Setup):
 				self.timer.begin = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
 				self.timer.end = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerEndTime.value)
 			else:
-				self.timer.begin = self.getTimeStamp(time(), self.timerStartTime.value)
-				self.timer.end = self.getTimeStamp(time(), self.timerEndTime.value)
+				self.timer.begin = self.getTimeStamp(now, self.timerStartTime.value)
+				self.timer.end = self.getTimeStamp(now, self.timerEndTime.value)
 			if self.timer.end < self.timer.begin:  # If end is less than start then add 1 day to the end time.
 				self.timer.end += 86400
-		self.session.nav.PowerTimer.saveTimer()
+		self.session.nav.PowerTimer.saveTimers()
 		for notifier in self.onSave:
 			notifier()
 		self.close((True, self.timer))
@@ -1392,13 +1405,18 @@ class RecordTimerEdit(Setup):
 			self.timerDay[day] = ConfigYesNo(default=days[day])
 		self.timerRename = ConfigYesNo(default=self.timer.rename_repeat != 0)
 		self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
-		self.timerStartTime = ConfigClock(default=self.timer.begin)
-		self.timerMarginBefore = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=config.recording.margin_before.value, wraparound=True)
-		self.timerShowEndTime = ConfigYesNo(default=self.timer.end > self.timer.begin + 3 and self.timer.justplay != 0)
-		self.timerEndTime = ConfigClock(default=self.timer.end)
-		self.timerMarginAfter = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=config.recording.margin_after.value, wraparound=True)
+		# self.timerStartTime = ConfigClock(default=self.timer.begin)
+		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
+		marginChoices = [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(121)]
+		self.timerMarginBefore = ConfigSelection(default=self.timer.marginBefore // 60, choices=marginChoices)
+		print("[Timers] DEBUG: default=%d, value=%d, margin=%d." % (self.timerMarginBefore.value, self.timerMarginBefore.default, self.timer.marginBefore // 60))
+		# self.timerHasEndTime = ConfigYesNo(default=self.timer.end > self.timer.begin + 3 and self.timer.justplay != 0)
+		self.timerHasEndTime = ConfigYesNo(default=self.timer.hasEndTime)
+		# self.timerEndTime = ConfigClock(default=self.timer.end)
+		self.timerEndTime = ConfigClock(default=self.timer.eventEnd)
+		self.timerMarginAfter = ConfigSelection(default=self.timer.marginAfter // 60, choices=marginChoices)
 		try:  # No current service available?  (FIXME: Some service-chooser needed here!)
-			serviceName = str(self.timer.service_ref.getServiceName())
+			serviceName = self.timer.service_ref.getServiceName()
 		except Exception:
 			serviceName = _("N/A")
 		self.timerService = ConfigSelection([(serviceName, serviceName)])
@@ -1411,8 +1429,8 @@ class RecordTimerEdit(Setup):
 			recordingType = "normal"
 		self.timerRecordingType = ConfigSelection(default=recordingType, choices=[
 			("normal", _("Normal")),
-			("descrambled+ecm", _("Descramble and record ECM")),
-			("scrambled+ecm", _("Don't descramble, record ECM"))
+			("descrambled+ecm", _("Unscramble and record ECM")),
+			("scrambled+ecm", _("Don't unscramble, record ECM"))
 		])
 		default = self.timer.dirname or defaultMoviePath()
 		locations = config.movielist.videodirs.value
@@ -1523,27 +1541,29 @@ class RecordTimerEdit(Setup):
 		self.timer.justplay = self.timerType.value == "zap"
 		self.timer.always_zap = self.timerType.value == "zap+record"
 		self.timer.rename_repeat = 1 if self.timerRename.value else 0
-		if self.timerType.value == "zap":
-			if not self.timerShowEndTime.value:
-				self.timerEndTime.value = self.timerStartTime.value
-				self.timerAfterEvent.value = "nothing"
+		# if self.timerType.value == "zap":
+		# 	if not self.timerHasEndTime.value:
+		# 		# self.timerEndTime.value = self.timerStartTime.value
+		# 		self.timerAfterEvent.value = "nothing"
+		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
+			self.timerAfterEvent.value = "nothing"
 		if self.timerEndTime.value == self.timerStartTime.value and self.timerAfterEvent.value != "nothing":
 			self.timerAfterEvent.value = "nothing"
 			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30)
 		self.timer.resetRepeated()
 		if self.timerRepeat.value == "once":
-			date = self.timerStartDate.value
-			startTime = self.timerStartTime.value
-			begin = self.getTimeStamp(date, startTime)
-			endTime = self.timerEndTime.value
-			end = self.getTimeStamp(date, endTime)
-			if end < begin:  # If end is less than start then add 1 day to the end time.
-				end += 86400
-			if self.timerType.value == "zap":  # If this is a Zap timer and no end is set then set the duration to 1 second so time is shown in EPGs.
-				if not self.timerShowEndTime.value:
-					end = begin + 1
-			self.timer.begin = begin
-			self.timer.end = end
+			startDate = self.timerStartDate.value
+			# startTime = self.timerStartTime.value
+			# begin = self.getTimeStamp(date, startTime)
+			# endTime = self.timerEndTime.value
+			# end = self.getTimeStamp(date, endTime)
+			# if end < begin:  # If end is less than start then add 1 day to the end time.
+			# 	end += 86400
+			# if self.timerType.value == "zap":  # If this is a Zap timer and no end is set then set the duration to 1 second so time is shown in EPGs.
+			# 	if not self.timerHasEndTime.value:
+			# 		end = begin + 1
+			# self.timer.begin = begin
+			# self.timer.end = end
 		elif self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
 				for day in (0, 1, 2, 3, 4, 5, 6):
@@ -1561,14 +1581,22 @@ class RecordTimerEdit(Setup):
 					if self.timerDay[DAY_LIST[day]].value:
 						self.timer.setRepeated(day)
 			self.timer.repeatedbegindate = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
-			if self.timer.repeated:
-				self.timer.begin = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
-				self.timer.end = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerEndTime.value)
-			else:
-				self.timer.begin = self.getTimeStamp(time(), self.timerStartTime.value)
-				self.timer.end = self.getTimeStamp(time(), self.timerEndTime.value)
-			if self.timer.end < self.timer.begin:  # If end is less than start then add 1 day to the end time.
-				self.timer.end += 86400
+			startDate = self.timerRepeatStartDate.value if self.timer.repeated else int(time())
+			# self.timer.begin = self.getTimeStamp(startDate, self.timerStartTime.value)
+			# self.timer.end = self.getTimeStamp(startDate, self.timerEndTime.value)
+		marginBefore = self.timerMarginBefore.value * 60
+		eventBegin = self.getTimeStamp(startDate, self.timerStartTime.value)
+		eventEnd = self.getTimeStamp(startDate, self.timerEndTime.value)
+		marginAfter = self.timerMarginAfter.value * 60
+		if eventEnd < eventBegin:  # If eventEnd is less than eventBegin then add 1 day to the eventEnd time.
+			eventEnd += 86400
+		self.timer.begin = eventBegin - marginBefore
+		self.timer.end = eventEnd + marginAfter
+		self.timer.marginBefore = marginBefore
+		self.timer.eventBegin = eventBegin
+		self.timer.eventEnd = eventEnd
+		self.timer.marginAfter = marginAfter
+		self.timer.hasEndTime = self.timerHasEndTime.value
 		self.timer.service_ref = self.timerServiceReference
 		self.timer.descramble = {
 			"normal": True,
@@ -1604,7 +1632,7 @@ class RecordTimerEdit(Setup):
 					return
 				elif linkServices > 0:
 					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
-		self.session.nav.RecordTimer.saveTimer()
+		self.session.nav.RecordTimer.saveTimers()
 		for notifier in self.onSave:
 			notifier()
 		self.close((True, self.timer))
@@ -1616,7 +1644,7 @@ class RecordTimerEdit(Setup):
 	def subServiceCallback(self, subService):
 		if subService is not None:
 			self.timer.service_ref = ServiceReference(subService[1])
-		self.session.nav.RecordTimer.saveTimer()
+		self.session.nav.RecordTimer.saveTimers()
 		for notifier in self.onSave:
 			notifier()
 		self.close((True, self.timer))
@@ -1634,7 +1662,7 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 			self.timer.begin += config.recording.margin_before.value * 60
 			self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
-		self.session.nav.RecordTimer.saveTimer()
+		self.session.nav.RecordTimer.saveTimers()
 
 	def retval(self):
 		return self.timer
