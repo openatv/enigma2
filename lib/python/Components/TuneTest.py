@@ -165,7 +165,7 @@ class TuneTest:
 		self.frontend.getFrontendStatus(tunerdict)
 		stop = False
 
-		print("status:", tunerdict)
+		print("[TuneTest] updateStatus tunerdict: %s" % tunerdict)
 		if tunerdict["tuner_state"] == "TUNING":
 			print("TUNING")
 			self.timer.start(100, True)
@@ -189,6 +189,7 @@ class TuneTest:
 					stop = True
 			elif tunerdict["tuner_state"] == "LOCKED":
 				pidsFailed = False
+				# TODO this complete if block needs to be fixed.
 				if self.checkPIDs:
 					if self.currTuned is not None:
 						if self.tsid != self.currTuned[15] or self.onid != self.currTuned[16]:
@@ -222,12 +223,12 @@ class TuneTest:
 			self.finishedChecking()
 
 	def firstTransponder(self):
-		print("firstTransponder:")
+		print("firstTransponder:%s" % self.tuningtransponder)
 		index = 0
 		if self.checkPIDs:
 			print("checkPIDs-loop")
 			# check for tsid != -1 and onid != -1
-			print("index:", index)
+			print("index: %s" % index)
 			print("len(self.transponderlist):%s" % len(self.transponderlist))
 			while (index < len(self.transponderlist) and (self.transponderlist[index][15] == -1 or self.transponderlist[index][16] == -1)):
 				index += 1
@@ -235,12 +236,12 @@ class TuneTest:
 		return index
 
 	def nextTransponder(self):
-		print("getting next transponder %s" % self.tuningtransponder)
+		print("getting next transponder:%s" % self.tuningtransponder)
 		index = self.tuningtransponder + 1
 		if self.checkPIDs:
 			print("checkPIDs-loop")
 			# check for tsid != -1 and onid != -1
-			print("index:", index)
+			print("index: %s" % index)
 			print("len(self.transponderlist):%s" % len(self.transponderlist))
 			while (index < len(self.transponderlist) and (self.transponderlist[index][15] == -1 or self.transponderlist[index][16] == -1)):
 				index += 1
