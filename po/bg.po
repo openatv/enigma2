@@ -1911,32 +1911,24 @@ msgid "A file from media is in use!"
 msgstr "Файл от медия се използва!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира вашия %s %s.\n"
 "Да го направи ли сега?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира потребителския интерфейс.\n"
 "Да го направи ли сега?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Готовият таймер за захранване иска да настрои вашия\n"
 "%s %s в режим на готовност. Да го направи ли сега?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да изключи вашия %s %s.\n"
 "Да го направи ли сега?"
@@ -5927,7 +5919,7 @@ msgstr "Дълбочина"
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr "Декодиране и запис ECM' дава възможност за декодиране след това, ако декомпресирането при запис не е успешно. \"Не декодиране, запис ECM\", запазва записа компресиран, който може да бъде декодиран при възпроизвеждане. \"Нормално\" означава декодиране на записа и не записване на ECM."
 
-msgid "Descramble and record ECM"
+msgid "Unscramble and record ECM"
 msgstr "Декодирайте и запишете ecm"
 
 msgid "Descramble http streams"
@@ -6436,7 +6428,7 @@ msgstr "Не добавяйте този запис"
 msgid "Don't ask again!"
 msgstr "Не питайте отново!"
 
-msgid "Don't descramble, record ECM"
+msgid "Don't unscramble, record ECM"
 msgstr "Не декодирайте, запишете ecm"
 
 msgid "Don't restart"
@@ -10402,10 +10394,10 @@ msgstr ""
 msgid "Marathi"
 msgstr ""
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Марж след записа (минути)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Марж преди записа (минути)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11513,8 +11505,8 @@ msgstr "Не на всички"
 msgid "No transparency"
 msgstr "Не прозрачност"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Няма тунер на разположение за запис с таймер!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Няма тунер на разположение за запис с таймер!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -13051,7 +13043,7 @@ msgstr "Предпочитан тунер за записи"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Предпочитани тунери за записи, разрешена е множествена селекция"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Време за подготовка за запис (секунди)"
 
 msgid "Preparing... Please wait"
@@ -13966,7 +13958,7 @@ msgstr "Премахване на всички данни от таймера"
 msgid "Remove all user interface data"
 msgstr "Премахване на всички данни за потребителския интерфейс"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Премахване на завършените таймери след (дни)"
 
 msgid "Remove current folder from bookmarks"
@@ -16983,7 +16975,7 @@ msgstr "Таймер за заспиване"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17336,7 +17328,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr ""
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Дисково пространство, което да резервирате за записи (в GB)"
 
 #, python-format
@@ -20853,10 +20845,10 @@ msgstr "Когато е активирано, ще видите пакети dev
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Когато е разрешено, приемникът ви ще открие дейност на VCR SCART входа."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Когато не е нула, записът ще стартира по-рано от началния час посочен от EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Когато не е нула, записът ще спре по-късно от момента на приключване посочен чрез EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21701,7 +21693,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "и никога повече не питайте тази сесия"
 
-msgid "any recordings"
+msgid "Any recordings"
 msgstr "всякакви записи"
 
 msgid ""
@@ -22278,10 +22270,10 @@ msgstr "скок напред до следващото заглавие"
 msgid "jump to chapter by number"
 msgstr "скок на глава по номер"
 
-msgid "just abort, no message"
+msgid "Just abort, no message"
 msgstr "просто отмени, без съобщение"
 
-msgid "just abort, show message"
+msgid "Just abort, show message"
 msgstr "просто отмени, покажи съобщение"
 
 msgid "just boot"
@@ -22410,7 +22402,7 @@ msgstr "природа/животни/околна среда"
 msgid "never"
 msgstr "никога"
 
-msgid "never abort"
+msgid "Never abort"
 msgstr "никога не прекъсвайте"
 
 msgid "new media"
@@ -22575,13 +22567,13 @@ msgstr "изчистване на изтрити потребителски бу
 msgid "python"
 msgstr "питон"
 
-msgid "real or pseudo recordings"
+msgid "Real or pseudo recordings"
 msgstr "реални или псевдо записи"
 
-msgid "real recordings"
+msgid "Real recordings"
 msgstr "реални записи"
 
-msgid "real recordings or streaming"
+msgid "Real recordings or streaming"
 msgstr "реални записи или стрийминг"
 
 #, python-format
