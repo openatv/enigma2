@@ -949,7 +949,7 @@ class PowerTimerEntry(TimerEntry, object):
 
 	def keyPressed(self, key, tag):
 		if self.getAutoSleepWindow():
-			self.begin = int(time()) + self.autosleepdelay
+			self.begin = int(time()) + (self.autosleepdelay * 60)
 			self.end = self.begin
 
 	def getAutoSleepWindow(self):
