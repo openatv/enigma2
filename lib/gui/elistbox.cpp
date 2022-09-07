@@ -506,6 +506,10 @@ void eListbox::entryReset(bool selectionHome)
 void eListbox::setFont(gFont *font)
 {
 	m_style.m_font = font;
+	// support old skins configlist
+	if(!m_style.m_valuefont)
+		m_style.m_valuefont = new gFont(font->family, font->pointSize - font->pointSize/5);
+
 }
 
 void eListbox::setEntryFont(gFont *font)
