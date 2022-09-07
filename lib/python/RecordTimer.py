@@ -632,6 +632,7 @@ class RecordTimerEntry(TimerEntry, object):
 		if not isinstance(serviceref, ServiceReference):  # NOTE: Rename "serviceref" and "service_ref" to "serviceRef".
 			raise AssertionError("[RecordTimerEntry] Error: Invalid service reference!")
 		self.service_ref = serviceref if serviceref and serviceref.isRecordable() else ServiceReference(None)
+		self.eit = None
 		if not name or not description or not eit or not cridSeries or not cridEpisode or not cridRecommendation:
 			event = self.getEventFromEPGId(eit) or self.getEventFromEPG()
 			if event:
