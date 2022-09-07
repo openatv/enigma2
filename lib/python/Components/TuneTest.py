@@ -9,7 +9,7 @@ class Tuner:
 	# transponder = (0:frequency 1:symbolrate 2:polarisation 3:fec 4:inversion 5:orbpos 6:system 7:modulation 8:rolloff 9:pilot 10:is_id 11:pls_mode 12:pls_code 13:t2mi_plp_id 14:t2mi_pid 15:tsid 16:onid)
 	def tune(self, transponder):
 		if self.frontend:
-			print("[TuneTest] tuning to transponder with data %s" % transponder)
+			print("[TuneTest] tuning to transponder with data %s" % str(transponder))
 			parm = eDVBFrontendParametersSatellite()
 			parm.frequency = transponder[0] * 1000
 			parm.symbol_rate = transponder[1] * 1000
@@ -73,7 +73,7 @@ class Tuner:
 
 	def tuneCab(self, transponder):
 		if self.frontend:
-			print("[TuneTest] tuning to transponder with data %s" % transponder)
+			print("[TuneTest] tuning to transponder with data %s" % str(transponder))
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = transponder[0]
 			parm.symbol_rate = transponder[1]
@@ -92,7 +92,7 @@ class Tuner:
 
 	def tuneATSC(self, transponder):
 		if self.frontend:
-			print("[TuneTest] tuning to transponder with data %s" % transponder)
+			print("[TuneTest] tuning to transponder with data %s" % str(transponder))
 			parm = eDVBFrontendParametersATSC()
 			parm.frequency = transponder[0]
 			parm.modulation = transponder[1]
@@ -165,7 +165,7 @@ class TuneTest:
 		self.frontend.getFrontendStatus(tunerdict)
 		stop = False
 
-		print("[TuneTest] updateStatus tunerdict: %s" % tunerdict)
+		print("[TuneTest] updateStatus tunerdict: %s" % str(tunerdict))
 		if tunerdict["tuner_state"] == "TUNING":
 			print("TUNING")
 			self.timer.start(100, True)
@@ -223,7 +223,7 @@ class TuneTest:
 			self.finishedChecking()
 
 	def firstTransponder(self):
-		print("firstTransponder:%s" % self.tuningtransponder)
+		print("firstTransponder:%s" % str(self.tuningtransponder))
 		index = 0
 		if self.checkPIDs:
 			print("checkPIDs-loop")
@@ -236,7 +236,7 @@ class TuneTest:
 		return index
 
 	def nextTransponder(self):
-		print("getting next transponder:%s" % self.tuningtransponder)
+		print("getting next transponder:%s" % str(self.tuningtransponder))
 		index = self.tuningtransponder + 1
 		if self.checkPIDs:
 			print("checkPIDs-loop")
@@ -271,7 +271,7 @@ class TuneTest:
 		return False
 
 	def tune(self):
-		print("tuning to %s" % self.tuningtransponder)
+		print("tuning to %s" % str(self.tuningtransponder))
 		if self.tuningtransponder < len(self.transponderlist):
 			self.pidStatus = self.INTERNAL_PID_STATUS_NOOP
 			self.oldTuned = self.currTuned
