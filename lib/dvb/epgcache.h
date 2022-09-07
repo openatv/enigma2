@@ -154,6 +154,7 @@ private:
 	ePtr<eTimer> cleanTimer;
 	bool load_epg;
 	PSignal0<void> epgCacheStarted;
+	bool m_debug;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;
@@ -208,7 +209,7 @@ private:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 
 public:
-	/* Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file */
+	/* Used by servicedvbrecord.cpp, time shift, etc. to write the EIT file */
 	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
 	// Events are parsed epg events.. it's safe to use them after cache unlock
@@ -223,7 +224,12 @@ public:
 		PARTIAL_TITLE_SEARCH,
 		START_TITLE_SEARCH,
 		END_TITLE_SEARCH,
-		PARTIAL_DESCRIPTION_SEARCH
+		PARTIAL_DESCRIPTION_SEARCH,
+		CRID_SEARCH
+	};
+	enum {
+		CRID_EPISODE = 1,
+		CRID_SERIES = 2
 	};
 	enum {
 		CASE_CHECK,

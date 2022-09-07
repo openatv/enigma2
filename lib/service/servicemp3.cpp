@@ -499,7 +499,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_changed(0),
 	m_cutlist_enabled(1),
 	m_ref(ref),
-	m_pump(eApp, 1)
+	m_pump(eApp, 1,"eServiceMP3")
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_stream_tags = 0;
@@ -969,7 +969,7 @@ RESULT eServiceMP3::start()
 		case GST_STATE_CHANGE_FAILURE:
 			eDebug("[eServiceMP3] failed to start pipeline");
 			stop();
-			break;
+			return -1;
 		case GST_STATE_CHANGE_SUCCESS:
 			m_is_live = false;
 			break;

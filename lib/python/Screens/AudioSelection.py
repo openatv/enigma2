@@ -256,7 +256,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
-						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
+						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
 							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
@@ -600,7 +600,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
 				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
-		elif sub[0] == 1: # teletext
+		elif sub[0] == 1:  # teletext
 			menu = [
 				getConfigMenuItem("config.subtitles.ttx_subtitle_colors"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
@@ -661,19 +661,19 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		maxDelay = int(configItem.choices[len(configItem.choices) - 1])
 
 		if number == 1:
-			delay -= 45000 # -0.5sec
+			delay -= 45000  # -0.5sec
 		elif number == 3:
-			delay += 45000 # +0.5sec
+			delay += 45000  # +0.5sec
 		elif number == 4:
-			delay -= 90000 * 5 # -5sec
+			delay -= 90000 * 5  # -5sec
 		elif number == 6:
-			delay += 90000 * 5 # +5sec
+			delay += 90000 * 5  # +5sec
 		elif number == 7:
-			delay -= 90000 * 30 # -30sec
+			delay -= 90000 * 30  # -30sec
 		elif number == 9:
-			delay += 90000 * 30 # +30sec
+			delay += 90000 * 30  # +30sec
 		elif number == 0:
-			delay = 0 # reset to "No delay"
+			delay = 0  # reset to "No delay"
 
 		delay = min(max(delay, minDelay), maxDelay)
 

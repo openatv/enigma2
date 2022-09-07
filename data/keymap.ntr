@@ -76,6 +76,12 @@
 		<key id="KEY_F8" mapto="bluelong" flags="l" />
 	</map>
 
+	<map context="FunctionKeyActions">
+		<key id="KEY_F1" mapto="f1" flags="m" />
+		<key id="KEY_F2" mapto="f2" flags="m" />
+		<key id="KEY_F3" mapto="f3" flags="m" />
+	</map>
+
 	<map context="HelpActions">
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_OK" mapto="select" flags="m" />
@@ -117,6 +123,16 @@
 		<key id="KEY_FASTFORWARD" mapto="ignore" flags="b" />
 		<key id="1" mapto="ignore" flags="b" />
 		<key id="2" mapto="ignore" flags="b" />
+	</map>
+
+	<map context="InfoActions">
+		<key id="KEY_INFO" mapto="info" flags="m" />
+	</map>
+
+	<map context="MenuActions">
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_SPACE" mapto="menu" flags="m" />
 	</map>
 
 	<map context="NavigationActions">
@@ -230,8 +246,8 @@
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_BACKSPACE" mapto="backspace" flags="mr" />
 		<key id="KEY_DELETE" mapto="delete" flags="mr" />
-		<KEY id="KEY_F4" mapto="erase" flags="m" />
-		<key id="KEY_INSERT" mapto="toggleInsert" flags="m" />
+		<key id="KEY_F4" mapto="erase" flags="m" />
+		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
 		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
 	</map>
 
@@ -291,6 +307,19 @@
 		<key id="KEY_F8" mapto="dnsRemove" flags="m" />
 	</map>
 
+	<map context="InfoBarMenuActions">
+		<key id="KEY_MENU" mapto="showMenu" flags="m" />
+		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
+		<key id="KEY_PC" mapto="showNetworkSetup" flags="m" />
+		<key id="KEY_LAN" mapto="showNetworkSetup" flags="m" />
+		<!-- <key id="KEY_XXX" mapto="showSystemSetup" flags="m" /> -->
+		<!-- <key id="KEY_XXX" mapto="showHDMIRecordSetup" flags="m" /> -->
+		<key id="KEY_ANGLE" mapto="showRFmod" flags="m" />
+		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_SPACE" mapto="showMenu" flags="m" />
+	</map>
+
 	<map context="MsgBoxActions">
 		<!-- Also uses NavigationActions -->
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
@@ -300,6 +329,22 @@
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_ENTER" mapto="select" flags="m" />
+	</map>
+
+	<map context="TimerActions">
+		<!-- Also uses NavigationActions -->
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<key id="KEY_OK" mapto="edit" flags="m" />
+		<key id="KEY_INFO" mapto="log" flags="m" />
+		<key id="KEY_RED" mapto="delete" flags="m" />
+		<key id="KEY_GREEN" mapto="add" flags="m" />
+		<key id="KEY_YELLOW" mapto="toggle" flags="m" />
+		<key id="KEY_BLUE" mapto="cleanup" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+		<key id="KEY_ENTER" mapto="edit" flags="m" />
+		<key id="KEY_I" mapto="log" flags="m" />
 	</map>
 
 	<map context="VirtualKeyBoardActions">
@@ -333,6 +378,15 @@
 		<key id="KEY_F12" mapto="next" flags="m" />
 		<key id="KEY_F10" mapto="last" flags="m" />
 		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
+	</map>
+
+	<map context="VolumeAdjustActions">
+		<key id="KEY_YELLOW" mapto="addCurrentService" flags="m" />
+		<key id="KEY_BLUE" mapto="deleteService" flags="m" />
+		<key id="KEY_FAVORITES" mapto="addService" flags="m" />
+		<key id="KEY_TV" mapto="addService" flags="m" />
+		<key id="KEY_RADIO" mapto="addService" flags="m" />
+		<key id="KEY_EPG" mapto="debug" flags="m" />
 	</map>
 
 	<!--
@@ -468,7 +522,7 @@
  	</map>
 
 	<map context="SatlistShortcutAction">
-		<key id="KEY_YELLOW" mapto="changetype" flags="b"/>
+		<key id="KEY_YELLOW" mapto="changetype" flags="b" />
 		<key id="KEY_BLUE" mapto="nothingconnected" flags="b" />
 	</map>
 
@@ -489,13 +543,13 @@
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 		<!--key id="KEY_SAT" mapto="openSatellites" flags="m" /-->
 	</map>
-	
+
 	<map context="InfobarHDMIActions">
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
 		<key id="KEY_AUX" mapto="HDMIinLong" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="HDMIin" flags="b" />
 		<key id="KEY_CONTEXT_MENU" mapto="HDMIinLong" flags="l" />
-	</map>	
+	</map>
 
 	<map context="MinuteInputActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
@@ -517,8 +571,6 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 		<key id="KEY_ESC" mapto="back" flags="m" />
-		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
-		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
@@ -544,21 +596,6 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
-	</map>
-
-	<map context="InfobarMenuActions">
-		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
-		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
-		<key id="KEY_PC" mapto="showNetworkSetup" flags="mr" />
-		<key id="KEY_LAN" mapto="showNetworkSetup" flags="mr" />
-		<key id="KEY_ANGLE" mapto="showRFmod" flags="l" /> 
-		<key id="KEY_ANGLE" mapto="toggleAspectRatio" flags="b" />
-		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="b" />
-	</map>
-
-	<map context="MenuActions">
-		<key id="KEY_MENU" mapto="menu" flags="mr" />
-		<key id="KEY_SPACE" mapto="menu" flags="mr" />
 	</map>
 
 	<map context="InfobarShowHideActions">
@@ -696,8 +733,10 @@
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
 		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
 		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
-		<key id="KEY_LEFT" mapto="seekBackManual" flags="m" />
-		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="m" />
+		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
+		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 		<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
 		<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
 		<key id="KEY_PREVIOUSSONG" mapto="SeekbarBack" flags="l" />
@@ -760,6 +799,8 @@
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
 		<key id="KEY_3" mapto="seekdef:3" flags="m" />
 		<key id="KEY_4" mapto="seekdef:4" flags="m" />
@@ -1034,12 +1075,6 @@
 		<key id="KEY_CHANNELDOWN" mapto="chminus" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m" />
 		<key id="KEY_NEXT" mapto="moveDown" flags="m" />
-	</map>
-
-	<map context="FunctionKeyActions">
-		<key id="KEY_F1" mapto="f1" flags="m" />
-		<key id="KEY_F2" mapto="f2" flags="m" />
-		<key id="KEY_F3" mapto="f3" flags="m" />
 	</map>
 
 	<map context="WindowActions">

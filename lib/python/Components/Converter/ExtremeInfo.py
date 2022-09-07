@@ -3,6 +3,7 @@ from Components.Element import cached
 from enigma import eServiceCenter, eServiceReference, iServiceInformation, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable
 from Components.Converter.Poll import Poll
 
+
 class ExtremeInfo(Poll, Converter):
 	TUNERINFO = 0
 	CAMNAME = 1
@@ -289,7 +290,7 @@ class ExtremeInfo(Poll, Converter):
 		try:
 			with open("/tmp/ecm.info", "r") as fd:
 				content = fd.read().split('\n')
-		except (IOError, OSError) as err:
+		except OSError as err:
 			content = []
 		return content
 
@@ -1255,7 +1256,7 @@ class ExtremeInfo(Poll, Converter):
 						if self.tunertype == 'linelist':
 							tunerinfo = frequency + '  ' + pol + '  ' + fec + '  ' + symbolrate + '  ' + orb
 						else:
-							tunerinfo = 'Satellite: ' + orb + '\nFrequency: ' + frequency + '\nPolarisation: ' + pol + '\nSymbolrate: ' + symbolrate + '\nFEC: ' + fec
+							tunerinfo = 'Satellite: ' + orb + '\nFrequency: ' + frequency + '\nPolarization: ' + pol + '\nSymbolrate: ' + symbolrate + '\nFEC: ' + fec
 					elif frontendData.get('tuner_type') == 'DVB-C':
 						fec = {eDVBFrontendParametersCable.FEC_None: 'None',
 						eDVBFrontendParametersCable.FEC_Auto: 'Auto',

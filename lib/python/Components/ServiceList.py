@@ -280,6 +280,9 @@ class ServiceList(GUIComponent):
 		self.l.getNext(r)
 		return r
 
+	def getList(self):
+		return self.l.getList()
+
 	def atBegin(self):
 		return self.instance.atBegin()
 
@@ -350,7 +353,6 @@ class ServiceList(GUIComponent):
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 
 	def postWidgetCreate(self, instance):
-		instance.setWrapAround(True)
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setFontsize()

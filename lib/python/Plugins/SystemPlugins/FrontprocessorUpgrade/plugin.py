@@ -8,7 +8,7 @@ def getUpgradeVersion():
 	import os
 	try:
 		r = os.popen("fpupgrade --version").read()
-	except IOError:
+	except OSError:
 		return None
 	if r[:16] != "FP update tool v":
 		return None
@@ -34,7 +34,7 @@ class FPUpgrade(Screen):
 		version = str(getFPVersion() or "N/A")
 		newversion = str(getUpgradeVersion() or "N/A")
 
-		self["text"] = Label(_("Your frontprocessor firmware must be upgraded.\nPress OK to start upgrade."))
+		self["text"] = Label(_("Your front panel processor firmware must be upgraded.\nPress OK to start upgrade."))
 		self["oldversion_label"] = Label(_("Current version:"))
 		self["newversion_label"] = Label(_("New version:"))
 

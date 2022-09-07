@@ -76,6 +76,12 @@
 		<key id="KEY_F8" mapto="bluelong" flags="l" />
 	</map>
 
+	<map context="FunctionKeyActions">
+		<key id="KEY_F1" mapto="f1" flags="m" />
+		<key id="KEY_F2" mapto="f2" flags="m" />
+		<key id="KEY_F3" mapto="f3" flags="m" />
+	</map>
+
 	<map context="HelpActions">
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_OK" mapto="select" flags="m" />
@@ -117,6 +123,16 @@
 		<key id="KEY_FASTFORWARD" mapto="ignore" flags="b" />
 		<key id="1" mapto="ignore" flags="b" />
 		<key id="2" mapto="ignore" flags="b" />
+	</map>
+
+	<map context="InfoActions">
+		<key id="KEY_INFO" mapto="info" flags="m" />
+	</map>
+
+	<map context="MenuActions">
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_SPACE" mapto="menu" flags="m" />
 	</map>
 
 	<map context="NavigationActions">
@@ -230,7 +246,7 @@
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_BACKSPACE" mapto="backspace" flags="mr" />
 		<key id="KEY_DELETE" mapto="delete" flags="mr" />
-		<KEY id="KEY_F4" mapto="erase" flags="m" />
+		<key id="KEY_F4" mapto="erase" flags="m" />
 		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
 		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
 	</map>
@@ -291,6 +307,19 @@
 		<key id="KEY_F8" mapto="dnsRemove" flags="m" />
 	</map>
 
+	<map context="InfoBarMenuActions">
+		<key id="KEY_MENU" mapto="showMenu" flags="m" />
+		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
+		<key id="KEY_PC" mapto="showNetworkSetup" flags="m" />
+		<key id="KEY_LAN" mapto="showNetworkSetup" flags="m" />
+		<!-- <key id="KEY_XXX" mapto="showSystemSetup" flags="m" /> -->
+		<!-- <key id="KEY_XXX" mapto="showHDMIRecordSetup" flags="m" /> -->
+		<key id="KEY_ANGLE" mapto="showRFmod" flags="m" />
+		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_SPACE" mapto="showMenu" flags="m" />
+	</map>
+
 	<map context="MsgBoxActions">
 		<!-- Also uses NavigationActions -->
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
@@ -300,6 +329,22 @@
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_ENTER" mapto="select" flags="m" />
+	</map>
+
+	<map context="TimerActions">
+		<!-- Also uses NavigationActions -->
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<key id="KEY_OK" mapto="edit" flags="m" />
+		<key id="KEY_INFO" mapto="log" flags="m" />
+		<key id="KEY_RED" mapto="delete" flags="m" />
+		<key id="KEY_GREEN" mapto="add" flags="m" />
+		<key id="KEY_YELLOW" mapto="toggle" flags="m" />
+		<key id="KEY_BLUE" mapto="cleanup" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+		<key id="KEY_ENTER" mapto="edit" flags="m" />
+		<key id="KEY_I" mapto="log" flags="m" />
 	</map>
 
 	<map context="VirtualKeyBoardActions">
@@ -558,21 +603,6 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
-	</map>
-
-	<map context="InfobarMenuActions">
-		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
-		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
-		<key id="KEY_PC" mapto="showNetworkSetup" flags="mr" />
-		<key id="KEY_LAN" mapto="showNetworkSetup" flags="mr" />
-		<key id="KEY_ANGLE" mapto="showRFmod" flags="l" />
-		<key id="KEY_ANGLE" mapto="toggleAspectRatio" flags="b" />
-		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="b" />
-	</map>
-
-	<map context="MenuActions">
-		<key id="KEY_MENU" mapto="menu" flags="mr" />
-		<key id="KEY_SPACE" mapto="menu" flags="mr" />
 	</map>
 
 	<map context="InfobarShowHideActions">
@@ -1052,12 +1082,6 @@
 		<key id="KEY_CHANNELDOWN" mapto="chminus" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m" />
 		<key id="KEY_NEXT" mapto="moveDown" flags="m" />
-	</map>
-
-	<map context="FunctionKeyActions">
-		<key id="KEY_F1" mapto="f1" flags="m" />
-		<key id="KEY_F2" mapto="f2" flags="m" />
-		<key id="KEY_F3" mapto="f3" flags="m" />
 	</map>
 
 	<map context="WindowActions">

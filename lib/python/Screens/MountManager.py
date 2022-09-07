@@ -263,11 +263,11 @@ class HddMount(Screen):
 				parts = line.strip().split()
 				size = int(parts[2])
 				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024), 2)) + _("TB")
+					des = "%s: %s%s" % (_("Size"), str(round((((float(size) / 1024) / 1024) / 1024), 2)), _("TB"))
 				elif ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("GB")
+					des = "%s: %s%s" % (_("Size"), str(round(((float(size) / 1024) / 1024), 2)), _("GB"))
 				else:
-					des = _("Size: ") + str(round((float(size) / 1024), 2)) + _("MB")
+					des = "%s: %s%s" % (_("Size"), str(round((float(size) / 1024), 2)), _("MB"))
 			else:
 				try:
 					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
@@ -276,11 +276,11 @@ class HddMount(Screen):
 				except:
 					size = 0
 				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)) + _("TB")
+					des = "%s: %s%s" % (_("Size"), str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)), _("TB"))
 				elif (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 2) / 1024) / 1024), 2)) + _("GB")
+					des = "%s: %s%s" % (_("Size"), str(round((((float(size) / 2) / 1024) / 1024), 2)), _("GB"))
 				else:
-					des = _("Size: ") + str(round(((float(size) / 2) / 1024), 2)) + _("MB")
+					des = "%s: %s%s" % (_("Size"), str(round(((float(size) / 2) / 1024), 2)), _("MB"))
 		f.close()
 		if des != '':
 			if rw.startswith('rw'):
@@ -322,14 +322,14 @@ class HddMount(Screen):
 			system('umount ' + mountp)
 			try:
 				mounts = open("/proc/mounts")
-			except IOError:
+			except OSError:
 				return -1
 			mountcheck = mounts.readlines()
 			mounts.close()
 			for line in mountcheck:
 				parts = line.strip().split(" ")
 				if path.realpath(parts[0]).startswith(device):
-					self.session.open(MessageBox, _("Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"), MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Can't unmount partition, make sure it is not being used for swap or record/time shift paths"), MessageBox.TYPE_INFO)
 			self.updateList()
 
 	def saveMypoints(self):
@@ -555,11 +555,11 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				parts = line.strip().split()
 				size = int(parts[2])
 				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024), 2)) + _("TB")
+					des = "%s: %s%s" % (_("Size"), str(round((((float(size) / 1024) / 1024) / 1024), 2)), _("TB"))
 				elif ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str((size // 1024) // 1024) + _("GB")
+					des = "%s: %s%s" % (_("Size"), str((size // 1024) // 1024), _("GB"))
 				else:
-					des = _("Size: ") + str(size // 1024) + _("MB")
+					des = "%s: %s%s" % (_("Size"), str(size // 1024), _("MB"))
 			else:
 				try:
 					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
@@ -568,11 +568,11 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				except:
 					size = 0
 				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)) + _("TB")
+					des = "%s: %s%s" % (_("Size"), str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)), _("TB"))
 				elif (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(((size // 2) // 1024) // 1024) + _("GB")
+					des = "%s: %s%s" % (_("Size"), str(((size // 2) // 1024) // 1024), _("GB"))
 				else:
-					des = _("Size: ") + str((size // 2) // 1024) + _("MB")
+					des = "%s: %s%s" % (_("Size"), str((size // 2) // 1024), _("MB"))
 		f.close()
 		item = NoSave(ConfigSelection(default='/media/' + device, choices=[('/media/' + device, '/media/' + device),
 		('/media/hdd', '/media/hdd'),

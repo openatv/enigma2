@@ -1098,7 +1098,7 @@ PyObject *eDVBCIInterfaces::getDescrambleRules(int slotid)
 	{
 		char tmp[255];
 		snprintf(tmp, 255, "eDVBCIInterfaces::getDescrambleRules try to get rules for CI Slot %d... but just %zd slots are available", slotid, m_slots.size());
-		PyErr_SetString(PyExc_StandardError, tmp);
+		PyErr_SetString(PyExc_ValueError, tmp);
 		return 0;
 	}
 	ePyObject tuple = PyTuple_New(3);
@@ -1150,14 +1150,14 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	{
 		char tmp[255];
 		snprintf(tmp, 255, "eDVBCIInterfaces::setDescrambleRules try to set rules for CI Slot %d... but just %zd slots are available", slotid, m_slots.size());
-		PyErr_SetString(PyExc_StandardError, tmp);
+		PyErr_SetString(PyExc_ValueError, tmp);
 		return -1;
 	}
 	if (!PyTuple_Check(obj))
 	{
 		char tmp[255];
 		snprintf(tmp, 255, "2nd argument of setDescrambleRules is not a tuple.. it is a '%s'!!", PyObject_TypeStr(obj));
-		PyErr_SetString(PyExc_StandardError, tmp);
+		PyErr_SetString(PyExc_TypeError, tmp);
 		return -1;
 	}
 	if (PyTuple_Size(obj) != 3)
@@ -1166,7 +1166,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			"first argument should be a pythonlist with possible services\n"
 			"second argument should be a pythonlist with possible providers/dvbnamespace tuples\n"
 			"third argument should be a pythonlist with possible caids";
-		PyErr_SetString(PyExc_StandardError, errstr);
+		PyErr_SetString(PyExc_TypeError, errstr);
 		return -1;
 	}
 	ePyObject service_list = PyTuple_GET_ITEM(obj, 0);
@@ -1180,7 +1180,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			"second argument(%s) should be a pythonlist with possible providers (providername strings)\n"
 			"third argument(%s) should be a pythonlist with possible caids (ints)",
 			PyObject_TypeStr(service_list), PyObject_TypeStr(provider_list), PyObject_TypeStr(caid_list));
-		PyErr_SetString(PyExc_StandardError, errstr);
+		PyErr_SetString(PyExc_TypeError, errstr);
 		return -1;
 	}
 	slot->possible_caids.clear();
@@ -1195,7 +1195,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in service list is not a string.. it is '%s'!!", PyObject_TypeStr(refstr));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		const char *tmpstr = PyString_AS_STRING(refstr);
@@ -1214,28 +1214,28 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in provider list is not a tuple it is '%s'!!", PyObject_TypeStr(tuple));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		if (PyTuple_Size(tuple) != 2)
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules provider tuple has %zd instead of 2 entries!!", PyTuple_Size(tuple));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		if (!PyString_Check(PyTuple_GET_ITEM(tuple, 0)))
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules 1st entry in provider tuple is not a string it is '%s'", PyObject_TypeStr(PyTuple_GET_ITEM(tuple, 0)));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		if (!PyLong_Check(PyTuple_GET_ITEM(tuple, 1)))
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules 2nd entry in provider tuple is not a long it is '%s'", PyObject_TypeStr(PyTuple_GET_ITEM(tuple, 1)));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		const char *tmpstr = PyString_AS_STRING(PyTuple_GET_ITEM(tuple, 0));
@@ -1254,7 +1254,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in caid list is not a long it is '%s'!!", PyObject_TypeStr(caid));
-			PyErr_SetString(PyExc_StandardError, buf);
+			PyErr_SetString(PyExc_TypeError, buf);
 			return -1;
 		}
 		int tmpcaid = PyLong_AsLong(caid);
@@ -1273,7 +1273,7 @@ PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 	{
 		char tmp[255];
 		snprintf(tmp, 255, "eDVBCIInterfaces::readCICaIds try to get CAIds for CI Slot %d... but just %zd slots are available", slotid, m_slots.size());
-		PyErr_SetString(PyExc_StandardError, tmp);
+		PyErr_SetString(PyExc_ValueError, tmp);
 	}
 	else
 	{

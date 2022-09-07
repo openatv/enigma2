@@ -444,7 +444,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual void getAITApplications(std::map<int, std::string> &aitlist) {};
-	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};
+	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};  // NOSONAR
 	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	virtual long long getFileSize();
 
@@ -468,6 +468,7 @@ public:
 		syncState,
 		frontendNumber,
 		signalQualitydB,
+		isUsbTuner,
 		frontendStatus,
 		snrValue,
 		frequency,
@@ -661,7 +662,7 @@ public:
 
 	virtual int isTimeshiftActive()=0;
 	virtual int isTimeshiftEnabled()=0;
-			/* this essentially seeks to the relative end of the timeshift buffer */
+			/* this essentially seeks to the relative end of the time shift buffer */
 	virtual RESULT activateTimeshift()=0;
 	virtual RESULT saveTimeshiftFile()=0;
 	virtual std::string getTimeshiftFilename()=0;
@@ -966,6 +967,8 @@ public:
 
 		evVideoGammaChanged,
 
+		evFccFailed,
+
 		evUser = 0x100
 	};
 };
@@ -1024,6 +1027,8 @@ public:
 		evRecordFailed,
 		evRecordWriteError,
 		evNewEventInfo,
+		evTuneStart,
+		evPvrTuneStart,
 		evRecordAborted,
 		evGstRecordEnded,
 	};

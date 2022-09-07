@@ -221,13 +221,6 @@
 	<screen name="PowerTimerEditListSummary" position="0,0" size="132,64">
 		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />       
 	</screen>
-<!-- LanguageSelection -->
-	<screen name="LanguageSelection_summary" position="0,0" size="132,64">
-		<widget source="parent.summarylangsel" render="Label" position="fill" size="120,20" font="Regular;18" />
-	</screen>
-	<screen name="LanguageWizardSummary" position="0,0" size="132,64">
-		<widget source="parent.summarylangsel" render="Label" position="fill" size="120,20" font="Regular;18" />
-	</screen>
 <!-- AudioSelection -->
 	<screen name="AudioSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />

@@ -56,7 +56,63 @@ def InitUsageConfig():
 
 	config.usage = ConfigSubsection()
 
-	#settings for servicemp3 and handling from cuesheet file
+	# "UserInterface" settings.
+	#
+	config.usage.menuType = ConfigSelection(default="standard", choices=[
+		("horzanim", _("Horizontal menu")),
+		("horzicon", _("Horizontal icons")),
+		("standard", _("Vertical menu"))
+	])
+	config.usage.menuEntryStyle = ConfigSelection(default="text", choices=[
+		("text", _("Entry text only")),
+		("number", _("Entry number and text")),
+		("image", _("Entry image and text")),
+		("both", _("Entry image, number and text")),
+	])
+	config.usage.menuSortOrder = ConfigSelection(default="user", choices=[
+		("alpha", _("Alphabetical")),
+		("default", _("Default")),
+		("user", _("User defined"))
+	])
+	config.usage.showScreenPath = ConfigSelection(default="off", choices=[
+		("off", _("None")),
+		("small", _("Small")),
+		("large", _("Large"))
+	])
+	config.usage.sort_extensionslist = ConfigYesNo(default=False)
+	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
+	config.usage.sort_pluginlist = ConfigYesNo(default=True)
+	config.usage.helpSortOrder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))
+	])
+	config.usage.setupShowDefault = ConfigSelection(default="newline", choices=[
+		("", _("Don't show default")),
+		("spaces", _("Show default after description")),
+		("newline", _("Show default on new line"))
+	])
+	config.usage.helpAnimationSpeed = ConfigSelection(default=10, choices=[
+		(1, _("Very fast")),
+		(5, _("Fast")),
+		(10, _("Default")),
+		(20, _("Slow")),
+		(50, _("Very slow"))
+	])
+	config.usage.show_spinner = ConfigYesNo(default=True)
+	choiceList = [(0, _("Disabled"))]
+	for delay in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
+		if delay < 60:
+			message = ngettext("%d second", "%d seconds", delay) % delay
+		else:
+			message = abs(delay / 60)
+			message = ngettext("%d minute", "%d minutes", message) % message
+		choiceList.append((delay, message))
+	config.usage.screen_saver = ConfigSelection(default="0", choices=choiceList)
+	config.usage.informationExtraSpacing = ConfigYesNo(False)
+
+	# settings for servicemp3 and handling from cue sheet file.
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)		#use marker for video media file
 	config.usage.useAudioCuesheet = ConfigYesNo(default=True)		#use marker for audio media file
 	config.usage.useChapterInfo = ConfigYesNo(default=True) 		#show chapter positions (gst >= 1 and supported media files)
@@ -75,8 +131,6 @@ def InitUsageConfig():
 	config.usage.use_pig = ConfigYesNo(default=False)
 	config.usage.update_available = NoSave(ConfigYesNo(default=False))
 	config.misc.ecm_info = ConfigYesNo(default=False)
-	config.usage.menu_show_numbers = ConfigYesNo(default=False)
-	config.usage.showScreenPath = ConfigSelection(default="off", choices=[("off", _("None")), ("small", _("Small")), ("large", _("Large"))])
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=[
 		("dhcp-router", _("Router / Gateway")),
 		("custom", _("Static IP / Custom")),
@@ -108,7 +162,7 @@ def InitUsageConfig():
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
 	# just merge note, config.usage.servicelist_column was allready there
-	choicelist = [("-1", _("Disable")), ("0", _("Eventname only"))]
+	choicelist = [("-1", _("Disable")), ("0", _("Event name only"))]
 	for i in list(range(100, 1325, 25)):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
@@ -189,8 +243,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_lite = ConfigYesNo(default=False)
 	config.usage.show_infobar_do_dimming = ConfigYesNo(default=False)
 	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=10, wraparound=True)
-	config.usage.show_infobar_channel_number = ConfigYesNo(default=False)
-	config.usage.show_second_infobar = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar INFO")), ("3", _("2nd Infobar ECM"))])
+	config.usage.show_second_infobar = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd InfoBar INFO")), ("3", _("2nd InfoBar ECM"))])
 	config.usage.second_infobar_timeout = ConfigSelection(default="5", choices=[("0", _("No timeout"))] + choicelist)
 
 	def showsecondinfobarChanged(configElement):
@@ -203,7 +256,6 @@ def InitUsageConfig():
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	config.usage.show_genre_info = ConfigYesNo(default=True)
-	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.enable_tt_caching = ConfigYesNo(default=True)
 
 	config.usage.tuxtxt_font_and_res = ConfigSelection(default="TTF_SD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("expert_mode", _("Expert mode"))])
@@ -244,13 +296,6 @@ def InitUsageConfig():
 		("user", _("user defined")), ])
 	config.usage.plugin_sort_weight = ConfigDictionarySet()
 	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
-	config.usage.menu_sort_mode = ConfigSelection(default="user", choices=[
-		("a_z", _("alphabetical")),
-		("default", _("Default")),
-		("user", _("user defined")), ])
-	config.usage.sort_pluginlist = ConfigYesNo(default=True)
-	config.usage.sort_extensionslist = ConfigYesNo(default=False)
-	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default=False)
 #	config.usage.rc_model = ConfigSelection(default=DefaultRemote, choices=RemoteChoices)
 
@@ -284,7 +329,7 @@ def InitUsageConfig():
 	if not exists(defaultValue):
 		try:
 			mkdir(defaultValue, 0o755)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			pass
 	config.usage.default_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.usage.default_path.load()
@@ -318,7 +363,7 @@ def InitUsageConfig():
 	if not exists(defaultValue):
 		try:
 			mkdir(defaultValue, 0o755)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			pass
 	config.usage.timeshift_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.usage.timeshift_path.load()
@@ -353,27 +398,6 @@ def InitUsageConfig():
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
-
-	config.usage.setupShowDefault = ConfigSelection(default="newline", choices=[
-		("", _("Don't show default")),
-		("spaces", _("Show default after description")),
-		("newline", _("Show default on new line"))
-	])
-
-	config.usage.helpSortOrder = ConfigSelection(default="headings+alphabetic", choices=[
-		("headings+alphabetic", _("Alphabetical under headings")),
-		("flat+alphabetic", _("Flat alphabetical")),
-		("flat+remotepos", _("Flat by position on remote")),
-		("flat+remotegroups", _("Flat by key group on remote"))
-	])
-
-	config.usage.helpAnimationSpeed = ConfigSelection(default="10", choices=[
-		("1", _("Very fast")),
-		("5", _("Fast")),
-		("10", _("Default")),
-		("20", _("Slow")),
-		("50", _("Very slow"))
-	])
 
 	choiceList = [
 		(0, _("Disabled")),
@@ -411,16 +435,6 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
 		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))])
 
-	choicelist = [("0", _("Disabled"))]
-	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
-		if i < 60:
-			m = ngettext("%d second", "%d seconds", i) % i
-		else:
-			m = abs(i / 60)
-			m = ngettext("%d minute", "%d minutes", m) % m
-		choicelist.append(("%d" % i, m))
-	config.usage.screen_saver = ConfigSelection(default="0", choices=choicelist)
-
 	config.usage.check_timeshift = ConfigYesNo(default=True)
 
 	config.usage.alternatives_priority = ConfigSelection(default="0", choices=[
@@ -434,7 +448,6 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
-
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (10, 50, 100, 500, 1000, 2000):
@@ -499,8 +512,6 @@ def InitUsageConfig():
 	config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxsize)))
 	config.misc.disable_background_scan = ConfigYesNo(default=False)
 
-	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
-
 	config.usage.jobtaksextensions = ConfigYesNo(default=True)
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-10, max=10, wraparound=True)
@@ -561,7 +572,7 @@ def InitUsageConfig():
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
 						("Rec", _("REC Symbol")),
 						("RecBlink", _("Blinking REC Symbol")),
-						("Channel", _("Channelname"))])
+						("Channel", _("Channel name"))])
 	if getDisplayType() in ('7segment',):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Rec", choices=[
 						("Rec", _("REC")),
@@ -1042,7 +1053,7 @@ def InitUsageConfig():
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
 	config.osd.threeDsetmode = ConfigSelection(default='mode1', choices=choiceoptions)
 
-	hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
+	hddchoises = [("/etc/enigma2/", _("Internal Flash"))]
 	for p in harddiskmanager.getMountedPartitions():
 		if exists(p.mountpoint):
 			d = normpath(p.mountpoint)
@@ -1065,7 +1076,7 @@ def InitUsageConfig():
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
 	def partitionListChanged(action, device):
-		hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
+		hddchoises = [("/etc/enigma2/", _("Internal Flash"))]
 		for p in harddiskmanager.getMountedPartitions():
 			if exists(p.mountpoint):
 				d = normpath(p.mountpoint)
@@ -1074,7 +1085,6 @@ def InitUsageConfig():
 		config.misc.epgcachepath.setChoices(hddchoises)
 
 	harddiskmanager.on_partition_list_change.append(partitionListChanged)
-
 
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
@@ -1105,7 +1115,7 @@ def InitUsageConfig():
 		if isfile(kmfile):
 			keymapchoices.append((kmfile, KM.get(kmap)))
 
-	if not isfile(keymapdefault): # BIG PROBLEM
+	if not isfile(keymapdefault):  # BIG PROBLEM
 		keymapchoices.append((keymapdefault, KM.get('xml')))
 
 	config.usage.keymap = ConfigSelection(default=keymapdefault, choices=keymapchoices)
@@ -1498,9 +1508,9 @@ def InitUsageConfig():
 	config.epgselection.overjump = ConfigYesNo(default=False)
 	config.epgselection.infobar_type_mode = ConfigSelection(choices=[("text", _("Text")), ("graphics", _("Multi EPG")), ("single", _("Single EPG"))], default="text")
 	if BoxInfo.getItem("NumVideoDecoders", 1) > 1:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default="1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Full screen")), ("2", _("PiP"))], default="1")
 	else:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen"))], default="1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Full screen"))], default="1")
 	config.epgselection.infobar_ok = ConfigSelection(choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap")
 	config.epgselection.infobar_oklong = ConfigSelection(choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default=2, stepwidth=1, min=1, max=4, wraparound=True)
@@ -1569,20 +1579,20 @@ def InitUsageConfig():
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default=25, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.graph_rec_icon_height = ConfigSelection(choices=[("bottom", _("bottom")), ("top", _("top")), ("middle", _("middle")), ("hide", _("Hide"))], default="bottom")
 
-	epg_colorkeys = [('24minus', _('24- Hours')),
-					('prevpage', _('Previous page')),
-					('prevbouquet', _('Previous bouquet')),
-					('24plus', _('24+ Hours')),
-					('nextpage', _('Next page')),
-					('nextbouquet', _('Next bouquet')),
-					('autotimer', _('Auto Timer')),
-					('timer', _('Add/Remove Timer')),
-					('imdb', _('IMDb Search')),
-					('bouquetlist', _('Bouquet List')),
-					('showmovies', _('Show Movies List')),
-					('record', _('Record - same as record button')),
-					('gotodatetime', _('Goto Date/Timer')),
-					('epgsearch', _('EPG search'))]
+	epg_colorkeys = [("24minus", _("24- Hours")),
+					("prevpage", _("Previous page")),
+					("prevbouquet", _("Previous bouquet")),
+					("24plus", _("24+ Hours")),
+					("nextpage", _("Next page")),
+					("nextbouquet", _("Next bouquet")),
+					("autotimer", _("Auto Timer")),
+					("timer", _("Add/Remove Timer")),
+					("imdb", _("IMDb Search")),
+					("bouquetlist", _("Bouquet List")),
+					("showmovies", _("Show Movies List")),
+					("record", _("Record - same as record button")),
+					("gotodatetime", _("Goto Date/Timer")),
+					("epgsearch", _("EPG Search"))]
 	config.epgselection.graph_red = ConfigSelection(default='imdb', choices=epg_colorkeys)
 	config.epgselection.graph_green = ConfigSelection(default='timer', choices=epg_colorkeys)
 	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch', choices=epg_colorkeys)
@@ -1607,18 +1617,18 @@ def InitUsageConfig():
 	config.epgselection.vertical_showlines = ConfigYesNo(default=True)
 	config.epgselection.vertical_startmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("primetime", _("Primetime")), ("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Primetime"))])
 	config.epgselection.vertical_prevtime = ConfigClock(default=time())
-	vertical_colorkeys = [('autotimer', _('Auto Timer')),
-					('timer', _('Add/Remove Timer')),
-					('24plus', _('24+ Hours')),
-					('24minus', _('24- Hours')),
-					('imdb', _('IMDb Search')),
-					('bouquetlist', _('Bouquet List')),
-					('showmovies', _('Show Movies List')),
-					('record', _('Record - same as record button')),
-					('gotodatetime', _('Goto Date/Timer')),
-					('gotoprimetime', _('Goto Primetime')),
-					('setbasetime', _('Set Basetime')),
-					('epgsearch', _('EPG search'))]
+	vertical_colorkeys = [("autotimer", _("Auto Timer")),
+					("timer", _("Add/Remove Timer")),
+					("24plus", _("24+ Hours")),
+					("24minus", _("24- Hours")),
+					("imdb", _("IMDb Search")),
+					("bouquetlist", _("Bouquet List")),
+					("showmovies", _("Show Movies List")),
+					("record", _("Record - same as record button")),
+					("gotodatetime", _("Goto Date/Timer")),
+					("gotoprimetime", _("Goto Primetime")),
+					("setbasetime", _("Set Basetime")),
+					("epgsearch", _("EPG Search"))]
 	config.epgselection.vertical_red = ConfigSelection(default='imdb', choices=vertical_colorkeys)
 	config.epgselection.vertical_green = ConfigSelection(default='timer', choices=vertical_colorkeys)
 	config.epgselection.vertical_yellow = ConfigSelection(default='epgsearch', choices=vertical_colorkeys)
@@ -1658,6 +1668,7 @@ def InitUsageConfig():
 	config.streaming.descramble_client = ConfigYesNo(default=False)
 	config.streaming.stream_eit = ConfigYesNo(default=True)
 	config.streaming.stream_ait = ConfigYesNo(default=True)
+	config.streaming.stream_sdtbat = ConfigYesNo(default=False)
 	config.streaming.authentication = ConfigYesNo(default=False)
 
 	config.pluginbrowser = ConfigSubsection()
@@ -1682,6 +1693,32 @@ def InitUsageConfig():
 	if BoxInfo.getItem("ForceToneBurstChanged"):
 		config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 		config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
+
+	# softwaremanager
+	config.plugins.softwaremanager = ConfigSubsection()
+	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+
+	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(default="Y", choices=[
+		("Y", _("Yes, always")),
+		("N", _("No, never")),
+		("ask", _("Always ask"))
+	])
+
+	config.plugins.softwaremanager.updatetype = ConfigSelection(default="hot", choices=[
+		("hot", _("Upgrade with GUI")),
+		("cold", _("Unattended upgrade without GUI"))
+	])
+	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
+		("turbo", _("turbo")),
+		("fast", _("fast")),
+		("slow", _("slow"))
+	])
+	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):

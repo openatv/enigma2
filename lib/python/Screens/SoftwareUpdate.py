@@ -1,9 +1,6 @@
 from json import load
 from os.path import exists
-try:
-	from urllib.request import urlopen
-except ImportError:
-	from urllib2 import urlopen
+from urllib.request import urlopen
 
 from enigma import eTimer
 
@@ -318,8 +315,8 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 
 	def keyUpdateCallback(self, answer):
 		if answer == 1:
-			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline  # This must be here to ensure the plugin is initialized.
-			self.session.open(FlashOnline)
+			from Screens.FlashManager import FlashManager # This must be here to ensure the plugin is initialized.
+			self.session.open(FlashManager)
 		elif answer == 2:
 			self.session.open(RunSoftwareUpdate)
 		self.close()

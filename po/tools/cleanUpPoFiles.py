@@ -16,7 +16,7 @@ from __future__ import print_function
    - normalised entries (those found in other translation files)
      are currently appended for ease of diffing
    - comments in source code files should probably be ignored
-   - FIXED: colour hex values (eg. "#25062748") should be ignored
+   - FIXED: color hex values (eg. "#25062748") should be ignored
    - printed strings (print "we should never come here!")
      should probably be ignored
    - entries not found in source code aren't marked obsolete/removed
@@ -51,15 +51,15 @@ poFiles = scriptPath + "../*.po*"
 codeBasePath = scriptPath + "../.."
 
 prefs = {
-  'newFileExt': "", # useful to avoid overwriting original file(s)
+  'newFileExt': "",  # useful to avoid overwriting original file(s)
   'stripUnchangedMsgstrs': True,
   'removeMatchingObsoletes': False,
-  'searchCodebaseForOccurrences': False, # Makefile will take care of this by default
+  'searchCodebaseForOccurrences': False,  # Makefile will take care of this by default
   'normalisePoFiles': True,
   'outputFinalStats': True,
-  'processMaxEntries': 0, # useful for testing; 0 will process all entries
-  'include': ["*.xml", "*.py"], # for files only
-  'exclude': ["*/\.*", codeBasePath + "/po/*"] # for dirs and files
+  'processMaxEntries': 0,  # useful for testing; 0 will process all entries
+  'include': ["*.xml", "*.py"],  # for files only
+  'exclude': ["*/\.*", codeBasePath + "/po/*"]  # for dirs and files
 }
 
 # transform glob patterns to regular expressions
@@ -76,7 +76,7 @@ poStats['columnHeadings'] = [
   "Translated",
   "Ratio",
   "-",
-] #"Removed #~"]
+]  # "Removed #~"]
 poStats['data'] = []
 poStats['rowTitles'] = []
 
@@ -105,7 +105,7 @@ def stripUnchangedMsgstrs(poEntry):
           poEntry.msgstr_plural[1] = ""
           percentCleared += 50
       except:
-        pass # let's just pretend that didn't happen >_<
+        pass  # let's just pretend that didn't happen >_<
     elif poEntry.msgid == poEntry.msgstr:
       poEntry.msgstr = ""
       percentCleared = 100
@@ -130,7 +130,7 @@ def getIncludedExcludedPaths(root, dirs, files):
   files = [os.path.join(root, f) for f in files]
   files = [f for f in files if not re.match(excludes, f)]
   files = [f for f in files if re.match(includes, f)]
-  files.sort(key=lambda f: os.stat(f).st_size, reverse=True) # sort by file size descending
+  files.sort(key=lambda f: os.stat(f).st_size, reverse=True)  # sort by file size descending
   return files
 
 
@@ -159,7 +159,7 @@ def getUncachedEntries(poFile):
     if entry.msgid == " ":
       entry.tcomment = "DO NOT TRANSLATE!"
     elif (re.match("^#[a-fA-F0-9]{6,8}", entry.msgid)):
-      entry.tcomment = "Remove from translation (hex colour value)"
+      entry.tcomment = "Remove from translation (hex color value)"
       entry.obsolete = True
     else:
       if (polib.escape(entry.msgid) in [o for o in occurrencesCache]):
@@ -210,7 +210,7 @@ def searchCodebaseForOccurrences(poFile):
 
 def processPoFile(fileName):
   poFile = polib.pofile(fileName)
-  poFile.wrapwidth = 1024 # avoid re-wrapping
+  poFile.wrapwidth = 1024  # avoid re-wrapping
   # numObsoletesRemoved = 0
   entryIndex = 0
   for poEntry in poFile:
@@ -233,7 +233,7 @@ def addToPoStats(baseFileName, poFile):
                     len(poFile.untranslated_entries()),
                     str(len(poFile.translated_entries())),
                     str(poFile.percent_translated()) + "%",
-                    '-', #numObsoletesRemoved
+                    '-',  # numObsoletesRemoved
                   ])
 
 # all entries that were found in the codebase will be added to
@@ -246,7 +246,7 @@ def normaliseAllPoFiles(filesGlob):
     for fileName in sorted(filesGlob):
       fileIndex = fileIndex + 1
       poFile = polib.pofile(fileName)
-      poFile.wrapwidth = 1024 # avoid re-wrapping
+      poFile.wrapwidth = 1024  # avoid re-wrapping
       poFile.check_for_duplicates = True
       print("\rNormalising translation files..." + " {0:.0%}".format(float(fileIndex) / len(sorted(filesGlob))), end=" ")
       sys.stdout.flush()

@@ -138,7 +138,7 @@ class QuadPipChannelData:
 class QuadPipChannelList(QuadPipChannelData):
 	def __init__(self):
 		QuadPipChannelData.__init__(self)
-		self._curIdx = config.plugins.quadpip.lastchannel.value # starting from 1
+		self._curIdx = config.plugins.quadpip.lastchannel.value  # starting from 1
 		self.defaultEntryPreName = _("Quad PiP channel ")
 
 	def saveAll(self):
@@ -170,7 +170,7 @@ class QuadPipChannelList(QuadPipChannelData):
 
 	def removeChannel(self, _channel):
 		if self.getIdx() == _channel.getIndex():
-			self.setIdx(0) # set invalid index
+			self.setIdx(0)  # set invalid index
 
 		self.PipChannelList.remove(_channel)
 
@@ -351,7 +351,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 		self.currList = "selectedList"
 		self.updateDescription()
 
-	def channelSelected(self): # just return selected service
+	def channelSelected(self):  # just return selected service
 		if self.currList == "channelList":
 			ref = self.getCurrentSelection()
 			if (ref.flags & 7) == 7:
@@ -681,7 +681,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self["text2"] = Label(_("  Menu key : Select quad channel"))
 		self["focus"] = Slider(-1, -1)
 
-		self.currentPosition = 1 # 1~4
+		self.currentPosition = 1  # 1~4
 		self.updatePositionList()
 
 		self.skin = QuadPipScreen.skin % (self.session.desktop.size().width(), self.session.desktop.size().height(),
@@ -725,7 +725,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 
 		self.onClose.append(self.__onClose)
 
-		if self.session.pipshown: # try to disable pip
+		if self.session.pipshown:  # try to disable pip
 			self.session.pipshown = False
 			del self.session.pip
 
@@ -949,8 +949,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			#print "===================================================================="
 
 			qPipInstance = self.session.instantiateDialog(QuadPiP, decoderIdx, pos)
-			if BoxInfo.getItem("OSDAnimation"):
-				qPipInstance.setAnimationMode(0)
+			qPipInstance.setAnimationMode(0)
 			qPipInstance.show()
 
 			isPlayAudio = False

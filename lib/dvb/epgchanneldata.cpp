@@ -1600,7 +1600,7 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 				uint32_t summary_id = (data[pos+4] << 16) | (data[pos+5] << 8) | data[pos+6];
 				uint8_t slen = data[pos+18] & 0x3f;
 				uint8_t *dest = ((uint8_t*)title.title)-4;
-				memcpy(dest, &data[pos+19], slen>35 ? 35 : slen);
+				memcpy(dest, &data[pos+19], slen>35 ? 35 : slen); // NOSONAR
 				if ( slen < 35 )
 					memset(dest+slen, 0, 35-slen);
 				//memset(dest+slen, 0, (slen>35 ? 0 : 35-slen));
@@ -2030,7 +2030,7 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 
 			uint8_t slen = data[pos+18] & 0x3f;
 			uint8_t *dest = ((uint8_t*)title.title)-4;
-			memcpy(dest, &data[pos+19], slen>35 ? 35 : slen);
+			memcpy(dest, &data[pos+19], slen>35 ? 35 : slen); // NOSONAR
 			if ( slen < 35 )
 				memset(dest+slen, 0, 35-slen);
 			pos += 19 + slen;

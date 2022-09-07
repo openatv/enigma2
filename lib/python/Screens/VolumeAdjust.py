@@ -257,8 +257,8 @@ class Volume:
 			with open(VOLUME_FILE, "w") as fd:
 				fd.write("\n".join(xml))
 			print("[VolumeAdjust] Saving new volume offset data to '%s'." % VOLUME_FILE)
-		except (IOError, OSError) as err:
-			print("[VolumeAdjust] Error %d: Unable to save the new volume offset data!  (%s)" % (err.errno, VOLUME_FILE, err.strerror))
+		except OSError as err:
+			print("[VolumeAdjust] Error %d: Unable to save the new volume offset data to '%s'! (%s)" % (err.errno, VOLUME_FILE, err.strerror))
 			if isfile(VOLUME_FILE):
 				unlink(VOLUME_FILE)  # Remove the file as it is probably invalid or incomplete.
 

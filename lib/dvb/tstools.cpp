@@ -413,7 +413,7 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					continue;
 				}
 
-				eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %lld:%lld", l->first, u->first, l->second, u->second);
+				eDebug("[eDVBTSTools] getOffset using: %lld:%lld -> %jd:%jd", l->first, u->first, (intmax_t)l->second, (intmax_t)u->second);
 
 				int bitrate;
 
@@ -431,10 +431,10 @@ int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 					 * NOTE: the bitrate calculation can be way off, especially when the pts difference is small.
 					 * So the calculated offset might be far ahead of the end of the file.
 					 * When that happens, avoid poisoning our sample list (m_samples) with an invalid value,
-					 * which could eventually cause (timeshift) playback to be stopped.
-					 * Because the file could be growing (timeshift), instead of returning the currently known end
+					 * which could eventually cause (time shift) playback to be stopped.
+					 * Because the file could be growing (time shift), instead of returning the currently known end
 					 * of file offset, we return an offset 1MB ahead of the end of the file.
-					 * This allows jumping to the live point of the timeshift, for instance.
+					 * This allows jumping to the live point of the time shift, for instance.
 					 */
 					offset = m_offset_end + 1024 * 1024;
 					return 0;
@@ -689,8 +689,8 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 			{
 				if ((l->second > off) || (u->second < off))
 				{
-					eDebug("[eDVBTSTools] takeSample ignoring sample %lld %jd %lld (%llu %llu %llu)",
-						l->second, (intmax_t)off, u->second, l->first, p, u->first);
+					eDebug("[eDVBTSTools] takeSample ignoring sample %jd %jd %jd (%llu %llu %llu)",
+						(intmax_t)l->second, (intmax_t)off, (intmax_t)u->second, l->first, p, u->first);
 					return 1;
 				}
 			}

@@ -1,7 +1,7 @@
 <setupxml>
 	<setup key="MediaPlayer" title="Media Player Settings">
-		<item level="0" text="Repeat playlist" description="Set this to 'Yes' to keep playing this playlist in a continuously repeating loop. If set to 'No' the playlist will only be played once.">config.mediaplayer.repeat</item>
-		<item level="0" text="Save playlist on EXIT" description="Set this to 'Yes' to save the current playlist when exiting the Media Player.">config.mediaplayer.savePlaylistOnExit</item>
+		<item level="0" text="Repeat play list" description="Set this to 'Yes' to keep playing this play list in a continuously repeating loop. If set to 'No' the play list will only be played once.">config.mediaplayer.repeat</item>
+		<item level="0" text="Save play list on EXIT" description="Set this to 'Yes' to save the current play list when exiting the Media Player.">config.mediaplayer.savePlaylistOnExit</item>
 		<item level="0" text="Save directory on EXIT" description="Set this to 'Yes' to save the current directory when exiting the Media Player.">config.mediaplayer.saveDirOnExit</item>
 		<item level="0" text="Starting directory" description="Specify the directory to use when starting Media Player." conditional="not config.mediaplayer.saveDirOnExit.value">config.mediaplayer.defaultDir</item>
 		<item level="0" text="Sort playlists" description="Set this to 'Yes' to sort the playlists alphabetically.">config.mediaplayer.sortPlaylists</item>

@@ -119,7 +119,7 @@ class InputDeviceSetup(Setup):
 		inputDevices.currentDevice = self.device
 		configItem = getattr(config.inputDevices, device)
 		self.enableEntry = getConfigListEntry(self.formatItemText(_("Change repeat and delay settings?")), configItem.enabled, self.formatItemDescription(configItem.enabled, _("Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values.")))
-		self.nameEntry = getConfigListEntry(self.formatItemText(_("Devicename:")), configItem.name, self.formatItemDescription(configItem.name, _("Enter a new name for this device.")))
+		self.nameEntry = getConfigListEntry(self.formatItemText(_("Device name:")), configItem.name, self.formatItemDescription(configItem.name, _("Enter a new name for this device.")))
 		self.delayEntry = getConfigListEntry(self.formatItemText(_("Delay before key repeat starts:")), configItem.delay, self.formatItemDescription(configItem.delay, _("Select the time delay before the button starts repeating.")))
 		self.repeatEntry = getConfigListEntry(self.formatItemText(_("Interval between keys when repeating:")), configItem.repeat, self.formatItemDescription(configItem.repeat, _("Select the time delay between each repeat of the button.")))
 		Setup.__init__(self, session, "InputDeviceSetup")
@@ -317,15 +317,16 @@ class RemoteControlType(Setup):
 				("hd66se", 27),
 				("multibox", 27),
 				("multiboxse", 27),
-				("h7", 28), # new model
-				("h9", 28), # new model
-				("h9se", 28), # new model
+				("h7", 28),  # new model
+				("h9", 28),  # new model
+				("h9se", 28),  # new model
 				("h9combo", 28),
 				("h9combose", 28),
 				("i55se", 28),
 				("h10", 28),
 				("h11", 28)
 				]
+
 	def __init__(self, session):
 		self.rctype = None
 		self.defaultRcType = 0

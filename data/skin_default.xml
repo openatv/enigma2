@@ -203,7 +203,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 	<screen name="Mute" position="center,50" zPosition="10" size="45,45" flags="wfNoBorder" title="Mute">
 		<ePixmap pixmap="skin_default/infobar/mute.png" position="0,0" size="45,45"/>
 	</screen>
-	<screen name="SecondInfoBar" position="0,0" size="720,96" flags="wfNoBorder"  title="SecondInfoBar">
+	<screen name="SecondInfoBar" position="0,0" size="720,96" flags="wfNoBorder" title="2nd InfoBar">
 		<widget source="session.CurrentService" render="Label" position="50, 20" size="600,66" backgroundColor="transpBlack" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;16" valign="top" halign="left">
 			<convert type="PliExtraInfo">All</convert>
 		</widget>
@@ -367,7 +367,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
-	<screen name="ChannelContextMenu" position="center,center" size="350,385" title="Channellist menu">
+	<screen name="ChannelContextMenu" position="center,center" size="350,385" title="Channel List Menu">
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
 	</screen>
@@ -757,7 +757,7 @@ self.autoResize()
 	<screen name="UnhandledKey" position="620,50" size="34,45" zPosition="100" backgroundColor="black" flags="wfNoBorder" title="UnhandledKey" >
 		<widget name="UnhandledKeyPixmap" pixmap="skin_default/unhandled-key.png" position="0,0" size="34,45" alphatest="on" />
 	</screen>
-	<screen name="EPGSelection" position="center,center" size="560,460" title="EPG selection">
+	<screen name="EPGSelection" position="center,center" size="560,460" title="EPG Selection">
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
@@ -765,7 +765,7 @@ self.autoResize()
 		<panel name="Blue1Panel" />
 		<widget name="list" position="10,40" size="540,375" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="EPGSelectionMulti" position="center,center" size="560,460" title="EPG selection">
+	<screen name="EPGSelectionMulti" position="center,center" size="560,460" title="EPG Selection">
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
@@ -857,7 +857,7 @@ self.autoResize()
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="EventView" position="center,center" size="560,450" title="Event view">
+	<screen name="EventView" position="center,center" size="560,450" title="Event View">
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
@@ -868,7 +868,7 @@ self.autoResize()
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
 	</screen>
-	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event view">
+	<screen name="InfoBarEventView" position="center,center" size="560,450" flags="wfNoBorder" title="Event View">
 		<widget name="epg_description" position="10,50" size="540,330" font="Regular;22" />
 		<widget name="datetime" position="10,395" size="130,25" font="Regular;22" />
 		<widget name="duration" position="140,395" size="100,25" font="Regular;22" />
@@ -994,43 +994,6 @@ self.autoResize()
 		<widget name="status" position="10,60" size="540,45" font="Regular;18" />
 		<widget name="slider" position="10,100" size="540,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>
-	<screen name="LanguageSelection" position="center,center" size="560,460" title="Language selection">
-		<panel name="BasicTemplate" />
-		<widget source="languages" render="Listbox" position="10,10" size="540,400" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{"template": [
-						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
-						MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
-					],
-				 "fonts": [gFont("Regular", 20)],
-				 "itemHeight": 50
-				}
-			</convert>
-		</widget>
-	</screen>
-	<screen name="LanguageWizard" position="fill" title="Welcome..." flags="wfNoBorder">
-		<panel name="WizardMarginsTemplate"/>
-		<panel position="left" size="110,*">
-			<panel position="top" size="*,50"/>
-		</panel>
-		<panel name="RemoteControlTemplate"/>
-		<panel position="left" size="10,*" />
-		<panel position="right" size="10,*" />
-		<panel position="fill">
-			<widget name="text" position="top" size="*,240" font="Regular;23" valign="center" />
-			<widget source="languages" render="Listbox" position="fill" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
-							MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
-						],
-					"fonts": [gFont("Regular", 20)],
-					"itemHeight": 50
-					}
-				</convert>
-			</widget>
-		</panel>
-	</screen>
 	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
 		<panel name= "MessageBoxTemplate" />
 	</screen>
@@ -1149,7 +1112,7 @@ self.autoResize()
 			</convert>
 		</widget>
 	</screen>
-	<screen name="NimSetup" position="center,center" size="560,460" title="Reception settings">
+	<screen name="NimSetup" position="center,center" size="560,460" title="Reception Settings">
 		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" size="540,410" scrollbarMode="showOnDemand" />
 	</screen>

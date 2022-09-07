@@ -68,7 +68,7 @@ class CutListContextMenu(FixedMenu):
 	SHOW_DELETECUT = 2
 
 	def __init__(self, session, state, nearmark, removeall=1):
-		menu = [(_("back"), self.close)] #, (None, )]
+		menu = [(_("back"), self.close)]  # , (None, )]
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
@@ -217,7 +217,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"removeAll": (self.__removeAll, _("Remove all cuts and marks")),
 				"leave": (self.exit, _("Exit editor")),
-				"showMenu": (self.showMenu, _("menu")),
+				"showMenu": (self.showMenu, _("Menu")),
 			}, prio=-4)
 
 		self.tutorial_seen = False
@@ -269,7 +269,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.uploadCuesheet()
 
 	def __addMark(self):
-		self.toggleMark(onlyadd=True, tolerance=90000) # do not allow two marks in <1s
+		self.toggleMark(onlyadd=True, tolerance=90000)  # do not allow two marks in <1s
 
 	def __removeMark(self):
 		m = self["cutlist"].getCurrent()
@@ -389,9 +389,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			in_after = None
 
 			for (where, what) in self.cut_list:
-				if what == 1 and where <= self.context_position: # out
+				if what == 1 and where <= self.context_position:  # out
 					out_before = (where, what)
-				elif what == 0 and where < self.context_position: # in, before out
+				elif what == 0 and where < self.context_position:  # in, before out
 					out_before = None
 				elif what == 0 and where >= self.context_position and in_after is None:
 					in_after = (where, what)
@@ -444,7 +444,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			cservice = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.crashFix()
 			#self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
-			self.session.nav.playService(cservice, forceRestart=True) #required for actually writing the .cuts file
+			self.session.nav.playService(cservice, forceRestart=True)  # required for actually writing the .cuts file
 			self.pauseService()
 			try:
 				MovieCut(session=self.session, service=cservice)

@@ -7,7 +7,7 @@
 
 #include <SDL2/SDL.h>
 
-gSDLDC::gSDLDC() : m_pump(eApp, 1), m_window(nullptr), m_osd_tex(nullptr)
+gSDLDC::gSDLDC() : m_pump(eApp, 1,"gSDLDC"), m_window(nullptr), m_osd_tex(nullptr)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		eWarning("[gSDLDC] Could not initialize SDL: %s", SDL_GetError());

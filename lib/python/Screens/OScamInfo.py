@@ -744,19 +744,19 @@ class oscInfo(Screen, OscamInfo):
 			ypos = -2
 		if not heading:
 			status = listentry[len(listentry) - 1]
-			colour = "0xffffff"
+			color = "0xffffff"
 			if status == "OK" or "CONNECTED" or status == "CARDOK":
-				colour = "0x389416"
+				color = "0x389416"
 			if status == "NEEDINIT" or status == "CARDOK":
-				colour = "0xbab329"
+				color = "0xbab329"
 			if status == "OFF" or status == "ERROR":
-				colour = "0xf23d21"
+				color = "0xf23d21"
 		else:
-			colour = "0xffffff"
+			color = "0xffffff"
 		for i in listentry[:-1]:
 			xsize = int(self.fieldsize[x])
 			xpos = int(self.startPos[x])
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, int(ypos * sf), xsize, int(self.itemheight * sf), useFont, RT_HALIGN_LEFT, i, int(colour, 16)))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, int(ypos * sf), xsize, int(self.itemheight * sf), useFont, RT_HALIGN_LEFT, i, int(color, 16)))
 			x += 1
 		if heading:
 			png = resolveFilename(SCOPE_GUISKIN, "div-h.png")
@@ -822,7 +822,7 @@ class oscInfo(Screen, OscamInfo):
 		if self.listchange:
 			self.listchange = False
 			self["output"].l.setItemHeight(int(self.itemheight * sf))
-			self["output"].instance.setScrollbarMode(0) #"showOnDemand"
+			self["output"].instance.setScrollbarMode(0)  # "showOnDemand"
 			self.rows = int(self["output"].instance.size().height() / (self.itemheight * sf))
 			if self.what != "l" and self.rows < len(self.out):
 				self.enableScrolling(True)
@@ -1162,4 +1162,3 @@ class OscamInfoSetup(Setup):
 		if self.msg:
 			self.setFootnote(self.msg)
 			self.msg = None
-

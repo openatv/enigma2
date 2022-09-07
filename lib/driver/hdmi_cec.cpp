@@ -23,12 +23,14 @@ eHdmiCEC::eCECMessage::eCECMessage(int addr, int cmd, char *data, int length)
 	address = addr;
 	command = cmd;
 	if (length > (int)sizeof(messageData)) length = sizeof(messageData);
-	if (length && data) memcpy(messageData, data, length);
+	if (length && data) {
+		memcpy(messageData, data, length);
+		control0 = data[0];
+		control1 = data[1];
+		control2 = data[2];
+		control3 = data[3];
+	} 
 	dataLength = length;
-	control0 = data[0];
-	control1 = data[1];
-	control2 = data[2];
-	control3 = data[3];
 }
 
 int eHdmiCEC::eCECMessage::getAddress()

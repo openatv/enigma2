@@ -4,7 +4,6 @@ from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale, getlocale
 from os import environ, listdir
 from os.path import isdir
-from six import PY2
 from subprocess import Popen, PIPE
 from time import localtime, strftime, time
 
@@ -18,10 +17,7 @@ PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
 
 languagePath = resolveFilename(SCOPE_LANGUAGE)
 try:
-	if PY2:
-		install("enigma2", languagePath, unicode=False, codeset="UTF-8", names=("ngettext", "pgettext"))
-	else:
-		install("enigma2", languagePath, names=("ngettext", "pgettext"))
+	install("enigma2", languagePath, names=("ngettext", "pgettext"))
 except UnicodeDecodeError:
 	print("[International] Error: The language translation data in '%s' has failed to initialise!  Translations are not possible." % languagePath)
 	install("enigma2", "/", names=("ngettext", "pgettext"))
@@ -662,7 +658,7 @@ class International:
 							if lang not in availablePackages:
 								availablePackages.append(lang)
 					availablePackages = sorted(availablePackages)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				print("[International] getLanguagePackages Error %d: %s ('%s')" % (err.errno, err.strerror, command[0]))
 				availablePackages = []
 			print("[International] There are %d available locale/language packages in the repository '%s'." % (len(availablePackages), "', '".join(availablePackages)))
@@ -689,7 +685,7 @@ class International:
 									installedPackages.append(data[24:])
 									break
 					installedPackages = sorted(installedPackages)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				print("[International] getInstalledPackages Error %d: %s ('%s')" % (err.errno, err.strerror, command[0]))
 			print("[International] There are %d installed locale/language packages '%s'." % (len(installedPackages), "', '".join(installedPackages)))
 		else:
@@ -877,7 +873,7 @@ class International:
 					statusMsg = _("Error: %s %s not %s!  Please try again later.") % (msg, ", ".join(languages), action)
 				else:
 					statusMsg = "%s %s %s." % (msg, ", ".join(languages), action)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				print("[International] Error %d: %s for command '%s'!" % (err.errno, err.strerror, " ".join(cmdList)))
 				retVal = -1
 				statusMsg = _("Error: Unable to process the command!  Please try again later.")

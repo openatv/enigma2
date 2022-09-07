@@ -3,21 +3,27 @@ from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
 import os
 
+parentScreen = None
 
 def execute(option):
 	#print "execute", option
 	if option is None:
+		if parentScreen:
+			parentScreen.close()
 		return
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+	if parentScreen:
+		parentScreen.close()
 
 
 def mountpoint_choosen(option):
 	if option is None:
+		if parentScreen:
+			parentScreen.close()
 		return
 
-	from Screens.ChoiceBox import ChoiceBox
 
 	#print "scanning", option
 	(description, mountpoint, session) = option
@@ -31,14 +37,19 @@ def mountpoint_choosen(option):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=True, timeout=5)
 		#else:
 		#	print "ignore", mountpoint, "because its not accessible"
+		if parentScreen:
+			parentScreen.close()
 		return
 
+	from Screens.ChoiceBox import ChoiceBox
 	session.openWithCallback(execute, ChoiceBox,
 		title=_("The following files were found..."),
 		list=list)
 
 
-def scan(session):
+def scan(session, parent=None):
+	global parentScreen
+	parentScreen = parent
 	from Screens.ChoiceBox import ChoiceBox
 	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))

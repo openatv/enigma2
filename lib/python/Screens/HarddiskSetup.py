@@ -35,7 +35,7 @@ class HarddiskSetup(Screen):
 	def hddQuestion(self, answer=False):
 		print('answer:', answer)
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in timeshift, the service will briefly stop as timeshift stops.")
+			message = self.question + "\n\n" + _("You seem to be in time shift, the service will briefly stop as time shift stops.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:
@@ -55,7 +55,7 @@ class HarddiskSetup(Screen):
 		try:
 			job_manager.AddJob(self.action())
 			for job in job_manager.getPendingJobs():
-				if job.name in (_("Initializing storage device..."), _("Checking filesystem..."), _("Converting ext3 to ext4...")):
+				if job.name in (_("Initializing storage device..."), _("Checking file system..."), _("Converting ext3 to ext4...")):
 					self.showJobView(job)
 					break
 		except Exception as ex:
@@ -78,7 +78,7 @@ class HarddiskSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Initialization"))
-		self.skinName = "HarddiskSelection" # For derived classes
+		self.skinName = "HarddiskSelection"  # For derived classes
 		if harddiskmanager.HDDCount() == 0:
 			tlist = [(_("no storage devices found"), 0)]
 			self["hddlist"] = MenuList(tlist)
@@ -116,17 +116,17 @@ class HarddiskFsckSelection(HarddiskSelection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createCheckJob,
 			 text=_("Check"),
-			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
+			 question=_("Do you really want to check the file system?\nThis could take a long time!"))
 
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Convert filesystem ext3 to ext4"))
+		Screen.setTitle(self, _("Convert file system ext3 to ext4"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createExt4ConversionJob,
 			 text=_("Convert ext3 to ext4"),
-			 question=_("Do you really want to convert the filesystem?\nYou cannot go back!"))
+			 question=_("Do you really want to convert the file system?\nYou cannot go back!"))

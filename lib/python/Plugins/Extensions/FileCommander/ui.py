@@ -80,7 +80,7 @@ config.plugins.filecommander.path_default = ConfigDirectory(default="")
 config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
-config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
+config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
 config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
@@ -150,9 +150,9 @@ class FileCommanderConfigScreen(Setup):
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
-	sD = ('n', 'd', 's')[sortDirs] #name, date, size
+	sD = ('n', 'd', 's')[sortDirs]  # name, date, size
 	sF = ('n', 'd', 's')[sortFiles]
-	rD = ('+', '-')[reverseDirs] #normal, reverse
+	rD = ('+', '-')[reverseDirs]  # normal, reverse
 	rF = ('+', '-')[reverseFiles]
 	return '[D]%s%s[F]%s%s' % (sD, rD, sF, rF)
 
@@ -350,7 +350,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def checkJobs_TimerCB(self):
 		self.jobs_old = 0
 		for job in job_manager.getPendingJobs():
-			if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
+			if (job.name.startswith(_("Copy file")) or job.name.startswith(_("Copy folder")) or job.name.startswith(_("move file")) or job.name.startswith(_("move folder")) or job.name.startswith(_("Run script"))):
 				self.jobs_old += 1
 		self.jobs_old -= self.jobs
 		self.onLayout()
@@ -639,7 +639,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				del self.containers[:]
 		if not glob_running and config.plugins.filecommander.showTaskCompleted_message.value:
 			for job in job_manager.getPendingJobs():
-				if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
+				if (job.name.startswith(_("Copy file")) or job.name.startswith(_("Copy folder")) or job.name.startswith(_("move file")) or job.name.startswith(_("move folder")) or job.name.startswith(_("Run script"))):
 					return
 			from Screens.Standby import inStandby
 			message = _("File Commander - all Task's are completed!")
@@ -733,9 +733,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if sourceDir not in filename:
-				self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)), updateDirs)
+				self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("Copy file"), sourceDir + filename)), updateDirs)
 			else:
-				self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)), updateDirs)
+				self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("Copy folder"), filename)), updateDirs)
 
 # ## delete ###
 	def goRed(self):
@@ -809,7 +809,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		filename = os.path.basename(os.path.normpath(filename))
 		if not filename:
-			self.session.open(MessageBox, _("It's not possible to rename the filesystem root."), type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("It's not possible to rename the file system root."), type=MessageBox.TYPE_ERROR)
 			return
 		fname = _("Please enter the new file name")
 		if sourceDir in filename:
@@ -934,8 +934,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
 			return
-		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter name of the new directory"), windowTitle=_("New folder"))
-		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter name of the new directory"), text=_('New folder'))
+		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter a name for the new directory:"), windowTitle=_("New folder"))
+		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_('New folder'))
 
 	def doMakedir(self, newname):
 		if newname:
@@ -975,11 +975,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if dir is not None:
 				file = self[side].getFilename() or ''
 				if file.startswith(dir):
-					pathname = file # subfolder
+					pathname = file  # subfolder
 				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+					pathname = dir + file  # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = dir  # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side], self.calculate_directorysize))
 			else:
@@ -1401,9 +1401,9 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
-				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
+				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("Copy folder"), file)))
 			else:
-				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("Copy file"), file)))
 		if cnt > 1:
 			copytext = (_("Copy %d elements") % len(self.selectedFiles)) + warntxt
 		else:
@@ -1424,11 +1424,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			if dir is not None:
 				file = self[side].getFilename() or ''
 				if file.startswith(dir):
-					pathname = file # subfolder
+					pathname = file  # subfolder
 				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+					pathname = dir + file  # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = dir  # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1579,7 +1579,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
 		self.list.append((_("Permissions:"), _("%s (%04o)") % (self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
-			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
+			self.list.append(("%s:" % _("Size"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
 		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))
 		self.list.append((_("Accessed:"), self.formatTime(st.st_atime)))
 		self.list.append((_("Metadata changed:"), self.formatTime(st.st_ctime)))

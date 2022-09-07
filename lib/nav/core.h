@@ -7,6 +7,7 @@
 #include <connection.h>
 #include <map>
 #include <set>
+#include <lib/dvb/fcc.h>
 
 class eNavigation;
 
@@ -72,6 +73,9 @@ class eNavigation: public iObject, public sigc::trackable
 
 	sigc::signal2<void,ePtr<iRecordableService>,int> m_record_event;
 	void recordEvent(iRecordableService* service, int event);
+
+	friend class eFCCServiceManager;
+	ePtr<eFCCServiceManager> m_fccmgr;
 public:
 
 	RESULT playService(const eServiceReference &service);

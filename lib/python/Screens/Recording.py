@@ -11,7 +11,7 @@ from Tools.Directories import fileAccess
 
 class RecordingSettings(Setup):
 	def __init__(self, session):
-		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>"))]
+		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 		self.styleKeys = [x[0] for x in self.styles]
 		self.inhibitDevs = []
 		for dir in defaultInhibitDirs + ["/", "/media"]:

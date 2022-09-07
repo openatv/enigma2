@@ -158,8 +158,8 @@ class PollReactor(posixbase.PosixReactorBase):
 				if self.running:
 					self.stop()
 				l = []
-		except select.error as e:
-			if e[0] == errno.EINTR:
+		except OSError as e:
+			if e.errno == errno.EINTR:
 				return
 			else:
 				raise

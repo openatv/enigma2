@@ -105,25 +105,27 @@ void eWindowStyleSimple::setStyle(gPainter &painter, int what)
 {
 	switch (what)
 	{
-	case styleLabel:
-		painter.setForegroundColor(gColor(0x1F));
-		break;
-	case styleListboxSelected:
-		painter.setForegroundColor(gColor(0x1F));
-		painter.setBackgroundColor(gColor(0x1A));
-		break;
-	case styleListboxNormal:
-		painter.setForegroundColor(gColor(0x1C));
-		painter.setBackgroundColor(m_background_color);
-		break;
-	case styleListboxMarked:
-		painter.setForegroundColor(gColor(0x2F));
-		painter.setBackgroundColor(gColor(0x2A));
-		break;
-	case styleListboxMarkedAndSelected:
-		painter.setForegroundColor(gColor(0x3F));
-		painter.setBackgroundColor(gColor(0x3A));
-		break;
+		case styleLabel:
+		case styleScollbar:
+		case styleSlider:
+			painter.setForegroundColor(gColor(0x1F));
+			break;
+		case styleListboxSelected:
+			painter.setForegroundColor(gColor(0x1F));
+			painter.setBackgroundColor(gColor(0x1A));
+			break;
+		case styleListboxNormal:
+			painter.setForegroundColor(gColor(0x1C));
+			painter.setBackgroundColor(m_background_color);
+			break;
+		case styleListboxMarked:
+			painter.setForegroundColor(gColor(0x2F));
+			painter.setBackgroundColor(gColor(0x2A));
+			break;
+		case styleListboxMarkedAndSelected:
+			painter.setForegroundColor(gColor(0x3F));
+			painter.setBackgroundColor(gColor(0x3A));
+			break;
 	}
 }
 

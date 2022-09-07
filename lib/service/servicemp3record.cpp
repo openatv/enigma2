@@ -16,7 +16,7 @@ DEFINE_REF(eServiceMP3Record);
 eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_ref(ref),
 	m_streamingsrc_timeout(eTimer::create(eApp)),
-	m_pump(eApp, 1)
+	m_pump(eApp, 1,"eServiceMP3Record")
 {
 	m_state = stateIdle;
 	m_error = 0;
@@ -153,6 +153,10 @@ int eServiceMP3Record::doPrepare()
 		{
 			stream_uri = m_ref.path;
 		}
+
+		if(!m_ref.alternativeurl.empty())
+			stream_uri = m_ref.alternativeurl;
+
 		eDebug("[eMP3ServiceRecord] doPrepare uri=%s", stream_uri.c_str());
 		uri = g_strdup_printf ("%s", stream_uri.c_str());
 

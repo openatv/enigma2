@@ -14,18 +14,20 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 
 class ConfigList(GUIComponent):
+	GUI_WIDGET = eListbox
+
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
+		self.session = session
 		self.l = eListboxPythonConfigContent()
 		seperation = parameters.get("ConfigListSeperator", 200)
 		self.l.setSeperation(seperation)
-		height, space = parameters.get("ConfigListSlider", (17, 0))
-		self.l.setSlider(height, space)
-		self.timer = eTimer()
+		height, borderWidth = parameters.get("ConfigListSlider", (17, 0))
+		self.l.setSlider(height, borderWidth)
 		self.list = list
+		self.timer = eTimer()
 		self.onSelectionChanged = []
 		self.current = None
-		self.session = session
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
@@ -41,6 +43,30 @@ class ConfigList(GUIComponent):
 	def timeout(self):
 		self.handleKey(ACTIONKEY_TIMEOUT)
 
+	def postWidgetCreate(self, instance):
+		instance.selectionChanged.get().append(self.selectionChanged)
+		instance.setContent(self.l)
+
+	def preWidgetRemove(self, instance):
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
+			self.current[1].onDeselect(self.session)
+		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
+
+	def selectionChanged(self):
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
+			self.current[1].onDeselect(self.session)
+		self.current = self.getCurrent()
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
+			self.current[1].onSelect(self.session)
+		else:
+			return
+		for callback in self.onSelectionChanged:
+			callback()
+
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+
 	def handleKey(self, key, callback=None):
 		selection = self.getCurrent()
 		if selection and selection[1].enabled:
@@ -55,14 +81,11 @@ class ConfigList(GUIComponent):
 		self.getCurrent()[1].toggle()
 		self.invalidateCurrent()
 
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-
 	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
 	def setCurrentIndex(self, index):
-		if self.instance is not None:
+		if self.instance:
 			self.instance.moveSelectionTo(index)
 
 	def invalidateCurrent(self):
@@ -74,8 +97,6 @@ class ConfigList(GUIComponent):
 		if entry in self.__list:
 			self.l.invalidateEntry(self.__list.index(entry))
 
-	GUI_WIDGET = eListbox
-
 	def isChanged(self):
 		for item in self.list:
 			if len(item) > 1 and item[1].isChanged():
@@ -83,30 +104,11 @@ class ConfigList(GUIComponent):
 		return False
 
 	def selectionEnabled(self, enabled):
-		if self.instance is not None:
+		if self.instance:
 			self.instance.setSelectionEnable(enabled)
 
-	def selectionChanged(self):
-		if isinstance(self.current, tuple) and len(self.current) >= 2:
-			self.current[1].onDeselect(self.session)
-		self.current = self.getCurrent()
-		if isinstance(self.current, tuple) and len(self.current) >= 2:
-			self.current[1].onSelect(self.session)
-		else:
-			return
-		for x in self.onSelectionChanged:
-			x()
-
-	def postWidgetCreate(self, instance):
-		instance.selectionChanged.get().append(self.selectionChanged)
-		instance.setContent(self.l)
-		self.instance.setWrapAround(True)
-
-	def preWidgetRemove(self, instance):
-		if isinstance(self.current, tuple) and len(self.current) >= 2:
-			self.current[1].onDeselect(self.session)
-		instance.selectionChanged.get().remove(self.selectionChanged)
-		instance.setContent(None)
+	def getList(self):
+		return self.__list
 
 	def setList(self, newList):
 		self.__list = newList
@@ -115,44 +117,51 @@ class ConfigList(GUIComponent):
 			for x in newList:
 				assert len(x) < 2 or isinstance(x[1], ConfigElement), "[ConfigList] Error: Entry in ConfigList '%s' must be a ConfigElement!" % str(x[1])
 
-	def getList(self):
-		return self.__list
-
 	list = property(getList, setList)
 
+	def goTop(self):
+		if self.instance:
+			self.instance.goTop()
+
+	def goPageUp(self):
+		if self.instance:
+			self.instance.goPageUp()
+
+	def goLineUp(self):
+		if self.instance:
+			self.instance.goLineUp()
+
+	def goLineDown(self):
+		if self.instance:
+			self.instance.goLineDown()
+
+	def goPageDown(self):
+		if self.instance:
+			self.instance.goPageDown()
+
+	def goBottom(self):
+		if self.instance:
+			self.instance.goBottom()
+
+	# Old navigation method names.
+	#
 	def moveTop(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveTop)
+		self.goTop()
 
 	def pageUp(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.pageUp)
+		self.goPageUp()
 
 	def moveUp(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveUp)
+		self.goLineUp()
 
 	def moveDown(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveDown)
+		self.goLineDown()
 
 	def pageDown(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.pageDown)
+		self.goPageDown()
 
 	def moveBottom(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.moveEnd)
-
-	# This method is only in OpenATV but we am not sure it is used.  The
-	# code is being commented out as a way to flush out if there is
-	# actually any other code that uses this method.  If so we expect the
-	# code to crash.  Please report any such crashes!
-	# 
-	# def refresh(self):
-	# 	for x in self.onSelectionChanged:
-	# 		if x.__func__.__name__ == "selectionChanged":
-	# 			x()
+		self.goBottom()
 
 
 class ConfigListScreen:
@@ -258,8 +267,8 @@ class ConfigListScreen:
 		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
+		for callback in self.onChangedEntry:
+			callback()
 
 	def noNativeKeys(self):
 		self["config"].instance.allowNativeKeys(False)
@@ -356,13 +365,13 @@ class ConfigListScreen:
 				self.entryChanged()
 
 	def keyTop(self):
-		self["config"].moveTop()
+		self["config"].goTop()
 
 	def keyPageUp(self):
-		self["config"].pageUp()
+		self["config"].goPageUp()
 
 	def keyUp(self):
-		self["config"].moveUp()
+		self["config"].goLineUp()
 
 	def keyFirst(self):
 		self["config"].handleKey(ACTIONKEY_FIRST, self.entryChanged)
@@ -377,13 +386,13 @@ class ConfigListScreen:
 		self["config"].handleKey(ACTIONKEY_LAST, self.entryChanged)
 
 	def keyDown(self):
-		self["config"].moveDown()
+		self["config"].goLineDown()
 
 	def keyPageDown(self):
-		self["config"].pageDown()
+		self["config"].goPageDown()
 
 	def keyBottom(self):
-		self["config"].moveBottom()
+		self["config"].goBottom()
 
 	def keyBackspace(self):
 		self["config"].handleKey(ACTIONKEY_BACKSPACE, self.entryChanged)

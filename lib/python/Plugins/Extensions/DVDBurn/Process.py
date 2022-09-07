@@ -317,7 +317,7 @@ class BurnTaskPostcondition(Condition):
 			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),
 			task.ERROR_ISOFS: _("Medium is not empty!"),
 			task.ERROR_FILETOOLARGE: _("TS file is too large for ISO9660 level 1!"),
-			task.ERROR_ISOTOOLARGE: _("ISO file is too large for this filesystem!"),
+			task.ERROR_ISOTOOLARGE: _("ISO file is too large for this file system!"),
 			task.ERROR_UNKNOWN: _("An unknown error occurred!")
 		}[task.error]
 
@@ -328,7 +328,7 @@ class BurnTask(Task):
 	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
-		self.end = 120 # 100 for writing, 10 for buffer flush, 10 for closing disc
+		self.end = 120  # 100 for writing, 10 for buffer flush, 10 for closing disc
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool(tool)
 		self.args += extra_args
@@ -401,7 +401,7 @@ class RemoveWorkspaceFolder(Task):
 class CheckDiskspaceTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Checking free space")
-		totalsize = 0 # require an extra safety 50 MB
+		totalsize = 0  # require an extra safety 50 MB
 		maxsize = 0
 		for title in job.project.titles:
 			titlesize = title.estimatedDiskspace
@@ -410,7 +410,7 @@ class CheckDiskspaceTask(Task):
 			totalsize += titlesize
 		diskSpaceNeeded = totalsize + maxsize
 		job.estimateddvdsize = totalsize / 1024 / 1024
-		totalsize += 50 * 1024 * 1024 # require an extra safety 50 MB
+		totalsize += 50 * 1024 * 1024  # require an extra safety 50 MB
 		self.global_preconditions.append(DiskspacePrecondition(diskSpaceNeeded))
 		self.weighting = 5
 
@@ -799,10 +799,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
 		for menu_count in list(range(1, job.nr_menus + 1)):
-			if menu_count == 1:
-				authorxml.append('    <pgc>\n')
-			else:
-				authorxml.append('    <pgc>\n')
+			authorxml.append('    <pgc>\n')
 			menu_start_title = (menu_count - 1) * job.titles_per_menu + 1
 			menu_end_title = (menu_count) * job.titles_per_menu + 1
 			if menu_end_title > nr_titles:

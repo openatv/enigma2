@@ -84,6 +84,7 @@ l_desc = [
 
 config.movielist.description = ConfigSelection(default=MovieList.SHOW_DESCRIPTION, choices=l_desc)
 
+
 def defaultMoviePath():
 	result = config.usage.default_path.value
 	if not isdir(result):
@@ -259,7 +260,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		if not timeshiftEnabled:
-			InfoBarBase.__init__(self) # For ServiceEventTracker
+			InfoBarBase.__init__(self)  # For ServiceEventTracker
 		ProtectedScreen.__init__(self)
 		self.protectContextMenu = True
 
@@ -312,7 +313,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 
-		self.playGoTo = None #1 - preview next item / -1 - preview previous
+		self.playGoTo = None  # 1 - preview next item / -1 - preview previous
 
 		title = _("Movie selection")
 		self.setTitle(title)
@@ -439,7 +440,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"copy": _("Copy"),
 				"reset": _("Reset"),
 				"tags": _("Tags"),
-				"addbookmark": _("Add bookmark"),
+				"addbookmark": _("Add Bookmark"),
 				"bookmarks": _("Bookmarks"),
 				"rename": _("Rename"),
 				"gohome": _("Home"),
@@ -1057,7 +1058,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				updates = load(file)
 				file.close()
 				self.applyConfigSettings(updates)
-			except (IOError, OSError) as e:
+			except OSError as e:
 				updates = {
 					"moviesort": config.movielist.moviesort.default,
 					"description": config.movielist.description.default,
@@ -1389,7 +1390,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if path in config.movielist.videodirs.value:
 			if len(path) > 40:
 				path = "...%s" % path[-40:]
-			mbox = self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+			mbox = self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark for '%s'?") % path)
 			mbox.setTitle(self.getTitle())
 		else:
 			config.movielist.videodirs.value += [path]
@@ -1409,7 +1410,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_createdir(self):
 		self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard,
-			title=_("Please enter name of the new directory"),
+			title=_("Please enter a name for the new directory:"),
 			text="")
 
 	def createDirCallback(self, name):
@@ -1424,10 +1425,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			ref.setPath(path)
 			self.reloadList(sel=ref)
-		except (IOError, OSError) as e:
+		except OSError as e:
 			print("[MovieSelection] Error %s:" % e.errno, e)
 			if e.errno == 17:
-				msg = _("The path %s already exists.") % name
+				msg = _("Error: The path '%s' already exists!") % name
 			else:
 				msg = "%s\n%s" % (_("Error"), str(e))
 		except Exception as e:
@@ -1444,7 +1445,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def tageditorCallback(self, tags):
 		return
-
 
 	def do_rename(self):
 		item = self.getCurrentSelection()
@@ -1515,10 +1515,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 				ref.setPath(newpath)
 				self.reloadList(sel=ref)
-			except (IOError, OSError) as e:
+			except OSError as e:
 				print("[MovieSelection] Error %s:" % e.errno, e)
 				if e.errno == 17:
-					msg = _("The path %s already exists.") % name
+					msg = _("Error: The path '%s' already exists!") % name
 				else:
 					msg = "%s\n%s" % (_("Error"), str(e))
 			except Exception as e:
@@ -1770,7 +1770,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if ".Trash" in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
+					are_you_sure = _("Do you really want to permanently remove '%s' from trash can ?") % name
 				else:
 					are_you_sure = _("Do you really want to delete %s ?") % name
 				msg = ""
@@ -1994,7 +1994,6 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		self['description'] = Label("")
 		self["status"] = StaticText()
 
-
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
 				"red": self.cancelClick,
@@ -2011,9 +2010,9 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				(_("Create directory"), csel.do_createdir),
 				(_("Sort by") + "...", csel.selectSortby)]
 		if csel.exist_bookmark():
-			menu.append((_("Remove bookmark"), csel.do_addbookmark))
+			menu.append((_("Remove Bookmark"), csel.do_addbookmark))
 		else:
-			menu.append((_("Add bookmark"), csel.do_addbookmark))
+			menu.append((_("Add Bookmark"), csel.do_addbookmark))
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):

@@ -60,7 +60,7 @@ class PU_Restore(Screen, ConfigListScreen):
     def keyGreen(self):
         self.filename = self['ListSetting'].getCurrent()
         if self.filename is not None:
-            self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settingslist: %s\n\nDo you want to restore this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settings list: %s\n\nDo you want to restore this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
 
     def CBselect(self, req):
         if req:
@@ -69,7 +69,7 @@ class PU_Restore(Screen, ConfigListScreen):
     def keyYellow(self):
         self.filename = self['ListSetting'].getCurrent()
         if self.filename is not None:
-            self.session.openWithCallback(self.CBremove, MessageBox, _('Selected settingslist: %s\n\nDo you want to delete this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.CBremove, MessageBox, _('Selected settings list: %s\n\nDo you want to delete this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
 
     def CBremove(self, req):
         if req:
@@ -93,13 +93,13 @@ class PU_Restore(Screen, ConfigListScreen):
         config.pud.lastdate.value = date
         config.pud.save()
         configfile.save()
-        # Remove current settingslist
+        # Remove current settings list
         os.system('rm -rf /etc/enigma2/lamedb')
         os.system('rm -rf /etc/enigma2/*.radio')
         os.system('rm -rf /etc/enigma2/*.tv')
-        # Restore settingslist
+        # Restore settings list
         os.system('tar -xzvf %s -C /' % (Directory + '/Settings/enigma2/' + self.filename))
-        # Reload settingslist
+        # Reload settings list
         eDVBDB.getInstance().reloadServicelist()
         eDVBDB.getInstance().reloadBouquets()
         self.session.open(MessageBox, _('Setting Restored ') + self.filename + _(' of ') + date, MessageBox.TYPE_INFO, timeout=15)

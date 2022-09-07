@@ -168,7 +168,7 @@ if [ "$(grep -i config.crash.gstdebug=true /etc/enigma2/settings)" != "" ]; then
 	if [ "$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')" != "" ]; then
 		GSTDEBUGLEVEL=$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')
 	fi
-	export GST_DEBUG_FILE="${LOGFOLDER}GStreamer-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log"
+	export GST_DEBUG_FILE="${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-gstreamer-debug.log"
 	export GST_DEBUG="${GSTDEBUGCATEGORY}:${GSTDEBUGLEVEL}"
 	export GST_DEBUG_NO_COLOR="1"
 fi
@@ -181,7 +181,7 @@ fi
 # Start enigma2 with or without debug
 if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
 	DEBUG_LVL='4'
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log
 else
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
 fi

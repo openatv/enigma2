@@ -40,8 +40,6 @@ jobs:
           sudo apt-get install libgif-dev
 
       - uses: actions/checkout@v2
-        with:
-          ref: '7.0'
 
       - uses: actions/setup-python@v2
         with:

@@ -39,7 +39,7 @@ class Project:
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size=False, visible_width=40)
-		self.settings.authormode = ConfigSelection(choices=[("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("bdmv", _("BDMV Compatible Bludisc (HDTV only)")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
+		self.settings.authormode = ConfigSelection(choices=[("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("bdmv", _("BDMV Compatible Blu-ray disk (HDTV only)")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
 		self.settings.titlesetmode = ConfigSelection(choices=[("single", _("Simple titleset (compatibility for legacy players)")), ("multi", _("Complex (allows mixing audio tracks and aspects)"))], default="multi")
 		self.settings.output = ConfigSelection(choices=[("iso", _("Create DVD-ISO")), ("medium", _("Burn to medium"))])
 		self.settings.isopath = ConfigText(fixed_size=False, visible_width=40)

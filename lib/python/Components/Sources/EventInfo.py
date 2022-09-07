@@ -1,3 +1,5 @@
+from time import time
+
 from enigma import eEPGCache, eServiceReference, iPlayableService, iServiceInformation
 
 from Components.Element import cached
@@ -11,7 +13,7 @@ class pServiceEvent(object):
 	NOW = 0
 	NEXT = 1
 
-	def __init__(self, info, nowOrNext):
+	def __init__(self, info, nowOrNext, service):
 		self.nowOrNext = nowOrNext
 		self.m_EventNameNow = ""
 		self.m_EventNameNext = ""
@@ -19,6 +21,9 @@ class pServiceEvent(object):
 		self.m_ShortDescriptionNext = ""
 		self.m_ExtendedDescriptionNow = ""
 		self.m_ExtendedDescriptionNext = ""
+		self.m_Begin = time()
+		self.m_Duration = 0
+		
 		sTagTitle = info.getInfoString(iServiceInformation.sTagTitle)
 		if sTagTitle:
 			sTagTitleList = sTagTitle.split(" - ")
@@ -44,6 +49,15 @@ class pServiceEvent(object):
 			element6 = sTagLocation
 			self.m_ExtendedDescriptionNow += "\n\n" + element6
 
+		seek = service and service.seek()
+		if seek:
+			length = seek.getLength()
+			pos = seek.getPlayPosition()
+			if pos[0] == 0:
+				self.m_Begin = time() - pos[1] / 90000
+			if length[0] == 0:
+				self.m_Duration = length[1] / 90000
+
 	def getEventName(self):
 		return self.m_EventNameNow if self.nowOrNext == self.NOW else self.m_EventNameNext
 
@@ -54,13 +68,10 @@ class pServiceEvent(object):
 		return self.m_ExtendedDescriptionNow if self.nowOrNext == self.NOW else self.m_ExtendedDescriptionNext
 
 	def getBeginTime(self):
-		return 0
-
-	def getEndTime(self):
-		return 0
+		return self.m_Begin if self.nowOrNext == self.NOW else 0
 
 	def getDuration(self):
-		return 0
+		return self.m_Duration if self.nowOrNext == self.NOW else 0
 
 	def getEventId(self):
 		return 0
@@ -96,7 +107,7 @@ class EventInfo(PerServiceBase, Source):
 				serviceRef = info.getInfoString(iServiceInformation.sServiceref)
 				result = self.epgQuery(eServiceReference(serviceRef), -1, self.nowOrNext and 1 or 0)
 				if not result and serviceRef.split(":")[0] in ["4097", "5001", "5002", "5003"]:  # No EPG try to get meta.
-					serviceEvent = pServiceEvent(info, self.nowOrNext)
+					serviceEvent = pServiceEvent(info, self.nowOrNext, service)
 					if serviceEvent.getEventName:
 						return serviceEvent
 		return result

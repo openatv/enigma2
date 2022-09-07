@@ -19,7 +19,11 @@ public:
 		styleListboxSelected,
 		styleListboxNormal,
 		styleListboxMarked,
-		styleListboxMarkedAndSelected
+		styleListboxMarkedAndSelected,
+		styleScollbar,
+		styleScollbarBorder,
+		styleSlider,
+		styleSliderBorder
 	};
 
 	enum {
@@ -30,7 +34,10 @@ public:
 	enum {
 		fontStatic,
 		fontButton,
-		fontTitlebar
+		fontTitlebar,
+		fontListbox,
+		fontEntry,
+		fontValue
 	};
 };
 

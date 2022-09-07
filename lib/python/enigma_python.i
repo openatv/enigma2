@@ -100,6 +100,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
 #include <lib/dvb/streamserver.h>
+#include <lib/dvb/rtspstreamserver.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
@@ -116,6 +117,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/python/python.h>
 #include <lib/python/python_helpers.h>
 #include <lib/gdi/picload.h>
+#include <lib/dvb/fcc.h>
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -192,6 +194,7 @@ typedef long time_t;
 %immutable eHdmiCEC::addressChanged;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
+%immutable eFCCServiceManager::m_fcc_event;
 %immutable iCryptoInfo::clientname;
 %immutable iCryptoInfo::clientinfo;
 %immutable iCryptoInfo::verboseinfo;
@@ -265,7 +268,9 @@ typedef long time_t;
 %include <lib/python/python.h>
 %include <lib/python/pythonconfig.h>
 %include <lib/gdi/picload.h>
+%include <lib/dvb/fcc.h>
 %include <lib/dvb/streamserver.h>
+%include <lib/dvb/rtspstreamserver.h>
 %include <lib/dvb/metaparser.h>
 /**************  eptr  **************/
 
@@ -432,6 +437,15 @@ int getLinkedSlotID(int fe)
 }
 %}
 
+void setFCCEnable(int);
+%{
+void setFCCEnable(int enable)
+{
+        eFCCServiceManager *fcc_mng = eFCCServiceManager::getInstance();
+        if (fcc_mng) setFCCEnable(enable);
+}
+%}
+
 bool isFBCLink(int);
 %{
 bool isFBCLink(int fe)
@@ -453,15 +467,6 @@ PyObject *getFontFaces()
         return result;
 }
 %}
-
-void setListBoxScrollbarStyle(int,int);
-%{
-void setListBoxScrollbarStyle(int width, int offset)
-{
-	eListbox::setScrollbarStyle(width, offset);
-}
-%}
-
 
 /************** temp *****************/
 

@@ -270,11 +270,11 @@ class ServiceInfo(Screen):
 					subNumber = "%04X" % (x[1])
 					subList += [(_("DVB Subtitles PID & lang"), "%04X (%d) - %s" % (to_unsigned(subPID), subPID, subLang), TYPE_TEXT)]
 
-				elif x[0] == 1: # Teletext
+				elif x[0] == 1:  # Teletext
 					subNumber = "%x%02x" % (x[3] and x[3] or 8, x[2])
 					subList += [(_("TXT Subtitles page & lang"), "%s - %s" % (subNumber, subLang), TYPE_TEXT)]
 
-				elif x[0] == 2: # File
+				elif x[0] == 2:  # File
 					types = (_("unknown"), _("Embedded"), _("SSA file"), _("ASS file"),
 							_("SRT file"), _("VOB file"), _("PGS file"))
 					try:

@@ -41,7 +41,7 @@ def getProcMounts():
 			item[1] = item[1].replace('\\040', ' ')
 			result.append(item)
 		return result
-	except IOError as ex:
+	except OSError as ex:
 		print("[Harddisk] Failed to open /proc/mounts", ex)
 		return []
 
@@ -317,7 +317,7 @@ class Harddisk:
 			fstab = open("/etc/fstab")
 			lines = fstab.readlines()
 			fstab.close()
-		except IOError:
+		except OSError:
 			return -1
 		for line in lines:
 			parts = line.strip().split(" ")
@@ -421,7 +421,7 @@ class Harddisk:
 
 		task = UnmountTask(job, self)
 
-		task = MkfsTask(job, _("Creating filesystem"))
+		task = MkfsTask(job, _("Creating file system"))
 		big_o_options = ["dir_index"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
@@ -458,7 +458,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Components.Task.Job(_("Checking filesystem..."))
+		job = Components.Task.Job(_("Checking file system..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -502,7 +502,7 @@ class Harddisk:
 		task.args.append(dev)
 		task = Components.Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext4')
-		task.postconditions = [] # ignore result, it will always "fail"
+		task.postconditions = []  # ignore result, it will always "fail"
 		task.args.append('-f')
 		task.args.append('-p')
 		task.args.append('-D')
@@ -551,7 +551,7 @@ class Harddisk:
 				self.hdd_timer = True
 		except:
 			self.hdd_timer = False
-		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
+		self.setIdleTime(self.max_idle_time)  # kick the idle polling loop
 
 	def runIdle(self):
 		if not self.max_idle_time:
@@ -563,7 +563,7 @@ class Harddisk:
 		stats = self.readStats()
 		l = sum(stats)
 
-		if l != self.last_stat and l >= 0: # access
+		if l != self.last_stat and l >= 0:  # access
 			self.last_stat = l
 			self.last_access = t
 			idle_time = 0
@@ -597,7 +597,7 @@ class Partition:
 		self.mountpoint = mountpoint
 		self.description = description
 		self.force_mounted = mountpoint and force_mounted
-		self.is_hotplug = force_mounted # so far; this might change.
+		self.is_hotplug = force_mounted  # so far; this might change.
 		self.device = device
 
 	def __str__(self):
@@ -638,7 +638,7 @@ class Partition:
 			if mounts is None:
 				mounts = getProcMounts()
 			for parts in mounts:
-				if self.mountpoint.startswith(parts[1]): # use startswith so a mount not ending with '/' is also detected.
+				if self.mountpoint.startswith(parts[1]):  # use startswith so a mount not ending with '/' is also detected.
 					return True
 		return False
 
@@ -695,8 +695,8 @@ DEVICEDB = \
 		"/devices/platform/ohci-brcm.3/": _("Internal USB"),
 		"/devices/platform/sdhci-brcmstb.0/": _("eMMC"),
 		"/devices/platform/sdhci-brcmstb.1/": _("SD"),
-		"/devices/platform/strict-ahci.0/ata1/": _("SATA"),	# front
-		"/devices/platform/strict-ahci.0/ata2/": _("SATA"),	# back
+		"/devices/platform/strict-ahci.0/ata1/": _("SATA"),  # front
+		"/devices/platform/strict-ahci.0/ata2/": _("SATA"),  # back
 	},
 	"dm800":
 	{
@@ -776,7 +776,7 @@ DEVICEDB = \
 	},
 	"dm7025":
 	{
-		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "Compact Flash", #hdc
+		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "Compact Flash",  # hdc
 		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 	}
 	}
@@ -831,7 +831,7 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			devlist = [1, 7, 31, 253, 254] # ram, loop, mtdblock, romblock, ramzswap
+			devlist = [1, 7, 31, 253, 254]  # ram, loop, mtdblock, romblock, ramzswap
 			if dev in devlist:
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
@@ -841,7 +841,7 @@ class HarddiskManager:
 					media = readFile("/proc/ide/%s/media" % blockdev)
 					if "cdrom" in media:
 						is_cdrom = True
-				except IOError:
+				except OSError:
 					error = True
 			# check for partitions
 			if not is_cdrom and os.path.exists(devpath):
@@ -853,15 +853,15 @@ class HarddiskManager:
 					partitions.append(partition)
 			else:
 				self.cd = blockdev
-		except IOError:
+		except OSError:
 			error = True
 		# check for medium
 		medium_found = True
 		try:
 			if os.path.exists("/dev/" + blockdev):
 				open("/dev/" + blockdev).close()
-		except IOError as err:
-			if err.errno == 159: # no medium present
+		except OSError as err:
+			if err.errno == 159:  # no medium present
 				medium_found = False
 
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
@@ -934,7 +934,7 @@ class HarddiskManager:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint=self.getMountpoint(device), description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
-			if p.mountpoint: # Plugins won't expect unmounted devices
+			if p.mountpoint:  # Plugins won't expect unmounted devices
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
@@ -967,7 +967,7 @@ class HarddiskManager:
 		for x in self.partitions[:]:
 			if x.device == device:
 				self.partitions.remove(x)
-				if x.mountpoint: # Plugins won't expect unmounted devices
+				if x.mountpoint:  # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
 		l = len(device)
 		if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
@@ -1003,7 +1003,7 @@ class HarddiskManager:
 			if not devname:
 				continue
 			dev, part = self.splitDeviceName(devname)
-			if part and dev in devs: # if this is a partition and we still have the wholedisk, remove wholedisk
+			if part and dev in devs:  # if this is a partition and we still have the wholedisk, remove wholedisk
 				devs.remove(dev)
 
 		# return all devices which are not removed due to being a wholedisk when a partition exists
@@ -1030,7 +1030,7 @@ class HarddiskManager:
 		description = _("External Storage %s") % dev
 		try:
 			description = readFile("/sys" + phys + "/model")
-		except IOError as s:
+		except OSError as s:
 			print("[Harddisk] couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in list(DEVICEDB.get(HardwareInfo().device_name, {}).items()):
@@ -1153,7 +1153,7 @@ class MkfsTask(Components.Task.LoggingTask):
 					self.setProgress(80 * int(d[0]) // int(d[1]))
 				except Exception as e:
 					print("[Harddisk] MkfsTask - [Mkfs] Error:", e)
-				return # don't log the progess
+				return  # don't log the progess
 		self.log.append(data)
 
 

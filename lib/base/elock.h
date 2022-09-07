@@ -10,7 +10,7 @@ public:
 	singleLock(pthread_mutex_t &m )
 		:lock(m)
 	{
-		pthread_mutex_lock(&lock);
+		pthread_mutex_lock(&lock); // NOSONAR
 	}
 	~singleLock()
 	{

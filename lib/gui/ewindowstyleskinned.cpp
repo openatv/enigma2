@@ -8,9 +8,20 @@ DEFINE_REF(eWindowStyleSkinned);
 
 eWindowStyleSkinned::eWindowStyleSkinned()
 {
-	// m_background_color = gRGB(0x808080);
-
 	// TODO: initialize colors!!
+
+	m_color[colForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarBorder] = gRGB(0xFFFFFF);
+	m_color[colWindowTitleForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderBorder] = gRGB(0xFFFFFF);
+
+	m_labelfnt = new gFont("Regular", 12);
+	m_listboxfnt = new gFont("Regular", 20);
+	m_entryfnt = new gFont("Regular", 20);
+	m_valuefnt = new gFont(m_entryfnt->family, m_entryfnt->pointSize - m_entryfnt->pointSize/5);
+
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
@@ -56,25 +67,48 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 	switch (what)
 	{
 	case styleLabel:
-		painter.setForegroundColor(m_color[colLabelForeground]);
+		painter.setForegroundColor(m_color[colForeground]);
 		break;
 	case styleListboxSelected:
-		painter.setForegroundColor(m_color[colListboxSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundSelected]);
 		break;
 	case styleListboxNormal:
 		painter.setForegroundColor(m_color[colListboxForeground]);
 		painter.setBackgroundColor(m_color[colListboxBackground]);
 		break;
 	case styleListboxMarked:
-		painter.setForegroundColor(m_color[colListboxMarkedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarked]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarked]);
 		break;
 	case styleListboxMarkedAndSelected:
-		painter.setForegroundColor(m_color[colListboxMarkedAndSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarkedSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarkedSelected]);
+		break;
+	case styleScollbar:
+		if (m_color[colScrollbarBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colScrollbarBackground]);
+			painter.clear();
+		}
+		painter.setForegroundColor(m_color[colScrollbarForeground]);
+		break;
+	case styleScollbarBorder:
+		painter.setForegroundColor(m_color[colScrollbarBorder]);
+		break;
+	case styleSlider:
+		if (m_color[colSliderBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colSliderBackground]);
+			painter.clear();
+		}
+		painter.setForegroundColor(m_color[colSliderForeground]);
+		break;
+	case styleSliderBorder:
+		painter.setForegroundColor(m_color[colSliderBorder]);
 		break;
 	}
+
 }
 
 void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)
@@ -199,8 +233,17 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	fnt = 0;
 	switch (what)
 	{
+	case fontListbox:
+		fnt = m_listboxfnt;
+		break;
 	case fontStatic:
-		fnt = new gFont("Regular", 12);
+		fnt = m_labelfnt;
+		break;
+	case fontEntry:
+		fnt = m_entryfnt;
+		break;
+	case fontValue:
+		fnt = m_valuefnt;
 		break;
 	case fontButton:
 		fnt = new gFont("Regular", 20);
@@ -278,3 +321,22 @@ void eWindowStyleSkinned::setTitleFont(gFont *fnt)
 	m_fnt = fnt;
 }
 
+void eWindowStyleSkinned::setLabelFont(gFont *fnt)
+{
+	m_labelfnt = fnt;
+}
+
+void eWindowStyleSkinned::setListboxFont(gFont *fnt)
+{
+	m_listboxfnt = fnt;
+}
+
+void eWindowStyleSkinned::setEntryFont(gFont *fnt)
+{
+	m_entryfnt = fnt;
+}
+
+void eWindowStyleSkinned::setValueFont(gFont *fnt)
+{
+	m_valuefnt = fnt;
+}

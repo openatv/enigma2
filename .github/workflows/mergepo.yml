@@ -1,0 +1,30 @@
+name: mergepo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: '7.0'
+
+      - name: updatepot
+        run: |
+          sudo apt-get -q update
+          git config --global user.email "bot@openatv.com"
+          git config --global user.name "atv enigma po Bot"
+          git config advice.addignoredfile false
+          git clean -fd
+          git checkout 7.0
+          git clone --depth 1 https://github.com/openatv/enigma2-po.git ponew
+          cp ponew/po/*.po po/
+          rm -rf ponew
+          git add -u
+          git add * || :
+          git commit -m "translation update"
+          git remote add upstream https://${GITHUB_TOKEN}@github.com/openatv/enigma2.git > /dev/null 2>&1
+          git push --quiet upstream 7.0 || echo "failed to push with error $?"

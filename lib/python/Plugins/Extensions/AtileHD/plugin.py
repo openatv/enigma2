@@ -178,7 +178,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			from Plugins.Extensions.WeatherPlugin.setup import MSNWeatherPluginEntriesListConfigScreen
 			self.session.open(MSNWeatherPluginEntriesListConfigScreen)
 		except:
-			self.session.open(MessageBox, _("'weatherplugin' is not installed!"), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("'WeatherPlugin' is not installed!"), MessageBox.TYPE_INFO)
 
 	def getInitConfig(self):
 		global cur_skin
@@ -303,13 +303,13 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.set_color = getConfigListEntry(_("Style:"), self.myAtileHD_color)
 		self.set_font = getConfigListEntry(_("Font:"), self.myAtileHD_font)
 		self.set_background = getConfigListEntry(_("Background:"), self.myAtileHD_background)
-		self.set_sb = getConfigListEntry(_("Backgroundselected:"), self.myAtileHD_sb)
-		self.set_infobar = getConfigListEntry(_("Infobar:"), self.myAtileHD_infobar)
-		self.set_sib = getConfigListEntry(_("Secondinfobar:"), self.myAtileHD_sib)
-		self.set_ch_se = getConfigListEntry(_("Channelselection:"), self.myAtileHD_ch_se)
-		self.set_ev = getConfigListEntry(_("Eventview:"), self.myAtileHD_ev)
+		self.set_sb = getConfigListEntry(_("Background selected:"), self.myAtileHD_sb)
+		self.set_infobar = getConfigListEntry("%s:" % _("InfoBar"), self.myAtileHD_infobar)
+		self.set_sib = getConfigListEntry("%s:" % _("2nd InfoBar"), self.myAtileHD_sib)
+		self.set_ch_se = getConfigListEntry(_("Channel selection:"), self.myAtileHD_ch_se)
+		self.set_ev = getConfigListEntry(_("Event view:"), self.myAtileHD_ev)
 		self.set_clock = getConfigListEntry(_("Clock:"), self.myAtileHD_clock)
-		self.set_ul = getConfigListEntry(_("Userlogo:"), self.myAtileHD_ul)
+		self.set_ul = getConfigListEntry(_("User logo:"), self.myAtileHD_ul)
 		self.set_myatile = getConfigListEntry(_("Enable %s pro:") % cur_skin, self.myAtileHD_active)
 		self.set_new_skin = getConfigListEntry(_("Change skin"), ConfigNothing())
 		self.find_woeid = getConfigListEntry(_("Search weather location ID"), ConfigNothing())

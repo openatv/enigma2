@@ -21,7 +21,7 @@ void eDVBServiceEITHandler::EITready(int error)
 					for (EventConstIterator ev = eit->getEvents()->begin(); ev != eit->getEvents()->end(); ++ev)
 					{
 						ePtr<eServiceEvent> evt = new eServiceEvent();
-						evt->parseFrom(*ev,(eit->getTransportStreamId()<<16)|eit->getOriginalNetworkId());
+						evt->parseFrom(*ev,(eit->getTransportStreamId()<<16)|eit->getOriginalNetworkId(), m_sid);
 						if (!a)
 							m_event_now = evt;
 						else
@@ -200,10 +200,10 @@ void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &
 	}
 	else
 	{
-		int sid = ref.getParentServiceID().get();
-		if (!sid)
+		m_sid = ref.getParentServiceID().get();
+		if (!m_sid)
 		{
-			sid = ref.getServiceID().get();
+			m_sid = ref.getServiceID().get();
 		}
 
 		delete m_EIT;
@@ -211,11 +211,11 @@ void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &
 		CONNECT(m_EIT->tableReady, eDVBServiceEITHandler::EITready);
 		if (ref.getParentTransportStreamID().get() && ref.getParentTransportStreamID() != ref.getTransportStreamID())
 		{
-			m_EIT->begin(eApp, eDVBEITSpecOther(sid), m_demux);
+			m_EIT->begin(eApp, eDVBEITSpecOther(m_sid), m_demux);
 		}
 		else
 		{
-			m_EIT->begin(eApp, eDVBEITSpec(sid), m_demux);
+			m_EIT->begin(eApp, eDVBEITSpec(m_sid), m_demux);
 		}
 	}
 }

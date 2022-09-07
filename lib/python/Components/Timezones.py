@@ -81,7 +81,7 @@ def InitTimeZones():
 				msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
 		if len(msgs):
 			print("[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs))
-	except (IOError, OSError) as err:
+	except OSError as err:
 		print("[Timezones] Error %d: Unable to resolve current time zone from '/etc/localtime'!  (%s)" % (err.errno, err.strerror))
 
 	def timezoneAreaChoices(configElement):
@@ -227,17 +227,17 @@ class Timezones:
 		print("[Timezones] Setting time zone to '%s'." % tz)
 		try:
 			unlink("/etc/localtime")
-		except (IOError, OSError) as err:
+		except OSError as err:
 			if err.errno != ENOENT:  # No such file or directory.
 				print("[Timezones] Error %d: Unlinking '/etc/localtime'!  (%s)" % (err.errno, err.strerror))
 		try:
 			symlink(file, "/etc/localtime")
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror))
 		try:
 			with open("/etc/timezone", "w") as fd:
 				fd.write("%s\n" % tz)
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'!  (%s)" % (err.errno, file, err.strerror))
 		fileWriteLine("/etc/timezone", "%s\n" % tz, source=MODULE_NAME)
 		try:

@@ -245,15 +245,15 @@ int eDVBSatelliteTransponderData::getInversion() const
 
 	switch (getProperty(DTV_INVERSION))
 	{
-		case INVERSION_OFF:
-			return eDVBFrontendParametersSatellite::Inversion_Off;
-		case INVERSION_ON:
-			return eDVBFrontendParametersSatellite::Inversion_On;
 		default:
 			eDebug("[eDVBSatelliteTransponderData] got unsupported inversion from frontend! report as INVERSION_AUTO!\n");
 			[[fallthrough]];
 		case INVERSION_AUTO:
 			return eDVBFrontendParametersSatellite::Inversion_Unknown;
+		case INVERSION_OFF:
+			return eDVBFrontendParametersSatellite::Inversion_Off;
+		case INVERSION_ON:
+			return eDVBFrontendParametersSatellite::Inversion_On;
 	}
 }
 
@@ -283,6 +283,11 @@ int eDVBSatelliteTransponderData::getFecInner() const
 
 	switch (getProperty(DTV_INNER_FEC))
 	{
+		default:
+			eDebug("[eDVBSatelliteTransponderData] got unsupported FEC from frontend! report as FEC_AUTO!\n");
+			[[fallthrough]];
+		case FEC_AUTO:
+			return eDVBFrontendParametersSatellite::FEC_Auto;
 		case FEC_1_2:
 			return eDVBFrontendParametersSatellite::FEC_1_2;
 		case FEC_2_3:
@@ -305,11 +310,6 @@ int eDVBSatelliteTransponderData::getFecInner() const
 			return eDVBFrontendParametersSatellite::FEC_9_10;
 		case FEC_NONE:
 			return eDVBFrontendParametersSatellite::FEC_None;
-		default:
-			eDebug("[eDVBSatelliteTransponderData] got unsupported FEC from frontend! report as FEC_AUTO!\n");
-			[[fallthrough]];
-		case FEC_AUTO:
-			return eDVBFrontendParametersSatellite::FEC_Auto;
 	}
 }
 

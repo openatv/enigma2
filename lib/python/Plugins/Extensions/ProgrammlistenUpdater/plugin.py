@@ -117,7 +117,7 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         self.name = self['MenuListSetting'].getCurrent()[0][3]
         self.date = self['MenuListSetting'].getCurrent()[0][4]
         self.link = self['MenuListSetting'].getCurrent()[0][2]
-        self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settingslist:\n\nSetting: %s\nDate: %s\n\nDo you want to install this settinglist?') % (self.name, self.date), MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settings list:\n\nSetting: %s\nDate: %s\n\nDo you want to install this settinglist?') % (self.name, self.date), MessageBox.TYPE_YESNO)
 
     def CBselect(self, req):
         if req:

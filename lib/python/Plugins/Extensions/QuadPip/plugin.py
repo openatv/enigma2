@@ -20,7 +20,7 @@ def autoStart(reason, **kwargs):
 def Plugins(**kwargs):
 	list = []
 	list.append(
-		PluginDescriptor(name=_("Enable Quad PIP"),
+		PluginDescriptor(name=_("Enable Quad PiP"),
 		description="Quad Picture in Picture",
 		where=[PluginDescriptor.WHERE_EXTENSIONSMENU],
 		fnc=main))

@@ -5,7 +5,7 @@
 /* Restart EPG data capture */
 #define UPDATE_INTERVAL (5 * 60 * 1000)  // Australian EIT EPG is very dynamic, updates can come less than a minute apart
 /* Time to wait after tuning in before EPG data capturing starts */
-#define ZAP_DELAY (500)                  // 1/2 second (want to grab EPG data before timeshift starts)
+#define ZAP_DELAY (500)                  // 1/2 second (want to grab EPG data before time shift starts)
 #else
 /* Restart EPG data capture */
 #define UPDATE_INTERVAL 3600000  // 60 min

@@ -41,7 +41,7 @@ class InputDevices:
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				osclose(self.fd)
-			except (IOError, OSError) as err:
+			except OSError as err:
 				print("[InputDevice] Error: device='%s' getInputDevices <ERROR: ioctl(EVIOCGNAME): '%s'>" % (device, str(err)))
 				self.name = None
 
@@ -321,7 +321,7 @@ class RemoteControl:
 		if rcType > 0:
 			fileWriteLine("/proc/stb/ir/rc/type", rcType, source=MODULE_NAME)
 
-	def getOpenWebIfHTML(self):
+	def getOpenWebifHTML(self):
 		html = []
 		error = False
 		image = self.remote["image"]

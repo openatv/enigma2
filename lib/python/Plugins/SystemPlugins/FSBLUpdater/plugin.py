@@ -30,7 +30,7 @@ class FSBLUpdateHandler(object):
 				(_("Don't ask again!"), "never")
 			]
 			txt = _("DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\nUpdate now?")
-			Tools.Notifications.AddNotificationWithCallback(self._startFSBLUpdater, ChoiceBox, list=choices, title=txt, windowTitle=_("Bootloader update required!"))
+			Tools.Notifications.AddNotificationWithCallback(self._startFSBLUpdater, ChoiceBox, list=choices, title=txt, windowTitle=_("Boot loader update required!"))
 		else:
 			Log.i("No FSBL update required!")
 
