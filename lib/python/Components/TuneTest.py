@@ -199,7 +199,8 @@ class TuneTest:
 							self.successfullyTune.append([self.currTuned, self.oldTuned, tunerdict])  # 3rd parameter is the frontend status
 							if self.stopOnSuccess != -1 and self.stopOnSuccess <= len(self.successfullyTune):
 								stop = True
-				elif not self.checkPIDs or (self.checkPIDs and not pidsFailed):  # NOSONAR This line is wrong
+				# elif not self.checkPIDs or (self.checkPIDs and not pidsFailed):
+				else:
 					self.successfullyTune.append([self.currTuned, self.oldTuned, tunerdict])  # 3rd parameter is the frontend status
 					if self.stopOnSuccess != -1 and self.stopOnSuccess <= len(self.successfullyTune):
 						stop = True
