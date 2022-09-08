@@ -69,7 +69,7 @@ seek_withjumps_muted = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
-energyTimerCallBack = None
+keyPressCallback = []
 
 
 def isStandardInfoBar(self):
@@ -289,8 +289,8 @@ class InfoBarUnhandledKey:
 
 	def actionA(self, key, flag):  # This function is called on every keypress!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
-		if energyTimerCallBack and str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
-			energyTimerCallBack(config.usage.energyTimer.value, showMessage=False)
+		for callback in keyPressCallback:
+			callback()
 # TODO : TEST
 #		if flag != 2: # Don't hide on repeat.
 		self.unhandledKeyDialog.hide()
@@ -5078,14 +5078,14 @@ class InfoBarHdmi:
 
 class InfoBarSleepTimer:
 	def __init__(self):
-		global energyTimerCallBack
-		self.sleepTimer = eTimer()
+		global keyPressCallback
 		self.sleepStartTime = 0
+		self.sleepTimer = eTimer()
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
-		self.energyTimer = eTimer()
 		self.energyStartTime = 0
+		self.energyTimer = eTimer()
 		self.energyTimer.callback.append(self.energyTimerTimeout)
-		energyTimerCallBack = self.setEnergyTimer
+		keyPressCallback.append(self.resetEnergyTimer)
 
 	def sleepTimerState(self):
 		return self.getTimerRemaining(self.sleepTimer, self.sleepStartTime)
@@ -5095,7 +5095,7 @@ class InfoBarSleepTimer:
 
 	def getTimerRemaining(self, timer, startTime):
 		if timer.isActive():
-			return (startTime - time())
+			return (startTime - int(time()))
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage=True):
@@ -5103,6 +5103,10 @@ class InfoBarSleepTimer:
 
 	def setEnergyTimer(self, energyTime, showMessage=True):
 		self.energyStartTime = self.setTimer(energyTime, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=showMessage)
+
+	def resetEnergyTimer(self):
+		if str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
+			self.energyStartTime = self.setTimer(config.usage.energyTimer.value, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=False)
 
 	def setTimer(self, delay, previous, timer, name, showMessage):
 		minutes = delay // 60
