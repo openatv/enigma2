@@ -891,7 +891,7 @@ class PowerTimerEntry(TimerEntry, object):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "Backoff, retry in %d minutes." % self.backoff // 60)
+		self.log(10, "Backoff, retry in %d minutes." % (self.backoff // 60))
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
