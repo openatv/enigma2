@@ -56,7 +56,7 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("step size"), self.clip_step))
 		self.list.append(getConfigListEntry(_("left"), self.clip_left))
 		self.list.append(getConfigListEntry(_("width"), self.clip_width))
-		self.list.append(getConfigListEntry(_("top"), self.clip_top))
+		self.list.append(getConfigListEntry(_("Top"), self.clip_top))
 		self.list.append(getConfigListEntry(_("height"), self.clip_height))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

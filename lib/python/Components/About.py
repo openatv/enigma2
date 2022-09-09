@@ -20,6 +20,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 socfamily = BoxInfo.getItem("socfamily")
 
+
 def getModelString():
 	model = getBoxType()
 	return model
@@ -340,7 +341,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	ifaces = []
 	for index in range(0, outbytes, structSize):
-		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0] # PY3
+		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0]  # PY3
 		# ifaceName = str(names.tolist[index:index + 16]).split("\0", 1)[0] # PY2
 		if ifaceName != "lo":
 			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
@@ -356,11 +357,11 @@ def getBoxUptime():
 	if secs > 86400:
 		days = secs // 86400
 		secs = secs % 86400
-		times.append(ngettext("%d day", "%d days", days) % days)
+		times.append(ngettext("%d Day", "%d Days", days) % days)
 	h = secs // 3600
 	m = (secs % 3600) // 60
-	times.append(ngettext("%d hour", "%d hours", h) % h)
-	times.append(ngettext("%d minute", "%d minutes", m) % m)
+	times.append(ngettext("%d Hour", "%d Hours", h) % h)
+	times.append(ngettext("%d Minute", "%d Minutes", m) % m)
 	return " ".join(times)
 
 

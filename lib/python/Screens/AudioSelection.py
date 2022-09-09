@@ -230,7 +230,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d, None))
 
 			if BoxInfo.getItem("Can3DSpeaker") and config.av.surround_3d.value != "none":
-				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
+				choice_list = [("center", _("Center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 				self.settings.surround_3d_speaker = ConfigSelection(choices=choice_list, default=config.av.surround_3d_speaker.value)
 				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker, initial_call=False)
 				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))

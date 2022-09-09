@@ -1358,7 +1358,7 @@ def InitUsageConfig():
 	# Handle python crashes.
 	config.crash.bsodpython = ConfigYesNo(default=True)
 	config.crash.bsodpython_ready = NoSave(ConfigYesNo(default=False))
-	choiceList = [("0", _("never"))] + [(str(x), str(x)) for x in range(1, 11)]
+	choiceList = [("0", _("Never"))] + [(str(x), str(x)) for x in range(1, 11)]
 	config.crash.bsodhide = ConfigSelection(default="1", choices=choiceList)
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choiceList)
 
@@ -1867,7 +1867,7 @@ def InitUsageConfig():
 	config.epgselection.vertical_oklong = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap + Exit")
 	config.epgselection.vertical_info = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default="Channel Info")
 	config.epgselection.vertical_infolong = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default="Single EPG")
-	config.epgselection.vertical_channelbtn = ConfigSelection(choices=[("page", _("previous/next Page")), ("scroll", _("all up/down")), ("24", _("-24h/+24 Hours"))], default="page")
+	config.epgselection.vertical_channelbtn = ConfigSelection(choices=[("page", _("Previous/Next page")), ("scroll", _("all up/down")), ("24", _("-24h/+24 Hours"))], default="page")
 	config.epgselection.vertical_channelbtn_invert = ConfigYesNo(default=False)
 	config.epgselection.vertical_updownbtn = ConfigYesNo(default=True)
 	config.epgselection.vertical_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
@@ -1876,7 +1876,7 @@ def InitUsageConfig():
 	config.epgselection.vertical_pig = ConfigYesNo(default=False)
 	config.epgselection.vertical_eventmarker = ConfigYesNo(default=False)
 	config.epgselection.vertical_showlines = ConfigYesNo(default=True)
-	config.epgselection.vertical_startmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("primetime", _("Primetime")), ("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Primetime"))])
+	config.epgselection.vertical_startmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("primetime", _("Prime time")), ("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Prime time"))])
 	config.epgselection.vertical_prevtime = ConfigClock(default=time())
 	choiceList = [
 		("autotimer", _("AutoTimer")),

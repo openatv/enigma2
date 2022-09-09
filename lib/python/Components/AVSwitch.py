@@ -534,7 +534,7 @@ def InitAVSwitch():
 	config.av.autores_unknownres = ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
 	choicelist = []
 	for i in list(range(5, 16)):
-		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+		choicelist.append(("%d" % i, ngettext("%d Second", "%d Seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default="5", choices=[("0", _("Not Shown"))] + choicelist)
 	config.av.autores_delay = ConfigSelectionNumber(min=0, max=3000, stepwidth=50, default=400, wraparound=True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
@@ -987,7 +987,7 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
+		choice_list = [("center", _("Center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 		config.av.surround_3d_speaker = ConfigSelection(choices=choice_list, default="center")
 		config.av.surround_3d_speaker.addNotifier(set3DSurroundSpeaker)
 	else:

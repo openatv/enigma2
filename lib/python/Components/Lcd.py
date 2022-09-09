@@ -337,11 +337,11 @@ def InitLcd():
 			("100", _("fast"))
 		], default="300")
 		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("seconds")),
-			("20000", "20 %s" % _("seconds")),
-			("30000", "30 %s" % _("seconds")),
-			("60000", "1 %s" % _("minute")),
-			("300000", "5 %s" % _("minutes")),
+			("10000", "10 %s" % _("Seconds")),
+			("20000", "20 %s" % _("Seconds")),
+			("30000", "30 %s" % _("Seconds")),
+			("60000", "1 %s" % _("Minute")),
+			("300000", "5 %s" % _("Minutes")),
 			("noscrolling", _("Off"))
 		], default="10000")
 
@@ -519,14 +519,14 @@ def InitLcd():
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(choices=[
-			("5", "5 %s" % _("seconds")),
-			("10", "10 %s" % _("seconds")),
-			("15", "15 %s" % _("seconds")),
-			("20", "20 %s" % _("seconds")),
-			("30", "30 %s" % _("seconds")),
-			("60", "1 %s" % _("minute")),
-			("120", "2 %s" % _("minutes")),
-			("300", "5 %s" % _("minutes")),
+			("5", "5 %s" % _("Seconds")),
+			("10", "10 %s" % _("Seconds")),
+			("15", "15 %s" % _("Seconds")),
+			("20", "20 %s" % _("Seconds")),
+			("30", "30 %s" % _("Seconds")),
+			("60", "1 %s" % _("Minute")),
+			("120", "2 %s" % _("Minutes")),
+			("300", "5 %s" % _("Minutes")),
 			("0", _("Off"))
 		], default="0")
 		config.lcd.dimdelay.addNotifier(setLCDdimdelay)
@@ -593,11 +593,11 @@ def InitLcd():
 					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(choices=[
-				("3000", "3 %s" % _("seconds")),
-				("5000", "5 %s" % _("seconds")),
-				("10000", "10 %s" % _("seconds")),
-				("20000", "20 %s" % _("seconds")),
-				("30000", "30 %s" % _("seconds")),
+				("3000", "3 %s" % _("Seconds")),
+				("5000", "5 %s" % _("Seconds")),
+				("10000", "10 %s" % _("Seconds")),
+				("20000", "20 %s" % _("Seconds")),
+				("30000", "30 %s" % _("Seconds")),
 				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback=False)
@@ -613,11 +613,11 @@ def InitLcd():
 					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_final_scroll_delay = ConfigSelection(choices=[
-				("3000", "3 %s" % _("seconds")),
-				("5000", "5 %s" % _("seconds")),
-				("10000", "10 %s" % _("seconds")),
-				("20000", "20 %s" % _("seconds")),
-				("30000", "30 %s" % _("seconds")),
+				("3000", "3 %s" % _("Seconds")),
+				("5000", "5 %s" % _("Seconds")),
+				("10000", "10 %s" % _("Seconds")),
+				("20000", "20 %s" % _("Seconds")),
+				("30000", "30 %s" % _("Seconds")),
 				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
@@ -699,11 +699,11 @@ def InitLcd():
 			("100", _("fast"))
 		], default="300")
 		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("seconds")),
-			("20000", "20 %s" % _("seconds")),
-			("30000", "30 %s" % _("seconds")),
-			("60000", "1 %s" % _("minute")),
-			("300000", "5 %s" % _("minutes")),
+			("10000", "10 %s" % _("Seconds")),
+			("20000", "20 %s" % _("Seconds")),
+			("30000", "30 %s" % _("Seconds")),
+			("60000", "1 %s" % _("Minute")),
+			("300000", "5 %s" % _("Minutes")),
 			("noscrolling", _("Off"))
 		], default="10000")
 		config.lcd.showoutputresolution = ConfigNothing()
