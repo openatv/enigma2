@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -854,12 +854,24 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d GB"
@@ -899,6 +911,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min."
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1297,11 +1323,11 @@ msgstr "'%s' er ikke installeret og ingen kendt pakke"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer i timer' eller 'antal af sidste begivenheder'. For sletning af ældre Timeshift-filer, har den betingelse der først forekommer prioritet."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Afkod og optag ECM' giver mulighed for efterfølgende at afkode, hvis afkodning af optagelse mislykkedes. 'Afkod ikke, optag ECM' gemmer en kodet optagelse som kan afkodes ved afspilning. 'Normal' betyder at optagelsen afkodes og at ECM ikke optages."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'vejr-plugin' er ikke installeret!"
@@ -2403,6 +2429,9 @@ msgstr "Efter tryk på OK, vent venligst!"
 msgid "After recording"
 msgstr "Efter optagelse"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2598,9 +2627,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Et tomt filnavn er ugyldigt."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Der opstod en fejl under download af pakkelisten. Prøv venligst igen."
 
@@ -2642,6 +2668,9 @@ msgstr "Antigua og Barbuda"
 
 msgid "Any activity"
 msgstr "Enhver aktivitet"
+
+msgid "Any recordings"
+msgstr "Enhver optagelse"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Aktiver alle ændringer af det nuværende område/sprog og afslut"
@@ -5189,10 +5218,6 @@ msgstr "Opretter AP og SC filer"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Oprettelse af hårdlænke til Timeshift-fil mislykkedes!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Oprettelse af mappen %s mislykkedes."
-
 msgid "Creating file system"
 msgstr "Opretter filsystem"
 
@@ -5929,18 +5954,6 @@ msgstr "Danmark"
 msgid "Depth"
 msgstr "Dybde"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'Afkod og optag ECM' giver mulighed for efterfølgende at afkode, hvis afkodning af optagelse mislykkedes. 'Afkod ikke, optag ECM' gemmer en kodet optagelse som kan afkodes ved afspilning. 'Normal' betyder at optagelsen afkodes og at ECM ikke optages."
-
-msgid "Unscramble and record ECM"
-msgstr "Afkod og gem ECM"
-
-msgid "Unscramble http streams"
-msgstr "Dekrypter http streams"
-
-msgid "Unscramble receiving http streams"
-msgstr "Dekrypter modtaget http streams"
-
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -6437,9 +6450,6 @@ msgstr "Tilføj ikke denne optagelse"
 msgid "Don't ask again!"
 msgstr "Spørg ikke igen!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "Afkod ikke, gem ECM"
-
 msgid "Don't restart"
 msgstr "Genstart ikke"
 
@@ -6451,6 +6461,9 @@ msgstr "Vis ikke standard"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Stop ikke nuværende udsendelse men deaktiver kommende udsendelser"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Afkod ikke, gem ECM"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7375,6 +7388,9 @@ msgstr "Fejl: %s %s ikke %s!  Prøv venligst igen senere."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Et tomt filnavn er ugyldigt."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7385,14 +7401,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Kunne ikke finde passende medie - Fjern venligst nogle downloades Images eller indsæt et medie (f.eks. USB nøgle) med tilstrækkelig fri plads og prøv igen!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Oprettelse af mappen %s mislykkedes."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Ugyldig mappe valgt: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Fjernelsen af mappen %s mislykkedes. (Måske ikke tom.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Stien %s findes allerede."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Ikke i stand til at oprette de nødvendige mapper på mediet (f.eks. USB-nøgle eller Harddisk) - Kontroller venligst medie og prøv igen!"
@@ -9529,10 +9561,6 @@ msgstr ""
 msgid "Invalid"
 msgstr "Ugyldig"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Ugyldig mappe valgt: %s"
-
 msgid "Invalid location"
 msgstr "Ugyldig placering"
 
@@ -9684,6 +9712,12 @@ msgstr "Hop til Primetime"
 
 msgid "Jump to the currently active locale/language"
 msgstr ""
+
+msgid "Just abort, no message"
+msgstr "Afbryd bare, ingen besked"
+
+msgid "Just abort, show message"
+msgstr "Afbryd bare, vis besked"
 
 msgid "Just change Bouquet"
 msgstr "Skift kun Buket"
@@ -10809,10 +10843,6 @@ msgstr "Motordrift tidsudløb"
 msgid "Mount"
 msgstr "Mount"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Der er ikke fri plads nok på Mount '%s' til at optage."
-
 msgid "Mount Actions"
 msgstr ""
 
@@ -11333,6 +11363,9 @@ msgstr "NetværksAssistent"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
+
+msgid "Never abort"
+msgstr "Afbryd aldrig"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Afkod aldrig indholdet under optagelse. Dette overstyre de individuelle timerindstillinger global. Hvis aktiveret, lagres optagelser i krypteret form og skal afkodes bagefter (nogle gange kaldt offline afkodning). Standard er: Slukket."
@@ -12649,6 +12682,9 @@ msgstr ""
 msgid "Please enter a name for the new bouquet"
 msgstr "Indtast venligst et navn til den ny buket"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Indtast venligst navn på den ny mappe"
+
 msgid "Please enter a name for the new marker"
 msgstr "Indtast venligst navn for ny mærke"
 
@@ -12657,9 +12693,6 @@ msgstr "Indtast venligst nyt filnavn"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Skriv venligst filnavn (tom = brug aktuel dato)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Indtast venligst navn på den ny mappe"
 
 msgid "Please enter name of the new symlink"
 msgstr "Indtast venligst navn på den nye symlænke"
@@ -13672,6 +13705,15 @@ msgstr "Klar til at fjerne %s ?"
 msgid "Real Life"
 msgstr "Real Life"
 
+msgid "Real or pseudo recordings"
+msgstr "Ægte eller pseudooptagelser"
+
+msgid "Real recordings"
+msgstr "Ægte optagelse"
+
+msgid "Real recordings or streaming"
+msgstr "Ægte optagelser eller streaming"
+
 msgid "Really WOL now?"
 msgstr "WOL virkelig nu ?"
 
@@ -14085,6 +14127,9 @@ msgstr "Fjern nuværende mappe fra bogmærker"
 msgid "Remove currently selected title"
 msgstr "Fjern nuværende valgte titel"
 
+msgid "Remove directory"
+msgstr "Fjern mappe"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Fjern skjul VBI-linje for denne kanal"
 
@@ -14108,10 +14153,6 @@ msgstr "Fjerner"
 
 msgid "Removing Service"
 msgstr "Fjerner tjeneste"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Fjernelsen af mappen %s mislykkedes. (Måske ikke tom.)"
 
 msgid "Removing partition table"
 msgstr "Fjern partitionstabel"
@@ -15566,10 +15607,10 @@ msgstr "Vælg videotilstand"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Du kan vælge boksens opførsel under afspilning, når slutningen på en fil bliver nået."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -18020,6 +18061,9 @@ msgstr "Skift til TV"
 msgid "Switch to TV mode"
 msgstr "Skift til TV-tilstand"
 
+msgid "Switch to bookmarks"
+msgstr "Skift til bogmærker"
+
 msgid "Switch to file list"
 msgstr "Skift til filliste"
 
@@ -18570,10 +18614,6 @@ msgstr ""
 "Netværksassistent udvidelsen er ikke installeret!\n"
 "Installer den venligst."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Stien %s findes allerede."
-
 msgid "The pin code you entered is wrong."
 msgstr "Din indtastede pin kode er forkert."
 
@@ -18615,11 +18655,9 @@ msgstr "Status af nuværende opdatering kunne ikke kontrolleres fordi http://www
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Tiden bliver ganget med den aktuelle gentagelsestæller."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Timerfilen (pm_timers.xml) er ødelagt og kunne ikke hentes."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19214,19 +19252,15 @@ msgstr "Indstil Timer"
 msgid "Timer log"
 msgstr "Timer log"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Timer overlap i pm_timers.xml opdaget!\n"
-"Undersøg det venligst igen!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Timer overlap i timers.xml opdaget!\n"
-"Undersøg det venligst igen!"
 
 msgid "Timer recording location"
 msgstr "Timeroptagelse placering"
@@ -19853,6 +19887,15 @@ msgstr "Udpak til %s"
 
 msgid "Unpack to current folder"
 msgstr "Udpak til nuværende mappe"
+
+msgid "Unscramble and record ECM"
+msgstr "Afkod og gem ECM"
+
+msgid "Unscramble http streams"
+msgstr "Dekrypter http streams"
+
+msgid "Unscramble receiving http streams"
+msgstr "Dekrypter modtaget http streams"
 
 msgid "Unsupported"
 msgstr "Ikke understøttet"
@@ -21889,9 +21932,6 @@ msgstr "og"
 msgid "and never ask again this session again"
 msgstr "og spørg aldrig igen i denne session"
 
-msgid "Any recordings"
-msgstr "Enhver optagelse"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -21910,9 +21950,6 @@ msgstr "Kunst-/Kulturmagasin"
 
 msgid "as plugin in extended bar"
 msgstr "Som Plugin i udvidet bjælke"
-
-msgid "ask user"
-msgstr "Spørg bruger"
 
 msgid "at beginning"
 msgstr "I begyndelsen"
@@ -22191,9 +22228,6 @@ msgstr "Afslut klip her"
 
 msgid "end favorites edit"
 msgstr "afslut favorit-redigering"
-
-msgid "end zapping"
-msgstr "afslut Zapping"
 
 msgid "enigma2 and network"
 msgstr "Enigma2 og netværk"
@@ -22475,12 +22509,6 @@ msgstr "spring frem til næste titel"
 msgid "jump to chapter by number"
 msgstr "spring til kapitel med nummer"
 
-msgid "Just abort, no message"
-msgstr "Afbryd bare, ingen besked"
-
-msgid "Just abort, show message"
-msgstr "Afbryd bare, vis besked"
-
 msgid "just boot"
 msgstr "Kun boot"
 
@@ -22531,9 +22559,6 @@ msgstr "Kampsport"
 
 msgid "medicine/physiology/psychology"
 msgstr "Lægevidenskab/Fysiologi/Psykologi"
-
-msgid "menu"
-msgstr "menu"
 
 msgid "middle"
 msgstr "Midten"
@@ -22606,9 +22631,6 @@ msgstr "Natur/Dyr/Miljø"
 
 msgid "never"
 msgstr "Aldrig"
-
-msgid "Never abort"
-msgstr "Afbryd aldrig"
 
 msgid "new media"
 msgstr "Nyt medie"
@@ -22772,19 +22794,6 @@ msgstr "Ryd slettede brugerbuketter"
 msgid "python"
 msgstr "python"
 
-msgid "Real or pseudo recordings"
-msgstr "Ægte eller pseudooptagelser"
-
-msgid "Real recordings"
-msgstr "Ægte optagelse"
-
-msgid "Real recordings or streaming"
-msgstr "Ægte optagelser eller streaming"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "Optagelsestid ændret, planlagt start er nu: %s"
-
 msgid "red"
 msgstr "Rød"
 
@@ -22817,9 +22826,6 @@ msgstr "Fjern Buket fra forældrebeskyttelse"
 
 msgid "remove cable services"
 msgstr "fjern kabelkanaler"
-
-msgid "Remove directory"
-msgstr "Fjern mappe"
 
 msgid "remove entry"
 msgstr "Fjern post"
@@ -22903,9 +22909,6 @@ msgstr "Gennemsøg EPG..."
 
 msgid "seconds"
 msgstr "sekunder"
-
-msgid "select"
-msgstr "vælg"
 
 msgid "select CAId's"
 msgstr "Vælg CAId'er"
@@ -23058,17 +23061,11 @@ msgstr "Standard"
 msgid "start cut here"
 msgstr "Start klip her"
 
-msgid "start recording"
-msgstr "Start optagelse"
-
 msgid "step size"
 msgstr "trinstørrelse"
 
 msgid "stereo"
 msgstr "Stereo"
-
-msgid "stop recording"
-msgstr "Stop optagelse"
 
 msgid "stop using as startup service"
 msgstr "stop brug som startkanal"
@@ -23081,9 +23078,6 @@ msgstr "skift 12 til 8 tegns visningstilstand"
 
 msgid "switch Nand and SDcard"
 msgstr "ombyt Nand og SDkort"
-
-msgid "Switch to bookmarks"
-msgstr "Skift til bogmærker"
 
 msgid "switch to the next angle"
 msgstr "skift til næste vinkel"
@@ -23321,8 +23315,54 @@ msgstr "ja (behold feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yderligere hjælp inden du genstarter din %s %s."
 
-msgid "zapping"
-msgstr "Zapper"
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Der er ikke fri plads nok på Mount '%s' til at optage."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Timerfilen (pm_timers.xml) er ødelagt og kunne ikke hentes."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timer overlap i pm_timers.xml opdaget!\n"
+#~ "Undersøg det venligst igen!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timer overlap i timers.xml opdaget!\n"
+#~ "Undersøg det venligst igen!"
+
+#~ msgid "ask user"
+#~ msgstr "Spørg bruger"
+
+#~ msgid "end zapping"
+#~ msgstr "afslut Zapping"
+
+#~ msgid "menu"
+#~ msgstr "menu"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "Optagelsestid ændret, planlagt start er nu: %s"
+
+#~ msgid "select"
+#~ msgstr "vælg"
+
+#~ msgid "start recording"
+#~ msgstr "Start optagelse"
+
+#~ msgid "stop recording"
+#~ msgstr "Stop optagelse"
+
+#~ msgid "zapping"
+#~ msgstr "Zapper"

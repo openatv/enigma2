@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -853,12 +853,24 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d GB"
@@ -898,6 +910,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Минута"
 msgstr[1] "%d Минути"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1296,11 +1322,11 @@ msgstr "„%s“ не е инсталиран и няма известен па�
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "„Буфер в часове“ или „брой на последните събития“. За изтриване на по-стари файлове с изместване на времето приоритет има условието, което е настъпило първо."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "„Управление на готовност от телевизора“ има по-висок приоритет от „Управление на входа от телевизора“."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "Декодиране и запис ECM' дава възможност за декодиране след това, ако декомпресирането при запис не е успешно. \"Не декодиране, запис ECM\", запазва записа компресиран, който може да бъде декодиран при възпроизвеждане. \"Нормално\" означава декодиране на записа и не записване на ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "„приставката за времето“ не е инсталирана!"
@@ -2401,6 +2427,9 @@ msgstr "След като натиснете OK, моля, изчакайте!"
 msgid "After recording"
 msgstr "След записа"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2596,9 +2625,6 @@ msgstr "Amlogic дистанционно"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Прави се опит за заснемане на текущото състояние на телевизора. Ако това не е възможно поради неправилни или липсващи съобщения за състоянието, това може да накара приемника да отговори неочаквано. От друга страна, се опитва да реагира по-добре на различни условия на работа."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Празно име на файла е недопустимо."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Възникна грешка при изтеглянето на списъка с пакети. Опитайте отново."
 
@@ -2640,6 +2666,9 @@ msgstr ""
 
 msgid "Any activity"
 msgstr "Всяка дейност"
+
+msgid "Any recordings"
+msgstr "всякакви записи"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Приложете всички промени към активния локал/език и излезте"
@@ -5176,10 +5205,6 @@ msgstr "Създаване на AP и SC файлове"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Създаване на Hardlink за Timeshift файл не успя!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Създаване на директория %s не успя."
-
 msgid "Creating file system"
 msgstr "Създаване на файлова система"
 
@@ -5916,18 +5941,6 @@ msgstr ""
 msgid "Depth"
 msgstr "Дълбочина"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "Декодиране и запис ECM' дава възможност за декодиране след това, ако декомпресирането при запис не е успешно. \"Не декодиране, запис ECM\", запазва записа компресиран, който може да бъде декодиран при възпроизвеждане. \"Нормално\" означава декодиране на записа и не записване на ECM."
-
-msgid "Unscramble and record ECM"
-msgstr "Декодирайте и запишете ecm"
-
-msgid "Unscramble http streams"
-msgstr "Декодиране HTTP потоци"
-
-msgid "Unscramble receiving http streams"
-msgstr "Декодиране на получаване на http потоци"
-
 msgid "Description"
 msgstr "Описание"
 
@@ -6428,9 +6441,6 @@ msgstr "Не добавяйте този запис"
 msgid "Don't ask again!"
 msgstr "Не питайте отново!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "Не декодирайте, запишете ecm"
-
 msgid "Don't restart"
 msgstr "Не рестартирайте"
 
@@ -6442,6 +6452,9 @@ msgstr "Да не се показва по подразбиране"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Не спирайте текущото събитие, но забранете идващите събития"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Не декодирайте, запишете ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7366,6 +7379,9 @@ msgstr "Грешка: %s %s не %s!  Моля, опитайте отново п
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Празно име на файла е недопустимо."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7376,14 +7392,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Не можах да намеря подходящ носител - Моля, премахнете някои изтеглени изображения или поставете носител (напр. USB флаш) с достатъчно свободно място и опитайте отново!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Създаване на директория %s не успя."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Грешка: Неуспешно взаимодействие, не може да се промени паролата!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Избрана е невалидна директория: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Премахването на директория %s не успя. (Може би не е празна.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Грешка: Новата парола може да не е празна!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Пътят %s вeче съществува."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Не може да се създадат необходимите директории на носителя (например USB флаш или твърд диск) - Моля, проверете носителя и опитайте отново!"
@@ -9496,10 +9528,6 @@ msgstr ""
 msgid "Invalid"
 msgstr "Невалидно"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Избрана е невалидна директория: %s"
-
 msgid "Invalid location"
 msgstr "Невалидно местоположение"
 
@@ -9647,6 +9675,12 @@ msgstr "Скок до най-гледаното време"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Преминете към активния в момента локал/език"
+
+msgid "Just abort, no message"
+msgstr "просто отмени, без съобщение"
+
+msgid "Just abort, show message"
+msgstr "просто отмени, покажи съобщение"
 
 msgid "Just change Bouquet"
 msgstr "Просто сменете букета"
@@ -10736,10 +10770,6 @@ msgstr "Време за изчакване на двигателя"
 msgid "Mount"
 msgstr "Монтиране"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Монтирането „%s“ няма достатъчно свободно място за запис."
-
 msgid "Mount Actions"
 msgstr ""
 
@@ -11247,6 +11277,9 @@ msgstr "Мрежов помощник"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr ""
+
+msgid "Never abort"
+msgstr "никога не прекъсвайте"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Никога не декриптирайте съдържанието по време на запис. Това отменя глобално индивидуалните настройки на таймера. Ако е активирано, записите се съхраняват в криптирана презентация и трябва да бъдат декриптирани след това (понякога се нарича офлайн декодиране). По подразбиране: изключено."
@@ -12540,6 +12573,9 @@ msgstr "Моля, не се паникьосвайте, ако видите ст
 msgid "Please enter a name for the new bouquet"
 msgstr "Моля въведете име за новия букет"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Моля, въведете име за новата директория"
+
 msgid "Please enter a name for the new marker"
 msgstr "Моля, въведете име за новия маркер"
 
@@ -12548,9 +12584,6 @@ msgstr "Моля ,въведете ново име на файла"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Моля, въведете име за файла (празно = използвай текуща дата)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Моля, въведете име за новата директория"
 
 msgid "Please enter name of the new symlink"
 msgstr "Моля, въведете името на новия символен линк"
@@ -13556,6 +13589,15 @@ msgstr "Готови ли сте да премахнете %s ?"
 msgid "Real Life"
 msgstr "Реалния живот"
 
+msgid "Real or pseudo recordings"
+msgstr "реални или псевдо записи"
+
+msgid "Real recordings"
+msgstr "реални записи"
+
+msgid "Real recordings or streaming"
+msgstr "реални записи или стрийминг"
+
 msgid "Really WOL now?"
 msgstr "Наистина WOL сега?"
 
@@ -13967,6 +14009,9 @@ msgstr "Премахване на текущата папка от отметк�
 msgid "Remove currently selected title"
 msgstr "Премахване на текущото избрано заглавие"
 
+msgid "Remove directory"
+msgstr "премахнете директорията"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Премахнете скритата VBI линия за този сервиз"
 
@@ -13990,10 +14035,6 @@ msgstr "Премахването на"
 
 msgid "Removing Service"
 msgstr "Премахване на сервиз"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Премахването на директория %s не успя. (Може би не е празна.)"
 
 msgid "Removing partition table"
 msgstr "Премахване на таблицата на дяловете"
@@ -15434,10 +15475,10 @@ msgstr "Изберете видео режим"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Когато стигнете края на файла при възпроизвеждане, можете да изберете поведението на приемника."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -17849,6 +17890,9 @@ msgstr "Превключване към ТВ"
 msgid "Switch to TV mode"
 msgstr "Превключване към ТВ режим"
 
+msgid "Switch to bookmarks"
+msgstr "превключете към отметки"
+
 msgid "Switch to file list"
 msgstr "Превключване към файловия списък"
 
@@ -18392,10 +18436,6 @@ msgstr ""
 "Разширението на съветника за мрежа не е инсталиран!\n"
 "Моля, инсталирайте го."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Пътят %s вeче съществува."
-
 msgid "The pin code you entered is wrong."
 msgstr "Въведеният ПИН код е грешен."
 
@@ -18437,11 +18477,9 @@ msgstr "Състоянието на текущата актуализация н
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Времето се умножава по текущия брояч на повторения."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Файлът с таймер (pm_timers.xml) е повреден и не може да бъде зареден."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Файлът с таймер (timers.xml) е повреден и не може да бъде зареден."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19035,19 +19073,15 @@ msgstr "Въвеждане на таймер"
 msgid "Timer log"
 msgstr "Дневник на таймера"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Открит таймер припокриване в pm_timers.xml!\n"
-"Моля, проверете го отново!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Открит таймер припокриване в timers.xml!\n"
-"Моля, проверете го отново!"
 
 msgid "Timer recording location"
 msgstr "Местопол. за записване на таймера"
@@ -19666,6 +19700,15 @@ msgstr "Разопаковайте в %s"
 
 msgid "Unpack to current folder"
 msgstr "Разопаковайте в текущата папка"
+
+msgid "Unscramble and record ECM"
+msgstr "Декодирайте и запишете ecm"
+
+msgid "Unscramble http streams"
+msgstr "Декодиране HTTP потоци"
+
+msgid "Unscramble receiving http streams"
+msgstr "Декодиране на получаване на http потоци"
 
 msgid "Unsupported"
 msgstr "Не се поддържа"
@@ -21693,9 +21736,6 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "и никога повече не питайте тази сесия"
 
-msgid "Any recordings"
-msgstr "всякакви записи"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -21714,9 +21754,6 @@ msgstr "изкуства/списание култура"
 
 msgid "as plugin in extended bar"
 msgstr "като плъгин в разширен бар"
-
-msgid "ask user"
-msgstr "попитай потребителя"
 
 msgid "at beginning"
 msgstr "в началото"
@@ -21995,9 +22032,6 @@ msgstr "край на изрязването тук"
 msgid "end favorites edit"
 msgstr "край на редактирането на любимите"
 
-msgid "end zapping"
-msgstr ""
-
 msgid "enigma2 and network"
 msgstr "enigma2 и мрежата"
 
@@ -22270,12 +22304,6 @@ msgstr "скок напред до следващото заглавие"
 msgid "jump to chapter by number"
 msgstr "скок на глава по номер"
 
-msgid "Just abort, no message"
-msgstr "просто отмени, без съобщение"
-
-msgid "Just abort, show message"
-msgstr "просто отмени, покажи съобщение"
-
 msgid "just boot"
 msgstr "просто зареди"
 
@@ -22326,9 +22354,6 @@ msgstr "бойни спортове"
 
 msgid "medicine/physiology/psychology"
 msgstr "медицина/физиология/психология"
-
-msgid "menu"
-msgstr "меню"
 
 msgid "middle"
 msgstr "средно"
@@ -22401,9 +22426,6 @@ msgstr "природа/животни/околна среда"
 
 msgid "never"
 msgstr "никога"
-
-msgid "Never abort"
-msgstr "никога не прекъсвайте"
 
 msgid "new media"
 msgstr "нова медия"
@@ -22567,19 +22589,6 @@ msgstr "изчистване на изтрити потребителски бу
 msgid "python"
 msgstr "питон"
 
-msgid "Real or pseudo recordings"
-msgstr "реални или псевдо записи"
-
-msgid "Real recordings"
-msgstr "реални записи"
-
-msgid "Real recordings or streaming"
-msgstr "реални записи или стрийминг"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "времето за запис се промени, стартирайте подготовката сега: %s"
-
 msgid "red"
 msgstr "червен"
 
@@ -22612,9 +22621,6 @@ msgstr "премахнете букет от родителската защит
 
 msgid "remove cable services"
 msgstr "премахнете кабелните сервизи"
-
-msgid "Remove directory"
-msgstr "премахнете директорията"
 
 msgid "remove entry"
 msgstr "премахнете  вписването"
@@ -22698,9 +22704,6 @@ msgstr "търсене на EPG..."
 
 msgid "seconds"
 msgstr "секунди"
-
-msgid "select"
-msgstr "изберете"
 
 msgid "select CAId's"
 msgstr "изберете CAId's"
@@ -22843,17 +22846,11 @@ msgstr "стандартен"
 msgid "start cut here"
 msgstr "започнете да режете тук"
 
-msgid "start recording"
-msgstr "старт на записване"
-
 msgid "step size"
 msgstr "размер на стъпката"
 
 msgid "stereo"
 msgstr "стерео"
-
-msgid "stop recording"
-msgstr "стоп на запис"
 
 msgid "stop using as startup service"
 msgstr "стоп на използване като стартиращ сервиз"
@@ -22866,9 +22863,6 @@ msgstr "превключете режима на показване от 12 до
 
 msgid "switch Nand and SDcard"
 msgstr "превключи Nand и SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "превключете към отметки"
 
 msgid "switch to the next angle"
 msgstr "превключи  към следващия ъгъл"
@@ -23105,8 +23099,51 @@ msgstr "да (запази фийдове)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с ръководството за допълнителна помощ преди рестартиране на вашият %s %s."
 
-msgid "zapping"
-msgstr "превключено на"
-
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Монтирането „%s“ няма достатъчно свободно място за запис."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файлът с таймер (pm_timers.xml) е повреден и не може да бъде зареден."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файлът с таймер (timers.xml) е повреден и не може да бъде зареден."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Открит таймер припокриване в pm_timers.xml!\n"
+#~ "Моля, проверете го отново!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Открит таймер припокриване в timers.xml!\n"
+#~ "Моля, проверете го отново!"
+
+#~ msgid "ask user"
+#~ msgstr "попитай потребителя"
+
+#~ msgid "menu"
+#~ msgstr "меню"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "времето за запис се промени, стартирайте подготовката сега: %s"
+
+#~ msgid "select"
+#~ msgstr "изберете"
+
+#~ msgid "start recording"
+#~ msgstr "старт на записване"
+
+#~ msgid "stop recording"
+#~ msgstr "стоп на запис"
+
+#~ msgid "zapping"
+#~ msgstr "превключено на"

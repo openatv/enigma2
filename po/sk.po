@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: NickerSK <nickersk@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -856,12 +856,26 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS na jadro"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS s %d jadrami"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d GB"
@@ -902,6 +916,21 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d minúty"
 msgstr[2] "%d minút"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1317,11 +1346,11 @@ msgstr "'%s' nie je nainštalované a žiadny známy balík"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starých súborov funkcie timeshift má prioritu podmienka, ktorá nastala skôr."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Rozkóduj& nahraj ECM' dáva možnosť dešifrovania potom, ak dekódovanie pri nahrávaní zlyhalo. \"Nešifrujte, nenahrávajte ECM\" uložte kódovanú nahrávku, ktorú je možné pri prehrávaní dekódovať. \"Normálne\" znamená dešifrovať nahrávku a nenahrávať ECM."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Preberať pohotovostný režim z TV' má vyššiu prioritu ako 'Preberať vstup z TV'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Dekódovať a nahrať ECM' poskytuje možnosť dekódovania nahrávky aj dodatočne, ak zlyhá dekódovanie pri nahrávaní. Voľba 'Nedekódovať, nahrať ECM' uloží nahrávku kódovane a dekóduje sa pri prehrávaní. Voľba 'Normálne' znamená dekódovať nahrávku a nenahrávať ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' nie je nainštalovaný!"
@@ -2425,6 +2454,9 @@ msgstr "Po stlačení OK, prosím čakajte!"
 msgid "After recording"
 msgstr "Po nahrávaní"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr "Akančina"
 
@@ -2620,9 +2652,6 @@ msgstr "Diaľkové ovládanie Amlogic"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Prebehne pokus o zaznamenanie aktuálneho stavu TV. Ak to nie je možné kvôli nesprávnym alebo chýbajúcim správam o stave, môže dôjsť k neočakávanej reakcii prijímača. Ide však o pokus dosiahnuť lepšiu reakciu na rôzne podmienky pri fungovaní prijímača."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Prázdny názov súboru je neplatný."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Chyba pri sťahovaní zoznamu balíčkov. Prosím skúste to znova."
 
@@ -2664,6 +2693,9 @@ msgstr "Antigua a Barbuda"
 
 msgid "Any activity"
 msgstr "Akákoľvek aktivita"
+
+msgid "Any recordings"
+msgstr "akékoľvek nahrávky"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Aplikovať všetky zmeny do aktívneho miestneho nastavenia/jazyka a ukončiť"
@@ -5202,10 +5234,6 @@ msgstr "Vytvorenie súborov AP a SC"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Vytvorenie hardlinku na súbor pre timeshiftu zlyhalo!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Nepodarilo sa vytvoriť priečinok %s."
-
 msgid "Creating file system"
 msgstr "Vytvára sa súborový systém"
 
@@ -5942,18 +5970,6 @@ msgstr "Dánsko"
 msgid "Depth"
 msgstr "Hĺbka"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'Dekódovať a nahrať ECM' poskytuje možnosť dekódovania nahrávky aj dodatočne, ak zlyhá dekódovanie pri nahrávaní. Voľba 'Nedekódovať, nahrať ECM' uloží nahrávku kódovane a dekóduje sa pri prehrávaní. Voľba 'Normálne' znamená dekódovať nahrávku a nenahrávať ECM."
-
-msgid "Unscramble and record ECM"
-msgstr "dekódovať a nahrať ECM"
-
-msgid "Unscramble http streams"
-msgstr "Dekódovať http streamy"
-
-msgid "Unscramble receiving http streams"
-msgstr "Dekódovať prijímané http streamy"
-
 msgid "Description"
 msgstr "Popis"
 
@@ -6454,9 +6470,6 @@ msgstr "Nepridávať túto nahrávku"
 msgid "Don't ask again!"
 msgstr "Už sa nepýtať!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "nedekódovať, nahrať ECM"
-
 msgid "Don't restart"
 msgstr "Nereštartovať"
 
@@ -6468,6 +6481,9 @@ msgstr "Nezobrazovať predvolené"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Nezastaviť aktuálnu udalosť ale vypnúť nasledujúce udalosti"
+
+msgid "Don't unscramble, record ECM"
+msgstr "nedekódovať, nahrať ECM"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7397,6 +7413,9 @@ msgstr "Chyba: %s %s nie %s! Skúste neskôr prosím."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Chyba: Umiestnenie pre uloženie nahrávky nebolo zvolené!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Prázdny názov súboru je neplatný."
+
 msgid "Error: Cannot find any images!"
 msgstr "Chyba: nepodarilo sa nájsť žiadne image!"
 
@@ -7407,14 +7426,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Nenašlo sa vhodné médium - prosím odstráňte niektoré stiahnuté súbory s image alebo vložte médium (napr. USB kľúč) s dostatkom voľného miesta a skúste to znovu."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Nepodarilo sa vytvoriť priečinok %s."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Chyba: image '%s' na inštaláciu nie je platný!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Chyba: zlyhanie interakcie, nemožno zmeniť heslo!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Bol vybraný neplatný priečinok: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Odstraňovanie priečinka %s bolo neúspešné. (Možno nie je prázdny.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Chyba: nové heslo nemôže zostať prázdne!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Cesta %s už existuje."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Nemožno vytvoriť požadované priečinky na médiu (disku USB či pevnom disku). Prosím skontrolujte médium a skúste to znovu."
@@ -9530,10 +9565,6 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Neplatné"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Bol vybraný neplatný priečinok: %s"
-
 msgid "Invalid location"
 msgstr "Neplatné umiestnenie"
 
@@ -9681,6 +9712,12 @@ msgstr "Preskočiť na Prime Time"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Preskočiť na momentálne aktívnu lokalizáciu/jazyk"
+
+msgid "Just abort, no message"
+msgstr "len prerušiť, bez správy"
+
+msgid "Just abort, show message"
+msgstr "len prerušiť, zobraziť správu"
 
 msgid "Just change Bouquet"
 msgstr "Len zmeniť prehľad"
@@ -10771,10 +10808,6 @@ msgstr "Časový limit behu motora"
 msgid "Mount"
 msgstr "Pripojiť"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Pripojené zariadenie '%s' nemá dostatok voľného miesta na nahrávanie."
-
 msgid "Mount Actions"
 msgstr "Akcie pripájania"
 
@@ -11282,6 +11315,9 @@ msgstr "Sprievodca sieťou"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
+
+msgid "Never abort"
+msgstr "nikdy neprerušiť"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Nikdy nedekódovať obsah počas nahrávania. Týmto prepíšete globálne nastavenia individuálneho časovača. Ak je táto voľba zapnutá, nahrávky sa ukladajú zakódované a musia sa dodatočne dekódovať (niekedy sa tento proces nazýva: offline-dekódovanie). Predvolene: vypnuté."
@@ -12575,6 +12611,9 @@ msgstr "Prosím nepanikárte, ak uvidíte podozrivé hodnoty."
 msgid "Please enter a name for the new bouquet"
 msgstr "Prosím zadajte názov nového prehľadu"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Prosím zadajte názov nového priečinka"
+
 msgid "Please enter a name for the new marker"
 msgstr "Prosím zadajte názov novej značky"
 
@@ -12583,9 +12622,6 @@ msgstr "Prosím zadajte nový názov súboru"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Prosím zadajte názov súboru (prázdny = dnešný dátum)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Prosím zadajte názov nového priečinka"
 
 msgid "Please enter name of the new symlink"
 msgstr "Prosím zadajte názov nového symb. odkazu"
@@ -13591,6 +13627,15 @@ msgstr "Pripravený na odstránenie %s ?"
 msgid "Real Life"
 msgstr "Skutočný život"
 
+msgid "Real or pseudo recordings"
+msgstr "skutočné alebo pseudo-nahrávky"
+
+msgid "Real recordings"
+msgstr "skutočné nahrávky"
+
+msgid "Real recordings or streaming"
+msgstr "skutočné nahrávky alebo streamovanie"
+
 msgid "Really WOL now?"
 msgstr "Naozaj spustiť WakeOnLan teraz?"
 
@@ -14002,6 +14047,9 @@ msgstr "Odstrániť aktuálny priečinok zo záložiek"
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
 
+msgid "Remove directory"
+msgstr "odstrániť priečinok"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Odstrániť/skryť riadok VBI pre túto stanicu"
 
@@ -14025,10 +14073,6 @@ msgstr "Odstraňuje sa"
 
 msgid "Removing Service"
 msgstr "Odstraňovanie stanice"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Odstraňovanie priečinka %s bolo neúspešné. (Možno nie je prázdny.)"
 
 msgid "Removing partition table"
 msgstr "Odstraňuje sa tabuľka partícií"
@@ -15470,10 +15514,10 @@ msgstr "Vyberte režim videa"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Činnosť po skončení alebo zastavení prehrávania filmov."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -17887,6 +17931,9 @@ msgstr "Prepnúť na TV"
 msgid "Switch to TV mode"
 msgstr "Prepnúť na režim TV"
 
+msgid "Switch to bookmarks"
+msgstr "prepnúť na záložky"
+
 msgid "Switch to file list"
 msgstr "Prepnúť na zoznam súborov"
 
@@ -18436,10 +18483,6 @@ msgstr ""
 "Rozšírenie NetworkWizard nie je nainštalované!\n"
 "Prosím nainštalujte ho."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Cesta %s už existuje."
-
 msgid "The pin code you entered is wrong."
 msgstr "Zadaný kód PIN je nesprávny."
 
@@ -18484,11 +18527,9 @@ msgstr "Stav tejto aktualizácie nie je možné overiť, pretože stránka https
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Čas sa vynásobí aktuálnym počítadlom opakovania."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Súbor časovačov (pm_timers.xml) je porušený a nemožno ho načítať."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Súbor časovača (timers.xml) je porušený a nedá sa načítať."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19082,19 +19123,15 @@ msgstr "Zadanie časovača"
 msgid "Timer log"
 msgstr "Záznam časovača"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Bolo zistené prekrývanie časovačov v súbore pm_timers.xml!\n"
-"Prosím o kontrolu!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Bolo zistené prekrývanie časovačov v súbore timers.xml!\n"
-"Prosím o kontrolu!"
 
 msgid "Timer recording location"
 msgstr "Umiestnenie nahrávok časovača"
@@ -19713,6 +19750,15 @@ msgstr "Rozbaliť do %s"
 
 msgid "Unpack to current folder"
 msgstr "Rozbaliť do aktuálneho priečinka"
+
+msgid "Unscramble and record ECM"
+msgstr "dekódovať a nahrať ECM"
+
+msgid "Unscramble http streams"
+msgstr "Dekódovať http streamy"
+
+msgid "Unscramble receiving http streams"
+msgstr "Dekódovať prijímané http streamy"
 
 msgid "Unsupported"
 msgstr "Nepodporované"
@@ -21744,9 +21790,6 @@ msgstr "a"
 msgid "and never ask again this session again"
 msgstr "a počas tejto relácie sa už nepýtať"
 
-msgid "Any recordings"
-msgstr "akékoľvek nahrávky"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -21765,9 +21808,6 @@ msgstr "umenie/kultúrny magazín"
 
 msgid "as plugin in extended bar"
 msgstr "ako plugin v rozšírenom paneli"
-
-msgid "ask user"
-msgstr "opýtať sa používateľa"
 
 msgid "at beginning"
 msgstr "na začiatku"
@@ -22044,9 +22084,6 @@ msgstr "koniec strihu tu"
 msgid "end favorites edit"
 msgstr "skončiť úpravu obľúbených"
 
-msgid "end zapping"
-msgstr "koniec prepínania"
-
 msgid "enigma2 and network"
 msgstr "enigma2 a sieť"
 
@@ -22321,12 +22358,6 @@ msgstr "preskočiť dopredu, na ďalší titul"
 msgid "jump to chapter by number"
 msgstr "preskočiť na kapitolu podľa čísla"
 
-msgid "Just abort, no message"
-msgstr "len prerušiť, bez správy"
-
-msgid "Just abort, show message"
-msgstr "len prerušiť, zobraziť správu"
-
 msgid "just boot"
 msgstr "len boot"
 
@@ -22377,9 +22408,6 @@ msgstr "bojové športy"
 
 msgid "medicine/physiology/psychology"
 msgstr "medicína/fyziológia/psychológia"
-
-msgid "menu"
-msgstr "menu"
 
 msgid "middle"
 msgstr "stred"
@@ -22452,9 +22480,6 @@ msgstr "príroda/zvieratá/životné prostredie"
 
 msgid "never"
 msgstr "nikdy"
-
-msgid "Never abort"
-msgstr "nikdy neprerušiť"
 
 msgid "new media"
 msgstr "nové médium"
@@ -22618,19 +22643,6 @@ msgstr "vyčistiť vymazané používateľské prehľady"
 msgid "python"
 msgstr "python"
 
-msgid "Real or pseudo recordings"
-msgstr "skutočné alebo pseudo-nahrávky"
-
-msgid "Real recordings"
-msgstr "skutočné nahrávky"
-
-msgid "Real recordings or streaming"
-msgstr "skutočné nahrávky alebo streamovanie"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "čas nahrávania sa zmenil, príprava na spustenie je teraz: %s"
-
 msgid "red"
 msgstr "červené"
 
@@ -22663,9 +22675,6 @@ msgstr "vyňať prehľad z rodičovského zámku"
 
 msgid "remove cable services"
 msgstr "odstrániť káblové stanice"
-
-msgid "Remove directory"
-msgstr "odstrániť priečinok"
 
 msgid "remove entry"
 msgstr "odstrániť položku"
@@ -22749,9 +22758,6 @@ msgstr "hľadanie EPG..."
 
 msgid "seconds"
 msgstr "sekúnd"
-
-msgid "select"
-msgstr "vybrať"
 
 msgid "select CAId's"
 msgstr "vyberte CAIdy"
@@ -22894,17 +22900,11 @@ msgstr "štandard"
 msgid "start cut here"
 msgstr "začiatok strihu tu"
 
-msgid "start recording"
-msgstr "spustiť nahrávanie"
-
 msgid "step size"
 msgstr "krok"
 
 msgid "stereo"
 msgstr "stereo"
-
-msgid "stop recording"
-msgstr "zastaviť nahrávanie"
 
 msgid "stop using as startup service"
 msgstr "zrušiť používanie stanice po spustení prijímača"
@@ -22917,9 +22917,6 @@ msgstr "prepnúť z 12- na 8-znakový režim zobrazenia"
 
 msgid "switch Nand and SDcard"
 msgstr "prepnúť Nand a kartu SD"
-
-msgid "Switch to bookmarks"
-msgstr "prepnúť na záložky"
 
 msgid "switch to the next angle"
 msgstr "prepnúť na nasledujúci uhol"
@@ -23157,8 +23154,57 @@ msgstr "áno (zachovať zdroje softvéru)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si prečítajte návod, prosím."
 
-msgid "zapping"
-msgstr "prepínanie"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Rozkóduj& nahraj ECM' dáva možnosť dešifrovania potom, ak dekódovanie pri nahrávaní zlyhalo. \"Nešifrujte, nenahrávajte ECM\" uložte kódovanú nahrávku, ktorú je možné pri prehrávaní dekódovať. \"Normálne\" znamená dešifrovať nahrávku a nenahrávať ECM."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Pripojené zariadenie '%s' nemá dostatok voľného miesta na nahrávanie."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Súbor časovačov (pm_timers.xml) je porušený a nemožno ho načítať."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Súbor časovača (timers.xml) je porušený a nedá sa načítať."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Bolo zistené prekrývanie časovačov v súbore pm_timers.xml!\n"
+#~ "Prosím o kontrolu!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Bolo zistené prekrývanie časovačov v súbore timers.xml!\n"
+#~ "Prosím o kontrolu!"
+
+#~ msgid "ask user"
+#~ msgstr "opýtať sa používateľa"
+
+#~ msgid "end zapping"
+#~ msgstr "koniec prepínania"
+
+#~ msgid "menu"
+#~ msgstr "menu"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "čas nahrávania sa zmenil, príprava na spustenie je teraz: %s"
+
+#~ msgid "select"
+#~ msgstr "vybrať"
+
+#~ msgid "start recording"
+#~ msgstr "spustiť nahrávanie"
+
+#~ msgid "stop recording"
+#~ msgstr "zastaviť nahrávanie"
+
+#~ msgid "zapping"
+#~ msgstr "prepínanie"

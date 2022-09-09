@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -859,12 +859,26 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d GB"
@@ -905,6 +919,21 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min."
 msgstr[1] "%d min."
 msgstr[2] "%d min."
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1322,11 +1351,11 @@ msgstr "'%s' neįdiegta ir nėra žinomo paketo"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "\"Kaupimas valandomis\" arba \"paskutinių įvykių skaičius\". Ištrinant senesnius laiko poslinkio failus, sąlygos, esančios pirmoje eilėje, turi pirmenybę."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Rankenėlės budėjimo režimas iš televizoriaus' turi didesnį prioritetą nei 'Rankenėlė iš televizoriaus'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Iškoduoti ir įrašyti ECM' leidžia iškoduoti vėliau, jeigu įrašant iškoduoti nepavyksta. 'Neiškoduoti, įrašyti ECM' išsaugo užkoduotą įrašą, kuris gali būti iškoduotas atkūrimo metu. 'Normalus' iškoduoja įrašą ir neįrašo ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Orų prognozės programa nėra įdiegta!"
@@ -2430,6 +2459,9 @@ msgstr "Paspaudę OK, palaukite!"
 msgid "After recording"
 msgstr "Po įrašymo"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr "Akanas"
 
@@ -2627,9 +2659,6 @@ msgstr ""
 "Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
 "Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Tuščias failo pavadinimas negalimas."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Parsisiunčiant paketų sąrašą, įvyko klaida. Pabandykite dar kartą."
 
@@ -2671,6 +2700,9 @@ msgstr "Antigva ir Barbuda"
 
 msgid "Any activity"
 msgstr "Bet koks veikimas"
+
+msgid "Any recordings"
+msgstr "bet kokie įrašai"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Taikyti bet kokius pakeitimus aktyviai lokalei / kalbai ir išeiti"
@@ -5216,10 +5248,6 @@ msgstr "Kuriami AP ir SC failai"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Katalogo sukurti %s nepavyko."
-
 msgid "Creating file system"
 msgstr "Kuriama failų sistema"
 
@@ -5956,18 +5984,6 @@ msgstr "Danija"
 msgid "Depth"
 msgstr "Gylis"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'Iškoduoti ir įrašyti ECM' leidžia iškoduoti vėliau, jeigu įrašant iškoduoti nepavyksta. 'Neiškoduoti, įrašyti ECM' išsaugo užkoduotą įrašą, kuris gali būti iškoduotas atkūrimo metu. 'Normalus' iškoduoja įrašą ir neįrašo ECM."
-
-msgid "Unscramble and record ECM"
-msgstr "Dekoduoti ir įrašyti ECM"
-
-msgid "Unscramble http streams"
-msgstr "Iškoduoti http srautus"
-
-msgid "Unscramble receiving http streams"
-msgstr "Iškoduoti http srautus"
-
 msgid "Description"
 msgstr "Aprašymas"
 
@@ -6468,9 +6484,6 @@ msgstr "Negalima pridėti šio įrašo"
 msgid "Don't ask again!"
 msgstr "Daugiau neklausti!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "Nereikia dekoduoti, įrašyti ecm"
-
 msgid "Don't restart"
 msgstr "Nepaleisti iš naujo"
 
@@ -6482,6 +6495,9 @@ msgstr "Nerodyti numatytojo"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Nesustabdykite dabartinio įvykio, bet išjunkite būsimus įvykius"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Nereikia dekoduoti, įrašyti ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7411,6 +7427,9 @@ msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Tuščias failo pavadinimas negalimas."
+
 msgid "Error: Cannot find any images!"
 msgstr "Klaida: nepavyksta rasti jokių atvaizdų!"
 
@@ -7421,6 +7440,10 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Klaida: nepavyko rasti tinkamo įrenginio! Pašalinkite kai kuriuos atsisiųstus atvaizdus arba pridėkite kitą įrenginį (pvz., USB atmintinę) su pakankamai laisvos vietos ir bandykite dar kartą."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Katalogo sukurti %s nepavyko."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 "Atvaizdo įdiegimas yra neleistinas\n"
@@ -7429,8 +7452,20 @@ msgstr ""
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Klaida: veiksmo klaida, slaptažodžio keisti neįmanoma!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Pasirinktas negaliojantis katalogas: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Katalogo pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Kelias %s jau egzistuoja."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Klaida: neįmanoma sukurti reikiamų katalogų paskirties įrenginyje (pvz., USB atmintinėje arba standžiajame diske)! Patikrinkite įrenginį ir bandykite dar kartą."
@@ -9547,10 +9582,6 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Neteisingas"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Pasirinktas negaliojantis katalogas: %s"
-
 msgid "Invalid location"
 msgstr "Neteisinga vieta"
 
@@ -9698,6 +9729,12 @@ msgstr "Peršokti į žiūrimiausią laiką"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Peršokti į šiuo metu aktyvią lokalę/kalbą"
+
+msgid "Just abort, no message"
+msgstr "nutraukti, be pranešimo"
+
+msgid "Just abort, show message"
+msgstr "nutraukti, rodyti pranešimą"
 
 msgid "Just change Bouquet"
 msgstr "Tiesiog pakeisti paketą"
@@ -10788,10 +10825,6 @@ msgstr "Laiko limitas paleisti varikliui"
 msgid "Mount"
 msgstr "Pajungti"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Pajungtas '%s' neturi pakankamai vietos įrašymui."
-
 msgid "Mount Actions"
 msgstr "Montavimo veiksmai"
 
@@ -11299,6 +11332,9 @@ msgstr "Tinklo vedlys"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
+
+msgid "Never abort"
+msgstr "niekada nenutraukti"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Niekada neiškoduoti įrašomo turinio. Tai atšaukia bendruosius visų laikmačių nustatymus. Jei įjungta, įrašai saugomi šifruoti ir vėliau turi būti iškoduojami (tai kartais vadimama iškodavimu atsijungus). Numatytasis: 'Ne'."
@@ -12592,6 +12628,9 @@ msgstr "Nesijaudinkite, jei matote vertybes, kurios atrodo įtartinos."
 msgid "Please enter a name for the new bouquet"
 msgstr "Įrašykite naujojo paketo pavadinimą"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Įrašykite naujojo katalogo pavadinimą"
+
 msgid "Please enter a name for the new marker"
 msgstr "Įrašykite naujo žymeklio pavadinimą"
 
@@ -12600,9 +12639,6 @@ msgstr "Įrašykite naujo failo pavadinimą"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Įrašykite failo pavadinimą (tuščias = šios dienos data)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Įrašykite naujojo katalogo pavadinimą"
 
 msgid "Please enter name of the new symlink"
 msgstr "Prašome įrašyti pavadinimą ir naują simbolinę nuorodą"
@@ -13608,6 +13644,15 @@ msgstr "Pasiruošę pašalinti '%s'?"
 msgid "Real Life"
 msgstr "Tikras gyvenimas"
 
+msgid "Real or pseudo recordings"
+msgstr "realūs ar pseudo įrašai"
+
+msgid "Real recordings"
+msgstr "realūs įrašai"
+
+msgid "Real recordings or streaming"
+msgstr "realūs įrašai arba transliacijos"
+
 msgid "Really WOL now?"
 msgstr "Tikrai prabusti nuo tinklo dabar?"
 
@@ -14019,6 +14064,9 @@ msgstr "Pašalinti dabartinį aplanką iš žymių"
 msgid "Remove currently selected title"
 msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
+msgid "Remove directory"
+msgstr "pašalinti katalogą"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Pašalinti paslėptą VBI liniją šiam kanalui"
 
@@ -14042,10 +14090,6 @@ msgstr "Pašalinama"
 
 msgid "Removing Service"
 msgstr "Pašalinama paslauga"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Katalogo pašalinimas %s klaidingas. (Galbūt ne tuščia.)"
 
 msgid "Removing partition table"
 msgstr "Pašalinama skaidinių lentelė"
@@ -15487,10 +15531,10 @@ msgstr "Pasirinkite vaizdo režimą"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Pasirinkite, kokį veiksmą atlikti, kai atkūrimo metu pasiekiate medijos failo pabaigą."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -17904,6 +17948,9 @@ msgstr "Perjungti į TV"
 msgid "Switch to TV mode"
 msgstr "Perjungti į TV režimą"
 
+msgid "Switch to bookmarks"
+msgstr "perjungti į pažymėtus"
+
 msgid "Switch to file list"
 msgstr "Perjungti į failų sąrašą"
 
@@ -18452,10 +18499,6 @@ msgstr ""
 "Tinklo vedlio plėtinys neįdiegtas!\n"
 "Prašome įdiegti."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Kelias %s jau egzistuoja."
-
 msgid "The pin code you entered is wrong."
 msgstr "Įvedėte neteisingą PIN kodą."
 
@@ -18502,11 +18545,9 @@ msgstr "Dabartinio atnaujinimo būsenos negalima patikrinti, nes https://www.ope
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Laikas padauginamas iš dabartinio pakartojimo skaitiklio."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Laikmačio failas (pm_timers.xml) sugadintas, įkelti nepavyko."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Laikmačio failas (timers.xml) sugadintas, įkelti nepavyko."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19100,19 +19141,15 @@ msgstr "Laikmačio užduotis"
 msgid "Timer log"
 msgstr "Laikmačio žurnalas"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Aptiktas laikmačio sutapimas timers.xml!\n"
-"Pertikrinkit dar kartą!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Aptiktas laikmačio timers.xml sutapimas! \n"
-" prašome iš naujo tikrinti tai!"
 
 msgid "Timer recording location"
 msgstr "Laikmačio įrašymo vieta"
@@ -19731,6 +19768,15 @@ msgstr "Išpakuokite į %s"
 
 msgid "Unpack to current folder"
 msgstr "Išpakuokite į dabartinį aplanką"
+
+msgid "Unscramble and record ECM"
+msgstr "Dekoduoti ir įrašyti ECM"
+
+msgid "Unscramble http streams"
+msgstr "Iškoduoti http srautus"
+
+msgid "Unscramble receiving http streams"
+msgstr "Iškoduoti http srautus"
 
 msgid "Unsupported"
 msgstr "Nepalaikomas"
@@ -21787,9 +21833,6 @@ msgstr "ir"
 msgid "and never ask again this session again"
 msgstr "ir niekada neklausti šios sesijos dar kartą"
 
-msgid "Any recordings"
-msgstr "bet kokie įrašai"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -21808,9 +21851,6 @@ msgstr "menas/kultūrinis žurnalas"
 
 msgid "as plugin in extended bar"
 msgstr "kaip priedą į išplėstą juostą"
-
-msgid "ask user"
-msgstr "klausti vartotojo"
 
 msgid "at beginning"
 msgstr "pradžioje"
@@ -22087,9 +22127,6 @@ msgstr "iškirpimo pabaiga"
 msgid "end favorites edit"
 msgstr "baigti mėgstamiausių redagavimą"
 
-msgid "end zapping"
-msgstr "jungimo pabaiga"
-
 msgid "enigma2 and network"
 msgstr "enigma2 ir tinklas"
 
@@ -22364,12 +22401,6 @@ msgstr "šuolis priekin į kitą pavadinimą"
 msgid "jump to chapter by number"
 msgstr "peršokti į skyrių pagal numerį"
 
-msgid "Just abort, no message"
-msgstr "nutraukti, be pranešimo"
-
-msgid "Just abort, show message"
-msgstr "nutraukti, rodyti pranešimą"
-
 msgid "just boot"
 msgstr "tiesiog įkrova"
 
@@ -22420,9 +22451,6 @@ msgstr "kovinės sporto šakos"
 
 msgid "medicine/physiology/psychology"
 msgstr "medicina/fiziologija/psichologija"
-
-msgid "menu"
-msgstr "meniu"
 
 msgid "middle"
 msgstr "vidutinis"
@@ -22495,9 +22523,6 @@ msgstr "gamta/gyvūnai/aplinka"
 
 msgid "never"
 msgstr "niekada"
-
-msgid "Never abort"
-msgstr "niekada nenutraukti"
 
 msgid "new media"
 msgstr "nauja medija"
@@ -22661,19 +22686,6 @@ msgstr "išvalyti ištrintus paketus"
 msgid "python"
 msgstr "python versija"
 
-msgid "Real or pseudo recordings"
-msgstr "realūs ar pseudo įrašai"
-
-msgid "Real recordings"
-msgstr "realūs įrašai"
-
-msgid "Real recordings or streaming"
-msgstr "realūs įrašai arba transliacijos"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "įrašymo laikas pasikeitė, dabar ruošiamas paleidimas: %s"
-
 msgid "red"
 msgstr "raudonas"
 
@@ -22706,9 +22718,6 @@ msgstr "pašalinti paketą iš tėvų apsaugos"
 
 msgid "remove cable services"
 msgstr "pašalinti kabelinius kanalus"
-
-msgid "Remove directory"
-msgstr "pašalinti katalogą"
 
 msgid "remove entry"
 msgstr "pašalinti"
@@ -22792,9 +22801,6 @@ msgstr "ieškoti EPG..."
 
 msgid "seconds"
 msgstr "sekundžių"
-
-msgid "select"
-msgstr "pasirinkti"
 
 msgid "select CAId's"
 msgstr "išsirinkite CAId's"
@@ -22937,17 +22943,11 @@ msgstr "standartinis"
 msgid "start cut here"
 msgstr "pradėkite iškirpimą čia"
 
-msgid "start recording"
-msgstr "pradėti įrašymą"
-
 msgid "step size"
 msgstr "žingsnio dydis"
 
 msgid "stereo"
 msgstr "stereo"
-
-msgid "stop recording"
-msgstr "stabdyti įrašymą"
 
 msgid "stop using as startup service"
 msgstr "nustoti naudoti, kaip pradinį kanalą"
@@ -22960,9 +22960,6 @@ msgstr "perjunkite rodymo režimą nuo 12 iki 8 simbolių"
 
 msgid "switch Nand and SDcard"
 msgstr "jungti Nand ir SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "perjungti į pažymėtus"
 
 msgid "switch to the next angle"
 msgstr "perjunkite į kitą kampą"
@@ -23201,8 +23198,54 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo vadovu, prieš paleisdami %s %s iš naujo."
 
-msgid "zapping"
-msgstr "perjungimas"
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Pajungtas '%s' neturi pakankamai vietos įrašymui."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Laikmačio failas (pm_timers.xml) sugadintas, įkelti nepavyko."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Laikmačio failas (timers.xml) sugadintas, įkelti nepavyko."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Aptiktas laikmačio sutapimas timers.xml!\n"
+#~ "Pertikrinkit dar kartą!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Aptiktas laikmačio timers.xml sutapimas! \n"
+#~ " prašome iš naujo tikrinti tai!"
+
+#~ msgid "ask user"
+#~ msgstr "klausti vartotojo"
+
+#~ msgid "end zapping"
+#~ msgstr "jungimo pabaiga"
+
+#~ msgid "menu"
+#~ msgstr "meniu"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "įrašymo laikas pasikeitė, dabar ruošiamas paleidimas: %s"
+
+#~ msgid "select"
+#~ msgstr "pasirinkti"
+
+#~ msgid "start recording"
+#~ msgstr "pradėti įrašymą"
+
+#~ msgid "stop recording"
+#~ msgstr "stabdyti įrašymą"
+
+#~ msgid "zapping"
+#~ msgstr "perjungimas"

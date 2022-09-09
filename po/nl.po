@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-09-04 12:20+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"PO-Revision-Date: 2022-09-08 19:39+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -858,12 +858,24 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] "%d + %d + %d Minuut"
+msgstr[1] "%d + %d + %d Minuten"
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS per core"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS met %d cores"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Dag"
+msgstr[1] "%d Dagen"
 
 #, python-format
 msgid "%d GB"
@@ -903,6 +915,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minuut"
+msgstr[1] "%d Minuten"
+
+#, python-format
+msgid "%d Minutes"
+msgstr "%d Minuten"
+
+#, python-format
+msgid "%d Seconds"
+msgstr "%d Seconden"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1301,11 +1327,11 @@ msgstr "'%s' niet geïnstalleerd en geen onbekend pakket"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Buffer 'in uren' of 'aantal bestanden'. De oudste Timeshift bestanden worden als eerste verwijderd."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Decoderen & ECM opnemen' maakt het mogelijk de opname tijdens het afspelen de decoderen, wanneer het decoderen tijdens de opname is mislukt. 'Niet decoderen, ECM opnemen' kan een gecodeerde opname opslaan die tijdens het afspelen wordt gedecodeerd. 'Normaal' betekend decodeer de opname en neem geen ECM op."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "Geef 'Standby van de TV' een hogere prioriteit dan 'input van de TV'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "de 'Weer plug-in' is niet geïnstalleerd!"
@@ -1918,8 +1944,8 @@ msgstr "Een mediabestand is in gebruik!"
 #, python-format
 msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"herstarten. Dat nu doen?"
+"Een PowerTimer wil uw %s %s herstarten.\n"
+"Wilt u dat nu doen?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
@@ -1929,14 +1955,14 @@ msgstr ""
 #, python-format
 msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"in stand-by zetten. Dat nu doen?"
+"Een PowerTimer wil uw %s %s in stand-by zetten. \n"
+"Wilt u dat nu doen?"
 
 #, python-format
 msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"Een voltooide timer wil uw\n"
-"%s %s uitschakelen. Wilt u dat nu doen?"
+"Een PowerTimer wil uw %s %s uitschakelen. \n"
+"Wilt u dat nu doen?"
 
 #, python-format
 msgid ""
@@ -2233,7 +2259,7 @@ msgid "Add Zap+RecordTimer"
 msgstr "Timer voor 'Zappen + Opnemen' toevoegen"
 
 msgid "Add ZapTimer"
-msgstr "Zap timer toevoegen"
+msgstr "ZapTimer toevoegen"
 
 msgid "Add a DNS entry"
 msgstr "Voeg een DNS naam toe"
@@ -2245,10 +2271,10 @@ msgid "Add a RecordTimer for current event"
 msgstr "Opname Timer toevoegen voor huidig programma"
 
 msgid "Add a ZapTimer for current event"
-msgstr "Zaptimer toevoegen voor huidig programma"
+msgstr "ZapTimer toevoegen voor huidig programma"
 
 msgid "Add a ZapTimer for next event"
-msgstr "Zaptimer toevoegen voor het volgende programma"
+msgstr "ZapTimer toevoegen voor het volgende programma"
 
 msgid "Add a mark"
 msgstr "Plaats een markering"
@@ -2266,7 +2292,7 @@ msgid "Add a service to the Volume Offsets list"
 msgstr "Voeg een zender toe aan de Volume Offset lijst"
 
 msgid "Add a timer for the current event"
-msgstr "Zaptimer toevoegen voor het huidige programma"
+msgstr "Timer toevoegen voor het huidige programma"
 
 msgid "Add an AutoTimer for the current event"
 msgstr "Een AutoTimer toevoegen voor het huidige programma"
@@ -2408,6 +2434,9 @@ msgstr "Even geduld na het drukken van 'OK'!"
 
 msgid "After recording"
 msgstr "Na opname"
+
+msgid "After zap"
+msgstr "Na het zappen"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2604,9 +2633,6 @@ msgstr "Amlogic afstandsbediening"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Er is een poging gedaan om de TV-status te lezen. Wanneer dit niet mogelijk is door ontbrekende of niet correcte status meldingen zou de ontvanger onverwacht kunnen reageren. Aan de andere kant, zou deze daar door beter kunnen reageren op diverse situaties."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Fout: Geen bestandsnaam is niet toegestaan!"
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Er is een fout opgetreden bij het downloaden van de pakketlijst. Probeer het opnieuw."
 
@@ -2648,6 +2674,9 @@ msgstr "Antigua en Barbuda"
 
 msgid "Any activity"
 msgstr "Elke activiteit"
+
+msgid "Any recordings"
+msgstr "Alle opnames"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Bewaar wijzigingen aan de ingestelde Taal en Exit "
@@ -5288,10 +5317,6 @@ msgstr "Creëer AP en SC bestanden"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Het aanmaken van de map %s is mislukt!"
-
 msgid "Creating file system"
 msgstr "Creëert bestandssyeteem"
 
@@ -5414,7 +5439,7 @@ msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
 
 msgid "Cycle PiP(zap)"
-msgstr "Wissel PiPzap"
+msgstr "Wissel PiP(zap)"
 
 msgid "Cycling"
 msgstr "Fietsen"
@@ -6036,18 +6061,6 @@ msgstr "Denemarken"
 msgid "Depth"
 msgstr "Diepte"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
-
-msgid "Unscramble and record ECM"
-msgstr "decodeer en ECM opnemen"
-
-msgid "Unscramble http streams"
-msgstr "Decoderen van http-streams"
-
-msgid "Unscramble receiving http streams"
-msgstr "Decoderen van ontvangen http-streams"
-
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -6548,9 +6561,6 @@ msgstr "Deze opname niet toevoegen"
 msgid "Don't ask again!"
 msgstr "Niet meer vragen!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "niet decoderen, maar wel ECM opnemen"
-
 msgid "Don't restart"
 msgstr "Niet herstarten"
 
@@ -6562,6 +6572,9 @@ msgstr "Geen default laten zien"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
+
+msgid "Don't unscramble, record ECM"
+msgstr "niet decoderen, maar wel ECM opnemen"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7500,6 +7513,9 @@ msgstr "Fout: %s %s niet %s!  A.u.b. later nog een keer proberen."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Fout: Er is geen locatie opgegeven om de opname op te slaan!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Fout: Geen bestandsnaam is niet toegestaan!"
+
 msgid "Error: Cannot find any images!"
 msgstr "Fout: Kan geen images vinden!"
 
@@ -7510,14 +7526,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Kon geen geschikt medium vinden! Verwijder a.u.b. enkele lokale images of plaats een medium (USB stick) met voldoende vrije ruimte en probeer het nog een keer."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Het aanmaken van de map %s is mislukt!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Fout: Het te installeren Image '%s' is niet geschikt!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Fout: Interactie mislukt, kan het wachtwoord niet wijzigen!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Fout: Ongeldige map %s geselecteerd!"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Fout: Het pad %s bestaat al!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken! Controleer het medium en probeer het nog een keer."
@@ -7550,7 +7582,7 @@ msgid "Even if a 'Wakeup' PowerTimer starting?"
 msgstr "Zelfs als een 'ontwaak' power timer start?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Zelfs als een 'zap en opname' timer start?"
+msgstr "Zelfs als een 'Zap en Opname' timer start?"
 
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr "Zelfs als een 'zap' opname timer start?"
@@ -9640,10 +9672,6 @@ msgstr "Inupiak"
 msgid "Invalid"
 msgstr "Ongeldig"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Fout: Ongeldige map %s geselecteerd!"
-
 msgid "Invalid location"
 msgstr "Ongeldige locatie"
 
@@ -9791,6 +9819,12 @@ msgstr "Spring naar prime time"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Spring naar de ingestelde taal"
+
+msgid "Just abort, no message"
+msgstr "Alleen afbreken, geen bericht"
+
+msgid "Just abort, show message"
+msgstr "Afbreken, bericht weergeven"
 
 msgid "Just change Bouquet"
 msgstr "Favorietenlijst veranderen"
@@ -10880,10 +10914,6 @@ msgstr "Timeout op motor beweging"
 msgid "Mount"
 msgstr "Mount"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Mount '%s' heeft niet voldoende vrije ruimte voor opname."
-
 msgid "Mount Actions"
 msgstr "Mount Acties"
 
@@ -11391,6 +11421,9 @@ msgstr "Netwerk Wizard"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
+
+msgid "Never abort"
+msgstr "Nooit afbreken"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Nooit inhoud decoderen tijdens het opnemen. Dit overschrijft alle individuele timer-instellingen. Wanneer ingeschakeld, worden opnames opgeslagen in gecodeerde vorm en moeten later worden gedecodeerd (ook wel off line decoderen genoemd). Standaard: UIT."
@@ -12687,6 +12720,9 @@ msgstr "Maak u geen zorgen wanneer u vreemde waarden ziet."
 msgid "Please enter a name for the new bouquet"
 msgstr "Voer de naam voor uw nieuwe favorietenlijst in"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Voer de naam van de nieuwe map in"
+
 msgid "Please enter a name for the new marker"
 msgstr "Voer de naam voor uw nieuwe markeerpunt in"
 
@@ -12695,9 +12731,6 @@ msgstr "Voer een bestandsnaam in"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Voer een bestandsnaam in (leeg= huidige datum)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Voer de naam van de nieuwe map in"
 
 msgid "Please enter name of the new symlink"
 msgstr "Voer de naam van de nieuwe symlink in"
@@ -13706,6 +13739,15 @@ msgstr "Gereed om %s te verwijderen?"
 msgid "Real Life"
 msgstr "Reality"
 
+msgid "Real or pseudo recordings"
+msgstr "Echte of pseudo opnames"
+
+msgid "Real recordings"
+msgstr "Echte opnamen"
+
+msgid "Real recordings or streaming"
+msgstr "Echte opnamen of streams"
+
 msgid "Really WOL now?"
 msgstr "Start WOL nu?"
 
@@ -14117,6 +14159,9 @@ msgstr "Verwijder huidige map van bookmarks"
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
 
+msgid "Remove directory"
+msgstr "Map verwijderen"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
 
@@ -14140,10 +14185,6 @@ msgstr "Bezig met verwijderen"
 
 msgid "Removing Service"
 msgstr "Verwijderd zender"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
 
 msgid "Removing partition table"
 msgstr "Verwijderd de partitietabel"
@@ -15595,11 +15636,11 @@ msgstr "Selecteer beeldmodus"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "U kunt instellen wat er moet gebeuren bij het einde van het afspelen."
 
-msgid "Select what do do after the timer has completed."
-msgstr "Selecteer wat er na het uitvoeren van de Timer moet gebeuren."
-
 msgid "Select what do do after the timer recording has completed."
 msgstr "Selecteer wat er na het uitvoeren van de Opname Timer moet gebeuren."
+
+msgid "Select what do do after the timer zap has completed."
+msgstr "Selecteer wat er moet gebeuren na een ZapTimer."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr ""
@@ -18031,6 +18072,9 @@ msgstr "Schakel over naar TV"
 msgid "Switch to TV mode"
 msgstr "Schakel naar de TV modus"
 
+msgid "Switch to bookmarks"
+msgstr "Schakel naar bookmarks"
+
 msgid "Switch to file list"
 msgstr "Schakel naar bestandenlijst"
 
@@ -18583,10 +18627,6 @@ msgstr ""
 "De Netwerk Wizard plug-in is niet geïnstalleerd!\n"
 "Installeer deze a.u.b. eerst."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Fout: Het pad %s bestaat al!"
-
 msgid "The pin code you entered is wrong."
 msgstr "De ingevoerde pincode is onjuist."
 
@@ -18633,11 +18673,9 @@ msgstr "De status van de huidige update kan niet worden gecontroleerd omdat http
 msgid "The time is multiplied by the current repeat counter."
 msgstr "De tijd wordt gemultipliceerd met de huidige repeat counter."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Het timer bestand (pm-timer.xml) is beschadigd en kan niet worden geladen."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr "Het Timer bestand '%s' is beschadigd en kan niet worden geladen."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19269,19 +19307,17 @@ msgstr "Timer invoer"
 msgid "Timer log"
 msgstr "Timerlog"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Timer overlap in pm_timers.xml gedetecteerd!\n"
-"Controleer deze!"
+"Overlappende timers in '%s' gevonden!\n"
+"A.u.b. controleren!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
-msgstr ""
-"Overlappende timers gevonden in timers.xml!\n"
-"Controleer deze!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
+msgstr "Overlappende timers in '%s' gevonden! A.u.b. alle timers controleren."
 
 msgid "Timer recording location"
 msgstr "Timer opnamelocatie"
@@ -19900,6 +19936,15 @@ msgstr "Uitpakken naar %s"
 
 msgid "Unpack to current folder"
 msgstr "Uitpakken naar huidige map"
+
+msgid "Unscramble and record ECM"
+msgstr "decodeer en ECM opnemen"
+
+msgid "Unscramble http streams"
+msgstr "Decoderen van http-streams"
+
+msgid "Unscramble receiving http streams"
+msgstr "Decoderen van ontvangen http-streams"
 
 msgid "Unsupported"
 msgstr "Niet ondersteund"
@@ -21979,9 +22024,6 @@ msgstr "en"
 msgid "and never ask again this session again"
 msgstr "en vraag dit niet meer deze sessie"
 
-msgid "Any recordings"
-msgstr "Alle opnames"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -22000,9 +22042,6 @@ msgstr "kunst / cultuurmagazine"
 
 msgid "as plugin in extended bar"
 msgstr "als plug-in de uitgebreide informatiebalk"
-
-msgid "ask user"
-msgstr "Vraag gebruiker"
 
 msgid "at beginning"
 msgstr "Aan het begin"
@@ -22279,9 +22318,6 @@ msgstr "Eindsnijpunt hier"
 msgid "end favorites edit"
 msgstr "Favorieten bewerken stoppen"
 
-msgid "end zapping"
-msgstr "stop zappen"
-
 msgid "enigma2 and network"
 msgstr "enigma2 en netwerk"
 
@@ -22556,12 +22592,6 @@ msgstr "vooruit naar volgende titel"
 msgid "jump to chapter by number"
 msgstr "Spring via nummer naar hoofdstuk"
 
-msgid "Just abort, no message"
-msgstr "Alleen afbreken, geen bericht"
-
-msgid "Just abort, show message"
-msgstr "Afbreken, bericht weergeven"
-
 msgid "just boot"
 msgstr "Normaal opstarten"
 
@@ -22612,9 +22642,6 @@ msgstr "vechtsporten"
 
 msgid "medicine/physiology/psychology"
 msgstr "medicijnen/psychologie/fysiologie"
-
-msgid "menu"
-msgstr "menu"
 
 msgid "middle"
 msgstr "Midden"
@@ -22687,9 +22714,6 @@ msgstr "natuur/dieren/milieu"
 
 msgid "never"
 msgstr "nooit"
-
-msgid "Never abort"
-msgstr "Nooit afbreken"
 
 msgid "new media"
 msgstr "nieuwe media"
@@ -22853,19 +22877,6 @@ msgstr "Gewiste favorietenlijsten opruimen"
 msgid "python"
 msgstr "python"
 
-msgid "Real or pseudo recordings"
-msgstr "Echte of pseudo opnames"
-
-msgid "Real recordings"
-msgstr "Echte opnamen"
-
-msgid "Real recordings or streaming"
-msgstr "Echte opnamen of streams"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "Opnametijd veranderd, start de voorbereiding nu: %s"
-
 msgid "red"
 msgstr "rood"
 
@@ -22898,9 +22909,6 @@ msgstr "Kinderslot van favorietenlijst verwijderen"
 
 msgid "remove cable services"
 msgstr "Kabelzenders verwijderen"
-
-msgid "Remove directory"
-msgstr "Map verwijderen"
 
 msgid "remove entry"
 msgstr "Zender verwijderen"
@@ -22982,9 +22990,6 @@ msgstr "zoek in EPG..."
 
 msgid "seconds"
 msgstr "seconden"
-
-msgid "select"
-msgstr "selecteer"
 
 msgid "select CAId's"
 msgstr "Selecteer CAId's"
@@ -23127,17 +23132,11 @@ msgstr "Standaard"
 msgid "start cut here"
 msgstr "Start knippen hier"
 
-msgid "start recording"
-msgstr "Opname starten"
-
 msgid "step size"
 msgstr "stapgrootte"
 
 msgid "stereo"
 msgstr "stereo"
-
-msgid "stop recording"
-msgstr "Stop opname"
 
 msgid "stop using as startup service"
 msgstr "Niet meer als opstartzender gebruiken"
@@ -23150,9 +23149,6 @@ msgstr "Wissel van 12 naar 8 karakter weergave modus"
 
 msgid "switch Nand and SDcard"
 msgstr "switch Nand en SD kaart"
-
-msgid "Switch to bookmarks"
-msgstr "Schakel naar bookmarks"
 
 msgid "switch to the next angle"
 msgstr "schakel naar de volgende hoek"
@@ -23391,8 +23387,60 @@ msgstr "ja (bewaar feeds)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voordat u uw %s %s herstart."
 
-msgid "zapping"
-msgstr "zappen"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Decoderen & ECM opnemen' maakt het mogelijk de opname tijdens het afspelen de decoderen, wanneer het decoderen tijdens de opname is mislukt. 'Niet decoderen, ECM opnemen' kan een gecodeerde opname opslaan die tijdens het afspelen wordt gedecodeerd. 'Normaal' betekend decodeer de opname en neem geen ECM op."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Mount '%s' heeft niet voldoende vrije ruimte voor opname."
+
+#~ msgid "Select what do do after the timer has completed."
+#~ msgstr "Selecteer wat er na het uitvoeren van de Timer moet gebeuren."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Het timer bestand (pm-timer.xml) is beschadigd en kan niet worden geladen."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timer overlap in pm_timers.xml gedetecteerd!\n"
+#~ "Controleer deze!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Overlappende timers gevonden in timers.xml!\n"
+#~ "Controleer deze!"
+
+#~ msgid "ask user"
+#~ msgstr "Vraag gebruiker"
+
+#~ msgid "end zapping"
+#~ msgstr "stop zappen"
+
+#~ msgid "menu"
+#~ msgstr "menu"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "Opnametijd veranderd, start de voorbereiding nu: %s"
+
+#~ msgid "select"
+#~ msgstr "selecteer"
+
+#~ msgid "start recording"
+#~ msgstr "Opname starten"
+
+#~ msgid "stop recording"
+#~ msgstr "Stop opname"
+
+#~ msgid "zapping"
+#~ msgstr "zappen"

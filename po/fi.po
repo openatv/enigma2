@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-09-04 12:20+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"PO-Revision-Date: 2022-09-07 07:08+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -855,12 +855,24 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] "%d + %d + %d Minuutti"
+msgstr[1] "%d + %d + %d Minuuttia"
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS per ydin"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS ja %d ytimet"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Päivä"
+msgstr[1] "%d Päivää"
 
 #, python-format
 msgid "%d GB"
@@ -900,6 +912,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d minuutti"
 msgstr[1] "%d minuuttia"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minuutti"
+msgstr[1] "%d Minuuttia"
+
+#, python-format
+msgid "%d Minutes"
+msgstr "%d Minuuttia"
+
+#, python-format
+msgid "%d Seconds"
+msgstr "%d Sekuntia"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1298,11 +1324,11 @@ msgstr "'%s' ei ole asennettu eikä tunnettua pakettia"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Puskuri tunteina tai viimeaikaisten tapahtumien määrä. Etusijalla poistaa vanhemmat aikasiirtotiedostot."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Tottele sammutuskäskyä TV:ltä' korkeampi prioriteetti kuin 'Tottele tulo käskyä TV:ltä'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Sää lisäosaa ei ole asennettu!"
@@ -1915,7 +1941,7 @@ msgstr "Mediatiedosto on käytössä!"
 #, python-format
 msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Juuri päättynyt virta-ajastus haluaa uudelleenkäynnistää\n"
+"Juuri päättynyt virta ajastus haluaa uudelleenkäynnistää\n"
 "%s %s:n. Tehdäänkö se nyt?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
@@ -2412,6 +2438,9 @@ msgstr "Paina OK näppäintä ja odota!"
 msgid "After recording"
 msgstr "Tallennuksen Jälkeen"
 
+msgid "After zap"
+msgstr "Vaihdoin jälkeen"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -2607,9 +2636,6 @@ msgstr "Amlogic kaukosäädin"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "TV:n nykyinen tila yritetään tallentaa. Jos tämä ei ole mahdollista virheellisten tai puuttuvien tilaviestien vuoksi, vastaanotin voi vastata odottamattomasti. Toisaalta yritetään reagoida paremmin erilaisiin käyttöolosuhteisiin."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Virhe pakettiluetteloa ladattaessa. Yritä uudestaan."
 
@@ -2651,6 +2677,9 @@ msgstr "Antigua ja Barbuda"
 
 msgid "Any activity"
 msgstr "Mikä tahansa toiminta"
+
+msgid "Any recordings"
+msgstr "Kaikentyyppiset tallennukset"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Hyväksy mikä tahansa muutos ja aktivoi kieli ja poistu"
@@ -5190,10 +5219,6 @@ msgstr "Luodaan AP- ja SC-tiedostot"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Linkin (hardlink) luominen ajansiirron tiedostoon epäonnistui!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Hakemiston %s luominen epäonnistui!"
-
 msgid "Creating file system"
 msgstr "Luodaan tiedostojärjestelmää"
 
@@ -5930,18 +5955,6 @@ msgstr "Tanska"
 msgid "Depth"
 msgstr "Syvyys"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
-
-msgid "Unscramble and record ECM"
-msgstr "Pura ja tallenna ECM"
-
-msgid "Unscramble http streams"
-msgstr "Pura http striimit"
-
-msgid "Unscramble receiving http streams"
-msgstr "Pura http striimit"
-
 msgid "Description"
 msgstr "Kuvaus"
 
@@ -6442,9 +6455,6 @@ msgstr "Älä lisää tätä tallennusta"
 msgid "Don't ask again!"
 msgstr "Älä kysy uudelleen!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "Älä pura, tallenna ECM"
-
 msgid "Don't restart"
 msgstr "Älä käynnistä uudelleen"
 
@@ -6456,6 +6466,9 @@ msgstr "Älä näytä oletusta"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Älä pysäytä tallennusta, mutta estä tulevat ajastukset"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Älä pura, tallenna ECM"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7382,6 +7395,9 @@ msgstr "Ei päivityksiä saatavilla. Yritä myöhemmin uudelleen."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Virhe: Tallennuspaikkaa ei ole valittu!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Virhe: Tyhjä nimi ei ole sallittu!"
+
 msgid "Error: Cannot find any images!"
 msgstr "Virhe: Yhtään ohjelmistoa ei löydy!"
 
@@ -7392,14 +7408,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja ohjelmistoja tai aseta tietoväline (esim. USB-tikku), jossa on riittävästi vapaata tilaa, ja yritä uudelleen."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Hakemiston %s luominen epäonnistui!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Virhe: Asennettava ohjelmisto %s on virheellinen!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Virhe: salasanan vaihtaminen ei onnistu!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Virheellinen hakemisto valittu: %s!"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Hakemiston %s poisto epäonnistui. (Ei ehkä ole tyhjä.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Virhe: Uusi salasana ei voi olla tyhjä!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Hakemisto %s on jo olemassa."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-tikku tai kiintolevy)! Tarkista laite ja yritä uudelleen."
@@ -9520,10 +9552,6 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Virheellinen"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Virheellinen hakemisto valittu: %s!"
-
 msgid "Invalid location"
 msgstr "Virheellinen sijainti"
 
@@ -9671,6 +9699,12 @@ msgstr "Hyppää parhaaseen katseluaikaan"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Siirry aktiiviseen kieleen"
+
+msgid "Just abort, no message"
+msgstr "keskeytä, älä näytä viestiä"
+
+msgid "Just abort, show message"
+msgstr "keskeytä, näytä viesti"
 
 msgid "Just change Bouquet"
 msgstr "Vaihda vain kanavalista"
@@ -10760,10 +10794,6 @@ msgstr "Moottorin aikaylitys"
 msgid "Mount"
 msgstr "Liitä"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Mount '%s' ei ole tarpeeksi vapaata tallennustilaa."
-
 msgid "Mount Actions"
 msgstr "Liitokset toiminnot"
 
@@ -11273,6 +11303,9 @@ msgstr "Ohjattu verkkoasennus"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.usr)"
+
+msgid "Never abort"
+msgstr "ei koskaan"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Kyllä toiminnolla tämä on tallennukset tallennetaan salattu ja ne on purettava jälkikäteen. Oletus \"Ei\"."
@@ -12572,6 +12605,9 @@ msgstr "Älä panikoi, jos näet arvoja, jotka näyttävät epäilyttäviltä."
 msgid "Please enter a name for the new bouquet"
 msgstr "Anna uuden suosikkilistan nimi"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Syötä uuden hakemiston nimi"
+
 msgid "Please enter a name for the new marker"
 msgstr "Uusi väliotsikko"
 
@@ -12580,9 +12616,6 @@ msgstr "Syötä uusi nimi"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Syötä tiedoston nimi (tyhjä = nykyinen päiväys)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Syötä uuden hakemiston nimi"
 
 msgid "Please enter name of the new symlink"
 msgstr "Anna uuden symlinkin nimi"
@@ -13588,6 +13621,15 @@ msgstr "Haluatko poistaa: %s ?"
 msgid "Real Life"
 msgstr "Oikea Elämä"
 
+msgid "Real or pseudo recordings"
+msgstr "todellinen tai näennäistallennukset"
+
+msgid "Real recordings"
+msgstr "todellinen tallennukset"
+
+msgid "Real recordings or streaming"
+msgstr "todellinen tallennukset tai suoratoisto"
+
 msgid "Really WOL now?"
 msgstr "Varmastiko WOL nyt?"
 
@@ -13999,6 +14041,9 @@ msgstr "Poista nykyinen kansio kirjanmerkeistä"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
+msgid "Remove directory"
+msgstr "poista hakemisto"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
@@ -14022,10 +14067,6 @@ msgstr "Poistetaan"
 
 msgid "Removing Service"
 msgstr "Poistetaan kanavia"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Hakemiston %s poisto epäonnistui. (Ei ehkä ole tyhjä.)"
 
 msgid "Removing partition table"
 msgstr "Poistetaan levyosioita"
@@ -15477,11 +15518,11 @@ msgstr "Valitse videotila"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Tallenteen lopussa voit valita mitä tehdään."
 
-msgid "Select what do do after the timer has completed."
-msgstr "Valitse, mitä tehdään ajastuksen päättymisen jälkeen."
-
 msgid "Select what do do after the timer recording has completed."
 msgstr "Valitse, mitä tehdään ajastustallennuksen päätyttyä."
+
+msgid "Select what do do after the timer zap has completed."
+msgstr "Valitse, mitä tehdään ajastuksen päättymisen jälkeen."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Valitse mitä pitäisi tehdä, kun %s %s oli käynnistynyt normaalisti tai mennyt valmiustilaan."
@@ -17894,6 +17935,9 @@ msgstr "Vaihda televisioon"
 msgid "Switch to TV mode"
 msgstr "Vaihda TV-tilaan"
 
+msgid "Switch to bookmarks"
+msgstr "vaihda kirjanmerkkeihin"
+
 msgid "Switch to file list"
 msgstr "Vaihda tiedostolistaan"
 
@@ -18446,10 +18490,6 @@ msgstr ""
 "Verkkoavustajaa ei ole asennettu!\n"
 "Asenna se."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Hakemisto %s on jo olemassa."
-
 msgid "The pin code you entered is wrong."
 msgstr "Syötit virheellisen tunnusluvun."
 
@@ -18496,11 +18536,9 @@ msgstr "Päivitysten tilaa ei voida tarkistaa, koska sivulle http://www.opena.tv
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Aika kerrotaan nykyisellä toistolaskurilla."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Ajastusluettelo (timers.xml) on vioittunut eikä sitä voida ladata."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Ajastusluettelo (timers.xml) on vioittunut eikä sitä voida ladata."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr "Ajastusluettelo '%s' on vioittunut eikä sitä voida ladata."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19096,19 +19134,17 @@ msgstr "Ajastettava ohjelma"
 msgid "Timer log"
 msgstr "Ajastin loki"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Ajastusten päällekkäisyys havaittu!\n"
-"Tarkista ajastusasetukset!"
+"Ajastusten päällekkäisyys '%s' havaittu!\n"
+"Tarkista ajastus!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
-msgstr ""
-"Ajastusten päällekkäisyys havaittu!\n"
-"Tarkista ajastusasetukset!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
+msgstr "Ajastimen päällekkäisyys '%s' Tarkista kaikki ajastukset."
 
 msgid "Timer recording location"
 msgstr "Ajastuksien tallennushakemisto"
@@ -19730,6 +19766,15 @@ msgstr "Purkamisen %s jälkeen"
 
 msgid "Unpack to current folder"
 msgstr "Pura nykyiseen kansioon"
+
+msgid "Unscramble and record ECM"
+msgstr "Pura ja tallenna ECM"
+
+msgid "Unscramble http streams"
+msgstr "Pura http striimit"
+
+msgid "Unscramble receiving http streams"
+msgstr "Pura http striimit"
 
 msgid "Unsupported"
 msgstr "Ei tuettu"
@@ -21793,9 +21838,6 @@ msgstr "ja"
 msgid "and never ask again this session again"
 msgstr "älä kysy vahvistusta uudelleen"
 
-msgid "Any recordings"
-msgstr "Kaikentyyppiset tallennukset"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -21814,9 +21856,6 @@ msgstr "taide/kulttuurimakasiini"
 
 msgid "as plugin in extended bar"
 msgstr "lisäosana laajennuspalkissa"
-
-msgid "ask user"
-msgstr "kysy käyttäjältä"
 
 msgid "at beginning"
 msgstr "alussa"
@@ -22093,9 +22132,6 @@ msgstr "Lopeta leikkaus tähän"
 msgid "end favorites edit"
 msgstr "Tallenna muutokset ja poistu"
 
-msgid "end zapping"
-msgstr "lopeta vaihto"
-
 msgid "enigma2 and network"
 msgstr "enigma2 ja verkko"
 
@@ -22370,12 +22406,6 @@ msgstr "hyppää eteenpäin seuraavaan kappaleeseen"
 msgid "jump to chapter by number"
 msgstr "Hyppää luku numeron mukaan"
 
-msgid "Just abort, no message"
-msgstr "keskeytä, älä näytä viestiä"
-
-msgid "Just abort, show message"
-msgstr "keskeytä, näytä viesti"
-
 msgid "just boot"
 msgstr "käynnistä uudelleen"
 
@@ -22426,9 +22456,6 @@ msgstr "kamppailulajit"
 
 msgid "medicine/physiology/psychology"
 msgstr "lääketiede/fysiologia/psykologia"
-
-msgid "menu"
-msgstr "valikko"
 
 msgid "middle"
 msgstr "keskellä"
@@ -22500,9 +22527,6 @@ msgid "nature/animals/environment"
 msgstr "luonto/eläimet/ympäristö"
 
 msgid "never"
-msgstr "ei koskaan"
-
-msgid "Never abort"
 msgstr "ei koskaan"
 
 msgid "new media"
@@ -22667,19 +22691,6 @@ msgstr "tyhjennä poistetut suosikkilistat"
 msgid "python"
 msgstr "python"
 
-msgid "Real or pseudo recordings"
-msgstr "todellinen tai näennäistallennukset"
-
-msgid "Real recordings"
-msgstr "todellinen tallennukset"
-
-msgid "Real recordings or streaming"
-msgstr "todellinen tallennukset tai suoratoisto"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "Tallennusaika muutettu, alkaa: %s"
-
 msgid "red"
 msgstr "punainen"
 
@@ -22712,9 +22723,6 @@ msgstr "poista kanavan lapsilukkosuojaus"
 
 msgid "remove cable services"
 msgstr "poista kaapelikanavat"
-
-msgid "Remove directory"
-msgstr "poista hakemisto"
 
 msgid "remove entry"
 msgstr "Poista"
@@ -22798,9 +22806,6 @@ msgstr "hae EPG:stä."
 
 msgid "seconds"
 msgstr "sekuntia"
-
-msgid "select"
-msgstr "valitse"
 
 msgid "select CAId's"
 msgstr "valitse CAId:t"
@@ -22943,17 +22948,11 @@ msgstr "vakio"
 msgid "start cut here"
 msgstr "Aloita leikkaus tästä"
 
-msgid "start recording"
-msgstr "aloita tallennus"
-
 msgid "step size"
 msgstr "askelkoko"
 
 msgid "stereo"
 msgstr "stereo"
-
-msgid "stop recording"
-msgstr "lopeta tallentaminen"
 
 msgid "stop using as startup service"
 msgstr "Poista käynnistyskanava määritys"
@@ -22966,9 +22965,6 @@ msgstr "vaihtaminen 12 merkistä 8 merkkiin näyttötila"
 
 msgid "switch Nand and SDcard"
 msgstr "vaihto NAND ja SD-kortti"
-
-msgid "Switch to bookmarks"
-msgstr "vaihda kirjanmerkkeihin"
 
 msgid "switch to the next angle"
 msgstr "vaihda seuraavaan kuvakulmaan"
@@ -23205,8 +23201,60 @@ msgstr "kyllä (pidä syötteet)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s:n."
 
-msgid "zapping"
-msgstr "vaihtaa"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Mount '%s' ei ole tarpeeksi vapaata tallennustilaa."
+
+#~ msgid "Select what do do after the timer has completed."
+#~ msgstr "Valitse, mitä tehdään ajastuksen päättymisen jälkeen."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Ajastusluettelo (timers.xml) on vioittunut eikä sitä voida ladata."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Ajastusluettelo (timers.xml) on vioittunut eikä sitä voida ladata."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Ajastusten päällekkäisyys havaittu!\n"
+#~ "Tarkista ajastusasetukset!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Ajastusten päällekkäisyys havaittu!\n"
+#~ "Tarkista ajastusasetukset!"
+
+#~ msgid "ask user"
+#~ msgstr "kysy käyttäjältä"
+
+#~ msgid "end zapping"
+#~ msgstr "lopeta vaihto"
+
+#~ msgid "menu"
+#~ msgstr "valikko"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "Tallennusaika muutettu, alkaa: %s"
+
+#~ msgid "select"
+#~ msgstr "valitse"
+
+#~ msgid "start recording"
+#~ msgstr "aloita tallennus"
+
+#~ msgid "stop recording"
+#~ msgstr "lopeta tallentaminen"
+
+#~ msgid "zapping"
+#~ msgstr "vaihtaa"

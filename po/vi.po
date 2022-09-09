@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -887,12 +887,22 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
 
 #, python-format
 msgid "%d GB"
@@ -931,6 +941,19 @@ msgstr ""
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1318,11 +1341,11 @@ msgstr "'%s' chưa được cài đặt và không có gói nào được biết
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "Descramble & record ECM 'cung cấp tùy chọn để giải mã sau đó nếu việc giải mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản ghi và không ghi ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'Weatherplugin' chưa được cài đặt!"
@@ -2441,6 +2464,9 @@ msgstr "Sau khi nhấn OK, vui lòng đợi!"
 msgid "After recording"
 msgstr "Sau khi ghi âm"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2641,9 +2667,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Một tên tệp trống là bất hợp pháp."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Đã xảy ra lỗi trong khi tải xuống danh sách gói. Vui lòng thử lại."
 
@@ -2686,6 +2709,9 @@ msgstr "Antigua và Barbuda"
 
 msgid "Any activity"
 msgstr "Bất kỳ hoạt động"
+
+msgid "Any recordings"
+msgstr "bất kỳ bản ghi âm"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr ""
@@ -5253,10 +5279,6 @@ msgstr "Tạo tập tin AP và SC"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Tạo thư mục%s không thành công."
-
 msgid "Creating file system"
 msgstr "Tạo hệ thống tập tin"
 
@@ -6008,18 +6030,6 @@ msgstr "Đan mạch"
 msgid "Depth"
 msgstr "Độ sâu"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "Descramble & record ECM 'cung cấp tùy chọn để giải mã sau đó nếu việc giải mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản ghi và không ghi ECM."
-
-msgid "Unscramble and record ECM"
-msgstr "giải mã và ghi lại ecm"
-
-msgid "Unscramble http streams"
-msgstr "Luồng http của Descramble"
-
-msgid "Unscramble receiving http streams"
-msgstr "Độ cao tính toán bằng mili"
-
 msgid "Description"
 msgstr "Sự miêu tả"
 
@@ -6529,9 +6539,6 @@ msgstr "Đừng thêm bản ghi này"
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "không giải mã, ghi lại ecm"
-
 msgid "Don't restart"
 msgstr ""
 
@@ -6544,6 +6551,9 @@ msgstr "Sắp xếp theo mặc định"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Đừng dừng sự kiện hiện tại mà vô hiệu hóa các sự kiện sắp tới"
+
+msgid "Don't unscramble, record ECM"
+msgstr "không giải mã, ghi lại ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7486,6 +7496,9 @@ msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Một tên tệp trống là bất hợp pháp."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7496,14 +7509,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Không thể tìm thấy phương tiện phù hợp - Vui lòng xóa một số hình ảnh đã tải xuống hoặc chèn phương tiện (ví dụ: thẻ nhớ USB) với không gian trống đầy đủ và thử lại!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Tạo thư mục%s không thành công."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Thư mục không hợp lệ được chọn:%s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Đường dẫn%s đã tồn tại."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
@@ -9656,10 +9685,6 @@ msgstr ""
 msgid "Invalid"
 msgstr "Không hợp lệ"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Thư mục không hợp lệ được chọn:%s"
-
 msgid "Invalid location"
 msgstr "Vị trí không hợp lệ"
 
@@ -9810,6 +9835,12 @@ msgstr "Chuyển đến thời gian chính"
 
 msgid "Jump to the currently active locale/language"
 msgstr ""
+
+msgid "Just abort, no message"
+msgstr "chỉ cần hủy bỏ, không có tin nhắn"
+
+msgid "Just abort, show message"
+msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
 
 msgid "Just change Bouquet"
 msgstr "Chỉ cần thay đổi Gói kênh"
@@ -10937,10 +10968,6 @@ msgstr "Hết thời gian chạy động cơ"
 msgid "Mount"
 msgstr "Núi"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Mount '% s' không đủ không gian trống để ghi."
-
 msgid "Mount Actions"
 msgstr ""
 
@@ -11475,6 +11502,9 @@ msgstr "Thuật sĩ mạng"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
+
+msgid "Never abort"
+msgstr "không bao giờ"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Không bao giờ giải mã nội dung trong khi ghi. Điều này ghi đè cài đặt hẹn giờ riêng trên toàn cầu. Nếu được bật, các bản ghi được lưu trữ trong bản trình bày được mã hóa và phải được giải mã sau đó (đôi khi được gọi là giải mã ngoại tuyến). Mặc định: tắt."
@@ -12800,6 +12830,9 @@ msgstr ""
 msgid "Please enter a name for the new bouquet"
 msgstr "Vui lòng nhập tên cho gói kênh mới"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Vui lòng nhập tên của thư mục mới"
+
 msgid "Please enter a name for the new marker"
 msgstr "Vui lòng nhập tên cho điểm đánh dấu mới"
 
@@ -12808,9 +12841,6 @@ msgstr "Vui lòng nhập tên tệp mới"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Vui lòng nhập tên tệp (trống = sử dụng ngày hiện tại)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Vui lòng nhập tên của thư mục mới"
 
 msgid "Please enter name of the new symlink"
 msgstr "Vui lòng nhập tên của symlink mới"
@@ -13823,6 +13853,15 @@ msgstr "Sẵn sàng để loại bỏ% s?"
 msgid "Real Life"
 msgstr ""
 
+msgid "Real or pseudo recordings"
+msgstr "ghi âm thật hay giả"
+
+msgid "Real recordings"
+msgstr "ghi âm thực"
+
+msgid "Real recordings or streaming"
+msgstr "ghi âm thực hoặc phát trực tuyến"
+
 msgid "Really WOL now?"
 msgstr "Thực sự WOL bây giờ?"
 
@@ -14246,6 +14285,9 @@ msgstr "Xóa thư mục hiện tại khỏi bookmark"
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
 
+msgid "Remove directory"
+msgstr "xóa thư mục"
+
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
 
@@ -14269,10 +14311,6 @@ msgstr "Loại bỏ"
 
 msgid "Removing Service"
 msgstr "Xóa dịch vụ"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
 
 msgid "Removing partition table"
 msgstr "Xóa bảng phân vùng"
@@ -15728,10 +15766,10 @@ msgstr "Chọn chế độ video"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Khi đến cuối tệp trong khi phát lại, bạn có thể chọn hành vi của hộp."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -18185,6 +18223,9 @@ msgstr "Chuyển sang chế độ TV"
 msgid "Switch to TV mode"
 msgstr "Chuyển sang chế độ TV"
 
+msgid "Switch to bookmarks"
+msgstr "chuyển sang đánh dấu"
+
 msgid "Switch to file list"
 msgstr "Chuyển sang filelist"
 
@@ -18738,10 +18779,6 @@ msgstr ""
 "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
 "Vui lòng cài đặt nó."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Đường dẫn%s đã tồn tại."
-
 msgid "The pin code you entered is wrong."
 msgstr "Mã pin bạn nhập là sai."
 
@@ -18783,11 +18820,9 @@ msgstr "Không thể kiểm tra trạng thái của bản cập nhật hiện t�
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Thời gian được nhân với bộ đếm lặp lại hiện tại."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Tệp hẹn giờ (pm_timers.xml) bị hỏng và không thể tải được."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Tệp hẹn giờ (timers.xml) bị hỏng và không thể tải được."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19390,19 +19425,15 @@ msgstr "Nhập giờ"
 msgid "Timer log"
 msgstr "Nhật ký hẹn giờ"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Đã phát hiện trùng lặp bộ đếm thời gian trong pm_timers.xml!\n"
-"Vui lòng kiểm tra lại!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
-"Vui lòng kiểm tra lại!"
 
 msgid "Timer recording location"
 msgstr "Vị trí ghi thời gian"
@@ -20037,6 +20068,15 @@ msgstr "Giải nén đến % s"
 
 msgid "Unpack to current folder"
 msgstr "Giải nén vào thư mục hiện tại"
+
+msgid "Unscramble and record ECM"
+msgstr "giải mã và ghi lại ecm"
+
+msgid "Unscramble http streams"
+msgstr "Luồng http của Descramble"
+
+msgid "Unscramble receiving http streams"
+msgstr "Độ cao tính toán bằng mili"
 
 msgid "Unsupported"
 msgstr "Không được hỗ trợ"
@@ -22088,9 +22128,6 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr "và không bao giờ hỏi lại phiên này một lần nữa"
 
-msgid "Any recordings"
-msgstr "bất kỳ bản ghi âm"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -22110,9 +22147,6 @@ msgstr "tạp chí văn hóa nghệ thuật"
 
 msgid "as plugin in extended bar"
 msgstr "như plugin trong thanh mở rộng"
-
-msgid "ask user"
-msgstr "hỏi người dùng"
 
 msgid "at beginning"
 msgstr "khi bắt đầu"
@@ -22396,9 +22430,6 @@ msgstr "kết thúc cắt ở đây"
 msgid "end favorites edit"
 msgstr "kết thúc yêu thích chỉnh sửa"
 
-msgid "end zapping"
-msgstr "kết thúc hạ gục"
-
 msgid "enigma2 and network"
 msgstr "enigma2 và mạng"
 
@@ -22677,12 +22708,6 @@ msgstr "nhảy tới tiêu đề tiếp theo"
 msgid "jump to chapter by number"
 msgstr "nhảy đến chương theo số"
 
-msgid "Just abort, no message"
-msgstr "chỉ cần hủy bỏ, không có tin nhắn"
-
-msgid "Just abort, show message"
-msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
-
 msgid "just boot"
 msgstr "chỉ khởi động"
 
@@ -22734,9 +22759,6 @@ msgstr "võ thuật"
 
 msgid "medicine/physiology/psychology"
 msgstr "y học / sinh lý / tâm lý"
-
-msgid "menu"
-msgstr "menu chính"
 
 msgid "middle"
 msgstr "ở giữa"
@@ -22811,9 +22833,6 @@ msgid "nature/animals/environment"
 msgstr "thiên nhiên / động vật / môi trường"
 
 msgid "never"
-msgstr "không bao giờ"
-
-msgid "Never abort"
 msgstr "không bao giờ"
 
 msgid "new media"
@@ -22980,19 +22999,6 @@ msgstr "thanh lọc người dùng đã xóa"
 msgid "python"
 msgstr "python"
 
-msgid "Real or pseudo recordings"
-msgstr "ghi âm thật hay giả"
-
-msgid "Real recordings"
-msgstr "ghi âm thực"
-
-msgid "Real recordings or streaming"
-msgstr "ghi âm thực hoặc phát trực tuyến"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "thời gian thay đổi kỷ lục, bắt đầu chuẩn bị ngay bây giờ:% s"
-
 msgid "red"
 msgstr "màu đỏ"
 
@@ -23025,9 +23031,6 @@ msgstr "loại bỏ bó hoa khỏi sự bảo vệ của cha mẹ"
 
 msgid "remove cable services"
 msgstr "loại bỏ dịch vụ cáp"
-
-msgid "Remove directory"
-msgstr "xóa thư mục"
 
 msgid "remove entry"
 msgstr "xoá mục nhập"
@@ -23111,9 +23114,6 @@ msgstr "tìm kiếm EPG ..."
 
 msgid "seconds"
 msgstr "giây"
-
-msgid "select"
-msgstr "lựa chọn"
 
 msgid "select CAId's"
 msgstr "chọn CAId"
@@ -23258,17 +23258,11 @@ msgstr "tiêu chuẩn"
 msgid "start cut here"
 msgstr "bắt đầu cắt ở đây"
 
-msgid "start recording"
-msgstr "bắt đầu ghi âm"
-
 msgid "step size"
 msgstr "kích cỡ"
 
 msgid "stereo"
 msgstr "âm thanh nổi"
-
-msgid "stop recording"
-msgstr "dừng ghi âm"
 
 msgid "stop using as startup service"
 msgstr "ngừng sử dụng làm dịch vụ khởi động"
@@ -23281,9 +23275,6 @@ msgstr "chuyển chế độ hiển thị 12 đến 8 ký tự"
 
 msgid "switch Nand and SDcard"
 msgstr "chuyển Nand và SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "chuyển sang đánh dấu"
 
 msgid "switch to the next angle"
 msgstr "chuyển sang góc tiếp theo"
@@ -23521,8 +23512,54 @@ msgstr "có (giữ thức ăn)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng dẫn để được hỗ trợ thêm trước khi khởi động lại% s% s của bạn."
 
-msgid "zapping"
-msgstr "hạ gục"
-
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Mount '% s' không đủ không gian trống để ghi."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Tệp hẹn giờ (pm_timers.xml) bị hỏng và không thể tải được."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Tệp hẹn giờ (timers.xml) bị hỏng và không thể tải được."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Đã phát hiện trùng lặp bộ đếm thời gian trong pm_timers.xml!\n"
+#~ "Vui lòng kiểm tra lại!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
+#~ "Vui lòng kiểm tra lại!"
+
+#~ msgid "ask user"
+#~ msgstr "hỏi người dùng"
+
+#~ msgid "end zapping"
+#~ msgstr "kết thúc hạ gục"
+
+#~ msgid "menu"
+#~ msgstr "menu chính"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "thời gian thay đổi kỷ lục, bắt đầu chuẩn bị ngay bây giờ:% s"
+
+#~ msgid "select"
+#~ msgstr "lựa chọn"
+
+#~ msgid "start recording"
+#~ msgstr "bắt đầu ghi âm"
+
+#~ msgid "stop recording"
+#~ msgstr "dừng ghi âm"
+
+#~ msgid "zapping"
+#~ msgstr "hạ gục"

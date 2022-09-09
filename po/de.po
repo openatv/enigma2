@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-09-05 05:15+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"PO-Revision-Date: 2022-09-07 07:08+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -869,12 +869,24 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] "%d + %d + %d Minute"
+msgstr[1] "%d + %d + %d Minuten"
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS pro Kern"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS mit %d Kernen"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Tag"
+msgstr[1] "%d Tage"
 
 #, python-format
 msgid "%d GB"
@@ -914,6 +926,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minute"
+msgstr[1] "%d Minuten"
+
+#, python-format
+msgid "%d Minutes"
+msgstr "%d Minuten"
+
+#, python-format
+msgid "%d Seconds"
+msgstr "%d Sekunden"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1318,11 +1344,11 @@ msgstr "'%s' nicht installiert und kein bekanntes Paket"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Puffer in Stunden' oder 'Anzahl der letzten Ereignisse'. Priorität hat die Bedingung zum Löschen älterer Timeshift Dateien, die zuerst aufgetreten ist."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abspielen zu entschlüsseln, falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abspielen zu entschlüsseln, falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ist nicht installiert!"
@@ -2522,6 +2548,9 @@ msgstr "Nach dem Drücken von OK bitte warten!"
 msgid "After recording"
 msgstr "Nach der Aufnahme"
 
+msgid "After zap"
+msgstr "Nach dem Umschalten"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -2723,10 +2752,6 @@ msgstr "Amlogic Fernbedienung"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Es wird versucht, den aktuellen TV-Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann Ihr Receiver unerwartet reagieren. Andererseits wird versucht, auf verschiedene Betriebszustände besser zu reagieren."
 
-#
-msgid "Error: An empty filename is illegal!"
-msgstr "Fehler: Leere Dateinamen sind unzulässig!"
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr ""
 "Beim Laden der Paketliste ist ein Fehler aufgetreten!\n"
@@ -2770,6 +2795,10 @@ msgstr "Antigua und Barbuda"
 
 msgid "Any activity"
 msgstr "Jede Aktivität"
+
+# Record neu 5.1
+msgid "Any recordings"
+msgstr "Alle Aufnahmen"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Änderungen anwenden, um die aktive Sprache zu aktivieren und zu beenden."
@@ -5483,11 +5512,6 @@ msgstr "Erstelle AP- und SC-Dateien"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Hardlink-Verbindung zur Timeshift-Datei fehlgeschlagen!"
 
-#
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
-
 msgid "Creating file system"
 msgstr "Dateisystem erstellen"
 
@@ -6256,18 +6280,6 @@ msgstr "Dänemark"
 msgid "Depth"
 msgstr "Tiefe"
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abspielen zu entschlüsseln, falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
-
-msgid "Unscramble and record ECM"
-msgstr "Entschlüsseln und ECM aufnehmen"
-
-msgid "Unscramble http streams"
-msgstr "HTTP-Streams entschlüsseln"
-
-msgid "Unscramble receiving http streams"
-msgstr "Empfangene HTTP-Streams entschlüsseln"
-
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -6816,9 +6828,6 @@ msgstr "Diese Aufnahme nicht hinzufügen"
 msgid "Don't ask again!"
 msgstr "Nicht mehr nachfragen!"
 
-msgid "Don't unscramble, record ECM"
-msgstr "Nicht entschlüsseln, ECM aufnehmen"
-
 msgid "Don't restart"
 msgstr "Nicht neu starten"
 
@@ -6831,6 +6840,9 @@ msgstr "Standard nicht anzeigen"
 #
 msgid "Don't stop current event but disable future events"
 msgstr "Aktuelles Ereignis nicht beenden, aber zukünftige deaktivieren"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Nicht entschlüsseln, ECM aufnehmen"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7809,6 +7821,10 @@ msgstr ""
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Fehler: Es wurde kein Speicherort für die Aufnahme ausgewählt!"
 
+#
+msgid "Error: An empty filename is illegal!"
+msgstr "Fehler: Leere Dateinamen sind unzulässig!"
+
 msgid "Error: Cannot find any images!"
 msgstr "Fehler: Es können keine Images gefunden werden!"
 
@@ -7820,6 +7836,11 @@ msgstr ""
 "Es konnte kein geeignetes Medium gefunden werden!\n"
 "Bitte entfernen Sie einige heruntergeladene Images oder legen Sie ein Medium (z.B. USB-Stick) mit ausreichend freiem Speicherplatz ein und versuchen es dann erneut."
 
+#
+#, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
+
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Fehler: Das zu installierende Image '%s' ist ungültig!"
@@ -7827,8 +7848,23 @@ msgstr "Fehler: Das zu installierende Image '%s' ist ungültig!"
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Fehler: Interaktionsfehler, Passwort kann nicht geändert werden!"
 
+#
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Fehler: Unzulässiges Verzeichnis '%s' ausgewählt!"
+
+#
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Fehler: Entfernen des Verzeichnisses '%s' fehlgeschlagen! (Nicht leer?)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Fehler: Das neue Passwort darf nicht leer sein!"
+
+#
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Fehler: Der Pfad '%s' existiert bereits!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
@@ -10067,11 +10103,6 @@ msgid "Invalid"
 msgstr "Ungültig"
 
 #
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Fehler: Unzulässiges Verzeichnis '%s' ausgewählt!"
-
-#
 msgid "Invalid location"
 msgstr "Unzulässiger Ort"
 
@@ -10226,6 +10257,14 @@ msgstr "Springe zur Primetime"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Zur aktuell aktiven Sprache springen"
+
+# Record neu 5.1
+msgid "Just abort, no message"
+msgstr "Abbrechen, ohne Hinweis"
+
+# Record neu 5.1
+msgid "Just abort, show message"
+msgstr "Abbrechen, zeige Hinweis"
 
 msgid "Just change Bouquet"
 msgstr "Nur Bouquet wechseln"
@@ -11035,11 +11074,11 @@ msgstr "Marathi"
 
 #
 msgid "Margin after recording"
-msgstr "Nachlauf nach Aufnahme (in Minuten)"
+msgstr "Nachlauf nach Aufnahme"
 
 #
 msgid "Margin before recording"
-msgstr "Vorlauf vor Aufnahme (in Minuten)"
+msgstr "Vorlauf vor Aufnahme"
 
 #
 msgid "Mark service as dedicated 3D service"
@@ -11402,10 +11441,6 @@ msgstr "Zeitüberschreitung beim Motorlauf"
 
 msgid "Mount"
 msgstr "Mount"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Zielort '%s' hat nicht genügend freien Speicher."
 
 msgid "Mount Actions"
 msgstr "Mount-Aktionen"
@@ -11972,6 +12007,10 @@ msgstr "Netzwerkassistent"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino ('keymap.ntr')"
 
+# Record neu 5.1
+msgid "Never abort"
+msgstr "Nie abbrechen"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden."
 
@@ -12263,7 +12302,7 @@ msgstr "Keine Transparenz"
 
 # RecordTimer.py
 msgid "No tuner is available for recording a timer!"
-msgstr "Eine Timeraufnahme konnte nicht gestartet werden."
+msgstr "Eine Timeraufnahme konnte nicht gestartet werden, da kein Tuner verfügbar war!"
 
 # RecordTimer.py
 msgid ""
@@ -13394,6 +13433,9 @@ msgstr "Keine Panik, wenn Sie Werte sehen, die verdächtig aussehen."
 msgid "Please enter a name for the new bouquet"
 msgstr "Bitte den Namen für das neue Bouquet eingeben"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Bitte den Namen des neuen Verzeichnisses eingeben:"
+
 #
 msgid "Please enter a name for the new marker"
 msgstr "Bitte den Namen für den neuen Marker eingeben"
@@ -13405,9 +13447,6 @@ msgstr "Bitte neuen Dateinamen eingeben"
 #
 msgid "Please enter filename (empty = use current date)"
 msgstr "Bitte den Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Bitte den Namen des neuen Verzeichnisses eingeben:"
 
 msgid "Please enter name of the new symlink"
 msgstr "Bitte den Namen des neuen Symlinks eingeben"
@@ -14510,6 +14549,18 @@ msgstr "Bereit zum Entfernen der %s?"
 msgid "Real Life"
 msgstr "Real Life"
 
+# Record neu 5.1
+msgid "Real or pseudo recordings"
+msgstr "Echte / Pseudo-Aufnahmen"
+
+# Record neu 5.1
+msgid "Real recordings"
+msgstr "Echte Aufnahmen"
+
+# Record neu 5.1
+msgid "Real recordings or streaming"
+msgstr "Echte Aufnahmen / Streaming"
+
 msgid "Really WOL now?"
 msgstr "WOL wirklich aktivieren?"
 
@@ -14949,6 +15000,10 @@ msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
 msgid "Remove currently selected title"
 msgstr "Entferne aktuell ausgewählten Titel"
 
+#
+msgid "Remove directory"
+msgstr "Verzeichnis entfernen"
+
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
 
@@ -14975,11 +15030,6 @@ msgstr "Entfernen"
 
 msgid "Removing Service"
 msgstr "Dienst wird entfernt"
-
-#
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Fehler: Entfernen des Verzeichnisses '%s' fehlgeschlagen! (Nicht leer?)"
 
 msgid "Removing partition table"
 msgstr "Partitionstabelle entfernen"
@@ -16532,11 +16582,11 @@ msgstr "Videomodus auswählen"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Verhalten bei Filmende einstellen."
 
-msgid "Select what do do after the timer has completed."
-msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll. 'Auto' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
-
 msgid "Select what do do after the timer recording has completed."
 msgstr "Wählen Sie, was nach Abschluss der Timer-Aufnahme geschehen soll. 'Auto' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
+
+msgid "Select what do do after the timer zap has completed."
+msgstr "Wählen Sie, was nach Ablauf des Umschalttimers geschehen soll."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird."
@@ -18179,9 +18229,8 @@ msgstr "Ausschalttimer"
 msgid "Sleep Timers"
 msgstr "SleepTimer"
 
-#, fuzzy
 msgid "Sleep delay"
-msgstr "Schlafverzögerung (in Minuten)"
+msgstr "Schlafverzögerung"
 
 msgid "Sleep long"
 msgstr "Sleep lang"
@@ -19114,6 +19163,10 @@ msgstr "Auf TV umschalten"
 msgid "Switch to TV mode"
 msgstr "In den TV-Modus umschalten"
 
+#
+msgid "Switch to bookmarks"
+msgstr "Gehe zu Lesezeichen"
+
 # Mediaplayer playlist Menue
 msgid "Switch to file list"
 msgstr "Zur Dateiliste wechseln"
@@ -19702,11 +19755,6 @@ msgstr ""
 "Bitte installieren Sie sie."
 
 #
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Fehler: Der Pfad '%s' existiert bereits!"
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "Der eingegebene PIN-Code ist falsch!"
 
@@ -19755,12 +19803,9 @@ msgstr "Der Updatestatus kann nicht überprüft werden, da die Seite 'https://ww
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Die Zeit wird mit dem aktuellen Wiederholungszähler multipliziert."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Die Timerdatei 'pm_timers.xml' ist beschädigt und konnte deshalb nicht geladen werden!"
-
-#
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Die Timerdatei 'timers.xml' ist beschädigt und konnte deshalb nicht geladen werden!"
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr "Die Timerdatei '%s' ist beschädigt und konnte nicht geladen werden!"
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -20405,20 +20450,17 @@ msgstr "Timereintrag"
 msgid "Timer log"
 msgstr "Timer-Log"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Timerüberlappung in der 'pm_timers.xml' entdeckt!\n"
+"Timerüberlappung in der '%s' entdeckt!\n"
 "Bitte überprüfen!"
 
-#
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
-msgstr ""
-"Timerüberlappung in der 'timers.xml' entdeckt!\n"
-"Bitte überprüfen!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
+msgstr "Timerüberlappung in der '%s' entdeckt! Bitte alle Timer prüfen."
 
 #
 msgid "Timer recording location"
@@ -21099,6 +21141,15 @@ msgstr "Nach '%s' entpacken"
 
 msgid "Unpack to current folder"
 msgstr "In den aktuellen Ordner entpacken"
+
+msgid "Unscramble and record ECM"
+msgstr "Entschlüsseln und ECM aufnehmen"
+
+msgid "Unscramble http streams"
+msgstr "HTTP-Streams entschlüsseln"
+
+msgid "Unscramble receiving http streams"
+msgstr "Empfangene HTTP-Streams entschlüsseln"
 
 #
 msgid "Unsupported"
@@ -23337,10 +23388,6 @@ msgstr "und"
 msgid "and never ask again this session again"
 msgstr "und nicht erneut nachfragen"
 
-# Record neu 5.1
-msgid "Any recordings"
-msgstr "Alle Aufnahmen"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -23358,10 +23405,6 @@ msgstr "Kunst-/Kulturmagazin"
 
 msgid "as plugin in extended bar"
 msgstr "Plugin in der Erweiterungsliste"
-
-# Record neu 5.1
-msgid "ask user"
-msgstr "Benutzer fragen"
 
 msgid "at beginning"
 msgstr "Am Anfang"
@@ -23679,9 +23722,6 @@ msgstr "Schnitt endet hier"
 msgid "end favorites edit"
 msgstr "Favoriten editieren beenden"
 
-msgid "end zapping"
-msgstr "Umschalten beenden"
-
 msgid "enigma2 and network"
 msgstr "Enigma2 und Netzwerk"
 
@@ -23978,14 +24018,6 @@ msgstr "Zum nächsten Titel springen"
 msgid "jump to chapter by number"
 msgstr "Nach Nummer zum Kapitel springen"
 
-# Record neu 5.1
-msgid "Just abort, no message"
-msgstr "Abbrechen, ohne Hinweis"
-
-# Record neu 5.1
-msgid "Just abort, show message"
-msgstr "Abbrechen, zeige Hinweis"
-
 # Powerlost usage.config
 msgid "just boot"
 msgstr "Normal starten"
@@ -24042,10 +24074,6 @@ msgstr "Kampfsport"
 
 msgid "medicine/physiology/psychology"
 msgstr "Medizin/Physiologie/Psychologie"
-
-#
-msgid "menu"
-msgstr "Menü"
 
 msgid "middle"
 msgstr "Mitte"
@@ -24129,10 +24157,6 @@ msgstr "Natur/Tiere/Umwelt"
 
 msgid "never"
 msgstr "Nie"
-
-# Record neu 5.1
-msgid "Never abort"
-msgstr "Nie abbrechen"
 
 msgid "new media"
 msgstr "Neue Medien"
@@ -24313,22 +24337,6 @@ msgstr "Gelöschte Benutzerbouquets entfernen"
 msgid "python"
 msgstr "Python"
 
-# Record neu 5.1
-msgid "Real or pseudo recordings"
-msgstr "Echte / Pseudo-Aufnahmen"
-
-# Record neu 5.1
-msgid "Real recordings"
-msgstr "Echte Aufnahmen"
-
-# Record neu 5.1
-msgid "Real recordings or streaming"
-msgstr "Echte Aufnahmen / Streaming"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "Aufnahmezeit geändert, startet: %s"
-
 #
 msgid "red"
 msgstr "Rot"
@@ -24366,10 +24374,6 @@ msgstr "Bouquet aus Jugendschutz entfernen"
 
 msgid "remove cable services"
 msgstr "Kabel-Dienste entfernen"
-
-#
-msgid "Remove directory"
-msgstr "Verzeichnis entfernen"
 
 # /lib/python/Screens/ChannelSelection.py
 msgid "remove entry"
@@ -24462,10 +24466,6 @@ msgstr "Durchsuche EPG..."
 #
 msgid "seconds"
 msgstr "Sekunden"
-
-#
-msgid "select"
-msgstr "Wähle"
 
 #
 msgid "select CAId's"
@@ -24623,19 +24623,12 @@ msgstr "Standard"
 msgid "start cut here"
 msgstr "Schnitt hier starten"
 
-msgid "start recording"
-msgstr "Aufnahme starten"
-
 msgid "step size"
 msgstr "Schrittweite"
 
 #
 msgid "stereo"
 msgstr "Stereo"
-
-#
-msgid "stop recording"
-msgstr "Aufnahme anhalten"
 
 msgid "stop using as startup service"
 msgstr "Kanal als Startkanal entfernen"
@@ -24648,10 +24641,6 @@ msgstr "Display von 12 nach 8 Zeichen umstellen"
 
 msgid "switch Nand and SDcard"
 msgstr "Flash mit SD-Karte tauschen"
-
-#
-msgid "Switch to bookmarks"
-msgstr "Gehe zu Lesezeichen"
 
 #
 msgid "switch to the next angle"
@@ -24912,8 +24901,66 @@ msgstr ""
 "Ihre %s %s könnte jetzt unbenutzbar sein!\n"
 "Bitte im Handbuch nach Hinweisen suchen, bevor Sie Ihre %s %s neu starten."
 
-msgid "zapping"
-msgstr "Umschalten"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abspielen zu entschlüsseln, falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Zielort '%s' hat nicht genügend freien Speicher."
+
+#~ msgid "Select what do do after the timer has completed."
+#~ msgstr "Wählen Sie, was nach Ablauf des Timers geschehen soll. 'Auto' lässt den Receiver in den Zustand gehen, den er vor dem Timerstart hatte."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Die Timerdatei 'pm_timers.xml' ist beschädigt und konnte deshalb nicht geladen werden!"
+
+#
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Die Timerdatei 'timers.xml' ist beschädigt und konnte deshalb nicht geladen werden!"
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timerüberlappung in der 'pm_timers.xml' entdeckt!\n"
+#~ "Bitte überprüfen!"
+
+#
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timerüberlappung in der 'timers.xml' entdeckt!\n"
+#~ "Bitte überprüfen!"
+
+# Record neu 5.1
+#~ msgid "ask user"
+#~ msgstr "Benutzer fragen"
+
+#~ msgid "end zapping"
+#~ msgstr "Umschalten beenden"
+
+#
+#~ msgid "menu"
+#~ msgstr "Menü"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "Aufnahmezeit geändert, startet: %s"
+
+#
+#~ msgid "select"
+#~ msgstr "Wähle"
+
+#~ msgid "start recording"
+#~ msgstr "Aufnahme starten"
+
+#
+#~ msgid "stop recording"
+#~ msgstr "Aufnahme anhalten"
+
+#~ msgid "zapping"
+#~ msgstr "Umschalten"

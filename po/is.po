@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-06 16:19+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -924,12 +924,24 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
 #, python-format
 msgid "%d DMIPS with %d cores"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d GB"
@@ -969,6 +981,20 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
 
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
@@ -1400,10 +1426,10 @@ msgstr ""
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr ""
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
 #, fuzzy
@@ -2616,6 +2642,9 @@ msgstr ""
 msgid "After recording"
 msgstr "Upptaka"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2831,9 +2860,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Það þarf að vera skráarnafn."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr ""
 
@@ -2876,6 +2902,9 @@ msgid "Antigua and Barbuda"
 msgstr ""
 
 msgid "Any activity"
+msgstr ""
+
+msgid "Any recordings"
 msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
@@ -5506,10 +5535,6 @@ msgstr ""
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr ""
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Tókst ekki að búa möppuna %s."
-
 #, fuzzy
 msgid "Creating file system"
 msgstr "Athuga skráarkerfi..."
@@ -6317,18 +6342,6 @@ msgstr ""
 msgid "Depth"
 msgstr ""
 
-msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr ""
-
-msgid "Unscramble and record ECM"
-msgstr ""
-
-msgid "Unscramble http streams"
-msgstr ""
-
-msgid "Unscramble receiving http streams"
-msgstr ""
-
 #
 msgid "Description"
 msgstr "Lýsing"
@@ -6867,9 +6880,6 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-msgid "Don't unscramble, record ECM"
-msgstr ""
-
 msgid "Don't restart"
 msgstr ""
 
@@ -6882,6 +6892,9 @@ msgstr ""
 #
 msgid "Don't stop current event but disable future events"
 msgstr "Ekki stoppa núverandi atriði en hætta við næsta"
+
+msgid "Don't unscramble, record ECM"
+msgstr ""
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7837,6 +7850,9 @@ msgstr ""
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Það þarf að vera skráarnafn."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7847,14 +7863,33 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr ""
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Tókst ekki að búa möppuna %s."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Ógild mappa valin: %s"
+
+#
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Tókst ekki að taka út möppuna %s. (kannski ekki tóm.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Slóðin %s er þegar til."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
@@ -10174,11 +10209,6 @@ msgid "Invalid"
 msgstr "Ógildur staður"
 
 #
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Ógild mappa valin: %s"
-
-#
 #, fuzzy
 msgid "Invalid location"
 msgstr "Ógildur staður"
@@ -10340,6 +10370,12 @@ msgid "Jump to prime time"
 msgstr ""
 
 msgid "Jump to the currently active locale/language"
+msgstr ""
+
+msgid "Just abort, no message"
+msgstr ""
+
+msgid "Just abort, show message"
 msgstr ""
 
 msgid "Just change Bouquet"
@@ -11575,10 +11611,6 @@ msgstr ""
 msgid "Mount"
 msgstr ""
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr ""
-
 msgid "Mount Actions"
 msgstr ""
 
@@ -12175,6 +12207,9 @@ msgid "NetworkWizard"
 msgstr ""
 
 msgid "Neutrino  (keymap.ntr)"
+msgstr ""
+
+msgid "Never abort"
 msgstr ""
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
@@ -13634,6 +13669,10 @@ msgid "Please enter a name for the new bouquet"
 msgstr "Settu inn nafn á nýjum rása vendi"
 
 #
+msgid "Please enter a name for the new directory:"
+msgstr "Sláðu inn nafn á nýju möppunni"
+
+#
 msgid "Please enter a name for the new marker"
 msgstr "Sláðu inn nafn fyrir nýja merkingu"
 
@@ -13644,10 +13683,6 @@ msgstr "Sláðu inn nýtt skráarnafn"
 #
 msgid "Please enter filename (empty = use current date)"
 msgstr "Sláðu inn skráarnafn (tómt = nota núverandi dag)"
-
-#
-msgid "Please enter a name for the new directory:"
-msgstr "Sláðu inn nafn á nýju möppunni"
 
 #
 #, fuzzy
@@ -14736,6 +14771,15 @@ msgstr ""
 msgid "Real Life"
 msgstr ""
 
+msgid "Real or pseudo recordings"
+msgstr ""
+
+msgid "Real recordings"
+msgstr ""
+
+msgid "Real recordings or streaming"
+msgstr ""
+
 msgid "Really WOL now?"
 msgstr ""
 
@@ -15206,6 +15250,10 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Taka út þegar valinn titil"
 
+#
+msgid "Remove directory"
+msgstr "eyða möppu"
+
 msgid "Remove hide VBI line for this service"
 msgstr ""
 
@@ -15232,11 +15280,6 @@ msgstr "Eyði"
 
 msgid "Removing Service"
 msgstr ""
-
-#
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Tókst ekki að taka út möppuna %s. (kannski ekki tóm.)"
 
 #
 #, fuzzy
@@ -16822,10 +16865,10 @@ msgstr "Veldu mynd stillingu"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -19473,6 +19516,10 @@ msgid "Switch to TV mode"
 msgstr ""
 
 #
+msgid "Switch to bookmarks"
+msgstr "fara á bókamerki"
+
+#
 #, fuzzy
 msgid "Switch to file list"
 msgstr "skipta í skráarlista"
@@ -20035,11 +20082,6 @@ msgstr ""
 "Vinsamlega settu hann inn."
 
 #
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Slóðin %s er þegar til."
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "Kóðinn sem þú slóst inn er rangur."
 
@@ -20083,14 +20125,9 @@ msgstr ""
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
-#
-#, fuzzy
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Atriða skrá (timer.xml) er skemmd og var ekki hægt að lesa hana."
-
-#
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Atriða skrá (timer.xml) er skemmd og var ekki hægt að lesa hana."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -20718,22 +20755,15 @@ msgstr "Innsláttur tímastilltra atriða"
 msgid "Timer log"
 msgstr "Tíma skrá"
 
-#
-#, fuzzy
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Tímastillingar ná yfir hvorn annan!\n"
-"Vinsamlega athugið það!"
 
-#
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Tímastillingar ná yfir hvorn annan!\n"
-"Vinsamlega athugið það!"
 
 #, fuzzy
 msgid "Timer recording location"
@@ -21440,6 +21470,15 @@ msgid "Unpack to %s"
 msgstr ""
 
 msgid "Unpack to current folder"
+msgstr ""
+
+msgid "Unscramble and record ECM"
+msgstr ""
+
+msgid "Unscramble http streams"
+msgstr ""
+
+msgid "Unscramble receiving http streams"
 msgstr ""
 
 #
@@ -23577,9 +23616,6 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "Any recordings"
-msgstr ""
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -23595,9 +23631,6 @@ msgid "arts/culture magazine"
 msgstr ""
 
 msgid "as plugin in extended bar"
-msgstr ""
-
-msgid "ask user"
 msgstr ""
 
 msgid "at beginning"
@@ -23904,9 +23937,6 @@ msgstr "enda klippingu hér"
 msgid "end favorites edit"
 msgstr "hætta breytingum eftirlætis lista"
 
-msgid "end zapping"
-msgstr ""
-
 msgid "enigma2 and network"
 msgstr ""
 
@@ -24207,12 +24237,6 @@ msgstr "stökkva áfram í næsta titil"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "Just abort, no message"
-msgstr ""
-
-msgid "Just abort, show message"
-msgstr ""
-
 msgid "just boot"
 msgstr ""
 
@@ -24270,10 +24294,6 @@ msgstr ""
 
 msgid "medicine/physiology/psychology"
 msgstr ""
-
-#
-msgid "menu"
-msgstr "valmynd"
 
 msgid "middle"
 msgstr ""
@@ -24364,9 +24384,6 @@ msgstr ""
 #
 msgid "never"
 msgstr "aldrei"
-
-msgid "Never abort"
-msgstr ""
 
 msgid "new media"
 msgstr ""
@@ -24555,19 +24572,6 @@ msgstr ""
 msgid "python"
 msgstr ""
 
-msgid "Real or pseudo recordings"
-msgstr ""
-
-msgid "Real recordings"
-msgstr ""
-
-msgid "Real recordings or streaming"
-msgstr ""
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr ""
-
 #
 msgid "red"
 msgstr "rauður"
@@ -24607,10 +24611,6 @@ msgstr ""
 
 msgid "remove cable services"
 msgstr ""
-
-#
-msgid "Remove directory"
-msgstr "eyða möppu"
 
 #
 msgid "remove entry"
@@ -24701,10 +24701,6 @@ msgstr ""
 #
 msgid "seconds"
 msgstr "sekúndur"
-
-#
-msgid "select"
-msgstr "veldu"
 
 #
 msgid "select CAId's"
@@ -24861,22 +24857,12 @@ msgstr "venjulegt"
 msgid "start cut here"
 msgstr "byrja klippingu hér"
 
-#
-#, fuzzy
-msgid "start recording"
-msgstr "þessi upptaka"
-
 msgid "step size"
 msgstr ""
 
 #
 msgid "stereo"
 msgstr "víðóma"
-
-#
-#, fuzzy
-msgid "stop recording"
-msgstr "þessi upptaka"
 
 msgid "stop using as startup service"
 msgstr ""
@@ -24889,10 +24875,6 @@ msgstr ""
 
 msgid "switch Nand and SDcard"
 msgstr ""
-
-#
-msgid "Switch to bookmarks"
-msgstr "fara á bókamerki"
 
 #
 msgid "switch to the next angle"
@@ -25152,10 +25134,54 @@ msgstr "já (halda fæðirásum)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-#
-#, fuzzy
-msgid "zapping"
-msgstr "stokkið"
-
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Atriða skrá (timer.xml) er skemmd og var ekki hægt að lesa hana."
+
+#
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Atriða skrá (timer.xml) er skemmd og var ekki hægt að lesa hana."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Tímastillingar ná yfir hvorn annan!\n"
+#~ "Vinsamlega athugið það!"
+
+#
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Tímastillingar ná yfir hvorn annan!\n"
+#~ "Vinsamlega athugið það!"
+
+#
+#~ msgid "menu"
+#~ msgstr "valmynd"
+
+#
+#~ msgid "select"
+#~ msgstr "veldu"
+
+#
+#, fuzzy
+#~ msgid "start recording"
+#~ msgstr "þessi upptaka"
+
+#
+#, fuzzy
+#~ msgid "stop recording"
+#~ msgstr "þessi upptaka"
+
+#
+#, fuzzy
+#~ msgid "zapping"
+#~ msgstr "stokkið"
