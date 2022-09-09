@@ -22,76 +22,76 @@ from Tools.Directories import isPluginInstalled
 
 BUTTON_SETUP_KEYS = [
 	(_("Red"), "red", ""),
-	(_("RED long"), "red_long", ""),
+	(_("RED"), "red_long", ""),
 	(_("Green"), "green", ""),
-	(_("GREEN long"), "green_long", ""),
+	(_("GREEN"), "green_long", ""),
 	(_("Yellow"), "yellow", ""),
-	(_("YELLOW long"), "yellow_long", ""),
+	(_("YELLOW"), "yellow_long", ""),
 	(_("Blue"), "blue", ""),
-	(_("BLUE long"), "blue_long", ""),
+	(_("BLUE"), "blue_long", ""),
 	(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
 	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
 	(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
-	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
+	(_("Epg/Guide"), "epg_long", "Infobar/showEventGuidePlugins/1"),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
-	(_("Left long"), "cross_left_long", ""),
-	(_("Right long"), "cross_right_long", "Infobar/seekFwdVod"),
+	(_("Left"), "cross_left_long", ""),
+	(_("Right"), "cross_right_long", "Infobar/seekFwdVod"),
 	(_("Up"), "cross_up", ""),
 	(_("Down"), "cross_down", ""),
 	(_("PageUp"), "pageup", ""),
-	(_("PageUp long"), "pageup_long", ""),
+	(_("PageUp"), "pageup_long", ""),
 	(_("PageDown"), "pagedown", ""),
-	(_("PageDown long"), "pagedown_long", ""),
+	(_("PageDown"), "pagedown_long", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("EJECTCD"), "ejectcd", ""),
-	(_("EJECTCD long"), "ejectcd_long", ""),
+	(_("EJECTCD"), "ejectcd_long", ""),
 	(_("TV"), "showTv", ""),
 	(_("RADIO"), "radio", ""),
-	(_("RADIO long"), "radio_long", ""),
+	(_("RADIO"), "radio_long", ""),
 	(_("Rec"), "rec", ""),
-	(_("Rec long"), "rec_long", ""),
+	(_("Rec"), "rec_long", ""),
 	(_("Teletext"), "text", ""),
-	(_("Teletext long"), "text_long", ""),
+	(_("Teletext"), "text_long", ""),
 	(_("Help"), "displayHelp", ""),
-	(_("Help long"), "displayHelp_long", ""),
+	(_("Help"), "displayHelp_long", ""),
 	(_("Subtitle"), "subtitle", ""),
-	(_("Subtitle long"), "subtitle_long", ""),
+	(_("Subtitle"), "subtitle_long", ""),
 	(_("Menu"), "mainMenu", ""),
 	(_("List/Fav"), "list", ""),
-	(_("List/Fav long"), "list_long", ""),
+	(_("List/Fav"), "list_long", ""),
 	(_("PVR"), "pvr", ""),
-	(_("PVR long"), "pvr_long", ""),
+	(_("PVR"), "pvr_long", ""),
 	(_("Favorites"), "favorites", ""),
-	(_("Favorites long"), "favorites_long", ""),
+	(_("Favorites"), "favorites_long", ""),
 	(_("File"), "file", ""),
-	(_("File long"), "file_long", ""),
-	(_("OK long"), "ok_long", ""),
+	(_("File"), "file_long", ""),
+	(_("OK"), "ok_long", ""),
 	(_("Media"), "media", ""),
-	(_("Media long"), "media_long", ""),
+	(_("Media"), "media_long", ""),
 	(_("Open"), "open", ""),
-	(_("Open long"), "open_long", ""),
+	(_("Open"), "open_long", ""),
 	(_("Option"), "option", ""),
-	(_("Option long"), "option_long", ""),
+	(_("Option"), "option_long", ""),
 	(_("Www"), "www", ""),
-	(_("Www long"), "www_long", ""),
+	(_("Www"), "www_long", ""),
 	(_("Directory"), "directory", ""),
-	(_("Directory long"), "directory_long", ""),
+	(_("Directory"), "directory_long", ""),
 	(_("Back/Recall"), "back", ""),
-	("%s %s" % (_("Back/Recall"), _("long")), "back_long", ""),
+	(_("Back/Recall"), "back_long", ""),
 	(_("History"), "archive", ""),
-	(_("History long"), "archive_long", ""),
+	(_("History"), "archive_long", ""),
 	(_("Aspect"), "mode", ""),
-	(_("Aspect long"), "mode_long", ""),
+	(_("Aspect"), "mode_long", ""),
 	(_("Home"), "home", ""),
-	(_("Home long"), "home_long", ""),
+	(_("Home"), "home_long", ""),
 	(_("End"), "end", ""),
-	(_("End long"), "end_long", ""),
+	(_("End"), "end_long", ""),
 	(_("Next"), "next", ""),
 	(_("Previous"), "previous", ""),
 	(_("Audio"), "audio", ""),
-	(_("Audio long"), "audio_long", ""),
+	(_("Audio"), "audio_long", ""),
 	(_("Play"), "play", ""),
 	(_("Playpause"), "playpause", ""),
 	(_("Stop"), "stop", ""),
@@ -102,64 +102,64 @@ BUTTON_SETUP_KEYS = [
 	(_("Skip forward"), "skip_forward", ""),
 	(_("activatePiP"), "activatePiP", ""),
 	(_("Playlist"), "playlist", ""),
-	(_("Playlist long"), "playlist_long", ""),
+	(_("Playlist"), "playlist_long", ""),
 	(_("Nextsong"), "nextsong", ""),
-	(_("Nextsong long"), "nextsong_long", ""),
+	(_("Nextsong"), "nextsong_long", ""),
 	(_("Prevsong"), "prevsong", ""),
-	(_("Prevsong long"), "prevsong_long", ""),
+	(_("Prevsong"), "prevsong_long", ""),
 	(_("Program"), "prog", ""),
-	(_("Program long"), "prog_long", ""),
+	(_("Program"), "prog_long", ""),
 	(_("Time"), "time", ""),
-	(_("Time long"), "time_long", ""),
+	(_("Time"), "time_long", ""),
 	(_("Homepage"), "homep", ""),
-	(_("Homepage long"), "homep_long", ""),
+	(_("Homepage"), "homep_long", ""),
 	(_("Search/WEB"), "search", ""),
-	(_("Search/WEB long"), "search_long", ""),
+	(_("Search/WEB"), "search_long", ""),
 	(_("Slow"), "slow", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
-	(_("Mark/Portal/Playlist long"), "mark_long", ""),
+	(_("Mark/Portal/Playlist"), "mark_long", ""),
 	(_("Sleep"), "sleep", ""),
-	(_("Sleep long"), "sleep_long", ""),
+	(_("Sleep"), "sleep_long", ""),
 	(_("Power"), "power", ""),
-	(_("Power long"), "power_long", ""),
+	(_("Power"), "power_long", ""),
 	(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
-	("%s %s" % (_("HDMIin"), _("long")), "HDMIin_long", (BoxInfo.getItem("LcdLiveTV") and "Infobar/ToggleLCDLiveTV") or ""),
+	(_("HDMIin"), "HDMIin_long", (BoxInfo.getItem("LcdLiveTV") and "Infobar/ToggleLCDLiveTV") or ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
-	(_("Context long"), "context_long", ""),
+	(_("Context"), "context_long", ""),
 	(_("SAT"), "sat", "Infobar/openSatellites"),
-	(_("SAT long"), "sat_long", ""),
+	(_("SAT"), "sat_long", ""),
 	(_("Prov"), "prov", ""),
-	(_("Prov long"), "prov_long", ""),
+	(_("Prov"), "prov_long", ""),
 	(_("LAN"), "lan", ""),
-	(_("LAN long"), "lan_long", ""),
+	(_("LAN"), "lan_long", ""),
 	(_("PC"), "pc", ""),
-	(_("PC long"), "pc_long", ""),
+	(_("PC"), "pc_long", ""),
 	(_("F1"), "f1", ""),
-	(_("F1 long"), "f1_long", ""),
+	(_("F1"), "f1_long", ""),
 	(_("F2"), "f2", ""),
-	(_("F2 long"), "f2_long", ""),
+	(_("F2"), "f2_long", ""),
 	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),
+	(_("F3"), "f3_long", ""),
 	(_("F4"), "f4", ""),
-	(_("F4 long"), "f4_long", ""),
+	(_("F4"), "f4_long", ""),
 	(_("Magic"), "f10", ""),
-	(_("Magic long"), "f10_long", ""),
+	(_("Magic"), "f10_long", ""),
 	# TRANSLATORS: PIP with uppercase i is for the button key text
 	(_("PIP"), "f6", ""),
 	# TRANSLATORS: PIP with uppercase i is for the button key text
-	(_("PIP long"), "f6_long", ""),
+	(_("PIP"), "f6_long", ""),
 	(_("MOUSE"), "mouse", ""),
-	(_("MOUSE long"), "mouse_long", ""),
+	(_("MOUSE"), "mouse_long", ""),
 	(_("VOD"), "vod", ""),
-	(_("VOD long"), "vod_long", ""),
+	(_("VOD"), "vod_long", ""),
 	(_("Keyboard"), "keyboard", ""),
-	(_("Keyboard long"), "keyboard_long", ""),
+	(_("Keyboard"), "keyboard_long", ""),
 	(_("Kodi"), "kodi", ""),
-	(_("Kodi long"), "kodi_long", ""),
+	(_("Kodi"), "kodi_long", ""),
 	(_("YouTube"), "youtube", ""),
-	(_("YouTube long"), "youtube_long", ""),
+	(_("YouTube"), "youtube_long", ""),
 	(_("ZOOM"), "zoom", ""),
-	(_("ZOOM long"), "zoom_long", "")
+	(_("ZOOM"), "zoom_long", "")
 ]
 
 
@@ -314,7 +314,9 @@ class ButtonSetup(Screen):
 		count = len(BUTTON_SETUP_KEYS) or 10
 		self.buttonList = []
 		for button in BUTTON_SETUP_KEYS:
-			self.buttonList.append(ChoiceEntryComponent("dummy", (button[0], button[1])))
+			key = button[1]
+			txt = _("%s long") % button[0] if "_long" in key else button[0]
+			self.buttonList.append(ChoiceEntryComponent("dummy", (txt, key)))
 		self["list"] = ChoiceList(list=self.buttonList[:config.misc.ButtonSetup.additional_keys.value and count], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
@@ -569,6 +571,9 @@ class InfoBarButtonSetup():
 					selected.append(function[0])
 		return selected
 
+	def getName(self, key):
+		return tuple([_("%s long") if "_long" in x[1] else x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
+
 	def getHelpText(self, key):
 		selected = self.getKeyFunctions(key)
 		if not selected:
@@ -576,7 +581,7 @@ class InfoBarButtonSetup():
 		if len(selected) == 1:
 			return selected[0][0]
 		else:
-			return "%s %s" % (_("ButtonSetup"), tuple([x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0])
+			return "%s %s" % (_("ButtonSetup"), self.getName(key))
 
 	def ButtonSetupGlobal(self, key):
 		if self.longKeyPressed:
@@ -590,7 +595,7 @@ class InfoBarButtonSetup():
 					self.longKeyPressed = True
 				return self.execButtonSetup(selected[0])
 			else:
-				key = tuple([x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
+				key = self.getName(key)
 				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, "%s: %s" % (_("Hotkey"), key), selected)
 
 	def execButtonSetup(self, selected):
