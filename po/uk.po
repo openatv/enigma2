@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-08-30 15:39+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -226,16 +226,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -348,13 +348,13 @@ msgid "%03d MB"
 msgstr "%03d MБ"
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr "%2.1f сек"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -544,11 +544,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -594,19 +594,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -861,6 +861,13 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS на ядро"
 
@@ -869,8 +876,26 @@ msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS з %d ядрами"
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d ГБ"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d година"
+msgstr[1] "%d години"
+msgstr[2] "%d годин"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -879,6 +904,10 @@ msgstr "%d KБ"
 #, python-format
 msgid "%d MB"
 msgstr "%d МБ"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -908,6 +937,32 @@ msgstr[0] "%d хвилина"
 msgstr[1] "%d хвилини"
 msgstr[2] "%d хвилин"
 
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d піксель в ширину"
+msgstr[1] "%d пікселі в ширину"
+msgstr[2] "%d пікселів в ширину"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунди"
+msgstr[2] "%d секунд"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -924,25 +979,11 @@ msgstr[1] "%d ядра"
 msgstr[2] "%d ядер"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d день"
-msgstr[1] "%d днів"
-msgstr[2] "%d дня"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d сервер каталогу пакетів оновлено."
 msgstr[1] "%d сервер каталогів пакетів оновлено."
 msgstr[2] "%d сервер каталогів пакетів оновлено."
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d година"
-msgstr[1] "%d години"
-msgstr[2] "%d годин"
 
 #, python-format
 msgid "%d kB"
@@ -951,13 +992,6 @@ msgstr "%d кБ"
 #, python-format
 msgid "%d min"
 msgstr "%d хв"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d хвилина"
-msgstr[1] "%d хвилини"
-msgstr[2] "%d хвилин"
 
 #, python-format
 msgid "%d minutes"
@@ -1024,22 +1058,8 @@ msgstr[1] "%d пакети оновлено."
 msgstr[2] "%d пакетів оновлено."
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "%d піксель в ширину"
-msgstr[1] "%d пікселі в ширину"
-msgstr[2] "%d пікселів в ширину"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d сек"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунди"
-msgstr[2] "%d секунд"
 
 #, python-format
 msgid "%d times"
@@ -1322,11 +1342,11 @@ msgstr "'%s' не встановлено і не відомий пакет"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Декодувати та записувати ECM' дає можливість дешифрувати пізніше, якщо дешифрування під час запису не вдалося. 'Не декодувати, записати ECM' зберігає кодований запис, який можна декодувати під час відтворення. 'Звичайний' означає дешифрування запису та відсутність запису ECM."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Обробка режиму очікування з телевізора' має вищий пріоритет, ніж 'Обробка введення з телевізора'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Розкодувати і записати ECM' - дозволяє записати і розкодувати при відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і записати ECM' зберігає закодовані записи, які можуть бути розкодовані під час відтворення. 'Звичайний' розкодовані записи без запису ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' не встановлений!"
@@ -1379,6 +1399,9 @@ msgstr "* поточна анімація"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1388,6 +1411,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24/+24 Години"
@@ -1407,35 +1433,8 @@ msgstr "/var каталог"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2с"
-
-msgid "0.3s"
-msgstr "0.3с"
-
-msgid "0.4s"
-msgstr "0.4с"
-
-msgid "0.5s"
-msgstr "0.5с"
-
-msgid "0.6s"
-msgstr "0.6с"
-
-msgid "0.7s"
-msgstr "0.7с"
-
-msgid "0.8s"
-msgstr "0.8с"
-
-msgid "0.9s"
-msgstr "0.9с"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 ГБ"
 
 msgid "1 hour"
 msgstr "1 година"
@@ -1449,23 +1448,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2с"
-
-msgid "1.5s"
-msgstr "1.5с"
-
-msgid "1.7s"
-msgstr "1.7с"
-
-msgid "10 MB/s"
-msgstr "10 MБ/с"
-
 msgid "10 minutes"
 msgstr "10 хвилин"
-
-msgid "100 MB/s"
-msgstr "100 MБ/с"
 
 msgid "1024 Mb"
 msgstr "1024 Мб"
@@ -1569,9 +1553,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 В"
 
-msgid "1s"
-msgstr "1с"
-
 msgid "1st InfoBar timeout"
 msgstr "Затримка першого Інфобару"
 
@@ -1581,20 +1562,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 ГБ"
-
 msgid "2 hours"
 msgstr "2 години"
 
 msgid "2 minutes"
 msgstr "2 хвилини"
-
-msgid "2.5s"
-msgstr "2.5с"
-
-msgid "20 MB/s"
-msgstr "20 MБ/с"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1625,12 +1597,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 годин"
-
-msgid "24+ Hours"
-msgstr "24+ Годин"
-
-msgid "24- Hours"
-msgstr "24- Годин"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1689,9 +1655,6 @@ msgstr "Інфо на другому Інфобарі"
 msgid "2nd InfoBar timeout"
 msgstr "Затримка другого Інфобару"
 
-msgid "2s"
-msgstr "2с"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1709,9 +1672,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 години"
-
-msgid "3.5s"
-msgstr "3.5с"
 
 msgid "30"
 msgstr "30"
@@ -1749,17 +1709,11 @@ msgstr "3D Звук"
 msgid "3D Surround Speaker Position"
 msgstr "Розташування динаміків 3D"
 
-msgid "3s"
-msgstr "3с"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 ГБ"
 
 msgid "4 hours"
 msgstr "4 годин"
@@ -1788,9 +1742,6 @@ msgstr "4:3 Панорама"
 msgid "4K"
 msgstr "4К"
 
-msgid "4s"
-msgstr "4с"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1802,9 +1753,6 @@ msgstr "5 годин"
 
 msgid "5 minutes"
 msgstr "5 хвилин"
-
-msgid "50 MB/s"
-msgstr "50 МБ/с"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1823,9 +1771,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Мб"
-
-msgid "5s"
-msgstr "5с"
 
 msgid "6"
 msgstr "6"
@@ -1877,9 +1822,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 ГБ"
 
 msgid "8 character"
 msgstr "8 символів"
@@ -1937,32 +1879,24 @@ msgid "A file from media is in use!"
 msgstr "Використовується файл із носія!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Заплановане завдання таймера живлення вимагає перезавантаження Вашого %s %s.\n"
 "Перезавантажити зараз?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Заплановане завдання таймера живлення вимагає перезавантаження GUI.\n"
 "Зробити це зараз?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Заплановане завдання таймера живлення вимагає перевести Ваш\n"
 "%s %s в режим очікування. Зробити це зараз?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Заплановане завдання таймера живлення вимагає вимкнути Ваш %s %s.\n"
 "Зробити це зараз?"
@@ -2438,6 +2372,9 @@ msgstr "Після натиснення OK, зачекайте!"
 msgid "After recording"
 msgstr "Після запису"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr "Акан"
 
@@ -2633,9 +2570,6 @@ msgstr "Пульт Amlogic"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Пусте ім'я файлу є недопустимим."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Виникла помилка при завантаженні списку пакетів. Спробуйте ще раз."
 
@@ -2677,6 +2611,9 @@ msgstr "Антигуа і Барбуда"
 
 msgid "Any activity"
 msgstr "Будь-яка активність"
+
+msgid "Any recordings"
+msgstr "будь-які записи"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Застосувати зміни до активної локалі/мови і вийти"
@@ -2803,13 +2740,16 @@ msgstr "Мистецтво/Культура"
 msgid "Aruba"
 msgstr "Аруба"
 
+msgid "As plugin in extended bar"
+msgstr "як плагін в розширеній панелі"
+
 msgid "Ask user"
 msgstr "Запитати користувача"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "Запитати користувача (стандартно 'ні')"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "Запитати користувача (стандартно 'так')"
 
 msgid "Aspect"
@@ -2844,6 +2784,12 @@ msgstr "Astra 2 28.2E"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5E"
+
+msgid "At beginning"
+msgstr "на початок"
+
+msgid "At end"
+msgstr "у кінець"
 
 msgid "At end of current program"
 msgstr "В кінці поточної програми"
@@ -2949,9 +2895,6 @@ msgstr "Вибрано автоматичні Режими."
 msgid "Auto SCART switching"
 msgstr "Авто переключення на скарт"
 
-msgid "Auto Timer"
-msgstr "Авто Таймер"
-
 msgid "Auto Timers"
 msgstr "Авто-Таймери"
 
@@ -2987,6 +2930,9 @@ msgstr "Авто(не доступний)"
 
 msgid "AutoMountManager"
 msgstr "Конфігурація Автомонтування"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Авто-Оновлення"
@@ -3285,7 +3231,7 @@ msgstr "Баскська"
 msgid "Begin time"
 msgstr "Початок"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Поводиться як кнопка стоп"
 
 msgid "Behavior of 'pause' when paused"
@@ -3427,6 +3373,9 @@ msgstr "Боснійська"
 
 msgid "Botswana"
 msgstr "Ботсвана"
+
+msgid "Bottom"
+msgstr "знизу"
 
 msgid "Bouquet List"
 msgstr "Список фаворитів"
@@ -4005,6 +3954,15 @@ msgstr "Кайманові острови"
 msgid "Celsius"
 msgstr "Цельсій"
 
+msgid "Center"
+msgstr "центр"
+
+msgid "Centered"
+msgstr "по центру"
+
+msgid "Centered, wrapped"
+msgstr "по центру, прихований"
+
 msgid "Central African Republic"
 msgstr "Центрально-африканська Республіка"
 
@@ -4085,7 +4043,7 @@ msgstr "Канал / Сервіс"
 msgid "Channel 1"
 msgstr "Канал 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Канал 1 з Прайм-тайму"
 
 msgid "Channel Info"
@@ -5215,10 +5173,6 @@ msgstr "Створення файлів АР і SC"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Помилка створення посилання на файл Timeshift!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Створення директорії %s невдале."
-
 msgid "Creating file system"
 msgstr "Створення файлової системи"
 
@@ -5955,18 +5909,6 @@ msgstr "Данія"
 msgid "Depth"
 msgstr "Глибина"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Розкодувати і записати ECM' - дозволяє записати і розкодувати при відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і записати ECM' зберігає закодовані записи, які можуть бути розкодовані під час відтворення. 'Звичайний' розкодовані записи без запису ECM."
-
-msgid "Descramble and record ECM"
-msgstr "розкодувати і записати ecm"
-
-msgid "Descramble http streams"
-msgstr "Розкодувати http потік"
-
-msgid "Descramble receiving http streams"
-msgstr "Розкодувати приймачем http-потоку"
-
 msgid "Description"
 msgstr "Опис"
 
@@ -6467,9 +6409,6 @@ msgstr "Не потрібно додавати цей запис"
 msgid "Don't ask again!"
 msgstr "Не потрібно запитувати знову!"
 
-msgid "Don't descramble, record ECM"
-msgstr "не розкодовувати, запис ecm"
-
 msgid "Don't restart"
 msgstr "Не перезавантажуйте"
 
@@ -6481,6 +6420,9 @@ msgstr "Не показувати за замовчуванням"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Не зупиняти поточне завдання, але скасувати наступні"
+
+msgid "Don't unscramble, record ECM"
+msgstr "не розкодовувати, запис ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7410,6 +7352,9 @@ msgstr "Помилка: %s %s не %s!  Будь-ласка, спробуйте 
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Помилка: не вибрано місце для збереження запису!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Пусте ім'я файлу є недопустимим."
+
 msgid "Error: Cannot find any images!"
 msgstr "Помилка: не вдається знайти імідж!"
 
@@ -7420,14 +7365,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Не вдалося знайти відповідні носії. Видаліть деякі завантажені іміджі, або вставте носій (наприклад, флешку) з достатнім вільним об’ємом і повторіть спробу."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Створення директорії %s невдале."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Помилка: імідж '%s' для встановлення недійсний!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Помилка: Збій взаємодії, не вдається змінити пароль!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Вибрано невірний каталог: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Видалення директорії %s невдале. (Можливо не пуста)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Помилка: Новий пароль не може бути пустим!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Шлях %s вже існує."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Помилка: неможливо створити необхідні каталоги на носії(наприклад, USB-накопичувач або жорсткий диск)! Будь ласка, перевірте пристрій і повторіть спробу."
@@ -8430,11 +8391,14 @@ msgstr "Перехід Дата/Час"
 msgid "Goto Date/Timer"
 msgstr "Перейти Дата/Таймер"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Перейти Прайм-тайм"
 
 msgid "Goto X"
 msgstr "Перейти на позицію Х"
+
+msgid "Goto deep standby"
+msgstr "вимкнути"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на наступний фаворит"
@@ -8459,6 +8423,9 @@ msgstr "Перейти до попер. події"
 
 msgid "Goto specific date/time"
 msgstr "Перейти до зазначеної дати/часу"
+
+msgid "Goto standby"
+msgstr "перейти в режим очікування"
 
 msgid "GotoX calibration"
 msgstr "Калібрування позиції Х"
@@ -8868,16 +8835,13 @@ msgstr "Гарячі кнопки"
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
-msgid "Hour"
-msgstr "Година"
-
 msgid "Hourly"
 msgstr "Щогодини"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Години Хвилини"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Години Хвилини Секунди"
 
 msgid "How many minutes do you want to record?"
@@ -9150,7 +9114,7 @@ msgstr "Помилка створення іміджу - "
 msgid "ImageWizard"
 msgstr "Майстер іміджу"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Негайне вимкнення"
 
 msgid "Immediately restart selected devices."
@@ -9543,10 +9507,6 @@ msgstr "Інупіак"
 msgid "Invalid"
 msgstr "Некоректний"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Вибрано невірний каталог: %s"
-
 msgid "Invalid location"
 msgstr "Некоректне розташування"
 
@@ -9694,6 +9654,15 @@ msgstr "Перейти до прайм-тайм"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Перейти до поточної активного регіону/мови"
+
+msgid "Just abort, no message"
+msgstr "просто перервати, без повідомлення"
+
+msgid "Just abort, show message"
+msgstr "просто перервати, показати повідомлення"
+
+msgid "Just boot"
+msgstr "просто запустити"
 
 msgid "Just change Bouquet"
 msgstr "Тільки змінити фаворит"
@@ -9965,11 +9934,14 @@ msgstr "Ліван"
 msgid "Left"
 msgstr "Вліво"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Ліворуч назви каналу"
 
 msgid "Left long"
 msgstr "Вліво довге натискання"
+
+msgid "Left, wrapped"
+msgstr "зліва, прихований"
 
 msgid "Leisure hobbies"
 msgstr "Відпочинок хобі"
@@ -10442,10 +10414,10 @@ msgstr "Мова маорі"
 msgid "Marathi"
 msgstr "Маратхі"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Об'єднати після запису (у хвилинах)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Об'єднати перед записом (у хвилинах)"
 
 msgid "Mark service as dedicated 3D service"
@@ -10630,6 +10602,9 @@ msgstr "Мексика"
 msgid "Micronesia, Federated States of"
 msgstr "Мікронезія, Федеративні Штати"
 
+msgid "Middle"
+msgstr "по середині"
+
 msgid "Middle - Lite image"
 msgstr "Середньо–полегшений імідж"
 
@@ -10667,7 +10642,13 @@ msgstr "Мінімальний інтервал відправки"
 msgid "Mins"
 msgstr "Хв"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "хвилина"
+
+msgid "Minutes"
+msgstr "хвилин"
+
+msgid "Minutes Seconds"
 msgstr "Хвилини Секунди"
 
 msgid "Minutes:"
@@ -10783,10 +10764,6 @@ msgstr "Затримка роботи для двигуна"
 
 msgid "Mount"
 msgstr "Підключення"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Підключення '%s' мало вільного місця для запису."
 
 msgid "Mount Actions"
 msgstr "Дії монтування"
@@ -11296,6 +11273,12 @@ msgstr "Майстер налаштувань мережі"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
 
+msgid "Never"
+msgstr "ніколи"
+
+msgid "Never abort"
+msgstr "ніколи не переривати"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Ніколи не розкодовувати передачі під час запису. При цьому будуть проігноровані деякі параметри таймерів. Коли ввімкнено, записи зберігаються в закодованому вигляді, при відтворенні вони будуть розкодовані (називається декодуванням в автономному режимі). Стандартно: вимкнено."
 
@@ -11553,8 +11536,8 @@ msgstr "Ні для всіх"
 msgid "No transparency"
 msgstr "Непрозорий"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Тюнер для запису за таймером не знайдено!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Тюнер для запису за таймером не знайдено!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -11901,9 +11884,6 @@ msgstr "На дійсних ONID, ігноруйте частину частот
 
 msgid "Once"
 msgstr "один раз"
-
-msgid "Once per day"
-msgstr "Один раз в день"
 
 msgid "One"
 msgstr "Один"
@@ -12588,6 +12568,9 @@ msgstr "Будь ласка, не панікуйте, якщо Ви бачите
 msgid "Please enter a name for the new bouquet"
 msgstr "Будь ласка, введіть назву нового фавориту"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Будь ласка, введіть назву нового каталогу"
+
 msgid "Please enter a name for the new marker"
 msgstr "Будь ласка, введіть назву для нової закладки"
 
@@ -12596,9 +12579,6 @@ msgstr "Будь ласка, введіть нову назву файла"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Будь ласка, введіть назву файла (пусто = актуальна дата)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Будь ласка, введіть назву нового каталогу"
 
 msgid "Please enter name of the new symlink"
 msgstr "Будь ласка, введіть назву нового symlink"
@@ -13040,9 +13020,6 @@ msgstr "Таймер живлення"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr "Таймер Живлення Глибокий режим очікування"
-
 msgid "PowerTimer Overview"
 msgstr "Перегляд таймерів живлення"
 
@@ -13051,6 +13028,9 @@ msgstr "Налаштування PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Таймер Живлення Режим очікування"
+
+msgid "PowerTimer deep standby"
+msgstr "Таймер Живлення Глибокий режим очікування"
 
 msgid "PowerTimer log"
 msgstr "Лог мененджера живлення"
@@ -13091,7 +13071,7 @@ msgstr "Пріоритетний тюнер для запису"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Пріоритетний тюнер для запису, дозволений багаторазовий вибір"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Час підготовки до запису (у секундах)"
 
 msgid "Preparing... Please wait"
@@ -13213,6 +13193,12 @@ msgstr "Попередній фаворит"
 msgid "Previous page"
 msgstr "Попередня сторінка"
 
+msgid "Previous/Next bouquet"
+msgstr "попередній/наступний Фаворит"
+
+msgid "Previous/Next page"
+msgstr "попередня/наступна сторінка"
+
 msgid "Prevsong"
 msgstr "Попер. пісня"
 
@@ -13222,7 +13208,7 @@ msgstr "Поп. пісня довге натискання"
 msgid "Primary DNS"
 msgstr "Первинний DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Прайм-тайм"
 
 msgid "Primetime hour"
@@ -13603,6 +13589,15 @@ msgstr "Готові до видалення %s?"
 
 msgid "Real Life"
 msgstr "З реального життя"
+
+msgid "Real or pseudo recordings"
+msgstr "реальні, або псевдо записи"
+
+msgid "Real recordings"
+msgstr "реальні записи"
+
+msgid "Real recordings or streaming"
+msgstr "реальні записи, або потокове мовлення"
 
 msgid "Really WOL now?"
 msgstr "Дійсно WOL зараз?"
@@ -14006,7 +14001,7 @@ msgstr "Видалити всі дані таймера"
 msgid "Remove all user interface data"
 msgstr "Видалити усі дані інтерфейсу користувача"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Видалення завершених таймерів через (в днях)"
 
 msgid "Remove current folder from bookmarks"
@@ -14014,6 +14009,9 @@ msgstr "Видалити поточну теку зі закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
+
+msgid "Remove directory"
+msgstr "видалити директорію"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
@@ -14038,10 +14036,6 @@ msgstr "Видалення"
 
 msgid "Removing Service"
 msgstr "Видаляється канал"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Видалення директорії %s невдале. (Можливо не пуста)"
 
 msgid "Removing partition table"
 msgstr "Видалення таблиці розділів"
@@ -14330,11 +14324,14 @@ msgstr "Перезапускати субтитри"
 msgid "Right"
 msgstr "Вправо"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "Після назви каналу"
 
 msgid "Right long"
 msgstr "Вправо довге натискання"
+
+msgid "Right, wrapped"
+msgstr "справа, прихований"
 
 msgid "Roll-off"
 msgstr "Roll-off фактор"
@@ -14854,6 +14851,9 @@ msgstr "Другий кабель від позиціонера"
 
 msgid "Secondary DNS"
 msgstr "Вторинний DNS"
+
+msgid "Seconds"
+msgstr "секунди"
 
 msgid "Security"
 msgstr "безпека"
@@ -15483,10 +15483,10 @@ msgstr "Виберіть режим відео"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Досягнувши кінця файлу під час відтворення, можна вибрати дію пристрою."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -15796,7 +15796,7 @@ msgstr "Канали"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Можна створити різні фаворити. Якщо включено, можна створювати кілька фаворитів."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Встановити Базовий час"
 
 msgid "Set CI assignment for detection of available services."
@@ -16282,7 +16282,7 @@ msgstr "Показати EPG"
 msgid "Show EPG for current channel..."
 msgstr "Показати ЕПГ поточного каналу..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Показати перегляд передач"
 
 msgid "Show Format Setup"
@@ -16709,7 +16709,7 @@ msgstr "Показати значення налаштувань за замов
 msgid "Show setup menu..."
 msgstr "Показати меню налаштувань..."
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Показати меню вимкнення"
 
 msgid "Show single EPG for current channel"
@@ -17024,7 +17024,7 @@ msgstr "Таймер Cну"
 msgid "Sleep Timers"
 msgstr "Таймери сну"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17379,7 +17379,7 @@ msgstr "Південне Ндебеле"
 msgid "South Sudan"
 msgstr "Південний Судан"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Зарезервувати дисковий простір для записів (у ГБ)"
 
 #, python-format
@@ -17446,7 +17446,7 @@ msgstr "Режим очікування"
 msgid "Standby / Restart"
 msgstr "Вимкнення"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "Режим очікування без вимкнення телевізора"
 
 msgid "Start"
@@ -17899,6 +17899,9 @@ msgstr "Переключити на ТБ"
 
 msgid "Switch to TV mode"
 msgstr "Переключити на режим TV"
+
+msgid "Switch to bookmarks"
+msgstr "перейти до закладок"
 
 msgid "Switch to file list"
 msgstr "Переключити на список файлів"
@@ -18446,10 +18449,6 @@ msgstr ""
 "Майстер налаштування мережі не встановлено!\n"
 "Будь-ласка встановіть його."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Шлях %s вже існує."
-
 msgid "The pin code you entered is wrong."
 msgstr "Введений пін-код невірний."
 
@@ -18494,11 +18493,9 @@ msgstr "Не вдалося перевірити статус поточного
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Час множиться на поточний лічильник повторів."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймера (pm_timers.xml) є пошкодженим і не може бути виконаний."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймера (timers.xml) є пошкодженим і не може бути виконаний."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19092,19 +19089,15 @@ msgstr "Додати таймер"
 msgid "Timer log"
 msgstr "Лог таймера"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"В файлі pm_timers.xml виявлено дублювання!\n"
-"Будь-ласка, перевірте його!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Виявлено перекреття таймерів в timers.xml!\n"
-"Будь ласка, перевірти його!"
 
 msgid "Timer recording location"
 msgstr "Розташування записів таймера"
@@ -19273,6 +19266,9 @@ msgstr "Тоновий режим"
 
 msgid "Tonga"
 msgstr "Тонга"
+
+msgid "Top"
+msgstr "вгору"
 
 msgid "Top and Bottom"
 msgstr "Зверху і Знизу"
@@ -19724,6 +19720,15 @@ msgstr "Розпакувати до %s"
 msgid "Unpack to current folder"
 msgstr "Розпакувати до поточної теки"
 
+msgid "Unscramble and record ECM"
+msgstr "розкодувати і записати ecm"
+
+msgid "Unscramble http streams"
+msgstr "Розкодувати http потік"
+
+msgid "Unscramble receiving http streams"
+msgstr "Розкодувати приймачем http-потоку"
+
 msgid "Unsupported"
 msgstr "Не підтримуєтья"
 
@@ -19863,6 +19868,9 @@ msgstr "USB зверху"
 
 msgid "Upper case"
 msgstr "Верхній регістр"
+
+msgid "Upper line"
+msgstr "вгору"
 
 msgid "Uptime"
 msgstr "Час роботи"
@@ -20803,7 +20811,7 @@ msgstr "Якщо включено, запис дозволяє перерива�
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Якщо включено, виводитиметься попередження з вибором про зупинку або продовження роботи таймшифта."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Якщо включено, завжди розшифровується прийом HTTP-потоків. Включайте лише якщо це необхідно, це займає багато ресурсів. Окремі потоки завжди дешифруються, якщо параметр 0x100 додається до типу каналу, незалежно від цього параметра."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20902,10 +20910,10 @@ msgstr "Якщо ввімкнено, Ви побачите пакети dev, sta
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Якщо увімкнено, приймач виявить активність на вході VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Вкажіть на скільки хвилин раніше, ніж час початку передачі по телегіду, починати запис."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Вкажіть на скільки хвилин пізніше має закінчитися запис після закінчення передачі."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -20977,13 +20985,22 @@ msgstr "Налаштування з'єднання бездротової мер
 msgid "Wireless network state"
 msgstr "Статус бездротової мережі"
 
+msgid "With EXIT button"
+msgstr "кнопкою exit"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "кнопками вліво/вправо"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "При вимкненому режимі T2MI RAW (за замовчуванням) ми можемо використовувати окрему деінкапсуляцію T2MI PLP. Якщо ввімкнено режим T2MI RAW, ми можемо використовувати astra-sm для аналізу T2MI"
 
 msgid "With errors:"
 msgstr "З помилками:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "довгим натисканням кнопки OK"
+
+msgid "With pop up"
 msgstr "З спливаючим вікном"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -21004,7 +21021,7 @@ msgstr "За допомогою цієї опції Ви можете зміню
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "За допомогою цієї опції Ви може попробувати поліпшити якість сигналу, або усунути проблеми, звязані з довгими кабелями HDMI."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Без спливаючих вікон"
 
 msgid "Without query"
@@ -21736,14 +21753,8 @@ msgstr "алфавітний"
 msgid "alphabetic reverse"
 msgstr "зворотньо по алфавіту"
 
-msgid "alphabetical"
-msgstr "за алфавіту"
-
 msgid "alpharev then newest"
 msgstr "по алфавіту у зворотньому порядку"
-
-msgid "alternative"
-msgstr "альтернативний"
 
 msgid "am"
 msgstr "до обіду"
@@ -21753,9 +21764,6 @@ msgstr "і"
 
 msgid "and never ask again this session again"
 msgstr "і більше не питати в цій сесії"
-
-msgid "any recordings"
-msgstr "будь-які записи"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -21772,18 +21780,6 @@ msgstr "мистецтво/культура (без музики, загальн
 
 msgid "arts/culture magazine"
 msgstr "предача про мистецтво/культуру"
-
-msgid "as plugin in extended bar"
-msgstr "як плагін в розширеній панелі"
-
-msgid "ask user"
-msgstr "запитати користувача"
-
-msgid "at beginning"
-msgstr "на початок"
-
-msgid "at end"
-msgstr "у кінець"
 
 msgid "athletics"
 msgstr "легка атлетика"
@@ -21836,9 +21832,6 @@ msgstr "чорний список"
 msgid "blue"
 msgstr "синій"
 
-msgid "bottom"
-msgstr "знизу"
-
 msgid "broadcasting/press"
 msgstr "мовлення/преса"
 
@@ -21866,15 +21859,6 @@ msgstr "card сервер"
 
 msgid "cartoon/puppets"
 msgstr "мультфільм/ляльки"
-
-msgid "center"
-msgstr "центр"
-
-msgid "centered"
-msgstr "по центру"
-
-msgid "centered, wrapped"
-msgstr "по центру, прихований"
 
 msgid "change Volume down"
 msgstr "зменшити рівень звуку"
@@ -22054,9 +22038,6 @@ msgstr "кінець редагування тут"
 msgid "end favorites edit"
 msgstr "кінець редагування фаворитів"
 
-msgid "end zapping"
-msgstr "кінець переключення"
-
 msgid "enigma2 and network"
 msgstr "enigma2 і мережа"
 
@@ -22195,9 +22176,6 @@ msgstr "отримати картки сервера"
 msgid "goto current channel and now"
 msgstr "перейти до поточного каналу зараз"
 
-msgid "goto deep-standby"
-msgstr "вимкнути"
-
 msgid "goto first channel"
 msgstr "перейти на перший канал"
 
@@ -22206,9 +22184,6 @@ msgstr "перейти на наступний канал"
 
 msgid "goto now"
 msgstr "перейти зараз"
-
-msgid "goto standby"
-msgstr "перейти в режим очікування"
 
 msgid "grab this frame as bitmap"
 msgstr "захопити цей кадр як растрове зображення"
@@ -22331,15 +22306,6 @@ msgstr "перейти до наступного епізоду"
 msgid "jump to chapter by number"
 msgstr "перейти до розділу по номеру"
 
-msgid "just abort, no message"
-msgstr "просто перервати, без повідомлення"
-
-msgid "just abort, show message"
-msgstr "просто перервати, показати повідомлення"
-
-msgid "just boot"
-msgstr "просто запустити"
-
 msgid "languages"
 msgstr "мов"
 
@@ -22348,9 +22314,6 @@ msgstr "вийти з програвача"
 
 msgid "left"
 msgstr "лівий"
-
-msgid "left, wrapped"
-msgstr "зліва, прихований"
 
 msgid "leisure hobbies (general)"
 msgstr "дозвілля та відпочинок (загальний)"
@@ -22388,20 +22351,8 @@ msgstr "бойові види спорту"
 msgid "medicine/physiology/psychology"
 msgstr "медицина/фізіологія/психологія"
 
-msgid "menu"
-msgstr "меню"
-
-msgid "middle"
-msgstr "по середині"
-
 msgid "min"
 msgstr "хв"
-
-msgid "minute"
-msgstr "хвилина"
-
-msgid "minutes"
-msgstr "хвилин"
 
 msgid "month"
 msgstr "місяць"
@@ -22459,12 +22410,6 @@ msgstr "не визначено"
 
 msgid "nature/animals/environment"
 msgstr "природа/тварини/навколишнє середовище"
-
-msgid "never"
-msgstr "ніколи"
-
-msgid "never abort"
-msgstr "ніколи не переривати"
 
 msgid "new media"
 msgstr "нові медіа"
@@ -22610,12 +22555,6 @@ msgstr "дитяча програма дошкільного віку"
 msgid "previous channel page"
 msgstr "попередня сторінка каналів"
 
-msgid "previous/next Bouquet"
-msgstr "попередній/наступний Фаворит"
-
-msgid "previous/next Page"
-msgstr "попередня/наступна сторінка"
-
 msgid "provid:"
 msgstr "пров.:"
 
@@ -22627,19 +22566,6 @@ msgstr "очистити видалені фаворити"
 
 msgid "python"
 msgstr "python"
-
-msgid "real or pseudo recordings"
-msgstr "реальні, або псевдо записи"
-
-msgid "real recordings"
-msgstr "реальні записи"
-
-msgid "real recordings or streaming"
-msgstr "реальні записи, або потокове мовлення"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "час запису змінився, зробити зміну зараз: %s"
 
 msgid "red"
 msgstr "червоний"
@@ -22673,9 +22599,6 @@ msgstr "видалити фаворит з батьківського контр
 
 msgid "remove cable services"
 msgstr "видалити кабельні канали"
-
-msgid "Remove directory"
-msgstr "видалити директорію"
 
 msgid "remove entry"
 msgstr "видалити канал"
@@ -22719,9 +22642,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "правий"
 
-msgid "right, wrapped"
-msgstr "справа, прихований"
-
 msgid "rock/pop"
 msgstr "рок/поп"
 
@@ -22756,12 +22676,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "пошук ЕПГ..."
-
-msgid "seconds"
-msgstr "секунди"
-
-msgid "select"
-msgstr "вибрати"
 
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
@@ -22904,17 +22818,11 @@ msgstr "стандартний"
 msgid "start cut here"
 msgstr "початок вирізання тут"
 
-msgid "start recording"
-msgstr "почати запис"
-
 msgid "step size"
 msgstr "розмір кроку"
 
 msgid "stereo"
 msgstr "стерео"
-
-msgid "stop recording"
-msgstr "зупинити запис"
 
 msgid "stop using as startup service"
 msgstr "припинити користуватися каналом запуску"
@@ -22927,9 +22835,6 @@ msgstr "перемикання режиму відображення з 12 до 
 
 msgid "switch Nand and SDcard"
 msgstr "перемикач Nand і SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "перейти до закладок"
 
 msgid "switch to the next angle"
 msgstr "перейти до наступного кута"
@@ -22975,9 +22880,6 @@ msgstr "до каталогу"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "основна інформація"
-
-msgid "top"
-msgstr "вгору"
 
 msgid "tourism/travel"
 msgstr "туризм/подорожі"
@@ -23057,9 +22959,6 @@ msgstr "оновлено"
 msgid "updates available."
 msgstr "оновлень доступно."
 
-msgid "upper line"
-msgstr "вгору"
-
 msgid "use best / controlled by HDMI"
 msgstr "використовувати краще / контролюється HDMI"
 
@@ -23068,9 +22967,6 @@ msgstr "використовуйте збільшену напругу '14/18В 
 
 msgid "use_hdmi_cacenter"
 msgstr "використати центр hdmi"
-
-msgid "user defined"
-msgstr "на вибір користувача"
 
 msgid "userdefined"
 msgstr "на вибір користувача"
@@ -23111,9 +23007,6 @@ msgstr ""
 "\n"
 "Копія була відправлена."
 
-msgid "white"
-msgstr "білий"
-
 msgid "wide"
 msgstr "широкий"
 
@@ -23139,15 +23032,6 @@ msgstr[2] "з %d помилками"
 msgid "with errors"
 msgstr "з помилками"
 
-msgid "with exit button"
-msgstr "кнопкою exit"
-
-msgid "with left/right buttons"
-msgstr "кнопками вліво/вправо"
-
-msgid "with long OK press"
-msgstr "довгим натисканням кнопки OK"
-
 msgid "with_errors"
 msgstr "з помилками"
 
@@ -23167,8 +23051,176 @@ msgstr "так (зберігати фіди)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "ваш %s %s може стати непридатним тепер. Прочитайте керівництво по використанню перш ніж перезавантажити Ваш %s %s."
 
-msgid "zapping"
-msgstr "переключення"
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d день"
+msgstr[1] "%d днів"
+msgstr[2] "%d дня"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d хвилина"
+msgstr[1] "%d хвилини"
+msgstr[2] "%d хвилин"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2с"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3с"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4с"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5с"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6с"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7с"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8с"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9с"
+
+#~ msgid "1 GB"
+#~ msgstr "1 ГБ"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2с"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5с"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7с"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MБ/с"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MБ/с"
+
+#~ msgid "1s"
+#~ msgstr "1с"
+
+#~ msgid "2 GB"
+#~ msgstr "2 ГБ"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5с"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MБ/с"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Годин"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Годин"
+
+#~ msgid "2s"
+#~ msgstr "2с"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5с"
+
+#~ msgid "3s"
+#~ msgstr "3с"
+
+#~ msgid "4 GB"
+#~ msgstr "4 ГБ"
+
+#~ msgid "4s"
+#~ msgstr "4с"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 МБ/с"
+
+#~ msgid "5s"
+#~ msgstr "5с"
+
+#~ msgid "8 GB"
+#~ msgstr "8 ГБ"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Авто Таймер"
+
+#~ msgid "Hour"
+#~ msgstr "Година"
+
+#~ msgid "Once per day"
+#~ msgstr "Один раз в день"
+
+#~ msgid "alphabetical"
+#~ msgstr "за алфавіту"
+
+#~ msgid "alternative"
+#~ msgstr "альтернативний"
+
+#~ msgid "user defined"
+#~ msgstr "на вибір користувача"
+
+#~ msgid "white"
+#~ msgstr "білий"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Декодувати та записувати ECM' дає можливість дешифрувати пізніше, якщо дешифрування під час запису не вдалося. 'Не декодувати, записати ECM' зберігає кодований запис, який можна декодувати під час відтворення. 'Звичайний' означає дешифрування запису та відсутність запису ECM."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Підключення '%s' мало вільного місця для запису."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймера (pm_timers.xml) є пошкодженим і не може бути виконаний."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймера (timers.xml) є пошкодженим і не може бути виконаний."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "В файлі pm_timers.xml виявлено дублювання!\n"
+#~ "Будь-ласка, перевірте його!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Виявлено перекреття таймерів в timers.xml!\n"
+#~ "Будь ласка, перевірти його!"
+
+#~ msgid "ask user"
+#~ msgstr "запитати користувача"
+
+#~ msgid "end zapping"
+#~ msgstr "кінець переключення"
+
+#~ msgid "menu"
+#~ msgstr "меню"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "час запису змінився, зробити зміну зараз: %s"
+
+#~ msgid "select"
+#~ msgstr "вибрати"
+
+#~ msgid "start recording"
+#~ msgstr "почати запис"
+
+#~ msgid "stop recording"
+#~ msgstr "зупинити запис"
+
+#~ msgid "zapping"
+#~ msgstr "переключення"

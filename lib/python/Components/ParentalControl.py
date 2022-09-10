@@ -20,7 +20,7 @@ LIST_BLACKLIST = "blacklist"
 
 def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
-	config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[("never", _("never")), ("5", _("5 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes")), ("standby", _("until standby/restart"))])
+	config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[("never", _("Never")), ("5", _("5 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes")), ("standby", _("until standby/restart"))])
 	config.ParentalControl.configured = ConfigYesNo(default=False)
 	config.ParentalControl.setuppinactive = ConfigYesNo(default=False)
 	config.ParentalControl.retries = ConfigSubsection()
@@ -240,7 +240,7 @@ class ParentalControl:
 		root = eServiceReference(refstr)
 		list = serviceHandler.list(root)
 		if list is not None:
-			services = list.getContent("CN", True) #(servicecomparestring, name)
+			services = list.getContent("CN", True)  # (servicecomparestring, name)
 			return services
 
 	def save(self):

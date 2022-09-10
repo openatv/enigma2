@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -221,16 +221,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -343,13 +343,13 @@ msgid "%03d MB"
 msgstr "%03d MB"
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr "%2.1f 秒"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -539,11 +539,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -589,19 +589,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -855,6 +855,12 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -863,8 +869,24 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d 小时"
+msgstr[1] "%d 小时"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -873,6 +895,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -901,6 +927,30 @@ msgid_plural "%d Mins"
 msgstr[0] "%d 分钟"
 msgstr[1] "%d 分钟"
 
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d 个像素宽"
+msgstr[1] "%d 个像素宽"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d 秒"
+msgstr[1] "%d 秒"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -915,22 +965,10 @@ msgstr[0] "%d核心"
 msgstr[1] "%d核心"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d 天"
-msgstr[1] "%d 天"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d 个源目录包已更新."
 msgstr[1] "%d 个源目录包已更新."
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d 小时"
-msgstr[1] "%d 小时"
 
 #, python-format
 msgid "%d kB"
@@ -939,12 +977,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d 分钟"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d 分钟"
-msgstr[1] "%d 分钟"
 
 #, python-format
 msgid "%d minutes"
@@ -1003,20 +1035,8 @@ msgstr[0] "已升级 %d 个软件包."
 msgstr[1] "已升级 %d 个软件包."
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "%d 个像素宽"
-msgstr[1] "%d 个像素宽"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d 秒"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d 秒"
-msgstr[1] "%d 秒"
 
 #, python-format
 msgid "%d times"
@@ -1298,11 +1318,11 @@ msgstr "“%s”未安装且未找到对应安装包"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'缓冲时间'或'最后事件',删除旧的时移文件时,发生第一条件优先."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'处理来自电视的待机'比'处理来自电视的输入'具有更高的优先级."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "如果录制时解扰失败,'解扰和录制ECM'提供之后的解扰选项.'不要解扰,录制ECM'保存播 放时可以解扰的加扰录制.'正常'表示解扰录制,不录制ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件'未安装!"
@@ -1355,6 +1375,9 @@ msgstr "* 当前动画"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1364,6 +1387,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24小时/+24小时"
@@ -1383,35 +1409,8 @@ msgstr "/var 目录"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2秒"
-
-msgid "0.3s"
-msgstr "0.3秒"
-
-msgid "0.4s"
-msgstr "0.4秒"
-
-msgid "0.5s"
-msgstr "0.5秒"
-
-msgid "0.6s"
-msgstr "0.6秒"
-
-msgid "0.7s"
-msgstr "0.7秒"
-
-msgid "0.8s"
-msgstr "0.8秒"
-
-msgid "0.9s"
-msgstr "0.9秒"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1小时"
@@ -1425,23 +1424,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2秒"
-
-msgid "1.5s"
-msgstr "1.5秒"
-
-msgid "1.7s"
-msgstr "1.7秒"
-
-msgid "10 MB/s"
-msgstr "10 MB/秒"
-
 msgid "10 minutes"
 msgstr "10 分钟"
-
-msgid "100 MB/s"
-msgstr "100 MB/秒"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1545,9 +1529,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18V"
 
-msgid "1s"
-msgstr "1秒"
-
 msgid "1st InfoBar timeout"
 msgstr "第一信息栏超时"
 
@@ -1557,20 +1538,11 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2小时"
 
 msgid "2 minutes"
 msgstr "2分钟"
-
-msgid "2.5s"
-msgstr "2.5秒"
-
-msgid "20 MB/s"
-msgstr "20MB/秒"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1601,12 +1573,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24小时"
-
-msgid "24+ Hours"
-msgstr "24小时以上"
-
-msgid "24- Hours"
-msgstr "最近24小时"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1665,9 +1631,6 @@ msgstr "第二信息栏信息"
 msgid "2nd InfoBar timeout"
 msgstr "第二信息栏超时"
 
-msgid "2s"
-msgstr "2秒"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1685,9 +1648,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3小时"
-
-msgid "3.5s"
-msgstr "3.5秒"
 
 msgid "30"
 msgstr "30"
@@ -1725,17 +1685,11 @@ msgstr "3D环绕"
 msgid "3D Surround Speaker Position"
 msgstr "3D环绕扬声器位置"
 
-msgid "3s"
-msgstr "3秒"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4小时"
@@ -1764,9 +1718,6 @@ msgstr "4:3全景模式"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4秒"
-
 msgid "4x"
 msgstr ""
 
@@ -1778,9 +1729,6 @@ msgstr "5小时"
 
 msgid "5 minutes"
 msgstr "5分钟"
-
-msgid "50 MB/s"
-msgstr "50MB/秒"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1799,9 +1747,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1853,9 +1798,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8个字符"
@@ -1913,32 +1855,24 @@ msgid "A file from media is in use!"
 msgstr "来自媒体的文件正在使用中!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启你 %s %s .\n"
 "是否现在就重启？"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "定时事件完成,关机助手想要重启用户界面\n"
 "是否现在就重启？"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "已完成的电源定时器\n"
 "要设置 %s %s 到待机状态,是否执行?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "已完成的电源定时器要关闭 %s %s\n"
 "是否执行?"
@@ -2411,6 +2345,9 @@ msgstr "按下OK键,请稍等!"
 msgid "After recording"
 msgstr "录像后"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr "阿肯语"
 
@@ -2606,9 +2543,6 @@ msgstr "半导体遥控器"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "试图捕获当前的电视状态.如果由于状态消息不正确或丢失而无法执行此操作,则可能会导致接收器意外响应.另一方面,尝试更好地响应不同操作条件."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "文件名不能为空."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "下载文件包列表时发生了一个错误.请重试."
 
@@ -2650,6 +2584,9 @@ msgstr "安提瓜和巴布达"
 
 msgid "Any activity"
 msgstr "任何活动"
+
+msgid "Any recordings"
+msgstr "任何录制"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "对活动区域设置/语言应用任何更改并退出"
@@ -2776,13 +2713,16 @@ msgstr "艺术/文化"
 msgid "Aruba"
 msgstr "阿鲁巴岛"
 
+msgid "As plugin in extended bar"
+msgstr "作为扩展栏中的插件"
+
 msgid "Ask user"
 msgstr "询问用户"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "询问用户(默认为'否')"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "询问用户(默认为'是')"
 
 msgid "Aspect"
@@ -2817,6 +2757,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "开始时"
+
+msgid "At end"
+msgstr "结束时"
 
 msgid "At end of current program"
 msgstr ""
@@ -2922,9 +2868,6 @@ msgstr "已选择自动模式."
 msgid "Auto SCART switching"
 msgstr "自动转换开关"
 
-msgid "Auto Timer"
-msgstr "自动定时器"
-
 msgid "Auto Timers"
 msgstr "自动定时器"
 
@@ -2960,6 +2903,9 @@ msgstr "自动(不可用)"
 
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "自动更新"
@@ -3258,7 +3204,7 @@ msgstr "巴斯克语"
 msgid "Begin time"
 msgstr "开始时间"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "效果同停止按钮"
 
 msgid "Behavior of 'pause' when paused"
@@ -3400,6 +3346,9 @@ msgstr "波斯尼亚语"
 
 msgid "Botswana"
 msgstr "博茨瓦纳"
+
+msgid "Bottom"
+msgstr "底部"
 
 msgid "Bouquet List"
 msgstr "自定义列表"
@@ -3978,6 +3927,15 @@ msgstr "开曼群岛"
 msgid "Celsius"
 msgstr "摄氏度"
 
+msgid "Center"
+msgstr "中心"
+
+msgid "Centered"
+msgstr "居中"
+
+msgid "Centered, wrapped"
+msgstr "居中,覆盖"
+
 msgid "Central African Republic"
 msgstr "中非共和国"
 
@@ -4058,7 +4016,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr "频道 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "黄金时段频道1"
 
 msgid "Channel Info"
@@ -5190,10 +5148,6 @@ msgstr "创建AP和SC文件"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "创建硬连接到时移文件失败！"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "创建目录%s 失败."
-
 msgid "Creating file system"
 msgstr "创建文件系统"
 
@@ -5930,18 +5884,6 @@ msgstr "丹麦"
 msgid "Depth"
 msgstr "深度"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "如果录制时解扰失败,'解扰和录制ECM'提供之后的解扰选项.'不要解扰,录制ECM'保存播 放时可以解扰的加扰录制.'正常'表示解扰录制,不录制ECM."
-
-msgid "Descramble and record ECM"
-msgstr "解扰并录制ecm"
-
-msgid "Descramble http streams"
-msgstr "解扰http串流"
-
-msgid "Descramble receiving http streams"
-msgstr "解扰http串流"
-
 msgid "Description"
 msgstr "详情描述"
 
@@ -6442,9 +6384,6 @@ msgstr "不添加此录像"
 msgid "Don't ask again!"
 msgstr "以后不再询问该会话!"
 
-msgid "Don't descramble, record ECM"
-msgstr "不解扰,录制ECM"
-
 msgid "Don't restart"
 msgstr "不重启"
 
@@ -6456,6 +6395,9 @@ msgstr "不显示默认值"
 
 msgid "Don't stop current event but disable future events"
 msgstr "不停止当前事件但禁用接下来的事件"
+
+msgid "Don't unscramble, record ECM"
+msgstr "不解扰,录制ECM"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7380,6 +7322,9 @@ msgstr "错误: %s %s 不是 %s!  请稍后再试."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "文件名不能为空."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7390,14 +7335,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "找不到合适的媒体-请删除一些下载的镜像或插入一个具有足够可用空间的媒体(如U盘),然后重试!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "创建目录%s 失败."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "选定的目录无效: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "删除目录 %s 失败.(文件夹是否为空?)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "路径 %s 已存在."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒体并重试!"
@@ -8400,11 +8361,14 @@ msgstr "转到日期/时间"
 msgid "Goto Date/Timer"
 msgstr "转到日期/定时器"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "转到黄金时段"
 
 msgid "Goto X"
 msgstr "转到Χ"
+
+msgid "Goto deep standby"
+msgstr "进入深度待机"
 
 msgid "Goto next bouquet"
 msgstr "转到下个自定义组"
@@ -8429,6 +8393,9 @@ msgstr "转到上一个事件"
 
 msgid "Goto specific date/time"
 msgstr "转到特定的日期/时间"
+
+msgid "Goto standby"
+msgstr "进入待机"
 
 msgid "GotoX calibration"
 msgstr "GotoX校准"
@@ -8838,16 +8805,13 @@ msgstr "快捷键"
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
 
-msgid "Hour"
-msgstr "小时"
-
 msgid "Hourly"
 msgstr "每小时"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "小时 分钟"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "小时 分钟 秒"
 
 msgid "How many minutes do you want to record?"
@@ -9120,7 +9084,7 @@ msgstr "镜像创建失败 - "
 msgid "ImageWizard"
 msgstr "镜像向导"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "立即关机"
 
 msgid "Immediately restart selected devices."
@@ -9513,10 +9477,6 @@ msgstr "因纽皮亚克"
 msgid "Invalid"
 msgstr "无效"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "选定的目录无效: %s"
-
 msgid "Invalid location"
 msgstr "无效位置"
 
@@ -9664,6 +9624,15 @@ msgstr "跳到黄金时间"
 
 msgid "Jump to the currently active locale/language"
 msgstr "跳转到当前活动的本地/语言"
+
+msgid "Just abort, no message"
+msgstr "仅中止,无信息"
+
+msgid "Just abort, show message"
+msgstr "仅中止,显示信息"
+
+msgid "Just boot"
+msgstr "仅开机"
 
 msgid "Just change Bouquet"
 msgstr "仅更改自定义组"
@@ -9935,11 +9904,14 @@ msgstr "黎巴嫩"
 msgid "Left"
 msgstr "左箭头"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "频道名称左边"
 
 msgid "Left long"
 msgstr "左键 长按"
+
+msgid "Left, wrapped"
+msgstr "左边,覆盖"
 
 msgid "Leisure hobbies"
 msgstr "休闲爱好"
@@ -10411,10 +10383,10 @@ msgstr "毛利语"
 msgid "Marathi"
 msgstr "马拉地语"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "录制结束,延后多少时间结束录制(分钟)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "录制开始,提前多少时间开始录制(分钟)"
 
 msgid "Mark service as dedicated 3D service"
@@ -10599,6 +10571,9 @@ msgstr "墨西哥"
 msgid "Micronesia, Federated States of"
 msgstr "密克罗尼西亚联邦"
 
+msgid "Middle"
+msgstr "中等"
+
 msgid "Middle - Lite image"
 msgstr "中亮度图像"
 
@@ -10636,7 +10611,13 @@ msgstr "最小发送间隔"
 msgid "Mins"
 msgstr "分钟"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "分钟"
+
+msgid "Minutes"
+msgstr "分钟"
+
+msgid "Minutes Seconds"
 msgstr "分钟 秒"
 
 msgid "Minutes:"
@@ -10752,10 +10733,6 @@ msgstr "电机运行超时"
 
 msgid "Mount"
 msgstr "挂载"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "'%s' 没有足够的可用空间来录像."
 
 msgid "Mount Actions"
 msgstr ""
@@ -11265,6 +11242,12 @@ msgstr "网络向导"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "从不"
+
+msgid "Never abort"
+msgstr "从不中止"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "切勿在录制时解密内容. 这将全局覆盖单个定时器设置. 如果启用,录像将加密存储,播放时必须解密（有时称为离线解码）. 默认值：关闭."
 
@@ -11522,8 +11505,8 @@ msgstr "全否"
 msgid "No transparency"
 msgstr "不透明"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "没有多余的调谐器供录制定时器任务使用!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "没有多余的调谐器供录制定时器任务使用!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -11870,9 +11853,6 @@ msgstr "在有效的ONID上,忽略频率子网络部分"
 
 msgid "Once"
 msgstr "一次"
-
-msgid "Once per day"
-msgstr "每天一次"
 
 msgid "One"
 msgstr "一"
@@ -12557,6 +12537,9 @@ msgstr "如果您看到可疑的值,请不要惊慌."
 msgid "Please enter a name for the new bouquet"
 msgstr "请为新自定义组输入名称"
 
+msgid "Please enter a name for the new directory:"
+msgstr "请输入新目录的名称"
+
 msgid "Please enter a name for the new marker"
 msgstr "请输入新标记的名称"
 
@@ -12565,9 +12548,6 @@ msgstr "请输入一个新的文件名"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "请输入文件名(留空＝使用当前日期)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "请输入新目录的名称"
 
 msgid "Please enter name of the new symlink"
 msgstr "请输入新符号链接的名称"
@@ -13009,9 +12989,6 @@ msgstr "电源定时器"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr "电源定时器深度待机"
-
 msgid "PowerTimer Overview"
 msgstr "电源定时器概述"
 
@@ -13020,6 +12997,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "电源定时器待机"
+
+msgid "PowerTimer deep standby"
+msgstr "电源定时器深度待机"
 
 msgid "PowerTimer log"
 msgstr "电源管理器日志"
@@ -13060,7 +13040,7 @@ msgstr "录像首选调谐器"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "录制首选调谐器,允许的多重选择"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "录制准备时间(秒)"
 
 msgid "Preparing... Please wait"
@@ -13182,6 +13162,12 @@ msgstr "转到上个自定义组"
 msgid "Previous page"
 msgstr "上一页"
 
+msgid "Previous/Next bouquet"
+msgstr "上一个/下一个频道组"
+
+msgid "Previous/Next page"
+msgstr "上一页/下一页"
+
 msgid "Prevsong"
 msgstr "Prevsong键"
 
@@ -13191,7 +13177,7 @@ msgstr "Prevsong键 长按"
 msgid "Primary DNS"
 msgstr "主DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "黄金时段"
 
 msgid "Primetime hour"
@@ -13572,6 +13558,15 @@ msgstr "是否准备好删除\"%s\" ?"
 
 msgid "Real Life"
 msgstr "现实生活"
+
+msgid "Real or pseudo recordings"
+msgstr "录制或伪录制"
+
+msgid "Real recordings"
+msgstr "录像"
+
+msgid "Real recordings or streaming"
+msgstr "录像或串流"
 
 msgid "Really WOL now?"
 msgstr "是否马上网络唤醒？"
@@ -13975,7 +13970,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "保留已完成定时器的天数"
 
 msgid "Remove current folder from bookmarks"
@@ -13983,6 +13978,9 @@ msgstr "从书签中删除当前文件夹"
 
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
+
+msgid "Remove directory"
+msgstr "删除目录"
 
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
@@ -14007,10 +14005,6 @@ msgstr "正在删除"
 
 msgid "Removing Service"
 msgstr "删除频道"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "删除目录 %s 失败.(文件夹是否为空?)"
 
 msgid "Removing partition table"
 msgstr "删除分区表"
@@ -14299,11 +14293,14 @@ msgstr "重新换行字幕"
 msgid "Right"
 msgstr "右箭头"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "频道名称右侧"
 
 msgid "Right long"
 msgstr "右键 长按"
+
+msgid "Right, wrapped"
+msgstr "右边,覆盖"
 
 msgid "Roll-off"
 msgstr "滚降系数"
@@ -14821,6 +14818,9 @@ msgstr "电动LNB的第二根电缆"
 
 msgid "Secondary DNS"
 msgstr "备用DNS"
+
+msgid "Seconds"
+msgstr "秒"
 
 msgid "Security"
 msgstr "安全"
@@ -15450,10 +15450,10 @@ msgstr "选择视频模式"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "在播放过程中达到文件的结尾时可以选择的行为."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -15760,7 +15760,7 @@ msgstr "频道"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "频道可在频道组中分组.启用后,可使一个频道属于多个频道组."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "设置基准时间"
 
 msgid "Set CI assignment for detection of available services."
@@ -16246,7 +16246,7 @@ msgstr "显示EPG"
 msgid "Show EPG for current channel..."
 msgstr "显示当前频道的EPG..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "显示事件视图"
 
 msgid "Show Format Setup"
@@ -16673,7 +16673,7 @@ msgstr "显示设置默认值"
 msgid "Show setup menu..."
 msgstr ""
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "显示关机菜单"
 
 msgid "Show single EPG for current channel"
@@ -16988,7 +16988,7 @@ msgstr "睡眠定时器"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17342,7 +17342,7 @@ msgstr "南恩德贝勒"
 msgid "South Sudan"
 msgstr "南苏丹"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "预留录制磁盘空间(以GB为单位)"
 
 #, python-format
@@ -17409,7 +17409,7 @@ msgstr "待机"
 msgid "Standby / Restart"
 msgstr "待机/重启"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "无需关闭电视即可待机"
 
 msgid "Start"
@@ -17862,6 +17862,9 @@ msgstr "切换到电视"
 
 msgid "Switch to TV mode"
 msgstr "切换到电视模式"
+
+msgid "Switch to bookmarks"
+msgstr "切换到书签"
 
 msgid "Switch to file list"
 msgstr "切换到文件列表"
@@ -18406,10 +18409,6 @@ msgstr ""
 "未安装网络向导扩展!\n"
 "请安装它."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "路径 %s 已存在."
-
 msgid "The pin code you entered is wrong."
 msgstr "PIN码输入错误."
 
@@ -18451,11 +18450,9 @@ msgstr "无法检查当前更新的状态,因为某些原因无法访问 https:/
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以当前重复计数器."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "定时器文件(pm_timers.xml)已损坏,无法加载."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "定时器文件(timers.xml)已损坏,无法加载."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19049,19 +19046,15 @@ msgstr "定时器条目"
 msgid "Timer log"
 msgstr "定时器日志"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"检测到 pm_timers.xml 中定时器重叠!\n"
-"请重新检查！"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"检测到 timers.xml 中定时器重叠!\n"
-"请重新检查！"
 
 msgid "Timer recording location"
 msgstr "录制定时器位置"
@@ -19230,6 +19223,9 @@ msgstr "22K模式"
 
 msgid "Tonga"
 msgstr "汤加"
+
+msgid "Top"
+msgstr "顶部"
 
 msgid "Top and Bottom"
 msgstr "顶部和底部"
@@ -19681,6 +19677,15 @@ msgstr "解压到 %s"
 msgid "Unpack to current folder"
 msgstr "解压到当前文件夹"
 
+msgid "Unscramble and record ECM"
+msgstr "解扰并录制ecm"
+
+msgid "Unscramble http streams"
+msgstr "解扰http串流"
+
+msgid "Unscramble receiving http streams"
+msgstr "解扰http串流"
+
 msgid "Unsupported"
 msgstr "不支持"
 
@@ -19820,6 +19825,9 @@ msgstr "上部USB"
 
 msgid "Upper case"
 msgstr "大写格式"
+
+msgid "Upper line"
+msgstr "在线"
 
 msgid "Uptime"
 msgstr "运行时间"
@@ -20760,7 +20768,7 @@ msgstr "启用后,当没有空闲的调谐器,允许录像中断直播电视."
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "启用后,警告将会显示,同时用户将获得一个选项来停止或继续时移."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "启用后,请始终解密接收的HTTP流.这会占用更多资源(解复用器解扰),仅在必要时启用.如果 将0x100添加到频道类型,则无论此设置如何,始终对单个流进行解密."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20859,10 +20867,10 @@ msgstr "启用后,您将在opkg列表中看到dev,staticdev,dbg,doc,src和po包.
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "启用后,接收机将检测VCR SCART输入活动."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "非零时,录制将早于EPG指示的开始时间开始."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "非零时,录制将晚于EPG指示的结束时间停止."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -20934,13 +20942,22 @@ msgstr "无线网络连接设置."
 msgid "Wireless network state"
 msgstr "无线网络状态"
 
+msgid "With EXIT button"
+msgstr "带Exit键"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "用左/右键"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "在禁用T2MI原始模式(默认)的情况下,我们可以使用单个T2MI PLP去封装.启用T2MI原始模式后,我们可以使用astra sm分析T2MI"
 
 msgid "With errors:"
 msgstr "出现错误:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "长按OK键"
+
+msgid "With pop up"
 msgstr "弹出"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -20961,7 +20978,7 @@ msgstr "使用此选项,您可以切换LED颜色或停用LED."
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "通过这种设置,您可以提高信号质量或消除较长HDMI电缆可能出现的问题."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "不弹出"
 
 msgid "Without query"
@@ -21689,14 +21706,8 @@ msgstr "按字母顺序"
 msgid "alphabetic reverse"
 msgstr "按字母顺序反序排列"
 
-msgid "alphabetical"
-msgstr "按字母顺序"
-
 msgid "alpharev then newest"
 msgstr "按 字母倒序/由新到旧 排序"
-
-msgid "alternative"
-msgstr "备选"
 
 msgid "am"
 msgstr "上午"
@@ -21706,9 +21717,6 @@ msgstr "和"
 
 msgid "and never ask again this session again"
 msgstr "以后不再询问该会话"
-
-msgid "any recordings"
-msgstr "任何录制"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -21725,18 +21733,6 @@ msgstr "艺术/文化(无音乐,常规)"
 
 msgid "arts/culture magazine"
 msgstr "艺术/文化杂志"
-
-msgid "as plugin in extended bar"
-msgstr "作为扩展栏中的插件"
-
-msgid "ask user"
-msgstr "询问用户"
-
-msgid "at beginning"
-msgstr "开始时"
-
-msgid "at end"
-msgstr "结束时"
 
 msgid "athletics"
 msgstr "田径"
@@ -21789,9 +21785,6 @@ msgstr "黑名单"
 msgid "blue"
 msgstr "蓝色"
 
-msgid "bottom"
-msgstr "底部"
-
 msgid "broadcasting/press"
 msgstr "广播/新闻"
 
@@ -21819,15 +21812,6 @@ msgstr "卡片服务器"
 
 msgid "cartoon/puppets"
 msgstr "动画/木偶"
-
-msgid "center"
-msgstr "中心"
-
-msgid "centered"
-msgstr "居中"
-
-msgid "centered, wrapped"
-msgstr "居中,覆盖"
 
 msgid "change Volume down"
 msgstr "音量减小"
@@ -22007,9 +21991,6 @@ msgstr "结束剪切"
 msgid "end favorites edit"
 msgstr "结束收藏编辑"
 
-msgid "end zapping"
-msgstr "结束切换"
-
 msgid "enigma2 and network"
 msgstr "enigma2和网络"
 
@@ -22148,9 +22129,6 @@ msgstr "获取卡的服务器"
 msgid "goto current channel and now"
 msgstr "转到当前频道"
 
-msgid "goto deep-standby"
-msgstr "进入深度待机"
-
 msgid "goto first channel"
 msgstr "转到第一个频道"
 
@@ -22159,9 +22137,6 @@ msgstr "转到最后一个频道"
 
 msgid "goto now"
 msgstr "现在跳转"
-
-msgid "goto standby"
-msgstr "进入待机"
 
 msgid "grab this frame as bitmap"
 msgstr "抓取当前帧为bmp图片"
@@ -22284,15 +22259,6 @@ msgstr "跳转到下一个标题"
 msgid "jump to chapter by number"
 msgstr "通过数字跳到章节"
 
-msgid "just abort, no message"
-msgstr "仅中止,无信息"
-
-msgid "just abort, show message"
-msgstr "仅中止,显示信息"
-
-msgid "just boot"
-msgstr "仅开机"
-
 msgid "languages"
 msgstr "语言"
 
@@ -22301,9 +22267,6 @@ msgstr "退出影片播放器"
 
 msgid "left"
 msgstr "左"
-
-msgid "left, wrapped"
-msgstr "左边,覆盖"
 
 msgid "leisure hobbies (general)"
 msgstr "休闲业余爱好(一般)"
@@ -22341,19 +22304,7 @@ msgstr "武术运动"
 msgid "medicine/physiology/psychology"
 msgstr "医学/生理学/心理学"
 
-msgid "menu"
-msgstr "菜单"
-
-msgid "middle"
-msgstr "中等"
-
 msgid "min"
-msgstr "分钟"
-
-msgid "minute"
-msgstr "分钟"
-
-msgid "minutes"
 msgstr "分钟"
 
 msgid "month"
@@ -22412,12 +22363,6 @@ msgstr "无网络"
 
 msgid "nature/animals/environment"
 msgstr "自然/动物/环境"
-
-msgid "never"
-msgstr "从不"
-
-msgid "never abort"
-msgstr "从不中止"
 
 msgid "new media"
 msgstr "新媒体"
@@ -22563,12 +22508,6 @@ msgstr "学龄前儿童节目"
 msgid "previous channel page"
 msgstr "上一个频道页面"
 
-msgid "previous/next Bouquet"
-msgstr "上一个/下一个频道组"
-
-msgid "previous/next Page"
-msgstr "上一页/下一页"
-
 msgid "provid:"
 msgstr "提供:"
 
@@ -22580,19 +22519,6 @@ msgstr "清除已删除的用户频道组"
 
 msgid "python"
 msgstr "python"
-
-msgid "real or pseudo recordings"
-msgstr "录制或伪录制"
-
-msgid "real recordings"
-msgstr "录像"
-
-msgid "real recordings or streaming"
-msgstr "录像或串流"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "录制时间已更改,现在开始准备: %s"
 
 msgid "red"
 msgstr "红色"
@@ -22626,9 +22552,6 @@ msgstr "频道组取消家长控制"
 
 msgid "remove cable services"
 msgstr "删除有线节目"
-
-msgid "Remove directory"
-msgstr "删除目录"
 
 msgid "remove entry"
 msgstr "删除节目"
@@ -22672,9 +22595,6 @@ msgstr "rgb三色模式"
 msgid "right"
 msgstr "右"
 
-msgid "right, wrapped"
-msgstr "右边,覆盖"
-
 msgid "rock/pop"
 msgstr "摇滚/流行"
 
@@ -22709,12 +22629,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "搜索EPG..."
-
-msgid "seconds"
-msgstr "秒"
-
-msgid "select"
-msgstr "选择"
 
 msgid "select CAId's"
 msgstr "选择CAId's"
@@ -22857,17 +22771,11 @@ msgstr "标准"
 msgid "start cut here"
 msgstr "从这里开始剪切"
 
-msgid "start recording"
-msgstr "开始录制"
-
 msgid "step size"
 msgstr "步长"
 
 msgid "stereo"
 msgstr "立体声"
-
-msgid "stop recording"
-msgstr "停止录制"
 
 msgid "stop using as startup service"
 msgstr "取消该频道作为开机频道"
@@ -22880,9 +22788,6 @@ msgstr "切换12到8字符显示模式"
 
 msgid "switch Nand and SDcard"
 msgstr "切换Nand闪存和SD卡"
-
-msgid "Switch to bookmarks"
-msgstr "切换到书签"
 
 msgid "switch to the next angle"
 msgstr "切换到下一个角度"
@@ -22928,9 +22833,6 @@ msgstr "到目录"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切换 时间.章节.音频.字幕 信息"
-
-msgid "top"
-msgstr "顶部"
 
 msgid "tourism/travel"
 msgstr "旅游/旅行"
@@ -23010,9 +22912,6 @@ msgstr "更新"
 msgid "updates available."
 msgstr "更新可用."
 
-msgid "upper line"
-msgstr "在线"
-
 msgid "use best / controlled by HDMI"
 msgstr "最佳使用/由HDMI控制"
 
@@ -23021,9 +22920,6 @@ msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
 
 msgid "use_hdmi_cacenter"
 msgstr "使用hdmi作为主信号"
-
-msgid "user defined"
-msgstr "用户自定义"
 
 msgid "userdefined"
 msgstr "用户定义"
@@ -23064,9 +22960,6 @@ msgstr ""
 "\n"
 "副本已发送给您自己."
 
-msgid "white"
-msgstr "白色"
-
 msgid "wide"
 msgstr "宽"
 
@@ -23091,15 +22984,6 @@ msgstr[1] "有 %d 个错误"
 msgid "with errors"
 msgstr "错误"
 
-msgid "with exit button"
-msgstr "带Exit键"
-
-msgid "with left/right buttons"
-msgstr "用左/右键"
-
-msgid "with long OK press"
-msgstr "长按OK键"
-
 msgid "with_errors"
 msgstr "有错误"
 
@@ -23119,8 +23003,171 @@ msgstr "是(保持订阅源)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参阅手册以获得进一步帮助."
 
-msgid "zapping"
-msgstr "切换中"
-
 msgid "®"
 msgstr "®"
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d 天"
+msgstr[1] "%d 天"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d 分钟"
+msgstr[1] "%d 分钟"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2秒"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3秒"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4秒"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5秒"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6秒"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7秒"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8秒"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9秒"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2秒"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5秒"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7秒"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/秒"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/秒"
+
+#~ msgid "1s"
+#~ msgstr "1秒"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5秒"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20MB/秒"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24小时以上"
+
+#~ msgid "24- Hours"
+#~ msgstr "最近24小时"
+
+#~ msgid "2s"
+#~ msgstr "2秒"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5秒"
+
+#~ msgid "3s"
+#~ msgstr "3秒"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4秒"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50MB/秒"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "自动定时器"
+
+#~ msgid "Hour"
+#~ msgstr "小时"
+
+#~ msgid "Once per day"
+#~ msgstr "每天一次"
+
+#~ msgid "alphabetical"
+#~ msgstr "按字母顺序"
+
+#~ msgid "alternative"
+#~ msgstr "备选"
+
+#~ msgid "user defined"
+#~ msgstr "用户自定义"
+
+#~ msgid "white"
+#~ msgstr "白色"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "'%s' 没有足够的可用空间来录像."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "定时器文件(pm_timers.xml)已损坏,无法加载."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "定时器文件(timers.xml)已损坏,无法加载."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "检测到 pm_timers.xml 中定时器重叠!\n"
+#~ "请重新检查！"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "检测到 timers.xml 中定时器重叠!\n"
+#~ "请重新检查！"
+
+#~ msgid "ask user"
+#~ msgstr "询问用户"
+
+#~ msgid "end zapping"
+#~ msgstr "结束切换"
+
+#~ msgid "menu"
+#~ msgstr "菜单"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "录制时间已更改,现在开始准备: %s"
+
+#~ msgid "select"
+#~ msgstr "选择"
+
+#~ msgid "start recording"
+#~ msgstr "开始录制"
+
+#~ msgid "stop recording"
+#~ msgstr "停止录制"
+
+#~ msgid "zapping"
+#~ msgstr "切换中"

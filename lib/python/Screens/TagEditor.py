@@ -277,7 +277,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 			if timer.tags:
 				method(timer, timer.tags[:])
 		if self.timerDirty:
-			self.session.nav.RecordTimer.saveTimer()
+			self.session.nav.RecordTimer.saveTimers()
 
 	def setTimerTags(self, timer, tags):
 		if timer.tags != tags:

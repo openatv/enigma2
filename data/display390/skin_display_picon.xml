@@ -228,7 +228,7 @@
 	</screen>
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="*,119" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="top" size="*,119" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
 		<widget source="parent.menu" render="Label" position="top" size="*,119" font="FdLcD;38" halign="center" valign="center">
 			<convert type="StringListSelection" />

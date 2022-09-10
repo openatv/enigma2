@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -234,16 +234,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -356,14 +356,14 @@ msgid "%03d MB"
 msgstr "%03d MB"
 
 #, python-format
-msgid "%2.1f sec"
-msgstr "%2.1f sec"
+msgid "%2.1f Seconds"
+msgstr "%2.1f Seconds"
 
 #
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -554,11 +554,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -604,19 +604,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -869,6 +869,11 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -877,8 +882,22 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d saat"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -887,6 +906,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -914,6 +937,28 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Dak"
 
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d piksel geniş"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d ikinci"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -927,19 +972,9 @@ msgid_plural "%d cores"
 msgstr[0] "%d cores"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d gün"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d feed kataloğu paketi güncellendi."
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d saat"
 
 #, python-format
 msgid "%d kB"
@@ -949,11 +984,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d dak"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d dakika"
 
 #, python-format
 msgid "%d minutes"
@@ -1005,18 +1035,8 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketi yükseltildi."
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "%d piksel geniş"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sec"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d ikinci"
 
 #
 #, python-format
@@ -1312,11 +1332,11 @@ msgstr "'%s' yüklü değil ve bilinen bir paket yok"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Saatler içinde tampon' veya 'son olayların sayısı'. Eski zaman kayması dosyalarını silmek için, önce oluşan koşul önceliğe sahiptir."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Beklemeyi TV'den işleme', 'TV'den girişi işleme'den daha yüksek önceliğe sahiptir."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "Karışıklığını ve kayıt ECM kayıt üzerinde çabalıyorlar başarısız olursa sonradan karışıklığının açılması için seçeneği sunar. 'Karışıklığını etmeyin, kayıt ECM' oynatma döndürülecek olan bir karıştırmak kayıt kaydedin. 'Normal' anlamına gelir kayıt karışıklığını ve ECM kayıt yoktur."
 
 #
 msgid "'WeatherPlugin' is not installed!"
@@ -1376,6 +1396,9 @@ msgstr "* geçerli animasyon"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1386,6 +1409,9 @@ msgstr "-1"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Saatler"
@@ -1405,35 +1431,8 @@ msgstr "/var directory"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 saat"
@@ -1450,23 +1449,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 dakika"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1581,9 +1565,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "1. Bilgi-çubuğu zaman aşımı"
 
@@ -1593,20 +1574,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 saat"
 
 msgid "2 minutes"
 msgstr "2 dakika"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1638,12 +1610,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 saatler"
-
-msgid "24+ Hours"
-msgstr "24+ Saatler"
-
-msgid "24- Hours"
-msgstr "24- Saatler"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1704,9 +1670,6 @@ msgstr "2. bilgi çubuğu BİLGİ"
 msgid "2nd InfoBar timeout"
 msgstr "2. bilgi çubuğu zaman aşımı"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1724,9 +1687,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 Saat"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 #
 msgid "30"
@@ -1766,17 +1726,11 @@ msgstr "3B Ses"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround Hoparlör Konumu"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 Saat"
@@ -1808,9 +1762,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1822,9 +1773,6 @@ msgstr "5 saat"
 
 msgid "5 minutes"
 msgstr "5 dakika"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1843,9 +1791,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1897,9 +1842,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 özellik"
@@ -1963,35 +1905,27 @@ msgstr "Medyadan bir dosya kullanılıyor!"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Biten bir kayıt zamanlayıcısı %s %s'yu\n"
 "yeniden başlatmak istiyor. Şimdi alınsın mı?"
 
 #
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Biten bir güçzamanlayıcı kullanıcı arayüzünü başlatmak istiyor.\n"
 "Şimdi mi?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Biten bir güçzamanlayıcısı %s %s'yu\n"
 "bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
 #
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Biten bi r güçzamanlayıcısı %s %s'yu\n"
 "kapatmak istiyor. Şimdi kapatılsın mı?"
@@ -2507,6 +2441,9 @@ msgstr "OK tuşuna bastıktan sonra lütfen bekleyin!"
 msgid "After recording"
 msgstr "Kayıttan Sonra"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr "İrade"
 
@@ -2712,10 +2649,6 @@ msgstr "Amlogic uzaktan kumanda"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Mevcut TV durumunu yakalama girişiminde bulunuldu. Yanlış veya eksik durum mesajları nedeniyle bu mümkün değilse, alıcının beklenmedik şekilde yanıt vermesine neden olabilir. Öte yandan, farklı çalışma koşullarına daha iyi yanıt vermeye çalışır."
 
-#
-msgid "Error: An empty filename is illegal!"
-msgstr "Boş dosya adı geçersiz."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Paket listesi indirilirken hata oluştu. Tekrar deneyin."
 
@@ -2758,6 +2691,9 @@ msgstr "Antigua ve Barbuda"
 
 msgid "Any activity"
 msgstr "Herhangi bir eylem"
+
+msgid "Any recordings"
+msgstr "herhangi bir kayıt"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Etkin yerel ayara/dile tüm değişiklikleri uygulayın ve çıkın"
@@ -2888,14 +2824,17 @@ msgstr "Kültür/Sanat"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "gelişmiş-çubukta eklenti olarak"
+
 #
 msgid "Ask user"
 msgstr "Sor"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "Kullanıcıya sor (varsayılan olarak 'hayır' ile)"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "Kullanıcıya sor (varsayılan olarak 'evet' ile)"
 
 msgid "Aspect"
@@ -2932,6 +2871,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "başında"
+
+msgid "At end"
+msgstr "sonunda"
 
 msgid "At end of current program"
 msgstr "Mevcut programın sonunda"
@@ -3046,9 +2991,6 @@ msgstr "Seçilen Otomatik Modlar."
 msgid "Auto SCART switching"
 msgstr "Otomatik scart anahtarlama"
 
-msgid "Auto Timer"
-msgstr "Otomatik Zamanlayıcı"
-
 msgid "Auto Timers"
 msgstr "Otomatik Zamanlayıcılar"
 
@@ -3089,6 +3031,9 @@ msgstr "Otomatik (mevcut değil)"
 
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
+
+msgid "AutoTimer"
+msgstr ""
 
 #
 msgid "AutoUpdate"
@@ -3402,7 +3347,7 @@ msgstr "Baskca"
 msgid "Begin time"
 msgstr "Başlangıç zamanı"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Stop butonu gibi davran"
 
 #
@@ -3555,6 +3500,9 @@ msgstr "Boşnakça"
 
 msgid "Botswana"
 msgstr "Botsvana"
+
+msgid "Bottom"
+msgstr "alt"
 
 msgid "Bouquet List"
 msgstr "Buket Listesi"
@@ -4151,6 +4099,15 @@ msgstr "Cayman Adaları"
 msgid "Celsius"
 msgstr "Selsius"
 
+msgid "Center"
+msgstr "merkez"
+
+msgid "Centered"
+msgstr "merkezli"
+
+msgid "Centered, wrapped"
+msgstr "merkezli, sarılmış"
+
 msgid "Central African Republic"
 msgstr "Orta Afrika Cumhuriyeti"
 
@@ -4238,7 +4195,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr "Kanal 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Primetime ile Kanal 1"
 
 msgid "Channel Info"
@@ -5430,11 +5387,6 @@ msgstr "AP ve SC dosyaları yaratılıyor"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
 
-#
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "%s klasörü oluşturulamadı."
-
 msgid "Creating file system"
 msgstr "Dosya sistemi yarat"
 
@@ -6216,18 +6168,6 @@ msgstr "Danimarka"
 msgid "Depth"
 msgstr "Derinlik"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Karışıklığını ve kayıt ECM kayıt üzerinde çabalıyorlar başarısız olursa sonradan karışıklığının açılması için seçeneği sunar. 'Karışıklığını etmeyin, kayıt ECM' oynatma döndürülecek olan bir karıştırmak kayıt kaydedin. 'Normal' anlamına gelir kayıt karışıklığını ve ECM kayıt yoktur."
-
-msgid "Descramble and record ECM"
-msgstr "Şifreyi çöz ve ecm'yi kaydet"
-
-msgid "Descramble http streams"
-msgstr "Http akışlarını çözmek"
-
-msgid "Descramble receiving http streams"
-msgstr "Http akışlarını alan şifresini çözmek"
-
 #
 msgid "Description"
 msgstr "Açıklama"
@@ -6770,9 +6710,6 @@ msgstr "Bu kaydı eklemeyin"
 msgid "Don't ask again!"
 msgstr "Bir daha sorma!"
 
-msgid "Don't descramble, record ECM"
-msgstr "Karıştırmayın, ecm kaydedin"
-
 msgid "Don't restart"
 msgstr "Yeniden başlatma"
 
@@ -6785,6 +6722,9 @@ msgstr "Varsayılanı gösterme"
 #
 msgid "Don't stop current event but disable future events"
 msgstr "Geçerli etkinliği durdurma ama gelecek etkinlikleri kapat"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Karıştırmayın, ecm kaydedin"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7747,6 +7687,10 @@ msgstr "Hata: %s %s, %s değil! Lütfen daha sonra tekrar deneyiniz."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+#
+msgid "Error: An empty filename is illegal!"
+msgstr "Boş dosya adı geçersiz."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7756,6 +7700,11 @@ msgstr "Hata: Sağlama toplamı geçersiz!"
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr "Uygun medya bulunamadı - Lütfen indirilen bazı resimleri silin veya yeteri kadar boş alana sahip bir medya yerleştirin (örn. USB bellek) ve tekrar deneyin!"
 
+#
+#, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "%s klasörü oluşturulamadı."
+
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
@@ -7763,8 +7712,23 @@ msgstr ""
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Hata: Etkileşim hatası, parola değiştirilemiyor!"
 
+#
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Seçilen klasör geçersiz: %s"
+
+#
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "%s klasörü silinemedi. (Klasör boş olmayabilir.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Hata: Yeni parola boş bırakılamaz!"
+
+#
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "%s yolu zaten var."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Medyada gerekli dizinler oluşturulamıyor (örn. USB bellek veya Sabit Disk) - Lütfen medyayı doğrulayın ve tekrar deneyin!"
@@ -8836,12 +8800,15 @@ msgstr "Tarih / Saate Git"
 msgid "Goto Date/Timer"
 msgstr "Tarih / Zamanlayıcı Git"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Primetime git"
 
 #
 msgid "Goto X"
 msgstr "Goto X"
+
+msgid "Goto deep standby"
+msgstr "derin bekleme"
 
 msgid "Goto next bouquet"
 msgstr "Sonraki bukete git"
@@ -8867,6 +8834,9 @@ msgstr "Önceki etkinliğe git"
 
 msgid "Goto specific date/time"
 msgstr "Belirli bir tarih/zamana git"
+
+msgid "Goto standby"
+msgstr "goto beklemede"
 
 #
 msgid "GotoX calibration"
@@ -9293,16 +9263,13 @@ msgstr "Kısayol"
 msgid "Hotkey Settings"
 msgstr "Kısayol Kurulum"
 
-msgid "Hour"
-msgstr "Saat"
-
 msgid "Hourly"
 msgstr "Saatbaşı"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Saat Dakika"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Saat Dakika Saniye"
 
 #
@@ -9587,7 +9554,7 @@ msgid "ImageWizard"
 msgstr "Image Sihirbazı"
 
 #
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Hemen kapatma"
 
 msgid "Immediately restart selected devices."
@@ -10006,11 +9973,6 @@ msgid "Invalid"
 msgstr "Geçersiz"
 
 #
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Seçilen klasör geçersiz: %s"
-
-#
 msgid "Invalid location"
 msgstr "Geçersiz Konum"
 
@@ -10165,6 +10127,15 @@ msgstr "Seçkin zamana atla"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Şu anda etkin olan yerel ayara/dile atla"
+
+msgid "Just abort, no message"
+msgstr "sadece iptal, mesaj yok"
+
+msgid "Just abort, show message"
+msgstr "sadece iptal et, mesajı göster"
+
+msgid "Just boot"
+msgstr "sadece boot"
 
 msgid "Just change Bouquet"
 msgstr "Sadece buketi değiştir"
@@ -10458,11 +10429,14 @@ msgstr "Lübnan"
 msgid "Left"
 msgstr "Sol"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Kanal adından önce"
 
 msgid "Left long"
 msgstr "Uzun sol"
+
+msgid "Left, wrapped"
+msgstr "sol, sarılmış"
 
 msgid "Leisure hobbies"
 msgstr "Eğlence hobiler"
@@ -10969,11 +10943,11 @@ msgid "Marathi"
 msgstr "Marathi"
 
 #
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Kayıt sonuna boşluk süresi ekle (dk.)"
 
 #
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Kayıt başına boşluk süresi ekle (dk.)"
 
 msgid "Mark service as dedicated 3D service"
@@ -11165,6 +11139,9 @@ msgstr "Meksika"
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia, Federated States of"
 
+msgid "Middle"
+msgstr "orta"
+
 msgid "Middle - Lite image"
 msgstr "Orta - Basit resim"
 
@@ -11203,7 +11180,15 @@ msgstr "Asgari gönderme aralığı"
 msgid "Mins"
 msgstr "Dk"
 
-msgid "Mins Secs"
+#
+msgid "Minute"
+msgstr "dakika"
+
+#
+msgid "Minutes"
+msgstr "dakika"
+
+msgid "Minutes Seconds"
 msgstr "Dakika saniye"
 
 #
@@ -11329,10 +11314,6 @@ msgstr "Motor çalışırken zaman aşımı"
 
 msgid "Mount"
 msgstr "Mount etmek"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "'%s' dağı kaydetmek için yeterli boş alana sahip değil."
 
 msgid "Mount Actions"
 msgstr ""
@@ -11883,6 +11864,13 @@ msgstr "Ağ Sihirbazı"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+#
+msgid "Never"
+msgstr "hiç"
+
+msgid "Never abort"
+msgstr "asla iptal etme"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Kayıt sırasında içeriğin şifresini asla çözmeyin. Bu, bireysel zamanlayıcı ayarlarını genel olarak geçersiz kılar. Etkinleştirilirse, kayıtlar şifreli sunumda saklanır ve daha sonra şifrelerinin çözülmesi gerekir (bazen çevrimdışı kod çözme olarak adlandırılır). Varsayılan: kapalı."
 
@@ -12170,8 +12158,8 @@ msgstr "Tümüne hayır"
 msgid "No transparency"
 msgstr "Saydamlık yok"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Bir zamanlayıcı kaydetmek için tuner yok!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Bir zamanlayıcı kaydetmek için tuner yok!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -12541,9 +12529,6 @@ msgstr "Geçerli ONID'lerde, frekans alt ağ bölümünü yoksay"
 #
 msgid "Once"
 msgstr "birkez"
-
-msgid "Once per day"
-msgstr "Günde bir"
 
 #
 msgid "One"
@@ -13270,6 +13255,10 @@ msgid "Please enter a name for the new bouquet"
 msgstr "Lütfen yeni buket için ad girin"
 
 #
+msgid "Please enter a name for the new directory:"
+msgstr "Lütfen yeni kasör için bir ad girin"
+
+#
 msgid "Please enter a name for the new marker"
 msgstr "Lütfen yeni işaretleyici için ad girin"
 
@@ -13280,10 +13269,6 @@ msgstr "Lütfen yeni bir dosya adını girin"
 #
 msgid "Please enter filename (empty = use current date)"
 msgstr "Lütfen dosya adı girin (boş = geçerli tarih)"
-
-#
-msgid "Please enter a name for the new directory:"
-msgstr "Lütfen yeni kasör için bir ad girin"
 
 #
 msgid "Please enter name of the new symlink"
@@ -13775,9 +13760,6 @@ msgstr "PowerTimer"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr "PowerTimer DeepStandby"
-
 msgid "PowerTimer Overview"
 msgstr "Zamanlayıcı genel bakış"
 
@@ -13786,6 +13768,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "PowerTimer Standby"
+
+msgid "PowerTimer deep standby"
+msgstr "PowerTimer deep standby"
 
 msgid "PowerTimer log"
 msgstr "Zamanlayıcı günlüğü"
@@ -13829,7 +13814,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Kayıtlar için tercih edilen tunerler, çoklu seçime izin verilir"
 
 #
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Kayıt için hazırlık süresi (saniye)"
 
 #
@@ -13965,6 +13950,12 @@ msgstr "Önceki bukete geç"
 msgid "Previous page"
 msgstr "Önceki Sayfa"
 
+msgid "Previous/Next bouquet"
+msgstr "önceki/sonraki Buket"
+
+msgid "Previous/Next page"
+msgstr "önceki / sonraki sayfa"
+
 msgid "Prevsong"
 msgstr "Prevsong"
 
@@ -13975,7 +13966,7 @@ msgstr "Uzun süredir"
 msgid "Primary DNS"
 msgstr "Birincil DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Yoğun zaman"
 
 msgid "Primetime hour"
@@ -14371,6 +14362,15 @@ msgstr ""
 
 msgid "Real Life"
 msgstr "Gerçek hayat"
+
+msgid "Real or pseudo recordings"
+msgstr "gerçek veya sahte kayıtlar"
+
+msgid "Real recordings"
+msgstr "gerçek kayıtlar"
+
+msgid "Real recordings or streaming"
+msgstr "gerçek kayıtlar veya akış"
 
 msgid "Really WOL now?"
 msgstr "Gerçekten WOL şimdi?"
@@ -14802,7 +14802,7 @@ msgstr "Tüm zamanlayıcı verilerini kaldır"
 msgid "Remove all user interface data"
 msgstr "Tüm kullanıcı arayüzü verilerini kaldır"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Biten zamanlayıcıları (gün) sonra kaldır"
 
 msgid "Remove current folder from bookmarks"
@@ -14811,6 +14811,10 @@ msgstr "Geçerli klasörü yer işaretlerinden kaldır"
 #
 msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı kaldır"
+
+#
+msgid "Remove directory"
+msgstr "klasörü kaldır"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
@@ -14838,11 +14842,6 @@ msgstr "Kaldırılıyor"
 
 msgid "Removing Service"
 msgstr "Kanal Kaldırma"
-
-#
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "%s klasörü silinemedi. (Klasör boş olmayabilir.)"
 
 msgid "Removing partition table"
 msgstr "Bölüntü tablosu kaldırılıyor"
@@ -15164,11 +15163,14 @@ msgstr "Altyazıları yeniden yaz"
 msgid "Right"
 msgstr "Sağ"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "Kanal adının sağında"
 
 msgid "Right long"
 msgstr "Sağ uzun"
+
+msgid "Right, wrapped"
+msgstr "sağa, sarılmış"
 
 msgid "Roll-off"
 msgstr "Roll-off"
@@ -15723,6 +15725,10 @@ msgstr "Motorlu LNB'nin ikinci kablosu"
 #
 msgid "Secondary DNS"
 msgstr "İkincil DNS"
+
+#
+msgid "Seconds"
+msgstr "saniye"
 
 msgid "Security"
 msgstr "Güvenlik"
@@ -16371,10 +16377,10 @@ msgstr "Görüntü kipini seç"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Playback sırasında bir dosyanın sonuna gelince, alıcının tavrını seçebilirsiniz."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -16705,7 +16711,7 @@ msgstr "Kanallar"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Hizmetler buketleri gruplandırılmış olabilir. Etkinleştirildiğinde, birden fazla buket kullanabilirsiniz."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Basetime ayarla"
 
 msgid "Set CI assignment for detection of available services."
@@ -17198,7 +17204,7 @@ msgstr "EPG Göster"
 msgid "Show EPG for current channel..."
 msgstr "Mevcut kanalın EĞPG sini göster..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Etkinlik Görünümü Göster"
 
 msgid "Show Format Setup"
@@ -17646,7 +17652,7 @@ msgid "Show setup menu..."
 msgstr ""
 
 #
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Kapatma menüsünü göster"
 
 msgid "Show single EPG for current channel"
@@ -17985,7 +17991,7 @@ msgstr "Uyku Zamanlayıcısı"
 msgid "Sleep Timers"
 msgstr "Uyku Zamanlayıcıları"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -18357,7 +18363,7 @@ msgstr "Güney Ndebele Dili"
 msgid "South Sudan"
 msgstr "Güney Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Kayıtlar için ayrılcak disk boyutu (GB)"
 
 #, python-format
@@ -18428,7 +18434,7 @@ msgstr "Beklet"
 msgid "Standby / Restart"
 msgstr "Kapatma menüsü"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "TV kapatmadan bekleme"
 
 msgid "Start"
@@ -18915,6 +18921,10 @@ msgstr "TV'ye geç"
 
 msgid "Switch to TV mode"
 msgstr "TV kipine geç"
+
+#
+msgid "Switch to bookmarks"
+msgstr "yer imlerine geç"
 
 #
 msgid "Switch to file list"
@@ -19484,11 +19494,6 @@ msgstr ""
 "Lütfen yükleyin."
 
 #
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "%s yolu zaten var."
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "Girdiğiniz PIN yanlış."
 
@@ -19534,13 +19539,9 @@ msgstr "Mevcut güncellemenin durumu kontrol edilemedi çünkü https://www.open
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Zaman, geçerli tekrar sayıcı ile çarpılır."
 
-#
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
-
-#
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -20156,21 +20157,15 @@ msgstr "Zamanlayıcı girişi"
 msgid "Timer log"
 msgstr "Zamanlayıcı günlüğü"
 
-#
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Pm_timers.xml dosyasında Timer çakışması tespit edildi!\n"
-"Lütfen tekrar kontrol et!"
 
-#
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Timers.xml'de Timer çakışması tespit edildi!\n"
-"Lütfen tekrar kontrol et!"
 
 #
 msgid "Timer recording location"
@@ -20350,6 +20345,9 @@ msgstr "Ton kipi"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Top"
+msgstr "üst"
 
 msgid "Top and Bottom"
 msgstr "Üst ve Alt"
@@ -20844,6 +20842,15 @@ msgstr "%s paketinden çıkarın"
 msgid "Unpack to current folder"
 msgstr "Geçerli klasöre ambalajını aç"
 
+msgid "Unscramble and record ECM"
+msgstr "Şifreyi çöz ve ecm'yi kaydet"
+
+msgid "Unscramble http streams"
+msgstr "Http akışlarını çözmek"
+
+msgid "Unscramble receiving http streams"
+msgstr "Http akışlarını alan şifresini çözmek"
+
 #
 msgid "Unsupported"
 msgstr "Desteklenmiyor"
@@ -20990,6 +20997,9 @@ msgstr "Üst USB"
 
 msgid "Upper case"
 msgstr "Büyük harf"
+
+msgid "Upper line"
+msgstr "tek satır"
 
 msgid "Uptime"
 msgstr "Aktif süre"
@@ -21995,7 +22005,7 @@ msgstr "Etkinleştirildiğinde, serbest tuner olmadığında bir kaydın canlı 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Etkinleşince, bir uyarı görünür, kullanıcı devam eder veya zamankaydırmayı durdurur."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Etkinleştirildiğinde, her zaman http akışlarını alarak her zaman çözülür. Bu, daha fazla kaynak alır (karıştırıcı karıştırıcıları), yalnızca gerekirse etkinleştirin. Bu ayardan bağımsız olarak servis türüne 0x100 eklenirse, ayrı ayrı akışlar her zaman şifrelenir."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -22094,10 +22104,10 @@ msgstr "Etkinleştirildiğinde, opkg listesinde dev, staticdev, dbg, doc, src ve
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Etkinleştirilince, alıcınız VCR SCART girişindeki etkinliği algılayacak."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen başlangıç zamanından daha önce başlayacaktır."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen bitiş zamanından daha sonra duracaktır."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22173,13 +22183,22 @@ msgstr "Kablosuz ağ bağlantı kurulumu."
 msgid "Wireless network state"
 msgstr "Kablosuz ağ durumu"
 
+msgid "With EXIT button"
+msgstr "exit tuşu ile"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "sol/sağ tuşları ile"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "T2MI RAW modu devre dışıyken (varsayılan) tek T2MI PLP kapsülleme özelliğini kullanabiliriz. T2MI RAW modu etkinken, T2MI'yi analiz etmek için astra-sm kullanabiliriz"
 
 msgid "With errors:"
 msgstr "Hata ile:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "uzun süre OK düğmesine basarak"
+
+msgid "With pop up"
 msgstr "Açılır pencere ile"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -22200,7 +22219,7 @@ msgstr "Bu seçenekle LED rengini değiştirebilir veya LED'i devre dışı bır
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Bu ayar ile, muhtemelen sinyal kalitesini artırabilir veya daha uzun HDMI kabloları ile oluşabilecek sorunları ortadan kaldırabilirsiniz."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Popup olmadan"
 
 msgid "Without query"
@@ -22978,15 +22997,8 @@ msgstr "alfabetik"
 msgid "alphabetic reverse"
 msgstr "ters alfabetik"
 
-msgid "alphabetical"
-msgstr "alfabetik"
-
 msgid "alpharev then newest"
 msgstr "alpharev sonra yeni"
-
-#
-msgid "alternative"
-msgstr "alternatif"
 
 msgid "am"
 msgstr "am"
@@ -22996,9 +23008,6 @@ msgstr "ve"
 
 msgid "and never ask again this session again"
 msgstr "ve bir daha asla tekrar bu soruyu sorma"
-
-msgid "any recordings"
-msgstr "herhangi bir kayıt"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -23015,18 +23024,6 @@ msgstr "kültür/sanat (genel, müzik hariç)"
 
 msgid "arts/culture magazine"
 msgstr "kültür/sanat dergisi"
-
-msgid "as plugin in extended bar"
-msgstr "gelişmiş-çubukta eklenti olarak"
-
-msgid "ask user"
-msgstr "sor"
-
-msgid "at beginning"
-msgstr "başında"
-
-msgid "at end"
-msgstr "sonunda"
 
 msgid "athletics"
 msgstr "atletizm"
@@ -23087,9 +23084,6 @@ msgstr "kara liste"
 msgid "blue"
 msgstr "mavi"
 
-msgid "bottom"
-msgstr "alt"
-
 msgid "broadcasting/press"
 msgstr "basın/yayın"
 
@@ -23117,15 +23111,6 @@ msgstr "kart sunucusu"
 
 msgid "cartoon/puppets"
 msgstr "çizgifilm/kukla"
-
-msgid "center"
-msgstr "merkez"
-
-msgid "centered"
-msgstr "merkezli"
-
-msgid "centered, wrapped"
-msgstr "merkezli, sarılmış"
 
 msgid "change Volume down"
 msgstr "sesi kısmak"
@@ -23325,9 +23310,6 @@ msgstr "kesimi burada bitir"
 msgid "end favorites edit"
 msgstr "favori düzenlemeyi bitir"
 
-msgid "end zapping"
-msgstr "zaplamayı bitir"
-
 msgid "enigma2 and network"
 msgstr "enigma2 ve ağ"
 
@@ -23476,9 +23458,6 @@ msgstr "kart sunucu al"
 msgid "goto current channel and now"
 msgstr "şu anki kanala geç ve şimdi"
 
-msgid "goto deep-standby"
-msgstr "derin bekleme"
-
 msgid "goto first channel"
 msgstr "ilk kanala geç"
 
@@ -23487,9 +23466,6 @@ msgstr "son kanala git"
 
 msgid "goto now"
 msgstr "şimdi git"
-
-msgid "goto standby"
-msgstr "goto beklemede"
 
 #
 msgid "grab this frame as bitmap"
@@ -23621,15 +23597,6 @@ msgstr "sonraki başlığa atla"
 msgid "jump to chapter by number"
 msgstr "sayıya göre bölüme atlamak"
 
-msgid "just abort, no message"
-msgstr "sadece iptal, mesaj yok"
-
-msgid "just abort, show message"
-msgstr "sadece iptal et, mesajı göster"
-
-msgid "just boot"
-msgstr "sadece boot"
-
 msgid "languages"
 msgstr "diller"
 
@@ -23640,9 +23607,6 @@ msgstr "ortam oynatıcıdan çık"
 #
 msgid "left"
 msgstr "sol"
-
-msgid "left, wrapped"
-msgstr "sol, sarılmış"
 
 msgid "leisure hobbies (general)"
 msgstr "eğlence hobiler (genel)"
@@ -23685,23 +23649,8 @@ msgid "medicine/physiology/psychology"
 msgstr "tıp/fizyoloji/psikoloji"
 
 #
-msgid "menu"
-msgstr "menü"
-
-msgid "middle"
-msgstr "orta"
-
-#
 msgid "min"
 msgstr "dk"
-
-#
-msgid "minute"
-msgstr "dakika"
-
-#
-msgid "minutes"
-msgstr "dakika"
 
 #
 msgid "month"
@@ -23768,13 +23717,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "doğa/hayvanlar/çevre"
-
-#
-msgid "never"
-msgstr "hiç"
-
-msgid "never abort"
-msgstr "asla iptal etme"
 
 msgid "new media"
 msgstr "yeni medya"
@@ -23938,12 +23880,6 @@ msgstr "okulöncesi çocuk programı"
 msgid "previous channel page"
 msgstr "önceki kanal sayfası"
 
-msgid "previous/next Bouquet"
-msgstr "önceki/sonraki Buket"
-
-msgid "previous/next Page"
-msgstr "önceki / sonraki sayfa"
-
 msgid "provid:"
 msgstr "provid:"
 
@@ -23955,19 +23891,6 @@ msgstr "silinmiş userbouquets"
 
 msgid "python"
 msgstr "python"
-
-msgid "real or pseudo recordings"
-msgstr "gerçek veya sahte kayıtlar"
-
-msgid "real recordings"
-msgstr "gerçek kayıtlar"
-
-msgid "real recordings or streaming"
-msgstr "gerçek kayıtlar veya akış"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "kayıt süresi değişti, hazırlığı başlat şimdi: %s"
 
 #
 msgid "red"
@@ -24007,10 +23930,6 @@ msgstr "buketleri ebeveyn korumasından çıkarın"
 
 msgid "remove cable services"
 msgstr "kablo servislerini kaldırmak"
-
-#
-msgid "Remove directory"
-msgstr "klasörü kaldır"
 
 #
 msgid "remove entry"
@@ -24062,9 +23981,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "sağ"
 
-msgid "right, wrapped"
-msgstr "sağa, sarılmış"
-
 msgid "rock/pop"
 msgstr "rok/pop"
 
@@ -24101,14 +24017,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "epg’yi arayın ..."
-
-#
-msgid "seconds"
-msgstr "saniye"
-
-#
-msgid "select"
-msgstr "seç"
 
 #
 msgid "select CAId's"
@@ -24264,18 +24172,12 @@ msgstr "standard"
 msgid "start cut here"
 msgstr "kesmeye buradan başla"
 
-msgid "start recording"
-msgstr "kayda başla"
-
 msgid "step size"
 msgstr "adım ölçüsü"
 
 #
 msgid "stereo"
 msgstr "stereo"
-
-msgid "stop recording"
-msgstr "kaydetmeyi bırak"
 
 msgid "stop using as startup service"
 msgstr "başlangıç aygıtı olarak kullanma"
@@ -24288,10 +24190,6 @@ msgstr "12 ila 8 karakter gösterim moduna geçme"
 
 msgid "switch Nand and SDcard"
 msgstr "nand ve SD kartı değiştir"
-
-#
-msgid "Switch to bookmarks"
-msgstr "yer imlerine geç"
 
 #
 msgid "switch to the next angle"
@@ -24344,9 +24242,6 @@ msgstr "ölmek"
 #
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "zaman, bölüm, ses, altyazı bilgisini aç/kapa"
-
-msgid "top"
-msgstr "üst"
 
 msgid "tourism/travel"
 msgstr "turizm/seyahat"
@@ -24431,9 +24326,6 @@ msgstr "güncelleştirme"
 msgid "updates available."
 msgstr "güncellemeler mevcut."
 
-msgid "upper line"
-msgstr "tek satır"
-
 msgid "use best / controlled by HDMI"
 msgstr "en iyi kullanım / HDMI tarafından kontrol edilen"
 
@@ -24442,10 +24334,6 @@ msgstr "lnb’yi değiştirirken sorunlar varsa, “14 / 18V”"
 
 msgid "use_hdmi_cacenter"
 msgstr "hdmi_cacenter_kullanın"
-
-#
-msgid "user defined"
-msgstr "kullanıcı tanımlı"
 
 #
 msgid "userdefined"
@@ -24490,9 +24378,6 @@ msgstr ""
 "\n"
 "Bir kopya kendinize gönderildi."
 
-msgid "white"
-msgstr "beyaz"
-
 msgid "wide"
 msgstr "geniş"
 
@@ -24516,15 +24401,6 @@ msgstr[0] "%d hata ile"
 msgid "with errors"
 msgstr "hata ile"
 
-msgid "with exit button"
-msgstr "exit tuşu ile"
-
-msgid "with left/right buttons"
-msgstr "sol/sağ tuşları ile"
-
-msgid "with long OK press"
-msgstr "uzun süre OK düğmesine basarak"
-
 msgid "with_errors"
 msgstr "hata_ile"
 
@@ -24547,8 +24423,177 @@ msgstr "evet (beslemeleri tut)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan önce daha fazla yardım almak için kılavuza bakın %s%s."
 
-msgid "zapping"
-msgstr "zaplama"
-
 msgid "®"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d gün"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d dakika"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Saatler"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Saatler"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Otomatik Zamanlayıcı"
+
+#~ msgid "Hour"
+#~ msgstr "Saat"
+
+#~ msgid "Once per day"
+#~ msgstr "Günde bir"
+
+#~ msgid "alphabetical"
+#~ msgstr "alfabetik"
+
+#
+#~ msgid "alternative"
+#~ msgstr "alternatif"
+
+#
+#~ msgid "user defined"
+#~ msgstr "kullanıcı tanımlı"
+
+#~ msgid "white"
+#~ msgstr "beyaz"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "'%s' dağı kaydetmek için yeterli boş alana sahip değil."
+
+#
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
+
+#
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Zamanlayıcı dosyası (timers.xml) bozuk ve yüklenemiyor."
+
+#
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Pm_timers.xml dosyasında Timer çakışması tespit edildi!\n"
+#~ "Lütfen tekrar kontrol et!"
+
+#
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Timers.xml'de Timer çakışması tespit edildi!\n"
+#~ "Lütfen tekrar kontrol et!"
+
+#~ msgid "ask user"
+#~ msgstr "sor"
+
+#~ msgid "end zapping"
+#~ msgstr "zaplamayı bitir"
+
+#
+#~ msgid "menu"
+#~ msgstr "menü"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "kayıt süresi değişti, hazırlığı başlat şimdi: %s"
+
+#
+#~ msgid "select"
+#~ msgstr "seç"
+
+#~ msgid "start recording"
+#~ msgstr "kayda başla"
+
+#~ msgid "stop recording"
+#~ msgstr "kaydetmeyi bırak"
+
+#~ msgid "zapping"
+#~ msgstr "zaplama"

@@ -797,7 +797,7 @@ class EPGFetcher(object):
                 if i == 0 and pos == 0 and "last_update_time" in shows:
                     last_update_time = shows["last_update_time"]
             if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimer()
+                NavigationInstance.instance.RecordTimer.saveTimers()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
@@ -1073,7 +1073,7 @@ class EPGFetcher(object):
                     local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
                     self.addLog("Timer '%s' created OK" % local_timer.name)
                     if local_timer.ice_timer_id is not None:
-                        NavigationInstance.instance.RecordTimer.saveTimer()
+                        NavigationInstance.instance.RecordTimer.saveTimers()
                         self.deferredPostStatus(local_timer)
                 except:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)

@@ -20,6 +20,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 socfamily = BoxInfo.getItem("socfamily")
 
+
 def getModelString():
 	model = getBoxType()
 	return model
@@ -137,7 +138,7 @@ def _getCPUSpeedMhz():
 		return 1500
 	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
 		return 1300
-	elif getMachineBuild() in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
+	elif getMachineBuild() in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
 		return 1600
 	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
 		return 1700
@@ -340,7 +341,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	ifaces = []
 	for index in range(0, outbytes, structSize):
-		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0] # PY3
+		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0]  # PY3
 		# ifaceName = str(names.tolist[index:index + 16]).split("\0", 1)[0] # PY2
 		if ifaceName != "lo":
 			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
@@ -356,11 +357,11 @@ def getBoxUptime():
 	if secs > 86400:
 		days = secs // 86400
 		secs = secs % 86400
-		times.append(ngettext("%d day", "%d days", days) % days)
+		times.append(ngettext("%d Day", "%d Days", days) % days)
 	h = secs // 3600
 	m = (secs % 3600) // 60
-	times.append(ngettext("%d hour", "%d hours", h) % h)
-	times.append(ngettext("%d minute", "%d minutes", m) % m)
+	times.append(ngettext("%d Hour", "%d Hours", h) % h)
+	times.append(ngettext("%d Minute", "%d Minutes", m) % m)
 	return " ".join(times)
 
 

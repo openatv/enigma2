@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-08-30 15:39+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"PO-Revision-Date: 2022-09-08 19:39+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -222,16 +222,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -344,13 +344,13 @@ msgid "%03d MB"
 msgstr "%03d Мб"
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr "%2.1f сек"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -540,11 +540,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -590,19 +590,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -857,6 +857,13 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] "%d + %d + %d минута"
+msgstr[1] "%d + %d + %d минут"
+msgstr[2] "%d + %d + %d минуты"
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS на ядро"
 
@@ -865,8 +872,33 @@ msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS с %d ядрами"
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d день"
+msgstr[1] "%d дней"
+msgstr[2] "%d дня"
+
+#, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d Гб"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d час"
+msgstr[1] "%d часа"
+msgstr[2] "%d часов"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -875,6 +907,10 @@ msgstr "%d Кб"
 #, python-format
 msgid "%d MB"
 msgstr "%d Мб"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -904,6 +940,39 @@ msgstr[0] "%d минута"
 msgstr[1] "%d минуты"
 msgstr[2] "%d минут"
 
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minute"
+msgstr[1] "%d минут"
+msgstr[2] "%d минуты"
+
+#, python-format
+msgid "%d Minutes"
+msgstr "%d минут"
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "Ширина %d пиксель"
+msgstr[1] "Ширина %d пикселя"
+msgstr[2] "Ширина %d пикселей"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунды"
+msgstr[2] "%d секунд"
+
+#, python-format
+msgid "%d Seconds"
+msgstr "%d секунд"
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -920,25 +989,11 @@ msgstr[1] "%d ядер"
 msgstr[2] "%d ядра"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d день"
-msgstr[1] "%d дня"
-msgstr[2] "%d дней"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "Пакет каталога каналов %d обновлён."
 msgstr[1] "Обновлено %d пакетов каталога каналов."
 msgstr[2] "Обновлено %d пакетов каталога каналов."
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d час"
-msgstr[1] "%d часа"
-msgstr[2] "%d часов"
 
 #, python-format
 msgid "%d kB"
@@ -947,13 +1002,6 @@ msgstr "%d КБ"
 #, python-format
 msgid "%d min"
 msgstr "%d минут"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d минута"
-msgstr[1] "%d минуты"
-msgstr[2] "%d минут"
 
 #, python-format
 msgid "%d minutes"
@@ -1020,22 +1068,8 @@ msgstr[1] "%d пакетов обновлено."
 msgstr[2] "%d пакетов обновлено."
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "Ширина %d пиксель"
-msgstr[1] "Ширина %d пикселя"
-msgstr[2] "Ширина %d пикселей"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d секунда"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунды"
-msgstr[2] "%d секунд"
 
 #, python-format
 msgid "%d times"
@@ -1318,11 +1352,11 @@ msgstr "'%s' не установлен и нет известного пакет
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в часах' или 'количество последних событий'. При удалении старых файлов таймшифта приоритет имеет условие, возникшее первым."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Дескремблирование и запись ECM' даёт возможность последующего дескремблирования, если дескремблирование при записи не удалось. 'Не дескремблировать, записывать ECM' сохраняет закодированную запись, которую можно дескремблировать при воспроизведении. 'Нормальный' означает дескремблировать запись и не записывать ECM."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Обрабатывать режим ожидания от телевизора' имеет более высокий приоритет, чем 'Обрабатывать ввод от телевизора'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Раскодировать и записать ECM' - позволяет записать и раскодировать при воспроизведении, когда при записи не удаётся раскодировать. 'Не раскодировать ЕСМ и записать' хранит зашифрованные записи, которые могут быть раскодированы во время воспроизведения. 'Обычный' расшифровывает записи без записи ЕСМ."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "Плагин погоды не установлен!"
@@ -1375,6 +1409,9 @@ msgstr "* Текущая анимация"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1384,6 +1421,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24 часа/+24 часа"
@@ -1403,35 +1443,8 @@ msgstr "Каталог /var"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2с"
-
-msgid "0.3s"
-msgstr "0.3с"
-
-msgid "0.4s"
-msgstr "0.4с"
-
-msgid "0.5s"
-msgstr "0.5с"
-
-msgid "0.6s"
-msgstr "0.6с"
-
-msgid "0.7s"
-msgstr "0.7с"
-
-msgid "0.8s"
-msgstr "0.8с"
-
-msgid "0.9s"
-msgstr "0.9с"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 Гб"
 
 msgid "1 hour"
 msgstr "1 час"
@@ -1445,23 +1458,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2с"
-
-msgid "1.5s"
-msgstr "1.5с"
-
-msgid "1.7s"
-msgstr "1.7с"
-
-msgid "10 MB/s"
-msgstr "10 МБ / с"
-
 msgid "10 minutes"
 msgstr "10 минут"
-
-msgid "100 MB/s"
-msgstr "100 МБ/с"
 
 msgid "1024 Mb"
 msgstr "1024 Мб"
@@ -1565,9 +1563,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 В"
 
-msgid "1s"
-msgstr "1с"
-
 msgid "1st InfoBar timeout"
 msgstr "Задержка первого инфобара"
 
@@ -1577,20 +1572,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 Гб"
-
 msgid "2 hours"
 msgstr "2 часа"
 
 msgid "2 minutes"
 msgstr "2 минуты"
-
-msgid "2.5s"
-msgstr "2.5с"
-
-msgid "20 MB/s"
-msgstr "20 МБ/с"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1621,12 +1607,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 часа"
-
-msgid "24+ Hours"
-msgstr "+24 часа"
-
-msgid "24- Hours"
-msgstr "-24 часа"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1685,9 +1665,6 @@ msgstr "Информация на втором инфобаре"
 msgid "2nd InfoBar timeout"
 msgstr "Задержка второго инфобара"
 
-msgid "2s"
-msgstr "2с"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1705,9 +1682,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 часа"
-
-msgid "3.5s"
-msgstr "3.5с"
 
 msgid "30"
 msgstr "30"
@@ -1745,17 +1719,11 @@ msgstr "Объёмный звук 3D"
 msgid "3D Surround Speaker Position"
 msgstr "Положение динамиков объмного звука 3D"
 
-msgid "3s"
-msgstr "3с"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 Гб"
 
 msgid "4 hours"
 msgstr "4 часа"
@@ -1784,9 +1752,6 @@ msgstr "4:3 панорама"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4с"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1798,9 +1763,6 @@ msgstr "5 часов"
 
 msgid "5 minutes"
 msgstr "5 минут"
-
-msgid "50 MB/s"
-msgstr "50 МБ/с"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1819,9 +1781,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Гб"
-
-msgid "5s"
-msgstr "5с"
 
 msgid "6"
 msgstr "6"
@@ -1873,9 +1832,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 Гб"
 
 msgid "8 character"
 msgstr "8 символов"
@@ -1933,35 +1889,19 @@ msgid "A file from media is in use!"
 msgstr "Используется файл с носителя!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
-msgstr ""
-"Таймер выключения требует перезагрузки Вашего %s %s.\n"
-"Перезагрузить сейчас?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgstr "Таймер выключения требует перезагрузки Вашего %s %s. Перезагрузить сейчас?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"Закончившийся powertimer хочет перезапустить пользовательский интерфейс.\n"
-"Сделать это сейчас?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgstr "Законченный PowerTimer хочет перезапустить пользовательский интерфейс. Сделать это сейчас?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Таймер выключения требует перевести Ваш %s %s в режим ожидания.\n"
-"Сделать это сейчас?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgstr "Таймер выключения требует перевести Ваш %s %s в режим ожидания. Сделать это сейчас?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
-msgstr ""
-"Таймер выключения требует выключить Ваш %s %s.\n"
-"Выключить ресивер сейчас?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgstr "Таймер выключения требует выключить Ваш %s %s. Выключить ресивер сейчас?"
 
 #, python-format
 msgid ""
@@ -2434,6 +2374,9 @@ msgstr "После нажатия ОК пожалуйста, подождите!
 msgid "After recording"
 msgstr "После записи"
 
+msgid "After zap"
+msgstr "После zap"
+
 msgid "Akan"
 msgstr "Акан"
 
@@ -2629,9 +2572,6 @@ msgstr "Amlogic пульт"
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Предпринята попытка зафиксировать текущий статус ТВ. Если это невозможно из-за неправильных или отсутствующих сообщений о состоянии, это может привести к неожиданному ответу получателя. С другой стороны, старается лучше реагировать на разные условия эксплуатации."
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Пустое имя недопустимо."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "При загрузке списка пакетов произошла ошибка. Попробуйте позже."
 
@@ -2673,6 +2613,9 @@ msgstr "Антигуа и Барбуда"
 
 msgid "Any activity"
 msgstr "Любая активность"
+
+msgid "Any recordings"
+msgstr "Любые записи"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Примените все изменения к активной локали/языку и выйдите из системы"
@@ -2799,13 +2742,16 @@ msgstr "Искусство/Культура"
 msgid "Aruba"
 msgstr "Аруба"
 
+msgid "As plugin in extended bar"
+msgstr "Как плагин в меню расширений"
+
 msgid "Ask user"
 msgstr "Спросить пользователя"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "Спросить пользователя (Ответ по умолчанию ‘Нет’)"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "Спросить пользователя (Ответ по умолчанию ‘Да’)"
 
 msgid "Aspect"
@@ -2840,6 +2786,12 @@ msgstr "Astra 2 28.2E"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5E"
+
+msgid "At beginning"
+msgstr "В начале"
+
+msgid "At end"
+msgstr "В конце"
 
 msgid "At end of current program"
 msgstr "В конце текущей программы"
@@ -2945,9 +2897,6 @@ msgstr "Выбраны автоматические режимы."
 msgid "Auto SCART switching"
 msgstr "Автопереключение SCART"
 
-msgid "Auto Timer"
-msgstr "Авто таймер"
-
 msgid "Auto Timers"
 msgstr "Автотаймеры"
 
@@ -2983,6 +2932,9 @@ msgstr "Авто (Не доступен)"
 
 msgid "AutoMountManager"
 msgstr "Установки автомонтирования"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Автоматическое обновление"
@@ -3281,7 +3233,7 @@ msgstr "Баскский"
 msgid "Begin time"
 msgstr "Время начала"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Как при нажатии на кнопку 'Стоп'"
 
 msgid "Behavior of 'pause' when paused"
@@ -3423,6 +3375,9 @@ msgstr "Боснийский"
 
 msgid "Botswana"
 msgstr "Ботсвана"
+
+msgid "Bottom"
+msgstr "Вниз"
 
 msgid "Bouquet List"
 msgstr "Список фаворитов"
@@ -4001,6 +3956,15 @@ msgstr "Каймановы острова"
 msgid "Celsius"
 msgstr "Цельсий"
 
+msgid "Center"
+msgstr "Центр"
+
+msgid "Centered"
+msgstr "По центру"
+
+msgid "Centered, wrapped"
+msgstr "По центру, свёрнуто"
+
 msgid "Central African Republic"
 msgstr "Центрально-Африканская Республика"
 
@@ -4081,7 +4045,7 @@ msgstr "Канал/Сервис"
 msgid "Channel 1"
 msgstr "Канал 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Канал 1 с прайм-тайм"
 
 msgid "Channel Info"
@@ -5211,10 +5175,6 @@ msgstr "Создание файлов АР и SC"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Ошибка создания жёсткой ссылки таймшифта!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Не удалось создать каталог %s."
-
 msgid "Creating file system"
 msgstr "Создание файловой системы"
 
@@ -5951,18 +5911,6 @@ msgstr "Дания"
 msgid "Depth"
 msgstr "Глубина"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Раскодировать и записать ECM' - позволяет записать и раскодировать при воспроизведении, когда при записи не удаётся раскодировать. 'Не раскодировать ЕСМ и записать' хранит зашифрованные записи, которые могут быть раскодированы во время воспроизведения. 'Обычный' расшифровывает записи без записи ЕСМ."
-
-msgid "Descramble and record ECM"
-msgstr "Декодирование и запись ECM"
-
-msgid "Descramble http streams"
-msgstr "Декодировать http потоки"
-
-msgid "Descramble receiving http streams"
-msgstr "Расшифровывать получаемые HTTP-потоки"
-
 msgid "Description"
 msgstr "Описание"
 
@@ -6463,9 +6411,6 @@ msgstr "Не добавлять эту запись"
 msgid "Don't ask again!"
 msgstr "Больше не спрашивать!"
 
-msgid "Don't descramble, record ECM"
-msgstr "Не раскодировать, запись ECM"
-
 msgid "Don't restart"
 msgstr "Не перезапускать"
 
@@ -6477,6 +6422,9 @@ msgstr "Не показывать по умолчанию"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Не останавливать текущее событие, но отключить ближайшие событие"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Не раскодировать, запись ECM"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7260,7 +7208,7 @@ msgstr "Ошибка %d: Невозможно изменить пароль! (%s
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Ошибка %d: невозможно проверить место! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7406,6 +7354,9 @@ msgstr "Ошибка: %s %s, а не %s! Пожалуйста, попробуй�
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Ошибка: Не выбрано место для сохранения записи!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Ошибка: пустое имя файла является недопустимым!"
+
 msgid "Error: Cannot find any images!"
 msgstr "Ошибка: Не удаётся найти имидж!"
 
@@ -7416,14 +7367,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Не удалось найти подходящий носитель! Пожалуйста, удалите некоторые загруженные имидж или вставьте носитель (например, USB-накопитель) с достаточным количеством свободного места и повторите попытку."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Ошибка: не удалось создать каталог '%s'!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Ошибка: имидж '%s' для установки недействителен!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Ошибка: сбой взаимодействия, невозможно изменить пароль!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Ошибка: выбран недопустимый каталог '%s'!"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Ошибка удаления каталога %s (Возможно он не пуст)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Ошибка: Новый пароль не может быть пустым!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Ошибка: путь '%s' уже существует!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Невозможно создать необходимые каталоги на носителе (например, USB-накопителе или жёстком диске) - Пожалуйста, проверьте носитель и повторите попытку."
@@ -8426,11 +8393,14 @@ msgstr "Перейти на Время/Дата"
 msgid "Goto Date/Timer"
 msgstr "Перейти на Время/Дата"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Перейти в прайм-тайм"
 
 msgid "Goto X"
 msgstr "Переход на позицию Х"
+
+msgid "Goto deep standby"
+msgstr "Выключить"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на следующий фаворит"
@@ -8455,6 +8425,9 @@ msgstr "Перейти на пред событие"
 
 msgid "Goto specific date/time"
 msgstr "Перейти к указанной дате/времени"
+
+msgid "Goto standby"
+msgstr "Переход в режим ожидания"
 
 msgid "GotoX calibration"
 msgstr "Калибровка позиции Х"
@@ -8864,16 +8837,13 @@ msgstr "Горячие кнопки"
 msgid "Hotkey Settings"
 msgstr "Горячие кнопки"
 
-msgid "Hour"
-msgstr "Час"
-
 msgid "Hourly"
 msgstr "Ежечасно"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Часы Минуты"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Часы Минуты Секунды"
 
 msgid "How many minutes do you want to record?"
@@ -9146,7 +9116,7 @@ msgstr "Не удалось создать имидж -"
 msgid "ImageWizard"
 msgstr "Мастер имиджа"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Немедленное выключение"
 
 msgid "Immediately restart selected devices."
@@ -9539,10 +9509,6 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Недопустимый"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Выбран неправильный каталог %s"
-
 msgid "Invalid location"
 msgstr "Каталог не существует"
 
@@ -9690,6 +9656,15 @@ msgstr "Перейти к прайм-тайм"
 
 msgid "Jump to the currently active locale/language"
 msgstr "Переход к текущей активной локали/языку"
+
+msgid "Just abort, no message"
+msgstr "Отменить, сообщение не показывать"
+
+msgid "Just abort, show message"
+msgstr "Отменить, показать сообщение"
+
+msgid "Just boot"
+msgstr "Только запустить"
 
 msgid "Just change Bouquet"
 msgstr "Только изменить фаворит"
@@ -9961,11 +9936,14 @@ msgstr "Ливан"
 msgid "Left"
 msgstr "Слева"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Перед названием канала"
 
 msgid "Left long"
 msgstr "Левый долгий"
+
+msgid "Left, wrapped"
+msgstr "Cлева, свёрнуто"
 
 msgid "Leisure hobbies"
 msgstr "Отдых, хобби"
@@ -10438,10 +10416,10 @@ msgstr "Маори"
 msgid "Marathi"
 msgstr "Маратхи"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Объединить после записи (Мин)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Объединить перед записью (Мин)"
 
 msgid "Mark service as dedicated 3D service"
@@ -10626,6 +10604,9 @@ msgstr "Мексика"
 msgid "Micronesia, Federated States of"
 msgstr "Микронезия (Федеративные Штаты)"
 
+msgid "Middle"
+msgstr "Посередине"
+
 msgid "Middle - Lite image"
 msgstr "Средне-облегчённый имидж"
 
@@ -10663,7 +10644,13 @@ msgstr "Минимальный интервал отправки"
 msgid "Mins"
 msgstr "Минуты"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "Минута"
+
+msgid "Minutes"
+msgstr "Минут"
+
+msgid "Minutes Seconds"
 msgstr "Минуты Секунды"
 
 msgid "Minutes:"
@@ -10779,10 +10766,6 @@ msgstr "Тайм-аут работы мотора"
 
 msgid "Mount"
 msgstr "Подключить"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "При установке '%s' недостаточно свободного места для записи."
 
 msgid "Mount Actions"
 msgstr "Действия монтирования"
@@ -11292,6 +11275,12 @@ msgstr "Мастер настройки сети"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
 
+msgid "Never"
+msgstr "Никогда"
+
+msgid "Never abort"
+msgstr "Никогда не прерывать"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Не расшифровать записываемую передачу. Эта функция глобально переопределяет устанавки отдельных таймеров. Если включено, запись будет сохранена зашифрованной и должна быть расшифрована позже (автономное/offline декодирование). По умолчанию: ВЫКЛ."
 
@@ -11549,8 +11538,8 @@ msgstr "Нет для всех"
 msgid "No transparency"
 msgstr "Нет прозрачности"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Тюнер для записи по таймеру не найден!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Тюнер для записи по таймеру не найден!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -11897,9 +11886,6 @@ msgstr "При наличии действительных идентифика�
 
 msgid "Once"
 msgstr "Один раз"
-
-msgid "Once per day"
-msgstr "Один раз в день"
 
 msgid "One"
 msgstr "Один"
@@ -12584,6 +12570,9 @@ msgstr "Не паникуйте, если увидите подозритель�
 msgid "Please enter a name for the new bouquet"
 msgstr "Пожалуйста, введите имя для нового пакета"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Пожалуйста, введите имя нового каталога"
+
 msgid "Please enter a name for the new marker"
 msgstr "Пожалуйста, введите имя для нового маркера"
 
@@ -12592,9 +12581,6 @@ msgstr "Пожалуйста, введите новое имя файла"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Пожалуйста, введите имя файла (Пусто = Текущая дата)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Пожалуйста, введите имя нового каталога"
 
 msgid "Please enter name of the new symlink"
 msgstr "Пожалуйста, введите название новой символьной ссылки"
@@ -13036,9 +13022,6 @@ msgstr "Таймер питания"
 msgid "PowerTimer Actions"
 msgstr "Действия PowerTimer"
 
-msgid "PowerTimer DeepStandby"
-msgstr "Таймер питания в 'Глубокий сон'"
-
 msgid "PowerTimer Overview"
 msgstr "Просмотр таймеров питания"
 
@@ -13047,6 +13030,9 @@ msgstr "Настройки PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Таймер питания в 'Режим ожидания'"
+
+msgid "PowerTimer deep standby"
+msgstr "Таймер питания в 'Глубокий сон'"
 
 msgid "PowerTimer log"
 msgstr "Лог таймеров питания"
@@ -13087,7 +13073,7 @@ msgstr "Приоритетный тюнер для записи"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Приоритетные тюнеры для записи"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Время подготовки к записи (секунды)"
 
 msgid "Preparing... Please wait"
@@ -13209,6 +13195,12 @@ msgstr "Перейти на предыдущий фаворит"
 msgid "Previous page"
 msgstr "Предыдущая страница"
 
+msgid "Previous/Next bouquet"
+msgstr "предыдущий/следующий фаворит"
+
+msgid "Previous/Next page"
+msgstr "предыдущая/следующая страница"
+
 msgid "Prevsong"
 msgstr "Предыдущий"
 
@@ -13218,7 +13210,7 @@ msgstr "Предыдущая, долгая"
 msgid "Primary DNS"
 msgstr "Первичный DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Прайм-тайм"
 
 msgid "Primetime hour"
@@ -13488,7 +13480,7 @@ msgid "QuickMenu/Extensions"
 msgstr "Быстрое меню/Дополнения"
 
 msgid "QuickSelect Actions"
-msgstr ""
+msgstr "Действия быстрого выбора"
 
 msgid "RADIO"
 msgstr "Радио"
@@ -13599,6 +13591,15 @@ msgstr "Готовы к удалению %s?"
 
 msgid "Real Life"
 msgstr "Реальная жизнь"
+
+msgid "Real or pseudo recordings"
+msgstr "Реальные или псевдозаписи"
+
+msgid "Real recordings"
+msgstr "Реальные записи"
+
+msgid "Real recordings or streaming"
+msgstr "Реальные записи или потоковое вещание"
 
 msgid "Really WOL now?"
 msgstr "Хотите включить по сети сейчас?"
@@ -14002,7 +14003,7 @@ msgstr "Удалить все данные таймера"
 msgid "Remove all user interface data"
 msgstr "Удалить все данные пользовательского интерфейса"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Удаление завершённых таймеров через (в днях)"
 
 msgid "Remove current folder from bookmarks"
@@ -14010,6 +14011,9 @@ msgstr "Удалить текущую папку из закладок"
 
 msgid "Remove currently selected title"
 msgstr "Удалить выбранный заголовок"
+
+msgid "Remove directory"
+msgstr "Удалить каталог"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Удалить линию VBI на этом канале"
@@ -14034,10 +14038,6 @@ msgstr "Удаление"
 
 msgid "Removing Service"
 msgstr "Удаление канала"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Ошибка удаления каталога %s (Возможно он не пуст)"
 
 msgid "Removing partition table"
 msgstr "Очистить таблицу разделов"
@@ -14326,11 +14326,14 @@ msgstr "Перезапускать субтитры"
 msgid "Right"
 msgstr "Справа"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "После названия канала"
 
 msgid "Right long"
 msgstr "Правый длинный"
+
+msgid "Right, wrapped"
+msgstr "Справа, свёрнуто"
 
 msgid "Roll-off"
 msgstr "Roll-off фактор"
@@ -14850,6 +14853,9 @@ msgstr "Второй кабель от позиционера"
 
 msgid "Secondary DNS"
 msgstr "Вторичный DNS"
+
+msgid "Seconds"
+msgstr "Секунд"
 
 msgid "Security"
 msgstr "Безопасность"
@@ -15479,11 +15485,11 @@ msgstr "Выберите видеорежим"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Действие в конце воспроизведения записи."
 
-msgid "Select what do do after the timer has completed."
-msgstr "Выберите, что делать после завершения таймера."
-
 msgid "Select what do do after the timer recording has completed."
 msgstr "Выберите, что делать после завершения записи по таймеру."
+
+msgid "Select what do do after the timer zap has completed."
+msgstr "Выберите, что делать после завершения таймера."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Выберите, что делать, когда %s%s загружается, воспроизводится в обычном режиме или переходит в режим ожидания."
@@ -15792,7 +15798,7 @@ msgstr "Каналы"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Можно создать разные фавориты. Если включено, можно создавать несколько фаворитов."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Базовое время"
 
 msgid "Set CI assignment for detection of available services."
@@ -16278,7 +16284,7 @@ msgstr "Показать ТВ-гид"
 msgid "Show EPG for current channel..."
 msgstr "Показать ТВ-гид текущего канала..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Показать просмотр передач"
 
 msgid "Show Format Setup"
@@ -16705,7 +16711,7 @@ msgstr "Показать значение настройки по умолчан
 msgid "Show setup menu..."
 msgstr "Показать меню настроек..."
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Показать меню выключения"
 
 msgid "Show single EPG for current channel"
@@ -17020,7 +17026,7 @@ msgstr "Таймер сна"
 msgid "Sleep Timers"
 msgstr "Таймеры сна"
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr "Задержка сна (в минутах)"
 
 msgid "Sleep long"
@@ -17375,7 +17381,7 @@ msgstr "Южный Ндебеле"
 msgid "South Sudan"
 msgstr "Южный Судан"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Резервировать место на диске для записей (Гб)"
 
 #, python-format
@@ -17442,7 +17448,7 @@ msgstr "Режим ожидания"
 msgid "Standby / Restart"
 msgstr "Выключение"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "Режим ожидания без выключения ТВ"
 
 msgid "Start"
@@ -17896,6 +17902,9 @@ msgstr "Переключить на ТВ"
 msgid "Switch to TV mode"
 msgstr "Переключить на режим ТВ"
 
+msgid "Switch to bookmarks"
+msgstr "Перейти на закладки"
+
 msgid "Switch to file list"
 msgstr "Переключить на список файлов"
 
@@ -18026,7 +18035,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 30.08.2022"
+msgstr "Коррекция перевода Monja 08.09.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -18446,10 +18455,6 @@ msgstr ""
 "Мастер сети не установлен!\n"
 "Пожалуйста, сначала установите его."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Этот путь %s уже существует."
-
 msgid "The pin code you entered is wrong."
 msgstr "Введён неверный пин-код."
 
@@ -18496,11 +18501,9 @@ msgstr "Текущий статус имиджа не может быть про
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Время умножается на текущий счетчик повторов."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймера (pm_timers.xml) повреждён и не может быть загружен."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймеров (timers.xml) повреждён и не может быть загружен."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr "Файл таймера '%s' повреждён и не может быть загружен."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -18571,9 +18574,7 @@ msgid "There is no signal to lock on !"
 msgstr "Нет сигнала по этому захвату!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
-msgstr ""
-"Возможно, на выбранном разделе недостаточно места.\n"
-"Вы действительно хотите продолжить?"
+msgstr "Возможно, на выбранном разделе недостаточно места. Вы действительно хотите продолжить?"
 
 msgid "There was an error downloading current region details"
 msgstr "Произошла ошибка при загрузке сведений о текущем регионе"
@@ -19094,19 +19095,17 @@ msgstr "Опции таймера"
 msgid "Timer log"
 msgstr "Лог таймера"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Обнаружено дублирование таймера в timers.xml!\n"
-"Проверьте его!"
+"Timer overlap in '%s' detected!\n"
+"Please recheck it!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
-msgstr ""
-"Обнаружено дублирование таймера в timers.xml!\n"
-"Проверьте его!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
+msgstr "Обнаружено перекрытие таймеров в '%s'! Пожалуйста, проверьте все таймеры."
 
 msgid "Timer recording location"
 msgstr "Расположение записей таймера"
@@ -19275,6 +19274,9 @@ msgstr "Тоновый режим"
 
 msgid "Tonga"
 msgstr "Тонга"
+
+msgid "Top"
+msgstr "Вверх"
 
 msgid "Top and Bottom"
 msgstr "Вертикально"
@@ -19726,6 +19728,15 @@ msgstr "Распакуйте в %s"
 msgid "Unpack to current folder"
 msgstr "Распаковать в текущую папку"
 
+msgid "Unscramble and record ECM"
+msgstr "Декодирование и запись ECM"
+
+msgid "Unscramble http streams"
+msgstr "Декодировать http потоки"
+
+msgid "Unscramble receiving http streams"
+msgstr "Расшифровывать получаемые HTTP-потоки"
+
 msgid "Unsupported"
 msgstr "Не поддерживается"
 
@@ -19865,6 +19876,9 @@ msgstr "USB сверху"
 
 msgid "Upper case"
 msgstr "ЗАГЛАВНЫЕ"
+
+msgid "Upper line"
+msgstr "верхняя строка"
 
 msgid "Uptime"
 msgstr "Время работы"
@@ -20637,7 +20651,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "Внимание: переопределения в настоящее время активны!"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr ""
+msgstr "Внимание: записи не должны храниться на флешке!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -20831,7 +20845,7 @@ msgstr "Если включено, при начале записи просма
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Если включено, будет выводиться предупреждение с выбором об остановке или продолжении работы таймшифта."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Если этот параметр включен, всегда дескремблируйте получение HTTP-потоков. Это требует дополнительных ресурсов (дескремблирование демультиплексоров), включайте только при необходимости. Отдельные потоки всегда дескремблируются, если к типу канала добавляется 0x100, независимо от этого параметра."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20930,10 +20944,10 @@ msgstr "Если этот параметр включён, Вы увидите �
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Если эта функция включена, то ресивер будет определять активность на входе VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Укажите на сколько минут раньше, чем время начала по ТВ-гиду начинать запись."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Укажите на сколько минут позже, чем время окончания по ТВ-гиду закончить запись."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21005,13 +21019,22 @@ msgstr "Настройка подключения к беспроводной с
 msgid "Wireless network state"
 msgstr "Состояние беспроводной сети"
 
+msgid "With EXIT button"
+msgstr "Кнопкой Exit"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "Кнопками ВЛЕВО/ВПРАВО"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Когда режим T2MI RAW отключен (по умолчанию), мы можем использовать одиночную деинкапсуляцию T2MI PLP. При включенном режиме T2MI RAW мы можем использовать astra-sm для анализа T2MI"
 
 msgid "With errors:"
 msgstr "Ошибка записи:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "долгим нажатием ОК"
+
+msgid "With pop up"
 msgstr "С показом сообщения"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -21032,7 +21055,7 @@ msgstr "С помощью этой опции можно переключить 
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "С помощью этой настройки Вы, вероятно, сможете улучшить качество сигнала или устранить проблемы, которые могут возникнуть при использовании более длинных кабелей HDMI."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Без всплывающего сообщения"
 
 msgid "Without query"
@@ -21764,14 +21787,8 @@ msgstr "По алфавиту"
 msgid "alphabetic reverse"
 msgstr "По обратному алфавиту"
 
-msgid "alphabetical"
-msgstr "по алфавиту"
-
 msgid "alpharev then newest"
 msgstr "Алфавит в обратном порядке"
-
-msgid "alternative"
-msgstr "Альтернативный цвет"
 
 msgid "am"
 msgstr "До полудня"
@@ -21781,9 +21798,6 @@ msgstr "и"
 
 msgid "and never ask again this session again"
 msgstr "и больше не спрашивать в этой сессии"
-
-msgid "any recordings"
-msgstr "Любые записи"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -21800,18 +21814,6 @@ msgstr "Искусство/Культура (Без музыки, общее)"
 
 msgid "arts/culture magazine"
 msgstr "журнал об искусстве/культуре"
-
-msgid "as plugin in extended bar"
-msgstr "Как плагин в меню расширений"
-
-msgid "ask user"
-msgstr "Спросить пользователя"
-
-msgid "at beginning"
-msgstr "В начале"
-
-msgid "at end"
-msgstr "В конце"
 
 msgid "athletics"
 msgstr "Атлетика"
@@ -21864,9 +21866,6 @@ msgstr "Чёрный список"
 msgid "blue"
 msgstr "Синий"
 
-msgid "bottom"
-msgstr "Вниз"
-
 msgid "broadcasting/press"
 msgstr "Телерадиовещание/Пресса"
 
@@ -21894,15 +21893,6 @@ msgstr "кардсервер"
 
 msgid "cartoon/puppets"
 msgstr "Мультфильм/Марионетки"
-
-msgid "center"
-msgstr "Центр"
-
-msgid "centered"
-msgstr "По центру"
-
-msgid "centered, wrapped"
-msgstr "По центру, свёрнуто"
 
 msgid "change Volume down"
 msgstr "Повысить звук"
@@ -22082,9 +22072,6 @@ msgstr "Конец редактирования"
 msgid "end favorites edit"
 msgstr "Конец редактирования"
 
-msgid "end zapping"
-msgstr "закончить переключение"
-
 msgid "enigma2 and network"
 msgstr "Enigma2 и сеть"
 
@@ -22223,9 +22210,6 @@ msgstr "Шаринг сервер"
 msgid "goto current channel and now"
 msgstr "перейдите на текущий канал и сейчас"
 
-msgid "goto deep-standby"
-msgstr "Выключить"
-
 msgid "goto first channel"
 msgstr "перейти на первый канал"
 
@@ -22234,9 +22218,6 @@ msgstr "перейти на последний канал"
 
 msgid "goto now"
 msgstr "перейти сейчас"
-
-msgid "goto standby"
-msgstr "Переход в режим ожидания"
 
 msgid "grab this frame as bitmap"
 msgstr "Фрейм в растровое изображение"
@@ -22359,15 +22340,6 @@ msgstr "Перейти к следующему названию"
 msgid "jump to chapter by number"
 msgstr "Перейти к главе по номеру"
 
-msgid "just abort, no message"
-msgstr "Отменить, сообщение не показывать"
-
-msgid "just abort, show message"
-msgstr "Отменить, показать сообщение"
-
-msgid "just boot"
-msgstr "Только запустить"
-
 msgid "languages"
 msgstr "Языки"
 
@@ -22376,9 +22348,6 @@ msgstr "Выйти из проигрывателя"
 
 msgid "left"
 msgstr "Левый"
-
-msgid "left, wrapped"
-msgstr "Cлева, свёрнуто"
 
 msgid "leisure hobbies (general)"
 msgstr "Развлечения (Хобби)"
@@ -22416,20 +22385,8 @@ msgstr "Единоборства"
 msgid "medicine/physiology/psychology"
 msgstr "Медицина/Физиология/Психология"
 
-msgid "menu"
-msgstr "Меню"
-
-msgid "middle"
-msgstr "Посередине"
-
 msgid "min"
 msgstr "Мин"
-
-msgid "minute"
-msgstr "Минута"
-
-msgid "minutes"
-msgstr "Минут"
 
 msgid "month"
 msgstr "Месяц"
@@ -22487,12 +22444,6 @@ msgstr "Недоступно"
 
 msgid "nature/animals/environment"
 msgstr "Природа/Животные/Окружающая среда"
-
-msgid "never"
-msgstr "Никогда"
-
-msgid "never abort"
-msgstr "Никогда не прерывать"
 
 msgid "new media"
 msgstr "Новые СМИ"
@@ -22638,12 +22589,6 @@ msgstr "Программы для дошкольников"
 msgid "previous channel page"
 msgstr "предыдущая страница канала"
 
-msgid "previous/next Bouquet"
-msgstr "предыдущий/следующий фаворит"
-
-msgid "previous/next Page"
-msgstr "предыдущая/следующая страница"
-
 msgid "provid:"
 msgstr "Провайдер:"
 
@@ -22655,19 +22600,6 @@ msgstr "Очистить удаленные фавориты"
 
 msgid "python"
 msgstr "Python"
-
-msgid "real or pseudo recordings"
-msgstr "Реальные или псевдозаписи"
-
-msgid "real recordings"
-msgstr "Реальные записи"
-
-msgid "real recordings or streaming"
-msgstr "Реальные записи или потоковое вещание"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "Время записи изменено, начнётся в: %s"
 
 msgid "red"
 msgstr "Красный"
@@ -22701,9 +22633,6 @@ msgstr "Удалить фаворит из родительского контр
 
 msgid "remove cable services"
 msgstr "Удалить кабельные каналы"
-
-msgid "Remove directory"
-msgstr "Удалить каталог"
 
 msgid "remove entry"
 msgstr "Удалить выбранное"
@@ -22747,9 +22676,6 @@ msgstr "RGB"
 msgid "right"
 msgstr "Правый"
 
-msgid "right, wrapped"
-msgstr "Справа, свёрнуто"
-
 msgid "rock/pop"
 msgstr "Рок/Поп"
 
@@ -22784,12 +22710,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "Поиск по ТВ-гиду..."
-
-msgid "seconds"
-msgstr "Секунд"
-
-msgid "select"
-msgstr "Выбрать"
 
 msgid "select CAId's"
 msgstr "Выбрать CAID"
@@ -22932,17 +22852,11 @@ msgstr "Стандарт"
 msgid "start cut here"
 msgstr "Начало редактирования"
 
-msgid "start recording"
-msgstr "Начать запись"
-
 msgid "step size"
 msgstr "Размер шага"
 
 msgid "stereo"
 msgstr "Стерео"
-
-msgid "stop recording"
-msgstr "Остановить запись"
 
 msgid "stop using as startup service"
 msgstr "Убрать канал из старта"
@@ -22955,9 +22869,6 @@ msgstr "переключить режим дисплея с 12 на 8-симво
 
 msgid "switch Nand and SDcard"
 msgstr "переключить Nand и SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "Перейти на закладки"
 
 msgid "switch to the next angle"
 msgstr "Перейти на следующую сторону"
@@ -23003,9 +22914,6 @@ msgstr "к dir"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Время переключения, разделы, аудио, информация субтитров"
-
-msgid "top"
-msgstr "Вверх"
 
 msgid "tourism/travel"
 msgstr "Туризм"
@@ -23085,9 +22993,6 @@ msgstr "обновление"
 msgid "updates available."
 msgstr "обновлений доступно."
 
-msgid "upper line"
-msgstr "верхняя строка"
-
 msgid "use best / controlled by HDMI"
 msgstr "Использовать наилучшее/Управление по HDMI"
 
@@ -23096,9 +23001,6 @@ msgstr "Используйте повышенное напряжение '14 / 1
 
 msgid "use_hdmi_cacenter"
 msgstr "использовать центр hdmi"
-
-msgid "user defined"
-msgstr "Определено пользователем"
 
 msgid "userdefined"
 msgstr "определено пользователем"
@@ -23139,9 +23041,6 @@ msgstr ""
 "\n"
 "Копия будет отправлена."
 
-msgid "white"
-msgstr "Белый"
-
 msgid "wide"
 msgstr "Широкоугольно"
 
@@ -23167,15 +23066,6 @@ msgstr[2] "С %d ошибками"
 msgid "with errors"
 msgstr "с ошибками"
 
-msgid "with exit button"
-msgstr "Кнопкой Exit"
-
-msgid "with left/right buttons"
-msgstr "Кнопками ВЛЕВО/ВПРАВО"
-
-msgid "with long OK press"
-msgstr "долгим нажатием ОК"
-
 msgid "with_errors"
 msgstr "с ошибками"
 
@@ -23195,8 +23085,165 @@ msgstr "Да (оставить фиды)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Ваш %s %s может стать непригодным теперь. Пожалуйста, почитайте руководство по использованию прежде, чем перезагрузить Ваш %s %s."
 
-msgid "zapping"
-msgstr "Переключение"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2с"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3с"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4с"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5с"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6с"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7с"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8с"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9с"
+
+#~ msgid "1 GB"
+#~ msgstr "1 Гб"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2с"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5с"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7с"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 МБ / с"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 МБ/с"
+
+#~ msgid "1s"
+#~ msgstr "1с"
+
+#~ msgid "2 GB"
+#~ msgstr "2 Гб"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5с"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 МБ/с"
+
+#~ msgid "24+ Hours"
+#~ msgstr "+24 часа"
+
+#~ msgid "24- Hours"
+#~ msgstr "-24 часа"
+
+#~ msgid "2s"
+#~ msgstr "2с"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5с"
+
+#~ msgid "3s"
+#~ msgstr "3с"
+
+#~ msgid "4 GB"
+#~ msgstr "4 Гб"
+
+#~ msgid "4s"
+#~ msgstr "4с"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 МБ/с"
+
+#~ msgid "5s"
+#~ msgstr "5с"
+
+#~ msgid "8 GB"
+#~ msgstr "8 Гб"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Авто таймер"
+
+#~ msgid "Hour"
+#~ msgstr "Час"
+
+#~ msgid "Once per day"
+#~ msgstr "Один раз в день"
+
+#~ msgid "alphabetical"
+#~ msgstr "по алфавиту"
+
+#~ msgid "alternative"
+#~ msgstr "Альтернативный цвет"
+
+#~ msgid "user defined"
+#~ msgstr "Определено пользователем"
+
+#~ msgid "white"
+#~ msgstr "Белый"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Дескремблирование и запись ECM' даёт возможность последующего дескремблирования, если дескремблирование при записи не удалось. 'Не дескремблировать, записывать ECM' сохраняет закодированную запись, которую можно дескремблировать при воспроизведении. 'Нормальный' означает дескремблировать запись и не записывать ECM."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "При установке '%s' недостаточно свободного места для записи."
+
+#~ msgid "Select what do do after the timer has completed."
+#~ msgstr "Выберите, что делать после завершения таймера."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймера (pm_timers.xml) повреждён и не может быть загружен."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймеров (timers.xml) повреждён и не может быть загружен."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Обнаружено дублирование таймера в timers.xml!\n"
+#~ "Проверьте его!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Обнаружено дублирование таймера в timers.xml!\n"
+#~ "Проверьте его!"
+
+#~ msgid "ask user"
+#~ msgstr "Спросить пользователя"
+
+#~ msgid "end zapping"
+#~ msgstr "закончить переключение"
+
+#~ msgid "menu"
+#~ msgstr "Меню"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "Время записи изменено, начнётся в: %s"
+
+#~ msgid "select"
+#~ msgstr "Выбрать"
+
+#~ msgid "start recording"
+#~ msgstr "Начать запись"
+
+#~ msgid "stop recording"
+#~ msgstr "Остановить запись"
+
+#~ msgid "zapping"
+#~ msgstr "Переключение"

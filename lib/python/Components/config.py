@@ -944,15 +944,11 @@ class ConfigSatlist(ConfigSatellite):
 # wraparound: Pressing RIGHT key at max value brings you to min value and vice versa
 # if set to True.
 #
-# NOTE: If the units argument is used please ensure that the TranslationData.py
-# 	module is checked / updated to ensure that the unit strings are properly
-# 	available for translations.
-#
 class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False):
 		if default is None:
 			default = min
-		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(min, max + 1, stepwidth)], default=default)
+		ConfigSelection.__init__(self, choices=[(x, str(x)) for x in range(min, max + 1, stepwidth)], default=default)
 		self.wrapAround = wraparound
 
 	def handleKey(self, key, callback=None):

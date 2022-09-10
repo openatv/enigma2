@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -220,16 +220,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -342,13 +342,13 @@ msgid "%03d MB"
 msgstr "%03d MB"
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr "%2.1f sek"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -541,11 +541,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -591,19 +591,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -857,6 +857,12 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -865,8 +871,24 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d tund"
+msgstr[1] "%d tundi"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -875,6 +897,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -903,6 +929,30 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d min"
 
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "Laius %d piksel"
+msgstr[1] "laius %d pikslit"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekundit"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -917,22 +967,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d päev"
-msgstr[1] "%d päeva"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d tund"
-msgstr[1] "%d tundi"
 
 #, python-format
 msgid "%d kB"
@@ -941,12 +979,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d min"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minutit"
 
 #, python-format
 msgid "%d minutes"
@@ -1005,20 +1037,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "Laius %d piksel"
-msgstr[1] "laius %d pikslit"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sek"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekundit"
 
 #, python-format
 msgid "%d times"
@@ -1300,11 +1320,11 @@ msgstr "'%s' ei ole paigaldatud ja on tundmatu"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Ajavaru tundides' või 'viimaste saadete arv'. Vanemate ajanihke failide kustutamisel saab eelise esimesena täidetud tingimus."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, talleta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' ei ole paigaldatud!"
@@ -1357,6 +1377,9 @@ msgstr "* kasutatav animatsioon"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1366,6 +1389,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 tundi"
@@ -1386,36 +1412,9 @@ msgstr "/var kataloog"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 #
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 tund"
@@ -1429,24 +1428,9 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 #
 msgid "10 minutes"
 msgstr "10 minutit"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1551,9 +1535,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "Inforiba kestus"
 
@@ -1564,21 +1545,12 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 tundi"
 
 #
 msgid "2 minutes"
 msgstr "2 minutit"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1609,12 +1581,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 tundi"
-
-msgid "24+ Hours"
-msgstr "24+ tundi"
-
-msgid "24- Hours"
-msgstr "-24 tundi"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1673,9 +1639,6 @@ msgstr "Teine inforiba - INFO"
 msgid "2nd InfoBar timeout"
 msgstr "Teise inforiba kestus"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1694,9 +1657,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 tundi"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1736,18 +1696,12 @@ msgstr "3D ruumheli"
 msgid "3D Surround Speaker Position"
 msgstr "3D ruumheli kõlari asukoht"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr ""
 
 #
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 tundi"
@@ -1776,9 +1730,6 @@ msgstr "4:3 panscan"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr ""
 
@@ -1792,9 +1743,6 @@ msgstr "5 tundi"
 #
 msgid "5 minutes"
 msgstr "5 minutit"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1813,9 +1761,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 #
 msgid "6"
@@ -1871,9 +1816,6 @@ msgstr "720p50: 24p/50p/60p"
 #
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 tähemärki"
@@ -1933,32 +1875,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s taaskäivitada.\n"
 "Kas nõustud?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s kasutajaliidese taaskäivitada.\n"
 "Kas nõustud?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
 "panna %s %s ooteseisundisse. Kas nõustud?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
 "%s %s välja lülitada. Kas nõustud?"
@@ -2438,6 +2372,9 @@ msgstr "Vajuta OK ja oota!"
 msgid "After recording"
 msgstr "Pärast salvestust"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2637,9 +2574,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Tühi failinimi ei ole lubatud."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
 
@@ -2681,6 +2615,10 @@ msgstr "Antigua ja Barbuda"
 
 msgid "Any activity"
 msgstr "Iga tegevus"
+
+# Record neu 5.1
+msgid "Any recordings"
+msgstr "Kõik salvestused"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Rakenda muudatused aktiivsele keelele ja välju"
@@ -2808,13 +2746,16 @@ msgstr "Kunst/kultuur"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "Laiendusena inforibal"
+
 msgid "Ask user"
 msgstr "Küsitakse"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "Küsitakse (vaikimisi 'ei')"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "Küsitakse (vaikimisi 'jah')"
 
 msgid "Aspect"
@@ -2853,6 +2794,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "Alguses"
+
+msgid "At end"
+msgstr "Lõpus"
 
 msgid "At end of current program"
 msgstr ""
@@ -2963,9 +2910,6 @@ msgstr "Automaatsed režiimid valitud."
 msgid "Auto SCART switching"
 msgstr "Autom. SCART ümberlülitus"
 
-msgid "Auto Timer"
-msgstr "Autotaimer"
-
 msgid "Auto Timers"
 msgstr "Autotaimerid"
 
@@ -3003,6 +2947,9 @@ msgstr "Autom. (pole saadaval)"
 #
 msgid "AutoMountManager"
 msgstr "Automaatne haakimine"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Automaatne uuendamine"
@@ -3310,7 +3257,7 @@ msgstr "Baski"
 msgid "Begin time"
 msgstr "Algusaeg"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Sama 'Stop' nupuga"
 
 msgid "Behavior of 'pause' when paused"
@@ -3455,6 +3402,9 @@ msgstr "Eesti"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "All"
 
 msgid "Bouquet List"
 msgstr "Lemmiknimekirjad"
@@ -4035,6 +3985,15 @@ msgstr "Kaimani saared"
 msgid "Celsius"
 msgstr "Celsius"
 
+msgid "Center"
+msgstr "Keskel"
+
+msgid "Centered"
+msgstr "Keskel"
+
+msgid "Centered, wrapped"
+msgstr "Keskel, reamurdmisega"
+
 msgid "Central African Republic"
 msgstr "Kesk Aafrika Vabariik"
 
@@ -4116,7 +4075,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr "Kanal 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Kanal 1 koos tippajaga"
 
 msgid "Channel Info"
@@ -5276,10 +5235,6 @@ msgstr "AP ja SC failide loomine"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Kataloogi %s loomine nurjus."
-
 msgid "Creating file system"
 msgstr "Failisüsteemi loomine"
 
@@ -6037,18 +5992,6 @@ msgstr "Taani"
 msgid "Depth"
 msgstr "Sügavus"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, talleta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
-
-msgid "Descramble and record ECM"
-msgstr "Dekodeeri ja salvesta ecm"
-
-msgid "Descramble http streams"
-msgstr "Dekodeeri http vood"
-
-msgid "Descramble receiving http streams"
-msgstr "Dekodeeri sisenevad http vood"
-
 msgid "Description"
 msgstr "Sisututvustus"
 
@@ -6559,9 +6502,6 @@ msgstr "Ära lisa seda salvestust"
 msgid "Don't ask again!"
 msgstr "Ära enam küsi!"
 
-msgid "Don't descramble, record ECM"
-msgstr "Ära dekodeeri, salvesta ecm"
-
 msgid "Don't restart"
 msgstr ""
 
@@ -6574,6 +6514,9 @@ msgstr "Vaikejärjestus"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
+
+msgid "Don't unscramble, record ECM"
+msgstr "Ära dekodeeri, salvesta ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7529,6 +7472,9 @@ msgstr "Uuendusi ei ole. Proovi hiljem uuesti."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Tühi failinimi ei ole lubatud."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7539,14 +7485,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Sobivat andmekandjat ei leitud. Eemalda mõni allalaetud püsivara või sisesta piisavalt vaba ruumi omav kandja (nt. USB-mälupulk) ja proovi uuesti!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Kataloogi %s loomine nurjus."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Valiti vigane kaust: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Kataloogi eemaldamine %s nurjus. (Ehk ei ole tühi?)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Rada %s on juba olemas."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Nõutud kataloogide loomine andmekandjal (USB pulk või kõvaketas) nurjus. Kontrolli andmekandjaid ja proovi uuesti!"
@@ -8580,11 +8542,15 @@ msgstr "Kuupäeva/aja juurde"
 msgid "Goto Date/Timer"
 msgstr "Kuupäeva/taimeri juurde"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Mine tippajale"
 
 msgid "Goto X"
 msgstr "Mine X"
+
+# Powerlost usage.config
+msgid "Goto deep standby"
+msgstr "Puhkeseisund"
 
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisse lemmiknimekirja"
@@ -8609,6 +8575,10 @@ msgstr "Liigu eelmisele saatele"
 
 msgid "Goto specific date/time"
 msgstr "Mine kindlale kellaajale/kuupäevale"
+
+# Powerlost usage.config
+msgid "Goto standby"
+msgstr "Ooteseisund"
 
 msgid "GotoX calibration"
 msgstr "Mine X kalibreerimine"
@@ -9031,16 +9001,13 @@ msgstr "Kiirnupud"
 msgid "Hotkey Settings"
 msgstr "Kiirnuppude seadistus"
 
-msgid "Hour"
-msgstr "Tund"
-
 msgid "Hourly"
 msgstr "Kord tunnis"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Tundi minutit"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Tundi minutit sekundit"
 
 msgid "How many minutes do you want to record?"
@@ -9321,7 +9288,7 @@ msgstr "Tõmmise loomine nurjus - "
 msgid "ImageWizard"
 msgstr "Püsivara abiline"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Kohene seiskamine"
 
 msgid "Immediately restart selected devices."
@@ -9728,10 +9695,6 @@ msgstr ""
 msgid "Invalid"
 msgstr "Vigane"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Valiti vigane kaust: %s"
-
 msgid "Invalid location"
 msgstr "Kehtetu asukoht"
 
@@ -9883,6 +9846,18 @@ msgstr "Hüpe tippajale"
 
 msgid "Jump to the currently active locale/language"
 msgstr ""
+
+# Record neu 5.1
+msgid "Just abort, no message"
+msgstr "Katkesta teavitamata"
+
+# Record neu 5.1
+msgid "Just abort, show message"
+msgstr "Katkesta ja teavita"
+
+# Powerlost usage.config
+msgid "Just boot"
+msgstr "Tavaline käivitus"
 
 msgid "Just change Bouquet"
 msgstr "Vaheta lemmiknimekirja"
@@ -10163,11 +10138,14 @@ msgstr "Liibanon"
 msgid "Left"
 msgstr "Vasak"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Kanali nimest vasakul"
 
 msgid "Left long"
 msgstr "Vasak - pikk"
+
+msgid "Left, wrapped"
+msgstr "Vasakul, reamurdmisega"
 
 msgid "Leisure hobbies"
 msgstr "Vaba aeg ja hobid"
@@ -10670,10 +10648,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Salvestuse lõppu lisatakse (min)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Salvestuse algusesse lisatakse (min)"
 
 #
@@ -10873,6 +10851,9 @@ msgstr "Mehhiko"
 msgid "Micronesia, Federated States of"
 msgstr "Mikroneesia Liiduriigid"
 
+msgid "Middle"
+msgstr "Keskel"
+
 msgid "Middle - Lite image"
 msgstr ""
 
@@ -10911,7 +10892,13 @@ msgstr "Väikseim saatmise vahemik"
 msgid "Mins"
 msgstr "Minutit"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "minut"
+
+msgid "Minutes"
+msgstr "minutit"
+
+msgid "Minutes Seconds"
 msgstr "Minutit sekundit"
 
 #, fuzzy
@@ -11032,10 +11019,6 @@ msgstr "Ajami pööramise aegumine"
 
 msgid "Mount"
 msgstr "Haagi"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Haakepunktis '%s' pole salvestamiseks piisavalt ruumi."
 
 msgid "Mount Actions"
 msgstr ""
@@ -11586,6 +11569,13 @@ msgstr "Võrguabiline"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "Mitte kunagi"
+
+# Record neu 5.1
+msgid "Never abort"
+msgstr "Mitte kunagi"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Ära dekrüpti sisu salvestamise ajal. See valik alistab üksiku taimeri seadistused globaalselt ja selle lubamisel salvestised talletatakse krüpteeritult. Lahtikrüptida saad hiljem (võrguta dekodeerimine). Vaikimisi: välja lülitatud."
 
@@ -11857,8 +11847,8 @@ msgid "No transparency"
 msgstr "Läbipaistmatu"
 
 # RecordTimer.py
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Salvestustaimeril puudub vaba tuuner!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Salvestustaimeril puudub vaba tuuner!"
 
 # RecordTimer.py
 msgid ""
@@ -12214,9 +12204,6 @@ msgstr "Kui ONID kehtib, eiratakse sageduse alamvõrgu osa"
 
 msgid "Once"
 msgstr "Üks kord"
-
-msgid "Once per day"
-msgstr "Kord päevas"
 
 msgid "One"
 msgstr "Üks"
@@ -12946,6 +12933,9 @@ msgstr ""
 msgid "Please enter a name for the new bouquet"
 msgstr "Sisesta uue lemmiknimekirja nimi"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Sisesta uue kataloogi nimi"
+
 msgid "Please enter a name for the new marker"
 msgstr "Sisesta uue markeri nimi"
 
@@ -12954,9 +12944,6 @@ msgstr "Sisesta uus faili nimi"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Sisesta faili nimi (tühi = tänane kuupäev)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Sisesta uue kataloogi nimi"
 
 msgid "Please enter name of the new symlink"
 msgstr "Sisesta uue nimeviida nimi"
@@ -13404,9 +13391,6 @@ msgstr "Toitetaimer"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr "Puhkeseisundi toitetaimer"
-
 msgid "PowerTimer Overview"
 msgstr "Toiteaimeri ülevaade"
 
@@ -13415,6 +13399,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Ooteeseisundi toitetaimer"
+
+msgid "PowerTimer deep standby"
+msgstr "Puhkeseisundi toitetaimer"
 
 msgid "PowerTimer log"
 msgstr "Toitetaimeri logi"
@@ -13455,7 +13442,7 @@ msgstr "Eelistatud tuuner salvestamiseks"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Salvestuseks valmistumise aeg (sek)"
 
 msgid "Preparing... Please wait"
@@ -13583,6 +13570,13 @@ msgstr "Liigu eelmisse lemmiknimekirja"
 msgid "Previous page"
 msgstr "Eelmine lehekülg"
 
+#, fuzzy
+msgid "Previous/Next bouquet"
+msgstr "Eelmine/järgmine lehekülg"
+
+msgid "Previous/Next page"
+msgstr "Eelmine/järgmine lehekülg"
+
 msgid "Prevsong"
 msgstr "Prevsong"
 
@@ -13592,7 +13586,7 @@ msgstr "Prevsong - pikk"
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Tippaeg"
 
 msgid "Primetime hour"
@@ -13983,6 +13977,18 @@ msgstr "Kas eemaldada \"%s\"?"
 
 msgid "Real Life"
 msgstr ""
+
+# Record neu 5.1
+msgid "Real or pseudo recordings"
+msgstr "Ehtsad või võltssalvestused"
+
+# Record neu 5.1
+msgid "Real recordings"
+msgstr "Ehtsad salvestused"
+
+# Record neu 5.1
+msgid "Real recordings or streaming"
+msgstr "Ehtsad salvestused või voogesitus"
 
 msgid "Really WOL now?"
 msgstr "Kas teha WOL?"
@@ -14403,7 +14409,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
 
 msgid "Remove current folder from bookmarks"
@@ -14411,6 +14417,9 @@ msgstr "Eemalda praegune kataloog järjehoidjatest"
 
 msgid "Remove currently selected title"
 msgstr "Eemalda valitud nimetus"
+
+msgid "Remove directory"
+msgstr "Kustuta kataloog"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Lõpeta punktiirjoone peitmine sellel kanalil"
@@ -14435,10 +14444,6 @@ msgstr "Eemaldamine"
 
 msgid "Removing Service"
 msgstr "Teenuse eemaldamine"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Kataloogi eemaldamine %s nurjus. (Ehk ei ole tühi?)"
 
 msgid "Removing partition table"
 msgstr "Partitsioonitabeli eemaldamine"
@@ -14731,11 +14736,14 @@ msgstr "Subtiitrite ümberpakkimine"
 msgid "Right"
 msgstr "Parem"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "Kanali nimest paremal"
 
 msgid "Right long"
 msgstr "Parem - pikk"
+
+msgid "Right, wrapped"
+msgstr "Paremal, reamurdmisega"
 
 msgid "Roll-off"
 msgstr "Roll-off"
@@ -15271,6 +15279,9 @@ msgstr "Ajamiga LNB teine kaabel"
 
 msgid "Secondary DNS"
 msgstr "Teine nimeserver"
+
+msgid "Seconds"
+msgstr "sekundit"
 
 msgid "Security"
 msgstr "Turve"
@@ -15917,10 +15928,10 @@ msgstr "Vali videorežiim"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Saad määrata vastuvõtja käitumise taasesituse lõppemisel."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -16241,7 +16252,7 @@ msgstr "Kanalid"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Kanalid saab rühmitada lemmiknimekirjadesse. Määrates 'jah', saad kasutada rohkem kui ühte lemmiknimekirja."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Sea alusaeg"
 
 msgid "Set CI assignment for detection of available services."
@@ -16744,7 +16755,7 @@ msgid "Show EPG for current channel..."
 msgstr "Kanali saatekava"
 
 #
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Saateinfo"
 
 #, fuzzy
@@ -17187,7 +17198,7 @@ msgstr ""
 msgid "Show setup menu..."
 msgstr ""
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Seiskamismenüü"
 
 msgid "Show single EPG for current channel"
@@ -17515,7 +17526,7 @@ msgstr "Unetaimer"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep long"
@@ -17878,7 +17889,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Lõuna-Sudaan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Salvestistele tagatud kettaruum (GB)"
 
 #, python-format
@@ -17947,7 +17958,7 @@ msgstr "Ooteseisund"
 msgid "Standby / Restart"
 msgstr "Seiskamine"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "Ooteseisundisse telerit sulgemata"
 
 msgid "Start"
@@ -18415,6 +18426,9 @@ msgstr "Lülitus TV režiimi"
 
 msgid "Switch to TV mode"
 msgstr "Lülitus telerežiimi"
+
+msgid "Switch to bookmarks"
+msgstr "Ava järjehoidjad"
 
 msgid "Switch to file list"
 msgstr "Mine faililoendisse"
@@ -18977,10 +18991,6 @@ msgstr ""
 "Võrguabiline ei ole paigaldatud! \n"
 "Paigalda see."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Rada %s on juba olemas."
-
 msgid "The pin code you entered is wrong."
 msgstr "Vale kood."
 
@@ -19023,11 +19033,9 @@ msgstr "Uuenduste olekut ei saa kontrollida,sest https://www.opena.tv paistab ol
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Aeg korrutatakse praeguse kordusloenduriga."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Taimerite fail (pm_timers.xml) on rikutud ja seda ei saa laadida."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Taimerite fail (timers.xml) on rikutud ja seda ei saa laadida."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19650,19 +19658,15 @@ msgstr "Taimer"
 msgid "Timer log"
 msgstr "Taimeri logi"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Toitetaimerite ajad kattuvad!\n"
-"Kontrolli ajad üle!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Taimerite ajad kattuvad!\n"
-"Kontrolli ajad üle!"
 
 msgid "Timer recording location"
 msgstr "Taimeriga salvestuse asukoht"
@@ -19837,6 +19841,9 @@ msgstr "22KHz-toon"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Top"
+msgstr "üles"
 
 msgid "Top and Bottom"
 msgstr "Üleval ja all"
@@ -20310,6 +20317,15 @@ msgstr "Paki - %s"
 msgid "Unpack to current folder"
 msgstr "Paki lahti käesolevasse kataloogi"
 
+msgid "Unscramble and record ECM"
+msgstr "Dekodeeri ja salvesta ecm"
+
+msgid "Unscramble http streams"
+msgstr "Dekodeeri http vood"
+
+msgid "Unscramble receiving http streams"
+msgstr "Dekodeeri sisenevad http vood"
+
 msgid "Unsupported"
 msgstr "Pole toetatud"
 
@@ -20451,6 +20467,10 @@ msgstr "Ülemine USB pesa"
 
 msgid "Upper case"
 msgstr "Suurtähed"
+
+#, fuzzy
+msgid "Upper line"
+msgstr "Üks rida"
 
 msgid "Uptime"
 msgstr "Ülalolekuaeg"
@@ -21432,7 +21452,7 @@ msgstr "Kui lubatud, võivad salvestused vaba tuuneri puudumisel saate vaatamise
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse hoolimata seadistustes määratust alati, kui kanalitüübile lisatakse 0x100."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21533,10 +21553,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kui lubatud, tuvastab vastuvõtja VCR SCART sisendi kasutuse."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Salvestamist alustatakse enne saatekavas näidatud aega."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21609,13 +21629,22 @@ msgstr "Traadita võrgu seadistus."
 msgid "Wireless network state"
 msgstr "Traadita võrgu olek"
 
+msgid "With EXIT button"
+msgstr "EXIT nupuga"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "Vasak/parem nuppudega"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr ""
 
 msgid "With errors:"
 msgstr "Vigadega:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "Pikal OK vajutusel"
+
+msgid "With pop up"
 msgstr "Hüpikaknaga"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -21636,7 +21665,7 @@ msgstr ""
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Selle sättega saab tõenäoliselt parandada signaali kvaliteeti või kõrvaldada probleeme, mis võivad tekkida pikemate HDMI-kaablite korral."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Hüpikaknata"
 
 msgid "Without query"
@@ -22382,14 +22411,8 @@ msgstr "Tähestikuline"
 msgid "alphabetic reverse"
 msgstr "Pööratud tähestikuline"
 
-msgid "alphabetical"
-msgstr "Tähestikuline"
-
 msgid "alpharev then newest"
 msgstr "Pööratud tähestikuline, uuemad ees"
-
-msgid "alternative"
-msgstr "alternatiivne"
 
 msgid "am"
 msgstr "hommikul"
@@ -22399,10 +22422,6 @@ msgstr ""
 
 msgid "and never ask again this session again"
 msgstr "ja selle seansi jooksul enam ei küsita"
-
-# Record neu 5.1
-msgid "any recordings"
-msgstr "Kõik salvestused"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -22420,19 +22439,6 @@ msgstr "kunst/kultuur (välja arvatud muusika)"
 
 msgid "arts/culture magazine"
 msgstr "kunst/kultuurimagasin"
-
-msgid "as plugin in extended bar"
-msgstr "Laiendusena inforibal"
-
-# Record neu 5.1
-msgid "ask user"
-msgstr "Küsitakse"
-
-msgid "at beginning"
-msgstr "Alguses"
-
-msgid "at end"
-msgstr "Lõpus"
 
 msgid "athletics"
 msgstr "kergejõustik"
@@ -22488,9 +22494,6 @@ msgstr "must nimekiri"
 msgid "blue"
 msgstr "Sinine"
 
-msgid "bottom"
-msgstr "All"
-
 msgid "broadcasting/press"
 msgstr "ringhääling/ajakirjandus"
 
@@ -22519,15 +22522,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "joonis/nukufilm"
-
-msgid "center"
-msgstr "Keskel"
-
-msgid "centered"
-msgstr "Keskel"
-
-msgid "centered, wrapped"
-msgstr "Keskel, reamurdmisega"
 
 msgid "change Volume down"
 msgstr "Heli vaiksemaks"
@@ -22715,9 +22709,6 @@ msgstr "Lõpeta lõige siin"
 msgid "end favorites edit"
 msgstr "Salvesta muudatused ja välju"
 
-msgid "end zapping"
-msgstr "lõpeta kanalivahetus"
-
 msgid "enigma2 and network"
 msgstr "enigma2 ja võrk"
 
@@ -22858,10 +22849,6 @@ msgstr "hangi kaardiserver"
 msgid "goto current channel and now"
 msgstr "Mine aktiivsele kanalile ja 'nüüd'"
 
-# Powerlost usage.config
-msgid "goto deep-standby"
-msgstr "Puhkeseisund"
-
 msgid "goto first channel"
 msgstr "Liigu esimesele kanalile"
 
@@ -22871,10 +22858,6 @@ msgstr "Liigu viimasele kanalile"
 # Powerlost usage.config
 msgid "goto now"
 msgstr "Mine 'nüüd'"
-
-# Powerlost usage.config
-msgid "goto standby"
-msgstr "Ooteseisund"
 
 msgid "grab this frame as bitmap"
 msgstr "Salvesta kaader rasterpildina"
@@ -23002,18 +22985,6 @@ msgstr "Hüppa järgmisele failile"
 msgid "jump to chapter by number"
 msgstr "Hüpe peatükile  numbri järgi"
 
-# Record neu 5.1
-msgid "just abort, no message"
-msgstr "Katkesta teavitamata"
-
-# Record neu 5.1
-msgid "just abort, show message"
-msgstr "Katkesta ja teavita"
-
-# Powerlost usage.config
-msgid "just boot"
-msgstr "Tavaline käivitus"
-
 msgid "languages"
 msgstr "keeled"
 
@@ -23023,9 +22994,6 @@ msgstr "Lõpeta taasesitus"
 
 msgid "left"
 msgstr "Vasak"
-
-msgid "left, wrapped"
-msgstr "Vasakul, reamurdmisega"
 
 msgid "leisure hobbies (general)"
 msgstr "vaba aja harrastused"
@@ -23063,21 +23031,9 @@ msgstr "võitluskunstid"
 msgid "medicine/physiology/psychology"
 msgstr "meditsiin/füsioloogia/psühholoogia"
 
-msgid "menu"
-msgstr "menüü"
-
-msgid "middle"
-msgstr "Keskel"
-
 #, fuzzy
 msgid "min"
 msgstr "min"
-
-msgid "minute"
-msgstr "minut"
-
-msgid "minutes"
-msgstr "minutit"
 
 msgid "month"
 msgstr "kuu"
@@ -23137,13 +23093,6 @@ msgstr "puudub"
 
 msgid "nature/animals/environment"
 msgstr "loodus/loomad/keskkond"
-
-msgid "never"
-msgstr "Mitte kunagi"
-
-# Record neu 5.1
-msgid "never abort"
-msgstr "Mitte kunagi"
 
 msgid "new media"
 msgstr "uus meedia"
@@ -23290,13 +23239,6 @@ msgstr "koolieelikute saade"
 msgid "previous channel page"
 msgstr "Eelmine lehekülg"
 
-#, fuzzy
-msgid "previous/next Bouquet"
-msgstr "Eelmine/järgmine lehekülg"
-
-msgid "previous/next Page"
-msgstr "Eelmine/järgmine lehekülg"
-
 msgid "provid:"
 msgstr "levitaja:"
 
@@ -23309,22 +23251,6 @@ msgstr "Puhasta kustutatud lemmiknimekirjad"
 
 msgid "python"
 msgstr "python"
-
-# Record neu 5.1
-msgid "real or pseudo recordings"
-msgstr "Ehtsad või võltssalvestused"
-
-# Record neu 5.1
-msgid "real recordings"
-msgstr "Ehtsad salvestused"
-
-# Record neu 5.1
-msgid "real recordings or streaming"
-msgstr "Ehtsad salvestused või voogesitus"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "salvestuse aega muudeti, valmistumise aeg on nüüd  %s"
 
 msgid "red"
 msgstr "Punane"
@@ -23358,9 +23284,6 @@ msgstr "Eemalda lemmiknimekirja lukustus"
 
 msgid "remove cable services"
 msgstr "Eemalda kaabelvõrgu kanalid"
-
-msgid "Remove directory"
-msgstr "Kustuta kataloog"
 
 msgid "remove entry"
 msgstr "Eemalda"
@@ -23405,9 +23328,6 @@ msgstr "RGB"
 msgid "right"
 msgstr "Parem"
 
-msgid "right, wrapped"
-msgstr "Paremal, reamurdmisega"
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -23442,12 +23362,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "EPG otsing"
-
-msgid "seconds"
-msgstr "sekundit"
-
-msgid "select"
-msgstr "Vali"
 
 msgid "select CAId's"
 msgstr "Vali CAIDid"
@@ -23592,17 +23506,11 @@ msgstr "vaikimisi"
 msgid "start cut here"
 msgstr "Alusta lõiget siit"
 
-msgid "start recording"
-msgstr "Käivita salvestamine"
-
 msgid "step size"
 msgstr "Sammu suurus"
 
 msgid "stereo"
 msgstr "Stereo"
-
-msgid "stop recording"
-msgstr "Peata salvestamine"
 
 msgid "stop using as startup service"
 msgstr "Ära kasuta käivituskanalina"
@@ -23615,9 +23523,6 @@ msgstr "Vaheta 12 > 8 tähemärgi kuvamisele"
 
 msgid "switch Nand and SDcard"
 msgstr "Nand ja SD kaardi vahetus"
-
-msgid "Switch to bookmarks"
-msgstr "Ava järjehoidjad"
 
 msgid "switch to the next angle"
 msgstr "Vali järgmine vaatenurk"
@@ -23665,9 +23570,6 @@ msgstr "kataloogi"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "aja, salvestuse, heli, subtiitri info vahetamine"
-
-msgid "top"
-msgstr "üles"
 
 msgid "tourism/travel"
 msgstr "turism/reisimine"
@@ -23747,10 +23649,6 @@ msgstr "Uuendus"
 msgid "updates available."
 msgstr "uuendust saadaval."
 
-#, fuzzy
-msgid "upper line"
-msgstr "Üks rida"
-
 msgid "use best / controlled by HDMI"
 msgstr "kasuta parimat / HDMI juhitav"
 
@@ -23759,9 +23657,6 @@ msgstr "Kasuta tõstetud pinget '14 / 18V ', kui LNB lülitamisel on probleeme"
 
 msgid "use_hdmi_cacenter"
 msgstr ""
-
-msgid "user defined"
-msgstr "Kasutaja määratud"
 
 msgid "userdefined"
 msgstr "kasutaja määratud"
@@ -23802,9 +23697,6 @@ msgstr ""
 "\n"
 "Sulle saadeti koopia."
 
-msgid "white"
-msgstr "Valge"
-
 msgid "wide"
 msgstr "Lai"
 
@@ -23829,15 +23721,6 @@ msgstr[1] "ja %d viga"
 msgid "with errors"
 msgstr "vigadega"
 
-msgid "with exit button"
-msgstr "EXIT nupuga"
-
-msgid "with left/right buttons"
-msgstr "Vasak/parem nuppudega"
-
-msgid "with long OK press"
-msgstr "Pikal OK vajutusel"
-
 msgid "with_errors"
 msgstr "vigadega"
 
@@ -23858,8 +23741,172 @@ msgstr "Jah (säilita fiidid)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks enne %s %s taaskäivitamist."
 
-msgid "zapping"
-msgstr "Kanalivahetus"
-
 msgid "®"
 msgstr ""
+
+#, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Päev"
+msgstr[1] "%d Päeva"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minut"
+msgstr[1] "%d Minutit"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ tundi"
+
+#~ msgid "24- Hours"
+#~ msgstr "-24 tundi"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Autotaimer"
+
+#~ msgid "Hour"
+#~ msgstr "Tund"
+
+#~ msgid "Once per day"
+#~ msgstr "Kord päevas"
+
+#~ msgid "alphabetical"
+#~ msgstr "Tähestikuline"
+
+#~ msgid "alternative"
+#~ msgstr "alternatiivne"
+
+#~ msgid "user defined"
+#~ msgstr "Kasutaja määratud"
+
+#~ msgid "white"
+#~ msgstr "Valge"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Haakepunktis '%s' pole salvestamiseks piisavalt ruumi."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Taimerite fail (pm_timers.xml) on rikutud ja seda ei saa laadida."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Taimerite fail (timers.xml) on rikutud ja seda ei saa laadida."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Toitetaimerite ajad kattuvad!\n"
+#~ "Kontrolli ajad üle!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Taimerite ajad kattuvad!\n"
+#~ "Kontrolli ajad üle!"
+
+# Record neu 5.1
+#~ msgid "ask user"
+#~ msgstr "Küsitakse"
+
+#~ msgid "end zapping"
+#~ msgstr "lõpeta kanalivahetus"
+
+#~ msgid "menu"
+#~ msgstr "menüü"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "salvestuse aega muudeti, valmistumise aeg on nüüd  %s"
+
+#~ msgid "select"
+#~ msgstr "Vali"
+
+#~ msgid "start recording"
+#~ msgstr "Käivita salvestamine"
+
+#~ msgid "stop recording"
+#~ msgstr "Peata salvestamine"
+
+#~ msgid "zapping"
+#~ msgstr "Kanalivahetus"

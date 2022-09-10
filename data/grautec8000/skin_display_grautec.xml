@@ -150,7 +150,7 @@
 
 <!--MenuSummary-->
 <screen name="MenuSummary" position="0,0" size="400,240">
-	<widget source="parent.title" render="Label" position="2,35" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
+	<widget source="Title" render="Label" position="2,35" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,100" size="396,3" />
     <widget source="parent.menu" render="Label" position="2,115" size="396,100" font="LCD1;52" halign="center">
 		  <convert type="StringListSelection"/>
