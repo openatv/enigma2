@@ -30,7 +30,7 @@ BUTTON_SETUP_KEYS = [
 	(_("Blue"), "blue", ""),
 	(_("BLUE"), "blue_long", ""),
 	(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
-	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
+	(_("Info (EPG)"), "info_long", "Infobar/showEventInfoPlugins/1"),
 	(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
 	(_("Epg/Guide"), "epg_long", "Infobar/showEventGuidePlugins/1"),
 	(_("Left"), "cross_left", ""),
