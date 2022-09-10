@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -224,16 +224,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -356,7 +356,7 @@ msgstr "%2.1f Seconds"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -558,11 +558,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -608,19 +608,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -905,8 +905,22 @@ msgid_plural "%d Days"
 msgstr[0] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d giờ"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -915,6 +929,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -951,6 +969,20 @@ msgstr[0] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d pixel rộng"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d giây"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -967,19 +999,9 @@ msgid_plural "%d cores"
 msgstr[0] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d giờ"
 
 #, python-format
 msgid "%d kB"
@@ -988,11 +1010,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d phút"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d phút"
 
 #, python-format
 msgid "%d minutes"
@@ -1043,18 +1060,8 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d pixel rộng"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d giây"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d giây"
 
 #, python-format
 msgid "%d times"
@@ -1399,6 +1406,9 @@ msgstr "* hoạt hình hiện tại"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 #, fuzzy
 msgctxt "Text list separator"
 msgid ", "
@@ -1409,6 +1419,9 @@ msgstr ""
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h / + 24 giờ"
@@ -1428,35 +1441,8 @@ msgstr "/var thư mục"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 #, fuzzy
 msgid "1 hour"
@@ -1471,24 +1457,9 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 #, fuzzy
 msgid "10 minutes"
 msgstr "30 minutes"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1594,9 +1565,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "hết giờ Infobar"
 
@@ -1606,9 +1574,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 #, fuzzy
 msgid "2 hours"
 msgstr "24+ Hours"
@@ -1616,12 +1581,6 @@ msgstr "24+ Hours"
 #, fuzzy
 msgid "2 minutes"
 msgstr "5 phút"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1653,12 +1612,6 @@ msgstr "24"
 #, fuzzy
 msgid "24 hours"
 msgstr "24+ Hours"
-
-msgid "24+ Hours"
-msgstr "24+ Hours"
-
-msgid "24- Hours"
-msgstr "24 tiếng"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1718,9 +1671,6 @@ msgstr "Hiển thị thông tin về t điện tử trong infobar"
 msgid "2nd InfoBar timeout"
 msgstr "hết giờ Infobar lần 2"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1739,9 +1689,6 @@ msgstr "3"
 #, fuzzy
 msgid "3 hours"
 msgstr "%d giờ"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1779,17 +1726,11 @@ msgstr "Vòm 3D"
 msgid "3D Surround Speaker Position"
 msgstr "Vị trí loa vòm 3D"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 #, fuzzy
 msgid "4 hours"
@@ -1819,9 +1760,6 @@ msgstr "Quét 4: 3 Pan"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr ""
 
@@ -1834,9 +1772,6 @@ msgstr "%d giờ"
 
 msgid "5 minutes"
 msgstr "5 phút"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1855,9 +1790,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1911,9 +1843,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 ký tự"
@@ -2840,6 +2769,9 @@ msgstr "Nghệ thuật / Văn hóa"
 msgid "Aruba"
 msgstr "Argentina"
 
+msgid "As plugin in extended bar"
+msgstr "như plugin trong thanh mở rộng"
+
 msgid "Ask user"
 msgstr "Hỏi người dùng"
 
@@ -2882,6 +2814,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "khi bắt đầu"
+
+msgid "At end"
+msgstr "cuối cùng"
 
 msgid "At end of current program"
 msgstr ""
@@ -2990,9 +2928,6 @@ msgstr "Chế độ tự động được chọn."
 msgid "Auto SCART switching"
 msgstr "Tự động chuyển mạch"
 
-msgid "Auto Timer"
-msgstr "Hẹn giờ tự động"
-
 msgid "Auto Timers"
 msgstr "Hẹn giờ tự động"
 
@@ -3028,6 +2963,9 @@ msgstr "Tự động (không khả dụng)"
 
 msgid "AutoMountManager"
 msgstr "Trình quản lý tự động"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Cập nhật tự động"
@@ -3474,6 +3412,9 @@ msgstr "Tiếng Estonia"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "dưới cùng"
 
 msgid "Bouquet List"
 msgstr "Thêm gói kênh"
@@ -4049,6 +3990,15 @@ msgstr "Quần đảo Cayman"
 
 msgid "Celsius"
 msgstr "Độ"
+
+msgid "Center"
+msgstr "trung tâm"
+
+msgid "Centered"
+msgstr "trung tâm"
+
+msgid "Centered, wrapped"
+msgstr "trung tâm, bao bọc"
 
 msgid "Central African Republic"
 msgstr "Cộng hòa trung phi"
@@ -8560,6 +8510,9 @@ msgstr "Giờ nguyên thủy"
 msgid "Goto X"
 msgstr "Đi X"
 
+msgid "Goto deep standby"
+msgstr "đến chế độ - chờ"
+
 msgid "Goto next bouquet"
 msgstr "Tới gói kênh tiếp theo"
 
@@ -8583,6 +8536,9 @@ msgstr "Sự kiện trước đó"
 
 msgid "Goto specific date/time"
 msgstr "Dữ liệu cụ thể / thời gian"
+
+msgid "Goto standby"
+msgstr "đi đến chế độ chờ"
 
 msgid "GotoX calibration"
 msgstr "Hiệu chuẩn GotoX"
@@ -9001,9 +8957,6 @@ msgstr "Phím nóng"
 
 msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
-
-msgid "Hour"
-msgstr "Giờ"
 
 msgid "Hourly"
 msgstr "Hàng giờ"
@@ -9842,6 +9795,9 @@ msgstr "chỉ cần hủy bỏ, không có tin nhắn"
 msgid "Just abort, show message"
 msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
 
+msgid "Just boot"
+msgstr "chỉ khởi động"
+
 msgid "Just change Bouquet"
 msgstr "Chỉ cần thay đổi Gói kênh"
 
@@ -10126,6 +10082,9 @@ msgstr "Còn lại từ tên dịch vụ"
 
 msgid "Left long"
 msgstr "Còn lại dài"
+
+msgid "Left, wrapped"
+msgstr "trái, bọc"
 
 msgid "Leisure hobbies"
 msgstr "Sở thích giải trí"
@@ -10809,6 +10768,9 @@ msgstr "Mexico"
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia (Liên bang)"
 
+msgid "Middle"
+msgstr "ở giữa"
+
 msgid "Middle - Lite image"
 msgstr ""
 
@@ -10846,6 +10808,12 @@ msgstr "Khoảng thời gian gửi tối thiểu"
 
 msgid "Mins"
 msgstr "Phút"
+
+msgid "Minute"
+msgstr "phút"
+
+msgid "Minutes"
+msgstr "phút"
 
 msgid "Minutes Seconds"
 msgstr "Giây giây"
@@ -11503,6 +11471,9 @@ msgstr "Thuật sĩ mạng"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
 
+msgid "Never"
+msgstr "không bao giờ"
+
 msgid "Never abort"
 msgstr "không bao giờ"
 
@@ -12125,9 +12096,6 @@ msgstr "Trên các ONID hợp lệ, bỏ qua phần mạng phụ tần số"
 
 msgid "Once"
 msgstr "một lần"
-
-msgid "Once per day"
-msgstr "Một lần một ngày"
 
 msgid "One"
 msgstr "Một"
@@ -13279,9 +13247,6 @@ msgstr "Thời gian quyền lực"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "Thời gian chờ quyền lực"
-
 msgid "PowerTimer Overview"
 msgstr "Tổng quan về PowerTimer"
 
@@ -13290,6 +13255,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Chế độ chờ PowerTimer"
+
+msgid "PowerTimer deep standby"
+msgstr "Thời gian chờ quyền lực"
 
 msgid "PowerTimer log"
 msgstr "Nhật ký PowerManager"
@@ -13454,6 +13422,13 @@ msgstr "Tới gói kênh trước"
 #, fuzzy
 msgid "Previous page"
 msgstr "Trước"
+
+#, fuzzy
+msgid "Previous/Next bouquet"
+msgstr "trang trước / trang tiếp theo"
+
+msgid "Previous/Next page"
+msgstr "trang trước / trang tiếp theo"
 
 msgid "Prevsong"
 msgstr "Trước"
@@ -14604,6 +14579,9 @@ msgstr "Ngay từ tên dịch vụ"
 msgid "Right long"
 msgstr "Phải dài"
 
+msgid "Right, wrapped"
+msgstr "phải, bọc"
+
 msgid "Roll-off"
 msgstr "Lăn khỏi"
 
@@ -15128,6 +15106,9 @@ msgstr "Cáp thứ hai của LNB cơ giới"
 
 msgid "Secondary DNS"
 msgstr "DNS phụ"
+
+msgid "Seconds"
+msgstr "giây"
 
 msgid "Security"
 msgstr "bảo vệ"
@@ -19608,6 +19589,9 @@ msgstr "Chế độ tone"
 msgid "Tonga"
 msgstr "Lưỡi"
 
+msgid "Top"
+msgstr "hàng đầu"
+
 msgid "Top and Bottom"
 msgstr "Trên và dưới"
 
@@ -20217,6 +20201,10 @@ msgstr "USB trên"
 
 msgid "Upper case"
 msgstr "Hồ sơ ở trên"
+
+#, fuzzy
+msgid "Upper line"
+msgstr "Một dòng"
 
 msgid "Uptime"
 msgstr "Thời gian hoạt động"
@@ -21348,11 +21336,20 @@ msgstr "Thiết lập kết nối mạng không dây."
 msgid "Wireless network state"
 msgstr "Trạng thái mạng không dây"
 
+msgid "With EXIT button"
+msgstr "với nút thoát"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "với các nút trái / phải"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Với chế độ RAW T2MI bị tắt (mặc định), chúng ta có thể sử dụng khử đóng gói PLMI T2MI duy nhất. Với chế độ RAW T2MI được bật, chúng tôi có thể sử dụng astra-sm để phân tích T2MI"
 
 msgid "With errors:"
 msgstr "Có lỗi:"
+
+msgid "With long OK press"
+msgstr "nhấn OK lâu"
 
 msgid "With pop up"
 msgstr "Với cửa sổ bật lên"
@@ -22110,14 +22107,8 @@ msgstr "bảng chữ cái"
 msgid "alphabetic reverse"
 msgstr "bảng chữ cái ngược"
 
-msgid "alphabetical"
-msgstr "bảng chữ cái"
-
 msgid "alpharev then newest"
 msgstr "alpharev sau đó mới nhất"
-
-msgid "alternative"
-msgstr "thay thế"
 
 msgid "am"
 msgstr "am"
@@ -22144,15 +22135,6 @@ msgstr "nghệ thuật / văn hóa (không có âm nhạc, nói chung)"
 
 msgid "arts/culture magazine"
 msgstr "tạp chí văn hóa nghệ thuật"
-
-msgid "As plugin in extended bar"
-msgstr "như plugin trong thanh mở rộng"
-
-msgid "At beginning"
-msgstr "khi bắt đầu"
-
-msgid "At end"
-msgstr "cuối cùng"
 
 msgid "athletics"
 msgstr "điền kinh"
@@ -22205,9 +22187,6 @@ msgstr "danh sách đen"
 msgid "blue"
 msgstr "màu xanh da trời"
 
-msgid "Bottom"
-msgstr "dưới cùng"
-
 msgid "broadcasting/press"
 msgstr "phát thanh / báo chí"
 
@@ -22235,15 +22214,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "phim hoạt hình / con rối"
-
-msgid "Center"
-msgstr "trung tâm"
-
-msgid "Centered"
-msgstr "trung tâm"
-
-msgid "Centered, wrapped"
-msgstr "trung tâm, bao bọc"
 
 msgid "change Volume down"
 msgstr "thay đổi Giảm âm lượng"
@@ -22569,9 +22539,6 @@ msgstr "lấy máy chủ của thẻ"
 msgid "goto current channel and now"
 msgstr "đến kênh hiện tại và bây giờ"
 
-msgid "Goto deep standby"
-msgstr "đến chế độ - chờ"
-
 msgid "goto first channel"
 msgstr "đến kênh đầu tiên"
 
@@ -22580,9 +22547,6 @@ msgstr "đến kênh cuối cùng"
 
 msgid "goto now"
 msgstr "đến bây giờ"
-
-msgid "Goto standby"
-msgstr "đi đến chế độ chờ"
 
 msgid "grab this frame as bitmap"
 msgstr "lấy khung này làm bitmap"
@@ -22708,9 +22672,6 @@ msgstr "nhảy tới tiêu đề tiếp theo"
 msgid "jump to chapter by number"
 msgstr "nhảy đến chương theo số"
 
-msgid "Just boot"
-msgstr "chỉ khởi động"
-
 msgid "languages"
 msgstr "ngôn ngữ"
 
@@ -22720,9 +22681,6 @@ msgstr "rời khỏi máy nghe nhạc ..."
 
 msgid "left"
 msgstr "trái"
-
-msgid "Left, wrapped"
-msgstr "trái, bọc"
 
 msgid "leisure hobbies (general)"
 msgstr "sở thích giải trí (chung)"
@@ -22760,17 +22718,8 @@ msgstr "võ thuật"
 msgid "medicine/physiology/psychology"
 msgstr "y học / sinh lý / tâm lý"
 
-msgid "Middle"
-msgstr "ở giữa"
-
 #, fuzzy
 msgid "min"
-msgstr "phút"
-
-msgid "Minute"
-msgstr "phút"
-
-msgid "Minutes"
 msgstr "phút"
 
 msgid "month"
@@ -22831,9 +22780,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "thiên nhiên / động vật / môi trường"
-
-msgid "Never"
-msgstr "không bao giờ"
 
 msgid "new media"
 msgstr "phương tiện truyền thông mới"
@@ -22980,13 +22926,6 @@ msgstr "chương trình trẻ em"
 msgid "previous channel page"
 msgstr "trang kênh trước"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "trang trước / trang tiếp theo"
-
-msgid "Previous/Next page"
-msgstr "trang trước / trang tiếp theo"
-
 msgid "provid:"
 msgstr "cung cấp:"
 
@@ -23074,9 +23013,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "phải"
 
-msgid "Right, wrapped"
-msgstr "phải, bọc"
-
 msgid "rock/pop"
 msgstr "nhạc rock / pop"
 
@@ -23111,9 +23047,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "tìm kiếm EPG ..."
-
-msgid "Seconds"
-msgstr "giây"
 
 msgid "select CAId's"
 msgstr "chọn CAId"
@@ -23322,9 +23255,6 @@ msgstr "chỉ đạo"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "chuyển thời gian, chương, âm thanh, thông tin phụ đề"
 
-msgid "Top"
-msgstr "hàng đầu"
-
 msgid "tourism/travel"
 msgstr "du lịch / du lịch"
 
@@ -23403,10 +23333,6 @@ msgstr "cập nhật"
 msgid "updates available."
 msgstr "cập nhật có sẵn."
 
-#, fuzzy
-msgid "Upper line"
-msgstr "Một dòng"
-
 msgid "use best / controlled by HDMI"
 msgstr "sử dụng tốt nhất / được kiểm soát bởi HDMI"
 
@@ -23415,9 +23341,6 @@ msgstr "sử dụng điện áp tăng '14 / 18V 'nếu có vấn đề khi chuy�
 
 msgid "use_hdmi_cacenter"
 msgstr "sử dụng_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "đã xác định người dùng"
 
 msgid "userdefined"
 msgstr "đã xác định người dùng"
@@ -23458,9 +23381,6 @@ msgstr ""
 "\n"
 "Một bản sao đã được gửi cho chính bạn."
 
-msgid "white"
-msgstr "trắng"
-
 msgid "wide"
 msgstr "rộng"
 
@@ -23484,15 +23404,6 @@ msgstr[0] "với lỗi %d"
 msgid "with errors"
 msgstr "có lỗi"
 
-msgid "With EXIT button"
-msgstr "với nút thoát"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "với các nút trái / phải"
-
-msgid "With long OK press"
-msgstr "nhấn OK lâu"
-
 msgid "with_errors"
 msgstr "có -lỗi"
 
@@ -23514,6 +23425,116 @@ msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d phút"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Hours"
+
+#~ msgid "24- Hours"
+#~ msgstr "24 tiếng"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Hẹn giờ tự động"
+
+#~ msgid "Hour"
+#~ msgstr "Giờ"
+
+#~ msgid "Once per day"
+#~ msgstr "Một lần một ngày"
+
+#~ msgid "alphabetical"
+#~ msgstr "bảng chữ cái"
+
+#~ msgid "alternative"
+#~ msgstr "thay thế"
+
+#~ msgid "user defined"
+#~ msgstr "đã xác định người dùng"
+
+#~ msgid "white"
+#~ msgstr "trắng"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

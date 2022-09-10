@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-09-08 19:39+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -222,16 +222,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -350,7 +350,7 @@ msgstr "%2.1f сек"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -540,11 +540,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -590,19 +590,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -879,8 +879,26 @@ msgstr[1] "%d дней"
 msgstr[2] "%d дня"
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d Гб"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d час"
+msgstr[1] "%d часа"
+msgstr[2] "%d часов"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -889,6 +907,10 @@ msgstr "%d Кб"
 #, python-format
 msgid "%d MB"
 msgstr "%d Мб"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -929,6 +951,24 @@ msgstr[2] "%d минуты"
 msgid "%d Minutes"
 msgstr "%d минут"
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "Ширина %d пиксель"
+msgstr[1] "Ширина %d пикселя"
+msgstr[2] "Ширина %d пикселей"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунды"
+msgstr[2] "%d секунд"
+
 #, python-format
 msgid "%d Seconds"
 msgstr "%d секунд"
@@ -949,25 +989,11 @@ msgstr[1] "%d ядер"
 msgstr[2] "%d ядра"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d день"
-msgstr[1] "%d дня"
-msgstr[2] "%d дней"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "Пакет каталога каналов %d обновлён."
 msgstr[1] "Обновлено %d пакетов каталога каналов."
 msgstr[2] "Обновлено %d пакетов каталога каналов."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d час"
-msgstr[1] "%d часа"
-msgstr[2] "%d часов"
 
 #, python-format
 msgid "%d kB"
@@ -976,13 +1002,6 @@ msgstr "%d КБ"
 #, python-format
 msgid "%d min"
 msgstr "%d минут"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d минута"
-msgstr[1] "%d минуты"
-msgstr[2] "%d минут"
 
 #, python-format
 msgid "%d minutes"
@@ -1049,22 +1068,8 @@ msgstr[1] "%d пакетов обновлено."
 msgstr[2] "%d пакетов обновлено."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "Ширина %d пиксель"
-msgstr[1] "Ширина %d пикселя"
-msgstr[2] "Ширина %d пикселей"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d секунда"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунды"
-msgstr[2] "%d секунд"
 
 #, python-format
 msgid "%d times"
@@ -1404,6 +1409,9 @@ msgstr "* Текущая анимация"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1413,6 +1421,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24 часа/+24 часа"
@@ -1432,35 +1443,8 @@ msgstr "Каталог /var"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2с"
-
-msgid "0.3s"
-msgstr "0.3с"
-
-msgid "0.4s"
-msgstr "0.4с"
-
-msgid "0.5s"
-msgstr "0.5с"
-
-msgid "0.6s"
-msgstr "0.6с"
-
-msgid "0.7s"
-msgstr "0.7с"
-
-msgid "0.8s"
-msgstr "0.8с"
-
-msgid "0.9s"
-msgstr "0.9с"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 Гб"
 
 msgid "1 hour"
 msgstr "1 час"
@@ -1474,23 +1458,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2с"
-
-msgid "1.5s"
-msgstr "1.5с"
-
-msgid "1.7s"
-msgstr "1.7с"
-
-msgid "10 MB/s"
-msgstr "10 МБ / с"
-
 msgid "10 minutes"
 msgstr "10 минут"
-
-msgid "100 MB/s"
-msgstr "100 МБ/с"
 
 msgid "1024 Mb"
 msgstr "1024 Мб"
@@ -1594,9 +1563,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 В"
 
-msgid "1s"
-msgstr "1с"
-
 msgid "1st InfoBar timeout"
 msgstr "Задержка первого инфобара"
 
@@ -1606,20 +1572,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 Гб"
-
 msgid "2 hours"
 msgstr "2 часа"
 
 msgid "2 minutes"
 msgstr "2 минуты"
-
-msgid "2.5s"
-msgstr "2.5с"
-
-msgid "20 MB/s"
-msgstr "20 МБ/с"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1650,12 +1607,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 часа"
-
-msgid "24+ Hours"
-msgstr "+24 часа"
-
-msgid "24- Hours"
-msgstr "-24 часа"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1714,9 +1665,6 @@ msgstr "Информация на втором инфобаре"
 msgid "2nd InfoBar timeout"
 msgstr "Задержка второго инфобара"
 
-msgid "2s"
-msgstr "2с"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1734,9 +1682,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 часа"
-
-msgid "3.5s"
-msgstr "3.5с"
 
 msgid "30"
 msgstr "30"
@@ -1774,17 +1719,11 @@ msgstr "Объёмный звук 3D"
 msgid "3D Surround Speaker Position"
 msgstr "Положение динамиков объмного звука 3D"
 
-msgid "3s"
-msgstr "3с"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 Гб"
 
 msgid "4 hours"
 msgstr "4 часа"
@@ -1813,9 +1752,6 @@ msgstr "4:3 панорама"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4с"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1827,9 +1763,6 @@ msgstr "5 часов"
 
 msgid "5 minutes"
 msgstr "5 минут"
-
-msgid "50 MB/s"
-msgstr "50 МБ/с"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1848,9 +1781,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Гб"
-
-msgid "5s"
-msgstr "5с"
 
 msgid "6"
 msgstr "6"
@@ -1902,9 +1832,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 Гб"
 
 msgid "8 character"
 msgstr "8 символов"
@@ -2815,6 +2742,9 @@ msgstr "Искусство/Культура"
 msgid "Aruba"
 msgstr "Аруба"
 
+msgid "As plugin in extended bar"
+msgstr "Как плагин в меню расширений"
+
 msgid "Ask user"
 msgstr "Спросить пользователя"
 
@@ -2856,6 +2786,12 @@ msgstr "Astra 2 28.2E"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5E"
+
+msgid "At beginning"
+msgstr "В начале"
+
+msgid "At end"
+msgstr "В конце"
 
 msgid "At end of current program"
 msgstr "В конце текущей программы"
@@ -2961,9 +2897,6 @@ msgstr "Выбраны автоматические режимы."
 msgid "Auto SCART switching"
 msgstr "Автопереключение SCART"
 
-msgid "Auto Timer"
-msgstr "Авто таймер"
-
 msgid "Auto Timers"
 msgstr "Автотаймеры"
 
@@ -2999,6 +2932,9 @@ msgstr "Авто (Не доступен)"
 
 msgid "AutoMountManager"
 msgstr "Установки автомонтирования"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Автоматическое обновление"
@@ -3439,6 +3375,9 @@ msgstr "Боснийский"
 
 msgid "Botswana"
 msgstr "Ботсвана"
+
+msgid "Bottom"
+msgstr "Вниз"
 
 msgid "Bouquet List"
 msgstr "Список фаворитов"
@@ -4016,6 +3955,15 @@ msgstr "Каймановы острова"
 
 msgid "Celsius"
 msgstr "Цельсий"
+
+msgid "Center"
+msgstr "Центр"
+
+msgid "Centered"
+msgstr "По центру"
+
+msgid "Centered, wrapped"
+msgstr "По центру, свёрнуто"
 
 msgid "Central African Republic"
 msgstr "Центрально-Африканская Республика"
@@ -8451,6 +8399,9 @@ msgstr "Перейти в прайм-тайм"
 msgid "Goto X"
 msgstr "Переход на позицию Х"
 
+msgid "Goto deep standby"
+msgstr "Выключить"
+
 msgid "Goto next bouquet"
 msgstr "Перейти на следующий фаворит"
 
@@ -8474,6 +8425,9 @@ msgstr "Перейти на пред событие"
 
 msgid "Goto specific date/time"
 msgstr "Перейти к указанной дате/времени"
+
+msgid "Goto standby"
+msgstr "Переход в режим ожидания"
 
 msgid "GotoX calibration"
 msgstr "Калибровка позиции Х"
@@ -8882,9 +8836,6 @@ msgstr "Горячие кнопки"
 
 msgid "Hotkey Settings"
 msgstr "Горячие кнопки"
-
-msgid "Hour"
-msgstr "Час"
 
 msgid "Hourly"
 msgstr "Ежечасно"
@@ -9712,6 +9663,9 @@ msgstr "Отменить, сообщение не показывать"
 msgid "Just abort, show message"
 msgstr "Отменить, показать сообщение"
 
+msgid "Just boot"
+msgstr "Только запустить"
+
 msgid "Just change Bouquet"
 msgstr "Только изменить фаворит"
 
@@ -9987,6 +9941,9 @@ msgstr "Перед названием канала"
 
 msgid "Left long"
 msgstr "Левый долгий"
+
+msgid "Left, wrapped"
+msgstr "Cлева, свёрнуто"
 
 msgid "Leisure hobbies"
 msgstr "Отдых, хобби"
@@ -10647,6 +10604,9 @@ msgstr "Мексика"
 msgid "Micronesia, Federated States of"
 msgstr "Микронезия (Федеративные Штаты)"
 
+msgid "Middle"
+msgstr "Посередине"
+
 msgid "Middle - Lite image"
 msgstr "Средне-облегчённый имидж"
 
@@ -10683,6 +10643,12 @@ msgstr "Минимальный интервал отправки"
 
 msgid "Mins"
 msgstr "Минуты"
+
+msgid "Minute"
+msgstr "Минута"
+
+msgid "Minutes"
+msgstr "Минут"
 
 msgid "Minutes Seconds"
 msgstr "Минуты Секунды"
@@ -11309,6 +11275,9 @@ msgstr "Мастер настройки сети"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
 
+msgid "Never"
+msgstr "Никогда"
+
 msgid "Never abort"
 msgstr "Никогда не прерывать"
 
@@ -11917,9 +11886,6 @@ msgstr "При наличии действительных идентифика�
 
 msgid "Once"
 msgstr "Один раз"
-
-msgid "Once per day"
-msgstr "Один раз в день"
 
 msgid "One"
 msgstr "Один"
@@ -13056,9 +13022,6 @@ msgstr "Таймер питания"
 msgid "PowerTimer Actions"
 msgstr "Действия PowerTimer"
 
-msgid "PowerTimer deep standby"
-msgstr "Таймер питания в 'Глубокий сон'"
-
 msgid "PowerTimer Overview"
 msgstr "Просмотр таймеров питания"
 
@@ -13067,6 +13030,9 @@ msgstr "Настройки PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Таймер питания в 'Режим ожидания'"
+
+msgid "PowerTimer deep standby"
+msgstr "Таймер питания в 'Глубокий сон'"
 
 msgid "PowerTimer log"
 msgstr "Лог таймеров питания"
@@ -13228,6 +13194,12 @@ msgstr "Перейти на предыдущий фаворит"
 
 msgid "Previous page"
 msgstr "Предыдущая страница"
+
+msgid "Previous/Next bouquet"
+msgstr "предыдущий/следующий фаворит"
+
+msgid "Previous/Next page"
+msgstr "предыдущая/следующая страница"
 
 msgid "Prevsong"
 msgstr "Предыдущий"
@@ -14360,6 +14332,9 @@ msgstr "После названия канала"
 msgid "Right long"
 msgstr "Правый длинный"
 
+msgid "Right, wrapped"
+msgstr "Справа, свёрнуто"
+
 msgid "Roll-off"
 msgstr "Roll-off фактор"
 
@@ -14878,6 +14853,9 @@ msgstr "Второй кабель от позиционера"
 
 msgid "Secondary DNS"
 msgstr "Вторичный DNS"
+
+msgid "Seconds"
+msgstr "Секунд"
 
 msgid "Security"
 msgstr "Безопасность"
@@ -19297,6 +19275,9 @@ msgstr "Тоновый режим"
 msgid "Tonga"
 msgstr "Тонга"
 
+msgid "Top"
+msgstr "Вверх"
+
 msgid "Top and Bottom"
 msgstr "Вертикально"
 
@@ -19895,6 +19876,9 @@ msgstr "USB сверху"
 
 msgid "Upper case"
 msgstr "ЗАГЛАВНЫЕ"
+
+msgid "Upper line"
+msgstr "верхняя строка"
 
 msgid "Uptime"
 msgstr "Время работы"
@@ -21035,11 +21019,20 @@ msgstr "Настройка подключения к беспроводной с
 msgid "Wireless network state"
 msgstr "Состояние беспроводной сети"
 
+msgid "With EXIT button"
+msgstr "Кнопкой Exit"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "Кнопками ВЛЕВО/ВПРАВО"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Когда режим T2MI RAW отключен (по умолчанию), мы можем использовать одиночную деинкапсуляцию T2MI PLP. При включенном режиме T2MI RAW мы можем использовать astra-sm для анализа T2MI"
 
 msgid "With errors:"
 msgstr "Ошибка записи:"
+
+msgid "With long OK press"
+msgstr "долгим нажатием ОК"
 
 msgid "With pop up"
 msgstr "С показом сообщения"
@@ -21794,14 +21787,8 @@ msgstr "По алфавиту"
 msgid "alphabetic reverse"
 msgstr "По обратному алфавиту"
 
-msgid "alphabetical"
-msgstr "по алфавиту"
-
 msgid "alpharev then newest"
 msgstr "Алфавит в обратном порядке"
-
-msgid "alternative"
-msgstr "Альтернативный цвет"
 
 msgid "am"
 msgstr "До полудня"
@@ -21827,15 +21814,6 @@ msgstr "Искусство/Культура (Без музыки, общее)"
 
 msgid "arts/culture magazine"
 msgstr "журнал об искусстве/культуре"
-
-msgid "As plugin in extended bar"
-msgstr "Как плагин в меню расширений"
-
-msgid "At beginning"
-msgstr "В начале"
-
-msgid "At end"
-msgstr "В конце"
 
 msgid "athletics"
 msgstr "Атлетика"
@@ -21888,9 +21866,6 @@ msgstr "Чёрный список"
 msgid "blue"
 msgstr "Синий"
 
-msgid "Bottom"
-msgstr "Вниз"
-
 msgid "broadcasting/press"
 msgstr "Телерадиовещание/Пресса"
 
@@ -21918,15 +21893,6 @@ msgstr "кардсервер"
 
 msgid "cartoon/puppets"
 msgstr "Мультфильм/Марионетки"
-
-msgid "Center"
-msgstr "Центр"
-
-msgid "Centered"
-msgstr "По центру"
-
-msgid "Centered, wrapped"
-msgstr "По центру, свёрнуто"
 
 msgid "change Volume down"
 msgstr "Повысить звук"
@@ -22244,9 +22210,6 @@ msgstr "Шаринг сервер"
 msgid "goto current channel and now"
 msgstr "перейдите на текущий канал и сейчас"
 
-msgid "Goto deep standby"
-msgstr "Выключить"
-
 msgid "goto first channel"
 msgstr "перейти на первый канал"
 
@@ -22255,9 +22218,6 @@ msgstr "перейти на последний канал"
 
 msgid "goto now"
 msgstr "перейти сейчас"
-
-msgid "Goto standby"
-msgstr "Переход в режим ожидания"
 
 msgid "grab this frame as bitmap"
 msgstr "Фрейм в растровое изображение"
@@ -22380,9 +22340,6 @@ msgstr "Перейти к следующему названию"
 msgid "jump to chapter by number"
 msgstr "Перейти к главе по номеру"
 
-msgid "Just boot"
-msgstr "Только запустить"
-
 msgid "languages"
 msgstr "Языки"
 
@@ -22391,9 +22348,6 @@ msgstr "Выйти из проигрывателя"
 
 msgid "left"
 msgstr "Левый"
-
-msgid "Left, wrapped"
-msgstr "Cлева, свёрнуто"
 
 msgid "leisure hobbies (general)"
 msgstr "Развлечения (Хобби)"
@@ -22431,17 +22385,8 @@ msgstr "Единоборства"
 msgid "medicine/physiology/psychology"
 msgstr "Медицина/Физиология/Психология"
 
-msgid "Middle"
-msgstr "Посередине"
-
 msgid "min"
 msgstr "Мин"
-
-msgid "Minute"
-msgstr "Минута"
-
-msgid "Minutes"
-msgstr "Минут"
 
 msgid "month"
 msgstr "Месяц"
@@ -22499,9 +22444,6 @@ msgstr "Недоступно"
 
 msgid "nature/animals/environment"
 msgstr "Природа/Животные/Окружающая среда"
-
-msgid "Never"
-msgstr "Никогда"
 
 msgid "new media"
 msgstr "Новые СМИ"
@@ -22647,12 +22589,6 @@ msgstr "Программы для дошкольников"
 msgid "previous channel page"
 msgstr "предыдущая страница канала"
 
-msgid "Previous/Next bouquet"
-msgstr "предыдущий/следующий фаворит"
-
-msgid "Previous/Next page"
-msgstr "предыдущая/следующая страница"
-
 msgid "provid:"
 msgstr "Провайдер:"
 
@@ -22740,9 +22676,6 @@ msgstr "RGB"
 msgid "right"
 msgstr "Правый"
 
-msgid "Right, wrapped"
-msgstr "Справа, свёрнуто"
-
 msgid "rock/pop"
 msgstr "Рок/Поп"
 
@@ -22777,9 +22710,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "Поиск по ТВ-гиду..."
-
-msgid "Seconds"
-msgstr "Секунд"
 
 msgid "select CAId's"
 msgstr "Выбрать CAID"
@@ -22985,9 +22915,6 @@ msgstr "к dir"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Время переключения, разделы, аудио, информация субтитров"
 
-msgid "Top"
-msgstr "Вверх"
-
 msgid "tourism/travel"
 msgstr "Туризм"
 
@@ -23066,9 +22993,6 @@ msgstr "обновление"
 msgid "updates available."
 msgstr "обновлений доступно."
 
-msgid "Upper line"
-msgstr "верхняя строка"
-
 msgid "use best / controlled by HDMI"
 msgstr "Использовать наилучшее/Управление по HDMI"
 
@@ -23077,9 +23001,6 @@ msgstr "Используйте повышенное напряжение '14 / 1
 
 msgid "use_hdmi_cacenter"
 msgstr "использовать центр hdmi"
-
-msgid "user defined"
-msgstr "Определено пользователем"
 
 msgid "userdefined"
 msgstr "определено пользователем"
@@ -23120,9 +23041,6 @@ msgstr ""
 "\n"
 "Копия будет отправлена."
 
-msgid "white"
-msgstr "Белый"
-
 msgid "wide"
 msgstr "Широкоугольно"
 
@@ -23148,15 +23066,6 @@ msgstr[2] "С %d ошибками"
 msgid "with errors"
 msgstr "с ошибками"
 
-msgid "With EXIT button"
-msgstr "Кнопкой Exit"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "Кнопками ВЛЕВО/ВПРАВО"
-
-msgid "With long OK press"
-msgstr "долгим нажатием ОК"
-
 msgid "with_errors"
 msgstr "с ошибками"
 
@@ -23178,6 +23087,125 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d день"
+#~ msgstr[1] "%d дня"
+#~ msgstr[2] "%d дней"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d минута"
+#~ msgstr[1] "%d минуты"
+#~ msgstr[2] "%d минут"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2с"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3с"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4с"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5с"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6с"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7с"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8с"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9с"
+
+#~ msgid "1 GB"
+#~ msgstr "1 Гб"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2с"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5с"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7с"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 МБ / с"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 МБ/с"
+
+#~ msgid "1s"
+#~ msgstr "1с"
+
+#~ msgid "2 GB"
+#~ msgstr "2 Гб"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5с"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 МБ/с"
+
+#~ msgid "24+ Hours"
+#~ msgstr "+24 часа"
+
+#~ msgid "24- Hours"
+#~ msgstr "-24 часа"
+
+#~ msgid "2s"
+#~ msgstr "2с"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5с"
+
+#~ msgid "3s"
+#~ msgstr "3с"
+
+#~ msgid "4 GB"
+#~ msgstr "4 Гб"
+
+#~ msgid "4s"
+#~ msgstr "4с"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 МБ/с"
+
+#~ msgid "5s"
+#~ msgstr "5с"
+
+#~ msgid "8 GB"
+#~ msgstr "8 Гб"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Авто таймер"
+
+#~ msgid "Hour"
+#~ msgstr "Час"
+
+#~ msgid "Once per day"
+#~ msgstr "Один раз в день"
+
+#~ msgid "alphabetical"
+#~ msgstr "по алфавиту"
+
+#~ msgid "alternative"
+#~ msgstr "Альтернативный цвет"
+
+#~ msgid "user defined"
+#~ msgstr "Определено пользователем"
+
+#~ msgid "white"
+#~ msgstr "Белый"
 
 #~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 #~ msgstr "'Дескремблирование и запись ECM' даёт возможность последующего дескремблирования, если дескремблирование при записи не удалось. 'Не дескремблировать, записывать ECM' сохраняет закодированную запись, которую можно дескремблировать при воспроизведении. 'Нормальный' означает дескремблировать запись и не записывать ECM."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -220,16 +220,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -352,7 +352,7 @@ msgstr "%2.1f δευτ."
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -554,11 +554,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -604,19 +604,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -904,8 +904,24 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d ώρα"
+msgstr[1] "%d ώρες"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -914,6 +930,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -952,6 +972,22 @@ msgstr[1] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d πλάτος σε πίξελ"
+msgstr[1] "%d πλάτος σε πίξελ"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d δευτερόλεπτο"
+msgstr[1] "%d δευτερόλεπτα"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -970,22 +1006,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d ημέρα"
-msgstr[1] "%d ημέρες"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d ώρα"
-msgstr[1] "%d ώρες"
 
 #, python-format
 msgid "%d kB"
@@ -994,12 +1018,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d λεπτά"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d λεπτό"
-msgstr[1] "%d λεπτά"
 
 #, python-format
 msgid "%d minutes"
@@ -1058,20 +1076,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d πλάτος σε πίξελ"
-msgstr[1] "%d πλάτος σε πίξελ"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d δευτερόλεπτο"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d δευτερόλεπτο"
-msgstr[1] "%d δευτερόλεπτα"
 
 #, python-format
 msgid "%d times"
@@ -1417,6 +1423,9 @@ msgstr "* τρέχον κινούμενο γραφικό"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 #, fuzzy
 msgctxt "Text list separator"
 msgid ", "
@@ -1427,6 +1436,9 @@ msgstr ""
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Ώρες"
@@ -1446,35 +1458,8 @@ msgstr "φάκελος /var"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2δ"
-
-msgid "0.3s"
-msgstr "0.3δ"
-
-msgid "0.4s"
-msgstr "0.4δ"
-
-msgid "0.5s"
-msgstr "0.5δ"
-
-msgid "0.6s"
-msgstr "0.6δ"
-
-msgid "0.7s"
-msgstr "0.7δ"
-
-msgid "0.8s"
-msgstr "0.8δ"
-
-msgid "0.9s"
-msgstr "0.9δ"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 ώρα"
@@ -1488,23 +1473,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2δ"
-
-msgid "1.5s"
-msgstr "1.5δ"
-
-msgid "1.7s"
-msgstr "1.7δ"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 λεπτά"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1608,9 +1578,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1δ"
-
 msgid "1st InfoBar timeout"
 msgstr "Χρόνος λήξης 1ης μπάρας πληροφοριών"
 
@@ -1620,20 +1587,11 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 ώρες"
 
 msgid "2 minutes"
 msgstr "2 λεπτά"
-
-msgid "2.5s"
-msgstr "2.5δ"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1664,12 +1622,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 ώρες"
-
-msgid "24+ Hours"
-msgstr "24+ Ώρες"
-
-msgid "24- Hours"
-msgstr "24- Ώρες"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1729,9 +1681,6 @@ msgstr "Πληροφορίες 2ης μπάρας"
 msgid "2nd InfoBar timeout"
 msgstr "Χρόνος λήξης 2ης μπάρας πληροφοριών"
 
-msgid "2s"
-msgstr "2δ"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1749,9 +1698,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 ώρες"
-
-msgid "3.5s"
-msgstr "3.5δ"
 
 msgid "30"
 msgstr "30"
@@ -1789,17 +1735,11 @@ msgstr "3D Surround"
 msgid "3D Surround Speaker Position"
 msgstr "Θέση ηχείου 3D surround"
 
-msgid "3s"
-msgstr "3δ"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 ώρες"
@@ -1828,9 +1768,6 @@ msgstr "4:3 Πανοραμική&Σάρωση"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr "4δ"
-
 msgid "4x"
 msgstr ""
 
@@ -1842,9 +1779,6 @@ msgstr "5 ώρες"
 
 msgid "5 minutes"
 msgstr "5 λεπτά"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1863,9 +1797,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5δ"
 
 msgid "6"
 msgstr "6"
@@ -1917,9 +1848,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 χαρακτήρες"
@@ -2838,6 +2766,9 @@ msgstr "Τέχνες/Πολιτισμός"
 msgid "Aruba"
 msgstr "Αρούμπα"
 
+msgid "As plugin in extended bar"
+msgstr "ως πρόσθετο στην εκτεταμένη μπάρα"
+
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
 
@@ -2880,6 +2811,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "στην αρχή"
+
+msgid "At end"
+msgstr "στο τέλος"
 
 msgid "At end of current program"
 msgstr ""
@@ -2986,9 +2923,6 @@ msgstr "Έχουν επιλεγεί οι αυτόματες λειτουργίε
 msgid "Auto SCART switching"
 msgstr "Αυτόματη αλλαγή scart"
 
-msgid "Auto Timer"
-msgstr "Αυτόματος χρ/κόπτης"
-
 msgid "Auto Timers"
 msgstr "Αυτόματοι χρ/κόπτες"
 
@@ -3024,6 +2958,9 @@ msgstr "Αυτόματο (μη διαθέσιμο)"
 
 msgid "AutoMountManager"
 msgstr "Διαχείριση αυτόματων προσαρτήσεων"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Αυτόματη ενημέρωση"
@@ -3470,6 +3407,9 @@ msgstr "Εσθονικά"
 
 msgid "Botswana"
 msgstr "Μποτσουάνα"
+
+msgid "Bottom"
+msgstr "κάτω"
 
 msgid "Bouquet List"
 msgstr "Λίστα μπουκέτων"
@@ -4039,6 +3979,15 @@ msgstr "Κέιμαν Νήσοι"
 
 msgid "Celsius"
 msgstr "Κελσίου"
+
+msgid "Center"
+msgstr "κέντρο"
+
+msgid "Centered"
+msgstr "στο κέντρο"
+
+msgid "Centered, wrapped"
+msgstr "στο κέντρο, σε αναδίπλωση"
 
 msgid "Central African Republic"
 msgstr "Κεντροαφρικανική Δημοκρατία"
@@ -8510,6 +8459,9 @@ msgstr "Μετάβαση στη ζώνη αιχμής"
 msgid "Goto X"
 msgstr "Μετάβαση στη θέση Χ"
 
+msgid "Goto deep standby"
+msgstr "μετάβαση σε βαθιά αναμονή"
+
 msgid "Goto next bouquet"
 msgstr "Μετάβαση στο επόμενο μπουκέτο"
 
@@ -8533,6 +8485,9 @@ msgstr "Μετάβαση στην προηγούμενη εκπομπή"
 
 msgid "Goto specific date/time"
 msgstr "Μετάβαση σε συγκεκριμένα δεδομένα/ημερομηνία"
+
+msgid "Goto standby"
+msgstr "μετάβαση σε αναμονή"
 
 msgid "GotoX calibration"
 msgstr "Υπολογισμός GotoX"
@@ -8945,9 +8900,6 @@ msgstr "Hotkey"
 
 msgid "Hotkey Settings"
 msgstr "Ρυθμίσεις Hotkey"
-
-msgid "Hour"
-msgstr "Ώρα"
 
 msgid "Hourly"
 msgstr "Ωραία"
@@ -9788,6 +9740,9 @@ msgstr "απλά ματαίωση, χωρίς μήνυμα"
 msgid "Just abort, show message"
 msgstr "απλά ματαίωση, εμφάνιση μηνύματος"
 
+msgid "Just boot"
+msgstr "απλή εκκίνηση"
+
 msgid "Just change Bouquet"
 msgstr "Απλά αλλαγή μπουκέτου"
 
@@ -10072,6 +10027,9 @@ msgstr "Αριστερά του ονόματος υπηρεσίας"
 
 msgid "Left long"
 msgstr "Αριστερό παρατεταμένο"
+
+msgid "Left, wrapped"
+msgstr "αριστερά, σε αναδίπλωση"
 
 msgid "Leisure hobbies"
 msgstr "Χόμπι αναψυχής"
@@ -10751,6 +10709,9 @@ msgstr "Μεξικό"
 msgid "Micronesia, Federated States of"
 msgstr "Μικρονησία (Ομόσπονδες Πολιτείες)"
 
+msgid "Middle"
+msgstr "μέση"
+
 msgid "Middle - Lite image"
 msgstr ""
 
@@ -10787,6 +10748,12 @@ msgstr "Ελάχιστο διάστημα αποστολής"
 
 msgid "Mins"
 msgstr "Λεπτά"
+
+msgid "Minute"
+msgstr "λεπτό"
+
+msgid "Minutes"
+msgstr "λεπτά"
 
 msgid "Minutes Seconds"
 msgstr "Λεπτά Δευτ"
@@ -11438,6 +11405,9 @@ msgstr "Οδηγός δικτύου"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "ποτέ"
+
 msgid "Never abort"
 msgstr "ποτέ ματαίωση"
 
@@ -12055,9 +12025,6 @@ msgstr "Σε έγκυρα ONIDs, να αγνοείται το κομμάτι τ�
 
 msgid "Once"
 msgstr "μία φορά"
-
-msgid "Once per day"
-msgstr "Μία φορά την ημέρα"
 
 msgid "One"
 msgstr "Ένα"
@@ -13204,9 +13171,6 @@ msgstr "Χρονοδιακόπτης ενέργειας"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "Βαθιά αναμονή χρονοδιακόπτη ενέργειας"
-
 msgid "PowerTimer Overview"
 msgstr "Επισκόπηση χρονοδιακοπτών ενέργειας"
 
@@ -13215,6 +13179,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Αναμονή χρονοδιακοπτών ενέργειας"
+
+msgid "PowerTimer deep standby"
+msgstr "Βαθιά αναμονή χρονοδιακόπτη ενέργειας"
 
 msgid "PowerTimer log"
 msgstr "Καταγραφές διαχείρισης ενέργειας"
@@ -13379,6 +13346,13 @@ msgstr "Μετάβαση στο προηγούμενο μπουκέτο"
 #, fuzzy
 msgid "Previous page"
 msgstr "Προηγούμενο"
+
+#, fuzzy
+msgid "Previous/Next bouquet"
+msgstr "προηγούμενη/επόμενη Σελίδα"
+
+msgid "Previous/Next page"
+msgstr "προηγούμενη/επόμενη Σελίδα"
 
 msgid "Prevsong"
 msgstr "Προηγούμενο τραγούδι"
@@ -14512,6 +14486,9 @@ msgstr "Δεξιά του ονόματος υπηρεσίας"
 msgid "Right long"
 msgstr "Δεξί παρατεταμένο"
 
+msgid "Right, wrapped"
+msgstr "δεξιά, σε αναδίπλωση"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -15037,6 +15014,9 @@ msgstr "Δεύτερο καλώδιο από LNB σε μοτέρ"
 
 msgid "Secondary DNS"
 msgstr "Δευτερεύον DNS"
+
+msgid "Seconds"
+msgstr "δευτερόλεπτα"
 
 msgid "Security"
 msgstr "ασφάλεια"
@@ -19505,6 +19485,9 @@ msgstr "Τύπος τόνου"
 msgid "Tonga"
 msgstr "Τόγκα"
 
+msgid "Top"
+msgstr "κορυφή"
+
 msgid "Top and Bottom"
 msgstr "Επάνω και κάτω"
 
@@ -20110,6 +20093,9 @@ msgstr "Επάνω USB"
 
 msgid "Upper case"
 msgstr "Κεφαλαία"
+
+msgid "Upper line"
+msgstr "επάνω γραμμή"
 
 msgid "Uptime"
 msgstr "Χρόνος λειτουργίας"
@@ -21234,11 +21220,20 @@ msgstr "Ρυθμίσεις σύνδεσης ασύρματου δικτύου."
 msgid "Wireless network state"
 msgstr "Κατάσταση ασύρματου δικτύου"
 
+msgid "With EXIT button"
+msgstr "με το πλήκτρο εξόδου"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "με τα πλήκτρα αριστερά/δεξιά"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Με τη λειτουργία T2MI RAW ανενεργή (προεπιλογή) μπορείτε να χρησιμοποιήσετε τον απευθείας απεγκλεισμό ενός μονού T2MI PLP. Με τη λειτουργία ενεργή μπορείτε να χρησιμοποιήσετε το astra-sm για ανάλυση του T2MI"
 
 msgid "With errors:"
 msgstr "Με σφάλματα:"
+
+msgid "With long OK press"
+msgstr "με παρατεταμένη πίεση του ΟΚ"
 
 msgid "With pop up"
 msgstr "Με αναδυόμενο παράθυρο"
@@ -21992,14 +21987,8 @@ msgstr "αλφαβητικά"
 msgid "alphabetic reverse"
 msgstr "αλφαβητική αντιστροφή"
 
-msgid "alphabetical"
-msgstr "αλφαβητικά"
-
 msgid "alpharev then newest"
 msgstr "αλφαβητικά μετά το νεότερο"
-
-msgid "alternative"
-msgstr "εναλλασσόμενο"
 
 msgid "am"
 msgstr "πμ"
@@ -22025,15 +22014,6 @@ msgstr "τέχνες/πολιτισμός (χωρίς μουσική, γενικ
 
 msgid "arts/culture magazine"
 msgstr "τέχνες/πολιτιστικό μαγκαζίνο"
-
-msgid "As plugin in extended bar"
-msgstr "ως πρόσθετο στην εκτεταμένη μπάρα"
-
-msgid "At beginning"
-msgstr "στην αρχή"
-
-msgid "At end"
-msgstr "στο τέλος"
 
 msgid "athletics"
 msgstr "αθλητισμός"
@@ -22086,9 +22066,6 @@ msgstr "μαύρη λίστα"
 msgid "blue"
 msgstr "μπλε"
 
-msgid "Bottom"
-msgstr "κάτω"
-
 msgid "broadcasting/press"
 msgstr "μεταδόσεις/τύπος"
 
@@ -22116,15 +22093,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "καρτούν/μαριονέτες"
-
-msgid "Center"
-msgstr "κέντρο"
-
-msgid "Centered"
-msgstr "στο κέντρο"
-
-msgid "Centered, wrapped"
-msgstr "στο κέντρο, σε αναδίπλωση"
 
 msgid "change Volume down"
 msgstr "μείωση έντασης ήχου"
@@ -22443,9 +22411,6 @@ msgstr "λήψη διακομιστή καρτών"
 msgid "goto current channel and now"
 msgstr "μετάβαση στο τρέχον κανάλι και τώρα"
 
-msgid "Goto deep standby"
-msgstr "μετάβαση σε βαθιά αναμονή"
-
 msgid "goto first channel"
 msgstr "μετάβαση στο πρώτο κανάλι"
 
@@ -22454,9 +22419,6 @@ msgstr "μετάβαση στο τελευταίο κανάλι"
 
 msgid "goto now"
 msgstr "μετάβαση τώρα"
-
-msgid "Goto standby"
-msgstr "μετάβαση σε αναμονή"
 
 msgid "grab this frame as bitmap"
 msgstr "λήψη στιγμιότυπου του καρέ ως bitmap"
@@ -22581,9 +22543,6 @@ msgstr "μετάβαση στον επόμενο τίτλο"
 msgid "jump to chapter by number"
 msgstr "μετάβαση στο κεφάλαιο με αριθμό"
 
-msgid "Just boot"
-msgstr "απλή εκκίνηση"
-
 msgid "languages"
 msgstr "γλώσσες"
 
@@ -22593,9 +22552,6 @@ msgstr "έξοδος από τον αναπαραγωγό ταινιών..."
 
 msgid "left"
 msgstr "αριστερά"
-
-msgid "Left, wrapped"
-msgstr "αριστερά, σε αναδίπλωση"
 
 msgid "leisure hobbies (general)"
 msgstr "χόμπι αναψυχής (γενικά)"
@@ -22633,16 +22589,7 @@ msgstr "πολεμικά σπορ"
 msgid "medicine/physiology/psychology"
 msgstr "ιατρική/φυσιολογία/ψυχολογία"
 
-msgid "Middle"
-msgstr "μέση"
-
 msgid "min"
-msgstr "λεπτά"
-
-msgid "Minute"
-msgstr "λεπτό"
-
-msgid "Minutes"
 msgstr "λεπτά"
 
 msgid "month"
@@ -22701,9 +22648,6 @@ msgstr "μ/δ"
 
 msgid "nature/animals/environment"
 msgstr "φύση/ζώα/περιβάλλον"
-
-msgid "Never"
-msgstr "ποτέ"
 
 msgid "new media"
 msgstr "νέα πολυμέσα"
@@ -22849,13 +22793,6 @@ msgstr "πρόγραμμα για παιδιά προσχολικής ηλικί
 msgid "previous channel page"
 msgstr "προηγούμενη σελίδα καναλιών"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "προηγούμενη/επόμενη Σελίδα"
-
-msgid "Previous/Next page"
-msgstr "προηγούμενη/επόμενη Σελίδα"
-
 msgid "provid:"
 msgstr "provid:"
 
@@ -22943,9 +22880,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "δεξιά"
 
-msgid "Right, wrapped"
-msgstr "δεξιά, σε αναδίπλωση"
-
 msgid "rock/pop"
 msgstr "ροκ/ποπ"
 
@@ -22980,9 +22914,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "αναζήτηση στο EPG..."
-
-msgid "Seconds"
-msgstr "δευτερόλεπτα"
 
 msgid "select CAId's"
 msgstr "επιλογή CAId's"
@@ -23189,9 +23120,6 @@ msgstr "στον φάκελο"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου, ήχου, υποτίτλων"
 
-msgid "Top"
-msgstr "κορυφή"
-
 msgid "tourism/travel"
 msgstr "τουρισμός/ταξίδια"
 
@@ -23270,9 +23198,6 @@ msgstr "ενημέρωση"
 msgid "updates available."
 msgstr "διαθέσιμες ενημερώσεις."
 
-msgid "Upper line"
-msgstr "επάνω γραμμή"
-
 msgid "use best / controlled by HDMI"
 msgstr "χρήση βέλτιστου / ελέγχεται από το HDMI"
 
@@ -23281,9 +23206,6 @@ msgstr "χρήση αυξημένης τάσης '14/18V' αν υπάρχουν 
 
 msgid "use_hdmi_cacenter"
 msgstr "χρήση_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "ορισμένο από τον χρήστη"
 
 msgid "userdefined"
 msgstr "ορισμένο από τον χρήστη"
@@ -23324,9 +23246,6 @@ msgstr ""
 "\n"
 "Ένα αντίγραφο έχει αποσταλεί στον εαυτό σας."
 
-msgid "white"
-msgstr "λευκό"
-
 msgid "wide"
 msgstr "πλατύ"
 
@@ -23351,15 +23270,6 @@ msgstr[1] "με %d σφάλματα"
 msgid "with errors"
 msgstr "με σφάλματα"
 
-msgid "With EXIT button"
-msgstr "με το πλήκτρο εξόδου"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "με τα πλήκτρα αριστερά/δεξιά"
-
-msgid "With long OK press"
-msgstr "με παρατεταμένη πίεση του ΟΚ"
-
 msgid "with_errors"
 msgstr "με_σφάλματα"
 
@@ -23381,6 +23291,123 @@ msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησ�
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d ημέρα"
+#~ msgstr[1] "%d ημέρες"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d λεπτό"
+#~ msgstr[1] "%d λεπτά"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2δ"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3δ"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4δ"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5δ"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6δ"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7δ"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8δ"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9δ"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2δ"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5δ"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7δ"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1δ"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5δ"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Ώρες"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Ώρες"
+
+#~ msgid "2s"
+#~ msgstr "2δ"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5δ"
+
+#~ msgid "3s"
+#~ msgstr "3δ"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4δ"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5δ"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Αυτόματος χρ/κόπτης"
+
+#~ msgid "Hour"
+#~ msgstr "Ώρα"
+
+#~ msgid "Once per day"
+#~ msgstr "Μία φορά την ημέρα"
+
+#~ msgid "alphabetical"
+#~ msgstr "αλφαβητικά"
+
+#~ msgid "alternative"
+#~ msgstr "εναλλασσόμενο"
+
+#~ msgid "user defined"
+#~ msgstr "ορισμένο από τον χρήστη"
+
+#~ msgid "white"
+#~ msgstr "λευκό"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

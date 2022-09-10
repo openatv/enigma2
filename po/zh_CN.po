@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -221,16 +221,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -349,7 +349,7 @@ msgstr "%2.1f 秒"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -539,11 +539,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -589,19 +589,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -875,8 +875,24 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d 小时"
+msgstr[1] "%d 小时"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -885,6 +901,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -923,6 +943,22 @@ msgstr[1] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d 个像素宽"
+msgstr[1] "%d 个像素宽"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d 秒"
+msgstr[1] "%d 秒"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -941,22 +977,10 @@ msgstr[0] "%d核心"
 msgstr[1] "%d核心"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d 天"
-msgstr[1] "%d 天"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d 个源目录包已更新."
 msgstr[1] "%d 个源目录包已更新."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d 小时"
-msgstr[1] "%d 小时"
 
 #, python-format
 msgid "%d kB"
@@ -965,12 +989,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d 分钟"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d 分钟"
-msgstr[1] "%d 分钟"
 
 #, python-format
 msgid "%d minutes"
@@ -1029,20 +1047,8 @@ msgstr[0] "已升级 %d 个软件包."
 msgstr[1] "已升级 %d 个软件包."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d 个像素宽"
-msgstr[1] "%d 个像素宽"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d 秒"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d 秒"
-msgstr[1] "%d 秒"
 
 #, python-format
 msgid "%d times"
@@ -1381,6 +1387,9 @@ msgstr "* 当前动画"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1390,6 +1399,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24小时/+24小时"
@@ -1409,35 +1421,8 @@ msgstr "/var 目录"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2秒"
-
-msgid "0.3s"
-msgstr "0.3秒"
-
-msgid "0.4s"
-msgstr "0.4秒"
-
-msgid "0.5s"
-msgstr "0.5秒"
-
-msgid "0.6s"
-msgstr "0.6秒"
-
-msgid "0.7s"
-msgstr "0.7秒"
-
-msgid "0.8s"
-msgstr "0.8秒"
-
-msgid "0.9s"
-msgstr "0.9秒"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1小时"
@@ -1451,23 +1436,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2秒"
-
-msgid "1.5s"
-msgstr "1.5秒"
-
-msgid "1.7s"
-msgstr "1.7秒"
-
-msgid "10 MB/s"
-msgstr "10 MB/秒"
-
 msgid "10 minutes"
 msgstr "10 分钟"
-
-msgid "100 MB/s"
-msgstr "100 MB/秒"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1571,9 +1541,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18V"
 
-msgid "1s"
-msgstr "1秒"
-
 msgid "1st InfoBar timeout"
 msgstr "第一信息栏超时"
 
@@ -1583,20 +1550,11 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2小时"
 
 msgid "2 minutes"
 msgstr "2分钟"
-
-msgid "2.5s"
-msgstr "2.5秒"
-
-msgid "20 MB/s"
-msgstr "20MB/秒"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1627,12 +1585,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24小时"
-
-msgid "24+ Hours"
-msgstr "24小时以上"
-
-msgid "24- Hours"
-msgstr "最近24小时"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1691,9 +1643,6 @@ msgstr "第二信息栏信息"
 msgid "2nd InfoBar timeout"
 msgstr "第二信息栏超时"
 
-msgid "2s"
-msgstr "2秒"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1711,9 +1660,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3小时"
-
-msgid "3.5s"
-msgstr "3.5秒"
 
 msgid "30"
 msgstr "30"
@@ -1751,17 +1697,11 @@ msgstr "3D环绕"
 msgid "3D Surround Speaker Position"
 msgstr "3D环绕扬声器位置"
 
-msgid "3s"
-msgstr "3秒"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4小时"
@@ -1790,9 +1730,6 @@ msgstr "4:3全景模式"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4秒"
-
 msgid "4x"
 msgstr ""
 
@@ -1804,9 +1741,6 @@ msgstr "5小时"
 
 msgid "5 minutes"
 msgstr "5分钟"
-
-msgid "50 MB/s"
-msgstr "50MB/秒"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1825,9 +1759,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1879,9 +1810,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8个字符"
@@ -2797,6 +2725,9 @@ msgstr "艺术/文化"
 msgid "Aruba"
 msgstr "阿鲁巴岛"
 
+msgid "As plugin in extended bar"
+msgstr "作为扩展栏中的插件"
+
 msgid "Ask user"
 msgstr "询问用户"
 
@@ -2838,6 +2769,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "开始时"
+
+msgid "At end"
+msgstr "结束时"
 
 msgid "At end of current program"
 msgstr ""
@@ -2943,9 +2880,6 @@ msgstr "已选择自动模式."
 msgid "Auto SCART switching"
 msgstr "自动转换开关"
 
-msgid "Auto Timer"
-msgstr "自动定时器"
-
 msgid "Auto Timers"
 msgstr "自动定时器"
 
@@ -2981,6 +2915,9 @@ msgstr "自动(不可用)"
 
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "自动更新"
@@ -3421,6 +3358,9 @@ msgstr "波斯尼亚语"
 
 msgid "Botswana"
 msgstr "博茨瓦纳"
+
+msgid "Bottom"
+msgstr "底部"
 
 msgid "Bouquet List"
 msgstr "自定义列表"
@@ -3998,6 +3938,15 @@ msgstr "开曼群岛"
 
 msgid "Celsius"
 msgstr "摄氏度"
+
+msgid "Center"
+msgstr "中心"
+
+msgid "Centered"
+msgstr "居中"
+
+msgid "Centered, wrapped"
+msgstr "居中,覆盖"
 
 msgid "Central African Republic"
 msgstr "中非共和国"
@@ -8430,6 +8379,9 @@ msgstr "转到黄金时段"
 msgid "Goto X"
 msgstr "转到Χ"
 
+msgid "Goto deep standby"
+msgstr "进入深度待机"
+
 msgid "Goto next bouquet"
 msgstr "转到下个自定义组"
 
@@ -8453,6 +8405,9 @@ msgstr "转到上一个事件"
 
 msgid "Goto specific date/time"
 msgstr "转到特定的日期/时间"
+
+msgid "Goto standby"
+msgstr "进入待机"
 
 msgid "GotoX calibration"
 msgstr "GotoX校准"
@@ -8861,9 +8816,6 @@ msgstr "快捷键"
 
 msgid "Hotkey Settings"
 msgstr "快捷键设置"
-
-msgid "Hour"
-msgstr "小时"
 
 msgid "Hourly"
 msgstr "每小时"
@@ -9691,6 +9643,9 @@ msgstr "仅中止,无信息"
 msgid "Just abort, show message"
 msgstr "仅中止,显示信息"
 
+msgid "Just boot"
+msgstr "仅开机"
+
 msgid "Just change Bouquet"
 msgstr "仅更改自定义组"
 
@@ -9966,6 +9921,9 @@ msgstr "频道名称左边"
 
 msgid "Left long"
 msgstr "左键 长按"
+
+msgid "Left, wrapped"
+msgstr "左边,覆盖"
 
 msgid "Leisure hobbies"
 msgstr "休闲爱好"
@@ -10625,6 +10583,9 @@ msgstr "墨西哥"
 msgid "Micronesia, Federated States of"
 msgstr "密克罗尼西亚联邦"
 
+msgid "Middle"
+msgstr "中等"
+
 msgid "Middle - Lite image"
 msgstr "中亮度图像"
 
@@ -10660,6 +10621,12 @@ msgid "Minimum send interval"
 msgstr "最小发送间隔"
 
 msgid "Mins"
+msgstr "分钟"
+
+msgid "Minute"
+msgstr "分钟"
+
+msgid "Minutes"
 msgstr "分钟"
 
 msgid "Minutes Seconds"
@@ -11287,6 +11254,9 @@ msgstr "网络向导"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "从不"
+
 msgid "Never abort"
 msgstr "从不中止"
 
@@ -11895,9 +11865,6 @@ msgstr "在有效的ONID上,忽略频率子网络部分"
 
 msgid "Once"
 msgstr "一次"
-
-msgid "Once per day"
-msgstr "每天一次"
 
 msgid "One"
 msgstr "一"
@@ -13034,9 +13001,6 @@ msgstr "电源定时器"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "电源定时器深度待机"
-
 msgid "PowerTimer Overview"
 msgstr "电源定时器概述"
 
@@ -13045,6 +13009,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "电源定时器待机"
+
+msgid "PowerTimer deep standby"
+msgstr "电源定时器深度待机"
 
 msgid "PowerTimer log"
 msgstr "电源管理器日志"
@@ -13206,6 +13173,12 @@ msgstr "转到上个自定义组"
 
 msgid "Previous page"
 msgstr "上一页"
+
+msgid "Previous/Next bouquet"
+msgstr "上一个/下一个频道组"
+
+msgid "Previous/Next page"
+msgstr "上一页/下一页"
 
 msgid "Prevsong"
 msgstr "Prevsong键"
@@ -14338,6 +14311,9 @@ msgstr "频道名称右侧"
 msgid "Right long"
 msgstr "右键 长按"
 
+msgid "Right, wrapped"
+msgstr "右边,覆盖"
+
 msgid "Roll-off"
 msgstr "滚降系数"
 
@@ -14854,6 +14830,9 @@ msgstr "电动LNB的第二根电缆"
 
 msgid "Secondary DNS"
 msgstr "备用DNS"
+
+msgid "Seconds"
+msgstr "秒"
 
 msgid "Security"
 msgstr "安全"
@@ -19257,6 +19236,9 @@ msgstr "22K模式"
 msgid "Tonga"
 msgstr "汤加"
 
+msgid "Top"
+msgstr "顶部"
+
 msgid "Top and Bottom"
 msgstr "顶部和底部"
 
@@ -19855,6 +19837,9 @@ msgstr "上部USB"
 
 msgid "Upper case"
 msgstr "大写格式"
+
+msgid "Upper line"
+msgstr "在线"
 
 msgid "Uptime"
 msgstr "运行时间"
@@ -20969,11 +20954,20 @@ msgstr "无线网络连接设置."
 msgid "Wireless network state"
 msgstr "无线网络状态"
 
+msgid "With EXIT button"
+msgstr "带Exit键"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "用左/右键"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "在禁用T2MI原始模式(默认)的情况下,我们可以使用单个T2MI PLP去封装.启用T2MI原始模式后,我们可以使用astra sm分析T2MI"
 
 msgid "With errors:"
 msgstr "出现错误:"
+
+msgid "With long OK press"
+msgstr "长按OK键"
 
 msgid "With pop up"
 msgstr "弹出"
@@ -21724,14 +21718,8 @@ msgstr "按字母顺序"
 msgid "alphabetic reverse"
 msgstr "按字母顺序反序排列"
 
-msgid "alphabetical"
-msgstr "按字母顺序"
-
 msgid "alpharev then newest"
 msgstr "按 字母倒序/由新到旧 排序"
-
-msgid "alternative"
-msgstr "备选"
 
 msgid "am"
 msgstr "上午"
@@ -21757,15 +21745,6 @@ msgstr "艺术/文化(无音乐,常规)"
 
 msgid "arts/culture magazine"
 msgstr "艺术/文化杂志"
-
-msgid "As plugin in extended bar"
-msgstr "作为扩展栏中的插件"
-
-msgid "At beginning"
-msgstr "开始时"
-
-msgid "At end"
-msgstr "结束时"
 
 msgid "athletics"
 msgstr "田径"
@@ -21818,9 +21797,6 @@ msgstr "黑名单"
 msgid "blue"
 msgstr "蓝色"
 
-msgid "Bottom"
-msgstr "底部"
-
 msgid "broadcasting/press"
 msgstr "广播/新闻"
 
@@ -21848,15 +21824,6 @@ msgstr "卡片服务器"
 
 msgid "cartoon/puppets"
 msgstr "动画/木偶"
-
-msgid "Center"
-msgstr "中心"
-
-msgid "Centered"
-msgstr "居中"
-
-msgid "Centered, wrapped"
-msgstr "居中,覆盖"
 
 msgid "change Volume down"
 msgstr "音量减小"
@@ -22174,9 +22141,6 @@ msgstr "获取卡的服务器"
 msgid "goto current channel and now"
 msgstr "转到当前频道"
 
-msgid "Goto deep standby"
-msgstr "进入深度待机"
-
 msgid "goto first channel"
 msgstr "转到第一个频道"
 
@@ -22185,9 +22149,6 @@ msgstr "转到最后一个频道"
 
 msgid "goto now"
 msgstr "现在跳转"
-
-msgid "Goto standby"
-msgstr "进入待机"
 
 msgid "grab this frame as bitmap"
 msgstr "抓取当前帧为bmp图片"
@@ -22310,9 +22271,6 @@ msgstr "跳转到下一个标题"
 msgid "jump to chapter by number"
 msgstr "通过数字跳到章节"
 
-msgid "Just boot"
-msgstr "仅开机"
-
 msgid "languages"
 msgstr "语言"
 
@@ -22321,9 +22279,6 @@ msgstr "退出影片播放器"
 
 msgid "left"
 msgstr "左"
-
-msgid "Left, wrapped"
-msgstr "左边,覆盖"
 
 msgid "leisure hobbies (general)"
 msgstr "休闲业余爱好(一般)"
@@ -22361,16 +22316,7 @@ msgstr "武术运动"
 msgid "medicine/physiology/psychology"
 msgstr "医学/生理学/心理学"
 
-msgid "Middle"
-msgstr "中等"
-
 msgid "min"
-msgstr "分钟"
-
-msgid "Minute"
-msgstr "分钟"
-
-msgid "Minutes"
 msgstr "分钟"
 
 msgid "month"
@@ -22429,9 +22375,6 @@ msgstr "无网络"
 
 msgid "nature/animals/environment"
 msgstr "自然/动物/环境"
-
-msgid "Never"
-msgstr "从不"
 
 msgid "new media"
 msgstr "新媒体"
@@ -22577,12 +22520,6 @@ msgstr "学龄前儿童节目"
 msgid "previous channel page"
 msgstr "上一个频道页面"
 
-msgid "Previous/Next bouquet"
-msgstr "上一个/下一个频道组"
-
-msgid "Previous/Next page"
-msgstr "上一页/下一页"
-
 msgid "provid:"
 msgstr "提供:"
 
@@ -22670,9 +22607,6 @@ msgstr "rgb三色模式"
 msgid "right"
 msgstr "右"
 
-msgid "Right, wrapped"
-msgstr "右边,覆盖"
-
 msgid "rock/pop"
 msgstr "摇滚/流行"
 
@@ -22707,9 +22641,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "搜索EPG..."
-
-msgid "Seconds"
-msgstr "秒"
 
 msgid "select CAId's"
 msgstr "选择CAId's"
@@ -22915,9 +22846,6 @@ msgstr "到目录"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切换 时间.章节.音频.字幕 信息"
 
-msgid "Top"
-msgstr "顶部"
-
 msgid "tourism/travel"
 msgstr "旅游/旅行"
 
@@ -22996,9 +22924,6 @@ msgstr "更新"
 msgid "updates available."
 msgstr "更新可用."
 
-msgid "Upper line"
-msgstr "在线"
-
 msgid "use best / controlled by HDMI"
 msgstr "最佳使用/由HDMI控制"
 
@@ -23007,9 +22932,6 @@ msgstr "如果在切换lnb时出现问题,请使用增加的电压'14/18V'"
 
 msgid "use_hdmi_cacenter"
 msgstr "使用hdmi作为主信号"
-
-msgid "user defined"
-msgstr "用户自定义"
 
 msgid "userdefined"
 msgstr "用户定义"
@@ -23050,9 +22972,6 @@ msgstr ""
 "\n"
 "副本已发送给您自己."
 
-msgid "white"
-msgstr "白色"
-
 msgid "wide"
 msgstr "宽"
 
@@ -23077,15 +22996,6 @@ msgstr[1] "有 %d 个错误"
 msgid "with errors"
 msgstr "错误"
 
-msgid "With EXIT button"
-msgstr "带Exit键"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "用左/右键"
-
-msgid "With long OK press"
-msgstr "长按OK键"
-
 msgid "with_errors"
 msgstr "有错误"
 
@@ -23107,6 +23017,123 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d 天"
+#~ msgstr[1] "%d 天"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d 分钟"
+#~ msgstr[1] "%d 分钟"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2秒"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3秒"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4秒"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5秒"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6秒"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7秒"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8秒"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9秒"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2秒"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5秒"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7秒"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/秒"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/秒"
+
+#~ msgid "1s"
+#~ msgstr "1秒"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5秒"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20MB/秒"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24小时以上"
+
+#~ msgid "24- Hours"
+#~ msgstr "最近24小时"
+
+#~ msgid "2s"
+#~ msgstr "2秒"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5秒"
+
+#~ msgid "3s"
+#~ msgstr "3秒"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4秒"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50MB/秒"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "自动定时器"
+
+#~ msgid "Hour"
+#~ msgstr "小时"
+
+#~ msgid "Once per day"
+#~ msgstr "每天一次"
+
+#~ msgid "alphabetical"
+#~ msgstr "按字母顺序"
+
+#~ msgid "alternative"
+#~ msgstr "备选"
+
+#~ msgid "user defined"
+#~ msgstr "用户自定义"
+
+#~ msgid "white"
+#~ msgstr "白色"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

@@ -1,12 +1,13 @@
 # Italian translations for OpenATV.
 # mapi68 <mapi68@gmail.com>, 2022.
 # Massimo Pissarello <mapi68@gmail.com>, 2022.
+# Ivan Montemurro <anonm4d@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
-"PO-Revision-Date: 2022-09-08 19:39+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"PO-Revision-Date: 2022-09-10 17:50+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -222,16 +223,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -350,7 +351,7 @@ msgstr "%2.1f Seconds"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -540,11 +541,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -590,19 +591,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -876,8 +877,24 @@ msgstr[0] "%d Giorno"
 msgstr[1] "%d Giorni"
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] "%d cifra"
+msgstr[1] "%d cifre"
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d ora"
+msgstr[1] "%d ore"
+
+#, python-format
+msgid "%d Hours"
+msgstr "%d ore"
 
 #, python-format
 msgid "%d KB"
@@ -886,6 +903,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr "%d MB/s"
 
 #, python-format
 msgid "%d MHz"
@@ -925,6 +946,22 @@ msgid "%d Minutes"
 msgstr "%d Minuti"
 
 #, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "larghezza %d pixel"
+msgstr[1] "larghezza %d pixel"
+
+#, python-format
+msgid "%d Pixels"
+msgstr "%d Pixel"
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d secondo"
+msgstr[1] "%d secondi"
+
+#, python-format
 msgid "%d Seconds"
 msgstr "%d Secondi"
 
@@ -942,22 +979,10 @@ msgstr[0] "%d core"
 msgstr[1] "%d cores"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d giorno"
-msgstr[1] "%d giorni"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "È stato aggiornato %d feed dal catalogo dei pacchetti."
 msgstr[1] "Sono stati aggiornati %d feed dal catalogo dei pacchetti."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d ora"
-msgstr[1] "%d ore"
 
 #, python-format
 msgid "%d kB"
@@ -966,12 +991,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d min"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minuto"
-msgstr[1] "%d minuti"
 
 #, python-format
 msgid "%d minutes"
@@ -1030,20 +1049,8 @@ msgstr[0] "È stato aggiornato %d pacchetto."
 msgstr[1] "Sono stati aggiornati %d pacchetti."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d pixel larghezza"
-msgstr[1] "larghezza %d pixel"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sec"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d secondo"
-msgstr[1] "%d secondi"
 
 #, python-format
 msgid "%d times"
@@ -1382,6 +1389,9 @@ msgstr "* animazione attuale"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr "+24 ore"
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1391,6 +1401,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr "-24 ore"
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 ore"
@@ -1410,35 +1423,8 @@ msgstr "/var directory"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 ora"
@@ -1452,23 +1438,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 minuti"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1572,9 +1543,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "Timeout barra informazioni 1"
 
@@ -1584,20 +1552,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 ore"
 
 msgid "2 minutes"
 msgstr "2 minuti"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1628,12 +1587,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 ore"
-
-msgid "24+ Hours"
-msgstr "24+ Ore"
-
-msgid "24- Hours"
-msgstr "24- Ore"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1692,9 +1645,6 @@ msgstr "Info barra informazioni 2"
 msgid "2nd InfoBar timeout"
 msgstr "Timeout barra informazioni 2"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1712,9 +1662,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 ore"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1752,17 +1699,11 @@ msgstr "3D Surround"
 msgid "3D Surround Speaker Position"
 msgstr "Posizione altoparlanti 3D surround"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 ore"
@@ -1791,9 +1732,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1805,9 +1743,6 @@ msgstr "5 ore"
 
 msgid "5 minutes"
 msgstr "5 minuti"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1826,9 +1761,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1880,9 +1812,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "carattere 8"
@@ -2793,6 +2722,9 @@ msgstr "Arti/Cultura"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "come plugin nella barra estesa"
+
 msgid "Ask user"
 msgstr "Chiedere all'utente"
 
@@ -2834,6 +2766,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "all'inizio"
+
+msgid "At end"
+msgstr "alla fine"
 
 msgid "At end of current program"
 msgstr "Alla fine del programma in corso"
@@ -2939,9 +2877,6 @@ msgstr "Modalità automatiche selezionate."
 msgid "Auto SCART switching"
 msgstr "Commutazione automatica SCART"
 
-msgid "Auto Timer"
-msgstr "Timer automatico"
-
 msgid "Auto Timers"
 msgstr "Timer automatici"
 
@@ -2977,6 +2912,9 @@ msgstr "Auto(non disponibile)"
 
 msgid "AutoMountManager"
 msgstr "Gestore di montaggio automatico"
+
+msgid "AutoTimer"
+msgstr "Timer automatico"
 
 msgid "AutoUpdate"
 msgstr "Aggiornamento automatico"
@@ -3417,6 +3355,9 @@ msgstr "Bosniaco"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "basso"
 
 msgid "Bouquet List"
 msgstr "Lista bouquets"
@@ -3994,6 +3935,15 @@ msgstr "Isole Cayman"
 
 msgid "Celsius"
 msgstr "Celsius"
+
+msgid "Center"
+msgstr "centro"
+
+msgid "Centered"
+msgstr "centrato"
+
+msgid "Centered, wrapped"
+msgstr "centrato, avvolto"
 
 msgid "Central African Republic"
 msgstr "Repubblica Centrafricana"
@@ -6179,10 +6129,10 @@ msgid "Distribution build"
 msgstr "Distribuzione compilata"
 
 msgid "Distribution build date"
-msgstr "Data di compilazione della distribuzione"
+msgstr "Data di compilazione"
 
 msgid "Distribution file system"
-msgstr "File system della distribuzione"
+msgstr "File system distribuzione"
 
 msgid "Distribution folder"
 msgstr "Cartella della distribuzione"
@@ -8426,6 +8376,9 @@ msgstr "Vai a PRIMA SERATA"
 msgid "Goto X"
 msgstr "Vai a X"
 
+msgid "Goto deep standby"
+msgstr "vai a spegnimento"
+
 msgid "Goto next bouquet"
 msgstr "Vai al prossimo bouquet"
 
@@ -8449,6 +8402,9 @@ msgstr "Vai all'evento precedente"
 
 msgid "Goto specific date/time"
 msgstr "Vai ad una specifica data/ora"
+
+msgid "Goto standby"
+msgstr "vai a standby"
 
 msgid "GotoX calibration"
 msgstr "Calibrazione GotoX"
@@ -8640,7 +8596,7 @@ msgid "Harddisk Setup"
 msgstr "Configurazione HDD"
 
 msgid "Hardware MultiBoot device"
-msgstr "Dispositivo hardware MultiBoot"
+msgstr "Dispositivo MultiBoot"
 
 msgid "Hardware information"
 msgstr "Informazioni sull'hardware"
@@ -8857,9 +8813,6 @@ msgstr "Hotkey"
 
 msgid "Hotkey Settings"
 msgstr "Impostzioni Hotkey"
-
-msgid "Hour"
-msgstr "Ora"
 
 msgid "Hourly"
 msgstr "Ogni ora"
@@ -9687,6 +9640,9 @@ msgstr "interrompi, no messaggio"
 msgid "Just abort, show message"
 msgstr "interrompi, mostra messaggio"
 
+msgid "Just boot"
+msgstr "solo avvio"
+
 msgid "Just change Bouquet"
 msgstr "Solo cambio bouquet"
 
@@ -9962,6 +9918,9 @@ msgstr "A sinistra del nome del servizio"
 
 msgid "Left long"
 msgstr "Sinistra lungo"
+
+msgid "Left, wrapped"
+msgstr "avvolto a sinistra"
 
 msgid "Leisure hobbies"
 msgstr "Hobby per il tempo libero"
@@ -10598,7 +10557,7 @@ msgid "Merge broadcast EPG with IceTV"
 msgstr "Unisci l'EPG trasmesso con IceTV"
 
 msgid "Merging Timeshift files"
-msgstr "Unione di file Timeshift"
+msgstr "Unione di file timeshift"
 
 msgid "Merlin EPG Center"
 msgstr "Merlin EPG Center"
@@ -10620,6 +10579,9 @@ msgstr "Messico"
 
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia, Stati Federati di"
+
+msgid "Middle"
+msgstr "in mezzo"
 
 msgid "Middle - Lite image"
 msgstr "Medio - Immagine Lite"
@@ -10657,6 +10619,12 @@ msgstr "Intervallo minimo di invio"
 
 msgid "Mins"
 msgstr "Minuti"
+
+msgid "Minute"
+msgstr "minuto"
+
+msgid "Minutes"
+msgstr "minuti"
 
 msgid "Minutes Seconds"
 msgstr "Minuti Secondi"
@@ -11035,7 +11003,7 @@ msgid "MultiBoot boot mode"
 msgstr "Modalità di avvio dell'avvio multiplo"
 
 msgid "MultiBoot startup file"
-msgstr "File di avvio dell'avvio multiplo"
+msgstr "File dell'avvio multiplo"
 
 msgid "MultiEPG Settings"
 msgstr "Configurazione EPG multiplo"
@@ -11282,6 +11250,9 @@ msgstr "Procedura guidata di rete"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
+
+msgid "Never"
+msgstr "mai"
 
 msgid "Never abort"
 msgstr "nessun arresto"
@@ -11891,9 +11862,6 @@ msgstr "Ignora la frequenza della parte sotto rete sugli ONID validi"
 
 msgid "Once"
 msgstr "una sola volta"
-
-msgid "Once per day"
-msgstr "Una volta al giorno"
 
 msgid "One"
 msgstr "Uno"
@@ -13030,9 +12998,6 @@ msgstr "Timer di avvio "
 msgid "PowerTimer Actions"
 msgstr "Azioni PowerTimer"
 
-msgid "PowerTimer deep standby"
-msgstr "Spegni timer di avvio"
-
 msgid "PowerTimer Overview"
 msgstr "Panoramica timer di avvio"
 
@@ -13041,6 +13006,9 @@ msgstr "Impostazioni PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Standby timer di avvio"
+
+msgid "PowerTimer deep standby"
+msgstr "Spegni timer di avvio"
 
 msgid "PowerTimer log"
 msgstr "Registro timer di avvio"
@@ -13202,6 +13170,12 @@ msgstr "Bouquet precedente"
 
 msgid "Previous page"
 msgstr "Pagina precedente"
+
+msgid "Previous/Next bouquet"
+msgstr "bouquet precedente/successivo"
+
+msgid "Previous/Next page"
+msgstr "pagina precedente/successiva"
 
 msgid "Prevsong"
 msgstr "Canzone precedente"
@@ -14334,6 +14308,9 @@ msgstr "A destra del nome del servizio"
 msgid "Right long"
 msgstr "Destra lungo"
 
+msgid "Right, wrapped"
+msgstr "destra, avvolto"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -14681,7 +14658,7 @@ msgid "Saving EPG Cache..."
 msgstr "Salvataggio cache EPG..."
 
 msgid "Saving Timeshift files"
-msgstr "Salvataggio di file Timeshift"
+msgstr "Salvataggio di file timeshift"
 
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Salvataggio timeshift come film adesso. Questo potrebbe richiedere del tempo!"
@@ -14850,6 +14827,9 @@ msgstr "Cavo secondario per LNB motorizzato"
 
 msgid "Secondary DNS"
 msgstr "DNS Secondario"
+
+msgid "Seconds"
+msgstr "secondi"
 
 msgid "Security"
 msgstr "Sicurezza"
@@ -17610,28 +17590,28 @@ msgid "Stop the update, if running, then exit"
 msgstr "Interrompi l'aggiornamento, se in esecuzione, quindi esci"
 
 msgid "Stop time shift"
-msgstr "Arrestare TimeShift"
+msgstr "Ferma timeshift"
 
 msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Arrestare timeshift e salvare il buffer timeshift come registrazione"
 
 msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
-msgstr "Interrompi il timeshift, salva il buffer del timeshift come film e avvia la registrazione dell'evento in corso"
+msgstr "Ferma timeshift, salva buffer del timeshift come film e avvia registrazione dell'evento in corso"
 
 msgid "Stop time shift while recording"
-msgstr "Interrompi il timeshift durante la registrazione"
+msgstr "Ferma timeshift durante la registrazione"
 
 msgid "Stop timer recording"
-msgstr "Arrestare la registrazione con timer"
+msgstr "Ferma registrazione con timer"
 
 msgid "Stopped"
-msgstr "Arrestato"
+msgstr "Fermato"
 
 msgid "Stopping Softcam"
-msgstr "Ferna softcam"
+msgstr "Ferma softcam"
 
 msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Ferma il timeshift se vi è una registrazione in corso ( importante per usb sticks)"
+msgstr "Ferma timeshift se vi è una registrazione in corso (consigliato per chiavette USB)"
 
 msgid "Storage / Disk Information"
 msgstr "Informazioni su memoria e disco"
@@ -17937,7 +17917,7 @@ msgid "Switchable tuner types:"
 msgstr "Tipi di sintonizzatore commutabile:"
 
 msgid "Switching to live TV - time shift is still active!"
-msgstr "Commuta alla diretta TV - Timeshift è ancora attivo!"
+msgstr "Commuta alla diretta TV - timeshift è ancora attivo!"
 
 msgid "Switzerland"
 msgstr "Svizzera"
@@ -19160,10 +19140,10 @@ msgid "Timeshift save recording (stop after current event)"
 msgstr "Salva come timeshift (stop dopo evento in corso)"
 
 msgid "Timeshift saved to your harddisk!"
-msgstr "Timeshift salvato sul tuo Harddisk!"
+msgstr "timeshift salvato sul tuo Harddisk!"
 
 msgid "Timeshift will get saved at end of event!"
-msgstr "Il Timeshift verrà salvato a fine evento!"
+msgstr "Il timeshift verrà salvato a fine evento!"
 
 msgid "Timeshift-save action on zap"
 msgstr "Azione salvataggio timeshift su zap"
@@ -19266,6 +19246,9 @@ msgstr "Modalità tono"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Top"
+msgstr "sopra"
 
 msgid "Top and Bottom"
 msgstr "Sopra e Sotto"
@@ -19865,6 +19848,9 @@ msgstr "USB superiore"
 
 msgid "Upper case"
 msgstr "Maiuscolo"
+
+msgid "Upper line"
+msgstr "linea superiore"
 
 msgid "Uptime"
 msgstr "Tempo di attività"
@@ -21005,11 +20991,20 @@ msgstr "Impostazioni connessione di rete wlan."
 msgid "Wireless network state"
 msgstr "Stato rete wireless"
 
+msgid "With EXIT button"
+msgstr "con pulsante ESCI"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "con i pulsanti sinistra e destra"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Con la modalità T2MI RAW disattivata (predefinito) si usa il decapsulamento T2MI PLP. Con T2MI RAW abilitato, si usa astra-sm per analizzare T2MI "
 
 msgid "With errors:"
 msgstr "Con errori:"
+
+msgid "With long OK press"
+msgstr "con una lunga pressione OK"
 
 msgid "With pop up"
 msgstr "Con popup"
@@ -21672,7 +21667,7 @@ msgid "[Image Info]\n"
 msgstr "[Info immagine]\n"
 
 msgid "[TimeShift] Restarting Timeshift!"
-msgstr "[TimeShift] Riavvio Timeshift!"
+msgstr "[TimeShift] Riavvio timeshift!"
 
 msgid "[Timeshift] Merging records failed!"
 msgstr "Timeshift: unione registrazioni fallita!"
@@ -21764,14 +21759,8 @@ msgstr "alfabetico"
 msgid "alphabetic reverse"
 msgstr "alfabetico inverso"
 
-msgid "alphabetical"
-msgstr "alfabetico"
-
 msgid "alpharev then newest"
 msgstr "alfabetico inverso (più recente)"
-
-msgid "alternative"
-msgstr "alternativo"
 
 msgid "am"
 msgstr "am"
@@ -21797,15 +21786,6 @@ msgstr "arti/cultura (non musica, generale)"
 
 msgid "arts/culture magazine"
 msgstr "arti/cultura rivista"
-
-msgid "As plugin in extended bar"
-msgstr "come plugin nella barra estesa"
-
-msgid "At beginning"
-msgstr "all'inizio"
-
-msgid "At end"
-msgstr "alla fine"
 
 msgid "athletics"
 msgstr "atletica"
@@ -21858,9 +21838,6 @@ msgstr "lista nera"
 msgid "blue"
 msgstr "blu"
 
-msgid "Bottom"
-msgstr "basso"
-
 msgid "broadcasting/press"
 msgstr "broadcasting/stampa"
 
@@ -21888,15 +21865,6 @@ msgstr "cardserver"
 
 msgid "cartoon/puppets"
 msgstr "cartoni/pupazzi"
-
-msgid "Center"
-msgstr "centro"
-
-msgid "Centered"
-msgstr "centrato"
-
-msgid "Centered, wrapped"
-msgstr "centrato, avvolto"
 
 msgid "change Volume down"
 msgstr "cambia Volume giù"
@@ -22214,9 +22182,6 @@ msgstr "leggi le card server"
 msgid "goto current channel and now"
 msgstr "vai al canale attuale ed ora"
 
-msgid "Goto deep standby"
-msgstr "vai a spegnimento"
-
 msgid "goto first channel"
 msgstr "vai al primo canale"
 
@@ -22225,9 +22190,6 @@ msgstr "vai all'ultimo canale"
 
 msgid "goto now"
 msgstr "vai adesso"
-
-msgid "Goto standby"
-msgstr "vai a standby"
 
 msgid "grab this frame as bitmap"
 msgstr "Grab dell'immagine come bitmap"
@@ -22350,9 +22312,6 @@ msgstr "vai a titolo successivo"
 msgid "jump to chapter by number"
 msgstr "vai al capitolo per numerazione"
 
-msgid "Just boot"
-msgstr "solo avvio"
-
 msgid "languages"
 msgstr "lingue"
 
@@ -22361,9 +22320,6 @@ msgstr "lascia il lettore di film"
 
 msgid "left"
 msgstr "sinistra"
-
-msgid "Left, wrapped"
-msgstr "avvolto a sinistra"
 
 msgid "leisure hobbies (general)"
 msgstr "tempo libero hobby (generale)"
@@ -22401,17 +22357,8 @@ msgstr "arti marziali"
 msgid "medicine/physiology/psychology"
 msgstr "medicina/fisiologia/psicologia"
 
-msgid "Middle"
-msgstr "in mezzo"
-
 msgid "min"
 msgstr "min"
-
-msgid "Minute"
-msgstr "minuto"
-
-msgid "Minutes"
-msgstr "minuti"
 
 msgid "month"
 msgstr "mese"
@@ -22469,9 +22416,6 @@ msgstr "n/d"
 
 msgid "nature/animals/environment"
 msgstr "natura / animali / ambiente"
-
-msgid "Never"
-msgstr "mai"
 
 msgid "new media"
 msgstr "nuovi media"
@@ -22617,12 +22561,6 @@ msgstr "Bambini in età prescolare"
 msgid "previous channel page"
 msgstr "pagina canale precedente"
 
-msgid "Previous/Next bouquet"
-msgstr "bouquet precedente/successivo"
-
-msgid "Previous/Next page"
-msgstr "pagina precedente/successiva"
-
 msgid "provid:"
 msgstr "provid:"
 
@@ -22710,9 +22648,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "destro"
 
-msgid "Right, wrapped"
-msgstr "destra, avvolto"
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -22747,9 +22682,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "Ricerca EPG..."
-
-msgid "Seconds"
-msgstr "secondi"
 
 msgid "select CAId's"
 msgstr "selezionare CAId's"
@@ -22955,9 +22887,6 @@ msgstr "alla cartella"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "commuta orario, capitolo, audio e informazioni sui sottotitoli"
 
-msgid "Top"
-msgstr "sopra"
-
 msgid "tourism/travel"
 msgstr "turismo/viaggi"
 
@@ -23036,9 +22965,6 @@ msgstr "aggiornamento"
 msgid "updates available."
 msgstr "aggiornamento disponibile."
 
-msgid "Upper line"
-msgstr "linea superiore"
-
 msgid "use best / controlled by HDMI"
 msgstr "usare migliore / controllato da HDMI"
 
@@ -23047,9 +22973,6 @@ msgstr "usa l'aumento del voltaggio '14/18V' se ci sono problemi nello switch de
 
 msgid "use_hdmi_cacenter"
 msgstr "use_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "definito dall'utente"
 
 msgid "userdefined"
 msgstr "definito dall'utente"
@@ -23090,9 +23013,6 @@ msgstr ""
 "\n"
 "Una copia è stata inviata a te stesso."
 
-msgid "white"
-msgstr "bianco"
-
 msgid "wide"
 msgstr "largo"
 
@@ -23117,15 +23037,6 @@ msgstr[1] "con %d errori"
 msgid "with errors"
 msgstr "con errori"
 
-msgid "With EXIT button"
-msgstr "con pulsante ESCI"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "con i pulsanti sinistra e destra"
-
-msgid "With long OK press"
-msgstr "con una lunga pressione OK"
-
 msgid "with_errors"
 msgstr "con_errori"
 
@@ -23147,6 +23058,123 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d giorno"
+#~ msgstr[1] "%d giorni"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minuto"
+#~ msgstr[1] "%d minuti"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Ore"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Ore"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Timer automatico"
+
+#~ msgid "Hour"
+#~ msgstr "Ora"
+
+#~ msgid "Once per day"
+#~ msgstr "Una volta al giorno"
+
+#~ msgid "alphabetical"
+#~ msgstr "alfabetico"
+
+#~ msgid "alternative"
+#~ msgstr "alternativo"
+
+#~ msgid "user defined"
+#~ msgstr "definito dall'utente"
+
+#~ msgid "white"
+#~ msgstr "bianco"
 
 #~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 #~ msgstr "\"Decodifica & registra ECM\" offre la possibilità di decodificare in seguito se la decodifica durante la registrazione non è riuscita. \"Non decodificare, registra ECM\" salva una registrazione codificata che può essere decodificata durante la riproduzione. \"Normale\" significa decodificare la registrazione e non registrare ECM."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -207,17 +207,17 @@ msgstr ""
 msgid "%-I:%M:%S%^p"
 msgstr ""
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%-d %B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr ""
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 msgid "%A"
 msgstr "A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%A %-d %B"
 msgstr "%A %e %B"
@@ -570,11 +570,11 @@ msgstr ""
 msgid "%I:%M:%S%^p"
 msgstr ""
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr ""
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr ""
 
@@ -622,21 +622,21 @@ msgstr ""
 msgid "%a"
 msgstr ""
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr ""
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%a %-d %B %Y"
 msgstr "%A %e %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%a %-d %b"
 msgstr "%A %e %B %Y"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%a %-d %b %Y"
 msgstr "%A %e %B %Y"
@@ -971,7 +971,23 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
+msgstr ""
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d hour"
+msgstr[1] "%d hours"
+
+#, python-format
+msgid "%d Hours"
 msgstr ""
 
 #, python-format
@@ -980,6 +996,10 @@ msgstr ""
 
 #, python-format
 msgid "%d MB"
+msgstr ""
+
+#, python-format
+msgid "%d MB/s"
 msgstr ""
 
 #, python-format
@@ -1020,6 +1040,22 @@ msgid "%d Minutes"
 msgstr ""
 
 #, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d Second"
+msgstr[1] "%d Seconds"
+
+#, python-format
 msgid "%d Seconds"
 msgstr ""
 
@@ -1037,22 +1073,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d hour"
-msgstr[1] "%d hours"
 
 #, python-format
 msgid "%d kB"
@@ -1061,12 +1085,6 @@ msgstr ""
 #, python-format
 msgid "%d min"
 msgstr "%d deqa"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minute"
-msgstr[1] "%d minutes"
 
 #, python-format
 msgid "%d minutes"
@@ -1124,21 +1142,9 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 msgstr[1] ""
 
-#, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] ""
-msgstr[1] ""
-
 #, fuzzy, python-format
 msgid "%d sec"
 msgstr "%d second"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d Second"
-msgstr[1] "%d Seconds"
 
 #, fuzzy, python-format
 msgid "%d times"
@@ -1488,6 +1494,9 @@ msgstr ""
 msgid "+24"
 msgstr "2"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ""
@@ -1498,6 +1507,9 @@ msgstr ""
 #, fuzzy
 msgid "-24"
 msgstr "2"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr ""
@@ -1517,35 +1529,8 @@ msgstr ""
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr ""
-
-msgid "0.3s"
-msgstr ""
-
-msgid "0.4s"
-msgstr ""
-
-msgid "0.5s"
-msgstr ""
-
-msgid "0.6s"
-msgstr ""
-
-msgid "0.7s"
-msgstr ""
-
-msgid "0.8s"
-msgstr ""
-
-msgid "0.9s"
-msgstr ""
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr ""
 
 #, fuzzy
 msgid "1 hour"
@@ -1560,24 +1545,9 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr ""
-
-msgid "1.5s"
-msgstr ""
-
-msgid "1.7s"
-msgstr ""
-
-msgid "10 MB/s"
-msgstr ""
-
 #, fuzzy
 msgid "10 minutes"
 msgstr "minutes"
-
-msgid "100 MB/s"
-msgstr ""
 
 msgid "1024 Mb"
 msgstr ""
@@ -1687,9 +1657,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr ""
-
 #, fuzzy
 msgid "1st InfoBar timeout"
 msgstr "Info bar timeout"
@@ -1700,9 +1667,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr ""
-
 #, fuzzy
 msgid "2 hours"
 msgstr "%d hour"
@@ -1710,12 +1674,6 @@ msgstr "%d hour"
 #, fuzzy
 msgid "2 minutes"
 msgstr "minutes"
-
-msgid "2.5s"
-msgstr ""
-
-msgid "20 MB/s"
-msgstr ""
 
 msgid "2048 Mb"
 msgstr ""
@@ -1748,12 +1706,6 @@ msgstr "2"
 #, fuzzy
 msgid "24 hours"
 msgstr "%d hour"
-
-msgid "24+ Hours"
-msgstr ""
-
-msgid "24- Hours"
-msgstr ""
 
 msgid "24p/24p"
 msgstr ""
@@ -1815,9 +1767,6 @@ msgstr ""
 msgid "2nd InfoBar timeout"
 msgstr ""
 
-msgid "2s"
-msgstr ""
-
 msgid "2x"
 msgstr ""
 
@@ -1836,9 +1785,6 @@ msgstr "3"
 #, fuzzy
 msgid "3 hours"
 msgstr "%d hour"
-
-msgid "3.5s"
-msgstr ""
 
 #, fuzzy
 msgid "30"
@@ -1879,17 +1825,11 @@ msgstr "Sound"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3s"
-msgstr ""
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr ""
 
 #, fuzzy
 msgid "4 hours"
@@ -1919,9 +1859,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
@@ -1933,9 +1870,6 @@ msgid "5 hours"
 msgstr "%d hour"
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "50 MB/s"
 msgstr ""
 
 msgid "50p/24p"
@@ -1954,9 +1888,6 @@ msgid "50p/60p"
 msgstr ""
 
 msgid "512 Mb"
-msgstr ""
-
-msgid "5s"
 msgstr ""
 
 msgid "6"
@@ -2011,9 +1942,6 @@ msgstr ""
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr ""
 
 #, fuzzy
 msgid "8 character"
@@ -2986,6 +2914,9 @@ msgstr "Sanat u Kultur"
 msgid "Aruba"
 msgstr ""
 
+msgid "As plugin in extended bar"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Xebatkar Pirski"
 
@@ -3030,6 +2961,14 @@ msgstr ""
 
 msgid "Astra 3 23.5e"
 msgstr ""
+
+#, fuzzy
+msgid "At beginning"
+msgstr "At beginning"
+
+#, fuzzy
+msgid "At end"
+msgstr "At end"
 
 msgid "At end of current program"
 msgstr ""
@@ -3146,10 +3085,6 @@ msgid "Auto SCART switching"
 msgstr "Auto SCART switching"
 
 #, fuzzy
-msgid "Auto Timer"
-msgstr "Add timer"
-
-#, fuzzy
 msgid "Auto Timers"
 msgstr "Add timer"
 
@@ -3186,6 +3121,9 @@ msgid "Auto(not available)"
 msgstr ""
 
 msgid "AutoMountManager"
+msgstr ""
+
+msgid "AutoTimer"
 msgstr ""
 
 #, fuzzy
@@ -3650,6 +3588,10 @@ msgstr "Estonian"
 
 msgid "Botswana"
 msgstr ""
+
+#, fuzzy
+msgid "Bottom"
+msgstr "Top and bottom"
 
 #, fuzzy
 msgid "Bouquet List"
@@ -4231,6 +4173,15 @@ msgid "Cayman Islands"
 msgstr ""
 
 msgid "Celsius"
+msgstr ""
+
+msgid "Center"
+msgstr "center"
+
+msgid "Centered"
+msgstr ""
+
+msgid "Centered, wrapped"
 msgstr ""
 
 msgid "Central African Republic"
@@ -8847,6 +8798,9 @@ msgstr "Jump to previous marked position"
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto deep standby"
+msgstr ""
+
 #, fuzzy
 msgid "Goto next bouquet"
 msgstr "Go to next event"
@@ -8876,6 +8830,9 @@ msgstr "Go to previous event"
 
 msgid "Goto specific date/time"
 msgstr "Goto specific date/time"
+
+msgid "Goto standby"
+msgstr ""
 
 msgid "GotoX calibration"
 msgstr "GotoX calibration"
@@ -9307,9 +9264,6 @@ msgid "Hotkey"
 msgstr ""
 
 msgid "Hotkey Settings"
-msgstr ""
-
-msgid "Hour"
 msgstr ""
 
 msgid "Hourly"
@@ -10175,6 +10129,9 @@ msgstr ""
 msgid "Just abort, show message"
 msgstr ""
 
+msgid "Just boot"
+msgstr ""
+
 msgid "Just change Bouquet"
 msgstr ""
 
@@ -10469,6 +10426,9 @@ msgstr "Service name"
 #, fuzzy
 msgid "Left long"
 msgstr "Left"
+
+msgid "Left, wrapped"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr "Leisure hobbies"
@@ -11166,6 +11126,9 @@ msgstr ""
 msgid "Micronesia, Federated States of"
 msgstr ""
 
+msgid "Middle"
+msgstr ""
+
 msgid "Middle - Lite image"
 msgstr ""
 
@@ -11204,6 +11167,13 @@ msgstr "Minimum age %d years"
 
 msgid "Mins"
 msgstr ""
+
+#, fuzzy
+msgid "Minute"
+msgstr "minutes"
+
+msgid "Minutes"
+msgstr "minutes"
 
 msgid "Minutes Seconds"
 msgstr ""
@@ -11875,6 +11845,9 @@ msgstr ""
 msgid "Neutrino  (keymap.ntr)"
 msgstr ""
 
+msgid "Never"
+msgstr "never"
+
 msgid "Never abort"
 msgstr ""
 
@@ -12507,9 +12480,6 @@ msgstr ""
 
 msgid "Once"
 msgstr "Once"
-
-msgid "Once per day"
-msgstr ""
 
 msgid "One"
 msgstr "One"
@@ -13683,9 +13653,6 @@ msgstr ""
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr ""
-
 #, fuzzy
 msgid "PowerTimer Overview"
 msgstr "Timer Overview"
@@ -13694,6 +13661,9 @@ msgid "PowerTimer Settings"
 msgstr ""
 
 msgid "PowerTimer Standby"
+msgstr ""
+
+msgid "PowerTimer deep standby"
 msgstr ""
 
 msgid "PowerTimer log"
@@ -13863,6 +13833,13 @@ msgstr "Go to previous event"
 #, fuzzy
 msgid "Previous page"
 msgstr "Switch to previous channel"
+
+#, fuzzy
+msgid "Previous/Next bouquet"
+msgstr "Go to previous event"
+
+msgid "Previous/Next page"
+msgstr ""
 
 msgid "Prevsong"
 msgstr ""
@@ -15053,6 +15030,9 @@ msgstr "Picon and service name"
 msgid "Right long"
 msgstr "Right"
 
+msgid "Right, wrapped"
+msgstr ""
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -15589,6 +15569,9 @@ msgstr ""
 
 msgid "Secondary DNS"
 msgstr "Secondary DNS"
+
+msgid "Seconds"
+msgstr "seconds"
 
 msgid "Security"
 msgstr ""
@@ -20185,6 +20168,9 @@ msgstr "Tone mode"
 msgid "Tonga"
 msgstr ""
 
+msgid "Top"
+msgstr "top"
+
 #, fuzzy
 msgid "Top and Bottom"
 msgstr "Top and bottom"
@@ -20814,6 +20800,9 @@ msgid "Upper USB"
 msgstr ""
 
 msgid "Upper case"
+msgstr ""
+
+msgid "Upper line"
 msgstr ""
 
 msgid "Uptime"
@@ -21965,11 +21954,21 @@ msgstr "Wireless network connection setup."
 msgid "Wireless network state"
 msgstr "Wireless network state"
 
+msgid "With EXIT button"
+msgstr ""
+
+msgid "With LEFT/RIGHT buttons"
+msgstr ""
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr ""
 
 msgid "With errors:"
 msgstr ""
+
+#, fuzzy
+msgid "With long OK press"
+msgstr "Long key press"
 
 msgid "With pop up"
 msgstr ""
@@ -22709,16 +22708,8 @@ msgstr "alphabetic"
 msgid "alphabetic reverse"
 msgstr "alphabetic reverse"
 
-#, fuzzy
-msgid "alphabetical"
-msgstr "alphabetic"
-
 msgid "alpharev then newest"
 msgstr ""
-
-#, fuzzy
-msgid "alternative"
-msgstr "Evé din"
 
 msgid "am"
 msgstr ""
@@ -22743,17 +22734,6 @@ msgstr "arts/culture (without music, general)"
 
 msgid "arts/culture magazine"
 msgstr "arts/culture magazine"
-
-msgid "As plugin in extended bar"
-msgstr ""
-
-#, fuzzy
-msgid "At beginning"
-msgstr "At beginning"
-
-#, fuzzy
-msgid "At end"
-msgstr "At end"
 
 msgid "athletics"
 msgstr "athletics"
@@ -22806,10 +22786,6 @@ msgstr "blacklist"
 msgid "blue"
 msgstr "blue"
 
-#, fuzzy
-msgid "Bottom"
-msgstr "Top and bottom"
-
 msgid "broadcasting/press"
 msgstr "broadcasting/press"
 
@@ -22838,15 +22814,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "cartoon/puppets"
-
-msgid "Center"
-msgstr "center"
-
-msgid "Centered"
-msgstr ""
-
-msgid "Centered, wrapped"
-msgstr ""
 
 msgid "change Volume down"
 msgstr ""
@@ -23182,9 +23149,6 @@ msgstr ""
 msgid "goto current channel and now"
 msgstr "Switch next channel"
 
-msgid "Goto deep standby"
-msgstr ""
-
 #, fuzzy
 msgid "goto first channel"
 msgstr "Switch next channel"
@@ -23194,9 +23158,6 @@ msgid "goto last channel"
 msgstr "Switch next channel"
 
 msgid "goto now"
-msgstr ""
-
-msgid "Goto standby"
 msgstr ""
 
 msgid "grab this frame as bitmap"
@@ -23324,9 +23285,6 @@ msgstr "jump forward to the next title"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "Just boot"
-msgstr ""
-
 msgid "languages"
 msgstr "languages"
 
@@ -23336,9 +23294,6 @@ msgstr "leave movie player..."
 
 msgid "left"
 msgstr "left"
-
-msgid "Left, wrapped"
-msgstr ""
 
 msgid "leisure hobbies (general)"
 msgstr "leisure hobbies (general)"
@@ -23376,19 +23331,9 @@ msgstr "martial sports"
 msgid "medicine/physiology/psychology"
 msgstr "medicine/physiology/psychology"
 
-msgid "Middle"
-msgstr ""
-
 #, fuzzy
 msgid "min"
 msgstr "mins"
-
-#, fuzzy
-msgid "Minute"
-msgstr "minutes"
-
-msgid "Minutes"
-msgstr "minutes"
 
 msgid "month"
 msgstr "month"
@@ -23452,9 +23397,6 @@ msgstr ""
 
 msgid "nature/animals/environment"
 msgstr "nature/animals/environment"
-
-msgid "Never"
-msgstr "never"
 
 msgid "new media"
 msgstr "new media"
@@ -23610,13 +23552,6 @@ msgid "previous channel page"
 msgstr "Switch to previous channel"
 
 #, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "Go to previous event"
-
-msgid "Previous/Next page"
-msgstr ""
-
-#, fuzzy
 msgid "provid:"
 msgstr "Provider"
 
@@ -23708,9 +23643,6 @@ msgstr ""
 msgid "right"
 msgstr "right"
 
-msgid "Right, wrapped"
-msgstr ""
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -23741,9 +23673,6 @@ msgstr ""
 
 msgid "search EPG..."
 msgstr ""
-
-msgid "Seconds"
-msgstr "seconds"
 
 msgid "select CAId's"
 msgstr "select CAId's"
@@ -23960,9 +23889,6 @@ msgstr ""
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "toggle time, chapter, audio, subtitle info"
 
-msgid "Top"
-msgstr "top"
-
 msgid "tourism/travel"
 msgstr "tourism/travel"
 
@@ -24046,9 +23972,6 @@ msgstr "Update"
 msgid "updates available."
 msgstr " updates tuneye"
 
-msgid "Upper line"
-msgstr ""
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -24057,9 +23980,6 @@ msgstr ""
 
 msgid "use_hdmi_cacenter"
 msgstr ""
-
-msgid "user defined"
-msgstr "user defined"
 
 #, fuzzy
 msgid "userdefined"
@@ -24099,9 +24019,6 @@ msgid ""
 "A copy has been sent to yourself."
 msgstr ""
 
-msgid "white"
-msgstr "white"
-
 msgid "wide"
 msgstr ""
 
@@ -24127,16 +24044,6 @@ msgstr[1] ""
 msgid "with errors"
 msgstr "Hide zap errors"
 
-msgid "With EXIT button"
-msgstr ""
-
-msgid "With LEFT/RIGHT buttons"
-msgstr ""
-
-#, fuzzy
-msgid "With long OK press"
-msgstr "Long key press"
-
 msgid "with_errors"
 msgstr ""
 
@@ -24158,6 +24065,30 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minute"
+#~ msgstr[1] "%d minutes"
+
+#, fuzzy
+#~ msgid "Auto Timer"
+#~ msgstr "Add timer"
+
+#, fuzzy
+#~ msgid "alphabetical"
+#~ msgstr "alphabetic"
+
+#, fuzzy
+#~ msgid "alternative"
+#~ msgstr "Evé din"
+
+#~ msgid "user defined"
+#~ msgstr "user defined"
+
+#~ msgid "white"
+#~ msgstr "white"
 
 #, fuzzy
 #~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -224,16 +224,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -352,7 +352,7 @@ msgstr "%2.1f mp"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -554,11 +554,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -604,19 +604,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -904,8 +904,24 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d óra"
+msgstr[1] "%d óra"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -914,6 +930,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "%d MHz"
@@ -952,6 +972,22 @@ msgstr[1] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d pixel széles"
+msgstr[1] "%d pixel széles"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d másodperc"
+msgstr[1] "%d másodperc"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -970,22 +1006,10 @@ msgstr[0] "%d core"
 msgstr[1] "%d core"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d nap"
-msgstr[1] "%d nap"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d feed katalógus frissítve."
 msgstr[1] "%d feed katalógus frissítve."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d óra"
-msgstr[1] "%d óra"
 
 #, python-format
 msgid "%d kB"
@@ -994,12 +1018,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d perc"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d perc"
-msgstr[1] "%d perc"
 
 #, python-format
 msgid "%d minutes"
@@ -1058,20 +1076,8 @@ msgstr[0] "%d csomag frissítve."
 msgstr[1] "%d csomag frissítve."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d pixel széles"
-msgstr[1] "%d pixel széles"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d másodperc"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d másodperc"
-msgstr[1] "%d másodperc"
 
 #, python-format
 msgid "%d times"
@@ -1416,6 +1422,9 @@ msgstr "* Aktuális konfiguráció aktiválása"
 msgid "+24"
 msgstr "+1 nap"
 
+msgid "+24 Hours"
+msgstr ""
+
 #, fuzzy
 msgctxt "Text list separator"
 msgid ", "
@@ -1427,6 +1436,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-1 nap"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-1 nap/+1 nap"
@@ -1446,35 +1458,8 @@ msgstr "/var mappa"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 óra"
@@ -1488,23 +1473,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 perc"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 MB"
@@ -1609,9 +1579,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "Első információs sáv eltünési ideje"
 
@@ -1621,20 +1588,11 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 óra"
 
 msgid "2 minutes"
 msgstr "2 perc"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 MB"
@@ -1665,12 +1623,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "1 nap"
-
-msgid "24+ Hours"
-msgstr "+1 nap"
-
-msgid "24- Hours"
-msgstr "-1 nap"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1730,9 +1682,6 @@ msgstr "Második információs sáv INFO"
 msgid "2nd InfoBar timeout"
 msgstr "Második információs sáv eltünési ideje"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1750,9 +1699,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 óra"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1790,17 +1736,11 @@ msgstr "3D surround"
 msgid "3D Surround Speaker Position"
 msgstr "3D surround hangszóró pozíciója"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 óra"
@@ -1830,9 +1770,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr ""
 
@@ -1844,9 +1781,6 @@ msgstr "5 óra"
 
 msgid "5 minutes"
 msgstr "5 perc"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1865,9 +1799,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 MB"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1919,9 +1850,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 karakter"
@@ -2843,6 +2771,9 @@ msgstr "Művészet/Kultúra"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "bővítményként a kiterjesztett sávban"
+
 msgid "Ask user"
 msgstr "Felhasználó kérdezése"
 
@@ -2885,6 +2816,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "az elején"
+
+msgid "At end"
+msgstr "a végén"
 
 msgid "At end of current program"
 msgstr ""
@@ -2991,9 +2928,6 @@ msgstr "Automatikus módok kiválasztva."
 msgid "Auto SCART switching"
 msgstr "Automatikus SCART átkapcsolás"
 
-msgid "Auto Timer"
-msgstr "AutoTimer"
-
 msgid "Auto Timers"
 msgstr "Automatikus Időzítések"
 
@@ -3029,6 +2963,9 @@ msgstr "Automatikus (nem érhető el)"
 
 msgid "AutoMountManager"
 msgstr "Csatlakozás kezelő"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Automatikus frissítés"
@@ -3474,6 +3411,9 @@ msgstr "Észt"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "alsó"
 
 msgid "Bouquet List"
 msgstr "Csatornacsomag lista"
@@ -4041,6 +3981,15 @@ msgstr "Kajmán-szigetek"
 
 msgid "Celsius"
 msgstr "Celsius"
+
+msgid "Center"
+msgstr "középre"
+
+msgid "Centered"
+msgstr "középre"
+
+msgid "Centered, wrapped"
+msgstr "középen sortöréssel"
 
 msgid "Central African Republic"
 msgstr "Közép-afrikai Köztársaság"
@@ -8505,6 +8454,9 @@ msgstr "Ugrás a Főműsoridőre"
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto deep standby"
+msgstr "kikapcsolás"
+
 msgid "Goto next bouquet"
 msgstr "Következő csatornacsomagra"
 
@@ -8528,6 +8480,9 @@ msgstr "Előző eseményre"
 
 msgid "Goto specific date/time"
 msgstr "Konkrét adathoz/időhöz"
+
+msgid "Goto standby"
+msgstr "készenléti állapot"
 
 msgid "GotoX calibration"
 msgstr "Goto X kalibrálása"
@@ -8940,9 +8895,6 @@ msgstr "Hotkey"
 
 msgid "Hotkey Settings"
 msgstr "Hotkey beállítása"
-
-msgid "Hour"
-msgstr "Óra"
 
 msgid "Hourly"
 msgstr "Óránként"
@@ -9781,6 +9733,9 @@ msgstr "csak megállítás, nincs üzenet"
 msgid "Just abort, show message"
 msgstr "csak megállítás, üzenet megjelenítése"
 
+msgid "Just boot"
+msgstr "indítás"
+
 msgid "Just change Bouquet"
 msgstr "Csak csatornacsomag váltás"
 
@@ -10065,6 +10020,9 @@ msgstr "A csatornanév bal oldalán"
 
 msgid "Left long"
 msgstr "Bal hosszan"
+
+msgid "Left, wrapped"
+msgstr "bal oldalon sortöréssel"
 
 msgid "Leisure hobbies"
 msgstr "Pihenés/Hobby"
@@ -10744,6 +10702,9 @@ msgstr "Mexikó"
 msgid "Micronesia, Federated States of"
 msgstr "Mikronézia"
 
+msgid "Middle"
+msgstr "középre"
+
 msgid "Middle - Lite image"
 msgstr ""
 
@@ -10780,6 +10741,12 @@ msgstr "Minimális ismétlési időköz"
 
 msgid "Mins"
 msgstr "Perc"
+
+msgid "Minute"
+msgstr "perc"
+
+msgid "Minutes"
+msgstr "perc"
 
 msgid "Minutes Seconds"
 msgstr "Perc Másodperc"
@@ -11430,6 +11397,9 @@ msgstr "Hálózati Varázsló"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "soha"
+
 msgid "Never abort"
 msgstr "nincs megállítás"
 
@@ -12043,9 +12013,6 @@ msgstr "Érvényes ONID-k esetén a frekvencia alhálózat-rész figyelmen kív�
 
 msgid "Once"
 msgstr "egyszeri"
-
-msgid "Once per day"
-msgstr "Egyszer naponta"
 
 msgid "One"
 msgstr "Egy"
@@ -13193,9 +13160,6 @@ msgstr "Kikapcsolás Időzítő"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "Kikapcsolás Időzítő Kikapcsolás"
-
 msgid "PowerTimer Overview"
 msgstr "Kikapcsolás Időzítő Áttekintés"
 
@@ -13204,6 +13168,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Kikapcsolás Időzítő Készenléti állapot"
+
+msgid "PowerTimer deep standby"
+msgstr "Kikapcsolás Időzítő Kikapcsolás"
 
 msgid "PowerTimer log"
 msgstr "PowerTimer napló"
@@ -13367,6 +13334,12 @@ msgstr "Előző lista"
 
 msgid "Previous page"
 msgstr "Előző oldal"
+
+msgid "Previous/Next bouquet"
+msgstr "előző/következő lista"
+
+msgid "Previous/Next page"
+msgstr "előző/következő oldal"
 
 msgid "Prevsong"
 msgstr "Prevsong"
@@ -14500,6 +14473,9 @@ msgstr "A csatornanév jobb oldalán"
 msgid "Right long"
 msgstr "Jobb hosszan"
 
+msgid "Right, wrapped"
+msgstr "jobb oldalon sortöréssel"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -15024,6 +15000,9 @@ msgstr "Forgatómotoros fej második kábele"
 
 msgid "Secondary DNS"
 msgstr "Másodlagos DNS"
+
+msgid "Seconds"
+msgstr "másodperc"
 
 msgid "Security"
 msgstr "biztonság"
@@ -19491,6 +19470,9 @@ msgstr "Tone mód"
 msgid "Tonga"
 msgstr "Tonga"
 
+msgid "Top"
+msgstr "teteje"
+
 msgid "Top and Bottom"
 msgstr "Felső és alsó"
 
@@ -20096,6 +20078,9 @@ msgstr "Felső USB"
 
 msgid "Upper case"
 msgstr "Nagybetű"
+
+msgid "Upper line"
+msgstr "felső vonal"
 
 msgid "Uptime"
 msgstr "Működési idő"
@@ -21220,11 +21205,20 @@ msgstr "Vezeték nélküli hálózat beállítása."
 msgid "Wireless network state"
 msgstr "Vezeték nélküli hálózat állapota"
 
+msgid "With EXIT button"
+msgstr "exit gombbal"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "bal/jobb gombokkal"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Ha a T2MI RAW mód le van tiltva (alapértelmezés), akkor használhatjuk az egyszeri T2MI PLP beágyazást. Ha a T2MI RAW mód engedélyezve van, akkor az Astra-sm elemzést használhatjuk a T2MI elemzésére"
 
 msgid "With errors:"
 msgstr "Hibákkal:"
+
+msgid "With long OK press"
+msgstr "hosszú OK gomb nyomással"
 
 msgid "With pop up"
 msgstr "Figyelmeztetéssel"
@@ -21980,14 +21974,8 @@ msgstr "abc szerinti rendezés"
 msgid "alphabetic reverse"
 msgstr "fordított abc"
 
-msgid "alphabetical"
-msgstr "abc sorban"
-
 msgid "alpharev then newest"
 msgstr "utána a legújabb"
-
-msgid "alternative"
-msgstr "alternatív"
 
 msgid "am"
 msgstr "de"
@@ -22013,15 +22001,6 @@ msgstr "művészet/kultúra (prózai, általános)"
 
 msgid "arts/culture magazine"
 msgstr "művészet/kultúra magazin"
-
-msgid "As plugin in extended bar"
-msgstr "bővítményként a kiterjesztett sávban"
-
-msgid "At beginning"
-msgstr "az elején"
-
-msgid "At end"
-msgstr "a végén"
 
 msgid "athletics"
 msgstr "atlétika"
@@ -22074,9 +22053,6 @@ msgstr "feketelista"
 msgid "blue"
 msgstr "kék"
 
-msgid "Bottom"
-msgstr "alsó"
-
 msgid "broadcasting/press"
 msgstr "közvetítés/sajtó"
 
@@ -22104,15 +22080,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "rajzfilm/báb"
-
-msgid "Center"
-msgstr "középre"
-
-msgid "Centered"
-msgstr "középre"
-
-msgid "Centered, wrapped"
-msgstr "középen sortöréssel"
 
 msgid "change Volume down"
 msgstr "hangerő le"
@@ -22431,9 +22398,6 @@ msgstr "kártyaszerver"
 msgid "goto current channel and now"
 msgstr "ugrás az aktuális csatornára és most"
 
-msgid "Goto deep standby"
-msgstr "kikapcsolás"
-
 msgid "goto first channel"
 msgstr "ugrás az első csatornára"
 
@@ -22442,9 +22406,6 @@ msgstr "ugrás az utolsó csatornára"
 
 msgid "goto now"
 msgstr "ugrás most"
-
-msgid "Goto standby"
-msgstr "készenléti állapot"
 
 msgid "grab this frame as bitmap"
 msgstr "pillanatkép mentése"
@@ -22569,9 +22530,6 @@ msgstr "előreugrás a következő címhez"
 msgid "jump to chapter by number"
 msgstr "ugrás fejezethez szám alapján"
 
-msgid "Just boot"
-msgstr "indítás"
-
 msgid "languages"
 msgstr "nyelvek"
 
@@ -22581,9 +22539,6 @@ msgstr "kilépés a lejátszóból..."
 
 msgid "left"
 msgstr "bal"
-
-msgid "Left, wrapped"
-msgstr "bal oldalon sortöréssel"
 
 msgid "leisure hobbies (general)"
 msgstr "hobbi/szórakozás (általános)"
@@ -22621,16 +22576,7 @@ msgstr "harci sportok"
 msgid "medicine/physiology/psychology"
 msgstr "egészség"
 
-msgid "Middle"
-msgstr "középre"
-
 msgid "min"
-msgstr "perc"
-
-msgid "Minute"
-msgstr "perc"
-
-msgid "Minutes"
 msgstr "perc"
 
 msgid "month"
@@ -22689,9 +22635,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "természet/állatvilág/környezet"
-
-msgid "Never"
-msgstr "soha"
 
 msgid "new media"
 msgstr "új média"
@@ -22837,12 +22780,6 @@ msgstr "óvodásoknak"
 msgid "previous channel page"
 msgstr "előző csatornaoldal"
 
-msgid "Previous/Next bouquet"
-msgstr "előző/következő lista"
-
-msgid "Previous/Next page"
-msgstr "előző/következő oldal"
-
 msgid "provid:"
 msgstr "szolgáltató Id:"
 
@@ -22930,9 +22867,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "jobb"
 
-msgid "Right, wrapped"
-msgstr "jobb oldalon sortöréssel"
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -22967,9 +22901,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "keresés EPG..."
-
-msgid "Seconds"
-msgstr "másodperc"
 
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
@@ -23176,9 +23107,6 @@ msgstr "könyvtárba"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "idő, chapter, hangsáv, feliratsáv választás"
 
-msgid "Top"
-msgstr "teteje"
-
 msgid "tourism/travel"
 msgstr "turizmus/utazás"
 
@@ -23257,9 +23185,6 @@ msgstr "frissítés"
 msgid "updates available."
 msgstr "frissítés elérhető."
 
-msgid "Upper line"
-msgstr "felső vonal"
-
 msgid "use best / controlled by HDMI"
 msgstr "a legjobb / a HDMI által vezérelt"
 
@@ -23268,9 +23193,6 @@ msgstr "használja a megnövelt '14/18V 'feszültséget, ha problémák merüln�
 
 msgid "use_hdmi_cacenter"
 msgstr "use_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "egyedi meghatározás"
 
 msgid "userdefined"
 msgstr "felhasználó által definiált"
@@ -23311,9 +23233,6 @@ msgstr ""
 "\n"
 "Egy példányt elküldtek magának."
 
-msgid "white"
-msgstr "fehér"
-
 msgid "wide"
 msgstr "széles"
 
@@ -23338,15 +23257,6 @@ msgstr[1] "%d hibákkal"
 msgid "with errors"
 msgstr "hibákkal"
 
-msgid "With EXIT button"
-msgstr "exit gombbal"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "bal/jobb gombokkal"
-
-msgid "With long OK press"
-msgstr "hosszú OK gomb nyomással"
-
 msgid "with_errors"
 msgstr "hibákkal"
 
@@ -23368,6 +23278,123 @@ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d nap"
+#~ msgstr[1] "%d nap"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d perc"
+#~ msgstr[1] "%d perc"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "+1 nap"
+
+#~ msgid "24- Hours"
+#~ msgstr "-1 nap"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "AutoTimer"
+
+#~ msgid "Hour"
+#~ msgstr "Óra"
+
+#~ msgid "Once per day"
+#~ msgstr "Egyszer naponta"
+
+#~ msgid "alphabetical"
+#~ msgstr "abc sorban"
+
+#~ msgid "alternative"
+#~ msgstr "alternatív"
+
+#~ msgid "user defined"
+#~ msgstr "egyedi meghatározás"
+
+#~ msgid "white"
+#~ msgstr "fehér"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

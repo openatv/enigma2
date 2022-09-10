@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-09-09 12:16+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -219,16 +219,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -347,7 +347,7 @@ msgstr "%2.1f Seconds"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -537,11 +537,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -587,19 +587,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -876,8 +876,26 @@ msgstr[1] "%d Dny"
 msgstr[2] "%d Dní"
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d hodina"
+msgstr[1] "%d hodiny"
+msgstr[2] "%d hodin"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -886,6 +904,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -926,6 +948,24 @@ msgstr[2] "%d Minut"
 msgid "%d Minutes"
 msgstr "%d Minut"
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "Šířka %d pixel"
+msgstr[1] "Šířka %d pixelů"
+msgstr[2] "Šířka %d pixelů"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundy"
+msgstr[2] "%d sekund"
+
 #, python-format
 msgid "%d Seconds"
 msgstr "%d Sekund"
@@ -946,25 +986,11 @@ msgstr[1] "%d jader"
 msgstr[2] "%d jader"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d den"
-msgstr[1] "%d dní"
-msgstr[2] "%d dní"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d balíček katalogu zdrojů byl aktualizován."
 msgstr[1] "%d balíčků katalogu zdrojů bylo aktualizováno."
 msgstr[2] "%d balíčků katalogu zdrojů bylo aktualizováno."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d hodina"
-msgstr[1] "%d hodiny"
-msgstr[2] "%d hodin"
 
 #, python-format
 msgid "%d kB"
@@ -973,13 +999,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d min"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minuta"
-msgstr[1] "%d minuty"
-msgstr[2] "%d minut"
 
 #, python-format
 msgid "%d minutes"
@@ -1046,22 +1065,8 @@ msgstr[1] "%d balíčky byly aktualizovány."
 msgstr[2] "%d balíčků bylo aktualizováno."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "Šířka %d pixel"
-msgstr[1] "Šířka %d pixelů"
-msgstr[2] "Šířka %d pixelů"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sec"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d sekunda"
-msgstr[1] "%d sekundy"
-msgstr[2] "%d sekund"
 
 #, python-format
 msgid "%d times"
@@ -1401,6 +1406,9 @@ msgstr "* Aktuální nastavení animací"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1410,6 +1418,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24 hodin/+24 hodin"
@@ -1429,35 +1440,8 @@ msgstr "adresář /var"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 hodina"
@@ -1471,23 +1455,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 minut"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "MB"
@@ -1591,9 +1560,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "První Infobar skrýt"
 
@@ -1603,20 +1569,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 hodiny"
 
 msgid "2 minutes"
 msgstr "2 minuty"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "MB"
@@ -1647,12 +1604,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 hodin"
-
-msgid "24+ Hours"
-msgstr "24+ hodin"
-
-msgid "24- Hours"
-msgstr "24- hodin"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1711,9 +1662,6 @@ msgstr "Druhý Infobar INFO"
 msgid "2nd InfoBar timeout"
 msgstr "Druhý Infobar skrýt"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1731,9 +1679,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 hodiny"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1771,17 +1716,11 @@ msgstr "3D Surround (prostorový zvuk)"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround (prostorový zvuk) umístění reproduktoru"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 hodiny"
@@ -1810,9 +1749,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "WWIO 4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1824,9 +1760,6 @@ msgstr "5 hodin"
 
 msgid "5 minutes"
 msgstr "5 minut"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1845,9 +1778,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "MB"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1899,9 +1829,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 znaků"
@@ -2812,6 +2739,9 @@ msgstr "Umění/Kultura"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "jako plugin v rozš. liště"
+
 msgid "Ask user"
 msgstr "Zeptat se"
 
@@ -2853,6 +2783,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "na začátek"
+
+msgid "At end"
+msgstr "na konec"
 
 msgid "At end of current program"
 msgstr "Na konci aktuálního programu"
@@ -2958,9 +2894,6 @@ msgstr "Vybrány automatické režimy."
 msgid "Auto SCART switching"
 msgstr "Automatické přepínání SCART"
 
-msgid "Auto Timer"
-msgstr "Automatický časovač"
-
 msgid "Auto Timers"
 msgstr "Automatické časovače"
 
@@ -2996,6 +2929,9 @@ msgstr "Auto (není dostupné)"
 
 msgid "AutoMountManager"
 msgstr "Správce připojení"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
@@ -3436,6 +3372,9 @@ msgstr "Bosenský"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "spodní"
 
 msgid "Bouquet List"
 msgstr "Seznam přehledů"
@@ -4013,6 +3952,15 @@ msgstr "Kajmanské ostrovy"
 
 msgid "Celsius"
 msgstr "Celsia"
+
+msgid "Center"
+msgstr "střed"
+
+msgid "Centered"
+msgstr "uprostřed"
+
+msgid "Centered, wrapped"
+msgstr "uprostřed, zalomený"
 
 msgid "Central African Republic"
 msgstr "Středoafrická republika"
@@ -8448,6 +8396,9 @@ msgstr "Přejděte na hlavní vysílací čas"
 msgid "Goto X"
 msgstr "Přejít na X"
 
+msgid "Goto deep standby"
+msgstr "přejít do hlubokého spánku"
+
 msgid "Goto next bouquet"
 msgstr "Na další přehled"
 
@@ -8471,6 +8422,9 @@ msgstr "Přejít na předchozí událost"
 
 msgid "Goto specific date/time"
 msgstr "Přejít na zadané datum/čas"
+
+msgid "Goto standby"
+msgstr "přejít do pohotovostního režimu"
 
 msgid "GotoX calibration"
 msgstr "Kalibrace přejít na X"
@@ -8879,9 +8833,6 @@ msgstr "Tlačítka DO"
 
 msgid "Hotkey Settings"
 msgstr "Nastavení klávesových zkratek"
-
-msgid "Hour"
-msgstr "Hod"
 
 msgid "Hourly"
 msgstr "Hodina"
@@ -9709,6 +9660,9 @@ msgstr "stačí zrušit, žádná zpráva"
 msgid "Just abort, show message"
 msgstr "stačí zrušit, zobrazit zprávu"
 
+msgid "Just boot"
+msgstr "jen nabootovat"
+
 msgid "Just change Bouquet"
 msgstr "Stačí přepnout přehledy"
 
@@ -9984,6 +9938,9 @@ msgstr "Nalevo od názvu kanálu"
 
 msgid "Left long"
 msgstr "Levý - dlouhý stisk"
+
+msgid "Left, wrapped"
+msgstr "vlevo, zalomený"
 
 msgid "Leisure hobbies"
 msgstr "Volný čas, zájmy, koníčky"
@@ -10644,6 +10601,9 @@ msgstr "Mexiko"
 msgid "Micronesia, Federated States of"
 msgstr "Mikronésie, Federativní státy"
 
+msgid "Middle"
+msgstr "prostřední"
+
 msgid "Middle - Lite image"
 msgstr "Střední - Lite obrázek"
 
@@ -10680,6 +10640,12 @@ msgstr "Minimální interval posílání"
 
 msgid "Mins"
 msgstr "Min"
+
+msgid "Minute"
+msgstr "minuta"
+
+msgid "Minutes"
+msgstr "minut"
 
 msgid "Minutes Seconds"
 msgstr "Min Sek"
@@ -11306,6 +11272,9 @@ msgstr "Pomocník sítě"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "nikdy"
+
 msgid "Never abort"
 msgstr "nikdy nezrušit"
 
@@ -11914,9 +11883,6 @@ msgstr "U platných ONID ignorujte část frekvenční podsítě"
 
 msgid "Once"
 msgstr "Jednou"
-
-msgid "Once per day"
-msgstr "Jednou denně"
 
 msgid "One"
 msgstr "Jeden"
@@ -13053,9 +13019,6 @@ msgstr "Časovač vypnutí"
 msgid "PowerTimer Actions"
 msgstr "Akce PowerTimer"
 
-msgid "PowerTimer deep standby"
-msgstr "Časovač napájení (úplně vypnout)"
-
 msgid "PowerTimer Overview"
 msgstr "Časovač napájení - přehled"
 
@@ -13064,6 +13027,9 @@ msgstr "Nastavení časovače PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Časovač napájení (vypnout do pohotovosti)"
+
+msgid "PowerTimer deep standby"
+msgstr "Časovač napájení (úplně vypnout)"
 
 msgid "PowerTimer log"
 msgstr "Časovač napájení - protokol"
@@ -13225,6 +13191,12 @@ msgstr "Předchozí přehled"
 
 msgid "Previous page"
 msgstr "Předchozí stránka"
+
+msgid "Previous/Next bouquet"
+msgstr "předchozí/následující přehled"
+
+msgid "Previous/Next page"
+msgstr "předchozí/následující stránka"
 
 msgid "Prevsong"
 msgstr "Předchozí píseň"
@@ -14357,6 +14329,9 @@ msgstr "Napravo od názvu kanálu"
 msgid "Right long"
 msgstr "Pravý - dlouhý stisk"
 
+msgid "Right, wrapped"
+msgstr "vpravo, zalomený"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -14875,6 +14850,9 @@ msgstr "Druhý kabel motorizovaného LNB"
 
 msgid "Secondary DNS"
 msgstr "Sekundární DNS"
+
+msgid "Seconds"
+msgstr "sekund"
 
 msgid "Security"
 msgstr "Zabezpečení"
@@ -19294,6 +19272,9 @@ msgstr "Režim tónu"
 msgid "Tonga"
 msgstr "Tonga"
 
+msgid "Top"
+msgstr "nahoru"
+
 msgid "Top and Bottom"
 msgstr "Nad sebou"
 
@@ -19892,6 +19873,9 @@ msgstr "Horní USB"
 
 msgid "Upper case"
 msgstr "Velká písmena"
+
+msgid "Upper line"
+msgstr "horní řádek"
 
 msgid "Uptime"
 msgstr "Spuštěno"
@@ -21032,11 +21016,20 @@ msgstr "Nastavení připojení bezdrátové sítě."
 msgid "Wireless network state"
 msgstr "Stav WiFi"
 
+msgid "With EXIT button"
+msgstr "tlačítkem Exit"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "tlačítky L/P"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Pokud je režim T2MI RAW vypnutý (výchozí), můžeme použít jediné deenkapsulace T2MI PLP. Se zapnutým režimem T2MI RAW můžeme použít astra-sm k analýze T2MI"
 
 msgid "With errors:"
 msgstr "S chybami:"
+
+msgid "With long OK press"
+msgstr "dlouhým stiskem OK"
 
 msgid "With pop up"
 msgstr "S dialogem"
@@ -21791,14 +21784,8 @@ msgstr "abecední"
 msgid "alphabetic reverse"
 msgstr "abecedně obráceně"
 
-msgid "alphabetical"
-msgstr "abecední"
-
 msgid "alpharev then newest"
 msgstr "abecední pak nejnovější"
-
-msgid "alternative"
-msgstr "alternativa"
 
 msgid "am"
 msgstr "am"
@@ -21824,15 +21811,6 @@ msgstr "umění/kulura (bez hudby, obecně)"
 
 msgid "arts/culture magazine"
 msgstr "arts/culture magazine"
-
-msgid "As plugin in extended bar"
-msgstr "jako plugin v rozš. liště"
-
-msgid "At beginning"
-msgstr "na začátek"
-
-msgid "At end"
-msgstr "na konec"
 
 msgid "athletics"
 msgstr "atletika"
@@ -21885,9 +21863,6 @@ msgstr "blacklist"
 msgid "blue"
 msgstr "modré"
 
-msgid "Bottom"
-msgstr "spodní"
-
 msgid "broadcasting/press"
 msgstr "vysílání/tisk"
 
@@ -21915,15 +21890,6 @@ msgstr "cardserver"
 
 msgid "cartoon/puppets"
 msgstr "karikatury/loutky"
-
-msgid "Center"
-msgstr "střed"
-
-msgid "Centered"
-msgstr "uprostřed"
-
-msgid "Centered, wrapped"
-msgstr "uprostřed, zalomený"
 
 msgid "change Volume down"
 msgstr "změňit snížení hlasitosti"
@@ -22241,9 +22207,6 @@ msgstr "získat cardserver"
 msgid "goto current channel and now"
 msgstr "přejít nyní na aktuální kanál"
 
-msgid "Goto deep standby"
-msgstr "přejít do hlubokého spánku"
-
 msgid "goto first channel"
 msgstr "přejít na první kanál"
 
@@ -22252,9 +22215,6 @@ msgstr "přejít na poslední kanál"
 
 msgid "goto now"
 msgstr "jít teď"
-
-msgid "Goto standby"
-msgstr "přejít do pohotovostního režimu"
 
 msgid "grab this frame as bitmap"
 msgstr "grabovat snímek jako bitmapu"
@@ -22377,9 +22337,6 @@ msgstr "přejít na další titul"
 msgid "jump to chapter by number"
 msgstr "skok na kapitolu podle čísla"
 
-msgid "Just boot"
-msgstr "jen nabootovat"
-
 msgid "languages"
 msgstr "jazyky"
 
@@ -22388,9 +22345,6 @@ msgstr "opustit přehrávač filmů"
 
 msgid "left"
 msgstr "vlevo"
-
-msgid "Left, wrapped"
-msgstr "vlevo, zalomený"
 
 msgid "leisure hobbies (general)"
 msgstr "koníčky pro volný čas (obecně)"
@@ -22428,17 +22382,8 @@ msgstr "bojové sporty"
 msgid "medicine/physiology/psychology"
 msgstr "lékařství/fyziologie/psychologie"
 
-msgid "Middle"
-msgstr "prostřední"
-
 msgid "min"
 msgstr "min"
-
-msgid "Minute"
-msgstr "minuta"
-
-msgid "Minutes"
-msgstr "minut"
 
 msgid "month"
 msgstr "měsíc"
@@ -22496,9 +22441,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "příroda/zvířata/životní prostředí"
-
-msgid "Never"
-msgstr "nikdy"
 
 msgid "new media"
 msgstr "nová media"
@@ -22644,12 +22586,6 @@ msgstr "program pro předškolní děti"
 msgid "previous channel page"
 msgstr "předchozí stránka výběru kanálu"
 
-msgid "Previous/Next bouquet"
-msgstr "předchozí/následující přehled"
-
-msgid "Previous/Next page"
-msgstr "předchozí/následující stránka"
-
 msgid "provid:"
 msgstr "posk.:"
 
@@ -22737,9 +22673,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "vpravo"
 
-msgid "Right, wrapped"
-msgstr "vpravo, zalomený"
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -22774,9 +22707,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "hledat v EPG..."
-
-msgid "Seconds"
-msgstr "sekund"
 
 msgid "select CAId's"
 msgstr "vybrat CAId(y)"
@@ -22982,9 +22912,6 @@ msgstr "k dir"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "přepnout informace mezi časem, kapitolou, audiostopou, titulky"
 
-msgid "Top"
-msgstr "nahoru"
-
 msgid "tourism/travel"
 msgstr "turistika/cestování"
 
@@ -23063,9 +22990,6 @@ msgstr "aktualizace"
 msgid "updates available."
 msgstr "aktualizací dostupných."
 
-msgid "Upper line"
-msgstr "horní řádek"
-
 msgid "use best / controlled by HDMI"
 msgstr "použijte nejlépe / ovládané přes HDMI"
 
@@ -23074,9 +22998,6 @@ msgstr "při problémech při přepínání LNB použijte zvýšené napětí '1
 
 msgid "use_hdmi_cacenter"
 msgstr "použít HDMI-CEC"
-
-msgid "user defined"
-msgstr "uživatelsky definované"
 
 msgid "userdefined"
 msgstr "uživatelsky definované"
@@ -23117,9 +23038,6 @@ msgstr ""
 "\n"
 "Kopie ti byla zaslána."
 
-msgid "white"
-msgstr "bílé"
-
 msgid "wide"
 msgstr "na šířku"
 
@@ -23145,15 +23063,6 @@ msgstr[2] "s %d chybami"
 msgid "with errors"
 msgstr "s chybami"
 
-msgid "With EXIT button"
-msgstr "tlačítkem Exit"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "tlačítky L/P"
-
-msgid "With long OK press"
-msgstr "dlouhým stiskem OK"
-
 msgid "with_errors"
 msgstr "s chybami"
 
@@ -23175,6 +23084,125 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d den"
+#~ msgstr[1] "%d dní"
+#~ msgstr[2] "%d dní"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minuta"
+#~ msgstr[1] "%d minuty"
+#~ msgstr[2] "%d minut"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ hodin"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- hodin"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Automatický časovač"
+
+#~ msgid "Hour"
+#~ msgstr "Hod"
+
+#~ msgid "Once per day"
+#~ msgstr "Jednou denně"
+
+#~ msgid "alphabetical"
+#~ msgstr "abecední"
+
+#~ msgid "alternative"
+#~ msgstr "alternativa"
+
+#~ msgid "user defined"
+#~ msgstr "uživatelsky definované"
+
+#~ msgid "white"
+#~ msgstr "bílé"
 
 #~ msgid ""
 #~ " available !!\n"

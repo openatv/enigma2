@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -224,16 +224,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%Y %B %-d"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%B %-d"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%Y %b %-d"
 
@@ -352,7 +352,7 @@ msgstr "%2.1f sek."
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%B %-d, %A"
 
@@ -542,11 +542,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -592,19 +592,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%-d %a"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%Y %B %-d %a"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%b %-d %a"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -881,8 +881,26 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d val."
+msgstr[1] "%d val."
+msgstr[2] "%d val."
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -891,6 +909,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -931,6 +953,24 @@ msgstr[2] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d pikselio pločio"
+msgstr[1] "%d pikselių pločio"
+msgstr[2] "%d pikselių pločio"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d sekundė"
+msgstr[1] "%d sekundės"
+msgstr[2] "%d sekundžių"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -951,25 +991,11 @@ msgstr[1] "%d branduoliai"
 msgstr[2] "%d branduolių"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d diena"
-msgstr[1] "%d dienos"
-msgstr[2] "%d dienų"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d informacijos santraukos katalogo paketas buvo atnaujintas."
 msgstr[1] "%d informacijos santraukos katalogo paketai buvo atnaujinti."
 msgstr[2] "%d informacijos santraukos katalogo paketų buvo atnaujinta."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d val."
-msgstr[1] "%d val."
-msgstr[2] "%d val."
 
 #, python-format
 msgid "%d kB"
@@ -978,13 +1004,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d min."
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minutė"
-msgstr[1] "%d minutės"
-msgstr[2] "%d minučių"
 
 #, python-format
 msgid "%d minutes"
@@ -1051,22 +1070,8 @@ msgstr[1] "%d paketai buvo atnaujinti."
 msgstr[2] "%d paketų buvo atnaujinta."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d pikselio pločio"
-msgstr[1] "%d pikselių pločio"
-msgstr[2] "%d pikselių pločio"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sek."
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d sekundė"
-msgstr[1] "%d sekundės"
-msgstr[2] "%d sekundžių"
 
 #, python-format
 msgid "%d times"
@@ -1408,6 +1413,9 @@ msgstr "* dabartinė animacija"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1417,6 +1425,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24v/+ 24 valandos"
@@ -1436,35 +1447,8 @@ msgstr "/var katalogas"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2 sek."
-
-msgid "0.3s"
-msgstr "0.3 sek."
-
-msgid "0.4s"
-msgstr "0.4 sek."
-
-msgid "0.5s"
-msgstr "0.5 sek."
-
-msgid "0.6s"
-msgstr "0.6 sek."
-
-msgid "0.7s"
-msgstr "0.7 sek."
-
-msgid "0.8s"
-msgstr "0.8 sek."
-
-msgid "0.9s"
-msgstr "0.9 sek."
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 valanda"
@@ -1478,23 +1462,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2 sek."
-
-msgid "1.5s"
-msgstr "1.5 sek."
-
-msgid "1.7s"
-msgstr "1.7 sek."
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 minučių"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1598,9 +1567,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1 sek."
-
 msgid "1st InfoBar timeout"
 msgstr "Pirma infojuosta išsijungs po"
 
@@ -1610,20 +1576,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 valandos"
 
 msgid "2 minutes"
 msgstr "2 minutės"
-
-msgid "2.5s"
-msgstr "2.5 sek."
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1654,12 +1611,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 valandos"
-
-msgid "24+ Hours"
-msgstr "+ 24 valandos"
-
-msgid "24- Hours"
-msgstr "- 24 valandos"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1718,9 +1669,6 @@ msgstr "Antros infojuostos INFO"
 msgid "2nd InfoBar timeout"
 msgstr "Antra infojuosta išsijungs po"
 
-msgid "2s"
-msgstr "2 sek."
-
 msgid "2x"
 msgstr "2x"
 
@@ -1738,9 +1686,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 valandos"
-
-msgid "3.5s"
-msgstr "3.5 sek."
 
 msgid "30"
 msgstr "30"
@@ -1778,17 +1723,11 @@ msgstr "Erdvinis garsas"
 msgid "3D Surround Speaker Position"
 msgstr "Erdvinio garso kolonėlių padėtis"
 
-msgid "3s"
-msgstr "3 sek."
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 valandos"
@@ -1817,9 +1756,6 @@ msgstr "4:3 nukerpant šonus"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4 sek."
-
 msgid "4x"
 msgstr "4x"
 
@@ -1831,9 +1767,6 @@ msgstr "5 valandos"
 
 msgid "5 minutes"
 msgstr "5 minučių"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1852,9 +1785,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5 sek."
 
 msgid "6"
 msgstr "6"
@@ -1906,9 +1836,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 simboliai"
@@ -2829,6 +2756,9 @@ msgstr "Menas/kultūra"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "kaip priedą į išplėstą juostą"
+
 msgid "Ask user"
 msgstr "Klausti vartotojo"
 
@@ -2870,6 +2800,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "pradžioje"
+
+msgid "At end"
+msgstr "pabaigoje"
 
 msgid "At end of current program"
 msgstr "Dabartinės programos pabaigoje"
@@ -2975,9 +2911,6 @@ msgstr "Pasirinkti automatiniai režimai."
 msgid "Auto SCART switching"
 msgstr "Automatinis skarto perjungimas"
 
-msgid "Auto Timer"
-msgstr "Automatinis laikmatis"
-
 msgid "Auto Timers"
 msgstr "Auto laikmačiai"
 
@@ -3013,6 +2946,9 @@ msgstr "Automatinis (negalimas)"
 
 msgid "AutoMountManager"
 msgstr "Automatinių pajungimų valdymas"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Automatinis atnaujinimas"
@@ -3453,6 +3389,9 @@ msgstr "Bosnių"
 
 msgid "Botswana"
 msgstr "Botsvana"
+
+msgid "Bottom"
+msgstr "apačia"
 
 msgid "Bouquet List"
 msgstr "Paketų sąrašas"
@@ -4030,6 +3969,15 @@ msgstr "Kaimanų salos"
 
 msgid "Celsius"
 msgstr "Pagal Celsijų"
+
+msgid "Center"
+msgstr "centras"
+
+msgid "Centered"
+msgstr "centre"
+
+msgid "Centered, wrapped"
+msgstr "centre, suvyniota"
 
 msgid "Central African Republic"
 msgstr "Centrinė Afrikos Respublika"
@@ -8474,6 +8422,9 @@ msgstr "Į žiūrimiausią laiką"
 msgid "Goto X"
 msgstr "Eiti į X"
 
+msgid "Goto deep standby"
+msgstr "į gilų budėjimą"
+
 msgid "Goto next bouquet"
 msgstr "Į kitą paketą"
 
@@ -8497,6 +8448,9 @@ msgstr "Į ankstesnį įvykį"
 
 msgid "Goto specific date/time"
 msgstr "Į konkrečią datą/laiką"
+
+msgid "Goto standby"
+msgstr "į budintį režimą"
 
 msgid "GotoX calibration"
 msgstr "Eiti į X kalibraciją"
@@ -8905,9 +8859,6 @@ msgstr "Spartusis klavišas"
 
 msgid "Hotkey Settings"
 msgstr "Sparčiojo klavišo parametrai"
-
-msgid "Hour"
-msgstr "Valanda"
 
 msgid "Hourly"
 msgstr "Kas valandą"
@@ -9736,6 +9687,9 @@ msgstr "nutraukti, be pranešimo"
 msgid "Just abort, show message"
 msgstr "nutraukti, rodyti pranešimą"
 
+msgid "Just boot"
+msgstr "tiesiog įkrova"
+
 msgid "Just change Bouquet"
 msgstr "Tiesiog pakeisti paketą"
 
@@ -10011,6 +9965,9 @@ msgstr "Į kairę nuo kanalo pavadinimo"
 
 msgid "Left long"
 msgstr "Ilgai spausti 'kairėn'"
+
+msgid "Left, wrapped"
+msgstr "kairėje, suvyniota"
 
 msgid "Leisure hobbies"
 msgstr "Laisvalaikio pomėgiai"
@@ -10671,6 +10628,9 @@ msgstr "Meksika"
 msgid "Micronesia, Federated States of"
 msgstr "Mikronezijos Federacinės Valstijos"
 
+msgid "Middle"
+msgstr "vidutinis"
+
 msgid "Middle - Lite image"
 msgstr "Vidutinis - Mažasis atvaizdas"
 
@@ -10707,6 +10667,12 @@ msgstr "Minimalus siuntimo intervalas"
 
 msgid "Mins"
 msgstr "Min."
+
+msgid "Minute"
+msgstr "minutė"
+
+msgid "Minutes"
+msgstr "minučių"
 
 msgid "Minutes Seconds"
 msgstr "Min. sek."
@@ -11333,6 +11299,9 @@ msgstr "Tinklo vedlys"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+msgid "Never"
+msgstr "niekada"
+
 msgid "Never abort"
 msgstr "niekada nenutraukti"
 
@@ -11941,9 +11910,6 @@ msgstr "Esant galiojantiems ONID, ignoruokite dažnio potinklio dalį"
 
 msgid "Once"
 msgstr "vieną kartą"
-
-msgid "Once per day"
-msgstr "Kartą per dieną"
 
 msgid "One"
 msgstr "Vienas"
@@ -13080,9 +13046,6 @@ msgstr "Įjungimo laikmatis"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "Įjungimo laikmatis budėjimo režime"
-
 msgid "PowerTimer Overview"
 msgstr "Įjungimo laikmačio apžvalga"
 
@@ -13091,6 +13054,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
+
+msgid "PowerTimer deep standby"
+msgstr "Įjungimo laikmatis budėjimo režime"
 
 msgid "PowerTimer log"
 msgstr "Maitinimo laikmačio žurnalas"
@@ -13252,6 +13218,12 @@ msgstr "Ankstesnis paketas"
 
 msgid "Previous page"
 msgstr "Ankstesnis puslapis"
+
+msgid "Previous/Next bouquet"
+msgstr "ankstesnis/kitas paketas"
+
+msgid "Previous/Next page"
+msgstr "ankstesnis/kitas puslapis"
 
 msgid "Prevsong"
 msgstr "Ankstesnė daina"
@@ -14384,6 +14356,9 @@ msgstr "Kanalo pavadinimo dešinėje"
 msgid "Right long"
 msgstr "Ilgai spausti 'dešinėn'"
 
+msgid "Right, wrapped"
+msgstr "dešinėn, suvynioti"
+
 msgid "Roll-off"
 msgstr "Nukrypimas"
 
@@ -14902,6 +14877,9 @@ msgstr "Antras kabelis nuo motorizuotos LNB"
 
 msgid "Secondary DNS"
 msgstr "Antrinis DNS"
+
+msgid "Seconds"
+msgstr "sekundžių"
 
 msgid "Security"
 msgstr "Saugumas"
@@ -19319,6 +19297,9 @@ msgstr "Tono režimas"
 msgid "Tonga"
 msgstr "Tongų"
 
+msgid "Top"
+msgstr "viršus"
+
 msgid "Top and Bottom"
 msgstr "Viršuje ir apačioje"
 
@@ -19917,6 +19898,9 @@ msgstr "Viršutinis USB lizdas"
 
 msgid "Upper case"
 msgstr "Didžiosios raidės"
+
+msgid "Upper line"
+msgstr "viršutinė eilutė"
 
 msgid "Uptime"
 msgstr "Darbinės būsenos trukmė"
@@ -21057,11 +21041,20 @@ msgstr "Belaidžio tinklo prisijungimo valdymas."
 msgid "Wireless network state"
 msgstr "Belaidžio tinklo būklė"
 
+msgid "With EXIT button"
+msgstr "su exit mygtuku"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "su kairėn/dešinėn mygtukais"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Su išjungtu T2MI RAW režimu (numatytasis), galima naudoti vieną T2MI PLP dekapsuliavimą. Įjungus T2MI RAW režimą, galime naudoti astra-sm T2MI analizvimui"
 
 msgid "With errors:"
 msgstr "Su klaidomis:"
+
+msgid "With long OK press"
+msgstr "su ilgu OK spaudimu"
 
 msgid "With pop up"
 msgstr "Su Iššokančiu tekstu"
@@ -21815,14 +21808,8 @@ msgstr "abėcėlinis"
 msgid "alphabetic reverse"
 msgstr "ne abėcėlės tvarka"
 
-msgid "alphabetical"
-msgstr "abėcėlės tvarka"
-
 msgid "alpharev then newest"
 msgstr "alpha versija tada naujausia"
-
-msgid "alternative"
-msgstr "alternatyvus"
 
 msgid "am"
 msgstr "priešpiet"
@@ -21848,15 +21835,6 @@ msgstr "menas/kultūra (be muzikos, bendras)"
 
 msgid "arts/culture magazine"
 msgstr "menas/kultūrinis žurnalas"
-
-msgid "As plugin in extended bar"
-msgstr "kaip priedą į išplėstą juostą"
-
-msgid "At beginning"
-msgstr "pradžioje"
-
-msgid "At end"
-msgstr "pabaigoje"
 
 msgid "athletics"
 msgstr "atletika"
@@ -21909,9 +21887,6 @@ msgstr "juodas sąrašas"
 msgid "blue"
 msgstr "mėlynas"
 
-msgid "Bottom"
-msgstr "apačia"
-
 msgid "broadcasting/press"
 msgstr "transliacijos/spauda"
 
@@ -21939,15 +21914,6 @@ msgstr "Paleisti kortelių serverį iš naujo"
 
 msgid "cartoon/puppets"
 msgstr "animacija/lėlės"
-
-msgid "Center"
-msgstr "centras"
-
-msgid "Centered"
-msgstr "centre"
-
-msgid "Centered, wrapped"
-msgstr "centre, suvyniota"
 
 msgid "change Volume down"
 msgstr "sumažinti garsumą"
@@ -22265,9 +22231,6 @@ msgstr "prijungti kortelių serverį"
 msgid "goto current channel and now"
 msgstr "eiti į dabartinį kanalą ir dabar"
 
-msgid "Goto deep standby"
-msgstr "į gilų budėjimą"
-
 msgid "goto first channel"
 msgstr "eiti į kitą kanalą"
 
@@ -22276,9 +22239,6 @@ msgstr "eiti į paskutinį kanalą"
 
 msgid "goto now"
 msgstr "eiti dabar"
-
-msgid "Goto standby"
-msgstr "į budintį režimą"
 
 msgid "grab this frame as bitmap"
 msgstr "užgriebti vaizdą bmp formatu"
@@ -22401,9 +22361,6 @@ msgstr "šuolis priekin į kitą pavadinimą"
 msgid "jump to chapter by number"
 msgstr "peršokti į skyrių pagal numerį"
 
-msgid "Just boot"
-msgstr "tiesiog įkrova"
-
 msgid "languages"
 msgstr "kalbos"
 
@@ -22412,9 +22369,6 @@ msgstr "užverti filmų grotuvą"
 
 msgid "left"
 msgstr "kairys"
-
-msgid "Left, wrapped"
-msgstr "kairėje, suvyniota"
 
 msgid "leisure hobbies (general)"
 msgstr "laisvalaikio pomėgiai (bendra)"
@@ -22452,17 +22406,8 @@ msgstr "kovinės sporto šakos"
 msgid "medicine/physiology/psychology"
 msgstr "medicina/fiziologija/psichologija"
 
-msgid "Middle"
-msgstr "vidutinis"
-
 msgid "min"
 msgstr "min"
-
-msgid "Minute"
-msgstr "minutė"
-
-msgid "Minutes"
-msgstr "minučių"
 
 msgid "month"
 msgstr "mėnuo"
@@ -22520,9 +22465,6 @@ msgstr "nėra duomenų"
 
 msgid "nature/animals/environment"
 msgstr "gamta/gyvūnai/aplinka"
-
-msgid "Never"
-msgstr "niekada"
 
 msgid "new media"
 msgstr "nauja medija"
@@ -22668,12 +22610,6 @@ msgstr "ikimokyklinė vaikų programa"
 msgid "previous channel page"
 msgstr "ankstesnis kanalo puslapis"
 
-msgid "Previous/Next bouquet"
-msgstr "ankstesnis/kitas paketas"
-
-msgid "Previous/Next page"
-msgstr "ankstesnis/kitas puslapis"
-
 msgid "provid:"
 msgstr "tiekėjas:"
 
@@ -22761,9 +22697,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "dešinys"
 
-msgid "Right, wrapped"
-msgstr "dešinėn, suvynioti"
-
 msgid "rock/pop"
 msgstr "rokas, popmuzika"
 
@@ -22798,9 +22731,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "ieškoti EPG..."
-
-msgid "Seconds"
-msgstr "sekundžių"
 
 msgid "select CAId's"
 msgstr "išsirinkite CAId's"
@@ -23006,9 +22936,6 @@ msgstr "į rež"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "perjungti laiką, skyrių, garsą, subtitrų informaciją"
 
-msgid "Top"
-msgstr "viršus"
-
 msgid "tourism/travel"
 msgstr "turizmas/kelionės"
 
@@ -23087,9 +23014,6 @@ msgstr "atnaujinimas"
 msgid "updates available."
 msgstr "galimi atnaujinimai."
 
-msgid "Upper line"
-msgstr "viršutinė eilutė"
-
 msgid "use best / controlled by HDMI"
 msgstr "naudoti geriausią / valdoma HDMI"
 
@@ -23098,9 +23022,6 @@ msgstr "naudokite padidintą įtampą 14/18V, jei kyla problemų perjungiant lnb
 
 msgid "use_hdmi_cacenter"
 msgstr "naudoti_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "pasirinktas vartotojo"
 
 msgid "userdefined"
 msgstr "vartotojo nustatytas"
@@ -23140,9 +23061,6 @@ msgstr ""
 "kai klausia klausimą apie šį žurnalą\n"
 "Kopija buvo išsiųsta sau."
 
-msgid "white"
-msgstr "baltas"
-
 msgid "wide"
 msgstr "platus"
 
@@ -23170,15 +23088,6 @@ msgstr[2] "su %d klaidų"
 msgid "with errors"
 msgstr "su klaidomis"
 
-msgid "With EXIT button"
-msgstr "su exit mygtuku"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "su kairėn/dešinėn mygtukais"
-
-msgid "With long OK press"
-msgstr "su ilgu OK spaudimu"
-
 msgid "with_errors"
 msgstr "su klaidomis"
 
@@ -23200,6 +23109,125 @@ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo va
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d diena"
+#~ msgstr[1] "%d dienos"
+#~ msgstr[2] "%d dienų"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minutė"
+#~ msgstr[1] "%d minutės"
+#~ msgstr[2] "%d minučių"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2 sek."
+
+#~ msgid "0.3s"
+#~ msgstr "0.3 sek."
+
+#~ msgid "0.4s"
+#~ msgstr "0.4 sek."
+
+#~ msgid "0.5s"
+#~ msgstr "0.5 sek."
+
+#~ msgid "0.6s"
+#~ msgstr "0.6 sek."
+
+#~ msgid "0.7s"
+#~ msgstr "0.7 sek."
+
+#~ msgid "0.8s"
+#~ msgstr "0.8 sek."
+
+#~ msgid "0.9s"
+#~ msgstr "0.9 sek."
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2 sek."
+
+#~ msgid "1.5s"
+#~ msgstr "1.5 sek."
+
+#~ msgid "1.7s"
+#~ msgstr "1.7 sek."
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1 sek."
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5 sek."
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "+ 24 valandos"
+
+#~ msgid "24- Hours"
+#~ msgstr "- 24 valandos"
+
+#~ msgid "2s"
+#~ msgstr "2 sek."
+
+#~ msgid "3.5s"
+#~ msgstr "3.5 sek."
+
+#~ msgid "3s"
+#~ msgstr "3 sek."
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4 sek."
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5 sek."
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Automatinis laikmatis"
+
+#~ msgid "Hour"
+#~ msgstr "Valanda"
+
+#~ msgid "Once per day"
+#~ msgstr "Kartą per dieną"
+
+#~ msgid "alphabetical"
+#~ msgstr "abėcėlės tvarka"
+
+#~ msgid "alternative"
+#~ msgstr "alternatyvus"
+
+#~ msgid "user defined"
+#~ msgstr "pasirinktas vartotojo"
+
+#~ msgid "white"
+#~ msgstr "baltas"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

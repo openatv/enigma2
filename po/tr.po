@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -234,16 +234,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -363,7 +363,7 @@ msgstr "%2.1f Seconds"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -554,11 +554,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -604,19 +604,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -887,8 +887,22 @@ msgid_plural "%d Days"
 msgstr[0] ""
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d saat"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -897,6 +911,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -933,6 +951,20 @@ msgstr[0] ""
 msgid "%d Minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d piksel geniş"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d ikinci"
+
 #, python-format
 msgid "%d Seconds"
 msgstr ""
@@ -950,19 +982,9 @@ msgid_plural "%d cores"
 msgstr[0] "%d cores"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d gün"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d feed kataloğu paketi güncellendi."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d saat"
 
 #, python-format
 msgid "%d kB"
@@ -972,11 +994,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d dak"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d dakika"
 
 #, python-format
 msgid "%d minutes"
@@ -1028,18 +1045,8 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paketi yükseltildi."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d piksel geniş"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sec"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d ikinci"
 
 #
 #, python-format
@@ -1399,6 +1406,9 @@ msgstr "* geçerli animasyon"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1409,6 +1419,9 @@ msgstr "-1"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Saatler"
@@ -1428,35 +1441,8 @@ msgstr "/var directory"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 saat"
@@ -1473,23 +1459,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 dakika"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1604,9 +1575,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "1. Bilgi-çubuğu zaman aşımı"
 
@@ -1616,20 +1584,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 saat"
 
 msgid "2 minutes"
 msgstr "2 dakika"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1661,12 +1620,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 saatler"
-
-msgid "24+ Hours"
-msgstr "24+ Saatler"
-
-msgid "24- Hours"
-msgstr "24- Saatler"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1727,9 +1680,6 @@ msgstr "2. bilgi çubuğu BİLGİ"
 msgid "2nd InfoBar timeout"
 msgstr "2. bilgi çubuğu zaman aşımı"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1747,9 +1697,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 Saat"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 #
 msgid "30"
@@ -1789,17 +1736,11 @@ msgstr "3B Ses"
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround Hoparlör Konumu"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 Saat"
@@ -1831,9 +1772,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1845,9 +1783,6 @@ msgstr "5 saat"
 
 msgid "5 minutes"
 msgstr "5 dakika"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1866,9 +1801,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1920,9 +1852,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 özellik"
@@ -2905,6 +2834,9 @@ msgstr "Kültür/Sanat"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "gelişmiş-çubukta eklenti olarak"
+
 #
 msgid "Ask user"
 msgstr "Sor"
@@ -2949,6 +2881,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "başında"
+
+msgid "At end"
+msgstr "sonunda"
 
 msgid "At end of current program"
 msgstr "Mevcut programın sonunda"
@@ -3063,9 +3001,6 @@ msgstr "Seçilen Otomatik Modlar."
 msgid "Auto SCART switching"
 msgstr "Otomatik scart anahtarlama"
 
-msgid "Auto Timer"
-msgstr "Otomatik Zamanlayıcı"
-
 msgid "Auto Timers"
 msgstr "Otomatik Zamanlayıcılar"
 
@@ -3106,6 +3041,9 @@ msgstr "Otomatik (mevcut değil)"
 
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
+
+msgid "AutoTimer"
+msgstr ""
 
 #
 msgid "AutoUpdate"
@@ -3572,6 +3510,9 @@ msgstr "Boşnakça"
 
 msgid "Botswana"
 msgstr "Botsvana"
+
+msgid "Bottom"
+msgstr "alt"
 
 msgid "Bouquet List"
 msgstr "Buket Listesi"
@@ -4167,6 +4108,15 @@ msgstr "Cayman Adaları"
 
 msgid "Celsius"
 msgstr "Selsius"
+
+msgid "Center"
+msgstr "merkez"
+
+msgid "Centered"
+msgstr "merkezli"
+
+msgid "Centered, wrapped"
+msgstr "merkezli, sarılmış"
 
 msgid "Central African Republic"
 msgstr "Orta Afrika Cumhuriyeti"
@@ -8867,6 +8817,9 @@ msgstr "Primetime git"
 msgid "Goto X"
 msgstr "Goto X"
 
+msgid "Goto deep standby"
+msgstr "derin bekleme"
+
 msgid "Goto next bouquet"
 msgstr "Sonraki bukete git"
 
@@ -8891,6 +8844,9 @@ msgstr "Önceki etkinliğe git"
 
 msgid "Goto specific date/time"
 msgstr "Belirli bir tarih/zamana git"
+
+msgid "Goto standby"
+msgstr "goto beklemede"
 
 #
 msgid "GotoX calibration"
@@ -9316,9 +9272,6 @@ msgstr "Kısayol"
 
 msgid "Hotkey Settings"
 msgstr "Kısayol Kurulum"
-
-msgid "Hour"
-msgstr "Saat"
 
 msgid "Hourly"
 msgstr "Saatbaşı"
@@ -10191,6 +10144,9 @@ msgstr "sadece iptal, mesaj yok"
 msgid "Just abort, show message"
 msgstr "sadece iptal et, mesajı göster"
 
+msgid "Just boot"
+msgstr "sadece boot"
+
 msgid "Just change Bouquet"
 msgstr "Sadece buketi değiştir"
 
@@ -10488,6 +10444,9 @@ msgstr "Kanal adından önce"
 
 msgid "Left long"
 msgstr "Uzun sol"
+
+msgid "Left, wrapped"
+msgstr "sol, sarılmış"
 
 msgid "Leisure hobbies"
 msgstr "Eğlence hobiler"
@@ -11190,6 +11149,9 @@ msgstr "Meksika"
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia, Federated States of"
 
+msgid "Middle"
+msgstr "orta"
+
 msgid "Middle - Lite image"
 msgstr "Orta - Basit resim"
 
@@ -11227,6 +11189,14 @@ msgstr "Asgari gönderme aralığı"
 
 msgid "Mins"
 msgstr "Dk"
+
+#
+msgid "Minute"
+msgstr "dakika"
+
+#
+msgid "Minutes"
+msgstr "dakika"
 
 msgid "Minutes Seconds"
 msgstr "Dakika saniye"
@@ -11904,6 +11874,10 @@ msgstr "Ağ Sihirbazı"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
+#
+msgid "Never"
+msgstr "hiç"
+
 msgid "Never abort"
 msgstr "asla iptal etme"
 
@@ -12565,9 +12539,6 @@ msgstr "Geçerli ONID'lerde, frekans alt ağ bölümünü yoksay"
 #
 msgid "Once"
 msgstr "birkez"
-
-msgid "Once per day"
-msgstr "Günde bir"
 
 #
 msgid "One"
@@ -13799,9 +13770,6 @@ msgstr "PowerTimer"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer deep standby"
-msgstr "PowerTimer deep standby"
-
 msgid "PowerTimer Overview"
 msgstr "Zamanlayıcı genel bakış"
 
@@ -13810,6 +13778,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "PowerTimer Standby"
+
+msgid "PowerTimer deep standby"
+msgstr "PowerTimer deep standby"
 
 msgid "PowerTimer log"
 msgstr "Zamanlayıcı günlüğü"
@@ -13988,6 +13959,12 @@ msgstr "Önceki bukete geç"
 
 msgid "Previous page"
 msgstr "Önceki Sayfa"
+
+msgid "Previous/Next bouquet"
+msgstr "önceki/sonraki Buket"
+
+msgid "Previous/Next page"
+msgstr "önceki / sonraki sayfa"
 
 msgid "Prevsong"
 msgstr "Prevsong"
@@ -15202,6 +15179,9 @@ msgstr "Kanal adının sağında"
 msgid "Right long"
 msgstr "Sağ uzun"
 
+msgid "Right, wrapped"
+msgstr "sağa, sarılmış"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -15755,6 +15735,10 @@ msgstr "Motorlu LNB'nin ikinci kablosu"
 #
 msgid "Secondary DNS"
 msgstr "İkincil DNS"
+
+#
+msgid "Seconds"
+msgstr "saniye"
 
 msgid "Security"
 msgstr "Güvenlik"
@@ -20372,6 +20356,9 @@ msgstr "Ton kipi"
 msgid "Tonga"
 msgstr "Tonga"
 
+msgid "Top"
+msgstr "üst"
+
 msgid "Top and Bottom"
 msgstr "Üst ve Alt"
 
@@ -21020,6 +21007,9 @@ msgstr "Üst USB"
 
 msgid "Upper case"
 msgstr "Büyük harf"
+
+msgid "Upper line"
+msgstr "tek satır"
 
 msgid "Uptime"
 msgstr "Aktif süre"
@@ -22203,11 +22193,20 @@ msgstr "Kablosuz ağ bağlantı kurulumu."
 msgid "Wireless network state"
 msgstr "Kablosuz ağ durumu"
 
+msgid "With EXIT button"
+msgstr "exit tuşu ile"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "sol/sağ tuşları ile"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "T2MI RAW modu devre dışıyken (varsayılan) tek T2MI PLP kapsülleme özelliğini kullanabiliriz. T2MI RAW modu etkinken, T2MI'yi analiz etmek için astra-sm kullanabiliriz"
 
 msgid "With errors:"
 msgstr "Hata ile:"
+
+msgid "With long OK press"
+msgstr "uzun süre OK düğmesine basarak"
 
 msgid "With pop up"
 msgstr "Açılır pencere ile"
@@ -23008,15 +23007,8 @@ msgstr "alfabetik"
 msgid "alphabetic reverse"
 msgstr "ters alfabetik"
 
-msgid "alphabetical"
-msgstr "alfabetik"
-
 msgid "alpharev then newest"
 msgstr "alpharev sonra yeni"
-
-#
-msgid "alternative"
-msgstr "alternatif"
 
 msgid "am"
 msgstr "am"
@@ -23042,15 +23034,6 @@ msgstr "kültür/sanat (genel, müzik hariç)"
 
 msgid "arts/culture magazine"
 msgstr "kültür/sanat dergisi"
-
-msgid "As plugin in extended bar"
-msgstr "gelişmiş-çubukta eklenti olarak"
-
-msgid "At beginning"
-msgstr "başında"
-
-msgid "At end"
-msgstr "sonunda"
 
 msgid "athletics"
 msgstr "atletizm"
@@ -23111,9 +23094,6 @@ msgstr "kara liste"
 msgid "blue"
 msgstr "mavi"
 
-msgid "Bottom"
-msgstr "alt"
-
 msgid "broadcasting/press"
 msgstr "basın/yayın"
 
@@ -23141,15 +23121,6 @@ msgstr "kart sunucusu"
 
 msgid "cartoon/puppets"
 msgstr "çizgifilm/kukla"
-
-msgid "Center"
-msgstr "merkez"
-
-msgid "Centered"
-msgstr "merkezli"
-
-msgid "Centered, wrapped"
-msgstr "merkezli, sarılmış"
 
 msgid "change Volume down"
 msgstr "sesi kısmak"
@@ -23497,9 +23468,6 @@ msgstr "kart sunucu al"
 msgid "goto current channel and now"
 msgstr "şu anki kanala geç ve şimdi"
 
-msgid "Goto deep standby"
-msgstr "derin bekleme"
-
 msgid "goto first channel"
 msgstr "ilk kanala geç"
 
@@ -23508,9 +23476,6 @@ msgstr "son kanala git"
 
 msgid "goto now"
 msgstr "şimdi git"
-
-msgid "Goto standby"
-msgstr "goto beklemede"
 
 #
 msgid "grab this frame as bitmap"
@@ -23642,9 +23607,6 @@ msgstr "sonraki başlığa atla"
 msgid "jump to chapter by number"
 msgstr "sayıya göre bölüme atlamak"
 
-msgid "Just boot"
-msgstr "sadece boot"
-
 msgid "languages"
 msgstr "diller"
 
@@ -23655,9 +23617,6 @@ msgstr "ortam oynatıcıdan çık"
 #
 msgid "left"
 msgstr "sol"
-
-msgid "Left, wrapped"
-msgstr "sol, sarılmış"
 
 msgid "leisure hobbies (general)"
 msgstr "eğlence hobiler (genel)"
@@ -23699,20 +23658,9 @@ msgstr "savaş sporları"
 msgid "medicine/physiology/psychology"
 msgstr "tıp/fizyoloji/psikoloji"
 
-msgid "Middle"
-msgstr "orta"
-
 #
 msgid "min"
 msgstr "dk"
-
-#
-msgid "Minute"
-msgstr "dakika"
-
-#
-msgid "Minutes"
-msgstr "dakika"
 
 #
 msgid "month"
@@ -23779,10 +23727,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "doğa/hayvanlar/çevre"
-
-#
-msgid "Never"
-msgstr "hiç"
 
 msgid "new media"
 msgstr "yeni medya"
@@ -23946,12 +23890,6 @@ msgstr "okulöncesi çocuk programı"
 msgid "previous channel page"
 msgstr "önceki kanal sayfası"
 
-msgid "Previous/Next bouquet"
-msgstr "önceki/sonraki Buket"
-
-msgid "Previous/Next page"
-msgstr "önceki / sonraki sayfa"
-
 msgid "provid:"
 msgstr "provid:"
 
@@ -24053,9 +23991,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "sağ"
 
-msgid "Right, wrapped"
-msgstr "sağa, sarılmış"
-
 msgid "rock/pop"
 msgstr "rok/pop"
 
@@ -24092,10 +24027,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "epg’yi arayın ..."
-
-#
-msgid "Seconds"
-msgstr "saniye"
 
 #
 msgid "select CAId's"
@@ -24322,9 +24253,6 @@ msgstr "ölmek"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "zaman, bölüm, ses, altyazı bilgisini aç/kapa"
 
-msgid "Top"
-msgstr "üst"
-
 msgid "tourism/travel"
 msgstr "turizm/seyahat"
 
@@ -24408,9 +24336,6 @@ msgstr "güncelleştirme"
 msgid "updates available."
 msgstr "güncellemeler mevcut."
 
-msgid "Upper line"
-msgstr "tek satır"
-
 msgid "use best / controlled by HDMI"
 msgstr "en iyi kullanım / HDMI tarafından kontrol edilen"
 
@@ -24419,10 +24344,6 @@ msgstr "lnb’yi değiştirirken sorunlar varsa, “14 / 18V”"
 
 msgid "use_hdmi_cacenter"
 msgstr "hdmi_cacenter_kullanın"
-
-#
-msgid "user defined"
-msgstr "kullanıcı tanımlı"
 
 #
 msgid "userdefined"
@@ -24467,9 +24388,6 @@ msgstr ""
 "\n"
 "Bir kopya kendinize gönderildi."
 
-msgid "white"
-msgstr "beyaz"
-
 msgid "wide"
 msgstr "geniş"
 
@@ -24492,15 +24410,6 @@ msgstr[0] "%d hata ile"
 
 msgid "with errors"
 msgstr "hata ile"
-
-msgid "With EXIT button"
-msgstr "exit tuşu ile"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "sol/sağ tuşları ile"
-
-msgid "With long OK press"
-msgstr "uzun süre OK düğmesine basarak"
 
 msgid "with_errors"
 msgstr "hata_ile"
@@ -24526,6 +24435,123 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d gün"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d dakika"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Saatler"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Saatler"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Otomatik Zamanlayıcı"
+
+#~ msgid "Hour"
+#~ msgstr "Saat"
+
+#~ msgid "Once per day"
+#~ msgstr "Günde bir"
+
+#~ msgid "alphabetical"
+#~ msgstr "alfabetik"
+
+#
+#~ msgid "alternative"
+#~ msgstr "alternatif"
+
+#
+#~ msgid "user defined"
+#~ msgstr "kullanıcı tanımlı"
+
+#~ msgid "white"
+#~ msgstr "beyaz"
 
 #, python-format
 #~ msgid "Mount '%s' has not enough free space to record."

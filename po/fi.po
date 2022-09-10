@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 16:19+0000\n"
+"POT-Creation-Date: 2022-09-09 12:56+0000\n"
 "PO-Revision-Date: 2022-09-07 07:08+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -221,16 +221,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -349,7 +349,7 @@ msgstr "%2.1f sek"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -539,11 +539,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -589,19 +589,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -875,8 +875,24 @@ msgstr[0] "%d Päivä"
 msgstr[1] "%d Päivää"
 
 #, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d tunti"
+msgstr[1] "%d tuntia"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -885,6 +901,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -923,6 +943,22 @@ msgstr[1] "%d Minuuttia"
 msgid "%d Minutes"
 msgstr "%d Minuuttia"
 
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d pixeli leveys"
+msgstr[1] "%d pikselin leveys"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d sekunti"
+msgstr[1] "%d sekuntia"
+
 #, python-format
 msgid "%d Seconds"
 msgstr "%d Sekuntia"
@@ -941,22 +977,10 @@ msgstr[0] "%d ydin"
 msgstr[1] "%d ydintä"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d päivä"
-msgstr[1] "%d päivää"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d Syöttöluettelo paketti on päivitetty."
 msgstr[1] "%d Syöttöluettelo pakettit on päivitetty."
-
-#, python-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d tunti"
-msgstr[1] "%d tuntia"
 
 #, python-format
 msgid "%d kB"
@@ -965,12 +989,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d minuutti"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minuutti"
-msgstr[1] "%d minuuttia"
 
 #, python-format
 msgid "%d minutes"
@@ -1029,20 +1047,8 @@ msgstr[0] "%d paketti päivitetty."
 msgstr[1] "%d paketit päivitetty."
 
 #, python-format
-msgid "%d Pixel wide"
-msgid_plural "%d Pixel wide"
-msgstr[0] "%d pixeli leveys"
-msgstr[1] "%d pikselin leveys"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d sekunti"
-
-#, python-format
-msgid "%d Second"
-msgid_plural "%d Seconds"
-msgstr[0] "%d sekunti"
-msgstr[1] "%d sekuntia"
 
 #, python-format
 msgid "%d times"
@@ -1381,6 +1387,9 @@ msgstr "* nykyinen animaatio"
 msgid "+24"
 msgstr "Seuraavat 24h"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1390,6 +1399,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "Edelliset 24h"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "Seuraavat -+24 tuntia"
@@ -1409,35 +1421,8 @@ msgstr "/var hakemisto"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 msgid "1 hour"
 msgstr "1 tunti"
@@ -1451,23 +1436,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 msgid "10 minutes"
 msgstr "10 minuuttia"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1571,9 +1541,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "1. tietopalkin näyttöaika"
 
@@ -1583,20 +1550,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 msgid "2 hours"
 msgstr "2 tuntia"
 
 msgid "2 minutes"
 msgstr "2 minuuttia"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1627,12 +1585,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 tuntia"
-
-msgid "24+ Hours"
-msgstr "Seuraavat 24 tuntia"
-
-msgid "24- Hours"
-msgstr "24- tuntia"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1691,9 +1643,6 @@ msgstr "2. tietopalkki tiedot"
 msgid "2nd InfoBar timeout"
 msgstr "2. tietopalkin näyttöaika"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1711,9 +1660,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 tuntia"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1751,17 +1697,11 @@ msgstr "3D tilaääni"
 msgid "3D Surround Speaker Position"
 msgstr "3D Kotiteatteri kaiuttimen tila"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 msgid "4 hours"
 msgstr "4 tuntia"
@@ -1790,9 +1730,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr "4K"
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1804,9 +1741,6 @@ msgstr "5 tuntia"
 
 msgid "5 minutes"
 msgstr "5 minuuttia"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1825,9 +1759,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1879,9 +1810,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 merkkiä"
@@ -2806,6 +2734,9 @@ msgstr "Taide/Kulttuuri"
 msgid "Aruba"
 msgstr "Aruba"
 
+msgid "As plugin in extended bar"
+msgstr "lisäosana laajennuspalkissa"
+
 msgid "Ask user"
 msgstr "Kysy käyttäjältä"
 
@@ -2847,6 +2778,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "alussa"
+
+msgid "At end"
+msgstr "lopussa"
 
 msgid "At end of current program"
 msgstr "Nykyisen ohjelman lopussa"
@@ -2952,9 +2889,6 @@ msgstr "Automaatti tila valittu."
 msgid "Auto SCART switching"
 msgstr "Autom. SCARTin kytkentä"
 
-msgid "Auto Timer"
-msgstr "Automaattinen Ajastin"
-
 msgid "Auto Timers"
 msgstr "Automaattiajastus"
 
@@ -2990,6 +2924,9 @@ msgstr "Auto (ei käytettävissä)"
 
 msgid "AutoMountManager"
 msgstr "Laitehallinta"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Automaattinen päivitys"
@@ -3430,6 +3367,9 @@ msgstr "Bosnian"
 
 msgid "Botswana"
 msgstr "Botswana"
+
+msgid "Bottom"
+msgstr "Alhaalla"
 
 msgid "Bouquet List"
 msgstr "Suosikkilista"
@@ -4008,6 +3948,15 @@ msgstr "Cayman saaret"
 
 msgid "Celsius"
 msgstr "Celsius"
+
+msgid "Center"
+msgstr "Keskellä"
+
+msgid "Centered"
+msgstr "Keskitetty"
+
+msgid "Centered, wrapped"
+msgstr "Keskellä, sovitettu"
 
 msgid "Central African Republic"
 msgstr "Keski Afrikka"
@@ -8440,6 +8389,9 @@ msgstr "Siirry parhaaseen katseluaikaan"
 msgid "Goto X"
 msgstr "Mene X"
 
+msgid "Goto deep standby"
+msgstr "siirry virransäästötilaan"
+
 msgid "Goto next bouquet"
 msgstr "Mene seuraavalle suosikkilistalle"
 
@@ -8463,6 +8415,9 @@ msgstr "Siirry edelliseen ohjelmaan"
 
 msgid "Goto specific date/time"
 msgstr "Mene määrättyyn tietoon/aikaan"
+
+msgid "Goto standby"
+msgstr "siirry valmiustilaan"
 
 msgid "GotoX calibration"
 msgstr "GotoX kalibrointi"
@@ -8871,9 +8826,6 @@ msgstr "Pikanäppäin"
 
 msgid "Hotkey Settings"
 msgstr "Pikanäppäimet"
-
-msgid "Hour"
-msgstr "Tunti"
 
 msgid "Hourly"
 msgstr "Joka tunti"
@@ -9706,6 +9658,9 @@ msgstr "keskeytä, älä näytä viestiä"
 msgid "Just abort, show message"
 msgstr "keskeytä, näytä viesti"
 
+msgid "Just boot"
+msgstr "käynnistä uudelleen"
+
 msgid "Just change Bouquet"
 msgstr "Vaihda vain kanavalista"
 
@@ -9981,6 +9936,9 @@ msgstr "Kanavanimestä vasemmalle"
 
 msgid "Left long"
 msgstr "Vasen pitkä"
+
+msgid "Left, wrapped"
+msgstr "vasemmalla, rivitä teksti"
 
 msgid "Leisure hobbies"
 msgstr "Vapaa-ajan harrastukset"
@@ -10640,6 +10598,9 @@ msgstr "Meksiko"
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia"
 
+msgid "Middle"
+msgstr "keskellä"
+
 msgid "Middle - Lite image"
 msgstr "Keskimmäinen - Ohjelmisto"
 
@@ -10676,6 +10637,12 @@ msgstr "Minimi lähestysjakso"
 
 msgid "Mins"
 msgstr "Minuutit"
+
+msgid "Minute"
+msgstr "minuutti"
+
+msgid "Minutes"
+msgstr "minuuttia"
 
 msgid "Minutes Seconds"
 msgstr "Minuutit Sekunnit"
@@ -11304,6 +11271,9 @@ msgstr "Ohjattu verkkoasennus"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.usr)"
 
+msgid "Never"
+msgstr "ei koskaan"
+
 msgid "Never abort"
 msgstr "ei koskaan"
 
@@ -11918,9 +11888,6 @@ msgstr "Käytössä oleva ONIDs, taajuuden ohita aliverkko-osa"
 
 msgid "Once"
 msgstr "kerran"
-
-msgid "Once per day"
-msgstr "Kerran päivässä"
 
 msgid "One"
 msgstr "Yksi"
@@ -13057,9 +13024,6 @@ msgstr "Virta ajastusasetukset"
 msgid "PowerTimer Actions"
 msgstr "Virta-ajastus Toiminnot"
 
-msgid "PowerTimer deep standby"
-msgstr "Virta ajastin virransäästötila"
-
 msgid "PowerTimer Overview"
 msgstr "Virta ajastukset Yhteenveto"
 
@@ -13068,6 +13032,9 @@ msgstr "Virta-ajastus Asetukset"
 
 msgid "PowerTimer Standby"
 msgstr "Virta ajastukset Valmistila"
+
+msgid "PowerTimer deep standby"
+msgstr "Virta ajastin virransäästötila"
 
 msgid "PowerTimer log"
 msgstr "PowerTimer-loki"
@@ -13229,6 +13196,12 @@ msgstr "Edellinen suosikkilista"
 
 msgid "Previous page"
 msgstr "Edellinen sivu"
+
+msgid "Previous/Next bouquet"
+msgstr "edellinen/seuraava Suosikkilista"
+
+msgid "Previous/Next page"
+msgstr "edellinen/seuraava Sivu"
 
 msgid "Prevsong"
 msgstr "Vihreä"
@@ -14361,6 +14334,9 @@ msgstr "Kanavanimestä oikealle"
 msgid "Right long"
 msgstr "Oikea pitkä"
 
+msgid "Right, wrapped"
+msgstr "oikealla, rivitä teksti"
+
 msgid "Roll-off"
 msgstr "Roll-off"
 
@@ -14877,6 +14853,9 @@ msgstr "Kääntyvän antennin LNB:n toinen kaapeli"
 
 msgid "Secondary DNS"
 msgstr "Toissijainen DNS"
+
+msgid "Seconds"
+msgstr "sekuntia"
 
 msgid "Security"
 msgstr "turvallisuus"
@@ -19314,6 +19293,9 @@ msgstr "22 kHz-ääni"
 msgid "Tonga"
 msgstr "Tonga"
 
+msgid "Top"
+msgstr "suositut"
+
 msgid "Top and Bottom"
 msgstr "Ylä ja ala"
 
@@ -19915,6 +19897,9 @@ msgstr "Ylempi USB"
 
 msgid "Upper case"
 msgstr "Isot kirjaimet"
+
+msgid "Upper line"
+msgstr "ylempi rivi"
 
 msgid "Uptime"
 msgstr "Käynnissäoloaika"
@@ -21055,11 +21040,20 @@ msgstr "WLAN-verkon asetukset."
 msgid "Wireless network state"
 msgstr "WLAN-verkon tila"
 
+msgid "With EXIT button"
+msgstr "exit-näppäimellä"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "vasen/oikea näppäimillä"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "T2MI RAW moodi estettynä (oletus) voidaan käyttää yksittäis-T2MI PLP kapseloinnin poistoa. T2MI sallittuna voidaan Astra-SM käyttää T2MI:n analysointiin"
 
 msgid "With errors:"
 msgstr "Virheillä:"
+
+msgid "With long OK press"
+msgstr "pitkä OK painallus"
 
 msgid "With pop up"
 msgstr "Kyllä, näytä viesti"
@@ -21820,14 +21814,8 @@ msgstr "Aakkosjärjestys"
 msgid "alphabetic reverse"
 msgstr "Käänteinen aakkosjärjestys"
 
-msgid "alphabetical"
-msgstr "aakkosjärjestys"
-
 msgid "alpharev then newest"
 msgstr "Käänteinen aakkosjärjestys, uusin ensin"
-
-msgid "alternative"
-msgstr "vaihtoehtoinen"
 
 msgid "am"
 msgstr "aamu"
@@ -21853,15 +21841,6 @@ msgstr "taide/kulttuuri (ilman musiikkia, yleinen)"
 
 msgid "arts/culture magazine"
 msgstr "taide/kulttuurimakasiini"
-
-msgid "As plugin in extended bar"
-msgstr "lisäosana laajennuspalkissa"
-
-msgid "At beginning"
-msgstr "alussa"
-
-msgid "At end"
-msgstr "lopussa"
 
 msgid "athletics"
 msgstr "yleisurheilu"
@@ -21914,9 +21893,6 @@ msgstr "kielletyt"
 msgid "blue"
 msgstr "sininen"
 
-msgid "Bottom"
-msgstr "Alhaalla"
-
 msgid "broadcasting/press"
 msgstr "lähetys/lehdistö"
 
@@ -21944,15 +21920,6 @@ msgstr "korttipalvelin"
 
 msgid "cartoon/puppets"
 msgstr "piirretty/nukke"
-
-msgid "Center"
-msgstr "Keskellä"
-
-msgid "Centered"
-msgstr "Keskitetty"
-
-msgid "Centered, wrapped"
-msgstr "Keskellä, sovitettu"
 
 msgid "change Volume down"
 msgstr "Pienennä äänenvoimakkuutta"
@@ -22270,9 +22237,6 @@ msgstr "hae korttipalvelin"
 msgid "goto current channel and now"
 msgstr "Siirry nykyiselle kanavalle"
 
-msgid "Goto deep standby"
-msgstr "siirry virransäästötilaan"
-
 msgid "goto first channel"
 msgstr "vaihda ensimmäiselle kanavalle"
 
@@ -22281,9 +22245,6 @@ msgstr "vaihda viime kanavalle"
 
 msgid "goto now"
 msgstr "Siirry nyt"
-
-msgid "Goto standby"
-msgstr "siirry valmiustilaan"
 
 msgid "grab this frame as bitmap"
 msgstr "Tallenna tämä ruutu kuvatiedostoksi"
@@ -22406,9 +22367,6 @@ msgstr "hyppää eteenpäin seuraavaan kappaleeseen"
 msgid "jump to chapter by number"
 msgstr "Hyppää luku numeron mukaan"
 
-msgid "Just boot"
-msgstr "käynnistä uudelleen"
-
 msgid "languages"
 msgstr "kielet"
 
@@ -22417,9 +22375,6 @@ msgstr "poistu video soittimestä"
 
 msgid "left"
 msgstr "vasen"
-
-msgid "Left, wrapped"
-msgstr "vasemmalla, rivitä teksti"
 
 msgid "leisure hobbies (general)"
 msgstr "vapaa-ajan harrastukset (yleinen)"
@@ -22457,17 +22412,8 @@ msgstr "kamppailulajit"
 msgid "medicine/physiology/psychology"
 msgstr "lääketiede/fysiologia/psykologia"
 
-msgid "Middle"
-msgstr "keskellä"
-
 msgid "min"
 msgstr "pienin"
-
-msgid "Minute"
-msgstr "minuutti"
-
-msgid "Minutes"
-msgstr "minuuttia"
 
 msgid "month"
 msgstr "kuukausi"
@@ -22525,9 +22471,6 @@ msgstr "ei saatavilla"
 
 msgid "nature/animals/environment"
 msgstr "luonto/eläimet/ympäristö"
-
-msgid "Never"
-msgstr "ei koskaan"
 
 msgid "new media"
 msgstr "uusi media"
@@ -22673,12 +22616,6 @@ msgstr "esikouluikäisten lastenohjelma"
 msgid "previous channel page"
 msgstr "Siirry edelliselle kanavalle"
 
-msgid "Previous/Next bouquet"
-msgstr "edellinen/seuraava Suosikkilista"
-
-msgid "Previous/Next page"
-msgstr "edellinen/seuraava Sivu"
-
 msgid "provid:"
 msgstr "p.tarj:"
 
@@ -22766,9 +22703,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "oikea"
 
-msgid "Right, wrapped"
-msgstr "oikealla, rivitä teksti"
-
 msgid "rock/pop"
 msgstr "rock/pop"
 
@@ -22803,9 +22737,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "hae EPG:stä."
-
-msgid "Seconds"
-msgstr "sekuntia"
 
 msgid "select CAId's"
 msgstr "valitse CAId:t"
@@ -23011,9 +22942,6 @@ msgstr "kohdekansio"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "valitse aika, kappale, ääni, tekstitys"
 
-msgid "Top"
-msgstr "suositut"
-
 msgid "tourism/travel"
 msgstr "turismi/matkailu"
 
@@ -23092,9 +23020,6 @@ msgstr "päivitä"
 msgid "updates available."
 msgstr "päivitystä saatavilla."
 
-msgid "Upper line"
-msgstr "ylempi rivi"
-
 msgid "use best / controlled by HDMI"
 msgstr "käytä parasta / HDMI:n hallinnoima"
 
@@ -23103,9 +23028,6 @@ msgstr "jos sinulla on vaikeuksia vaihtaa LNB:tä (pysty / vaaka), erittäin pit
 
 msgid "use_hdmi_cacenter"
 msgstr "use_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "käyttäjän määrittelemä"
 
 msgid "userdefined"
 msgstr "käyttäjän määrittelemä"
@@ -23146,9 +23068,6 @@ msgstr ""
 "\n"
 "kopio on lähetetty sinulle."
 
-msgid "white"
-msgstr "valkoinen"
-
 msgid "wide"
 msgstr "leveä"
 
@@ -23173,15 +23092,6 @@ msgstr[1] "%d virhettä"
 msgid "with errors"
 msgstr "virheillä"
 
-msgid "With EXIT button"
-msgstr "exit-näppäimellä"
-
-msgid "With LEFT/RIGHT buttons"
-msgstr "vasen/oikea näppäimillä"
-
-msgid "With long OK press"
-msgstr "pitkä OK painallus"
-
 msgid "with_errors"
 msgstr "virheillä"
 
@@ -23203,6 +23113,123 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d day"
+#~ msgid_plural "%d days"
+#~ msgstr[0] "%d päivä"
+#~ msgstr[1] "%d päivää"
+
+#, python-format
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minuutti"
+#~ msgstr[1] "%d minuuttia"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "Seuraavat 24 tuntia"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- tuntia"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Automaattinen Ajastin"
+
+#~ msgid "Hour"
+#~ msgstr "Tunti"
+
+#~ msgid "Once per day"
+#~ msgstr "Kerran päivässä"
+
+#~ msgid "alphabetical"
+#~ msgstr "aakkosjärjestys"
+
+#~ msgid "alternative"
+#~ msgstr "vaihtoehtoinen"
+
+#~ msgid "user defined"
+#~ msgstr "käyttäjän määrittelemä"
+
+#~ msgid "white"
+#~ msgstr "valkoinen"
 
 #~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 #~ msgstr "'Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
