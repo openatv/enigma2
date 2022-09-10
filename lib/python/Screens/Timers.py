@@ -545,14 +545,7 @@ class TimerOverviewBase(Screen, HelpableScreen):
 		self.loadTimerList()
 		self.doChangeCallbackAppend()
 		self.onLayoutFinish.append(self.layoutFinished)
-
-	def keyCancel(self):
-		self.doChangeCallbackRemove()
-		self.close()
-
-	def keyClose(self):
-		self.doChangeCallbackRemove()
-		self.close(True)
+		self.onClose.append(self.doChangeCallbackRemove)
 
 	def doChangeCallbackAppend(self):
 		pass
@@ -562,6 +555,12 @@ class TimerOverviewBase(Screen, HelpableScreen):
 
 	def loadTimerList(self):
 		pass
+
+	def keyCancel(self):
+		self.close()
+
+	def keyClose(self):
+		self.close(True)
 
 	def onStateChange(self, entry):
 		self.reloadTimerList()
