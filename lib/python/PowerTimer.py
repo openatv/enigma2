@@ -10,10 +10,10 @@ from enigma import eActionMap, quitMainloop
 import NavigationInstance
 from timer import Timer, TimerEntry
 from Components.config import config
+from Components.SystemInfo import BoxInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileReadXML, resolveFilename
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools.XMLTools import stringToXML
@@ -443,6 +443,7 @@ class PowerTimerEntry(TimerEntry, object):
 		self.log_entries = []
 		self.resetState()
 		self.messageBoxAnswerPending = False
+		self.keyPressHooked = False
 
 	def __repr__(self, getType=False):
 		timertype = {
@@ -477,6 +478,7 @@ class PowerTimerEntry(TimerEntry, object):
 		self.log(5, "Activating state %d." % nextState)
 		if nextState == self.StatePrepared and self.timerType in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction("", -maxsize, self.keyPressed)
+			self.keyPressHooked = True
 			if self.autosleepwindow:
 				localTimeNow = localtime(now)
 				autoSleepBegin = strftime("%H:%M", localtime(self.autosleepbegin)).split(":")
@@ -564,7 +566,9 @@ class PowerTimerEntry(TimerEntry, object):
 					else:
 						AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 					if self.autosleeprepeat == "once":
-						eActionMap.getInstance().unbindAction("", self.keyPressed)
+						if self.keyPressHooked:
+							eActionMap.getInstance().unbindAction("", self.keyPressed)
+							self.keyPressHooked = False
 						return True
 					else:
 						self.begin = now + autoSleepDelay
@@ -599,7 +603,9 @@ class PowerTimerEntry(TimerEntry, object):
 						else:
 							AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 						if self.autosleeprepeat == "once":
-							eActionMap.getInstance().unbindAction("", self.keyPressed)
+							if self.keyPressHooked:
+								eActionMap.getInstance().unbindAction("", self.keyPressed)
+								self.keyPressHooked = False
 							return True
 					self.begin = now + autoSleepDelay
 					self.end = self.begin
@@ -966,7 +972,9 @@ class PowerTimerEntry(TimerEntry, object):
 				self.begin = self.autosleepbegin
 				self.end = self.autosleepend
 			if not (now > self.autosleepbegin - self.prepare_time - 3 and now < self.autosleepend):
-				eActionMap.getInstance().unbindAction("", self.keyPressed)
+				if self.keyPressHooked:
+					eActionMap.getInstance().unbindAction("", self.keyPressed)
+					self.keyPressHooked = False
 				self.state = 0
 				self.timeChanged()
 				return False

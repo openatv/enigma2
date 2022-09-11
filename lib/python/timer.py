@@ -102,8 +102,9 @@ class Timer:
 		if timer.state == TimerEntry.StateEnded:  # Give the timer a chance to re-enqueue.
 			timer.state = TimerEntry.StateWaiting
 		elif "PowerTimerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):  # Types: 3=AUTOSTANDBY, 4=AUTODEEPSTANDBY.
-			if timer.state > 0:
+			if timer.state > 0 and timer.keyPressHooked:
 				eActionMap.getInstance().unbindAction("", timer.keyPressed)
+				timer.keyPressHooked = False
 			timer.state = TimerEntry.StateWaiting
 		self.addTimerEntry(timer)
 
