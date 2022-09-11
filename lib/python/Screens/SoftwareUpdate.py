@@ -192,7 +192,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 #			status = status.get("status")
 			status = ""
 			message = ""
-			with urlopen("http://ampel.mynonpublic.com/Ampel/index.php") as fd:
+			with urlopen("https://ampel.mynonpublic.com/Ampel/index.php") as fd:
 				tmpStatus = fd.read()
 				if b"rot.png" in tmpStatus:
 					status = "YELLOW" if exists("/etc/.beta") else "RED"

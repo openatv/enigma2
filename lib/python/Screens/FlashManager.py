@@ -31,7 +31,7 @@ FEED_JSON_URL = 1
 FEED_BOX_IDENTIFIER = 2
 
 FEED_URLS = [
-	("openATV", "http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
+	("openATV", "https://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	("OpenBH", "https://images.openbh.net/json/%s", "model"),
 	("OpenPLi", "http://downloads.openpli.org/json/%s", "model"),
 	("Open Vision", "https://images.openvision.dedyn.io/json/%s", "model"),
@@ -129,7 +129,7 @@ class FlashManager(Screen, HelpableScreen):
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
 			if index is None:
-				feedURL = "http://images.mynonpublic.com/openatv/json/%s"
+				feedURL = "https://images.mynonpublic.com/openatv/json/%s"
 				boxInfoField = "BoxName"
 			else:
 				feedURL = FEED_URLS[index][FEED_JSON_URL]
