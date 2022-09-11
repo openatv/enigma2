@@ -27,7 +27,7 @@ import shutil
 from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
 
 feedserver = 'images.mynonpublic.com'
-feedurl = 'http://%s/%s/json' % (feedserver, getImageDistro())
+feedurl = 'https://%s/%s/json' % (feedserver, getImageDistro())
 
 
 def checkimagefiles(files):
