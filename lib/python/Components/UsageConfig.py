@@ -158,6 +158,7 @@ def InitUsageConfig():
 	def alternativeNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
+
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
@@ -1967,6 +1968,11 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 	config.timeshift.maxEvents = ConfigSelection(default=12, choices=[(x, ngettext("%d Event", "%d Events", x) % x) for x in range(1, 999)])
 	config.timeshift.maxHours = ConfigSelection(default=12, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 999)])
+	config.usage.timeshift_path = ConfigText(default="")
+	if config.usage.timeshift_path.value:
+		defaultValue = config.usage.timeshift_path.value
+		config.usage.timeshift_path.value = config.usage.timeshift_path.default
+		config.usage.timeshift_path.save()
 	config.timeshift.path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.timeshift.path.load()
 	if config.timeshift.path.saved_value:
@@ -1982,8 +1988,6 @@ def InitUsageConfig():
 	] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 3, 4, 5, 10, 20, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5)]
 	config.timeshift.startDelay = ConfigSelection(default=0, choices=choiceList)
 	config.timeshift.stopWhileRecording = ConfigYesNo(default=False)
-	config.usage.timeshift_path = ConfigSelection(default=config.timeshift.path.value, choices=[(config.timeshift.path.value, config.timeshift.path.value)])
-	config.usage.allowed_timeshift_paths = ConfigLocations(default=config.timeshift.allowedPaths.value)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
