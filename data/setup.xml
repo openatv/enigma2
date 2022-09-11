@@ -748,20 +748,20 @@
 		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
 		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
-	<setup key="Timeshift" title="Timeshift Settings" level="1" showOpenWebif="1">
-		<item level="2" text="Timeshift location" description="Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.timeshift_path</item>
-		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startdelay</item>
-		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.usage.check_timeshift</item>
-		<item level="2" text="Show status messages when switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showlivetvmsg</item>
-		<item level="2" text="Timeshift-save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopwhilerecording</item>
-		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showinfobar</item>
-		<item level="2" text="Timeshift buffer limit [in hours]" description="Older files in the time shift directory are removed on every event change.">config.timeshift.timeshiftMaxHours</item>
-		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.timeshiftMaxEvents</item>
-		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.timeshiftCheckEvents</item>
-		<item level="2" text="Timeshift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files.">config.timeshift.timeshiftCheckFreeSpace</item>
-		<item level="2" text="Timeshift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting.">config.timeshift.deleteAfterZap</item>
-		<item level="2" text="Timeshift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file.">config.timeshift.filesplitting</item>
+	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
+		<item level="2" text="Time shift buffer location" description="Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location.">config.timeshift.path</item>
+		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
+		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.timeshift.check</item>
+		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showLiveTVMsg</item>
+		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
+		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopWhileRecording</item>
+		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showInfoBar</item>
+		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change.">config.timeshift.maxHours</item>
+		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.maxEvents</item>
+		<item level="2" text="Time shift checking for older files" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.checkEvents</item>
+		<item level="2" text="Time shift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files.">config.timeshift.checkFreeSpace</item>
+		<item level="2" text="Time shift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting.">config.timeshift.deleteAfterZap</item>
+		<item level="2" text="Time shift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file.">config.timeshift.fileSplitting</item>
 	</setup>
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>

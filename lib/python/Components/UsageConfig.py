@@ -427,22 +427,6 @@ def InitUsageConfig():
 			config.usage.instantrec_path.value = savedValue
 	config.usage.instantrec_path.save()
 
-	defaultValue = resolveFilename(SCOPE_TIMESHIFT)
-	if not exists(defaultValue):
-		try:
-			mkdir(defaultValue, 0o755)
-		except OSError as err:
-			pass
-	config.usage.timeshift_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
-	config.usage.timeshift_path.load()
-	if config.usage.timeshift_path.saved_value:
-		savedValue = pathjoin(config.usage.timeshift_path.saved_value, "")
-		if savedValue and savedValue != defaultValue:
-			config.usage.timeshift_path.setChoices([(defaultValue, defaultValue), (savedValue, savedValue)], default=defaultValue)
-			config.usage.timeshift_path.value = savedValue
-	config.usage.timeshift_path.save()
-	config.usage.allowed_timeshift_paths = ConfigLocations(default=[defaultValue])
-
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=1, max=31, stepwidth=1, default=8, wraparound=True)
@@ -524,8 +508,6 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
 		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))
 	])
-
-	config.usage.check_timeshift = ConfigYesNo(default=True)
 
 	config.usage.alternatives_priority = ConfigSelection(default="0", choices=[
 		("0", "DVB-S/-C/-T"),
@@ -1293,28 +1275,6 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
 
-	config.timeshift = ConfigSubsection()
-	choiceList = [
-		("0", _("Disabled"))
-	] + [(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 3, 4, 5, 10, 20, 30)] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5)]
-	config.timeshift.startdelay = ConfigSelection(default="0", choices=choiceList)
-	config.timeshift.showinfobar = ConfigYesNo(default=True)
-	config.timeshift.stopwhilerecording = ConfigYesNo(default=False)
-	config.timeshift.favoriteSaveAction = ConfigSelection(default="askuser", choices=[
-		("askuser", _("Ask user")),
-		("savetimeshift", _("Save and stop")),
-		("savetimeshiftandrecord", _("Save and record")),
-		("noSave", _("Don't save"))
-	])
-	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
-	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)
-	config.timeshift.timeshiftMaxEvents = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)
-	config.timeshift.timeshiftCheckEvents = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), str(x)) for x in (15, 30, 60, 120, 240, 480)])
-	config.timeshift.timeshiftCheckFreeSpace = ConfigSelection(default="0", choices=[("0", _("No"))] + [(str(x * 1024), _("%d GB")) for x in (1, 2, 4, 8)])
-	config.timeshift.deleteAfterZap = ConfigYesNo(default=True)
-	config.timeshift.filesplitting = ConfigYesNo(default=True)
-	config.timeshift.showlivetvmsg = ConfigYesNo(default=True)
-
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection(default="leftright", choices=[
 		("leftright", _("Long Left/Right")),
@@ -1982,6 +1942,48 @@ def InitUsageConfig():
 		("slow", _("slow"))
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+	#
+	# Time shift settings.
+	#
+	defaultValue = resolveFilename(SCOPE_TIMESHIFT)
+	if not exists(defaultValue):
+		try:
+			mkdir(defaultValue, 0o755)
+		except OSError as err:
+			print("[UsageConfig] Error: Unable to create time shift directory '%s'!  (%s)" % (err.errno, defaultValue, err.strerror))
+	config.timeshift = ConfigSubsection()
+	config.timeshift.allowedPaths = ConfigLocations(default=[defaultValue])
+	config.timeshift.check = ConfigYesNo(default=True)
+	config.timeshift.checkEvents = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60, 120, 240, 480)])
+	config.timeshift.checkFreeSpace = ConfigSelection(default=0, choices=[(0, _("No"))] + [(x * 1024, _("%d GB") % x) for x in (1, 2, 4, 8)])
+	config.timeshift.deleteAfterZap = ConfigYesNo(default=True)
+	config.timeshift.favoriteSaveAction = ConfigSelection(default="askuser", choices=[
+		("askuser", _("Ask user")),
+		("savetimeshift", _("Save and stop")),
+		("savetimeshiftandrecord", _("Save and record")),
+		("noSave", _("Don't save"))
+	])
+	config.timeshift.fileSplitting = ConfigYesNo(default=True)
+	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
+	config.timeshift.maxEvents = ConfigSelection(default=12, choices=[(x, ngettext("%d Event", "%d Events", x) % x) for x in range(1, 999)])
+	config.timeshift.maxHours = ConfigSelection(default=12, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 999)])
+	config.timeshift.path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
+	config.timeshift.path.load()
+	if config.timeshift.path.saved_value:
+		savedValue = pathjoin(config.timeshift.path.saved_value, "")
+		if savedValue and savedValue != defaultValue:
+			config.timeshift.path.setChoices(default=defaultValue, choices=[(defaultValue, defaultValue), (savedValue, savedValue)])
+			config.timeshift.path.value = savedValue
+	config.timeshift.path.save()
+	config.timeshift.showInfoBar = ConfigYesNo(default=True)
+	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)
+	choiceList = [
+		(0, _("Disabled"))
+	] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 3, 4, 5, 10, 20, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5)]
+	config.timeshift.startDelay = ConfigSelection(default=0, choices=choiceList)
+	config.timeshift.stopWhileRecording = ConfigYesNo(default=False)
+	config.usage.timeshift_path = ConfigSelection(default=config.timeshift.path.value, choices=[(config.timeshift.path.value, config.timeshift.path.value)])
+	config.usage.allowed_timeshift_paths = ConfigLocations(default=config.timeshift.allowedPaths.value)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
