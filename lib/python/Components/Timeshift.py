@@ -756,8 +756,8 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					stat = statvfs(config.usage.default_path.value)
-					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
+					status = statvfs(config.usage.default_path.value)
+					freespace = status.f_bfree / 1000 * status.f_bsize / 1000
 					randomint = randint(1, 999)
 					if timeshiftfile is None:
 						# Get Filesize for Free Space Check
@@ -926,8 +926,8 @@ class InfoBarTimeshift:
 					lockedFiles.append(("pts_livebuffer_%s") % self.pts_currplaying)
 		if freespace:
 			try:
-				stat = statvfs(config.timeshift.path.value)
-				freespace = stat.f_bavail * stat.f_bsize / 1024 / 1024
+				status = statvfs(config.timeshift.path.value)
+				freespace = status.f_bavail * status.f_bsize / 1024 / 1024
 			except Exception:
 				print("[Timeshift] Error reading disk space - function 'checking for free space' can't used.")
 		if freespace < config.timeshift.checkFreeSpace.value:
