@@ -1950,7 +1950,7 @@ def InitUsageConfig():
 		try:
 			mkdir(defaultValue, 0o755)
 		except OSError as err:
-			print("[UsageConfig] Error: Unable to create time shift directory '%s'!  (%s)" % (err.errno, defaultValue, err.strerror))
+			print("[UsageConfig] Error %d: Unable to create time shift directory '%s'!  (%s)" % (err.errno, defaultValue, err.strerror))
 	config.timeshift = ConfigSubsection()
 	config.timeshift.allowedPaths = ConfigLocations(default=[defaultValue])
 	config.timeshift.check = ConfigYesNo(default=True)
