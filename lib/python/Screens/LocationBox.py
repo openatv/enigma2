@@ -21,7 +21,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 
 
 DEFAULT_INHIBIT_DIRECTORIES = ("/", "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/media", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
-defaultInhibitDirs = DEFAULT_INHIBIT_DIRECTORIES
+defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
 DEFAULT_INHIBIT_DEVICES = []
 for dir in DEFAULT_INHIBIT_DIRECTORIES:
 	if isdir(dir):
