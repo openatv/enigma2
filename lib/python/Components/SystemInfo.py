@@ -1,3 +1,4 @@
+from glob import glob
 from hashlib import md5
 from os import listdir, readlink
 from os.path import exists, isfile, join as pathjoin, islink
@@ -10,6 +11,8 @@ from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, file
 from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
+SOFTCAM = "/etc/init.d/softcam"
+NOEMU = "/etc/enigma2/noemu"
 
 SystemInfo = {}
 
@@ -213,41 +216,39 @@ def getModuleLayout():
 	return None
 
 
-def Check_Softcam():
-	found = False
-	if fileExists("/etc/enigma2/noemu"):
-		found = False
+def Check_Softcam_Emu():
+	if isfile(NOEMU):
+		return False
 	else:
+		return len(glob("/etc/*.emu")) > 0
+
+
+def Check_Softcam():
+	if not isfile(NOEMU):
 		for cam in listdir("/etc/init.d"):
-			if cam.startswith('softcam.') and not cam.endswith('None'):
-				found = True
-				break
-			elif cam.startswith('cardserver.') and not cam.endswith('None'):
-				found = True
-				break
-	return found
+			if (cam.startswith('softcam.') or cam.startswith('cardserver.')) and not cam.endswith('None'):
+				return True
+	return False
 
 
 def Check_SysSoftcam():
-	syscam = ""
-	if isfile('/etc/init.d/softcam'):
-		if (islink('/etc/init.d/softcam') and not readlink('/etc/init.d/softcam').lower().endswith('none')):
+	currentsyscam = ""
+	if isfile(SOFTCAM):
+		if (islink(SOFTCAM) and not readlink(SOFTCAM).lower().endswith("none")):
 			try:
-				syscam = readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
-				if syscam.lower().startswith('oscam'):
-					syscam = "oscam"
-				if syscam.lower().startswith('ncam'):
-					syscam = "ncam"
-				if syscam.lower().startswith('cccam'):
-					syscam = "cccam"
-			except:
+				syscam = readlink(SOFTCAM).rsplit(".", 1)[1]
+				for cam in ("oscam", "ncam", "cccam"):
+					if syscam.lower().startswith(cam):
+						return cam
+			except OSError:
 				pass
-	return syscam
+	return currentsyscam
 
 
 def Refresh_SysSoftCam():
 	BoxInfo.setItem("ShowOscamInfo", Check_SysSoftcam() in ("oscam", "ncam"), True)
 	BoxInfo.setItem("ShowCCCamInfo", Check_SysSoftcam() in ("cccam",), True)
+	BoxInfo.setItem("HasSoftcamEmu", Check_Softcam_Emu(), True)
 
 
 def GetBoxName():
