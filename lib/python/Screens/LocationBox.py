@@ -391,8 +391,8 @@ class TimeshiftLocationBox(LocationBox):
 			self,
 			session,
 			text=_("Where do you want to save temporary time shift recordings?"),
-			currDir=config.usage.timeshift_path.value,
-			bookmarks=config.usage.allowed_timeshift_paths,
+			currDir=config.timeshift.path.value,
+			bookmarks=config.timeshift.allowedPaths,
 			# userMode=False,
 			windowTitle=_("Select Time Shift Location"),
 			minFree=1024,  # The same minFree requirement is hardcoded in servicedvb.cpp.
@@ -404,11 +404,11 @@ class TimeshiftLocationBox(LocationBox):
 		self.skinName = "LocationBox"
 
 	def cancel(self):
-		config.usage.timeshift_path.cancel()
+		config.timeshift.path.cancel()
 		LocationBox.cancel(self)
 
 	def selectConfirmed(self, answer):
 		if answer:
-			config.usage.timeshift_path.value = self.getPreferredFolder()
-			config.usage.timeshift_path.save()
+			config.timeshift.path.value = self.getPreferredFolder()
+			config.timeshift.path.save()
 			LocationBox.selectConfirmed(self, answer)
