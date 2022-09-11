@@ -4,7 +4,7 @@
 
 [![Build status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
-[Active Build Status](http://images.mynonpublic.com/openatv/build_status_mipsel_6.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_mipsel_6.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 20.04.3 LTS (Kernel 5.4.0) 64-bit
+> Ubuntu 20.04.5 LTS (Kernel 5.4.0) 64-bit
 
 ## Hardware requirements
 
@@ -43,7 +43,7 @@
 
 ## DOXYGEN Documentation
 
-* [openATV enigma2](http://doxy.mynonpublic.com/ "openATV enigma2") -  openATV core
+* [openATV enigma2](https://doxy.mynonpublic.com/ "openATV enigma2") -  openATV core
 
 # Build instructions
 
