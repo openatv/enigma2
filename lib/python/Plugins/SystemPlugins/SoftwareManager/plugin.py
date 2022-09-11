@@ -38,6 +38,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR, SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
@@ -109,7 +110,12 @@ class RestoreMenu(RestoreMenu):
     pass
 
 
-class SoftwareManagerSetup(Screen, ConfigListScreen):
+class SoftwareManagerSetup(Setup):
+	def __init__(self, session):
+		Setup.__init__(self, session, "SoftwareManager", plugin="Extensions/SoftwareManager")
+
+
+class _SoftwareManagerSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
