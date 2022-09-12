@@ -246,9 +246,9 @@ def Check_SysSoftcam():
 
 
 def Refresh_SysSoftCam():
-	BoxInfo.setItem("ShowOscamInfo", Check_SysSoftcam() in ("oscam", "ncam"), True)
-	BoxInfo.setItem("ShowCCCamInfo", Check_SysSoftcam() in ("cccam",), True)
-	BoxInfo.setItem("HasSoftcamEmu", Check_Softcam_Emu(), True)
+	BoxInfo.setItem("ShowOscamInfo", Check_SysSoftcam() in ("oscam", "ncam"), False)
+	BoxInfo.setItem("ShowCCCamInfo", Check_SysSoftcam() in ("cccam",), False)
+	BoxInfo.setItem("HasSoftcamEmu", Check_Softcam_Emu(), False)
 
 
 def GetBoxName():
