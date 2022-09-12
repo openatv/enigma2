@@ -377,7 +377,7 @@ class ImageBackup(Screen):
 						cmdlist.append("dd if=/dev/mtd%d of=%s/%s.bin" % (index, self.WORKDIR, value))
 
 				if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
-					SEEK_CONT = (getFolderSize(self.backuproot) / 1024) + 100000
+					SEEK_CONT = int((getFolderSize(self.backuproot) / 1024) + 100000)
 
 					cmdlist.append(self.makeEchoCreate("fastboot dump"))
 					cmdlist.append(self.makeCopyBinFile("fastboot", self.WORKDIR))
