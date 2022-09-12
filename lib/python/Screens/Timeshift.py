@@ -68,7 +68,7 @@ class TimeshiftSettings(Setup):
 	def keySelectCallback(self, path):
 		if path is not None:
 			path = pathjoin(path, "")
-			self.buildChoices("TimeshiftPath", config.timeshift.path, path)
+			self.buildChoices(config.timeshift.path, path)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
