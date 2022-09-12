@@ -3793,7 +3793,7 @@ class InfoBarInstantRecord:
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
-				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Time shift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
@@ -3877,8 +3877,8 @@ class InfoBarInstantRecord:
 				(_("Add recording (enter recording duration)"), "manualduration"),
 				(_("Add recording (enter recording end time)"), "manualendtime"),)
 
-			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
-				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+			timeshiftcommon = ((_("Time shift save recording (stop after current event)"), "savetimeshift"),
+				(_("Time shift save recording (Select event)"), "savetimeshiftEvent"),)
 		else:
 			common = ()
 			timeshiftcommon = ()

@@ -481,7 +481,7 @@ class InfoBarTimeshift:
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 			else:
 				if self.save_current_timeshift:
-					# The user has previously activated "Timeshift save recording" of current event - so must be necessarily saved of the timeshift!
+					# The user has previously activated "Time shift save recording" of current event - so must be necessarily saved of the timeshift!
 					# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
 					message = _("You have chosen to save the current time shift")
 					choice = [(_("Now save time shift as movie and continues recording"), "savetimeshiftandrecord")]
@@ -493,7 +493,7 @@ class InfoBarTimeshift:
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
 			# The user has chosen "no warning" when time shift is stopped (config.timeshift.check=False)
-			# but the user has previously activated "Timeshift save recording" of current event
+			# but the user has previously activated "Time shift save recording" of current event
 			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
 			# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
 			message = _("You have chosen to save the current time shift")
@@ -811,7 +811,7 @@ class InfoBarTimeshift:
 				config.timeshift.isRecording.value = False
 				self.save_timeshift_postaction = None
 				errormessage = str(timeshift_saveerror1) + "\n" + str(timeshift_saveerror2)
-				AddNotification(MessageBox, _("Timeshift save failed!") + "\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
+				AddNotification(MessageBox, _("Time shift save failed!") + "\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsAskUser(self, what):
 		if self.ptsAskUser_wait:
