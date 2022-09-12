@@ -1,8 +1,5 @@
-# Generic Screen to select a path/filename combination
-#
 from os import stat, statvfs
 from os.path import isdir, join as pathjoin
-import six
 
 from enigma import eTimer
 
@@ -19,34 +16,34 @@ from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, createDir, removeDir
+from Tools.Directories import createDir, pathExists, removeDir
 from Tools.NumericalTextInput import NumericalTextInput
 
 
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var"]
+DEFAULT_INHIBIT_DIRECTORIES = ("/", "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/media", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
+defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
 DEFAULT_INHIBIT_DEVICES = []
-for dir in defaultInhibitDirs + ["/", "/media"]:
-	try:
-		if isdir(dir):
-			device = stat(dir).st_dev
-			if device not in DEFAULT_INHIBIT_DEVICES:
-				DEFAULT_INHIBIT_DEVICES.append(device)
-	except OSError as err:
-		pass
+for dir in DEFAULT_INHIBIT_DIRECTORIES:
+	if isdir(dir):
+		device = stat(dir).st_dev
+		if device not in DEFAULT_INHIBIT_DEVICES:
+			DEFAULT_INHIBIT_DEVICES.append(device)
 
 
+# Generic screen to select a path/filename combination.
+#
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
 
 	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select Location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
+		Screen.__init__(self, session)
+		NumericalTextInput.__init__(self, handleTimeout=False)
+		HelpableScreen.__init__(self)
 		if not inhibitDirs:
 			inhibitDirs = []
 		if not inhibitMounts:
 			inhibitMounts = []
-		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self, handleTimeout=False)
-		HelpableScreen.__init__(self)
-		self.setUseableChars(u"1234567890abcdefghijklmnopqrstuvwxyz")
+		self.setUseableChars("1234567890abcdefghijklmnopqrstuvwxyz")
 		self.qs_timer = eTimer()
 		self.qs_timer.callback.append(self.timeout)
 		self.qs_timer_type = 0
@@ -91,17 +88,21 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			"ok": (self.ok, _("Select")),
 			"back": (self.cancel, _("Cancel")),
 		}, prio=-2)
-		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions", {
-			"left": self.left,
-			"right": self.right,
-			"up": self.up,
-			"down": self.down,
+		self["DirectionActions"] = LocationBoxActionMap(self, "NavigationActions", {
+			"top": self.goTop,
+			"pageUp": self.goPageUp,
+			"up": self.goLineUp,
+			# "left": self.left,
+			# "right": self.right,
+			"down": self.goLineDown,
+			"pageDown": self.goPageDown,
+			"bottom": self.goBottom
 		}, prio=-2)
 		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions", {
 			"red": self.cancel,
 			"green": self.select,
 			"yellow": self.changeName,
-			"blue": self.addRemoveBookmark,
+			"blue": self.addRemoveBookmark
 		}, prio=-2)
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions", {
 			"prevService": (self.switchToBookList, _("Switch to bookmarks")),
@@ -144,15 +145,15 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def switchToFileList(self):
 		if not self.userMode:
 			self.currList = "filelist"
-			self["filelist"].selectionEnabled(1)
-			self["booklist"].selectionEnabled(0)
+			self["filelist"].selectionEnabled(True)
+			self["booklist"].selectionEnabled(False)
 			self["key_blue"].setText(_("Add Bookmark"))
 			self.updateTarget()
 
 	def switchToBookList(self):
 		self.currList = "booklist"
-		self["filelist"].selectionEnabled(0)
-		self["booklist"].selectionEnabled(1)
+		self["filelist"].selectionEnabled(False)
+		self["booklist"].selectionEnabled(True)
 		self["key_blue"].setText(_("Remove Bookmark"))
 		self.updateTarget()
 
@@ -209,20 +210,28 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.realBookmarks.value = val
 					self.realBookmarks.save()
 
-	def up(self):
-		self[self.currList].up()
+	def goTop(self):
+		self[self.currList].goTop()
 		self.updateTarget()
 
-	def down(self):
-		self[self.currList].down()
+	def goPageUp(self):
+		self[self.currList].goPageUp()
 		self.updateTarget()
 
-	def left(self):
-		self[self.currList].pageUp()
+	def goLineUp(self):
+		self[self.currList].goLineUp()
 		self.updateTarget()
 
-	def right(self):
-		self[self.currList].pageDown()
+	def goLineDown(self):
+		self[self.currList].goLineDown()
+		self.updateTarget()
+
+	def goPageDown(self):
+		self[self.currList].goPageDown()
+		self.updateTarget()
+
+	def goBottom(self):
+		self[self.currList].goBottom()
 		self.updateTarget()
 
 	def ok(self):
@@ -257,20 +266,20 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def select(self):
 		currentFolder = self.getPreferredFolder()
 		if currentFolder is not None:  # Do nothing unless current directory is valid.
-			if self.minFree is not None:  # Check if we need to have a minimum of free Space available.
+			if self.minFree is not None:  # Check if we need to have a minimum of free space available.
 				try:
-					s = statvfs(currentFolder)  # Try to read filesystem stats.
+					s = statvfs(currentFolder)  # Try to read filesystem status.
 					if (s.f_bavail * s.f_bsize) / 1000000 > self.minFree:
-						return self.selectConfirmed(True)  # Automatically confirm if we have enough free disk Space available.
+						return self.selectConfirmed(True)  # Automatically confirm if we have enough free disk space available.
 				except OSError as err:
-					pass
+					print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currFolder, err.strerror))
 				self.session.openWithCallback(self.selectConfirmed, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
 			else:  # No minimum free space means we can safely close.
 				self.selectConfirmed(True)
 
 	def changeName(self):  # TODO: Add Information that changing extension is bad? Disallow?
 		if self.filename != "":
-			self.session.openWithCallback(self.nameChanged, InputBox, title=_("Please enter a new filename"), text=self.filename)
+			self.session.openWithCallback(self.nameChanged, InputBox, title=_("Please enter a new filename:"), text=self.filename)
 
 	def nameChanged(self, res):
 		if res is not None:
@@ -285,14 +294,14 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if currFolder is not None:  # Write combination of folder & filename when folder is valid.
 			free = ""
 			try:
-				stat = statvfs(currFolder)
-				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024)
-			except:
-				pass
+				status = statvfs(currFolder)
+				free = ("%0.f GB " + _("Free")) % (float(status.f_bavail) * status.f_bsize / 1024 / 1024 / 1024)
+			except OSError as err:
+				print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currFolder, err.strerror))
 			self["targetfreespace"].setText(free)
 			self["target"].setText("".join((currFolder, self.filename)))
 		else:  # Display a warning otherwise.
-			self["target"].setText(_("Invalid location"))
+			self["target"].setText(_("Invalid location!"))
 
 	def showMenu(self):
 		if not self.userMode and self.realBookmarks:
@@ -328,8 +337,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.nextKey()  # Reset lastKey again so NumericalTextInput triggers its keychange event.
 			self.selectByStart()  # Try to select what was typed.
 			self.curr_pos += 1  # Increment position.
-		char = self.getKey(number)  # Get char and append to text.
-		self.quickselect = self.quickselect[:self.curr_pos] + six.text_type(char)
+		self.quickselect = self.quickselect[:self.curr_pos] + str(self.getKey(number))  # Get char and append to text.
 		self.qs_timer_type = 0
 		self.qs_timer.start(1000, 1)  # Start timeout.
 
@@ -337,7 +345,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if not self.quickselect:  # Don't do anything on initial call.
 			return
 		if self["filelist"].getCurrentDirectory():  # Don't select if no directory.
-			files = self["filelist"].getFileList()  # TODO: implement proper method in Components.FileList
+			files = self["filelist"].getFileList()  # TODO: Implement proper method in Components.FileList.
 			lookFor = self["filelist"].getCurrentDirectory() + self.quickselect  # We select by filename which is absolute.
 			for index, file in enumerate(files):  # Select file starting with generated text.
 				if file[0][0] and file[0][0].lower().startswith(lookFor):
@@ -357,31 +365,50 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.quickselect = ""
 
 
-def MovieLocationBox(session, text, dir, minFree=None):
-	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
+class MovieLocationBox(LocationBox):
+	def __init__(self, session, text, currDir, filename="", minFree=None):
+		LocationBox.__init__(
+			self,
+			session,
+			text=text,
+			filename=filename,
+			currDir=currDir,
+			bookmarks=config.movielist.videodirs,
+			# userMode=False,
+			windowTitle=_("Select Movie Location"),
+			minFree=minFree,
+			autoAdd=config.movielist.add_bookmark.value,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
+		)
+		self.skinName = "LocationBox"
 
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):
 		LocationBox.__init__(
-				self,
-				session,
-				text=_("Where do you want to save temporary time shift recordings?"),
-				currDir=config.usage.timeshift_path.value,
-				bookmarks=config.usage.allowed_timeshift_paths,
-				autoAdd=True,
-				editDir=True,
-				inhibitDirs=defaultInhibitDirs,
-				minFree=1024  # the same requirement is hardcoded in servicedvb.cpp.
+			self,
+			session,
+			text=_("Where do you want to save temporary time shift recordings?"),
+			currDir=config.timeshift.path.value,
+			bookmarks=config.timeshift.allowedPaths,
+			# userMode=False,
+			windowTitle=_("Select Time Shift Location"),
+			minFree=1024,  # The same minFree requirement is hardcoded in servicedvb.cpp.
+			autoAdd=True,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
 		)
 		self.skinName = "LocationBox"
 
 	def cancel(self):
-		config.usage.timeshift_path.cancel()
+		config.timeshift.path.cancel()
 		LocationBox.cancel(self)
 
-	def selectConfirmed(self, ret):
-		if ret:
-			config.usage.timeshift_path.value = self.getPreferredFolder()
-			config.usage.timeshift_path.save()
-			LocationBox.selectConfirmed(self, ret)
+	def selectConfirmed(self, answer):
+		if answer:
+			config.timeshift.path.value = self.getPreferredFolder()
+			config.timeshift.path.save()
+			LocationBox.selectConfirmed(self, answer)

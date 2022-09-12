@@ -1760,7 +1760,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 		if (!m_timeshift_enabled)
 		{
 			/* query config path */
-			std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
+			std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
 			if(tspath == "")
 			{
 				eDebug("[eDVBServicePlay] time shift could not query ts path from config");
@@ -2540,7 +2540,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
+	std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
 	if (tspath == "")
 	{
 		eDebug("[eDVBServicePlay] could not query time shift path");

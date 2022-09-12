@@ -3004,8 +3004,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying), "r")
+		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
