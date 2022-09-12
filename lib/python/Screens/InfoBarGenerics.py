@@ -2993,7 +2993,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			if config.timeshift.showinfobar.value:
+			if config.timeshift.showInfoBar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 		if not self.isSeekable():
