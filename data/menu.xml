@@ -59,11 +59,12 @@
 				<item key="subtitle_setup" level="2" text="Subtitle Settings" weight="10"><setup setupKey="Subtitle" /></item>
 				<item key="autolanguage_setup" level="1" text="Auto Language Settings" weight="15"><setup setupKey="AutoLanguage" /></item>
 			</menu>
-			<!-- Menu / Setup / Recordings -->
-			<menu key="rec" level="1" text="Recordings &amp; Timeshift" weight="10">
-				<item key="recording_setup" level="0" text="Recording Settings" weight="10"><screen module="Recording" screen="RecordingSettings" /></item>
-				<item key="hdmirecord_setup" level="0" text="HDMI-In Recording Settings" weight="15" requires="HDMIin"><setup setupKey="HDMIRecord" /></item>
-				<item key="timshift_setup" level="0" text="Timeshift Settings" weight="20"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
+			<!-- Menu / Setup / Playback, Recording and Time Shift -->
+			<menu key="rec" level="1" text="Playback, Recording &amp; Time Shift" weight="10">
+				<item key="playback_setup" level="0" text="Playback Settings" weight="10"><setup setupKey="Playback" /></item>
+				<item key="recording_setup" level="0" text="Recording Settings" weight="15"><screen module="Recording" screen="RecordingSettings" /></item>
+				<item key="hdmirecord_setup" level="0" text="HDMI-In Recording Settings" weight="20" requires="HDMIin"><setup setupKey="HDMIRecord" /></item>
+				<item key="timshift_setup" level="0" text="Time Shift Settings" weight="25"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
 			</menu>
 			<!-- Menu / Setup / GUI (Was: Menu / Settings / System) -->
 			<menu key="system" level="0" text="Usage &amp; GUI" weight="15">
