@@ -1,4 +1,4 @@
-from enigma import eTimer, getDesktop
+from enigma import eTimer
 from os.path import isfile
 
 from Screens.MessageBox import MessageBox
@@ -15,8 +15,8 @@ from Tools.GetEcmInfo import GetEcmInfo
 
 class SoftcamSetup(Setup):
 	def __init__(self, session):
-		self.softcam = CamControl("softcam")
-		self.cardserver = CamControl("cardserver")
+		self.softcam = CamControl("softcam", self.commandFinished)
+		self.cardserver = CamControl("cardserver", self.commandFinished)
 		self.ecminfo = GetEcmInfo()
 		restartOptions = [
 			("", _("Don't restart")),
@@ -57,6 +57,7 @@ class SoftcamSetup(Setup):
 		self.EcmInfoPollTimer = eTimer()
 		self.EcmInfoPollTimer.callback.append(self.setEcmInfo)
 		self.EcmInfoPollTimer.start(1000)
+		self.doStartCommand = False
 		self.onShown.append(self.updateButtons)
 
 	def selectionChanged(self):
@@ -99,10 +100,10 @@ class SoftcamSetup(Setup):
 
 	def softcamInfo(self):
 		ppanelFilename = "/etc/ppanels/%s.xml" % config.misc.softcams.value
-		if "oscam" in config.misc.softcams.value.lower(): # and isfile('/usr/lib/enigma2/python/Screens/OScamInfo.py'):
+		if "oscam" in config.misc.softcams.value.lower():  # and isfile('/usr/lib/enigma2/python/Screens/OScamInfo.py'):
 			from Screens.OScamInfo import OscamInfoMenu
 			self.session.open(OscamInfoMenu)
-		elif "cccam" in config.misc.softcams.value.lower(): # and isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.py'):
+		elif "cccam" in config.misc.softcams.value.lower():  # and isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.py'):
 			from Screens.CCcamInfo import CCcamInfoMain
 			self.session.open(CCcamInfoMain)
 		elif isfile(ppanelFilename) and isPluginInstalled("PPanel"):
@@ -124,18 +125,15 @@ class SoftcamSetup(Setup):
 
 	def doStop(self):
 		self.activityTimer.stop()
+		self.doStartCommand = True
 		if "s" in self.device:
 			self.softcam.command("stop")
 		if "c" in self.device:
 			self.cardserver.command("stop")
 		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
-		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.doStart)
-		self.activityTimer.start(1000, False)
 
 	def doStart(self):
-		self.activityTimer.stop()
 		del self.activityTimer
 		if "s" in self.device:
 			self.softcam.select(config.misc.softcams.value)
@@ -146,10 +144,6 @@ class SoftcamSetup(Setup):
 		if self.mbox:
 			self.mbox.close()
 		self.session.nav.playService(self.oldref, adjust=False)
-		if "e" in self.device:
-			self.saveAll()
-			Refresh_SysSoftCam()
-			self.close()
 
 	def setEcmInfo(self):
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()
@@ -162,3 +156,13 @@ class SoftcamSetup(Setup):
 	def restartCardServer(self):
 		if hasattr(self, "cardservers"):
 			self.restart(device="c")
+
+	def commandFinished(self):
+		if self.doStartCommand:
+			self.doStartCommand = False
+			self.doStart()
+			return
+		if "e" in self.device:
+			self.saveAll()
+			Refresh_SysSoftCam()
+			self.close()
