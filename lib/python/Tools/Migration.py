@@ -1,30 +1,19 @@
 from Components.config import ConfigBoolean, ConfigText, config
 
-menuMappings = {
-	"info_screen": "information",
-	"timer_menu": "timermenu",
-	"setup_selection": "setup",
-	"rec_setup": "rec",
-	"epg_menu": "epg",
-	"display_selection": "display",
-	"osd_setup": "osd_menu",
-	"service_searching_selection": "scan",
-	"cam_setup": "cam",
-	"extended_selection": "extended",
-	"hardisk_selection": "harddisk",
-	"network_menu": "network",
-	"system_selection": "system",
-	"standby_restart_list": "shutdown"
-}
-
 
 def migrateSettings():
-	config.misc.settingsversion = ConfigText("0")
-	if config.misc.settingsversion.value == "0":
+	try:
+		config.misc.migrationVersion = ConfigText("0")
+		migrationVersion = int(config.misc.migrationVersion.value)
+	except Exception:
+		migrationVersion = 0
+	if migrationVersion < 1:
 		migrateMenuSort()
 		migrateTimeshift()
-		config.misc.settingsversion.value = "1"
-		config.misc.settingsversion.save()
+	# elif migrationVersion < 2:
+	# 	migrateNextChange()
+	config.misc.migrationVersion.value = "1"
+	config.misc.migrationVersion.save()
 
 
 def migrateMenuSort():  # This function needs to called in StartEnigma after init of config.usage.menu_sort_weight!
@@ -32,27 +21,40 @@ def migrateMenuSort():  # This function needs to called in StartEnigma after ini
 	Migrate the old menu.xml id's to the new key's.
 	NOTE: This method can be removed at end of 2022 because it's only a temporary need.
 	'''
-
-	# Update menu number display setting...
-	config.usage.menu_show_numbers = ConfigBoolean(False)
+	menuMappings = {
+		"info_screen": "information",
+		"timer_menu": "timermenu",
+		"setup_selection": "setup",
+		"rec_setup": "rec",
+		"epg_menu": "epg",
+		"display_selection": "display",
+		"osd_setup": "osd_menu",
+		"service_searching_selection": "scan",
+		"cam_setup": "cam",
+		"extended_selection": "extended",
+		"hardisk_selection": "harddisk",
+		"network_menu": "network",
+		"system_selection": "system",
+		"standby_restart_list": "shutdown"
+	}
+	# Update menu number display setting.
+	config.usage.menu_show_numbers = ConfigBoolean(default=False)
 	if config.usage.menu_show_numbers.value and config.usage.menuEntryStyle.value == "text":
-		config.usage.menu_show_numbers.value = False  # Remove the old setting.
-		config.usage.menu_show_numbers.save()
+		config.usage.menu_show_numbers.value = config.usage.menu_show_numbers.default  # Remove the old setting.
 		config.usage.menuEntryStyle.value = "number"  # Save the new setting.
+		config.usage.menu_show_numbers.save()
 		config.usage.menuEntryStyle.save()
-
-	# Update menu sort order setting...
-	config.usage.menu_sort_mode = ConfigText("user")
+	# Update menu sort order setting.
+	config.usage.menu_sort_mode = ConfigText(default="user")
 	oldValue = config.usage.menu_sort_mode.value
 	if oldValue == "a_z":
 		oldValue = "alpha"
 	if oldValue != config.usage.menuSortOrder.value:
-		config.usage.menu_sort_mode.value = "user"  # Remove the old setting.
-		config.usage.menu_sort_mode.save()
+		config.usage.menu_sort_mode.value = config.usage.menu_sort_mode.default  # Remove the old setting.
 		config.usage.menuSortOrder.value = "user"  # Save the new setting.
+		config.usage.menu_sort_mode.save()
 		config.usage.menuSortOrder.save()
-
-	# Update menu sort hide / show / resorting dictionary setting...
+	# Update menu sort hide / show / resorting dictionary setting.
 	oldSettings = config.usage.menu_sort_weight.getSavedValue()
 	if oldSettings:
 		newSettings = oldSettings
