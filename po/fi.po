@@ -3802,14 +3802,14 @@ msgstr "Ohjelma lähdettä (esim. Viritintä) ei voida määrittää"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Et voi suora toistaa televisiota!\n"
 "Vaihdetaan live televisioon ja käynnistetään ajansiirto uudelleen?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Seuraavaa ajansiirot tiedostoa ei voi toistaa!\n"
 "Vaihdetaan live-televisioon ja käynnistetään ajansiirto uudelleen?"
@@ -5162,10 +5162,10 @@ msgstr "Luodaan:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Luo: Täysivarmuuskopio %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Luodaan AP- ja SC-tiedostot"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Linkin (hardlink) luominen ajansiirron tiedostoon epäonnistui!"
 
 msgid "Creating file system"
@@ -9504,7 +9504,7 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Virheellinen"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Virheellinen sijainti"
 
 msgid "Invalid transponder data"
@@ -10574,7 +10574,7 @@ msgstr "Valikko tyyli"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Yhdistä tavallinen EPG IceTV EPG: hen"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Ajansiirtotiedostojen yhdistäminen"
 
 msgid "Merlin EPG Center"
@@ -11401,7 +11401,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Ei TS tallennusta saatavilla"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Ajansiirtoa ei löytynyt tallennusmuunnosta varten!"
 
 msgid "No active channel found."
@@ -12578,7 +12578,7 @@ msgstr "Syötä uuden hakemiston nimi"
 msgid "Please enter a name for the new marker"
 msgstr "Uusi väliotsikko"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Syötä uusi nimi"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13788,7 +13788,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Tallenteet"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Tallennus & Ajansiirto"
 
 msgid "Recordings abort PiP"
@@ -14683,7 +14683,7 @@ msgstr "Muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 msgid "Saving EPG Cache..."
 msgstr "Tallennetaan kanavaoppaan välimuistiin.."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Tallennetaan ajansiirron tiedostoja"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16740,7 +16740,7 @@ msgstr "Näytä yhden kanavan EPG"
 msgid "Show source packages"
 msgstr "Näytä source-tiedostojen ohjelmapaketit"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Näytä viesti kun siirrytään suoraan katseluun"
 
 msgid "Show subservice selection"
@@ -18289,7 +18289,7 @@ msgstr ""
 "Asenna se."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Ajansiirtoon käytetyn laitteen tiedostojärjestelmä ei tuo hardlinkkejä.\n"
@@ -19149,31 +19149,31 @@ msgstr "Ajastukset"
 msgid "Timeshift"
 msgstr "Ajansiirto"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Ajansiirto asetukset"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Tyhjennetäänkö ajansiirron puskuri kanavanvaihdon yhteydessä"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Ajansiirron puskuri [tuntia]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Ajansiirto tarkistaa vapaan levytilan (määritä minimi)"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Ajansiirto tarkistaa vanhat tiedostot (muutamassa minuutissa)"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Ajansiirto käyttää ohjelmakohtaisia tiedostoja"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Ajansiirron tallentamien ohjelmien maksimimäärä [kpl]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Ajansiirron tallennushakemisto"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Ajansiirtotallennusta ei voida käyttää!"
 
 msgid "Timeshift save failed!"
@@ -19185,13 +19185,13 @@ msgstr "Ajansiirron muunto tallenteeksi (valitse ohjelma)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Ajansiirron muunto tallenteeksi (pysäytä nykyisen ohjelman jälkeen)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Ajansiirto tallennettu kiintolevylle!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Ajansiirron tallennus kanavanvaihdossa"
 
 msgid "Timezone"
@@ -21721,7 +21721,7 @@ msgstr "[Suosikkien lisäys ja poisto]"
 msgid "[Image Info]\n"
 msgstr "Tietoja ohjelmistosta\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[Ajansiirto] Käynnistetään ajansiirto uudelleen!"
 
 msgid "[Timeshift] Merging records failed!"

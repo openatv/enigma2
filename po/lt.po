@@ -3809,14 +3809,14 @@ msgstr "Neįmanoma paskirstyti programos šaltinio (pvz., Imtuvo)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nepavyksta perjungti į tiesioginę transliaciją!\n"
 "Perjungti į tiesioginę transliaciją ir paleisti laiko poslinkį iš naujo?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nepavyksta rodyti sekančio laiko poslinkio failo!\n"
 "Perjungti į tiesioginę transliaciją ir paleisti laiko poslinkį iš naujo?"
@@ -5176,10 +5176,10 @@ msgstr "Sukurti:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Sukurti: atkūrimo pilną atsarginę kopiją %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Kuriami AP ir SC failai"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
 
 msgid "Creating file system"
@@ -9519,7 +9519,7 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Neteisingas"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Neteisinga vieta"
 
 msgid "Invalid transponder data"
@@ -10590,7 +10590,7 @@ msgstr "Meniu stilius"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Sujungti EPG transliaciją su „IceTV“"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Sujungiami laiko poslinkio failai"
 
 msgid "Merlin EPG Center"
@@ -11415,7 +11415,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nėra TS įrašymo įrenginio"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Laiko poslinkis nenustatytas, kad išsaugoti tuos įrašus!"
 
 msgid "No active channel found."
@@ -12586,7 +12586,7 @@ msgstr "Įrašykite naujojo katalogo pavadinimą"
 msgid "Please enter a name for the new marker"
 msgstr "Įrašykite naujo žymeklio pavadinimą"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Įrašykite naujo failo pavadinimą"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13796,7 +13796,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Įrašai"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Įrašai ir laiko poslinkis"
 
 msgid "Recordings abort PiP"
@@ -14691,7 +14691,7 @@ msgstr "Išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 msgid "Saving EPG Cache..."
 msgstr "Išsaugoma EPG talpykla..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Išsaugomi laiko poslinkio failai"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16736,7 +16736,7 @@ msgstr "Rodyti vieno kanalo EPG"
 msgid "Show source packages"
 msgstr "Rodyti paketų šaltinį"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Perjungiant į tiesioginę TV transliaciją, rodyti žinutę"
 
 msgid "Show subservice selection"
@@ -18283,7 +18283,7 @@ msgstr ""
 "Prašome įdiegti."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Įrenginio, kur saugomas laiko poslinkis, failų sistema nepalaiko tiesioginių nuorodų.\n"
@@ -19139,31 +19139,31 @@ msgstr "Laikmačiai"
 msgid "Timeshift"
 msgstr "Laiko poslinkis"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Laiko poslinkio nustatymai"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Laiko poslinkio atmintinės riba [val]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Laiko poslinkio tikrinimas laisvai vietai"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Laiko poslinkis tikrins failų senumą [min]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Laiko poslinkio vieta"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Laiko poslinkis negalimas!"
 
 msgid "Timeshift save failed!"
@@ -19175,13 +19175,13 @@ msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Išsaugoti laiko poslinkį, perjungiant kanalą"
 
 msgid "Timezone"
@@ -21701,7 +21701,7 @@ msgstr "[mėgstamiausių redagavimas]"
 msgid "[Image Info]\n"
 msgstr "[atvaizdo informacija]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
 
 msgid "[Timeshift] Merging records failed!"

@@ -3941,14 +3941,14 @@ msgstr "Program kaynağı tahsis edilemiyor (ör. tuner)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "TV yayınlayamayacağım!\n"
 "Canlı TV'ye geçin ve Timeshift'i yeniden başlatın?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Bir sonraki Timeshift dosyasını çalamaz!\n"
 "Canlı TV'ye geçin ve Timeshift'i yeniden başlatın ?"
@@ -5381,10 +5381,10 @@ msgstr "Yaratmak:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Oluşturun: Kurtarma Fullbackup %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "AP ve SC dosyaları yaratılıyor"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
 
 msgid "Creating file system"
@@ -9973,7 +9973,7 @@ msgid "Invalid"
 msgstr "Geçersiz"
 
 #
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Geçersiz Konum"
 
 #
@@ -11115,7 +11115,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Yayın EPG'sini IceTV ile birleştirin"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Zaman-kaydırma dosyaları birleştiriliyor"
 
 msgid "Merlin EPG Center"
@@ -12004,7 +12004,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "TS kaydedici mevcut değil"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Kayıt olarak saklanacak zaman-kaydırma bulunamadı!"
 
 msgid "No active channel found."
@@ -13263,7 +13263,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Lütfen yeni işaretleyici için ad girin"
 
 #
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Lütfen yeni bir dosya adını girin"
 
 #
@@ -14572,7 +14572,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Kayıtlar"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Kayıtlar & Zaman Kaydırma"
 
 msgid "Recordings abort PiP"
@@ -15541,7 +15541,7 @@ msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 msgid "Saving EPG Cache..."
 msgstr "EPG önbelleği saklanıyor..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Zaman-kaydırma dosyaları saklanıyor"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -17667,7 +17667,7 @@ msgstr "Tek servis EPG'yi göster"
 msgid "Show source packages"
 msgstr "Kaynak paketleri göster"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Canlı TV'ye geçerken durum mesajlarını göster"
 
 msgid "Show subservice selection"
@@ -19315,7 +19315,7 @@ msgstr ""
 "Lütfen yükleyin."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Zamankaydırma aygıtınızın dosya sistemi sabit bağlantıyı desteklemiyor.\n"
@@ -20195,31 +20195,31 @@ msgstr "Zamanlayıcılar"
 msgid "Timeshift"
 msgstr "Zaman kaydırma"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Kayıt zamanlama ayarları"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Timeshift tampon zap sonra silinsin mi"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Timeshift buffer limit [saat]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Timeshift boş alan mı kontrol ediyor"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Eski dosyaları kontrol etmek için Timeshift [dakika]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Timeshift olayı tabanlı dosya bölme"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Timeshift son olaylar [etkinlik sayısı] sınırını"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Zaman kaydırma kayıt konumu"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Zaman kaydırma kullanılamaz!"
 
 msgid "Timeshift save failed!"
@@ -20231,13 +20231,13 @@ msgstr "Zaman kayması kaydetme kaydı (Etkinlik seç)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Zaman kayması kaydetme kaydı (geçerli olaydan sonra dur"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Zaman-kaydırma diskinize saklandı!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Zap eylemi Timeshift kaydetmek"
 
 msgid "Timezone"
@@ -22889,7 +22889,7 @@ msgstr "[favori düzenle]"
 msgid "[Image Info]\n"
 msgstr "[Görüntü Bilgisi]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[ZamanKaydırma] Zaman-kaydırma yeniden başlatılıyor!"
 
 msgid "[Timeshift] Merging records failed!"

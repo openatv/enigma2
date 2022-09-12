@@ -377,7 +377,7 @@ class InfoBarTimeshift:
 	def startTimeshift(self):
 		ts = self.getTimeshift()
 		if ts is None:
-			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+			# self.session.open(MessageBox, _("Time shift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			return self.playpauseService2()
 		if ts.isTimeshiftEnabled():
 			print("[Timeshift] Time shift already enabled.")
@@ -819,7 +819,7 @@ class InfoBarTimeshift:
 		message_time = _("The buffer time for time shift exceeds the specified limit in the settings.\nWhat do you want to do ?")
 		message_space = _("The available disk space for time shift is less than specified in the settings.\nWhat do you want to do ?")
 		message_livetv = _("Can't going to live TV!\nSwitch to live TV and restart time shift ?")
-		message_nextfile = _("Can't play the next time shift file!\nSwitch to live TV and restart Timeshift ?")
+		message_nextfile = _("Can't play the next time shift file!\nSwitch to live TV and restart time shift ?")
 		choice_restart = [
 			(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
 			(_("Nothing, just leave this menu"), "no")

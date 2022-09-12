@@ -3830,14 +3830,14 @@ msgstr ""
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Otsesaatele lülitumine ei ole võimalik!\n"
 "Kas lülituda otsesaatele ja taaskäivitada ajanihe?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Järgmise ajanihkefaili taasesitus ei ole võimalik!\n"
 "Kas lülituda otsesaatele ja taaskäivitada ajanihe?"
@@ -5229,10 +5229,10 @@ msgstr "Loo:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Loo: Täielik püsivaratõmmis %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "AP ja SC failide loomine"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
 msgid "Creating file system"
@@ -9695,7 +9695,7 @@ msgstr ""
 msgid "Invalid"
 msgstr "Vigane"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Kehtetu asukoht"
 
 # ScanSetup.py
@@ -10823,7 +10823,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Ajanihke failide liitmine"
 
 msgid "Merlin EPG Center"
@@ -11708,7 +11708,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Vaba indeks puudub"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Ajanihke faile ei leitud!"
 
 msgid "No active channel found."
@@ -12939,7 +12939,7 @@ msgstr "Sisesta uue kataloogi nimi"
 msgid "Please enter a name for the new marker"
 msgstr "Sisesta uue markeri nimi"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Sisesta uus faili nimi"
 
 msgid "Please enter filename (empty = use current date)"
@@ -14185,7 +14185,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Salvestused"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Salvestus ja ajanihe"
 
 msgid "Recordings abort PiP"
@@ -15106,7 +15106,7 @@ msgstr "Talleta ajanihe ja lõpeta salvestamine"
 msgid "Saving EPG Cache..."
 msgstr "EPG talletamine..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Ajanihke failide talletamine"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -17213,7 +17213,7 @@ msgstr "Kanali EPG"
 msgid "Show source packages"
 msgstr "Kuva lähtefailid"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Olekuteated otsesaatele lülitudes"
 
 msgid "Show subservice selection"
@@ -18819,7 +18819,7 @@ msgstr ""
 "Paigalda see."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
@@ -19695,31 +19695,31 @@ msgstr "Taimerid"
 msgid "Timeshift"
 msgstr "Ajanihe"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Ajanihke seaded"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Ajanihke puhvri piirsuurus (tundides)"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Vaba kettaruumi kontroll ajanihke ajal"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Ajanihkefaili tükeldamine saadete järgi"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Ajanihke saadete piirarv (saadete arv)"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Ajanihke failide asukoht"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Ajanihke kasutamine pole võimalik!"
 
 msgid "Timeshift save failed!"
@@ -19731,13 +19731,13 @@ msgstr "Ajanihke talletamine (vali saade)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Ajanihe talletati kõvakettale!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Ajanihe talletatakse saate lõppedes!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Ajanihke talletamine kanalivahetusel"
 
 msgid "Timezone"
@@ -22317,7 +22317,7 @@ msgstr "[lemmikute muutmine]"
 msgid "[Image Info]\n"
 msgstr "[Püsivara info]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
 
 msgid "[Timeshift] Merging records failed!"

@@ -3815,14 +3815,14 @@ msgstr "Nem lehet lefoglalni a program forrását (pl. tuner)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nem lehet az élő TV adásra váltani!\n"
 "Váltson át az élő adásra és indítsa újra a Timeshift-t?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nem lehet lejátszani a következő Timeshift fájlt!\n"
 "Váltson az élő adásra és indítsa újra a Timeshift-t?"
@@ -5192,10 +5192,10 @@ msgstr "Létrehozva:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "AP és SC fájlok létrehozása"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
 
 msgid "Creating file system"
@@ -9564,7 +9564,7 @@ msgstr ""
 msgid "Invalid"
 msgstr "Érvénytelen"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Érvénytelen hely"
 
 msgid "Invalid transponder data"
@@ -10665,7 +10665,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Timeshift fájlok egyesítése"
 
 msgid "Merlin EPG Center"
@@ -11517,7 +11517,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nem áll rendelkezésre TS felvevő"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Nem talált menthető Timeshift fájlt!"
 
 msgid "No active channel found."
@@ -12705,7 +12705,7 @@ msgstr "Kérem, adja meg az új mappa nevét"
 msgid "Please enter a name for the new marker"
 msgstr "Adja meg az új jelölő nevét"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Adja meg az új fájlnevet"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13917,7 +13917,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Felvételi lista"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Felvételek és Timeshift"
 
 msgid "Recordings abort PiP"
@@ -14818,7 +14818,7 @@ msgstr "Timeshift mentése és a felvétel megállítása"
 msgid "Saving EPG Cache..."
 msgstr "EPG gyorsítótár mentése..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Timeshift fájljának mentése"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16884,7 +16884,7 @@ msgstr "Egy csatorna EPG-jének megjelenítése"
 msgid "Show source packages"
 msgstr "A forráscsomagok megjelenítése"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Állapotüzenetek mutatása az élő TV műsorra történő váltáskor"
 
 msgid "Show subservice selection"
@@ -18464,7 +18464,7 @@ msgstr ""
 "Kérem, telepítse."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
@@ -19311,31 +19311,31 @@ msgstr "Időzítők"
 msgid "Timeshift"
 msgstr "Timeshift"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Timeshift beállítása"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Timeshift puffer határa [órákban]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Timeshift ellenőrizze a szabad helyet?"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Minden Timeshift külön felvételi pufferben legyen"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Timeshift felvételek korlátozása [felvételek száma]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Timeshift helye"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Timeshift nem lehetséges!"
 
 msgid "Timeshift save failed!"
@@ -19347,13 +19347,13 @@ msgstr "Timeshift folyamatban. Válasszon egy opciót."
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift felvétel mentése a háttértárra!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Az esemény végén lesz a Timeshift mentve!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
 
 msgid "Timezone"
@@ -21868,7 +21868,7 @@ msgstr "[kedvencek módosítása]"
 msgid "[Image Info]\n"
 msgstr "[Lemezkép Információ]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "a Timeshift újraindult!"
 
 msgid "[Timeshift] Merging records failed!"

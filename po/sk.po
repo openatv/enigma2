@@ -3802,14 +3802,14 @@ msgstr "Nemožno alokovať zdroj programu (napr. tuner)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nemožno prejsť na live TV!\n"
 "Prepnúť na live TV a reštartovať timeshift?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nemožno prehrať ďalší súbor timeshift!\n"
 "Prepnúť na live TV a reštartovať timeshift?"
@@ -5162,10 +5162,10 @@ msgstr "Vytvoriť:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Vytvoriť: Úplná obnovovacia záloha %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Vytvorenie súborov AP a SC"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Vytvorenie hardlinku na súbor pre timeshiftu zlyhalo!"
 
 msgid "Creating file system"
@@ -9502,7 +9502,7 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Neplatné"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Neplatné umiestnenie"
 
 msgid "Invalid transponder data"
@@ -10573,7 +10573,7 @@ msgstr "Štýl menu"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Zlúčiť vysielané EPG s IceTV"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Zlučovanie súborov timeshiftu"
 
 msgid "Merlin EPG Center"
@@ -11398,7 +11398,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nie je dostupný žiadny TS rekordér"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Nenašiel sa žiadny time shift na uloženie vo forme nahrávky!"
 
 msgid "No active channel found."
@@ -12569,7 +12569,7 @@ msgstr "Prosím zadajte názov nového priečinka"
 msgid "Please enter a name for the new marker"
 msgstr "Prosím zadajte názov novej značky"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Prosím zadajte nový názov súboru"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13779,7 +13779,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Nahrávky"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Nahrávky a timeshift"
 
 msgid "Recordings abort PiP"
@@ -14674,7 +14674,7 @@ msgstr "Uložiť timeshift ako film a zastaviť nahrávanie"
 msgid "Saving EPG Cache..."
 msgstr "Uložiť cache EPG..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Ukladám súbory Timeshift"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16719,7 +16719,7 @@ msgstr "Zobraziť EPG pre jednu stanicu"
 msgid "Show source packages"
 msgstr "Zobraziť zdrojové balíčky"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Zobraziť stavové správy pri prepnutí na live TV"
 
 msgid "Show subservice selection"
@@ -18271,7 +18271,7 @@ msgstr ""
 "Prosím nainštalujte ho."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Súborový systém Timeshift jednotky nepodporuje hardlinky.\n"
@@ -19121,31 +19121,31 @@ msgstr "Časovač"
 msgid "Timeshift"
 msgstr "Timeshift"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Nastavenia pre Timeshift"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Odstrániť vyrov. pamäť pre timeshift po prepnutí"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Obmedzenie vyrov. pamäte pre timeshift [v hod.]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Timeshift - kontrola voľného miesta"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Timeshift - kontrola starších súborov [v min.]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Timeshift - delenie súboru podľa udalosti"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Timeshift - limit posledných udalostí [počet udalostí]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Umiestnenie pre timeshift"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Timeshift nie je možný!"
 
 msgid "Timeshift save failed!"
@@ -19157,13 +19157,13 @@ msgstr "Uložiť nahrávku Timeshift (Vyberte udalosť)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Uložiť nahrávku Timeshift (zastaviť po aktuálnej udalosti)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Timeshift bol uložený na pevný disk!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift bude uložený na konci udalosti!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Timeshift - uložiť akciu pri prepnutí"
 
 msgid "Timezone"
@@ -21658,7 +21658,7 @@ msgstr "[úprava obľúbených]"
 msgid "[Image Info]\n"
 msgstr "[Info o image]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Reštart funkcie timeshift!"
 
 msgid "[Timeshift] Merging records failed!"

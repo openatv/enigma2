@@ -3784,14 +3784,14 @@ msgstr "Impossible d'allouer la source du programme (par exemple, tuner)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Impossible d'aller à la télévision en direct !\n"
 "Passer à la télévision en direct et redémarrer PauseDirect ?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Impossible de lire le fichier de PauseDirect suivant !\n"
 "Passer à la télévision en direct et redémarrer PauseDirect ?"
@@ -5149,10 +5149,10 @@ msgstr "Créer :"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Créer : Sauvegarde complète de récupération %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Création des fichiers AP et SC"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Création du lien matériel (hardlink) vers le fichier de PauseDirect a échoué !"
 
 msgid "Creating file system"
@@ -9491,7 +9491,7 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Invalide"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Emplacement non valide"
 
 msgid "Invalid transponder data"
@@ -10562,7 +10562,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Fusionner l'EPG de diffusion avec IceTV"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Fusion des fichiers de PauseDirect"
 
 msgid "Merlin EPG Center"
@@ -11389,7 +11389,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Aucun enregistreur TS disponible"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Pas de fichier PauseDirect trouvé à sauvegarder comme enregistrement !"
 
 msgid "No active channel found."
@@ -12565,7 +12565,7 @@ msgstr "Veuillez saisir le nom pour le nouveau répertoire"
 msgid "Please enter a name for the new marker"
 msgstr "Veuillez saisir un nom pour le nouveau marqueur"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Veuillez saisir un nouveau nom de fichier"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13777,7 +13777,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Enregistrements"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Enregistrements & PauseDirect"
 
 msgid "Recordings abort PiP"
@@ -14676,7 +14676,7 @@ msgstr "Sauvegarder le PauseDirect comme film et arrêter l'enregistrement"
 msgid "Saving EPG Cache..."
 msgstr "Sauvegarde du cache EPG…"
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Sauvegarde des fichiers PauseDirect"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16720,7 +16720,7 @@ msgstr "Afficher l'EPG simple du service"
 msgid "Show source packages"
 msgstr "Afficher la source des paquets"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Afficher les messages de statut lorsqu'on bascule sur la TV en direct"
 
 msgid "Show subservice selection"
@@ -18276,7 +18276,7 @@ msgstr ""
 "Veuillez l'installer."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
@@ -19126,32 +19126,32 @@ msgstr "Programmations"
 msgid "Timeshift"
 msgstr "PauseDirect"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Configuration de PauseDirect"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "PauseDirect effacer le buffer après un zap ?"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "PauseDirect limite du buffer [en heures]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "PauseDirect vérification de l'espace libre ?"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "PauseDirect vérification pour des anciens fichiers [en minutes]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "PauseDirect découper les fichiers sur base des évènements"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "PauseDirect derniers événements limite [nombre d'événements]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Emplacement PauseDirect"
 
 # TODO
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Le décalage temporel n'est pas possible !"
 
 msgid "Timeshift save failed!"
@@ -19165,13 +19165,13 @@ msgstr "PauseDirect sauvegarder l'enregistrement (Sélectionner l'événement)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "PauseDirect sauvegarder l'enregistrement (arrêter après événement en cours)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "PauseDirect sauvegardé sur le disque dur !"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "PauseDirect sera sauvegardé à la fin de l'événement !"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "PauseDirect - sauvegarde lorsqu'on zappe"
 
 msgid "Timezone"
@@ -21671,7 +21671,7 @@ msgstr "[Edition des favoris]"
 msgid "[Image Info]\n"
 msgstr "[Info Image]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[PauseDirect] Redémarrage du PauseDirect !"
 
 msgid "[Timeshift] Merging records failed!"

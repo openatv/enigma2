@@ -3807,14 +3807,14 @@ msgstr "Неможливо визначити джерело програми (�
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо з’єднатися з ТВ!\n"
 "Підключитися до каналу і перезапустити таймшифт?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо запустити наступний файл таймшифта!\n"
 "Знову підключитися до каналу і перезапустити таймшифт?"
@@ -5167,10 +5167,10 @@ msgstr "Створення:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Створити: Резервну копію відновлення %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Створення файлів АР і SC"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Помилка створення посилання на файл Timeshift!"
 
 msgid "Creating file system"
@@ -9507,7 +9507,7 @@ msgstr "Інупіак"
 msgid "Invalid"
 msgstr "Некоректний"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Некоректне розташування"
 
 msgid "Invalid transponder data"
@@ -10578,7 +10578,7 @@ msgstr "Стиль меню"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Об'єднати EPG з трансляцію IceTV"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "З'єднання файлів таймшифта"
 
 msgid "Merlin EPG Center"
@@ -11403,7 +11403,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Немає можливості запису TS"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
 
 msgid "No active channel found."
@@ -12574,7 +12574,7 @@ msgstr "Будь ласка, введіть назву нового катало
 msgid "Please enter a name for the new marker"
 msgstr "Будь ласка, введіть назву для нової закладки"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Будь ласка, введіть нову назву файла"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13784,7 +13784,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Записи"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Запис і Таймшифт"
 
 msgid "Recordings abort PiP"
@@ -14679,7 +14679,7 @@ msgstr "Зберегти таймшифт як запис і зупинити з
 msgid "Saving EPG Cache..."
 msgstr "Збереження кеша ЕПГ..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Збереження файлів таймшифта"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16724,7 +16724,7 @@ msgstr "Показати одиночний телегід каналу"
 msgid "Show source packages"
 msgstr "Показати вихідні пакети"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Показати повідомлення при переключені на канал ТВ"
 
 msgid "Show subservice selection"
@@ -18273,7 +18273,7 @@ msgstr ""
 "Будь ласка, спочатку встановіть його."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "Файлова система на пристрої Timeshift не підтримує жорсткі посилання.\n"
@@ -19123,31 +19123,31 @@ msgstr "Таймери"
 msgid "Timeshift"
 msgstr "ТаймШифт"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Налаштування таймшифта"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Після перемикання видалити буфер таймшифта"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Обмеження буфера таймшифта [в годинах]"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Перевірити наявність вільного дискового простору"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Перевірка наявності старих файлів таймшифта [у хвилинах]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Поділ файлів таймшифта за назвою передач"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Обмеження за останніми передачам [кількість передач]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Розміщення таймшифт"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "Timeshift неможливий!"
 
 msgid "Timeshift save failed!"
@@ -19159,13 +19159,13 @@ msgstr "Збереження запису таймшифта (Виберіть �
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Збереження запису таймшифта (зупинити після поточної передачі)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "Файл таймшифта збережений на жорсткий диск!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Файл таймшифта буде збережений в кінці події!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Збереження таймшифта при перемиканні"
 
 msgid "Timezone"
@@ -21660,7 +21660,7 @@ msgstr "[редагування фаворитів]"
 msgid "[Image Info]\n"
 msgstr "[Інформація про Імідж]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[Таймшифт] Перезапуск таймшифта!"
 
 msgid "[Timeshift] Merging records failed!"

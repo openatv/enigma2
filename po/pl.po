@@ -3812,14 +3812,14 @@ msgstr "Nie można przydzielić źródła programu (np. tunera)"
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nie można przejść do TV na żywo!\n"
 "Przełączyć na TV na żywo i ponownie uruchomić Timeshift?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Nie można odtworzyć następnego pliku timeshift!\n"
 "Przejść do TV na żywo i ponownie uruchomić timeshift?"
@@ -5173,10 +5173,10 @@ msgstr "Utwórz:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Utwórz: Recovery Fullbackup %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Tworzenie AP i plików SC"
 
-msgid "Creating Hardlink to Timeshift file failed!"
+msgid "Creating hard link to time shift file failed!"
 msgstr "Tworzenie twardego dowiązania do pliku TimeShift nie powiodło się!"
 
 msgid "Creating file system"
@@ -9513,7 +9513,7 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Nie prawidłowa"
 
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Nieprawidłowa lokalizacja"
 
 msgid "Invalid transponder data"
@@ -10585,7 +10585,7 @@ msgstr "Styl menu"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Scal transmisję EPG z IceTV"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Scal pliki timeshiftu"
 
 msgid "Merlin EPG Center"
@@ -11410,7 +11410,7 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Brak dostępnego rejestratora TS"
 
-msgid "No Timeshift found to save as recording!"
+msgid "No time shift found to save as recording!"
 msgstr "Nie znaleziono timeshiftu, aby zapisać go jako nagranie!"
 
 msgid "No active channel found."
@@ -12582,7 +12582,7 @@ msgstr "Wprowadź nazwę nowego katalogu"
 msgid "Please enter a name for the new marker"
 msgstr "Wpisz nazwę dla nowego znacznika"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Podaj nową nazwę pliku"
 
 msgid "Please enter filename (empty = use current date)"
@@ -13792,7 +13792,7 @@ msgstr ""
 msgid "Recordings"
 msgstr "Nagrywania"
 
-msgid "Recordings & Timeshift"
+msgid "Playback, Recording & Time Shift"
 msgstr "Nagrywanie i timeshift"
 
 msgid "Recordings abort PiP"
@@ -14687,7 +14687,7 @@ msgstr "Zapisz timeshift i zatrzymaj nagrywanie"
 msgid "Saving EPG Cache..."
 msgstr "Zapisywanie EPG w pamięci podręcznej..."
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift files"
 msgstr "Zapisywanie plików timeshiftu"
 
 msgid "Saving time shift as movie now. This might take a while!"
@@ -16732,7 +16732,7 @@ msgstr "Pokaż EPG dla jednego kanału"
 msgid "Show source packages"
 msgstr "Pokaż pakiety źródłowe"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Pokaż komunikat po przełączeniu na telewizję"
 
 msgid "Show subservice selection"
@@ -18282,7 +18282,7 @@ msgstr ""
 "Proszę zainstalować."
 
 msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
+"The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 "System plików na dysku jest nie obsługiwany, Timeshift nic nie nagra.\n"
@@ -19132,31 +19132,31 @@ msgstr "Timery"
 msgid "Timeshift"
 msgstr "Timeshift"
 
-msgid "Timeshift Settings"
+msgid "Time Shift Settings"
 msgstr "Ustawienia timeshiftu"
 
-msgid "Timeshift buffer delete after zap"
+msgid "Time shift buffer delete after zap"
 msgstr "Usuń bufor timeshiftu po przełączeniu kanału"
 
-msgid "Timeshift buffer limit [in hours]"
+msgid "Time shift buffer limit"
 msgstr "Limit bufora w godzinach"
 
-msgid "Timeshift checking for free space"
+msgid "Time shift checking for free space"
 msgstr "Timeshift sprawdzanie wolnego miejsca"
 
-msgid "Timeshift checking for older files [in minutes]"
+msgid "Time shift checking for older files"
 msgstr "Sprawdzanie starszych plików [w min.]"
 
-msgid "Timeshift event based file splitting"
+msgid "Time shift event based file splitting"
 msgstr "Zapisuj programy w osobnych plikach"
 
-msgid "Timeshift last events limit [number of events]"
+msgid "Time shift event limit"
 msgstr "Limit ostatnio zarejestrowanych wydarzeń [ilość]"
 
-msgid "Timeshift location"
+msgid "Time shift buffer location"
 msgstr "Ścieżka zapisu"
 
-msgid "Timeshift not possible!"
+msgid "Time shift not possible!"
 msgstr "TimeShift niemożliwy!"
 
 msgid "Timeshift save failed!"
@@ -19168,13 +19168,13 @@ msgstr "TimeShift zapisz nagranie (wybierz wydarzenie)"
 msgid "Timeshift save recording (stop after current event)"
 msgstr "Zapisz nagrywanie (zatrzymaj po bieżącym wydarzeniu)"
 
-msgid "Timeshift saved to your harddisk!"
+msgid "Time shift saved to your hard disk drive!"
 msgstr "TimeShift zapisany na dysku twardym!"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "TimeShift będzie zapisywanany tylko do końca danego wydarzenia!"
 
-msgid "Timeshift-save action on zap"
+msgid "Time shift save action on zap"
 msgstr "Akcja po zmianie kanału"
 
 msgid "Timezone"
@@ -21669,7 +21669,7 @@ msgstr "[edycja ulubionych]"
 msgid "[Image Info]\n"
 msgstr "[Info o systemie]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Uruchamianie ponowne timeshiftu!"
 
 msgid "[Timeshift] Merging records failed!"
