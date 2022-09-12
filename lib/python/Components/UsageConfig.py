@@ -1989,6 +1989,14 @@ def InitUsageConfig():
 	config.timeshift.startDelay = ConfigSelection(default=0, choices=choiceList)
 	config.timeshift.stopWhileRecording = ConfigYesNo(default=False)
 
+	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
+	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
+
+	def updateOldTimeshiftPath(configElement):
+		config.usage.timeshift_path.value = configElement.value
+
+	config.timeshift.path.addNotifier(updateOldTimeshiftPath, immediate_feedback=False)
+
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
 	elem = config_priority.value

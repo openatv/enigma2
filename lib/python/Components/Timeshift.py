@@ -196,7 +196,7 @@ class InfoBarTimeshift:
 		if self.pts_delay_timer.isActive():
 			self.pts_delay_timer.stop()
 		if config.timeshift.startDelay.value:
-			self.pts_delay_timer.start(config.timeshift.startSelay.value * 1000, True)
+			self.pts_delay_timer.start(config.timeshift.startDelay.value * 1000, True)
 		# self.__seekableStatusChanged()
 		self["TimeshiftActions"].setEnabled(True)
 
@@ -516,7 +516,7 @@ class InfoBarTimeshift:
 	def eraseTimeshiftFile(self):
 		for filename in listdir(config.timeshift.path.value):
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
-				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift.path.value, filename))
+				self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
 
 	def autostartPermanentTimeshift(self):
 		ts = self.getTimeshift()
