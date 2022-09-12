@@ -2,7 +2,7 @@ from os import stat
 from os.path import isdir, join as pathjoin
 
 from Components.config import config
-from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, DEFAULT_INHIBIT_DIRECTORIES, TimeshiftLocationBox
+from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
 from Tools.Directories import fileAccess, hasHardLinks
@@ -10,7 +10,7 @@ from Tools.Directories import fileAccess, hasHardLinks
 
 class TimeshiftSettings(Setup):
 	def __init__(self, session):
-		self.buildChoices("TimeshiftPath", config.timeshift.path, None)
+		self.buildChoices(config.timeshift.path, None)
 		Setup.__init__(self, session=session, setup="Timeshift")
 		for index, item in enumerate(self["config"].getList()):
 			if len(item) > 1 and item[1] == config.timeshift.path:
@@ -21,7 +21,7 @@ class TimeshiftSettings(Setup):
 			self.pathItem = None
 		self.status = None
 
-	def buildChoices(self, item, configEntry, path):
+	def buildChoices(self, configEntry, path):
 		configList = config.timeshift.allowedPaths.value[:]
 		if configEntry.saved_value and configEntry.saved_value not in configList:
 			configList.append(configEntry.saved_value)
@@ -33,7 +33,7 @@ class TimeshiftSettings(Setup):
 		pathList = [(x, x) for x in configList]
 		configEntry.value = path
 		configEntry.setChoices(pathList, default=configEntry.default)
-		# print("[Timeshift] buildChoices DEBUG %s: Current='%s', Default='%s', Choices=%s." % (item, configEntry.value, configEntry.default, configList))
+		# print("[Timeshift] buildChoices DEBUG: Current='%s', Default='%s', Choices=%s." % (configEntry.value, configEntry.default, configList))
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
