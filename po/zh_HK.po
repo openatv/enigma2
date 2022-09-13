@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -902,6 +902,11 @@ msgstr[0] ""
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 
 #, python-format
@@ -5420,12 +5425,12 @@ msgstr ""
 msgid "Creating .ap and .sc files"
 msgstr "創建分區失敗"
 
+msgid "Creating file system"
+msgstr ""
+
 #, fuzzy
 msgid "Creating hard link to time shift file failed!"
 msgstr "創建分區失敗"
-
-msgid "Creating file system"
-msgstr ""
 
 msgid "Creating partition"
 msgstr ""
@@ -12073,10 +12078,6 @@ msgid "No TS recorder available"
 msgstr "無可用資訊"
 
 #, fuzzy
-msgid "No time shift found to save as recording!"
-msgstr "追加錄影時間."
-
-#, fuzzy
 msgid "No active channel found."
 msgstr "沒有發現衛星前端"
 
@@ -12205,6 +12206,10 @@ msgstr "未找到可用的USB裝置"
 
 msgid "No tags are set on these movies."
 msgstr ""
+
+#, fuzzy
+msgid "No time shift found to save as recording!"
+msgstr "追加錄影時間."
 
 msgid "No timeout"
 msgstr ""
@@ -13273,6 +13278,13 @@ msgstr "播放音樂"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr ""
+
+msgid "Playback Settings"
+msgstr ""
+
+#, fuzzy
+msgid "Playback, Recording & Time Shift"
+msgstr "錄音"
 
 msgid "Playlist"
 msgstr "播放列表"
@@ -14629,10 +14641,6 @@ msgid "Recordings"
 msgstr "錄音"
 
 #, fuzzy
-msgid "Playback, Recording & Time Shift"
-msgstr "錄音"
-
-#, fuzzy
 msgid "Recordings abort PiP"
 msgstr "錄影位置"
 
@@ -15598,10 +15606,10 @@ msgstr "追加錄影時間."
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving time shift files"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift files"
 msgstr ""
 
 msgid "Scaler sharpness"
@@ -16024,6 +16032,9 @@ msgstr "選擇位置"
 msgid "Select Location"
 msgstr "選擇位置"
 
+msgid "Select Movie Location"
+msgstr ""
+
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "選擇Softcam:"
@@ -16031,6 +16042,9 @@ msgstr "選擇Softcam:"
 #, fuzzy
 msgid "Select Software Update"
 msgstr "軟體升級"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr ""
@@ -19490,11 +19504,6 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-
 #, fuzzy
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -19633,6 +19642,11 @@ msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
 "\n"
 "Press OK to continue using the %s %s."
+msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
 msgid "The following files were found..."
@@ -20193,6 +20207,10 @@ msgid "Time Setup Actions"
 msgstr ""
 
 #, fuzzy
+msgid "Time Shift Settings"
+msgstr "時光平移位置"
+
+#, fuzzy
 msgid "Time Update in Minutes:"
 msgstr "更新IP時間(分鐘):"
 
@@ -20237,6 +20255,54 @@ msgstr "計時器日誌"
 
 #, python-format
 msgid "Time required for this process: %s"
+msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+msgid "Time shift buffer location"
+msgstr "時光平移位置"
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "不能時光平移!"
+
+#, fuzzy
+msgid "Time shift save action on zap"
+msgstr "時光平移位置"
+
+#, fuzzy
+msgid "Time shift save failed!"
+msgstr "不能時光平移!"
+
+msgid "Time shift save recording (Select event)"
+msgstr ""
+
+#, fuzzy
+msgid "Time shift save recording (stop after current event)"
+msgstr "添加錄影 (當前事件停止後)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr ""
+
+msgid "Time shift will get saved at end of event!"
 msgstr ""
 
 #, fuzzy
@@ -20333,55 +20399,6 @@ msgstr "計時器"
 
 msgid "Timeshift"
 msgstr "時光平移"
-
-#, fuzzy
-msgid "Time Shift Settings"
-msgstr "時光平移位置"
-
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr ""
-
-msgid "Time shift checking for free space"
-msgstr ""
-
-msgid "Time shift checking for older files"
-msgstr ""
-
-msgid "Time shift event based file splitting"
-msgstr ""
-
-msgid "Time shift event limit"
-msgstr ""
-
-msgid "Time shift buffer location"
-msgstr "時光平移位置"
-
-msgid "Time shift not possible!"
-msgstr "不能時光平移!"
-
-#, fuzzy
-msgid "Time shift save failed!"
-msgstr "不能時光平移!"
-
-msgid "Time shift save recording (Select event)"
-msgstr ""
-
-#, fuzzy
-msgid "Time shift save recording (stop after current event)"
-msgstr "添加錄影 (當前事件停止後)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr ""
-
-msgid "Time shift will get saved at end of event!"
-msgstr ""
-
-#, fuzzy
-msgid "Time shift save action on zap"
-msgstr "時光平移位置"
 
 msgid "Timezone"
 msgstr ""
@@ -22956,12 +22973,12 @@ msgstr "[編輯喜愛頻道]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr ""
-
 #, fuzzy
 msgid "[Timeshift] Merging records failed!"
 msgstr "不能時光平移!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr ""
 
 msgid "[alternative edit]"
 msgstr "[編輯專案]"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: NickerSK <nickersk@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -871,8 +871,22 @@ msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS s %d jadrami"
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Deň"
+msgstr[1] "%d Dni"
+msgstr[2] "%d Dní"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -931,6 +945,13 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d minúty"
 msgstr[2] "%d minút"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minúta"
+msgstr[1] "%d Minúty"
+msgstr[2] "%d Minút"
 
 #, python-format
 msgid "%d Minutes"
@@ -5165,11 +5186,11 @@ msgstr "Vytvoriť: Úplná obnovovacia záloha %s"
 msgid "Creating .ap and .sc files"
 msgstr "Vytvorenie súborov AP a SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Vytvorenie hardlinku na súbor pre timeshiftu zlyhalo!"
-
 msgid "Creating file system"
 msgstr "Vytvára sa súborový systém"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Vytvorenie hardlinku na súbor pre timeshiftu zlyhalo!"
 
 msgid "Creating partition"
 msgstr "Vytvára sa partícia"
@@ -11398,9 +11419,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nie je dostupný žiadny TS rekordér"
 
-msgid "No time shift found to save as recording!"
-msgstr "Nenašiel sa žiadny time shift na uloženie vo forme nahrávky!"
-
 msgid "No active channel found."
 msgstr "Nenašiel sa žiadny aktívny kanál."
 
@@ -11521,6 +11539,9 @@ msgstr "Nenašiel sa žiadny vhodný satel. tuner!"
 
 msgid "No tags are set on these movies."
 msgstr "Na týchto filmoch nie sú nastavené žiadne tagy."
+
+msgid "No time shift found to save as recording!"
+msgstr "Nenašiel sa žiadny time shift na uloženie vo forme nahrávky!"
 
 msgid "No timeout"
 msgstr "Bez časového limitu"
@@ -12506,6 +12527,12 @@ msgstr "Prehrať titul"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Prehrať/pozrieť/upraviť/nainštalovať/extrahovať/spustiť súbor alebo zadať priečinok"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Nahrávky a timeshift"
 
 msgid "Playlist"
 msgstr "Playlist"
@@ -13779,9 +13806,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Nahrávky"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Nahrávky a timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Prerušenie PiP nahrávkami"
 
@@ -14674,11 +14698,11 @@ msgstr "Uložiť timeshift ako film a zastaviť nahrávanie"
 msgid "Saving EPG Cache..."
 msgstr "Uložiť cache EPG..."
 
-msgid "Saving time shift files"
-msgstr "Ukladám súbory Timeshift"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Ukladám TimeShift ako film. To môže chvíľu trvať!"
+
+msgid "Saving time shift files"
+msgstr "Ukladám súbory Timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Ostrosť škálovania"
@@ -15078,11 +15102,17 @@ msgstr "Výber Lan/Wlan"
 msgid "Select Location"
 msgstr "Vybrať umiestnenie"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vyberte kanály Quad"
 
 msgid "Select Software Update"
 msgstr "Výber SW aktualizácie"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Vyberte zdroje pre aktualizáciu"
@@ -18271,13 +18301,6 @@ msgstr ""
 "Prosím nainštalujte ho."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Súborový systém Timeshift jednotky nepodporuje hardlinky.\n"
-"Skontrolujte, či je vo formáte EXT2, EXT3 alebo EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18417,6 +18440,13 @@ msgstr ""
 "Časovač pre energiu chcete nastaviť %s %s na %s.\n"
 "\n"
 "Ak chcete pokračovať v používaní %s %s, stlačte OK."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Súborový systém Timeshift jednotky nepodporuje hardlinky.\n"
+"Skontrolujte, či je vo formáte EXT2, EXT3 alebo EXT4!"
 
 msgid "The following files were found..."
 msgstr "Boli nájdené tieto súbory..."
@@ -18993,6 +19023,9 @@ msgstr "Nastavenia času"
 msgid "Time Setup Actions"
 msgstr "Akcie pre nastavenie času"
 
+msgid "Time Shift Settings"
+msgstr "Nastavenia pre Timeshift"
+
 msgid "Time Update in Minutes:"
 msgstr "Čas aktualizácie v minútach:"
 
@@ -19035,6 +19068,51 @@ msgstr "Čas - dlho"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Čas vyžadovaný pre tento proces: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Odstrániť vyrov. pamäť pre timeshift po prepnutí"
+
+msgid "Time shift buffer limit"
+msgstr "Obmedzenie vyrov. pamäte pre timeshift [v hod.]"
+
+msgid "Time shift buffer location"
+msgstr "Umiestnenie pre timeshift"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift - kontrola voľného miesta"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift - kontrola starších súborov [v min.]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift - delenie súboru podľa udalosti"
+
+msgid "Time shift event limit"
+msgstr "Timeshift - limit posledných udalostí [počet udalostí]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift nie je možný!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift - uložiť akciu pri prepnutí"
+
+msgid "Time shift save failed!"
+msgstr "Uloženie Timeshift zlyhalo!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Uložiť nahrávku Timeshift (Vyberte udalosť)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Uložiť nahrávku Timeshift (zastaviť po aktuálnej udalosti)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift bol uložený na pevný disk!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift bude uložený na konci udalosti!"
 
 msgid "Time style"
 msgstr "Štýl pre čas"
@@ -19120,51 +19198,6 @@ msgstr "Časovač"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Nastavenia pre Timeshift"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Odstrániť vyrov. pamäť pre timeshift po prepnutí"
-
-msgid "Time shift buffer limit"
-msgstr "Obmedzenie vyrov. pamäte pre timeshift [v hod.]"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift - kontrola voľného miesta"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift - kontrola starších súborov [v min.]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift - delenie súboru podľa udalosti"
-
-msgid "Time shift event limit"
-msgstr "Timeshift - limit posledných udalostí [počet udalostí]"
-
-msgid "Time shift buffer location"
-msgstr "Umiestnenie pre timeshift"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift nie je možný!"
-
-msgid "Time shift save failed!"
-msgstr "Uloženie Timeshift zlyhalo!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Uložiť nahrávku Timeshift (Vyberte udalosť)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Uložiť nahrávku Timeshift (zastaviť po aktuálnej udalosti)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift bol uložený na pevný disk!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift bude uložený na konci udalosti!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift - uložiť akciu pri prepnutí"
 
 msgid "Timezone"
 msgstr "Časová zóna"
@@ -21658,11 +21691,11 @@ msgstr "[úprava obľúbených]"
 msgid "[Image Info]\n"
 msgstr "[Info o image]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Reštart funkcie timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Zlučovanie nahrávok bolo neúspešné!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Reštart funkcie timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[úprava alternatív]"
@@ -23051,20 +23084,6 @@ msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s 
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Deň"
-msgstr[1] "%d Dni"
-msgstr[2] "%d Dní"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minúta"
-msgstr[1] "%d Minúty"
-msgstr[2] "%d Minút"
 
 #~ msgid "0.2s"
 #~ msgstr "0,2 s"

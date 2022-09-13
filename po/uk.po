@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-08-30 15:39+0000\n"
 "Last-Translator: Artem <artem@molotov.work>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -876,8 +876,22 @@ msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS з %d ядрами"
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d день"
+msgstr[1] "%d днів"
+msgstr[2] "%d дня"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -933,6 +947,13 @@ msgstr "%d МГц"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
+msgstr[0] "%d хвилина"
+msgstr[1] "%d хвилини"
+msgstr[2] "%d хвилин"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
 msgstr[0] "%d хвилина"
 msgstr[1] "%d хвилини"
 msgstr[2] "%d хвилин"
@@ -5170,11 +5191,11 @@ msgstr "Створити: Резервну копію відновлення %s"
 msgid "Creating .ap and .sc files"
 msgstr "Створення файлів АР і SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Помилка створення посилання на файл Timeshift!"
-
 msgid "Creating file system"
 msgstr "Створення файлової системи"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Помилка створення посилання на файл Timeshift!"
 
 msgid "Creating partition"
 msgstr "Створення розділу"
@@ -11403,9 +11424,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Немає можливості запису TS"
 
-msgid "No time shift found to save as recording!"
-msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
-
 msgid "No active channel found."
 msgstr "Активного каналу не знайдено."
 
@@ -11526,6 +11544,9 @@ msgstr "Немає відповідного сат тюнера!"
 
 msgid "No tags are set on these movies."
 msgstr "Теги не встановлені на цих фільмах."
+
+msgid "No time shift found to save as recording!"
+msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
 
 msgid "No timeout"
 msgstr "Постійно"
@@ -12511,6 +12532,12 @@ msgstr "Назва запису відтворення"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Відтворення/перегляд/редагування/встановлення/видобування/запуску файлу, або введення каталогу"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Запис і Таймшифт"
 
 msgid "Playlist"
 msgstr "Список відтворення"
@@ -13784,9 +13811,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Записи"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Запис і Таймшифт"
-
 msgid "Recordings abort PiP"
 msgstr "Записи скасовують ПІП"
 
@@ -14679,11 +14703,11 @@ msgstr "Зберегти таймшифт як запис і зупинити з
 msgid "Saving EPG Cache..."
 msgstr "Збереження кеша ЕПГ..."
 
-msgid "Saving time shift files"
-msgstr "Збереження файлів таймшифта"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Файл тайшифта зберігається як фільм. Це займе деякий час!"
+
+msgid "Saving time shift files"
+msgstr "Збереження файлів таймшифта"
 
 msgid "Scaler sharpness"
 msgstr "Шкала різкості"
@@ -15083,11 +15107,17 @@ msgstr "Вибір Lan/Wi-Fi"
 msgid "Select Location"
 msgstr "Вибрати місце розташування"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Вибер джерела оновлення"
@@ -18273,13 +18303,6 @@ msgstr ""
 "Будь ласка, спочатку встановіть його."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Файлова система на пристрої Timeshift не підтримує жорсткі посилання.\n"
-"Переконайтеся, що він відформатований у EXT2, EXT3 або EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18419,6 +18442,13 @@ msgstr ""
 "Таймер енергії хоче встановити %s %s на %s.\n"
 "\n"
 "Натисніть OK, щоб продовжити використання %s %s."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Файлова система на пристрої Timeshift не підтримує жорсткі посилання.\n"
+"Переконайтеся, що він відформатований у EXT2, EXT3 або EXT4!"
 
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
@@ -18995,6 +19025,9 @@ msgstr "Налаштування часу"
 msgid "Time Setup Actions"
 msgstr "Дія для Налаштування часу"
 
+msgid "Time Shift Settings"
+msgstr "Налаштування таймшифта"
+
 msgid "Time Update in Minutes:"
 msgstr "Час Оновлення в хвилинах:"
 
@@ -19037,6 +19070,51 @@ msgstr "Відрізок часу"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Час, необхідний для цього процесу: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Після перемикання видалити буфер таймшифта"
+
+msgid "Time shift buffer limit"
+msgstr "Обмеження буфера таймшифта [в годинах]"
+
+msgid "Time shift buffer location"
+msgstr "Розміщення таймшифт"
+
+msgid "Time shift checking for free space"
+msgstr "Перевірити наявність вільного дискового простору"
+
+msgid "Time shift checking for older files"
+msgstr "Перевірка наявності старих файлів таймшифта [у хвилинах]"
+
+msgid "Time shift event based file splitting"
+msgstr "Поділ файлів таймшифта за назвою передач"
+
+msgid "Time shift event limit"
+msgstr "Обмеження за останніми передачам [кількість передач]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift неможливий!"
+
+msgid "Time shift save action on zap"
+msgstr "Збереження таймшифта при перемиканні"
+
+msgid "Time shift save failed!"
+msgstr "Помилка збереження файлу таймшифта!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Збереження запису таймшифта (Виберіть передачу)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Збереження запису таймшифта (зупинити після поточної передачі)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Файл таймшифта збережений на жорсткий диск!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Файл таймшифта буде збережений в кінці події!"
 
 msgid "Time style"
 msgstr "Формат часу"
@@ -19122,51 +19200,6 @@ msgstr "Таймери"
 
 msgid "Timeshift"
 msgstr "ТаймШифт"
-
-msgid "Time Shift Settings"
-msgstr "Налаштування таймшифта"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Після перемикання видалити буфер таймшифта"
-
-msgid "Time shift buffer limit"
-msgstr "Обмеження буфера таймшифта [в годинах]"
-
-msgid "Time shift checking for free space"
-msgstr "Перевірити наявність вільного дискового простору"
-
-msgid "Time shift checking for older files"
-msgstr "Перевірка наявності старих файлів таймшифта [у хвилинах]"
-
-msgid "Time shift event based file splitting"
-msgstr "Поділ файлів таймшифта за назвою передач"
-
-msgid "Time shift event limit"
-msgstr "Обмеження за останніми передачам [кількість передач]"
-
-msgid "Time shift buffer location"
-msgstr "Розміщення таймшифт"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift неможливий!"
-
-msgid "Time shift save failed!"
-msgstr "Помилка збереження файлу таймшифта!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Збереження запису таймшифта (Виберіть передачу)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Збереження запису таймшифта (зупинити після поточної передачі)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Файл таймшифта збережений на жорсткий диск!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Файл таймшифта буде збережений в кінці події!"
-
-msgid "Time shift save action on zap"
-msgstr "Збереження таймшифта при перемиканні"
 
 msgid "Timezone"
 msgstr "Часовий пояс"
@@ -21660,11 +21693,11 @@ msgstr "[редагування фаворитів]"
 msgid "[Image Info]\n"
 msgstr "[Інформація про Імідж]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Таймшифт] Перезапуск таймшифта!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Таймшифт] Помилка злиття записів!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Таймшифт] Перезапуск таймшифта!"
 
 msgid "[alternative edit]"
 msgstr "[редагування вибраного]"
@@ -23053,20 +23086,6 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d день"
-msgstr[1] "%d днів"
-msgstr[2] "%d дня"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d хвилина"
-msgstr[1] "%d хвилини"
-msgstr[2] "%d хвилин"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2с"

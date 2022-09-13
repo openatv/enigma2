@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-09-09 12:16+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -878,6 +878,13 @@ msgstr[2] "%d Dní"
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -5169,11 +5176,11 @@ msgstr "Vytvořit: Obnovení Úplná záloha %s"
 msgid "Creating .ap and .sc files"
 msgstr "Vytvoření souborů AP a SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Vytvoření hardlinku na soubor Timeshiftu selhalo!"
-
 msgid "Creating file system"
 msgstr "Vytváření souborového systému"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Vytvoření hardlinku na soubor Timeshiftu selhalo!"
 
 msgid "Creating partition"
 msgstr "Zakládá se tabulka rozdělení disku"
@@ -11402,9 +11409,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Není k dispozici žádný záznamník TS"
 
-msgid "No time shift found to save as recording!"
-msgstr "Žádný Timeshift pro uložení záznamu nenalezen!"
-
 msgid "No active channel found."
 msgstr "Nebyl nalezen žádný aktivní kanál."
 
@@ -11525,6 +11529,9 @@ msgstr "Nenalezen žádný vhodný tuner!"
 
 msgid "No tags are set on these movies."
 msgstr "Tyto soubory nemají nastavené žádné tagy."
+
+msgid "No time shift found to save as recording!"
+msgstr "Žádný Timeshift pro uložení záznamu nenalezen!"
 
 msgid "No timeout"
 msgstr "Neomezeně"
@@ -12510,6 +12517,12 @@ msgstr "Přehrát titul"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Přehrát / zobrazit / upravit / nainstalovat / extrahovat / spustit soubor nebo zadat adresář"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Nahrávání a Timeshift"
 
 msgid "Playlist"
 msgstr "Seznam skladeb"
@@ -13783,9 +13796,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Nahrávání"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Nahrávání a Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Nahrávání zruší PiP"
 
@@ -14678,11 +14688,11 @@ msgstr "Uložit časový posun jako film a zastavit nahrávání"
 msgid "Saving EPG Cache..."
 msgstr "Uložit cache EPG..."
 
-msgid "Saving time shift files"
-msgstr "Ukládám soubory Timeshift"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Nyní se časový posun ukládá jako film. To může chvíli trvat!"
+
+msgid "Saving time shift files"
+msgstr "Ukládám soubory Timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Ostrost škálování"
@@ -15082,11 +15092,17 @@ msgstr "Vybrat LAN/Wlan"
 msgid "Select Location"
 msgstr "Vyberte umístění"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vybrat Quad Channels"
 
 msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Vyberte zdroje pro aktualizaci"
@@ -18272,13 +18288,6 @@ msgstr ""
 "Nainstalujte ho."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Souborový systém Timeshift jednotky nepodporuje hardlinky.\n"
-"Zkontrolujte, zda je ve formátu EXT2, EXT3 nebo EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18422,6 +18431,13 @@ msgstr ""
 "Časovač energie chce nastavit %s %s na %s.\n"
 "\n"
 "Stiskněte tlačítko OK a pokračujte pomocí %s %s."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Souborový systém Timeshift jednotky nepodporuje hardlinky.\n"
+"Zkontrolujte, zda je ve formátu EXT2, EXT3 nebo EXT4!"
 
 msgid "The following files were found..."
 msgstr "Byly nalezeny následující soubory..."
@@ -18998,6 +19014,9 @@ msgstr "Nastavení času"
 msgid "Time Setup Actions"
 msgstr "Akce nastavení času"
 
+msgid "Time Shift Settings"
+msgstr "Nastavení timeshiftu"
+
 msgid "Time Update in Minutes:"
 msgstr "Aktual. čas v minutách:"
 
@@ -19040,6 +19059,51 @@ msgstr "Čas - dlouhý stisk"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Čas potřebný pro tento proces: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift - vymazat po zapnutí vyrovnávací paměť"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift - vyrovnávací paměť (v hod.)"
+
+msgid "Time shift buffer location"
+msgstr "Umístění timeshiftu"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift - kontrola volného místa"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift - kontrolovat starší soubory [v minutách]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift - soubor události je rozdělený"
+
+msgid "Time shift event limit"
+msgstr "Timeshift - omezení posledních událostí [počet událostí]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Časový posun není možný!"
+
+msgid "Time shift save action on zap"
+msgstr "Akce timeshiftu při přepnutí na jiný kanál"
+
+msgid "Time shift save failed!"
+msgstr "Uložení Timeshiftu selhalo!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Uložení záznamu Timeshiftu (Vybrat událost)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Uložení záznamu Timeshiftu (zastavení po současné události)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift uložen na váš pevný disk!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift se uloží na konci pořadu!"
 
 msgid "Time style"
 msgstr "Styl času"
@@ -19127,51 +19191,6 @@ msgstr "Časovače"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Nastavení timeshiftu"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift - vymazat po zapnutí vyrovnávací paměť"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift - vyrovnávací paměť (v hod.)"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift - kontrola volného místa"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift - kontrolovat starší soubory [v minutách]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift - soubor události je rozdělený"
-
-msgid "Time shift event limit"
-msgstr "Timeshift - omezení posledních událostí [počet událostí]"
-
-msgid "Time shift buffer location"
-msgstr "Umístění timeshiftu"
-
-msgid "Time shift not possible!"
-msgstr "Časový posun není možný!"
-
-msgid "Time shift save failed!"
-msgstr "Uložení Timeshiftu selhalo!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Uložení záznamu Timeshiftu (Vybrat událost)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Uložení záznamu Timeshiftu (zastavení po současné události)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift uložen na váš pevný disk!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift se uloží na konci pořadu!"
-
-msgid "Time shift save action on zap"
-msgstr "Akce timeshiftu při přepnutí na jiný kanál"
 
 msgid "Timezone"
 msgstr "Časové pásmo"
@@ -21691,11 +21710,11 @@ msgstr "[Úprava oblíbených položek]"
 msgid "[Image Info]\n"
 msgstr "[Informace o image]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Timeshift] Restart timeshiftu!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Spojení záznamů selhalo!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Timeshift] Restart timeshiftu!"
 
 msgid "[alternative edit]"
 msgstr "[ÚPRAVA ALTERNATIV]"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-09-11 15:30+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -879,6 +879,12 @@ msgid "%d Digit"
 msgid_plural "%d Digits"
 msgstr[0] "%d Digital"
 msgstr[1] "%d Määrä"
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d GB"
@@ -5165,11 +5171,11 @@ msgstr "Luo: Täysivarmuuskopio %s"
 msgid "Creating .ap and .sc files"
 msgstr "Luodaan AP- ja SC-tiedostot"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Linkin (hardlink) luominen ajansiirron tiedostoon epäonnistui!"
-
 msgid "Creating file system"
 msgstr "Luodaan tiedostojärjestelmää"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Linkin (hardlink) luominen ajansiirron tiedostoon epäonnistui!"
 
 msgid "Creating partition"
 msgstr "Luodaan osiota"
@@ -11401,9 +11407,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Ei TS tallennusta saatavilla"
 
-msgid "No time shift found to save as recording!"
-msgstr "Ajansiirtoa ei löytynyt tallennusmuunnosta varten!"
-
 msgid "No active channel found."
 msgstr "Aktiivista kanavaa ei löydy."
 
@@ -11528,6 +11531,9 @@ msgstr "Sopivaa satelliittiviritintä ei löytynyt!"
 
 msgid "No tags are set on these movies."
 msgstr "Näissä tallenteissa ei ole avainsanoja."
+
+msgid "No time shift found to save as recording!"
+msgstr "Ajansiirtoa ei löytynyt tallennusmuunnosta varten!"
 
 msgid "No timeout"
 msgstr "Ei aikarajaa"
@@ -12515,6 +12521,12 @@ msgstr "Toista otsikko"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Toista / katso / muokkaa / asenna / pura / suorita tiedosto tai kirjoita hakemisto"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Tallennus & Ajansiirto"
 
 msgid "Playlist"
 msgstr "Soittolista"
@@ -13788,9 +13800,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Tallenteet"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Tallennus & Ajansiirto"
-
 msgid "Recordings abort PiP"
 msgstr "Tallennus saa keskeyttää PiP toiminnon"
 
@@ -14683,11 +14692,11 @@ msgstr "Muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 msgid "Saving EPG Cache..."
 msgstr "Tallennetaan kanavaoppaan välimuistiin.."
 
-msgid "Saving time shift files"
-msgstr "Tallennetaan ajansiirron tiedostoja"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Muunnetaan ajansiirto tallennukseksi. Tämä saattaa kestää hetken!"
+
+msgid "Saving time shift files"
+msgstr "Tallennetaan ajansiirron tiedostoja"
 
 msgid "Scaler sharpness"
 msgstr "Skaalaimen terävyys"
@@ -15095,11 +15104,17 @@ msgstr "Valitse LAN/WLAN"
 msgid "Select Location"
 msgstr "Valitse Sijainti"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Valitse Quad kanavat"
 
 msgid "Select Software Update"
 msgstr "Ohjelmistopäivitys"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Valitse päivityksen lähdeosoite"
@@ -18289,13 +18304,6 @@ msgstr ""
 "Asenna se."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Ajansiirtoon käytetyn laitteen tiedostojärjestelmä ei tuo hardlinkkejä.\n"
-"Varmista, että se on alustettu EXT2- tai EXT3-muodossa!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18439,6 +18447,13 @@ msgstr ""
 "Energia ajastin haluaa asettaa %s %s arvoon %s.\n"
 "\n"
 "Paina OK jatkaaksesi %s %s."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Ajansiirtoon käytetyn laitteen tiedostojärjestelmä ei tuo hardlinkkejä.\n"
+"Varmista, että se on alustettu EXT2- tai EXT3-muodossa!"
 
 msgid "The following files were found..."
 msgstr "Seuraavat tiedostot löytyi..."
@@ -19019,6 +19034,9 @@ msgstr "Aika asetukset"
 msgid "Time Setup Actions"
 msgstr "Aika Asetukset"
 
+msgid "Time Shift Settings"
+msgstr "Ajansiirto asetukset"
+
 msgid "Time Update in Minutes:"
 msgstr "Ajanpäivitys minuutteina:"
 
@@ -19061,6 +19079,51 @@ msgstr "Aika pitkä"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Tähän tehtävään kulunut aika: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Tyhjennetäänkö ajansiirron puskuri kanavanvaihdon yhteydessä"
+
+msgid "Time shift buffer limit"
+msgstr "Ajansiirron puskuri [tuntia]"
+
+msgid "Time shift buffer location"
+msgstr "Ajansiirron tallennushakemisto"
+
+msgid "Time shift checking for free space"
+msgstr "Ajansiirto tarkistaa vapaan levytilan (määritä minimi)"
+
+msgid "Time shift checking for older files"
+msgstr "Ajansiirto tarkistaa vanhat tiedostot (muutamassa minuutissa)"
+
+msgid "Time shift event based file splitting"
+msgstr "Ajansiirto käyttää ohjelmakohtaisia tiedostoja"
+
+msgid "Time shift event limit"
+msgstr "Ajansiirron tallentamien ohjelmien maksimimäärä [kpl]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Ajansiirtotallennusta ei voida käyttää!"
+
+msgid "Time shift save action on zap"
+msgstr "Ajansiirron tallennus kanavanvaihdossa"
+
+msgid "Time shift save failed!"
+msgstr "Ajansiirron tallennus epäonnistui!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Ajansiirron muunto tallenteeksi (valitse ohjelma)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Ajansiirron muunto tallenteeksi (pysäytä nykyisen ohjelman jälkeen)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Ajansiirto tallennettu kiintolevylle!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
 
 msgid "Time style"
 msgstr "Ajan näyttömuoto"
@@ -19148,51 +19211,6 @@ msgstr "Ajastukset"
 
 msgid "Timeshift"
 msgstr "Ajansiirto"
-
-msgid "Time Shift Settings"
-msgstr "Ajansiirto asetukset"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Tyhjennetäänkö ajansiirron puskuri kanavanvaihdon yhteydessä"
-
-msgid "Time shift buffer limit"
-msgstr "Ajansiirron puskuri [tuntia]"
-
-msgid "Time shift checking for free space"
-msgstr "Ajansiirto tarkistaa vapaan levytilan (määritä minimi)"
-
-msgid "Time shift checking for older files"
-msgstr "Ajansiirto tarkistaa vanhat tiedostot (muutamassa minuutissa)"
-
-msgid "Time shift event based file splitting"
-msgstr "Ajansiirto käyttää ohjelmakohtaisia tiedostoja"
-
-msgid "Time shift event limit"
-msgstr "Ajansiirron tallentamien ohjelmien maksimimäärä [kpl]"
-
-msgid "Time shift buffer location"
-msgstr "Ajansiirron tallennushakemisto"
-
-msgid "Time shift not possible!"
-msgstr "Ajansiirtotallennusta ei voida käyttää!"
-
-msgid "Time shift save failed!"
-msgstr "Ajansiirron tallennus epäonnistui!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Ajansiirron muunto tallenteeksi (valitse ohjelma)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Ajansiirron muunto tallenteeksi (pysäytä nykyisen ohjelman jälkeen)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Ajansiirto tallennettu kiintolevylle!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
-
-msgid "Time shift save action on zap"
-msgstr "Ajansiirron tallennus kanavanvaihdossa"
 
 msgid "Timezone"
 msgstr "Aikavyöhyke"
@@ -21721,11 +21739,11 @@ msgstr "[Suosikkien lisäys ja poisto]"
 msgid "[Image Info]\n"
 msgstr "Tietoja ohjelmistosta\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Ajansiirto] Käynnistetään ajansiirto uudelleen!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Ajansiirto] Tallenteiden yhdistäminen epäonnistui!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Ajansiirto] Käynnistetään ajansiirto uudelleen!"
 
 msgid "[alternative edit]"
 msgstr "[Vaihtoehtojen lisäys ja poisto]"

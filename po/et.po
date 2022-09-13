@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -871,8 +871,20 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Päev"
+msgstr[1] "%d Päeva"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -928,6 +940,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d min"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minut"
+msgstr[1] "%d Minutit"
 
 #, python-format
 msgid "%d Minutes"
@@ -5232,11 +5250,11 @@ msgstr "Loo: Täielik püsivaratõmmis %s"
 msgid "Creating .ap and .sc files"
 msgstr "AP ja SC failide loomine"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Ajanihke failile püsiviida loomine nurjus!"
-
 msgid "Creating file system"
 msgstr "Failisüsteemi loomine"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Ajanihke failile püsiviida loomine nurjus!"
 
 msgid "Creating partition"
 msgstr "Partitsiooni loomine"
@@ -11708,9 +11726,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Vaba indeks puudub"
 
-msgid "No time shift found to save as recording!"
-msgstr "Ajanihke faile ei leitud!"
-
 msgid "No active channel found."
 msgstr "Aktiivset kanalit ei leitud."
 
@@ -11836,6 +11851,9 @@ msgstr "Satituunerit ei leitud!"
 
 msgid "No tags are set on these movies."
 msgstr "Salvestistele pole märksõnu määratud."
+
+msgid "No time shift found to save as recording!"
+msgstr "Ajanihke faile ei leitud!"
 
 msgid "No timeout"
 msgstr "Ajapiiranguta"
@@ -12874,6 +12892,12 @@ msgstr "Esita fail"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Esita/vaata/muuda/paigalda/paki/käivita fail või sisene kataloogi"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Salvestus ja ajanihe"
 
 msgid "Playlist"
 msgstr "Pleilist"
@@ -14185,9 +14209,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Salvestused"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Salvestus ja ajanihe"
-
 msgid "Recordings abort PiP"
 msgstr "Salvestused sulgevad PiP-akna"
 
@@ -15106,11 +15127,11 @@ msgstr "Talleta ajanihe ja lõpeta salvestamine"
 msgid "Saving EPG Cache..."
 msgstr "EPG talletamine..."
 
-msgid "Saving time shift files"
-msgstr "Ajanihke failide talletamine"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Ajanihke salvestuseks muutmine. Võib minna veidi aega!"
+
+msgid "Saving time shift files"
+msgstr "Ajanihke failide talletamine"
 
 msgid "Scaler sharpness"
 msgstr "Skaleerimise teravus"
@@ -15518,12 +15539,18 @@ msgstr "Vali Lan/Wlan"
 msgid "Select Location"
 msgstr "Vali asukoht"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vali Quad PiP kanalid"
 
 #
 msgid "Select Software Update"
 msgstr "Vali tarkvara uuendus"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Vali uuenduste allikas"
@@ -18819,13 +18846,6 @@ msgstr ""
 "Paigalda see."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
-"Vorminda see EXT2, EXT3 või EXT4 failisüsteemi!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18961,6 +18981,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
+"Vorminda see EXT2, EXT3 või EXT4 failisüsteemi!"
 
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
@@ -19554,6 +19581,9 @@ msgstr "Aja seaded"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Ajanihke seaded"
+
 msgid "Time Update in Minutes:"
 msgstr "Kellaaja uuendamine (min):"
 
@@ -19602,6 +19632,51 @@ msgstr "Time - pikk"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Toiminguks kulunud aeg: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
+
+msgid "Time shift buffer limit"
+msgstr "Ajanihke puhvri piirsuurus (tundides)"
+
+msgid "Time shift buffer location"
+msgstr "Ajanihke failide asukoht"
+
+msgid "Time shift checking for free space"
+msgstr "Vaba kettaruumi kontroll ajanihke ajal"
+
+msgid "Time shift checking for older files"
+msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
+
+msgid "Time shift event based file splitting"
+msgstr "Ajanihkefaili tükeldamine saadete järgi"
+
+msgid "Time shift event limit"
+msgstr "Ajanihke saadete piirarv (saadete arv)"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Ajanihke kasutamine pole võimalik!"
+
+msgid "Time shift save action on zap"
+msgstr "Ajanihke talletamine kanalivahetusel"
+
+msgid "Time shift save failed!"
+msgstr "Ajanihke talletamine nurjus!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Ajanihke talletamine (vali saade)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Ajanihe talletati kõvakettale!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Ajanihe talletatakse saate lõppedes!"
 
 msgid "Time style"
 msgstr "Kellaaja kuju"
@@ -19694,51 +19769,6 @@ msgstr "Taimerid"
 
 msgid "Timeshift"
 msgstr "Ajanihe"
-
-msgid "Time Shift Settings"
-msgstr "Ajanihke seaded"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
-
-msgid "Time shift buffer limit"
-msgstr "Ajanihke puhvri piirsuurus (tundides)"
-
-msgid "Time shift checking for free space"
-msgstr "Vaba kettaruumi kontroll ajanihke ajal"
-
-msgid "Time shift checking for older files"
-msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
-
-msgid "Time shift event based file splitting"
-msgstr "Ajanihkefaili tükeldamine saadete järgi"
-
-msgid "Time shift event limit"
-msgstr "Ajanihke saadete piirarv (saadete arv)"
-
-msgid "Time shift buffer location"
-msgstr "Ajanihke failide asukoht"
-
-msgid "Time shift not possible!"
-msgstr "Ajanihke kasutamine pole võimalik!"
-
-msgid "Time shift save failed!"
-msgstr "Ajanihke talletamine nurjus!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Ajanihke talletamine (vali saade)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Ajanihe talletati kõvakettale!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Ajanihe talletatakse saate lõppedes!"
-
-msgid "Time shift save action on zap"
-msgstr "Ajanihke talletamine kanalivahetusel"
 
 msgid "Timezone"
 msgstr ""
@@ -22317,11 +22347,11 @@ msgstr "[lemmikute muutmine]"
 msgid "[Image Info]\n"
 msgstr "[Püsivara info]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Ajanihe] Salvestiste liitmine nurjus!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
 
 msgid "[alternative edit]"
 msgstr "[asenduskanalite muutmine]"
@@ -23743,18 +23773,6 @@ msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi l
 
 msgid "®"
 msgstr ""
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Päev"
-msgstr[1] "%d Päeva"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minut"
-msgstr[1] "%d Minutit"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

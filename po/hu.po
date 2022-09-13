@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -898,8 +898,20 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Nap"
+msgstr[1] "%d Nap"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -955,6 +967,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d perc"
 msgstr[1] "%d perc"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Perc"
+msgstr[1] "%d Perc"
 
 #, python-format
 msgid "%d Minutes"
@@ -5195,11 +5213,11 @@ msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
 msgid "Creating .ap and .sc files"
 msgstr "AP és SC fájlok létrehozása"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
-
 msgid "Creating file system"
 msgstr "Fájlrendszer létrehozása"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Nem sikerült létrehozni Hardlink-t a Timeshift fájlhoz!"
 
 msgid "Creating partition"
 msgstr "Partíció létrehozása"
@@ -11517,9 +11535,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nem áll rendelkezésre TS felvevő"
 
-msgid "No time shift found to save as recording!"
-msgstr "Nem talált menthető Timeshift fájlt!"
-
 msgid "No active channel found."
 msgstr "Nem található aktív csatorna."
 
@@ -11640,6 +11655,9 @@ msgstr "Nincs megfelelő műholdas tuner!"
 
 msgid "No tags are set on these movies."
 msgstr "Ezeknek a felvételekre nincsenek metaadataik."
+
+msgid "No time shift found to save as recording!"
+msgstr "Nem talált menthető Timeshift fájlt!"
 
 msgid "No timeout"
 msgstr "Nincs időtúllépés"
@@ -12642,6 +12660,12 @@ msgstr "Lejátszás címe"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Lejátszás/nézet/szerkesztés/telepítés/kibontás/fájl futtatás, illetve könyvtár megadása"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Felvételek és Timeshift"
 
 msgid "Playlist"
 msgstr "Lejátszási lista"
@@ -13917,9 +13941,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Felvételi lista"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Felvételek és Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "A felvétel megszünteti a Kép-a-Képbent"
 
@@ -14818,11 +14839,11 @@ msgstr "Timeshift mentése és a felvétel megállítása"
 msgid "Saving EPG Cache..."
 msgstr "EPG gyorsítótár mentése..."
 
-msgid "Saving time shift files"
-msgstr "Timeshift fájljának mentése"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Timeshift mentése most. Ez hosszabb időt is igénybe vehet!"
+
+msgid "Saving time shift files"
+msgstr "Timeshift fájljának mentése"
 
 msgid "Scaler sharpness"
 msgstr "Skálázó élesség"
@@ -15224,11 +15245,17 @@ msgstr "Lan/Wlan választása"
 msgid "Select Location"
 msgstr "Hely kiválasztása"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Quad Csatorna választása"
 
 msgid "Select Software Update"
 msgstr "Szoftverfrissítés választása"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Válasszon szerkesztendő frissítési forrást"
@@ -18464,13 +18491,6 @@ msgstr ""
 "Kérem, telepítse."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
-"Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18607,6 +18627,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
+"Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
 
 msgid "The following files were found..."
 msgstr "Az alábbi fájlokat találta a rendszer..."
@@ -19180,6 +19207,9 @@ msgstr "Idő beállítása"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Timeshift beállítása"
+
 msgid "Time Update in Minutes:"
 msgstr "Az idő frissítése percekben:"
 
@@ -19222,6 +19252,51 @@ msgstr "Idő hosszan"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "A folyamathoz szükséges idő: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift puffer határa [órákban]"
+
+msgid "Time shift buffer location"
+msgstr "Timeshift helye"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift ellenőrizze a szabad helyet?"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
+
+msgid "Time shift event based file splitting"
+msgstr "Minden Timeshift külön felvételi pufferben legyen"
+
+msgid "Time shift event limit"
+msgstr "Timeshift felvételek korlátozása [felvételek száma]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift nem lehetséges!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift mentése csatornaváltáskor"
+
+msgid "Time shift save failed!"
+msgstr "Timeshift felvétel mentése sikertelen!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift folyamatban. Válasszon egy opciót."
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift felvétel mentése a háttértárra!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Az esemény végén lesz a Timeshift mentve!"
 
 msgid "Time style"
 msgstr "Idő stílusa"
@@ -19310,51 +19385,6 @@ msgstr "Időzítők"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Timeshift beállítása"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift puffer határa [órákban]"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift ellenőrizze a szabad helyet?"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift a régebbi fájlokat ellenőrizze [percekben]"
-
-msgid "Time shift event based file splitting"
-msgstr "Minden Timeshift külön felvételi pufferben legyen"
-
-msgid "Time shift event limit"
-msgstr "Timeshift felvételek korlátozása [felvételek száma]"
-
-msgid "Time shift buffer location"
-msgstr "Timeshift helye"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift nem lehetséges!"
-
-msgid "Time shift save failed!"
-msgstr "Timeshift felvétel mentése sikertelen!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Timeshift folyamatban. Válasszon egy opciót."
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift felvétel (leállítás az aktuális műsor után)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift felvétel mentése a háttértárra!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Az esemény végén lesz a Timeshift mentve!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift mentése csatornaváltáskor"
 
 msgid "Timezone"
 msgstr ""
@@ -21868,11 +21898,11 @@ msgstr "[kedvencek módosítása]"
 msgid "[Image Info]\n"
 msgstr "[Lemezkép Információ]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "a Timeshift újraindult!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] az egyesítés sikertelen!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "a Timeshift újraindult!"
 
 msgid "[alternative edit]"
 msgstr "[alternatív módosítás]"
@@ -23266,18 +23296,6 @@ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Nap"
-msgstr[1] "%d Nap"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Perc"
-msgstr[1] "%d Perc"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

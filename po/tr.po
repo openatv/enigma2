@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -882,8 +882,18 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d gün"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 
 #, python-format
@@ -936,6 +946,11 @@ msgstr "%d MHz"
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Dak"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d dakika"
 
 #, python-format
 msgid "%d Minutes"
@@ -5384,11 +5399,11 @@ msgstr "Oluşturun: Kurtarma Fullbackup %s"
 msgid "Creating .ap and .sc files"
 msgstr "AP ve SC dosyaları yaratılıyor"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
-
 msgid "Creating file system"
 msgstr "Dosya sistemi yarat"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Zaman-kaydırma dosya bağlantısı yaratılamadı!"
 
 msgid "Creating partition"
 msgstr "Bölüntü yarat"
@@ -12004,9 +12019,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "TS kaydedici mevcut değil"
 
-msgid "No time shift found to save as recording!"
-msgstr "Kayıt olarak saklanacak zaman-kaydırma bulunamadı!"
-
 msgid "No active channel found."
 msgstr "Aktif kanal bulunamadı."
 
@@ -12146,6 +12158,9 @@ msgstr "Uygun tuner bulunamadı!"
 #
 msgid "No tags are set on these movies."
 msgstr "Bu filmlerde etiket ayarlanmamış."
+
+msgid "No time shift found to save as recording!"
+msgstr "Kayıt olarak saklanacak zaman-kaydırma bulunamadı!"
 
 #
 msgid "No timeout"
@@ -13189,6 +13204,12 @@ msgstr "Oyun başlığı"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Oynat / görüntüle / düzenle / yükle / çıkar / dosyayı çalıştır veya dizine gir"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Kayıtlar & Zaman Kaydırma"
 
 msgid "Playlist"
 msgstr "Çalma Listesi"
@@ -14572,9 +14593,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Kayıtlar"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Kayıtlar & Zaman Kaydırma"
-
 msgid "Recordings abort PiP"
 msgstr "Kayıtlar PIP'i iptal etti"
 
@@ -15541,11 +15559,11 @@ msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 msgid "Saving EPG Cache..."
 msgstr "EPG önbelleği saklanıyor..."
 
-msgid "Saving time shift files"
-msgstr "Zaman-kaydırma dosyaları saklanıyor"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Zaman-kaydırma film olarak saklanıyor. Bu biraz uzun sürebilir!"
+
+msgid "Saving time shift files"
+msgstr "Zaman-kaydırma dosyaları saklanıyor"
 
 #
 msgid "Scaler sharpness"
@@ -15963,11 +15981,17 @@ msgstr "Lan / Wlan'ı seçin"
 msgid "Select Location"
 msgstr "Yer Seç"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Dört Kanal Seç"
 
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 #
 msgid "Select Upgrade Source"
@@ -19315,13 +19339,6 @@ msgstr ""
 "Lütfen yükleyin."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Zamankaydırma aygıtınızın dosya sistemi sabit bağlantıyı desteklemiyor.\n"
-"EXT2, EXT3 veya EXT4 formatlı olduğundan emin olun!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19462,6 +19479,13 @@ msgstr ""
 "Enerji zamanlayıcısı, %s %s öğesini %s olarak ayarlamak istiyor.\n"
 "\n"
 "%s %s ile devam etmek için OK'e basın."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Zamankaydırma aygıtınızın dosya sistemi sabit bağlantıyı desteklemiyor.\n"
+"EXT2, EXT3 veya EXT4 formatlı olduğundan emin olun!"
 
 #
 msgid "The following files were found..."
@@ -20059,6 +20083,9 @@ msgstr "Zaman ayarları"
 msgid "Time Setup Actions"
 msgstr "Zaman Ayarı Eylemleri"
 
+msgid "Time Shift Settings"
+msgstr "Kayıt zamanlama ayarları"
+
 msgid "Time Update in Minutes:"
 msgstr "Zaman güncelle Dakika:"
 
@@ -20102,6 +20129,51 @@ msgstr "Zaman uzun"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Bu işlem için gereken süre: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift tampon zap sonra silinsin mi"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift buffer limit [saat]"
+
+msgid "Time shift buffer location"
+msgstr "Zaman kaydırma kayıt konumu"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift boş alan mı kontrol ediyor"
+
+msgid "Time shift checking for older files"
+msgstr "Eski dosyaları kontrol etmek için Timeshift [dakika]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift olayı tabanlı dosya bölme"
+
+msgid "Time shift event limit"
+msgstr "Timeshift son olaylar [etkinlik sayısı] sınırını"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Zaman kaydırma kullanılamaz!"
+
+msgid "Time shift save action on zap"
+msgstr "Zap eylemi Timeshift kaydetmek"
+
+msgid "Time shift save failed!"
+msgstr "Zaman-kaydırma saklanamadı!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Zaman kayması kaydetme kaydı (Etkinlik seç)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Zaman kayması kaydetme kaydı (geçerli olaydan sonra dur"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Zaman-kaydırma diskinize saklandı!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
 
 msgid "Time style"
 msgstr "Zaman tarzı"
@@ -20194,51 +20266,6 @@ msgstr "Zamanlayıcılar"
 
 msgid "Timeshift"
 msgstr "Zaman kaydırma"
-
-msgid "Time Shift Settings"
-msgstr "Kayıt zamanlama ayarları"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift tampon zap sonra silinsin mi"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift buffer limit [saat]"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift boş alan mı kontrol ediyor"
-
-msgid "Time shift checking for older files"
-msgstr "Eski dosyaları kontrol etmek için Timeshift [dakika]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift olayı tabanlı dosya bölme"
-
-msgid "Time shift event limit"
-msgstr "Timeshift son olaylar [etkinlik sayısı] sınırını"
-
-msgid "Time shift buffer location"
-msgstr "Zaman kaydırma kayıt konumu"
-
-msgid "Time shift not possible!"
-msgstr "Zaman kaydırma kullanılamaz!"
-
-msgid "Time shift save failed!"
-msgstr "Zaman-kaydırma saklanamadı!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Zaman kayması kaydetme kaydı (Etkinlik seç)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Zaman kayması kaydetme kaydı (geçerli olaydan sonra dur"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Zaman-kaydırma diskinize saklandı!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
-
-msgid "Time shift save action on zap"
-msgstr "Zap eylemi Timeshift kaydetmek"
 
 msgid "Timezone"
 msgstr "Zaman dilimi"
@@ -22889,11 +22916,11 @@ msgstr "[favori düzenle]"
 msgid "[Image Info]\n"
 msgstr "[Görüntü Bilgisi]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[ZamanKaydırma] Zaman-kaydırma yeniden başlatılıyor!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[ZamanKaydırma] Kayıtların birleştirilmesi başarısız!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[ZamanKaydırma] Zaman-kaydırma yeniden başlatılıyor!"
 
 #
 msgid "[alternative edit]"
@@ -24425,16 +24452,6 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 
 msgid "®"
 msgstr ""
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d gün"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d dakika"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
-"PO-Revision-Date: 2022-09-10 17:50+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"PO-Revision-Date: 2022-09-13 15:58+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -881,6 +881,12 @@ msgid "%d Digit"
 msgid_plural "%d Digits"
 msgstr[0] "%d cifra"
 msgstr[1] "%d cifre"
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] "%d evento"
+msgstr[1] "%d eventi"
 
 #, python-format
 msgid "%d GB"
@@ -5152,11 +5158,11 @@ msgstr "Crea: ripristino backup completo %s"
 msgid "Creating .ap and .sc files"
 msgstr "Creazione file AP e SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Creazione link al file TimeShift fallito!"
-
 msgid "Creating file system"
 msgstr "Creazione del file system"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Creazione link al file TimeShift fallito!"
 
 msgid "Creating partition"
 msgstr "Creazione partizione"
@@ -9487,7 +9493,7 @@ msgid "Invalid"
 msgstr "Non valido"
 
 msgid "Invalid location!"
-msgstr "Percorso non valido"
+msgstr "Posizione non valida!"
 
 msgid "Invalid transponder data"
 msgstr "Dati del transponder non validi"
@@ -11381,9 +11387,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nessun registratore TS disponibile"
 
-msgid "No time shift found to save as recording!"
-msgstr "Nessun timeshift trovato da salvare come registrazione!"
-
 msgid "No active channel found."
 msgstr "Nessun canale attivo trovato."
 
@@ -11504,6 +11507,9 @@ msgstr "Non è stato trovato un sintonizzatore satellitare adatto!"
 
 msgid "No tags are set on these movies."
 msgstr "Nessuna etichetta configurata su queste registrazioni."
+
+msgid "No time shift found to save as recording!"
+msgstr "Nessun timeshift trovato da salvare come registrazione!"
 
 msgid "No timeout"
 msgstr "Nessun timeout"
@@ -12489,6 +12495,12 @@ msgstr "Riprodurre titolo"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Vedi/modifica/avvia/installa/riproduci o entra nella cartella"
+
+msgid "Playback Settings"
+msgstr "Impostazioni riproduzione"
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Registrazioni e timeshift"
 
 msgid "Playlist"
 msgstr "Playlist"
@@ -13762,9 +13774,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Registrazioni"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Registrazioni e timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Registrazioni interrompono il PIP"
 
@@ -14657,11 +14666,11 @@ msgstr "Arresta la registrazione e salva timeshift"
 msgid "Saving EPG Cache..."
 msgstr "Salvataggio cache EPG..."
 
-msgid "Saving time shift files"
-msgstr "Salvataggio di file timeshift"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Salvataggio timeshift come film adesso. Questo potrebbe richiedere del tempo!"
+
+msgid "Saving time shift files"
+msgstr "Salvataggio di file timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Nitidezza scaler"
@@ -15059,11 +15068,17 @@ msgstr "Seleziona LAN/WLAN"
 msgid "Select Location"
 msgstr "Seleziona località"
 
+msgid "Select Movie Location"
+msgstr "Seleziona posizione film"
+
 msgid "Select Quad Channels"
 msgstr "Seleziona un canale quadruplo"
 
 msgid "Select Software Update"
 msgstr "Seleziona aggiornamento software"
+
+msgid "Select Time Shift Location"
+msgstr "Seleziona posizione Timeshift"
 
 msgid "Select Upgrade Source"
 msgstr "Seleziona la sorgente aggiornamenti"
@@ -18247,13 +18262,6 @@ msgstr ""
 "Provvedere a installarlo."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Il file system del dispositivo utilizzato per il timeshift non supporta gli hardlink.\n"
-"Assicurati che sia formattato in ext2, ext3 o ext4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18397,6 +18405,13 @@ msgstr ""
 "Il timer di energia vuole impostare %s %s a %s.\n"
 "\n"
 "Premi OK per continuare a utilizzare %s %s."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Il file system del dispositivo utilizzato per il timeshift non supporta gli hardlink.\n"
+"Assicurati che sia formattato in ext2, ext3 o ext4!"
 
 msgid "The following files were found..."
 msgstr "Trovati i seguenti file..."
@@ -18973,6 +18988,9 @@ msgstr "Impostazioni dell'ora"
 msgid "Time Setup Actions"
 msgstr "Azioni di impostazione dell'ora"
 
+msgid "Time Shift Settings"
+msgstr "Configurazione timeshift"
+
 msgid "Time Update in Minutes:"
 msgstr "Tempo di aggiornamento in minuti:"
 
@@ -19015,6 +19033,51 @@ msgstr "Tempo lungo"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Tempo necessario per questo processo: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Eliminazione del buffer del timeshift dopo cambio canale"
+
+msgid "Time shift buffer limit"
+msgstr "Limite di buffer per il timeshift (in ore)"
+
+msgid "Time shift buffer location"
+msgstr "Percorso timeshift"
+
+msgid "Time shift checking for free space"
+msgstr "Controllo spazio libero per timeshift"
+
+msgid "Time shift checking for older files"
+msgstr "Elimina vecchi timeshift per durata (in minuti)"
+
+msgid "Time shift event based file splitting"
+msgstr "Usare più file timeshift"
+
+msgid "Time shift event limit"
+msgstr "Elimina timeshift più vecchi di (numero di eventi)"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr "Il iTimeshift potrebbe non funzionare correttamente senza aver specificato una cartella."
+
+msgid "Time shift not possible!"
+msgstr "Timeshift non possibile!"
+
+msgid "Time shift save action on zap"
+msgstr "Azione salvataggio timeshift su zap"
+
+msgid "Time shift save failed!"
+msgstr "Salvataggio timeshift non riuscito!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Registrazione di salvataggio Time Shift (Seleziona evento)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Salva come timeshift (stop dopo evento in corso)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "timeshift salvato sul tuo Harddisk!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Il timeshift verrà salvato a fine evento!"
 
 msgid "Time style"
 msgstr "Stile dell’orario"
@@ -19102,51 +19165,6 @@ msgstr "Timer"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Configurazione timeshift"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Eliminazione del buffer del timeshift dopo cambio canale"
-
-msgid "Time shift buffer limit"
-msgstr "Limite di buffer per il timeshift (in ore)"
-
-msgid "Time shift checking for free space"
-msgstr "Controllo spazio libero per timeshift"
-
-msgid "Time shift checking for older files"
-msgstr "Elimina vecchi timeshift per durata (in minuti)"
-
-msgid "Time shift event based file splitting"
-msgstr "Usare più file timeshift"
-
-msgid "Time shift event limit"
-msgstr "Elimina timeshift più vecchi di (numero di eventi)"
-
-msgid "Time shift buffer location"
-msgstr "Percorso timeshift"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift non possibile!"
-
-msgid "Time shift save failed!"
-msgstr "Salvataggio timeshift non riuscito!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Registrazione di salvataggio Time Shift (Seleziona evento)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Salva come timeshift (stop dopo evento in corso)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "timeshift salvato sul tuo Harddisk!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Il timeshift verrà salvato a fine evento!"
-
-msgid "Time shift save action on zap"
-msgstr "Azione salvataggio timeshift su zap"
 
 msgid "Timezone"
 msgstr "Fuso orario"
@@ -21666,11 +21684,11 @@ msgstr "[edit preferiti]"
 msgid "[Image Info]\n"
 msgstr "[Info immagine]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Riavvio timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "Timeshift: unione registrazioni fallita!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Riavvio timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[edit alternative]"

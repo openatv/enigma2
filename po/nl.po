@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-09-10 17:50+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -882,6 +882,12 @@ msgid "%d Digit"
 msgid_plural "%d Digits"
 msgstr[0] "%d Cijfer"
 msgstr[1] "%d Cijfers"
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d GB"
@@ -5263,11 +5269,11 @@ msgstr "Creëer: Volledige backup %s"
 msgid "Creating .ap and .sc files"
 msgstr "Creëer AP en SC bestanden"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
-
 msgid "Creating file system"
 msgstr "Creëert bestandssyeteem"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
 
 msgid "Creating partition"
 msgstr "Creëert partitie"
@@ -11519,9 +11525,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Geen TS recorder beschikbaar"
 
-msgid "No time shift found to save as recording!"
-msgstr "Geen Timeshift-bestand gevonden om als opname op te slaan!"
-
 msgid "No active channel found."
 msgstr "Geen actieve zender gevonden."
 
@@ -11642,6 +11645,9 @@ msgstr "Geen passende satelliettuner gevonden!"
 
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst in deze opnames."
+
+msgid "No time shift found to save as recording!"
+msgstr "Geen Timeshift-bestand gevonden om als opname op te slaan!"
 
 msgid "No timeout"
 msgstr "Geen timeout"
@@ -12630,6 +12636,12 @@ msgstr "Speel titel"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Afspelen/bekijk/bewerk/installeer/uitpakken/uitvoeren bestand of map"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Opname & Timeshift"
 
 msgid "Playlist"
 msgstr "Afspeellijst"
@@ -13906,9 +13918,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Opnames"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Opname & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Annuleer PiP bij een opname"
 
@@ -14801,11 +14810,11 @@ msgstr "Bewaar Timeshift als opname en stop opname"
 msgid "Saving EPG Cache..."
 msgstr "Bezig EPG Cache op te slaan..."
 
-msgid "Saving time shift files"
-msgstr "Bewaart Timeshift bestanden"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Timeshift wordt nu als opname opgeslagen. Dit kan enige tijd duren!"
+
+msgid "Saving time shift files"
+msgstr "Bewaart Timeshift bestanden"
 
 msgid "Scaler sharpness"
 msgstr "Scaler scherpte"
@@ -15211,11 +15220,17 @@ msgstr "Selecteer een lan of wlan adapter"
 msgid "Select Location"
 msgstr "Selecteer locatie"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Selecteer Quad zenders"
 
 msgid "Select Software Update"
 msgstr "Selecteer software update"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Selecteer de update bron"
@@ -18426,13 +18441,6 @@ msgstr ""
 "A.u.b. deze eerst installeren."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
-"Formatteer die in EXT2, EXT3 or EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18576,6 +18584,13 @@ msgstr ""
 "De Energie spaar timer wil de %s %s instellen op %s.\n"
 "\n"
 "Druk op OK om de %s %s te blijven gebruiken."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
+"Formatteer die in EXT2, EXT3 or EXT4!"
 
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
@@ -19192,6 +19207,9 @@ msgstr "Tijd instellingen"
 msgid "Time Setup Actions"
 msgstr "Tijd Setup acties"
 
+msgid "Time Shift Settings"
+msgstr "Timeshift instellingen"
+
 msgid "Time Update in Minutes:"
 msgstr "Update tijd in minuten:"
 
@@ -19234,6 +19252,51 @@ msgstr "Tijd lang"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Benodigde tijd voor het maken van deze back-up was: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift buffer verwijderen na zenderwissel"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift buffer - limiet in uren"
+
+msgid "Time shift buffer location"
+msgstr "Timeshift opname locatie"
+
+msgid "Time shift checking for free space"
+msgstr "Moet Timeshift op vrije ruimte controleren"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift controle van oude bestanden [in minuten]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift splitsen van bestanden"
+
+msgid "Time shift event limit"
+msgstr "Timeshift opname limiet [aantal bestanden]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift is niet mogelijk!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift opslaan actie bij zappen"
+
+msgid "Time shift save failed!"
+msgstr "Opslaan Timeshift-bestand mislukt!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Bewaar Timeshift opname (selecteer programma)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift wordt opgeslagen als opname (stopt na het huidige programma)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift opgeslagen op uw HDD!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
 
 msgid "Time style"
 msgstr "Tijdstijl"
@@ -19321,51 +19384,6 @@ msgstr "Timers"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Timeshift instellingen"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift buffer verwijderen na zenderwissel"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift buffer - limiet in uren"
-
-msgid "Time shift checking for free space"
-msgstr "Moet Timeshift op vrije ruimte controleren"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift controle van oude bestanden [in minuten]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift splitsen van bestanden"
-
-msgid "Time shift event limit"
-msgstr "Timeshift opname limiet [aantal bestanden]"
-
-msgid "Time shift buffer location"
-msgstr "Timeshift opname locatie"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift is niet mogelijk!"
-
-msgid "Time shift save failed!"
-msgstr "Opslaan Timeshift-bestand mislukt!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Bewaar Timeshift opname (selecteer programma)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift wordt opgeslagen als opname (stopt na het huidige programma)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift opgeslagen op uw HDD!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift opslaan actie bij zappen"
 
 msgid "Timezone"
 msgstr "Tijdzone"
@@ -21907,11 +21925,11 @@ msgstr "[favorieten bewerken]"
 msgid "[Image Info]\n"
 msgstr "[Afbeelding Info]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Timeshift wordt herstart!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Samenvoegen van opnames is mislukt!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Timeshift wordt herstart!"
 
 msgid "[alternative edit]"
 msgstr "[alternatieven bewerken]"

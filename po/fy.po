@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -950,6 +950,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -5606,13 +5612,13 @@ msgstr ""
 msgid "Creating .ap and .sc files"
 msgstr ""
 
-msgid "Creating hard link to time shift file failed!"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Creating file system"
 msgstr "Bestânsysteem neisjen"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr ""
 
 msgid "Creating partition"
 msgstr ""
@@ -12512,9 +12518,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr ""
 
-msgid "No time shift found to save as recording!"
-msgstr ""
-
 msgid "No active channel found."
 msgstr ""
 
@@ -12658,6 +12661,9 @@ msgstr ""
 #
 msgid "No tags are set on these movies."
 msgstr "Gjin merkers oanwêzig op dizze films"
+
+msgid "No time shift found to save as recording!"
+msgstr ""
 
 #
 #, fuzzy
@@ -13764,6 +13770,12 @@ msgid "Play title"
 msgstr "Begjin tiid"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
+msgstr ""
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
 msgstr ""
 
 msgid "Playlist"
@@ -15173,9 +15185,6 @@ msgstr ""
 msgid "Recordings"
 msgstr ""
 
-msgid "Playback, Recording & Time Shift"
-msgstr ""
-
 msgid "Recordings abort PiP"
 msgstr ""
 
@@ -16184,10 +16193,10 @@ msgstr ""
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving time shift files"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift files"
 msgstr ""
 
 #
@@ -16624,10 +16633,16 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Software Update"
+msgstr ""
+
+msgid "Select Time Shift Location"
 msgstr ""
 
 #
@@ -20115,11 +20130,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20238,6 +20248,11 @@ msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
 "\n"
 "Press OK to continue using the %s %s."
+msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
 #
@@ -20830,6 +20845,9 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr ""
+
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -20875,6 +20893,53 @@ msgstr "Tiidsbarren log"
 
 #, python-format
 msgid "Time required for this process: %s"
+msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+#
+msgid "Time shift buffer location"
+msgstr ""
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+#
+msgid "Time shift not possible!"
+msgstr "Tiidsskowen is net mooglik !"
+
+msgid "Time shift save action on zap"
+msgstr ""
+
+msgid "Time shift save failed!"
+msgstr ""
+
+msgid "Time shift save recording (Select event)"
+msgstr ""
+
+msgid "Time shift save recording (stop after current event)"
+msgstr ""
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr ""
+
+msgid "Time shift will get saved at end of event!"
 msgstr ""
 
 #
@@ -20988,53 +21053,6 @@ msgstr ""
 #
 msgid "Timeshift"
 msgstr "Tiidsskowen"
-
-msgid "Time Shift Settings"
-msgstr ""
-
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr ""
-
-msgid "Time shift checking for free space"
-msgstr ""
-
-msgid "Time shift checking for older files"
-msgstr ""
-
-msgid "Time shift event based file splitting"
-msgstr ""
-
-msgid "Time shift event limit"
-msgstr ""
-
-#
-msgid "Time shift buffer location"
-msgstr ""
-
-#
-msgid "Time shift not possible!"
-msgstr "Tiidsskowen is net mooglik !"
-
-msgid "Time shift save failed!"
-msgstr ""
-
-msgid "Time shift save recording (Select event)"
-msgstr ""
-
-msgid "Time shift save recording (stop after current event)"
-msgstr ""
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr ""
-
-msgid "Time shift will get saved at end of event!"
-msgstr ""
-
-msgid "Time shift save action on zap"
-msgstr ""
 
 msgid "Timezone"
 msgstr ""
@@ -23679,10 +23697,10 @@ msgstr "[favorieten bewurkje]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[Timeshift] Restarting time shift!"
+msgid "[Timeshift] Merging records failed!"
 msgstr ""
 
-msgid "[Timeshift] Merging records failed!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
 #

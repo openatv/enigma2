@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -870,8 +870,20 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Jour"
+msgstr[1] "%d Jours"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -927,6 +939,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minute"
+msgstr[1] "%d Minutes"
 
 #, python-format
 msgid "%d Minutes"
@@ -5152,11 +5170,11 @@ msgstr "Créer : Sauvegarde complète de récupération %s"
 msgid "Creating .ap and .sc files"
 msgstr "Création des fichiers AP et SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Création du lien matériel (hardlink) vers le fichier de PauseDirect a échoué !"
-
 msgid "Creating file system"
 msgstr "Création du système de fichiers"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Création du lien matériel (hardlink) vers le fichier de PauseDirect a échoué !"
 
 msgid "Creating partition"
 msgstr "Création de la partition"
@@ -11389,9 +11407,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Aucun enregistreur TS disponible"
 
-msgid "No time shift found to save as recording!"
-msgstr "Pas de fichier PauseDirect trouvé à sauvegarder comme enregistrement !"
-
 msgid "No active channel found."
 msgstr "Aucune chaîne active trouvée."
 
@@ -11512,6 +11527,9 @@ msgstr "Aucun tuner satellite convenable trouvé !"
 
 msgid "No tags are set on these movies."
 msgstr "Aucune étiquette définie sur ces films."
+
+msgid "No time shift found to save as recording!"
+msgstr "Pas de fichier PauseDirect trouvé à sauvegarder comme enregistrement !"
 
 msgid "No timeout"
 msgstr "Pas de délai dépassé"
@@ -12502,6 +12520,12 @@ msgstr "Titre de jeu"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Lire/voir/éditer/installer/extraire/exécuter un fichier ou entrer dans un répertoire"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Enregistrements & PauseDirect"
 
 msgid "Playlist"
 msgstr "Liste de lecture"
@@ -13777,9 +13801,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Enregistrements"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Enregistrements & PauseDirect"
-
 msgid "Recordings abort PiP"
 msgstr "Enregistrements annule le PiP"
 
@@ -14676,11 +14697,11 @@ msgstr "Sauvegarder le PauseDirect comme film et arrêter l'enregistrement"
 msgid "Saving EPG Cache..."
 msgstr "Sauvegarde du cache EPG…"
 
-msgid "Saving time shift files"
-msgstr "Sauvegarde des fichiers PauseDirect"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Sauvegarde du PauseDirect en tant que film. Cela peut prendre un certains temps !"
+
+msgid "Saving time shift files"
+msgstr "Sauvegarde des fichiers PauseDirect"
 
 msgid "Scaler sharpness"
 msgstr "Niveau netteté"
@@ -15078,11 +15099,17 @@ msgstr "Sélection LAN/WiFi"
 msgid "Select Location"
 msgstr "Choisir l'emplacement"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Sélectionner les canaux quadruples"
 
 msgid "Select Software Update"
 msgstr "Choisir mise à jour logiciel"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Choisissez la source de mise à niveau"
@@ -18276,13 +18303,6 @@ msgstr ""
 "Veuillez l'installer."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
-"Soyez certains qu'il est formaté en ext2, ext3 ou ext4 !"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18419,6 +18439,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
+"Soyez certains qu'il est formaté en ext2, ext3 ou ext4 !"
 
 msgid "The following files were found..."
 msgstr "Les fichiers suivant ont été trouvés..."
@@ -18994,6 +19021,9 @@ msgstr "Configuration de l'heure"
 msgid "Time Setup Actions"
 msgstr "Actions de réglage de l'heure"
 
+msgid "Time Shift Settings"
+msgstr "Configuration de PauseDirect"
+
 msgid "Time Update in Minutes:"
 msgstr "Mise à jour de l'heure en minutes :"
 
@@ -19037,6 +19067,54 @@ msgstr "Temps long"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Temps requis pour ce processus : %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "PauseDirect effacer le buffer après un zap ?"
+
+msgid "Time shift buffer limit"
+msgstr "PauseDirect limite du buffer [en heures]"
+
+msgid "Time shift buffer location"
+msgstr "Emplacement PauseDirect"
+
+msgid "Time shift checking for free space"
+msgstr "PauseDirect vérification de l'espace libre ?"
+
+msgid "Time shift checking for older files"
+msgstr "PauseDirect vérification pour des anciens fichiers [en minutes]"
+
+msgid "Time shift event based file splitting"
+msgstr "PauseDirect découper les fichiers sur base des évènements"
+
+msgid "Time shift event limit"
+msgstr "PauseDirect derniers événements limite [nombre d'événements]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+# TODO
+msgid "Time shift not possible!"
+msgstr "Le décalage temporel n'est pas possible !"
+
+msgid "Time shift save action on zap"
+msgstr "PauseDirect - sauvegarde lorsqu'on zappe"
+
+msgid "Time shift save failed!"
+msgstr "La sauvegarde du PauseDirect a échoué !"
+
+# TODO
+msgid "Time shift save recording (Select event)"
+msgstr "PauseDirect sauvegarder l'enregistrement (Sélectionner l'événement)"
+
+# TODO
+msgid "Time shift save recording (stop after current event)"
+msgstr "PauseDirect sauvegarder l'enregistrement (arrêter après événement en cours)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "PauseDirect sauvegardé sur le disque dur !"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "PauseDirect sera sauvegardé à la fin de l'événement !"
 
 msgid "Time style"
 msgstr "Style de temps"
@@ -19125,54 +19203,6 @@ msgstr "Programmations"
 
 msgid "Timeshift"
 msgstr "PauseDirect"
-
-msgid "Time Shift Settings"
-msgstr "Configuration de PauseDirect"
-
-msgid "Time shift buffer delete after zap"
-msgstr "PauseDirect effacer le buffer après un zap ?"
-
-msgid "Time shift buffer limit"
-msgstr "PauseDirect limite du buffer [en heures]"
-
-msgid "Time shift checking for free space"
-msgstr "PauseDirect vérification de l'espace libre ?"
-
-msgid "Time shift checking for older files"
-msgstr "PauseDirect vérification pour des anciens fichiers [en minutes]"
-
-msgid "Time shift event based file splitting"
-msgstr "PauseDirect découper les fichiers sur base des évènements"
-
-msgid "Time shift event limit"
-msgstr "PauseDirect derniers événements limite [nombre d'événements]"
-
-msgid "Time shift buffer location"
-msgstr "Emplacement PauseDirect"
-
-# TODO
-msgid "Time shift not possible!"
-msgstr "Le décalage temporel n'est pas possible !"
-
-msgid "Time shift save failed!"
-msgstr "La sauvegarde du PauseDirect a échoué !"
-
-# TODO
-msgid "Time shift save recording (Select event)"
-msgstr "PauseDirect sauvegarder l'enregistrement (Sélectionner l'événement)"
-
-# TODO
-msgid "Time shift save recording (stop after current event)"
-msgstr "PauseDirect sauvegarder l'enregistrement (arrêter après événement en cours)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "PauseDirect sauvegardé sur le disque dur !"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "PauseDirect sera sauvegardé à la fin de l'événement !"
-
-msgid "Time shift save action on zap"
-msgstr "PauseDirect - sauvegarde lorsqu'on zappe"
 
 msgid "Timezone"
 msgstr ""
@@ -21671,11 +21701,11 @@ msgstr "[Edition des favoris]"
 msgid "[Image Info]\n"
 msgstr "[Info Image]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[PauseDirect] Redémarrage du PauseDirect !"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[PauseDirect] La fusion des enregistrements a échoué !"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[PauseDirect] Redémarrage du PauseDirect !"
 
 msgid "[alternative edit]"
 msgstr "[Édition alternatif]"
@@ -23065,18 +23095,6 @@ msgstr "Votre %s %s pourrait être inutilisable maintenant. Merci de consulter l
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Jour"
-msgstr[1] "%d Jours"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minute"
-msgstr[1] "%d Minutes"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -968,6 +968,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d GB"
 msgstr ""
 
@@ -1021,6 +1028,14 @@ msgid_plural "%d Mins"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minuta"
+msgstr[1] "%d Minuti"
+msgstr[2] "%d Minut"
 
 #, python-format
 msgid "%d Minutes"
@@ -5698,12 +5713,12 @@ msgstr ""
 msgid "Creating .ap and .sc files"
 msgstr ""
 
-msgid "Creating hard link to time shift file failed!"
-msgstr ""
-
 #, fuzzy
 msgid "Creating file system"
 msgstr "Izdelava datotečnega sistema"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr ""
 
 #, fuzzy
 msgid "Creating partition"
@@ -12702,9 +12717,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Opis ni na voljo."
 
-msgid "No time shift found to save as recording!"
-msgstr ""
-
 msgid "No active channel found."
 msgstr ""
 
@@ -12856,6 +12868,9 @@ msgstr "Ni možno najti DVB-C kanalnika!"
 #
 msgid "No tags are set on these movies."
 msgstr "Ni postavljenih oznak na prikazanih filmih."
+
+msgid "No time shift found to save as recording!"
+msgstr ""
 
 #
 #, fuzzy
@@ -13976,6 +13991,12 @@ msgid "Play title"
 msgstr "Čas začetka"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
+msgstr ""
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
 msgstr ""
 
 msgid "Playlist"
@@ -15414,9 +15435,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Posnetki"
 
-msgid "Playback, Recording & Time Shift"
-msgstr ""
-
 msgid "Recordings abort PiP"
 msgstr ""
 
@@ -16439,10 +16457,10 @@ msgstr ""
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving time shift files"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift files"
 msgstr ""
 
 #
@@ -16885,10 +16903,16 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Software Update"
+msgstr ""
+
+msgid "Select Time Shift Location"
 msgstr ""
 
 #
@@ -20446,11 +20470,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20571,6 +20590,11 @@ msgid ""
 "The energy timer wants to set the %s %s to %s.\n"
 "\n"
 "Press OK to continue using the %s %s."
+msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
 #
@@ -21163,6 +21187,9 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr ""
+
 #
 msgid "Time Update in Minutes:"
 msgstr "Čas obnavljanja (v minutah)"
@@ -21208,6 +21235,53 @@ msgstr "Dnevnik časovnika"
 
 #, python-format
 msgid "Time required for this process: %s"
+msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+#
+msgid "Time shift buffer location"
+msgstr "Lokacija časovnega zamika"
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+#
+msgid "Time shift not possible!"
+msgstr "Časovni zamik ni možen!"
+
+msgid "Time shift save action on zap"
+msgstr ""
+
+msgid "Time shift save failed!"
+msgstr ""
+
+msgid "Time shift save recording (Select event)"
+msgstr ""
+
+msgid "Time shift save recording (stop after current event)"
+msgstr ""
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr ""
+
+msgid "Time shift will get saved at end of event!"
 msgstr ""
 
 #
@@ -21322,53 +21396,6 @@ msgstr "Časovniki"
 #
 msgid "Timeshift"
 msgstr "Časovni zamik"
-
-msgid "Time Shift Settings"
-msgstr ""
-
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr ""
-
-msgid "Time shift checking for free space"
-msgstr ""
-
-msgid "Time shift checking for older files"
-msgstr ""
-
-msgid "Time shift event based file splitting"
-msgstr ""
-
-msgid "Time shift event limit"
-msgstr ""
-
-#
-msgid "Time shift buffer location"
-msgstr "Lokacija časovnega zamika"
-
-#
-msgid "Time shift not possible!"
-msgstr "Časovni zamik ni možen!"
-
-msgid "Time shift save failed!"
-msgstr ""
-
-msgid "Time shift save recording (Select event)"
-msgstr ""
-
-msgid "Time shift save recording (stop after current event)"
-msgstr ""
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr ""
-
-msgid "Time shift will get saved at end of event!"
-msgstr ""
-
-msgid "Time shift save action on zap"
-msgstr ""
 
 msgid "Timezone"
 msgstr ""
@@ -24061,10 +24088,10 @@ msgstr "[urejanje priljubljenih]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[Timeshift] Restarting time shift!"
+msgid "[Timeshift] Merging records failed!"
 msgstr ""
 
-msgid "[Timeshift] Merging records failed!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
 #
@@ -25638,14 +25665,6 @@ msgstr ""
 
 msgid "®"
 msgstr ""
-
-#
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minuta"
-msgstr[1] "%d Minuti"
-msgstr[2] "%d Minut"
 
 #
 #, fuzzy

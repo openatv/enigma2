@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -868,8 +868,20 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Dag"
+msgstr[1] "%d Dage"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -925,6 +937,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min."
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minut"
+msgstr[1] "%d Minutter"
 
 #, python-format
 msgid "%d Minutes"
@@ -5152,11 +5170,11 @@ msgstr "Opret: Fuld genoprettelsesikkerhedskopi %s"
 msgid "Creating .ap and .sc files"
 msgstr "Opretter AP og SC filer"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Oprettelse af hårdlænke til Timeshift-fil mislykkedes!"
-
 msgid "Creating file system"
 msgstr "Opretter filsystem"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Oprettelse af hårdlænke til Timeshift-fil mislykkedes!"
 
 msgid "Creating partition"
 msgstr "Opretter partition"
@@ -11452,9 +11470,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Ingen TS optager tilgængelig"
 
-msgid "No time shift found to save as recording!"
-msgstr "Timeshift der kan gemmes som optagelse ikke fundet!"
-
 msgid "No active channel found."
 msgstr "Ingen aktiv kanal fundet."
 
@@ -11575,6 +11590,9 @@ msgstr "Ingen passende sat Tuner fundet!"
 
 msgid "No tags are set on these movies."
 msgstr "Ingen etiketter er sat på disse film."
+
+msgid "No time shift found to save as recording!"
+msgstr "Timeshift der kan gemmes som optagelse ikke fundet!"
 
 msgid "No timeout"
 msgstr "Ingen tidsudløb"
@@ -12579,6 +12597,12 @@ msgstr "Afspil titel"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Afspil/se/rediger/installer/udpak/kør fil eller gå i mappe"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Optagelse & Timeshift"
 
 msgid "Playlist"
 msgstr "Afspilningsliste"
@@ -13861,9 +13885,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Optagelser"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Optagelse & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Optagelser afbryder PiP"
 
@@ -14764,11 +14785,11 @@ msgstr "Gem Timeshift som film og stands optagelse"
 msgid "Saving EPG Cache..."
 msgstr "Gemmer EPG mellemlager..."
 
-msgid "Saving time shift files"
-msgstr "Gemmer Timeshift filer"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Gemmer Timeshift som film nu. Dette kan tage et noget tid!"
+
+msgid "Saving time shift files"
+msgstr "Gemmer Timeshift filer"
 
 msgid "Scaler sharpness"
 msgstr "Skaler skarphed"
@@ -15171,11 +15192,17 @@ msgstr "Vælg LAN/WLAN"
 msgid "Select Location"
 msgstr "Vælg placering"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vælg Firdobbel kanaler"
 
 msgid "Select Software Update"
 msgstr "Vælg Software-opdatering"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Vælg opgraderingskilde"
@@ -18408,13 +18435,6 @@ msgstr ""
 "Installer den venligst."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Filsystemer på din Timeshift-enhed understøtter ikke hardlænker.\n"
-"Sikre at den er formateret med EXT2, EXT3 eller EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18551,6 +18571,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Filsystemer på din Timeshift-enhed understøtter ikke hardlænker.\n"
+"Sikre at den er formateret med EXT2, EXT3 eller EXT4!"
 
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
@@ -19125,6 +19152,9 @@ msgstr "Tidsindstillinger"
 msgid "Time Setup Actions"
 msgstr "Tidsopsætning handlinger"
 
+msgid "Time Shift Settings"
+msgstr "Timeshift indstillinger"
+
 msgid "Time Update in Minutes:"
 msgstr "Tidsupdatering i minutter:"
 
@@ -19167,6 +19197,51 @@ msgstr "Tid lang"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Tid nødvendig for denne proces: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift slet mellemlager efter Zap ?"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift mellemlager grænse [i timer]"
+
+msgid "Time shift buffer location"
+msgstr "Placering af Timeshift"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift kik efter fri plads ?"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift kik efter ældre filer [i minutter]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift begivenhedsbaseret filopdeling"
+
+msgid "Time shift event limit"
+msgstr "Timeshift sidste begivenhedsgrænse [antal af begivenheder]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift ikke mulig!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift gem-handling ved Zap"
+
+msgid "Time shift save failed!"
+msgstr "Timeshift gem mislykkedes!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift gem optagelse (vælg begivenhed)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift gem optagelse (stop efter aktuel begivenhed)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift gemt til din harddisk!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift bliver gemt ved slutningen af begivenheden!"
 
 msgid "Time style"
 msgstr "Tidsstil"
@@ -19252,51 +19327,6 @@ msgstr "Timere"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Timeshift indstillinger"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift slet mellemlager efter Zap ?"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift mellemlager grænse [i timer]"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift kik efter fri plads ?"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift kik efter ældre filer [i minutter]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift begivenhedsbaseret filopdeling"
-
-msgid "Time shift event limit"
-msgstr "Timeshift sidste begivenhedsgrænse [antal af begivenheder]"
-
-msgid "Time shift buffer location"
-msgstr "Placering af Timeshift"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift ikke mulig!"
-
-msgid "Time shift save failed!"
-msgstr "Timeshift gem mislykkedes!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Timeshift gem optagelse (vælg begivenhed)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift gem optagelse (stop efter aktuel begivenhed)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift gemt til din harddisk!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift bliver gemt ved slutningen af begivenheden!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift gem-handling ved Zap"
 
 msgid "Timezone"
 msgstr ""
@@ -21803,11 +21833,11 @@ msgstr "[Favorit-redigering]"
 msgid "[Image Info]\n"
 msgstr "[Image Info]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Genstarter Timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Fletning af optagelser mislykkedes!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Genstarter Timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[alternativ redigering]"
@@ -23215,18 +23245,6 @@ msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yde
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Dag"
-msgstr[1] "%d Dage"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minut"
-msgstr[1] "%d Minutter"
 
 #~ msgid "0.2s"
 #~ msgstr "0,2s"

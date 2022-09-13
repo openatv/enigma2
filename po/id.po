@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -1007,6 +1007,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1058,6 +1064,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Mnt"
 msgstr[1] "%d Mnt"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Menit"
+msgstr[1] "%d Menit"
 
 #, python-format
 msgid "%d Minutes"
@@ -5400,11 +5412,11 @@ msgstr ""
 msgid "Creating .ap and .sc files"
 msgstr "Creating .ap and .sc files"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Creating hard link to time shift file failed!"
-
 msgid "Creating file system"
 msgstr "Creating file system"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Creating hard link to time shift file failed!"
 
 msgid "Creating partition"
 msgstr "Creating partition"
@@ -11853,9 +11865,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "No free index available"
 
-msgid "No time shift found to save as recording!"
-msgstr "No time shift found to save as recording!"
-
 msgid "No active channel found."
 msgstr "No active channel found."
 
@@ -11980,6 +11989,9 @@ msgstr "No suitable sat tuner found!"
 
 msgid "No tags are set on these movies."
 msgstr "No tags are set on these movies."
+
+msgid "No time shift found to save as recording!"
+msgstr "No time shift found to save as recording!"
 
 msgid "No timeout"
 msgstr "No timeout"
@@ -13012,6 +13024,12 @@ msgstr "Delay time"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr ""
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Perekaman & Timeshift"
 
 msgid "Playlist"
 msgstr "Playlist"
@@ -14316,9 +14334,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Perekaman"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Perekaman & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Merekam batalkan PIP"
 
@@ -15242,11 +15257,11 @@ msgstr "Save time shift as movie and stop recording"
 msgid "Saving EPG Cache..."
 msgstr "Saving EPG Cache..."
 
-msgid "Saving time shift files"
-msgstr "Saving time shift files"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Saving time shift as movie now. This might take a while!"
+
+msgid "Saving time shift files"
+msgstr "Saving time shift files"
 
 msgid "Scaler sharpness"
 msgstr "Scaler sharpness"
@@ -15648,11 +15663,17 @@ msgstr "Select Lan/Wlan"
 msgid "Select Location"
 msgstr "Select Location"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Select Quad Channels"
 
 msgid "Select Software Update"
 msgstr "Select Software Update"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Select Upgrade Source"
@@ -18936,13 +18957,6 @@ msgstr ""
 "Please install it."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19079,6 +19093,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 
 msgid "The following files were found..."
 msgstr "The following files were found..."
@@ -19669,6 +19690,9 @@ msgstr "Time Settings"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Time Shift Settings"
+
 msgid "Time Update in Minutes:"
 msgstr "Time Update in Minutes:"
 
@@ -19714,6 +19738,51 @@ msgstr "Catatan pewaktu"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr "Time shift buffer delete after zap"
+
+msgid "Time shift buffer limit"
+msgstr "Time shift buffer limit"
+
+msgid "Time shift buffer location"
+msgstr "Time shift buffer location"
+
+msgid "Time shift checking for free space"
+msgstr "Time shift checking for free space"
+
+msgid "Time shift checking for older files"
+msgstr "Time shift checking for older files"
+
+msgid "Time shift event based file splitting"
+msgstr "Time shift event based file splitting"
+
+msgid "Time shift event limit"
+msgstr "Time shift event limit"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Time shift not possible!"
+
+msgid "Time shift save action on zap"
+msgstr "Time shift save action on zap"
+
+msgid "Time shift save failed!"
+msgstr "Time shift save failed!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Time shift save recording (Select event)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Time shift save recording (stop after current event)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Time shift saved to your hard disk drive!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Time shift will get saved at end of event!"
 
 #, fuzzy
 msgid "Time style"
@@ -19806,51 +19875,6 @@ msgstr "Pewaktu"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Time Shift Settings"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Time shift buffer delete after zap"
-
-msgid "Time shift buffer limit"
-msgstr "Time shift buffer limit"
-
-msgid "Time shift checking for free space"
-msgstr "Time shift checking for free space"
-
-msgid "Time shift checking for older files"
-msgstr "Time shift checking for older files"
-
-msgid "Time shift event based file splitting"
-msgstr "Time shift event based file splitting"
-
-msgid "Time shift event limit"
-msgstr "Time shift event limit"
-
-msgid "Time shift buffer location"
-msgstr "Time shift buffer location"
-
-msgid "Time shift not possible!"
-msgstr "Time shift not possible!"
-
-msgid "Time shift save failed!"
-msgstr "Time shift save failed!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Time shift save recording (Select event)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Time shift save recording (stop after current event)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Time shift saved to your hard disk drive!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Time shift will get saved at end of event!"
-
-msgid "Time shift save action on zap"
-msgstr "Time shift save action on zap"
 
 msgid "Timezone"
 msgstr ""
@@ -22397,11 +22421,11 @@ msgstr "[Favorite Edit]"
 msgid "[Image Info]\n"
 msgstr "[Image Info]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Timeshift] Restarting time shift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Merging records failed!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Timeshift] Restarting time shift!"
 
 msgid "[alternative edit]"
 msgstr "[alternative edit]"
@@ -23841,12 +23865,6 @@ msgstr "your %s %s might be unusable now. Please consult the manual for further 
 
 msgid "®"
 msgstr ""
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Menit"
-msgstr[1] "%d Menit"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2d"

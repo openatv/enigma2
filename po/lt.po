@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -874,8 +874,22 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d Diena"
+msgstr[1] "%d Dienos"
+msgstr[2] "%d Dienų"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -934,6 +948,13 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min."
 msgstr[1] "%d min."
 msgstr[2] "%d min."
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d Minutė"
+msgstr[1] "%d Minutės"
+msgstr[2] "%d Minučių"
 
 #, python-format
 msgid "%d Minutes"
@@ -5179,11 +5200,11 @@ msgstr "Sukurti: atkūrimo pilną atsarginę kopiją %s"
 msgid "Creating .ap and .sc files"
 msgstr "Kuriami AP ir SC failai"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
-
 msgid "Creating file system"
 msgstr "Kuriama failų sistema"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Sukurti kieto disko nuorodos į laiko poslinkio failą nepavyko!"
 
 msgid "Creating partition"
 msgstr "Kuriamas skaidinys"
@@ -11415,9 +11436,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Nėra TS įrašymo įrenginio"
 
-msgid "No time shift found to save as recording!"
-msgstr "Laiko poslinkis nenustatytas, kad išsaugoti tuos įrašus!"
-
 msgid "No active channel found."
 msgstr "Aktyvaus kanalo nerasta."
 
@@ -11538,6 +11556,9 @@ msgstr "Nėra tinkamo palydovinio imtuvo!"
 
 msgid "No tags are set on these movies."
 msgstr "Šiems filmams nepriskirti jokie požymiai."
+
+msgid "No time shift found to save as recording!"
+msgstr "Laiko poslinkis nenustatytas, kad išsaugoti tuos įrašus!"
 
 msgid "No timeout"
 msgstr "Nedaryti pertraukos"
@@ -12523,6 +12544,12 @@ msgstr "Leisti pavadinimą"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Leisti/peržiūrėti/redaguoti/įdiegti/išarchyvuoti/paleisti failą arba įvesti katalogą"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Įrašai ir laiko poslinkis"
 
 msgid "Playlist"
 msgstr "Grojaraštis"
@@ -13796,9 +13823,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Įrašai"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Įrašai ir laiko poslinkis"
-
 msgid "Recordings abort PiP"
 msgstr "Įrašai nutraukia PIP"
 
@@ -14691,11 +14715,11 @@ msgstr "Išsaugoti laiko poslinkį, kaip filmą ir nutraukti įrašymą"
 msgid "Saving EPG Cache..."
 msgstr "Išsaugoma EPG talpykla..."
 
-msgid "Saving time shift files"
-msgstr "Išsaugomi laiko poslinkio failai"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Laiko poslinkis išsaugomas, kaip filmas. Tai gali šiek tiek užtrukti!"
+
+msgid "Saving time shift files"
+msgstr "Išsaugomi laiko poslinkio failai"
 
 msgid "Scaler sharpness"
 msgstr "Skalės aštrumas"
@@ -15095,11 +15119,17 @@ msgstr "Pasirinkite tinklą"
 msgid "Select Location"
 msgstr "Pasirinkite vietą"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
 
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Pasirinkite atnaujinimo šaltinį"
@@ -18283,13 +18313,6 @@ msgstr ""
 "Prašome įdiegti."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Įrenginio, kur saugomas laiko poslinkis, failų sistema nepalaiko tiesioginių nuorodų.\n"
-"Įsitikinkite, kad jis formatuotas EXT2, EXT3 arba EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18433,6 +18456,13 @@ msgstr ""
 "Energijos laikmatis nori nustatyti %s %s %s.\n"
 "\n"
 "Paspauskite OK, kad galėtumėte toliau naudoti %s %s."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Įrenginio, kur saugomas laiko poslinkis, failų sistema nepalaiko tiesioginių nuorodų.\n"
+"Įsitikinkite, kad jis formatuotas EXT2, EXT3 arba EXT4!"
 
 msgid "The following files were found..."
 msgstr "Buvo surasti šie failai..."
@@ -19011,6 +19041,9 @@ msgstr "Laiko nustatymai"
 msgid "Time Setup Actions"
 msgstr "Laiko nustatymo veiksmai"
 
+msgid "Time Shift Settings"
+msgstr "Laiko poslinkio nustatymai"
+
 msgid "Time Update in Minutes:"
 msgstr "Laiko atnaujinimas minutėmis:"
 
@@ -19053,6 +19086,51 @@ msgstr "Laikas ilgai"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Laikas, reikalingas šiam procesui: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
+
+msgid "Time shift buffer limit"
+msgstr "Laiko poslinkio atmintinės riba [val]"
+
+msgid "Time shift buffer location"
+msgstr "Laiko poslinkio vieta"
+
+msgid "Time shift checking for free space"
+msgstr "Laiko poslinkio tikrinimas laisvai vietai"
+
+msgid "Time shift checking for older files"
+msgstr "Laiko poslinkis tikrins failų senumą [min]"
+
+msgid "Time shift event based file splitting"
+msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
+
+msgid "Time shift event limit"
+msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Laiko poslinkis negalimas!"
+
+msgid "Time shift save action on zap"
+msgstr "Išsaugoti laiko poslinkį, perjungiant kanalą"
+
+msgid "Time shift save failed!"
+msgstr "Išsaugoti laiko poslinkio nepavyko!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
 
 msgid "Time style"
 msgstr "Laiko stilius"
@@ -19138,51 +19216,6 @@ msgstr "Laikmačiai"
 
 msgid "Timeshift"
 msgstr "Laiko poslinkis"
-
-msgid "Time Shift Settings"
-msgstr "Laiko poslinkio nustatymai"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
-
-msgid "Time shift buffer limit"
-msgstr "Laiko poslinkio atmintinės riba [val]"
-
-msgid "Time shift checking for free space"
-msgstr "Laiko poslinkio tikrinimas laisvai vietai"
-
-msgid "Time shift checking for older files"
-msgstr "Laiko poslinkis tikrins failų senumą [min]"
-
-msgid "Time shift event based file splitting"
-msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
-
-msgid "Time shift event limit"
-msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
-
-msgid "Time shift buffer location"
-msgstr "Laiko poslinkio vieta"
-
-msgid "Time shift not possible!"
-msgstr "Laiko poslinkis negalimas!"
-
-msgid "Time shift save failed!"
-msgstr "Išsaugoti laiko poslinkio nepavyko!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
-
-msgid "Time shift save action on zap"
-msgstr "Išsaugoti laiko poslinkį, perjungiant kanalą"
 
 msgid "Timezone"
 msgstr "Laiko juosta"
@@ -21701,11 +21734,11 @@ msgstr "[mėgstamiausių redagavimas]"
 msgid "[Image Info]\n"
 msgstr "[atvaizdo informacija]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
 
 msgid "[alternative edit]"
 msgstr "[alternatyvus redagavimas]"
@@ -23095,20 +23128,6 @@ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo va
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d Diena"
-msgstr[1] "%d Dienos"
-msgstr[2] "%d Dienų"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d Minutė"
-msgstr[1] "%d Minutės"
-msgstr[2] "%d Minučių"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2 sek."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -989,6 +989,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -1040,6 +1046,12 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuter"
 
 #, python-format
 msgid "%d Minutes"
@@ -5648,12 +5660,12 @@ msgstr ""
 msgid "Creating .ap and .sc files"
 msgstr "Skapar AP och SC Filer"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Det misslyckades skapa Hardlink till Timeshiftfil!"
-
 #
 msgid "Creating file system"
 msgstr "Skapar filsystem"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Det misslyckades skapa Hardlink till Timeshiftfil!"
 
 msgid "Creating partition"
 msgstr "Skapar partition"
@@ -12550,9 +12562,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Inga fria index tillgängliga"
 
-msgid "No time shift found to save as recording!"
-msgstr "Hittade Ingen Timeshiftinspelning att spara!"
-
 msgid "No active channel found."
 msgstr ""
 
@@ -12699,6 +12708,9 @@ msgstr "Ingen lämplig satellitmottagare funnen!"
 #
 msgid "No tags are set on these movies."
 msgstr "Ingen märkning är gjord på dessa filmer."
+
+msgid "No time shift found to save as recording!"
+msgstr "Hittade Ingen Timeshiftinspelning att spara!"
 
 #
 msgid "No timeout"
@@ -13801,6 +13813,12 @@ msgid "Play title"
 msgstr "Fördröjning"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
+msgstr ""
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
 msgstr ""
 
 #
@@ -15223,9 +15241,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Inspelningar"
 
-msgid "Playback, Recording & Time Shift"
-msgstr ""
-
 msgid "Recordings abort PiP"
 msgstr ""
 
@@ -16236,11 +16251,11 @@ msgstr "Spara Timeshift som film och stoppa inspelning"
 msgid "Saving EPG Cache..."
 msgstr "Sparar EPG Cashe..."
 
-msgid "Saving time shift files"
-msgstr "Sparar Timeshiftfiler"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Sparar timeshift som film nu. Detta kan ta flera minuter!"
+
+msgid "Saving time shift files"
+msgstr "Sparar Timeshiftfiler"
 
 #
 msgid "Scaler sharpness"
@@ -16671,12 +16686,18 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
+msgid "Select Movie Location"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Välj allt"
 
 msgid "Select Software Update"
+msgstr ""
+
+msgid "Select Time Shift Location"
 msgstr ""
 
 #
@@ -20184,13 +20205,6 @@ msgstr ""
 "Vänligen installera det."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Filsystemet på din Timeshift-Enhet stöder inte hardlinks.\n"
-"Se till att den är formatterad som EXT2, EXT3 eller EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20311,6 +20325,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Filsystemet på din Timeshift-Enhet stöder inte hardlinks.\n"
+"Se till att den är formatterad som EXT2, EXT3 eller EXT4!"
 
 #
 msgid "The following files were found..."
@@ -20938,6 +20959,9 @@ msgstr "Tidsinställningar"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Timeshift-inställningar"
+
 msgid "Time Update in Minutes:"
 msgstr "Uppdateringsintervall i Minuter:"
 
@@ -20985,6 +21009,53 @@ msgstr "Timer log"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+#
+msgid "Time shift buffer location"
+msgstr "Plats för timeshift"
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+#
+msgid "Time shift not possible!"
+msgstr "Timeshift inte möjligt!"
+
+msgid "Time shift save action on zap"
+msgstr "Spara timeshift åtgärd vid zappning"
+
+msgid "Time shift save failed!"
+msgstr "Sparande av Timeshift misslyckades!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift spara inspelning (Välj händelse)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift spara inspelning (stoppa efter nuvarande händelse)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift sparad till din hårddisk!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift kommer att sparas vid händelsens slut!"
 
 #
 #, fuzzy
@@ -21090,53 +21161,6 @@ msgstr "Timers"
 #
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Timeshift-inställningar"
-
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr ""
-
-msgid "Time shift checking for free space"
-msgstr ""
-
-msgid "Time shift checking for older files"
-msgstr ""
-
-msgid "Time shift event based file splitting"
-msgstr ""
-
-msgid "Time shift event limit"
-msgstr ""
-
-#
-msgid "Time shift buffer location"
-msgstr "Plats för timeshift"
-
-#
-msgid "Time shift not possible!"
-msgstr "Timeshift inte möjligt!"
-
-msgid "Time shift save failed!"
-msgstr "Sparande av Timeshift misslyckades!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Timeshift spara inspelning (Välj händelse)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift spara inspelning (stoppa efter nuvarande händelse)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift sparad till din hårddisk!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift kommer att sparas vid händelsens slut!"
-
-msgid "Time shift save action on zap"
-msgstr "Spara timeshift åtgärd vid zappning"
 
 msgid "Timezone"
 msgstr ""
@@ -23839,11 +23863,11 @@ msgstr "[favoriteditor]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Startar om Timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Sammanfogning av inspelningar misslyckades!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Startar om Timeshift!"
 
 #
 msgid "[alternative edit]"
@@ -25431,12 +25455,6 @@ msgstr ""
 
 msgid "®"
 msgstr ""
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minuter"
 
 #, fuzzy
 #~ msgid "24+ Hours"

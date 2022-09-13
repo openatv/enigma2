@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
-"PO-Revision-Date: 2022-09-10 17:50+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"PO-Revision-Date: 2022-09-13 15:58+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -893,6 +893,12 @@ msgid "%d Digit"
 msgid_plural "%d Digits"
 msgstr[0] "%d Ziffer"
 msgstr[1] "%d Ziffern"
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] "%d Sendung"
+msgstr[1] "%d Sendungen"
 
 #, python-format
 msgid "%d GB"
@@ -5458,11 +5464,11 @@ msgstr "Erstelle: Recovery Fullbackup %s"
 msgid "Creating .ap and .sc files"
 msgstr "Erstelle AP- und SC-Dateien"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Hardlink-Verbindung zur Timeshift-Datei fehlgeschlagen!"
-
 msgid "Creating file system"
 msgstr "Dateisystem erstellen"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Hardlink-Verbindung zur Timeshift-Datei fehlgeschlagen!"
 
 msgid "Creating partition"
 msgstr "Partition erstellen"
@@ -10057,7 +10063,7 @@ msgstr "Ungültig"
 
 #
 msgid "Invalid location!"
-msgstr "Unzulässiger Ort"
+msgstr "Unzulässiger Ort!"
 
 # ScanSetup.py
 msgid "Invalid transponder data"
@@ -12119,9 +12125,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Kein TS-Rekorder verfügbar"
 
-msgid "No time shift found to save as recording!"
-msgstr "Kein Timeshift zur Speicherung als Aufnahme gefunden!"
-
 msgid "No active channel found."
 msgstr "Keinen aktiven Kanal gefunden."
 
@@ -12262,6 +12265,9 @@ msgstr "Keinen passenden SAT Tuner gefunden!"
 #
 msgid "No tags are set on these movies."
 msgstr "Keine Tags für diese Filme gesetzt."
+
+msgid "No time shift found to save as recording!"
+msgstr "Kein Timeshift zur Speicherung als Aufnahme gefunden!"
 
 # UsageConfig.py
 msgid "No timeout"
@@ -13337,6 +13343,12 @@ msgstr "Titel abspielen"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Datei abspielen/anzeigen/bearbeiten/installieren/extrahieren/ausführen oder Verzeichnis eingeben"
 
+msgid "Playback Settings"
+msgstr "Wiedergabe"
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Aufnahmen & Timeshift"
+
 msgid "Playlist"
 msgstr "Playlist"
 
@@ -13413,7 +13425,7 @@ msgstr "Bitte den Namen für den neuen Marker eingeben"
 
 #
 msgid "Please enter a new filename:"
-msgstr "Bitte neuen Dateinamen eingeben"
+msgstr "Bitte neuen Dateinamen eingeben:"
 
 #
 msgid "Please enter filename (empty = use current date)"
@@ -14734,9 +14746,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Aufnahmen"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Aufnahmen & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Bild im Bild bei Aufnahmen beenden"
 
@@ -15709,11 +15718,11 @@ msgstr "Timeshift als Film speichern und Aufnahme beenden"
 msgid "Saving EPG Cache..."
 msgstr "EPG-Cache speichern..."
 
-msgid "Saving time shift files"
-msgstr "Timeshift-Dateien speichern"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Speichere Timeshift als Film. Das kann eine Weile dauern!"
+
+msgid "Saving time shift files"
+msgstr "Timeshift-Dateien speichern"
 
 #
 msgid "Scaler sharpness"
@@ -16142,12 +16151,18 @@ msgstr "Auswahl LAN/WLAN"
 msgid "Select Location"
 msgstr "Speicherort auswählen"
 
+msgid "Select Movie Location"
+msgstr "Filmverzeichnis auswählen"
+
 msgid "Select Quad Channels"
 msgstr "Sendergruppe auswählen"
 
 #
 msgid "Select Software Update"
 msgstr "Software-Update auswählen"
+
+msgid "Select Time Shift Location"
+msgstr "Timeshift Verzeichnis auswählen"
 
 msgid "Select Upgrade Source"
 msgstr "Updatequelle auswählen"
@@ -19549,13 +19564,6 @@ msgstr ""
 "Das EPGSearch-Plugin ist nicht installiert!\n"
 "Bitte installieren Sie es."
 
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Das Dateisystem auf dem Timeshift-Aufnahmegerät unterstützt keine Hardlinks!\n"
-"Stellen Sie sicher, dass es in EXT2, EXT3 oder EXT4 formatiert ist."
-
 # InfoBar.py
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -19707,6 +19715,13 @@ msgstr ""
 "Die Energiesparfunktion will die %s %s auf %s setzen.\n"
 "\n"
 "Drücken Sie OK, um mit %s %s fortzufahren."
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Das Dateisystem auf dem Timeshift-Aufnahmegerät unterstützt keine Hardlinks!\n"
+"Stellen Sie sicher, dass es in EXT2, EXT3 oder EXT4 formatiert ist."
 
 #
 msgid "The following files were found..."
@@ -20329,6 +20344,9 @@ msgstr "Zeit"
 msgid "Time Setup Actions"
 msgstr "Zeiteinstellungs-Aktionen"
 
+msgid "Time Shift Settings"
+msgstr "Timeshift"
+
 msgid "Time Update in Minutes:"
 msgstr "Updatezeit in Minuten:"
 
@@ -20364,7 +20382,7 @@ msgstr "Zeitsprung Multiplikator für schnellen Vorlauf"
 
 #
 msgid "Time jump repeat interval for fast forward/backward"
-msgstr "Zeitsprünge: Wiederholungsintervall für schnellen Vorlauf/Rücklauf"
+msgstr "Zeitsprünge: Wdh.-Intervall für schnellen Vor-/Rücklauf"
 
 #
 msgid "Time jump: Use normal fast forward for speeds"
@@ -20377,6 +20395,53 @@ msgstr "Time lang"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Zeit für den gesamten Vorgang: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift-Puffer beim Umschalten löschen"
+
+msgid "Time shift buffer limit"
+msgstr "Timeshift zwischenspeichern (in Stunden)"
+
+#
+msgid "Time shift buffer location"
+msgstr "Timeshift-Verzeichnis"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift-Überprüfung auf freien Speicherplatz"
+
+msgid "Time shift checking for older files"
+msgstr "Timeshift-Überprüfung auf ältere Dateien (in Minuten)"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift-Dateien sendungsbasiert aufteilen"
+
+msgid "Time shift event limit"
+msgstr "Timeshift auf eine Anzahl von Sendungen begrenzen"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr "Ohne ein akzeptables Verzeichnis funktioniert Timeshift möglicherweise nicht richtig."
+
+#
+msgid "Time shift not possible!"
+msgstr "Timeshift nicht möglich!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift speichern beim Umschalten"
+
+msgid "Time shift save failed!"
+msgstr "Speichern von Timeshift fehlgeschlagen!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift-Aufnahme speichern (Wähle Sendung)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift-Aufnahme speichern (Stopp nach laufender Sendung)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift auf Festplatte gespeichert!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift wird am Ende des Ereignisses gespeichert!"
 
 msgid "Time style"
 msgstr "Zeitformat"
@@ -20474,53 +20539,6 @@ msgstr "Timer"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Timeshift"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift-Puffer beim Umschalten löschen"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift zwischenspeichern (in Stunden)"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift-Überprüfung auf freien Speicherplatz"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift-Überprüfung auf ältere Dateien (in Minuten)"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift-Dateien sendungsbasiert aufteilen"
-
-msgid "Time shift event limit"
-msgstr "Timeshift auf eine Anzahl von Sendungen begrenzen"
-
-#
-msgid "Time shift buffer location"
-msgstr "Timeshift-Verzeichnis"
-
-#
-msgid "Time shift not possible!"
-msgstr "Timeshift nicht möglich!"
-
-msgid "Time shift save failed!"
-msgstr "Speichern von Timeshift fehlgeschlagen!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Timeshift-Aufnahme speichern (Wähle Sendung)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift-Aufnahme speichern (Stopp nach laufender Sendung)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift auf Festplatte gespeichert!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift wird am Ende des Ereignisses gespeichert!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift speichern beim Umschalten"
 
 msgid "Timezone"
 msgstr "Zeitzone"
@@ -23263,11 +23281,11 @@ msgstr "[Favoriten-Editor]"
 msgid "[Image Info]\n"
 msgstr "[Image-Informationen]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "Timeshift wird erneut gestartet!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "Timeshift - Zusammenfügen der Aufnahmen fehlgeschlagen!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "Timeshift wird erneut gestartet!"
 
 msgid "[alternative edit]"
 msgstr "[Alternativen-Bearbeitung]"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -910,6 +910,11 @@ msgid_plural "%d Digits"
 msgstr[0] ""
 
 #, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
@@ -959,6 +964,11 @@ msgstr ""
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d phút"
 
 #, python-format
 msgid "%d Minutes"
@@ -5221,11 +5231,11 @@ msgstr "Tạo: Phục hồi Fullbackup%s"
 msgid "Creating .ap and .sc files"
 msgstr "Tạo tập tin AP và SC"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
-
 msgid "Creating file system"
 msgstr "Tạo hệ thống tập tin"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
 
 msgid "Creating partition"
 msgstr "Tạo phân vùng"
@@ -11604,9 +11614,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "Không có chỉ số miễn phí có sẵn"
 
-msgid "No time shift found to save as recording!"
-msgstr "Không tìm thấy Timeshift để lưu dưới dạng ghi âm!"
-
 msgid "No active channel found."
 msgstr "Không tìm thấy kênh hoạt động."
 
@@ -11729,6 +11736,9 @@ msgstr "Không tìm thấy sat tuner phù hợp!"
 
 msgid "No tags are set on these movies."
 msgstr "Không có thẻ được đặt trên những bộ phim này."
+
+msgid "No time shift found to save as recording!"
+msgstr "Không tìm thấy Timeshift để lưu dưới dạng ghi âm!"
 
 msgid "No timeout"
 msgstr "Không có thời gian chờ"
@@ -12736,6 +12746,12 @@ msgstr "Chơi tiêu đề"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Phát / xem / chỉnh sửa / cài đặt / giải nén / chạy tệp hoặc vào thư mục"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Ghi âm & Timeshift"
 
 msgid "Playlist"
 msgstr "Danh sách phát"
@@ -14025,9 +14041,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Ghi chép"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "Ghi âm & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Bản ghi hủy bỏ PIP"
 
@@ -14933,11 +14946,11 @@ msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
 msgid "Saving EPG Cache..."
 msgstr "Lưu bộ nhớ cache EPG ..."
 
-msgid "Saving time shift files"
-msgstr "Lưu tập tin Timeshift"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Tiết kiệm timeshift như phim bây giờ. Có lẽ sẽ mất một lúc!"
+
+msgid "Saving time shift files"
+msgstr "Lưu tập tin Timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Độ sắc nét"
@@ -15337,11 +15350,17 @@ msgstr "Chọn Lan / Wlan"
 msgid "Select Location"
 msgstr "Chọn địa điểm"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Chọn kênh Quad"
 
 msgid "Select Software Update"
 msgstr "Chọn Cập nhật phần mềm"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Chọn nguồn nâng cấp"
@@ -18584,13 +18603,6 @@ msgstr ""
 "Vui lòng cài đặt nó."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
-"Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18725,6 +18737,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
+"Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
 
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
@@ -19303,6 +19322,9 @@ msgstr "Cài đặt thời gian"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Cài đặt thời gian"
+
 msgid "Time Update in Minutes:"
 msgstr "Cập nhật thời gian trong vài phút:"
 
@@ -19346,6 +19368,51 @@ msgstr "Thời gian dài"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Thời gian cần thiết cho quá trình này:% s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift đệm xóa sau zap?"
+
+msgid "Time shift buffer limit"
+msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
+
+msgid "Time shift buffer location"
+msgstr "Địa điểm hẹn giờ"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift kiểm tra không gian miễn phí?"
+
+msgid "Time shift checking for older files"
+msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
+
+msgid "Time shift event limit"
+msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift không thể!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift-lưu hành động trên zap"
+
+msgid "Time shift save failed!"
+msgstr "Lưu thời gian không thành công!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift lưu vào đĩa cứng của bạn!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
 
 msgid "Time style"
 msgstr "Phong cách thời gian"
@@ -19436,51 +19503,6 @@ msgstr "Bộ hẹn giờ"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Time Shift Settings"
-msgstr "Cài đặt thời gian"
-
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift đệm xóa sau zap?"
-
-msgid "Time shift buffer limit"
-msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
-
-msgid "Time shift checking for free space"
-msgstr "Timeshift kiểm tra không gian miễn phí?"
-
-msgid "Time shift checking for older files"
-msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
-
-msgid "Time shift event limit"
-msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
-
-msgid "Time shift buffer location"
-msgstr "Địa điểm hẹn giờ"
-
-msgid "Time shift not possible!"
-msgstr "Timeshift không thể!"
-
-msgid "Time shift save failed!"
-msgstr "Lưu thời gian không thành công!"
-
-msgid "Time shift save recording (Select event)"
-msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift lưu vào đĩa cứng của bạn!"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
-
-msgid "Time shift save action on zap"
-msgstr "Timeshift-lưu hành động trên zap"
 
 msgid "Timezone"
 msgstr ""
@@ -22008,11 +22030,11 @@ msgstr "[chỉnh sửa yêu thích]"
 msgid "[Image Info]\n"
 msgstr "[Thông tin hình ảnh]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] Khởi động lại Timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Hồ sơ hợp nhất thất bại!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Khởi động lại Timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[chỉnh sửa thay thế]"
@@ -23420,11 +23442,6 @@ msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui
 
 msgid "®"
 msgstr ""
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d phút"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 12:56+0000\n"
+"POT-Creation-Date: 2022-09-12 11:15+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -869,8 +869,20 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d 天"
+msgstr[1] "%d 天"
+
+#, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -924,6 +936,12 @@ msgstr ""
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
+msgstr[0] "%d 分钟"
+msgstr[1] "%d 分钟"
+
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
 msgstr[0] "%d 分钟"
 msgstr[1] "%d 分钟"
 
@@ -5145,11 +5163,11 @@ msgstr "创建:恢复完整备份 %s"
 msgid "Creating .ap and .sc files"
 msgstr "创建AP和SC文件"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "创建硬连接到时移文件失败！"
-
 msgid "Creating file system"
 msgstr "创建文件系统"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "创建硬连接到时移文件失败！"
 
 msgid "Creating partition"
 msgstr "创建分区"
@@ -11372,9 +11390,6 @@ msgstr ""
 msgid "No TS recorder available"
 msgstr "没有可用的TS录制"
 
-msgid "No time shift found to save as recording!"
-msgstr "没有发现要保存为录像的时移！"
-
 msgid "No active channel found."
 msgstr "没有找到活动的频道."
 
@@ -11495,6 +11510,9 @@ msgstr "没有找到合适的卫星调谐器！"
 
 msgid "No tags are set on these movies."
 msgstr "这些电影没有设置标签."
+
+msgid "No time shift found to save as recording!"
+msgstr "没有发现要保存为录像的时移！"
 
 msgid "No timeout"
 msgstr "不超时"
@@ -12480,6 +12498,12 @@ msgstr "播放标题"
 
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "播放/查看/编辑/安装/解压缩/运行文件或输入目录"
+
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "录制/时移"
 
 msgid "Playlist"
 msgstr "Playlist键"
@@ -13753,9 +13777,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "录制中"
 
-msgid "Playback, Recording & Time Shift"
-msgstr "录制/时移"
-
 msgid "Recordings abort PiP"
 msgstr "录制中止画中画"
 
@@ -14648,11 +14669,11 @@ msgstr "保存时移为影片并停止录制"
 msgid "Saving EPG Cache..."
 msgstr "保存EPG缓存..."
 
-msgid "Saving time shift files"
-msgstr "保存时移文件"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "正在保存时移为影片.这需要一定时间！"
+
+msgid "Saving time shift files"
+msgstr "保存时移文件"
 
 msgid "Scaler sharpness"
 msgstr "清晰度"
@@ -15050,11 +15071,17 @@ msgstr "选择 有线/无线网络"
 msgid "Select Location"
 msgstr "选择位置"
 
+msgid "Select Movie Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "选择四画面频道"
 
 msgid "Select Software Update"
 msgstr "选择软件更新"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "选择升级源"
@@ -18236,13 +18263,6 @@ msgstr ""
 "请安装."
 
 msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"时移录制设备文件系统格式不支持.\n"
-"请确保它的格式为EXT2,EXT3或者EXT4！"
-
-msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18379,6 +18399,13 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"时移录制设备文件系统格式不支持.\n"
+"请确保它的格式为EXT2,EXT3或者EXT4！"
 
 msgid "The following files were found..."
 msgstr "找到以下文件..."
@@ -18952,6 +18979,9 @@ msgstr "时间设置"
 msgid "Time Setup Actions"
 msgstr "时间设置操作"
 
+msgid "Time Shift Settings"
+msgstr "时移设置"
+
 msgid "Time Update in Minutes:"
 msgstr "以分钟为单位更新:"
 
@@ -18994,6 +19024,51 @@ msgstr "Time键 长按"
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "此过程所需的时间：%s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "切换后是否删除时移缓存?"
+
+msgid "Time shift buffer limit"
+msgstr "时移缓冲区限制[小时]"
+
+msgid "Time shift buffer location"
+msgstr "时移位置"
+
+msgid "Time shift checking for free space"
+msgstr "时移剩余空间检查？"
+
+msgid "Time shift checking for older files"
+msgstr "时移旧文件检查[分钟]"
+
+msgid "Time shift event based file splitting"
+msgstr "基于文件拆分的时移事件"
+
+msgid "Time shift event limit"
+msgstr "时移最后一个事件限制[事件数量]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "暂时不能时移！"
+
+msgid "Time shift save action on zap"
+msgstr "换台时时移保存操作"
+
+msgid "Time shift save failed!"
+msgstr "时移保存失败！"
+
+msgid "Time shift save recording (Select event)"
+msgstr "保存时移录制(选择事件)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "保存时移录像 (当前事件停止后)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "时移已保存到硬盘！"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "时移将在事件结束时保存！"
 
 msgid "Time style"
 msgstr "时间格式"
@@ -19079,51 +19154,6 @@ msgstr "定时器"
 
 msgid "Timeshift"
 msgstr "时移"
-
-msgid "Time Shift Settings"
-msgstr "时移设置"
-
-msgid "Time shift buffer delete after zap"
-msgstr "切换后是否删除时移缓存?"
-
-msgid "Time shift buffer limit"
-msgstr "时移缓冲区限制[小时]"
-
-msgid "Time shift checking for free space"
-msgstr "时移剩余空间检查？"
-
-msgid "Time shift checking for older files"
-msgstr "时移旧文件检查[分钟]"
-
-msgid "Time shift event based file splitting"
-msgstr "基于文件拆分的时移事件"
-
-msgid "Time shift event limit"
-msgstr "时移最后一个事件限制[事件数量]"
-
-msgid "Time shift buffer location"
-msgstr "时移位置"
-
-msgid "Time shift not possible!"
-msgstr "暂时不能时移！"
-
-msgid "Time shift save failed!"
-msgstr "时移保存失败！"
-
-msgid "Time shift save recording (Select event)"
-msgstr "保存时移录制(选择事件)"
-
-msgid "Time shift save recording (stop after current event)"
-msgstr "保存时移录像 (当前事件停止后)"
-
-msgid "Time shift saved to your hard disk drive!"
-msgstr "时移已保存到硬盘！"
-
-msgid "Time shift will get saved at end of event!"
-msgstr "时移将在事件结束时保存！"
-
-msgid "Time shift save action on zap"
-msgstr "换台时时移保存操作"
 
 msgid "Timezone"
 msgstr "时区"
@@ -21613,11 +21643,11 @@ msgstr "[喜爱频道编辑]"
 msgid "[Image Info]\n"
 msgstr "[镜像信息]\n"
 
-msgid "[Timeshift] Restarting time shift!"
-msgstr "[时移]重启时移!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[时移]合并录像失败!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[时移]重启时移!"
 
 msgid "[alternative edit]"
 msgstr "[编辑替代项目]"
@@ -23005,18 +23035,6 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
-
-#, python-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d 天"
-msgstr[1] "%d 天"
-
-#, python-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d 分钟"
-msgstr[1] "%d 分钟"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2秒"
