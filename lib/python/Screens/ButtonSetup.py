@@ -314,9 +314,7 @@ class ButtonSetup(Screen):
 		count = len(BUTTON_SETUP_KEYS) or 10
 		self.buttonList = []
 		for button in BUTTON_SETUP_KEYS:
-			key = button[1]
-			txt = _("%s long") % button[0] if "_long" in key else button[0]
-			self.buttonList.append(ChoiceEntryComponent("dummy", (txt, key)))
+			self.buttonList.append(ChoiceEntryComponent("dummy", (_("%s long" % button[0]) if "_long" in button[1] else button[0], button[1])))
 		self["list"] = ChoiceList(list=self.buttonList[:config.misc.ButtonSetup.additional_keys.value and count], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
@@ -572,14 +570,15 @@ class InfoBarButtonSetup():
 		return selected
 
 	def getName(self, key):
-		return tuple([_("%s long") if "_long" in x[1] else x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
+		return tuple([_("%s long" % x[0]) if "_long" in x[1] else x[0] for x in BUTTON_SETUP_KEYS if x[1] == key])[0]
 
 	def getHelpText(self, key):
 		selected = self.getKeyFunctions(key)
 		if not selected:
 			return
 		if len(selected) == 1:
-			return selected[0][0]
+			button = selected[0]
+			return _("%s long" % button[0]) if "_long" in button[1] else button[0]
 		else:
 			return "%s %s" % (_("ButtonSetup"), self.getName(key))
 
