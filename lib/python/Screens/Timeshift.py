@@ -74,5 +74,9 @@ class TimeshiftSettings(Setup):
 
 	def keySave(self):
 		if self.status:
-			self.session.open(MessageBox, "%s\n\n%s" % (self.status, _("Time shift may not work correctly without an acceptable directory.")), type=MessageBox.TYPE_WARNING)
+			self.session.openWithCallback(self.keySaveCallback, MessageBox, "%s\n\n%s" % (self.status, _("Time shift may not work correctly without an acceptable directory.")), type=MessageBox.TYPE_WARNING)
+		else:
+			Setup.keySave(self)
+
+	def keySaveCallback(self, result):
 		Setup.keySave(self)
