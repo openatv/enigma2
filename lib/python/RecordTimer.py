@@ -1035,7 +1035,7 @@ class RecordTimerEntry(TimerEntry, object):
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
-							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timerout, default=True)
+							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 						else:
 							AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 					else:
