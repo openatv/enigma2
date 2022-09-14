@@ -14,6 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 
 class SkinSelectorBase:
 	DEFAULTSKIN = _("< Default >")
+	METRIX_MYSKIN = "MetrixHD/skin.MySkin.xml"
 
 	def __init__(self, session, args=None):
 		self.skinName = "SkinSelector"
@@ -118,21 +119,16 @@ class SkinSelectorBase:
 
 	def loadPreview(self):
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
-			pngpath = "."
-			pngpath = pathjoin(pathjoin(self.root, pngpath), "prev.png")
+			pngpath = pathjoin(pathjoin(self.root, "."), "prev.png")
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
-			pngpath = "."
-			pngpath = pathjoin(pathjoin(self.root, pngpath), "piconprev.png")
+			pngpath = pathjoin(pathjoin(self.root, "."), "piconprev.png")
 		elif self["SkinList"].getCurrent() == self.ALTERNATESKIN:
-			pngpath = "."
-			pngpath = pathjoin(pathjoin(self.root, pngpath), "alternate.png")
+			pngpath = pathjoin(pathjoin(self.root, "."), "alternate.png")
 		elif self["SkinList"].getCurrent() == self.USERSKIN:
-			pngpath = "."
-			pngpath = pathjoin(pathjoin(self.root, pngpath), "userskin.png")
+			pngpath = pathjoin(pathjoin(self.root, "."), "userskin.png")
 		else:
-			pngpath = self["SkinList"].getCurrent()
 			try:
-				pngpath = pathjoin(pathjoin(self.root, pngpath), "prev.png")
+				pngpath = pathjoin(pathjoin(self.root, self["SkinList"].getCurrent()), "prev.png")
 			except OSError:
 				pass
 
@@ -151,15 +147,15 @@ class SkinSelectorBase:
 				self.config.save()
 			else:
 				try:
-					if self.config.value == "MetrixHD/skin.MySkin.xml":
+					if self.config.value == self.METRIX_MYSKIN:
 						from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
 						ActivateSkinSettings().RefreshIcons(True)  # restore default icons
 				except:
 					pass
 				self.config.value = self.skinfile
 				# Restore MySkin setting if skin.MySkin.xml exists
-				if self.skinfile == "MetrixHD/skin.xml" and isfile(resolveFilename(SCOPE_GUISKIN, "MetrixHD/skin.MySkin.xml")):
-					self.config.value = "MetrixHD/skin.MySkin.xml"
+				if self.skinfile == "MetrixHD/skin.xml" and isfile(resolveFilename(SCOPE_GUISKIN, self.METRIX_MYSKIN)):
+					self.config.value = self.METRIX_MYSKIN
 				self.config.save()
 			self.session.open(TryQuitMainloop, 3)
 
