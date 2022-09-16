@@ -1,23 +1,23 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
 from twisted.internet import threads
+from enigma import eTimer, iPlayableService, iServiceInformation
+
 from Components.config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation, iServiceInformation
-import NavigationInstance
-from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
-from boxbranding import getMachineBuild
-from time import time
 import Components.RecordingConfig
+import NavigationInstance
+from Tools.Directories import fileExists
 
-POLLTIME = 5 # seconds
+POLLTIME = 5  # seconds
+
+BOX_TYPE = BoxInfo.getItem("machinebuild")
+MODEL = BoxInfo.getItem("model")
 
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if BoxInfo.getItem("model") in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or getMachineBuild() in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008'):
+		if BOX_TYPE in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx', 'dual') or MODEL in ('dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'gbmv200', 'cc1', 'sfx6008'):
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -58,7 +58,7 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		if getMachineBuild() == 'u41':
+		if MODEL == 'u41':
 			self.Resolution()
 			self.Audio()
 			self.Crypted()
@@ -79,19 +79,19 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_circle", "w").write("3")
 			else:
 				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-		elif BoxInfo.getItem("model") in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and fileExists("/proc/stb/lcd/symbol_recording"):
+		elif BOX_TYPE in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and fileExists("/proc/stb/lcd/symbol_recording"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-		elif getMachineBuild() == 'u41' and fileExists("/proc/stb/lcd/symbol_pvr2"):
+		elif MODEL == 'u41' and fileExists("/proc/stb/lcd/symbol_pvr2"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_pvr2", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_pvr2", "w").write("0")
-		elif BoxInfo.getItem("model") in ('alien5', 'osninopro', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and fileExists("/proc/stb/lcd/powerled"):
+		elif BOX_TYPE in ('alien5', 'osninopro', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and fileExists("/proc/stb/lcd/powerled"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -103,7 +103,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif BoxInfo.getItem("model") in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and fileExists("/proc/stb/lcd/powerled"):
+		elif BOX_TYPE in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and fileExists("/proc/stb/lcd/powerled"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -115,7 +115,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("1")
-		elif BoxInfo.getItem("model") in ('dm7020hd', 'dm7020hdv2') and fileExists("/proc/stb/fp/led_set"):
+		elif BOX_TYPE in ('dm7020hd', 'dm7020hdv2') and fileExists("/proc/stb/fp/led_set"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -127,7 +127,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			else:
 				open("/proc/stb/fp/led_set", "w").write("0xffffffff")
-		elif getMachineBuild() in ('dags7362', 'dags73625', 'dags5') or BoxInfo.getItem("model") in ('tmtwin4k', 'revo4k', 'force3uhd') and fileExists("/proc/stb/lcd/symbol_rec"):
+		elif MODEL in ('dags7362', 'dags73625', 'dags5') or BOX_TYPE in ('tmtwin4k', 'revo4k', 'force3uhd') and fileExists("/proc/stb/lcd/symbol_rec"):
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -139,7 +139,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-		elif getMachineBuild() in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008') and fileExists("/proc/stb/fp/ledpowercolor"):
+		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008') and fileExists("/proc/stb/fp/ledpowercolor"):
 			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
