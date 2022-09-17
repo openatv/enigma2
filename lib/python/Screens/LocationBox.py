@@ -20,14 +20,15 @@ from Tools.Directories import createDir, pathExists, removeDir
 from Tools.NumericalTextInput import NumericalTextInput
 
 
-DEFAULT_INHIBIT_DIRECTORIES = ("/", "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/media", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
+DEFAULT_INHIBIT_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
 defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
 DEFAULT_INHIBIT_DEVICES = []
-for dir in DEFAULT_INHIBIT_DIRECTORIES:
+for dir in DEFAULT_INHIBIT_DIRECTORIES + ("/", "/media"):
 	if isdir(dir):
 		device = stat(dir).st_dev
 		if device not in DEFAULT_INHIBIT_DEVICES:
 			DEFAULT_INHIBIT_DEVICES.append(device)
+DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
 
 
 # Generic screen to select a path/filename combination.
@@ -383,6 +384,26 @@ class MovieLocationBox(LocationBox):
 			# inhibitMounts=None
 		)
 		self.skinName = ["MovieLocationBox", "LocationBox"]
+
+
+class PlaybackLocationBox(LocationBox):
+	def __init__(self, session):
+		LocationBox.__init__(
+			self,
+			session,
+			text=_("Where do you want to set as the default movie location?"),
+			# filename="",
+			currDir=config.usage.default_path.value,
+			bookmarks=config.movielist.videodirs,
+			# userMode=False,
+			windowTitle=_("Select Playback Location"),
+			# minFree=None,
+			autoAdd=True,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
+		)
+		self.skinName = ["PlaybackLocationBox", "LocationBox"]
 
 
 class TimeshiftLocationBox(LocationBox):
