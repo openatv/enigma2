@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2022-09-10 17:50+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1267,6 +1267,10 @@ msgstr "%s wordt niet langer gebruikt. Kan deze verwijderd worden?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s is met wachtwoord beveiligd."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2757,9 +2761,6 @@ msgstr "Beeldverhouding acties"
 msgid "Aspect list..."
 msgstr "Beeldverhouding..."
 
-msgid "Aspect long"
-msgstr "Aspect lang"
-
 msgid "Aspect ratio"
 msgstr "Beeldverhouding"
 
@@ -2842,9 +2843,6 @@ msgstr "Audio taalkeuze 3"
 
 msgid "Audio language selection 4"
 msgstr "Audio taalkeuze 4"
-
-msgid "Audio long"
-msgstr "Audio lang"
 
 msgid "Audio options..."
 msgstr "Audio opties..."
@@ -5085,9 +5083,6 @@ msgstr "De inhoud past niet op een DVD!"
 msgid "Context"
 msgstr "Context"
 
-msgid "Context long"
-msgstr "Context lang"
-
 msgid "Continent"
 msgstr "Continent"
 
@@ -5750,7 +5745,7 @@ msgstr "Standaard map"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Standaard map als de linker of rechter map niet is opgeslagen, en doel map voor knop 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Standaard opnamelocatie"
 
 msgid "Default recording type"
@@ -6131,9 +6126,6 @@ msgstr "Map '%s' niet beschrijfbaar!"
 
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
-
-msgid "Directory long"
-msgstr "Map lang"
 
 msgid "Disable"
 msgstr "Uit"
@@ -6563,6 +6555,9 @@ msgstr "Plug-ins downloaden"
 msgid "Download Softcams"
 msgstr "Download softcams"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Plug-ins en applicaties downloaden"
 
@@ -6660,9 +6655,6 @@ msgstr "ECM tijd"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD lang"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7115,9 +7107,6 @@ msgstr "Codering:"
 msgid "End"
 msgstr "Einde"
 
-msgid "End long"
-msgstr "End lang"
-
 msgid "End time"
 msgstr "Eindtijd"
 
@@ -7292,9 +7281,6 @@ msgstr "Invoer van alleen tekst"
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide lang"
 
 msgid "Equal to"
 msgstr "Gelijk aan"
@@ -7758,26 +7744,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 lang"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 lang"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 lang"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 lang"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7900,9 +7874,6 @@ msgstr "Vooruit-spoelsnelheden"
 msgid "Favorites"
 msgstr "Favoriet"
 
-msgid "Favorites long"
-msgstr "Favoriet lang"
-
 msgid "Feed URL"
 msgstr "Feed URL"
 
@@ -7980,9 +7951,6 @@ msgstr "Bestand checksums berekenen voor knop 9"
 
 msgid "File checksums/hashes"
 msgstr "File checksums/hashes"
-
-msgid "File long"
-msgstr "Bestand lang"
 
 #, python-format
 msgid "File not found: %s"
@@ -8113,9 +8081,6 @@ msgstr "Flash en herstel instellingen, Plug-ins vragen"
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash van map '%s' is niet toegestaan!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Flash uw %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash een image online of via usb naar uw ontvanger."
@@ -8765,9 +8730,6 @@ msgstr "Help-scherminformatie"
 msgid "Help animation speed"
 msgstr "Animatiesnelheid van help pictogrammen"
 
-msgid "Help long"
-msgstr "Help lang"
-
 msgid "Help screen style"
 msgstr "Help-scherm stijl"
 
@@ -8876,9 +8838,6 @@ msgstr "HistoryZap vorige <"
 msgid "History buttons mode"
 msgstr "HistoryZap < > knoppen"
 
-msgid "History long"
-msgstr "History lang"
-
 msgid "History next"
 msgstr "HistoryZap volgende >"
 
@@ -8900,14 +8859,8 @@ msgstr "Vaticaanstad"
 msgid "Home"
 msgstr "Thuis"
 
-msgid "Home long"
-msgstr "Home lang"
-
 msgid "Homepage"
 msgstr "Homepage"
-
-msgid "Homepage long"
-msgstr "Homepage lang"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9369,9 +9322,6 @@ msgstr "Informatie"
 
 msgid "Info (EPG)"
 msgstr "Info (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Info (EPG) lang"
 
 msgid "Info button (long)"
 msgstr "INFO-knop (lang)"
@@ -9847,9 +9797,6 @@ msgstr "Toetsenbord instellingen"
 msgid "Keyboard data entry"
 msgstr "Toetsenbord gegevens invoer"
 
-msgid "Keyboard long"
-msgstr "Toetsenbord lang"
-
 msgid "Keyboard map"
 msgstr "Toetsenbord indeling"
 
@@ -9873,9 +9820,6 @@ msgstr "Kodi MediaCenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi geïnstalleerd:"
-
-msgid "Kodi long"
-msgstr "Kodi Lang"
 
 msgid "Kodi media player"
 msgstr "Kodi Mediaspeler"
@@ -9918,9 +9862,6 @@ msgstr "LAN-adapter"
 
 msgid "LAN connection"
 msgstr "LAN-verbinding"
-
-msgid "LAN long"
-msgstr "LAN lang"
 
 msgid "LCD Skin Settings"
 msgstr "LCD skin selecteren"
@@ -10060,9 +10001,6 @@ msgstr "Links"
 msgid "Left from service name"
 msgstr "Links van de zendernaam"
 
-msgid "Left long"
-msgstr "Links lang"
-
 msgid "Left, wrapped"
 msgstr "Links, er omheen"
 
@@ -10168,9 +10106,6 @@ msgstr[1] "Lijstversie %d, %d zenders gevonden"
 
 msgid "List/Fav"
 msgstr "List/Fav"
-
-msgid "List/Fav long"
-msgstr "List/Fav lang"
 
 msgid "Listen to the radio"
 msgstr "Luister naar de radio"
@@ -10416,9 +10351,6 @@ msgstr "MEER"
 msgid "MOUSE"
 msgstr "MUIS"
 
-msgid "MOUSE long"
-msgstr "Muis lang"
-
 msgid "MTD boot"
 msgstr "MTD boot"
 
@@ -10442,9 +10374,6 @@ msgstr "Madagaskar"
 
 msgid "Magic"
 msgstr "Magic"
-
-msgid "Magic long"
-msgstr "Magic lang"
 
 msgid "Main Menu"
 msgstr "Hoofdmenu"
@@ -10548,9 +10477,6 @@ msgstr "Als 3D zender markeren"
 msgid "Mark/Portal/Playlist"
 msgstr "Markeer/Portaal/Afspeellijst"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark/Portal/Playlist lang"
-
 msgid "Marker Actions"
 msgstr "Marker Acties"
 
@@ -10623,9 +10549,6 @@ msgstr "Mediaspeler instellingen"
 
 msgid "Media Portal"
 msgstr "Media Portaal"
-
-msgid "Media long"
-msgstr "Media lang"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Toon Mediaspeler resterend/verstreken tijd als"
@@ -11480,9 +11403,6 @@ msgstr "Volgende Quad PiP zender"
 msgid "Nextsong"
 msgstr "Volgende nummer"
 
-msgid "Nextsong long"
-msgstr "Nextsong lang"
-
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
@@ -11923,9 +11843,6 @@ msgstr "OK-knop (kort)"
 msgid "OK button mode"
 msgstr "OK-knop functie"
 
-msgid "OK long"
-msgstr "OK lang"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, mij tijdens de software update begeleiden"
 
@@ -12082,9 +11999,6 @@ msgstr "Open het context menu"
 msgid "Open favorites list"
 msgstr "Open de favorietenlijst"
 
-msgid "Open long"
-msgstr "Open lang"
-
 msgid "Open satellites list"
 msgstr "Open satellieten lijst"
 
@@ -12159,9 +12073,6 @@ msgstr "Operationele LED-status wanneer ingeschakeld"
 
 msgid "Option"
 msgstr "Opties"
-
-msgid "Option long"
-msgstr "Optie lang"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Optie om picons uit te schakelen op de informatiebalk"
@@ -12272,9 +12183,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC lang"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12300,10 +12208,6 @@ msgstr "Pincode benodigd"
 msgid "PIP"
 msgstr "PIP"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PiP lang"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12324,9 +12228,6 @@ msgstr "PRIMETIME"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR lang"
 
 msgid "Package Manager"
 msgstr "Pakketbeheer"
@@ -12370,14 +12271,8 @@ msgstr "Pagina lijst omhoog"
 msgid "PageDown"
 msgstr "Knop naar beneden"
 
-msgid "PageDown long"
-msgstr "Knop naar beneden lang"
-
 msgid "PageUp"
 msgstr "Knop naar boven"
-
-msgid "PageUp long"
-msgstr "Knop naar boven lang"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -12645,9 +12540,6 @@ msgstr "Opname & Timeshift"
 
 msgid "Playlist"
 msgstr "Afspeellijst"
-
-msgid "Playlist long"
-msgstr "Afspeellijst lang"
 
 msgid "Playpause"
 msgstr "Speel/pauze"
@@ -13134,9 +13026,6 @@ msgstr "Power LED status tijdens stand-by."
 msgid "Power On Display"
 msgstr "Scherm inschakelen"
 
-msgid "Power long"
-msgstr "Power lang"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Power management. Raadpleeg de handleiding van uw ontvanger voor meer details."
 
@@ -13336,9 +13225,6 @@ msgstr "Vorige/volgende pagina"
 msgid "Prevsong"
 msgstr "Vorige nummer"
 
-msgid "Prevsong long"
-msgstr "Prevsong lang"
-
 msgid "Primary DNS"
 msgstr "Primaire DNS"
 
@@ -13409,9 +13295,6 @@ msgid ""
 msgstr ""
 "Program '%s' is niet geïnstalleerd.\n"
 "Het pakket dat dit programma bevat is onbekend."
-
-msgid "Program long"
-msgstr "Program lang"
 
 msgid "Programmlisten History"
 msgstr "Zenderlijst History"
@@ -13499,9 +13382,6 @@ msgstr "Protocol"
 
 msgid "Prov"
 msgstr "Prov"
-
-msgid "Prov long"
-msgstr "Prov lang"
 
 msgid "Provider"
 msgstr "Provider"
@@ -13616,9 +13496,6 @@ msgstr "QuickSelect Acties"
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr "Radio lang"
 
 msgid "RAM (Details)"
 msgstr "RAM (Details)"
@@ -13785,9 +13662,6 @@ msgstr "Herbouw LCN favorietenlijst nu?"
 
 msgid "Rec"
 msgstr "Rec"
-
-msgid "Rec long"
-msgstr "Rec lang"
 
 msgid "Receiver"
 msgstr "Ontvanger"
@@ -14458,9 +14332,6 @@ msgstr "Rechts"
 msgid "Right from service name"
 msgstr "Rechts van de zendernaam"
 
-msgid "Right long"
-msgstr "Rechts lang"
-
 msgid "Right, wrapped"
 msgstr "rechts, gedraaid"
 
@@ -14566,9 +14437,6 @@ msgstr "SABnzbd"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT lang"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14960,9 +14828,6 @@ msgstr "Zoek west"
 
 msgid "Search/WEB"
 msgstr "Zoeken/WEB"
-
-msgid "Search/WEB long"
-msgstr "Search/WEB lang"
 
 msgid "Searching"
 msgstr "Zoeken"
@@ -16006,16 +15871,16 @@ msgstr "Stel het MAC-adres in van %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Selecteer de aspect ratio van de zender picons."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor 'direkte opnames'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor opnames. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor Timeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor timers'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
 msgid "Set the default sorting method."
@@ -17196,9 +17061,6 @@ msgstr "Slaaptimers"
 msgid "Sleep delay"
 msgstr "Slaap vertraging (in minuten)"
 
-msgid "Sleep long"
-msgstr "Sleep lang"
-
 msgid "Sleep timer"
 msgstr "Slaaptimer"
 
@@ -17928,9 +17790,6 @@ msgstr "Ondertitel taalkeuze 3"
 msgid "Subtitle language selection 4"
 msgstr "Ondertitel taalkeuze 4"
 
-msgid "Subtitle long"
-msgstr "Ondertitel lang"
-
 msgid "Subtitle position"
 msgstr "Verticale positie ondertitels"
 
@@ -18316,9 +18175,6 @@ msgstr "Teletekst basis zichtbaarheid"
 
 msgid "Teletext font and resolution"
 msgstr "Teletekst lettertype en resolutie"
-
-msgid "Teletext long"
-msgstr "Teletekst Lang"
 
 msgid "Teletext subtitle color"
 msgstr "Kleur van de Teletekst-ondertitels"
@@ -19245,9 +19101,6 @@ msgstr "Tijdsprong herhaal interval van snel voor- of achteruit"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Tijdsprong: Normaal spoelen gebruiken voor"
-
-msgid "Time long"
-msgstr "Tijd lang"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20377,9 +20230,6 @@ msgstr "VOB bestand"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD lang"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21321,9 +21171,6 @@ msgstr "Schrijven mislukt!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Www lang"
-
 msgid "XBox 360 support"
 msgstr "XBox 360 ondersteuning"
 
@@ -21562,9 +21409,6 @@ msgstr "U kunt het beste een nieuwe image flashen!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube Lang"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Uw %s %s heeft geen verbinding met internet"
@@ -21816,9 +21660,6 @@ msgstr "ZAP"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM lang"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23317,6 +23158,171 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voor
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Aspect lang"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio lang"
+
+#~ msgid "Context long"
+#~ msgstr "Context lang"
+
+#~ msgid "Directory long"
+#~ msgstr "Map lang"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD lang"
+
+#~ msgid "End long"
+#~ msgstr "End lang"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide lang"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 lang"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 lang"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 lang"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 lang"
+
+#~ msgid "Favorites long"
+#~ msgstr "Favoriet lang"
+
+#~ msgid "File long"
+#~ msgstr "Bestand lang"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Flash uw %s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Help lang"
+
+#~ msgid "History long"
+#~ msgstr "History lang"
+
+#~ msgid "Home long"
+#~ msgstr "Home lang"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage lang"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Info (EPG) lang"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Toetsenbord lang"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi Lang"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN lang"
+
+#~ msgid "Left long"
+#~ msgstr "Links lang"
+
+#~ msgid "List/Fav long"
+#~ msgstr "List/Fav lang"
+
+#~ msgid "MOUSE long"
+#~ msgstr "Muis lang"
+
+#~ msgid "Magic long"
+#~ msgstr "Magic lang"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark/Portal/Playlist lang"
+
+#~ msgid "Media long"
+#~ msgstr "Media lang"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong lang"
+
+#~ msgid "OK long"
+#~ msgstr "OK lang"
+
+#~ msgid "Open long"
+#~ msgstr "Open lang"
+
+#~ msgid "Option long"
+#~ msgstr "Optie lang"
+
+#~ msgid "PC long"
+#~ msgstr "PC lang"
+
+#~ msgid "PIP long"
+#~ msgstr "PiP lang"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR lang"
+
+#~ msgid "PageDown long"
+#~ msgstr "Knop naar beneden lang"
+
+#~ msgid "PageUp long"
+#~ msgstr "Knop naar boven lang"
+
+#~ msgid "Playlist long"
+#~ msgstr "Afspeellijst lang"
+
+#~ msgid "Power long"
+#~ msgstr "Power lang"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Prevsong lang"
+
+#~ msgid "Program long"
+#~ msgstr "Program lang"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov lang"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio lang"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec lang"
+
+#~ msgid "Right long"
+#~ msgstr "Rechts lang"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT lang"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Search/WEB lang"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep lang"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Ondertitel lang"
+
+#~ msgid "Teletext long"
+#~ msgstr "Teletekst Lang"
+
+#~ msgid "Time long"
+#~ msgstr "Tijd lang"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD lang"
+
+#~ msgid "Www long"
+#~ msgstr "Www lang"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube Lang"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM lang"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

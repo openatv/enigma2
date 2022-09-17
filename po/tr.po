@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1274,6 +1274,10 @@ msgstr "%s artık kullanılmıyor. Silinmeli mi?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s şifre korumalıdır."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2861,9 +2865,6 @@ msgstr "En Boy Oranı İşlemleri"
 msgid "Aspect list..."
 msgstr "Aspect listesi ..."
 
-msgid "Aspect long"
-msgstr "Boy uzun"
-
 msgid "Aspect ratio"
 msgstr "En-boy oranı"
 
@@ -2949,9 +2950,6 @@ msgstr "3. Ses dili seçimi"
 
 msgid "Audio language selection 4"
 msgstr "4. Ses dili seçimi"
-
-msgid "Audio long"
-msgstr "Uzun ses"
 
 msgid "Audio options..."
 msgstr "Ses seçenekleri..."
@@ -5206,9 +5204,6 @@ msgstr "İçerik DVD'ye sığmıyor!"
 msgid "Context"
 msgstr "Bağlam"
 
-msgid "Context long"
-msgstr "Bağlam uzun"
-
 msgid "Continent"
 msgstr "Kıta"
 
@@ -5912,7 +5907,7 @@ msgid "Default folder if the left or right folder isn't saved, and target folder
 msgstr "Sol veya sağ klasör kaydedilmemişse varsayılan klasör ve düğme 5 için hedef klasör."
 
 #
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Varsayılan film konumu"
 
 msgid "Default recording type"
@@ -6310,9 +6305,6 @@ msgstr "Dizini '%s' yazılabilir değil!"
 #
 msgid "Directory browser"
 msgstr "Klasör görüntüleyici"
-
-msgid "Directory long"
-msgstr "Dizin uzun"
 
 #
 msgid "Disable"
@@ -6773,6 +6765,9 @@ msgstr "Eklentileri iİndir"
 msgid "Download Softcams"
 msgstr "Softcams indir"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Eklentileri indirip yükleyin"
 
@@ -6874,9 +6869,6 @@ msgstr "ECM-Zaman"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD uzun"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7347,9 +7339,6 @@ msgstr "Şifreleme:"
 msgid "End"
 msgstr "Son"
 
-msgid "End long"
-msgstr "Uzun sona"
-
 #
 msgid "End time"
 msgstr "Bitiş zamanı"
@@ -7520,9 +7509,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg Rehberi"
-
-msgid "Epg/Guide long"
-msgstr "Epg / Rehber uzun"
 
 msgid "Equal to"
 msgstr "Eşittir"
@@ -8022,26 +8008,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 uzun"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 uzun"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 uzun"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 uzun"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -8172,9 +8146,6 @@ msgstr "Hızlı ileri sarma hızları"
 msgid "Favorites"
 msgstr "Favoriler"
 
-msgid "Favorites long"
-msgstr "Sık Kullanılanlar"
-
 msgid "Feed URL"
 msgstr "Feed URL"
 
@@ -8253,9 +8224,6 @@ msgstr "Düğme 9 için hesaplanacak dosya sağlama toplamları"
 
 msgid "File checksums/hashes"
 msgstr "Dosya sağlama toplamı / sağlama"
-
-msgid "File long"
-msgstr "Uzun dosya"
 
 #
 #, python-format
@@ -8393,9 +8361,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Dizini '%s' yazılabilir değil!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Alıcı yazılımı yanıp söner%s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Uçan Flash'ı, Receiver yazılımınız."
@@ -9083,9 +9048,6 @@ msgstr "Yardım Ekranı Bilgileri"
 msgid "Help animation speed"
 msgstr "Yardım göstergelerinin animasyon hızı"
 
-msgid "Help long"
-msgstr "Uzun yardımcı"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9195,9 +9157,6 @@ msgstr "Geçmiş geri"
 msgid "History buttons mode"
 msgstr "Geçmiş tuşları konumu"
 
-msgid "History long"
-msgstr "Tarihçe uzun"
-
 msgid "History next"
 msgstr "Geçmiş ileri"
 
@@ -9220,14 +9179,8 @@ msgstr "Holy See (Vatikan Şehir Devleti)"
 msgid "Home"
 msgstr "Ana"
 
-msgid "Home long"
-msgstr "Eve uzun"
-
 msgid "Homepage"
 msgstr "Ana sayfası"
-
-msgid "Homepage long"
-msgstr "Anasayfa uzun"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9702,9 +9655,6 @@ msgstr "Bilgi"
 
 msgid "Info (EPG)"
 msgstr "Bilgi (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Bilgi (EPG) uzun"
 
 msgid "Info button (long)"
 msgstr "İnfo tuşu (uzun)"
@@ -10216,10 +10166,6 @@ msgid "Keyboard data entry"
 msgstr "Klavye veri girişi"
 
 #
-msgid "Keyboard long"
-msgstr "Klavye uzun"
-
-#
 msgid "Keyboard map"
 msgstr "Klavye dizilimi"
 
@@ -10244,9 +10190,6 @@ msgstr "Kodi MediaCenter"
 #
 msgid "Kodi installed:"
 msgstr "Kodi yüklü:"
-
-msgid "Kodi long"
-msgstr "Uzun kodi"
 
 #
 msgid "Kodi media player"
@@ -10293,9 +10236,6 @@ msgstr "LAN adaptörü"
 
 msgid "LAN connection"
 msgstr "Yerel ağ bağlantısı"
-
-msgid "LAN long"
-msgstr "LAN uzun"
 
 msgid "LCD Skin Settings"
 msgstr "LCD Skin Kurulumu"
@@ -10447,9 +10387,6 @@ msgstr "Sol"
 msgid "Left from service name"
 msgstr "Kanal adından önce"
 
-msgid "Left long"
-msgstr "Uzun sol"
-
 msgid "Left, wrapped"
 msgstr "sol, sarılmış"
 
@@ -10567,9 +10504,6 @@ msgstr[0] "List sürümü %d, %d kanal bulundu"
 
 msgid "List/Fav"
 msgstr "Liste / Fav"
-
-msgid "List/Fav long"
-msgstr "Liste / Fav uzun"
 
 #
 msgid "Listen to the radio"
@@ -10828,9 +10762,6 @@ msgstr "DAHA SONRA"
 msgid "MOUSE"
 msgstr "MOUSE"
 
-msgid "MOUSE long"
-msgstr "MOUSE uzun"
-
 msgid "MTD boot"
 msgstr "MTD önyüklemesi"
 
@@ -10854,9 +10785,6 @@ msgstr "Madagaskar"
 
 msgid "Magic"
 msgstr "Sihir"
-
-msgid "Magic long"
-msgstr "Sihirli uzun"
 
 #
 msgid "Main Menu"
@@ -10971,9 +10899,6 @@ msgstr "Hizmete özel 3D hizmeti olarak işaretle"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark / Portal / Çalma Listesi"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "İşaretle / Portal / Oynatma Listesi uzun"
-
 msgid "Marker Actions"
 msgstr "İşaret Eylemleri"
 
@@ -11049,9 +10974,6 @@ msgstr "Medya Oynatıcı Ayarları"
 
 msgid "Media Portal"
 msgstr "Medya Portalı"
-
-msgid "Media long"
-msgstr "Medya uzun"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Ortam oynatımında Kalan/Geçen süre"
@@ -11968,9 +11890,6 @@ msgstr "Sonraki quad PiP kanalı"
 msgid "Nextsong"
 msgstr "Sıradaki şarkı"
 
-msgid "Nextsong long"
-msgstr "Uzun Nextsong"
-
 msgid "Nicaragua"
 msgstr "Nikaragua"
 
@@ -12454,9 +12373,6 @@ msgstr "OK tuşu (kısa)"
 msgid "OK button mode"
 msgstr "OK tuşu fonksiyonu"
 
-msgid "OK long"
-msgstr "OK tuşu uzun"
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
@@ -12621,9 +12537,6 @@ msgstr "Bağlam menüsünü aç"
 msgid "Open favorites list"
 msgstr "Favoriler listesini aç"
 
-msgid "Open long"
-msgstr "Uzun aç"
-
 msgid "Open satellites list"
 msgstr "Uydu listesini aç"
 
@@ -12699,9 +12612,6 @@ msgstr "Çalışırken LED çalışma durumu"
 #
 msgid "Option"
 msgstr "Seçenek"
-
-msgid "Option long"
-msgstr "Seçenek uzun"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Bilgi çubuğundaki piktogramları devre dışı bırakma seçeneği"
@@ -12815,9 +12725,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC uzun"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12844,10 +12751,6 @@ msgstr "Şifre gerekli"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "Pip uzun"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12868,9 +12771,6 @@ msgstr "PRIMETIME"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR uzun"
 
 #
 msgid "Package Manager"
@@ -12917,14 +12817,8 @@ msgstr "Sayfa yukarı listesi"
 msgid "PageDown"
 msgstr "Sayfa Aşağı"
 
-msgid "PageDown long"
-msgstr "Sayfa Aşağı uzun"
-
 msgid "PageUp"
 msgstr "Sayfa yukarı"
-
-msgid "PageUp long"
-msgstr "Sayfa çok uzun"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -13213,9 +13107,6 @@ msgstr "Kayıtlar & Zaman Kaydırma"
 
 msgid "Playlist"
 msgstr "Çalma Listesi"
-
-msgid "Playlist long"
-msgstr "Oynatma listesi uzun"
 
 msgid "Playpause"
 msgstr "Oynatma durdur"
@@ -13762,9 +13653,6 @@ msgstr "Bekleme sırasında Güç LED'i durumu."
 msgid "Power On Display"
 msgstr "Göstergedeki güç"
 
-msgid "Power long"
-msgstr "Power long"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Güç yönetimi. Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
 
@@ -13980,9 +13868,6 @@ msgstr "önceki / sonraki sayfa"
 msgid "Prevsong"
 msgstr "Prevsong"
 
-msgid "Prevsong long"
-msgstr "Uzun süredir"
-
 #
 msgid "Primary DNS"
 msgstr "Birincil DNS"
@@ -14056,9 +13941,6 @@ msgid ""
 msgstr ""
 "'%s' programı kurulu değil.\n"
 "Bu programı içeren paket bilinmiyor."
-
-msgid "Program long"
-msgstr "Program uzun"
 
 msgid "Programmlisten History"
 msgstr "Programmliste Tarihçesi"
@@ -14148,9 +14030,6 @@ msgstr "Protokol"
 
 msgid "Prov"
 msgstr "İl"
-
-msgid "Prov long"
-msgstr "Prov uzun"
 
 #
 msgid "Provider"
@@ -14271,9 +14150,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "Radyo"
-
-msgid "RADIO long"
-msgstr "Radyo uzun"
 
 msgid "RAM (Details)"
 msgstr "RAM (Ayrıntılar)"
@@ -14453,9 +14329,6 @@ msgstr "LCN buketi şimdi yeniden oluşturuluyor mu?"
 
 msgid "Rec"
 msgstr "Kayıt"
-
-msgid "Rec long"
-msgstr "Rec uzun"
 
 msgid "Receiver"
 msgstr "Alıcı"
@@ -15184,9 +15057,6 @@ msgstr "Sağ"
 msgid "Right from service name"
 msgstr "Kanal adının sağında"
 
-msgid "Right long"
-msgstr "Sağ uzun"
-
 msgid "Right, wrapped"
 msgstr "sağa, sarılmış"
 
@@ -15295,9 +15165,6 @@ msgstr "SABnzbd Kurulumu"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "Uzun SAT"
 
 msgid "SATA"
 msgstr "SATA"
@@ -15714,9 +15581,6 @@ msgstr "Batı'yı ara"
 
 msgid "Search/WEB"
 msgstr "Ara / WEB"
-
-msgid "Search/WEB long"
-msgstr "Arama / WEB uzun"
 
 msgid "Searching"
 msgstr "Arama"
@@ -16797,16 +16661,16 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr "Servis pikonlarının en boy oranını ayarlayın."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
 msgid "Set the default sorting method."
@@ -18018,9 +17882,6 @@ msgstr "Uyku Zamanlayıcıları"
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Uzun uyu"
-
 msgid "Sleep timer"
 msgstr "Uyku Zamanlayıcısı"
 
@@ -18799,9 +18660,6 @@ msgstr "3. Altyazı dil seçimi"
 msgid "Subtitle language selection 4"
 msgstr "4. Altyazı dil seçimi"
 
-msgid "Subtitle long"
-msgstr "Altyazı uzun"
-
 msgid "Subtitle position"
 msgstr "Altyazı konumu"
 
@@ -19207,9 +19065,6 @@ msgstr "Teleteks temel görünürlük"
 
 msgid "Teletext font and resolution"
 msgstr "Teletekst yazı tipi ve çözünürlük"
-
-msgid "Teletext long"
-msgstr "Tteletekst uzun"
 
 msgid "Teletext subtitle color"
 msgstr "Teletext altyazı rengi"
@@ -20121,10 +19976,6 @@ msgstr "Hızlı ileri / geri için zaman atlama tekrar aralığı"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Zaman atlama: Hız için normal hızlı ileri sar"
-
-#
-msgid "Time long"
-msgstr "Zaman uzun"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -21329,9 +21180,6 @@ msgstr "VOB dosyası"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD uzun"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -22285,9 +22133,6 @@ msgstr "Yazma başarısız!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Www uzun"
-
 msgid "XBox 360 support"
 msgstr "XBox 360 desteği"
 
@@ -22546,9 +22391,6 @@ msgstr "Yeni bir resim flaş etmelisiniz!"
 msgid "YouTube"
 msgstr "YouTube"
 
-msgid "YouTube long"
-msgstr "YouTube uzun"
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Internet bağlantısı %s%s  yok"
 
@@ -22804,9 +22646,6 @@ msgstr "ZAP"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM uzun"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -24452,6 +24291,173 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect long"
+#~ msgstr "Boy uzun"
+
+#~ msgid "Audio long"
+#~ msgstr "Uzun ses"
+
+#~ msgid "Context long"
+#~ msgstr "Bağlam uzun"
+
+#~ msgid "Directory long"
+#~ msgstr "Dizin uzun"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD uzun"
+
+#~ msgid "End long"
+#~ msgstr "Uzun sona"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg / Rehber uzun"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 uzun"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 uzun"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 uzun"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 uzun"
+
+#~ msgid "Favorites long"
+#~ msgstr "Sık Kullanılanlar"
+
+#~ msgid "File long"
+#~ msgstr "Uzun dosya"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Alıcı yazılımı yanıp söner%s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Uzun yardımcı"
+
+#~ msgid "History long"
+#~ msgstr "Tarihçe uzun"
+
+#~ msgid "Home long"
+#~ msgstr "Eve uzun"
+
+#~ msgid "Homepage long"
+#~ msgstr "Anasayfa uzun"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Bilgi (EPG) uzun"
+
+#
+#~ msgid "Keyboard long"
+#~ msgstr "Klavye uzun"
+
+#~ msgid "Kodi long"
+#~ msgstr "Uzun kodi"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN uzun"
+
+#~ msgid "Left long"
+#~ msgstr "Uzun sol"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Liste / Fav uzun"
+
+#~ msgid "MOUSE long"
+#~ msgstr "MOUSE uzun"
+
+#~ msgid "Magic long"
+#~ msgstr "Sihirli uzun"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "İşaretle / Portal / Oynatma Listesi uzun"
+
+#~ msgid "Media long"
+#~ msgstr "Medya uzun"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Uzun Nextsong"
+
+#~ msgid "OK long"
+#~ msgstr "OK tuşu uzun"
+
+#~ msgid "Open long"
+#~ msgstr "Uzun aç"
+
+#~ msgid "Option long"
+#~ msgstr "Seçenek uzun"
+
+#~ msgid "PC long"
+#~ msgstr "PC uzun"
+
+#~ msgid "PIP long"
+#~ msgstr "Pip uzun"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR uzun"
+
+#~ msgid "PageDown long"
+#~ msgstr "Sayfa Aşağı uzun"
+
+#~ msgid "PageUp long"
+#~ msgstr "Sayfa çok uzun"
+
+#~ msgid "Playlist long"
+#~ msgstr "Oynatma listesi uzun"
+
+#~ msgid "Power long"
+#~ msgstr "Power long"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Uzun süredir"
+
+#~ msgid "Program long"
+#~ msgstr "Program uzun"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov uzun"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radyo uzun"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec uzun"
+
+#~ msgid "Right long"
+#~ msgstr "Sağ uzun"
+
+#~ msgid "SAT long"
+#~ msgstr "Uzun SAT"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Arama / WEB uzun"
+
+#~ msgid "Sleep long"
+#~ msgstr "Uzun uyu"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Altyazı uzun"
+
+#~ msgid "Teletext long"
+#~ msgstr "Tteletekst uzun"
+
+#
+#~ msgid "Time long"
+#~ msgstr "Zaman uzun"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD uzun"
+
+#~ msgid "Www long"
+#~ msgstr "Www uzun"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube uzun"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM uzun"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

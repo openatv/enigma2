@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
-"PO-Revision-Date: 2022-09-13 15:58+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1284,6 +1284,10 @@ msgstr "%s wird nicht mehr verwendet. Soll er gelöscht werden?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s ist passwortgeschützt."
+
+#, python-format
+msgid "%s long"
+msgstr "%s lang"
 
 #, python-format
 msgid "%s not available."
@@ -2894,9 +2898,6 @@ msgstr "Seitenverhältnisaktionen"
 msgid "Aspect list..."
 msgstr "Seitenverhältnis..."
 
-msgid "Aspect long"
-msgstr "Aspect lang"
-
 msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
 
@@ -2984,9 +2985,6 @@ msgstr "Ton-Sprachauswahl 3"
 
 msgid "Audio language selection 4"
 msgstr "Ton-Sprachauswahl 4"
-
-msgid "Audio long"
-msgstr "Audio lang"
 
 #
 msgid "Audio options..."
@@ -5270,9 +5268,6 @@ msgstr "Inhalt passt nicht auf die DVD!"
 msgid "Context"
 msgstr "Kontext"
 
-msgid "Context long"
-msgstr "Kontext lang"
-
 msgid "Continent"
 msgstr "Kontinent"
 
@@ -5965,7 +5960,7 @@ msgstr "Standardordner"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Legt den Standardordner fest, wenn der linke oder rechte Ordner nicht gespeichert wird, sowie den Zielordner für die Taste '5'."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Standard-Filmverzeichnis"
 
 msgid "Default recording type"
@@ -6362,9 +6357,6 @@ msgstr "Verzeichnis '%s' ist nicht beschreibbar!"
 #
 msgid "Directory browser"
 msgstr "Dateimanager"
-
-msgid "Directory long"
-msgstr "Verzeichnis lang"
 
 #
 msgid "Disable"
@@ -6834,6 +6826,9 @@ msgstr "Plugins herunterladen"
 msgid "Download Softcams"
 msgstr "Softcams herunterladen"
 
+msgid "Download and flash images on your %s %s."
+msgstr "Online-/Lokales flashen Ihrer %s %s."
+
 msgid "Download and install Plugins"
 msgstr "Plugins herunterladen und installieren"
 
@@ -6935,9 +6930,6 @@ msgstr "ECM-Zeit"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD lang"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7410,9 +7402,6 @@ msgstr "Verschlüsselung:"
 msgid "End"
 msgstr "Ende"
 
-msgid "End long"
-msgstr "Ende lang"
-
 #
 msgid "End time"
 msgstr "Endzeit"
@@ -7594,9 +7583,6 @@ msgstr "Nur Text"
 
 msgid "Epg/Guide"
 msgstr "EPG/INFO"
-
-msgid "Epg/Guide long"
-msgstr "EPG/INFO lang"
 
 #
 msgid "Equal to"
@@ -8096,26 +8082,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 lang"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 lang"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 lang"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 lang"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -8243,9 +8217,6 @@ msgstr "Vorlaufgeschwindigkeiten"
 msgid "Favorites"
 msgstr "Favoriten"
 
-msgid "Favorites long"
-msgstr "Favoriten lang"
-
 msgid "Feed URL"
 msgstr "Feed-URL"
 
@@ -8324,9 +8295,6 @@ msgstr "Für die Berechnung von Datei-Prüfsummen mit der Taste '9'."
 
 msgid "File checksums/hashes"
 msgstr "Datei Prüfsummen / Hash"
-
-msgid "File long"
-msgstr "Datei lang"
 
 #, python-format
 msgid "File not found: %s"
@@ -8472,10 +8440,6 @@ msgstr "Flashen und wiederherstellen der Einstellungen, Plugins abfragen"
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-Verzeichnis '%s' nicht erlaubt!"
-
-# /SoftwareManager/Flash_online.py
-msgid "Flash on the fly your %s %s."
-msgstr "Online-/Lokales flashen Ihrer %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flashen Sie Ihre Receiver-Software online oder von einer lokalen Quelle."
@@ -9157,9 +9121,6 @@ msgstr "Informationen zum Hilfebildschirm"
 msgid "Help animation speed"
 msgstr "Animationsgeschwindigkeit der Tasten-Hilfe"
 
-msgid "Help long"
-msgstr "Hilfe lang"
-
 msgid "Help screen style"
 msgstr "Fernbedienungstasten-Hilfe"
 
@@ -9270,9 +9231,6 @@ msgstr "Historie zurück"
 msgid "History buttons mode"
 msgstr "Funktion der Taste Historie"
 
-msgid "History long"
-msgstr "Historie lang"
-
 msgid "History next"
 msgstr "Historie weiter"
 
@@ -9294,14 +9252,8 @@ msgstr "Heiliger Stuhl (Vatikanstadt)"
 msgid "Home"
 msgstr "Home"
 
-msgid "Home long"
-msgstr "Home lang"
-
 msgid "Homepage"
 msgstr "Homepage"
-
-msgid "Homepage long"
-msgstr "Homepage lang"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9777,9 +9729,6 @@ msgstr "Info"
 
 msgid "Info (EPG)"
 msgstr "INFO/EPG"
-
-msgid "Info (EPG) Long"
-msgstr "INFO/EPG lang"
 
 #
 msgid "Info button (long)"
@@ -10294,11 +10243,6 @@ msgid "Keyboard data entry"
 msgstr "Tastatureingabe"
 
 #
-#
-msgid "Keyboard long"
-msgstr "Externe Tastatur lang"
-
-#
 msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
@@ -10322,9 +10266,6 @@ msgstr "Kodi-Mediacenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi installiert:"
-
-msgid "Kodi long"
-msgstr "Kodi lang"
 
 msgid "Kodi media player"
 msgstr "Kodi-Mediaplayer"
@@ -10367,9 +10308,6 @@ msgstr "LAN-Adapter"
 
 msgid "LAN connection"
 msgstr "LAN-Verbindung"
-
-msgid "LAN long"
-msgstr "LAN lang"
 
 msgid "LCD Skin Settings"
 msgstr "Display-Skineinstellungen"
@@ -10520,9 +10458,6 @@ msgstr "Links"
 msgid "Left from service name"
 msgstr "Links vom Sendernamen"
 
-msgid "Left long"
-msgstr "Links lang"
-
 msgid "Left, wrapped"
 msgstr "Links, umgebrochen"
 
@@ -10639,9 +10574,6 @@ msgstr[1] "Listenversion %d, %d Sender gefunden."
 
 msgid "List/Fav"
 msgstr "List/Fav"
-
-msgid "List/Fav long"
-msgstr "List/Fav lang"
 
 #
 msgid "Listen to the radio"
@@ -10911,9 +10843,6 @@ msgstr "MEHR"
 msgid "MOUSE"
 msgstr "MAUS"
 
-msgid "MOUSE long"
-msgstr "MAUS lang"
-
 msgid "MTD boot"
 msgstr "MTD-Boot"
 
@@ -10937,9 +10866,6 @@ msgstr "Madagaskar"
 
 msgid "Magic"
 msgstr "Magic"
-
-msgid "Magic long"
-msgstr "Magic lang"
 
 msgid "Main Menu"
 msgstr "Hauptmenü"
@@ -11054,9 +10980,6 @@ msgstr "Als 3D-Kanal markieren"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark/Portal/Playlist lang"
-
 # UsageConfig.py:295
 msgid "Marker Actions"
 msgstr "Markeraktionen"
@@ -11131,9 +11054,6 @@ msgstr "Mediaplayer Einstellungen"
 
 msgid "Media Portal"
 msgstr "Mediaportal"
-
-msgid "Media long"
-msgstr "Media lang"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Zeitangabe bei Medienwiedergabe in"
@@ -12076,9 +11996,6 @@ msgstr "Auf die nächste Sendergruppe schalten"
 msgid "Nextsong"
 msgstr "Nextsong"
 
-msgid "Nextsong long"
-msgstr "Nextsong lang"
-
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
@@ -12568,9 +12485,6 @@ msgstr "Taste OK kurz"
 msgid "OK button mode"
 msgstr "Funktion der Taste OK"
 
-msgid "OK long"
-msgstr "Taste OK lang"
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, führen Sie mich durch den Updatevorgang"
@@ -12742,9 +12656,6 @@ msgstr "Kontextmenü öffnen"
 msgid "Open favorites list"
 msgstr "Öffne Favoritenliste"
 
-msgid "Open long"
-msgstr "Öffnen lang"
-
 msgid "Open satellites list"
 msgstr "Öffne Satellitenliste"
 
@@ -12822,9 +12733,6 @@ msgstr "Betriebsstatus der LED im Betrieb"
 
 msgid "Option"
 msgstr "Option"
-
-msgid "Option long"
-msgstr "Option lang"
 
 # Menue Anpassungen OSD
 msgid "Option to disable picons on the Infobar"
@@ -12948,9 +12856,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC lang"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12977,10 +12882,6 @@ msgstr "PIN-Code erforderlich!"
 msgid "PIP"
 msgstr "PIP"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP lang"
-
 msgid "PLP ID"
 msgstr "PLP-ID"
 
@@ -13001,9 +12902,6 @@ msgstr "Primetime"
 
 msgid "PVR"
 msgstr "PVR/Video"
-
-msgid "PVR long"
-msgstr "PVR/Video lang"
 
 #
 msgid "Package Manager"
@@ -13050,14 +12948,8 @@ msgstr "Seite hoch"
 msgid "PageDown"
 msgstr "Seite zurück"
 
-msgid "PageDown long"
-msgstr "Seite zurück lang"
-
 msgid "PageUp"
 msgstr "Seite vor"
-
-msgid "PageUp long"
-msgstr "Seite vor lang"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -13351,9 +13243,6 @@ msgstr "Aufnahmen & Timeshift"
 
 msgid "Playlist"
 msgstr "Playlist"
-
-msgid "Playlist long"
-msgstr "Playlist lang"
 
 msgid "Playpause"
 msgstr "PlayPause"
@@ -13903,9 +13792,6 @@ msgstr "Die Anzeige der Power-LED im Standby einstellen."
 msgid "Power On Display"
 msgstr "Display einschalten"
 
-msgid "Power long"
-msgstr "Ausschalttaste lang"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Energieverwaltung. Weitere Informationen finden Sie im Handbuch Ihres Receivers."
 
@@ -14133,9 +14019,6 @@ msgstr "vorherige/nächste Seite"
 msgid "Prevsong"
 msgstr "Vorheriges Lied"
 
-msgid "Prevsong long"
-msgstr "Vorheriges Lied lang"
-
 #
 msgid "Primary DNS"
 msgstr "Primärer DNS"
@@ -14210,9 +14093,6 @@ msgid ""
 msgstr ""
 "Programm '%s' nicht installiert! \n"
 "Das Paket, das dieses Programm enthält, ist nicht bekannt."
-
-msgid "Program long"
-msgstr "Programm lang"
 
 msgid "Programmlisten History"
 msgstr "Programmlistenänderungen"
@@ -14302,9 +14182,6 @@ msgstr "Protokoll"
 
 msgid "Prov"
 msgstr "Prov"
-
-msgid "Prov long"
-msgstr "Prov lang"
 
 #
 msgid "Provider"
@@ -14427,9 +14304,6 @@ msgstr "Schnellauswahl-Aktionen"
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr "Radio lang"
 
 msgid "RAM (Details)"
 msgstr "Arbeitsspeicher (Einzelheiten)"
@@ -14608,9 +14482,6 @@ msgstr "LCN-Bouquet jetzt neu erstellen?"
 
 msgid "Rec"
 msgstr "Aufnahme"
-
-msgid "Rec long"
-msgstr "Aufnahme lang"
 
 msgid "Receiver"
 msgstr "Receiver"
@@ -15342,9 +15213,6 @@ msgstr "Rechts"
 msgid "Right from service name"
 msgstr "Rechts vom Sendernamen"
 
-msgid "Right long"
-msgstr "Rechts lang"
-
 msgid "Right, wrapped"
 msgstr "Rechts, umgebrochen"
 
@@ -15457,9 +15325,6 @@ msgstr "SABnzbd (Binary News)"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT lang"
 
 msgid "SATA"
 msgstr "SATA"
@@ -15877,9 +15742,6 @@ msgstr "Westlich suchen"
 msgid "Search/WEB"
 msgstr "Suche/Web"
 
-msgid "Search/WEB long"
-msgstr "Suche/Web lang"
-
 msgid "Searching"
 msgstr "Suche"
 
@@ -16162,7 +16024,7 @@ msgid "Select Software Update"
 msgstr "Software-Update auswählen"
 
 msgid "Select Time Shift Location"
-msgstr "Timeshift Verzeichnis auswählen"
+msgstr "Timeshift-Verzeichnis auswählen"
 
 msgid "Select Upgrade Source"
 msgstr "Updatequelle auswählen"
@@ -16984,18 +16846,18 @@ msgstr "Die MAC-Adresse Ihrer %s %s einstellen."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Einstellung des Seitenverhältnisses der Senderlogos (Picons)."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Wählen Sie das Standardverzeichnis für Sofortaufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Wählen Sie das Standardverzeichnis für Aufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 "Wählen Sie das Standardverzeichnis für Timeshift-Aufnahmen.\n"
 "OK, um ein neues Verzeichnis zu wählen oder Links/Rechts, um bestehende Verzeichnisse zu wählen."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Wählen Sie das Standardverzeichnis für Timeraufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
 
 msgid "Set the default sorting method."
@@ -18231,9 +18093,6 @@ msgstr "SleepTimer"
 msgid "Sleep delay"
 msgstr "Schlafverzögerung"
 
-msgid "Sleep long"
-msgstr "Sleep lang"
-
 msgid "Sleep timer"
 msgstr "Ausschalttimer"
 
@@ -19012,9 +18871,6 @@ msgstr "Untertitel-Sprachauswahl 3"
 msgid "Subtitle language selection 4"
 msgstr "Untertitel-Sprachauswahl 4"
 
-msgid "Subtitle long"
-msgstr "Untertitel lang"
-
 msgid "Subtitle position"
 msgstr "Untertitelposition vertikal"
 
@@ -19430,9 +19286,6 @@ msgstr "Videotext-Grunddeckkraft"
 
 msgid "Teletext font and resolution"
 msgstr "Videotext Zeichensatz und Auflösung"
-
-msgid "Teletext long"
-msgstr "Videotext lang"
 
 msgid "Teletext subtitle color"
 msgstr "Farbe der Videotext-Untertitel"
@@ -20387,9 +20240,6 @@ msgstr "Zeitsprünge: Wdh.-Intervall für schnellen Vor-/Rücklauf"
 #
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Zeitsprünge: Normalen Vorlauf benutzen für"
-
-msgid "Time long"
-msgstr "Time lang"
 
 # ImageBackup.py
 #, python-format
@@ -21627,9 +21477,6 @@ msgstr "VOB-Datei"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD lang"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -22628,9 +22475,6 @@ msgstr "Schreiben fehlgeschlagen!"
 msgid "Www"
 msgstr "www"
 
-msgid "Www long"
-msgstr "www lang"
-
 msgid "XBox 360 support"
 msgstr "Unterstützung für XBox 360"
 
@@ -22899,9 +22743,6 @@ msgstr "Sie sollten ein neues Image flashen!"
 msgid "YouTube"
 msgstr "YouTube"
 
-msgid "YouTube long"
-msgstr "YouTube lang"
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Ihre %s %s hat keine Internetverbindung!"
 
@@ -23168,9 +23009,6 @@ msgstr "Umschalten"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM lang"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -24829,6 +24667,174 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Aspect lang"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio lang"
+
+#~ msgid "Context long"
+#~ msgstr "Kontext lang"
+
+#~ msgid "Directory long"
+#~ msgstr "Verzeichnis lang"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD lang"
+
+#~ msgid "End long"
+#~ msgstr "Ende lang"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "EPG/INFO lang"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 lang"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 lang"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 lang"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 lang"
+
+#~ msgid "Favorites long"
+#~ msgstr "Favoriten lang"
+
+#~ msgid "File long"
+#~ msgstr "Datei lang"
+
+# /SoftwareManager/Flash_online.py
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Online-/Lokales flashen Ihrer %s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Hilfe lang"
+
+#~ msgid "History long"
+#~ msgstr "Historie lang"
+
+#~ msgid "Home long"
+#~ msgstr "Home lang"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage lang"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "INFO/EPG lang"
+
+#
+#
+#~ msgid "Keyboard long"
+#~ msgstr "Externe Tastatur lang"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi lang"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN lang"
+
+#~ msgid "Left long"
+#~ msgstr "Links lang"
+
+#~ msgid "List/Fav long"
+#~ msgstr "List/Fav lang"
+
+#~ msgid "MOUSE long"
+#~ msgstr "MAUS lang"
+
+#~ msgid "Magic long"
+#~ msgstr "Magic lang"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark/Portal/Playlist lang"
+
+#~ msgid "Media long"
+#~ msgstr "Media lang"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong lang"
+
+#~ msgid "OK long"
+#~ msgstr "Taste OK lang"
+
+#~ msgid "Open long"
+#~ msgstr "Öffnen lang"
+
+#~ msgid "Option long"
+#~ msgstr "Option lang"
+
+#~ msgid "PC long"
+#~ msgstr "PC lang"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP lang"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR/Video lang"
+
+#~ msgid "PageDown long"
+#~ msgstr "Seite zurück lang"
+
+#~ msgid "PageUp long"
+#~ msgstr "Seite vor lang"
+
+#~ msgid "Playlist long"
+#~ msgstr "Playlist lang"
+
+#~ msgid "Power long"
+#~ msgstr "Ausschalttaste lang"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Vorheriges Lied lang"
+
+#~ msgid "Program long"
+#~ msgstr "Programm lang"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov lang"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio lang"
+
+#~ msgid "Rec long"
+#~ msgstr "Aufnahme lang"
+
+#~ msgid "Right long"
+#~ msgstr "Rechts lang"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT lang"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Suche/Web lang"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep lang"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Untertitel lang"
+
+#~ msgid "Teletext long"
+#~ msgstr "Videotext lang"
+
+#~ msgid "Time long"
+#~ msgstr "Time lang"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD lang"
+
+#~ msgid "Www long"
+#~ msgstr "www lang"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube lang"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM lang"
 
 #~ msgid "0.2s"
 #~ msgstr "0,2s"

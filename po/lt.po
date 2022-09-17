@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1289,6 +1289,10 @@ msgstr "%s daugiau nenaudojamas. Pašalinti?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s yra apsaugota slaptažodžiu."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2784,9 +2788,6 @@ msgstr "Vaizdo formato veiksmai"
 msgid "Aspect list..."
 msgstr "Formatų sąrašas..."
 
-msgid "Aspect long"
-msgstr "Formatas (ilgai)"
-
 msgid "Aspect ratio"
 msgstr "Formato kraštinių santykis"
 
@@ -2869,9 +2870,6 @@ msgstr "3-a pasirinkta garso kalba"
 
 msgid "Audio language selection 4"
 msgstr "4-a pasirinkta garso kalba"
-
-msgid "Audio long"
-msgstr "Ilgas Audio paspaudimas"
 
 msgid "Audio options..."
 msgstr "Garso parinktys..."
@@ -5016,9 +5014,6 @@ msgstr "Turinys netelpa į DVD!"
 msgid "Context"
 msgstr "Kontekstas"
 
-msgid "Context long"
-msgstr "Kontekstas ilgai"
-
 msgid "Continent"
 msgstr "Žemynas"
 
@@ -5681,7 +5676,7 @@ msgstr "Numatytasis aplankas"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Numatytasis aplankas, jei kairysis arba dešinysis aplankas nėra išsaugotas, ir mygtuko 5 tikslinis aplankas."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Numatytoji filmų vieta"
 
 msgid "Default recording type"
@@ -6054,9 +6049,6 @@ msgstr "Katalogas \"%s\" neįrašomas!"
 
 msgid "Directory browser"
 msgstr "Katalogų naršyklė"
-
-msgid "Directory long"
-msgstr "Katalogas ilgai"
 
 msgid "Disable"
 msgstr "Išjungti"
@@ -6487,6 +6479,9 @@ msgstr "Parsisiųsti priedus"
 msgid "Download Softcams"
 msgstr "Parsisiųsti emuliatorius"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Parsisiųsti ir įdiegti priedus"
 
@@ -6582,9 +6577,6 @@ msgstr "ECM laikas"
 
 msgid "EJECTCD"
 msgstr "IŠSTUMTI CD"
-
-msgid "EJECTCD long"
-msgstr "IŠSTUMTI CD ilgai spausti"
 
 msgid "EPG"
 msgstr "Elektroninis programų vadovas"
@@ -7033,9 +7025,6 @@ msgstr "Kodavimas:"
 msgid "End"
 msgstr "Pabaiga"
 
-msgid "End long"
-msgstr "End (ilgai spausti)"
-
 msgid "End time"
 msgstr "Pabaigos laikas"
 
@@ -7206,9 +7195,6 @@ msgstr "Tik įrašo tekstas"
 
 msgid "Epg/Guide"
 msgstr "EPG /Vadovas"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Vadovas ilgai"
 
 msgid "Equal to"
 msgstr "Toks, kaip šis"
@@ -7674,26 +7660,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F2 (ilgai spausti)"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 ilgai"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 ilgai"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 ilgai"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7816,9 +7790,6 @@ msgstr "Greito prasukimo pirmyn greičiai"
 msgid "Favorites"
 msgstr "Mėgstamiausi"
 
-msgid "Favorites long"
-msgstr "Mėgstamiausi (ilgai spausti)"
-
 msgid "Feed URL"
 msgstr "Šaltinių internetinis adresas"
 
@@ -7896,9 +7867,6 @@ msgstr "Failo kontrolinės sumos, skirtos skaičiuoti 9 mygtuką"
 
 msgid "File checksums/hashes"
 msgstr "Failų kontrolinės sumos"
-
-msgid "File long"
-msgstr "Failas (ilgai spausti)"
 
 #, python-format
 msgid "File not found: %s"
@@ -8029,9 +7997,6 @@ msgstr "Atsarginė kopija, įdiegimas, nustatymų ir pasirinktų priedų atkūri
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Įdiegimo katalogas \"%s\" neleidžiamas!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Įdiegti %s %s iškart, nedelsiant."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Įdiegti jūsų imtuvo programinę įrangą."
@@ -8681,9 +8646,6 @@ msgstr "Žinyno ekrano informacija"
 msgid "Help animation speed"
 msgstr "Pagalbos animacijos greitis"
 
-msgid "Help long"
-msgstr "Pagalba (ilgai spausti)"
-
 msgid "Help screen style"
 msgstr "Žinyno ekrano stilius"
 
@@ -8789,9 +8751,6 @@ msgstr "Istorija atgal"
 msgid "History buttons mode"
 msgstr "Istorijos mygtuko režimas"
 
-msgid "History long"
-msgstr "Istorija (ilgai spausti)"
-
 msgid "History next"
 msgstr "Istorija pirmyn"
 
@@ -8813,14 +8772,8 @@ msgstr "Šventasis Sostas (Vatikano miesto valstybė)"
 msgid "Home"
 msgstr "Pradžia"
 
-msgid "Home long"
-msgstr "Home (ilgai spausti)"
-
 msgid "Homepage"
 msgstr "Pradinis puslapis"
-
-msgid "Homepage long"
-msgstr "Pradinis puslapis ilgai"
 
 msgid "Honduras"
 msgstr "Hondūras"
@@ -9279,9 +9232,6 @@ msgstr "Informacija"
 
 msgid "Info (EPG)"
 msgstr "Info (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Info (EPG) (ilgai spausti)"
 
 msgid "Info button (long)"
 msgstr "Info mygtukas (ilgai spausti)"
@@ -9757,9 +9707,6 @@ msgstr "Klaviatūros parametrai"
 msgid "Keyboard data entry"
 msgstr "Klaviatūros duomenų įvedimas"
 
-msgid "Keyboard long"
-msgstr "Klaviatūra"
-
 msgid "Keyboard map"
 msgstr "Klaviatūros išdėstymas"
 
@@ -9783,9 +9730,6 @@ msgstr "Kodi medija centras"
 
 msgid "Kodi installed:"
 msgstr "Kodi įdiegta:"
-
-msgid "Kodi long"
-msgstr "Kodi ilgas spaudimas"
 
 msgid "Kodi media player"
 msgstr "Kodi medijos grotuvas"
@@ -9828,9 +9772,6 @@ msgstr "LAN adapteris"
 
 msgid "LAN connection"
 msgstr "Laidinis tinklas"
-
-msgid "LAN long"
-msgstr "LAN (ilgai spausti)"
 
 msgid "LCD Skin Settings"
 msgstr "LCD temos parametrai"
@@ -9970,9 +9911,6 @@ msgstr "Kairė"
 msgid "Left from service name"
 msgstr "Į kairę nuo kanalo pavadinimo"
 
-msgid "Left long"
-msgstr "Ilgai spausti 'kairėn'"
-
 msgid "Left, wrapped"
 msgstr "kairėje, suvyniota"
 
@@ -10079,9 +10017,6 @@ msgstr[2] "Sąrašo versija %d, rasta %d kanalų"
 
 msgid "List/Fav"
 msgstr "Sąrašas/mėgstamiausi"
-
-msgid "List/Fav long"
-msgstr "Sąrašas/Mėgstamiausi ilgai"
 
 msgid "Listen to the radio"
 msgstr "Klausykitės radijo"
@@ -10327,9 +10262,6 @@ msgstr "DAUGIAU"
 msgid "MOUSE"
 msgstr "PELĖ"
 
-msgid "MOUSE long"
-msgstr "PELĖ (ilgai spausti)"
-
 msgid "MTD boot"
 msgstr "MTD įkrova"
 
@@ -10353,9 +10285,6 @@ msgstr "Madagaskaras"
 
 msgid "Magic"
 msgstr "Magija"
-
-msgid "Magic long"
-msgstr "Magija ilgai"
 
 msgid "Main Menu"
 msgstr "Pagrindinis Meniu"
@@ -10459,9 +10388,6 @@ msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 msgid "Mark/Portal/Playlist"
 msgstr "Žymė/portalas/grojaraštis"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Žymė/portalas/grojaraštis (ilgai spausti)"
-
 msgid "Marker Actions"
 msgstr "Žymeklio veiksmai"
 
@@ -10534,9 +10460,6 @@ msgstr "Medijos leistuvo parametrai"
 
 msgid "Media Portal"
 msgstr "Atverti Medija Portalą"
-
-msgid "Media long"
-msgstr "Media ilgai"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Medijos atkūrime liko/praėjo kaip"
@@ -11391,9 +11314,6 @@ msgstr "Kitas, keturių PiP kanalų, kanalas"
 msgid "Nextsong"
 msgstr "Kitas daina"
 
-msgid "Nextsong long"
-msgstr "Kita daina (ilgai spausti)"
-
 msgid "Nicaragua"
 msgstr "Nikaragva"
 
@@ -11831,9 +11751,6 @@ msgstr "OK mygtuką (trumpai)"
 msgid "OK button mode"
 msgstr "OK mygtuko režimas"
 
-msgid "OK long"
-msgstr "OK ilgai"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
 
@@ -11990,9 +11907,6 @@ msgstr "Atidaryti kontekstinį meniu"
 msgid "Open favorites list"
 msgstr "Atverti mėgstamiausių sąrašą"
 
-msgid "Open long"
-msgstr "Atverti ilgai"
-
 msgid "Open satellites list"
 msgstr "Atverti palydovų sąrašą"
 
@@ -12067,9 +11981,6 @@ msgstr "LED būsena veikimo metu"
 
 msgid "Option"
 msgstr "Parinktis"
-
-msgid "Option long"
-msgstr "Parinktis (ilgai spausti)"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
@@ -12180,9 +12091,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC (ilgai spausti)"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12208,10 +12116,6 @@ msgstr "Reikia pin kodo"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP ilgai"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12232,9 +12136,6 @@ msgstr "ŽIŪRIMIAUSIAS LAIKAS"
 
 msgid "PVR"
 msgstr "ĮRAŠAI"
-
-msgid "PVR long"
-msgstr "PVR, ilgai spausti"
 
 msgid "Package Manager"
 msgstr "Paketų tvarkyklė"
@@ -12278,14 +12179,8 @@ msgstr "Puslapio viršų sąrašas"
 msgid "PageDown"
 msgstr "Puslapis žemyn"
 
-msgid "PageDown long"
-msgstr "Puslapis žemyn, ilgai spausti"
-
 msgid "PageUp"
 msgstr "Puslapis aukštyn"
-
-msgid "PageUp long"
-msgstr "Puslapis aukštyn, ilgai spausti"
 
 msgid "Pakistan"
 msgstr "Pakistanas"
@@ -12553,9 +12448,6 @@ msgstr "Įrašai ir laiko poslinkis"
 
 msgid "Playlist"
 msgstr "Grojaraštis"
-
-msgid "Playlist long"
-msgstr "Grojaraštis ilgai"
 
 msgid "Playpause"
 msgstr "Grojimo pauzė"
@@ -13041,9 +12933,6 @@ msgstr "Maitinimo šviesos diodo būsena budėjimo režime."
 msgid "Power On Display"
 msgstr "Įjungimo ekranas"
 
-msgid "Power long"
-msgstr "Įtampa ilgai"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Maitinimo valdymas. Daugiau informacijos ieškokite savo imtuvo naudojimo instrukcijoje."
 
@@ -13241,9 +13130,6 @@ msgstr "ankstesnis/kitas puslapis"
 msgid "Prevsong"
 msgstr "Ankstesnė daina"
 
-msgid "Prevsong long"
-msgstr "Ankstesnė daina (ilgai spausti)"
-
 msgid "Primary DNS"
 msgstr "Pirminis DNS"
 
@@ -13314,9 +13200,6 @@ msgid ""
 msgstr ""
 "Programa '%s' neįdiegta.\n"
 "Paketas, kuriame yra ši programa, nežinomas."
-
-msgid "Program long"
-msgstr "Program, ilgai spausti"
 
 msgid "Programmlisten History"
 msgstr "Programų sąrašo istorija"
@@ -13404,9 +13287,6 @@ msgstr "Protokolas"
 
 msgid "Prov"
 msgstr "Teik"
-
-msgid "Prov long"
-msgstr "Teik. ilgai"
 
 msgid "Provider"
 msgstr "Teikėjas"
@@ -13521,9 +13401,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIJAS"
-
-msgid "RADIO long"
-msgstr "RADIO ilgas spaudimas"
 
 msgid "RAM (Details)"
 msgstr "RAM (Išsami informacija)"
@@ -13690,9 +13567,6 @@ msgstr "Atstatyti LCN paketą dabar?"
 
 msgid "Rec"
 msgstr "Rec"
-
-msgid "Rec long"
-msgstr "Raudoną, ilgai spausti"
 
 msgid "Receiver"
 msgstr "Imtuvas"
@@ -14363,9 +14237,6 @@ msgstr "Dešinys"
 msgid "Right from service name"
 msgstr "Kanalo pavadinimo dešinėje"
 
-msgid "Right long"
-msgstr "Ilgai spausti 'dešinėn'"
-
 msgid "Right, wrapped"
 msgstr "dešinėn, suvynioti"
 
@@ -14471,9 +14342,6 @@ msgstr "SABnzbd parametrai"
 
 msgid "SAT"
 msgstr "ŠEŠ"
-
-msgid "SAT long"
-msgstr "SAT, ilgai spausti"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14863,9 +14731,6 @@ msgstr "Ieškoti vakarų"
 
 msgid "Search/WEB"
 msgstr "Paieška / internetas"
-
-msgid "Search/WEB long"
-msgstr "Paieška / internetas (ilgai spausti)"
 
 msgid "Searching"
 msgstr "Ieškoma"
@@ -15899,16 +15764,16 @@ msgstr "Nustatykite savo %s %s MAC adresą."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nustatykite kanalų logotipų proporciją."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid "Set the default sorting method."
@@ -17069,9 +16934,6 @@ msgstr "Miego laikmačiai"
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Miegoti, ilgai spausti"
-
 msgid "Sleep timer"
 msgstr "Miego laikmatis"
 
@@ -17804,9 +17666,6 @@ msgstr "3-a pasirinkta subtitrų kalba"
 msgid "Subtitle language selection 4"
 msgstr "4-a pasirinkta subtitrų kalba"
 
-msgid "Subtitle long"
-msgstr "Subtitrai ilgai spaudžiant"
-
 msgid "Subtitle position"
 msgstr "Subtitrų padėtis"
 
@@ -18190,9 +18049,6 @@ msgstr "Teleteksto bazinis matomumas"
 
 msgid "Teletext font and resolution"
 msgstr "Teleteksto šriftas ir rezoliucija"
-
-msgid "Teletext long"
-msgstr "Teletekstas (ilgai spausti)"
 
 msgid "Teletext subtitle color"
 msgstr "Teleteksto subtitrų spalva"
@@ -19079,9 +18935,6 @@ msgstr "Laiko šuolio kartojimo intervalas greitam persukimui pirmyn/atgal"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Laiko šuolis: naudoti įprastą greitą prasukimą greičiams"
-
-msgid "Time long"
-msgstr "Laikas ilgai"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20207,9 +20060,6 @@ msgstr "VOB failas"
 msgid "VOD"
 msgstr "VOD parametrai"
 
-msgid "VOD long"
-msgstr "VOD (ilgai spausti)"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21133,9 +20983,6 @@ msgstr "Įrašymas klaidingas!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Www, ilgai spausti"
-
 msgid "XBox 360 support"
 msgstr "Xbox 360 palaikymas"
 
@@ -21372,9 +21219,6 @@ msgstr "Turėtumėte įdiegti naują vaizdą!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube ilgai spausti"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Jūsų %s %s neturi interneto ryšio"
@@ -21625,9 +21469,6 @@ msgstr "JUNGTI"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM (ilgai spausti)"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23128,6 +22969,171 @@ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo va
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Formatas (ilgai)"
+
+#~ msgid "Audio long"
+#~ msgstr "Ilgas Audio paspaudimas"
+
+#~ msgid "Context long"
+#~ msgstr "Kontekstas ilgai"
+
+#~ msgid "Directory long"
+#~ msgstr "Katalogas ilgai"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "IŠSTUMTI CD ilgai spausti"
+
+#~ msgid "End long"
+#~ msgstr "End (ilgai spausti)"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Vadovas ilgai"
+
+#~ msgid "F1 long"
+#~ msgstr "F2 (ilgai spausti)"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 ilgai"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 ilgai"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 ilgai"
+
+#~ msgid "Favorites long"
+#~ msgstr "Mėgstamiausi (ilgai spausti)"
+
+#~ msgid "File long"
+#~ msgstr "Failas (ilgai spausti)"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Įdiegti %s %s iškart, nedelsiant."
+
+#~ msgid "Help long"
+#~ msgstr "Pagalba (ilgai spausti)"
+
+#~ msgid "History long"
+#~ msgstr "Istorija (ilgai spausti)"
+
+#~ msgid "Home long"
+#~ msgstr "Home (ilgai spausti)"
+
+#~ msgid "Homepage long"
+#~ msgstr "Pradinis puslapis ilgai"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Info (EPG) (ilgai spausti)"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Klaviatūra"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi ilgas spaudimas"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN (ilgai spausti)"
+
+#~ msgid "Left long"
+#~ msgstr "Ilgai spausti 'kairėn'"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Sąrašas/Mėgstamiausi ilgai"
+
+#~ msgid "MOUSE long"
+#~ msgstr "PELĖ (ilgai spausti)"
+
+#~ msgid "Magic long"
+#~ msgstr "Magija ilgai"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Žymė/portalas/grojaraštis (ilgai spausti)"
+
+#~ msgid "Media long"
+#~ msgstr "Media ilgai"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Kita daina (ilgai spausti)"
+
+#~ msgid "OK long"
+#~ msgstr "OK ilgai"
+
+#~ msgid "Open long"
+#~ msgstr "Atverti ilgai"
+
+#~ msgid "Option long"
+#~ msgstr "Parinktis (ilgai spausti)"
+
+#~ msgid "PC long"
+#~ msgstr "PC (ilgai spausti)"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP ilgai"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR, ilgai spausti"
+
+#~ msgid "PageDown long"
+#~ msgstr "Puslapis žemyn, ilgai spausti"
+
+#~ msgid "PageUp long"
+#~ msgstr "Puslapis aukštyn, ilgai spausti"
+
+#~ msgid "Playlist long"
+#~ msgstr "Grojaraštis ilgai"
+
+#~ msgid "Power long"
+#~ msgstr "Įtampa ilgai"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Ankstesnė daina (ilgai spausti)"
+
+#~ msgid "Program long"
+#~ msgstr "Program, ilgai spausti"
+
+#~ msgid "Prov long"
+#~ msgstr "Teik. ilgai"
+
+#~ msgid "RADIO long"
+#~ msgstr "RADIO ilgas spaudimas"
+
+#~ msgid "Rec long"
+#~ msgstr "Raudoną, ilgai spausti"
+
+#~ msgid "Right long"
+#~ msgstr "Ilgai spausti 'dešinėn'"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT, ilgai spausti"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Paieška / internetas (ilgai spausti)"
+
+#~ msgid "Sleep long"
+#~ msgstr "Miegoti, ilgai spausti"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Subtitrai ilgai spaudžiant"
+
+#~ msgid "Teletext long"
+#~ msgstr "Teletekstas (ilgai spausti)"
+
+#~ msgid "Time long"
+#~ msgstr "Laikas ilgai"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD (ilgai spausti)"
+
+#~ msgid "Www long"
+#~ msgstr "Www, ilgai spausti"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube ilgai spausti"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM (ilgai spausti)"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2 sek."

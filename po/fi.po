@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
-"PO-Revision-Date: 2022-09-11 15:30+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"PO-Revision-Date: 2022-09-17 13:18+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -883,8 +883,8 @@ msgstr[1] "%d Määrä"
 #, python-format
 msgid "%d Event"
 msgid_plural "%d Events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Tapahtuma"
+msgstr[1] "%d Tapahtumat"
 
 #, python-format
 msgid "%d GB"
@@ -1264,6 +1264,10 @@ msgstr "%s ei ole enää käytössä. Poistetaanko se?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s on suojattu salasanalla."
+
+#, python-format
+msgid "%s long"
+msgstr "%s pitkä"
 
 #, python-format
 msgid "%s not available."
@@ -2761,9 +2765,6 @@ msgstr "Kuvasuhde toiminnot"
 msgid "Aspect list..."
 msgstr "Näytä kuvasuhde vaihtoehdot"
 
-msgid "Aspect long"
-msgstr "Kuvasuhde"
-
 msgid "Aspect ratio"
 msgstr "Kuvasuhde"
 
@@ -2846,9 +2847,6 @@ msgstr "Äänen kielivalinta 3"
 
 msgid "Audio language selection 4"
 msgstr "Äänen kielivalinta 4"
-
-msgid "Audio long"
-msgstr "Ääniraidan valinta"
 
 msgid "Audio options..."
 msgstr "Ääni asetukset..."
@@ -4987,9 +4985,6 @@ msgstr "Sisältö ei mahdu DVD:lle!"
 msgid "Context"
 msgstr "Sisältö"
 
-msgid "Context long"
-msgstr "Sisältö teksti pitkä"
-
 msgid "Continent"
 msgstr "Maanosa"
 
@@ -5652,7 +5647,7 @@ msgstr "Oletus kansio"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Määrittää oletus kansio, jos vasenta tai oikeaa kansiota ei ole tallennettu,kohteen kohdekansio näppäin 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Oletushakemisto tallennuksille"
 
 msgid "Default recording type"
@@ -6025,9 +6020,6 @@ msgstr "Hakemisto '%s' ei ole kirjoitettavissa!"
 
 msgid "Directory browser"
 msgstr "Hakemistoselain"
-
-msgid "Directory long"
-msgstr "Hakemisto"
 
 msgid "Disable"
 msgstr "Poista käytöstä"
@@ -6457,6 +6449,9 @@ msgstr "Lataa lisäosia"
 msgid "Download Softcams"
 msgstr "Lataa Softcameja"
 
+msgid "Download and flash images on your %s %s."
+msgstr "Lataa ja asenna ohjelmisto vastaanottimeesi %s %s."
+
 msgid "Download and install Plugins"
 msgstr "Lataa ja asenna lisäosia"
 
@@ -6552,9 +6547,6 @@ msgstr "ECM aika"
 
 msgid "EJECTCD"
 msgstr "Poista cd"
-
-msgid "EJECTCD long"
-msgstr "Poista cd pitkä"
 
 msgid "EPG"
 msgstr "Ohjelmaopas"
@@ -7003,9 +6995,6 @@ msgstr "Salaus:"
 msgid "End"
 msgstr "Loppu"
 
-msgid "End long"
-msgstr "Loppu pitkä"
-
 msgid "End time"
 msgstr "Lopetusaika"
 
@@ -7174,9 +7163,6 @@ msgstr "Vain teksti"
 
 msgid "Epg/Guide"
 msgstr "EPG-näppäin"
-
-msgid "Epg/Guide long"
-msgstr "EPG-näppäin (pitkä)"
 
 msgid "Equal to"
 msgstr "Sama kuin"
@@ -7640,26 +7626,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "Punainen"
 
-msgid "F1 long"
-msgstr "F1 pitkä"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 pitkä"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 pitkä"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 pitkä"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7782,9 +7756,6 @@ msgstr "Kelausnopeudet eteenpäin"
 msgid "Favorites"
 msgstr "Suosikit"
 
-msgid "Favorites long"
-msgstr "Suosikit pitkä"
-
 msgid "Feed URL"
 msgstr "Päivitys nettisivu"
 
@@ -7862,9 +7833,6 @@ msgstr "Tiedostojen tarkistussummien laskemiseksi avaimella 9\""
 
 msgid "File checksums/hashes"
 msgstr "Tiedostojen tarkistussummat / tiiviste"
-
-msgid "File long"
-msgstr "Tiedosto pitkä"
 
 #, python-format
 msgid "File not found: %s"
@@ -7995,9 +7963,6 @@ msgstr "Päivitä ja palauta setukset ja valitut laajennukset (Kysy käyttäjäl
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash hakemisto '%s' ei ole sallittu!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Päivitä laitteen %s %s image verkosta tai paikallisesta sijainnista."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
@@ -8647,9 +8612,6 @@ msgstr "Ohje näytön tiedot"
 msgid "Help animation speed"
 msgstr "Animaationopeus ohje näkymässä"
 
-msgid "Help long"
-msgstr "Ohjeet pitkä"
-
 msgid "Help screen style"
 msgstr "Ohje näytön tyyli"
 
@@ -8755,9 +8717,6 @@ msgstr "Kanavanvaihtohistoria taakse"
 msgid "History buttons mode"
 msgstr "Historianäppäimien toiminto"
 
-msgid "History long"
-msgstr "Kanavanvaihtohistoria eteen"
-
 msgid "History next"
 msgstr "Kanavanvaihtohistoria eteen"
 
@@ -8779,14 +8738,8 @@ msgstr "Holy See (Vatikaanivaltio)"
 msgid "Home"
 msgstr "Kotihakemisto"
 
-msgid "Home long"
-msgstr "Koti pitkä"
-
 msgid "Homepage"
 msgstr "Kotihakemisto"
-
-msgid "Homepage long"
-msgstr "Kotisivu pitkä"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9250,9 +9203,6 @@ msgstr "Tietoja"
 msgid "Info (EPG)"
 msgstr "Tietopalkki (EPG)"
 
-msgid "Info (EPG) Long"
-msgstr "Tietopalkki (EPG) pitkä"
-
 msgid "Info button (long)"
 msgstr "Info näppäin (pitkä)"
 
@@ -9511,7 +9461,7 @@ msgid "Invalid"
 msgstr "Virheellinen"
 
 msgid "Invalid location!"
-msgstr "Virheellinen sijainti"
+msgstr "Virheellinen sijainti!"
 
 msgid "Invalid transponder data"
 msgstr "Epäkelpo transponderin tieto"
@@ -9727,9 +9677,6 @@ msgstr "Näppäimistön asetukset"
 msgid "Keyboard data entry"
 msgstr "Näppäimistön syöttö"
 
-msgid "Keyboard long"
-msgstr "Näppäimistö pitkä"
-
 msgid "Keyboard map"
 msgstr "Näppäimistökartta"
 
@@ -9753,9 +9700,6 @@ msgstr "Kodi Mediakeskus"
 
 msgid "Kodi installed:"
 msgstr "Kodi asennettu:"
-
-msgid "Kodi long"
-msgstr "Kodi pitkä"
 
 msgid "Kodi media player"
 msgstr "Kodi media soitin"
@@ -9798,9 +9742,6 @@ msgstr "Verkkosovitin"
 
 msgid "LAN connection"
 msgstr "LAN yhteys"
-
-msgid "LAN long"
-msgstr "Lähiverkko pitkä"
 
 msgid "LCD Skin Settings"
 msgstr "Näyttöpaneeli Teema"
@@ -9940,9 +9881,6 @@ msgstr "Vasen"
 msgid "Left from service name"
 msgstr "Kanavanimestä vasemmalle"
 
-msgid "Left long"
-msgstr "Vasen pitkä"
-
 msgid "Left, wrapped"
 msgstr "vasemmalla, rivitä teksti"
 
@@ -10048,9 +9986,6 @@ msgstr[1] "Luetteloversio %d, löytyi %d kanavaa"
 
 msgid "List/Fav"
 msgstr "Lista/Suosikit"
-
-msgid "List/Fav long"
-msgstr "Lista/Suosikit pitkä"
 
 msgid "Listen to the radio"
 msgstr "Kuuntele radiota"
@@ -10296,9 +10231,6 @@ msgstr "Lisää"
 msgid "MOUSE"
 msgstr "HIIRI"
 
-msgid "MOUSE long"
-msgstr "HIIRI pitkä"
-
 msgid "MTD boot"
 msgstr "MTD käynnistys"
 
@@ -10322,9 +10254,6 @@ msgstr "Madagascar"
 
 msgid "Magic"
 msgstr "Taika"
-
-msgid "Magic long"
-msgstr "Taika pitkä"
 
 msgid "Main Menu"
 msgstr "Päävalikko"
@@ -10428,9 +10357,6 @@ msgstr "Merkitse kanava 3D:ksi"
 msgid "Mark/Portal/Playlist"
 msgstr "Merkki/Valikko/Soittolista"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Merkki/Portaali/Soittolista"
-
 msgid "Marker Actions"
 msgstr "Merkkitoiminnot"
 
@@ -10503,9 +10429,6 @@ msgstr "Media Soittimen Asetukset"
 
 msgid "Media Portal"
 msgstr "MediaPortaali"
-
-msgid "Media long"
-msgstr "Media pitkä"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika muodossa"
@@ -11362,9 +11285,6 @@ msgstr "Seuraava 4 PiP kanava"
 msgid "Nextsong"
 msgstr "Seuraava kappele"
 
-msgid "Nextsong long"
-msgstr "Seuraava kappele"
-
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
@@ -11808,9 +11728,6 @@ msgstr "OK näppäin (lyhyt)"
 msgid "OK button mode"
 msgstr "OK näppäimen toiminto"
 
-msgid "OK long"
-msgstr "OK (pitkä)"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, opasta minua päivityksessä"
 
@@ -11967,9 +11884,6 @@ msgstr "Avaa pikavalikko"
 msgid "Open favorites list"
 msgstr "Näytä Suosikkilista"
 
-msgid "Open long"
-msgstr "Auki pitkään"
-
 msgid "Open satellites list"
 msgstr "Näytä satelliittilista"
 
@@ -12044,9 +11958,6 @@ msgstr "LED tila käytössä"
 
 msgid "Option"
 msgstr "Vaihtoehto"
-
-msgid "Option long"
-msgstr "Vaihtoehto pitkä"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa"
@@ -12157,9 +12068,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC pitkä"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12185,10 +12093,6 @@ msgstr "PIN koodi vaaditaan"
 msgid "PIP"
 msgstr "PIP"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP pitkä"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12209,9 +12113,6 @@ msgstr "Paras katseluaika"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR (pitkä)"
 
 msgid "Package Manager"
 msgstr "Ohjelmapakettien hallinta"
@@ -12255,14 +12156,8 @@ msgstr "Sivu lista"
 msgid "PageDown"
 msgstr "Sivu alas"
 
-msgid "PageDown long"
-msgstr "Sivu alas (pitkä)"
-
 msgid "PageUp"
 msgstr "Sivu ylös"
-
-msgid "PageUp long"
-msgstr "Sivu ylös (pitkä)"
 
 msgid "Pakistan"
 msgstr "Pakistani"
@@ -12523,16 +12418,13 @@ msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Toista / katso / muokkaa / asenna / pura / suorita tiedosto tai kirjoita hakemisto"
 
 msgid "Playback Settings"
-msgstr ""
+msgstr "Toisto Asetukset"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Tallennus & Ajansiirto"
 
 msgid "Playlist"
 msgstr "Soittolista"
-
-msgid "Playlist long"
-msgstr "Soittolista pitkä"
 
 msgid "Playpause"
 msgstr "Tauko"
@@ -13018,9 +12910,6 @@ msgstr "Virta LED tila valmiustilan aikana."
 msgid "Power On Display"
 msgstr "Etupaneeli Näyttö päällä"
 
-msgid "Power long"
-msgstr "Virta pitkä"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
 
@@ -13218,9 +13107,6 @@ msgstr "edellinen/seuraava Sivu"
 msgid "Prevsong"
 msgstr "Vihreä"
 
-msgid "Prevsong long"
-msgstr "Vihreä (pitkä)"
-
 msgid "Primary DNS"
 msgstr "Ensisijainen DNS"
 
@@ -13291,9 +13177,6 @@ msgid ""
 msgstr ""
 "Ohjelmaa '%s' ei ole asennettu.\n"
 "Tätä ohjelmaa sisältävä paketti ei ole tiedossa."
-
-msgid "Program long"
-msgstr "Pitkä ohjelma"
 
 msgid "Programmlisten History"
 msgstr "Ohjelmalista Historia"
@@ -13381,9 +13264,6 @@ msgstr "Protokolla"
 
 msgid "Prov"
 msgstr "Palveluntarjoaja"
-
-msgid "Prov long"
-msgstr "Palveluntarjoaja pitkä"
 
 msgid "Provider"
 msgstr "Palveluntarjoaja"
@@ -13498,9 +13378,6 @@ msgstr "Nopea valinta toiminnot"
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr "Radio pitkä"
 
 msgid "RAM (Details)"
 msgstr "RAM (Tiedot)"
@@ -13667,9 +13544,6 @@ msgstr "Luodaanko LCN lista nyt?"
 
 msgid "Rec"
 msgstr "Tallennus"
-
-msgid "Rec long"
-msgstr "Tallennus pitkä"
 
 msgid "Receiver"
 msgstr "Vastaanotin"
@@ -14340,9 +14214,6 @@ msgstr "Oikea"
 msgid "Right from service name"
 msgstr "Kanavanimestä oikealle"
 
-msgid "Right long"
-msgstr "Oikea pitkä"
-
 msgid "Right, wrapped"
 msgstr "oikealla, rivitä teksti"
 
@@ -14448,9 +14319,6 @@ msgstr "SABnzbd asetukset"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT pitkä"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14839,9 +14707,6 @@ msgstr "Etsintä länteen"
 msgid "Search/WEB"
 msgstr "Haku"
 
-msgid "Search/WEB long"
-msgstr "Haku"
-
 msgid "Searching"
 msgstr "Etsitään"
 
@@ -15105,7 +14970,7 @@ msgid "Select Location"
 msgstr "Valitse Sijainti"
 
 msgid "Select Movie Location"
-msgstr ""
+msgstr "Valitse elokuva sijainti"
 
 msgid "Select Quad Channels"
 msgstr "Valitse Quad kanavat"
@@ -15114,7 +14979,7 @@ msgid "Select Software Update"
 msgstr "Ohjelmistopäivitys"
 
 msgid "Select Time Shift Location"
-msgstr ""
+msgstr "Valitse ajansiirto sijainti"
 
 msgid "Select Upgrade Source"
 msgstr "Valitse päivityksen lähdeosoite"
@@ -15888,16 +15753,16 @@ msgstr "Määritä %s %s:n MAC-osoite."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määritä kanavatyypin kuvakkeiden kuvasuhde."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto pikatallennuksien. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto nauhoituksiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto ajansiirto tiedostoiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto ajastuksiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
 msgid "Set the default sorting method."
@@ -17058,9 +16923,6 @@ msgstr "Uniajastimet"
 msgid "Sleep delay"
 msgstr "Uni viive (minuutteina)"
 
-msgid "Sleep long"
-msgstr "Nuku pitkään"
-
 msgid "Sleep timer"
 msgstr "Uniajastin"
 
@@ -17791,9 +17653,6 @@ msgstr "Tekstityksen kielivalinta 3"
 msgid "Subtitle language selection 4"
 msgstr "Tekstityksen kielivalinta 4"
 
-msgid "Subtitle long"
-msgstr "Tekstitys pitkä"
-
 msgid "Subtitle position"
 msgstr "Tekstityksen sijainti"
 
@@ -18063,7 +17922,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 27.08.2022\n"
+"Suomenkielinen käännös: 16.09.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18179,9 +18038,6 @@ msgstr "Teksti-tv läpinäkyvyys"
 
 msgid "Teletext font and resolution"
 msgstr "Tekstitv fontti ja resoluutio"
-
-msgid "Teletext long"
-msgstr "Tekstitv pitkä"
 
 msgid "Teletext subtitle color"
 msgstr "Teksti-tv tekstityksen väri"
@@ -19073,9 +18929,6 @@ msgstr "Aikahyppyjen toistonopeus eteen- ja taaksepäinkelauksessa"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Käytä normaalia eteenpäinkelausta nopeuksille"
 
-msgid "Time long"
-msgstr "Aika pitkä"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Tähän tehtävään kulunut aika: %s"
@@ -19102,7 +18955,7 @@ msgid "Time shift event limit"
 msgstr "Ajansiirron tallentamien ohjelmien maksimimäärä [kpl]"
 
 msgid "Time shift may not work correctly without an acceptable directory."
-msgstr ""
+msgstr "Ajansiirto ei ehkä toimi oikein ilman hyväksyttävää hakemistoa."
 
 msgid "Time shift not possible!"
 msgstr "Ajansiirtotallennusta ei voida käyttää!"
@@ -20205,9 +20058,6 @@ msgstr "VOB tiedosto"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD pitkä"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21131,9 +20981,6 @@ msgstr "Kirjoitus epäonnistui!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Www pitkä"
-
 msgid "XBox 360 support"
 msgstr "XBox 360 -tuki"
 
@@ -21372,9 +21219,6 @@ msgstr "Sinun kannattaa silti päivittää uusi ohjelmisto!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube pitkä"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Laitteella %s %s ei ole Internet-yhteyttä"
@@ -21626,9 +21470,6 @@ msgstr "Vaihda"
 
 msgid "ZOOM"
 msgstr "Suurenna"
-
-msgid "ZOOM long"
-msgstr "Suurenna pitkä"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23131,6 +22972,171 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Kuvasuhde"
+
+#~ msgid "Audio long"
+#~ msgstr "Ääniraidan valinta"
+
+#~ msgid "Context long"
+#~ msgstr "Sisältö teksti pitkä"
+
+#~ msgid "Directory long"
+#~ msgstr "Hakemisto"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "Poista cd pitkä"
+
+#~ msgid "End long"
+#~ msgstr "Loppu pitkä"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "EPG-näppäin (pitkä)"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 pitkä"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 pitkä"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 pitkä"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 pitkä"
+
+#~ msgid "Favorites long"
+#~ msgstr "Suosikit pitkä"
+
+#~ msgid "File long"
+#~ msgstr "Tiedosto pitkä"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Päivitä laitteen %s %s image verkosta tai paikallisesta sijainnista."
+
+#~ msgid "Help long"
+#~ msgstr "Ohjeet pitkä"
+
+#~ msgid "History long"
+#~ msgstr "Kanavanvaihtohistoria eteen"
+
+#~ msgid "Home long"
+#~ msgstr "Koti pitkä"
+
+#~ msgid "Homepage long"
+#~ msgstr "Kotisivu pitkä"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Tietopalkki (EPG) pitkä"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Näppäimistö pitkä"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi pitkä"
+
+#~ msgid "LAN long"
+#~ msgstr "Lähiverkko pitkä"
+
+#~ msgid "Left long"
+#~ msgstr "Vasen pitkä"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Lista/Suosikit pitkä"
+
+#~ msgid "MOUSE long"
+#~ msgstr "HIIRI pitkä"
+
+#~ msgid "Magic long"
+#~ msgstr "Taika pitkä"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Merkki/Portaali/Soittolista"
+
+#~ msgid "Media long"
+#~ msgstr "Media pitkä"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Seuraava kappele"
+
+#~ msgid "OK long"
+#~ msgstr "OK (pitkä)"
+
+#~ msgid "Open long"
+#~ msgstr "Auki pitkään"
+
+#~ msgid "Option long"
+#~ msgstr "Vaihtoehto pitkä"
+
+#~ msgid "PC long"
+#~ msgstr "PC pitkä"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP pitkä"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR (pitkä)"
+
+#~ msgid "PageDown long"
+#~ msgstr "Sivu alas (pitkä)"
+
+#~ msgid "PageUp long"
+#~ msgstr "Sivu ylös (pitkä)"
+
+#~ msgid "Playlist long"
+#~ msgstr "Soittolista pitkä"
+
+#~ msgid "Power long"
+#~ msgstr "Virta pitkä"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Vihreä (pitkä)"
+
+#~ msgid "Program long"
+#~ msgstr "Pitkä ohjelma"
+
+#~ msgid "Prov long"
+#~ msgstr "Palveluntarjoaja pitkä"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio pitkä"
+
+#~ msgid "Rec long"
+#~ msgstr "Tallennus pitkä"
+
+#~ msgid "Right long"
+#~ msgstr "Oikea pitkä"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT pitkä"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Haku"
+
+#~ msgid "Sleep long"
+#~ msgstr "Nuku pitkään"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Tekstitys pitkä"
+
+#~ msgid "Teletext long"
+#~ msgstr "Tekstitv pitkä"
+
+#~ msgid "Time long"
+#~ msgstr "Aika pitkä"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD pitkä"
+
+#~ msgid "Www long"
+#~ msgstr "Www pitkä"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube pitkä"
+
+#~ msgid "ZOOM long"
+#~ msgstr "Suurenna pitkä"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

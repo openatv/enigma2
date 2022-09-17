@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1299,6 +1299,10 @@ msgstr "Το %s δεν χρησιμοποιείται πλέον. Να γίνε�
 #, python-format
 msgid "%s is password protected."
 msgstr "Το %s προστατεύεται με κωδικό."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2794,9 +2798,6 @@ msgstr "Λόγος πλευρών"
 msgid "Aspect list..."
 msgstr "Λίστα λόγων πλευρών..."
 
-msgid "Aspect long"
-msgstr "Λόγος πλευρών παρατεταμένο"
-
 msgid "Aspect ratio"
 msgstr "Λόγος πλευρών"
 
@@ -2880,9 +2881,6 @@ msgstr "Επιλογή γλώσσας ήχου 3"
 
 msgid "Audio language selection 4"
 msgstr "Επιλογή γλώσσας ήχου 4"
-
-msgid "Audio long"
-msgstr "Ήχος παρατεταμένο"
 
 msgid "Audio options..."
 msgstr "Επιλογές ήχου..."
@@ -5026,9 +5024,6 @@ msgstr "Το περιεχόμενο δεν χωράει σε DVD!"
 msgid "Context"
 msgstr "Περιεχόμενα"
 
-msgid "Context long"
-msgstr "Περιεχόμενα παρατεταμένο"
-
 msgid "Continent"
 msgstr ""
 
@@ -5705,7 +5700,7 @@ msgstr "Προεπιλεγμένος φάκελος"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Προεπιλεγμένος φάκελος αν ο αριστερός ή ο δεξιός δεν έχουν αποθηκευστεί, και φάκελος προορισμού για το πλήκτρο 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Προεπιλεγμένη τοποθεσία ταινιών"
 
 msgid "Default recording type"
@@ -6082,9 +6077,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "Πλοηγός φακέλων"
-
-msgid "Directory long"
-msgstr "Directory παρατεταμένο"
 
 msgid "Disable"
 msgstr "Απενεργοποίηση"
@@ -6513,6 +6505,9 @@ msgstr "Λήψη προσθέτων"
 msgid "Download Softcams"
 msgstr "Λήψη softcams"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Λήψη και εγκατάσταση προσθέτων"
 
@@ -6611,9 +6606,6 @@ msgstr "Χρόνος ECM"
 
 msgid "EJECTCD"
 msgstr "ΕΞΑΓΩΓΗCD"
-
-msgid "EJECTCD long"
-msgstr "ΕΞΑΓΩΓΗCD παρατεταμένο"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7064,9 +7056,6 @@ msgstr "Κωδικοποίηση:"
 msgid "End"
 msgstr "Τέλος"
 
-msgid "End long"
-msgstr "Τέλος παρατεταμένο"
-
 msgid "End time"
 msgstr "Ώρα τερματισμού"
 
@@ -7235,9 +7224,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide παρατεταμένο"
 
 msgid "Equal to"
 msgstr "Ισούται με"
@@ -7699,26 +7685,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 παρατεταμένο"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 παρατεταμένο"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 παρατεταμένο"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 παρατεταμένο"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7843,9 +7817,6 @@ msgstr "Ταχύτητες προώθησης εμπρός"
 msgid "Favorites"
 msgstr "Favorites"
 
-msgid "Favorites long"
-msgstr "Favorites παρατεταμένο"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -7924,9 +7895,6 @@ msgstr "Υπολογισμός συνόλων ελέγχου αρχείων γι
 
 msgid "File checksums/hashes"
 msgstr "Έλεγχοι/ψηφιακές υπογραφές αρχείων"
-
-msgid "File long"
-msgstr "Αρχείο παρατεταμένο"
 
 #, python-format
 msgid "File not found: %s"
@@ -8058,9 +8026,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
-
-msgid "Flash on the fly your %s %s."
-msgstr "Φλασάρισμα σε πραγματικό χρόνο του %s %s σας."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Φλασάρισμα σε πραγματικό χρόνο του λογισμικού του δέκτη σας."
@@ -8720,9 +8685,6 @@ msgstr "Πληροφορίες συσκευής"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr "Help παρατεταμένο"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8829,9 +8791,6 @@ msgstr "Ιστορικό πίσω"
 msgid "History buttons mode"
 msgstr "Λειτουργία πλήκτρων ιστορικού"
 
-msgid "History long"
-msgstr "Ιστορικό παρατεταμένο"
-
 msgid "History next"
 msgstr "Ιστορικό επόμενο"
 
@@ -8853,14 +8812,8 @@ msgstr ""
 msgid "Home"
 msgstr "Αρχική"
 
-msgid "Home long"
-msgstr "Αρχική Σελίδα παρατεταμένο"
-
 msgid "Homepage"
 msgstr "Αρχική Σελίδα"
-
-msgid "Homepage long"
-msgstr "Αρχική Σελίδα παρατεταμένο"
 
 msgid "Honduras"
 msgstr "Ονδούρα"
@@ -9325,9 +9278,6 @@ msgstr "Πληροφορίες"
 
 msgid "Info (EPG)"
 msgstr "Info (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Info (EPG) παρατεταμένο"
 
 msgid "Info button (long)"
 msgstr "Πλήκτρο Info (παρατεταμένο)"
@@ -9811,10 +9761,6 @@ msgstr "Ρυθμίσεις πληκτρολογίου"
 msgid "Keyboard data entry"
 msgstr "Εισαγωγή δεδομένων πληκτρολογίου"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Πληκτρολόγιο"
-
 msgid "Keyboard map"
 msgstr "Χάρτης πληκτρολογίου"
 
@@ -9838,9 +9784,6 @@ msgstr "Κέντρο Πολυμέσων Kodi"
 
 msgid "Kodi installed:"
 msgstr "Το Kodi εγκαταστάθηκε:"
-
-msgid "Kodi long"
-msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi αναπαραγωγή πολυμέσων"
@@ -9886,9 +9829,6 @@ msgstr "Προσαρμογέας δικτύου"
 
 msgid "LAN connection"
 msgstr "Σύνδεση δικτύου"
-
-msgid "LAN long"
-msgstr "LAN παρατεταμένο"
 
 msgid "LCD Skin Settings"
 msgstr "Ρυθμίσεις θέματος LCD"
@@ -10031,9 +9971,6 @@ msgstr "Αριστερά"
 msgid "Left from service name"
 msgstr "Αριστερά του ονόματος υπηρεσίας"
 
-msgid "Left long"
-msgstr "Αριστερό παρατεταμένο"
-
 msgid "Left, wrapped"
 msgstr "αριστερά, σε αναδίπλωση"
 
@@ -10139,9 +10076,6 @@ msgstr[1] "Έκδοση λίστας %d, βρέθηκαν %d κανάλια"
 
 msgid "List/Fav"
 msgstr "Λίστα/Αγαπημένα"
-
-msgid "List/Fav long"
-msgstr "List/Fav παρατεταμένο"
 
 #, fuzzy
 msgid "Listen to the radio"
@@ -10394,9 +10328,6 @@ msgstr "ΠΕΡΙΣΣΟΤΕΡΑ"
 msgid "MOUSE"
 msgstr "ΠΟΝΤΙΚΙ"
 
-msgid "MOUSE long"
-msgstr "ΠΟΝΤΙΚΙ παρατεταμένο"
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10421,10 +10352,6 @@ msgstr "Μαδαγασκάρη"
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Πολυμέσα παρατεταμένο"
 
 msgid "Main Menu"
 msgstr "Κύριο μενού"
@@ -10534,9 +10461,6 @@ msgstr "Μαρκάρισμα υπηρεσίας ως σταθερή υπηρεσ
 msgid "Mark/Portal/Playlist"
 msgstr "Μαρκάρισμα/Portal/Λίστα αναπαραγωγής"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Μαρκάρισμα/Portal/Λίστα αναπαραγωγής"
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "Γρήγορες ενέργειες"
@@ -10611,9 +10535,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
-
-msgid "Media long"
-msgstr "Πολυμέσα παρατεταμένο"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Αναπαραγωγή πολυμέσων εναπομείναντα/παρελθόντα ως"
@@ -11499,9 +11420,6 @@ msgstr "Επόμενο κανάλι τετραπλού PiP"
 msgid "Nextsong"
 msgstr "Επόμενο τραγούδι"
 
-msgid "Nextsong long"
-msgstr "Επόμενο τραγούδι παρατεταμένο"
-
 msgid "Nicaragua"
 msgstr "Νικαράγουα"
 
@@ -11944,9 +11862,6 @@ msgstr "Πλήκτρο ΟΚ (σύντομο)"
 msgid "OK button mode"
 msgstr "Λειτουργία πλήκτρου ΟΚ"
 
-msgid "OK long"
-msgstr "ΟΚ παρατεταμένο"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "ΟΚ, να οδηγηθώ στη διαδικασία αναβάθμισης"
 
@@ -12111,9 +12026,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Άνοιγμα λίστας αγαπημένων"
 
-msgid "Open long"
-msgstr "Open παρατεταμένο"
-
 msgid "Open satellites list"
 msgstr "Άνοιγμα λίστας δορυφόρων"
 
@@ -12189,9 +12101,6 @@ msgstr "Κατάσταση λειτουργίας LED κατά την εκτέλ
 
 msgid "Option"
 msgstr "Επιλογή"
-
-msgid "Option long"
-msgstr "Επιλογή παρατεταμένο"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Επιλογή απενεργοποίησης λογότυπων στη μπάρα πληροφοριών"
@@ -12304,9 +12213,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC παρατεταμένο"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12333,10 +12239,6 @@ msgstr "Απαιτείται κωδικός PIN"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP παρατεταμένο"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12357,9 +12259,6 @@ msgstr "ΖΩΝΗ ΑΙΧΜΗΣ"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR παρατεταμένο"
 
 msgid "Package Manager"
 msgstr "Διαχείριση πακέτων"
@@ -12404,14 +12303,8 @@ msgstr "Σελίδα λίστας επάνω"
 msgid "PageDown"
 msgstr "PageDown"
 
-msgid "PageDown long"
-msgstr "PageDown παρατεταμένο"
-
 msgid "PageUp"
 msgstr "Σελίδα επάνω"
-
-msgid "PageUp long"
-msgstr "Σελίδα επάνω παρατεταμένο"
 
 msgid "Pakistan"
 msgstr "Πακιστάν"
@@ -12681,9 +12574,6 @@ msgstr "Εγγραφές & χρονομετατόπιση"
 
 msgid "Playlist"
 msgstr "Λίστα αναπαραγωγής"
-
-msgid "Playlist long"
-msgstr "Λίστα αναπαραγωγής παρατεταμένο"
 
 msgid "Playpause"
 msgstr "Αναπαραγωγή-παύση"
@@ -13165,9 +13055,6 @@ msgstr "Κατάσταση LED κατά την αναμονή."
 msgid "Power On Display"
 msgstr "Οθόνη σε λειτουργία"
 
-msgid "Power long"
-msgstr "Power παρατεταμένο"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Διαχείριση ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για περισσότερες πληροφορίες."
 
@@ -13369,9 +13256,6 @@ msgstr "προηγούμενη/επόμενη Σελίδα"
 msgid "Prevsong"
 msgstr "Προηγούμενο τραγούδι"
 
-msgid "Prevsong long"
-msgstr "Προηγούμενο τραγούδι παρατεταμένο"
-
 msgid "Primary DNS"
 msgstr "Πρωτεύον DNS"
 
@@ -13442,9 +13326,6 @@ msgid ""
 msgstr ""
 "Το πρόγραμμα '%s' δεν είναι εγκατεστημένο.\n"
 "Το πακέτο που περιέχει αυτό το πρόγραμμα δεν είναι γνωστό."
-
-msgid "Program long"
-msgstr "Πρόγραμμα παρατεταμένο"
 
 msgid "Programmlisten History"
 msgstr "Ιστορικό λίστας προγραμμάτων"
@@ -13532,9 +13413,6 @@ msgstr "Πρωτόκολλο"
 
 msgid "Prov"
 msgstr "Πάροχοι"
-
-msgid "Prov long"
-msgstr "Prov παρατεταμένο"
 
 msgid "Provider"
 msgstr "Πάροχος"
@@ -13651,9 +13529,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "Ραδιόφωνο"
-
-msgid "RADIO long"
-msgstr "Ραδιόφωνο παρατεταμένο"
 
 msgid "RAM (Details)"
 msgstr ""
@@ -13820,9 +13695,6 @@ msgstr "Επαναδημιουργία του μπουκέτου LCN τώρα;"
 
 msgid "Rec"
 msgstr "Εγγρ."
-
-msgid "Rec long"
-msgstr "Εγγραφή παρατεταμένο"
 
 msgid "Receiver"
 msgstr ""
@@ -14492,9 +14364,6 @@ msgstr "Δεξιά"
 msgid "Right from service name"
 msgstr "Δεξιά του ονόματος υπηρεσίας"
 
-msgid "Right long"
-msgstr "Δεξί παρατεταμένο"
-
 msgid "Right, wrapped"
 msgstr "δεξιά, σε αναδίπλωση"
 
@@ -14603,9 +14472,6 @@ msgstr "Ρυθμίσεις SABnzbd"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT παρατεταμένο"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14999,9 +14865,6 @@ msgstr "Αναζήτηση δυτικά"
 
 msgid "Search/WEB"
 msgstr "Ανίχνευση/WEB"
-
-msgid "Search/WEB long"
-msgstr "Ανίχνευση/WEB παρατεταμένο"
 
 msgid "Searching"
 msgstr "Αναζήτηση"
@@ -16053,16 +15916,16 @@ msgstr "Ορισμός της διεύθυνσης MAC του %s %s σας."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ρύθμιση του λόγου πλευρών λογότυπων υπηρεσίας."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των άμεσων εγγραφών. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των εγγραφών σας. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των αρχείων χρονομετατόπισης. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ορισμός της προεπιλεγμένης τοποθεσίας των χρονοδιακοπτών. Πιέστε το 'OK' για προσθήκη νέων τοποθεσιών, αριστερά/δεξιά για επιλογή μίας υπάρχουσας τοποθεσίας."
 
 msgid "Set the default sorting method."
@@ -17239,9 +17102,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Sleep παρατεταμένο"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -17978,9 +17838,6 @@ msgstr "Επιλογή γλώσσας υποτίτλων 3"
 msgid "Subtitle language selection 4"
 msgstr "Επιλογή γλώσσας υποτίτλων 4"
 
-msgid "Subtitle long"
-msgstr "Υπότιτλος παρατεταμένο"
-
 msgid "Subtitle position"
 msgstr "Θέση υποτίτλου"
 
@@ -18378,10 +18235,6 @@ msgstr "Διαφάνεια βάσης τηλεκειμένου"
 
 msgid "Teletext font and resolution"
 msgstr "Γραμματοσειρά και ανάλυση τηλεκειμένου"
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "Τηλεκείμενο"
 
 msgid "Teletext subtitle color"
 msgstr "Χρώμα υποτίτλων τηλεκειμένου"
@@ -19258,9 +19111,6 @@ msgstr "Μεσοδιάστημα επανάληψης για την προώθη
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Υπερπήδηση χρόνου: Χρήση κανονικής προώθησης για ταχύτητες"
-
-msgid "Time long"
-msgstr "Χρόνος παρατεταμένο"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20403,9 +20253,6 @@ msgstr ""
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD παρατεταμένο"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21311,9 +21158,6 @@ msgstr "Η εγγραφή απέτυχε!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Www παρατεταμένο"
-
 msgid "XBox 360 support"
 msgstr "Υποστήριξη XBox 360"
 
@@ -21550,9 +21394,6 @@ msgid "You should flash a new image!"
 msgstr ""
 
 msgid "YouTube"
-msgstr ""
-
-msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an Internet connection"
@@ -21799,9 +21640,6 @@ msgstr "ΖΑΠ"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM παρατεταμένο"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23309,6 +23147,168 @@ msgstr "ο %s %s σας ενδέχεται να μη μπορεί να χρησ�
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect long"
+#~ msgstr "Λόγος πλευρών παρατεταμένο"
+
+#~ msgid "Audio long"
+#~ msgstr "Ήχος παρατεταμένο"
+
+#~ msgid "Context long"
+#~ msgstr "Περιεχόμενα παρατεταμένο"
+
+#~ msgid "Directory long"
+#~ msgstr "Directory παρατεταμένο"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "ΕΞΑΓΩΓΗCD παρατεταμένο"
+
+#~ msgid "End long"
+#~ msgstr "Τέλος παρατεταμένο"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide παρατεταμένο"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 παρατεταμένο"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 παρατεταμένο"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 παρατεταμένο"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 παρατεταμένο"
+
+#~ msgid "Favorites long"
+#~ msgstr "Favorites παρατεταμένο"
+
+#~ msgid "File long"
+#~ msgstr "Αρχείο παρατεταμένο"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Φλασάρισμα σε πραγματικό χρόνο του %s %s σας."
+
+#~ msgid "Help long"
+#~ msgstr "Help παρατεταμένο"
+
+#~ msgid "History long"
+#~ msgstr "Ιστορικό παρατεταμένο"
+
+#~ msgid "Home long"
+#~ msgstr "Αρχική Σελίδα παρατεταμένο"
+
+#~ msgid "Homepage long"
+#~ msgstr "Αρχική Σελίδα παρατεταμένο"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Info (EPG) παρατεταμένο"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Πληκτρολόγιο"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN παρατεταμένο"
+
+#~ msgid "Left long"
+#~ msgstr "Αριστερό παρατεταμένο"
+
+#~ msgid "List/Fav long"
+#~ msgstr "List/Fav παρατεταμένο"
+
+#~ msgid "MOUSE long"
+#~ msgstr "ΠΟΝΤΙΚΙ παρατεταμένο"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Πολυμέσα παρατεταμένο"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Μαρκάρισμα/Portal/Λίστα αναπαραγωγής"
+
+#~ msgid "Media long"
+#~ msgstr "Πολυμέσα παρατεταμένο"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Επόμενο τραγούδι παρατεταμένο"
+
+#~ msgid "OK long"
+#~ msgstr "ΟΚ παρατεταμένο"
+
+#~ msgid "Open long"
+#~ msgstr "Open παρατεταμένο"
+
+#~ msgid "Option long"
+#~ msgstr "Επιλογή παρατεταμένο"
+
+#~ msgid "PC long"
+#~ msgstr "PC παρατεταμένο"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP παρατεταμένο"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR παρατεταμένο"
+
+#~ msgid "PageDown long"
+#~ msgstr "PageDown παρατεταμένο"
+
+#~ msgid "PageUp long"
+#~ msgstr "Σελίδα επάνω παρατεταμένο"
+
+#~ msgid "Playlist long"
+#~ msgstr "Λίστα αναπαραγωγής παρατεταμένο"
+
+#~ msgid "Power long"
+#~ msgstr "Power παρατεταμένο"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Προηγούμενο τραγούδι παρατεταμένο"
+
+#~ msgid "Program long"
+#~ msgstr "Πρόγραμμα παρατεταμένο"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov παρατεταμένο"
+
+#~ msgid "RADIO long"
+#~ msgstr "Ραδιόφωνο παρατεταμένο"
+
+#~ msgid "Rec long"
+#~ msgstr "Εγγραφή παρατεταμένο"
+
+#~ msgid "Right long"
+#~ msgstr "Δεξί παρατεταμένο"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT παρατεταμένο"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Ανίχνευση/WEB παρατεταμένο"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep παρατεταμένο"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Υπότιτλος παρατεταμένο"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Τηλεκείμενο"
+
+#~ msgid "Time long"
+#~ msgstr "Χρόνος παρατεταμένο"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD παρατεταμένο"
+
+#~ msgid "Www long"
+#~ msgstr "Www παρατεταμένο"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM παρατεταμένο"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2δ"

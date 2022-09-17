@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1408,6 +1408,10 @@ msgstr "%s brukes ikke lenger. Skal den bli slettet?"
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #, fuzzy, python-format
@@ -3067,10 +3071,6 @@ msgstr "Breddeforhold"
 msgid "Aspect list..."
 msgstr ""
 
-#, fuzzy
-msgid "Aspect long"
-msgstr "Breddeforhold"
-
 msgid "Aspect ratio"
 msgstr "Breddeforhold"
 
@@ -3157,10 +3157,6 @@ msgstr "Lyd språk valg 3"
 
 msgid "Audio language selection 4"
 msgstr "Lyd språk valg 4"
-
-#, fuzzy
-msgid "Audio long"
-msgstr "Lang rød"
 
 msgid "Audio options..."
 msgstr "Lyd valg..."
@@ -5483,9 +5479,6 @@ msgstr "Innhold passer ikke på DVD!"
 msgid "Context"
 msgstr ""
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -6230,7 +6223,7 @@ msgid "Default folder if the left or right folder isn't saved, and target folder
 msgstr ""
 
 #
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Standard Film plassering"
 
 #
@@ -6637,9 +6630,6 @@ msgstr ""
 #
 msgid "Directory browser"
 msgstr "Katalog leser"
-
-msgid "Directory long"
-msgstr ""
 
 #
 msgid "Disable"
@@ -7110,6 +7100,9 @@ msgstr ""
 msgid "Download Softcams"
 msgstr ""
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr ""
 
@@ -7218,9 +7211,6 @@ msgid "ECM-Time"
 msgstr "ECM-Tid"
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7709,10 +7699,6 @@ msgstr "Kryptering:"
 msgid "End"
 msgstr ""
 
-#, fuzzy
-msgid "End long"
-msgstr "Lang rød"
-
 #
 msgid "End time"
 msgstr "Slutt tid"
@@ -7884,9 +7870,6 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr ""
-
-msgid "Epg/Guide long"
 msgstr ""
 
 #
@@ -8379,26 +8362,13 @@ msgstr ""
 msgid "F1"
 msgstr ""
 
-#, fuzzy
-msgid "F1 long"
-msgstr "Lang rød"
-
 msgid "F2"
-msgstr ""
-
-msgid "F2 long"
 msgstr ""
 
 msgid "F3"
 msgstr ""
 
-msgid "F3 long"
-msgstr ""
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8534,9 +8504,6 @@ msgstr "Hastigheter ved spoling framover"
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8618,9 +8585,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #
@@ -8765,9 +8729,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9500,9 +9461,6 @@ msgstr "Enhetsinformasjon"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr ""
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9616,10 +9574,6 @@ msgstr ""
 msgid "History buttons mode"
 msgstr "Historie knappe modus"
 
-#, fuzzy
-msgid "History long"
-msgstr "Historie knappe modus"
-
 msgid "History next"
 msgstr ""
 
@@ -9643,14 +9597,7 @@ msgstr ""
 msgid "Home"
 msgstr "Hjem"
 
-#, fuzzy
-msgid "Home long"
-msgstr "Lang rød"
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -10140,9 +10087,6 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -10681,11 +10625,6 @@ msgid "Keyboard data entry"
 msgstr "Tastatur innstillinger"
 
 #
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Tastatur"
-
-#
 msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
@@ -10711,9 +10650,6 @@ msgstr ""
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "Angre installering"
-
-msgid "Kodi long"
-msgstr ""
 
 #
 #, fuzzy
@@ -10763,10 +10699,6 @@ msgstr "LAN adapter"
 
 msgid "LAN connection"
 msgstr "LAN forbindelse"
-
-#, fuzzy
-msgid "LAN long"
-msgstr "Lang rød"
 
 msgid "LCD Skin Settings"
 msgstr ""
@@ -10923,10 +10855,6 @@ msgstr "Venstre"
 msgid "Left from service name"
 msgstr "Til venstre for kanalnavn"
 
-#, fuzzy
-msgid "Left long"
-msgstr "Lang rød"
-
 msgid "Left, wrapped"
 msgstr ""
 
@@ -11048,9 +10976,6 @@ msgstr[0] "List versjon %d, fant %d kanal"
 msgstr[1] "List versjon %d, fant %d kanaler"
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #
@@ -11331,9 +11256,6 @@ msgstr ""
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -11357,10 +11279,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Lang rød"
 
 #
 msgid "Main Menu"
@@ -11478,9 +11396,6 @@ msgstr ""
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "Hurtig Handlinger"
@@ -11562,9 +11477,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -12533,10 +12445,6 @@ msgstr ""
 msgid "Nextsong"
 msgstr "Neste"
 
-#, fuzzy
-msgid "Nextsong long"
-msgstr "Lang grønn"
-
 msgid "Nicaragua"
 msgstr ""
 
@@ -13031,9 +12939,6 @@ msgstr "OK knappen (kort)"
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, guide meg gjennom oppgraderingsprosessen"
@@ -13208,9 +13113,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr "Åpne satellitt liste"
 
@@ -13289,10 +13191,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "Kryptering"
-
-#, fuzzy
-msgid "Option long"
-msgstr "OK knappen (lang)"
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -13409,10 +13307,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-#, fuzzy
-msgid "PC long"
-msgstr "Lang rød"
-
 msgid "PCM"
 msgstr ""
 
@@ -13443,11 +13337,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-#, fuzzy
-msgid "PIP long"
-msgstr "Lang rød"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -13468,9 +13357,6 @@ msgid "PRIMETIME"
 msgstr "BESTE SENDETID"
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 #
@@ -13522,16 +13408,8 @@ msgid "PageDown"
 msgstr "Side ned"
 
 #, fuzzy
-msgid "PageDown long"
-msgstr "Lang gul"
-
-#, fuzzy
 msgid "PageUp"
 msgstr "Side opp"
-
-#, fuzzy
-msgid "PageUp long"
-msgstr "Side ned"
 
 msgid "Pakistan"
 msgstr ""
@@ -13834,9 +13712,6 @@ msgid "Playback, Recording & Time Shift"
 msgstr ""
 
 msgid "Playlist"
-msgstr ""
-
-msgid "Playlist long"
 msgstr ""
 
 msgid "Playpause"
@@ -14380,9 +14255,6 @@ msgstr "LED lysstyrke under dvalemodus."
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -14605,10 +14477,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-#, fuzzy
-msgid "Prevsong long"
-msgstr "Lang grønn"
-
 #
 msgid "Primary DNS"
 msgstr "Primær DNS"
@@ -14675,9 +14543,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14773,9 +14638,6 @@ msgid "Protocol"
 msgstr "protokoll"
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 #
@@ -14906,9 +14768,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "RAM (Details)"
 msgstr ""
@@ -15093,10 +14952,6 @@ msgstr ""
 
 msgid "Rec"
 msgstr ""
-
-#, fuzzy
-msgid "Rec long"
-msgstr "Lang rød"
 
 msgid "Receiver"
 msgstr ""
@@ -15854,10 +15709,6 @@ msgstr "Høyre"
 msgid "Right from service name"
 msgstr "Rett fra kanalnavn"
 
-#, fuzzy
-msgid "Right long"
-msgstr "Lang rød"
-
 msgid "Right, wrapped"
 msgstr ""
 
@@ -15970,9 +15821,6 @@ msgid "SABnzbd Settings"
 msgstr "SABnzbd Oppsett"
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -16400,9 +16248,6 @@ msgid "Search west"
 msgstr "Søk vest"
 
 msgid "Search/WEB"
-msgstr ""
-
-msgid "Search/WEB long"
 msgstr ""
 
 #
@@ -17517,16 +17362,16 @@ msgstr "Endre MAC-adresse konfigurasjon for din %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Angi en beskrivelse av opptaket."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for dine innspillinger. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for opptakene dine. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for timeshift-filer. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for timeren. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
 msgid "Set the default sorting method."
@@ -18803,10 +18648,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-#, fuzzy
-msgid "Sleep long"
-msgstr "Lang blå"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -19609,9 +19450,6 @@ msgstr "Undertekst språkvalg 3"
 msgid "Subtitle language selection 4"
 msgstr "Undertekst språkvalg 4"
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr "Undertekst posisjon"
 
@@ -20041,10 +19879,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "Lang blå"
 
 msgid "Teletext subtitle color"
 msgstr "Teletekst undertekst farge"
@@ -20960,11 +20794,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time long"
-msgstr "Timer logg"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -22212,10 +22041,6 @@ msgstr ""
 msgid "VOD"
 msgstr ""
 
-#, fuzzy
-msgid "VOD long"
-msgstr "Lang rød"
-
 msgid "VPN"
 msgstr ""
 
@@ -23198,9 +23023,6 @@ msgstr "Skriving feilet!"
 msgid "Www"
 msgstr ""
 
-msgid "Www long"
-msgstr ""
-
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
 
@@ -23461,9 +23283,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -23702,9 +23521,6 @@ msgid "ZAP"
 msgstr ""
 
 msgid "ZOOM"
-msgstr ""
-
-msgid "ZOOM long"
 msgstr ""
 
 #, fuzzy
@@ -25415,6 +25231,100 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Aspect long"
+#~ msgstr "Breddeforhold"
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "End long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "F1 long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "History long"
+#~ msgstr "Historie knappe modus"
+
+#, fuzzy
+#~ msgid "Home long"
+#~ msgstr "Lang rød"
+
+#
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Tastatur"
+
+#, fuzzy
+#~ msgid "LAN long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "Nextsong long"
+#~ msgstr "Lang grønn"
+
+#, fuzzy
+#~ msgid "Option long"
+#~ msgstr "OK knappen (lang)"
+
+#, fuzzy
+#~ msgid "PC long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "PIP long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "Lang gul"
+
+#, fuzzy
+#~ msgid "PageUp long"
+#~ msgstr "Side ned"
+
+#, fuzzy
+#~ msgid "Prevsong long"
+#~ msgstr "Lang grønn"
+
+#, fuzzy
+#~ msgid "Rec long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "Lang rød"
+
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "Lang blå"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Lang blå"
+
+#
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "Timer logg"
+
+#, fuzzy
+#~ msgid "VOD long"
+#~ msgstr "Lang rød"
 
 #, fuzzy
 #~ msgid "24+ Hours"

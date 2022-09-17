@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -1360,6 +1360,10 @@ msgstr ""
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #, fuzzy, python-format
@@ -2983,9 +2987,6 @@ msgstr "Velja staðsetningu"
 msgid "Aspect list..."
 msgstr ""
 
-msgid "Aspect long"
-msgstr ""
-
 msgid "Aspect ratio"
 msgstr ""
 
@@ -3074,10 +3075,6 @@ msgstr ""
 
 msgid "Audio language selection 4"
 msgstr ""
-
-#, fuzzy
-msgid "Audio long"
-msgstr "Hljóð PID"
 
 msgid "Audio options..."
 msgstr ""
@@ -5288,9 +5285,6 @@ msgstr "Innihald passar ekki á DVD!"
 msgid "Context"
 msgstr ""
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -6010,7 +6004,7 @@ msgstr "Venjulegt"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr ""
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Sjálfgefin staðsetning bíómynda"
 
 #
@@ -6424,9 +6418,6 @@ msgstr ""
 #
 msgid "Directory browser"
 msgstr "Möppu vafri"
-
-msgid "Directory long"
-msgstr ""
 
 #
 msgid "Disable"
@@ -6881,6 +6872,9 @@ msgstr ""
 msgid "Download Softcams"
 msgstr ""
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr ""
 
@@ -6983,9 +6977,6 @@ msgid "ECM-Time"
 msgstr ""
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7469,9 +7460,6 @@ msgstr "Kóðun:"
 msgid "End"
 msgstr ""
 
-msgid "End long"
-msgstr ""
-
 #
 msgid "End time"
 msgstr "Loka tími"
@@ -7641,9 +7629,6 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr ""
-
-msgid "Epg/Guide long"
 msgstr ""
 
 msgid "Equal to"
@@ -8121,25 +8106,13 @@ msgstr ""
 msgid "F1"
 msgstr ""
 
-msgid "F1 long"
-msgstr ""
-
 msgid "F2"
-msgstr ""
-
-msgid "F2 long"
 msgstr ""
 
 msgid "F3"
 msgstr ""
 
-msgid "F3 long"
-msgstr ""
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8273,9 +8246,6 @@ msgstr ""
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8353,9 +8323,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #
@@ -8499,9 +8466,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9218,9 +9182,6 @@ msgstr "Upplýsingar"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr ""
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9333,9 +9294,6 @@ msgstr ""
 msgid "History buttons mode"
 msgstr ""
 
-msgid "History long"
-msgstr ""
-
 msgid "History next"
 msgstr ""
 
@@ -9359,13 +9317,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-msgid "Home long"
-msgstr ""
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9853,9 +9805,6 @@ msgid "Info"
 msgstr "Upplýsingar"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -10407,11 +10356,6 @@ msgstr "Lyklaborðs stilling"
 
 #
 #, fuzzy
-msgid "Keyboard long"
-msgstr "Lyklaborð"
-
-#
-#, fuzzy
 msgid "Keyboard map"
 msgstr "Lyklaborðs stilling"
 
@@ -10436,9 +10380,6 @@ msgstr ""
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "Hætta við innsetningu"
-
-msgid "Kodi long"
-msgstr ""
 
 #
 #, fuzzy
@@ -10489,9 +10430,6 @@ msgstr "Netkort"
 
 msgid "LAN connection"
 msgstr "LAN tenging"
-
-msgid "LAN long"
-msgstr ""
 
 msgid "LCD Skin Settings"
 msgstr ""
@@ -10649,11 +10587,6 @@ msgstr "Vinstri"
 msgid "Left from service name"
 msgstr "Leita að rásum"
 
-#
-#, fuzzy
-msgid "Left long"
-msgstr "Vinstri"
-
 msgid "Left, wrapped"
 msgstr ""
 
@@ -10778,9 +10711,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #
@@ -11061,9 +10991,6 @@ msgstr "MEIRA"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -11087,11 +11014,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Magic long"
-msgstr "Tíma skrá"
 
 #
 msgid "Main Menu"
@@ -11209,9 +11131,6 @@ msgstr ""
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Marker Actions"
@@ -11291,9 +11210,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -12282,9 +12198,6 @@ msgstr ""
 msgid "Nextsong"
 msgstr ""
 
-msgid "Nextsong long"
-msgstr ""
-
 msgid "Nicaragua"
 msgstr ""
 
@@ -12779,9 +12692,6 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "Leiðbeindu mér með uppfærsluna"
@@ -12961,9 +12871,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr ""
 
@@ -13040,9 +12947,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "Kóðun"
-
-msgid "Option long"
-msgstr ""
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -13160,9 +13064,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-msgid "PC long"
-msgstr ""
-
 msgid "PCM"
 msgstr ""
 
@@ -13192,10 +13093,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -13215,9 +13112,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 #
@@ -13267,14 +13161,7 @@ msgstr "vista spilunarlista"
 msgid "PageDown"
 msgstr ""
 
-#, fuzzy
-msgid "PageDown long"
-msgstr "Hleð niður"
-
 msgid "PageUp"
-msgstr ""
-
-msgid "PageUp long"
 msgstr ""
 
 msgid "Pakistan"
@@ -13589,9 +13476,6 @@ msgid "Playback, Recording & Time Shift"
 msgstr ""
 
 msgid "Playlist"
-msgstr ""
-
-msgid "Playlist long"
 msgstr ""
 
 msgid "Playpause"
@@ -14126,9 +14010,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -14352,9 +14233,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-msgid "Prevsong long"
-msgstr ""
-
 #
 msgid "Primary DNS"
 msgstr "Aðal DNS"
@@ -14419,9 +14297,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14515,9 +14390,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 #
@@ -14645,9 +14517,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "Útvarp"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "RAM (Details)"
 msgstr ""
@@ -14831,9 +14700,6 @@ msgid "Rebuild LCN bouquet now?"
 msgstr ""
 
 msgid "Rec"
-msgstr ""
-
-msgid "Rec long"
 msgstr ""
 
 msgid "Receiver"
@@ -15601,11 +15467,6 @@ msgstr "Hægri"
 msgid "Right from service name"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Right long"
-msgstr "Hægri"
-
 msgid "Right, wrapped"
 msgstr ""
 
@@ -15717,9 +15578,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -16149,9 +16007,6 @@ msgid "Search west"
 msgstr "Leita vestur"
 
 msgid "Search/WEB"
-msgstr ""
-
-msgid "Search/WEB long"
 msgstr ""
 
 #, fuzzy
@@ -17260,16 +17115,16 @@ msgstr "Breyta nafnaþjóns stillingum %s %sins."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Samsetning nafna á upptökum"
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -18552,11 +18407,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Sleep long"
-msgstr "Tímastilling"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -19360,9 +19210,6 @@ msgstr ""
 msgid "Subtitle language selection 4"
 msgstr ""
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr ""
 
@@ -19794,11 +19641,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Teletext long"
-msgstr "Tímastilling"
 
 msgid "Teletext subtitle color"
 msgstr ""
@@ -20680,11 +20522,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time long"
-msgstr "Tíma skrá"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -21933,9 +21770,6 @@ msgstr ""
 msgid "VOD"
 msgstr ""
 
-msgid "VOD long"
-msgstr ""
-
 msgid "VPN"
 msgstr ""
 
@@ -22908,9 +22742,6 @@ msgstr "Tókst ekki að skrifa!"
 msgid "Www"
 msgstr ""
 
-msgid "Www long"
-msgstr ""
-
 msgid "XBox 360 support"
 msgstr ""
 
@@ -23157,9 +22988,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -23387,9 +23215,6 @@ msgid "ZAP"
 msgstr ""
 
 msgid "ZOOM"
-msgstr ""
-
-msgid "ZOOM long"
 msgstr ""
 
 msgid "ZPicon"
@@ -25058,6 +24883,49 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "Hljóð PID"
+
+#
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Lyklaborð"
+
+#
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "Vinstri"
+
+#
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Tíma skrá"
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "Hleð niður"
+
+#
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "Hægri"
+
+#
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "Tímastilling"
+
+#
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Tímastilling"
+
+#
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "Tíma skrá"
 
 #, fuzzy
 #~ msgid "Auto Timer"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1384,6 +1384,10 @@ msgstr "%s används inte längre. Skall den tas bort?"
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #
@@ -3039,10 +3043,6 @@ msgstr "Bildförhållande/upplösning"
 msgid "Aspect list..."
 msgstr ""
 
-#, fuzzy
-msgid "Aspect long"
-msgstr "Bildförhållande/upplösning"
-
 msgid "Aspect ratio"
 msgstr "Bildformat"
 
@@ -3130,10 +3130,6 @@ msgstr "Val av ljudspråk 3"
 
 msgid "Audio language selection 4"
 msgstr "Val av ljudspråk 4"
-
-#, fuzzy
-msgid "Audio long"
-msgstr "Ljud PID"
 
 msgid "Audio options..."
 msgstr "Ljudalternativ..."
@@ -5456,9 +5452,6 @@ msgstr "Innehållet för stort för en DVD!"
 msgid "Context"
 msgstr "Innehåll"
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -6196,7 +6189,7 @@ msgid "Default folder if the left or right folder isn't saved, and target folder
 msgstr ""
 
 #
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Grundplats för film"
 
 msgid "Default recording type"
@@ -6603,9 +6596,6 @@ msgstr ""
 #
 msgid "Directory browser"
 msgstr "Biblioteksbläddrare"
-
-msgid "Directory long"
-msgstr ""
 
 #
 msgid "Disable"
@@ -7078,6 +7068,9 @@ msgstr ""
 msgid "Download Softcams"
 msgstr ""
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr ""
 
@@ -7187,9 +7180,6 @@ msgid "ECM-Time"
 msgstr "ECM-Tid"
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7682,10 +7672,6 @@ msgstr "Kryptering :"
 msgid "End"
 msgstr "Vid Slut:"
 
-#, fuzzy
-msgid "End long"
-msgstr "Röd lång"
-
 #
 msgid "End time"
 msgstr "Sluttid"
@@ -7857,9 +7843,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide lång"
 
 #
 msgid "Equal to"
@@ -8351,26 +8334,13 @@ msgstr "F2"
 msgid "F1"
 msgstr ""
 
-#, fuzzy
-msgid "F1 long"
-msgstr "F2 lång"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 lång"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 lång"
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8506,9 +8476,6 @@ msgstr "Hastigheter för snabbspolning framåt"
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8590,9 +8557,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #, fuzzy, python-format
@@ -8733,9 +8697,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9468,9 +9429,6 @@ msgstr "Enhetsinformation"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr "Hjälp lång"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9583,10 +9541,6 @@ msgstr "Kanal tillbaka i historiken"
 msgid "History buttons mode"
 msgstr "Alternativ för tidigare kanaler"
 
-#, fuzzy
-msgid "History long"
-msgstr "Alternativ för tidigare kanaler"
-
 msgid "History next"
 msgstr "Nästa kanal i historiken"
 
@@ -9610,14 +9564,7 @@ msgstr ""
 msgid "Home"
 msgstr "Hem"
 
-#, fuzzy
-msgid "Home long"
-msgstr "Hjälp lång"
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -10109,11 +10056,6 @@ msgstr "Info"
 #, fuzzy
 msgid "Info (EPG)"
 msgstr "Infofält EPG"
-
-#
-#, fuzzy
-msgid "Info (EPG) Long"
-msgstr "Infofält EPG läge"
 
 msgid "Info button (long)"
 msgstr "Info knappen (lång)"
@@ -10654,11 +10596,6 @@ msgid "Keyboard data entry"
 msgstr "Tangentbordskonfiguration"
 
 #
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Tangentbord"
-
-#
 msgid "Keyboard map"
 msgstr "Tangentbordslayout"
 
@@ -10684,9 +10621,6 @@ msgstr ""
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "Ångra installation"
-
-msgid "Kodi long"
-msgstr ""
 
 #
 #, fuzzy
@@ -10736,10 +10670,6 @@ msgstr "LAN adapter"
 
 msgid "LAN connection"
 msgstr "LAN anslutning"
-
-#, fuzzy
-msgid "LAN long"
-msgstr "F1/LAN lång"
 
 msgid "LCD Skin Settings"
 msgstr ""
@@ -10896,10 +10826,6 @@ msgstr "Vänster"
 msgid "Left from service name"
 msgstr "Vänster om kanalnamn"
 
-#, fuzzy
-msgid "Left long"
-msgstr "Röd lång"
-
 msgid "Left, wrapped"
 msgstr "vänster, radbrytning"
 
@@ -11022,9 +10948,6 @@ msgstr[0] "Listversion %d, hittade %d kanal"
 msgstr[1] "Listversion %d, hittade %d kanaler"
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #
@@ -11305,9 +11228,6 @@ msgstr "MER"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -11331,10 +11251,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Röd lång"
 
 #
 msgid "Main Menu"
@@ -11450,9 +11366,6 @@ msgstr "Markera kanal som dedikerad 3D kanal"
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Marker Actions"
@@ -11537,9 +11450,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -12512,10 +12422,6 @@ msgstr ""
 msgid "Nextsong"
 msgstr "Nästa"
 
-#, fuzzy
-msgid "Nextsong long"
-msgstr "Grön lång"
-
 msgid "Nicaragua"
 msgstr ""
 
@@ -13013,9 +12919,6 @@ msgstr "OK knappen (kort)"
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, guida mig genom uppgraderingen"
@@ -13193,9 +13096,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Öppna favoriter"
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr "Öppna satellitlistan"
 
@@ -13275,10 +13175,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "Kryptering"
-
-#, fuzzy
-msgid "Option long"
-msgstr "OK knappen (lång)"
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -13395,10 +13291,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-#, fuzzy
-msgid "PC long"
-msgstr "lång"
-
 msgid "PCM"
 msgstr ""
 
@@ -13429,11 +13321,6 @@ msgstr "PIN-kod behövs"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-#, fuzzy
-msgid "PIP long"
-msgstr "F2 lång"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -13454,9 +13341,6 @@ msgid "PRIMETIME"
 msgstr "PRIMETIME"
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 #
@@ -13508,16 +13392,8 @@ msgid "PageDown"
 msgstr "Flytta ner en sida"
 
 #, fuzzy
-msgid "PageDown long"
-msgstr "StrömtimerHanterare logg"
-
-#, fuzzy
 msgid "PageUp"
 msgstr "Flytta upp en sida"
-
-#, fuzzy
-msgid "PageUp long"
-msgstr "Hjälp lång"
 
 msgid "Pakistan"
 msgstr ""
@@ -13824,9 +13700,6 @@ msgstr ""
 #
 msgid "Playlist"
 msgstr "Spellista"
-
-msgid "Playlist long"
-msgstr ""
 
 #
 #, fuzzy
@@ -14369,10 +14242,6 @@ msgstr "LED ljustyrka under viloläge"
 msgid "Power On Display"
 msgstr ""
 
-#, fuzzy
-msgid "Power long"
-msgstr "StrömtimerHanterare logg"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -14601,10 +14470,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr "Föregående"
 
-#, fuzzy
-msgid "Prevsong long"
-msgstr "Grön lång"
-
 #
 msgid "Primary DNS"
 msgstr "Primär DNS"
@@ -14672,10 +14537,6 @@ msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
 msgstr ""
-
-#, fuzzy
-msgid "Program long"
-msgstr "StrömtimerHanterare logg"
 
 msgid "Programmlisten History"
 msgstr ""
@@ -14769,9 +14630,6 @@ msgid "Protocol"
 msgstr "Protokoll"
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 #
@@ -14901,9 +14759,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "RAM (Details)"
 msgstr ""
@@ -15088,10 +14943,6 @@ msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
-
-#, fuzzy
-msgid "Rec long"
-msgstr "Röd lång"
 
 msgid "Receiver"
 msgstr ""
@@ -15860,10 +15711,6 @@ msgstr "Höger"
 msgid "Right from service name"
 msgstr "Höger om kanalnamn"
 
-#, fuzzy
-msgid "Right long"
-msgstr "Röd lång"
-
 msgid "Right, wrapped"
 msgstr "höger, radbrytning"
 
@@ -15977,9 +15824,6 @@ msgid "SABnzbd Settings"
 msgstr "SABnzbd Settings"
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -16408,9 +16252,6 @@ msgstr "Sök väst"
 
 msgid "Search/WEB"
 msgstr "Sök/WEB"
-
-msgid "Search/WEB long"
-msgstr ""
 
 msgid "Searching"
 msgstr "Söker"
@@ -17529,16 +17370,16 @@ msgstr "Ändra Namnserver konfiguration för din %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ange en innehållsbeskrivning om inspelningen."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ange standardsökväg för dina direktinspelningar. Tryck 'OK' för att lägga till en ny position, välj vänster/höger för att välja en befintlig position."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ange standardsökväg för dina inspelningar. Tryck 'OK' för att lägga till en ny position, välj vänster/höger för att välja en befintlig position."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ange standardsökväg för dina timeshift-filer. Tryck 'OK' för att lägga till en ny position, välj vänster/höger för att välja en befintlig position."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ange standardsökväg för dina timerinspelningar. Tryck 'OK' för att lägga till en ny position, välj vänster/höger för att välja en befintlig position."
 
 msgid "Set the default sorting method."
@@ -18826,10 +18667,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-#, fuzzy
-msgid "Sleep long"
-msgstr "Hjälp lång"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -19639,9 +19476,6 @@ msgstr "Val av undertextspråk 3"
 msgid "Subtitle language selection 4"
 msgstr "Val av undertextspråk 4"
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr "Undertext position"
 
@@ -20068,11 +19902,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Teletext long"
-msgstr "Texttv"
 
 msgid "Teletext subtitle color"
 msgstr "Teletextens undertextfärg"
@@ -21000,11 +20829,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time long"
-msgstr "Timer log"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -22255,10 +22079,6 @@ msgstr "VOB fil"
 msgid "VOD"
 msgstr "OSD"
 
-#, fuzzy
-msgid "VOD long"
-msgstr "F2 lång"
-
 msgid "VPN"
 msgstr ""
 
@@ -23235,9 +23055,6 @@ msgstr "Skrivning misslyckades!"
 msgid "Www"
 msgstr ""
 
-msgid "Www long"
-msgstr ""
-
 msgid "XBox 360 support"
 msgstr "XBox 360 stöd"
 
@@ -23496,9 +23313,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -23740,10 +23554,6 @@ msgstr ""
 
 msgid "ZOOM"
 msgstr ""
-
-#, fuzzy
-msgid "ZOOM long"
-msgstr "F2 lång"
 
 #, fuzzy
 msgid "ZPicon"
@@ -25455,6 +25265,130 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Aspect long"
+#~ msgstr "Bildförhållande/upplösning"
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "Ljud PID"
+
+#, fuzzy
+#~ msgid "End long"
+#~ msgstr "Röd lång"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide lång"
+
+#, fuzzy
+#~ msgid "F1 long"
+#~ msgstr "F2 lång"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 lång"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 lång"
+
+#~ msgid "Help long"
+#~ msgstr "Hjälp lång"
+
+#, fuzzy
+#~ msgid "History long"
+#~ msgstr "Alternativ för tidigare kanaler"
+
+#, fuzzy
+#~ msgid "Home long"
+#~ msgstr "Hjälp lång"
+
+#
+#, fuzzy
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Infofält EPG läge"
+
+#
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Tangentbord"
+
+#, fuzzy
+#~ msgid "LAN long"
+#~ msgstr "F1/LAN lång"
+
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "Röd lång"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Röd lång"
+
+#, fuzzy
+#~ msgid "Nextsong long"
+#~ msgstr "Grön lång"
+
+#, fuzzy
+#~ msgid "Option long"
+#~ msgstr "OK knappen (lång)"
+
+#, fuzzy
+#~ msgid "PC long"
+#~ msgstr "lång"
+
+#, fuzzy
+#~ msgid "PIP long"
+#~ msgstr "F2 lång"
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "StrömtimerHanterare logg"
+
+#, fuzzy
+#~ msgid "PageUp long"
+#~ msgstr "Hjälp lång"
+
+#, fuzzy
+#~ msgid "Power long"
+#~ msgstr "StrömtimerHanterare logg"
+
+#, fuzzy
+#~ msgid "Prevsong long"
+#~ msgstr "Grön lång"
+
+#, fuzzy
+#~ msgid "Program long"
+#~ msgstr "StrömtimerHanterare logg"
+
+#, fuzzy
+#~ msgid "Rec long"
+#~ msgstr "Röd lång"
+
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "Röd lång"
+
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "Hjälp lång"
+
+#
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Texttv"
+
+#
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "Timer log"
+
+#, fuzzy
+#~ msgid "VOD long"
+#~ msgstr "F2 lång"
+
+#, fuzzy
+#~ msgid "ZOOM long"
+#~ msgstr "F2 lång"
 
 #, fuzzy
 #~ msgid "24+ Hours"

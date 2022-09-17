@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-13 16:02+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1281,6 +1281,10 @@ msgstr "% s không còn được sử dụng. Có nên xóa nó không?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s là mật khẩu được bảo vệ."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2796,9 +2800,6 @@ msgstr "Tỷ lệ khung hình"
 msgid "Aspect list..."
 msgstr "Tỷ lệ khung hình...."
 
-msgid "Aspect long"
-msgstr "Tỷ lệ khung hình"
-
 msgid "Aspect ratio"
 msgstr "Tỷ lệ khung hình"
 
@@ -2883,9 +2884,6 @@ msgstr "Lựa chọn ngôn ngữ âm thanh 23"
 
 msgid "Audio language selection 4"
 msgstr "Lựa chọn ngôn ngữ âm thanh 4"
-
-msgid "Audio long"
-msgstr "Âm thanh dài"
 
 msgid "Audio options..."
 msgstr "Tùy chọn âm thanh ..."
@@ -5041,9 +5039,6 @@ msgstr "Nội dung không phù hợp với DVD!"
 msgid "Context"
 msgstr "Bối cảnh"
 
-msgid "Context long"
-msgstr "Bối cảnh dài"
-
 msgid "Continent"
 msgstr ""
 
@@ -5724,7 +5719,7 @@ msgstr "Thư mục mặc định"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư mục đích cho nút 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Vị trí phim mặc định"
 
 msgid "Default recording type"
@@ -6101,9 +6096,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
-
-msgid "Directory long"
-msgstr "Thư mục dài"
 
 msgid "Disable"
 msgstr "Vô hiệu hóa"
@@ -6541,6 +6533,9 @@ msgstr "Tải xuống plugin"
 msgid "Download Softcams"
 msgstr "Tải xuống Softcam"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Tải xuống và cài đặt Plugin"
 
@@ -6639,9 +6634,6 @@ msgstr "Thời gian ECM"
 
 msgid "EJECTCD"
 msgstr "ĐỐI TƯỢNG"
-
-msgid "EJECTCD long"
-msgstr "ĐỐI TƯỢNG dài"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7102,9 +7094,6 @@ msgstr "Mã hóa:"
 msgid "End"
 msgstr "Cuối cùng"
 
-msgid "End long"
-msgstr "Kết thúc lâu"
-
 msgid "End time"
 msgstr "Thời gian kết thúc"
 
@@ -7272,9 +7261,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg / Hướng dẫn"
-
-msgid "Epg/Guide long"
-msgstr "Epg / Hướng dẫn dài"
 
 msgid "Equal to"
 msgstr "Tương đương với"
@@ -7740,26 +7726,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 dài"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 dài"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 dài"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 dài"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7884,9 +7858,6 @@ msgstr "Tốc độ chuyển tiếp nhanh"
 msgid "Favorites"
 msgstr "Yêu thích"
 
-msgid "Favorites long"
-msgstr "Yêu thích dài"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -7965,9 +7936,6 @@ msgstr "Tổng kiểm tra tệp để tính cho nút 9"
 
 msgid "File checksums/hashes"
 msgstr "Tổng kiểm tra / băm"
-
-msgid "File long"
-msgstr "Tập tin dài"
 
 #, python-format
 msgid "File not found: %s"
@@ -8101,9 +8069,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
-
-msgid "Flash on the fly your %s %s."
-msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash khi đang bay phần mềm Nhận của bạn."
@@ -8770,9 +8735,6 @@ msgstr "Thông tin thiết bị"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr "Giúp lâu"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8881,9 +8843,6 @@ msgstr "Lịch sử trở lại"
 msgid "History buttons mode"
 msgstr "Chế độ nút lịch sử"
 
-msgid "History long"
-msgstr "Lịch sử lâu dài"
-
 msgid "History next"
 msgstr "Lịch sử tiếp theo"
 
@@ -8906,14 +8865,8 @@ msgstr ""
 msgid "Home"
 msgstr "Nhà"
 
-msgid "Home long"
-msgstr "Nhà dài"
-
 msgid "Homepage"
 msgstr "Trang chủ"
-
-msgid "Homepage long"
-msgstr "Trang chủ dài"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9378,9 +9331,6 @@ msgstr "Thông tin"
 
 msgid "Info (EPG)"
 msgstr "Thông tin (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Thông tin (EPG) Dài"
 
 msgid "Info button (long)"
 msgstr "Nút thông tin (dài)"
@@ -9865,10 +9815,6 @@ msgstr "Thiết lập bàn phím"
 msgid "Keyboard data entry"
 msgstr "Nhập dữ liệu bàn phím"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Bàn phím"
-
 msgid "Keyboard map"
 msgstr "Bản đồ bàn phím"
 
@@ -9892,9 +9838,6 @@ msgstr "Trung tâm truyền thông Kodi"
 
 msgid "Kodi installed:"
 msgstr "Kodi đã cài đặt:"
-
-msgid "Kodi long"
-msgstr ""
 
 msgid "Kodi media player"
 msgstr "Máy nghe nhạc Kodi"
@@ -9940,9 +9883,6 @@ msgstr "Bộ điều hợp mạng LAN"
 
 msgid "LAN connection"
 msgstr "Kết nối mạng nội bộ"
-
-msgid "LAN long"
-msgstr "LAN dài"
 
 msgid "LCD Skin Settings"
 msgstr "Thiết lập da LCD"
@@ -10085,9 +10025,6 @@ msgstr "Trái"
 msgid "Left from service name"
 msgstr "Còn lại từ tên dịch vụ"
 
-msgid "Left long"
-msgstr "Còn lại dài"
-
 msgid "Left, wrapped"
 msgstr "trái, bọc"
 
@@ -10192,9 +10129,6 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] "Liệt kê phiên bản %d, tìm thấy%d kênh"
 
 msgid "List/Fav"
-msgstr "Danh sách / Fav"
-
-msgid "List/Fav long"
 msgstr "Danh sách / Fav"
 
 #, fuzzy
@@ -10450,9 +10384,6 @@ msgstr "HƠN"
 msgid "MOUSE"
 msgstr "CHUỘT"
 
-msgid "MOUSE long"
-msgstr "Chuột dài"
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10477,10 +10408,6 @@ msgstr "Madagascar"
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Truyền thông"
 
 msgid "Main Menu"
 msgstr "Menu chính"
@@ -10590,9 +10517,6 @@ msgstr "Đánh dấu dịch vụ là dịch vụ 3D chuyên dụng"
 msgid "Mark/Portal/Playlist"
 msgstr "Đánh dấu / Cổng thông tin / Danh sách phát"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Đánh dấu / Cổng thông tin / Danh sách phát dài"
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "Thao tác nhanh"
@@ -10667,9 +10591,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "Cổng thông tin truyền thông"
-
-msgid "Media long"
-msgstr "Truyền thông"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Phát lại đa phương tiện Còn lại / Đã qua"
@@ -11567,9 +11488,6 @@ msgstr "Kênh quad PiP tiếp theo"
 msgid "Nextsong"
 msgstr "Bài hát tiếp theo"
 
-msgid "Nextsong long"
-msgstr "Nextsong dài"
-
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
@@ -12015,9 +11933,6 @@ msgstr "Nút OK (ngắn)"
 msgid "OK button mode"
 msgstr "Chế độ nút OK"
 
-msgid "OK long"
-msgstr "Đồng ý"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, hướng dẫn tôi qua quá trình nâng cấp"
 
@@ -12181,9 +12096,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Mở danh sách yêu thích"
 
-msgid "Open long"
-msgstr "Mở lâu"
-
 msgid "Open satellites list"
 msgstr "Mở danh sách vệ tinh"
 
@@ -12259,9 +12171,6 @@ msgstr "Trạng thái đèn LED hoạt động trong khi chạy"
 
 msgid "Option"
 msgstr "Tùy chọn"
-
-msgid "Option long"
-msgstr "Tùy chọn dài"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Tùy chọn tắt picons trên Infobar"
@@ -12374,9 +12283,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC dài"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12404,10 +12310,6 @@ msgstr "Mã PIN cần thiết"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP dài"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12428,9 +12330,6 @@ msgstr "TIẾNG VIỆT"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR dài"
 
 msgid "Package Manager"
 msgstr "Quản lý gói"
@@ -12475,14 +12374,8 @@ msgstr "Danh sách trang lên"
 msgid "PageDown"
 msgstr "Trang dưới"
 
-msgid "PageDown long"
-msgstr "Trang dài"
-
 msgid "PageUp"
 msgstr "Trang lên"
-
-msgid "PageUp long"
-msgstr "Trang dài"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -12755,9 +12648,6 @@ msgstr "Ghi âm & Timeshift"
 
 msgid "Playlist"
 msgstr "Danh sách phát"
-
-msgid "Playlist long"
-msgstr "Danh sách phát dài"
 
 msgid "Playpause"
 msgstr "Tạm dừng chơi"
@@ -13240,9 +13130,6 @@ msgstr "Trạng thái LED nguồn trong chế độ chờ."
 msgid "Power On Display"
 msgstr "Năng lượng hiển thị"
 
-msgid "Power long"
-msgstr "Sức mạnh lâu"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Quản lý năng lượng. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
 
@@ -13444,9 +13331,6 @@ msgstr "trang trước / trang tiếp theo"
 msgid "Prevsong"
 msgstr "Trước"
 
-msgid "Prevsong long"
-msgstr "Lâu dài"
-
 msgid "Primary DNS"
 msgstr "DNS chính"
 
@@ -13517,9 +13401,6 @@ msgid ""
 msgstr ""
 "Chương trình '% s' chưa được cài đặt.\n"
 "Gói chứa chương trình này không được biết đến."
-
-msgid "Program long"
-msgstr "Chương trình dài"
 
 msgid "Programmlisten History"
 msgstr "Lịch sử chương trình"
@@ -13612,9 +13493,6 @@ msgstr "Giao thức"
 
 msgid "Prov"
 msgstr "Chứng minh"
-
-msgid "Prov long"
-msgstr "Cung cấp dài"
 
 msgid "Provider"
 msgstr "Nhà cung cấp"
@@ -13731,9 +13609,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr "Đài phát thanh dài"
 
 msgid "RAM (Details)"
 msgstr ""
@@ -13900,9 +13775,6 @@ msgstr "Tái tạo gói kênh LCN bây giờ?"
 
 msgid "Rec"
 msgstr "Ghi"
-
-msgid "Rec long"
-msgstr "Rec dài"
 
 msgid "Receiver"
 msgstr ""
@@ -14584,9 +14456,6 @@ msgstr "Đúng"
 msgid "Right from service name"
 msgstr "Ngay từ tên dịch vụ"
 
-msgid "Right long"
-msgstr "Phải dài"
-
 msgid "Right, wrapped"
 msgstr "phải, bọc"
 
@@ -14696,9 +14565,6 @@ msgstr "Thiết lập SABnzbd"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT dài"
 
 msgid "SATA"
 msgstr "SATA"
@@ -15090,9 +14956,6 @@ msgstr "Tìm kiếm về phía tây"
 
 msgid "Search/WEB"
 msgstr "Tìm kiếm / WEB"
-
-msgid "Search/WEB long"
-msgstr "Tìm kiếm / WEB dài"
 
 msgid "Searching"
 msgstr "Đang tìm kiếm"
@@ -16144,16 +16007,16 @@ msgstr "Đặt địa chỉ MAC của % s% s của bạn."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Đặt tỷ lệ khung hình của các picons dịch vụ."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid "Set the default sorting method."
@@ -17336,9 +17199,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Ngủ lâu"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -18078,9 +17938,6 @@ msgstr "Lựa chọn ngôn ngữ phụ đề 3"
 msgid "Subtitle language selection 4"
 msgstr "Lựa chọn ngôn ngữ phụ đề 4"
 
-msgid "Subtitle long"
-msgstr "Phụ đề dài"
-
 msgid "Subtitle position"
 msgstr "Vị trí phụ đề"
 
@@ -18476,10 +18333,6 @@ msgstr "Khả năng hiển thị cơ sở Teletext"
 
 msgid "Teletext font and resolution"
 msgstr "Phông chữ và độ phân giải"
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "Điện thoại"
 
 msgid "Teletext subtitle color"
 msgstr "Màu phụ đề Teletext"
@@ -19361,9 +19214,6 @@ msgstr "Khoảng thời gian lặp lại bước nhảy để tiến / lùi nhan
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Time jump: Use normal fast forward for speeds"
-
-msgid "Time long"
-msgstr "Thời gian dài"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20512,9 +20362,6 @@ msgstr ""
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VODdài"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21427,9 +21274,6 @@ msgstr "Viết thất bại!"
 msgid "Www"
 msgstr "Www"
 
-msgid "Www long"
-msgstr "Wwwdài"
-
 msgid "XBox 360 support"
 msgstr "Hỗ trợ XBox 360"
 
@@ -21666,9 +21510,6 @@ msgid "You should flash a new image!"
 msgstr ""
 
 msgid "YouTube"
-msgstr ""
-
-msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an Internet connection"
@@ -21915,9 +21756,6 @@ msgstr "ZAP"
 
 msgid "ZOOM"
 msgstr "THU PHÓNG"
-
-msgid "ZOOM long"
-msgstr "ZOOM dài"
 
 #, fuzzy
 msgid "ZPicon"
@@ -23442,6 +23280,168 @@ msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect long"
+#~ msgstr "Tỷ lệ khung hình"
+
+#~ msgid "Audio long"
+#~ msgstr "Âm thanh dài"
+
+#~ msgid "Context long"
+#~ msgstr "Bối cảnh dài"
+
+#~ msgid "Directory long"
+#~ msgstr "Thư mục dài"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "ĐỐI TƯỢNG dài"
+
+#~ msgid "End long"
+#~ msgstr "Kết thúc lâu"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg / Hướng dẫn dài"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 dài"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 dài"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 dài"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 dài"
+
+#~ msgid "Favorites long"
+#~ msgstr "Yêu thích dài"
+
+#~ msgid "File long"
+#~ msgstr "Tập tin dài"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
+
+#~ msgid "Help long"
+#~ msgstr "Giúp lâu"
+
+#~ msgid "History long"
+#~ msgstr "Lịch sử lâu dài"
+
+#~ msgid "Home long"
+#~ msgstr "Nhà dài"
+
+#~ msgid "Homepage long"
+#~ msgstr "Trang chủ dài"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Thông tin (EPG) Dài"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Bàn phím"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN dài"
+
+#~ msgid "Left long"
+#~ msgstr "Còn lại dài"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Danh sách / Fav"
+
+#~ msgid "MOUSE long"
+#~ msgstr "Chuột dài"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Truyền thông"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Đánh dấu / Cổng thông tin / Danh sách phát dài"
+
+#~ msgid "Media long"
+#~ msgstr "Truyền thông"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong dài"
+
+#~ msgid "OK long"
+#~ msgstr "Đồng ý"
+
+#~ msgid "Open long"
+#~ msgstr "Mở lâu"
+
+#~ msgid "Option long"
+#~ msgstr "Tùy chọn dài"
+
+#~ msgid "PC long"
+#~ msgstr "PC dài"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP dài"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR dài"
+
+#~ msgid "PageDown long"
+#~ msgstr "Trang dài"
+
+#~ msgid "PageUp long"
+#~ msgstr "Trang dài"
+
+#~ msgid "Playlist long"
+#~ msgstr "Danh sách phát dài"
+
+#~ msgid "Power long"
+#~ msgstr "Sức mạnh lâu"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Lâu dài"
+
+#~ msgid "Program long"
+#~ msgstr "Chương trình dài"
+
+#~ msgid "Prov long"
+#~ msgstr "Cung cấp dài"
+
+#~ msgid "RADIO long"
+#~ msgstr "Đài phát thanh dài"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec dài"
+
+#~ msgid "Right long"
+#~ msgstr "Phải dài"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT dài"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Tìm kiếm / WEB dài"
+
+#~ msgid "Sleep long"
+#~ msgstr "Ngủ lâu"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Phụ đề dài"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Điện thoại"
+
+#~ msgid "Time long"
+#~ msgstr "Thời gian dài"
+
+#~ msgid "VOD long"
+#~ msgstr "VODdài"
+
+#~ msgid "Www long"
+#~ msgstr "Wwwdài"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM dài"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"
