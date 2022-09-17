@@ -1143,6 +1143,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for slider in tag.findall("slider"):
 			borderWidth = parseInteger(slider.attrib.get("borderWidth"), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
+		for stringList in tag.findall("stringList"):
+			(xOffset, yOffset) = [parseInteger(x.strip()) for x in stringList.attrib.get("textPadding", "1,1").split(",")]
+			eListbox.setDefaultPadding(ePoint(self.applyHorizontalScale(xOffset), self.applyVerticalScale(yOffset)))
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			style.setTitleOffset(parseSize(title.attrib.get("offset", "20,5"), ((1, 1), (1, 1))))
