@@ -20,6 +20,7 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	m_border_size = 0;
 
 	m_text_offset = 0;
+	m_padding = ePoint(0,0);
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -65,7 +66,9 @@ int eLabel::event(int event, void *data, void *data2)
 			flags |= gPainter::RT_WRAP;
 
 			/* if we don't have shadow, m_shadow_offset will be 0,0 */
-		painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
+		int xpadding = m_padding.x();
+		int ypadding = m_padding.y();
+		painter.renderText(eRect(-m_shadow_offset.x()+xpadding, -m_shadow_offset.y()+ypadding, size().width()-(xpadding*2), size().height()-(ypadding*2)), m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
 
 		if (m_have_shadow_color)
 		{
@@ -74,7 +77,7 @@ int eLabel::event(int event, void *data, void *data2)
 			else
 				painter.setForegroundColor(m_foreground_color);
 			painter.setBackgroundColor(m_shadow_color);
-			painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags, gRGB(), 0, m_pos);
+			painter.renderText(eRect(xpadding, ypadding, size().width()-(xpadding*2), size().height()-(ypadding*2)), m_text, flags, gRGB(), 0, m_pos);
 		}
 
 		return 0;
