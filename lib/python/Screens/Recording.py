@@ -18,7 +18,7 @@ class RecordingSettings(Setup):
 		Setup.__init__(self, session=session, setup="Recording")
 		self.status = {}
 
-	def buildChoices(self, item, configEntry, path):
+	def buildChoices(self, configEntry, path):
 		configList = config.movielist.videodirs.value[:]
 		if configEntry.saved_value and configEntry.saved_value not in self.styleKeys + configList:
 			configList.append(configEntry.saved_value)
@@ -29,7 +29,7 @@ class RecordingSettings(Setup):
 			configList.append(path)
 		configEntry.value = path
 		configEntry.setChoices(self.styles + [(x, x) for x in configList], default=configEntry.default)
-		# print("[Recordings] DEBUG %s: Current='%s', Default='%s', Choices='%s'." % (item, configEntry.value, configEntry.default, self.styleKeys + configList))
+		# print("[Recordings] DEBUG: Current='%s', Default='%s', Choices='%s'." % (configEntry.value, configEntry.default, self.styleKeys + configList))
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
