@@ -901,10 +901,14 @@ class AttributeParser:
 		self.guiObject.setText(value)
 
 	def textOffset(self, value):
+		self.textPadding(value)
+		attribDeprecationWarning("textOffset", "textPadding")
+
+	def textPadding(self, value):
 		if value in variables:
 			value = variables[value]
 		(xOffset, yOffset) = [parseInteger(x.strip()) for x in value.split(",")]
-		self.guiObject.setTextOffset(ePoint(self.applyHorizontalScale(xOffset), self.applyVerticalScale(yOffset)))
+		self.guiObject.setTextPadding(ePoint(self.applyHorizontalScale(xOffset), self.applyVerticalScale(yOffset)))
 
 	def title(self, value):
 		if value:
