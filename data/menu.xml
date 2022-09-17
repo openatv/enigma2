@@ -61,7 +61,7 @@
 			</menu>
 			<!-- Menu / Setup / Playback, Recording and Time Shift -->
 			<menu key="rec" level="1" text="Playback, Recording &amp; Time Shift" weight="10">
-				<item key="playback_setup" level="0" text="Playback Settings" weight="10"><setup setupKey="Playback" /></item>
+				<item key="playback_setup" level="0" text="Playback Settings" weight="10"><screen module="Playback" screen="PlaybackSettings" /></item>
 				<item key="recording_setup" level="0" text="Recording Settings" weight="15"><screen module="Recording" screen="RecordingSettings" /></item>
 				<item key="hdmirecord_setup" level="0" text="HDMI-In Recording Settings" weight="20" requires="HDMIin"><setup setupKey="HDMIRecord" /></item>
 				<item key="timshift_setup" level="0" text="Time Shift Settings" weight="25"><screen module="Timeshift" screen="TimeshiftSettings" /></item>

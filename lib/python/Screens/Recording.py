@@ -3,7 +3,7 @@ from os.path import isdir, join as pathjoin
 
 from Components.config import config
 from Components.UsageConfig import preferredPath
-from Screens.LocationBox import defaultInhibitDirs, MovieLocationBox
+from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
 from Tools.Directories import fileAccess
@@ -13,100 +13,82 @@ class RecordingSettings(Setup):
 	def __init__(self, session):
 		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 		self.styleKeys = [x[0] for x in self.styles]
-		self.inhibitDevs = []
-		for dir in defaultInhibitDirs + ["/", "/media"]:
-			if isdir(dir):
-				device = stat(dir).st_dev
-				if device not in self.inhibitDevs:
-					self.inhibitDevs.append(device)
-		self.buildChoices("DefaultPath", config.usage.default_path, None)
 		self.buildChoices("TimerPath", config.usage.timer_path, None)
 		self.buildChoices("InstantPath", config.usage.instantrec_path, None)
 		Setup.__init__(self, session=session, setup="Recording")
-		self.greenText = self["key_green"].text
-		self.errorItem = -1
-		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
-			self.pathStatus(self.getCurrentValue())
-
-	def selectionChanged(self):
-		if self.errorItem == -1:
-			Setup.selectionChanged(self)
-		else:
-			self["config"].setCurrentIndex(self.errorItem)
-
-	def changedEntry(self):
-		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
-			self.pathStatus(self.getCurrentValue())
-		Setup.changedEntry(self)
-
-	def keySelect(self):
-		item = self.getCurrentItem()
-		if item in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
-			# print("[Recordings] DEBUG: '%s', '%s', '%s'." % (self.getCurrentEntry(), item.value, preferredPath(item.value)))
-			self.session.openWithCallback(self.pathSelect, MovieLocationBox, self.getCurrentEntry(), preferredPath(item.value))
-		else:
-			Setup.keySelect(self)
-
-	def keySave(self):
-		if self.errorItem == -1:
-			Setup.keySave(self)
-		else:
-			self.session.open(MessageBox, "%s\n\n%s" % (self.getFootnote(), _("Please select an acceptable directory.")), type=MessageBox.TYPE_ERROR)
+		self.status = {}
 
 	def buildChoices(self, item, configEntry, path):
 		configList = config.movielist.videodirs.value[:]
-		styleList = [] if item == "DefaultPath" else self.styleKeys
-		if configEntry.saved_value and configEntry.saved_value not in styleList + configList:
+		if configEntry.saved_value and configEntry.saved_value not in self.styleKeys + configList:
 			configList.append(configEntry.saved_value)
 			configEntry.value = configEntry.saved_value
 		if path is None:
 			path = configEntry.value
-		if path and path not in styleList + configList:
+		if path and path not in self.styleKeys + configList:
 			configList.append(path)
-		pathList = [(x, x) for x in configList] if item == "DefaultPath" else self.styles + [(x, x) for x in configList]
 		configEntry.value = path
-		configEntry.setChoices(pathList, default=configEntry.default)
-		# print("[Recordings] DEBUG %s: Current='%s', Default='%s', Choices='%s'." % (item, configEntry.value, configEntry.default, styleList + configList))
+		configEntry.setChoices(self.styles + [(x, x) for x in configList], default=configEntry.default)
+		# print("[Recordings] DEBUG %s: Current='%s', Default='%s', Choices='%s'." % (item, configEntry.value, configEntry.default, self.styleKeys + configList))
 
-	def pathSelect(self, path):
+	def selectionChanged(self):
+		Setup.selectionChanged(self)
+		self.pathStatus()
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.pathStatus()
+
+	def pathStatus(self):
+		if self.getCurrentItem() in (config.usage.timer_path, config.usage.instantrec_path):
+			item = self["config"].getCurrentIndex()
+			if item in self.status:
+				del self.status[item]
+			path = self.getCurrentValue()
+			if path.startswith("<"):
+				directory = {
+					"<default>": config.usage.default_path.value,
+					"<current>": config.movielist.last_videodir.value,
+					"<timer>": config.movielist.last_timer_videodir.value
+				}.get(self.getCurrentItem().value)
+				footnote = _("Current location is '%s'.") % (self.getCurrentItem().value if directory is None else directory)
+			elif not isdir(path):
+				footnote = _("Directory '%s' does not exist!") % path
+				self.status[item] = (self.getCurrentEntry(), footnote)
+			elif stat(path).st_dev in DEFAULT_INHIBIT_DEVICES:
+				footnote = _("Flash directory '%s' not allowed!") % path
+				self.status[item] = (self.getCurrentEntry(), footnote)
+			elif not fileAccess(path, "w"):
+				footnote = _("Directory '%s' not writable!") % path
+				self.status[item] = (self.getCurrentEntry(), footnote)
+			else:
+				footnote = ""
+			self.setFootnote(footnote)
+
+	def keySelect(self):
+		item = self.getCurrentItem()
+		if item in (config.usage.timer_path, config.usage.instantrec_path):
+			self.session.openWithCallback(self.keySelectCallback, MovieLocationBox, self.getCurrentEntry(), preferredPath(item.value))
+		else:
+			Setup.keySelect(self)
+
+	def keySelectCallback(self, path):
 		if path is not None:
 			path = pathjoin(path, "")
 			item = self.getCurrentItem()
-			if item is config.usage.default_path:
-				self.buildChoices("DefaultPath", config.usage.default_path, path)
-			else:
-				self.buildChoices("DefaultPath", config.usage.default_path, None)
-			if item is config.usage.timer_path:
-				self.buildChoices("TimerPath", config.usage.timer_path, path)
-			else:
-				self.buildChoices("TimerPath", config.usage.timer_path, None)
-			if item is config.usage.instantrec_path:
-				self.buildChoices("InstantPath", config.usage.instantrec_path, path)
-			else:
-				self.buildChoices("InstantPath", config.usage.instantrec_path, None)
+			self.buildChoices("TimerPath", config.usage.timer_path, path if item == config.usage.timer_path else None)
+			self.buildChoices("InstantPath", config.usage.instantrec_path, path if item == config.usage.instantrec_path else None)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
-	def pathStatus(self, path):
-		if path.startswith("<"):
-			self.errorItem = -1
-			footnote = ""
-			green = self.greenText
-		elif not isdir(path):
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' does not exist!") % path
-			green = ""
-		elif stat(path).st_dev in self.inhibitDevs:
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Flash directory '%s' not allowed!") % path
-			green = ""
-		elif not fileAccess(path, "w"):
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' not writable!") % path
-			green = ""
+	def keySave(self):
+		msg = []
+		for item in self.status.keys():
+			msg.append("%s: %s" % self.status[item])
+		if msg:
+			self.session.openWithCallback(self.keySaveCallback, MessageBox, "%s\n\n%s" % ("\n".join(msg), _("Recordings may not work correctly without an acceptable directory.")), type=MessageBox.TYPE_WARNING)
 		else:
-			self.errorItem = -1
-			footnote = ""
-			green = self.greenText
-		self.setFootnote(footnote)
-		self["key_green"].text = green
+			Setup.keySave(self)
+
+	def keySaveCallback(self, result):
+		Setup.keySave(self)
