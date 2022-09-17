@@ -366,23 +366,23 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 
 class MovieLocationBox(LocationBox):
-	def __init__(self, session, text, currDir, filename="", minFree=None):
+	def __init__(self, session, text, currDir, minFree=None):
 		LocationBox.__init__(
 			self,
 			session,
 			text=text,
-			filename=filename,
+			# filename="",
 			currDir=currDir,
 			bookmarks=config.movielist.videodirs,
 			# userMode=False,
 			windowTitle=_("Select Movie Location"),
 			minFree=minFree,
-			autoAdd=config.movielist.add_bookmark.value,
+			autoAdd=True,
 			editDir=True,
 			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
 			# inhibitMounts=None
 		)
-		self.skinName = "LocationBox"
+		self.skinName = ["MovieLocationBox", "LocationBox"]
 
 
 class TimeshiftLocationBox(LocationBox):
@@ -391,6 +391,7 @@ class TimeshiftLocationBox(LocationBox):
 			self,
 			session,
 			text=_("Where do you want to save temporary time shift recordings?"),
+			# filename="",
 			currDir=config.timeshift.path.value,
 			bookmarks=config.timeshift.allowedPaths,
 			# userMode=False,
@@ -401,7 +402,7 @@ class TimeshiftLocationBox(LocationBox):
 			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
 			# inhibitMounts=None
 		)
-		self.skinName = "LocationBox"
+		self.skinName = ["TimeshiftLocationBox", "LocationBox"]
 
 	def cancel(self):
 		config.timeshift.path.cancel()
