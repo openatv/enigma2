@@ -205,6 +205,7 @@ public:
 	void setVAlign(int align);
 	void setHAlign(int align);
 	void setTextOffset(const ePoint &textoffset);
+	void setTextPadding(const ePoint &padding);
 	void setUseVTIWorkaround(void);
 
 	void setScrollbarBorderColor(const gRGB &col);
@@ -222,6 +223,8 @@ public:
 			defaultScrollBarMode = mode;
 			defaultPageSize = pageSize;
 		}
+
+	static void setDefaultPadding(const ePoint &padding) { defaultPadding = padding; }
 
 	void setOrientation(int o);
 
@@ -268,6 +271,7 @@ private:
 	static int defaultScrollBarMode;
 	static int defaultPageSize;
 	static bool defaultWrapAround;
+	static ePoint defaultPadding;
 
 	int m_list_orientation,m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
