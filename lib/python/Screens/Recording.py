@@ -13,8 +13,8 @@ class RecordingSettings(Setup):
 	def __init__(self, session):
 		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 		self.styleKeys = [x[0] for x in self.styles]
-		self.buildChoices("TimerPath", config.usage.timer_path, None)
-		self.buildChoices("InstantPath", config.usage.instantrec_path, None)
+		self.buildChoices(config.usage.timer_path, None)
+		self.buildChoices(config.usage.instantrec_path, None)
 		Setup.__init__(self, session=session, setup="Recording")
 		self.status = {}
 
@@ -76,8 +76,8 @@ class RecordingSettings(Setup):
 		if path is not None:
 			path = pathjoin(path, "")
 			item = self.getCurrentItem()
-			self.buildChoices("TimerPath", config.usage.timer_path, path if item == config.usage.timer_path else None)
-			self.buildChoices("InstantPath", config.usage.instantrec_path, path if item == config.usage.instantrec_path else None)
+			self.buildChoices(config.usage.timer_path, path if item == config.usage.timer_path else None)
+			self.buildChoices(config.usage.instantrec_path, path if item == config.usage.instantrec_path else None)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
