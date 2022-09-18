@@ -1,7 +1,7 @@
 #include <lib/gui/elabel.h>
 #include <lib/gdi/font.h>
 
-eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent), m_padding(eRect(0,0,0,0))
+eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 {
 	m_pos = markedPos;
 	ePtr<eWindowStyle> style;
@@ -70,9 +70,9 @@ int eLabel::event(int event, void *data, void *data2)
 		int w = size().width() - m_padding.right();
 		int h = size().height() - m_padding.bottom();
 
-		eRect position = eRect(x, y, w, h);
+		auto position = eRect(x, y, w, h);
 		/* if we don't have shadow, m_shadow_offset will be 0,0 */
-		eRect shadowposition = eRect(position.x()-m_shadow_offset.x(),position.y()-m_shadow_offset.y(),position.width()-m_shadow_offset.x(),position.height()-m_shadow_offset.y());
+		auto shadowposition = eRect(position.x()-m_shadow_offset.x(),position.y()-m_shadow_offset.y(),position.width()-m_shadow_offset.x(),position.height()-m_shadow_offset.y());
 		painter.renderText(shadowposition, m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
 
 		if (m_have_shadow_color)
