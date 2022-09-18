@@ -34,6 +34,7 @@ public:
 	void setNoWrap(int nowrap);
 	void clearForegroundColor();
 	int getNoWrap() { return m_nowrap; }
+	void setTextPadding(const eRect &padding) { m_padding = padding;}
 
 	eSize calculateSize();
 	static eSize calculateTextSize(gFont* font, const std::string &string, eSize targetSize, bool nowrap = false);
@@ -48,6 +49,7 @@ private:
 	int m_have_foreground_color, m_have_shadow_color;
 	gRGB m_foreground_color, m_shadow_color, m_border_color;
 	ePoint m_shadow_offset;
+	eRect m_padding = eRect(0,0,0,0);
 	int m_border_size;
 	int m_nowrap;
 
