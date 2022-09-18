@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1298,6 +1298,10 @@ msgstr "%s nincs többé használatban. Törölhető?"
 #, python-format
 msgid "%s is password protected."
 msgstr "A(z) %s jelszóval védett."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2799,9 +2803,6 @@ msgstr "Kép méretarány"
 msgid "Aspect list..."
 msgstr "Képarány lista..."
 
-msgid "Aspect long"
-msgstr "Képarány hosszan"
-
 msgid "Aspect ratio"
 msgstr "Kép méretarány"
 
@@ -2885,9 +2886,6 @@ msgstr "Harmadlagos előnyben részesített hangsáv"
 
 msgid "Audio language selection 4"
 msgstr "Negyedleges előnyben részesített hangsáv"
-
-msgid "Audio long"
-msgstr "Hosszú hang"
 
 msgid "Audio options..."
 msgstr "Hang beállítások..."
@@ -5026,9 +5024,6 @@ msgstr "A tartalom nem fér fel a DVD-re!"
 msgid "Context"
 msgstr "Szövegkörnyezet"
 
-msgid "Context long"
-msgstr "Szövegkörnyezet hosszan"
-
 msgid "Continent"
 msgstr ""
 
@@ -5278,6 +5273,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Aktuálisan telepített"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5703,7 +5702,7 @@ msgstr "Alapértelmezett mappa"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Alapértelmezett mappa, ha a bal vagy a jobb mappa nincs mentve, és ez az 5-ös gomb célmappája."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Alapértelmezett felvételek tárhelye"
 
 msgid "Default recording type"
@@ -6080,9 +6079,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "Mappa tallózása"
-
-msgid "Directory long"
-msgstr "Mappa hosszan"
 
 msgid "Disable"
 msgstr "Letiltás"
@@ -6508,6 +6504,9 @@ msgstr "Bővítmények letöltése"
 msgid "Download Softcams"
 msgstr "Softcam letöltése"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Letölti és telepíti a bővítményeket"
 
@@ -6604,9 +6603,6 @@ msgstr "ECM idő"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD hosszan"
 
 msgid "EPG"
 msgstr "Műsorújság (EPG)"
@@ -7057,9 +7053,6 @@ msgstr "Kódolás:"
 msgid "End"
 msgstr "Vége"
 
-msgid "End long"
-msgstr "Vége hosszan"
-
 msgid "End time"
 msgstr "Befejezési időpont"
 
@@ -7228,9 +7221,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide hosszan"
 
 msgid "Equal to"
 msgstr "Egyenlő"
@@ -7692,26 +7682,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 hosszan"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 hosszan"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 hosszan"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 hosszan"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7836,9 +7814,6 @@ msgstr "Előre tekerési sebességek"
 msgid "Favorites"
 msgstr "Kedvencek"
 
-msgid "Favorites long"
-msgstr "Kedvencek hosszan"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -7917,9 +7892,6 @@ msgstr "Fájlellenőrző összegek a 9-es gomb kiszámításához"
 
 msgid "File checksums/hashes"
 msgstr "Fájlellenőrző összegek/hash-ek"
-
-msgid "File long"
-msgstr "Fájl hosszan"
 
 #, python-format
 msgid "File not found: %s"
@@ -8051,9 +8023,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
-
-msgid "Flash on the fly your %s %s."
-msgstr "a(z) %s %s készülék Flashelés közben."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "A készülék szoftverének Flashelése."
@@ -8715,9 +8684,6 @@ msgstr "Eszközinformáció"
 msgid "Help animation speed"
 msgstr "Súgó ikonok animáció-sebessége"
 
-msgid "Help long"
-msgstr "Súgó hosszan"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8824,9 +8790,6 @@ msgstr "Előzmények előző"
 msgid "History buttons mode"
 msgstr "Előzmények gomb mód"
 
-msgid "History long"
-msgstr "Előzmények hosszan"
-
 msgid "History next"
 msgstr "Előzmények következő"
 
@@ -8848,14 +8811,8 @@ msgstr ""
 msgid "Home"
 msgstr "Kezdőlap"
 
-msgid "Home long"
-msgstr "Kezdőlap hosszan"
-
 msgid "Homepage"
 msgstr "Kezdőlap"
-
-msgid "Homepage long"
-msgstr "Kezdőlap hosszan"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9318,9 +9275,6 @@ msgstr "Információ"
 
 msgid "Info (EPG)"
 msgstr "Információ (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Információ (EPG) hosszú"
 
 msgid "Info button (long)"
 msgstr "Info gomb (hosszan)"
@@ -9804,10 +9758,6 @@ msgstr "Billentyűzet beállítása"
 msgid "Keyboard data entry"
 msgstr "Billentyűzet adatbevitele"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Billentyűzet"
-
 msgid "Keyboard map"
 msgstr "Billentyűkiosztás"
 
@@ -9831,9 +9781,6 @@ msgstr "Kodi MediaCenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi telepítve:"
-
-msgid "Kodi long"
-msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi médialejátszó"
@@ -9879,9 +9826,6 @@ msgstr "Hálózati adapter"
 
 msgid "LAN connection"
 msgstr "Helyi privát"
-
-msgid "LAN long"
-msgstr "LAN hosszan"
 
 msgid "LCD Skin Settings"
 msgstr "LCD kinézet beállítás"
@@ -10024,9 +9968,6 @@ msgstr "Bal"
 msgid "Left from service name"
 msgstr "A csatornanév bal oldalán"
 
-msgid "Left long"
-msgstr "Bal hosszan"
-
 msgid "Left, wrapped"
 msgstr "bal oldalon sortöréssel"
 
@@ -10132,9 +10073,6 @@ msgstr[1] "%d lista verzió, %d csatornát találtam"
 
 msgid "List/Fav"
 msgstr "Lista/Kedvencek"
-
-msgid "List/Fav long"
-msgstr "Lista/Kedvencek hosszan"
 
 #, fuzzy
 msgid "Listen to the radio"
@@ -10387,9 +10325,6 @@ msgstr "MÉG"
 msgid "MOUSE"
 msgstr "EGÉR"
 
-msgid "MOUSE long"
-msgstr "EGÉR hosszan"
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10414,10 +10349,6 @@ msgstr "Madagaszkár"
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Média hosszan"
 
 msgid "Main Menu"
 msgstr "Főmenü"
@@ -10527,9 +10458,6 @@ msgstr "A csatorna jelölése mint dedikált 3D csatorna"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark/Portal/Playlist long"
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "Gyors műveletek"
@@ -10604,9 +10532,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
-
-msgid "Media long"
-msgstr "Média hosszan"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "A Média lejátszás Hátralévő/Eltelt idő kijelzési formája"
@@ -11106,6 +11031,9 @@ msgstr "Film Lista Beállítás"
 msgid "Movie Player Actions"
 msgstr "Filmválasztás"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Filmválasztás"
 
@@ -11488,9 +11416,6 @@ msgstr "Következő quad Kép-a-Képben csatorna"
 
 msgid "Nextsong"
 msgstr "Nextsong"
-
-msgid "Nextsong long"
-msgstr "Nextsong hosszan"
 
 msgid "Nicaragua"
 msgstr "Nicaragua"
@@ -11933,9 +11858,6 @@ msgstr "OK gomb (röviden)"
 msgid "OK button mode"
 msgstr "OK gomb mód"
 
-msgid "OK long"
-msgstr "OK hosszan"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, vezessen végig a frissítési folyamaton"
 
@@ -12099,9 +12021,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Kedvencek lista mutatása"
 
-msgid "Open long"
-msgstr "Megnyitás hosszan"
-
 msgid "Open satellites list"
 msgstr "Műholdlista megnyitása"
 
@@ -12177,9 +12096,6 @@ msgstr "A Power LED állapota futás közben"
 
 msgid "Option"
 msgstr "Opciók"
-
-msgid "Option long"
-msgstr "Opció hosszan"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Az információs sávon a piconok megjelenjenek vagy nem"
@@ -12292,9 +12208,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC hosszan"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12321,10 +12234,6 @@ msgstr "PIN-kód szükséges"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "Kép-a-Képben hosszan"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12345,9 +12254,6 @@ msgstr "FŐMŰSORIDŐ"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR hosszú"
 
 msgid "Package Manager"
 msgstr "Csomagkezelés"
@@ -12392,14 +12298,8 @@ msgstr "Lista lapozása felfelé"
 msgid "PageDown"
 msgstr "PageDown"
 
-msgid "PageDown long"
-msgstr "PageDown hosszan"
-
 msgid "PageUp"
 msgstr "PageUp"
-
-msgid "PageUp long"
-msgstr "PageUp hosszan"
 
 msgid "Pakistan"
 msgstr "Pakisztán"
@@ -12670,9 +12570,6 @@ msgstr "Felvételek és Timeshift"
 msgid "Playlist"
 msgstr "Lejátszási lista"
 
-msgid "Playlist long"
-msgstr "Lejátszási lista hosszan"
-
 msgid "Playpause"
 msgstr "Szünet"
 
@@ -12813,9 +12710,6 @@ msgstr "Válasszon egy alcsatornát..."
 
 msgid "Please select a subservice..."
 msgstr "Válasszon egy alcsatornát..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "Válasszon egy képarányt..."
@@ -13154,9 +13048,6 @@ msgstr "A Power LED állapota a készülék Készenléti állapotában."
 msgid "Power On Display"
 msgstr "LCD kijelző legyen bekapcsolva"
 
-msgid "Power long"
-msgstr "Bekapcsoló hosszan"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Energiagazdálkodás. További információkért olvassa el a vevőkészülék kézikönyvét."
 
@@ -13356,9 +13247,6 @@ msgstr "előző/következő oldal"
 msgid "Prevsong"
 msgstr "Prevsong"
 
-msgid "Prevsong long"
-msgstr "Prevsong hosszan"
-
 msgid "Primary DNS"
 msgstr "Elsődleges DNS"
 
@@ -13429,9 +13317,6 @@ msgid ""
 msgstr ""
 "A(z) '%s' program nincs telepítve.\n"
 "A programot tartalmazó csomag nem ismert."
-
-msgid "Program long"
-msgstr "Program hosszan"
 
 msgid "Programmlisten History"
 msgstr "Programmlisten History"
@@ -13519,9 +13404,6 @@ msgstr "Protokoll"
 
 msgid "Prov"
 msgstr "Szolgáltató"
-
-msgid "Prov long"
-msgstr "Szolgáltató hosszan"
 
 msgid "Provider"
 msgstr "Szolgáltató"
@@ -13638,9 +13520,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "Rádió"
-
-msgid "RADIO long"
-msgstr "Rádió hosszú"
 
 msgid "RAM (Details)"
 msgstr ""
@@ -13808,9 +13687,6 @@ msgstr "Újjáépíti LCN csatornacsomagot most?"
 msgid "Rec"
 msgstr "Felvétel"
 
-msgid "Rec long"
-msgstr "Felvétel hosszan"
-
 msgid "Receiver"
 msgstr ""
 
@@ -13952,6 +13828,9 @@ msgstr "A felvételek megszakítják a streaminget"
 
 msgid "Recordings always have priority"
 msgstr "A felvételnek mindig elsőbbsége van"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Rekordok"
@@ -14479,9 +14358,6 @@ msgstr "Jobb"
 msgid "Right from service name"
 msgstr "A csatornanév jobb oldalán"
 
-msgid "Right long"
-msgstr "Jobb hosszan"
-
 msgid "Right, wrapped"
 msgstr "jobb oldalon sortöréssel"
 
@@ -14590,9 +14466,6 @@ msgstr "SABnzbd Beállítás"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT hosszan"
 
 msgid "SATA"
 msgstr "Serial ATA"
@@ -14986,9 +14859,6 @@ msgstr "Léptetés nyugat felé"
 msgid "Search/WEB"
 msgstr "Keresés/Web"
 
-msgid "Search/WEB long"
-msgstr "Keresés/Web hosszú"
-
 msgid "Searching"
 msgstr "Keresés"
 
@@ -15246,6 +15116,9 @@ msgid "Select Location"
 msgstr "Hely kiválasztása"
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -16036,16 +15909,16 @@ msgstr "Állítsa be a MAC-címét a(z) %s %s eszköznek."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Állítsa be a csatorna képek képarányát."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be az azonnali felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
 
 msgid "Set the default sorting method."
@@ -17222,9 +17095,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Elalvás hosszan"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -17961,9 +17831,6 @@ msgstr "Harmadlagos előnyben részesített felirat"
 msgid "Subtitle language selection 4"
 msgstr "Negyedleges előnyben részesített felirat"
 
-msgid "Subtitle long"
-msgstr "Felirat hosszan"
-
 msgid "Subtitle position"
 msgstr "Felirat elhelyezése"
 
@@ -18365,10 +18232,6 @@ msgstr "Teletext alap láthatósága"
 
 msgid "Teletext font and resolution"
 msgstr "Teletext betű és felbontás"
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "Teletext"
 
 msgid "Teletext subtitle color"
 msgstr "Teletext felirat színe"
@@ -19245,9 +19108,6 @@ msgstr "Időugrás a megismételt intervalluma a gyors előre/vissza lépéshez"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Időugrás: Normál sebesség használata az előrelépéshez"
-
-msgid "Time long"
-msgstr "Idő hosszan"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20388,9 +20248,6 @@ msgstr ""
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD hosszan"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21187,6 +21044,9 @@ msgstr "Hova szeretné elmenteni a beállításait?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Melyik műsort szeretné tartósan menteni?"
 
@@ -21295,9 +21155,6 @@ msgstr "Az írás sikertelen!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www hosszan"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 támogatás"
@@ -21535,9 +21392,6 @@ msgid "You should flash a new image!"
 msgstr ""
 
 msgid "YouTube"
-msgstr ""
-
-msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an Internet connection"
@@ -21786,9 +21640,6 @@ msgstr "UGRÁS"
 
 msgid "ZOOM"
 msgstr "NAGYÍTÁS"
-
-msgid "ZOOM long"
-msgstr "NAGYÍTÁS hosszan"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23296,6 +23147,168 @@ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Képarány hosszan"
+
+#~ msgid "Audio long"
+#~ msgstr "Hosszú hang"
+
+#~ msgid "Context long"
+#~ msgstr "Szövegkörnyezet hosszan"
+
+#~ msgid "Directory long"
+#~ msgstr "Mappa hosszan"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD hosszan"
+
+#~ msgid "End long"
+#~ msgstr "Vége hosszan"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide hosszan"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 hosszan"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 hosszan"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 hosszan"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 hosszan"
+
+#~ msgid "Favorites long"
+#~ msgstr "Kedvencek hosszan"
+
+#~ msgid "File long"
+#~ msgstr "Fájl hosszan"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "a(z) %s %s készülék Flashelés közben."
+
+#~ msgid "Help long"
+#~ msgstr "Súgó hosszan"
+
+#~ msgid "History long"
+#~ msgstr "Előzmények hosszan"
+
+#~ msgid "Home long"
+#~ msgstr "Kezdőlap hosszan"
+
+#~ msgid "Homepage long"
+#~ msgstr "Kezdőlap hosszan"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Információ (EPG) hosszú"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Billentyűzet"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN hosszan"
+
+#~ msgid "Left long"
+#~ msgstr "Bal hosszan"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Lista/Kedvencek hosszan"
+
+#~ msgid "MOUSE long"
+#~ msgstr "EGÉR hosszan"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Média hosszan"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark/Portal/Playlist long"
+
+#~ msgid "Media long"
+#~ msgstr "Média hosszan"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong hosszan"
+
+#~ msgid "OK long"
+#~ msgstr "OK hosszan"
+
+#~ msgid "Open long"
+#~ msgstr "Megnyitás hosszan"
+
+#~ msgid "Option long"
+#~ msgstr "Opció hosszan"
+
+#~ msgid "PC long"
+#~ msgstr "PC hosszan"
+
+#~ msgid "PIP long"
+#~ msgstr "Kép-a-Képben hosszan"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR hosszú"
+
+#~ msgid "PageDown long"
+#~ msgstr "PageDown hosszan"
+
+#~ msgid "PageUp long"
+#~ msgstr "PageUp hosszan"
+
+#~ msgid "Playlist long"
+#~ msgstr "Lejátszási lista hosszan"
+
+#~ msgid "Power long"
+#~ msgstr "Bekapcsoló hosszan"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Prevsong hosszan"
+
+#~ msgid "Program long"
+#~ msgstr "Program hosszan"
+
+#~ msgid "Prov long"
+#~ msgstr "Szolgáltató hosszan"
+
+#~ msgid "RADIO long"
+#~ msgstr "Rádió hosszú"
+
+#~ msgid "Rec long"
+#~ msgstr "Felvétel hosszan"
+
+#~ msgid "Right long"
+#~ msgstr "Jobb hosszan"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT hosszan"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Keresés/Web hosszú"
+
+#~ msgid "Sleep long"
+#~ msgstr "Elalvás hosszan"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Felirat hosszan"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Teletext"
+
+#~ msgid "Time long"
+#~ msgstr "Idő hosszan"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD hosszan"
+
+#~ msgid "Www long"
+#~ msgstr "Www hosszan"
+
+#~ msgid "ZOOM long"
+#~ msgstr "NAGYÍTÁS hosszan"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1277,6 +1277,10 @@ msgstr ""
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #, fuzzy, python-format
@@ -2874,10 +2878,6 @@ msgstr "螢幕寬高比"
 msgid "Aspect list..."
 msgstr "子服務列表..."
 
-#, fuzzy
-msgid "Aspect long"
-msgstr "螢幕寬高比"
-
 msgid "Aspect ratio"
 msgstr ""
 
@@ -2966,10 +2966,6 @@ msgstr ""
 
 msgid "Audio language selection 4"
 msgstr ""
-
-#, fuzzy
-msgid "Audio long"
-msgstr "音頻選擇"
 
 msgid "Audio options..."
 msgstr ""
@@ -5229,10 +5225,6 @@ msgstr "容量不適合DVD!"
 msgid "Context"
 msgstr "對比度"
 
-#, fuzzy
-msgid "Context long"
-msgstr "繼續播放"
-
 msgid "Continent"
 msgstr ""
 
@@ -5499,6 +5491,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "將安裝的"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Current mode: %s \n"
@@ -5941,7 +5937,7 @@ msgstr "預設"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr ""
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "預設錄影位置"
 
 #, fuzzy
@@ -6335,10 +6331,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "目錄流覽"
-
-#, fuzzy
-msgid "Directory long"
-msgstr "目錄"
 
 msgid "Disable"
 msgstr "禁用"
@@ -6781,6 +6773,9 @@ msgstr "下載插件"
 msgid "Download Softcams"
 msgstr "下載位置:"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 #, fuzzy
 msgid "Download and install Plugins"
 msgstr "下載並安裝"
@@ -6885,9 +6880,6 @@ msgid "ECM-Time"
 msgstr "時間"
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7356,9 +7348,6 @@ msgstr "加密系統:"
 msgid "End"
 msgstr "和"
 
-msgid "End long"
-msgstr ""
-
 msgid "End time"
 msgstr "結束時間"
 
@@ -7529,9 +7518,6 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr ""
-
-msgid "Epg/Guide long"
 msgstr ""
 
 #, fuzzy
@@ -7999,29 +7985,17 @@ msgstr "1"
 msgid "F1"
 msgstr "1"
 
-msgid "F1 long"
-msgstr ""
-
 #, fuzzy
 msgid "F2"
 msgstr "2"
-
-msgid "F2 long"
-msgstr ""
 
 #, fuzzy
 msgid "F3"
 msgstr "3"
 
-msgid "F3 long"
-msgstr ""
-
 #, fuzzy
 msgid "F4"
 msgstr "4"
-
-msgid "F4 long"
-msgstr ""
 
 msgid "FCC 1953"
 msgstr ""
@@ -8151,10 +8125,6 @@ msgstr ""
 msgid "Favorites"
 msgstr "自定義組"
 
-#, fuzzy
-msgid "Favorites long"
-msgstr "自定義組"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8234,10 +8204,6 @@ msgstr ""
 
 msgid "File checksums/hashes"
 msgstr ""
-
-#, fuzzy
-msgid "File long"
-msgstr "文件管理器"
 
 #, fuzzy, python-format
 msgid "File not found: %s"
@@ -8375,9 +8341,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 #, fuzzy
@@ -9088,10 +9051,6 @@ msgstr "資訊"
 msgid "Help animation speed"
 msgstr ""
 
-#, fuzzy
-msgid "Help long"
-msgstr "説明"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9204,10 +9163,6 @@ msgid "History buttons mode"
 msgstr ""
 
 #, fuzzy
-msgid "History long"
-msgstr "歷史"
-
-#, fuzzy
 msgid "History next"
 msgstr "歷史"
 
@@ -9231,14 +9186,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#, fuzzy
-msgid "Home long"
-msgstr "遠端登錄"
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9717,9 +9665,6 @@ msgid "Info"
 msgstr "資訊"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 #, fuzzy
@@ -10244,10 +10189,6 @@ msgstr ""
 msgid "Keyboard data entry"
 msgstr "鍵盤佈局"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "鍵盤佈局"
-
 msgid "Keyboard map"
 msgstr ""
 
@@ -10273,9 +10214,6 @@ msgstr "LT 媒體中心"
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "將安裝的"
-
-msgid "Kodi long"
-msgstr ""
 
 #, fuzzy
 msgid "Kodi media player"
@@ -10321,9 +10259,6 @@ msgid "LAN adapter"
 msgstr ""
 
 msgid "LAN connection"
-msgstr ""
-
-msgid "LAN long"
 msgstr ""
 
 #, fuzzy
@@ -10477,10 +10412,6 @@ msgstr "左"
 msgid "Left from service name"
 msgstr ""
 
-#, fuzzy
-msgid "Left long"
-msgstr "左"
-
 msgid "Left, wrapped"
 msgstr ""
 
@@ -10590,9 +10521,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 msgid "Listen to the radio"
@@ -10863,9 +10791,6 @@ msgstr "更多"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10889,10 +10814,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "媒體播放器"
 
 msgid "Main Menu"
 msgstr "主功能表"
@@ -11001,9 +10922,6 @@ msgstr ""
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "快速按鍵"
@@ -11083,10 +11001,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Media Portal"
-msgstr "媒體播放器"
-
-#, fuzzy
-msgid "Media long"
 msgstr "媒體播放器"
 
 msgid "Media playback Remaining/Elapsed as"
@@ -11617,6 +11531,9 @@ msgstr "已錄節目列表功能表"
 msgid "Movie Player Actions"
 msgstr "電影位置"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr ""
 
@@ -12030,10 +11947,6 @@ msgstr "下一個頻道"
 #, fuzzy
 msgid "Nextsong"
 msgstr "下一個"
-
-#, fuzzy
-msgid "Nextsong long"
-msgstr "香港"
 
 msgid "Nicaragua"
 msgstr ""
@@ -12494,9 +12407,6 @@ msgstr "按OK鍵顯示資訊條"
 msgid "OK button mode"
 msgstr "創作模式"
 
-msgid "OK long"
-msgstr ""
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, 引導我的升級過程"
 
@@ -12671,9 +12581,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "結束喜愛頻道編輯"
 
-msgid "Open long"
-msgstr ""
-
 #, fuzzy
 msgid "Open satellites list"
 msgstr "打開頻道列表"
@@ -12755,10 +12662,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "選項:"
-
-#, fuzzy
-msgid "Option long"
-msgstr "選項 ("
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -12878,9 +12781,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "C"
 
-msgid "PC long"
-msgstr ""
-
 #, fuzzy
 msgid "PCM"
 msgstr "PM"
@@ -12911,10 +12811,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -12936,9 +12832,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 msgid "Package Manager"
@@ -12993,15 +12886,8 @@ msgid "PageDown"
 msgstr "頁面"
 
 #, fuzzy
-msgid "PageDown long"
-msgstr "下載中"
-
-#, fuzzy
 msgid "PageUp"
 msgstr "頁面"
-
-msgid "PageUp long"
-msgstr ""
 
 msgid "Pakistan"
 msgstr ""
@@ -13290,10 +13176,6 @@ msgid "Playlist"
 msgstr "播放列表"
 
 #, fuzzy
-msgid "Playlist long"
-msgstr "播放列表"
-
-#, fuzzy
 msgid "Playpause"
 msgstr "暫停"
 
@@ -13447,9 +13329,6 @@ msgstr ""
 
 msgid "Please select a subservice..."
 msgstr "請選擇一個字幕..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 #, fuzzy
 msgid "Please select an aspect ratio..."
@@ -13790,10 +13669,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr "反向顯示"
 
-#, fuzzy
-msgid "Power long"
-msgstr "計時器日誌"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -14014,10 +13889,6 @@ msgstr "上一個頻道"
 msgid "Prevsong"
 msgstr "前一個"
 
-#, fuzzy
-msgid "Prevsong long"
-msgstr "香港"
-
 msgid "Primary DNS"
 msgstr "主 DNS"
 
@@ -14083,9 +13954,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14186,9 +14054,6 @@ msgstr ""
 #, fuzzy
 msgid "Prov"
 msgstr "供應商"
-
-msgid "Prov long"
-msgstr ""
 
 msgid "Provider"
 msgstr "供應商"
@@ -14313,9 +14178,6 @@ msgid "QuickSelect Actions"
 msgstr ""
 
 msgid "RADIO"
-msgstr ""
-
-msgid "RADIO long"
 msgstr ""
 
 msgid "RAM (Details)"
@@ -14495,9 +14357,6 @@ msgstr ""
 msgid "Rec"
 msgstr ""
 
-msgid "Rec long"
-msgstr ""
-
 msgid "Receiver"
 msgstr ""
 
@@ -14654,6 +14513,9 @@ msgstr "錄製一個連續的流"
 
 msgid "Recordings always have priority"
 msgstr "總是優先錄製"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #, fuzzy
 msgid "Records"
@@ -15227,10 +15089,6 @@ msgstr "右"
 msgid "Right from service name"
 msgstr ""
 
-#, fuzzy
-msgid "Right long"
-msgstr "右"
-
 msgid "Right, wrapped"
 msgstr ""
 
@@ -15342,9 +15200,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -15762,10 +15617,6 @@ msgstr "向西搜索"
 msgid "Search/WEB"
 msgstr "搜索"
 
-#, fuzzy
-msgid "Search/WEB long"
-msgstr "搜尋會話"
-
 msgid "Searching"
 msgstr ""
 
@@ -16033,6 +15884,9 @@ msgid "Select Location"
 msgstr "選擇位置"
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 #, fuzzy
@@ -16854,16 +16708,16 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 #, fuzzy
@@ -18172,9 +18026,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr ""
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -18948,10 +18799,6 @@ msgstr ""
 msgid "Subtitle language selection 4"
 msgstr ""
 
-#, fuzzy
-msgid "Subtitle long"
-msgstr "字幕選擇"
-
 msgid "Subtitle position"
 msgstr ""
 
@@ -19369,10 +19216,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "刪除"
 
 msgid "Teletext subtitle color"
 msgstr ""
@@ -20248,10 +20091,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#, fuzzy
-msgid "Time long"
-msgstr "計時器日誌"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -21447,9 +21286,6 @@ msgstr ""
 msgid "VOD"
 msgstr "OSD"
 
-msgid "VOD long"
-msgstr ""
-
 msgid "VPN"
 msgstr ""
 
@@ -22279,6 +22115,9 @@ msgstr "在哪里備份您的設定?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "在哪里保存時光平移臨時錄製的內容?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 #, fuzzy
 msgid "Which event do you want to save permanently?"
 msgstr "是否開始掃描?"
@@ -22390,9 +22229,6 @@ msgid "Write failed!"
 msgstr "寫入失敗！"
 
 msgid "Www"
-msgstr ""
-
-msgid "Www long"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -22630,9 +22466,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -22858,9 +22691,6 @@ msgid "ZAP"
 msgstr "(ZAP)"
 
 msgid "ZOOM"
-msgstr ""
-
-msgid "ZOOM long"
 msgstr ""
 
 msgid "ZPicon"
@@ -24429,6 +24259,102 @@ msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Aspect long"
+#~ msgstr "螢幕寬高比"
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "音頻選擇"
+
+#, fuzzy
+#~ msgid "Context long"
+#~ msgstr "繼續播放"
+
+#, fuzzy
+#~ msgid "Directory long"
+#~ msgstr "目錄"
+
+#, fuzzy
+#~ msgid "Favorites long"
+#~ msgstr "自定義組"
+
+#, fuzzy
+#~ msgid "File long"
+#~ msgstr "文件管理器"
+
+#, fuzzy
+#~ msgid "Help long"
+#~ msgstr "説明"
+
+#, fuzzy
+#~ msgid "History long"
+#~ msgstr "歷史"
+
+#, fuzzy
+#~ msgid "Home long"
+#~ msgstr "遠端登錄"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "鍵盤佈局"
+
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "左"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "媒體播放器"
+
+#, fuzzy
+#~ msgid "Media long"
+#~ msgstr "媒體播放器"
+
+#, fuzzy
+#~ msgid "Nextsong long"
+#~ msgstr "香港"
+
+#, fuzzy
+#~ msgid "Option long"
+#~ msgstr "選項 ("
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "下載中"
+
+#, fuzzy
+#~ msgid "Playlist long"
+#~ msgstr "播放列表"
+
+#, fuzzy
+#~ msgid "Power long"
+#~ msgstr "計時器日誌"
+
+#, fuzzy
+#~ msgid "Prevsong long"
+#~ msgstr "香港"
+
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "右"
+
+#, fuzzy
+#~ msgid "Search/WEB long"
+#~ msgstr "搜尋會話"
+
+#, fuzzy
+#~ msgid "Subtitle long"
+#~ msgstr "字幕選擇"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "刪除"
+
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "計時器日誌"
 
 #, fuzzy
 #~ msgid "1s"

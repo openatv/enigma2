@@ -64,8 +64,16 @@ int eLabel::event(int event, void *data, void *data2)
 		if (!m_nowrap)
 			flags |= gPainter::RT_WRAP;
 
-			/* if we don't have shadow, m_shadow_offset will be 0,0 */
-		painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
+		int x = m_padding.x();
+		int y = m_padding.y();
+
+		int w = size().width() - m_padding.right();
+		int h = size().height() - m_padding.bottom();
+
+		auto position = eRect(x, y, w, h);
+		/* if we don't have shadow, m_shadow_offset will be 0,0 */
+		auto shadowposition = eRect(position.x()-m_shadow_offset.x(),position.y()-m_shadow_offset.y(),position.width()-m_shadow_offset.x(),position.height()-m_shadow_offset.y());
+		painter.renderText(shadowposition, m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
 
 		if (m_have_shadow_color)
 		{
@@ -74,7 +82,7 @@ int eLabel::event(int event, void *data, void *data2)
 			else
 				painter.setForegroundColor(m_foreground_color);
 			painter.setBackgroundColor(m_shadow_color);
-			painter.renderText(eRect(0, 0, size().width(), size().height()), m_text, flags, gRGB(), 0, m_pos);
+			painter.renderText(position, m_text, flags, gRGB(), 0, m_pos);
 		}
 
 		return 0;

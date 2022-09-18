@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-07-04 20:11+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1267,6 +1267,10 @@ msgstr "%s nuk përdoret më. A duhet të eleminohet?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s është i mbrojtur me fjalëkalim."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2758,9 +2762,6 @@ msgstr "Veprime të Raportit të Aspekteve"
 msgid "Aspect list..."
 msgstr "Lista e aspekteve..."
 
-msgid "Aspect long"
-msgstr "Aspekti i gjatë"
-
 msgid "Aspect ratio"
 msgstr "Raporti i aspektit"
 
@@ -2843,9 +2844,6 @@ msgstr "Përzgjedhja e gjuhës audio 3"
 
 msgid "Audio language selection 4"
 msgstr "Përzgjedhja e gjuhës audio 4"
-
-msgid "Audio long"
-msgstr "Audio e gjatë"
 
 msgid "Audio options..."
 msgstr "Opsionet e audios..."
@@ -4983,9 +4981,6 @@ msgstr "Përmbajtja nuk përshtatet në DVD!"
 msgid "Context"
 msgstr "Konteksti"
 
-msgid "Context long"
-msgstr "Konteksti i gjatë"
-
 msgid "Continent"
 msgstr "Kontinenti"
 
@@ -5232,6 +5227,10 @@ msgstr "Regjistri aktual i aksidenteve"
 
 msgid "Current installed"
 msgstr "Aktual i instaluar"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5648,7 +5647,7 @@ msgstr "Kartela e prezgjedhur"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Kartela e prezgjedhur nëse kartela e majtë apo e djathtë nuk është ruajtur, dhe kartela e synuar për butonin 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Pozicioni i prezgjedhur i filmit"
 
 msgid "Default recording type"
@@ -6021,9 +6020,6 @@ msgstr "Drejtoria '%s' nuk mund të shkruhet!"
 
 msgid "Directory browser"
 msgstr "Shfletuesi i drejtorisë"
-
-msgid "Directory long"
-msgstr "Drejtoria e gjatë"
 
 msgid "Disable"
 msgstr "Çaktivizo"
@@ -6453,6 +6449,9 @@ msgstr "Shkarko Plugins"
 msgid "Download Softcams"
 msgstr "Shkarko Softcams"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Shkarkoni dhe instaloni Plugins"
 
@@ -6548,9 +6547,6 @@ msgstr "ECM-Koha"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD e gjatë"
 
 msgid "EPG"
 msgstr "EPG"
@@ -6999,9 +6995,6 @@ msgstr "Enkriptimi"
 msgid "End"
 msgstr "fund"
 
-msgid "End long"
-msgstr "Përfundoni gjatë"
-
 msgid "End time"
 msgstr "Koha e përfundimit"
 
@@ -7170,9 +7163,6 @@ msgstr "Vetëm teksti i hyrjes"
 
 msgid "Epg/Guide"
 msgstr "Epg/Udhëzues"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Udhëzues i gjatë"
 
 msgid "Equal to"
 msgstr "E barabartë me"
@@ -7636,26 +7626,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 i gjatë"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 i gjatë"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 i gjatë"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 i gjatë"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7778,9 +7756,6 @@ msgstr "Shpejtësi të shpejta përpara"
 msgid "Favorites"
 msgstr "Të preferuarat"
 
-msgid "Favorites long"
-msgstr "Të preferuarat e gjata"
-
 msgid "Feed URL"
 msgstr "URL-ja e furnizimit"
 
@@ -7858,9 +7833,6 @@ msgstr "Regjistroni shumat e kontrollit për të llogaritur për butonin 9"
 
 msgid "File checksums/hashes"
 msgstr "Dosja e kontrolleve/hashes"
-
-msgid "File long"
-msgstr "Skedari i gjatë"
 
 #, python-format
 msgid "File not found: %s"
@@ -7991,9 +7963,6 @@ msgstr "Flash dhe rivendos cilësimet dhe shtojcat e zgjedhura (Pyet përdoruesi
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Direktoria e Flash '%s' nuk lejohet!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Instalim në Flash nga interneti për %s %s tuaj."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Ndizni menjëherë softuerin tuaj të Marrësit."
@@ -8643,9 +8612,6 @@ msgstr "Informacioni i ekranit të ndihmës"
 msgid "Help animation speed"
 msgstr "Ndihmoni shpejtësinë e animacionit"
 
-msgid "Help long"
-msgstr "Ndihmoni gjatë"
-
 msgid "Help screen style"
 msgstr "Ndihmë për stilin e ekranit"
 
@@ -8751,9 +8717,6 @@ msgstr "Historia kthehet"
 msgid "History buttons mode"
 msgstr "Modaliteti i butonave të historisë"
 
-msgid "History long"
-msgstr "Histori e gjatë"
-
 msgid "History next"
 msgstr "Historia e radhës"
 
@@ -8775,14 +8738,8 @@ msgstr "Selia e Shenjtë (Shteti i qytetit të Vatikanit)"
 msgid "Home"
 msgstr "Shtëpi"
 
-msgid "Home long"
-msgstr "Shtëpi gjatë"
-
 msgid "Homepage"
 msgstr "Faqja kryesore"
-
-msgid "Homepage long"
-msgstr "Faqja kryesore e gjatë"
 
 msgid "Honduras"
 msgstr "Hondurasi"
@@ -9239,9 +9196,6 @@ msgid "Info"
 msgstr ""
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -9718,9 +9672,6 @@ msgstr ""
 msgid "Keyboard data entry"
 msgstr ""
 
-msgid "Keyboard long"
-msgstr ""
-
 msgid "Keyboard map"
 msgstr ""
 
@@ -9743,9 +9694,6 @@ msgid "Kodi MediaCenter"
 msgstr ""
 
 msgid "Kodi installed:"
-msgstr ""
-
-msgid "Kodi long"
 msgstr ""
 
 msgid "Kodi media player"
@@ -9788,9 +9736,6 @@ msgid "LAN adapter"
 msgstr ""
 
 msgid "LAN connection"
-msgstr ""
-
-msgid "LAN long"
 msgstr ""
 
 msgid "LCD Skin Settings"
@@ -9931,9 +9876,6 @@ msgstr ""
 msgid "Left from service name"
 msgstr ""
 
-msgid "Left long"
-msgstr ""
-
 msgid "Left, wrapped"
 msgstr ""
 
@@ -10038,9 +9980,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 msgid "Listen to the radio"
@@ -10287,9 +10226,6 @@ msgstr ""
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10312,9 +10248,6 @@ msgid "Madagascar"
 msgstr ""
 
 msgid "Magic"
-msgstr ""
-
-msgid "Magic long"
 msgstr ""
 
 msgid "Main Menu"
@@ -10419,9 +10352,6 @@ msgstr ""
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 msgid "Marker Actions"
 msgstr ""
 
@@ -10493,9 +10423,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -10970,6 +10897,9 @@ msgstr ""
 msgid "Movie Player Actions"
 msgstr ""
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr ""
 
@@ -11347,9 +11277,6 @@ msgid "Next quad PiP channel"
 msgstr ""
 
 msgid "Nextsong"
-msgstr ""
-
-msgid "Nextsong long"
 msgstr ""
 
 msgid "Nicaragua"
@@ -11765,9 +11692,6 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 msgid "OK, guide me through the upgrade process"
 msgstr ""
 
@@ -11924,9 +11848,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr ""
 
@@ -12000,9 +11921,6 @@ msgid "Operating LED status while running"
 msgstr ""
 
 msgid "Option"
-msgstr ""
-
-msgid "Option long"
 msgstr ""
 
 msgid "Option to disable picons on the Infobar"
@@ -12114,9 +12032,6 @@ msgstr ""
 msgid "PC"
 msgstr ""
 
-msgid "PC long"
-msgstr ""
-
 msgid "PCM"
 msgstr ""
 
@@ -12142,10 +12057,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -12165,9 +12076,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 msgid "Package Manager"
@@ -12212,13 +12120,7 @@ msgstr ""
 msgid "PageDown"
 msgstr ""
 
-msgid "PageDown long"
-msgstr ""
-
 msgid "PageUp"
-msgstr ""
-
-msgid "PageUp long"
 msgstr ""
 
 msgid "Pakistan"
@@ -12488,9 +12390,6 @@ msgstr "Regjistrimet dhe zhvendosja në kohë"
 msgid "Playlist"
 msgstr ""
 
-msgid "Playlist long"
-msgstr ""
-
 msgid "Playpause"
 msgstr ""
 
@@ -12624,9 +12523,6 @@ msgid "Please select a sub service..."
 msgstr ""
 
 msgid "Please select a subservice..."
-msgstr ""
-
-msgid "Please select an acceptable directory."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
@@ -12929,9 +12825,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -13129,9 +13022,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-msgid "Prevsong long"
-msgstr ""
-
 msgid "Primary DNS"
 msgstr ""
 
@@ -13193,9 +13083,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -13283,9 +13170,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 msgid "Provider"
@@ -13401,9 +13285,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr "RADIO E GJATË"
 
 msgid "RAM (Details)"
 msgstr "RAM (Detaje)"
@@ -13571,9 +13452,6 @@ msgstr "Rindërtoni buqetën LCN tani?"
 msgid "Rec"
 msgstr "Rec"
 
-msgid "Rec long"
-msgstr "Rec i gjatë"
-
 msgid "Receiver"
 msgstr "Marrësi"
 
@@ -13714,6 +13592,9 @@ msgstr "Regjistrimet ndërpresin transmetimin"
 
 msgid "Recordings always have priority"
 msgstr "Regjistrimet kanë gjithmonë prioritet"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Të dhënat"
@@ -14241,9 +14122,6 @@ msgstr ""
 msgid "Right from service name"
 msgstr ""
 
-msgid "Right long"
-msgstr ""
-
 msgid "Right, wrapped"
 msgstr ""
 
@@ -14348,9 +14226,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -14738,9 +14613,6 @@ msgstr ""
 msgid "Search/WEB"
 msgstr ""
 
-msgid "Search/WEB long"
-msgstr ""
-
 msgid "Searching"
 msgstr ""
 
@@ -14994,6 +14866,9 @@ msgid "Select Location"
 msgstr ""
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -15752,16 +15627,16 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -16920,9 +16795,6 @@ msgstr "Kohëmatësi i gjumit"
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Flini gjatë"
-
 msgid "Sleep timer"
 msgstr "Kohëmatësi i gjumit"
 
@@ -17646,9 +17518,6 @@ msgstr ""
 msgid "Subtitle language selection 4"
 msgstr ""
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr ""
 
@@ -18032,9 +17901,6 @@ msgstr "Dukshmëria e bazës së teletekstit"
 
 msgid "Teletext font and resolution"
 msgstr "Gërmat dhe rezolucioni i teletekstit"
-
-msgid "Teletext long"
-msgstr "Teleteksti i gjatë"
 
 msgid "Teletext subtitle color"
 msgstr "Ngjyra e titrave të teleteksit"
@@ -18896,9 +18762,6 @@ msgid "Time jump repeat interval for fast forward/backward"
 msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
-msgstr ""
-
-msgid "Time long"
 msgstr ""
 
 #, python-format
@@ -20012,9 +19875,6 @@ msgstr ""
 msgid "VOD"
 msgstr ""
 
-msgid "VOD long"
-msgstr ""
-
 msgid "VPN"
 msgstr ""
 
@@ -20803,6 +20663,9 @@ msgstr "Ku dëshironi të bëni kopje rezervë të cilësimeve tuaja?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Ku t'i kursesh regjistrimet e përkohshme të kohës?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Cilën ngjarje dëshironi të ruani përgjithmonë?"
 
@@ -20911,9 +20774,6 @@ msgstr "Shkrimi dështoi!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www gjatë"
 
 msgid "XBox 360 support"
 msgstr "Mbështetje për XBox 360"
@@ -21151,9 +21011,6 @@ msgstr "Ju duhet të ndezni një imazh të ri!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube gjatë"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "%s %s juaj nuk ka lidhje interneti"
@@ -21405,9 +21262,6 @@ msgstr "ZAP"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM gjatë"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -22898,6 +22752,81 @@ msgstr "%s %s juaj mund të jetë i papërdorshëm tani. Ju lutemi, konsultohuni
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect long"
+#~ msgstr "Aspekti i gjatë"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio e gjatë"
+
+#~ msgid "Context long"
+#~ msgstr "Konteksti i gjatë"
+
+#~ msgid "Directory long"
+#~ msgstr "Drejtoria e gjatë"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD e gjatë"
+
+#~ msgid "End long"
+#~ msgstr "Përfundoni gjatë"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Udhëzues i gjatë"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 i gjatë"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 i gjatë"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 i gjatë"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 i gjatë"
+
+#~ msgid "Favorites long"
+#~ msgstr "Të preferuarat e gjata"
+
+#~ msgid "File long"
+#~ msgstr "Skedari i gjatë"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Instalim në Flash nga interneti për %s %s tuaj."
+
+#~ msgid "Help long"
+#~ msgstr "Ndihmoni gjatë"
+
+#~ msgid "History long"
+#~ msgstr "Histori e gjatë"
+
+#~ msgid "Home long"
+#~ msgstr "Shtëpi gjatë"
+
+#~ msgid "Homepage long"
+#~ msgstr "Faqja kryesore e gjatë"
+
+#~ msgid "RADIO long"
+#~ msgstr "RADIO E GJATË"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec i gjatë"
+
+#~ msgid "Sleep long"
+#~ msgstr "Flini gjatë"
+
+#~ msgid "Teletext long"
+#~ msgstr "Teleteksti i gjatë"
+
+#~ msgid "Www long"
+#~ msgstr "Www gjatë"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube gjatë"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM gjatë"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

@@ -168,7 +168,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 			config.ParentalControl.config_sections.software_update.value
 
 	def layoutFinished(self):
-		self["list"].master.master.instance.allowNativeKeys(False)
+		self["list"].master.master.instance.enableAutoNavigation(False)
 		self.setStatus("update")
 		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 		self.timer.start(25, True)
@@ -315,7 +315,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 
 	def keyUpdateCallback(self, answer):
 		if answer == 1:
-			from Screens.FlashManager import FlashManager # This must be here to ensure the plugin is initialized.
+			from Screens.FlashManager import FlashManager  # This must be here to ensure the plugin is initialized.
 			self.session.open(FlashManager)
 		elif answer == 2:
 			self.session.open(RunSoftwareUpdate)
@@ -554,7 +554,7 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 	def createSummary(self):
 		return RunSoftwareUpdateSummary
 
-	def restoreMetrixHD(self): # TODO: call this only after metrix update / move this to Metrix Plugin
+	def restoreMetrixHD(self):  # TODO: call this only after metrix update / move this to Metrix Plugin
 		try:
 			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
 				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):

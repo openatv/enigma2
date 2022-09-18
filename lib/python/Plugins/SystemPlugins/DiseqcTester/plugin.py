@@ -138,7 +138,7 @@ class ResultParser:
 
 class DiseqcTester(Screen, TuneTest, ResultParser):
 	skin = """
-		<screen position="90,100" size="520,400" title="DiSEqC Tester" >
+		<screen position="center,center" size="520,460" title="DiSEqC Tester" >
 		<!--ePixmap pixmap="icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
 		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
 			<convert type="FrontendInfo">SNRdB</convert>
@@ -202,7 +202,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		<widget name="Not_tested" position="20,372" size="140,22" font="Regular;21" halign="left" transparent="1" />
 		<widget source="untestable_counter" render="Label" position="160,372" size="100,20" font="Regular;21" />
 
-		<widget source="CmdText" render="Label" position="300,282" size="180,200" font="Regular;21" />
+		<widget source="CmdText" render="Label" position="20,402" size="500,50" font="Regular;21" />
 		</screen>"""
 
 	TEST_TYPE_QUICK = 0

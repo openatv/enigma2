@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1326,6 +1326,10 @@ msgstr ""
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #
@@ -2869,9 +2873,6 @@ msgstr "انتخاب محل"
 msgid "Aspect list..."
 msgstr ""
 
-msgid "Aspect long"
-msgstr ""
-
 msgid "Aspect ratio"
 msgstr ""
 
@@ -2960,10 +2961,6 @@ msgstr "انتخاب زبان صدا 3"
 
 msgid "Audio language selection 4"
 msgstr "انتخاب زبان صدا 4"
-
-#, fuzzy
-msgid "Audio long"
-msgstr "PID صدا"
 
 msgid "Audio options..."
 msgstr ""
@@ -5163,9 +5160,6 @@ msgstr "مقدار محتوا مناسب برای DVD نیست"
 msgid "Context"
 msgstr ""
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -5431,6 +5425,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "ایمیج نصب شده فعلی"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5867,7 +5865,7 @@ msgstr "پیش فرض"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr ""
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "محل پیش فرض فیلم"
 
 #, fuzzy
@@ -6253,9 +6251,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "مرورگر شاخه"
-
-msgid "Directory long"
-msgstr ""
 
 msgid "Disable"
 msgstr "غیر فعال"
@@ -6676,6 +6671,9 @@ msgstr ""
 msgid "Download Softcams"
 msgstr ""
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr ""
 
@@ -6775,9 +6773,6 @@ msgid "ECM-Time"
 msgstr ""
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7235,9 +7230,6 @@ msgstr "رمزگذاری"
 msgid "End"
 msgstr ""
 
-msgid "End long"
-msgstr ""
-
 msgid "End time"
 msgstr "زمان پایان"
 
@@ -7400,9 +7392,6 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr ""
-
-msgid "Epg/Guide long"
 msgstr ""
 
 msgid "Equal to"
@@ -7859,25 +7848,13 @@ msgstr ""
 msgid "F1"
 msgstr ""
 
-msgid "F1 long"
-msgstr ""
-
 msgid "F2"
-msgstr ""
-
-msgid "F2 long"
 msgstr ""
 
 msgid "F3"
 msgstr ""
 
-msgid "F3 long"
-msgstr ""
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8005,9 +7982,6 @@ msgstr "سرعت پرش به جلوی سریع"
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8085,9 +8059,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #, fuzzy, python-format
@@ -8221,9 +8192,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -8899,9 +8867,6 @@ msgstr "اطلاعات"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr ""
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9014,9 +8979,6 @@ msgstr ""
 msgid "History buttons mode"
 msgstr ""
 
-msgid "History long"
-msgstr ""
-
 msgid "History next"
 msgstr ""
 
@@ -9039,14 +9001,7 @@ msgstr ""
 msgid "Home"
 msgstr "خانه"
 
-#, fuzzy
-msgid "Home long"
-msgstr "خانه"
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9508,9 +9463,6 @@ msgid "Info"
 msgstr "اطلاعات"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -10022,10 +9974,6 @@ msgstr ""
 msgid "Keyboard data entry"
 msgstr "نقشه صفحه کلید"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "صفحه کلید"
-
 msgid "Keyboard map"
 msgstr "نقشه صفحه کلید"
 
@@ -10051,9 +9999,6 @@ msgstr ""
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "برگرداندن نصب"
-
-msgid "Kodi long"
-msgstr ""
 
 #, fuzzy
 msgid "Kodi media player"
@@ -10098,9 +10043,6 @@ msgstr "LAN آداپتور"
 
 msgid "LAN connection"
 msgstr "ارتباط LAN"
-
-msgid "LAN long"
-msgstr ""
 
 msgid "LCD Skin Settings"
 msgstr ""
@@ -10244,10 +10186,6 @@ msgstr "چپ"
 msgid "Left from service name"
 msgstr "نام وسیله :"
 
-#, fuzzy
-msgid "Left long"
-msgstr "چپ"
-
 msgid "Left, wrapped"
 msgstr ""
 
@@ -10357,9 +10295,6 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #, fuzzy
@@ -10619,9 +10554,6 @@ msgstr "بیشتر"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10645,10 +10577,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "گزارش زمان"
 
 msgid "Main Menu"
 msgstr "منوی اصلی"
@@ -10755,9 +10683,6 @@ msgstr ""
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "محل"
@@ -10834,9 +10759,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -11351,6 +11273,9 @@ msgstr ""
 msgid "Movie Player Actions"
 msgstr "محل فیلم"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 #, fuzzy
 msgid "Movie selection"
 msgstr "محل فیلم"
@@ -11748,9 +11673,6 @@ msgid "Next quad PiP channel"
 msgstr ""
 
 msgid "Nextsong"
-msgstr ""
-
-msgid "Nextsong long"
 msgstr ""
 
 msgid "Nicaragua"
@@ -12206,9 +12128,6 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 msgid "OK, guide me through the upgrade process"
 msgstr "من را به روند به روز رسانی راهنمایی کنید"
 
@@ -12376,9 +12295,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr ""
 
@@ -12454,9 +12370,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "رمزگذاری"
-
-msgid "Option long"
-msgstr ""
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -12570,9 +12483,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-msgid "PC long"
-msgstr ""
-
 msgid "PCM"
 msgstr ""
 
@@ -12600,10 +12510,6 @@ msgstr "رمز مورد نیاز است"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -12623,9 +12529,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 msgid "Package Manager"
@@ -12672,14 +12575,7 @@ msgstr "ذخیره لیست پخش"
 msgid "PageDown"
 msgstr ""
 
-#, fuzzy
-msgid "PageDown long"
-msgstr "در حال دانلود"
-
 msgid "PageUp"
-msgstr ""
-
-msgid "PageUp long"
 msgstr ""
 
 msgid "Pakistan"
@@ -12977,9 +12873,6 @@ msgstr ""
 msgid "Playlist"
 msgstr ""
 
-msgid "Playlist long"
-msgstr ""
-
 msgid "Playpause"
 msgstr ""
 
@@ -13126,9 +13019,6 @@ msgstr "لطفا یک کانال فرعی انتخاب کنید"
 
 msgid "Please select a subservice..."
 msgstr "لطفا یک کانال فرعی انتخاب کنید"
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr ""
@@ -13451,9 +13341,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -13659,9 +13546,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-msgid "Prevsong long"
-msgstr ""
-
 msgid "Primary DNS"
 msgstr "DNS اول"
 
@@ -13724,9 +13608,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -13822,9 +13703,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 msgid "Provider"
@@ -13946,9 +13824,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "رادیو"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "RAM (Details)"
 msgstr ""
@@ -14121,9 +13996,6 @@ msgstr ""
 msgid "Rec"
 msgstr ""
 
-msgid "Rec long"
-msgstr ""
-
 msgid "Receiver"
 msgstr ""
 
@@ -14274,6 +14146,9 @@ msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "ضبط کردن همیشه اولویت داشته باشد"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #, fuzzy
 msgid "Records"
@@ -14825,10 +14700,6 @@ msgstr "راست"
 msgid "Right from service name"
 msgstr ""
 
-#, fuzzy
-msgid "Right long"
-msgstr "راست"
-
 msgid "Right, wrapped"
 msgstr ""
 
@@ -14937,9 +14808,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -15345,9 +15213,6 @@ msgstr "جستجوی غرب"
 msgid "Search/WEB"
 msgstr ""
 
-msgid "Search/WEB long"
-msgstr ""
-
 msgid "Searching"
 msgstr "در حال جستجو"
 
@@ -15607,6 +15472,9 @@ msgid "Select Location"
 msgstr ""
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -16401,16 +16269,16 @@ msgstr "ویرایش پیکربندی نام سرور دستگاه شما"
 msgid "Set the aspect ratio of the service picons."
 msgstr "ترکیب نام های فایل های ضبط"
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -17633,10 +17501,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-#, fuzzy
-msgid "Sleep long"
-msgstr "زمان خواب"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -18384,9 +18248,6 @@ msgstr "انتخاب زبان زیرنویس 3"
 msgid "Subtitle language selection 4"
 msgstr "انتخاب زبان زیرنویس 4"
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr "مکان زیرنویس"
 
@@ -18792,10 +18653,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "زمان خواب"
 
 msgid "Teletext subtitle color"
 msgstr "رنگ زیرنویس تله تکست"
@@ -19639,10 +19496,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#, fuzzy
-msgid "Time long"
-msgstr "گزارش زمان"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20809,9 +20662,6 @@ msgstr ""
 msgid "VOD"
 msgstr ""
 
-msgid "VOD long"
-msgstr ""
-
 msgid "VPN"
 msgstr ""
 
@@ -21620,6 +21470,9 @@ msgstr "کجا میخواهید نسخه پشتیبان تنظیمات شما ت
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "کجا فایل های ضبط شده موقت تغییر زمان ذخیره شود ؟"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr ""
 
@@ -21728,9 +21581,6 @@ msgid "Write failed!"
 msgstr "عمل رایت ناموفق شد"
 
 msgid "Www"
-msgstr ""
-
-msgid "Www long"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -21964,9 +21814,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -22183,9 +22030,6 @@ msgid "ZAP"
 msgstr ""
 
 msgid "ZOOM"
-msgstr ""
-
-msgid "ZOOM long"
 msgstr ""
 
 msgid "ZPicon"
@@ -23715,6 +23559,46 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "PID صدا"
+
+#, fuzzy
+#~ msgid "Home long"
+#~ msgstr "خانه"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "صفحه کلید"
+
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "چپ"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "گزارش زمان"
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "در حال دانلود"
+
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "راست"
+
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "زمان خواب"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "زمان خواب"
+
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "گزارش زمان"
 
 #~ msgid "10 MB/s"
 #~ msgstr "10 مگ بر ثانیه"

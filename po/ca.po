@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1368,6 +1368,10 @@ msgstr "%s ja no s’utilitza. El voleu esborrar?"
 
 #, python-format
 msgid "%s is password protected."
+msgstr ""
+
+#, python-format
+msgid "%s long"
 msgstr ""
 
 #
@@ -2999,9 +3003,6 @@ msgstr "Selecció EPG"
 msgid "Aspect list..."
 msgstr ""
 
-msgid "Aspect long"
-msgstr ""
-
 msgid "Aspect ratio"
 msgstr "Relació d'aspecteRelació d’aspecte"
 
@@ -3088,9 +3089,6 @@ msgstr "Selecció d’idiomes d’àudio 3"
 
 msgid "Audio language selection 4"
 msgstr "Selecció d’idiomes d’àudio 4"
-
-msgid "Audio long"
-msgstr ""
 
 msgid "Audio options..."
 msgstr "Opcions d'àudio…"
@@ -5382,9 +5380,6 @@ msgstr "El contingut no entra en DVD."
 msgid "Context"
 msgstr ""
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -5649,6 +5644,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "Transponedor predefinit"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -6108,7 +6107,7 @@ msgid "Default folder if the left or right folder isn't saved, and target folder
 msgstr ""
 
 #
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Ubicació predeterminada de la pel·lícula"
 
 #
@@ -6516,9 +6515,6 @@ msgstr ""
 #
 msgid "Directory browser"
 msgstr "Navegador de directoris"
-
-msgid "Directory long"
-msgstr ""
 
 #
 msgid "Disable"
@@ -6967,6 +6963,9 @@ msgstr ""
 msgid "Download Softcams"
 msgstr ""
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr ""
 
@@ -7071,9 +7070,6 @@ msgid "ECM-Time"
 msgstr ""
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7554,9 +7550,6 @@ msgstr "Xifrat"
 msgid "End"
 msgstr ""
 
-msgid "End long"
-msgstr ""
-
 #
 msgid "End time"
 msgstr "Hora final"
@@ -7728,9 +7721,6 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr ""
-
-msgid "Epg/Guide long"
 msgstr ""
 
 msgid "Equal to"
@@ -8210,25 +8200,13 @@ msgstr ""
 msgid "F1"
 msgstr ""
 
-msgid "F1 long"
-msgstr ""
-
 msgid "F2"
-msgstr ""
-
-msgid "F2 long"
 msgstr ""
 
 msgid "F3"
 msgstr ""
 
-msgid "F3 long"
-msgstr ""
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8360,9 +8338,6 @@ msgstr "Velocitats d’avanç ràpides"
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8442,9 +8417,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #
@@ -8583,9 +8555,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9294,9 +9263,6 @@ msgstr "Informació"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr ""
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9406,9 +9372,6 @@ msgstr "Història de tornada"
 msgid "History buttons mode"
 msgstr ""
 
-msgid "History long"
-msgstr ""
-
 msgid "History next"
 msgstr "Història següent"
 
@@ -9432,13 +9395,7 @@ msgstr ""
 msgid "Home"
 msgstr "Inici"
 
-msgid "Home long"
-msgstr ""
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9921,9 +9878,6 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -10458,11 +10412,6 @@ msgid "Keyboard data entry"
 msgstr "Entrada de dades del teclat"
 
 #
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Mapa del teclat"
-
-#
 msgid "Keyboard map"
 msgstr "Mapa del teclat"
 
@@ -10485,9 +10434,6 @@ msgid "Kodi MediaCenter"
 msgstr ""
 
 msgid "Kodi installed:"
-msgstr ""
-
-msgid "Kodi long"
 msgstr ""
 
 #
@@ -10536,9 +10482,6 @@ msgstr "Adaptador de red"
 
 msgid "LAN connection"
 msgstr "Connexió LAN"
-
-msgid "LAN long"
-msgstr ""
 
 msgid "LCD Skin Settings"
 msgstr ""
@@ -10692,11 +10635,6 @@ msgstr "Esq."
 msgid "Left from service name"
 msgstr "Resta del nom de servidor"
 
-#
-#, fuzzy
-msgid "Left long"
-msgstr "Esq."
-
 msgid "Left, wrapped"
 msgstr "esquerra, embolicada"
 
@@ -10814,9 +10752,6 @@ msgstr[0] "Llista la versió% d, trobada% d canal"
 msgstr[1] "Llista la versió% d, trobada% d canals"
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #
@@ -11090,9 +11025,6 @@ msgstr "MÉS"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -11116,11 +11048,6 @@ msgstr "Madagascar"
 
 msgid "Magic"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Magic long"
-msgstr "Registre de gravació"
 
 #
 msgid "Main Menu"
@@ -11238,9 +11165,6 @@ msgstr "Marca el servei com a servei 3D dedicat"
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Marker Actions"
@@ -11318,9 +11242,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -11861,6 +11782,9 @@ msgstr ""
 msgid "Movie Player Actions"
 msgstr "Selecció de gravació"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 #
 msgid "Movie selection"
 msgstr "Selecció de pel·lícules"
@@ -12288,9 +12212,6 @@ msgid "Next quad PiP channel"
 msgstr ""
 
 msgid "Nextsong"
-msgstr ""
-
-msgid "Nextsong long"
 msgstr ""
 
 msgid "Nicaragua"
@@ -12776,9 +12697,6 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "D'acord, guia'm a través del procés d'actualizació"
@@ -12956,9 +12874,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr ""
 
@@ -13032,9 +12947,6 @@ msgid "Operating LED status while running"
 msgstr ""
 
 msgid "Option"
-msgstr ""
-
-msgid "Option long"
 msgstr ""
 
 msgid "Option to disable picons on the Infobar"
@@ -13152,9 +13064,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-msgid "PC long"
-msgstr ""
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -13183,10 +13092,6 @@ msgstr "Cal tenir un codi PIN"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -13206,9 +13111,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 #
@@ -13258,15 +13160,7 @@ msgstr "grava llista"
 msgid "PageDown"
 msgstr ""
 
-#
-#, fuzzy
-msgid "PageDown long"
-msgstr "Descarregant"
-
 msgid "PageUp"
-msgstr ""
-
-msgid "PageUp long"
 msgstr ""
 
 msgid "Pakistan"
@@ -13572,9 +13466,6 @@ msgstr ""
 msgid "Playlist"
 msgstr ""
 
-msgid "Playlist long"
-msgstr ""
-
 msgid "Playpause"
 msgstr ""
 
@@ -13747,9 +13638,6 @@ msgstr "Seleccioneu un sub-servei …"
 #
 msgid "Please select a subservice..."
 msgstr "Sisplau selecciona un subservei..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr ""
@@ -14110,9 +13998,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Gestió d’energia. Consulteu el manual del vostre receptor per obtenir més informació."
 
@@ -14335,9 +14220,6 @@ msgstr ""
 msgid "Prevsong"
 msgstr ""
 
-msgid "Prevsong long"
-msgstr ""
-
 #
 msgid "Primary DNS"
 msgstr "DNS primaris"
@@ -14402,9 +14284,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14499,9 +14378,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 #
@@ -14626,9 +14502,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "RADIO"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "RAM (Details)"
 msgstr ""
@@ -14810,9 +14683,6 @@ msgstr ""
 msgid "Rec"
 msgstr ""
 
-msgid "Rec long"
-msgstr ""
-
 msgid "Receiver"
 msgstr ""
 
@@ -14979,6 +14849,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Les gravacions tenen prioritat"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #
 #, fuzzy
@@ -15567,11 +15440,6 @@ msgstr "Dreta"
 msgid "Right from service name"
 msgstr "Des del nom de nom del servei"
 
-#
-#, fuzzy
-msgid "Right long"
-msgstr "Dreta"
-
 msgid "Right, wrapped"
 msgstr "dret, embolicat"
 
@@ -15683,9 +15551,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -16107,9 +15972,6 @@ msgstr "Buscar a l'oest"
 msgid "Search/WEB"
 msgstr ""
 
-msgid "Search/WEB long"
-msgstr ""
-
 #
 msgid "Searching"
 msgstr "Buscar"
@@ -16384,6 +16246,9 @@ msgid "Select Location"
 msgstr ""
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -17210,16 +17075,16 @@ msgstr "Configuració del sintonitzador"
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -18475,11 +18340,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Sleep long"
-msgstr "Programació d'apagada"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -19268,9 +19128,6 @@ msgstr "Selecció d’idiomes del subtítol 3"
 msgid "Subtitle language selection 4"
 msgstr "Selecció d’idiomes del subtítol 4"
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr "Posició del subtítol"
 
@@ -19686,11 +19543,6 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Teletext long"
-msgstr "Programació d'apagada"
 
 msgid "Teletext subtitle color"
 msgstr "Color de subtítols del teletext"
@@ -20554,11 +20406,6 @@ msgstr ""
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time long"
-msgstr "Registre de gravació"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -21795,9 +21642,6 @@ msgstr "Fitxer VOB"
 msgid "VOD"
 msgstr ""
 
-msgid "VOD long"
-msgstr ""
-
 msgid "VPN"
 msgstr ""
 
@@ -22639,6 +22483,9 @@ msgstr "On vols guardar el backup de la configuració?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "On desar els enregistraments temporals de temps?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr ""
 
@@ -22751,9 +22598,6 @@ msgid "Write failed!"
 msgstr "L’escriptura ha fallat!"
 
 msgid "Www"
-msgstr ""
-
-msgid "Www long"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -23005,9 +22849,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -23227,9 +23068,6 @@ msgid "ZAP"
 msgstr ""
 
 msgid "ZOOM"
-msgstr ""
-
-msgid "ZOOM long"
 msgstr ""
 
 msgid "ZPicon"
@@ -24899,6 +24737,46 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Mapa del teclat"
+
+#
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "Esq."
+
+#
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Registre de gravació"
+
+#
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "Descarregant"
+
+#
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "Dreta"
+
+#
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "Programació d'apagada"
+
+#
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Programació d'apagada"
+
+#
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "Registre de gravació"
 
 #~ msgid "10 MB/s"
 #~ msgstr "10 MB/s"

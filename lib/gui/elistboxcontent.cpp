@@ -237,7 +237,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* seperator */
 			int half_height = m_itemsize.height() / 2;
 			painter.fill(eRect(offset.x() + half_height, offset.y() + half_height - 2, m_itemsize.width() - m_itemsize.height(), 4));
-		} else
+		} 
+		else
 		{
 			const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
 			ePoint text_offset = offset;
@@ -247,10 +248,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			int flags = 0;
 			if (local_style)
 			{
-				text_offset += local_style->m_text_offset;
+				text_offset += local_style->m_text_padding.topLeft();
 //HACK VTI hat hier scheinbar einen Fehler und addiert den Textoffset zweimal auf, also machen wir das hier auch so
 				if (local_style->m_use_vti_workaround)
-					text_offset += local_style->m_text_offset;
+					text_offset += local_style->m_text_padding.topLeft();
 
 				if (local_style->m_valign == eListboxStyle::alignTop)
 					flags |= gPainter::RT_VALIGN_TOP;
@@ -267,10 +268,20 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 					flags |= gPainter::RT_HALIGN_RIGHT;
 				else if (local_style->m_halign == eListboxStyle::alignBlock)
 					flags |= gPainter::RT_HALIGN_BLOCK;
-			}
 
-			painter.renderText(eRect(text_offset, m_itemsize),
-			 string, flags, border_color, border_size);
+				int paddingx = local_style->m_text_padding.x();
+				int paddingy = local_style->m_text_padding.y();
+				int paddingw = local_style->m_text_padding.width();
+				int paddingh = local_style->m_text_padding.height();
+
+				auto position = eRect(text_offset.x(), text_offset.y(), m_itemsize.width() - (paddingx * 2) - paddingw, m_itemsize.height() - (paddingy * 2) - paddingh);
+				painter.renderText(position, string, flags, border_color, border_size);
+
+			}
+			else {
+				painter.renderText(eRect(text_offset, m_itemsize), string, flags, border_color, border_size);
+			}
+			
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))

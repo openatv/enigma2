@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1266,6 +1266,10 @@ msgstr "%s ei ole enam kasutuses. Kas see tuleks kustutada?"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s on parooliga kaitstud."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2787,9 +2791,6 @@ msgstr "Kuvasuhte tegevused"
 msgid "Aspect list..."
 msgstr "Kuvasuhe."
 
-msgid "Aspect long"
-msgstr "Aspect - pikk"
-
 msgid "Aspect ratio"
 msgstr "Kuvasuhe"
 
@@ -2877,9 +2878,6 @@ msgstr "Heli keelevalik 3"
 
 msgid "Audio language selection 4"
 msgstr "Heli keelevalik 4"
-
-msgid "Audio long"
-msgstr "Audio - pikk"
 
 msgid "Audio options..."
 msgstr "Heli valikud"
@@ -5058,9 +5056,6 @@ msgstr "Sisu ei mahu DVD-le!"
 msgid "Context"
 msgstr "Kontekst"
 
-msgid "Context long"
-msgstr "Context - pikk"
-
 msgid "Continent"
 msgstr ""
 
@@ -5317,6 +5312,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Hetkel paigaldatud"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5747,7 +5746,7 @@ msgstr "Vaikimisi kataloog"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Vaikekaust, kui parempoolne kaust pole salvestatud ja sihtkataloog nupule 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Salvestuste tavaasukoht"
 
 msgid "Default recording type"
@@ -6129,9 +6128,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "Kataloogilehitseja"
-
-msgid "Directory long"
-msgstr "Directory - pikk"
 
 msgid "Disable"
 msgstr "Keela"
@@ -6570,6 +6566,9 @@ msgstr "Paigalda pluginaid"
 msgid "Download Softcams"
 msgstr "Paigalda EMU"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Tõmba ja paigalda pluginaid"
 
@@ -6670,9 +6669,6 @@ msgstr "ECM aeg"
 
 msgid "EJECTCD"
 msgstr "EJECTCD"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD - pikk"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7137,9 +7133,6 @@ msgstr "Kodeering:"
 msgid "End"
 msgstr "Lõpp"
 
-msgid "End long"
-msgstr "End - pikk"
-
 msgid "End time"
 msgstr "Lõpuaeg"
 
@@ -7310,9 +7303,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide - pikk"
 
 msgid "Equal to"
 msgstr "Sama kui"
@@ -7785,26 +7775,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 - pikk"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 - pikk"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 - pikk"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 - pikk"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7929,9 +7907,6 @@ msgstr "Edasikerimise kiirused"
 msgid "Favorites"
 msgstr "Favorites"
 
-msgid "Favorites long"
-msgstr "Favorites - pikk"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8010,9 +7985,6 @@ msgstr "Failide kontrollsummad nupuga 9"
 
 msgid "File checksums/hashes"
 msgstr "Faili kontrollsummad/räsid"
-
-msgid "File long"
-msgstr "File - pikk"
 
 #, python-format
 msgid "File not found: %s"
@@ -8148,10 +8120,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
-
-# /SoftwareManager/Flash_online.py
-msgid "Flash on the fly your %s %s."
-msgstr "Paigalda püsivara vastuvõtjale %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Paigalda vastuvõtjale uus püsivara."
@@ -8824,9 +8792,6 @@ msgstr "Seadmed"
 msgid "Help animation speed"
 msgstr "Abiindikaatorite animatsiooni kiirus"
 
-msgid "Help long"
-msgstr "Help - pikk"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8935,9 +8900,6 @@ msgstr "Kanaliajaloos tagasi"
 msgid "History buttons mode"
 msgstr "Ajaloonuppude vajutus"
 
-msgid "History long"
-msgstr "History - pikk"
-
 msgid "History next"
 msgstr "Kanaliajaloos edasi"
 
@@ -8960,14 +8922,8 @@ msgstr ""
 msgid "Home"
 msgstr "Avaleht"
 
-msgid "Home long"
-msgstr "Home - pikk"
-
 msgid "Homepage"
 msgstr "Avaleht"
-
-msgid "Homepage long"
-msgstr "Homepage - pikk"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9441,9 +9397,6 @@ msgstr "Info"
 
 msgid "Info (EPG)"
 msgstr "Info (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Info (EPG) - pikk"
 
 msgid "Info button (long)"
 msgstr "Info nupp (pikk)"
@@ -9939,10 +9892,6 @@ msgstr "Klaviatuuri seaded"
 msgid "Keyboard data entry"
 msgstr "Klaviatuuri andmesisestus"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Klaviatuur"
-
 msgid "Keyboard map"
 msgstr "Klaviatuur"
 
@@ -9966,9 +9915,6 @@ msgstr "Kodi meediakeskus"
 
 msgid "Kodi installed:"
 msgstr "Kodi paigaldatud:"
-
-msgid "Kodi long"
-msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi meediamängija"
@@ -10014,9 +9960,6 @@ msgstr "Võrgukaart"
 
 msgid "LAN connection"
 msgstr "LAN ühendus"
-
-msgid "LAN long"
-msgstr "LAN - pikk"
 
 msgid "LCD Skin Settings"
 msgstr "LCD kujunduse seaded"
@@ -10159,9 +10102,6 @@ msgstr "Vasak"
 msgid "Left from service name"
 msgstr "Kanali nimest vasakul"
 
-msgid "Left long"
-msgstr "Vasak - pikk"
-
 msgid "Left, wrapped"
 msgstr "Vasakul, reamurdmisega"
 
@@ -10268,9 +10208,6 @@ msgstr[1] "Nimekirja versioon %d, leitud %d kanalit"
 
 msgid "List/Fav"
 msgstr "List/Fav"
-
-msgid "List/Fav long"
-msgstr "List/Fav - pikk"
 
 #, fuzzy
 msgid "Listen to the radio"
@@ -10538,9 +10475,6 @@ msgstr "VEEL"
 msgid "MOUSE"
 msgstr "MOUSE"
 
-msgid "MOUSE long"
-msgstr "MOUSE - pikk"
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10565,10 +10499,6 @@ msgstr "Madagaskar"
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Media - pikk"
 
 msgid "Main Menu"
 msgstr "Peamenüü"
@@ -10679,9 +10609,6 @@ msgstr "Tähista 3D kanalina"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark/Portal/Playlist - pikk"
-
 # UsageConfig.py:295
 #, fuzzy
 msgid "Marker Actions"
@@ -10758,9 +10685,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "Media Portal"
-
-msgid "Media long"
-msgstr "Media - pikk"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Jäänud/kulunud meediafailide esitusel"
@@ -11273,6 +11197,9 @@ msgstr "Filmilisti seaded"
 msgid "Movie Player Actions"
 msgstr "Salvestised"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Salvestised"
 
@@ -11678,9 +11605,6 @@ msgstr "Järgmine Quad PiP kanal"
 
 msgid "Nextsong"
 msgstr "Nextsong"
-
-msgid "Nextsong long"
-msgstr "Nextsong - pikk"
 
 msgid "Nicaragua"
 msgstr "Nikaraagua"
@@ -12135,9 +12059,6 @@ msgstr "OK nupp (lühike)"
 msgid "OK button mode"
 msgstr "OK nupu vajutus"
 
-msgid "OK long"
-msgstr "OK - pikk"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "Jah, õpeta uuendamisel"
 
@@ -12305,9 +12226,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Lemmiknimekirjad"
 
-msgid "Open long"
-msgstr "Open - pikk"
-
 msgid "Open satellites list"
 msgstr "Satelliidinimekiri"
 
@@ -12385,9 +12303,6 @@ msgstr ""
 
 msgid "Option"
 msgstr "Option"
-
-msgid "Option long"
-msgstr "Option - pikk"
 
 # Menue Anpassungen OSD
 msgid "Option to disable picons on the Infobar"
@@ -12513,9 +12428,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC - pikk"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12543,10 +12455,6 @@ msgstr "Vajalik on PIN-kood"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PiP - pikk"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12567,9 +12475,6 @@ msgstr "TIPPAEG"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR - pikk"
 
 msgid "Package Manager"
 msgstr "Pakihaldus"
@@ -12614,14 +12519,8 @@ msgstr ""
 msgid "PageDown"
 msgstr "PageDown"
 
-msgid "PageDown long"
-msgstr "PageDown - pikk"
-
 msgid "PageUp"
 msgstr "PageUp"
-
-msgid "PageUp long"
-msgstr "PageUp - pikk"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -12902,9 +12801,6 @@ msgstr "Salvestus ja ajanihe"
 msgid "Playlist"
 msgstr "Pleilist"
 
-msgid "Playlist long"
-msgstr "Playlist - pikk"
-
 msgid "Playpause"
 msgstr "Esita/paus"
 
@@ -13047,9 +12943,6 @@ msgstr "Vali alamkanal"
 
 msgid "Please select a subservice..."
 msgstr "Vali alamkanal"
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
@@ -13397,9 +13290,6 @@ msgstr "Toite LED ooteseisundis."
 msgid "Power On Display"
 msgstr "Esipaneeli näidik kasutuses"
 
-msgid "Power long"
-msgstr "Toitenupp - pikk"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Toitehaldus. Uuri lähemalt vastuvõtja käsiraamatust."
 
@@ -13604,9 +13494,6 @@ msgstr "Eelmine/järgmine lehekülg"
 msgid "Prevsong"
 msgstr "Prevsong"
 
-msgid "Prevsong long"
-msgstr "Prevsong - pikk"
-
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
 
@@ -13677,9 +13564,6 @@ msgid ""
 msgstr ""
 "Programm '%s' ei ole paigaldatud.\n"
 "Seda programmi sisaldav pakett ei ole teada."
-
-msgid "Program long"
-msgstr "Program - pikk"
 
 msgid "Programmlisten History"
 msgstr "Kanalinimekirja uuendaja ajalugu"
@@ -13772,9 +13656,6 @@ msgstr "Protokoll"
 
 msgid "Prov"
 msgstr "Prov"
-
-msgid "Prov long"
-msgstr "Prov - pikk"
 
 msgid "Provider"
 msgstr "Levitaja"
@@ -13894,9 +13775,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "Raadio"
-
-msgid "RADIO long"
-msgstr "Radio - pikk"
 
 msgid "RAM (Details)"
 msgstr ""
@@ -14067,9 +13945,6 @@ msgstr "Kas luua LCN lemmiknimekiri uuesti?"
 msgid "Rec"
 msgstr "Rec"
 
-msgid "Rec long"
-msgstr "REC - pikk"
-
 msgid "Receiver"
 msgstr ""
 
@@ -14220,6 +14095,9 @@ msgstr "Salvestused katkestavad voogesituse"
 
 msgid "Recordings always have priority"
 msgstr "Salvestused omavad alati eelist"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Salvestised"
@@ -14760,9 +14638,6 @@ msgstr "Parem"
 msgid "Right from service name"
 msgstr "Kanali nimest paremal"
 
-msgid "Right long"
-msgstr "Parem - pikk"
-
 msgid "Right, wrapped"
 msgstr "Paremal, reamurdmisega"
 
@@ -14874,9 +14749,6 @@ msgstr "SABnzbd seaded"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT - pikk"
 
 msgid "SATA"
 msgstr "SATA"
@@ -15277,9 +15149,6 @@ msgstr "Otsi läänest"
 msgid "Search/WEB"
 msgstr "Search/WEB"
 
-msgid "Search/WEB long"
-msgstr "Search/WEB - pikk"
-
 msgid "Searching"
 msgstr "Otsing"
 
@@ -15540,6 +15409,9 @@ msgid "Select Location"
 msgstr "Vali asukoht"
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -16342,16 +16214,16 @@ msgstr "Määra %s %s MAC-aadress."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määra pikonite kuvasuhe."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid "Set the default sorting method."
@@ -17556,9 +17428,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Sleep - pikk"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -18309,9 +18178,6 @@ msgstr "Subtiitrite keelevalik 3"
 msgid "Subtitle language selection 4"
 msgstr "Subtiitrite keelevalik 4"
 
-msgid "Subtitle long"
-msgstr "Subtiitrid - pikk"
-
 msgid "Subtitle position"
 msgstr "Subtiitrite asukoht"
 
@@ -18718,10 +18584,6 @@ msgstr "Teleteksti üldine läbipaistvus"
 
 msgid "Teletext font and resolution"
 msgstr "Teletekst: font ja lahutus"
-
-#, fuzzy
-msgid "Teletext long"
-msgstr "Teletekst"
 
 msgid "Teletext subtitle color"
 msgstr "Teletekst: subtiitrite värv"
@@ -19625,9 +19487,6 @@ msgstr "Ajahüppe korduse vahemik edasi/tagasikerimisel"
 #
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Ajahüpe: Kasuta tavakerimist kiirustel"
-
-msgid "Time long"
-msgstr "Time - pikk"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20796,9 +20655,6 @@ msgstr ""
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD - pikk"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -21622,6 +21478,9 @@ msgstr "Kuhu teha varukoopia seadistustest?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kuhu talletada ajutised ajanihke failid?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Millise saate soovid lõplikult talletada?"
 
@@ -21732,9 +21591,6 @@ msgstr "Kirjutamine nurjus!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www - pikk"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 tugi"
@@ -21976,9 +21832,6 @@ msgid "You should flash a new image!"
 msgstr ""
 
 msgid "YouTube"
-msgstr ""
-
-msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an Internet connection"
@@ -22232,9 +22085,6 @@ msgstr "Kanalivahetus"
 
 msgid "ZOOM"
 msgstr "ZOOM"
-
-msgid "ZOOM long"
-msgstr "ZOOM - pikk"
 
 #, fuzzy
 msgid "ZPicon"
@@ -23773,6 +23623,169 @@ msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi l
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect long"
+#~ msgstr "Aspect - pikk"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio - pikk"
+
+#~ msgid "Context long"
+#~ msgstr "Context - pikk"
+
+#~ msgid "Directory long"
+#~ msgstr "Directory - pikk"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD - pikk"
+
+#~ msgid "End long"
+#~ msgstr "End - pikk"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide - pikk"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 - pikk"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 - pikk"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 - pikk"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 - pikk"
+
+#~ msgid "Favorites long"
+#~ msgstr "Favorites - pikk"
+
+#~ msgid "File long"
+#~ msgstr "File - pikk"
+
+# /SoftwareManager/Flash_online.py
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Paigalda püsivara vastuvõtjale %s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Help - pikk"
+
+#~ msgid "History long"
+#~ msgstr "History - pikk"
+
+#~ msgid "Home long"
+#~ msgstr "Home - pikk"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage - pikk"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Info (EPG) - pikk"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Klaviatuur"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN - pikk"
+
+#~ msgid "Left long"
+#~ msgstr "Vasak - pikk"
+
+#~ msgid "List/Fav long"
+#~ msgstr "List/Fav - pikk"
+
+#~ msgid "MOUSE long"
+#~ msgstr "MOUSE - pikk"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Media - pikk"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark/Portal/Playlist - pikk"
+
+#~ msgid "Media long"
+#~ msgstr "Media - pikk"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong - pikk"
+
+#~ msgid "OK long"
+#~ msgstr "OK - pikk"
+
+#~ msgid "Open long"
+#~ msgstr "Open - pikk"
+
+#~ msgid "Option long"
+#~ msgstr "Option - pikk"
+
+#~ msgid "PC long"
+#~ msgstr "PC - pikk"
+
+#~ msgid "PIP long"
+#~ msgstr "PiP - pikk"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR - pikk"
+
+#~ msgid "PageDown long"
+#~ msgstr "PageDown - pikk"
+
+#~ msgid "PageUp long"
+#~ msgstr "PageUp - pikk"
+
+#~ msgid "Playlist long"
+#~ msgstr "Playlist - pikk"
+
+#~ msgid "Power long"
+#~ msgstr "Toitenupp - pikk"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Prevsong - pikk"
+
+#~ msgid "Program long"
+#~ msgstr "Program - pikk"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov - pikk"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio - pikk"
+
+#~ msgid "Rec long"
+#~ msgstr "REC - pikk"
+
+#~ msgid "Right long"
+#~ msgstr "Parem - pikk"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT - pikk"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Search/WEB - pikk"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep - pikk"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Subtiitrid - pikk"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Teletekst"
+
+#~ msgid "Time long"
+#~ msgstr "Time - pikk"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD - pikk"
+
+#~ msgid "Www long"
+#~ msgstr "Www - pikk"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM - pikk"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"

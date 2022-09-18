@@ -165,9 +165,9 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 		print("[Skin] Skin resolution is %dx%d and color depth is %d bits." % (resolution[0], resolution[1], resolution[2]))
 		for element in domSkin:
 			if element.tag == "screen":  # Process all screen elements.
-				name = element.attrib.get("name", None)
+				name = element.attrib.get("name")
 				if name:  # Without a name, it's useless!
-					scrnID = element.attrib.get("id", None)
+					scrnID = element.attrib.get("id")
 					if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
 						res = element.attrib.get("resolution", "%s,%s" % (resolution[0], resolution[1]))
 						if res != "0,0":
@@ -178,7 +178,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 							print("[Skin] Loading screen '%s'%s from '%s'.  (scope=%s)" % (name, msg, filename, scope))
 						domScreens[name] = (element, "%s/" % dirname(filename))
 			elif element.tag == "windowstyle":  # Process the windowstyle element.
-				scrnID = element.attrib.get("id", None)
+				scrnID = element.attrib.get("id")
 				if scrnID is not None:  # Without an scrnID, it is useless!
 					scrnID = parseInteger(scrnID)
 					domStyle = ElementTree(Element("skin"))
@@ -594,6 +594,21 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
+def parseTextPadding(value):
+	if value in variables:
+		value = variables[value]
+	padding = [parseInteger(x.strip()) for x in value.split(",")]
+	count = len(padding)
+	if count == 1:
+		return padding * 4
+	elif count == 2:
+		return padding * 2
+	elif count == 4:
+		return padding
+	print("[Skin] Error: Attribute 'textPadding' with value '%s' is invalid!  Attribute must have 1, 2 or 4 values." % value)
+	return [0, 0, 0, 0]
+
+
 def parseVerticalAlignment(value):
 	options = {
 		"top": 0,
@@ -901,10 +916,16 @@ class AttributeParser:
 		self.guiObject.setText(value)
 
 	def textOffset(self, value):
-		if value in variables:
-			value = variables[value]
-		(xOffset, yOffset) = [parseInteger(x.strip()) for x in value.split(",")]
-		self.guiObject.setTextOffset(ePoint(self.applyHorizontalScale(xOffset), self.applyVerticalScale(yOffset)))
+		self.textPadding(value)
+		attribDeprecationWarning("textOffset", "textPadding")
+
+	def textPadding(self, value):
+		leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(value)
+		leftPadding = self.applyHorizontalScale(leftPadding)
+		topPadding = self.applyVerticalScale(topPadding)
+		rightPadding = self.applyHorizontalScale(rightPadding)
+		bottomPadding = self.applyVerticalScale(topPadding)
+		self.guiObject.setTextPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 
 	def title(self, value):
 		if value:
@@ -947,12 +968,12 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
 	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions, scrollLabelStyle
 	for tag in domSkin.findall("output"):
-		scrnID = parseInteger(tag.attrib.get("id"), GUI_SKIN_ID)
+		scrnID = parseInteger(tag.attrib.get("id", GUI_SKIN_ID), GUI_SKIN_ID)
 		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
-				xres = parseInteger(res.attrib.get("xres"), 720)
-				yres = parseInteger(res.attrib.get("yres"), 576)
-				bpp = parseInteger(res.attrib.get("bpp"), 32)
+				xres = parseInteger(res.attrib.get("xres", 720), 720)
+				yres = parseInteger(res.attrib.get("yres", 576), 576)
+				bpp = parseInteger(res.attrib.get("bpp", 32), 32)
 				resolutions[scrnID] = (xres, yres, bpp)
 				if bpp != 32:
 					pass  # Load palette (Not yet implemented!)
@@ -1003,7 +1024,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for alias in tag.findall("alias"):
 			name = alias.attrib.get("name")
 			font = alias.attrib.get("font")
-			size = parseInteger(alias.attrib.get("size"), 20)
+			size = parseInteger(alias.attrib.get("size", 20), 20)
 			height = parseInteger(alias.attrib.get("height", 25), 25)  # To be calculated some day.
 			width = parseInteger(alias.attrib.get("width", 18), 18)  # To be calculated some day.
 			if name and font and size:
@@ -1061,7 +1082,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				haveColor = 0
 				foregroundColor = gRGB(0x00FFFFFF)
 			borderColor = parseColor(substyle.attrib.get("borderColor", substyle.attrib.get("shadowColor")), 0x00000000)
-			borderWidth = parseInteger(substyle.attrib.get("borderWidth"), 3)  # Default: Use a subtitle border.
+			borderWidth = parseInteger(substyle.attrib.get("borderWidth", 3), 3)  # Default: Use a subtitle border.
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
 	colorNameConversions = {
 		"LabelForeground": "Foreground",
@@ -1111,39 +1132,42 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
-			pageSize = parseInteger(listBox.attrib.get("pageSize"), eListbox.DefaultPageSize)
+			pageSize = parseInteger(listBox.attrib.get("pageSize", eListbox.DefaultPageSize), eListbox.DefaultPageSize)
 			enableWrapAround = parseBoolean("enableWrapAround", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
 			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
-			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth"), eListbox.DefaultScrollBarBorderWidth)
+			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
 			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", scrollbarModes[eListbox.DefaultScrollBarMode]))
 			if "scrollbarMode" not in scrollLabelStyle and scrollbarMode != eListbox.showNever:
 				scrollLabelStyle["scrollbarMode"] = scrollbarMode
-			scrollbarOffset = parseInteger(listBox.attrib.get("scrollbarOffset"), eListbox.DefaultScrollBarOffset)
+			scrollbarOffset = parseInteger(listBox.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset), eListbox.DefaultScrollBarOffset)
 			if "scrollbarOffset" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarOffset"] = scrollbarOffset
 			scrollbarScroll = parseScrollbarScroll(listBox.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
 			if "scrollbarScroll" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarScroll"] = scrollbarScroll
-			scrollbarWidth = parseInteger(listBox.attrib.get("scrollbarWidth"), eListbox.DefaultScrollBarWidth)
+			scrollbarWidth = parseInteger(listBox.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth), eListbox.DefaultScrollBarWidth)
 			if "scrollbarWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarWidth"] = scrollbarWidth
 			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround, pageSize)
 		for scrollLabel in tag.findall("scrolllabel"):
-			scrollLabelStyle["scrollbarBorderWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarBorderWidth"), eListbox.DefaultScrollBarBorderWidth)
+			scrollLabelStyle["scrollbarBorderWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
 			scrollLabelStyle["scrollbarMode"] = parseScrollbarMode(scrollLabel.attrib.get("scrollbarMode", scrollbarModes[eListbox.showOnDemand]))
-			scrollLabelStyle["scrollbarOffset"] = parseInteger(scrollLabel.attrib.get("scrollbarOffset"), eListbox.DefaultScrollBarOffset)
+			scrollLabelStyle["scrollbarOffset"] = parseInteger(scrollLabel.attrib.get("scrollbarOffset", eListbox.DefaultScrollBarOffset), eListbox.DefaultScrollBarOffset)
 			scrollLabelStyle["scrollbarScroll"] = parseScrollbarScroll(scrollLabel.attrib.get("scrollbarScroll", scrollbarScrolls[eListbox.DefaultScrollBarScroll]))
-			scrollLabelStyle["scrollbarWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarWidth"), eListbox.DefaultScrollBarWidth)
+			scrollLabelStyle["scrollbarWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarWidth", eListbox.DefaultScrollBarWidth), eListbox.DefaultScrollBarWidth)
 		for slider in tag.findall("slider"):
-			borderWidth = parseInteger(slider.attrib.get("borderWidth"), eSlider.DefaultBorderWidth)
+			borderWidth = parseInteger(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
+		for stringList in tag.findall("stringList"):
+			leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(stringList.attrib.get("textPadding", "0,0,0,0"))
+			eListbox.setDefaultPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			style.setTitleOffset(parseSize(title.attrib.get("offset", "20,5"), ((1, 1), (1, 1))))
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(parseInteger(tag.attrib.get("id"), GUI_SKIN_ID), style)
+		x.setStyle(parseInteger(tag.attrib.get("id", GUI_SKIN_ID), GUI_SKIN_ID), style)
 	for tag in domSkin.findall("margin"):
 		r = eRect(0, 0, 0, 0)
 		v = tag.attrib.get("left")
@@ -1321,7 +1345,7 @@ def readSkin(screen, skin, names, desktop):
 			for s in skin:
 				candidate = fromstring(s)
 				if candidate.tag == "screen":
-					screenID = candidate.attrib.get("id", None)
+					screenID = candidate.attrib.get("id")
 					if (not screenID) or (parseInteger(screenID) == DISPLAY_SKIN_ID):
 						myScreen = candidate
 						break

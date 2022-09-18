@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1264,6 +1264,10 @@ msgstr "%s不再使用,是否删除？"
 #, python-format
 msgid "%s is password protected."
 msgstr "%s 受密码保护."
+
+#, python-format
+msgid "%s long"
+msgstr ""
 
 #, python-format
 msgid "%s not available."
@@ -2752,9 +2756,6 @@ msgstr "屏幕比例操作"
 msgid "Aspect list..."
 msgstr "纵横比列表..."
 
-msgid "Aspect long"
-msgstr "长宽比"
-
 msgid "Aspect ratio"
 msgstr "宽高比"
 
@@ -2837,9 +2838,6 @@ msgstr "选择第3音频语言"
 
 msgid "Audio language selection 4"
 msgstr "选择第4音频语言"
-
-msgid "Audio long"
-msgstr "Audio键 长按"
 
 msgid "Audio options..."
 msgstr "音频选项..."
@@ -4979,9 +4977,6 @@ msgstr "内容不适合DVD！"
 msgid "Context"
 msgstr "Context键"
 
-msgid "Context long"
-msgstr "Context键 长按"
-
 msgid "Continent"
 msgstr "洲别"
 
@@ -5228,6 +5223,10 @@ msgstr "当前崩溃日志"
 
 msgid "Current installed"
 msgstr "当前已安装"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5644,7 +5643,7 @@ msgstr "默认文件夹"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "如果左侧或右侧文件夹未保存,则为默认文件夹,以及按键5的目标文件夹."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "默认电影位置"
 
 msgid "Default recording type"
@@ -6017,9 +6016,6 @@ msgstr "目录“%s”不可写！"
 
 msgid "Directory browser"
 msgstr "目录浏览器"
-
-msgid "Directory long"
-msgstr "Directory键 长按"
 
 msgid "Disable"
 msgstr "禁用"
@@ -6449,6 +6445,9 @@ msgstr "下载插件"
 msgid "Download Softcams"
 msgstr "下载Softcams插件"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "下载并安装插件"
 
@@ -6544,9 +6543,6 @@ msgstr "ECM-时间"
 
 msgid "EJECTCD"
 msgstr "EJECTCD键"
-
-msgid "EJECTCD long"
-msgstr "EJECTCD键 长按"
 
 msgid "EPG"
 msgstr "EPG设置"
@@ -6995,9 +6991,6 @@ msgstr "加密系统:"
 msgid "End"
 msgstr "结束"
 
-msgid "End long"
-msgstr "End键 长按"
-
 msgid "End time"
 msgstr "结束时间"
 
@@ -7166,9 +7159,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg/Guide键"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide键 长按"
 
 msgid "Equal to"
 msgstr "等于号"
@@ -7630,26 +7620,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 长按"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 长按"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 长按"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 长按"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7772,9 +7750,6 @@ msgstr "快进速度"
 msgid "Favorites"
 msgstr "Favorites键"
 
-msgid "Favorites long"
-msgstr "Favorites键 长按"
-
 msgid "Feed URL"
 msgstr "用户订阅地址"
 
@@ -7852,9 +7827,6 @@ msgstr "为按钮9计算文件校验和"
 
 msgid "File checksums/hashes"
 msgstr "文件校验和/哈希"
-
-msgid "File long"
-msgstr "File键 长按"
 
 #, python-format
 msgid "File not found: %s"
@@ -7985,9 +7957,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "不允许使用闪存目录 '%s'!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "直接刷写 %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "在线或从本地来源刷写接收器镜像."
@@ -8637,9 +8606,6 @@ msgstr "帮助屏幕信息"
 msgid "Help animation speed"
 msgstr "帮助指示器的动画速度"
 
-msgid "Help long"
-msgstr "Help键 长按"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8745,9 +8711,6 @@ msgstr "历史回溯"
 msgid "History buttons mode"
 msgstr "History键模式"
 
-msgid "History long"
-msgstr "History键 长按"
-
 msgid "History next"
 msgstr "接下来的历史"
 
@@ -8769,14 +8732,8 @@ msgstr "教廷(梵蒂冈城)"
 msgid "Home"
 msgstr "Home键"
 
-msgid "Home long"
-msgstr "Home键 长按"
-
 msgid "Homepage"
 msgstr "Homepage键"
-
-msgid "Homepage long"
-msgstr "Homepage键 长按"
 
 msgid "Honduras"
 msgstr "洪都拉斯"
@@ -9234,9 +9191,6 @@ msgstr "信息"
 
 msgid "Info (EPG)"
 msgstr "INFO键(EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "INFO键(EPG) 长按"
 
 msgid "Info button (long)"
 msgstr "INFO键(长按)"
@@ -9712,9 +9666,6 @@ msgstr "键盘设置"
 msgid "Keyboard data entry"
 msgstr "键盘数据输入"
 
-msgid "Keyboard long"
-msgstr "Keyboard键 长按"
-
 msgid "Keyboard map"
 msgstr "键盘映射"
 
@@ -9738,9 +9689,6 @@ msgstr "科迪媒体中心"
 
 msgid "Kodi installed:"
 msgstr "Kodi已安装:"
-
-msgid "Kodi long"
-msgstr "Kodi键 长按"
 
 msgid "Kodi media player"
 msgstr "科迪媒体播放器"
@@ -9783,9 +9731,6 @@ msgstr "局域网适配器"
 
 msgid "LAN connection"
 msgstr "局域网连接"
-
-msgid "LAN long"
-msgstr "LAN键 长按"
 
 msgid "LCD Skin Settings"
 msgstr "LCD皮肤设置"
@@ -9925,9 +9870,6 @@ msgstr "左箭头"
 msgid "Left from service name"
 msgstr "频道名称左边"
 
-msgid "Left long"
-msgstr "左键 长按"
-
 msgid "Left, wrapped"
 msgstr "左边,覆盖"
 
@@ -10033,9 +9975,6 @@ msgstr[1] "列表版本 %d, 找到 %d 个频道"
 
 msgid "List/Fav"
 msgstr "List/Fav键"
-
-msgid "List/Fav long"
-msgstr "List/Fav键 长按"
 
 msgid "Listen to the radio"
 msgstr "收听广播"
@@ -10281,9 +10220,6 @@ msgstr "更多"
 msgid "MOUSE"
 msgstr "MOUSE键"
 
-msgid "MOUSE long"
-msgstr "MOUSE键 长按"
-
 msgid "MTD boot"
 msgstr "MTD引导"
 
@@ -10307,9 +10243,6 @@ msgstr "马达加斯加"
 
 msgid "Magic"
 msgstr "Magic键"
-
-msgid "Magic long"
-msgstr "Magic键 长按"
 
 msgid "Main Menu"
 msgstr "主菜单"
@@ -10413,9 +10346,6 @@ msgstr "将频道标记为专用3D频道"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark键/Portal键/Playlist键"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark键/Portal键/Playlist键 长按"
-
 msgid "Marker Actions"
 msgstr "标记操作"
 
@@ -10488,9 +10418,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "媒体服务器"
-
-msgid "Media long"
-msgstr "Media键 长按"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "媒体播放 剩余/已使用"
@@ -10966,6 +10893,9 @@ msgstr "电影列表设置"
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "电影选择"
 
@@ -11344,9 +11274,6 @@ msgstr "下一个四画面PIP频道"
 
 msgid "Nextsong"
 msgstr "Nextsong键"
-
-msgid "Nextsong long"
-msgstr "Nextsong 键 长按"
 
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
@@ -11785,9 +11712,6 @@ msgstr "OK键(短按)"
 msgid "OK button mode"
 msgstr "OK键模式"
 
-msgid "OK long"
-msgstr "OK键 长按"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "确定,引导我完成升级过程"
 
@@ -11944,9 +11868,6 @@ msgstr "打开上下文菜单"
 msgid "Open favorites list"
 msgstr "打开收藏夹列表"
 
-msgid "Open long"
-msgstr "Open键 长按"
-
 msgid "Open satellites list"
 msgstr "打开卫星列表"
 
@@ -12021,9 +11942,6 @@ msgstr "正常使用时LED状态设置"
 
 msgid "Option"
 msgstr "Option键"
-
-msgid "Option long"
-msgstr "Option键 长按"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "在信息栏选项中禁用picons"
@@ -12134,9 +12052,6 @@ msgstr "PAL制式"
 msgid "PC"
 msgstr "PC键"
 
-msgid "PC long"
-msgstr "PC键 长按"
-
 msgid "PCM"
 msgstr "脉码调制"
 
@@ -12162,10 +12077,6 @@ msgstr "需要PIN码"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP键 长按"
-
 msgid "PLP ID"
 msgstr "脉冲水平ID"
 
@@ -12186,9 +12097,6 @@ msgstr "黄金时段"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR 长按"
 
 msgid "Package Manager"
 msgstr "软件包管理"
@@ -12232,14 +12140,8 @@ msgstr "向上翻页列表"
 msgid "PageDown"
 msgstr "Page-键"
 
-msgid "PageDown long"
-msgstr "Page-键 长按"
-
 msgid "PageUp"
 msgstr "Page+键"
-
-msgid "PageUp long"
-msgstr "Page+键 长按"
 
 msgid "Pakistan"
 msgstr "巴基斯坦"
@@ -12508,9 +12410,6 @@ msgstr "录制/时移"
 msgid "Playlist"
 msgstr "Playlist键"
 
-msgid "Playlist long"
-msgstr "Playlist键 长按"
-
 msgid "Playpause"
 msgstr "播放暂停"
 
@@ -12651,9 +12550,6 @@ msgstr "请选择一个子频道..."
 
 msgid "Please select a subservice..."
 msgstr "请选择一个子频道..."
-
-msgid "Please select an acceptable directory."
-msgstr "请选择一个合适的目录."
 
 msgid "Please select an aspect ratio..."
 msgstr "请选择宽高比..."
@@ -12995,9 +12891,6 @@ msgstr "待机期间电源LED的状态."
 msgid "Power On Display"
 msgstr "LCD电源控制"
 
-msgid "Power long"
-msgstr "电源键 长按"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "电源管理.有关更多信息,请查阅您的接收器手册."
 
@@ -13195,9 +13088,6 @@ msgstr "上一页/下一页"
 msgid "Prevsong"
 msgstr "Prevsong键"
 
-msgid "Prevsong long"
-msgstr "Prevsong键 长按"
-
 msgid "Primary DNS"
 msgstr "主DNS"
 
@@ -13268,9 +13158,6 @@ msgid ""
 msgstr ""
 "未安装程序“%s”.\n"
 "包含此程序的软件包未知."
-
-msgid "Program long"
-msgstr "Program键 长按"
 
 msgid "Programmlisten History"
 msgstr "节目收听历史"
@@ -13358,9 +13245,6 @@ msgstr "协议"
 
 msgid "Prov"
 msgstr "提供商"
-
-msgid "Prov long"
-msgstr "提供商 长按"
 
 msgid "Provider"
 msgstr "供应商"
@@ -13475,9 +13359,6 @@ msgstr ""
 
 msgid "RADIO"
 msgstr "广播"
-
-msgid "RADIO long"
-msgstr "Radio键长按"
 
 msgid "RAM (Details)"
 msgstr "RAM(详细信息)"
@@ -13645,9 +13526,6 @@ msgstr "是否重建LCN自定义组?"
 msgid "Rec"
 msgstr "录制"
 
-msgid "Rec long"
-msgstr "Rec键 长按"
-
 msgid "Receiver"
 msgstr "接收器"
 
@@ -13788,6 +13666,9 @@ msgstr "录像时停止串流"
 
 msgid "Recordings always have priority"
 msgstr "录像总是有优先权"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "录制"
@@ -14317,9 +14198,6 @@ msgstr "右箭头"
 msgid "Right from service name"
 msgstr "频道名称右侧"
 
-msgid "Right long"
-msgstr "右键 长按"
-
 msgid "Right, wrapped"
 msgstr "右边,覆盖"
 
@@ -14425,9 +14303,6 @@ msgstr "SABnzbd 设置"
 
 msgid "SAT"
 msgstr "卫星"
-
-msgid "SAT long"
-msgstr "SAT键 长按"
 
 msgid "SATA"
 msgstr "SATA硬盘"
@@ -14816,9 +14691,6 @@ msgstr "向西搜寻"
 msgid "Search/WEB"
 msgstr "Search键/WEB键"
 
-msgid "Search/WEB long"
-msgstr "Search键/WEB键 长按"
-
 msgid "Searching"
 msgstr "搜索中"
 
@@ -15072,6 +14944,9 @@ msgid "Select Location"
 msgstr "选择位置"
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -15848,16 +15723,16 @@ msgstr "设置%s %s的MAC地址."
 msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道picon的宽高比."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置您的即时录音的默认位置.按'OK'键添加新的位置,选择左/右键选择一个现有的位置."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "设置录像的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置时移文件的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "设置录像的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置定时器的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
 
 msgid "Set the default sorting method."
@@ -17018,9 +16893,6 @@ msgstr ""
 msgid "Sleep delay"
 msgstr ""
 
-msgid "Sleep long"
-msgstr "Sleep键 长按"
-
 msgid "Sleep timer"
 msgstr ""
 
@@ -17752,9 +17624,6 @@ msgstr "字幕语言选择 3"
 msgid "Subtitle language selection 4"
 msgstr "字幕语言选择 4"
 
-msgid "Subtitle long"
-msgstr "Subtitle键 长按"
-
 msgid "Subtitle position"
 msgstr "字幕位置"
 
@@ -18138,9 +18007,6 @@ msgstr "图文电视的可见性"
 
 msgid "Teletext font and resolution"
 msgstr "图文电视字体和分辨率"
-
-msgid "Teletext long"
-msgstr "Teletext键 长按"
 
 msgid "Teletext subtitle color"
 msgstr "图文字幕颜色"
@@ -19017,9 +18883,6 @@ msgstr "快进/快退时间跳转重复间隔"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "时间跳转:使用正常快进速度"
-
-msgid "Time long"
-msgstr "Time键 长按"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20145,9 +20008,6 @@ msgstr "VOB文件"
 msgid "VOD"
 msgstr "视频点播(VOD)"
 
-msgid "VOD long"
-msgstr "VOD键 长按"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -20936,6 +20796,9 @@ msgstr "要备份你的设置到哪里？"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "临时时移录像要保存到哪里？"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "您要永久保存哪个事件？"
 
@@ -21044,9 +20907,6 @@ msgstr "写入失败！"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www 长按"
 
 msgid "XBox 360 support"
 msgstr "Xbox 360支持"
@@ -21284,9 +21144,6 @@ msgstr "在线刷写新镜像!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube键 长按"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "您的 %s %s 没有互联网连接"
@@ -21534,9 +21391,6 @@ msgstr "切换"
 
 msgid "ZOOM"
 msgstr "缩放"
-
-msgid "ZOOM long"
-msgstr "ZOOM键 长按"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -23035,6 +22889,174 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "请选择一个合适的目录."
+
+#~ msgid "Aspect long"
+#~ msgstr "长宽比"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio键 长按"
+
+#~ msgid "Context long"
+#~ msgstr "Context键 长按"
+
+#~ msgid "Directory long"
+#~ msgstr "Directory键 长按"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "EJECTCD键 长按"
+
+#~ msgid "End long"
+#~ msgstr "End键 长按"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide键 长按"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 长按"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 长按"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 长按"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 长按"
+
+#~ msgid "Favorites long"
+#~ msgstr "Favorites键 长按"
+
+#~ msgid "File long"
+#~ msgstr "File键 长按"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "直接刷写 %s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Help键 长按"
+
+#~ msgid "History long"
+#~ msgstr "History键 长按"
+
+#~ msgid "Home long"
+#~ msgstr "Home键 长按"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage键 长按"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "INFO键(EPG) 长按"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Keyboard键 长按"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi键 长按"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN键 长按"
+
+#~ msgid "Left long"
+#~ msgstr "左键 长按"
+
+#~ msgid "List/Fav long"
+#~ msgstr "List/Fav键 长按"
+
+#~ msgid "MOUSE long"
+#~ msgstr "MOUSE键 长按"
+
+#~ msgid "Magic long"
+#~ msgstr "Magic键 长按"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark键/Portal键/Playlist键 长按"
+
+#~ msgid "Media long"
+#~ msgstr "Media键 长按"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong 键 长按"
+
+#~ msgid "OK long"
+#~ msgstr "OK键 长按"
+
+#~ msgid "Open long"
+#~ msgstr "Open键 长按"
+
+#~ msgid "Option long"
+#~ msgstr "Option键 长按"
+
+#~ msgid "PC long"
+#~ msgstr "PC键 长按"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP键 长按"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR 长按"
+
+#~ msgid "PageDown long"
+#~ msgstr "Page-键 长按"
+
+#~ msgid "PageUp long"
+#~ msgstr "Page+键 长按"
+
+#~ msgid "Playlist long"
+#~ msgstr "Playlist键 长按"
+
+#~ msgid "Power long"
+#~ msgstr "电源键 长按"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Prevsong键 长按"
+
+#~ msgid "Program long"
+#~ msgstr "Program键 长按"
+
+#~ msgid "Prov long"
+#~ msgstr "提供商 长按"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio键长按"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec键 长按"
+
+#~ msgid "Right long"
+#~ msgstr "右键 长按"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT键 长按"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Search键/WEB键 长按"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep键 长按"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Subtitle键 长按"
+
+#~ msgid "Teletext long"
+#~ msgstr "Teletext键 长按"
+
+#~ msgid "Time long"
+#~ msgstr "Time键 长按"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD键 长按"
+
+#~ msgid "Www long"
+#~ msgstr "Www 长按"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube键 长按"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM键 长按"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2秒"

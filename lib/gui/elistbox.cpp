@@ -14,6 +14,7 @@ int eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
 int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 int eListbox::defaultPageSize = eListbox::DefaultPageSize;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
+eRect eListbox::defaultPadding = eRect(1,1,1,1);
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_list_orientation(listVertical), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
@@ -30,7 +31,7 @@ eListbox::eListbox(eWidget *parent) :
 	m_page_size = eListbox::defaultPageSize;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
-	m_style.m_text_offset = ePoint(1,1);
+	m_style.m_text_padding = eListbox::defaultPadding;
 //	setContent(new eListboxStringContent());
 
 	allowNativeKeys(true);
@@ -528,9 +529,9 @@ void eListbox::setHAlign(int align)
 	m_style.m_halign = align;
 }
 
-void eListbox::setTextOffset(const ePoint &textoffset)
+void eListbox::setTextPadding(const eRect &padding)
 {
-	m_style.m_text_offset = textoffset;
+	m_style.m_text_padding = padding;
 }
 
 void eListbox::setUseVTIWorkaround(void)

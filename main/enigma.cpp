@@ -359,7 +359,10 @@ int main(int argc, char **argv)
 			std::string rfilename;
 			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
-			loadPNG(wait[i], rfilename.c_str());
+			wait[i] = 0;
+			struct stat st;
+			if (::stat(rfilename.c_str(), &st) == 0)
+				loadPNG(wait[i], rfilename.c_str());
 
 			if (!wait[i]) 
 			{

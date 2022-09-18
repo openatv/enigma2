@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 11:15+0000\n"
-"PO-Revision-Date: 2022-09-09 12:16+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-17 13:18+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -902,7 +902,7 @@ msgstr[2] "%d hodin"
 
 #, python-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d Hodin"
 
 #, python-format
 msgid "%d KB"
@@ -914,7 +914,7 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MB/s"
-msgstr ""
+msgstr "%d MB/s"
 
 #, python-format
 msgid "%d MHz"
@@ -964,7 +964,7 @@ msgstr[2] "Šířka %d pixelů"
 
 #, python-format
 msgid "%d Pixels"
-msgstr ""
+msgstr "%d Pixelů"
 
 #, python-format
 msgid "%d Second"
@@ -1286,6 +1286,10 @@ msgid "%s is password protected."
 msgstr "%s je chráněn heslem."
 
 #, python-format
+msgid "%s long"
+msgstr ""
+
+#, python-format
 msgid "%s not available."
 msgstr "%s není dostupný."
 
@@ -1414,7 +1418,7 @@ msgid "+24"
 msgstr "+24"
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24 Hodin"
 
 msgctxt "Text list separator"
 msgid ", "
@@ -1427,7 +1431,7 @@ msgid "-24"
 msgstr "-24"
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "-24 Hodin"
 
 msgid "-24h/+24 Hours"
 msgstr "-24 hodin/+24 hodin"
@@ -2767,9 +2771,6 @@ msgstr "Akce poměru stran"
 msgid "Aspect list..."
 msgstr "Seznam aspektů..."
 
-msgid "Aspect long"
-msgstr "Aspekt - dlouhý stisk"
-
 msgid "Aspect ratio"
 msgstr "Poměr stran"
 
@@ -2853,9 +2854,6 @@ msgstr "Volba jazyka zvuku 3"
 msgid "Audio language selection 4"
 msgstr "Volba jazyka zvuku 4"
 
-msgid "Audio long"
-msgstr "Audio - dlouhý stisk"
-
 msgid "Audio options..."
 msgstr "Zvukové možnosti..."
 
@@ -2938,7 +2936,7 @@ msgid "AutoMountManager"
 msgstr "Správce připojení"
 
 msgid "AutoTimer"
-msgstr ""
+msgstr "Automatický časovač"
 
 msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
@@ -4992,9 +4990,6 @@ msgstr "Obsah se nevejde na DVD!"
 msgid "Context"
 msgstr "Kontext"
 
-msgid "Context long"
-msgstr "Kontext - dlouhý stisk"
-
 msgid "Continent"
 msgstr "Kontinent"
 
@@ -5241,6 +5236,10 @@ msgstr "Aktuální protokol o haváriích"
 
 msgid "Current installed"
 msgstr "Aktuálně nainstalovaný"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5657,7 +5656,7 @@ msgstr "Výchozí složka"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Výchozí složka, pokud levá nebo pravá složka není uložena, a cílová složka pro tlačítko 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Výchozí umístění záznamů"
 
 msgid "Default recording type"
@@ -6030,9 +6029,6 @@ msgstr "Do adresáře '%s' nelze zapisovat!"
 
 msgid "Directory browser"
 msgstr "Prohlížeč adresářů"
-
-msgid "Directory long"
-msgstr "Directory - dlouhý stisk"
 
 msgid "Disable"
 msgstr "Zakázat"
@@ -6463,6 +6459,9 @@ msgstr "Nahrát pluginy"
 msgid "Download Softcams"
 msgstr "Stáhnout Softcamy"
 
+msgid "Download and flash images on your %s %s."
+msgstr ""
+
 msgid "Download and install Plugins"
 msgstr "Stáhnout a instalovat pluginy"
 
@@ -6558,9 +6557,6 @@ msgstr "Čas-ECM"
 
 msgid "EJECTCD"
 msgstr "VYSUNOUT CD"
-
-msgid "EJECTCD long"
-msgstr "VYSUNOUT - dlouhý stisk"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7009,9 +7005,6 @@ msgstr "Kódování:"
 msgid "End"
 msgstr "Ukončit"
 
-msgid "End long"
-msgstr "End - dlouhý stisk"
-
 msgid "End time"
 msgstr "Čas konce"
 
@@ -7182,9 +7175,6 @@ msgstr "Zadat pouze text"
 
 msgid "Epg/Guide"
 msgstr "Epg/Průvodce"
-
-msgid "Epg/Guide long"
-msgstr "Epg/Guide - dlouhý stisk"
 
 msgid "Equal to"
 msgstr "Shodné s"
@@ -7648,26 +7638,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 - dlouhý stisk"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 - dlouhý stisk"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 - dlouhý stisk"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 - dlouhý stisk"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7790,9 +7768,6 @@ msgstr "Rychlosti přetáčení vpřed"
 msgid "Favorites"
 msgstr "Oblíbené"
 
-msgid "Favorites long"
-msgstr "Oblíbené - dlouhý stisk"
-
 msgid "Feed URL"
 msgstr "URL adresa zdroje"
 
@@ -7870,9 +7845,6 @@ msgstr "Soubor kontrolních součtů pro výpočet pro tlačítko 9"
 
 msgid "File checksums/hashes"
 msgstr "Soubor kontrolních součtů/hash"
-
-msgid "File long"
-msgstr "Soubor/List - dlouhý stisk"
 
 #, python-format
 msgid "File not found: %s"
@@ -8003,9 +7975,6 @@ msgstr "Provést flash a obnovit nastavení a vybrané pluginy (Zeptat se uživa
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Adresář Flash '%s' není povolen!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Flešnutí Vašeho %s %s za chodu."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash nové image za běhu software vašeho přijímače."
@@ -8655,9 +8624,6 @@ msgstr "Informace na obrazovce nápovědy"
 msgid "Help animation speed"
 msgstr "Rychlosti animace nápovědy"
 
-msgid "Help long"
-msgstr "Nápověda - dlouhý stisk"
-
 msgid "Help screen style"
 msgstr "Styl obrazovky nápovědy"
 
@@ -8763,9 +8729,6 @@ msgstr "History zpět"
 msgid "History buttons mode"
 msgstr "Režim tlačítka Historie"
 
-msgid "History long"
-msgstr "Historie - dlouhý stisk"
-
 msgid "History next"
 msgstr "History další"
 
@@ -8787,14 +8750,8 @@ msgstr "Svatý stolec (Vatikánský městský stát)"
 msgid "Home"
 msgstr "Domů"
 
-msgid "Home long"
-msgstr "Domů - dlouhý stisk"
-
 msgid "Homepage"
 msgstr "Domovská stránka"
-
-msgid "Homepage long"
-msgstr "Homepage - dlouhý stisk"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -9253,9 +9210,6 @@ msgstr "Informace"
 msgid "Info (EPG)"
 msgstr "Info (EPG)"
 
-msgid "Info (EPG) Long"
-msgstr "Info (EPG) - dlouhý stisk"
-
 msgid "Info button (long)"
 msgstr "Tlačítko Informace (dlouhý stisk)"
 
@@ -9514,7 +9468,7 @@ msgid "Invalid"
 msgstr "Neplatný"
 
 msgid "Invalid location!"
-msgstr "Neplatné umístění"
+msgstr "Neplatné umístění!"
 
 msgid "Invalid transponder data"
 msgstr "Neplatná data transpondéru"
@@ -9730,9 +9684,6 @@ msgstr "Nastavení klávesnice"
 msgid "Keyboard data entry"
 msgstr "Zadávání dat pomocí klávesnice"
 
-msgid "Keyboard long"
-msgstr "Klávesnice - dlouhý stisk"
-
 msgid "Keyboard map"
 msgstr "Rozložení kláves"
 
@@ -9756,9 +9707,6 @@ msgstr "Kodi Mediální přehrávač"
 
 msgid "Kodi installed:"
 msgstr "Kodi nainstalováno:"
-
-msgid "Kodi long"
-msgstr "Kodi - dlouhý stisk"
 
 msgid "Kodi media player"
 msgstr "Přehrávač médií Kodi"
@@ -9801,9 +9749,6 @@ msgstr "Síťová karta"
 
 msgid "LAN connection"
 msgstr "LAN připojení"
-
-msgid "LAN long"
-msgstr "LAN - dlouhý stisk"
 
 msgid "LCD Skin Settings"
 msgstr "Nastavení vzhledu LCD"
@@ -9943,9 +9888,6 @@ msgstr "Vlevo"
 msgid "Left from service name"
 msgstr "Nalevo od názvu kanálu"
 
-msgid "Left long"
-msgstr "Levý - dlouhý stisk"
-
 msgid "Left, wrapped"
 msgstr "vlevo, zalomený"
 
@@ -10052,9 +9994,6 @@ msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
 
 msgid "List/Fav"
 msgstr "Seznam/Oblíbené"
-
-msgid "List/Fav long"
-msgstr "Seznam/Oblíbené - dlouhý stisk"
 
 msgid "Listen to the radio"
 msgstr "Poslouchat rádio"
@@ -10300,9 +10239,6 @@ msgstr "VÍCE"
 msgid "MOUSE"
 msgstr "MYŠ"
 
-msgid "MOUSE long"
-msgstr "MYŠ - dlouhý stisk"
-
 msgid "MTD boot"
 msgstr "MTD boot"
 
@@ -10326,9 +10262,6 @@ msgstr "Madagaskar"
 
 msgid "Magic"
 msgstr "Magický"
-
-msgid "Magic long"
-msgstr "Magic - dlouhý stisk"
 
 msgid "Main Menu"
 msgstr "Hlavní menu"
@@ -10432,9 +10365,6 @@ msgstr "Označit značkou 3D programu"
 msgid "Mark/Portal/Playlist"
 msgstr "Označit/Portál/Seznam skladeb"
 
-msgid "Mark/Portal/Playlist long"
-msgstr "Mark/Portal/Playlist - dlouhý stisk"
-
 msgid "Marker Actions"
 msgstr "Akce se značkami"
 
@@ -10507,9 +10437,6 @@ msgstr "Nastavení přehrávače médií"
 
 msgid "Media Portal"
 msgstr "Mediální portál"
-
-msgid "Media long"
-msgstr "Media - dlouhý stisk"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Zobrazit čas přehrávání Zbývající/Uplynulý"
@@ -10985,6 +10912,9 @@ msgstr "Nastavení filmotéky"
 msgid "Movie Player Actions"
 msgstr "Akce přehrávače filmů"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Výběr filmů"
 
@@ -11363,9 +11293,6 @@ msgstr "Další kanál quad PiP"
 
 msgid "Nextsong"
 msgstr "Další skladba"
-
-msgid "Nextsong long"
-msgstr "Další skladba - dlouhý stisk"
 
 msgid "Nicaragua"
 msgstr "Nikaragua"
@@ -11804,9 +11731,6 @@ msgstr "OK tlačítko (krátké)"
 msgid "OK button mode"
 msgstr "Režim tlačítka OK"
 
-msgid "OK long"
-msgstr "OK - dlouhý stisk"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, provést procesem instalace firmware (image)"
 
@@ -11963,9 +11887,6 @@ msgstr "Otevřít kontextovou nabídku"
 msgid "Open favorites list"
 msgstr "Otevřít seznam oblíbených položek"
 
-msgid "Open long"
-msgstr "Open - dlouhý stisk"
-
 msgid "Open satellites list"
 msgstr "Otevřít seznam satelitů"
 
@@ -12040,9 +11961,6 @@ msgstr "Stav provozní LED při běhu"
 
 msgid "Option"
 msgstr "Volba"
-
-msgid "Option long"
-msgstr "Volba - dlouhý stisk"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Možnost povolit nebo zakázat picony v informačním panelu"
@@ -12153,9 +12071,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC - dlouhý stisk"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12181,10 +12096,6 @@ msgstr "Je vyžadován PIN"
 msgid "PIP"
 msgstr "PIP"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP - dlouhý stisk"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12205,9 +12116,6 @@ msgstr "HLAVNÍ VYSÍLACÍ ČAS"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR - dlouhý stisk"
 
 msgid "Package Manager"
 msgstr "Správa balíčků"
@@ -12251,14 +12159,8 @@ msgstr "Seznam o stránku nahoru"
 msgid "PageDown"
 msgstr "O stránku dolů"
 
-msgid "PageDown long"
-msgstr "PageDown - dlouhý stisk"
-
 msgid "PageUp"
 msgstr "Stránka nahoru"
-
-msgid "PageUp long"
-msgstr "PageUp - dlouhý stisk"
 
 msgid "Pakistan"
 msgstr "Pákistán"
@@ -12527,9 +12429,6 @@ msgstr "Nahrávání a Timeshift"
 msgid "Playlist"
 msgstr "Seznam skladeb"
 
-msgid "Playlist long"
-msgstr "Playlist - dlouhý stisk"
-
 msgid "Playpause"
 msgstr "Pauza"
 
@@ -12670,9 +12569,6 @@ msgstr "Prosím vyberte podprogram..."
 
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podprogram..."
-
-msgid "Please select an acceptable directory."
-msgstr "Vyberte požadovaný adresář."
 
 msgid "Please select an aspect ratio..."
 msgstr "Nastavení poměru stran obrazu..."
@@ -13014,9 +12910,6 @@ msgstr "Stav kontrolky napájení během pohotovostního režimu."
 msgid "Power On Display"
 msgstr "Zapnout přední displej"
 
-msgid "Power long"
-msgstr "Vypnout (použít menu) - dlouhý stisk"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Řízení spotřeby. Další informace naleznete v příručce k přijímači."
 
@@ -13214,9 +13107,6 @@ msgstr "předchozí/následující stránka"
 msgid "Prevsong"
 msgstr "Předchozí píseň"
 
-msgid "Prevsong long"
-msgstr "Předchozí píseň - dlouhý stisk"
-
 msgid "Primary DNS"
 msgstr "Primární DNS"
 
@@ -13287,9 +13177,6 @@ msgid ""
 msgstr ""
 "Program '%s' není nainstalován.\n"
 "Balíček obsahující tento program není znám."
-
-msgid "Program long"
-msgstr "Program - dlouhý stisk"
 
 msgid "Programmlisten History"
 msgstr "Historie seznamu programů"
@@ -13377,9 +13264,6 @@ msgstr "Protokol"
 
 msgid "Prov"
 msgstr "Poskytovatel"
-
-msgid "Prov long"
-msgstr "Prov - dlouhý stisk"
 
 msgid "Provider"
 msgstr "Poskytovatel"
@@ -13494,9 +13378,6 @@ msgstr "Akce rychlého výběru"
 
 msgid "RADIO"
 msgstr "Rádio"
-
-msgid "RADIO long"
-msgstr "Radio - dlouhý stisk"
 
 msgid "RAM (Details)"
 msgstr "RAM (Podrobnosti)"
@@ -13664,9 +13545,6 @@ msgstr "Chcete nyní znovu vytvořit LCN přehled?"
 msgid "Rec"
 msgstr "Rec"
 
-msgid "Rec long"
-msgstr "Záznam - dlouhý stisk"
-
 msgid "Receiver"
 msgstr "Přijímač"
 
@@ -13807,6 +13685,9 @@ msgstr "Nahrávání zruší streamování"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Nahrávky"
@@ -14336,9 +14217,6 @@ msgstr "Vpravo"
 msgid "Right from service name"
 msgstr "Napravo od názvu kanálu"
 
-msgid "Right long"
-msgstr "Pravý - dlouhý stisk"
-
 msgid "Right, wrapped"
 msgstr "vpravo, zalomený"
 
@@ -14444,9 +14322,6 @@ msgstr "Nastavení SABnzbd"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT - dlouhý stisk"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14837,9 +14712,6 @@ msgstr "Hledej západ"
 msgid "Search/WEB"
 msgstr "Search/WEB"
 
-msgid "Search/WEB long"
-msgstr "Search/WEB - dlouhý stisk"
-
 msgid "Searching"
 msgstr "Hledání"
 
@@ -15093,6 +14965,9 @@ msgid "Select Location"
 msgstr "Vyberte umístění"
 
 msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
 msgstr ""
 
 msgid "Select Quad Channels"
@@ -15872,16 +15747,16 @@ msgstr "Nastavení MAC-Adresy pro Váš %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nastavit poměr stran pikon programů."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro okamžité nahrávání. Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Nastavení výchozího umístění pro nahrávání.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro soubory Timeshiftu.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Nastavení výchozího umístění pro nahrávání.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro časovače.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
 msgid "Set the default sorting method."
@@ -17042,9 +16917,6 @@ msgstr "Časovače spánku"
 msgid "Sleep delay"
 msgstr "Zpoždění spánku (v minutách)"
 
-msgid "Sleep long"
-msgstr "Sleep - dlouhý stisk"
-
 msgid "Sleep timer"
 msgstr "Časovač vypnutí"
 
@@ -17777,9 +17649,6 @@ msgstr "Volba jazyka titulků 3"
 msgid "Subtitle language selection 4"
 msgstr "Volba jazyka titulků 4"
 
-msgid "Subtitle long"
-msgstr "Subtitle - dlouhý stisk"
-
 msgid "Subtitle position"
 msgstr "Pozice titulků"
 
@@ -18163,9 +18032,6 @@ msgstr "Základní viditelnost teletextu"
 
 msgid "Teletext font and resolution"
 msgstr "Písmo a rozlišení teletextu"
-
-msgid "Teletext long"
-msgstr "Text/Teletext - dlouhý stisk"
 
 msgid "Teletext subtitle color"
 msgstr "Barva teletextových titulků"
@@ -19052,9 +18918,6 @@ msgstr "Časový skok - opakovací interval pro rychlý posun Vpřed/Vzad"
 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Časový skok: Používat normální rychlost posunu"
-
-msgid "Time long"
-msgstr "Čas - dlouhý stisk"
 
 #, python-format
 msgid "Time required for this process: %s"
@@ -20182,9 +20045,6 @@ msgstr "VOB soubor"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD - dlouhý stisk"
-
 msgid "VPN"
 msgstr "VPN"
 
@@ -20999,6 +20859,9 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Který pořad chcete uložit trvale?"
 
@@ -21107,9 +20970,6 @@ msgstr "Zápis selhal!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www - dlouhý stisk"
 
 msgid "XBox 360 support"
 msgstr "Podpora XBox 360"
@@ -21347,9 +21207,6 @@ msgstr "Měli byste flashnout nový obrázek!"
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube long"
-msgstr "YouTube - dlouhý stisk"
 
 msgid "Your %s %s does not have an Internet connection"
 msgstr "Váš %s %s nemá internetové připojení"
@@ -21601,9 +21458,6 @@ msgstr "PŘEPNUTÍ"
 
 msgid "ZOOM"
 msgstr "ZVĚTŠENÍ"
-
-msgid "ZOOM long"
-msgstr "ZOOM - dlouhý stisk"
 
 msgid "ZPicon"
 msgstr "ZPicony"
@@ -23103,6 +22957,174 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Vyberte požadovaný adresář."
+
+#~ msgid "Aspect long"
+#~ msgstr "Aspekt - dlouhý stisk"
+
+#~ msgid "Audio long"
+#~ msgstr "Audio - dlouhý stisk"
+
+#~ msgid "Context long"
+#~ msgstr "Kontext - dlouhý stisk"
+
+#~ msgid "Directory long"
+#~ msgstr "Directory - dlouhý stisk"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "VYSUNOUT - dlouhý stisk"
+
+#~ msgid "End long"
+#~ msgstr "End - dlouhý stisk"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg/Guide - dlouhý stisk"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 - dlouhý stisk"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 - dlouhý stisk"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 - dlouhý stisk"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 - dlouhý stisk"
+
+#~ msgid "Favorites long"
+#~ msgstr "Oblíbené - dlouhý stisk"
+
+#~ msgid "File long"
+#~ msgstr "Soubor/List - dlouhý stisk"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Flešnutí Vašeho %s %s za chodu."
+
+#~ msgid "Help long"
+#~ msgstr "Nápověda - dlouhý stisk"
+
+#~ msgid "History long"
+#~ msgstr "Historie - dlouhý stisk"
+
+#~ msgid "Home long"
+#~ msgstr "Domů - dlouhý stisk"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage - dlouhý stisk"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Info (EPG) - dlouhý stisk"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Klávesnice - dlouhý stisk"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi - dlouhý stisk"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN - dlouhý stisk"
+
+#~ msgid "Left long"
+#~ msgstr "Levý - dlouhý stisk"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Seznam/Oblíbené - dlouhý stisk"
+
+#~ msgid "MOUSE long"
+#~ msgstr "MYŠ - dlouhý stisk"
+
+#~ msgid "Magic long"
+#~ msgstr "Magic - dlouhý stisk"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Mark/Portal/Playlist - dlouhý stisk"
+
+#~ msgid "Media long"
+#~ msgstr "Media - dlouhý stisk"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Další skladba - dlouhý stisk"
+
+#~ msgid "OK long"
+#~ msgstr "OK - dlouhý stisk"
+
+#~ msgid "Open long"
+#~ msgstr "Open - dlouhý stisk"
+
+#~ msgid "Option long"
+#~ msgstr "Volba - dlouhý stisk"
+
+#~ msgid "PC long"
+#~ msgstr "PC - dlouhý stisk"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP - dlouhý stisk"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR - dlouhý stisk"
+
+#~ msgid "PageDown long"
+#~ msgstr "PageDown - dlouhý stisk"
+
+#~ msgid "PageUp long"
+#~ msgstr "PageUp - dlouhý stisk"
+
+#~ msgid "Playlist long"
+#~ msgstr "Playlist - dlouhý stisk"
+
+#~ msgid "Power long"
+#~ msgstr "Vypnout (použít menu) - dlouhý stisk"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Předchozí píseň - dlouhý stisk"
+
+#~ msgid "Program long"
+#~ msgstr "Program - dlouhý stisk"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov - dlouhý stisk"
+
+#~ msgid "RADIO long"
+#~ msgstr "Radio - dlouhý stisk"
+
+#~ msgid "Rec long"
+#~ msgstr "Záznam - dlouhý stisk"
+
+#~ msgid "Right long"
+#~ msgstr "Pravý - dlouhý stisk"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT - dlouhý stisk"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Search/WEB - dlouhý stisk"
+
+#~ msgid "Sleep long"
+#~ msgstr "Sleep - dlouhý stisk"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Subtitle - dlouhý stisk"
+
+#~ msgid "Teletext long"
+#~ msgstr "Text/Teletext - dlouhý stisk"
+
+#~ msgid "Time long"
+#~ msgstr "Čas - dlouhý stisk"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD - dlouhý stisk"
+
+#~ msgid "Www long"
+#~ msgstr "Www - dlouhý stisk"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube - dlouhý stisk"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM - dlouhý stisk"
 
 #~ msgid "0.2s"
 #~ msgstr "0.2s"
