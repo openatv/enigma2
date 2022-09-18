@@ -552,7 +552,7 @@ class ChannelContextMenu(Screen):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		if int(xres) <= 720 or not BoxInfo.getItem("model") == 'blackbox7405':
+		if int(xres) <= 720 or BoxInfo.getItem("model") != 'blackbox7405':
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:

@@ -445,8 +445,8 @@ def runScreenTest():
 	config.usage.shutdownOK.save()
 	profile("Wakeup")
 	nowTime = time()  # Get currentTime.
-	# if not config.misc.SyncTimeUsing.value == "0" or BRAND == "gigablue":
-	if not config.misc.SyncTimeUsing.value == "0" or BOX_TYPE.startswith("gb") or BRAND.startswith("ini"):
+	# if config.misc.SyncTimeUsing.value != "0" or BRAND == "gigablue":
+	if config.misc.SyncTimeUsing.value != "0" or BOX_TYPE.startswith("gb") or BRAND.startswith("ini"):
 		print("[StartEnigma] DVB time sync disabled, so set RTC now to current Linux time!  (%s)" % strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 		setRTCtime(nowTime)
 	# Record timer.

@@ -279,7 +279,7 @@ class Network:
 		if self.isWirelessInterface(iface):
 			if iface not in self.wlan_interfaces:
 				name = _("WLAN connection")
-				if len(self.wlan_interfaces):
+				if self.wlan_interfaces:
 					name += " " + str(len(self.wlan_interfaces) + 1)
 				self.wlan_interfaces.append(iface)
 		else:
@@ -288,7 +288,7 @@ class Network:
 					name = _("VLAN connection")
 				else:
 					name = _("LAN connection")
-				if len(self.lan_interfaces) and not BoxInfo.getItem("machinebuild") == "et10000" and not iface == "eth1":
+				if self.lan_interfaces and BoxInfo.getItem("machinebuild") != "et10000" and iface != "eth1":
 					name += " " + str(len(self.lan_interfaces) + 1)
 				self.lan_interfaces.append(iface)
 		return name
