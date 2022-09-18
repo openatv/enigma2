@@ -1,3 +1,4 @@
+from os.path import exists
 from twisted.internet import threads
 from enigma import eTimer, iPlayableService, iServiceInformation
 
@@ -7,7 +8,6 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
 import Components.RecordingConfig
 import NavigationInstance
-from Tools.Directories import fileExists
 
 POLLTIME = 5  # seconds
 
@@ -31,6 +31,7 @@ class SymbolsCheckPoller:
 		self.timer = eTimer()
 		self.onClose = []
 		self.ledConfig = self.createConfig()
+		self.recMode, self.recFile = self.createRecConfig()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
@@ -75,97 +76,64 @@ class SymbolsCheckPoller:
 		del self.service
 
 	def Recording(self):
-		if fileExists("/proc/stb/lcd/symbol_circle"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-			if recordings > 0:
-				open("/proc/stb/lcd/symbol_circle", "w").write("3")
-			else:
-				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-		elif BOX_TYPE in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and fileExists("/proc/stb/lcd/symbol_recording"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-			if recordings > 0:
-				open("/proc/stb/lcd/symbol_recording", "w").write("1")
-			else:
-				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-		elif MODEL == 'u41' and fileExists("/proc/stb/lcd/symbol_pvr2"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-			if recordings > 0:
-				open("/proc/stb/lcd/symbol_pvr2", "w").write("1")
-			else:
-				open("/proc/stb/lcd/symbol_pvr2", "w").write("0")
-		elif BOX_TYPE in ('alien5', 'osninopro', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and fileExists("/proc/stb/lcd/powerled"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+		if self.recMode == 0:
+			return
+		recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+
+		if self.recMode == 1:
+			value = "3" if recordings > 0 else "0"
+			open(self.recFile, "w").write(value)
+		elif self.recMode == 2:
+			value = "1" if recordings > 0 else "0"
+			open(self.recFile, "w").write(recordings)
+		elif self.recMode == 3:
 			self.blink = not self.blink
 			if recordings > 0:
 				if self.blink:
-					open("/proc/stb/lcd/powerled", "w").write("1")
+					open(self.recFile, "w").write("1")
 					self.led = "1"
 				else:
-					open("/proc/stb/lcd/powerled", "w").write("0")
+					open(self.recFile, "w").write("0")
 					self.led = "0"
 			elif self.led == "1":
-				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif BOX_TYPE in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and fileExists("/proc/stb/lcd/powerled"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+				open(self.recFile, "w").write("0")
+		elif self.recMode == 4:
 			self.blink = not self.blink
 			if recordings > 0:
 				if self.blink:
-					open("/proc/stb/lcd/powerled", "w").write("0")
+					open(self.recFile, "w").write("0")
 					self.led = "1"
 				else:
-					open("/proc/stb/lcd/powerled", "w").write("1")
+					open(self.recFile, "w").write("1")
 					self.led = "0"
 			elif self.led == "1":
-				open("/proc/stb/lcd/powerled", "w").write("1")
-		elif BOX_TYPE in ('dm7020hd', 'dm7020hdv2') and fileExists("/proc/stb/fp/led_set"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+				open(self.recFile, "w").write("1")
+		elif self.recMode == 5:
 			self.blink = not self.blink
 			if recordings > 0:
 				if self.blink:
-					open("/proc/stb/fp/led_set", "w").write("0x00000000")
+					open(self.recFile, "w").write("0x00000000")
 					self.led = "1"
 				else:
-					open("/proc/stb/fp/led_set", "w").write("0xffffffff")
+					open(self.recFile, "w").write("0xffffffff")
 					self.led = "0"
 			else:
-				open("/proc/stb/fp/led_set", "w").write("0xffffffff")
-		elif MODEL in ('dags7362', 'dags73625', 'dags5') or BOX_TYPE in ('tmtwin4k', 'revo4k', 'force3uhd') and fileExists("/proc/stb/lcd/symbol_rec"):
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-			self.blink = not self.blink
-			if recordings > 0:
-				if self.blink:
-					open("/proc/stb/lcd/symbol_rec", "w").write("1")
-					self.led = "1"
-				else:
-					open("/proc/stb/lcd/symbol_rec", "w").write("0")
-					self.led = "0"
-			elif self.led == "1":
-				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008') and fileExists("/proc/stb/fp/ledpowercolor"):
+				open(self.recFile, "w").write("0xffffffff")
+		elif self.recMode == 6:
 			import Screens.Standby
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
 				if self.blink:
-					open("/proc/stb/fp/ledpowercolor", "w").write("0")
+					open(self.recFile, "w").write("0")
 					self.led = "1"
 				else:
-					if Screens.Standby.inStandby:
-						open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledstandbycolor.value)
-					else:
-						open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledpowercolor.value)
+					value = config.usage.lcd_ledstandbycolor.value if Screens.Standby.inStandby else config.usage.lcd_ledpowercolor.value
+					open(self.recFile, "w").write(value)
 					self.led = "0"
 			else:
-				if Screens.Standby.inStandby:
-					open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledstandbycolor.value)
-				else:
-					open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledpowercolor.value)
-		else:
-			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
-				return
-
-			recordings = len(NavigationInstance.instance.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-
+				value = config.usage.lcd_ledstandbycolor.value if Screens.Standby.inStandby else config.usage.lcd_ledpowercolor.value
+				open(self.recFile, "w").write(value)
+		elif self.recMode == 7:
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 				if recordings == 1:
@@ -226,24 +194,24 @@ class SymbolsCheckPoller:
 		if not filename:
 			return
 
-		play = "1" if BoxInfo.getItem("SeekStatePlay") else "0"
-		open(filename, "w").write(play)
+		value = "1" if BoxInfo.getItem("SeekStatePlay") else "0"
+		open(filename, "w").write(value)
 
 	def PauseSymbol(self):
 		filename = self.ledConfig.get("symbol_pause", None)
 		if not filename:
 			return
 
-		pause = "0" if BoxInfo.getItem("StatePlayPause") else "1"
-		open(filename, "w").write(pause)
+		value = "0" if BoxInfo.getItem("StatePlayPause") else "1"
+		open(filename, "w").write(value)
 
 	def PowerSymbol(self):
 		filename = self.ledConfig.get("symbol_power", None)
 		if not filename:
 			return
 
-		power = "0" if BoxInfo.getItem("StandbyState") else "1"
-		open(filename, "w").write(power)
+		value = "0" if BoxInfo.getItem("StandbyState") else "1"
+		open(filename, "w").write(value)
 
 	def Resolution(self):
 		filename = self.ledConfig.get("symbol_hd", None)
@@ -254,8 +222,8 @@ class SymbolsCheckPoller:
 		if not info:
 			return ""
 
-		videosize = "1" if int(info.getInfo(iServiceInformation.sVideoWidth)) >= 1280 else "0"
-		open(filename, "w").write(videosize)
+		value = "1" if int(info.getInfo(iServiceInformation.sVideoWidth)) >= 1280 else "0"
+		open(filename, "w").write(value)
 
 	def Crypted(self):
 		filename = self.ledConfig.get("symbol_scrambled", None)
@@ -266,8 +234,8 @@ class SymbolsCheckPoller:
 		if not info:
 			return ""
 
-		crypted = "1" if info.getInfo(iServiceInformation.sIsCrypted) == 1 else "0"
-		open(filename, "w").write(crypted)
+		value = "1" if info.getInfo(iServiceInformation.sIsCrypted) == 1 else "0"
+		open(filename, "w").write(value)
 
 	def Teletext(self):
 		filename = self.ledConfig.get("symbol_teletext", None)
@@ -278,8 +246,8 @@ class SymbolsCheckPoller:
 		if not info:
 			return ""
 
-		tpid = "1" if int(info.getInfo(iServiceInformation.sTXTPID)) != -1 else "0"
-		open(filename, "w").write(tpid)
+		value = "1" if int(info.getInfo(iServiceInformation.sTXTPID)) != -1 else "0"
+		open(filename, "w").write(value)
 
 	def Hbbtv(self):
 		filename = self.ledConfig.get("symbol_epg", None)
@@ -290,8 +258,8 @@ class SymbolsCheckPoller:
 		if not info:
 			return ""
 
-		hbbtv = "1" if info.getInfoString(iServiceInformation.sHBBTVUrl) != "" else "0"
-		open(filename, "w").write(hbbtv)
+		value = "1" if info.getInfoString(iServiceInformation.sHBBTVUrl) != "" else "0"
+		open(filename, "w").write(value)
 
 	def Audio(self):
 		filename = self.ledConfig.get("symbol_dolby_audio", None)
@@ -314,13 +282,45 @@ class SymbolsCheckPoller:
 	def Timer(self):
 		filename = self.ledConfig.get("symbol_timer", None)
 		if filename:
-			timer = "1" if NavigationInstance.instance.RecordTimer.getNextRecordingTime() > 0 else "0"
-			open(filename, "w").write(timer)
+			value = "1" if NavigationInstance.instance.RecordTimer.getNextRecordingTime() > 0 else "0"
+			open(filename, "w").write(value)
 
 	def createConfig(self):
 		ret = {}
 		for file in ("symbol_timer", "symbol_dolby_audio", "symbol_epg", "symbol_teletext", "symbol_scrambled", "symbol_hd", "symbol_power", "symbol_pause", "symbol_play", "symbol_parent_rating", "symbol_subtitle", "symbol_smartcard"):
 			filename = "/proc/stb/lcd/%s" % file
-			if fileExists(filename):
+			if exists(filename):
 				ret[file] = filename
 		return ret
+
+	def createRecConfig(self):
+		mode = 0
+		filename = ""
+		if exists("/proc/stb/lcd/symbol_circle"):
+			mode = 1
+			filename = "/proc/stb/lcd/symbol_circle"
+		elif BOX_TYPE in ('alphatriple', 'mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and exists("/proc/stb/lcd/symbol_recording"):
+			mode = 2
+			filename = "/proc/stb/lcd/symbol_recording"
+		elif MODEL == 'u41' and exists("/proc/stb/lcd/symbol_pvr2"):
+			mode = 2
+			filename = "/proc/stb/lcd/symbol_pvr2"
+		elif BOX_TYPE in ('alien5', 'osninopro', 'wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and exists("/proc/stb/lcd/powerled"):
+			mode = 3
+			filename = "/proc/stb/lcd/powerled"
+		elif BOX_TYPE in ('mbmicrov2', 'mbmicro', 'e4hd', 'e4hdhybrid') and exists("/proc/stb/lcd/powerled"):
+			mode = 4
+			filename = "/proc/stb/lcd/powerled"
+		elif BOX_TYPE in ('dm7020hd', 'dm7020hdv2') and exists("/proc/stb/fp/led_set"):
+			mode = 5
+			filename = "/proc/stb/fp/led_set"
+		elif MODEL in ('dags7362', 'dags73625', 'dags5') or BOX_TYPE in ('tmtwin4k', 'revo4k', 'force3uhd') and exists("/proc/stb/lcd/symbol_rec"):
+			mode = 3
+			filename = "/proc/stb/lcd/symbol_rec"
+		elif MODEL in ('sf8008', 'sf8008m', 'sf8008opt', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dagsmv200', 'sfx6008') and exists("/proc/stb/fp/ledpowercolor"):
+			mode = 6
+			filename = "/proc/stb/fp/ledpowercolor"
+		elif exists("/proc/stb/lcd/symbol_recording") and exists("/proc/stb/lcd/symbol_record_1") and exists("/proc/stb/lcd/symbol_record_2"):
+			mode = 7
+
+		return mode, filename
