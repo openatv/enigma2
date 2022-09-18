@@ -1,7 +1,7 @@
 #include <lib/gui/elabel.h>
 #include <lib/gdi/font.h>
 
-eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
+eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent), m_padding(eRect(0,0,0,0))
 {
 	m_pos = markedPos;
 	ePtr<eWindowStyle> style;
@@ -20,7 +20,6 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	m_border_size = 0;
 
 	m_text_offset = 0;
-	m_padding = eRect(0,0,0,0);
 }
 
 int eLabel::event(int event, void *data, void *data2)
