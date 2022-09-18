@@ -564,7 +564,7 @@ class InfoBarTimeshift:
 					f = open("/proc/stb/lcd/symbol_timeshift", "w")
 					f.write("0")
 					f.close()
-			elif BoxInfo.getItem("model") == "u41" and exists("/proc/stb/lcd/symbol_record"):
+			elif BoxInfo.getItem("machinebuild") == "u41" and exists("/proc/stb/lcd/symbol_record"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_record", "w")
 					f.write("0")
