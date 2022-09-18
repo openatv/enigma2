@@ -594,6 +594,21 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
+def parseTextPadding(value):
+	if value in variables:
+		value = variables[value]
+	padding = [parseInteger(x.strip()) for x in value.split(",")]
+	count = len(offsets)
+	if count == 1:
+		return padding * 4
+	elif count == 2:
+		return padding * 2
+	elif count == 4:
+		return padding
+	print("[Skin] Error: Attribute 'textPadding' with value '%s' is invalid!  Attribute must have 1, 2 or 4 values." % value)
+	return [0, 0, 0, 0]
+
+
 def parseVerticalAlignment(value):
 	options = {
 		"top": 0,
@@ -905,10 +920,12 @@ class AttributeParser:
 		attribDeprecationWarning("textOffset", "textPadding")
 
 	def textPadding(self, value):
-		if value in variables:
-			value = variables[value]
-		(xOffset, yOffset) = [parseInteger(x.strip()) for x in value.split(",")]
-		self.guiObject.setTextPadding(ePoint(self.applyHorizontalScale(xOffset), self.applyVerticalScale(yOffset)))
+		leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(value)
+		leftPadding = self.applyHorizontalScale(leftPadding)
+		topPadding = self.applyVerticalScale(topPadding)
+		rightPadding = self.applyHorizontalScale(rightPadding)
+		bottomPadding = self.applyVerticalScale(topPadding)
+		self.guiObject.setTextPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 
 	def title(self, value):
 		if value:
@@ -1144,8 +1161,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			borderWidth = parseInteger(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
 		for stringList in tag.findall("stringList"):
-			(xOffset, yOffset) = [parseInteger(x.strip()) for x in stringList.attrib.get("textPadding", "1,1").split(",")]
-			eListbox.setDefaultPadding(ePoint(xOffset, yOffset))
+			leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(stringList.attrib.get("textPadding", "0,0,0,0"))
+			eListbox.setDefaultPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			style.setTitleOffset(parseSize(title.attrib.get("offset", "20,5"), ((1, 1), (1, 1))))
