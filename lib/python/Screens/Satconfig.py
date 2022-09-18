@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import division
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
@@ -10,15 +9,13 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigYesNo, ConfigSubsection, ConfigSelection
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigYesNo, ConfigSelection
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
-from Components.Sources.Boolean import Boolean
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.AutoDiseqc import AutoDiseqc
 from Tools.BoundFunction import boundFunction
-from boxbranding import getMachineBrand
 
 from time import mktime, localtime
 from datetime import datetime
@@ -232,7 +229,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Tuner"), nimConfig.connectedTo, _("Select the tuner that controls the motorized dish.")))
 			elif nimConfig.configMode.value == "loopthrough":
 				choices = []
-				print("connectable to:", nimmanager.canConnectTo(self.slotid))
+				print("connectable to: %s" % str(nimmanager.canConnectTo(self.slotid)))
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
@@ -335,7 +332,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
 					terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
 					default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
-					if terrestrialcountrycode is None and getMachineBrand() == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
+					if terrestrialcountrycode is None and BoxInfo.getItem("displaybrand") == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
 						default = "AUS"
 					choices = [("all", _("All"))] + sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
 					self.terrestrialCountries = ConfigSelection(default=default, choices=choices)
@@ -347,7 +344,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
 				default = self.nimConfig.dvbt.terrestrial.value in terrstrialNames and self.nimConfig.dvbt.terrestrial.value or None
-				if default is None and getMachineBrand() == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
+				if default is None and BoxInfo.getItem("displaybrand") == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
 					default = "All regions, Australia, (DVB-T)"
 				self.terrestrialRegions = ConfigSelection(default=default, choices=terrstrialNames)
 
@@ -358,7 +355,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions, _("Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."))
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
-				if not BoxInfo.getItem("model") in ('spycat',):
+				if not BoxInfo.getItem("machinebuild") in ('spycat',):
 					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.dvbt.terrestrial_5V, _("Enable this setting if your aerial system needs power")))
 		elif self.nim.isCompatible("ATSC"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.atsc.configMode, _("Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."))
