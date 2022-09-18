@@ -14,7 +14,7 @@ import Screens.Standby
 import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
+from Components.SystemInfo import BoxInfo
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 
@@ -93,8 +93,8 @@ class Navigation:
 		print("[NAVIGATION] current time is %s -> it's fake-time suspected: %s" % (ctime(now), hasFakeTime))
 		print("-" * 100)
 
-		thisBox = getBoxType()
-		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3', 'et8000') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'fulan', 'entwopia') or getMachineBuild() in ('dags7335', 'dags7356', 'dags7362')):
+		thisBox = BoxInfo.getItem("machinebuild")
+		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3', 'et8000') or BoxInfo.getItem("brand") in ('ebox', 'azbox', 'xp', 'ini', 'fulan', 'entwopia') or BoxInfo.getItem("model") in ('dags7335', 'dags7356', 'dags7362')):
 			print("[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" % thisBox)
 			print("-" * 100)
 			config.workaround.deeprecord.setValue(True)
@@ -317,7 +317,7 @@ class Navigation:
 					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
 						print("[Navigation] Failed to start", alternativeref)
 						if oldref and "://" in oldref.getPath():
-							print("[Navigation] Streaming was active -> try again") # use timer to give the streamserver the time to deallocate the tuner
+							print("[Navigation] Streaming was active -> try again")  # use timer to give the streamserver the time to deallocate the tuner
 							self.retryServicePlayTimer = eTimer()
 							self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 							self.retryServicePlayTimer.start(500, True)
@@ -339,7 +339,7 @@ class Navigation:
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 					if oldref and "://" in oldref.getPath():
-						print("[Navigation] Streaming was active -> try again") # use timer to give the streamserver the time to deallocate the tuner
+						print("[Navigation] Streaming was active -> try again")  # use timer to give the streamserver the time to deallocate the tuner
 						self.retryServicePlayTimer = eTimer()
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
