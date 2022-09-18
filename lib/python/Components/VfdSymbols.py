@@ -85,7 +85,7 @@ class SymbolsCheckPoller:
 			open(self.recFile, "w").write(value)
 		elif self.recMode == 2:
 			value = "1" if recordings > 0 else "0"
-			open(self.recFile, "w").write(recordings)
+			open(self.recFile, "w").write(value)
 		elif self.recMode == 3:
 			self.blink = not self.blink
 			if recordings > 0:
