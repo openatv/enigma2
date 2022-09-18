@@ -1,4 +1,3 @@
-from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry
@@ -6,16 +5,16 @@ from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.Console import Console
 from Components.Label import Label
 from Tools.Directories import fileExists
 from enigma import getDesktop
 from os import access, R_OK
-from boxbranding import getBrandOEM
+
+BRAND = BoxInfo.getItem("brand")
 
 
 def getFilePath(setting):
-	if getBrandOEM() in ('dreambox',):
+	if BRAND in ('dreambox',):
 		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
 	else:
 		return "/proc/stb/fb/dst_%s" % (setting)
@@ -32,7 +31,7 @@ def setPositionParameter(parameter, configElement):
 
 
 def InitOsd():
-	
+
 	BoxInfo.setItem("CanChange3DOsd", access('/proc/stb/fb/3dmode', R_OK) and True or False)
 	BoxInfo.setItem("CanChangeOsdAlpha", access('/proc/stb/video/alpha', R_OK) and True or False)
 	BoxInfo.setItem("CanChangeOsdPosition", access('/proc/stb/fb/dst_left', R_OK) and True or False)
@@ -42,11 +41,11 @@ def InitOsd():
 	else:
 		BoxInfo.setItem("OsdMenu", False)
 
-	if getBrandOEM() in ('fulan',):
+	if BRAND in ('fulan',):
 		BoxInfo.setItem("CanChangeOsdPosition", False)
 		BoxInfo.setItem("CanChange3DOsd", False)
 
-	if getBrandOEM() in ('dreambox',):
+	if BRAND in ('dreambox',):
 		BoxInfo.setItem("CanChangeOsdPosition", True)
 
 	def setOSDLeft(configElement):
@@ -72,7 +71,7 @@ def InitOsd():
 
 	def setOSDAlpha(configElement):
 		if BoxInfo.getItem("CanChangeOsdAlpha"):
-			print('[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value))
+			print('[UserInterfacePositioner] Setting OSD alpha:%s' % str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
 			f = open("/proc/stb/video/alpha", "w")
 			f.write(str(configElement.value))
@@ -82,7 +81,7 @@ def InitOsd():
 	def set3DMode(configElement):
 		if BoxInfo.getItem("CanChange3DOsd"):
 			value = configElement.value
-			print('[UserInterfacePositioner] Setting 3D mode:', value)
+			print('[UserInterfacePositioner] Setting 3D mode: %s' % str(value))
 			try:
 				if BoxInfo.getItem("CanUse3DModeChoices"):
 					f = open("/proc/stb/fb/3dmode_choices", "r")
@@ -98,18 +97,18 @@ def InitOsd():
 				f = open("/proc/stb/fb/3dmode", "w")
 				f.write(value)
 				f.close()
-			except:
+			except OSError:
 				pass
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
 		if BoxInfo.getItem("CanChange3DOsd"):
-			print('[UserInterfacePositioner] Setting 3D depth:', configElement.value)
+			print('[UserInterfacePositioner] Setting 3D depth: %s' % str(configElement.value))
 			try:
 				f = open("/proc/stb/fb/znorm", "w")
 				f.write('%d' % int(configElement.value))
 				f.close()
-			except:
+			except OSError:
 				pass
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
@@ -300,9 +299,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if BoxInfo.getItem("model").startswith('azbox'):
-			pass
-		else:
+		if not BoxInfo.getItem("machinebuild").startswith('azbox'):
 			self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
@@ -438,9 +435,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if BoxInfo.getItem("model").startswith('azbox'):
-			pass
-		else:
+		if not BoxInfo.getItem("machinebuild").startswith('azbox'):
 			self["status"].setText(self["config"].getCurrent()[2])
 
 	def layoutFinished(self):
@@ -536,6 +531,8 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.close()
 
 # FIXME Can be removed
+
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
