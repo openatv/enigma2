@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 02:57+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -5239,6 +5239,10 @@ msgstr "Текущий лог сбоев"
 
 msgid "Current installed"
 msgstr "В настоящее время установлены"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "Текущее местоположение: '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10911,6 +10915,9 @@ msgstr "Настройка списка фильмов"
 msgid "Movie Player Actions"
 msgstr "Действия проигрывателя фильмов"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "При воспроизведении файла нельзя использовать недопустимый/неподходящий каталог."
+
 msgid "Movie selection"
 msgstr "Выбор записей"
 
@@ -12566,9 +12573,6 @@ msgstr "Пожалуйста, выберите подсервис..."
 msgid "Please select a subservice..."
 msgstr "Пожалуйста, выберите подсервис..."
 
-msgid "Please select an acceptable directory."
-msgstr "Пожалуйста, выберите приемлемый каталог."
-
 msgid "Please select an aspect ratio..."
 msgstr "Пожалуйста, выберите соотношение сторон..."
 
@@ -13684,6 +13688,9 @@ msgstr "Записи отменяют потоковую передачу"
 
 msgid "Recordings always have priority"
 msgstr "Записи всегда имеют приоритет"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Записи могут работать неправильно без приемлемого каталога."
 
 msgid "Records"
 msgstr "Записи"
@@ -14963,6 +14970,9 @@ msgstr "Выбор расположения"
 msgid "Select Movie Location"
 msgstr "Выберите место для записи"
 
+msgid "Select Playback Location"
+msgstr "Выбрать место для воспроизведения"
+
 msgid "Select Quad Channels"
 msgstr "Выберите 4X каналы"
 
@@ -15743,11 +15753,11 @@ msgstr "Настройка соотношения сторон пиконов к
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте расположение для файлов немедленной записи. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Назначьте расположение для файлов записи. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте расположение для файлов таймшифта. Нажмите 'OK', чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО для выбора существующего каталога."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Назначьте расположение для файлов записи. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте расположение для файлов таймера. Нажмите 'OK' чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО выберите существующий каталог."
@@ -17910,7 +17920,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 14.09.2022"
+msgstr "Коррекция перевода Monja 17.09.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20852,6 +20862,9 @@ msgstr "Где Вы хотите сохранить настройки?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Куда сохранить временные файлы отложенного просмотра?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr "Где Вы хотите установить место для файла по умолчанию?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "Какое событие Вы хотите сохранять постоянно?"
 
@@ -22947,6 +22960,9 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Пожалуйста, выберите приемлемый каталог."
 
 #~ msgid "Aspect long"
 #~ msgstr "Соотношение сторон (долгое нажатие)"

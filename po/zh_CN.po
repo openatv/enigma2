@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -5223,6 +5223,10 @@ msgstr "当前崩溃日志"
 
 msgid "Current installed"
 msgstr "当前已安装"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10889,6 +10893,9 @@ msgstr "电影列表设置"
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "电影选择"
 
@@ -12544,9 +12551,6 @@ msgstr "请选择一个子频道..."
 msgid "Please select a subservice..."
 msgstr "请选择一个子频道..."
 
-msgid "Please select an acceptable directory."
-msgstr "请选择一个合适的目录."
-
 msgid "Please select an aspect ratio..."
 msgstr "请选择宽高比..."
 
@@ -13662,6 +13666,9 @@ msgstr "录像时停止串流"
 
 msgid "Recordings always have priority"
 msgstr "录像总是有优先权"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "录制"
@@ -14939,6 +14946,9 @@ msgstr "选择位置"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "选择四画面频道"
 
@@ -15716,11 +15726,11 @@ msgstr "设置频道picon的宽高比."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置您的即时录音的默认位置.按'OK'键添加新的位置,选择左/右键选择一个现有的位置."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "设置录像的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置时移文件的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "设置录像的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置定时器的默认位置.按OK键添加新位置,选择左/右键选取一个已有的位置."
@@ -20786,6 +20796,9 @@ msgstr "要备份你的设置到哪里？"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "临时时移录像要保存到哪里？"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "您要永久保存哪个事件？"
 
@@ -22876,6 +22889,9 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "请选择一个合适的目录."
 
 #~ msgid "Aspect long"
 #~ msgstr "长宽比"

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 11:20+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5524,6 +5524,10 @@ msgstr "Aktuelles Crash-Log"
 
 msgid "Current installed"
 msgstr "Aktuell installiert"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "Aktuelles Ziel: '%s'."
 
 # PiPSetup.py
 #, python-format
@@ -11576,6 +11580,9 @@ msgstr "Filmauswahl-Einstellungen"
 msgid "Movie Player Actions"
 msgstr "Movieplayer-Aktionen"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Die Filmwiedergabe darf kein ungültiges/unpassendes Verzeichnis verwenden."
+
 msgid "Movie selection"
 msgstr "Filmauswahl"
 
@@ -13412,9 +13419,6 @@ msgstr "Bitte einen Unterkanal auswählen..."
 msgid "Please select a subservice..."
 msgstr "Bitte einen Unterkanal auswählen..."
 
-msgid "Please select an acceptable directory."
-msgstr "Bitte ein passendes Verzeichnis auswählen."
-
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Bitte ein Bild-Seitenverhältnis auswählen..."
@@ -14631,6 +14635,9 @@ msgstr "Streaming bei Aufnahmen beenden"
 #
 msgid "Recordings always have priority"
 msgstr "Aufnahmen haben immer Vorrang"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Ohne ein akzeptables Verzeichnis funktionieren die Aufnahmen möglicherweise nicht richtig."
 
 msgid "Records"
 msgstr "Aufnahmen"
@@ -16016,6 +16023,9 @@ msgstr "Speicherort auswählen"
 msgid "Select Movie Location"
 msgstr "Filmverzeichnis auswählen"
 
+msgid "Select Playback Location"
+msgstr "Wiedergabeverzeichnis auswählen"
+
 msgid "Select Quad Channels"
 msgstr "Sendergruppe auswählen"
 
@@ -16849,13 +16859,13 @@ msgstr "Einstellung des Seitenverhältnisses der Senderlogos (Picons)."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Wählen Sie das Standardverzeichnis für Sofortaufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Wählen Sie das Standardverzeichnis für Aufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 "Wählen Sie das Standardverzeichnis für Timeshift-Aufnahmen.\n"
 "OK, um ein neues Verzeichnis zu wählen oder Links/Rechts, um bestehende Verzeichnisse zu wählen."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Wählen Sie das Standardverzeichnis für Aufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Wählen Sie das Standardverzeichnis für Timeraufnahmen. Drücken Sie OK, um ein neues Verzeichnis hinzuzufügen. Benutzen Sie Steuerkreuz Links/Rechts, um ein bestehendes Verzeichnis auszuwählen."
@@ -22360,6 +22370,9 @@ msgstr "Wohin möchten Sie die Einstellungen sichern?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Wo möchten Sie temporäre Timeshift-Aufnahmen speichern?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr "Welches Verzeichnis möchten Sie als Standardspeicherort für Filme festlegen?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "Welche Sendung soll dauerhaft gespeichert werden?"
 
@@ -23396,7 +23409,7 @@ msgid "convert to DTS"
 msgstr "Zu DTS konvertieren"
 
 msgid "convert to multi-channel PCM"
-msgstr "Konvertieren zu PCM-Mehrkanal"
+msgstr "Zu PCM-Mehrkanal konvertieren"
 
 msgid "cooking"
 msgstr "Kochen"
@@ -24565,7 +24578,7 @@ msgid "updates available."
 msgstr "Updates verfügbar."
 
 msgid "use best / controlled by HDMI"
-msgstr "Best Mögliches / Steuerung über HDMI"
+msgstr "bestmöglich / Steuerung über HDMI"
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
 msgstr "Bei Umschaltproblemen des LNB (vertikal/horizontal), sehr langen Antennenkabeln oder Kabeln mit sehr dünnem Innenleiter die Voltzahl, normalerweise 14/18 Volt, erhöhen."
@@ -24667,6 +24680,9 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Bitte ein passendes Verzeichnis auswählen."
 
 #~ msgid "Aspect long"
 #~ msgstr "Aspect lang"

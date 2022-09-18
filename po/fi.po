@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 02:57+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid ""
 "\n"
@@ -5231,6 +5231,10 @@ msgstr "Nykyinen kaatumisloki"
 
 msgid "Current installed"
 msgstr "Asennettu ohjelmisto"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "Nykyinen sijainti on '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10906,6 +10910,9 @@ msgstr "Tallenneluettelon asetukset"
 msgid "Movie Player Actions"
 msgstr "Tallennukset toiminnot"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Toisto ei välttämättä käytä virheellistä/sopimatonta hakemistoa."
+
 msgid "Movie selection"
 msgstr "Tallenteen valinta"
 
@@ -12567,9 +12574,6 @@ msgstr "Valitse alipalvelu."
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu."
 
-msgid "Please select an acceptable directory."
-msgstr "Valitse hyväksyttävä hakemisto."
-
 msgid "Please select an aspect ratio..."
 msgstr "Valitse kuvasuhde."
 
@@ -13685,6 +13689,9 @@ msgstr "Tallennus saa keskeyttää suoratoiston"
 
 msgid "Recordings always have priority"
 msgstr "Tallennus saa keskeyttää suoran katselun"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Tallenteet eivät välttämättä toimi oikein ilman hyväksyttävää hakemistoa."
 
 msgid "Records"
 msgstr "Tallenukset"
@@ -14972,6 +14979,9 @@ msgstr "Valitse Sijainti"
 msgid "Select Movie Location"
 msgstr "Valitse elokuva sijainti"
 
+msgid "Select Playback Location"
+msgstr "Valitse Toisto sijainti"
+
 msgid "Select Quad Channels"
 msgstr "Valitse Quad kanavat"
 
@@ -15756,11 +15766,11 @@ msgstr "Määritä kanavatyypin kuvakkeiden kuvasuhde."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto pikatallennuksien. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Määrittää oletushakemisto nauhoituksiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto ajansiirto tiedostoiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Määrittää oletushakemisto nauhoituksiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto ajastuksiin. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
@@ -20872,6 +20882,9 @@ msgstr "Minne haluat varmuuskopioida asetukset?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Minne ajansiirron väliaikainen tiedosto tallennetaan?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr "Mihin haluat asettaa oletus tallennus sijainnin?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "Minkä ohjelman haluat tallentaa pysyvästi?"
 
@@ -22972,6 +22985,9 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Valitse hyväksyttävä hakemisto."
 
 #~ msgid "Aspect long"
 #~ msgstr "Kuvasuhde"

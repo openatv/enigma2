@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: Yon Esmit <yonesmit@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -5497,6 +5497,10 @@ msgstr "Registro actual de bloqueos"
 
 msgid "Current installed"
 msgstr "Actual instalado"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 # PiPSetup.py
 #, python-format
@@ -11726,6 +11730,9 @@ msgstr "Configuración de la lista de películas"
 msgid "Movie Player Actions"
 msgstr "Selección de película"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Selección de película"
 
@@ -13612,9 +13619,6 @@ msgstr "Seleccione un nuevo sub-servicio..."
 msgid "Please select a subservice..."
 msgstr "Seleccione un programa…"
 
-msgid "Please select an acceptable directory."
-msgstr ""
-
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Seleccione un tema..."
@@ -14839,6 +14843,9 @@ msgstr "Detener retransmisión al grabar"
 #
 msgid "Recordings always have priority"
 msgstr "Las grabaciones siempre tienen prioridad"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #
 #, fuzzy
@@ -16273,6 +16280,9 @@ msgstr "Seleccionar ubicación"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Seleccionar un sintonizador"
@@ -17123,11 +17133,11 @@ msgstr "Configurar la relación de aspecto de la pantalla."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Configura la ubicación por defecto de tus grabaciones instantáneas. Pulsa ‘OK’ para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Configura la ubicación por defecto de tus grabaciones. Pulsa 'OK' para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Configura la ubicación por defecto de tus archivos Timeshift. Pulsa 'OK' para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Configura la ubicación por defecto de tus grabaciones. Pulsa 'OK' para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Configura la ubicación por defecto de tus temporizadores. Pulsa 'OK' para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
@@ -22749,6 +22759,9 @@ msgstr "¿Dónde quiere hacer el copiado de seguridad de sus ajustes?"
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "¿Dónde quieres guardar las grabaciones temporales de Timeshift?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "¿Qué programa quieres guardar permanentemente?"

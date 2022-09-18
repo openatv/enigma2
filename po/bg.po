@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -5217,6 +5217,10 @@ msgstr "Текущ дневник на сривовете"
 
 msgid "Current installed"
 msgstr "Текущо инсталиран"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10880,6 +10884,9 @@ msgstr "Настройка на списъка с филми"
 msgid "Movie Player Actions"
 msgstr "Действия на филмовия плейър"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Избор на филм"
 
@@ -12535,9 +12542,6 @@ msgstr "Моля, изберете subservice..."
 msgid "Please select a subservice..."
 msgstr "Моля, изберете subservice..."
 
-msgid "Please select an acceptable directory."
-msgstr "Моля, изберете приемлива директория."
-
 msgid "Please select an aspect ratio..."
 msgstr "Моля, изберете аспектното съотношение..."
 
@@ -13653,6 +13657,9 @@ msgstr "Записите прекратяват стрийминга"
 
 msgid "Recordings always have priority"
 msgstr "Записите винаги имат предимство"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Записи"
@@ -14931,6 +14938,9 @@ msgstr "Изберете местоположение"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Изберете Quad Channels"
 
@@ -15711,11 +15721,11 @@ msgstr "Задайте съотношението на иконите за ус�
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Задайте местоположението по подразбиране за вашите моментални записи. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Задайте местоположението по подразбиране за записите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Задайте местоположението по подразбиране за файловете ви за временно преместване. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Задайте местоположението по подразбиране за записите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Задайте местоположението по подразбиране за таймерите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
@@ -20780,6 +20790,9 @@ msgstr "Къде искате да архивирате вашите настр�
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Къде да запазя временните TimeShift записи?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Кое събитие искате да запазите перманентно?"
 
@@ -22870,6 +22883,9 @@ msgstr "вашият %s %s може да бъде неизползваем се�
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Моля, изберете приемлива директория."
 
 #~ msgid "Aspect long"
 #~ msgstr "Дълъг гледна точка"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -5473,6 +5473,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Current installed"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -11333,6 +11337,9 @@ msgstr "Movie List Settings"
 msgid "Movie Player Actions"
 msgstr "Movie selection"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Movie selection"
 
@@ -13062,9 +13069,6 @@ msgstr "Please select a sub service..."
 msgid "Please select a subservice..."
 msgstr "Please select a subservice..."
 
-msgid "Please select an acceptable directory."
-msgstr ""
-
 msgid "Please select an aspect ratio..."
 msgstr "Please select an aspect ratio..."
 
@@ -14206,6 +14210,9 @@ msgstr "Merekam batalkan streaming"
 
 msgid "Recordings always have priority"
 msgstr "Perekaman selalu diutamakan"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #, fuzzy
 msgid "Records"
@@ -15518,6 +15525,9 @@ msgstr "Select Location"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Select Quad Channels"
 
@@ -16319,11 +16329,11 @@ msgstr "Configure the aspect ratio of the screen."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
@@ -21533,6 +21543,9 @@ msgstr "Where do you want to backup your settings?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Where do you want to save temporary time shift recordings?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Which event do you want to save permanently?"

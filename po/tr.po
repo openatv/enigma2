@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -5462,6 +5462,10 @@ msgstr "Mevcut kilitlenme günlüğü"
 
 msgid "Current installed"
 msgstr "Mevcut yüklü"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -11483,6 +11487,9 @@ msgstr "Film Listesi Kurulumu"
 msgid "Movie Player Actions"
 msgstr "Film Oynatıcı Eylemleri"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 #
 msgid "Movie selection"
 msgstr "Film seçimi"
@@ -13275,9 +13282,6 @@ msgstr "Lütfen bir alt servis seçin..."
 msgid "Please select a subservice..."
 msgstr "Lütfen bir alt servis seçin..."
 
-msgid "Please select an acceptable directory."
-msgstr "Lütfen yeni kasör için bir ad girin."
-
 msgid "Please select an aspect ratio..."
 msgstr "Lütfen bir en boy oranı seçin ..."
 
@@ -14478,6 +14482,9 @@ msgstr "Kayıtlar akışı durdurur"
 #
 msgid "Recordings always have priority"
 msgstr "Kayıt işlemi önceliklidir"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #
 msgid "Records"
@@ -15848,6 +15855,9 @@ msgstr "Yer Seç"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Dört Kanal Seç"
 
@@ -16664,11 +16674,11 @@ msgstr "Servis pikonlarının en boy oranını ayarlayın."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
@@ -22020,6 +22030,9 @@ msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Geçici zaman-kaydırma kayıtları nerede saklansın?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Hangi etkinliği kalıcı olarak saklamak istersiniz?"
 
@@ -24291,6 +24304,9 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Lütfen yeni kasör için bir ad girin."
 
 #~ msgid "Aspect long"
 #~ msgstr "Boy uzun"

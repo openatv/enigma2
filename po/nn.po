@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -5753,6 +5753,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "Installert image"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -12016,6 +12020,9 @@ msgstr "Filmliste Oppsett"
 msgid "Movie Player Actions"
 msgstr "Film utvalg"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 #
 msgid "Movie selection"
 msgstr "Film utvalg"
@@ -13890,9 +13897,6 @@ msgstr "Vennligst velg en underkanal..."
 msgid "Please select a subservice..."
 msgstr "Vennligst velg en underkanal"
 
-msgid "Please select an acceptable directory."
-msgstr ""
-
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -15109,6 +15113,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Innspillinger har alltid prioritet"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #
 #, fuzzy
@@ -16526,6 +16533,9 @@ msgstr ""
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr ""
 
@@ -17365,11 +17375,11 @@ msgstr "Angi en beskrivelse av opptaket."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for dine innspillinger. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Angi standard plassering for opptakene dine. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for timeshift-filer. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Angi standard plassering for opptakene dine. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Angi standard plassering for timeren. Trykk 'OK' for å legge til nye plasseringer, velg venstre/høyre for å velge en eksisterende plassering."
@@ -22902,6 +22912,9 @@ msgstr "Hvor vil du lagre backup av dine innstillinger?"
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hvor du vil lagre midlertidige timeshift-opptak?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Hvilket program du vil lagre permanent?"

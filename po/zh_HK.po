@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -5491,6 +5491,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "將安裝的"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Current mode: %s \n"
@@ -11527,6 +11531,9 @@ msgstr "已錄節目列表功能表"
 msgid "Movie Player Actions"
 msgstr "電影位置"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr ""
 
@@ -13323,9 +13330,6 @@ msgstr ""
 msgid "Please select a subservice..."
 msgstr "請選擇一個字幕..."
 
-msgid "Please select an acceptable directory."
-msgstr ""
-
 #, fuzzy
 msgid "Please select an aspect ratio..."
 msgstr "請選擇一個字幕..."
@@ -14509,6 +14513,9 @@ msgstr "錄製一個連續的流"
 
 msgid "Recordings always have priority"
 msgstr "總是優先錄製"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #, fuzzy
 msgid "Records"
@@ -15879,6 +15886,9 @@ msgstr "選擇位置"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "選擇Softcam:"
@@ -16701,10 +16711,10 @@ msgstr ""
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
@@ -22104,6 +22114,9 @@ msgstr "在哪里備份您的設定?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "在哪里保存時光平移臨時錄製的內容?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
 
 #, fuzzy
 msgid "Which event do you want to save permanently?"

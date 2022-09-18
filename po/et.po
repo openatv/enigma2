@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -5312,6 +5312,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Hetkel paigaldatud"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -11193,6 +11197,9 @@ msgstr "Filmilisti seaded"
 msgid "Movie Player Actions"
 msgstr "Salvestised"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Salvestised"
 
@@ -12937,9 +12944,6 @@ msgstr "Vali alamkanal"
 msgid "Please select a subservice..."
 msgstr "Vali alamkanal"
 
-msgid "Please select an acceptable directory."
-msgstr ""
-
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Vali kuvasuhe"
@@ -14091,6 +14095,9 @@ msgstr "Salvestused katkestavad voogesituse"
 
 msgid "Recordings always have priority"
 msgstr "Salvestused omavad alati eelist"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Salvestised"
@@ -15404,6 +15411,9 @@ msgstr "Vali asukoht"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vali Quad PiP kanalid"
 
@@ -16207,11 +16217,11 @@ msgstr "Määra pikonite kuvasuhe."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
@@ -21467,6 +21477,9 @@ msgstr "Kuhu teha varukoopia seadistustest?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kuhu talletada ajutised ajanihke failid?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Millise saate soovid lõplikult talletada?"

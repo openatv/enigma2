@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-09-17 13:18+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -5236,6 +5236,10 @@ msgstr "Aktuální protokol o haváriích"
 
 msgid "Current installed"
 msgstr "Aktuálně nainstalovaný"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10908,6 +10912,9 @@ msgstr "Nastavení filmotéky"
 msgid "Movie Player Actions"
 msgstr "Akce přehrávače filmů"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Výběr filmů"
 
@@ -12563,9 +12570,6 @@ msgstr "Prosím vyberte podprogram..."
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podprogram..."
 
-msgid "Please select an acceptable directory."
-msgstr "Vyberte požadovaný adresář."
-
 msgid "Please select an aspect ratio..."
 msgstr "Nastavení poměru stran obrazu..."
 
@@ -13681,6 +13685,9 @@ msgstr "Nahrávání zruší streamování"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Nahrávky"
@@ -14960,6 +14967,9 @@ msgstr "Vyberte umístění"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vybrat Quad Channels"
 
@@ -15740,11 +15750,11 @@ msgstr "Nastavit poměr stran pikon programů."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro okamžité nahrávání. Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Nastavení výchozího umístění pro nahrávání.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro soubory Timeshiftu.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Nastavení výchozího umístění pro nahrávání.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavení výchozího umístění pro časovače.Stiskem OK přidáte nové místo, výběrem L/P vyberete existující umístění."
@@ -20849,6 +20859,9 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Který pořad chcete uložit trvale?"
 
@@ -22944,6 +22957,9 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Vyberte požadovaný adresář."
 
 #~ msgid "Aspect long"
 #~ msgstr "Aspekt - dlouhý stisk"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 11:20+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1908,7 +1908,7 @@ msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr "Заплановане завдання таймера живлення вимагає перезавантаження Вашого %s %s. Перезавантажити зараз?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
-msgstr "Заплановане завдання таймера живлення вимагає перезавантаження GUI. Зробити це зараз?"
+msgstr "Заплановане завдання таймера живлення вимагає перезавантаження інтерфеса. Зробити це зараз?"
 
 #, python-format
 msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
@@ -2008,7 +2008,7 @@ msgid ""
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 "Таймер запису не запущений!\n"
-"Перервати псевдо записи (наприклад, оновити ЕПГ) і спробувати ще раз?\n"
+"Перервати псевдозаписи (наприклад, оновити EPG) і спробувати ще раз?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2192,7 +2192,7 @@ msgid "Add"
 msgstr "Додати"
 
 msgid "Add AutoTimer"
-msgstr "Додати Автотаймер"
+msgstr "Додати автотаймер"
 
 msgid "Add Bookmark"
 msgstr "Додати закладку"
@@ -2249,7 +2249,7 @@ msgid "Add a timer for the current event"
 msgstr "Додати таймер для поточної передачы"
 
 msgid "Add an AutoTimer for the current event"
-msgstr "Додати Автотаймер для поточного події"
+msgstr "Додати автотаймер для поточного події"
 
 msgid "Add current folder to bookmarks"
 msgstr "Додати поточну теку в закладки"
@@ -2480,10 +2480,10 @@ msgid "Allow unsupported modes"
 msgstr "Дозволити режими, що не підтримуються"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Дозволити %s %s для регулярного читання даних ЕПГ."
+msgstr "Дозволити %s %s для регулярного читання даних EPG."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Дозволити %s %s для регулярного запису даних ЕПГ."
+msgstr "Дозволити %s %s для регулярного запису даних EPG."
 
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Дозволяє використовувати пульт дистанційного керування телевізора для керування приймачем."
@@ -2683,7 +2683,7 @@ msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Ви впевнені, що хочете видалити всі вибрані логи:\n"
 
 msgid "Are you sure you want to delete the EPG data from:\n"
-msgstr "Ви дійсно бажаєте видалити дані ЕПГ з:\n"
+msgstr "Ви дійсно бажаєте видалити дані EPG з:\n"
 
 msgid "Are you sure you want to delete this image?"
 msgstr "Ви впевнені, що хочете видалити цей імідж?"
@@ -2698,7 +2698,7 @@ msgid "Are you sure you want to exit this wizard?"
 msgstr "Ви дійсно бажаєте вийти з помічника?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr "Ви дійсно бажаєте перезавантажити дані ЕПГ з:\n"
+msgstr "Ви дійсно бажаєте перезавантажити дані EPG з:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
 msgstr "Ви дійсно бажаєте перезавантажити мережеві інтерфейси?"
@@ -2731,7 +2731,7 @@ msgstr ""
 "Приймач буде перезавантажений після відновлення"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr "Ви дійсно бажаєте зберегти Кеш ЕПГ до:\n"
+msgstr "Ви дійсно бажаєте зберегти кеш EPG до:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Ви дійсно бажаєте надіслати цей лог:\n"
@@ -3139,7 +3139,7 @@ msgid "Backup Mode: Flash Online\n"
 msgstr "Режим резервного копіювання: Повна копія\n"
 
 msgid "Backup Mode: USB Recovery\n"
-msgstr "Режим збереження: USB Відновлення\n"
+msgstr "Режим збереження: USB відновлення\n"
 
 msgid "Backup Settings"
 msgstr "Збереження Налаштувань"
@@ -3352,10 +3352,10 @@ msgid "Boost green"
 msgstr "Додати зелений"
 
 msgid "Boot ID"
-msgstr "ID Завантажувача"
+msgstr "ID завантажувача"
 
 msgid "Boot information"
-msgstr "Інформація загрузчика"
+msgstr "Інформація завантажувача"
 
 msgid "Boot loader update required!"
 msgstr "Потрібне оновлення завантажувача!"
@@ -3447,7 +3447,7 @@ msgid "Buffers"
 msgstr "Буфери"
 
 msgid "Build Brand"
-msgstr "Назва Збірки"
+msgstr "Назва збірки"
 
 msgid "Build Information"
 msgstr "Інформація про збірку"
@@ -3770,7 +3770,7 @@ msgid "Can not delete timer"
 msgstr "Неможливо видалити таймер"
 
 msgid "Can not download EPG"
-msgstr "Неможливо завантажити ЕПГ"
+msgstr "Неможливо завантажити EPG"
 
 msgid "Can not download current region details"
 msgstr "Неможливо завантажити поточну інформацію про регіон"
@@ -4272,10 +4272,10 @@ msgid "Choose the location for crash and debug logs."
 msgstr "Виберіть каталог для крешлогів."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr "Виберіть каталог для зберігання даних ЕПГ, коли %s %s вимкнений. Каталогповинен бути доступний при завантаженні."
+msgstr "Виберіть каталог для зберігання даних EPG, коли %s %s вимкнений. Каталог повинен бути доступний при завантаженні."
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr "Виберіть ім'я файлу для даних ЕПГ, коли %s %s вимкнений. Це може бути корисно, якщо використовуються кілька приймачів."
+msgstr "Виберіть ім'я файлу для даних EPG, коли %s %s вимкнений. Це може бути корисно, якщо використовуються кілька приймачів."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Choose the style/order in which items are displayed in help windows."
@@ -4606,7 +4606,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "Вкажіть, чи потрібно назву каналів в селекторі каналів показати в вигляді стовпця (по ширині)."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr "Налаштування збереження epg.dat."
+msgstr "Налаштуйте, чи потрібно взагалі зберігати epg.dat."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Вкажіть, чи потрібно показати пікони при швидкому перемиканні."
@@ -4798,7 +4798,7 @@ msgid "Configure the possible rewind speeds."
 msgstr "Налаштування можливих швидкостей при перемотці назад."
 
 msgid "Configure the primary EPG language."
-msgstr "Налаштування основної мови телегіду."
+msgstr "Налаштування основної мови EPG."
 
 msgid "Configure the refresh rate of the screen."
 msgstr "Вкажіть частоту оновлення екрану."
@@ -4813,7 +4813,7 @@ msgid "Configure the second subtitle language."
 msgstr "Налаштування другої мови субтитрів."
 
 msgid "Configure the secondary EPG language."
-msgstr "Налаштування другої мови телегіду."
+msgstr "Налаштування другої мови EPG."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Налаштуйте час пропуску при натисканні клавіш '1'/'3'."
@@ -4879,7 +4879,7 @@ msgid "Configure to show channel names, numbers, picons or all three inside EPG.
 msgstr "Налаштуйте відображення назв каналів, чисел, піконів, або всіх трьох у EPG."
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr "Налаштування відображення назви каналів, піконів, або як в ЕПГ."
+msgstr "Налаштування відображення назви каналів, піконів, або як в EPG."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr "Налаштування звичайний чи жирний шрифт TrueType для відтворення телетексту."
@@ -4894,7 +4894,7 @@ msgid "Configure whether multi channel sound tracks should be downmixed to stere
 msgstr "Налаштуйте, чи слід змішувати багатоканальну звукову доріжку в стерео звук."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
-msgstr "Вкажіть, коли виводити значок 'запис' на дисплей приймача, тільки при записі передач або при потоковій передачі і псевдо записах також (наприклад, при оновленні ЕПГ)."
+msgstr "Вкажіть, коли виводити значок 'запис' на дисплей приймача, тільки при записі передач або при потоковій передачі і псевдозаписах також (наприклад, при оновленні EPG)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Налаштування формату виведення кольору виході SCART."
@@ -5120,7 +5120,7 @@ msgid "Could not save configuration file %s!"
 msgstr "Не вдалося зберегти файл конфігурації %s!"
 
 msgid "Country"
-msgstr "Країни"
+msgstr "Країна"
 
 msgid "Country for EPG event genre information"
 msgstr "Інформація про жанр передачі EPG"
@@ -5243,6 +5243,10 @@ msgstr "Поточний журнал збоїв"
 
 msgid "Current installed"
 msgstr "Встановлено поточний"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "Поточне місцезнаходження '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5591,7 +5595,7 @@ msgid "Debug %d/%d"
 msgstr "Налагодження %d/%d"
 
 msgid "Debug Information"
-msgstr "Інформація про налагодження"
+msgstr "Налагоджувальна інфо"
 
 msgid "Debug Log Information"
 msgstr "Інформація логу налагодження"
@@ -5796,7 +5800,7 @@ msgid "Delete Confirmation"
 msgstr "Підтвердження видалення"
 
 msgid "Delete EPG"
-msgstr "Видалити ЕПГ"
+msgstr "Видалити EPG"
 
 msgid "Delete Image"
 msgstr "Видалення іміджу"
@@ -6562,46 +6566,46 @@ msgid "EJECTCD"
 msgstr "ВидалитиCD"
 
 msgid "EPG"
-msgstr "ЕПГ"
+msgstr "Телегід(EPG)"
 
 msgid "EPG Actions"
-msgstr "Дія ЕПГ"
+msgstr "Дія EPG"
 
 msgid "EPG Bouquet Actions"
-msgstr "Дія ЕПГ з фаворитами"
+msgstr "Дія EPG з фаворитами"
 
 msgid "EPG Cache Check"
-msgstr "Перевірити кеш ЕПГ"
+msgstr "Перевірити кеш EPG"
 
 msgid "EPG Channel/Service Selection"
 msgstr "Вибір каналу/послуг EPG"
 
 msgid "EPG Display Actions"
-msgstr "Дії відображення ЕПГ"
+msgstr "Дії відображення EPG"
 
 msgid "EPG Navigation Actions"
-msgstr "Дії навігації по ЕПГ"
+msgstr "Дії навігації по EPG"
 
 msgid "EPG Other Actions"
-msgstr "Інші дії ЕПГ"
+msgstr "Інші дії EPG"
 
 msgid "EPG Search"
-msgstr "Пошук ЕПГ"
+msgstr "Пошук EPG"
 
 msgid "EPG Selection"
-msgstr "Вибір ЕПГ"
+msgstr "Вибір EPG"
 
 msgid "EPG Settings"
-msgstr "ЕПГ налаштування"
+msgstr "Налаштування EPG"
 
 msgid "EPG Setup"
-msgstr "Налаштування ЕПГ"
+msgstr "Налаштування EPG"
 
 msgid "EPG button mode"
-msgstr "Режим кнопки ЕПГ"
+msgstr "Режим кнопки EPG"
 
 msgid "EPG filename"
-msgstr "Назва файлу ЕПГ"
+msgstr "Назва файлу EPG"
 
 msgid ""
 "EPG key : Switch to channel list\n"
@@ -6610,9 +6614,9 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 "Кнопка EPG: перемикання на список каналів\n"
-"Кнопка Ok: вилучити вибраний канал\n"
+"Кнопка OK: вилучити вибраний канал\n"
 "Кнопка PVR: Введіть назву каналу\n"
-"Кнопка Exit: Завершити редагування каналу"
+"Кнопка EXIT: Завершити редагування каналу"
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -6621,21 +6625,21 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 "Кнопка EPG: перемикання на вхід Quad PiP\n"
-"Кнопка Ok: Додати до нового запису\n"
+"Кнопка OK: Додати до нового запису\n"
 "Кнопка PVR: Введіть назву каналу\n"
-"Кнопка Exit: Завершити редагування каналу"
+"Кнопка EXIT: Завершити редагування каналу"
 
 msgid "EPG language selection 1"
-msgstr "Вибір мови ЕПГ 1"
+msgstr "Вибір мови EPG 1"
 
 msgid "EPG language selection 2"
-msgstr "Вибір мови ЕПГ 2"
+msgstr "Вибір мови EPG 2"
 
 msgid "EPG location"
-msgstr "Розташування ЕПГ"
+msgstr "Розташування EPG"
 
 msgid "EPGSearch"
-msgstr "ЕПГ Пошук"
+msgstr "Пошук EPG"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -6786,7 +6790,7 @@ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Увімкнути зміщення Dolby Digital / Dolby AC-3"
 
 msgid "Enable EIT EPG"
-msgstr "Включити EIT ЕПГ"
+msgstr "Включити EIT EPG"
 
 msgid "Enable Fast Channel Change"
 msgstr "Увімкнути швидку зміну каналу"
@@ -6807,19 +6811,19 @@ msgid "Enable InfoBar fade-out"
 msgstr "Включити згасання Інфобару"
 
 msgid "Enable MHW EPG"
-msgstr "Включити MHW ЕПГ"
+msgstr "Включити MHW EPG"
 
 msgid "Enable MiniTV"
 msgstr "Включити Міні-ТБ"
 
 msgid "Enable Netmed EPG"
-msgstr "Включити Netmed ЕПГ"
+msgstr "Увімкнути Netmed EPG"
 
 msgid "Enable Network IP address check"
 msgstr "Включити перевірку мережевої АП-адреси"
 
 msgid "Enable OpenTV EPG"
-msgstr "Включити OpenTV ЕПГ"
+msgstr "Увімкнути OpenTV EPG"
 
 msgid "Enable Quad PiP"
 msgstr "Включити чотирикратний ПіП"
@@ -6843,10 +6847,10 @@ msgid "Enable VPS-Plugin"
 msgstr "Увімкнути VPS-плагін"
 
 msgid "Enable ViaSat EPG"
-msgstr "Включити ViaSat ЕПГ"
+msgstr "Увімкнути ViaSat EPG"
 
 msgid "Enable Virgin EPG"
-msgstr "Включити Virgin ЕПГ"
+msgstr "Увімкнути Virgin EPG"
 
 msgid "Enable Wake On LAN"
 msgstr "Включити функцію Wake On LAN"
@@ -6898,7 +6902,7 @@ msgid "Enable fallback remote receiver"
 msgstr "Включити резервний віддалений приймач"
 
 msgid "Enable freesat EPG"
-msgstr "Включити Freesat ЕПГ"
+msgstr "Увімкнути EPG freesat"
 
 msgid "Enable intro screen"
 msgstr "Включити екран введення"
@@ -7177,7 +7181,7 @@ msgid "Entry text only"
 msgstr "Лише текст введення"
 
 msgid "Epg/Guide"
-msgstr "ЕПГ/Гід"
+msgstr "EPG/Гід"
 
 msgid "Equal to"
 msgstr "Також як"
@@ -7450,7 +7454,7 @@ msgid "Event view:"
 msgstr "Перегляд передачі:"
 
 msgid "EventViewEPG Actions"
-msgstr "Дії ЕПГ при перегляді передач"
+msgstr "Дії EPG при перегляді передач"
 
 msgid "Everyday"
 msgstr "Щоденно"
@@ -7503,7 +7507,7 @@ msgid "Exit"
 msgstr "Вийти"
 
 msgid "Exit EPG"
-msgstr "Вихід з ЕПГ"
+msgstr "Вихід з EPG"
 
 msgid "Exit MAC address configuration"
 msgstr "Вийти з налаштувань МАС-адреси"
@@ -7880,7 +7884,7 @@ msgid "Filesystem check your hard drive"
 msgstr "Перевірка файлової системи Вашого жорсткого диска"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
-msgstr "Використовуйте стандартне ЕПГ каналів, для яких немає IceTV ЕПГ"
+msgstr "Заповніть EPG каналу з EPG трансляції, де для каналу немає EPG IceTV"
 
 msgid "Film-Noir"
 msgstr "Фільм-Нуар"
@@ -7911,7 +7915,7 @@ msgid "Find out more at %s"
 msgstr "Дізнайтеся більше на %s"
 
 msgid "Find similar events in the EPG"
-msgstr "Знайти схожі передачі в ЕПГ"
+msgstr "Знайти схожі передачі в EPG"
 
 msgid "Finding available log files, please wait..."
 msgstr "Пошук доступних файлів журналу, зачекайте..."
@@ -8075,10 +8079,10 @@ msgid "Free flash"
 msgstr "Вільна флеш"
 
 msgid "Free memory"
-msgstr "Вільної пам'яті"
+msgstr "Вільно пам'яті"
 
 msgid "Free memory:"
-msgstr "Вільної пам'яті:"
+msgstr "Вільно пам'яті:"
 
 msgid "Free swap"
 msgstr "Вільно swap"
@@ -8205,14 +8209,14 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Для активації нового скіну необхідно перезавантажити GUI.\n"
+"Для активації нового скіну необхідно перезавантажити інтерфейс.\n"
 "Хочете зробити це зараз?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Для активації нового скіна необхідно перезавантажити GUI\n"
+"Для активації нового скіна необхідно перезавантажити інтерфейс\n"
 "Хочете зробити це зараз?"
 
 msgid "Gabon"
@@ -8412,13 +8416,13 @@ msgid "Grab"
 msgstr "Скріншот"
 
 msgid "Graphical EPG"
-msgstr "Графічний ЕПГ"
+msgstr "Графічний EPG"
 
 msgid "Graphical InfoBar EPG Settings"
-msgstr "Налаштування граф. Інфобару ЕПГ"
+msgstr "Налаштування граф. інфобару EPG"
 
 msgid "GraphicalEPG Settings"
-msgstr "Налаштування Графічного ЕПГ"
+msgstr "Налаштування графічного ЕПГ"
 
 msgid "Graphics"
 msgstr "Графічний"
@@ -8580,7 +8584,7 @@ msgid "Handle wake up from TV"
 msgstr "Включити при включенні ТВ"
 
 msgid "Hard Disk Settings"
-msgstr "Налаштування Жорсткого Диску"
+msgstr "Налаштування жорсткого диску"
 
 msgid "Hard disk standby after"
 msgstr "Відключення HDD через"
@@ -8634,7 +8638,7 @@ msgid "Helps setting up your signal"
 msgstr "Допомагає налаштовувати Ваш сигнал"
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr "Тут можна встановити, що ЕПГ завжди буде відкриватися на поточному каналі, на першому або на одному з обох прайм-тайм. Якщо вибрано невірний час, використовується поточний час."
+msgstr "Тут можна встановити, що EPG завжди буде відкриватися на поточному каналі, на першому або на одному з обох прайм-тайм. Якщо вибрано невірний час, використовується поточний час."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
 msgstr "Тут Ви можете переглядати (але не змінювати) файли, які додаються до резервної копії за замовчуванням (E2-установка, канали, мережі)."
@@ -9211,7 +9215,7 @@ msgid "Info"
 msgstr "Інфо"
 
 msgid "Info (EPG)"
-msgstr "Інфо (ЕПГ)"
+msgstr "Інфо (EPG)"
 
 msgid "Info button (long)"
 msgstr "Кнопка Info (довге натискання)"
@@ -9232,16 +9236,16 @@ msgid "InfoBar"
 msgstr "Інфобар"
 
 msgid "InfoBar EPG"
-msgstr "Інфобар ЕПГ"
+msgstr "Інфобар EPG"
 
 msgid "InfoBar EPG Actions"
-msgstr "Дії для Інфобару EPG"
+msgstr "Дії для інфобару EPG"
 
 msgid "InfoBar EPG Settings"
-msgstr "Налаштування Інфобару ЕПГ"
+msgstr "Налаштування інфобару EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Режим інфобару телегіда"
+msgstr "Режим інфобару EPG"
 
 msgid "InfoBar Event View Actions"
 msgstr "Дії перегляду подій Інфобару"
@@ -9977,7 +9981,7 @@ msgid "Links:"
 msgstr "Посилання:"
 
 msgid "List EPG functions..."
-msgstr "Список функцій ЕПГ..."
+msgstr "Список функцій EPG..."
 
 msgid "List Navigation Actions"
 msgstr "Список дій навігації"
@@ -10020,7 +10024,7 @@ msgid "Load"
 msgstr "Завантажити"
 
 msgid "Load EPG"
-msgstr "Завантаження ЕПГ"
+msgstr "Завантаження EPG"
 
 msgid "Load play list"
 msgstr "Завантаження списку відтворення"
@@ -10418,7 +10422,7 @@ msgid "Maximum no of days"
 msgstr "Максимум днів:"
 
 msgid "Maximum number of days in EPG"
-msgstr "Максимальна кількість днів у ЕПГ"
+msgstr "Максимальна кількість днів у EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Максимальне використання простору диска (MБ):"
@@ -10518,7 +10522,7 @@ msgid "Merging time shift files"
 msgstr "З'єднання файлів таймшифта"
 
 msgid "Merlin EPG Center"
-msgstr "Мерлін-Центр ЕПГ"
+msgstr "Merlin-центр EPG"
 
 msgid "Message"
 msgstr "Повідомлення"
@@ -10742,7 +10746,7 @@ msgid "Move 1 element"
 msgstr "Перемістити 1 елемент"
 
 msgid "Move Left/Right"
-msgstr "Перемістити вліво/вправо"
+msgstr "Переміщення вліво/вправо"
 
 msgid "Move Mode Off"
 msgstr "Переміщення викл"
@@ -10757,7 +10761,7 @@ msgid "Move PiP to main picture"
 msgstr "Перемістити ПІП на основний екран"
 
 msgid "Move Up/Down"
-msgstr "Перемістити Вгору/Вниз"
+msgstr "Перемістити вгору/вниз"
 
 msgid "Move down a line"
 msgstr "Перемістити на позицію вниз"
@@ -10915,6 +10919,9 @@ msgstr "Налаштування списку записів"
 msgid "Movie Player Actions"
 msgstr "Дії для Плеєра записів"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Відтворення відео не може використовувати недійсний/невідповідний каталог."
+
 msgid "Movie selection"
 msgstr "Вибір записів"
 
@@ -10943,7 +10950,7 @@ msgid "Mozambique"
 msgstr "Мозамбік"
 
 msgid "Multi EPG"
-msgstr "Мульти ЕПГ"
+msgstr "Мульти EPG"
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -10964,7 +10971,7 @@ msgid "MultiBoot startup file"
 msgstr "Файл запуску MultiBoot"
 
 msgid "MultiEPG Settings"
-msgstr "Налаштування Мульти ЕПГ"
+msgstr "Налаштування мульти EPG"
 
 msgid "MultiLib"
 msgstr "Multi Lib"
@@ -11858,13 +11865,13 @@ msgid "Open"
 msgstr "Відкрити"
 
 msgid "Open AutoTimer"
-msgstr "Відкрити Автотаймер"
+msgstr "Відкрити автотаймер"
 
 msgid "Open AutoTimerlist"
-msgstr "Відкрити список Автотаймера"
+msgstr "Відкрити список автотаймера"
 
 msgid "Open EPGSearch"
-msgstr "Відкрити пошук ЕПГ"
+msgstr "Відкрити пошук EPG"
 
 msgid "Open IMDb"
 msgstr "Відкрити IMDB"
@@ -12474,7 +12481,7 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Будь ласка, не міняйте ніякі значення, якщо не розумієте що робите!"
 
 msgid "Please don't panic if you see values that look suspicious."
-msgstr "Будь ласка, не панікуйте, якщо Ви бачите значення, які виглядають підозрілими."
+msgstr "Будь ласка, не панікуйте, якщо Ви бачите підозрілі значення."
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Будь ласка, введіть назву нового фавориту"
@@ -12569,9 +12576,6 @@ msgstr "Будь ласка, виберіть підканал..."
 
 msgid "Please select a subservice..."
 msgstr "Будь ласка, виберіть підканал..."
-
-msgid "Please select an acceptable directory."
-msgstr "Виберіть прийнятний каталог."
 
 msgid "Please select an aspect ratio..."
 msgstr "Будь ласка, виберіть співвідношення сторін..."
@@ -12935,16 +12939,16 @@ msgid "PowerTimer Settings"
 msgstr "Налаштування PowerTimer"
 
 msgid "PowerTimer Standby"
-msgstr "Таймер Живлення Режим очікування"
+msgstr "Таймер живлення в режимі очікування"
 
 msgid "PowerTimer deep standby"
-msgstr "Таймер Живлення Глибокий режим очікування"
+msgstr "Таймер живлення в режимі глибокого очікування"
 
 msgid "PowerTimer log"
 msgstr "Лог мененджера живлення"
 
 msgid "PowerTimers"
-msgstr "Таймери Живлення"
+msgstr "Таймери живлення"
 
 msgid "Predefined"
 msgstr "Зумовлене"
@@ -13689,6 +13693,9 @@ msgstr "Записи скасовують потокову передачу"
 msgid "Recordings always have priority"
 msgstr "Запис завжди має перевагу"
 
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Записи можуть працювати неправильно без відповідного каталогу."
+
 msgid "Records"
 msgstr "Записи"
 
@@ -13696,7 +13703,7 @@ msgid "Recovery"
 msgstr "Recovery"
 
 msgid "Recovery Mode"
-msgstr "Режим Відновлення"
+msgstr "Режим відновлення"
 
 msgid "Red"
 msgstr "Червоний"
@@ -14058,13 +14065,13 @@ msgid "Restart Enigma2 to apply the changes?"
 msgstr "Перезавантажте Enigma2, щоб застосувати зміни?"
 
 msgid "Restart GUI"
-msgstr "Перезавантаження GUI"
+msgstr "Перезавантаження інтерфейсу"
 
 msgid "Restart GUI after x crashes"
 msgstr "Перезавантажте графічний інтерфейс після х збоїв"
 
 msgid "Restart GUI now?"
-msgstr "Перезавантажити Графічний інтерфейс зараз?"
+msgstr "Перезавантажити графічний інтерфейс зараз?"
 
 msgid "Restart Network"
 msgstr "Перезавантажити Мережу"
@@ -14082,7 +14089,7 @@ msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "Необхідне перезавантаження, перезавантажити GUI зараз?"
+msgstr "Необхідне перезавантаження, перезавантажити інтерфейс зараз?"
 
 msgid "Restart network and remount connections"
 msgstr "Перезапуск мережі і перемонтуваня підключення"
@@ -14967,6 +14974,9 @@ msgstr "Вибрати місце розташування"
 msgid "Select Movie Location"
 msgstr "Виберіть місце розташування запису"
 
+msgid "Select Playback Location"
+msgstr "Виберіть місце відтворення"
+
 msgid "Select Quad Channels"
 msgstr "Вибір чотирьохекранних каналів"
 
@@ -15747,11 +15757,11 @@ msgstr "Встановити співвідношення сторін піко�
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів миттєвого запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючийкаталог."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів таймшифта. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів таймера. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
@@ -16137,7 +16147,7 @@ msgid "Show Audioselection"
 msgstr "Показати вибір аудіо"
 
 msgid "Show AutoTimer List"
-msgstr "Показати список Автотаймера"
+msgstr "Показати список автотаймера"
 
 msgid "Show Box Portal"
 msgstr "Показати портали тюнера"
@@ -16648,13 +16658,13 @@ msgid "Show the PowerTimer"
 msgstr "Показати Таймер вимкнення"
 
 msgid "Show the SleepTimer"
-msgstr "Показати Таймер сну"
+msgstr "Показати таймер сну"
 
 msgid "Show the information on current event."
 msgstr "Показати інформацію про поточну передачу."
 
 msgid "Show the list of AutoTimers."
-msgstr "Показати список Автотаймерів."
+msgstr "Показати список автотаймерів."
 
 msgid "Show the list of timers."
 msgstr "Показати список таймерів."
@@ -17075,7 +17085,7 @@ msgid "Softcam Actions"
 msgstr "Дії для Softcam"
 
 msgid "Softcam Settings"
-msgstr "Налаштування Ему"
+msgstr "Налаштування емуляторів"
 
 msgid "Softcams"
 msgstr "емулятори"
@@ -17561,14 +17571,14 @@ msgid "Streaming Information Actions"
 msgstr "Дії потокової інформації"
 
 msgid "Streaming Tuner Information"
-msgstr "Інформація про Потоковий тюнер"
+msgstr "Інформація про потоковий тюнер"
 
 msgid "Streaming recording ended"
 msgstr "Потоковий запис закінчився"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
-msgstr "Інформація про Потоковий тюнер для%s %s"
+msgstr "Інформація про потоковий тюнер для%s %s"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17866,7 +17876,7 @@ msgid "System Info"
 msgstr "Системна інформація"
 
 msgid "System Information"
-msgstr "Інформація про Систему"
+msgstr "Системна інфо"
 
 msgid "System Information Actions"
 msgstr "Системні інформаційні дії"
@@ -17881,7 +17891,7 @@ msgid "System Setup"
 msgstr "Налаштування Системи"
 
 msgid "System information"
-msgstr "Інформація про систему"
+msgstr "Системна інфо"
 
 msgid "System partition free space:"
 msgstr "Вільне місце системного розділу:"
@@ -17914,7 +17924,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 17.09.2022"
+msgstr "Переклад: kvinto - 18.09.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18130,7 +18140,7 @@ msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Плагін Автотаймер не встановлено!\n"
+"Плагін автотаймер не встановлено!\n"
 "Будь ласка, спочатку встановіть його."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
@@ -18547,7 +18557,7 @@ msgid "This is the currently selected locale.  [%s]"
 msgstr "Це вибраний зараз регіон.  [%s]"
 
 msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
-msgstr "Це початкове/зміщення гучності за замовчуванням, застосоване до будь-яких каналів, доданих у список регулювання гучності."
+msgstr "Це початкове/за замовчуванням зміщення гучності, застосоване до будь-яких каналів, доданих до списку налаштування гучності."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Це порядок передачі команд DiSEqC в систему. Порядок повинен точно відповідати порядку, коли фізичні пристрої розташовані вздовж сигнального кабелю (починаючи з кінця приймача)."
@@ -19313,7 +19323,7 @@ msgid "Tuner Configuration"
 msgstr "Конфігурація тюнера"
 
 msgid "Tuner Information"
-msgstr "Інформація про Тюнер"
+msgstr "Інформація про тюнер"
 
 msgid "Tuner Settings"
 msgstr "Налаштування тюнера"
@@ -19378,7 +19388,7 @@ msgid ""
 msgstr ""
 "Турбо: Одне перезавантаження після перепрошивки\n"
 "Швидко: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення\n"
-"Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в GUI"
+"Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в інтерфейсі"
 
 msgid "Turkey"
 msgstr "Туреччина"
@@ -20856,6 +20866,9 @@ msgstr "Де хочете зробити копію своїх налаштув�
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Де зберігати тимчасові записи timeshift?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr "Де Ви бажаєте встановити місце розташування відео за замовчуванням?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "Яку подію ви хочете зберегти назавжди?"
 
@@ -21251,7 +21264,7 @@ msgstr "Ваш %s %s перезавантажується"
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
-msgstr "Ваш %s %s перезавантажується в Режимі відновлення"
+msgstr "Ваш %s %s перезавантажується в режимі відновлення"
 
 #, python-format
 msgid "Your %s %s is shutting down"
@@ -22951,6 +22964,9 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Виберіть прийнятний каталог."
 
 #~ msgid "Aspect long"
 #~ msgstr "Широкоформатний вигляд"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 02:57+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -5218,6 +5218,10 @@ msgstr "Registro di arresto anomalo attuale"
 
 msgid "Current installed"
 msgstr "Attualmente installato"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "La posizione corrente è '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10886,6 +10890,9 @@ msgstr "Impostazioni lista registrazioni"
 msgid "Movie Player Actions"
 msgstr "Azioni del riproduttore di film"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "La riproduzione del filmato potrebbe non utilizzare una directory non valida/inappropriata."
+
 msgid "Movie selection"
 msgstr "Selezione registrazione"
 
@@ -12541,9 +12548,6 @@ msgstr "Seleziona un sotto servizio..."
 msgid "Please select a subservice..."
 msgstr "Seleziona un sotto servizio..."
 
-msgid "Please select an acceptable directory."
-msgstr "Seleziona una directory accettabile."
-
 msgid "Please select an aspect ratio..."
 msgstr "Seleziona una proporzione..."
 
@@ -13659,6 +13663,9 @@ msgstr "Registrazioni interrompono lo streaming"
 
 msgid "Recordings always have priority"
 msgstr "Registrazioni hanno sempre la priorità"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Le registrazioni potrebbero non funzionare correttamente senza una directory accettabile."
 
 msgid "Records"
 msgstr "Registrazioni"
@@ -14936,6 +14943,9 @@ msgstr "Seleziona località"
 msgid "Select Movie Location"
 msgstr "Seleziona posizione film"
 
+msgid "Select Playback Location"
+msgstr "Seleziona posizione riproduzione"
+
 msgid "Select Quad Channels"
 msgstr "Seleziona un canale quadruplo"
 
@@ -15716,11 +15726,11 @@ msgstr "Imposta le proporzioni delle icone di servizio."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Imposta la posizione predefinita per le tue registrazioni istantanee. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Imposta la posizione predefinita per le tue registrazioni. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Imposta la posizione predefinita per i tuoi file timeshift. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Imposta la posizione predefinita per le tue registrazioni. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Imposta la posizione predefinita per i tuoi timer. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
@@ -20823,6 +20833,9 @@ msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Dove salvo le registrazioni timeshift temporanee?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr "Dove vuoi impostare la posizione predefinita dei film?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "Quale evento vuoi salvare in modo permanente?"
 
@@ -22917,6 +22930,9 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Seleziona una directory accettabile."
 
 #~ msgid "Aspect long"
 #~ msgstr "Aspetto lungo"

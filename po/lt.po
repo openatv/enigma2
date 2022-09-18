@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-06-30 16:10+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -5260,6 +5260,10 @@ msgstr "Dabartinis gedimų žurnalas"
 
 msgid "Current installed"
 msgstr "Dabar įdiegtas atvaizdas"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10935,6 +10939,9 @@ msgstr "Filmų sąrašo parametrai"
 msgid "Movie Player Actions"
 msgstr "Filmo grotuvo veiksmai"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Filmo pasirinkimas"
 
@@ -12590,9 +12597,6 @@ msgstr "Pasirinkite subkanalą..."
 msgid "Please select a subservice..."
 msgstr "Pasirinkite subkanalą..."
 
-msgid "Please select an acceptable directory."
-msgstr "Pasirinkite priimtiną katalogą."
-
 msgid "Please select an aspect ratio..."
 msgstr "Pasirinkite vaizdo formato santykį..."
 
@@ -13708,6 +13712,9 @@ msgstr "Įrašai nutraukia transliaciją"
 
 msgid "Recordings always have priority"
 msgstr "Pirmenybę skirti vaizdo įrašymui"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Įrašai"
@@ -14987,6 +14994,9 @@ msgstr "Pasirinkite vietą"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
 
@@ -15767,11 +15777,11 @@ msgstr "Nustatykite kanalų logotipų proporciją."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
@@ -20874,6 +20884,9 @@ msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kur norite išsaugoti laikinus laiko poslinkio įrašus?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Kurio įvykio įrašą norite išsaugoti visam laikui?"
 
@@ -22969,6 +22982,9 @@ msgstr "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo va
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Pasirinkite priimtiną katalogą."
 
 #~ msgid "Aspect long"
 #~ msgstr "Formatas (ilgai)"

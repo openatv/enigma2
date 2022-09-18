@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-08-27 16:02+0000\n"
 "Last-Translator: NickerSK <nickersk@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -5246,6 +5246,10 @@ msgstr "Aktuálny záznam o páde"
 
 msgid "Current installed"
 msgstr "Práve nainštalované"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10918,6 +10922,9 @@ msgstr "Nastavenie zoznamu filmov"
 msgid "Movie Player Actions"
 msgstr "Akcie pre prehrávač filmov"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Výber filmov"
 
@@ -12573,9 +12580,6 @@ msgstr "Prosím vyberte podradenú stanicu..."
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podradenú stanicu..."
 
-msgid "Please select an acceptable directory."
-msgstr "Vyberte prijateľný priečinok."
-
 msgid "Please select an aspect ratio..."
 msgstr "Prosím vyberte pomer strán..."
 
@@ -13691,6 +13695,9 @@ msgstr "Prerušenie streamovania nahrávkami"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávanie má vždy prednosť"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Nahrávky"
@@ -14970,6 +14977,9 @@ msgstr "Vybrať umiestnenie"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vyberte kanály Quad"
 
@@ -15750,11 +15760,11 @@ msgstr "Nastavte pomer strán prog. ikon staníc."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavenie umiestnenia pre okamžité nahrávanie. Stlačte tlačidlo 'OK' pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte nové umiestnenie."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Nastavenie predvoleného umiestnenia pre nahrávania. Stlačte tlačidlo 'OK' pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte nové umiestnenie."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavenie umiestnenia pre súbory timeshift. Stlačte tlačidlo 'OK' pre pridanie nového umiestnenia, výberom doľava/doprava vyberte existujúce umiestnenie."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Nastavenie predvoleného umiestnenia pre nahrávania. Stlačte tlačidlo 'OK' pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte nové umiestnenie."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavenie predvoleného umiestnenia pre časovač. Stlačte tlačidlo 'OK' pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte nové umiestnenie."
@@ -20830,6 +20840,9 @@ msgstr "Kam chcete zálohovať svoje nastavenia?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam uložiť dočasné záznamy s posunom času?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Ktorú udalosť chcete uložiť natrvalo?"
 
@@ -22925,6 +22938,9 @@ msgstr "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s 
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Vyberte prijateľný priečinok."
 
 #~ msgid "Aspect long"
 #~ msgstr "Pomer - dlho"

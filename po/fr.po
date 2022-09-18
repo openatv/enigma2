@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -5230,6 +5230,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Actuellement installé"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10906,6 +10910,9 @@ msgstr "Configuration de la liste des films"
 msgid "Movie Player Actions"
 msgstr "Actions du lecteur de film"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Sélection des films"
 
@@ -12564,9 +12571,6 @@ msgstr "Veuillez choisir un sous-service..."
 msgid "Please select a subservice..."
 msgstr "Veuillez choisir un sous-service..."
 
-msgid "Please select an acceptable directory."
-msgstr "Veuillez sélectionner un répertoire acceptable."
-
 msgid "Please select an aspect ratio..."
 msgstr "Veuillez choisir un ratio d'aspect…"
 
@@ -13682,6 +13686,9 @@ msgstr "Enregistrements annulent le streaming"
 
 msgid "Recordings always have priority"
 msgstr "Enregistrements toujours prioritaires"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Enregistrements"
@@ -14963,6 +14970,9 @@ msgstr "Choisir l'emplacement"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Sélectionner les canaux quadruples"
 
@@ -15741,11 +15751,11 @@ msgstr "Définissez les proportions des picons de service."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Définir l'emplacement par défaut pour vos enregistrements instantanés. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Définir l'emplacement par défaut pour vos enregistrements. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Défnir l'emplacement pour vos fichier PauseDirect. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Définir l'emplacement par défaut pour vos enregistrements. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Définir l'emplacement pour vos programmations. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
@@ -20836,6 +20846,9 @@ msgstr "Où voulez-vous sauver vos paramètres ?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Où sauvegarder les enregistrements temporaires de timeshift ?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Quel événement voulez-vous sauvegarder de façon permanente ?"
 
@@ -22932,6 +22945,9 @@ msgstr "Votre %s %s pourrait être inutilisable maintenant. Merci de consulter l
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Veuillez sélectionner un répertoire acceptable."
 
 #~ msgid "Aspect long"
 #~ msgstr "Aspect long"

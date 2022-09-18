@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -5230,6 +5230,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Aktuel installleret"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -10961,6 +10965,9 @@ msgstr "Filmliste opsætning"
 msgid "Movie Player Actions"
 msgstr "Filmvalg"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
 msgid "Movie selection"
 msgstr "Filmvalg"
 
@@ -12640,10 +12647,6 @@ msgstr "Vælg venligst en underkanal..."
 msgid "Please select a subservice..."
 msgstr "Vælg venligst en underkanal..."
 
-#, fuzzy
-msgid "Please select an acceptable directory."
-msgstr "Vælg venligst en modtagelsesmappe."
-
 msgid "Please select an aspect ratio..."
 msgstr "Vælg venligst et billedformat..."
 
@@ -13765,6 +13768,9 @@ msgstr "Optagelser afbryder streaming"
 
 msgid "Recordings always have priority"
 msgstr "Optagelser har altid prioritet"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Optagelser"
@@ -15055,6 +15061,9 @@ msgstr "Vælg placering"
 msgid "Select Movie Location"
 msgstr ""
 
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Vælg Firdobbel kanaler"
 
@@ -15847,11 +15856,11 @@ msgstr "Sæt størrelsesforhold for kanal Pikoner."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Sæt standardplaceringen for dine straksoptagelsesfiler. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Sæt standardplaceringen for dine optagelsesfiler. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Sæt standardplaceringen for dine Timeshift-filer. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Sæt standardplaceringen for dine optagelsesfiler. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Sæt standardplaceringen for dine Timere. Tryk 'OK' for at tilføje nye placeringer, vælg venstre/højre for at vælge en eksisterende placering."
@@ -20970,6 +20979,9 @@ msgstr "Hvor vil du lave en kopi af dine indstillinger ?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hvor skal midleridige Timeshift optagelser gemmes ?"
 
+msgid "Where do you want to set as the default movie location?"
+msgstr ""
+
 msgid "Which event do you want to save permanently?"
 msgstr "Hvilken begivenhed ønsker du at gemme permanent ?"
 
@@ -23081,6 +23093,10 @@ msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yde
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Vælg venligst en modtagelsesmappe."
 
 #~ msgid "Aspect long"
 #~ msgstr "Format lang"

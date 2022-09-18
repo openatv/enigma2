@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 16:02+0000\n"
-"PO-Revision-Date: 2022-09-10 17:50+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-18 11:20+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -886,8 +886,8 @@ msgstr[1] "%d Cijfers"
 #, python-format
 msgid "%d Event"
 msgid_plural "%d Events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Programma"
+msgstr[1] "%d Programma's"
 
 #, python-format
 msgid "%d GB"
@@ -1270,7 +1270,7 @@ msgstr "%s is met wachtwoord beveiligd."
 
 #, python-format
 msgid "%s long"
-msgstr ""
+msgstr "%s lang"
 
 #, python-format
 msgid "%s not available."
@@ -2206,10 +2206,10 @@ msgid "Add a RecordTimer"
 msgstr "Opname Timer toevoegen"
 
 msgid "Add a RecordTimer for current event"
-msgstr "Opname Timer toevoegen voor huidig programma"
+msgstr "Opname Timer toevoegen voor het huidige programma"
 
 msgid "Add a ZapTimer for current event"
-msgstr "ZapTimer toevoegen voor huidig programma"
+msgstr "ZapTimer toevoegen voor het huidige programma"
 
 msgid "Add a ZapTimer for next event"
 msgstr "ZapTimer toevoegen voor het volgende programma"
@@ -5331,6 +5331,10 @@ msgid "Current installed"
 msgstr "Momenteel geïnstalleerd"
 
 #, python-format
+msgid "Current location is '%s'."
+msgstr "De huidige locatie is '%s'."
+
+#, python-format
 msgid "Current mode: %s \n"
 msgstr "Huidige modus: %s \n"
 
@@ -6469,7 +6473,7 @@ msgid "Do you want to restore your settings?"
 msgstr "Wilt u uw instellingen nu terugzetten?"
 
 msgid "Do you want to resume this playback?"
-msgstr "Wilt u het afspelen vervolgen?"
+msgstr "Wilt u verder gaan met het afspelen van deze opname?"
 
 msgid ""
 "Do you want to send all selected files:\n"
@@ -6556,7 +6560,7 @@ msgid "Download Softcams"
 msgstr "Download softcams"
 
 msgid "Download and flash images on your %s %s."
-msgstr ""
+msgstr "Online- en Lokaal flashen van uw %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Plug-ins en applicaties downloaden"
@@ -9581,7 +9585,7 @@ msgid "Invalid"
 msgstr "Ongeldig"
 
 msgid "Invalid location!"
-msgstr "Ongeldige locatie"
+msgstr "Ongeldige locatie!"
 
 msgid "Invalid transponder data"
 msgstr "Ongeldige transponderdata"
@@ -11024,6 +11028,9 @@ msgstr "Opnamelijst instellingen"
 msgid "Movie Player Actions"
 msgstr "Opnamelijst Acties"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Er is mogelijk een niet geschikte map voor opnames geselecteerd."
+
 msgid "Movie selection"
 msgstr "Opname selectie"
 
@@ -12364,7 +12371,7 @@ msgid "Pause movie at end"
 msgstr "Pauzeer de weergave"
 
 msgid "Pause playback"
-msgstr "Pauzeer afspelen"
+msgstr "Pauzeer het afspelen"
 
 msgid "Pause/Continue playback"
 msgstr "Pauze / hervat afspelen"
@@ -12533,10 +12540,10 @@ msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Afspelen/bekijk/bewerk/installeer/uitpakken/uitvoeren bestand of map"
 
 msgid "Playback Settings"
-msgstr ""
+msgstr "Weergave instellingen"
 
 msgid "Playback, Recording & Time Shift"
-msgstr "Opname & Timeshift"
+msgstr "Weergave, Opname & Timeshift"
 
 msgid "Playlist"
 msgstr "Afspeellijst"
@@ -12682,9 +12689,6 @@ msgstr "Selecteer een subzender..."
 
 msgid "Please select a subservice..."
 msgstr "Selecteer een sub-zender..."
-
-msgid "Please select an acceptable directory."
-msgstr "A.u.b. een geschikte map opgeven."
 
 msgid "Please select an aspect ratio..."
 msgstr "Selecteer een beeldverhouding..."
@@ -13804,6 +13808,9 @@ msgstr "Annuleer streams bij opname"
 msgid "Recordings always have priority"
 msgstr "Een opname heeft altijd voorrang"
 
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Opnames kunnen mislukken zonder een geschikte opnamelocatie."
+
 msgid "Records"
 msgstr "Opnames"
 
@@ -14142,7 +14149,7 @@ msgid "Reset persistent PIN code"
 msgstr "Reset de pincode"
 
 msgid "Reset playback position"
-msgstr "Zet afspeelpunt terug naar begin"
+msgstr "Zet afspeelpositie terug naar het begin"
 
 msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
 msgstr "Reset de geselecteerde apparaten en bewaar de wijzigingen in uw configuratie door de Groene knop te drukken."
@@ -14926,7 +14933,7 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het beeld is 'gepauzeerd'."
+msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Kies 'Ja' om tijdens een Timeshift-opname m.b.v. de seekbar naar elk gewenst tijdstip, voor- of achteruit, te spoelen."
@@ -15086,7 +15093,10 @@ msgid "Select Location"
 msgstr "Selecteer locatie"
 
 msgid "Select Movie Location"
-msgstr ""
+msgstr "Een opnamelocatie selecteren"
+
+msgid "Select Playback Location"
+msgstr "Selecteer een afspeellocatie"
 
 msgid "Select Quad Channels"
 msgstr "Selecteer Quad zenders"
@@ -15095,7 +15105,7 @@ msgid "Select Software Update"
 msgstr "Selecteer software update"
 
 msgid "Select Time Shift Location"
-msgstr ""
+msgstr "Een locatie selecteren voor Timeshift opnames"
 
 msgid "Select Upgrade Source"
 msgstr "Selecteer de update bron"
@@ -15874,11 +15884,11 @@ msgstr "Selecteer de aspect ratio van de zender picons."
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor 'direkte opnames'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
-msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Stel hier de standaard locatie in voor opnames. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
-
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor Timeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
+
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Stel hier de standaard locatie in voor opnames. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor timers'. Druk op 'OK' om nieuwe locaties toe te voegen; met links/rechts kiest u uit bestaande, reeds vastgelegde locaties."
@@ -19128,7 +19138,7 @@ msgid "Time shift event limit"
 msgstr "Timeshift opname limiet [aantal bestanden]"
 
 msgid "Time shift may not work correctly without an acceptable directory."
-msgstr ""
+msgstr "Timeshift functioneert eventueel niet goed zonder een geschikte opnamelocatie."
 
 msgid "Time shift not possible!"
 msgstr "Timeshift is niet mogelijk!"
@@ -21059,6 +21069,9 @@ msgstr "Waar wilt u een back-up maken van de instellingen?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Waar wilt u de tijdelijke Timeshift opnames opslaan?"
+
+msgid "Where do you want to set as the default movie location?"
+msgstr "Welke map wilt u als standaard opname locatie instellen?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Welk programma wilt u permanent verwijderen?"
@@ -23158,6 +23171,9 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voor
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "A.u.b. een geschikte map opgeven."
 
 #~ msgid "Aspect long"
 #~ msgstr "Aspect lang"
