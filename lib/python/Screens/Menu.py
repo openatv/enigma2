@@ -456,7 +456,6 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self["menu"].setList(menu)
 
 	def layoutFinished(self):
-		# self["menu"].allowNativeKeys(False)
 		self["menu"].setStyle(config.usage.menuEntryStyle.value)
 		self.selectionChanged()
 

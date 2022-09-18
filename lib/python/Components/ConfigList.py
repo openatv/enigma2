@@ -271,7 +271,7 @@ class ConfigListScreen:
 			callback()
 
 	def noNativeKeys(self):
-		self["config"].instance.allowNativeKeys(False)
+		self["config"].instance.enableAutoNavigation(False)
 
 	def handleInputHelpers(self):
 		currConfig = self["config"].getCurrent()

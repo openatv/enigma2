@@ -127,7 +127,7 @@ class MessageBox(Screen, HelpableScreen):
 
 	def layoutFinished(self):
 		if self.list:
-			self["list"].instance.allowNativeKeys(False)  # Override listbox navigation.
+			self["list"].instance.enableAutoNavigation(False)  # Override listbox navigation.
 			self["list"].moveToIndex(self.startIndex)
 		if self.typeIcon:
 			self["icon"].setPixmapNum(self.typeIcon - 1)
