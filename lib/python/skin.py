@@ -598,7 +598,7 @@ def parseTextPadding(value):
 	if value in variables:
 		value = variables[value]
 	padding = [parseInteger(x.strip()) for x in value.split(",")]
-	count = len(offsets)
+	count = len(padding)
 	if count == 1:
 		return padding * 4
 	elif count == 2:
