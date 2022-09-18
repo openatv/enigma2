@@ -4,7 +4,6 @@ from os import listdir, readlink
 from os.path import exists, isfile, join as pathjoin, islink
 from subprocess import PIPE, Popen
 
-from boxbranding import getBoxType
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
@@ -253,7 +252,7 @@ def Refresh_SysSoftCam():
 
 
 def GetBoxName():
-	box = getBoxType()
+	box = MACHINEBUILD
 	machinename = DISPLAYMODEL.lower()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 		box = "ventonhdx"

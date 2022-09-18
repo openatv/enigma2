@@ -1,7 +1,7 @@
 from __future__ import print_function
-from boxbranding import getBoxType
 from os import path as os_path
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
+from Components.SystemInfo import BoxInfo
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
 
@@ -185,7 +185,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() in ('gbquad', 'gbquadplus'):
+			if BoxInfo.getItem("machinebuild") in ('gbquad', 'gbquadplus'):
 				config.pep.sharpness = ConfigSlider(default=256, limits=(0, 256))
 			else:
 				config.pep.sharpness = ConfigSlider(default=0, limits=(0, 256))
@@ -264,7 +264,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			if getBoxType() in ('gbquad', 'gbquadplus'):
+			if BoxInfo.getItem("machinebuild") in ('gbquad', 'gbquadplus'):
 				config.pep.dynamic_contrast = ConfigSlider(default=3, limits=(0, 255))
 			else:
 				config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0, 255))

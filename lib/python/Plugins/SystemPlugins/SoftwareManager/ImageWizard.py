@@ -1,8 +1,6 @@
 from os import W_OK, R_OK, access
 from os.path import isfile, join as pathjoin
 
-from boxbranding import getBoxType
-
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Pixmap import Pixmap
@@ -16,7 +14,7 @@ from .BackupRestore import getBackupFilename, InitConfig as BackupRestore_InitCo
 
 
 BACKUP_FILE = getBackupFilename()
-BOX_TYPE = getBoxType()
+BOX_TYPE = BoxInfo.getItem("machinebuild")
 DISTRO = BoxInfo.getItem("distro")
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()

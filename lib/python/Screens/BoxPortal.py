@@ -7,8 +7,6 @@ from Screens.InfoBar import InfoBar
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 
-from boxbranding import getBoxType
-
 
 def isExtension_installed(pname):
 	try:
