@@ -1,8 +1,8 @@
 <setupxml>
-	<setup key="SoftwareManager" title="SoftwareManagerSetup" showOpenWebif="1">
-        <if conditional="BoxInfo.getItem('model').startswith('et')">
-		    <item level="2" text="Select Software Update" description="Select how your box will upgrade.">config.plugins.softwaremanager.updatetype</item>
-        </if>
+	<setup key="SoftwareManager" title="Software Manager Settings" showOpenWebif="1">
+		<if conditional="BoxInfo.getItem('model').startswith('et')">
+			<item level="2" text="Select Software Update" description="Select how your box will upgrade.">config.plugins.softwaremanager.updatetype</item>
+		</if>
 		<item level="2" text="Overwrite configuration files?" description="Overwrite configuration files during software upgrade?">config.plugins.softwaremanager.overwriteConfigFiles</item>
 		<item level="2" text="Overwrite Setting Files ?" description="Overwrite setting files (channellist) during software upgrade?">config.plugins.softwaremanager.overwriteSettingsFiles</item>
 		<item level="2" text="Overwrite Driver Files ?" description="Overwrite driver files during software upgrade?">config.plugins.softwaremanager.overwriteDriversFiles</item>
