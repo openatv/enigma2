@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
 
@@ -553,7 +552,7 @@ class ChannelContextMenu(Screen):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
+		if int(xres) <= 720 or not BoxInfo.getItem("model") == 'blackbox7405':
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
@@ -596,7 +595,7 @@ class ChannelContextMenu(Screen):
 						f.close()
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()

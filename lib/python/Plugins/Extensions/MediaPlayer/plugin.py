@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import os
 import time
 import random
-from boxbranding import getMachineBrand, getMachineName
 
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad, eServiceReference
 
@@ -26,6 +25,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Components.AVSwitch import AVSwitch
 from Components.config import config
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
 from Tools.BoundFunction import boundFunction
 from .settings import MediaPlayerSetup, Load_defaults
@@ -354,13 +354,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		currPlay = self.session.nav.getCurrentService()
 		sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
 		print("[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % sTagAudioCodec)
-		self.session.open(MessageBox, _("This %s %s cannot decode %s streams!") % (getMachineBrand(), getMachineName(), sTagAudioCodec), type=MessageBox.TYPE_INFO, timeout=20)
+		self.session.open(MessageBox, _("This %s %s cannot decode %s streams!") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), sTagAudioCodec), type=MessageBox.TYPE_INFO, timeout=20)
 
 	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
 		sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
 		print("[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % sTagVideoCodec)
-		self.session.open(MessageBox, _("This %s %s cannot decode %s streams!") % (getMachineBrand(), getMachineName(), sTagVideoCodec), type=MessageBox.TYPE_INFO, timeout=20)
+		self.session.open(MessageBox, _("This %s %s cannot decode %s streams!") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), sTagVideoCodec), type=MessageBox.TYPE_INFO, timeout=20)
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
