@@ -1259,8 +1259,8 @@ class NimManager:
 			elif line.startswith("Supports_Blind_Scan:"):
 				entries[current_slot]["supports_blind_scan"] = (str(line[len("Supports_Blind_Scan:") + 1:]) == "yes")
 			elif line.startswith("Frontend_Device:"):
-				input = int(line[len("Frontend_Device:") + 1:])
-				entries[current_slot]["frontend_device"] = input
+				frontend_device = int(line[len("Frontend_Device:") + 1:])
+				entries[current_slot]["frontend_device"] = frontend_device
 			elif line.startswith("Mode"):
 				# Mode 0: DVB-C
 				# Mode 1: DVB-T
