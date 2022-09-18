@@ -339,7 +339,7 @@ BoxInfo.setItem("ArchIsARM64", ARCHITECTURE == "aarch64" or "64" in ARCHITECTURE
 BoxInfo.setItem("ArchIsARM", ARCHITECTURE.startswith(("arm", "cortex")))
 BoxInfo.setItem("Blindscan", isPluginInstalled("Blindscan"))
 BoxInfo.setItem("BoxName", GetBoxName())
-canImageBackup = not MODEL.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MODEL.startswith('alien')
+canImageBackup = not MACHINEBUILD.startswith('az') and not BRAND.startswith('cube') and not BRAND.startswith('wetek') and not MACHINEBUILD.startswith('alien')
 BoxInfo.setItem("canImageBackup", canImageBackup)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
 BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
