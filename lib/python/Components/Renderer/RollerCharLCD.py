@@ -12,7 +12,7 @@ class RollerCharLCD(VariableText, Renderer):
 		VariableText.__init__(self)
 		self.moveTimerText = None
 		self.delayTimer = None
-		if BoxInfo.getItem("model") in ("vuduo", "sf4008", "beyonwizu4"):
+		if BoxInfo.getItem("machinebuild") in ("vuduo", "sf4008", "beyonwizu4"):
 			self.stringlength = 16
 		else:
 			self.stringlength = 12

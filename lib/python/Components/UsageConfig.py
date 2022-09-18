@@ -1263,7 +1263,7 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
-			if BoxInfo.getItem("model") in ("multibox", "multiboxse", "hd61", "hd66se", "pulse4k", "pulse4kmini", "hd60", "h9twin", "i55se", "h9se", "h9combose", "h9combo", "h10", "h11", "h9", "et7000", "et7100", "et7500", "gbx1", "gbx2", "gbx3", "gbx3h", "et10000", "gbquadplus", "gbquad", "gb800ueplus", "gb800seplus", "gbultraue", "gbultraueh", "gbultrase", "gbipbox", "quadbox2400", "mutant2400", "et7x00", "et8500", "et8500s", "hzero", "h8"):
+			if BoxInfo.getItem("machinebuild") in ("multibox", "multiboxse", "hd61", "hd66se", "pulse4k", "pulse4kmini", "hd60", "h9twin", "i55se", "h9se", "h9combose", "h9combo", "h10", "h11", "h9", "et7000", "et7100", "et7500", "gbx1", "gbx2", "gbx3", "gbx3h", "et10000", "gbquadplus", "gbquad", "gb800ueplus", "gb800seplus", "gbultraue", "gbultraueh", "gbultrase", "gbipbox", "quadbox2400", "mutant2400", "et7x00", "et8500", "et8500s", "hzero", "h8"):
 				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "on" or "off")
 			else:
 				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "enable" or "disable")

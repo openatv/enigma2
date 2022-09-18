@@ -559,12 +559,12 @@ class InfoBarTimeshift:
 		if ts and (not ts.startTimeshift() or self.pts_eventcount == 0):
 			# Update internal Event Counter.
 			self.pts_eventcount += 1
-			if (BoxInfo.getItem("model") == "vuuno" or BoxInfo.getItem("model") == "vuduo") and exists("/proc/stb/lcd/symbol_timeshift"):
+			if (BoxInfo.getItem("machinebuild") == "vuuno" or BoxInfo.getItem("machinebuild") == "vuduo") and exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_timeshift", "w")
 					f.write("0")
 					f.close()
-			elif BoxInfo.getItem("machinebuild") == "u41" and exists("/proc/stb/lcd/symbol_record"):
+			elif BoxInfo.getItem("model") == "u41" and exists("/proc/stb/lcd/symbol_record"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_record", "w")
 					f.write("0")
