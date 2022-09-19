@@ -14,7 +14,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 
 import NavigationInstance
 
@@ -49,7 +49,6 @@ DFLASH = isPluginInstalled("dFlash")
 DBACKUP = isPluginInstalled("dBackup")
 POSSETUP = isPluginInstalled("PositionerSetup")
 SATFINDER = isPluginInstalled("Satfinder")
-MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 
 
 def isFileSystemSupported(filesystem):
@@ -337,6 +336,7 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
 
+
 	def okList(self):
 		item = self["list"].getCurrent()
 
@@ -495,7 +495,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % MACHINE_NAME, default=False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % getBoxDisplayName(), default=False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Show Default Backup Files"):

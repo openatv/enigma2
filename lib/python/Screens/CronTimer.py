@@ -11,7 +11,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import getBoxDisplayName
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.Directories import fileExists
@@ -76,7 +76,7 @@ class CronTimers(Screen):
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		if "bad address" in result:
-			self.session.openWithCallback(self.installPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.installPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
 			self.session.openWithCallback(self.installPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:

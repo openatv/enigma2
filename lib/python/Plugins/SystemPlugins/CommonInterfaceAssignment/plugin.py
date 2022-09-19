@@ -8,7 +8,7 @@ from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.SelectionList import SelectionList
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
@@ -87,7 +87,7 @@ class CIselectMainMenu(Screen):
 			action = cur[2]
 			slot = cur[3]
 			if action == 1:
-				print("[CI_Wizzard] there is no CI Slot in your %s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
+				print("[CI_Wizzard] there is no CI Slot in your %s %s" % getBoxDisplayName())
 			else:
 				print("[CI_Wizzard] selected CI Slot : %d" % slot)
 				if config.usage.setup_level.index > 1:  # advanced

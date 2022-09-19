@@ -12,9 +12,7 @@ from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from Components.SystemInfo import BoxInfo
-
-MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
+from Components.SystemInfo import getBoxDisplayName
 
 
 class WizardSummary(Screen):
@@ -500,7 +498,7 @@ class Wizard(Screen):
 		return False
 
 	def getTranslation(self, text):
-		return _(text).replace("%s %s", "%s %s" % MACHINE_NAME)
+		return _(text).replace("%s %s", "%s %s" % getBoxDisplayName())
 
 	def updateText(self, firstset=False):
 		text = self.getTranslation(self.wizard[self.currStep]["text"])

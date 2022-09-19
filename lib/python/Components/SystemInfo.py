@@ -166,7 +166,12 @@ SOC_FAMILY = BoxInfo.getItem("socfamily")
 DISPLAYTYPE = BoxInfo.getItem("displaytype")
 MTDROOTFS = BoxInfo.getItem("mtdrootfs")
 DISPLAYMODEL = BoxInfo.getItem("displaymodel")
+DISPLAYBRAND = BoxInfo.getItem("displaybrand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
+
+
+def getBoxDisplayName():
+	return (DISPLAYBRAND, DISPLAYMODEL)
 
 
 # Parse the boot commandline.

@@ -12,7 +12,7 @@ from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, 
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -22,8 +22,6 @@ from Tools.Directories import *
 from . import ShellCompatibleFunctions
 
 
-displayBrand = BoxInfo.getItem("displaybrand")
-displayModel = BoxInfo.getItem("displaymodel")
 distro = BoxInfo.getItem("distro")
 
 boxtype = BoxInfo.getItem("machinebuild")
@@ -522,14 +520,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret=None):
-		self.session.open(Console, title=_("Your %s %s will Restart...") % (displayBrand, displayModel), cmdlist=["killall -9 enigma2"])
+		self.session.open(Console, title=_("Your %s %s will Restart...") % getBoxDisplayName(), cmdlist=["killall -9 enigma2"])
 
 	def rebootSYS(self, ret=None):
 		try:
 			f = open("/tmp/rebootSYS.sh", "w")
 			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			f.close()
-			self.session.open(Console, title=_("Your %s %s will Reboot...") % (displayBrand, displayModel), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
 		except:
 			self.restartGUI()
 

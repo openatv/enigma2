@@ -10,7 +10,7 @@ from enigma import eActionMap, quitMainloop
 import NavigationInstance
 from timer import Timer, TimerEntry
 from Components.config import config
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
@@ -26,8 +26,6 @@ from Tools.XMLTools import stringToXML
 InfoBar = False
 
 MODULE_NAME = __name__.split(".")[-1]
-DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
-DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
 DEBUG = config.crash.debugTimers.value
 
 TIMER_XML_FILE = resolveFilename(SCOPE_CONFIG, "pm_timers.xml")
@@ -545,7 +543,7 @@ class PowerTimerEntry(TimerEntry, object):
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if not Screens.Standby.inStandby and not breakPT:  # Not already in standby.
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -559,7 +557,7 @@ class PowerTimerEntry(TimerEntry, object):
 					return False
 				if not Screens.Standby.inStandby and not self.messageBoxAnswerPending:  # Not already in standby.
 					self.messageBoxAnswerPending = True
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -596,7 +594,7 @@ class PowerTimerEntry(TimerEntry, object):
 						return True
 					elif not self.messageBoxAnswerPending:
 						self.messageBoxAnswerPending = True
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -722,7 +720,7 @@ class PowerTimerEntry(TimerEntry, object):
 						print("[PowerTimer] quitMainloop #3.")
 						quitMainloop(2)
 					else:
-						message = _("A finished PowerTimer wants to reboot your %s %s. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+						message = _("A finished PowerTimer wants to reboot your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryToRebootNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -783,7 +781,7 @@ class PowerTimerEntry(TimerEntry, object):
 						print("[PowerTimer] quitMainloop #2.")
 						quitMainloop(1)
 					else:
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -798,7 +796,7 @@ class PowerTimerEntry(TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 			elif self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby:  # Not already in standby.
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -851,7 +849,7 @@ class PowerTimerEntry(TimerEntry, object):
 						print("[PowerTimer] quitMainloop #5.")
 						quitMainloop(1)
 					else:
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout, default=True)

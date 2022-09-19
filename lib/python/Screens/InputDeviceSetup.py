@@ -3,15 +3,13 @@ from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSel
 from Components.InputDevice import inputDevices, iRcTypeControl
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-
-MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 
 
 class InputDeviceSelection(Screen, HelpableScreen):
@@ -128,7 +126,7 @@ class InputDeviceSetup(Setup):
 		self.onClose.append(self.cleanup)
 
 		# for generating strings into .po only
-		devicenames = [_("%s %s front panel") % MACHINE_NAME, _("%s %s front panel") % MACHINE_NAME, _("%s %s remote control (native)") % MACHINE_NAME, _("%s %s advanced remote control (native)") % MACHINE_NAME, _("%s %s ir keyboard") % MACHINE_NAME, _("%s %s ir mouse") % MACHINE_NAME]
+		devicenames = [_("%s %s front panel") % getBoxDisplayName(), _("%s %s front panel") % getBoxDisplayName(), _("%s %s remote control (native)") % getBoxDisplayName(), _("%s %s advanced remote control (native)") % getBoxDisplayName(), _("%s %s ir keyboard") % getBoxDisplayName(), _("%s %s ir mouse") % getBoxDisplayName()]
 
 	def cleanup(self):
 		inputDevices.currentDevice = None
