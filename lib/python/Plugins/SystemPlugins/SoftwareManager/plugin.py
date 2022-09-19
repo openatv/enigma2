@@ -51,7 +51,7 @@ from .ImageBackup import ImageBackup
 
 displayBrand = BoxInfo.getItem("displaybrand")
 displayModel = BoxInfo.getItem("displaymodel")
-boxType = BoxInfo.getItem("model")
+boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 

@@ -1,17 +1,17 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.ActionMap import HelpableActionMap
 from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSelection
 from Components.InputDevice import inputDevices, iRcTypeControl
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
+
+MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 
 
 class InputDeviceSelection(Screen, HelpableScreen):
@@ -29,7 +29,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self["introduction"] = StaticText(self.edittext)
 
 		self.devices = [(inputDevices.getDeviceName(x), x) for x in inputDevices.getDeviceList()]
-		print("[InputDeviceSelection] found devices :->", len(self.devices), self.devices)
+		print("[InputDeviceSelection] found devices :-> %s %s" % (len(self.devices), str(self.devices)))
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -128,7 +128,7 @@ class InputDeviceSetup(Setup):
 		self.onClose.append(self.cleanup)
 
 		# for generating strings into .po only
-		devicenames = [_("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s advanced remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s ir keyboard") % (getMachineBrand(), getMachineName()), _("%s %s ir mouse") % (getMachineBrand(), getMachineName())]
+		devicenames = [_("%s %s front panel") % MACHINE_NAME, _("%s %s front panel") % MACHINE_NAME, _("%s %s remote control (native)") % MACHINE_NAME, _("%s %s advanced remote control (native)") % MACHINE_NAME, _("%s %s ir keyboard") % MACHINE_NAME, _("%s %s ir mouse") % MACHINE_NAME]
 
 	def cleanup(self):
 		inputDevices.currentDevice = None
@@ -161,7 +161,7 @@ class InputDeviceSetup(Setup):
 
 
 class RemoteControlType(Setup):
-	if getBrandOEM() in ('broadmedia', 'octagon', 'odin', 'protek', 'ultramini') or getBoxType() in ('et7000', 'et7100', 'et7200', 'et7500', 'et7x00', 'et8500', 'et1x000', 'et13000'):
+	if BoxInfo.getItem("brand") in ('broadmedia', 'octagon', 'odin', 'protek', 'ultramini') or BoxInfo.getItem("machinebuild") in ('et7000', 'et7100', 'et7200', 'et7500', 'et7x00', 'et8500', 'et1x000', 'et13000'):
 		rcList = [
 				("0", _("Default")),
 				("3", "MaraM9"),
@@ -352,7 +352,7 @@ class RemoteControlType(Setup):
 		return "Default"
 
 	def getDefaultRcType(self):
-		boxtype = getBoxType()
+		boxtype = BoxInfo.getItem("machinebuild")
 		boxtypecompat = self.getBoxTypeCompatible()
 		self.defaultRcType = 0
 		#print "Boxtype is %s" % boxtype

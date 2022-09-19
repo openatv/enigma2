@@ -6,13 +6,12 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_GUISKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from boxbranding import getDisplayType
 from ServiceReference import ServiceReference
 from Components.SystemInfo import BoxInfo
-import six
 
 searchPaths = []
 lastLcdPiconPath = None
+DISPLAYTYPE = BoxInfo.getItem("displaytype")
 
 
 def initLcdPiconPaths():
@@ -27,7 +26,7 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		if getDisplayType() in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec") or os.path.isdir(mountpoint + 'piconlcd'):
+		if DISPLAYTYPE in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec") or os.path.isdir(mountpoint + 'piconlcd'):
 			path = os.path.join(mountpoint, 'piconlcd') + '/'
 		else:
 			path = os.path.join(mountpoint, 'picon') + '/'
@@ -43,7 +42,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	if getDisplayType() in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec") or os.path.isdir(mountpoint + 'piconlcd'):
+	if DISPLAYTYPE in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec") or os.path.isdir(mountpoint + 'piconlcd'):
 		path = os.path.join(mountpoint, 'piconlcd') + '/'
 	else:
 		path = os.path.join(mountpoint, 'picon') + '/'
@@ -95,17 +94,14 @@ def getLcdPiconName(serviceName):
 	pngname = findLcdPicon(sname)
 	if not pngname:
 		fields = sname.split('_', 3)
-		if len(fields) > 2 and fields[2] != '1': #fallback to 1 for services with different service types
+		if len(fields) > 2 and fields[2] != '1':  # fallback to 1 for services with different service types
 			fields[2] = '1'
-		if len(fields) > 0 and fields[0] != '1': #fallback to 1 for IPTV streams
+		if len(fields) > 0 and fields[0] != '1':  # fallback to 1 for IPTV streams
 			fields[0] = '1'
 		pngname = findLcdPicon('_'.join(fields))
-	if not pngname: # picon by channel name
+	if not pngname:  # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		if six.PY3:
-			name = unicodedata.normalize('NFKD', name)
-		else:
-			name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = unicodedata.normalize('NFKD', name)
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findLcdPicon(name)
@@ -122,20 +118,20 @@ class LcdPicon(Renderer):
 		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
-		if getDisplayType() in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
+		if DISPLAYTYPE in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
 			pngname = findLcdPicon("lcd_picon_default")
 		else:
 			pngname = findLcdPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			if getDisplayType() in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
+			if DISPLAYTYPE in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
 				tmp = resolveFilename(SCOPE_GUISKIN, "lcd_picon_default.png")
 			else:
 				tmp = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				if getDisplayType() in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
+				if DISPLAYTYPE in ('bwlcd255', 'bwlcd140') and not BoxInfo.getItem("grautec"):
 					pngname = resolveFilename(SCOPE_GUISKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
@@ -177,7 +173,7 @@ class LcdPicon(Renderer):
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
 				pngname = getLcdPiconName(self.source.text)
-				if not pathExists(pngname): # no picon for service found
+				if not pathExists(pngname):  # no picon for service found
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
 					if pngname:

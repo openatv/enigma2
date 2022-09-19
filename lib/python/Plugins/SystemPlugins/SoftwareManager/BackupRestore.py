@@ -1,7 +1,6 @@
 from os import popen, makedirs, listdir, stat, rename, remove
 from os.path import exists as pathexists, isdir
 from datetime import date
-from boxbranding import getBoxType
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
@@ -27,7 +26,7 @@ displayBrand = BoxInfo.getItem("displaybrand")
 displayModel = BoxInfo.getItem("displaymodel")
 distro = BoxInfo.getItem("distro")
 
-boxtype = getBoxType()
+boxtype = BoxInfo.getItem("machinebuild")
 
 
 def eEnv_resolve_multi(path):
@@ -94,7 +93,7 @@ def InitConfig():
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
-	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
 
@@ -851,4 +850,3 @@ class SoftwareManagerInfo(Screen):
 			for entry in backupfiles:
 				self.infoList.append((entry,))
 			self["list"].setList(self.infoList)
-

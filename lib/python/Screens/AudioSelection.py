@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
@@ -109,7 +108,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			n = audio and audio.getNumberOfTracks() or 0
 
 			if BoxInfo.getItem("CanDownmixAC3"):
-				if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
 				else:
@@ -123,10 +122,10 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
 
 			if BoxInfo.getItem("CanDownmixAAC"):
-				if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
-				elif BoxInfo.getItem("model") in ('gbquad4k', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				else:
@@ -147,10 +146,10 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
 			if BoxInfo.getItem("CanAC3plusTranscode"):
-				if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI")), ("force_ddp", _("force AC3plus"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				elif BoxInfo.getItem("model") in ('gbquad4k', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("force_dts", _("convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
 				else:
@@ -160,7 +159,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("AC3plus transcoding"), self.settings.transcodeac3plus, None))
 
 			if BoxInfo.getItem("CanPcmMultichannel"):
-				if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.pcm_multichannel = ConfigSelection(choices=choice_list, default=config.av.pcm_multichannel.value)
 				else:
@@ -169,7 +168,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
 
 			if BoxInfo.getItem("CanDTSHD"):
-				if BoxInfo.getItem("model") in ("dm7080", "dm820"):
+				if BoxInfo.getItem("machinebuild") in ("dm7080", "dm820"):
 					choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
 				else:
 					choice_list = [("downmix", _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps", _("controlled by HDMI")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
@@ -364,7 +363,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.autovolume.save()
 
 	def changeAC3Downmix(self, downmix):
-		if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			config.av.downmix_ac3.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -383,7 +382,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.btaudio.save()
 
 	def changePCMMultichannel(self, multichan):
-		if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			config.av.pcm_multichannel.setValue(multichan.value)
 		else:
 			if multichan.value:
@@ -394,7 +393,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if BoxInfo.getItem("model") in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbue4k', 'gbx34k'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbue4k', 'gbx34k'):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:

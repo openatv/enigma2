@@ -402,7 +402,8 @@ def runScreenTest():
 	vol = VolumeControl(session)
 	profile("InitPowerKey")
 	power = PowerKey(session)
-	if BOX_TYPE in ("alien5", "osninopro", "osnino", "osninoplus", "alphatriple", "spycat4kmini", "tmtwin4k", "mbmicrov2", "revo4k", "force3uhd", "wetekplay", "wetekplay2", "wetekhub", "dm7020hd", "dm7020hdv2", "osminiplus", "osmega", "sf3038", "spycat", "e4hd", "e4hdhybrid", "mbmicro", "et7500", "mixosf5", "mixosf7", "mixoslumi", "gi9196m", "maram9", "ixussone", "ixusszero", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3", "9910lx", "9911lx", "9920lx", "dual") or getBrandOEM() in ("fulan",) or getMachineBuild() in ("u41", "dags7362", "dags73625", "dags5", "ustym4kpro", "beyonwizv2", "viper4k", "sf8008", "sf8008m", "sf8008opt", "cc1", "gbmv200", "sfx6008"):
+
+	if BoxInfo.getItem("VFDSymbols"):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -435,7 +436,7 @@ def runScreenTest():
 		config.usage.shutdownOK.save()
 		configfile.save()
 	# Kill showiframe if it is running.  (sh4 hack...)
-	if getMachineBuild() in ("spark", "spark7162"):
+	if MODEL in ("spark", "spark7162"):
 		os.system("killall -9 showiframe")
 	runReactor()
 	print("[StartEnigma] Normal shutdown.")
@@ -444,8 +445,8 @@ def runScreenTest():
 	config.usage.shutdownOK.save()
 	profile("Wakeup")
 	nowTime = time()  # Get currentTime.
-	# if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == "gigablue":
-	if not config.misc.SyncTimeUsing.value == "0" or BOX_TYPE.startswith("gb") or getBrandOEM().startswith("ini"):
+	# if config.misc.SyncTimeUsing.value != "0" or BRAND == "gigablue":
+	if config.misc.SyncTimeUsing.value != "0" or BOX_TYPE.startswith("gb") or BRAND.startswith("ini"):
 		print("[StartEnigma] DVB time sync disabled, so set RTC now to current Linux time!  (%s)" % strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 		setRTCtime(nowTime)
 	# Record timer.
@@ -663,19 +664,21 @@ profile("SystemInfo")
 from enigma import getE2Rev
 from Components.SystemInfo import BoxInfo
 
-print("[StartEnigma] Receiver name = %s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
+BRAND = BoxInfo.getItem("brand")
+BOX_TYPE = BoxInfo.getItem("machinebuild")
+MODEL = BoxInfo.getItem("model")
+DISPLAYBRAND = BoxInfo.getItem("displaybrand")
+
+print("[StartEnigma] Receiver name = %s %s" % (DISPLAYBRAND, BoxInfo.getItem("displaymodel")))
 print("[StartEnigma] %s version = %s" % (BoxInfo.getItem("displaydistro"), BoxInfo.getItem("imgversion")))
 print("[StartEnigma] %s revision = %s" % (BoxInfo.getItem("displaydistro"), BoxInfo.getItem("imgrevision")))
-print("[StartEnigma] Build Brand = %s" % BoxInfo.getItem("brand"))
-print("[StartEnigma] Build Model = %s" % BoxInfo.getItem("model"))
+print("[StartEnigma] Build Brand = %s" % BRAND)
+print("[StartEnigma] Build Model = %s" % MODEL)
 print("[StartEnigma] Platform = %s" % BoxInfo.getItem("platform"))
 print("[StartEnigma] SoC family = %s" % BoxInfo.getItem("socfamily"))
 print("[StartEnigma] Enigma2 revision = %s" % getE2Rev())
 
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand
-BOX_TYPE = getBoxType()
-
-if getImageArch() in ("aarch64"):
+if BoxInfo.getItem("architecture") in ("aarch64"):
 	import usb.core
 	import usb.backend.libusb1
 	usb.backend.libusb1.get_backend(find_library=lambda x: "/lib64/libusb-1.0.so.0")
@@ -690,11 +693,11 @@ from Components.International import international
 
 config.osd = ConfigSubsection()
 
-if getMachineBrand() == "Atto.TV":
+if DISPLAYBRAND == "Atto.TV":
 	defaultLocale = "pt_BR"
-elif getMachineBrand() == "Zgemma":
+elif DISPLAYBRAND == "Zgemma":
 	defaultLocale = "en_US"
-elif getMachineBrand() == "Beyonwiz":
+elif DISPLAYBRAND == "Beyonwiz":
 	defaultLocale = "en_AU"
 else:
 	defaultLocale = "de_DE"

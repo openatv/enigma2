@@ -1,11 +1,11 @@
 from os.path import isfile
 from time import time
-from boxbranding import getBoxType
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileWriteLine, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
-model = getBoxType()
+model = BoxInfo.getItem("machinebuild")
 
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100

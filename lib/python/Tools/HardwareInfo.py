@@ -1,6 +1,4 @@
-from __future__ import print_function
-from boxbranding import getBoxType, getBrandOEM, getMachineName
-from Components.About import about
+from Components.SystemInfo import BoxInfo
 
 
 class HardwareInfo:
@@ -17,7 +15,7 @@ class HardwareInfo:
 			file = open("/proc/stb/info/model", "r")
 			HardwareInfo.device_name = file.readline().strip()
 			file.close()
-			if getBrandOEM() == "dags":
+			if BoxInfo.getItem("brand") == "dags":
 				HardwareInfo.device_name = "dm800se"
 			try:
 				file = open("/proc/stb/info/version", "r")
@@ -51,13 +49,13 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def get_device_model(self):
-		return getBoxType()
+		return BoxInfo.getItem("machinebuild")
 
 	def get_vu_device_name(self):
-		return getBoxType()
+		return BoxInfo.getItem("machinebuild")
 
 	def get_friendly_name(self):
-		return getMachineName()
+		return BoxInfo.getItem("displaymodel")
 
 	def linux_kernel(self):
 		try:

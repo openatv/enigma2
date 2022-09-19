@@ -631,9 +631,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 					self.list.append(getConfigListEntry(_("Gateway"), self.gatewayConfigEntry))
 
 			havewol = False
-			if BoxInfo.getItem("WakeOnLAN") and not BoxInfo.getItem("model") in ("et10000", "gb800seplus", "gb800ueplus", "gbultrase", "gbultraue", "gbultraueh", "gbipbox", "gbquad", "gbx1", "gbx2", "gbx3", "gbx3h"):
+			if BoxInfo.getItem("WakeOnLAN") and not BoxInfo.getItem("machinebuild") in ("et10000", "gb800seplus", "gb800ueplus", "gbultrase", "gbultraue", "gbultraueh", "gbipbox", "gbquad", "gbx1", "gbx2", "gbx3", "gbx3h"):
 				havewol = True
-			if BoxInfo.getItem("model") in ("et10000", "vuultimo4k", "vuduo4kse") and self.iface == "eth0":
+			if BoxInfo.getItem("machinebuild") in ("et10000", "vuultimo4k", "vuduo4kse") and self.iface == "eth0":
 				havewol = False
 			if havewol and self.onlyWakeOnWiFi != True:
 				self.list.append(getConfigListEntry(_("Enable Wake On LAN"), config.network.wol))
@@ -1064,7 +1064,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network Wizard"), "openwizard"))
 		# Check which boxes support MAC change via the GUI.
-		if BoxInfo.getItem("model") not in ("DUMMY",) and self.iface == "eth0":
+		if BoxInfo.getItem("machinebuild") not in ("DUMMY",) and self.iface == "eth0":
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
@@ -2851,7 +2851,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 
 	def updateList(self, ret=None):
 		self.list = []
-		self.ushare_user = NoSave(ConfigText(default=BoxInfo.getItem("model"), fixed_size=False))
+		self.ushare_user = NoSave(ConfigText(default=BoxInfo.getItem("machinebuild"), fixed_size=False))
 		self.ushare_iface = NoSave(ConfigText(fixed_size=False))
 		self.ushare_port = NoSave(ConfigNumber())
 		self.ushare_telnetport = NoSave(ConfigNumber())
@@ -3251,7 +3251,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 
 	def updateList(self, ret=None):
 		self.list = []
-		self.minidlna_name = NoSave(ConfigText(default=BoxInfo.getItem("model"), fixed_size=False))
+		self.minidlna_name = NoSave(ConfigText(default=BoxInfo.getItem("machinebuild"), fixed_size=False))
 		self.minidlna_iface = NoSave(ConfigText(fixed_size=False))
 		self.minidlna_port = NoSave(ConfigNumber())
 		self.minidlna_serialno = NoSave(ConfigNumber())
