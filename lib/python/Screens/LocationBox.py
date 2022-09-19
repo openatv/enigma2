@@ -391,7 +391,7 @@ class PlaybackLocationBox(LocationBox):
 		LocationBox.__init__(
 			self,
 			session,
-			text=_("Where do you want to set as the default movie location?"),
+			text=_("What do you want to set as the default movie location?"),
 			# filename="",
 			currDir=config.usage.default_path.value,
 			bookmarks=config.movielist.videodirs,
