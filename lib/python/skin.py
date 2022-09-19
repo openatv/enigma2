@@ -355,45 +355,42 @@ def parseCoordinate(value, parent, size=0, font=None, scale=(1, 1)):
 		return "".join(chars).strip()
 
 	value = value.strip()
-	if value == "center":  # For speed as this can be common case.
-		result = int((parent - size) // 2) if size else 0
-	elif value == "*":
-		return None
-	else:
+	try:
+		result = int(int(value) * scale[0] / scale[1])  # For speed try a simple number first.
+	except ValueError:
+		if value == "center":  # For speed as this can be common case.
+			return max(int((parent - size) // 2) if size else 0, 0)
+		elif value == "*":
+			return None
+		if font is None:
+			font = "Body"
+			if "w" in value or "h" in value:
+				print("[Skin] Warning: Coordinate 'w' and/or 'h' used but font is None, '%s' font ('%s', width=%d, height=%d) assumed!" % (font, fonts[font][0], fonts[font][3], fonts[font][2]))
+		val = scaleNumbers(value, scale)
+		if "center" in val:
+			val = val.replace("center", str((parent - size) / 2.0))
+		if "e" in val:
+			val = val.replace("e", str(parent))
+		if "c" in val:
+			val = val.replace("c", str(parent / 2.0))
+		if "%" in val:
+			val = val.replace("%", "*%s" % (parent / 100.0))
+		if "w" in val:
+			val = val.replace("w", "*%s" % fonts[font][3])
+		if "h" in val:
+			val = val.replace("h", "*%s" % fonts[font][2])
+		if "f" in val:
+			val = val.replace("f", "*%s" % getSkinFactor())
 		try:
-			result = int(int(value) * scale[0] / scale[1])  # For speed try a simple number first.
+			result = int(val)  # For speed try a simple number first.
 		except ValueError:
-			if font is None:
-				font = "Body"
-				if "w" in value or "h" in value:
-					print("[Skin] Warning: Coordinate 'w' and/or 'h' used but font is None, '%s' font ('%s', width=%d, height=%d) assumed!" % (font, fonts[font][0], fonts[font][3], fonts[font][2]))
-			val = scaleNumbers(value, scale)
-			if "center" in val:
-				val = val.replace("center", str((parent - size) / 2.0))
-			if "e" in val:
-				val = val.replace("e", str(parent))
-			if "c" in val:
-				val = val.replace("c", str(parent / 2.0))
-			if "%" in val:
-				val = val.replace("%", "*%s" % (parent / 100.0))
-			if "w" in val:
-				val = val.replace("w", "*%s" % fonts[font][3])
-			if "h" in val:
-				val = val.replace("h", "*%s" % fonts[font][2])
-			if "f" in val:
-				val = val.replace("f", "*%s" % getSkinFactor())
 			try:
-				result = int(val)  # For speed try a simple number first.
-			except ValueError:
-				try:
-					result = int(eval(val))
-				except Exception as err:
-					print("[Skin] Error (%s - %s): Coordinate '%s', calculated to '%s', can't be evaluated!" % (type(err).__name__, err, value, val))
-					result = 0
+				result = int(eval(val))
+			except Exception as err:
+				print("[Skin] Error (%s - %s): Coordinate '%s', calculated to '%s', can't be evaluated!" % (type(err).__name__, err, value, val))
+				result = 0
 	# print("[Skin] parseCoordinate DEBUG: value='%s', parent='%s', size=%s, font='%s', scale='%s', result='%s'." % (value, parent, size, font, scale, result))
-	if result < 0:
-		result = 0
-	return result
+	return 0 if result < 0 else result
 
 
 def parseFont(value, scale=((1, 1), (1, 1))):
