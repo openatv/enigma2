@@ -804,7 +804,7 @@ class ImageInformation(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session, mandatoryWidgets=["name", "image"])
+		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.setTitle(_("Hardware Image Information"))
 		self["name"] = Label()
