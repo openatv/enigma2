@@ -10,7 +10,7 @@ from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 
@@ -241,7 +241,7 @@ class NetworkWizard(WizardLanguage, ShowRemoteControl):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					text1 = _("Your %s %s is now ready to be used.\n\nYour Internet connection is working now.\n\n") % BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")
+					text1 = _("Your %s %s is now ready to be used.\n\nYour Internet connection is working now.\n\n") % getBoxDisplayName()
 					text2 = _("Access point:") + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _("SSID:") + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _("Link quality:") + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"

@@ -15,10 +15,9 @@ from Components.config import getConfigListEntry, ConfigSelection, NoSave
 from Components.Console import Console
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.LoadPixmap import LoadPixmap
 
-MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 MODEL = BoxInfo.getItem("model")
 
 
@@ -401,7 +400,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
 		self['key_red'] = Label(_("Cancel"))
-		self['Linconn'] = Label(_("Wait please while scanning your %s %s devices...") % MACHINE_NAME)
+		self['Linconn'] = Label(_("Wait please while scanning your %s %s devices...") % getBoxDisplayName())
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'green': self.saveMypoints, 'red': self.close, 'back': self.close})
 		self.updateList()
 
@@ -613,9 +612,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		ybox.setTitle(_("Please wait."))
 
 	def delay(self, val):
-		message = _("Changes need a system restart to take effect.\nRestart your %s %s now?") % MACHINE_NAME
+		message = _("Changes need a system restart to take effect.\nRestart your %s %s now?") % getBoxDisplayName()
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-		ybox.setTitle(_("Restart %s %s.") % MACHINE_NAME)
+		ybox.setTitle(_("Restart %s %s.") % getBoxDisplayName())
 
 	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]

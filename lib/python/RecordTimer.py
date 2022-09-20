@@ -14,7 +14,7 @@ from Components.config import config
 from Components.Harddisk import findMountPoint
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
@@ -36,8 +36,6 @@ from Tools.XMLTools import stringToXML
 InfoBar = False
 
 MODULE_NAME = __name__.split(".")[-1]
-DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
-DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
 SERVICE_TYPES_TV = service_types_tv_ref.toString()
 SERVICE_TYPES_RADIO = service_types_radio_ref.toString()
 DEBUG = config.crash.debugTimers.value
@@ -1010,7 +1008,7 @@ class RecordTimerEntry(TimerEntry, object):
 				print("[RecordTimer] boxInStandby='%s', tvNotActive='%s', wasRecTimerWakeup='%s', self.wasInStandby='%s', self.afterEvent='%s', isRecordTime='%s'." % (boxInStandby, tvNotActive, wasRecTimerWakeup, self.wasInStandby, self.afterEvent, isRecordTime))
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
 				if not boxInStandby and not tvNotActive:  # Not already in standby.
-					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout, default=True)
@@ -1032,7 +1030,7 @@ class RecordTimerEntry(TimerEntry, object):
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
 				if not Screens.Standby.inTryQuitMainloop:  # No shutdown as message box is open.
 					if not boxInStandby and not tvNotActive:  # Not already in standby.
-						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (DISPLAY_BRAND, DISPLAY_MODEL)
+						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)

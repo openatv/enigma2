@@ -10,7 +10,7 @@ from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 import Components.RecordingConfig
 from Components.Sources.StreamService import StreamServiceList
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager
 from GlobalActions import globalActionMap
 import Screens.InfoBar
@@ -19,8 +19,6 @@ from Screens.Screen import Screen
 from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
 
-
-MACHINE_NAME = (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 
 inStandby = None
 TVinStandby = None
@@ -323,16 +321,16 @@ class QuitMainloopScreen(Screen):
 		</screen>"""
 		Screen.__init__(self, session)
 		text = {
-			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % MACHINE_NAME,
-			QUIT_REBOOT: _("Your %s %s is rebooting") % MACHINE_NAME,
-			QUIT_RESTART: _("The user interface of your %s %s is restarting") % MACHINE_NAME,
-			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % MACHINE_NAME,
-			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % MACHINE_NAME,
-			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % MACHINE_NAME,
-			QUIT_UPGRADE_PROGRAM: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % MACHINE_NAME,
-			QUIT_IMAGE_RESTORE: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % MACHINE_NAME,
+			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % getBoxDisplayName(),
+			QUIT_REBOOT: _("Your %s %s is rebooting") % getBoxDisplayName(),
+			QUIT_RESTART: _("The user interface of your %s %s is restarting") % getBoxDisplayName(),
+			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
+			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % getBoxDisplayName(),
+			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % getBoxDisplayName(),
+			QUIT_UPGRADE_PROGRAM: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
+			QUIT_IMAGE_RESTORE: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_UPGRADE_FRONTPANEL: _("Your front panel will be upgraded\nThis may take a few minutes"),
-			QUIT_WOLSHUTDOWN: _("Your %s %s goes to WOL") % MACHINE_NAME
+			QUIT_WOLSHUTDOWN: _("Your %s %s goes to WOL") % getBoxDisplayName()
 			}.get(retvalue)
 		self["text"] = Label(text)
 
@@ -390,8 +388,8 @@ class TryQuitMainloop(MessageBox):
 				QUIT_RESTART: _("Really restart now?"),
 				QUIT_UPGRADE_FP: _("Really upgrade the front panel processor and reboot now?"),
 				QUIT_MAINT: _("Really reboot into Recovery Mode?"),
-				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % MACHINE_NAME,
-				QUIT_IMAGE_RESTORE: _("Really reflash your %s %s and reboot now?") % MACHINE_NAME,
+				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % getBoxDisplayName(),
+				QUIT_IMAGE_RESTORE: _("Really reflash your %s %s and reboot now?") % getBoxDisplayName(),
 				QUIT_UPGRADE_FRONTPANEL: _("Really upgrade the front panel and reboot now?"),
 				QUIT_WOLSHUTDOWN: _("Really WOL now?")
 				}.get(retvalue)

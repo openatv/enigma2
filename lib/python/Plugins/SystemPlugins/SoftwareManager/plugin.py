@@ -30,7 +30,7 @@ from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.SelectionList import SelectionList
 from Components.Slider import Slider
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
@@ -49,8 +49,6 @@ from .SoftwareTools import iSoftwareTools
 from .ImageWizard import ImageWizard
 from .ImageBackup import ImageBackup
 
-displayBrand = BoxInfo.getItem("displaybrand")
-displayModel = BoxInfo.getItem("displaymodel")
 boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
@@ -611,7 +609,7 @@ class PluginManagerInfo(Screen):
 				elif cmd == 2:
 					info = args["package"]
 				else:
-					info = _("%s %s software because updates are available.") % (displayBrand, displayModel)
+					info = _("%s %s software because updates are available.") % getBoxDisplayName()
 				self.infoList.append(self.buildEntryComponent(action, info))
 			self["list"].setList(self.infoList)
 			self["list"].updateList(self.infoList)
@@ -957,7 +955,7 @@ class UpdatePlugin(Screen):
 			"A new flash will increase the stability\n\n"
 			"An online update is done at your own risk !!\n\n\n"
 			"Do you still want to update?"
-		) % (displayBrand, displayModel)
+		) % getBoxDisplayName()
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
@@ -1095,11 +1093,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (displayBrand, displayModel)
+				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your %s %s isn't connected to the Internet properly. Please check it and try again.") % (displayBrand, displayModel)
+					error = _("Your %s %s isn't connected to the Internet properly. Please check it and try again.") % getBoxDisplayName()
 				self.status.setText(_("Error") + " - " + error)
 
 	def startActualUpgrade(self, answer):
@@ -1150,7 +1148,7 @@ class UpdatePlugin(Screen):
 			self.restoreMetrixHDCallback()
 
 	def restoreMetrixHDCallback(self, ret=None):
-		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (displayBrand, displayModel))
+		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % getBoxDisplayName())
 
 
 class IPKGMenu(Screen):
