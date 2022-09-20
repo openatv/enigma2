@@ -19,7 +19,7 @@ from Components.MenuList import MenuList
 from Components.Network import iNetwork
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.ScrollLabel import ScrollLabel
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.PluginComponent import plugins
 from Components.FileList import MultiFileSelectList
 from Components.Sources.Boolean import Boolean
@@ -37,9 +37,6 @@ from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base" if float(getVersionString()) >= 4.0 else "task-base"
-
-BRAND = BoxInfo.getItem("displaybrand")
-MODEL = BoxInfo.getItem("displaymodel")
 
 
 class NetworkAdapterSelection(Screen, HelpableScreen):
@@ -988,11 +985,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def selectionChanged(self):
 		if self["menulist"].getCurrent()[1] == "edit":
-			self["description"].setText("%s\n\n%s" % (_("Edit the network configuration of your %s %s.") % (BRAND, MODEL), self.oktext))
+			self["description"].setText("%s\n\n%s" % (_("Edit the network configuration of your %s %s.") % getBoxDisplayName(), self.oktext))
 		if self["menulist"].getCurrent()[1] == "test":
-			self["description"].setText("%s\n\n%s" % (_("Test the network configuration of your %s %s.") % (BRAND, MODEL), self.oktext))
+			self["description"].setText("%s\n\n%s" % (_("Test the network configuration of your %s %s.") % getBoxDisplayName(), self.oktext))
 		if self["menulist"].getCurrent()[1] == "dns":
-			self["description"].setText("%s\n\n%s" % (_("Edit the DNS configuration of your %s %s.") % (BRAND, MODEL), self.oktext))
+			self["description"].setText("%s\n\n%s" % (_("Edit the DNS configuration of your %s %s.") % getBoxDisplayName(), self.oktext))
 		if self["menulist"].getCurrent()[1] == "scanwlan":
 			self["description"].setText("%s\n\n%s" % (_("Scan your network for wireless access points and connect to them using your selected wireless device."), self.oktext))
 		if self["menulist"].getCurrent()[1] == "wlanstatus":
@@ -1004,7 +1001,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self["description"].setText("%s\n\n%s" % (_(self["menulist"].getCurrent()[1][1]), self.oktext))
 		if self["menulist"].getCurrent()[1] == "mac":
-			self["description"].setText("%s\n\n%s" % (_("Set the MAC address of your %s %s.") % (BRAND, MODEL), self.oktext))
+			self["description"].setText("%s\n\n%s" % (_("Set the MAC address of your %s %s.") % getBoxDisplayName(), self.oktext))
 		item = self["menulist"].getCurrent()
 		if item:
 			name = str(self["menulist"].getCurrent()[0])
@@ -1724,11 +1721,11 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		if "bad address" in result:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Your %s %s will be restarted after the installation of service\nReady to install '%s'?") % (BRAND, MODEL, self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Your %s %s will be restarted after the installation of service\nReady to install '%s'?") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -1810,7 +1807,7 @@ class NetworkAfp(NetworkBaseScreen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % (BRAND, MODEL), MessageBox.TYPE_YESNO, widowTitle=_("Ready to remove '%s'?") % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, widowTitle=_("Ready to remove '%s'?") % self.service_name)
 		else:
 			self.updateService()
 
@@ -1896,7 +1893,7 @@ class NetworkSABnzbd(NetworkBaseScreen):
 		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
 
@@ -2062,7 +2059,7 @@ class NetworkNfs(NetworkBaseScreen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % (BRAND, MODEL), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
 		else:
 			self.updateService()
 
@@ -2250,7 +2247,7 @@ class NetworkSamba(NetworkBaseScreen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service.\nDo you want to remove now?") % (BRAND, MODEL), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service.\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
 		else:
 			self.updateService()
 
@@ -3549,7 +3546,7 @@ class NetworkSATPI(NetworkBaseScreen):
 		if (float(getVersionString()) < 3.0 and result.find("mipsel/Packages.gz, wget returned 1") != -1) or (float(getVersionString()) >= 3.0 and result.find("mips32el/Packages.gz, wget returned 1") != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find("bad address") != -1:
-			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (BRAND, MODEL), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Ready to install '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
 

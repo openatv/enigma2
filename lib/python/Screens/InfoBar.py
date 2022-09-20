@@ -10,7 +10,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.Directories import fileExists
 from Screens.ButtonSetup import InfoBarButtonSetup
 
@@ -822,7 +822,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 					self.session.pipshown = False
 					del self.session.pip
 			else:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")), type=MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def movePiP(self):
 		if self.session.pipshown:
