@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-09-17 13:18+0000\n"
+"PO-Revision-Date: 2022-09-19 15:41+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid ""
 "\n"
@@ -878,16 +878,16 @@ msgstr[2] "%d Dní"
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Číslice"
+msgstr[1] "%d Číslic"
+msgstr[2] "%d Číslic"
 
 #, python-format
 msgid "%d Event"
 msgid_plural "%d Events"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Událost"
+msgstr[1] "%d Události"
+msgstr[2] "%d Událostí"
 
 #, python-format
 msgid "%d GB"
@@ -955,7 +955,7 @@ msgstr[2] "%d Minut"
 msgid "%d Minutes"
 msgstr "%d Minut"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "Šířka %d pixel"
@@ -1287,7 +1287,7 @@ msgstr "%s je chráněn heslem."
 
 #, python-format
 msgid "%s long"
-msgstr ""
+msgstr "%s dlouhé"
 
 #, python-format
 msgid "%s not available."
@@ -5239,7 +5239,7 @@ msgstr "Aktuálně nainstalovaný"
 
 #, python-format
 msgid "Current location is '%s'."
-msgstr ""
+msgstr "Aktuální poloha je '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -6460,7 +6460,7 @@ msgid "Download Softcams"
 msgstr "Stáhnout Softcamy"
 
 msgid "Download and flash images on your %s %s."
-msgstr ""
+msgstr "Stáhnout a flashovat obrázky na %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Stáhnout a instalovat pluginy"
@@ -10913,7 +10913,7 @@ msgid "Movie Player Actions"
 msgstr "Akce přehrávače filmů"
 
 msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
+msgstr "Přehrávání filmu nesmí používat neplatnou složku."
 
 msgid "Movie selection"
 msgstr "Výběr filmů"
@@ -12421,7 +12421,7 @@ msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Přehrát / zobrazit / upravit / nainstalovat / extrahovat / spustit soubor nebo zadat adresář"
 
 msgid "Playback Settings"
-msgstr ""
+msgstr "Nastavení přehrávání"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Nahrávání a Timeshift"
@@ -13687,7 +13687,7 @@ msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
 
 msgid "Recordings may not work correctly without an acceptable directory."
-msgstr ""
+msgstr "Nahrávky nemusí fungovat správně bez platné složky."
 
 msgid "Records"
 msgstr "Nahrávky"
@@ -14965,10 +14965,10 @@ msgid "Select Location"
 msgstr "Vyberte umístění"
 
 msgid "Select Movie Location"
-msgstr ""
+msgstr "Vyberte umístění filmu"
 
 msgid "Select Playback Location"
-msgstr ""
+msgstr "Vyberte umístění přehrávání"
 
 msgid "Select Quad Channels"
 msgstr "Vybrat Quad Channels"
@@ -14977,7 +14977,7 @@ msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
 
 msgid "Select Time Shift Location"
-msgstr ""
+msgstr "Vyberte umístění časového posunu"
 
 msgid "Select Upgrade Source"
 msgstr "Vyberte zdroje pro aktualizaci"
@@ -18945,7 +18945,7 @@ msgid "Time shift event limit"
 msgstr "Timeshift - omezení posledních událostí [počet událostí]"
 
 msgid "Time shift may not work correctly without an acceptable directory."
-msgstr ""
+msgstr "Časový posun nemusí fungovat správně bez platné složky."
 
 msgid "Time shift not possible!"
 msgstr "Časový posun není možný!"
@@ -20859,8 +20859,8 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
 
-msgid "Where do you want to set as the default movie location?"
-msgstr ""
+msgid "What do you want to set as the default movie location?"
+msgstr "Kde chcete nastavit výchozí umístění filmu?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Který pořad chcete uložit trvale?"
