@@ -170,7 +170,7 @@ DISPLAYBRAND = BoxInfo.getItem("displaybrand")
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
 
 
-def getBoxDisplayName():
+def getBoxDisplayName():  # This function returns a tuple like ("BRANDNAME", "BOXNAME")
 	return (DISPLAYBRAND, DISPLAYMODEL)
 
 
