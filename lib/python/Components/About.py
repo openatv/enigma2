@@ -65,11 +65,11 @@ def getIfTransferredData(ifname):
 
 
 def getVersionString():
-	return BoxInfo.getItem("imageversion")
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getImageVersionString():
-	return BoxInfo.getItem("imageversion")
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getFlashDateString():
@@ -98,7 +98,7 @@ def getUpdateDateString():
 
 
 def getEnigmaVersionString():
-	return BoxInfo.getItem("imageversion")
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getGStreamerVersionString():

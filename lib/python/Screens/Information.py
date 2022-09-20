@@ -640,7 +640,7 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("S", _("Enigma2 information")))
 		if self.extraSpacing:
 			info.append("")
-		enigmaVersion = about.getEnigmaVersionString()
+		enigmaVersion = str(BoxInfo.getItem("imageversion"))
 		enigmaVersion = enigmaVersion.rsplit("-", enigmaVersion.count("-") - 2)
 		if len(enigmaVersion) == 3:
 			enigmaVersion = "%s (%s-%s)" % (enigmaVersion[0], enigmaVersion[2], enigmaVersion[1].capitalize())
