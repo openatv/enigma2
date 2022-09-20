@@ -155,7 +155,8 @@ void eListbox::moveSelectionTo(int index)
 	if (m_content)
 	{
 		m_content->cursorSet(index);
-		moveSelection(justCheck);
+		m_content_changed = true;
+		moveSelection(justCheck + 100);
 	}
 }
 
@@ -679,6 +680,10 @@ void eListbox::moveSelection(long dir)
 	int prevsel = oldsel;
 	int newsel;
 	int pageOffset = (m_page_size > 0 && m_scrollbar_scroll == byLine) ? m_page_size : m_items_per_page;
+	bool indexchanged = dir > 100;
+	if(indexchanged) {
+		dir -= 100;
+	}
 
 #ifdef USE_LIBVUGLES2
 	m_dir = dir;
@@ -853,7 +858,7 @@ void eListbox::moveSelection(long dir)
 
 		}
 
-		if(m_last_selectable_item==-1 && dir == justCheck)
+		if(m_last_selectable_item == -1 && dir == justCheck)
 		{
 			m_content->cursorEnd();
 			do
@@ -877,7 +882,7 @@ void eListbox::moveSelection(long dir)
 					m_top=0;
 			}
 
-			if (m_last_selectable_item != m_content->size()-1 && m_selected >= m_last_selectable_item)
+			if (m_last_selectable_item != m_content->size() - 1 && m_selected >= m_last_selectable_item)
 				jumpBottom = true;
 		}
 
@@ -905,19 +910,23 @@ void eListbox::moveSelection(long dir)
 						oldline = m_selected;
 				}
 			}
+			if(indexchanged && m_selected < m_items_per_page) {
+				oldline = m_selected;
+			}
+
 			m_top = m_selected - oldline;
 		}
 		else if (dir == moveUp || (customPageSize && dir == movePageUp))
 		{
-			if(m_first_selectable_item>0 && m_selected == m_first_selectable_item)
+			if(m_first_selectable_item > 0 && m_selected == m_first_selectable_item)
 			{
 				oldline = m_selected;
 			}
 			m_top = m_selected - oldline;
 		}
 
-		if(m_top<0 || oldline<0) {
-			m_top=0;
+		if(m_top < 0 || oldline < 0) {
+			m_top = 0;
 		}
 
 		//eDebug("[eListbox] moveSelection 2 dir=%d oldline=%d oldtop=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d jumpBottom=%d", dir, oldline, oldtop, m_top, m_selected, m_items_per_page, m_content->size(),jumpBottom);
