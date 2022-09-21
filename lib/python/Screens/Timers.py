@@ -12,6 +12,7 @@ from skin import parseBoolean, parseColor, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config
+from Components.ConfigList import ConfigList
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -1531,6 +1532,9 @@ class RecordTimerEdit(Setup):
 			if len(item) > 1:
 				item[1].cancel()
 		self.close((False,))
+
+	def closeRecursive(self):  # Overwrite long exit to prevent crash
+		ConfigList.closeConfigList((False,))
 
 	def keySave(self, result=None):
 		if not self.timerServiceReference.isRecordable():
