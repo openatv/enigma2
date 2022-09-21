@@ -739,7 +739,7 @@ class PowerTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
-		if result[0]:
+		if result and result[0]:
 			self.session.nav.PowerTimer.record(result[1])
 			self.loadTimerList()
 			self.selectionChanged()
@@ -765,7 +765,7 @@ class PowerTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, PowerTimerEdit, timer)
 
 	def editTimerCallback(self, result):
-		if result[0]:
+		if result and result[0]:
 			entry = result[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			print("[Timers] PowerTimer updated.")
@@ -1317,7 +1317,7 @@ class PowerTimerEdit(Setup):
 				self.timerRepeat.value = "once"  # Stop it being set again.
 			self.timer.autosleepwindow = self.timerSleepWindow.value
 			if self.timerSleepWindow.value:
-				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)	
+				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)
 				self.timer.autosleepend = self.getTimeStamp(now, self.timerSleepEnd.value)
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":

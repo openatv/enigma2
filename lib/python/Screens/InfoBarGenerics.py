@@ -525,7 +525,7 @@ class SecondInfoBar(Screen):
 
 	def finishedAdd(self, answer):
 		# print "finished add"
-		if answer[0]:
+		if answer and answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
