@@ -740,7 +740,7 @@ class PowerTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
-		if result and result[0]:
+		if result[0]:
 			self.session.nav.PowerTimer.record(result[1])
 			self.loadTimerList()
 			self.selectionChanged()
@@ -766,7 +766,7 @@ class PowerTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, PowerTimerEdit, timer)
 
 	def editTimerCallback(self, result):
-		if result and result[0]:
+		if result[0]:
 			entry = result[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			print("[Timers] PowerTimer updated.")
