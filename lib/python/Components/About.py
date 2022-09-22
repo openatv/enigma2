@@ -132,7 +132,7 @@ def getCPUSerial():
 
 
 def _getCPUSpeedMhz():
-	if MODEL in ('u41', 'u42', 'u43', 'u45'):
+	if MODEL in ('u41', 'u42', 'u43', 'u45', 'hzero', 'h8', 'sfx6008', 'sfx6018'):
 		return 1000
 	elif MODEL in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
 		return 1500
@@ -142,7 +142,7 @@ def _getCPUSpeedMhz():
 		return 1600
 	elif MODEL in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
 		return 1700
-	elif MODEL in ('alien5', 'hzero', 'h8', 'sfx6008'):
+	elif MODEL in ('alien5',):
 		return 2000
 	elif MODEL in ('vuduo4k',):
 		return 2100
