@@ -79,8 +79,8 @@ to generate HTML."""
 	def getIndex(self):
 		return self.getCurrentIndex()
 
-	def setIndex(self):
-		return self.setCurrentIndex()
+	def setIndex(self, index):
+		return self.setCurrentIndex(index)
 
 	@cached
 	def getStyle(self):
