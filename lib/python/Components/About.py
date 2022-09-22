@@ -72,10 +72,12 @@ def getChipSetString():
 
 
 def getCPUSpeedString():
-	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45', 'hzero', 'h8', 'sfx6008', 'sfx6018'):
+	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
 		return "1,0 GHz"
 	elif getMachineBuild() in ('cube'):
 		return "600 MHz"
+	elif getMachineBuild() in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
+		return "1,2 GHz"
 	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
 		return "1,5 GHz"
 	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
