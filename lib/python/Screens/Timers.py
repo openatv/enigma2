@@ -1533,9 +1533,6 @@ class RecordTimerEdit(Setup):
 				item[1].cancel()
 		self.close((False,))
 
-	def closeRecursive(self):  # Overwrite long exit to prevent crash
-		ConfigList.closeConfigList((False,))
-
 	def keySave(self, result=None):
 		if not self.timerServiceReference.isRecordable():
 			self.session.openWithCallback(self.getLocation, MessageBox, _("Error: A location to save the recording has not been selected!"), MessageBox.TYPE_ERROR)

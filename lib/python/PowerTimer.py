@@ -10,7 +10,6 @@ from enigma import eActionMap, quitMainloop
 import NavigationInstance
 from timer import Timer, TimerEntry
 from Components.config import config
-from Components.ConfigList import ConfigList
 from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
@@ -1088,6 +1087,3 @@ class PowerTimerEntry(TimerEntry, object):
 			else:
 				print("[PowerTimer] NetworkTraffic: Unable to access network traffic information! (Try 'cat /proc/net/dev' for testing on command line.)")
 		return False
-
-	def closeRecursive(self):  # Overwrite long exit to prevent crash
-		ConfigList.closeConfigList((False,))

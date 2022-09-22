@@ -942,6 +942,9 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 	def finishedAdd(self, answer):
 		# print "finished add"
 		if answer[0]:
+			if len(answer) == 1:  # Special case for close recursive
+				self.close(True)
+				return
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:

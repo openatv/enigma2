@@ -298,7 +298,7 @@ class PowerKey:
 		self.session.openWithCallback(self.finishedAdd, PowerTimerEdit, timer)
 
 	def finishedAdd(self, answer):
-		if answer[0]:
+		if answer[0] and len(answer) > 1:
 			entry = answer[1]
 			simulTimerList = self.session.nav.PowerTimer.record(entry)
 
