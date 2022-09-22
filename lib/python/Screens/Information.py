@@ -784,97 +784,6 @@ class GeolocationInformation(InformationBase):
 		return "Geolocation Information"
 
 
-class ImageInformation(Screen, HelpableScreen):
-	skin = """
-	<screen name="ImageInformation" title="Hardware Image Information" position="center,center" size="950,560" resolution="1280,720">
-		<widget name="name" position="0,0" size="e,25" font="Regular;20" halign="center" transparent="1" valign="center" />
-		<widget name="image" position="0,35" size="e,e-85" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
-		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-	</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		self.setTitle(_("Hardware Image Information"))
-		self["name"] = Label()
-		self["image"] = Pixmap()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText(_("Previous Image"))
-		self["key_blue"] = StaticText(_("Next Image"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"cancel": (self.keyCancel, _("Close the screen")),
-			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
-			"red": (self.keyCancel, _("Close the screen")),
-		}, prio=0, description=_("Hardware Image Actions"))
-		self["imageActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
-			"ok": (self.nextImage, _("Show next image")),
-			"yellow": (self.prevImage, _("Show previous image")),
-			"blue": (self.nextImage, _("Show next image")),
-			"up": (self.prevImage, _("Show previous image")),
-			"left": (self.prevImage, _("Show previous image")),
-			"right": (self.nextImage, _("Show next image")),
-			"down": (self.nextImage, _("Show next image"))
-		}, prio=0, description=_("Hardware Image Actions"))
-		self["imageActions"].setEnabled(False)
-		self.definedImages = (
-			(_("Remote Control"), "hardware/%s.png" % BoxInfo.getItem("rcname")),
-			(_("Front"), "hardware/%s_front.png" % MACHINE_BUILD),
-			(_("Rear"), "hardware/%s_rear.png" % MACHINE_BUILD),
-			(_("Internal"), "hardware/%s_internal.png" % MACHINE_BUILD)
-		)
-		self.hardwareImages = []
-		for item in self.definedImages:
-			image = resolveFilename(SCOPE_SKINS, item[1])
-			if isfile(image):
-				image = LoadPixmap(image)
-				if image:
-					self.hardwareImages.append((item[0], image))
-		if not self.hardwareImages:
-			self.hardwareImages.append((_("No images available"), None))
-		self.hardwareImageIndex = 0
-		self.hardwareImageMax = len(self.hardwareImages)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def keyCancel(self):
-		self.close()
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def layoutFinished(self):
-		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.hardwareImages[self.hardwareImageIndex][0]))
-		if self.hardwareImageMax > 1:
-			self["key_yellow"].setText(_("%s View") % self.hardwareImages[(self.hardwareImageIndex - 1) % self.hardwareImageMax][0])
-			self["key_blue"].setText(_("%s View") % self.hardwareImages[(self.hardwareImageIndex + 1) % self.hardwareImageMax][0])
-			self["imageActions"].setEnabled(True)
-		else:
-			self["key_yellow"].setText("")
-			self["key_blue"].setText("")
-			self["imageActions"].setEnabled(False)
-		image = self.hardwareImages[self.hardwareImageIndex][1]
-		if image:
-			self["image"].instance.setPixmap(self.hardwareImages[self.hardwareImageIndex][1])
-
-	def prevImage(self):
-		self.hardwareImageIndex = (self.hardwareImageIndex - 1) % self.hardwareImageMax
-		self.layoutFinished()
-
-	def nextImage(self):
-		self.hardwareImageIndex = (self.hardwareImageIndex + 1) % self.hardwareImageMax
-		self.layoutFinished()
-
-
 class MemoryInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
@@ -1297,6 +1206,97 @@ class NetworkInformation(InformationBase):
 				info.append(formatLine("P1", _("Bytes sent"), "%d (%s)" % (txBytes, scaleNumber(txBytes, style="Iec", format="%.1f"))))
 		info += self.geolocationData
 		self["information"].setText("\n".join(info))
+
+
+class PictureInformation(Screen, HelpableScreen):
+	skin = """
+	<screen name="PictureInformation" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
+		<widget name="name" position="0,0" size="e,25" font="Regular;20" halign="center" transparent="1" valign="center" />
+		<widget name="picture" position="0,35" size="e,e-85" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.setTitle(_("Picture Information"))
+		self["name"] = Label()
+		self["picture"] = Pixmap()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_yellow"] = StaticText(_("Previous Picture"))
+		self["key_blue"] = StaticText(_("Next Picture"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.keyCancel, _("Close the screen")),
+			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
+			"red": (self.keyCancel, _("Close the screen")),
+		}, prio=0, description=_("Picture Information Actions"))
+		self["pictureActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"ok": (self.nextPicture, _("Show next picture")),
+			"yellow": (self.prevPicture, _("Show previous picture")),
+			"blue": (self.nextPicture, _("Show next picture")),
+			"up": (self.prevPicture, _("Show previous picture")),
+			"left": (self.prevPicture, _("Show previous picture")),
+			"right": (self.nextPicture, _("Show next picture")),
+			"down": (self.nextPicture, _("Show next picture"))
+		}, prio=0, description=_("Picture Information Actions"))
+		self["pictureActions"].setEnabled(False)
+		self.definedPictures = (
+			(_("Remote Control"), "hardware/%s.png" % BoxInfo.getItem("rcname")),
+			(_("Front"), "hardware/%s_front.png" % MACHINE_BUILD),
+			(_("Rear"), "hardware/%s_rear.png" % MACHINE_BUILD),
+			(_("Internal"), "hardware/%s_internal.png" % MACHINE_BUILD)
+		)
+		self.pictures = []
+		for item in self.definedPictures:
+			picture = resolveFilename(SCOPE_SKINS, item[1])
+			if isfile(picture):
+				picture = LoadPixmap(picture)
+				if picture:
+					self.pictures.append((item[0], picture))
+		if not self.pictures:
+			self.pictures.append((_("No pictures available"), None))
+		self.pictureIndex = 0
+		self.pictureMax = len(self.pictures)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def keyCancel(self):
+		self.close()
+
+	def closeRecursive(self):
+		self.close(True)
+
+	def layoutFinished(self):
+		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.pictures[self.pictureIndex][0]))
+		if self.pictureMax > 1:
+			self["key_yellow"].setText(_("%s View") % self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
+			self["key_blue"].setText(_("%s View") % self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
+			self["pictureActions"].setEnabled(True)
+		else:
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["pictureActions"].setEnabled(False)
+		picture = self.pictures[self.pictureIndex][1]
+		if picture:
+			self["picture"].instance.setPixmap(self.pictures[self.pictureIndex][1])
+
+	def prevPicture(self):
+		self.pictureIndex = (self.pictureIndex - 1) % self.pictureMax
+		self.layoutFinished()
+
+	def nextPicture(self):
+		self.pictureIndex = (self.pictureIndex + 1) % self.pictureMax
+		self.layoutFinished()
 
 
 class ReceiverInformation(InformationBase):
