@@ -1308,13 +1308,13 @@ class ReceiverInformation(InformationBase):
 		self["key_yellow"] = StaticText(_("System Information"))
 		self["key_blue"] = StaticText(_("Debug Information"))
 		self["receiverActions"] = HelpableActionMap(self, ["InfoActions", "ColorActions"], {
-			"info": (self.showImageInformation, _("Show receiver image information")),
+			"info": (self.showPictureInformation, _("Show picture information")),
 			"yellow": (self.showSystemInformation, _("Show system information")),
 			"blue": (self.showDebugInformation, _("Show debug log information"))
 		}, prio=0, description=_("Receiver Information Actions"))
 
-	def showImageInformation(self):
-		self.session.openWithCallback(self.informationWindowClosed, ImageInformation)
+	def showPictureInformation(self):
+		self.session.openWithCallback(self.informationWindowClosed, PictureInformation)
 
 	def showSystemInformation(self):
 		self.session.openWithCallback(self.informationWindowClosed, SystemInformation)
