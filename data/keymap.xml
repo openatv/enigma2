@@ -131,8 +131,12 @@
 
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_MENU" mapto="MENU" flags="b" />
+		<key id="KEY_MENU" mapto="menuLong" flags="l" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_SPACE" mapto="menu" flags="m" />
+		<key id="KEY_SPACE" mapto="MENU" flags="b" />
+		<key id="KEY_SPACE" mapto="menuLong" flags="l" />
 	</map>
 
 	<map context="NavigationActions">
@@ -1065,12 +1069,6 @@
 		<key id="KEY_YELLOW" mapto="openSingleServiceEPG" flags="m" />
 		<key id="KEY_BLUE" mapto="openMultiServiceEPG" flags="m" />
 		<key id="KEY_EPG" mapto="openSingleServiceEPG" flags="m" />
-	</map>
-
-	<map context="MenuActions">
-		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_MENU" mapto="MENU" flags="b" />
-		<key id="KEY_MENU" mapto="menuLong" flags="l" />
 	</map>
 
 	<map context="DirectionActions">
