@@ -1582,7 +1582,7 @@ class RecordTimerEdit(Setup):
 				for day in (0, 1, 2, 3, 4, 5, 6):
 					if self.timerDay[DAY_LIST[day]].value:
 						self.timer.setRepeated(day)
-			self.timer.repeatedbegindate = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
+			self.timer.repeatedbegindate = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value) - self.timerMarginBefore.value * 60
 			startDate = self.timerRepeatStartDate.value if self.timer.repeated else int(time())
 			# self.timer.begin = self.getTimeStamp(startDate, self.timerStartTime.value)
 			# self.timer.end = self.getTimeStamp(startDate, self.timerEndTime.value)
