@@ -6,11 +6,11 @@ from Components.GUIComponent import GUIComponent
 class MenuList(GUIComponent):
 	GUI_WIDGET = eListbox
 
-	def __init__(self, list, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
+	def __init__(self, menuList, content=eListboxPythonStringContent, enableWrapAround=None):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
-		self.list = list
+		self.menuList = menuList
 		self.l = content()
-		self.l.setList(self.list)
+		self.l.setList(self.menuList)
 		self.onSelectionChanged = []
 
 	def postWidgetCreate(self, instance):
@@ -26,11 +26,11 @@ class MenuList(GUIComponent):
 			callback()
 
 	def getList(self):
-		return self.list
+		return self.menuList
 
-	def setList(self, list):
-		self.list = list
-		self.l.setList(self.list)
+	def setList(self, menuList):
+		self.menuList = menuList
+		self.l.setList(self.menuList)
 
 	def selectionEnabled(self, enabled):
 		if self.instance:
@@ -46,7 +46,7 @@ class MenuList(GUIComponent):
 		return self.l.getCurrentSelectionIndex()
 
 	def count(self):
-		return len(self.list)
+		return len(self.menuList)
 
 	def moveToIndex(self, index):
 		if self.instance:
