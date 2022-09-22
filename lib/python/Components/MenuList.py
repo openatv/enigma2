@@ -56,7 +56,7 @@ class MenuList(GUIComponent):
 			self.instance.moveSelectionTo(index)
 
 	def moveToIndex(self, index):
-		self.setCurrentIndex()
+		self.setCurrentIndex(index)
 
 	def goTop(self):
 		if self.instance:
