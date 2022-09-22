@@ -132,8 +132,10 @@ def getCPUSerial():
 
 
 def _getCPUSpeedMhz():
-	if MODEL in ('u41', 'u42', 'u43', 'u45', 'hzero', 'h8', 'sfx6008', 'sfx6018'):
+	if MODEL in ('u41', 'u42', 'u43', 'u45'):
 		return 1000
+	elif MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
+		return 1200
 	elif MODEL in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
 		return 1500
 	elif MODEL in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
