@@ -4,6 +4,7 @@ SUBDIRS = Components Tools Screens Plugins
 
 install_PYTHON = \
 	e2reactor.py \
+	BoxBrandingTest.py \
 	GlobalActions.py \
 	keyids.py \
 	keymapparser.py \
