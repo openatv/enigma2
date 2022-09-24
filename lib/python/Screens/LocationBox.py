@@ -222,7 +222,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.switchToFileList()
 
 	def getCurrentDirectory(self):
-		return pathjoin(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename()) if self.currList == "filelist" else self["bookmarklist"].getCurrent()
+		return pathjoin(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename() or "") if self.currList == "filelist" else self["bookmarklist"].getCurrent()
 
 	def showHideRename(self):
 		if self.filename:  # Don't allow renaming when filename is empty.
