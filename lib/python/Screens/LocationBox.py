@@ -1,5 +1,5 @@
 from os import sep, stat, statvfs
-from os.path import isdir, join as pathjoin, splitext
+from os.path import exists, isdir, join as pathjoin, splitext
 
 from enigma import eTimer
 
@@ -16,7 +16,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import createDir, pathExists, removeDir
+from Tools.Directories import createDir, removeDir, renameDir
 from Tools.NumericalTextInput import NumericalTextInput
 
 
@@ -346,7 +346,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def createDirCallback(self, directory):
 		if directory:
 			path = pathjoin(self["filelist"].getCurrentDirectory(), directory)
-			if not pathExists(path):
+			if not exists(path):
 				if not createDir(path):
 					self.session.open(MessageBox, _("Error: Creating directory '%s' failed!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
 				self["filelist"].refresh()
