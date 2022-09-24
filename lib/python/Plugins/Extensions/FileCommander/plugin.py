@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
-
-from __future__ import print_function
-from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubsection, ConfigYesNo
+from Plugins.Plugin import PluginDescriptor
 
 ##################################
 

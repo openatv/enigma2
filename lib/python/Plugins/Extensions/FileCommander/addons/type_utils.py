@@ -1,8 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+from os import system
 
 # Components
-from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import HelpableActionMap
@@ -18,16 +16,14 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 
 # Tools
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, fileReadLines
 
 # Various
-from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
+from ..InputBox import InputBoxWide
 from enigma import eTimer, ePicLoad, getDesktop, gFont, eSize
 
 from Tools.TextBoundary import getTextBoundarySize
 import skin
-
-import os
 
 ##################################
 
@@ -90,7 +86,6 @@ class vEditor(Screen, HelpableScreen):
 		</screen>"""
 
 	def __init__(self, session, file):
-		pname = _("File Commander - Addon File-Viewer")
 		self.skin = vEditor.skin
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -117,7 +112,7 @@ class vEditor(Screen, HelpableScreen):
 		self.isChanged = False
 		self.skinName = "vEditorScreen"
 		self.GetFileData(file)
-		self.setTitle(pname)
+		self.setTitle(_("File Commander - Addon File-Viewer"))
 
 	def exitEditor(self):
 		if self.isChanged:
@@ -131,16 +126,11 @@ class vEditor(Screen, HelpableScreen):
 			self.close()
 
 	def GetFileData(self, fx):
-		try:
-			flines = open(fx, "r")
-			lineNo = 1
-			for line in flines:
-				self.list.append(str(lineNo).zfill(4) + ": " + line)
-				lineNo += 1
-			flines.close()
-			self["list_head"] = Label(fx)
-		except:
-			pass
+		lines = fileReadLines(fx)
+		if lines:
+			for idx, line in enumerate(lines):
+				self.list.append(str(idx + 1).zfill(4) + ": " + line)
+		self["list_head"] = Label(fx)
 
 	def editLine(self):
 		try:
@@ -161,7 +151,7 @@ class vEditor(Screen, HelpableScreen):
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
 				font = skin.fonts.get("FileList", ("Regular", 20, 30))
-				fieldwidth = int(1140 * skin.getSkinFactor()) #fhd?
+				fieldwidth = int(1140 * skin.getSkinFactor())  # fhd?
 				length = 1
 				if firstpos_end:
 					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText) - length:], True).width() <= fieldwidth:
@@ -175,7 +165,7 @@ class vEditor(Screen, HelpableScreen):
 							break
 				length -= 1
 			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=firstpos_end, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
-		except:
+		except Exception:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
 			msg.setTitle(_("Error..."))
 
@@ -235,13 +225,13 @@ class vEditor(Screen, HelpableScreen):
 		if answer is True:
 			try:
 				if fileExists(self.file_name):
-					os.system("cp " + self.file_name + " " + self.file_name + ".bak")
+					system("cp " + self.file_name + " " + self.file_name + ".bak")
 				eFile = open(self.file_name, "w")
 				for x in self.list:
 					my_x = x.partition(": ")[2]
 					eFile.writelines(my_x)
 				eFile.close()
-			except:
+			except OSError:
 				pass
 			self.close()
 		else:
@@ -391,16 +381,14 @@ class ImageViewer(Screen, HelpableScreen):
 		self.fileListLen = len(self.fileList) - 1
 
 	def showPicture(self):
-		if self.displayNow and len(self.currentImage):
+		if self.displayNow and self.currentImage:
 			self.displayNow = False
 			self["message"].setText(self.currentImage[0])
 			self.setTitle(self.currentImage[0])
 			self.lsatIndex = self.currentImage[1]
 			self["image"].instance.setPixmap(self.currentImage[2].__deref__())
 			self.currentImage = []
-
 			self.currentIndex += 1
-
 			if self.currentIndex > self.fileListLen:
 				self.currentIndex = 0
 			self.startDecode()
@@ -428,7 +416,7 @@ class ImageViewer(Screen, HelpableScreen):
 		self["status"].show()
 
 	def cbSlideShow(self):
-		print("slide to next Picture index=" + str(self.lsatIndex))
+		print("slide to next Picture index=%s" % str(self.lsatIndex))
 		if not config.pic.loop.value and self.lsatIndex == self.fileListLen:
 			self.PlayPause()
 		self.displayNow = True

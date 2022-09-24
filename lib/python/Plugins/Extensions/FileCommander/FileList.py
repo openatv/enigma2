@@ -1,10 +1,9 @@
-from __future__ import absolute_import
 import os
-import re
+from re import match
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
+from Tools.Directories import fileExists, resolveFilename, SCOPE_GUISKIN
 
 from enigma import RT_HALIGN_LEFT, BT_SCALE, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
@@ -14,7 +13,7 @@ import skin
 
 LOCAL_EXTENSIONS = {
 	"py": "py",
-	"pyo": "py",
+	"pyc": "pyc",
 	"sh": "sh",
 	"html": "html",
 	"xml": "xml",
@@ -27,16 +26,14 @@ LOCAL_EXTENSIONS = {
 	"gz": "gz",
 	"rar": "rar",
 	"mvi": "picture",
+	"iso": "iso",
+	"log": "log",
 }
 
 LOCAL_EXTENSIONS.update(((ext[1:], "txt") for ext in TEXT_EXTENSIONS if ext[1:] not in LOCAL_EXTENSIONS))
 
 EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
-
-imagePath = resolveFilename(SCOPE_GUISKIN, 'FCimages')
-if not os.path.isdir(imagePath):
-	imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
 
 
 def getPNGByExt(name):
@@ -47,13 +44,13 @@ def getPNGByExt(name):
 		_, ex = os.path.splitext(basename)
 		if ex == ".tar":
 			ext = "tgz"
-	elif re.match("^r\d+$", ext):
+	elif match("^r\d+$", ext):
 		ext = "rar"
 
 	if ext in EXTENSIONS:
-		return LoadPixmap(path=os.path.join(imagePath, EXTENSIONS[ext]) + ".png")
+		return LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/%s.png" % EXTENSIONS[ext]))
 	else:
-		return LoadPixmap(path=os.path.join(imagePath, "file.png"))
+		return LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
 
 
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
@@ -61,14 +58,14 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	x, y, w, h = skin.parameters.get("FileListName", (55, 1, 1175, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w - x, h, 0, RT_HALIGN_LEFT, name))
 	if isLink:
-		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
+		link_png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
 	else:
 		link_png = None
 	if isDir:
 		if isLink and link_png is None:
-			png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
 		else:
-			png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -258,14 +255,14 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 
 	if isLink:
-		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
+		link_png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
 	else:
 		link_png = None
 	if isDir:
 		if isLink and link_png is None:
-			png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
 		else:
-			png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -276,16 +273,8 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 
 	if not name.startswith('<'):
 		x, y, w, h = skin.parameters.get("FileListMultiLock", (4, 0, 25, 25))
-		if selected is False:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_off.png"))
-			if not icon:
-				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
-		else:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_on.png"))
-			if not icon:
-				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
+		icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png" if selected else "icons/lock_off.png"))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 	return res
 
 

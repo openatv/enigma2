@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
-
-from __future__ import print_function
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Tools.BoundFunction import boundFunction
@@ -14,12 +11,20 @@ import subprocess
 import skin
 import six
 
-pname = _("File Commander - generalised archive handler")
-pdesc = _("unpack archives")
-pversion = "0.0-r1"
+COMMONINFO = (
+	_("File Commander - generalised archive handler"),
+	_("unpack archives"),
+	"0.0-r1"
+)
 
 
 class ArchiverMenuScreen(Screen):
+	ID_SHOW = 0
+	ID_CURRENTDIR = 1
+	ID_TARGETDIR = 2
+	ID_DEFAULTDIR = 3
+	ID_INSTALL = 4
+
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="1180,60" font="Regular;20" foregroundColor="#00fff000"/>
@@ -35,11 +40,12 @@ class ArchiverMenuScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, sourcelist, targetlist):
+	def __init__(self, session, sourcelist, targetlist, addoninfo=None):
 
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
+		addoninfo = addoninfo or COMMONINFO
+		self.pname = addoninfo[0]
+		self.pdesc = addoninfo[1]
+		self.pversion = addoninfo[2]
 
 		self.SOURCELIST = sourcelist
 		self.TARGETLIST = targetlist
@@ -48,9 +54,7 @@ class ArchiverMenuScreen(Screen):
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
 		self.targetDir = self.TARGETLIST.getCurrentDirectory() or '/tmp/'
 		self.list = []
-
 		self.commands = {}
-
 		self.errlog = ""
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -66,7 +70,6 @@ class ArchiverMenuScreen(Screen):
 		self['unpacking'].selectionEnabled(0)
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
-
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
 		self["key_yellow"] = Label("")
@@ -83,6 +86,21 @@ class ArchiverMenuScreen(Screen):
 	def onLayout(self):
 		self.setTitle(self.pname)
 		self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
+
+	def getPathBySelectId(self, selectId):
+		if selectId == self.ID_CURRENTDIR:
+			return self.sourceDir
+		elif selectId == self.ID_TARGETDIR:
+			return self.targetDir
+		elif selectId == self.ID_DEFAULTDIR:
+			return config.usage.default_path.value
+
+	def initList(self, firstElement=None):
+		if firstElement:
+			self.list.append((firstElement, self.ID_SHOW))
+		self.list.append((_("Unpack to current folder"), self.ID_CURRENTDIR))
+		self.list.append((_("Unpack to %s") % self.targetDir, self.ID_TARGETDIR))
+		self.list.append((_("Unpack to %s") % config.usage.default_path.value, self.ID_DEFAULTDIR))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
@@ -110,16 +128,16 @@ class ArchiverMenuScreen(Screen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print("[ArchiverMenuScreen] Select:", selectName, self.selectId)
+		print("[ArchiverMenuScreen] Select: %s %s" % (selectName, self.selectId))
 		self.unpackModus(self.selectId)
 
-	def unpackModus(self, id):
+	def unpackModus(self, selectid):
 		return
 
 	# unpackPopen and unpackEConsoleApp run unpack and info
 	# commands for the specific archive unpackers.
 
-	def unpackPopen(self, cmd, infoScreen):
+	def unpackPopen(self, cmd, infoScreen, addoninfo):
 
 		# cmd is either a string or a list/tuple
 		# containing the command name and arguments.
@@ -130,14 +148,14 @@ class ArchiverMenuScreen(Screen):
 		# of the command. It must have an API compatible
 		# with ArchiverInfoScreen.
 
-		print("[ArchiverMenuScreen] unpackPopen", cmd)
+		print("[ArchiverMenuScreen] unpackPopen %s" % cmd)
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
 			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		except OSError as ex:
 			cmdname = cmd.split()[0] if shellcmd else cmd[0]
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
-			print("[ArchiverMenuScreen]", msg)
+			print("[ArchiverMenuScreen] %s" % msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
 		stdout, stderr = p.communicate()
@@ -149,7 +167,7 @@ class ArchiverMenuScreen(Screen):
 		self.extractlist = [(l,) for l in output[1] + output[0]]
 		if not self.extractlist:
 			self.extractlist = [(_("No files found."),)]
-		self.session.open(infoScreen, self.extractlist, self.sourceDir, self.filename)
+		self.session.open(infoScreen, self.extractlist, self.sourceDir, self.filename, addoninfo)
 
 	def unpackEConsoleApp(self, cmd, exePath=None, logCallback=None):
 
@@ -166,7 +184,7 @@ class ArchiverMenuScreen(Screen):
 		# progress indicator using the command output
 		# (see unrar.py)
 
-		print("[ArchiverMenuScreen] unpackEConsoleApp", cmd)
+		print("[ArchiverMenuScreen] unpackEConsoleApp %s" % cmd)
 		self.errlog = ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
@@ -181,7 +199,7 @@ class ArchiverMenuScreen(Screen):
 			self.container.execute(cmd)
 
 	def extractDone(self, filename, data):
-		print("[ArchiverMenuScreen] extractDone", data)
+		print("[ArchiverMenuScreen] extractDone %s" % data)
 		if data:
 			type = MessageBox.TYPE_ERROR
 			timeout = 15
@@ -222,11 +240,12 @@ class ArchiverInfoScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, liste, sourceDir, filename):
+	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
 
-		self.pname = pname
-		self.pdesc = pdesc
-		self.pversion = pversion
+		addoninfo = addoninfo or COMMONINFO
+		self.pname = addoninfo[0]
+		self.pdesc = addoninfo[1]
+		self.pversion = addoninfo[2]
 
 		self.list = liste
 		self.sourceDir = sourceDir
