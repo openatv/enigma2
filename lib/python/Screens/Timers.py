@@ -766,6 +766,9 @@ class PowerTimerOverview(TimerOverviewBase):
 
 	def editTimerCallback(self, result):
 		if result[0]:
+			if len(result) == 1:  # Special case for close recursive
+				self.close(True)
+				return
 			entry = result[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			print("[Timers] PowerTimer updated.")
@@ -970,6 +973,9 @@ class RecordTimerOverview(TimerOverviewBase):
 
 	def editTimerCallback(self, result):
 		if result[0]:
+			if len(result) == 1:  # Special case for close recursive
+				self.close(True)
+				return
 			entry = result[1]
 			timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
