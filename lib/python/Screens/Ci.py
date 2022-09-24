@@ -21,7 +21,7 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 relevantPidsRoutingChoices = None
 
 BRAND = BoxInfo.getItem("brand")
-MAX_NUM_CI = 1 if BoxInfo.getItem("model") in ("zgemmah9combo", "pulse4kmini") else 4
+MAX_NUM_CI = 1 if BoxInfo.getItem("machinebuild") in ("zgemmah9combo", "pulse4kmini") else 4
 CI_HELPER_CONF = "/etc/cihelper.conf"
 CI_HELPER_CONF_TMP = "/etc/cihelper.conf.tmp"
 
@@ -335,7 +335,7 @@ class CiMessageHandler:
 		self.auto_close = False
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
 		# TODO move to systeminfo
-		if BoxInfo.getItem("model") in ("vuzero",):
+		if BoxInfo.getItem("machinebuild") in ("vuzero",):
 			BoxInfo.setItem("CommonInterface", False)
 		else:
 			BoxInfo.setItem("CommonInterface", eDVBCIInterfaces.getInstance().getNumOfSlots() > 0)

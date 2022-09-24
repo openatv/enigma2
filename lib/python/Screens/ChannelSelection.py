@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
 
@@ -14,7 +13,7 @@ from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 
 from Components.UsageConfig import preferredTimerPath
 from Components.Renderer.Picon import getPiconName
@@ -553,7 +552,7 @@ class ChannelContextMenu(Screen):
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
+		if int(xres) <= 720 or BoxInfo.getItem("model") != 'blackbox7405':
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
@@ -596,7 +595,7 @@ class ChannelContextMenu(Screen):
 						f.close()
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()

@@ -39,18 +39,24 @@ class MenuList(GUIComponent):
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
 
-	def getSelectionIndex(self):
+	def getCurrentIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
+	def getSelectionIndex(self):
+		return self.getCurrentIndex()
+
 	def getSelectedIndex(self):
-		return self.l.getCurrentSelectionIndex()
+		return self.getCurrentIndex()
 
 	def count(self):
 		return len(self.list)
 
-	def moveToIndex(self, index):
+	def setCurrentIndex(self, index):
 		if self.instance:
 			self.instance.moveSelectionTo(index)
+
+	def moveToIndex(self, index):
+		self.setCurrentIndex(index)
 
 	def goTop(self):
 		if self.instance:

@@ -1,23 +1,24 @@
-from __future__ import print_function
 import os
-import struct
-from Screens.Screen import Screen
+from time import time
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService
+
 from Components.ActionMap import ActionMap
-from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.config import config
 from Components.Console import Console
-from Components.Sources.StreamService import StreamServiceList
-from Components.SystemInfo import BoxInfo
 from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+import Components.RecordingConfig
+from Components.Sources.StreamService import StreamServiceList
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.Task import job_manager
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer
-from boxbranding import getMachineBrand, getMachineName, getBrandOEM, getMachineBuild
+import Screens.InfoBar
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
-from time import localtime, time
-import Screens.InfoBar
-from gettext import dgettext
-import Components.RecordingConfig
+
 
 inStandby = None
 TVinStandby = None
@@ -46,7 +47,7 @@ class TVstate:  # load in Navigation
 			import Components.HdmiCec
 			self.hdmicec_instance = Components.HdmiCec.hdmi_cec.instance
 			self.hdmicec_ok = self.hdmicec_instance and config.hdmicec.enabled.value
-		except:
+		except ImportError:
 			self.hdmicec_ok = False
 
 		if not self.hdmicec_ok:
@@ -102,7 +103,7 @@ def setLCDModeMinitTV(value):
 		f = open("/proc/stb/lcd/mode", "w")
 		f.write(value)
 		f.close()
-	except:
+	except OSError:
 		pass
 
 
@@ -114,10 +115,10 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'og2ott4k', 'sfx6008')):
+		if BoxInfo.getItem("HDMIOut"):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
-			except:
+			except OSError:
 				pass
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
@@ -230,10 +231,10 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'og2ott4k', 'sfx6008')):
+		if BoxInfo.getItem("HDMIOut"):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
-			except:
+			except OSError:
 				pass
 
 		if int(config.usage.hdd_standby_in_standby.value) != -1:  # HDD standby timer value (box in standby) / -1 = same as when box is active
@@ -312,11 +313,6 @@ class StandbySummary(Screen):
 	</screen>"""
 
 
-from enigma import quitMainloop, iRecordableService
-from Screens.MessageBox import MessageBox
-from Components.Task import job_manager
-
-
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
@@ -324,18 +320,17 @@ class QuitMainloopScreen(Screen):
 			<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 		</screen>"""
 		Screen.__init__(self, session)
-		from Components.Label import Label
 		text = {
-			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
-			QUIT_REBOOT: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
-			QUIT_RESTART: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
-			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % (getMachineBrand(), getMachineName()),
-			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % (getMachineBrand(), getMachineName()),
-			QUIT_UPGRADE_PROGRAM: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			QUIT_IMAGE_RESTORE: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
+			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % getBoxDisplayName(),
+			QUIT_REBOOT: _("Your %s %s is rebooting") % getBoxDisplayName(),
+			QUIT_RESTART: _("The user interface of your %s %s is restarting") % getBoxDisplayName(),
+			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
+			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % getBoxDisplayName(),
+			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % getBoxDisplayName(),
+			QUIT_UPGRADE_PROGRAM: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
+			QUIT_IMAGE_RESTORE: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_UPGRADE_FRONTPANEL: _("Your front panel will be upgraded\nThis may take a few minutes"),
-			QUIT_WOLSHUTDOWN: _("Your %s %s goes to WOL") % (getMachineBrand(), getMachineName())
+			QUIT_WOLSHUTDOWN: _("Your %s %s goes to WOL") % getBoxDisplayName()
 			}.get(retvalue)
 		self["text"] = Label(text)
 
@@ -393,8 +388,8 @@ class TryQuitMainloop(MessageBox):
 				QUIT_RESTART: _("Really restart now?"),
 				QUIT_UPGRADE_FP: _("Really upgrade the front panel processor and reboot now?"),
 				QUIT_MAINT: _("Really reboot into Recovery Mode?"),
-				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				QUIT_IMAGE_RESTORE: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
+				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % getBoxDisplayName(),
+				QUIT_IMAGE_RESTORE: _("Really reflash your %s %s and reboot now?") % getBoxDisplayName(),
 				QUIT_UPGRADE_FRONTPANEL: _("Really upgrade the front panel and reboot now?"),
 				QUIT_WOLSHUTDOWN: _("Really WOL now?")
 				}.get(retvalue)
@@ -443,9 +438,9 @@ class TryQuitMainloop(MessageBox):
 				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print("[Standby] LCDminiTV off")
 				setLCDModeMinitTV("0")
-			if BoxInfo.getItem("model") == "vusolo4k":  #workaround for white display flash
+			if BoxInfo.getItem("machinebuild") == "vusolo4k":  #workaround for white display flash
 				open("/proc/stb/fp/oled_brightness", "w").write("0")
-			if BoxInfo.getItem("model") == "pulse4k":
+			if BoxInfo.getItem("machinebuild") == "pulse4k":
 				open("/proc/stb/lcd/oled_brightness", "w").write("0")
 			quitMainloop(self.retval)
 		else:

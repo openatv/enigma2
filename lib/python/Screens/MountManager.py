@@ -1,7 +1,10 @@
-from __future__ import print_function
-from Screens.Screen import Screen
+from os import system, rename, path, mkdir, remove
+from time import sleep
+from re import search
+from six import ensure_str
 from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName, getMachineBuild
+
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
@@ -12,11 +15,10 @@ from Components.config import getConfigListEntry, ConfigSelection, NoSave
 from Components.Console import Console
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.LoadPixmap import LoadPixmap
-from os import system, rename, path, mkdir, remove
-from time import sleep
-from re import search
-from six import ensure_str
+
+MODEL = BoxInfo.getItem("model")
 
 
 class HddMount(Screen):
@@ -105,9 +107,9 @@ class HddMount(Screen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('multibox', 'multiboxse', 'dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
+			if MODEL in ('multibox', 'multiboxse', 'dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
 				continue
-			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
+			if MODEL in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -398,7 +400,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
 		self['key_red'] = Label(_("Cancel"))
-		self['Linconn'] = Label(_("Wait please while scanning your %s %s devices...") % (getMachineBrand(), getMachineName()))
+		self['Linconn'] = Label(_("Wait please while scanning your %s %s devices...") % getBoxDisplayName())
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'green': self.saveMypoints, 'red': self.close, 'back': self.close})
 		self.updateList()
 
@@ -423,9 +425,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
+			if MODEL in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
 				continue
-			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
+			if MODEL in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -610,9 +612,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		ybox.setTitle(_("Please wait."))
 
 	def delay(self, val):
-		message = _("Changes need a system restart to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
+		message = _("Changes need a system restart to take effect.\nRestart your %s %s now?") % getBoxDisplayName()
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-		ybox.setTitle(_("Restart %s %s.") % (getMachineBrand(), getMachineName()))
+		ybox.setTitle(_("Restart %s %s.") % getBoxDisplayName())
 
 	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]

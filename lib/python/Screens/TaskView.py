@@ -2,12 +2,11 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigSubsection, ConfigSelection, getConfigListEntry
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager
 from Screens.InfoBarGenerics import InfoBarNotifications
 import Screens.Standby
 import Tools.Notifications
-from boxbranding import getMachineBrand, getMachineName
 
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
@@ -136,10 +135,10 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		from Screens.MessageBox import MessageBox
 		if self.settings.afterEvent.value == "deepstandby":
 			if not Screens.Standby.inTryQuitMainloop:
-				Tools.Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A sleep timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout=20)
+				Tools.Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A sleep timer wants to shut down\nyour %s %s. Shutdown now?") % getBoxDisplayName(), timeout=20)
 		elif self.settings.afterEvent.value == "standby":
 			if not Screens.Standby.inStandby:
-				Tools.Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=20)
+				Tools.Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\n%s %s to standby. Do that now?") % getBoxDisplayName(), timeout=20)
 
 	def checkNotifications(self):
 		InfoBarNotifications.checkNotifications(self)

@@ -63,17 +63,24 @@ to generate HTML."""
 	current = property(getCurrent)
 
 	@cached
-	def getIndex(self):
+	def getCurrentIndex(self):
 		return self.master.index if self.master is not None else 0  # None - The 0 is a hack to avoid badly written code from crashing!
 
-	def setIndex(self, index):
+	def setCurrentIndex(self, index):
 		if self.master is not None:
 			self.master.index = index
 			self.selectionChanged(index)
 
-	index = property(getIndex, setIndex)
+	index = property(getCurrentIndex, setCurrentIndex)
 
-	setCurrentIndex = setIndex
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def getIndex(self):
+		return self.getCurrentIndex()
+
+	def setIndex(self, index):
+		return self.setCurrentIndex(index)
 
 	@cached
 	def getStyle(self):
@@ -85,9 +92,6 @@ to generate HTML."""
 			self.changed((self.CHANGED_SPECIFIC, "style"))
 
 	style = property(getStyle, setStyle)
-
-	def getSelectedIndex(self):
-		return self.getIndex()
 
 	def count(self):
 		return len(self.listData)

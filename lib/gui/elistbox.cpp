@@ -14,6 +14,7 @@ int eListbox::defaultScrollBarScroll = eListbox::DefaultScrollBarScroll;
 int eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 int eListbox::defaultPageSize = eListbox::DefaultPageSize;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
+eRect eListbox::defaultPadding = eRect(1,1,1,1);
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_list_orientation(listVertical), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1), m_scrollbar_scroll(byPage),
@@ -30,7 +31,7 @@ eListbox::eListbox(eWidget *parent) :
 	m_page_size = eListbox::defaultPageSize;
 
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
-	m_style.m_text_offset = ePoint(1,1);
+	m_style.m_text_padding = eListbox::defaultPadding;
 //	setContent(new eListboxStringContent());
 
 	allowNativeKeys(true);
@@ -154,7 +155,8 @@ void eListbox::moveSelectionTo(int index)
 	if (m_content)
 	{
 		m_content->cursorSet(index);
-		moveSelection(justCheck);
+		m_content_changed = true;
+		moveSelection(justCheck + 100);
 	}
 }
 
@@ -528,9 +530,9 @@ void eListbox::setHAlign(int align)
 	m_style.m_halign = align;
 }
 
-void eListbox::setTextOffset(const ePoint &textoffset)
+void eListbox::setTextPadding(const eRect &padding)
 {
-	m_style.m_text_offset = textoffset;
+	m_style.m_text_padding = padding;
 }
 
 void eListbox::setUseVTIWorkaround(void)
@@ -678,6 +680,10 @@ void eListbox::moveSelection(long dir)
 	int prevsel = oldsel;
 	int newsel;
 	int pageOffset = (m_page_size > 0 && m_scrollbar_scroll == byLine) ? m_page_size : m_items_per_page;
+	bool indexchanged = dir > 100;
+	if(indexchanged) {
+		dir -= 100;
+	}
 
 #ifdef USE_LIBVUGLES2
 	m_dir = dir;
@@ -852,7 +858,7 @@ void eListbox::moveSelection(long dir)
 
 		}
 
-		if(m_last_selectable_item==-1 && dir == justCheck)
+		if(m_last_selectable_item == -1 && dir == justCheck)
 		{
 			m_content->cursorEnd();
 			do
@@ -876,7 +882,7 @@ void eListbox::moveSelection(long dir)
 					m_top=0;
 			}
 
-			if (m_last_selectable_item != m_content->size()-1 && m_selected >= m_last_selectable_item)
+			if (m_last_selectable_item != m_content->size() - 1 && m_selected >= m_last_selectable_item)
 				jumpBottom = true;
 		}
 
@@ -904,19 +910,23 @@ void eListbox::moveSelection(long dir)
 						oldline = m_selected;
 				}
 			}
+			if(indexchanged && m_selected < m_items_per_page) {
+				oldline = m_selected;
+			}
+
 			m_top = m_selected - oldline;
 		}
 		else if (dir == moveUp || (customPageSize && dir == movePageUp))
 		{
-			if(m_first_selectable_item>0 && m_selected == m_first_selectable_item)
+			if(m_first_selectable_item > 0 && m_selected == m_first_selectable_item)
 			{
 				oldline = m_selected;
 			}
 			m_top = m_selected - oldline;
 		}
 
-		if(m_top<0 || oldline<0) {
-			m_top=0;
+		if(m_top < 0 || oldline < 0) {
+			m_top = 0;
 		}
 
 		//eDebug("[eListbox] moveSelection 2 dir=%d oldline=%d oldtop=%d m_top=%d m_selected=%d m_items_per_page=%d sz=%d jumpBottom=%d", dir, oldline, oldtop, m_top, m_selected, m_items_per_page, m_content->size(),jumpBottom);

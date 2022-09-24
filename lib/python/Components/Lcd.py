@@ -1,4 +1,3 @@
-from os import sys
 from os.path import exists
 from sys import maxsize
 from twisted.internet import threads
@@ -13,9 +12,8 @@ from Screens.Screen import Screen
 import Screens.Standby
 from Tools.Directories import fileReadLine, fileWriteLine
 
-from boxbranding import getBoxType, getDisplayType
-
-model = BoxInfo.getItem("model")
+MACHINEBUILD = BoxInfo.getItem("machinebuild")
+DISPLAYTYPE = BoxInfo.getItem("displaytype")
 platform = BoxInfo.getItem("platform")
 
 
@@ -264,7 +262,7 @@ class LCD:
 
 def leaveStandby():
 	config.lcd.bright.apply()
-	if model == "vuultimo":
+	if MACHINEBUILD == "vuultimo":
 		config.lcd.ledbrightness.apply()
 		config.lcd.ledbrightnessdeepstandby.apply()
 
@@ -277,10 +275,9 @@ def standbyCounterChanged(configElement):
 
 
 def InitLcd():
-	# FIXME remove getBoxType
-	if getBoxType() in ('gbx34k', 'force4', 'alien5', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+	if MACHINEBUILD in ('gbx34k', 'force4', 'alien5', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
 		detected = False
-	elif getBoxType() in ('pulse4kmini',):
+	elif MACHINEBUILD in ('pulse4kmini',):
 		detected = True
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -337,11 +334,11 @@ def InitLcd():
 			("100", _("fast"))
 		], default="300")
 		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("seconds")),
-			("20000", "20 %s" % _("seconds")),
-			("30000", "30 %s" % _("seconds")),
-			("60000", "1 %s" % _("minute")),
-			("300000", "5 %s" % _("minutes")),
+			("10000", "10 %s" % _("Seconds")),
+			("20000", "20 %s" % _("Seconds")),
+			("30000", "30 %s" % _("Seconds")),
+			("60000", "1 %s" % _("Minute")),
+			("300000", "5 %s" % _("Minutes")),
 			("noscrolling", _("Off"))
 		], default="10000")
 
@@ -464,7 +461,7 @@ def InitLcd():
 		config.usage.lcd_deepstandbypowerled = ConfigOnOff(default=True)
 		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
-		if getBoxType() in ('dual',):
+		if MACHINEBUILD in ('dual',):
 			config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
 			config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
 
@@ -492,9 +489,9 @@ def InitLcd():
 		config.usage.lcd_power4x7suspend = ConfigOnOff(default=True)
 		config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
-		if model in ('dm900', 'dm920', 'e4hdultra', 'protek4k'):
+		if MACHINEBUILD in ('dm900', 'dm920', 'e4hdultra', 'protek4k'):
 			standby_default = 4
-		elif model in ("spycat4kmini", "osmega"):
+		elif MACHINEBUILD in ("spycat4kmini", "osmega"):
 			standby_default = 10
 		else:
 			standby_default = 1
@@ -504,11 +501,11 @@ def InitLcd():
 		else:
 			config.lcd.contrast = ConfigNothing()
 
-		if model in ('novatwin', 'novacombo', 'mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
+		if MACHINEBUILD in ('novatwin', 'novacombo', 'mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
-		elif model in ("spycat4kmini", "osmega"):
+		elif MACHINEBUILD in ("spycat4kmini", "osmega"):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
@@ -519,14 +516,14 @@ def InitLcd():
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(choices=[
-			("5", "5 %s" % _("seconds")),
-			("10", "10 %s" % _("seconds")),
-			("15", "15 %s" % _("seconds")),
-			("20", "20 %s" % _("seconds")),
-			("30", "30 %s" % _("seconds")),
-			("60", "1 %s" % _("minute")),
-			("120", "2 %s" % _("minutes")),
-			("300", "5 %s" % _("minutes")),
+			("5", "5 %s" % _("Seconds")),
+			("10", "10 %s" % _("Seconds")),
+			("15", "15 %s" % _("Seconds")),
+			("20", "20 %s" % _("Seconds")),
+			("30", "30 %s" % _("Seconds")),
+			("60", "1 %s" % _("Minute")),
+			("120", "2 %s" % _("Minutes")),
+			("300", "5 %s" % _("Minutes")),
 			("0", _("Off"))
 		], default="0")
 		config.lcd.dimdelay.addNotifier(setLCDdimdelay)
@@ -561,7 +558,7 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if BoxInfo.getItem("VFD_scroll_repeats") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
 			def scroll_repeats(el):
 				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1x")), ("2", _("2x")), ("3", _("3x")), ("4", _("4x")), ("500", _("Continues"))]
@@ -570,10 +567,10 @@ def InitLcd():
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
-				if model in ('sf4008', 'beyonwizu4'):
+				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
 					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(str(el.value))
@@ -584,40 +581,40 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_initial_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
 			def initial_scroll_delay(el):
-				if model in ('sf4008', 'beyonwizu4'):
+				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
 					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
 					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(choices=[
-				("3000", "3 %s" % _("seconds")),
-				("5000", "5 %s" % _("seconds")),
-				("10000", "10 %s" % _("seconds")),
-				("20000", "20 %s" % _("seconds")),
-				("30000", "30 %s" % _("seconds")),
+				("3000", "3 %s" % _("Seconds")),
+				("5000", "5 %s" % _("Seconds")),
+				("10000", "10 %s" % _("Seconds")),
+				("20000", "20 %s" % _("Seconds")),
+				("30000", "30 %s" % _("Seconds")),
 				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback=False)
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if BoxInfo.getItem("VFD_final_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay") and MACHINEBUILD not in ('ixussone', 'ixusszero') and DISPLAYTYPE not in ('7segment',):
 			def final_scroll_delay(el):
-				if model in ('sf4008', 'beyonwizu4'):
+				if MACHINEBUILD in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
 					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
 					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_final_scroll_delay = ConfigSelection(choices=[
-				("3000", "3 %s" % _("seconds")),
-				("5000", "5 %s" % _("seconds")),
-				("10000", "10 %s" % _("seconds")),
-				("20000", "20 %s" % _("seconds")),
-				("30000", "30 %s" % _("seconds")),
+				("3000", "3 %s" % _("Seconds")),
+				("5000", "5 %s" % _("Seconds")),
+				("10000", "10 %s" % _("Seconds")),
+				("20000", "20 %s" % _("Seconds")),
+				("30000", "30 %s" % _("Seconds")),
 				("0", _("No delay"))
 			], default="10000")
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
@@ -655,7 +652,7 @@ def InitLcd():
 			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution)
 		else:
 			config.lcd.showoutputresolution = ConfigNothing()
-		if model == "vuultimo":
+		if MACHINEBUILD == "vuultimo":
 			config.lcd.ledblinkingtime = ConfigSlider(default=5, increment=1, limits=(0, 15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
@@ -699,11 +696,11 @@ def InitLcd():
 			("100", _("fast"))
 		], default="300")
 		config.lcd.scroll_delay = ConfigSelection(choices=[
-			("10000", "10 %s" % _("seconds")),
-			("20000", "20 %s" % _("seconds")),
-			("30000", "30 %s" % _("seconds")),
-			("60000", "1 %s" % _("minute")),
-			("300000", "5 %s" % _("minutes")),
+			("10000", "10 %s" % _("Seconds")),
+			("20000", "20 %s" % _("Seconds")),
+			("30000", "30 %s" % _("Seconds")),
+			("60000", "1 %s" % _("Minute")),
+			("300000", "5 %s" % _("Minutes")),
 			("noscrolling", _("Off"))
 		], default="10000")
 		config.lcd.showoutputresolution = ConfigNothing()

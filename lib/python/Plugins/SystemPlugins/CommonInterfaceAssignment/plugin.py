@@ -8,6 +8,7 @@ from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.SelectionList import SelectionList
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
@@ -17,7 +18,6 @@ from Tools.CIHelper import cihelper
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 
 from os import system, path as os_path
-from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
 import six
 
@@ -47,7 +47,7 @@ class CIselectMainMenu(Screen):
 				"cancel": self.close
 			}, -1)
 
-		if getBoxType() in ('zgemmah9combo',):
+		if BoxInfo.getItem("machinebuild") in ('zgemmah9combo',):
 			NUM_CI = 1
 		else:
 			NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
@@ -87,7 +87,7 @@ class CIselectMainMenu(Screen):
 			action = cur[2]
 			slot = cur[3]
 			if action == 1:
-				print("[CI_Wizzard] there is no CI Slot in your %s %s" % (getMachineBrand(), getMachineName()))
+				print("[CI_Wizzard] there is no CI Slot in your %s %s" % getBoxDisplayName())
 			else:
 				print("[CI_Wizzard] selected CI Slot : %d" % slot)
 				if config.usage.setup_level.index > 1:  # advanced

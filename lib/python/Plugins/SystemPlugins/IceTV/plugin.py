@@ -11,7 +11,6 @@ from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
 from Tools.ServiceReference import service_types_tv_ref
-from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
@@ -19,6 +18,7 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry, ConfigText
 from Components.Converter.genre import getGenreStringSub
+from Components.SystemInfo import getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -40,6 +40,7 @@ import NavigationInstance
 from twisted.internet import reactor, threads
 from os import path
 import six
+
 
 _session = None
 password_requested = False
@@ -267,7 +268,7 @@ parental_ratings = {
 def _logResponseException(logger, heading, exception):
     msg = heading
     if isinstance(exception, requests.exceptions.ConnectionError):
-        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
+        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % getBoxDisplayName()
     msg += ": " + str(exception)
     if hasattr(exception, "response") and hasattr(exception.response, "text"):
         ex_text = str(exception.response.text).strip()
@@ -797,7 +798,7 @@ class EPGFetcher(object):
                 if i == 0 and pos == 0 and "last_update_time" in shows:
                     last_update_time = shows["last_update_time"]
             if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimer()
+                NavigationInstance.instance.RecordTimer.saveTimers()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
@@ -1073,7 +1074,7 @@ class EPGFetcher(object):
                     local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
                     self.addLog("Timer '%s' created OK" % local_timer.name)
                     if local_timer.ice_timer_id is not None:
-                        NavigationInstance.instance.RecordTimer.saveTimer()
+                        NavigationInstance.instance.RecordTimer.saveTimers()
                         self.deferredPostStatus(local_timer)
                 except:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
@@ -1599,7 +1600,7 @@ class IceTVLogin(Screen, IceTVUIBase):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
+    _instructions = _("Contacting IceTV server and setting up your %s %s.") % getBoxDisplayName()
     _banner = None
 
     def __init__(self, session):
@@ -1659,7 +1660,7 @@ class IceTVLogin(Screen, IceTVUIBase):
                 return
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
-                                           "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
+                                           "Your IceTV guide will now download in the background.") % getBoxDisplayName())
             self["message"].setText(_("Everything in one place - IceTV does it for you!\n\n"
                                       "Using the IceTV app or website, 'My Shows' is your place to go to."
                                       " See the next 7 days of your recordings,"

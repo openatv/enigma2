@@ -30,7 +30,7 @@ from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.SelectionList import SelectionList
 from Components.Slider import Slider
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
@@ -38,6 +38,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR, SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
@@ -48,9 +49,7 @@ from .SoftwareTools import iSoftwareTools
 from .ImageWizard import ImageWizard
 from .ImageBackup import ImageBackup
 
-displayBrand = BoxInfo.getItem("displaybrand")
-displayModel = BoxInfo.getItem("displaymodel")
-boxType = BoxInfo.getItem("model")
+boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 
@@ -109,147 +108,9 @@ class RestoreMenu(RestoreMenu):
     pass
 
 
-class SoftwareManagerSetup(Screen, ConfigListScreen):
-	skin = """
-		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="config" position="5,50" size="550,290" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,300" zPosition="1" size="560,2" />
-			<widget source="introduction" render="Label" position="5,310" size="550,80" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		</screen>"""
-
+class SoftwareManagerSetup(Setup):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.onChangedEntry = []
-		self.setTitle(_("Software Manager Settings"))
-		self.overwriteConfigfilesEntry = None
-		self.overwriteSettingsfilesEntry = None
-		self.overwriteDriversfilesEntry = None
-		self.overwriteEmusfilesEntry = None
-		self.overwritePiconsfilesEntry = None
-		self.overwriteBootlogofilesEntry = None
-		self.overwriteSpinnerfilesEntry = None
-		self.restoremodeEntry = None
-		self.updatetypeEntry = None
-		self.setupList = []
-		ConfigListScreen.__init__(self, self.setupList, session=session, on_change=self.changedEntry)
-		self["actions"] = HelpableActionMap(self, ["SetupActions", "MenuActions"], {
-			"cancel": self.keyCancel,
-			"save": self.apply,
-			"menu": self.closeRecursive,
-		}, prio=-2)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText()
-		self["introduction"] = StaticText()
-		self.createSetup()
-
-	def createSetup(self):
-		self.setupList = []
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
-		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
-		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
-		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
-		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
-		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
-		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
-		self.restoremodeEntry = getConfigListEntry(_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
-		self.updatetypeEntry = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if boxType.startswith("et"):
-			self.setupList.append(self.updatetypeEntry)
-		self.setupList.append(self.overwriteConfigfilesEntry)
-		self.setupList.append(self.overwriteSettingsfilesEntry)
-		self.setupList.append(self.overwriteDriversfilesEntry)
-		if Check_Softcam_Emu():
-			self.setupList.append(self.overwriteEmusfilesEntry)
-		self.setupList.append(self.overwritePiconsfilesEntry)
-		self.setupList.append(self.overwriteBootlogofilesEntry)
-		self.setupList.append(self.overwriteSpinnerfilesEntry)
-		self.setupList.append(self.restoremodeEntry)
-		self["config"].list = self.setupList
-		self["config"].l.setSeperation(400)
-		self["config"].l.setList(self.setupList)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def selectionChanged(self):
-		if self["config"].getCurrent() == self.overwriteConfigfilesEntry:
-			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteSettingsfilesEntry:
-			self["introduction"].setText(_("Overwrite setting files (channellist) during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteDriversfilesEntry:
-			self["introduction"].setText(_("Overwrite driver files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteEmusfilesEntry:
-			self["introduction"].setText(_("Overwrite softcam files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwritePiconsfilesEntry:
-			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
-			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteSpinnerfilesEntry:
-			self["introduction"].setText(_("Overwrite spinner files during software upgrade?"))
-		elif self["config"].getCurrent() == self.restoremodeEntry:
-			self["introduction"].setText(_("Turbo: One reboot after flash\nFast: One reboot after flash, one reboot after restore\nSlow: One reboot after flash, one reboot after restore in GUI"))
-		elif self["config"].getCurrent() == self.updatetypeEntry:
-			self["introduction"].setText(_("Select how your box will upgrade."))
-		else:
-			self["introduction"].setText("")
-
-	def newConfig(self):
-		pass
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-
-	def confirm(self, confirmed):
-		if not confirmed:
-			print("not confirmed")
-			return
-		else:
-			self.keySave()
-
-	def apply(self):
-		self.session.openWithCallback(self.confirm, MessageBox, _("Use these settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
-		else:
-			self.close()
-
-	# For summary.
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
+		Setup.__init__(self, session, "SoftwareManager", plugin="Extensions/SoftwareManager")
 
 
 class PluginManager(Screen, PackageInfoHandler):
@@ -748,7 +609,7 @@ class PluginManagerInfo(Screen):
 				elif cmd == 2:
 					info = args["package"]
 				else:
-					info = _("%s %s software because updates are available.") % (displayBrand, displayModel)
+					info = _("%s %s software because updates are available.") % getBoxDisplayName()
 				self.infoList.append(self.buildEntryComponent(action, info))
 			self["list"].setList(self.infoList)
 			self["list"].updateList(self.infoList)
@@ -1094,7 +955,7 @@ class UpdatePlugin(Screen):
 			"A new flash will increase the stability\n\n"
 			"An online update is done at your own risk !!\n\n\n"
 			"Do you still want to update?"
-		) % (displayBrand, displayModel)
+		) % getBoxDisplayName()
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
@@ -1121,7 +982,7 @@ class UpdatePlugin(Screen):
 		doUpdate = True
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can run in parallel to the package update.
 		try:
-			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
+			urlopenATV = "https://ampel.mynonpublic.com/Ampel/index.php"
 			d = urlopen(urlopenATV)
 			tmpStatus = d.read().decode("UTF-8")
 			if (exists("/etc/.beta") and "rot.png" in tmpStatus) or "gelb.png" in tmpStatus:
@@ -1232,11 +1093,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (displayBrand, displayModel)
+				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your %s %s isn't connected to the Internet properly. Please check it and try again.") % (displayBrand, displayModel)
+					error = _("Your %s %s isn't connected to the Internet properly. Please check it and try again.") % getBoxDisplayName()
 				self.status.setText(_("Error") + " - " + error)
 
 	def startActualUpgrade(self, answer):
@@ -1287,7 +1148,7 @@ class UpdatePlugin(Screen):
 			self.restoreMetrixHDCallback()
 
 	def restoreMetrixHDCallback(self, ret=None):
-		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (displayBrand, displayModel))
+		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % getBoxDisplayName())
 
 
 class IPKGMenu(Screen):

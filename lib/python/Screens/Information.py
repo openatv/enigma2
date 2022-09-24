@@ -25,7 +25,7 @@ from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
 # from Components.Storage import Harddisk, storageManager
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -43,6 +43,7 @@ MODULE_NAME = __name__.split(".")[-1]
 
 DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
 DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
+MACHINE_BUILD = BoxInfo.getItem("machinebuild")
 MODEL = BoxInfo.getItem("model")
 
 INFO_COLORS = ["N", "H", "S", "P", "V", "M", "F"]
@@ -59,10 +60,9 @@ INFO_COLOR = {
 LOG_MAX_LINES = 10000  # Maximum number of log lines to be displayed on screen.
 AUTO_REFRESH_TIME = 5000  # Streaming auto refresh timer (in milliseconds).
 
+
 # This code is all to move into SystemInfo.py when it can handle translated text...
 #
-
-
 def getBoxProcTypeName():
 	boxProcTypes = {
 		"00": _("OTT Model"),
@@ -87,27 +87,27 @@ BoxInfo.setItem("InformationDistributionWelcome", welcome)
 
 class InformationBase(Screen, HelpableScreen):
 	skin = """
-	<screen name="Information" title="Information" position="center,center" size="950,590" resolution="1280,720">
-		<widget name="information" position="10,10" size="e-20,e-60" font="Regular;20" splitPosition="400" />
-		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+	<screen name="Information" title="Information" position="center,center" size="1020,600" resolution="1280,720">
+		<widget name="information" position="0,0" size="e,e-50" font="Regular;20" splitPosition="400" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_green" render="Label" position="200,e-50" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_blue" render="Label" position="580,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_menu" render="Label" position="e-270,e-50" size="80,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_menu" render="Label" position="e-260,e-40" size="80,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_info" render="Label" position="e-180,e-50" size="80,40" backgroundColor="key_back" conditional="key_info" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_info" render="Label" position="e-170,e-40" size="80,40" backgroundColor="key_back" conditional="key_info" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_help" render="Label" position="e-90,e-50" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>"""
@@ -126,9 +126,9 @@ class InformationBase(Screen, HelpableScreen):
 			"ok": (self.refreshInformation, _("Refresh the screen")),
 			"top": (self["information"].moveTop, _("Move to first line / screen")),
 			"pageUp": (self["information"].pageUp, _("Move up a screen")),
+			"up": (self["information"].moveUp, _("Move up a line")),
 			# "left": (self["information"].pageUp, _("Move up a screen")),
 			# "right": (self["information"].pageDown, _("Move down a screen")),
-			"up": (self["information"].moveUp, _("Move up a line")),
 			"down": (self["information"].moveDown, _("Move down a line")),
 			"pageDown": (self["information"].pageDown, _("Move down a screen")),
 			"bottom": (self["information"].moveBottom, _("Move to last line / screen"))
@@ -244,7 +244,7 @@ class BenchmarkInformation(InformationBase):  # This code can't be used until we
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Benchmark information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Benchmark information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		for index, cpu in enumerate(self.cpuTypes):
 			info.append(formatLine("P1", _("CPU / Core %d type") % index, cpu))
@@ -270,7 +270,7 @@ class BuildInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Build information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Build information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		checksum = BoxInfo.getItem("checksumerror", False)
 		if checksum:
@@ -640,7 +640,7 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("S", _("Enigma2 information")))
 		if self.extraSpacing:
 			info.append("")
-		enigmaVersion = about.getEnigmaVersionString()
+		enigmaVersion = str(BoxInfo.getItem("imageversion"))
 		enigmaVersion = enigmaVersion.rsplit("-", enigmaVersion.count("-") - 2)
 		if len(enigmaVersion) == 3:
 			enigmaVersion = "%s (%s-%s)" % (enigmaVersion[0], enigmaVersion[2], enigmaVersion[1].capitalize())
@@ -720,7 +720,7 @@ class GeolocationInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Geolocation information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Geolocation information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
 		if geolocationData.get("status", None) == "success":
@@ -784,97 +784,6 @@ class GeolocationInformation(InformationBase):
 		return "Geolocation Information"
 
 
-class ImageInformation(Screen, HelpableScreen):
-	skin = """
-	<screen name="ImageInformation" title="Receiver Images" position="center,center" size="950,560" resolution="1280,720">
-		<widget name="name" position="10,10" size="e-20,25" font="Regular;20" halign="center" transparent="1" valign="center" />
-		<widget name="image" position="10,45" size="e-20,e-105" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
-		<widget source="key_red" render="Label" position="10,e-50" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_yellow" render="Label" position="390,e-50" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_blue" render="Label" position="570,e-50" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_help" render="Label" position="e-90,e-50" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-	</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session, mandatoryWidgets=["name", "image"])
-		HelpableScreen.__init__(self)
-		self.setTitle(_("Receiver Images"))
-		self["name"] = Label()
-		self["image"] = Pixmap()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText(_("Previous Image"))
-		self["key_blue"] = StaticText(_("Next Image"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"cancel": (self.keyCancel, _("Close the screen")),
-			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
-			"red": (self.keyCancel, _("Close the screen")),
-		}, prio=0, description=_("Receiver Image Actions"))
-		self["imageActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
-			"ok": (self.nextImage, _("Show next image")),
-			"yellow": (self.prevImage, _("Show previous image")),
-			"blue": (self.nextImage, _("Show next image")),
-			"up": (self.prevImage, _("Show previous image")),
-			"left": (self.prevImage, _("Show previous image")),
-			"right": (self.nextImage, _("Show next image")),
-			"down": (self.nextImage, _("Show next image"))
-		}, prio=0, description=_("Receiver Image Actions"))
-		self["imageActions"].setEnabled(False)
-		self.definedImages = (
-			(_("Remote Control"), "receiver/%s.png" % BoxInfo.getItem("rcname")),
-			(_("Front"), "receiver/%s_front.png" % MODEL),
-			(_("Rear"), "receiver/%s_rear.png" % MODEL),
-			(_("Internal"), "receiver/%s_internal.png" % MODEL)
-		)
-		self.receiverImages = []
-		for item in self.definedImages:
-			image = resolveFilename(SCOPE_SKINS, item[1])
-			if isfile(image):
-				image = LoadPixmap(image)
-				if image:
-					self.receiverImages.append((item[0], image))
-		if not self.receiverImages:
-			self.receiverImages.append((_("No images available"), None))
-		self.receiverImageIndex = 0
-		self.receiverImageMax = len(self.receiverImages)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def keyCancel(self):
-		self.close()
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def layoutFinished(self):
-		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.receiverImages[self.receiverImageIndex][0]))
-		if self.receiverImageMax > 1:
-			self["key_yellow"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex - 1) % self.receiverImageMax][0])
-			self["key_blue"].setText(_("%s View") % self.receiverImages[(self.receiverImageIndex + 1) % self.receiverImageMax][0])
-			self["imageActions"].setEnabled(True)
-		else:
-			self["key_yellow"].setText("")
-			self["key_blue"].setText("")
-			self["imageActions"].setEnabled(False)
-		image = self.receiverImages[self.receiverImageIndex][1]
-		if image:
-			self["image"].instance.setPixmap(self.receiverImages[self.receiverImageIndex][1])
-
-	def prevImage(self):
-		self.receiverImageIndex = (self.receiverImageIndex - 1) % self.receiverImageMax
-		self.layoutFinished()
-
-	def nextImage(self):
-		self.receiverImageIndex = (self.receiverImageIndex + 1) % self.receiverImageMax
-		self.layoutFinished()
-
-
 class MemoryInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
@@ -898,7 +807,7 @@ class MemoryInformation(InformationBase):
 			return "%s %s" % (format_string(format, value, grouping=True), units) if units else format_string(format, value, grouping=True)
 
 		info = []
-		info.append(formatLine("H", _("Memory information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Memory information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
 		info.append(formatLine("S", _("RAM (Summary)")))
@@ -975,7 +884,7 @@ class MultiBootInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Boot slot information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Boot slot information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		if self.slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
@@ -1240,7 +1149,7 @@ class NetworkInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Network information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Network information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		hostname = fileReadLine("/proc/sys/kernel/hostname", source=MODULE_NAME)
 		info.append(formatLine("S0S", _("Hostname"), hostname))
@@ -1299,6 +1208,97 @@ class NetworkInformation(InformationBase):
 		self["information"].setText("\n".join(info))
 
 
+class PictureInformation(Screen, HelpableScreen):
+	skin = """
+	<screen name="PictureInformation" title="Picture Information" position="center,center" size="950,560" resolution="1280,720">
+		<widget name="name" position="0,0" size="e,25" font="Regular;20" halign="center" transparent="1" valign="center" />
+		<widget name="picture" position="0,35" size="e,e-85" alphatest="blend" scaleFlags="scaleCenter" transparent="1" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.setTitle(_("Picture Information"))
+		self["name"] = Label()
+		self["picture"] = Pixmap()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_yellow"] = StaticText(_("Previous Picture"))
+		self["key_blue"] = StaticText(_("Next Picture"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.keyCancel, _("Close the screen")),
+			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
+			"red": (self.keyCancel, _("Close the screen")),
+		}, prio=0, description=_("Picture Information Actions"))
+		self["pictureActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"ok": (self.nextPicture, _("Show next picture")),
+			"yellow": (self.prevPicture, _("Show previous picture")),
+			"blue": (self.nextPicture, _("Show next picture")),
+			"up": (self.prevPicture, _("Show previous picture")),
+			"left": (self.prevPicture, _("Show previous picture")),
+			"right": (self.nextPicture, _("Show next picture")),
+			"down": (self.nextPicture, _("Show next picture"))
+		}, prio=0, description=_("Picture Information Actions"))
+		self["pictureActions"].setEnabled(False)
+		self.definedPictures = (
+			(_("Remote Control"), "hardware/%s.png" % BoxInfo.getItem("rcname")),
+			(_("Front"), "hardware/%s_front.png" % MACHINE_BUILD),
+			(_("Rear"), "hardware/%s_rear.png" % MACHINE_BUILD),
+			(_("Internal"), "hardware/%s_internal.png" % MACHINE_BUILD)
+		)
+		self.pictures = []
+		for item in self.definedPictures:
+			picture = resolveFilename(SCOPE_SKINS, item[1])
+			if isfile(picture):
+				picture = LoadPixmap(picture)
+				if picture:
+					self.pictures.append((item[0], picture))
+		if not self.pictures:
+			self.pictures.append((_("No pictures available"), None))
+		self.pictureIndex = 0
+		self.pictureMax = len(self.pictures)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def keyCancel(self):
+		self.close()
+
+	def closeRecursive(self):
+		self.close(True)
+
+	def layoutFinished(self):
+		self["name"].setText("%s %s  -  %s View" % (DISPLAY_BRAND, DISPLAY_MODEL, self.pictures[self.pictureIndex][0]))
+		if self.pictureMax > 1:
+			self["key_yellow"].setText(_("%s View") % self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
+			self["key_blue"].setText(_("%s View") % self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
+			self["pictureActions"].setEnabled(True)
+		else:
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self["pictureActions"].setEnabled(False)
+		picture = self.pictures[self.pictureIndex][1]
+		if picture:
+			self["picture"].instance.setPixmap(self.pictures[self.pictureIndex][1])
+
+	def prevPicture(self):
+		self.pictureIndex = (self.pictureIndex - 1) % self.pictureMax
+		self.layoutFinished()
+
+	def nextPicture(self):
+		self.pictureIndex = (self.pictureIndex + 1) % self.pictureMax
+		self.layoutFinished()
+
+
 class ReceiverInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
@@ -1308,13 +1308,13 @@ class ReceiverInformation(InformationBase):
 		self["key_yellow"] = StaticText(_("System Information"))
 		self["key_blue"] = StaticText(_("Debug Information"))
 		self["receiverActions"] = HelpableActionMap(self, ["InfoActions", "ColorActions"], {
-			"info": (self.showImageInformation, _("Show receiver image information")),
+			"info": (self.showPictureInformation, _("Show picture information")),
 			"yellow": (self.showSystemInformation, _("Show system information")),
 			"blue": (self.showDebugInformation, _("Show debug log information"))
 		}, prio=0, description=_("Receiver Information Actions"))
 
-	def showImageInformation(self):
-		self.session.openWithCallback(self.informationWindowClosed, ImageInformation)
+	def showPictureInformation(self):
+		self.session.openWithCallback(self.informationWindowClosed, PictureInformation)
 
 	def showSystemInformation(self):
 		self.session.openWithCallback(self.informationWindowClosed, SystemInformation)
@@ -1333,12 +1333,12 @@ class ReceiverInformation(InformationBase):
 			return revision
 
 		info = []
-		info.append(formatLine("H", _("Receiver information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Receiver information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		info.append(formatLine("S", _("Hardware information")))
 		if self.extraSpacing:
 			info.append("")
-		info.append(formatLine("P1", _("Receiver name"), "%s %s" % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("P1", _("Receiver name"), "%s %s" % getBoxDisplayName()))
 		info.append(formatLine("P1", _("Build Brand"), BoxInfo.getItem("brand")))
 		platform = BoxInfo.getItem("platform")
 		info.append(formatLine("P1", _("Build Model"), MODEL))
@@ -1544,7 +1544,7 @@ class StorageInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Storage / Disk information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Storage / Disk information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		partitions = sorted(harddiskmanager.getMountedPartitions(), key=lambda partitions: partitions.device or "")
 		for partition in partitions:
@@ -1634,7 +1634,7 @@ class StreamingInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Streaming tuner information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Streaming tuner information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		clientList = eStreamServer.getInstance().getConnectedClients() + eRTSPStreamServer.getInstance().getConnectedClients()
 		if clientList:
@@ -1756,7 +1756,7 @@ class TranslationInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Translation information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Translation information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		translateInfo = _("TRANSLATOR_INFO")
 		if translateInfo != "TRANSLATOR_INFO":
@@ -1867,7 +1867,7 @@ class TunerInformation(InformationBase):
 			return values
 
 		info = []
-		info.append(formatLine("H", _("Tuner information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Tuner information for %s %s") % getBoxDisplayName()))
 		info.append("")
 		for count, tunerData in enumerate(self.tunerList):
 			if count:

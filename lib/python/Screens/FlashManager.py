@@ -14,7 +14,7 @@ from Components.config import config
 from Components.Console import Console
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 from Screens.HelpMenu import HelpableScreen
@@ -31,7 +31,7 @@ FEED_JSON_URL = 1
 FEED_BOX_IDENTIFIER = 2
 
 FEED_URLS = [
-	("openATV", "http://images.mynonpublic.com/openatv/json/%s", "BoxName"),
+	("openATV", "https://images.mynonpublic.com/openatv/json/%s", "BoxName"),
 	("OpenBH", "https://images.openbh.net/json/%s", "model"),
 	("OpenPLi", "http://downloads.openpli.org/json/%s", "model"),
 	("Open Vision", "https://images.openvision.dedyn.io/json/%s", "model"),
@@ -129,7 +129,7 @@ class FlashManager(Screen, HelpableScreen):
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
 			if index is None:
-				feedURL = "http://images.mynonpublic.com/openatv/json/%s"
+				feedURL = "https://images.mynonpublic.com/openatv/json/%s"
 				boxInfoField = "BoxName"
 			else:
 				feedURL = FEED_URLS[index][FEED_JSON_URL]
@@ -480,7 +480,7 @@ class FlashImage(Screen, HelpableScreen):
 				nextRecordingTime = self.session.nav.RecordTimer.getNextRecordingTime()
 				if recording or (nextRecordingTime > 0 and (nextRecordingTime - time()) < 360):
 					self.choice = choice
-					self.session.openWithCallback(self.recordWarning, MessageBox, "%s\n\n%s" % (_("Recording(s) are in progress or coming up in few seconds!"), _("Flash your %s %s and reboot now?") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))), default=False, windowTitle=self.getTitle())
+					self.session.openWithCallback(self.recordWarning, MessageBox, "%s\n\n%s" % (_("Recording(s) are in progress or coming up in few seconds!"), _("Flash your %s %s and reboot now?") % getBoxDisplayName()), default=False, windowTitle=self.getTitle())
 					return
 			restoreSettings = ("restoresettings" in choice)
 			restoreSettingsnoPlugin = (choice == "restoresettingsnoplugin")

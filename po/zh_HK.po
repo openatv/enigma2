@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -207,17 +207,17 @@ msgstr ""
 msgid "%-I:%M:%S%^p"
 msgstr ""
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%-d %B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr ""
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr ""
 
@@ -331,14 +331,14 @@ msgid "%03d MB"
 msgstr ""
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr ""
 
 #, fuzzy
 msgid "%A"
 msgstr "A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr ""
 
@@ -546,11 +546,11 @@ msgstr ""
 msgid "%I:%M:%S%^p"
 msgstr ""
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr ""
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr ""
 
@@ -597,20 +597,20 @@ msgstr ""
 msgid "%a"
 msgstr ""
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr ""
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%a %-d %B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr ""
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr ""
 
@@ -882,6 +882,11 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -890,7 +895,31 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
+msgstr ""
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d jam"
+
+#, python-format
+msgid "%d Hours"
 msgstr ""
 
 #, python-format
@@ -899,6 +928,10 @@ msgstr ""
 
 #, python-format
 msgid "%d MB"
+msgstr ""
+
+#, python-format
+msgid "%d MB/s"
 msgstr ""
 
 #, python-format
@@ -928,6 +961,35 @@ msgid_plural "%d Mins"
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d detik"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, fuzzy, python-format
 msgid "%d channel found"
@@ -941,20 +1003,9 @@ msgid_plural "%d cores"
 msgstr[0] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d jam"
 
 #, python-format
 msgid "%d kB"
@@ -963,12 +1014,6 @@ msgstr ""
 #, python-format
 msgid "%d min"
 msgstr "%d 分鐘"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d menit"
-msgstr[1] "%d menit"
 
 #, python-format
 msgid "%d minutes"
@@ -1018,20 +1063,9 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 
-#, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] ""
-msgstr[1] ""
-
 #, fuzzy, python-format
 msgid "%d sec"
 msgstr "%d detik"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d detik"
 
 #, fuzzy, python-format
 msgid "%d times"
@@ -1245,6 +1279,10 @@ msgstr ""
 msgid "%s is password protected."
 msgstr ""
 
+#, python-format
+msgid "%s long"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s not available."
 msgstr "不使用"
@@ -1316,10 +1354,10 @@ msgstr ""
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr ""
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
 #, fuzzy
@@ -1377,6 +1415,9 @@ msgstr "啟動當前配置"
 msgid "+24"
 msgstr ""
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ""
@@ -1385,6 +1426,9 @@ msgid "-"
 msgstr ""
 
 msgid "-24"
+msgstr ""
+
+msgid "-24 Hours"
 msgstr ""
 
 msgid "-24h/+24 Hours"
@@ -1405,35 +1449,8 @@ msgstr "/var 目錄"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr ""
-
-msgid "0.3s"
-msgstr ""
-
-msgid "0.4s"
-msgstr ""
-
-msgid "0.5s"
-msgstr ""
-
-msgid "0.6s"
-msgstr ""
-
-msgid "0.7s"
-msgstr ""
-
-msgid "0.8s"
-msgstr ""
-
-msgid "0.9s"
-msgstr ""
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr ""
 
 msgid "1 hour"
 msgstr "1 小時"
@@ -1447,24 +1464,9 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr ""
-
-msgid "1.5s"
-msgstr ""
-
-msgid "1.7s"
-msgstr ""
-
-msgid "10 MB/s"
-msgstr ""
-
 #, fuzzy
 msgid "10 minutes"
 msgstr "30 分鐘"
-
-msgid "100 MB/s"
-msgstr ""
 
 msgid "1024 Mb"
 msgstr ""
@@ -1575,10 +1577,6 @@ msgid "18 V"
 msgstr "18 V"
 
 #, fuzzy
-msgid "1s"
-msgstr "1"
-
-#, fuzzy
 msgid "1st InfoBar timeout"
 msgstr "資訊條超時"
 
@@ -1588,21 +1586,12 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr ""
-
 #, fuzzy
 msgid "2 hours"
 msgstr "4 小時"
 
 msgid "2 minutes"
 msgstr "2 分鐘"
-
-msgid "2.5s"
-msgstr ""
-
-msgid "20 MB/s"
-msgstr ""
 
 msgid "2048 Mb"
 msgstr ""
@@ -1635,14 +1624,6 @@ msgstr "2"
 #, fuzzy
 msgid "24 hours"
 msgstr "4 小時"
-
-#, fuzzy
-msgid "24+ Hours"
-msgstr "2 小時"
-
-#, fuzzy
-msgid "24- Hours"
-msgstr "2 小時"
 
 msgid "24p/24p"
 msgstr ""
@@ -1708,10 +1689,6 @@ msgid "2nd InfoBar timeout"
 msgstr "資訊條超時"
 
 #, fuzzy
-msgid "2s"
-msgstr "2"
-
-#, fuzzy
 msgid "2x"
 msgstr "2"
 
@@ -1730,9 +1707,6 @@ msgstr "3"
 #, fuzzy
 msgid "3 hours"
 msgstr "4 小時"
-
-msgid "3.5s"
-msgstr ""
 
 #, fuzzy
 msgid "30"
@@ -1774,18 +1748,11 @@ msgstr "聲音"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-#, fuzzy
-msgid "3s"
-msgstr "3"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr ""
 
 msgid "4 hours"
 msgstr "4 小時"
@@ -1814,10 +1781,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-#, fuzzy
-msgid "4s"
-msgstr "4"
-
 msgid "4x"
 msgstr ""
 
@@ -1830,9 +1793,6 @@ msgstr "4 小時"
 
 msgid "5 minutes"
 msgstr "5 分鐘"
-
-msgid "50 MB/s"
-msgstr ""
 
 msgid "50p/24p"
 msgstr ""
@@ -1851,10 +1811,6 @@ msgstr ""
 
 msgid "512 Mb"
 msgstr ""
-
-#, fuzzy
-msgid "5s"
-msgstr "5"
 
 msgid "6"
 msgstr "6"
@@ -1909,9 +1865,6 @@ msgstr ""
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr ""
 
 #, fuzzy
 msgid "8 character"
@@ -1975,33 +1928,25 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將待機.\n"
 "確定嗎?"
 
 #, fuzzy
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將待機.\n"
 "確定嗎?"
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將待機.\n"
 "確定嗎?"
 
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將關機.\n"
 "確定嗎?"
@@ -2513,6 +2458,9 @@ msgstr ""
 msgid "After recording"
 msgstr "正在錄製"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2722,9 +2670,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "一個空的檔案名是非法的."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr ""
 
@@ -2769,6 +2714,10 @@ msgstr ""
 
 msgid "Any activity"
 msgstr ""
+
+#, fuzzy
+msgid "Any recordings"
+msgstr "標記新錄製內容"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr ""
@@ -2905,13 +2854,16 @@ msgstr ""
 msgid "Aruba"
 msgstr ""
 
+msgid "As plugin in extended bar"
+msgstr ""
+
 msgid "Ask user"
 msgstr "詢問用戶"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr ""
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr ""
 
 #, fuzzy
@@ -2925,10 +2877,6 @@ msgstr "螢幕寬高比"
 #, fuzzy
 msgid "Aspect list..."
 msgstr "子服務列表..."
-
-#, fuzzy
-msgid "Aspect long"
-msgstr "螢幕寬高比"
 
 msgid "Aspect ratio"
 msgstr ""
@@ -2949,6 +2897,13 @@ msgid "Astra 2 28.2e"
 msgstr ""
 
 msgid "Astra 3 23.5e"
+msgstr ""
+
+#, fuzzy
+msgid "At beginning"
+msgstr "重頭開始"
+
+msgid "At end"
 msgstr ""
 
 msgid "At end of current program"
@@ -3012,10 +2967,6 @@ msgstr ""
 msgid "Audio language selection 4"
 msgstr ""
 
-#, fuzzy
-msgid "Audio long"
-msgstr "音頻選擇"
-
 msgid "Audio options..."
 msgstr ""
 
@@ -3068,10 +3019,6 @@ msgid "Auto SCART switching"
 msgstr "自動切換錄影機"
 
 #, fuzzy
-msgid "Auto Timer"
-msgstr "編輯自動計時器"
-
-#, fuzzy
 msgid "Auto Timers"
 msgstr "編輯自動計時器"
 
@@ -3111,6 +3058,9 @@ msgstr "不使用"
 #, fuzzy
 msgid "AutoMountManager"
 msgstr "安裝(Mount)管理"
+
+msgid "AutoTimer"
+msgstr ""
 
 #, fuzzy
 msgid "AutoUpdate"
@@ -3433,7 +3383,7 @@ msgstr ""
 msgid "Begin time"
 msgstr "開始時間"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr ""
 
 msgid "Behavior of 'pause' when paused"
@@ -3585,6 +3535,9 @@ msgstr "愛沙尼亞語"
 msgid "Botswana"
 msgstr ""
 
+msgid "Bottom"
+msgstr ""
+
 #, fuzzy
 msgid "Bouquet List"
 msgstr "自定義組"
@@ -3681,7 +3634,7 @@ msgstr ""
 msgid "Burmese"
 msgstr ""
 
-msgid "Burn Blue-ray disc"
+msgid "Burn Blu-ray disc"
 msgstr ""
 
 msgid "Burn DVD"
@@ -4027,12 +3980,12 @@ msgstr ""
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
@@ -4183,6 +4136,17 @@ msgstr ""
 msgid "Celsius"
 msgstr ""
 
+msgid "Center"
+msgstr ""
+
+#, fuzzy
+msgid "Centered"
+msgstr "最近精選"
+
+#, fuzzy
+msgid "Centered, wrapped"
+msgstr "輸入位元率"
+
 #, fuzzy
 msgid "Central African Republic"
 msgstr "捷克共和國"
@@ -4270,7 +4234,7 @@ msgid "Channel 1"
 msgstr "頻道"
 
 #, fuzzy
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "頻道列表功能表"
 
 #, fuzzy
@@ -5261,10 +5225,6 @@ msgstr "容量不適合DVD!"
 msgid "Context"
 msgstr "對比度"
 
-#, fuzzy
-msgid "Context long"
-msgstr "繼續播放"
-
 msgid "Continent"
 msgstr ""
 
@@ -5415,7 +5375,7 @@ msgstr ""
 msgid "Create"
 msgstr "創建"
 
-msgid "Create Blue-ray disc ISO file"
+msgid "Create Blu-ray disc ISO file"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -5454,19 +5414,15 @@ msgid "Create: Recovery Fullbackup %s"
 msgstr ""
 
 #, fuzzy
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "創建分區失敗"
-
-#, fuzzy
-msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "創建分區失敗"
-
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "創建目錄%s 失敗."
 
 msgid "Creating file system"
 msgstr ""
+
+#, fuzzy
+msgid "Creating hard link to time shift file failed!"
+msgstr "創建分區失敗"
 
 msgid "Creating partition"
 msgstr ""
@@ -5535,6 +5491,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "將安裝的"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Current mode: %s \n"
@@ -5977,7 +5937,7 @@ msgstr "預設"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr ""
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "預設錄影位置"
 
 #, fuzzy
@@ -6249,18 +6209,6 @@ msgstr "週末標記:"
 msgid "Depth"
 msgstr ""
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
-msgid "Descramble and record ECM"
-msgstr ""
-
-msgid "Descramble http streams"
-msgstr ""
-
-msgid "Descramble receiving http streams"
-msgstr ""
-
 msgid "Description"
 msgstr "描述"
 
@@ -6383,10 +6331,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "目錄流覽"
-
-#, fuzzy
-msgid "Directory long"
-msgstr "目錄"
 
 msgid "Disable"
 msgstr "禁用"
@@ -6780,9 +6724,6 @@ msgstr "這個錄影"
 msgid "Don't ask again!"
 msgstr "是, 以後不再詢問"
 
-msgid "Don't descramble, record ECM"
-msgstr ""
-
 msgid "Don't restart"
 msgstr ""
 
@@ -6796,6 +6737,9 @@ msgstr "按日期排序"
 
 msgid "Don't stop current event but disable future events"
 msgstr "不能停止當前事件, 不過可以禁用下一個事件."
+
+msgid "Don't unscramble, record ECM"
+msgstr ""
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -6828,6 +6772,9 @@ msgstr "下載插件"
 #, fuzzy
 msgid "Download Softcams"
 msgstr "下載位置:"
+
+msgid "Download and flash images on your %s %s."
+msgstr ""
 
 #, fuzzy
 msgid "Download and install Plugins"
@@ -6933,9 +6880,6 @@ msgid "ECM-Time"
 msgstr "時間"
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7404,9 +7348,6 @@ msgstr "加密系統:"
 msgid "End"
 msgstr "和"
 
-msgid "End long"
-msgstr ""
-
 msgid "End time"
 msgstr "結束時間"
 
@@ -7579,9 +7520,6 @@ msgstr ""
 msgid "Epg/Guide"
 msgstr ""
 
-msgid "Epg/Guide long"
-msgstr ""
-
 #, fuzzy
 msgid "Equal to"
 msgstr "相同"
@@ -7738,6 +7676,9 @@ msgstr ""
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "一個空的檔案名是非法的."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7748,14 +7689,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr ""
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "創建目錄%s 失敗."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "選擇了無效目錄: %s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "刪除 %s 目錄失敗. (很可能不是空目錄.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "路徑 %s 已經存在."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
@@ -7847,7 +7804,7 @@ msgid "Ewe"
 msgstr ""
 
 #, fuzzy
-msgid "Exceeds Blue-ray disc medium!"
+msgid "Exceeds Blu-ray disc medium!"
 msgstr "超過雙層介質！"
 
 msgid "Exceeds dual layer medium!"
@@ -8028,29 +7985,17 @@ msgstr "1"
 msgid "F1"
 msgstr "1"
 
-msgid "F1 long"
-msgstr ""
-
 #, fuzzy
 msgid "F2"
 msgstr "2"
-
-msgid "F2 long"
-msgstr ""
 
 #, fuzzy
 msgid "F3"
 msgstr "3"
 
-msgid "F3 long"
-msgstr ""
-
 #, fuzzy
 msgid "F4"
 msgstr "4"
-
-msgid "F4 long"
-msgstr ""
 
 msgid "FCC 1953"
 msgstr ""
@@ -8180,10 +8125,6 @@ msgstr ""
 msgid "Favorites"
 msgstr "自定義組"
 
-#, fuzzy
-msgid "Favorites long"
-msgstr "自定義組"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8263,10 +8204,6 @@ msgstr ""
 
 msgid "File checksums/hashes"
 msgstr ""
-
-#, fuzzy
-msgid "File long"
-msgstr "文件管理器"
 
 #, fuzzy, python-format
 msgid "File not found: %s"
@@ -8404,9 +8341,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 #, fuzzy
@@ -8833,11 +8767,15 @@ msgid "Goto Date/Timer"
 msgstr "排序自動計時器"
 
 #, fuzzy
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "計時器自動寫入"
 
 msgid "Goto X"
 msgstr ""
+
+#, fuzzy
+msgid "Goto deep standby"
+msgstr "深度休眠"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8868,6 +8806,10 @@ msgstr "向上移動到上一個項目"
 
 msgid "Goto specific date/time"
 msgstr ""
+
+#, fuzzy
+msgid "Goto standby"
+msgstr "待機"
 
 msgid "GotoX calibration"
 msgstr ""
@@ -9109,10 +9051,6 @@ msgstr "資訊"
 msgid "Help animation speed"
 msgstr ""
 
-#, fuzzy
-msgid "Help long"
-msgstr "説明"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9225,10 +9163,6 @@ msgid "History buttons mode"
 msgstr ""
 
 #, fuzzy
-msgid "History long"
-msgstr "歷史"
-
-#, fuzzy
 msgid "History next"
 msgstr "歷史"
 
@@ -9252,14 +9186,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#, fuzzy
-msgid "Home long"
-msgstr "遠端登錄"
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9313,18 +9240,14 @@ msgid "Hotkey Settings"
 msgstr "網路設定"
 
 #, fuzzy
-msgid "Hour"
-msgstr "小時(s)"
-
-#, fuzzy
 msgid "Hourly"
 msgstr "小時(s)"
 
 #, fuzzy
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "小時(n) "
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr ""
 
 msgid "How many minutes do you want to record?"
@@ -9608,7 +9531,7 @@ msgstr "創建分區失敗"
 msgid "ImageWizard"
 msgstr "嚮導"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr ""
 
 msgid "Immediately restart selected devices."
@@ -9742,9 +9665,6 @@ msgid "Info"
 msgstr "資訊"
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 #, fuzzy
@@ -10037,11 +9957,7 @@ msgstr ""
 msgid "Invalid"
 msgstr "無效的位置"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "選擇了無效目錄: %s"
-
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr ""
 
 #, fuzzy
@@ -10198,6 +10114,16 @@ msgstr "計時器自動寫入"
 msgid "Jump to the currently active locale/language"
 msgstr ""
 
+msgid "Just abort, no message"
+msgstr ""
+
+msgid "Just abort, show message"
+msgstr ""
+
+#, fuzzy
+msgid "Just boot"
+msgstr "藍色增強"
+
 msgid "Just change Bouquet"
 msgstr ""
 
@@ -10263,10 +10189,6 @@ msgstr ""
 msgid "Keyboard data entry"
 msgstr "鍵盤佈局"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "鍵盤佈局"
-
 msgid "Keyboard map"
 msgstr ""
 
@@ -10292,9 +10214,6 @@ msgstr "LT 媒體中心"
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "將安裝的"
-
-msgid "Kodi long"
-msgstr ""
 
 #, fuzzy
 msgid "Kodi media player"
@@ -10340,9 +10259,6 @@ msgid "LAN adapter"
 msgstr ""
 
 msgid "LAN connection"
-msgstr ""
-
-msgid "LAN long"
 msgstr ""
 
 #, fuzzy
@@ -10493,12 +10409,11 @@ msgstr ""
 msgid "Left"
 msgstr "左"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr ""
 
-#, fuzzy
-msgid "Left long"
-msgstr "左"
+msgid "Left, wrapped"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr ""
@@ -10606,9 +10521,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 msgid "Listen to the radio"
@@ -10879,9 +10791,6 @@ msgstr "更多"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10905,10 +10814,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "媒體播放器"
 
 msgid "Main Menu"
 msgstr "主功能表"
@@ -11005,19 +10910,16 @@ msgstr ""
 msgid "Marathi"
 msgstr ""
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr ""
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr ""
 
 msgid "Mark/Portal/Playlist"
-msgstr ""
-
-msgid "Mark/Portal/Playlist long"
 msgstr ""
 
 #, fuzzy
@@ -11101,10 +11003,6 @@ msgstr ""
 msgid "Media Portal"
 msgstr "媒體播放器"
 
-#, fuzzy
-msgid "Media long"
-msgstr "媒體播放器"
-
 msgid "Media playback Remaining/Elapsed as"
 msgstr ""
 
@@ -11184,7 +11082,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr ""
 
 #, fuzzy
@@ -11209,6 +11107,9 @@ msgid "Mexico"
 msgstr "墨西哥"
 
 msgid "Micronesia, Federated States of"
+msgstr ""
+
+msgid "Middle"
 msgstr ""
 
 msgid "Middle - Lite image"
@@ -11251,7 +11152,13 @@ msgstr "最小位元率"
 msgid "Mins"
 msgstr ""
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "分鐘"
+
+msgid "Minutes"
+msgstr "分鐘"
+
+msgid "Minutes Seconds"
 msgstr ""
 
 #, fuzzy
@@ -11372,10 +11279,6 @@ msgstr "正在恢復"
 
 msgid "Mount"
 msgstr "安裝(Mount)"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr ""
 
 msgid "Mount Actions"
 msgstr ""
@@ -11627,6 +11530,9 @@ msgstr "已錄節目列表功能表"
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "電影位置"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie selection"
 msgstr ""
@@ -11945,6 +11851,13 @@ msgstr "設定嚮導"
 msgid "Neutrino  (keymap.ntr)"
 msgstr ""
 
+msgid "Never"
+msgstr "從不"
+
+#, fuzzy
+msgid "Never abort"
+msgstr "每小時"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr ""
 
@@ -12035,10 +11948,6 @@ msgstr "下一個頻道"
 msgid "Nextsong"
 msgstr "下一個"
 
-#, fuzzy
-msgid "Nextsong long"
-msgstr "香港"
-
 msgid "Nicaragua"
 msgstr ""
 
@@ -12080,10 +11989,6 @@ msgstr ""
 #, fuzzy
 msgid "No TS recorder available"
 msgstr "無可用資訊"
-
-#, fuzzy
-msgid "No Timeshift found to save as recording!"
-msgstr "追加錄影時間."
 
 #, fuzzy
 msgid "No active channel found."
@@ -12215,6 +12120,10 @@ msgstr "未找到可用的USB裝置"
 msgid "No tags are set on these movies."
 msgstr ""
 
+#, fuzzy
+msgid "No time shift found to save as recording!"
+msgstr "追加錄影時間."
+
 msgid "No timeout"
 msgstr ""
 
@@ -12225,7 +12134,7 @@ msgid "No transparency"
 msgstr ""
 
 #, fuzzy
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr "檢視可用的錄影列表"
 
 msgid ""
@@ -12498,9 +12407,6 @@ msgstr "按OK鍵顯示資訊條"
 msgid "OK button mode"
 msgstr "創作模式"
 
-msgid "OK long"
-msgstr ""
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, 引導我的升級過程"
 
@@ -12591,10 +12497,6 @@ msgstr ""
 msgid "Once"
 msgstr "一次"
 
-#, fuzzy
-msgid "Once per day"
-msgstr "每天"
-
 msgid "One"
 msgstr "1"
 
@@ -12679,9 +12581,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "結束喜愛頻道編輯"
 
-msgid "Open long"
-msgstr ""
-
 #, fuzzy
 msgid "Open satellites list"
 msgstr "打開頻道列表"
@@ -12763,10 +12662,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "選項:"
-
-#, fuzzy
-msgid "Option long"
-msgstr "選項 ("
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -12886,9 +12781,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "C"
 
-msgid "PC long"
-msgstr ""
-
 #, fuzzy
 msgid "PCM"
 msgstr "PM"
@@ -12919,10 +12811,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -12944,9 +12832,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 msgid "Package Manager"
@@ -13001,15 +12886,8 @@ msgid "PageDown"
 msgstr "頁面"
 
 #, fuzzy
-msgid "PageDown long"
-msgstr "下載中"
-
-#, fuzzy
 msgid "PageUp"
 msgstr "頁面"
-
-msgid "PageUp long"
-msgstr ""
 
 msgid "Pakistan"
 msgstr ""
@@ -13287,11 +13165,14 @@ msgstr "播放音樂"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr ""
 
-msgid "Playlist"
-msgstr "播放列表"
+msgid "Playback Settings"
+msgstr ""
 
 #, fuzzy
-msgid "Playlist long"
+msgid "Playback, Recording & Time Shift"
+msgstr "錄音"
+
+msgid "Playlist"
 msgstr "播放列表"
 
 #, fuzzy
@@ -13348,17 +13229,17 @@ msgstr ""
 msgid "Please enter a name for the new bouquet"
 msgstr "重命名自定義組"
 
+msgid "Please enter a name for the new directory:"
+msgstr "為新的目錄重命名"
+
 msgid "Please enter a name for the new marker"
 msgstr "重命名標籤"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "請輸入一個新的檔案名"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "請輸入檔案名 (空=使用當時日期命名)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "為新的目錄重命名"
 
 #, fuzzy
 msgid "Please enter name of the new symlink"
@@ -13448,9 +13329,6 @@ msgstr ""
 
 msgid "Please select a subservice..."
 msgstr "請選擇一個字幕..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 #, fuzzy
 msgid "Please select an aspect ratio..."
@@ -13791,10 +13669,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr "反向顯示"
 
-#, fuzzy
-msgid "Power long"
-msgstr "計時器日誌"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -13812,10 +13686,6 @@ msgid "PowerTimer Actions"
 msgstr ""
 
 #, fuzzy
-msgid "PowerTimer DeepStandby"
-msgstr "深度休眠"
-
-#, fuzzy
 msgid "PowerTimer Overview"
 msgstr "自動計時器概要"
 
@@ -13824,6 +13694,10 @@ msgstr ""
 
 #, fuzzy
 msgid "PowerTimer Standby"
+msgstr "深度休眠"
+
+#, fuzzy
+msgid "PowerTimer deep standby"
 msgstr "深度休眠"
 
 #, fuzzy
@@ -13870,7 +13744,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "添加錄影 (輸入錄影結束時間)"
 
 msgid "Preparing... Please wait"
@@ -14004,18 +13878,22 @@ msgid "Previous page"
 msgstr "預覽"
 
 #, fuzzy
-msgid "Prevsong"
-msgstr "前一個"
+msgid "Previous/Next bouquet"
+msgstr "上一個頻道"
 
 #, fuzzy
-msgid "Prevsong long"
-msgstr "香港"
+msgid "Previous/Next page"
+msgstr "上一個頻道"
+
+#, fuzzy
+msgid "Prevsong"
+msgstr "前一個"
 
 msgid "Primary DNS"
 msgstr "主 DNS"
 
 #, fuzzy
-msgid "Primetime"
+msgid "Prime time"
 msgstr "響鈴時間"
 
 msgid "Primetime hour"
@@ -14076,9 +13954,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14179,9 +14054,6 @@ msgstr ""
 #, fuzzy
 msgid "Prov"
 msgstr "供應商"
-
-msgid "Prov long"
-msgstr ""
 
 msgid "Provider"
 msgstr "供應商"
@@ -14308,9 +14180,6 @@ msgstr ""
 msgid "RADIO"
 msgstr ""
 
-msgid "RADIO long"
-msgstr ""
-
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14421,6 +14290,18 @@ msgid "Real Life"
 msgstr ""
 
 #, fuzzy
+msgid "Real or pseudo recordings"
+msgstr "標記新錄製內容"
+
+#, fuzzy
+msgid "Real recordings"
+msgstr "標記新錄製內容"
+
+#, fuzzy
+msgid "Real recordings or streaming"
+msgstr "作為一個連續的流錄製"
+
+#, fuzzy
 msgid "Really WOL now?"
 msgstr "立即重啟(Reboot)?"
 
@@ -14474,9 +14355,6 @@ msgid "Rebuild LCN bouquet now?"
 msgstr ""
 
 msgid "Rec"
-msgstr ""
-
-msgid "Rec long"
 msgstr ""
 
 msgid "Receiver"
@@ -14622,10 +14500,6 @@ msgid "Recordings"
 msgstr "錄音"
 
 #, fuzzy
-msgid "Recordings & Timeshift"
-msgstr "錄音"
-
-#, fuzzy
 msgid "Recordings abort PiP"
 msgstr "錄影位置"
 
@@ -14639,6 +14513,9 @@ msgstr "錄製一個連續的流"
 
 msgid "Recordings always have priority"
 msgstr "總是優先錄製"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #, fuzzy
 msgid "Records"
@@ -14859,7 +14736,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr ""
 
 msgid "Remove current folder from bookmarks"
@@ -14867,6 +14744,9 @@ msgstr ""
 
 msgid "Remove currently selected title"
 msgstr "移除當前選擇的標題"
+
+msgid "Remove directory"
+msgstr "移除目錄"
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -14893,10 +14773,6 @@ msgstr "正在刪除..."
 #, fuzzy
 msgid "Removing Service"
 msgstr "正在刪除..."
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "刪除 %s 目錄失敗. (很可能不是空目錄.)"
 
 msgid "Removing partition table"
 msgstr ""
@@ -15210,12 +15086,11 @@ msgstr ""
 msgid "Right"
 msgstr "右"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr ""
 
-#, fuzzy
-msgid "Right long"
-msgstr "右"
+msgid "Right, wrapped"
+msgstr ""
 
 msgid "Roll-off"
 msgstr ""
@@ -15325,9 +15200,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -15589,10 +15461,10 @@ msgstr "追加錄影時間."
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift files"
 msgstr ""
 
 msgid "Scaler sharpness"
@@ -15745,10 +15617,6 @@ msgstr "向西搜索"
 msgid "Search/WEB"
 msgstr "搜索"
 
-#, fuzzy
-msgid "Search/WEB long"
-msgstr "搜尋會話"
-
 msgid "Searching"
 msgstr ""
 
@@ -15770,6 +15638,9 @@ msgstr "第二條線纜連接Rotor"
 
 msgid "Secondary DNS"
 msgstr "副 DNS"
+
+msgid "Seconds"
+msgstr "秒"
 
 msgid "Security"
 msgstr ""
@@ -16012,6 +15883,12 @@ msgstr "選擇位置"
 msgid "Select Location"
 msgstr "選擇位置"
 
+msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
+msgstr ""
+
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "選擇Softcam:"
@@ -16019,6 +15896,9 @@ msgstr "選擇Softcam:"
 #, fuzzy
 msgid "Select Software Update"
 msgstr "軟體升級"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr ""
@@ -16429,10 +16309,10 @@ msgstr "設定視頻模式"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -16762,7 +16642,7 @@ msgid "Services may be grouped in bouquets. When enabled, you can use more than 
 msgstr ""
 
 #, fuzzy
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "開始時間"
 
 msgid "Set CI assignment for detection of available services."
@@ -16828,16 +16708,16 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 #, fuzzy
@@ -17309,7 +17189,7 @@ msgid "Show EPG for current channel..."
 msgstr ""
 
 #, fuzzy
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "事件檢視"
 
 #, fuzzy
@@ -17785,7 +17665,7 @@ msgstr ""
 msgid "Show setup menu..."
 msgstr ""
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr ""
 
 #, fuzzy
@@ -17803,7 +17683,7 @@ msgstr "顯示單個頻道EPG..."
 msgid "Show source packages"
 msgstr "套裝軟體:"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr ""
 
 #, fuzzy
@@ -18143,10 +18023,7 @@ msgstr "休眠時間"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
-msgstr ""
-
-msgid "Sleep long"
+msgid "Sleep delay"
 msgstr ""
 
 msgid "Sleep timer"
@@ -18509,7 +18386,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "南韓"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr ""
 
 #, python-format
@@ -18583,7 +18460,7 @@ msgstr "待機"
 msgid "Standby / Restart"
 msgstr "待機 / 重啟"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr ""
 
 msgid "Start"
@@ -18922,10 +18799,6 @@ msgstr ""
 msgid "Subtitle language selection 4"
 msgstr ""
 
-#, fuzzy
-msgid "Subtitle long"
-msgstr "字幕選擇"
-
 msgid "Subtitle position"
 msgstr ""
 
@@ -19074,6 +18947,9 @@ msgstr "切換到檔列表"
 
 msgid "Switch to TV mode"
 msgstr ""
+
+msgid "Switch to bookmarks"
+msgstr "切換到書簽"
 
 msgid "Switch to file list"
 msgstr "切換到檔列表"
@@ -19341,10 +19217,6 @@ msgstr ""
 msgid "Teletext font and resolution"
 msgstr ""
 
-#, fuzzy
-msgid "Teletext long"
-msgstr "刪除"
-
 msgid "Teletext subtitle color"
 msgstr ""
 
@@ -19474,11 +19346,6 @@ msgid ""
 msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
-
-msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
 
 #, fuzzy
 msgid ""
@@ -19620,6 +19487,11 @@ msgid ""
 "Press OK to continue using the %s %s."
 msgstr ""
 
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "下列文件被發現..."
 
@@ -19644,10 +19516,6 @@ msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
-
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "路徑 %s 已經存在."
 
 msgid "The pin code you entered is wrong."
 msgstr "密碼輸入有誤."
@@ -19688,12 +19556,9 @@ msgstr ""
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
-#, fuzzy
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "計時器文件（timers.xml）已損壞，無法載入."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "計時器文件（timers.xml）已損壞，無法載入."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -20185,6 +20050,10 @@ msgid "Time Setup Actions"
 msgstr ""
 
 #, fuzzy
+msgid "Time Shift Settings"
+msgstr "時光平移位置"
+
+#, fuzzy
 msgid "Time Update in Minutes:"
 msgstr "更新IP時間(分鐘):"
 
@@ -20223,12 +20092,56 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-#, fuzzy
-msgid "Time long"
-msgstr "計時器日誌"
-
 #, python-format
 msgid "Time required for this process: %s"
+msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+msgid "Time shift buffer location"
+msgstr "時光平移位置"
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "不能時光平移!"
+
+#, fuzzy
+msgid "Time shift save action on zap"
+msgstr "時光平移位置"
+
+#, fuzzy
+msgid "Time shift save failed!"
+msgstr "不能時光平移!"
+
+msgid "Time shift save recording (Select event)"
+msgstr ""
+
+#, fuzzy
+msgid "Time shift save recording (stop after current event)"
+msgstr "添加錄影 (當前事件停止後)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr ""
+
+msgid "Time shift will get saved at end of event!"
 msgstr ""
 
 #, fuzzy
@@ -20288,20 +20201,15 @@ msgstr "計時器項目"
 msgid "Timer log"
 msgstr "計時器日誌"
 
-#, fuzzy
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"測驗timers.xml有重疊部分！\n"
-"請重新檢視它!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"測驗timers.xml有重疊部分！\n"
-"請重新檢視它!"
 
 msgid "Timer recording location"
 msgstr ""
@@ -20330,55 +20238,6 @@ msgstr "計時器"
 
 msgid "Timeshift"
 msgstr "時光平移"
-
-#, fuzzy
-msgid "Timeshift Settings"
-msgstr "時光平移位置"
-
-msgid "Timeshift buffer delete after zap"
-msgstr ""
-
-msgid "Timeshift buffer limit [in hours]"
-msgstr ""
-
-msgid "Timeshift checking for free space"
-msgstr ""
-
-msgid "Timeshift checking for older files [in minutes]"
-msgstr ""
-
-msgid "Timeshift event based file splitting"
-msgstr ""
-
-msgid "Timeshift last events limit [number of events]"
-msgstr ""
-
-msgid "Timeshift location"
-msgstr "時光平移位置"
-
-msgid "Timeshift not possible!"
-msgstr "不能時光平移!"
-
-#, fuzzy
-msgid "Timeshift save failed!"
-msgstr "不能時光平移!"
-
-msgid "Timeshift save recording (Select event)"
-msgstr ""
-
-#, fuzzy
-msgid "Timeshift save recording (stop after current event)"
-msgstr "添加錄影 (當前事件停止後)"
-
-msgid "Timeshift saved to your harddisk!"
-msgstr ""
-
-msgid "Timeshift will get saved at end of event!"
-msgstr ""
-
-#, fuzzy
-msgid "Timeshift-save action on zap"
-msgstr "時光平移位置"
 
 msgid "Timezone"
 msgstr ""
@@ -20479,6 +20338,9 @@ msgid "Tone mode"
 msgstr "22K模式"
 
 msgid "Tonga"
+msgstr ""
+
+msgid "Top"
 msgstr ""
 
 msgid "Top and Bottom"
@@ -20967,6 +20829,15 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "更新當前帳戶"
 
+msgid "Unscramble and record ECM"
+msgstr ""
+
+msgid "Unscramble http streams"
+msgstr ""
+
+msgid "Unscramble receiving http streams"
+msgstr ""
+
 msgid "Unsupported"
 msgstr "不支援的"
 
@@ -21110,6 +20981,9 @@ msgid "Upper USB"
 msgstr ""
 
 msgid "Upper case"
+msgstr ""
+
+msgid "Upper line"
 msgstr ""
 
 #, fuzzy
@@ -21411,9 +21285,6 @@ msgstr ""
 #, fuzzy
 msgid "VOD"
 msgstr "OSD"
-
-msgid "VOD long"
-msgstr ""
 
 msgid "VPN"
 msgstr ""
@@ -22106,7 +21977,7 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr ""
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -22205,10 +22076,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr ""
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22243,6 +22114,9 @@ msgstr "在哪里備份您的設定?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "在哪里保存時光平移臨時錄製的內容?"
+
+msgid "What do you want to set as the default movie location?"
+msgstr ""
 
 #, fuzzy
 msgid "Which event do you want to save permanently?"
@@ -22283,6 +22157,12 @@ msgstr ""
 msgid "Wireless network state"
 msgstr ""
 
+msgid "With EXIT button"
+msgstr ""
+
+msgid "With LEFT/RIGHT buttons"
+msgstr ""
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr ""
 
@@ -22290,7 +22170,11 @@ msgstr ""
 msgid "With errors:"
 msgstr "with %d error"
 
-msgid "With popup"
+#, fuzzy
+msgid "With long OK press"
+msgstr "長按鍵"
+
+msgid "With pop up"
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -22311,7 +22195,7 @@ msgstr ""
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr ""
 
 msgid "Without query"
@@ -22345,9 +22229,6 @@ msgid "Write failed!"
 msgstr "寫入失敗！"
 
 msgid "Www"
-msgstr ""
-
-msgid "Www long"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -22585,9 +22466,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -22815,9 +22693,6 @@ msgstr "(ZAP)"
 msgid "ZOOM"
 msgstr ""
 
-msgid "ZOOM long"
-msgstr ""
-
 msgid "ZPicon"
 msgstr ""
 
@@ -22928,12 +22803,12 @@ msgstr "[編輯喜愛頻道]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[TimeShift] Restarting Timeshift!"
-msgstr ""
-
 #, fuzzy
 msgid "[Timeshift] Merging records failed!"
 msgstr "不能時光平移!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr ""
 
 msgid "[alternative edit]"
 msgstr "[編輯專案]"
@@ -23026,14 +22901,7 @@ msgstr ""
 msgid "alphabetic reverse"
 msgstr ""
 
-#, fuzzy
-msgid "alphabetical"
-msgstr "錄影按字母順序排列"
-
 msgid "alpharev then newest"
-msgstr ""
-
-msgid "alternative"
 msgstr ""
 
 #, fuzzy
@@ -23045,10 +22913,6 @@ msgstr ""
 
 msgid "and never ask again this session again"
 msgstr ""
-
-#, fuzzy
-msgid "any recordings"
-msgstr "標記新錄製內容"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -23062,20 +22926,6 @@ msgid "arts/culture (without music, general)"
 msgstr ""
 
 msgid "arts/culture magazine"
-msgstr ""
-
-msgid "as plugin in extended bar"
-msgstr ""
-
-#, fuzzy
-msgid "ask user"
-msgstr "詢問用戶"
-
-#, fuzzy
-msgid "at beginning"
-msgstr "重頭開始"
-
-msgid "at end"
 msgstr ""
 
 msgid "athletics"
@@ -23129,9 +22979,6 @@ msgstr "黑名單"
 msgid "blue"
 msgstr "藍色"
 
-msgid "bottom"
-msgstr ""
-
 msgid "broadcasting/press"
 msgstr ""
 
@@ -23159,17 +23006,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr ""
-
-msgid "center"
-msgstr ""
-
-#, fuzzy
-msgid "centered"
-msgstr "最近精選"
-
-#, fuzzy
-msgid "centered, wrapped"
-msgstr "輸入位元率"
 
 msgid "change Volume down"
 msgstr ""
@@ -23355,9 +23191,6 @@ msgstr "結束錄影剪輯"
 msgid "end favorites edit"
 msgstr "結束喜愛頻道編輯"
 
-msgid "end zapping"
-msgstr ""
-
 msgid "enigma2 and network"
 msgstr "Enigma2 和 網路"
 
@@ -23507,10 +23340,6 @@ msgid "goto current channel and now"
 msgstr ""
 
 #, fuzzy
-msgid "goto deep-standby"
-msgstr "深度休眠"
-
-#, fuzzy
 msgid "goto first channel"
 msgstr "下一個頻道"
 
@@ -23521,10 +23350,6 @@ msgstr "下一個頻道"
 #, fuzzy
 msgid "goto now"
 msgstr "否, 現在不用"
-
-#, fuzzy
-msgid "goto standby"
-msgstr "待機"
 
 msgid "grab this frame as bitmap"
 msgstr "抓取當前幀為bmp圖片"
@@ -23650,16 +23475,6 @@ msgstr "跳轉到下一個標題"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
-msgstr ""
-
-msgid "just abort, show message"
-msgstr ""
-
-#, fuzzy
-msgid "just boot"
-msgstr "藍色增強"
-
 msgid "languages"
 msgstr ""
 
@@ -23669,9 +23484,6 @@ msgstr "退出電影播放..."
 
 msgid "left"
 msgstr "左"
-
-msgid "left, wrapped"
-msgstr ""
 
 msgid "leisure hobbies (general)"
 msgstr ""
@@ -23709,20 +23521,8 @@ msgstr ""
 msgid "medicine/physiology/psychology"
 msgstr ""
 
-msgid "menu"
-msgstr "功能表"
-
-msgid "middle"
-msgstr ""
-
 #, fuzzy
 msgid "min"
-msgstr "分鐘"
-
-msgid "minute"
-msgstr "分鐘"
-
-msgid "minutes"
 msgstr "分鐘"
 
 msgid "month"
@@ -23783,13 +23583,6 @@ msgstr ""
 
 msgid "nature/animals/environment"
 msgstr ""
-
-msgid "never"
-msgstr "從不"
-
-#, fuzzy
-msgid "never abort"
-msgstr "每小時"
 
 msgid "new media"
 msgstr ""
@@ -23948,14 +23741,6 @@ msgid "previous channel page"
 msgstr "上一個頻道"
 
 #, fuzzy
-msgid "previous/next Bouquet"
-msgstr "上一個頻道"
-
-#, fuzzy
-msgid "previous/next Page"
-msgstr "上一個頻道"
-
-#, fuzzy
 msgid "provid:"
 msgstr "供應商"
 
@@ -23967,22 +23752,6 @@ msgid "purge deleted user bouquets"
 msgstr ""
 
 msgid "python"
-msgstr ""
-
-#, fuzzy
-msgid "real or pseudo recordings"
-msgstr "標記新錄製內容"
-
-#, fuzzy
-msgid "real recordings"
-msgstr "標記新錄製內容"
-
-#, fuzzy
-msgid "real recordings or streaming"
-msgstr "作為一個連續的流錄製"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
 msgstr ""
 
 msgid "red"
@@ -24020,9 +23789,6 @@ msgstr "取消家長控制"
 #, fuzzy
 msgid "remove cable services"
 msgstr "保護服務"
-
-msgid "Remove directory"
-msgstr "移除目錄"
 
 msgid "remove entry"
 msgstr "移除項目"
@@ -24068,9 +23834,6 @@ msgstr ""
 msgid "right"
 msgstr "右"
 
-msgid "right, wrapped"
-msgstr ""
-
 msgid "rock/pop"
 msgstr ""
 
@@ -24102,12 +23865,6 @@ msgstr ""
 #, fuzzy
 msgid "search EPG..."
 msgstr "顯示 EPG..."
-
-msgid "seconds"
-msgstr "秒"
-
-msgid "select"
-msgstr "選擇"
 
 msgid "select CAId's"
 msgstr "選擇 CAId's"
@@ -24256,18 +24013,11 @@ msgstr "標準"
 msgid "start cut here"
 msgstr "從這裏開始剪輯"
 
-#, fuzzy
-msgid "start recording"
-msgstr "開始錄製？"
-
 msgid "step size"
 msgstr ""
 
 msgid "stereo"
 msgstr "身歷聲"
-
-msgid "stop recording"
-msgstr "停止錄影"
 
 msgid "stop using as startup service"
 msgstr ""
@@ -24281,9 +24031,6 @@ msgstr ""
 
 msgid "switch Nand and SDcard"
 msgstr ""
-
-msgid "Switch to bookmarks"
-msgstr "切換到書簽"
 
 msgid "switch to the next angle"
 msgstr "切換到下一個角度"
@@ -24332,9 +24079,6 @@ msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切換時間, 章節, 音頻,字幕資訊"
-
-msgid "top"
-msgstr ""
 
 msgid "tourism/travel"
 msgstr ""
@@ -24423,9 +24167,6 @@ msgstr "更新"
 msgid "updates available."
 msgstr "可用更新. "
 
-msgid "upper line"
-msgstr ""
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -24434,9 +24175,6 @@ msgstr ""
 
 msgid "use_hdmi_cacenter"
 msgstr ""
-
-msgid "user defined"
-msgstr "用戶定義"
 
 #, fuzzy
 msgid "userdefined"
@@ -24475,9 +24213,6 @@ msgid ""
 "A copy has been sent to yourself."
 msgstr ""
 
-msgid "white"
-msgstr ""
-
 msgid "wide"
 msgstr ""
 
@@ -24502,16 +24237,6 @@ msgstr[0] "with %d error"
 msgid "with errors"
 msgstr "with %d error"
 
-msgid "with exit button"
-msgstr ""
-
-msgid "with left/right buttons"
-msgstr ""
-
-#, fuzzy
-msgid "with long OK press"
-msgstr "長按鍵"
-
 #, fuzzy
 msgid "with_errors"
 msgstr "with %d error"
@@ -24532,9 +24257,191 @@ msgstr "是 (保留)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
 
-#, fuzzy
-msgid "zapping"
-msgstr "轉自"
-
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Aspect long"
+#~ msgstr "螢幕寬高比"
+
+#, fuzzy
+#~ msgid "Audio long"
+#~ msgstr "音頻選擇"
+
+#, fuzzy
+#~ msgid "Context long"
+#~ msgstr "繼續播放"
+
+#, fuzzy
+#~ msgid "Directory long"
+#~ msgstr "目錄"
+
+#, fuzzy
+#~ msgid "Favorites long"
+#~ msgstr "自定義組"
+
+#, fuzzy
+#~ msgid "File long"
+#~ msgstr "文件管理器"
+
+#, fuzzy
+#~ msgid "Help long"
+#~ msgstr "説明"
+
+#, fuzzy
+#~ msgid "History long"
+#~ msgstr "歷史"
+
+#, fuzzy
+#~ msgid "Home long"
+#~ msgstr "遠端登錄"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "鍵盤佈局"
+
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "左"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "媒體播放器"
+
+#, fuzzy
+#~ msgid "Media long"
+#~ msgstr "媒體播放器"
+
+#, fuzzy
+#~ msgid "Nextsong long"
+#~ msgstr "香港"
+
+#, fuzzy
+#~ msgid "Option long"
+#~ msgstr "選項 ("
+
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "下載中"
+
+#, fuzzy
+#~ msgid "Playlist long"
+#~ msgstr "播放列表"
+
+#, fuzzy
+#~ msgid "Power long"
+#~ msgstr "計時器日誌"
+
+#, fuzzy
+#~ msgid "Prevsong long"
+#~ msgstr "香港"
+
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "右"
+
+#, fuzzy
+#~ msgid "Search/WEB long"
+#~ msgstr "搜尋會話"
+
+#, fuzzy
+#~ msgid "Subtitle long"
+#~ msgstr "字幕選擇"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "刪除"
+
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "計時器日誌"
+
+#, fuzzy
+#~ msgid "1s"
+#~ msgstr "1"
+
+#, fuzzy
+#~ msgid "24+ Hours"
+#~ msgstr "2 小時"
+
+#, fuzzy
+#~ msgid "24- Hours"
+#~ msgstr "2 小時"
+
+#, fuzzy
+#~ msgid "2s"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "3s"
+#~ msgstr "3"
+
+#, fuzzy
+#~ msgid "4s"
+#~ msgstr "4"
+
+#, fuzzy
+#~ msgid "5s"
+#~ msgstr "5"
+
+#, fuzzy
+#~ msgid "Auto Timer"
+#~ msgstr "編輯自動計時器"
+
+#, fuzzy
+#~ msgid "Hour"
+#~ msgstr "小時(s)"
+
+#, fuzzy
+#~ msgid "Once per day"
+#~ msgstr "每天"
+
+#, fuzzy
+#~ msgid "alphabetical"
+#~ msgstr "錄影按字母順序排列"
+
+#~ msgid "user defined"
+#~ msgstr "用戶定義"
+
+#, fuzzy
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "計時器文件（timers.xml）已損壞，無法載入."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "計時器文件（timers.xml）已損壞，無法載入."
+
+#, fuzzy
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "測驗timers.xml有重疊部分！\n"
+#~ "請重新檢視它!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "測驗timers.xml有重疊部分！\n"
+#~ "請重新檢視它!"
+
+#, fuzzy
+#~ msgid "ask user"
+#~ msgstr "詢問用戶"
+
+#~ msgid "menu"
+#~ msgstr "功能表"
+
+#~ msgid "select"
+#~ msgstr "選擇"
+
+#, fuzzy
+#~ msgid "start recording"
+#~ msgstr "開始錄製？"
+
+#~ msgid "stop recording"
+#~ msgstr "停止錄影"
+
+#, fuzzy
+#~ msgid "zapping"
+#~ msgstr "轉自"

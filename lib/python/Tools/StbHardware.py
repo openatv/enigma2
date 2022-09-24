@@ -2,8 +2,8 @@ from fcntl import ioctl
 from os.path import exists, isfile
 from struct import pack, unpack
 from time import time, localtime, gmtime
-from boxbranding import getBoxType, getBrandOEM
 from Tools.Directories import fileReadLine, fileWriteLine
+from Components.SystemInfo import BoxInfo
 
 MODULE_NAME = __name__.split(".")[-1]
 wasTimerWakeup = None
@@ -54,9 +54,9 @@ def getBoxRCType():
 def getFPVersion():
 	version = None
 	try:
-		if getBrandOEM() == "blackbox" and isfile("/proc/stb/info/micomver"):
+		if BoxInfo.getItem("brand") == "blackbox" and isfile("/proc/stb/info/micomver"):
 			version = fileReadLine("/proc/stb/info/micomver", source=MODULE_NAME)
-		elif getBoxType() in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
+		elif BoxInfo.getItem("machinebuild") in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
 			version = open("/proc/stb/fp/version", "r").read()
 		else:
 			version = int(open("/proc/stb/fp/version", "r").read())

@@ -888,11 +888,11 @@ class BDMVJob(Job):
 		volName = self.project.settings.name.getValue()
 		tool = "growisofs"
 		if output == "medium":
-			self.name = _("Burn Blue-ray disc")
+			self.name = _("Burn Blu-ray disc")
 			burnargs = ["-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=tty"]
 		elif output == "iso":
 			tool = "genisoimage"
-			self.name = _("Create Blue-ray disc ISO file")
+			self.name = _("Create Blu-ray disc ISO file")
 			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
 			burnargs = ["-o", isopathfile]
 		burnargs += ["-udf", "-allow-limited-size", "-publisher", "Dreambox", "-V", volName, self.workspace]

@@ -86,7 +86,7 @@ struct eListboxStyle
 	};
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_valuefont;
-	ePoint m_text_offset;
+	eRect m_text_padding;
 	bool m_use_vti_workaround;
 };
 #endif
@@ -204,7 +204,7 @@ public:
 	void setValueFont(gFont *font);
 	void setVAlign(int align);
 	void setHAlign(int align);
-	void setTextOffset(const ePoint &textoffset);
+	void setTextPadding(const eRect &padding);
 	void setUseVTIWorkaround(void);
 
 	void setScrollbarBorderColor(const gRGB &col);
@@ -222,6 +222,8 @@ public:
 			defaultScrollBarMode = mode;
 			defaultPageSize = pageSize;
 		}
+
+	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
 
 	void setOrientation(int o);
 
@@ -268,6 +270,7 @@ private:
 	static int defaultScrollBarMode;
 	static int defaultPageSize;
 	static bool defaultWrapAround;
+	static eRect defaultPadding;
 
 	int m_list_orientation,m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
@@ -281,11 +284,11 @@ private:
 	int m_itemwidth;
 	int m_items_per_page;
 	int m_selection_enabled;
+	int m_page_size;
 
 	bool m_native_keys_bound;
 	int m_first_selectable_item;
 	int m_last_selectable_item;
-	int m_page_size;
 
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;

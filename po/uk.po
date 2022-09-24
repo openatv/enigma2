@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
-"PO-Revision-Date: 2022-08-30 15:39+0000\n"
-"Last-Translator: Artem <artem@molotov.work>\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"PO-Revision-Date: 2022-09-19 15:41+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -72,7 +72,7 @@ msgid ""
 "[Installed Plugins]\n"
 msgstr ""
 "\n"
-"[Встановлені Плагіни]\n"
+"[Встановлені плагіни]\n"
 
 msgid ""
 "\n"
@@ -200,7 +200,7 @@ msgid " updated"
 msgstr " оновлено"
 
 msgid "!! Boot loader Upgrade !!"
-msgstr "!! Завантажувач Оновлено !!"
+msgstr "!! Завантажувач оновлено !!"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -226,16 +226,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -348,13 +348,13 @@ msgid "%03d MB"
 msgstr "%03d MБ"
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr "%2.1f сек"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -544,11 +544,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -594,19 +594,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -861,6 +861,13 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] "%d + %d + %d хвилина"
+msgstr[1] "%d + %d + %d хвилини"
+msgstr[2] "%d + %d + %d хвилин"
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr "%d DMIPS на ядро"
 
@@ -869,8 +876,40 @@ msgid "%d DMIPS with %d cores"
 msgstr "%d DMIPS з %d ядрами"
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] "%d день"
+msgstr[1] "%d днів"
+msgstr[2] "%d дня"
+
+#, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] "%d цифра"
+msgstr[1] "%d цифр"
+msgstr[2] "%d цифри"
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] "%d подія"
+msgstr[1] "%d події"
+msgstr[2] "%d подій"
+
+#, python-format
 msgid "%d GB"
 msgstr "%d ГБ"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d година"
+msgstr[1] "%d години"
+msgstr[2] "%d годин"
+
+#, python-format
+msgid "%d Hours"
+msgstr "%d годин"
 
 #, python-format
 msgid "%d KB"
@@ -879,6 +918,10 @@ msgstr "%d KБ"
 #, python-format
 msgid "%d MB"
 msgstr "%d МБ"
+
+#, python-format
+msgid "%d MB/s"
+msgstr "%d МБ/с"
 
 #, python-format
 msgid "%d MHz"
@@ -908,6 +951,39 @@ msgstr[0] "%d хвилина"
 msgstr[1] "%d хвилини"
 msgstr[2] "%d хвилин"
 
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d хвилина"
+msgstr[1] "%d хвилини"
+msgstr[2] "%d хвилин"
+
+#, python-format
+msgid "%d Minutes"
+msgstr "%d хвилин"
+
+#, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d піксель в ширину"
+msgstr[1] "%d пікселі в ширину"
+msgstr[2] "%d пікселів в ширину"
+
+#, python-format
+msgid "%d Pixels"
+msgstr "%d пікселів"
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунди"
+msgstr[2] "%d секунд"
+
+#, python-format
+msgid "%d Seconds"
+msgstr "%d секунд"
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -924,25 +1000,11 @@ msgstr[1] "%d ядра"
 msgstr[2] "%d ядер"
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] "%d день"
-msgstr[1] "%d днів"
-msgstr[2] "%d дня"
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d сервер каталогу пакетів оновлено."
 msgstr[1] "%d сервер каталогів пакетів оновлено."
 msgstr[2] "%d сервер каталогів пакетів оновлено."
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d година"
-msgstr[1] "%d години"
-msgstr[2] "%d годин"
 
 #, python-format
 msgid "%d kB"
@@ -951,13 +1013,6 @@ msgstr "%d кБ"
 #, python-format
 msgid "%d min"
 msgstr "%d хв"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d хвилина"
-msgstr[1] "%d хвилини"
-msgstr[2] "%d хвилин"
 
 #, python-format
 msgid "%d minutes"
@@ -1024,22 +1079,8 @@ msgstr[1] "%d пакети оновлено."
 msgstr[2] "%d пакетів оновлено."
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "%d піксель в ширину"
-msgstr[1] "%d пікселі в ширину"
-msgstr[2] "%d пікселів в ширину"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d сек"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунди"
-msgstr[2] "%d секунд"
 
 #, python-format
 msgid "%d times"
@@ -1252,6 +1293,10 @@ msgid "%s is password protected."
 msgstr "%s захищено паролем."
 
 #, python-format
+msgid "%s long"
+msgstr "%s довго"
+
+#, python-format
 msgid "%s not available."
 msgstr "%s недоступний."
 
@@ -1265,7 +1310,7 @@ msgstr "%s%d хв"
 
 #, python-format
 msgid "%s%s(Default: %s)"
-msgstr "%s%s(Типово: %s)"
+msgstr "%s%s(За замовчуванням: %s)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1322,11 +1367,11 @@ msgstr "'%s' не встановлено і не відомий пакет"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Буфер в годинах' або 'кількість останніх подій'. Яка з умов настає першою, по цій умові і видалятимуться старі файли таймшифта."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Декодувати та записувати ECM' дає можливість дешифрувати пізніше, якщо дешифрування під час запису не вдалося. 'Не декодувати, записати ECM' зберігає кодований запис, який можна декодувати під час відтворення. 'Звичайний' означає дешифрування запису та відсутність запису ECM."
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Обробка режиму очікування з телевізора' має вищий пріоритет, ніж 'Обробка введення з телевізора'."
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "'Розкодувати і записати ECM' - дозволяє записати і розкодувати при відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і записати ECM' зберігає закодовані записи, які можуть бути розкодовані під час відтворення. 'Звичайний' розкодовані записи без запису ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'weatherplugin' не встановлений!"
@@ -1379,6 +1424,9 @@ msgstr "* поточна анімація"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr "+24 години"
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ", "
@@ -1388,6 +1436,9 @@ msgstr "-"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr "-24 години"
 
 msgid "-24h/+24 Hours"
 msgstr "-24/+24 Години"
@@ -1407,35 +1458,8 @@ msgstr "/var каталог"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2с"
-
-msgid "0.3s"
-msgstr "0.3с"
-
-msgid "0.4s"
-msgstr "0.4с"
-
-msgid "0.5s"
-msgstr "0.5с"
-
-msgid "0.6s"
-msgstr "0.6с"
-
-msgid "0.7s"
-msgstr "0.7с"
-
-msgid "0.8s"
-msgstr "0.8с"
-
-msgid "0.9s"
-msgstr "0.9с"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 ГБ"
 
 msgid "1 hour"
 msgstr "1 година"
@@ -1449,23 +1473,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2с"
-
-msgid "1.5s"
-msgstr "1.5с"
-
-msgid "1.7s"
-msgstr "1.7с"
-
-msgid "10 MB/s"
-msgstr "10 MБ/с"
-
 msgid "10 minutes"
 msgstr "10 хвилин"
-
-msgid "100 MB/s"
-msgstr "100 MБ/с"
 
 msgid "1024 Mb"
 msgstr "1024 Мб"
@@ -1569,9 +1578,6 @@ msgstr "16K"
 msgid "18 V"
 msgstr "18 В"
 
-msgid "1s"
-msgstr "1с"
-
 msgid "1st InfoBar timeout"
 msgstr "Затримка першого Інфобару"
 
@@ -1581,20 +1587,11 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 ГБ"
-
 msgid "2 hours"
 msgstr "2 години"
 
 msgid "2 minutes"
 msgstr "2 хвилини"
-
-msgid "2.5s"
-msgstr "2.5с"
-
-msgid "20 MB/s"
-msgstr "20 MБ/с"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1625,12 +1622,6 @@ msgstr "24"
 
 msgid "24 hours"
 msgstr "24 годин"
-
-msgid "24+ Hours"
-msgstr "24+ Годин"
-
-msgid "24- Hours"
-msgstr "24- Годин"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1689,9 +1680,6 @@ msgstr "Інфо на другому Інфобарі"
 msgid "2nd InfoBar timeout"
 msgstr "Затримка другого Інфобару"
 
-msgid "2s"
-msgstr "2с"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1709,9 +1697,6 @@ msgstr "3"
 
 msgid "3 hours"
 msgstr "3 години"
-
-msgid "3.5s"
-msgstr "3.5с"
 
 msgid "30"
 msgstr "30"
@@ -1749,17 +1734,11 @@ msgstr "3D Звук"
 msgid "3D Surround Speaker Position"
 msgstr "Розташування динаміків 3D"
 
-msgid "3s"
-msgstr "3с"
-
 msgid "3x"
 msgstr "3x"
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 ГБ"
 
 msgid "4 hours"
 msgstr "4 годин"
@@ -1788,9 +1767,6 @@ msgstr "4:3 Панорама"
 msgid "4K"
 msgstr "4К"
 
-msgid "4s"
-msgstr "4с"
-
 msgid "4x"
 msgstr "4x"
 
@@ -1802,9 +1778,6 @@ msgstr "5 годин"
 
 msgid "5 minutes"
 msgstr "5 хвилин"
-
-msgid "50 MB/s"
-msgstr "50 МБ/с"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1823,9 +1796,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Мб"
-
-msgid "5s"
-msgstr "5с"
 
 msgid "6"
 msgstr "6"
@@ -1878,9 +1848,6 @@ msgstr "720p50: 24p/50p/60p"
 msgid "8"
 msgstr "8"
 
-msgid "8 GB"
-msgstr "8 ГБ"
-
 msgid "8 character"
 msgstr "8 символів"
 
@@ -1903,10 +1870,10 @@ msgid "< Alternate Skin >"
 msgstr "< Запасний Скін >"
 
 msgid "< Default >"
-msgstr "< Типово >"
+msgstr "< За замовчуванням >"
 
 msgid "< Default with Picon >"
-msgstr "< Пікон за умовчанням >"
+msgstr "< Пікон за замовчуванням >"
 
 msgid "< User Skin >"
 msgstr "< Скін Користувача >"
@@ -1915,7 +1882,7 @@ msgid "<Current movie list location>"
 msgstr "<Розташування поточного списку фільмів>"
 
 msgid "<Default movie location>"
-msgstr "<Розташування фільмів за умовчанням>"
+msgstr "<Розташування запису за замовчуванням>"
 
 msgid "<Last timer location>"
 msgstr "<Розташування останнього таймера>"
@@ -1937,35 +1904,19 @@ msgid "A file from media is in use!"
 msgstr "Використовується файл із носія!"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
-msgstr ""
-"Заплановане завдання таймера живлення вимагає перезавантаження Вашого %s %s.\n"
-"Перезавантажити зараз?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgstr "Заплановане завдання таймера живлення вимагає перезавантаження Вашого %s %s. Перезавантажити зараз?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
-msgstr ""
-"Заплановане завдання таймера живлення вимагає перезавантаження GUI.\n"
-"Зробити це зараз?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgstr "Заплановане завдання таймера живлення вимагає перезавантаження інтерфеса. Зробити це зараз?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Заплановане завдання таймера живлення вимагає перевести Ваш\n"
-"%s %s в режим очікування. Зробити це зараз?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgstr "Заплановане завдання таймера живлення вимагає перевести Ваш %s %s в режим очікування. Зробити це зараз?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
-msgstr ""
-"Заплановане завдання таймера живлення вимагає вимкнути Ваш %s %s.\n"
-"Зробити це зараз?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgstr "Заплановане завдання таймера живлення вимагає вимкнути Ваш %s %s. Зробити це зараз?"
 
 #, python-format
 msgid ""
@@ -2057,7 +2008,7 @@ msgid ""
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 "Таймер запису не запущений!\n"
-"Перервати псевдо записи (наприклад, оновити ЕПГ) і спробувати ще раз?\n"
+"Перервати псевдозаписи (наприклад, оновити EPG) і спробувати ще раз?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2241,7 +2192,7 @@ msgid "Add"
 msgstr "Додати"
 
 msgid "Add AutoTimer"
-msgstr "Додати АвтоТаймер"
+msgstr "Додати автотаймер"
 
 msgid "Add Bookmark"
 msgstr "Додати закладку"
@@ -2298,7 +2249,7 @@ msgid "Add a timer for the current event"
 msgstr "Додати таймер для поточної передачы"
 
 msgid "Add an AutoTimer for the current event"
-msgstr "Додати авто таймер для поточного події"
+msgstr "Додати автотаймер для поточного події"
 
 msgid "Add current folder to bookmarks"
 msgstr "Додати поточну теку в закладки"
@@ -2370,10 +2321,10 @@ msgid "Additional files/folders to backup"
 msgstr "Додати файли/теки для резервного копіювання"
 
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
-msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації вашого двигуна, так що система зможе обчислити, скільки часу буде потрібно для переміщення антени."
+msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації Вашого двигуна, так що система зможе обчислити, скільки часу буде потрібно для переміщення антени."
 
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
-msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації вашого двигуна, щоб система обчислила необхідний час для переміщення антени."
+msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації Вашого двигуна, щоб система обчислила необхідний час для переміщення антени."
 
 msgid "Address"
 msgstr "Адреса"
@@ -2437,6 +2388,9 @@ msgstr "Після натиснення OK, зачекайте!"
 
 msgid "After recording"
 msgstr "Після запису"
+
+msgid "After zap"
+msgstr "Після zap"
 
 msgid "Akan"
 msgstr "Акан"
@@ -2526,10 +2480,10 @@ msgid "Allow unsupported modes"
 msgstr "Дозволити режими, що не підтримуються"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Дозволити %s %s для регулярного читання даних ЕПГ."
+msgstr "Дозволити %s %s для регулярного читання даних EPG."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Дозволити %s %s для регулярного запису даних ЕПГ."
+msgstr "Дозволити %s %s для регулярного запису даних EPG."
 
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Дозволяє використовувати пульт дистанційного керування телевізора для керування приймачем."
@@ -2541,7 +2495,7 @@ msgid "Allows you to enable the GStreamer debug log. They contain very detailed 
 msgstr "Дозволяє ввімкнути журнал налагодження GStreamer. Вони містять дуже детальну інформацію про все, що робить система GStreamer."
 
 msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
-msgstr "Дозволяє ввімкнути графіки конвеєра GStreamer. Це файли .dot, які описують топологію вашого конвеєра, а також обмеження, узгоджені в кожному посиланні."
+msgstr "Дозволяє ввімкнути графіки конвеєра GStreamer. Це файли .dot, які описують топологію Вашого конвеєра, а також обмеження, узгоджені в кожному посиланні."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Дозволити лог налагодження. Лог налагодження містить докладну інформацію про всі дії системи."
@@ -2607,7 +2561,7 @@ msgid "Always include ECM in recordings"
 msgstr "Завжди включати ECM у записи"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
-msgstr "Завжди вмикайте запис ECM у записах. При цьому будуть проігноровані деякі параметри таймерів. Якщо даний параметр підтримується вашим приймачем, це дозволить розкодовувати записи (називається декодуванням в автономному режимі). Стандартно: вимкнено."
+msgstr "Завжди вмикайте запис ECM у записах. При цьому будуть проігноровані деякі параметри таймерів. Якщо даний параметр підтримується Вашим приймачем, це дозволить розкодовувати записи (називається декодуванням в автономному режимі). За замовчуванням: вимкнено."
 
 msgid "Always show bouquets"
 msgstr "Завжди показувати фаворити"
@@ -2632,9 +2586,6 @@ msgstr "Пульт Amlogic"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
-
-msgid "Error: An empty filename is illegal!"
-msgstr "Пусте ім'я файлу є недопустимим."
 
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Виникла помилка при завантаженні списку пакетів. Спробуйте ще раз."
@@ -2677,6 +2628,9 @@ msgstr "Антигуа і Барбуда"
 
 msgid "Any activity"
 msgstr "Будь-яка активність"
+
+msgid "Any recordings"
+msgstr "будь-які записи"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Застосувати зміни до активної локалі/мови і вийти"
@@ -2729,7 +2683,7 @@ msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Ви впевнені, що хочете видалити всі вибрані логи:\n"
 
 msgid "Are you sure you want to delete the EPG data from:\n"
-msgstr "Ви дійсно бажаєте видалити дані ЕПГ з:\n"
+msgstr "Ви дійсно бажаєте видалити дані EPG з:\n"
 
 msgid "Are you sure you want to delete this image?"
 msgstr "Ви впевнені, що хочете видалити цей імідж?"
@@ -2744,7 +2698,7 @@ msgid "Are you sure you want to exit this wizard?"
 msgstr "Ви дійсно бажаєте вийти з помічника?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr "Ви дійсно бажаєте перезавантажити дані ЕПГ з:\n"
+msgstr "Ви дійсно бажаєте перезавантажити дані EPG з:\n"
 
 msgid "Are you sure you want to restart your network interfaces?"
 msgstr "Ви дійсно бажаєте перезавантажити мережеві інтерфейси?"
@@ -2777,7 +2731,7 @@ msgstr ""
 "Приймач буде перезавантажений після відновлення"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr "Ви дійсно бажаєте зберегти Кеш ЕПГ до:\n"
+msgstr "Ви дійсно бажаєте зберегти кеш EPG до:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Ви дійсно бажаєте надіслати цей лог:\n"
@@ -2803,14 +2757,17 @@ msgstr "Мистецтво/Культура"
 msgid "Aruba"
 msgstr "Аруба"
 
+msgid "As plugin in extended bar"
+msgstr "як плагін в розширеній панелі"
+
 msgid "Ask user"
 msgstr "Запитати користувача"
 
-msgid "Ask user (with default as 'no')"
-msgstr "Запитати користувача (стандартно 'ні')"
+msgid "Ask user (with default as 'No')"
+msgstr "Запитати користувача (за замовчуванням 'ні')"
 
-msgid "Ask user (with default as 'yes')"
-msgstr "Запитати користувача (стандартно 'так')"
+msgid "Ask user (with default as 'Yes')"
+msgstr "Запитати користувача (за замовчуванням 'так')"
 
 msgid "Aspect"
 msgstr "Вигляд"
@@ -2820,9 +2777,6 @@ msgstr "Всановлення Співвідношення Сторін"
 
 msgid "Aspect list..."
 msgstr "Список виглядів..."
-
-msgid "Aspect long"
-msgstr "Широкоформатний вигляд"
 
 msgid "Aspect ratio"
 msgstr "Співвідношення сторін"
@@ -2844,6 +2798,12 @@ msgstr "Astra 2 28.2E"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5E"
+
+msgid "At beginning"
+msgstr "на початок"
+
+msgid "At end"
+msgstr "у кінець"
 
 msgid "At end of current program"
 msgstr "В кінці поточної програми"
@@ -2875,10 +2835,10 @@ msgstr "Аудіо ПІД"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr "Aудіо ПІД%s, кодек & мова"
+msgstr "Aудіо PID%s, кодек і мова"
 
 msgid "Audio PID, codec & lang"
-msgstr "Aудіо ПІД, кодек & мова"
+msgstr "Aудіо PID, кодек і мова"
 
 msgid "Audio Settings"
 msgstr "Налаштування аудіо"
@@ -2900,9 +2860,6 @@ msgstr "Вибір мови аудіо 3"
 
 msgid "Audio language selection 4"
 msgstr "Вибір мови аудіо 4"
-
-msgid "Audio long"
-msgstr "Аудіо довге натискання"
 
 msgid "Audio options..."
 msgstr "Вибір аудіо-доріжки..."
@@ -2949,9 +2906,6 @@ msgstr "Вибрано автоматичні Режими."
 msgid "Auto SCART switching"
 msgstr "Авто переключення на скарт"
 
-msgid "Auto Timer"
-msgstr "Авто Таймер"
-
 msgid "Auto Timers"
 msgstr "Авто-Таймери"
 
@@ -2987,6 +2941,9 @@ msgstr "Авто(не доступний)"
 
 msgid "AutoMountManager"
 msgstr "Конфігурація Автомонтування"
+
+msgid "AutoTimer"
+msgstr "Автотаймер"
 
 msgid "AutoUpdate"
 msgstr "Авто-Оновлення"
@@ -3182,7 +3139,7 @@ msgid "Backup Mode: Flash Online\n"
 msgstr "Режим резервного копіювання: Повна копія\n"
 
 msgid "Backup Mode: USB Recovery\n"
-msgstr "Режим збереження: USB Відновлення\n"
+msgstr "Режим збереження: USB відновлення\n"
 
 msgid "Backup Settings"
 msgstr "Збереження Налаштувань"
@@ -3285,7 +3242,7 @@ msgstr "Баскська"
 msgid "Begin time"
 msgstr "Початок"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Поводиться як кнопка стоп"
 
 msgid "Behavior of 'pause' when paused"
@@ -3395,10 +3352,10 @@ msgid "Boost green"
 msgstr "Додати зелений"
 
 msgid "Boot ID"
-msgstr "ID Завантажувача"
+msgstr "ID завантажувача"
 
 msgid "Boot information"
-msgstr "Інформація загрузчика"
+msgstr "Інформація завантажувача"
 
 msgid "Boot loader update required!"
 msgstr "Потрібне оновлення завантажувача!"
@@ -3427,6 +3384,9 @@ msgstr "Боснійська"
 
 msgid "Botswana"
 msgstr "Ботсвана"
+
+msgid "Bottom"
+msgstr "знизу"
 
 msgid "Bouquet List"
 msgstr "Список фаворитів"
@@ -3487,7 +3447,7 @@ msgid "Buffers"
 msgstr "Буфери"
 
 msgid "Build Brand"
-msgstr "Назва Збірки"
+msgstr "Назва збірки"
 
 msgid "Build Information"
 msgstr "Інформація про збірку"
@@ -3518,7 +3478,7 @@ msgstr "Буркіна-Фасо"
 msgid "Burmese"
 msgstr "Бірманська"
 
-msgid "Burn Blue-ray disc"
+msgid "Burn Blu-ray disc"
 msgstr "Запис Блю-рей диска"
 
 msgid "Burn DVD"
@@ -3810,7 +3770,7 @@ msgid "Can not delete timer"
 msgstr "Неможливо видалити таймер"
 
 msgid "Can not download EPG"
-msgstr "Неможливо завантажити ЕПГ"
+msgstr "Неможливо завантажити EPG"
 
 msgid "Can not download current region details"
 msgstr "Неможливо завантажити поточну інформацію про регіон"
@@ -3858,14 +3818,14 @@ msgstr "Неможливо визначити джерело програми (�
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо з’єднатися з ТВ!\n"
 "Підключитися до каналу і перезапустити таймшифт?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо запустити наступний файл таймшифта!\n"
 "Знову підключитися до каналу і перезапустити таймшифт?"
@@ -4005,6 +3965,15 @@ msgstr "Кайманові острови"
 msgid "Celsius"
 msgstr "Цельсій"
 
+msgid "Center"
+msgstr "центр"
+
+msgid "Centered"
+msgstr "по центру"
+
+msgid "Centered, wrapped"
+msgstr "по центру, прихований"
+
 msgid "Central African Republic"
 msgstr "Центрально-африканська Республіка"
 
@@ -4085,7 +4054,7 @@ msgstr "Канал / Сервіс"
 msgid "Channel 1"
 msgstr "Канал 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Канал 1 з Прайм-тайму"
 
 msgid "Channel Info"
@@ -4303,10 +4272,10 @@ msgid "Choose the location for crash and debug logs."
 msgstr "Виберіть каталог для крешлогів."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr "Виберіть каталог для зберігання даних ЕПГ, коли %s %s вимкнений. Каталогповинен бути доступний при завантаженні."
+msgstr "Виберіть каталог для зберігання даних EPG, коли %s %s вимкнений. Каталог повинен бути доступний при завантаженні."
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr "Виберіть ім'я файлу для даних ЕПГ, коли %s %s вимкнений. Це може бути корисно, якщо використовуються кілька приймачів."
+msgstr "Виберіть ім'я файлу для даних EPG, коли %s %s вимкнений. Це може бути корисно, якщо використовуються кілька приймачів."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Choose the style/order in which items are displayed in help windows."
@@ -4637,7 +4606,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "Вкажіть, чи потрібно назву каналів в селекторі каналів показати в вигляді стовпця (по ширині)."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr "Налаштування збереження epg.dat."
+msgstr "Налаштуйте, чи потрібно взагалі зберігати epg.dat."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Вкажіть, чи потрібно показати пікони при швидкому перемиканні."
@@ -4829,7 +4798,7 @@ msgid "Configure the possible rewind speeds."
 msgstr "Налаштування можливих швидкостей при перемотці назад."
 
 msgid "Configure the primary EPG language."
-msgstr "Налаштування основної мови телегіду."
+msgstr "Налаштування основної мови EPG."
 
 msgid "Configure the refresh rate of the screen."
 msgstr "Вкажіть частоту оновлення екрану."
@@ -4844,7 +4813,7 @@ msgid "Configure the second subtitle language."
 msgstr "Налаштування другої мови субтитрів."
 
 msgid "Configure the secondary EPG language."
-msgstr "Налаштування другої мови телегіду."
+msgstr "Налаштування другої мови EPG."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
 msgstr "Налаштуйте час пропуску при натисканні клавіш '1'/'3'."
@@ -4910,7 +4879,7 @@ msgid "Configure to show channel names, numbers, picons or all three inside EPG.
 msgstr "Налаштуйте відображення назв каналів, чисел, піконів, або всіх трьох у EPG."
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr "Налаштування відображення назви каналів, піконів, або як в ЕПГ."
+msgstr "Налаштування відображення назви каналів, піконів, або як в EPG."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr "Налаштування звичайний чи жирний шрифт TrueType для відтворення телетексту."
@@ -4925,7 +4894,7 @@ msgid "Configure whether multi channel sound tracks should be downmixed to stere
 msgstr "Налаштуйте, чи слід змішувати багатоканальну звукову доріжку в стерео звук."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
-msgstr "Вкажіть, коли виводити значок 'запис' на дисплей приймача, тільки при записі передач або при потоковій передачі і псевдо записах також (наприклад, при оновленні ЕПГ)."
+msgstr "Вкажіть, коли виводити значок 'запис' на дисплей приймача, тільки при записі передач або при потоковій передачі і псевдозаписах також (наприклад, при оновленні EPG)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Налаштування формату виведення кольору виході SCART."
@@ -4937,7 +4906,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Вкажіть, який тип тюнера переважає, якщо канал доступний на різних типах тюнерів."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen."
-msgstr "Вкажіть, який тюнер переважає для запису, якщо в приймачі їх декілька."
+msgstr "Налаштуйте, який тюнер буде віддавати перевагу для записів, якщо доступно більше ніж один тюнер. 'Вимкнено' вибиратиме тюнер на основі бажаного тюнера на екрані налаштування. 'Авто' вибиратиметься на основі правил E2 за замовчуванням, ігноруючи бажаний тюнер на екрані налаштування."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Вкажіть, який тюнер переважає, якщо доступні декілька тюнерів. Якщо встановлено значення\" Авто \", то система буде віддавати пріоритет тюнеру з найменшим числом каналів/супутників."
@@ -5027,9 +4996,6 @@ msgstr "Інформація не поміститься на DVD!!"
 
 msgid "Context"
 msgstr "Контекст"
-
-msgid "Context long"
-msgstr "Контекст довге натискання"
 
 msgid "Continent"
 msgstr "Континент"
@@ -5154,7 +5120,7 @@ msgid "Could not save configuration file %s!"
 msgstr "Не вдалося зберегти файл конфігурації %s!"
 
 msgid "Country"
-msgstr "Країни"
+msgstr "Країна"
 
 msgid "Country for EPG event genre information"
 msgstr "Інформація про жанр передачі EPG"
@@ -5175,7 +5141,7 @@ msgstr "Крешлог при помилці скіну для визначен�
 msgid "Create"
 msgstr "Створити"
 
-msgid "Create Blue-ray disc ISO file"
+msgid "Create Blu-ray disc ISO file"
 msgstr "Створити Блю-рей диск з ISO файлом"
 
 msgid "Create DVD-ISO"
@@ -5209,18 +5175,14 @@ msgstr "Створення:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Створити: Резервну копію відновлення %s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Створення файлів АР і SC"
-
-msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "Помилка створення посилання на файл Timeshift!"
-
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Створення директорії %s невдале."
 
 msgid "Creating file system"
 msgstr "Створення файлової системи"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Помилка створення посилання на файл Timeshift!"
 
 msgid "Creating partition"
 msgstr "Створення розділу"
@@ -5281,6 +5243,10 @@ msgstr "Поточний журнал збоїв"
 
 msgid "Current installed"
 msgstr "Встановлено поточний"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr "Поточне місцезнаходження '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5411,7 +5377,7 @@ msgid "DVB CI Delay"
 msgstr "Затримка DVB CI"
 
 msgid "DVB Subtitles PID & lang"
-msgstr "PID & мова DVB субтитрів"
+msgstr "PID і мова DVB субтитрів"
 
 msgid "DVB subtitle black transparency"
 msgstr "Прозорість DVB субтитрів"
@@ -5629,7 +5595,7 @@ msgid "Debug %d/%d"
 msgstr "Налагодження %d/%d"
 
 msgid "Debug Information"
-msgstr "Інформація про налагодження"
+msgstr "Налагоджувальна інфо"
 
 msgid "Debug Log Information"
 msgstr "Інформація логу налагодження"
@@ -5644,7 +5610,7 @@ msgid "Debug log time format *"
 msgstr "Формат часу журналу логу *"
 
 msgid "Decryption & Parental Control"
-msgstr "Декодування і Батьківський контроль"
+msgstr "Декодування і батьківський контроль"
 
 msgid "Deep Standby"
 msgstr "Вимкнути приймач"
@@ -5674,37 +5640,37 @@ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the l
 msgstr "Пріоритет I/O за умовчанням для виконаних сценаріїв. Це може зменшити навантаження, так що скрипти не заважають решті системи. (вищі значення = нижчий пріоритет)"
 
 msgid "Default Modes Selected."
-msgstr "Вибір Стандартних режимів."
+msgstr "Вибрані режими за замовчуванням."
 
 msgid "Default Services Scanner"
-msgstr "Сканування Каналів за замовчуванням"
+msgstr "Сканування каналів за замовчуванням"
 
 msgid "Default directory sorting"
-msgstr "Стандартне сортування каталогів"
+msgstr "Сортування каталогу за замовчуванням"
 
 msgid "Default file sorting left"
-msgstr "Стандартне сортування файлів зліва"
+msgstr "Сортування файлів за замовчуванням ліворуч"
 
 msgid "Default file sorting right"
-msgstr "Стандартне сортування файлів справа"
+msgstr "Сортування файлів за замовчуванням праворуч"
 
 msgid "Default files/folders to backup"
 msgstr "Файли/теки для резервної копії за замовчуванням"
 
 msgid "Default folder"
-msgstr "Типова тека"
+msgstr "Тека за замовчуванням"
 
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Типова тека, якщо ліву або праву теку не збережено, а цільова тека для кнопки 5."
+msgstr "Тека за замовчуванням, якщо ліву або праву теку не збережено, а цільова тека для кнопки 5."
 
-msgid "Default movie location"
-msgstr "Розташування фільмів типово"
+msgid "Default movie selection location"
+msgstr "Розташування запису за замовчуванням"
 
 msgid "Default recording type"
 msgstr "Тип запису за замовчуванням"
 
 msgid "Default settings"
-msgstr "Стандарні Налаштування"
+msgstr "Налаштування за замовчуванням"
 
 msgid "Default sorting method for directories on both sides."
 msgstr "Метод сортування за замовчуванням для каталогів з обох сторін."
@@ -5720,7 +5686,7 @@ msgstr "Зміщення гучності за замовчуванням"
 
 #, python-format
 msgid "Default: '%s'."
-msgstr "Типово: '%s'."
+msgstr "За замовчуванням: '%s'."
 
 msgid "Defaults"
 msgstr "За замовчуванням"
@@ -5834,7 +5800,7 @@ msgid "Delete Confirmation"
 msgstr "Підтвердження видалення"
 
 msgid "Delete EPG"
-msgstr "Видалити ЕПГ"
+msgstr "Видалити EPG"
 
 msgid "Delete Image"
 msgstr "Видалення іміджу"
@@ -5955,18 +5921,6 @@ msgstr "Данія"
 msgid "Depth"
 msgstr "Глибина"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Розкодувати і записати ECM' - дозволяє записати і розкодувати при відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і записати ECM' зберігає закодовані записи, які можуть бути розкодовані під час відтворення. 'Звичайний' розкодовані записи без запису ECM."
-
-msgid "Descramble and record ECM"
-msgstr "розкодувати і записати ecm"
-
-msgid "Descramble http streams"
-msgstr "Розкодувати http потік"
-
-msgid "Descramble receiving http streams"
-msgstr "Розкодувати приймачем http-потоку"
-
 msgid "Description"
 msgstr "Опис"
 
@@ -6082,9 +6036,6 @@ msgstr "Каталог '%s' не для запису!"
 
 msgid "Directory browser"
 msgstr "Провідник каталогів"
-
-msgid "Directory long"
-msgstr "Каталог довгий"
 
 msgid "Disable"
 msgstr "Вимкнуто"
@@ -6229,10 +6180,10 @@ msgid "Djibouti"
 msgstr "Джібутті"
 
 msgid "Do center DVB subs on this service"
-msgstr "Центрувати DVB subs на цьому каналі"
+msgstr "центрувати DVB subs на цьому каналі"
 
 msgid "Do not center DVB subs on this service"
-msgstr "Не центрувати DVB subs на цьому каналі"
+msgstr "не центрувати DVB subs на цьому каналі"
 
 msgid "Do not change"
 msgstr "Не змінювати"
@@ -6467,9 +6418,6 @@ msgstr "Не потрібно додавати цей запис"
 msgid "Don't ask again!"
 msgstr "Не потрібно запитувати знову!"
 
-msgid "Don't descramble, record ECM"
-msgstr "не розкодовувати, запис ecm"
-
 msgid "Don't restart"
 msgstr "Не перезавантажуйте"
 
@@ -6481,6 +6429,9 @@ msgstr "Не показувати за замовчуванням"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Не зупиняти поточне завдання, але скасувати наступні"
+
+msgid "Don't unscramble, record ECM"
+msgstr "не розкодовувати, запис ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -6494,14 +6445,14 @@ msgstr "Виконано"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr "Виконано - Встановлено або оновлено %d пакетів"
+msgstr "Виконано - встановлено або оновлено %d пакетів"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Виконано - Встановлено, оновлено чи видалено %d пакет (%s)"
-msgstr[1] "Виконано - Встановлено, оновлено чи видалено %d пакети (%s)"
-msgstr[2] "Виконано - Встановлено, оновлено чи видалено %d пакетів (%s)"
+msgstr[0] "Виконано - встановлено, оновлено чи видалено %d пакет (%s)"
+msgstr[1] "Виконано - встановлено, оновлено чи видалено %d пакети (%s)"
+msgstr[2] "Виконано - встановлено, оновлено чи видалено %d пакетів (%s)"
 
 msgid "Down"
 msgstr "Вниз"
@@ -6510,10 +6461,13 @@ msgid "Down / Inactive"
 msgstr "Вниз / Неактивний"
 
 msgid "Download Plugins"
-msgstr "Завантажити Плагіни"
+msgstr "Завантажити плагіни"
 
 msgid "Download Softcams"
 msgstr "Завантажити емулятори"
+
+msgid "Download and flash images on your %s %s."
+msgstr "Завантажте та прошийте іміджі на свій %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Завантажити і встановити плагіни"
@@ -6611,50 +6565,47 @@ msgstr "ECM - час відповіді"
 msgid "EJECTCD"
 msgstr "ВидалитиCD"
 
-msgid "EJECTCD long"
-msgstr "ВидалитиCD довге натискання"
-
 msgid "EPG"
-msgstr "ЕПГ"
+msgstr "Телегід(EPG)"
 
 msgid "EPG Actions"
-msgstr "Дія ЕПГ"
+msgstr "Дія EPG"
 
 msgid "EPG Bouquet Actions"
-msgstr "Дія ЕПГ з фаворитами"
+msgstr "Дія EPG з фаворитами"
 
 msgid "EPG Cache Check"
-msgstr "Перевірити кеш ЕПГ"
+msgstr "Перевірити кеш EPG"
 
 msgid "EPG Channel/Service Selection"
 msgstr "Вибір каналу/послуг EPG"
 
 msgid "EPG Display Actions"
-msgstr "Дії відображення ЕПГ"
+msgstr "Дії відображення EPG"
 
 msgid "EPG Navigation Actions"
-msgstr "Дії навігації по ЕПГ"
+msgstr "Дії навігації по EPG"
 
 msgid "EPG Other Actions"
-msgstr "Інші дії ЕПГ"
+msgstr "Інші дії EPG"
 
 msgid "EPG Search"
-msgstr "Пошук ЕПГ"
+msgstr "Пошук EPG"
 
 msgid "EPG Selection"
-msgstr "Вибір ЕПГ"
+msgstr "Вибір EPG"
 
 msgid "EPG Settings"
-msgstr "ЕПГ налаштування"
+msgstr "Налаштування EPG"
 
 msgid "EPG Setup"
-msgstr "Налаштування ЕПГ"
+msgstr "Налаштування EPG"
 
 msgid "EPG button mode"
-msgstr "Режим кнопки ЕПГ"
+msgstr "Режим кнопки EPG"
 
 msgid "EPG filename"
-msgstr "Назва файлу ЕПГ"
+msgstr "Назва файлу EPG"
 
 msgid ""
 "EPG key : Switch to channel list\n"
@@ -6663,9 +6614,9 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 "Кнопка EPG: перемикання на список каналів\n"
-"Кнопка Ok: вилучити вибраний канал\n"
+"Кнопка OK: вилучити вибраний канал\n"
 "Кнопка PVR: Введіть назву каналу\n"
-"Кнопка Exit: Завершити редагування каналу"
+"Кнопка EXIT: Завершити редагування каналу"
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -6674,21 +6625,21 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 "Кнопка EPG: перемикання на вхід Quad PiP\n"
-"Кнопка Ok: Додати до нового запису\n"
+"Кнопка OK: Додати до нового запису\n"
 "Кнопка PVR: Введіть назву каналу\n"
-"Кнопка Exit: Завершити редагування каналу"
+"Кнопка EXIT: Завершити редагування каналу"
 
 msgid "EPG language selection 1"
-msgstr "Вибір мови ЕПГ 1"
+msgstr "Вибір мови EPG 1"
 
 msgid "EPG language selection 2"
-msgstr "Вибір мови ЕПГ 2"
+msgstr "Вибір мови EPG 2"
 
 msgid "EPG location"
-msgstr "Розташування ЕПГ"
+msgstr "Розташування EPG"
 
 msgid "EPGSearch"
-msgstr "ЕПГ Пошук"
+msgstr "Пошук EPG"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -6710,10 +6661,10 @@ msgid "Edit"
 msgstr "Редагувати"
 
 msgid "Edit Mode Off"
-msgstr "Режим редагування викл"
+msgstr "Редагування викл"
 
 msgid "Edit Mode On"
-msgstr "Режим редагування вкл"
+msgstr "Редагування вкл"
 
 msgid "Edit Quad Channel Entry"
 msgstr "Редагування Чотири-екранного Вікна"
@@ -6839,7 +6790,7 @@ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Увімкнути зміщення Dolby Digital / Dolby AC-3"
 
 msgid "Enable EIT EPG"
-msgstr "Включити EIT ЕПГ"
+msgstr "Включити EIT EPG"
 
 msgid "Enable Fast Channel Change"
 msgstr "Увімкнути швидку зміну каналу"
@@ -6860,19 +6811,19 @@ msgid "Enable InfoBar fade-out"
 msgstr "Включити згасання Інфобару"
 
 msgid "Enable MHW EPG"
-msgstr "Включити MHW ЕПГ"
+msgstr "Включити MHW EPG"
 
 msgid "Enable MiniTV"
 msgstr "Включити Міні-ТБ"
 
 msgid "Enable Netmed EPG"
-msgstr "Включити Netmed ЕПГ"
+msgstr "Увімкнути Netmed EPG"
 
 msgid "Enable Network IP address check"
 msgstr "Включити перевірку мережевої АП-адреси"
 
 msgid "Enable OpenTV EPG"
-msgstr "Включити OpenTV ЕПГ"
+msgstr "Увімкнути OpenTV EPG"
 
 msgid "Enable Quad PiP"
 msgstr "Включити чотирикратний ПіП"
@@ -6896,10 +6847,10 @@ msgid "Enable VPS-Plugin"
 msgstr "Увімкнути VPS-плагін"
 
 msgid "Enable ViaSat EPG"
-msgstr "Включити ViaSat ЕПГ"
+msgstr "Увімкнути ViaSat EPG"
 
 msgid "Enable Virgin EPG"
-msgstr "Включити Virgin ЕПГ"
+msgstr "Увімкнути Virgin EPG"
 
 msgid "Enable Wake On LAN"
 msgstr "Включити функцію Wake On LAN"
@@ -6951,7 +6902,7 @@ msgid "Enable fallback remote receiver"
 msgstr "Включити резервний віддалений приймач"
 
 msgid "Enable freesat EPG"
-msgstr "Включити Freesat ЕПГ"
+msgstr "Увімкнути EPG freesat"
 
 msgid "Enable intro screen"
 msgstr "Включити екран введення"
@@ -7014,7 +6965,7 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr "Включити цю настройку, якщо Ваша антена потребує живлення"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
-msgstr "Увімкніть, щоб додати додатковий інтервал до інформаційних екранів.  Це може покращити читабельність."
+msgstr "Увімкніть, щоб додати додатковий інтервал до інформаційних екранів. Це може покращити читабельність."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Увімкнути показ усіх значень типу так/ні, увімкнути/вимкнути та інше як графічний перемикач."
@@ -7060,9 +7011,6 @@ msgstr "Шифрування:"
 
 msgid "End"
 msgstr "Кінець"
-
-msgid "End long"
-msgstr "Кінець довге натискання"
 
 msgid "End time"
 msgstr "Час закінчення"
@@ -7233,10 +7181,7 @@ msgid "Entry text only"
 msgstr "Лише текст введення"
 
 msgid "Epg/Guide"
-msgstr "ЕПГ/Гід"
-
-msgid "Epg/Guide long"
-msgstr "ЕПГ/Гід довге натискання"
+msgstr "EPG/Гід"
 
 msgid "Equal to"
 msgstr "Також як"
@@ -7264,7 +7209,7 @@ msgstr "Помилка %d: Не вдається змінити пароль!  (
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Помилка %d: Неможливо перевірити місце! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7410,6 +7355,9 @@ msgstr "Помилка: %s %s не %s!  Будь-ласка, спробуйте 
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Помилка: не вибрано місце для збереження запису!"
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Пусте ім'я файлу є недопустимим!"
+
 msgid "Error: Cannot find any images!"
 msgstr "Помилка: не вдається знайти імідж!"
 
@@ -7420,14 +7368,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Не вдалося знайти відповідні носії. Видаліть деякі завантажені іміджі, або вставте носій (наприклад, флешку) з достатнім вільним об’ємом і повторіть спробу."
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Створення директорії %s невдале!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Помилка: імідж '%s' для встановлення недійсний!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Помилка: Збій взаємодії, не вдається змінити пароль!"
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Помилка: вибрано недійсний каталог '%s'!"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Видалення директорії %s невдале. (Можливо не пуста)"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Помилка: Новий пароль не може бути пустим!"
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Шлях %s вже існує!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Помилка: неможливо створити необхідні каталоги на носії(наприклад, USB-накопичувач або жорсткий диск)! Будь ласка, перевірте пристрій і повторіть спробу."
@@ -7490,7 +7454,7 @@ msgid "Event view:"
 msgstr "Перегляд передачі:"
 
 msgid "EventViewEPG Actions"
-msgstr "Дії ЕПГ при перегляді передач"
+msgstr "Дії EPG при перегляді передач"
 
 msgid "Everyday"
 msgstr "Щоденно"
@@ -7518,7 +7482,7 @@ msgstr "Усюди"
 msgid "Ewe"
 msgstr "Ewe"
 
-msgid "Exceeds Blue-ray disc medium!"
+msgid "Exceeds Blu-ray disc medium!"
 msgstr "Перевищує розмір Блюрай диску!"
 
 msgid "Exceeds dual layer medium!"
@@ -7543,7 +7507,7 @@ msgid "Exit"
 msgstr "Вийти"
 
 msgid "Exit EPG"
-msgstr "Вихід з ЕПГ"
+msgstr "Вихід з EPG"
 
 msgid "Exit MAC address configuration"
 msgstr "Вийти з налаштувань МАС-адреси"
@@ -7681,26 +7645,14 @@ msgstr "F"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 довге натискання"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 довге натискання"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 довге натискання"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 довге натиснення"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7727,7 +7679,7 @@ msgid "FLASH"
 msgstr "FLASH"
 
 msgid "FP Upgrade"
-msgstr "FP Оновлення"
+msgstr "FP оновлення"
 
 msgid "FPU"
 msgstr "FPU"
@@ -7823,9 +7775,6 @@ msgstr "Швидкість перемотування вперед"
 msgid "Favorites"
 msgstr "Фаворити"
 
-msgid "Favorites long"
-msgstr "Fav довге натискання"
-
 msgid "Feed URL"
 msgstr "URL фіду"
 
@@ -7904,9 +7853,6 @@ msgstr "Обчислення контрольної суми файлу кноп
 msgid "File checksums/hashes"
 msgstr "Контрольні суми файлів/хеші"
 
-msgid "File long"
-msgstr "Файл довге натискання"
-
 #, python-format
 msgid "File not found: %s"
 msgstr "Файл не знайдено: %s"
@@ -7938,7 +7884,7 @@ msgid "Filesystem check your hard drive"
 msgstr "Перевірка файлової системи Вашого жорсткого диска"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
-msgstr "Використовуйте стандартне ЕПГ каналів, для яких немає IceTV ЕПГ"
+msgstr "Заповніть EPG каналу з EPG трансляції, де для каналу немає EPG IceTV"
 
 msgid "Film-Noir"
 msgstr "Фільм-Нуар"
@@ -7969,7 +7915,7 @@ msgid "Find out more at %s"
 msgstr "Дізнайтеся більше на %s"
 
 msgid "Find similar events in the EPG"
-msgstr "Знайти схожі передачі в ЕПГ"
+msgstr "Знайти схожі передачі в EPG"
 
 msgid "Finding available log files, please wait..."
 msgstr "Пошук доступних файлів журналу, зачекайте..."
@@ -8036,9 +7982,6 @@ msgstr "Налаштування прошивання та відновленн�
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-каталог '%s' заборонено!"
-
-msgid "Flash on the fly your %s %s."
-msgstr "Прошити онлайн Ваш %s %s."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Прошити приймач Вашим ПЗ."
@@ -8136,10 +8079,10 @@ msgid "Free flash"
 msgstr "Вільна флеш"
 
 msgid "Free memory"
-msgstr "Вільної пам'яті"
+msgstr "Вільно пам'яті"
 
 msgid "Free memory:"
-msgstr "Вільної пам'яті:"
+msgstr "Вільно пам'яті:"
 
 msgid "Free swap"
 msgstr "Вільно swap"
@@ -8266,14 +8209,14 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Для активації нового скіну необхідно перезавантажити GUI.\n"
+"Для активації нового скіну необхідно перезавантажити інтерфейс.\n"
 "Хочете зробити це зараз?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Для активації нового скіна необхідно перезавантажити GUI\n"
+"Для активації нового скіна необхідно перезавантажити інтерфейс\n"
 "Хочете зробити це зараз?"
 
 msgid "Gabon"
@@ -8430,11 +8373,14 @@ msgstr "Перехід Дата/Час"
 msgid "Goto Date/Timer"
 msgstr "Перейти Дата/Таймер"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Перейти Прайм-тайм"
 
 msgid "Goto X"
 msgstr "Перейти на позицію Х"
+
+msgid "Goto deep standby"
+msgstr "вимкнути"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на наступний фаворит"
@@ -8460,6 +8406,9 @@ msgstr "Перейти до попер. події"
 msgid "Goto specific date/time"
 msgstr "Перейти до зазначеної дати/часу"
 
+msgid "Goto standby"
+msgstr "перейти в режим очікування"
+
 msgid "GotoX calibration"
 msgstr "Калібрування позиції Х"
 
@@ -8467,13 +8416,13 @@ msgid "Grab"
 msgstr "Скріншот"
 
 msgid "Graphical EPG"
-msgstr "Графічний ЕПГ"
+msgstr "Графічний EPG"
 
 msgid "Graphical InfoBar EPG Settings"
-msgstr "Налаштування граф. Інфобару ЕПГ"
+msgstr "Налаштування граф. інфобару EPG"
 
 msgid "GraphicalEPG Settings"
-msgstr "Налаштування Графічного ЕПГ"
+msgstr "Налаштування графічного ЕПГ"
 
 msgid "Graphics"
 msgstr "Графічний"
@@ -8635,7 +8584,7 @@ msgid "Handle wake up from TV"
 msgstr "Включити при включенні ТВ"
 
 msgid "Hard Disk Settings"
-msgstr "Налаштування Жорсткого Диску"
+msgstr "Налаштування жорсткого диску"
 
 msgid "Hard disk standby after"
 msgstr "Відключення HDD через"
@@ -8659,7 +8608,7 @@ msgid "Hardware serial"
 msgstr "Серійний номер"
 
 msgid "Hardware type"
-msgstr "Тип апаратного забезпечення"
+msgstr "Тип обладнання"
 
 msgid "Hausa"
 msgstr "Hausa"
@@ -8682,9 +8631,6 @@ msgstr "Інформаційний Екран Допомоги"
 msgid "Help animation speed"
 msgstr "Швидкість анімації показників допомоги"
 
-msgid "Help long"
-msgstr "Help довге натискання"
-
 msgid "Help screen style"
 msgstr "Довідковий стиль екрана"
 
@@ -8692,10 +8638,10 @@ msgid "Helps setting up your signal"
 msgstr "Допомагає налаштовувати Ваш сигнал"
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr "Тут можна встановити, що ЕПГ завжди буде відкриватися на поточному каналі, на першому або на одному з обох прайм-тайм. Якщо вибрано невірний час, використовується поточний час."
+msgstr "Тут можна встановити, що EPG завжди буде відкриватися на поточному каналі, на першому або на одному з обох прайм-тайм. Якщо вибрано невірний час, використовується поточний час."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
-msgstr "Тут ви можете переглядати (але не змінювати) файли, які додаються до резервної копії за замовчуванням (E2-установка, канали, мережі)."
+msgstr "Тут Ви можете переглядати (але не змінювати) файли, які додаються до резервної копії за замовчуванням (E2-установка, канали, мережі)."
 
 msgid "Here you can select which files should be excluded from the backup."
 msgstr "Тут ви можете вибрати, які файли повинні бути виключені з резервної копії."
@@ -8728,13 +8674,13 @@ msgid "Hidden network"
 msgstr "Прихована мережа"
 
 msgid "Hide"
-msgstr "приховати"
+msgstr "Приховати"
 
 msgid "Hide InfoBar"
 msgstr "Завжди приховувати Інфобар"
 
 msgid "Hide VBI line for this service"
-msgstr "Приховати лінію VBI для цього каналу"
+msgstr "приховати лінію VBI для цього каналу"
 
 msgid "Hide any zap error messages."
 msgstr "Приховати повідомлення про помилки при перемиканні каналів."
@@ -8790,9 +8736,6 @@ msgstr "Назад в історії"
 msgid "History buttons mode"
 msgstr "Режим кнопок історії"
 
-msgid "History long"
-msgstr "Історія довге натискання"
-
 msgid "History next"
 msgstr "Вперед в історії"
 
@@ -8814,14 +8757,8 @@ msgstr "Святий Престол (Ватикан)"
 msgid "Home"
 msgstr "Додому"
 
-msgid "Home long"
-msgstr "Додому довге натискання"
-
 msgid "Homepage"
 msgstr "Домашня сторінка"
-
-msgid "Homepage long"
-msgstr "Homepage довге натискання"
 
 msgid "Honduras"
 msgstr "Гондурас"
@@ -8868,16 +8805,13 @@ msgstr "Гарячі кнопки"
 msgid "Hotkey Settings"
 msgstr "Налаштування гарячих кнопок"
 
-msgid "Hour"
-msgstr "Година"
-
 msgid "Hourly"
 msgstr "Щогодини"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Години Хвилини"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Години Хвилини Секунди"
 
 msgid "How many minutes do you want to record?"
@@ -9063,7 +8997,7 @@ msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are
 msgstr "Якщо ввімкнено, журнал трафіку протоколу CEC зберігатиметься. Файли журналів розташовані разом з іншими файлами журналів, але мають назву 'Enigma2-hdmicec-[date].log'."
 
 msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
-msgstr "Якщо включено, буде використано вікно часу для включення приймача за допомогою таймера. За умовчуванням вимкнено та використовується спеціальний сигнал з приймача. Зверніть увагу, що деякі пристрої не завжди сприймають сигнал і включення може бути невдале."
+msgstr "Якщо включено, буде використано вікно часу для включення приймача за допомогою таймера. За замовчуванням вимкнено та використовується спеціальний сигнал з приймача. Зверніть увагу, що деякі пристрої не завжди сприймають сигнал і включення може бути невдале."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Якщо логи займають занадто багато пам'яті, будуть видалятися найстаріші файли."
@@ -9150,14 +9084,14 @@ msgstr "Помилка створення іміджу - "
 msgid "ImageWizard"
 msgstr "Майстер іміджу"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Негайне вимкнення"
 
 msgid "Immediately restart selected devices."
 msgstr "Негайно перезавантажте вибрані пристрої."
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Крім перевірки при початку передач, буде використана додаткова перевірка за вищенаведеними умовами."
+msgstr "На додаток до перевірки на початку події можна використовувати повторювану перевірку, щоб умови 'ліміт буфера в годинах' або 'перевірити вільний простір' виявлялися раніше."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "У режимі експерт налаштуйте, які тюнери будуть мати перевагу для записів, коли доступно більш ніж один тюнер."
@@ -9281,10 +9215,7 @@ msgid "Info"
 msgstr "Інфо"
 
 msgid "Info (EPG)"
-msgstr "Інфо (ЕПГ)"
-
-msgid "Info (EPG) Long"
-msgstr "Інфо (ЕПГ) довге натискання"
+msgstr "Інфо (EPG)"
 
 msgid "Info button (long)"
 msgstr "Кнопка Info (довге натискання)"
@@ -9305,16 +9236,16 @@ msgid "InfoBar"
 msgstr "Інфобар"
 
 msgid "InfoBar EPG"
-msgstr "Інфобар ЕПГ"
+msgstr "Інфобар EPG"
 
 msgid "InfoBar EPG Actions"
-msgstr "Дії для Інфобару EPG"
+msgstr "Дії для інфобару EPG"
 
 msgid "InfoBar EPG Settings"
-msgstr "Налаштування Інфобару ЕПГ"
+msgstr "Налаштування інфобару EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Режим інфобару телегіда"
+msgstr "Режим інфобару EPG"
 
 msgid "InfoBar Event View Actions"
 msgstr "Дії перегляду подій Інфобару"
@@ -9543,12 +9474,8 @@ msgstr "Інупіак"
 msgid "Invalid"
 msgstr "Некоректний"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Вибрано невірний каталог: %s"
-
-msgid "Invalid location"
-msgstr "Некоректне розташування"
+msgid "Invalid location!"
+msgstr "Недійсне розташування!"
 
 msgid "Invalid transponder data"
 msgstr "Некоректні транспондерні дані"
@@ -9695,6 +9622,15 @@ msgstr "Перейти до прайм-тайм"
 msgid "Jump to the currently active locale/language"
 msgstr "Перейти до поточної активного регіону/мови"
 
+msgid "Just abort, no message"
+msgstr "просто перервати, без повідомлення"
+
+msgid "Just abort, show message"
+msgstr "просто перервати, показати повідомлення"
+
+msgid "Just boot"
+msgstr "просто запустити"
+
 msgid "Just change Bouquet"
 msgstr "Тільки змінити фаворит"
 
@@ -9755,9 +9691,6 @@ msgstr "Налаштування клавіатури"
 msgid "Keyboard data entry"
 msgstr "Введення даних з клавіатури"
 
-msgid "Keyboard long"
-msgstr "Клавіатура довго"
-
 msgid "Keyboard map"
 msgstr "Розкладка клавіатури"
 
@@ -9781,9 +9714,6 @@ msgstr "Kodi Медіа центр"
 
 msgid "Kodi installed:"
 msgstr "Kodi встановлено в:"
-
-msgid "Kodi long"
-msgstr "Kodi довго"
 
 msgid "Kodi media player"
 msgstr "Медіа Програвач Kodi"
@@ -9826,9 +9756,6 @@ msgstr "Мережевий адаптер"
 
 msgid "LAN connection"
 msgstr "LAN з'єднання"
-
-msgid "LAN long"
-msgstr "LAN довго"
 
 msgid "LCD Skin Settings"
 msgstr "Налаштування скіну LCD"
@@ -9885,7 +9812,7 @@ msgid "Label"
 msgstr "Мітка"
 
 msgid "Language"
-msgstr "Мова"
+msgstr "Мова інтерфейса"
 
 #, python-format
 msgid "Language %s (%s) installed and selected."
@@ -9965,11 +9892,11 @@ msgstr "Ліван"
 msgid "Left"
 msgstr "Вліво"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Ліворуч назви каналу"
 
-msgid "Left long"
-msgstr "Вліво довге натискання"
+msgid "Left, wrapped"
+msgstr "зліва, прихований"
 
 msgid "Leisure hobbies"
 msgstr "Відпочинок хобі"
@@ -10054,7 +9981,7 @@ msgid "Links:"
 msgstr "Посилання:"
 
 msgid "List EPG functions..."
-msgstr "Список функцій ЕПГ..."
+msgstr "Список функцій EPG..."
 
 msgid "List Navigation Actions"
 msgstr "Список дій навігації"
@@ -10074,9 +10001,6 @@ msgstr[2] "Версія списку %d, знайдено %d каналів"
 
 msgid "List/Fav"
 msgstr "Список/Фаворити"
-
-msgid "List/Fav long"
-msgstr "Список/Фав довге натискання"
 
 msgid "Listen to the radio"
 msgstr "Слухати радіо"
@@ -10100,7 +10024,7 @@ msgid "Load"
 msgstr "Завантажити"
 
 msgid "Load EPG"
-msgstr "Завантаження ЕПГ"
+msgstr "Завантаження EPG"
 
 msgid "Load play list"
 msgstr "Завантаження списку відтворення"
@@ -10322,9 +10246,6 @@ msgstr "БІЛЬШЕ"
 msgid "MOUSE"
 msgstr "МИША"
 
-msgid "MOUSE long"
-msgstr "МИШКА довго"
-
 msgid "MTD boot"
 msgstr "MTD завантаження"
 
@@ -10348,9 +10269,6 @@ msgstr "Мадагаскар"
 
 msgid "Magic"
 msgstr "Magic"
-
-msgid "Magic long"
-msgstr "Magic довго"
 
 msgid "Main Menu"
 msgstr "Головне меню"
@@ -10442,10 +10360,10 @@ msgstr "Мова маорі"
 msgid "Marathi"
 msgstr "Маратхі"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Об'єднати після запису (у хвилинах)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Об'єднати перед записом (у хвилинах)"
 
 msgid "Mark service as dedicated 3D service"
@@ -10453,9 +10371,6 @@ msgstr "Позначити даний канал як 3D канал"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Позначити/Портал/Список відтворення"
-
-msgid "Mark/Portal/Playlist long"
-msgstr "Позначити/Портал/Список довге натискання"
 
 msgid "Marker Actions"
 msgstr "Дії для Маркеру"
@@ -10507,7 +10422,7 @@ msgid "Maximum no of days"
 msgstr "Максимум днів:"
 
 msgid "Maximum number of days in EPG"
-msgstr "Максимальна кількість днів у ЕПГ"
+msgstr "Максимальна кількість днів у EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Максимальне використання простору диска (MБ):"
@@ -10529,9 +10444,6 @@ msgstr "Налаштування медіаплеєра"
 
 msgid "Media Portal"
 msgstr "Медіа Портал"
-
-msgid "Media long"
-msgstr "Медіа довге натискання"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "При відтворенні показувати залишилося/минуло як"
@@ -10606,11 +10518,11 @@ msgstr "Стиль меню"
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Об'єднати EPG з трансляцію IceTV"
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "З'єднання файлів таймшифта"
 
 msgid "Merlin EPG Center"
-msgstr "Мерлін-Центр ЕПГ"
+msgstr "Merlin-центр EPG"
 
 msgid "Message"
 msgstr "Повідомлення"
@@ -10629,6 +10541,9 @@ msgstr "Мексика"
 
 msgid "Micronesia, Federated States of"
 msgstr "Мікронезія, Федеративні Штати"
+
+msgid "Middle"
+msgstr "по середині"
 
 msgid "Middle - Lite image"
 msgstr "Середньо–полегшений імідж"
@@ -10667,7 +10582,13 @@ msgstr "Мінімальний інтервал відправки"
 msgid "Mins"
 msgstr "Хв"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "хвилина"
+
+msgid "Minutes"
+msgstr "хвилин"
+
+msgid "Minutes Seconds"
 msgstr "Хвилини Секунди"
 
 msgid "Minutes:"
@@ -10784,10 +10705,6 @@ msgstr "Затримка роботи для двигуна"
 msgid "Mount"
 msgstr "Підключення"
 
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Підключення '%s' мало вільного місця для запису."
-
 msgid "Mount Actions"
 msgstr "Дії монтування"
 
@@ -10829,13 +10746,13 @@ msgid "Move 1 element"
 msgstr "Перемістити 1 елемент"
 
 msgid "Move Left/Right"
-msgstr "Перемістити вліво/вправо"
+msgstr "Переміщення вліво/вправо"
 
 msgid "Move Mode Off"
-msgstr "Режим переміщення викл"
+msgstr "Переміщення викл"
 
 msgid "Move Mode On"
-msgstr "Режим переміщення вкл"
+msgstr "Переміщення вкл"
 
 msgid "Move PiP"
 msgstr "Переміщення PIP"
@@ -10844,7 +10761,7 @@ msgid "Move PiP to main picture"
 msgstr "Перемістити ПІП на основний екран"
 
 msgid "Move Up/Down"
-msgstr "Перемістити Вгору/Вниз"
+msgstr "Перемістити вгору/вниз"
 
 msgid "Move down a line"
 msgstr "Перемістити на позицію вниз"
@@ -11002,6 +10919,9 @@ msgstr "Налаштування списку записів"
 msgid "Movie Player Actions"
 msgstr "Дії для Плеєра записів"
 
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Відтворення відео не може використовувати недійсний/невідповідний каталог."
+
 msgid "Movie selection"
 msgstr "Вибір записів"
 
@@ -11030,7 +10950,7 @@ msgid "Mozambique"
 msgstr "Мозамбік"
 
 msgid "Multi EPG"
-msgstr "Мульти ЕПГ"
+msgstr "Мульти EPG"
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -11051,7 +10971,7 @@ msgid "MultiBoot startup file"
 msgstr "Файл запуску MultiBoot"
 
 msgid "MultiEPG Settings"
-msgstr "Налаштування Мульти ЕПГ"
+msgstr "Налаштування мульти EPG"
 
 msgid "MultiLib"
 msgstr "Multi Lib"
@@ -11296,8 +11216,14 @@ msgstr "Майстер налаштувань мережі"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
 
+msgid "Never"
+msgstr "ніколи"
+
+msgid "Never abort"
+msgstr "ніколи не переривати"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Ніколи не розкодовувати передачі під час запису. При цьому будуть проігноровані деякі параметри таймерів. Коли ввімкнено, записи зберігаються в закодованому вигляді, при відтворенні вони будуть розкодовані (називається декодуванням в автономному режимі). Стандартно: вимкнено."
+msgstr "Ніколи не розкодовувати передачі під час запису. При цьому будуть проігноровані деякі параметри таймерів. Коли ввімкнено, записи зберігаються в закодованому вигляді, при відтворенні вони будуть розкодовані (називається декодуванням в автономному режимі). За замовчуванням: вимкнено."
 
 msgid "Never decrypt while recording"
 msgstr "Ніколи не розшифровувати під час запису"
@@ -11375,9 +11301,6 @@ msgstr "Наступний 4-ч какнальний ПіП"
 msgid "Nextsong"
 msgstr "Наступна пісня"
 
-msgid "Nextsong long"
-msgstr "Nextsong довго"
-
 msgid "Nicaragua"
 msgstr "Нікарагуа"
 
@@ -11419,9 +11342,6 @@ msgstr ""
 
 msgid "No TS recorder available"
 msgstr "Немає можливості запису TS"
-
-msgid "No Timeshift found to save as recording!"
-msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
 
 msgid "No active channel found."
 msgstr "Активного каналу не знайдено."
@@ -11544,6 +11464,9 @@ msgstr "Немає відповідного сат тюнера!"
 msgid "No tags are set on these movies."
 msgstr "Теги не встановлені на цих фільмах."
 
+msgid "No time shift found to save as recording!"
+msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
+
 msgid "No timeout"
 msgstr "Постійно"
 
@@ -11553,8 +11476,8 @@ msgstr "Ні для всіх"
 msgid "No transparency"
 msgstr "Непрозорий"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Тюнер для запису за таймером не знайдено!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Тюнер для запису за таймером не знайдено!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -11815,9 +11738,6 @@ msgstr "Кнопка OK (коротке натиснення)"
 msgid "OK button mode"
 msgstr "Режим кнопки OK"
 
-msgid "OK long"
-msgstr "OK довге натискання"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, допомогти мені в процесі оновлення"
 
@@ -11902,9 +11822,6 @@ msgstr "На дійсних ONID, ігноруйте частину частот
 msgid "Once"
 msgstr "один раз"
 
-msgid "Once per day"
-msgstr "Один раз в день"
-
 msgid "One"
 msgstr "Один"
 
@@ -11948,13 +11865,13 @@ msgid "Open"
 msgstr "Відкрити"
 
 msgid "Open AutoTimer"
-msgstr "Відкрити АвтоТаймер"
+msgstr "Відкрити автотаймер"
 
 msgid "Open AutoTimerlist"
-msgstr "Відкрити список АвтоТаймера"
+msgstr "Відкрити список автотаймера"
 
 msgid "Open EPGSearch"
-msgstr "Відкрити пошук ЕПГ"
+msgstr "Відкрити пошук EPG"
 
 msgid "Open IMDb"
 msgstr "Відкрити IMDB"
@@ -11976,9 +11893,6 @@ msgstr "Відкрити контекстне меню"
 
 msgid "Open favorites list"
 msgstr "Відкрити список фаворитів"
-
-msgid "Open long"
-msgstr "Відкрити довге натискання"
 
 msgid "Open satellites list"
 msgstr "Відкрити список супутників"
@@ -12055,9 +11969,6 @@ msgstr "LED статус під час роботи"
 msgid "Option"
 msgstr "Вибір"
 
-msgid "Option long"
-msgstr "Вибір довге натискання"
-
 msgid "Option to disable picons on the Infobar"
 msgstr "Можливість вимкнення піконів в Інфобарі"
 
@@ -12102,7 +12013,7 @@ msgid "Other Actions"
 msgstr "Інші Дії"
 
 msgid "Other Subtitles & lang"
-msgstr "Інші субтитри & мова"
+msgstr "Інші субтитри і мова"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr "Інші значення для цієї кнопки перейдуть до довідкової інформації, якщо вони є."
@@ -12167,9 +12078,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC довго"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12195,10 +12103,6 @@ msgstr "Необхідний Пін-код"
 msgid "PIP"
 msgstr "ПІП"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "ПІП довге натискання"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12219,9 +12123,6 @@ msgstr "ПРАЙМ-ТАЙМ"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR довго"
 
 msgid "Package Manager"
 msgstr "Управління пакетами"
@@ -12265,14 +12166,8 @@ msgstr "Сторінка вгору списку"
 msgid "PageDown"
 msgstr "Сторінка вниз"
 
-msgid "PageDown long"
-msgstr "Сторінка вниз довго"
-
 msgid "PageUp"
 msgstr "Сторінка вгору"
-
-msgid "PageUp long"
-msgstr "Сторінка вгору довго"
 
 msgid "Pakistan"
 msgstr "Пакістан"
@@ -12532,11 +12427,14 @@ msgstr "Назва запису відтворення"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Відтворення/перегляд/редагування/встановлення/видобування/запуску файлу, або введення каталогу"
 
+msgid "Playback Settings"
+msgstr "Налаштування відтворення"
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Запис і таймшифт"
+
 msgid "Playlist"
 msgstr "Список відтворення"
-
-msgid "Playlist long"
-msgstr "Довге натискання список відтворення"
 
 msgid "Playpause"
 msgstr "Пауза"
@@ -12583,22 +12481,22 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Будь ласка, не міняйте ніякі значення, якщо не розумієте що робите!"
 
 msgid "Please don't panic if you see values that look suspicious."
-msgstr "Будь ласка, не панікуйте, якщо Ви бачите значення, які виглядають підозрілими."
+msgstr "Будь ласка, не панікуйте, якщо Ви бачите підозрілі значення."
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Будь ласка, введіть назву нового фавориту"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Будь ласка, введіть назву нового каталогу"
+
 msgid "Please enter a name for the new marker"
 msgstr "Будь ласка, введіть назву для нової закладки"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Будь ласка, введіть нову назву файла"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Будь ласка, введіть назву файла (пусто = актуальна дата)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Будь ласка, введіть назву нового каталогу"
 
 msgid "Please enter name of the new symlink"
 msgstr "Будь ласка, введіть назву нового symlink"
@@ -12641,7 +12539,7 @@ msgid "Please follow the instructions on the TV"
 msgstr "Будь ласка, слідкуйте за інструкціями на TВ"
 
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "Будь ласка, запримітьте, що до раніше вибраних носіїв не було доступу і тому замість них використовується типова директорія."
+msgstr "Будь ласка, зверніть увагу, що раніше вибраний носій не може бути доступний, тому замість нього використовується каталог за замовчуванням."
 
 msgid "Please open Picture in Picture first"
 msgstr "Будь ласка, спочатку відкрийте картинку в картинці"
@@ -12656,7 +12554,7 @@ msgid "Please select a backup destination"
 msgstr "Будь ласка, виберіть місце резервної копії"
 
 msgid "Please select a default EPG type..."
-msgstr "Будь ласка, виберіть тип ЕПГ за умовчанням..."
+msgstr "Будь ласка, виберіть тип ЕПГ за замовчуванням..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Будь ласка, виберіть дистрибутив, з якого ви хочете прошити імідж:"
@@ -12678,9 +12576,6 @@ msgstr "Будь ласка, виберіть підканал..."
 
 msgid "Please select a subservice..."
 msgstr "Будь ласка, виберіть підканал..."
-
-msgid "Please select an acceptable directory."
-msgstr "Виберіть прийнятний каталог."
 
 msgid "Please select an aspect ratio..."
 msgstr "Будь ласка, виберіть співвідношення сторін..."
@@ -12716,7 +12611,7 @@ msgid "Please select the region that most closely matches your physical location
 msgstr "Виберіть регіон, який найбільш відповідає до вашого місцезнаходженню. Регіон необхідний для того, щоб ми могли надати правильну інформацію про канали, які ви можете отримати."
 
 msgid "Please select the sub-service to record:"
-msgstr "Будь ласка, виберіть підканал для запису..."
+msgstr "Будь ласка, виберіть підканал для запису:"
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -13022,9 +12917,6 @@ msgstr "Яскравість LED у режимі очікування."
 msgid "Power On Display"
 msgstr "Включення дисплею"
 
-msgid "Power long"
-msgstr "Кнопка виключення довге натискання"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Керування живленням. Для отримання додаткової інформації зверніться до посібника користувача."
 
@@ -13038,10 +12930,7 @@ msgid "PowerTimer"
 msgstr "Таймер живлення"
 
 msgid "PowerTimer Actions"
-msgstr ""
-
-msgid "PowerTimer DeepStandby"
-msgstr "Таймер Живлення Глибокий режим очікування"
+msgstr "Дії таймера живлення"
 
 msgid "PowerTimer Overview"
 msgstr "Перегляд таймерів живлення"
@@ -13050,13 +12939,16 @@ msgid "PowerTimer Settings"
 msgstr "Налаштування PowerTimer"
 
 msgid "PowerTimer Standby"
-msgstr "Таймер Живлення Режим очікування"
+msgstr "Таймер живлення в режимі очікування"
+
+msgid "PowerTimer deep standby"
+msgstr "Таймер живлення в режимі глибокого очікування"
 
 msgid "PowerTimer log"
 msgstr "Лог мененджера живлення"
 
 msgid "PowerTimers"
-msgstr "Таймери Живлення"
+msgstr "Таймери живлення"
 
 msgid "Predefined"
 msgstr "Зумовлене"
@@ -13091,7 +12983,7 @@ msgstr "Пріоритетний тюнер для запису"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Пріоритетний тюнер для запису, дозволений багаторазовий вибір"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Час підготовки до запису (у секундах)"
 
 msgid "Preparing... Please wait"
@@ -13213,16 +13105,19 @@ msgstr "Попередній фаворит"
 msgid "Previous page"
 msgstr "Попередня сторінка"
 
+msgid "Previous/Next bouquet"
+msgstr "попередній/наступний Фаворит"
+
+msgid "Previous/Next page"
+msgstr "попередня/наступна сторінка"
+
 msgid "Prevsong"
 msgstr "Попер. пісня"
-
-msgid "Prevsong long"
-msgstr "Поп. пісня довге натискання"
 
 msgid "Primary DNS"
 msgstr "Первинний DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Прайм-тайм"
 
 msgid "Primetime hour"
@@ -13289,9 +13184,6 @@ msgid ""
 msgstr ""
 "Програма '%s' не встановлена.\n"
 "Пакет, що містить цю програму, невідомий."
-
-msgid "Program long"
-msgstr "Передача довге натискання"
 
 msgid "Programmlisten History"
 msgstr "Історія програми"
@@ -13379,9 +13271,6 @@ msgstr "Протокол"
 
 msgid "Prov"
 msgstr "Кнопка Prov"
-
-msgid "Prov long"
-msgstr "Prov довге натискання"
 
 msgid "Provider"
 msgstr "Провайдер"
@@ -13492,13 +13381,10 @@ msgid "QuickMenu/Extensions"
 msgstr "Швидке меню/Розширення"
 
 msgid "QuickSelect Actions"
-msgstr ""
+msgstr "Дії швидкого вибору"
 
 msgid "RADIO"
 msgstr "Радіо"
-
-msgid "RADIO long"
-msgstr "Радіо довге натискання"
 
 msgid "RAM (Details)"
 msgstr "RAM (Деталі)"
@@ -13604,6 +13490,15 @@ msgstr "Готові до видалення %s?"
 msgid "Real Life"
 msgstr "З реального життя"
 
+msgid "Real or pseudo recordings"
+msgstr "реальні, або псевдо записи"
+
+msgid "Real recordings"
+msgstr "реальні записи"
+
+msgid "Real recordings or streaming"
+msgstr "реальні записи, або потокове мовлення"
+
 msgid "Really WOL now?"
 msgstr "Дійсно WOL зараз?"
 
@@ -13657,9 +13552,6 @@ msgstr "Перебудувати LCN фаворит заново?"
 msgid "Rec"
 msgstr "Запис"
 
-msgid "Rec long"
-msgstr "Запис довге натискання"
-
 msgid "Receiver"
 msgstr "Приймач"
 
@@ -13683,7 +13575,7 @@ msgid "Receiver name"
 msgstr "Назва приймача"
 
 msgid "Reception"
-msgstr "Пошук Каналів"
+msgstr "Пошук каналів"
 
 msgid "Reception Settings"
 msgstr "Параметри прийому"
@@ -13717,19 +13609,19 @@ msgid "Record write error (no space on disk?)"
 msgstr "Помилка при записі (на диску немає місця?)"
 
 msgid "RecordTimer"
-msgstr "Часомір запису"
+msgstr "Таймер запису"
 
 msgid "RecordTimer Actions"
-msgstr "Дії часоміра запису"
+msgstr "Дії таймера запису"
 
 msgid "RecordTimer Overview"
-msgstr "Огляд часоміра запису"
+msgstr "Огляд таймера запису"
 
 msgid "RecordTimer Settings"
-msgstr "Налаштування часоміра запису"
+msgstr "Налаштування таймера запису"
 
 msgid "RecordTimers"
-msgstr "Часоміри запису"
+msgstr "Таймери запису"
 
 msgid "Recordable media toolbox"
 msgstr "Панель інструментів для запису"
@@ -13789,9 +13681,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Записи"
 
-msgid "Recordings & Timeshift"
-msgstr "Запис і Таймшифт"
-
 msgid "Recordings abort PiP"
 msgstr "Записи скасовують ПІП"
 
@@ -13804,6 +13693,9 @@ msgstr "Записи скасовують потокову передачу"
 msgid "Recordings always have priority"
 msgstr "Запис завжди має перевагу"
 
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr "Записи можуть працювати неправильно без відповідного каталогу."
+
 msgid "Records"
 msgstr "Записи"
 
@@ -13811,7 +13703,7 @@ msgid "Recovery"
 msgstr "Recovery"
 
 msgid "Recovery Mode"
-msgstr "Режим Відновлення"
+msgstr "Режим відновлення"
 
 msgid "Red"
 msgstr "Червоний"
@@ -13893,7 +13785,7 @@ msgid "Reload"
 msgstr "Оновити"
 
 msgid "Reload Services"
-msgstr "Перезавантажити канали"
+msgstr "перезавантажити канали"
 
 msgid "Reload blacklists"
 msgstr "Перезавантажити чорні списки"
@@ -13962,10 +13854,10 @@ msgid "Remove Finished."
 msgstr "Видалення завершено."
 
 msgid "Remove Plugins"
-msgstr "Видалити Плагіни"
+msgstr "Видалити плагіни"
 
 msgid "Remove Quad Channel Entry"
-msgstr "Видалити ввід чотирьохекранних каналу"
+msgstr "Видалити чотириканальний запис"
 
 msgid "Remove Service"
 msgstr "Видалити канал"
@@ -14006,7 +13898,7 @@ msgstr "Видалити всі дані таймера"
 msgid "Remove all user interface data"
 msgstr "Видалити усі дані інтерфейсу користувача"
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Видалення завершених таймерів через (в днях)"
 
 msgid "Remove current folder from bookmarks"
@@ -14014,6 +13906,9 @@ msgstr "Видалити поточну теку зі закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
+
+msgid "Remove directory"
+msgstr "видалити директорію"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
@@ -14038,10 +13933,6 @@ msgstr "Видалення"
 
 msgid "Removing Service"
 msgstr "Видаляється канал"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Видалення директорії %s невдале. (Можливо не пуста)"
 
 msgid "Removing partition table"
 msgstr "Видалення таблиці розділів"
@@ -14093,7 +13984,7 @@ msgid "Repeated"
 msgstr "декілька раз"
 
 msgid "Repeating event is currently active, what do you want to do?"
-msgstr ""
+msgstr "Повторювана подія зараз активна, що Ви хочете зробити?"
 
 msgid "Repeating event is currently recording, what do you want to do?"
 msgstr "Повторення завдання, яке вже записується... Що хочете зробити?"
@@ -14174,13 +14065,13 @@ msgid "Restart Enigma2 to apply the changes?"
 msgstr "Перезавантажте Enigma2, щоб застосувати зміни?"
 
 msgid "Restart GUI"
-msgstr "Перезавантаження GUI"
+msgstr "Перезавантаження інтерфейсу"
 
 msgid "Restart GUI after x crashes"
 msgstr "Перезавантажте графічний інтерфейс після х збоїв"
 
 msgid "Restart GUI now?"
-msgstr "Перезавантажити Графічний інтерфейс зараз?"
+msgstr "Перезавантажити графічний інтерфейс зараз?"
 
 msgid "Restart Network"
 msgstr "Перезавантажити Мережу"
@@ -14198,7 +14089,7 @@ msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "Необхідне перезавантаження, перезавантажити GUI зараз?"
+msgstr "Необхідне перезавантаження, перезавантажити інтерфейс зараз?"
 
 msgid "Restart network and remount connections"
 msgstr "Перезапуск мережі і перемонтуваня підключення"
@@ -14330,11 +14221,11 @@ msgstr "Перезапускати субтитри"
 msgid "Right"
 msgstr "Вправо"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "Після назви каналу"
 
-msgid "Right long"
-msgstr "Вправо довге натискання"
+msgid "Right, wrapped"
+msgstr "справа, прихований"
 
 msgid "Roll-off"
 msgstr "Roll-off фактор"
@@ -14439,9 +14330,6 @@ msgstr "Налаштування SABnzbd"
 msgid "SAT"
 msgstr "САТ"
 
-msgid "SAT long"
-msgstr "SAT довге натискання"
-
 msgid "SATA"
 msgstr "SATA"
 
@@ -14501,7 +14389,7 @@ msgid "SSID:"
 msgstr "SSID:"
 
 msgid "STB Display"
-msgstr "Налаштування Дисплею"
+msgstr "Налаштування дисплею"
 
 msgid "Sailing"
 msgstr "Парусний спорт"
@@ -14682,11 +14570,11 @@ msgstr "Зберегти таймшифт як запис і зупинити з
 msgid "Saving EPG Cache..."
 msgstr "Збереження кеша ЕПГ..."
 
-msgid "Saving Timeshift files"
-msgstr "Збереження файлів таймшифта"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Файл тайшифта зберігається як фільм. Це займе деякий час!"
+
+msgid "Saving time shift files"
+msgstr "Збереження файлів таймшифта"
 
 msgid "Scaler sharpness"
 msgstr "Шкала різкості"
@@ -14739,8 +14627,8 @@ msgstr "Сканування %s..."
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Сканування - %d%% завершено"
-msgstr[1] "Сканування - %d%% завершено"
-msgstr[2] "Сканування - %d%% завершено"
+msgstr[1] "Сканування - %d%%  -азавершено"
+msgstr[2] "Сканування - %d%%  -ів завершено"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -14831,9 +14719,6 @@ msgstr "Пошук на захід"
 msgid "Search/WEB"
 msgstr "Пошук/WEB"
 
-msgid "Search/WEB long"
-msgstr "Search/WEB довге натискання"
-
 msgid "Searching"
 msgstr "Пошук"
 
@@ -14854,6 +14739,9 @@ msgstr "Другий кабель від позиціонера"
 
 msgid "Secondary DNS"
 msgstr "Вторинний DNS"
+
+msgid "Seconds"
+msgstr "секунди"
 
 msgid "Security"
 msgstr "безпека"
@@ -14916,10 +14804,10 @@ msgid "Select 'No' to save older events even after zapping or interrupting time 
 msgstr "Якщо вибрано 'ні', можете зберігати старі записи навіть після перемикання або переривання таймшифта."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr ""
+msgstr "Виберіть 'Так', якщо для цього таймера потрібен час завершення."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr ""
+msgstr "Виберіть 'Так', якщо перед активацією таймера потрібно перевірити мережевий трафік."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr "Виберіть 'Так', якщо налаштування гучності потрібно застосувати до звукових доріжок Dolby."
@@ -14937,7 +14825,7 @@ msgid "Select 'Yes' to always show the bouquet screen first when opening the cha
 msgstr "Якщо вибрано 'так', список каналів буде відкриватися в першому фавориті. Якщо вибрано 'ні', список каналів буде відкриватися в поточному фавориті."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr ""
+msgstr "Виберіть 'Так', щоб перевірити, чи надходять мережеві з’єднання з призначених IP-адрес під час активації таймера. Якщо так, таймер буде вимкнено."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Якщо вибрано 'так', в телегіді буде показуватися маленьке ТБ-вікно."
@@ -14988,7 +14876,7 @@ msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers
 msgstr "Виберіть 'Так', щоб видалити всі налаштування, дані налаштування, таймери, показники відновлення, тощо. Вибір цієї опції відновить конфігурацію до початкових налаштувань. Це найнадійніша форма скидання до заводських налаштувань."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "Виберіть 'Так', щоб видалити всі дані конфігурації таймера. Якщо вибрати цей параметр, усі таймери, автоматичні таймери та таймери живлення очистяться."
+msgstr "Виберіть 'Так', щоб видалити всі дані конфігурації таймера. Якщо вибрати цей параметр, усі таймери, автотаймери та таймери живлення очистяться."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "Виберіть 'Так', щоб видалити всі дані налаштування. Вибір цієї опції видалить усі дані налаштування та фавориту, а таймери не функціонуватимуть, доки приймач не буде перенастроєно."
@@ -15003,7 +14891,7 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Виберіть 'Так', щоб скинути конфігурацію мережі до стандартних. Це активує порт Ethernet, якщо він існує, і налаштує приймач на використання DHCP. Усі інші мережеві інтерфейси будуть видалені."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Виберіть 'Так', щоб відобразити розширені параметри налаштувань."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
 msgstr "Якщо вибрано 'так', фаворити будуть показані кожен раз при відкритті телегіда."
@@ -15083,14 +14971,23 @@ msgstr "Вибір Lan/Wi-Fi"
 msgid "Select Location"
 msgstr "Вибрати місце розташування"
 
+msgid "Select Movie Location"
+msgstr "Виберіть місце розташування запису"
+
+msgid "Select Playback Location"
+msgstr "Виберіть місце відтворення"
+
 msgid "Select Quad Channels"
 msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
 
+msgid "Select Time Shift Location"
+msgstr "Виберіть місце зміщення часу"
+
 msgid "Select Upgrade Source"
-msgstr "Вибер джерела оновлення"
+msgstr "Вибір джерела оновлення"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "Виберіть джерело оновлення для редагування"
@@ -15169,10 +15066,10 @@ msgid "Select files/folders to backup"
 msgstr "Виберіть файли/теки для резерв. копії"
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr ""
+msgstr "Виберіть час у секундах, протягом якого відображення гучності буде показано, перш ніж воно автоматично приховається."
 
 msgid "Select how often this timer is to be repeated."
-msgstr ""
+msgstr "Виберіть, як часто цей таймер має повторюватися."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Виберіть швидкість переміщення антени між супутниками."
@@ -15187,7 +15084,7 @@ msgid "Select how your box will upgrade."
 msgstr "Вибір способу оновлення."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Виберіть, чи потрібен час завершення."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Ця опція дозволяє вибрати, чи відображатиметься значення за замовчуванням для елемента налаштування, і, якщо так, то у якому місці відносно опису."
@@ -15196,34 +15093,34 @@ msgid "Select if the screen menu path history is displayed and, if so, how it is
 msgstr "Виберіть, чи відображатиметься історія шляху до екранного меню та, якщо так, як вона має відображатися."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr ""
+msgstr "Виберіть, якщо назва таймера та код модифікації опису запускаються на повторюваних таймерах."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr ""
+msgstr "Виберіть, чи має бути вікно часу, протягом якого цей таймер може бути активним."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується в П’ятницю."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується в Понеділок."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується в Суботу."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується в Неділю."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується в Четвер."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується у Вівторок."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Виберіть, якщо цей таймер активується у Вівторок."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Виберіть, чи потрібно повторювати цей таймер."
 
 msgid "Select if time shift must continue when set to record."
 msgstr "Виберіть з варіантів, як слід зберігати буфер йде таймшифта, якщо ви натиснули на запис."
@@ -15298,16 +15195,16 @@ msgid "Select the Yes / True response"
 msgstr "Виберіть відповідь Так/Правда"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Виберіть дію, яку потрібно виконати після завершення таймера."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Керуйте швидкістю анімації індикаторів кнопок на екрані довідки. 'Вимкнено' вимикає анімацію, щоб індикатори переходили між кнопками."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Виберіть канал для запису:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Виберіть канал або послугу для цього таймера."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
@@ -15322,19 +15219,19 @@ msgid "Select the currently highlighted service"
 msgstr "Виберіть поточний виділений канал"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Виберіть дату, з якої цей таймер стане активним."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Виберіть дату, коли цей таймер буде активовано."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Виберіть дату, коли запуститься цей таймер."
 
 msgid "Select the day of the week that this timer will activate."
-msgstr ""
+msgstr "Виберіть день тижня, який цей таймер буде активувати."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Виберіть затримку перед активацією таймера."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
@@ -15355,13 +15252,13 @@ msgid "Select the highlighted slot and reboot"
 msgstr "Виберіть виділений слот і перезавантажтеся"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
-msgstr ""
+msgstr "Виберіть початкове положення маркера шкали часу. Маркер — це вертикальна лінія, намальована на EPG, яка показує поточний час. Чим більше значення, тим більше маркер переміщуватиметься праворуч, показуючи більше історії та менше майбутніх подій."
 
 msgid "Select the locale from a menu"
 msgstr "Виберіть мову клавіатури в меню"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Виберіть місце для збереження запису:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Виберіть виробника свого пристрою SCR. Якщо виробник не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -15376,7 +15273,7 @@ msgid "Select the movie path"
 msgstr "Виберіть теку для фільмів"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
+msgstr "Виберіть швидкість передачі даних мережі, нижче якої має активуватися таймер, як зазначено. Трафік вище цієї норми з відключенням таймера."
 
 msgid "Select the next item in list or move cursor right"
 msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
@@ -15424,13 +15321,13 @@ msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
+msgstr "Виберіть теги, які слід використовувати для цього запису."
 
 msgid "Select the time after which this timer can start."
-msgstr ""
+msgstr "Виберіть час, після якого цей таймер може запуститися."
 
 msgid "Select the time before which this timer should end."
-msgstr ""
+msgstr "Виберіть час, до якого має закінчитися цей таймер."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Виберіть час затримки перед тим, як дії кнопки почнуть повторюватися."
@@ -15439,10 +15336,10 @@ msgid "Select the time delay between each repeat of the button."
 msgstr "Виберіть час затримки між кожним повтором натисканням кнопки."
 
 msgid "Select the time when this timer should end."
-msgstr ""
+msgstr "Виберіть час, коли цей таймер має закінчитися."
 
 msgid "Select the time when this timer will start."
-msgstr ""
+msgstr "Виберіть час, коли запуститься цей таймер."
 
 msgid "Select the time zone within the area or region."
 msgstr "Виберіть Ваш часовий пояс у межах області чи регіону."
@@ -15469,10 +15366,10 @@ msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr "Виберіть потрібний тип вимкнення, коли активується таймер вимкнення."
 
 msgid "Select the type of this timer."
-msgstr ""
+msgstr "Виберіть тип цього таймера."
 
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr ""
+msgstr "Виберіть використання логарифмічного розміру кроку з більшою кількістю кроків на нижчих рівнях гучності."
 
 msgid "Select video input with up/down buttons"
 msgstr "Виберіть відео вхід кнопками вверх/вниз"
@@ -15483,11 +15380,11 @@ msgstr "Виберіть режим відео"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Досягнувши кінця файлу під час відтворення, можна вибрати дію пристрою."
 
-msgid "Select what do do after the timer has completed."
-msgstr ""
-
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "Виберіть, що робити після завершення запису за таймером."
+
+msgid "Select what do do after the timer zap has completed."
+msgstr "Виберіть, що робити після завершення таймера."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Виберіть, що зробити в разі завантаження %s %s. Звичайний режим або перехід в режим очікування."
@@ -15514,7 +15411,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "Виберіть дію для активації кнопок Вгору/Вниз."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "Виберіть місце збереження запису."
 
 msgid "Select wireless network"
 msgstr "Виберіть бездротову мережу"
@@ -15796,7 +15693,7 @@ msgstr "Канали"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Можна створити різні фаворити. Якщо включено, можна створювати кілька фаворитів."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Встановити Базовий час"
 
 msgid "Set CI assignment for detection of available services."
@@ -15857,16 +15754,16 @@ msgstr "Встановити MAC-адресу Вашого %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Встановити співвідношення сторін піконів каналу."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів миттєвого запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючийкаталог."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів таймшифта. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Призначте розташування для файлів таймера. Натисніть 'OK' щоб додати новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
 msgid "Set the default sorting method."
@@ -16019,7 +15916,7 @@ msgid "Setup Plugin filter"
 msgstr "Налаштування фільтру плагінів"
 
 msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Налаштування фільтру плагінів. Тут Ви можете вибрати, які плагіни відображаються в Провіднику плагінів"
+msgstr "Налаштування фільтру плагінів. Тут Ви можете вибрати, які плагіни відображаються в провіднику плагінів"
 
 msgid "Setup Plugins"
 msgstr "Налаштування Плагінів"
@@ -16097,7 +15994,7 @@ msgid "Setup your LCD"
 msgstr "Налаштування Вашого LCD"
 
 msgid "Setup your LCD Skin"
-msgstr ""
+msgstr "Налаштуйте свій LCD скін"
 
 msgid "Setup your OSD"
 msgstr "Налаштування Вашого OSD"
@@ -16109,7 +16006,7 @@ msgid "Setup your System"
 msgstr "Налаштування Вашої Системи"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Налаштування Вашого тюнера і пошуку каналів"
+msgstr "Налаштування Вашого тюнера для пошуку каналів"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Налаштування Вашого відео режиму, відео виходу та інші відео налаштування"
@@ -16250,7 +16147,7 @@ msgid "Show Audioselection"
 msgstr "Показати вибір аудіо"
 
 msgid "Show AutoTimer List"
-msgstr "Показати список АвтоТаймера"
+msgstr "Показати список автотаймера"
 
 msgid "Show Box Portal"
 msgstr "Показати портали тюнера"
@@ -16282,7 +16179,7 @@ msgstr "Показати EPG"
 msgid "Show EPG for current channel..."
 msgstr "Показати ЕПГ поточного каналу..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Показати перегляд передач"
 
 msgid "Show Format Setup"
@@ -16437,7 +16334,7 @@ msgid "Show bouquet on launch"
 msgstr "Показати фаворит при запуску"
 
 msgid "Show build information"
-msgstr ""
+msgstr "Показати інформацію про збірку"
 
 msgid "Show channel number in InfoBar"
 msgstr "Показати номер каналу в Інфобарі"
@@ -16662,7 +16559,7 @@ msgid "Show quickmenu..."
 msgstr "Показати швидке меню..."
 
 msgid "Show receiver image information"
-msgstr ""
+msgstr "Показати інформацію про імідж ресивера"
 
 msgid "Show record indicator"
 msgstr "Показати індикатор запису"
@@ -16709,7 +16606,7 @@ msgstr "Показати значення налаштувань за замов
 msgid "Show setup menu..."
 msgstr "Показати меню налаштувань..."
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Показати меню вимкнення"
 
 msgid "Show single EPG for current channel"
@@ -16724,7 +16621,7 @@ msgstr "Показати одиночний телегід каналу"
 msgid "Show source packages"
 msgstr "Показати вихідні пакети"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Показати повідомлення при переключені на канал ТВ"
 
 msgid "Show subservice selection"
@@ -16761,13 +16658,13 @@ msgid "Show the PowerTimer"
 msgstr "Показати Таймер вимкнення"
 
 msgid "Show the SleepTimer"
-msgstr "Показати Таймер сну"
+msgstr "Показати таймер сну"
 
 msgid "Show the information on current event."
 msgstr "Показати інформацію про поточну передачу."
 
 msgid "Show the list of AutoTimers."
-msgstr "Показати список АутоТаймерів."
+msgstr "Показати список автотаймерів."
 
 msgid "Show the list of timers."
 msgstr "Показати список таймерів."
@@ -16854,7 +16751,7 @@ msgid "Showiframe"
 msgstr "Показати iframe"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
-msgstr "Показати Провідник плагінів. Тут можна налаштувати встановленні плагіни"
+msgstr "Показати провідник плагінів. Тут можна налаштувати встановленні плагіни"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Показати доступні плагіни. Ви можете завантажити та встановити їх"
@@ -16980,7 +16877,7 @@ msgid "Skin"
 msgstr "Скін"
 
 msgid "Skin & Resolution"
-msgstr "Скін & Роздільна здатність"
+msgstr "Скін & роздільна здатність"
 
 msgid "Skin Selector"
 msgstr "Вибір Скіну"
@@ -17024,11 +16921,8 @@ msgstr "Таймер Cну"
 msgid "Sleep Timers"
 msgstr "Таймери сну"
 
-msgid "Sleep delay (in minutes)"
-msgstr ""
-
-msgid "Sleep long"
-msgstr "Очікування довге натискання"
+msgid "Sleep delay"
+msgstr "Затримка засинання"
 
 msgid "Sleep timer"
 msgstr "Таймер вимкнення"
@@ -17037,10 +16931,10 @@ msgid "SleepTimer"
 msgstr "Таймер Cну"
 
 msgid "SleepTimer Actions"
-msgstr ""
+msgstr "Дії таймера сну"
 
 msgid "SleepTimer Overview"
-msgstr ""
+msgstr "Огляд таймера сну"
 
 msgid "SleepTimer Settings"
 msgstr "Налаштування Таймера Вимкнення"
@@ -17191,7 +17085,7 @@ msgid "Softcam Actions"
 msgstr "Дії для Softcam"
 
 msgid "Softcam Settings"
-msgstr "Налаштування Ему"
+msgstr "Налаштування емуляторів"
 
 msgid "Softcams"
 msgstr "емулятори"
@@ -17379,12 +17273,12 @@ msgstr "Південне Ндебеле"
 msgid "South Sudan"
 msgstr "Південний Судан"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Зарезервувати дисковий простір для записів (у ГБ)"
 
 #, python-format
 msgid "Space total %s, used %s, free %s (%0.f%%)."
-msgstr ""
+msgstr "Усього місця %s, використано %s, вільно %s (%0.f%%)."
 
 msgid "Space used:"
 msgstr "Зайнято:"
@@ -17446,7 +17340,7 @@ msgstr "Режим очікування"
 msgid "Standby / Restart"
 msgstr "Вимкнення"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "Режим очікування без вимкнення телевізора"
 
 msgid "Start"
@@ -17462,7 +17356,7 @@ msgid "Start RDS interactive"
 msgstr "Запуск інтерактивного RDS"
 
 msgid "Start date"
-msgstr ""
+msgstr "Дата початку"
 
 msgid "Start from the beginning"
 msgstr "Почати з початку"
@@ -17510,13 +17404,13 @@ msgid "Starting Softcam"
 msgstr "Запуск Softcam"
 
 msgid "Starting date"
-msgstr ""
+msgstr "Початкова дата"
 
 msgid "Starting directory"
 msgstr "початкова директорія"
 
 msgid "Starting time"
-msgstr ""
+msgstr "Час початку"
 
 msgid "Starts in a few seconds"
 msgstr "Починається через кілька секунд"
@@ -17677,14 +17571,14 @@ msgid "Streaming Information Actions"
 msgstr "Дії потокової інформації"
 
 msgid "Streaming Tuner Information"
-msgstr "Інформація про Потоковий тюнер"
+msgstr "Інформація про потоковий тюнер"
 
 msgid "Streaming recording ended"
 msgstr "Потоковий запис закінчився"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
-msgstr "Інформація про Потоковий тюнер для%s %s"
+msgstr "Інформація про потоковий тюнер для%s %s"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -17761,9 +17655,6 @@ msgstr "Вибір мови субтитрів 3"
 
 msgid "Subtitle language selection 4"
 msgstr "Вибір мови субтитрів 4"
-
-msgid "Subtitle long"
-msgstr "Субтитри довге натискання"
 
 msgid "Subtitle position"
 msgstr "Положення субтитрів"
@@ -17900,6 +17791,9 @@ msgstr "Переключити на ТБ"
 msgid "Switch to TV mode"
 msgstr "Переключити на режим TV"
 
+msgid "Switch to bookmarks"
+msgstr "перейти до закладок"
+
 msgid "Switch to file list"
 msgstr "Переключити на список файлів"
 
@@ -17982,7 +17876,7 @@ msgid "System Info"
 msgstr "Системна інформація"
 
 msgid "System Information"
-msgstr "Інформація про Систему"
+msgstr "Системна інфо"
 
 msgid "System Information Actions"
 msgstr "Системні інформаційні дії"
@@ -17991,13 +17885,13 @@ msgid "System Message Check"
 msgstr "Перевірка Повідомлень Системи"
 
 msgid "System Plugins"
-msgstr "системні плагіни"
+msgstr "Системні плагіни"
 
 msgid "System Setup"
 msgstr "Налаштування Системи"
 
 msgid "System information"
-msgstr "Інформація про систему"
+msgstr "Системна інфо"
 
 msgid "System partition free space:"
 msgstr "Вільне місце системного розділу:"
@@ -18030,7 +17924,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 11.08.2022"
+msgstr "Переклад: kvinto - 19.09.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18054,7 +17948,7 @@ msgid "TXT PID"
 msgstr "TXT ПІД"
 
 msgid "TXT Subtitles page & lang"
-msgstr "Сторінка субтитрів TXT & мова"
+msgstr "Сторінка субтитрів TXT і мова"
 
 msgid "Table of content for collection"
 msgstr "Таблиця вмісту колекції"
@@ -18145,9 +18039,6 @@ msgstr "Видимість телетексту"
 
 msgid "Teletext font and resolution"
 msgstr "Розмір і шрифт телетексту"
-
-msgid "Teletext long"
-msgstr "Teletext довго"
 
 msgid "Teletext subtitle color"
 msgstr "Колір субтитрів телетексту"
@@ -18249,7 +18140,7 @@ msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Плагін AutoTimer не встановлено!\n"
+"Плагін автотаймер не встановлено!\n"
 "Будь ласка, спочатку встановіть його."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
@@ -18268,13 +18159,6 @@ msgid ""
 msgstr ""
 "Плагін EPGSearch не встановлено!\n"
 "Будь ласка, спочатку встановіть його."
-
-msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Файлова система на пристрої Timeshift не підтримує жорсткі посилання.\n"
-"Переконайтеся, що він відформатований у EXT2, EXT3 або EXT4!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -18349,6 +18233,8 @@ msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"Плагін VPS не зміг перевірити, чи вибраний канал підтримує VPS для запрограмованих вручну таймерів!\n"
+" Ви дійсно хочете ввімкнути VPS?"
 
 msgid ""
 "The VideoMode plugin is not installed!\n"
@@ -18387,6 +18273,8 @@ msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
+"Канал може підтримувати VPS\n"
+" Бажаєте ввімкнути VPS?"
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Команда пробудження з режиму очікування буде надіслано кілька разів."
@@ -18417,6 +18305,13 @@ msgstr ""
 "\n"
 "Натисніть OK, щоб продовжити використання %s %s."
 
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Файлова система на пристрої Timeshift не підтримує жорсткі посилання.\n"
+"Переконайтеся, що він відформатований у EXT2, EXT3 або EXT4!"
+
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
 
@@ -18446,10 +18341,6 @@ msgstr ""
 "Майстер налаштування мережі не встановлено!\n"
 "Будь-ласка встановіть його."
 
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Шлях %s вже існує."
-
 msgid "The pin code you entered is wrong."
 msgstr "Введений пін-код невірний."
 
@@ -18464,6 +18355,8 @@ msgid ""
 "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"Вибраний канал не підтримує VPS для запрограмованих вручну таймерів!\n"
+" Ви дійсно хочете ввімкнути VPS?"
 
 msgid "The service list is reloaded."
 msgstr "Список каналів перезавантажений."
@@ -18494,11 +18387,9 @@ msgstr "Не вдалося перевірити статус поточного
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Час множиться на поточний лічильник повторів."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймера (pm_timers.xml) є пошкодженим і не може бути виконаний."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Файл таймера (timers.xml) є пошкодженим і не може бути виконаний."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr "Файл таймера '%s' пошкоджений і не може бути завантажений."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -18569,9 +18460,7 @@ msgid "There is no signal to lock on !"
 msgstr "Немає сигналу для захоплення!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
-msgstr ""
-"На обраному розділі може бути недостатньо місця..\n"
-"Ви дійсно хочете продовжити?"
+msgstr "На обраному розділі може бути недостатньо місця. Ви дійсно хочете продовжити?"
 
 msgid "There was an error downloading current region details"
 msgstr "Під час завантаження поточної інформації про регіон сталася помилка"
@@ -18661,14 +18550,14 @@ msgstr "Це обхідний шлях для деяких пристроїв, �
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
-msgstr "Це вибрана мова.  [%s]"
+msgstr "Це поточна вибрана мова. [%s]"
 
 #, python-format
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Це вибраний зараз регіон.  [%s]"
 
 msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
-msgstr "Це початкове/зміщення гучності за замовчуванням, застосоване до будь-яких каналів, доданих у список регулювання гучності."
+msgstr "Це початкове/за замовчуванням зміщення гучності, застосоване до будь-яких каналів, доданих до списку налаштування гучності."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Це порядок передачі команд DiSEqC в систему. Порядок повинен точно відповідати порядку, коли фізичні пристрої розташовані вздовж сигнального кабелю (починаючи з кінця приймача)."
@@ -18875,7 +18764,7 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr "Ця опція налаштовує різкість зображення, має значення, якщо зображення має бути збільшено."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
+msgstr "Цей плагін може визначити, чи програма починається раніше чи триває довше. Канал має надавати надійні дані."
 
 msgid "This plugin is installed."
 msgstr "Плагін встановлений."
@@ -18998,6 +18887,9 @@ msgstr "Налаштування часу"
 msgid "Time Setup Actions"
 msgstr "Дія для Налаштування часу"
 
+msgid "Time Shift Settings"
+msgstr "Налаштування таймшифта"
+
 msgid "Time Update in Minutes:"
 msgstr "Час Оновлення в хвилинах:"
 
@@ -19034,12 +18926,54 @@ msgstr "Інтервал повторення для швидкого перем
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Нормальні швидкості для швидкого перемотування вперед"
 
-msgid "Time long"
-msgstr "Відрізок часу"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Час, необхідний для цього процесу: %s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Після перемикання видалити буфер таймшифта"
+
+msgid "Time shift buffer limit"
+msgstr "Обмеження буфера таймшифта [в годинах]"
+
+msgid "Time shift buffer location"
+msgstr "Розміщення таймшифт"
+
+msgid "Time shift checking for free space"
+msgstr "Перевірити наявність вільного дискового простору"
+
+msgid "Time shift checking for older files"
+msgstr "Перевірка наявності старих файлів таймшифта [у хвилинах]"
+
+msgid "Time shift event based file splitting"
+msgstr "Поділ файлів таймшифта за назвою передач"
+
+msgid "Time shift event limit"
+msgstr "Обмеження за останніми передачам [кількість передач]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr "Зміщення часу може не працювати належним чином без прийнятного каталогу."
+
+msgid "Time shift not possible!"
+msgstr "Timeshift неможливий!"
+
+msgid "Time shift save action on zap"
+msgstr "Збереження таймшифта при перемиканні"
+
+msgid "Time shift save failed!"
+msgstr "Помилка збереження файлу таймшифта!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Збереження запису таймшифта (Виберіть передачу)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Збереження запису таймшифта (зупинити після поточної передачі)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Файл таймшифта збережений на жорсткий диск!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Файл таймшифта буде збережений в кінці події!"
 
 msgid "Time style"
 msgstr "Формат часу"
@@ -19075,7 +19009,7 @@ msgid "Timer Actions"
 msgstr "Дія для Таймера"
 
 msgid "Timer Log Actions"
-msgstr ""
+msgstr "Дії логу таймера"
 
 msgid "Timer Sanity Error"
 msgstr "Помилка таймера"
@@ -19092,19 +19026,17 @@ msgstr "Додати таймер"
 msgid "Timer log"
 msgstr "Лог таймера"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"В файлі pm_timers.xml виявлено дублювання!\n"
-"Будь-ласка, перевірте його!"
+"Виявлено перекриття таймерів у '%s'!\n"
+"Будь ласка, перевірте ще раз!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
-msgstr ""
-"Виявлено перекреття таймерів в timers.xml!\n"
-"Будь ласка, перевірти його!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
+msgstr "Виявлено перекриття таймерів у '%s'! Перевірте всі таймери."
 
 msgid "Timer recording location"
 msgstr "Розташування записів таймера"
@@ -19129,51 +19061,6 @@ msgstr "Таймери"
 
 msgid "Timeshift"
 msgstr "ТаймШифт"
-
-msgid "Timeshift Settings"
-msgstr "Налаштування таймшифта"
-
-msgid "Timeshift buffer delete after zap"
-msgstr "Після перемикання видалити буфер таймшифта"
-
-msgid "Timeshift buffer limit [in hours]"
-msgstr "Обмеження буфера таймшифта [в годинах]"
-
-msgid "Timeshift checking for free space"
-msgstr "Перевірити наявність вільного дискового простору"
-
-msgid "Timeshift checking for older files [in minutes]"
-msgstr "Перевірка наявності старих файлів таймшифта [у хвилинах]"
-
-msgid "Timeshift event based file splitting"
-msgstr "Поділ файлів таймшифта за назвою передач"
-
-msgid "Timeshift last events limit [number of events]"
-msgstr "Обмеження за останніми передачам [кількість передач]"
-
-msgid "Timeshift location"
-msgstr "Розміщення таймшифт"
-
-msgid "Timeshift not possible!"
-msgstr "Timeshift неможливий!"
-
-msgid "Timeshift save failed!"
-msgstr "Помилка збереження файлу таймшифта!"
-
-msgid "Timeshift save recording (Select event)"
-msgstr "Збереження запису таймшифта (Виберіть передачу)"
-
-msgid "Timeshift save recording (stop after current event)"
-msgstr "Збереження запису таймшифта (зупинити після поточної передачі)"
-
-msgid "Timeshift saved to your harddisk!"
-msgstr "Файл таймшифта збережений на жорсткий диск!"
-
-msgid "Timeshift will get saved at end of event!"
-msgstr "Файл таймшифта буде збережений в кінці події!"
-
-msgid "Timeshift-save action on zap"
-msgstr "Збереження таймшифта при перемиканні"
 
 msgid "Timezone"
 msgstr "Часовий пояс"
@@ -19230,7 +19117,7 @@ msgid "Toggle display of the InfoBar"
 msgstr "Увімкнути/вимкнути відображення InfoBar"
 
 msgid "Toggle enable/disable of the currently selected timer"
-msgstr ""
+msgstr "Увімкнення/вимкнення поточного вибраного таймера"
 
 msgid "Toggle hide/show of the current item"
 msgstr "Увімкнути або приховати/показати поточний елемент"
@@ -19273,6 +19160,9 @@ msgstr "Тоновий режим"
 
 msgid "Tonga"
 msgstr "Тонга"
+
+msgid "Top"
+msgstr "вгору"
 
 msgid "Top and Bottom"
 msgstr "Зверху і Знизу"
@@ -19327,7 +19217,7 @@ msgid "Translation"
 msgstr "Переклад"
 
 msgid "Translation Information"
-msgstr "Інформація Перекладу"
+msgstr "Інформація перекладу"
 
 msgid "Translation information"
 msgstr "Інфо про переклад"
@@ -19433,7 +19323,7 @@ msgid "Tuner Configuration"
 msgstr "Конфігурація тюнера"
 
 msgid "Tuner Information"
-msgstr "Інформація про Тюнер"
+msgstr "Інформація про тюнер"
 
 msgid "Tuner Settings"
 msgstr "Налаштування тюнера"
@@ -19498,7 +19388,7 @@ msgid ""
 msgstr ""
 "Турбо: Одне перезавантаження після перепрошивки\n"
 "Швидко: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення\n"
-"Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в GUI"
+"Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в інтерфейсі"
 
 msgid "Turkey"
 msgstr "Туреччина"
@@ -19706,7 +19596,7 @@ msgid "Unknown user: %d"
 msgstr "Невідомий користувач: %d"
 
 msgid "Unknown!"
-msgstr ""
+msgstr "Невідомо!"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Якщо не встановлено значення 'вимкнено', ви отримуєте попередній перегляд каналів у списку EPG."
@@ -19723,6 +19613,15 @@ msgstr "Розпакувати до %s"
 
 msgid "Unpack to current folder"
 msgstr "Розпакувати до поточної теки"
+
+msgid "Unscramble and record ECM"
+msgstr "розкодувати і записати ecm"
+
+msgid "Unscramble http streams"
+msgstr "Розкодувати http потік"
+
+msgid "Unscramble receiving http streams"
+msgstr "Розкодувати приймачем http-потоку"
 
 msgid "Unsupported"
 msgstr "Не підтримуєтья"
@@ -19864,6 +19763,9 @@ msgstr "USB зверху"
 msgid "Upper case"
 msgstr "Верхній регістр"
 
+msgid "Upper line"
+msgstr "вгору"
+
 msgid "Uptime"
 msgstr "Час роботи"
 
@@ -19874,7 +19776,7 @@ msgid "Uruguay"
 msgstr "Уругвай"
 
 msgid "Usage & GUI"
-msgstr "Користування і Вигляд"
+msgstr "Використання та інтерфейс"
 
 msgid "Usage Setup"
 msgstr "Налаштування інтерфейсу"
@@ -19982,7 +19884,7 @@ msgid "Use interface"
 msgstr "Використовувати інтерфейс"
 
 msgid "Use logarithmic steps"
-msgstr ""
+msgstr "Використовуйте логарифмічні кроки"
 
 msgid "Use official channel numbering"
 msgstr "Використовувати звичайну нумерацію каналів"
@@ -20124,7 +20026,7 @@ msgid "Using old profile: "
 msgstr "Використання старого профілю: "
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
-msgstr "Зазвичай коли мова субтитрів збігається з мовою аудіо, субтитри непоказуються. Цей вибір дозволяє показувати субтитри, навіть якщо вони збігаються з мовою аудіо."
+msgstr "Зазвичай, якщо мова субтитрів збігається з мовою аудіо, субтитри не використовуватимуться. Увімкніть цей параметр, щоб дозволити використовувати ці субтитри."
 
 msgid "Uzbek"
 msgstr "Узбекська"
@@ -20150,20 +20052,17 @@ msgstr "VOB файл"
 msgid "VOD"
 msgstr "VOD"
 
-msgid "VOD long"
-msgstr "VOD довге натискання"
-
 msgid "VPN"
 msgstr "VPN"
 
 msgid "VPS Settings"
-msgstr ""
+msgstr "Налаштування VPS"
 
 msgid "VPS enabled by default"
-msgstr ""
+msgstr "VPS увімкнено за замовчуванням"
 
 msgid "VPS-Plugin Information"
-msgstr ""
+msgstr "Інформація про плагін VPS"
 
 msgid ""
 "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
@@ -20189,25 +20088,51 @@ msgid ""
 "\n"
 "If a timer is programmed manually (not via EPG), it is necessary to set a VPS-Time to enable VPS. VPS-Time (also known as PDC) is the first published start time, e.g. given in magazines. If you set a VPS-Time, you have to leave timer name empty."
 msgstr ""
+"Плагін VPS може реагувати на затримки, що виникають у часі початку або завершення програми. VPS підтримується лише певними каналами!\n"
+"\n"
+"Якщо ви ввімкнете VPS, запис почнеться лише тоді, коли канал позначить програму як запущену.\n"
+"\n"
+"Якщо вибрати «так (безпечний режим)», запис обов’язково розпочнеться не пізніше визначеного вами часу початку. Запис може початися раніше або тривати довше.\n"
+"\n"
+"\n"
+"Підтримувані канали\n"
+"\n"
+"Німеччина:\n"
+" ARD і ZDF\n"
+"\n"
+"Австрія:\n"
+" ORF\n"
+"\n"
+"Швейцарія:\n"
+" SF\n"
+"\n"
+"Чеська Республіка:\n"
+" CT\n"
+"\n"
+"Якщо таймер програмується вручну (не через EPG), необхідно встановити час VPS, щоб увімкнути VPS. VPS-Time (також відомий як PDC) – це перший опублікований час початку, напр. подано в журналах. Якщо ви встановлюєте VPS-Time, назву таймера потрібно залишити пустою."
 
 msgid "VPS-Plugin checks if the channel supports VPS ..."
-msgstr ""
+msgstr "Плагін VPS перевіряє, чи підтримує канал VPS ..."
 
 msgid ""
 "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
+"Плагін VPS не зміг перевірити, чи канал підтримує VPS.\n"
+" Все одно ввімкнути VPS?"
 
 msgid ""
 "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
+"VPS Plugin не вдалося перевірити, чи вибраний канал підтримує VPS.\n"
+" Ви дійсно хочете ввімкнути VPS?"
 
 msgid "VPS-Time (date)"
-msgstr ""
+msgstr "Час VPS (дата)"
 
 msgid "VPS-Time (time)"
-msgstr ""
+msgstr "Час VPS (час)"
 
 msgid "Valid"
 msgstr "Коректна"
@@ -20500,7 +20425,7 @@ msgid "Volume Adjust Settings"
 msgstr "Налаштування гучності"
 
 msgid "Volume display timer"
-msgstr ""
+msgstr "Таймер відображення гучності"
 
 msgid "Volume down"
 msgstr "Гучність нижче"
@@ -20582,7 +20507,7 @@ msgid "Wake up TV from standby"
 msgstr "Пробудити ТВ з режиму очікування"
 
 msgid "Wake up from Deep-Standby is allowed"
-msgstr ""
+msgstr "Вихід із режиму глибокого очікування дозволено"
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Час включення до початку таймера [хв]"
@@ -20609,7 +20534,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "Попередження: перевизначення наразі активні!"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr ""
+msgstr "Попередження: записи не можна зберігати на Flash диску!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -20661,10 +20586,10 @@ msgid "Wednesday"
 msgstr "Середа"
 
 msgid "Weekdays"
-msgstr ""
+msgstr "Будні дні"
 
 msgid "Weekends"
-msgstr ""
+msgstr "Вихідні дні"
 
 msgid "Weekly"
 msgstr "Щотижня"
@@ -20690,7 +20615,7 @@ msgstr ""
 "Перейдіть до місця, котре слугуватиме кінцем файлу. Натисніть ОК,вибравши 'кінець вирізання'. Це все."
 
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Ласкаво просимо в Майстер оновлення іміджу. Майстер допоможе Вам оновити Ваш %s %s із збереженням ваших поточних налаштувань і дасть короткі інструкції, як оновити Ваш приймач."
+msgstr "Ласкаво просимо в майстер оновлення іміджу. Майстер допоможе Вам оновити Ваш %s %s із збереженням Ваших поточних налаштувань і дасть короткі інструкції, як оновити Ваш приймач."
 
 msgid ""
 "Welcome.\n"
@@ -20803,7 +20728,7 @@ msgstr "Якщо включено, запис дозволяє перерива�
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Якщо включено, виводитиметься попередження з вибором про зупинку або продовження роботи таймшифта."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Якщо включено, завжди розшифровується прийом HTTP-потоків. Включайте лише якщо це необхідно, це займає багато ресурсів. Окремі потоки завжди дешифруються, якщо параметр 0x100 додається до типу каналу, незалежно від цього параметра."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -20902,10 +20827,10 @@ msgstr "Якщо ввімкнено, Ви побачите пакети dev, sta
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Якщо увімкнено, приймач виявить активність на вході VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Вкажіть на скільки хвилин раніше, ніж час початку передачі по телегіду, починати запис."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Вкажіть на скільки хвилин пізніше має закінчитися запис після закінчення передачі."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -20933,13 +20858,16 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr "При від'ємному значенні, система буде сканувати транспондер у фоновому режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно впевнені, що робите."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr ""
+msgstr "Якщо так, VPS буде ввімкнено для миттєвих записів (зупиняється після поточної події), якщо канал підтримує VPS."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Де хочете зробити копію своїх налаштувань?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Де зберігати тимчасові записи timeshift?"
+
+msgid "What do you want to set as the default movie location?"
+msgstr "Де Ви бажаєте встановити місце розташування відео за замовчуванням?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Яку подію ви хочете зберегти назавжди?"
@@ -20977,13 +20905,22 @@ msgstr "Налаштування з'єднання бездротової мер
 msgid "Wireless network state"
 msgstr "Статус бездротової мережі"
 
+msgid "With EXIT button"
+msgstr "кнопкою exit"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "кнопками вліво/вправо"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "При вимкненому режимі T2MI RAW (за замовчуванням) ми можемо використовувати окрему деінкапсуляцію T2MI PLP. Якщо ввімкнено режим T2MI RAW, ми можемо використовувати astra-sm для аналізу T2MI"
 
 msgid "With errors:"
 msgstr "З помилками:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "довгим натисканням кнопки OK"
+
+msgid "With pop up"
 msgstr "З спливаючим вікном"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -21004,7 +20941,7 @@ msgstr "За допомогою цієї опції Ви можете зміню
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "За допомогою цієї опції Ви може попробувати поліпшити якість сигналу, або усунути проблеми, звязані з довгими кабелями HDMI."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Без спливаючих вікон"
 
 msgid "Without query"
@@ -21040,9 +20977,6 @@ msgstr "Записати невдалось!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Www довге натискання"
 
 msgid "XBox 360 support"
 msgstr "Підтримка XBox 360"
@@ -21087,7 +21021,7 @@ msgid "Yes"
 msgstr "Так"
 
 msgid "Yes (safe mode)"
-msgstr ""
+msgstr "Так (безпечний режим)"
 
 msgid "Yes to all"
 msgstr "Так для всіх"
@@ -21129,7 +21063,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Так, почати інший ручний пошук"
 
 msgid "Yes, don't ask again"
-msgstr ""
+msgstr "Так, більше не питай"
 
 msgid "Yes, restore the settings now"
 msgstr "Так, відновити мої налаштування зараз"
@@ -21281,9 +21215,6 @@ msgstr "Вам слід встановити новий імідж!"
 msgid "YouTube"
 msgstr "You Tube"
 
-msgid "YouTube long"
-msgstr "YouTube довго"
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr "У Вашому %s %s немає працюючого інтернет-з'єднання"
 
@@ -21333,7 +21264,7 @@ msgstr "Ваш %s %s перезавантажується"
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
-msgstr "Ваш %s %s перезавантажується в Режимі відновлення"
+msgstr "Ваш %s %s перезавантажується в режимі відновлення"
 
 #, python-format
 msgid "Your %s %s is shutting down"
@@ -21460,14 +21391,14 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Ваш фронтпроцессор оновлюється\n"
-"Дочекайтеся перезавантаження вашого %s %s\n"
+"Дочекайтеся перезавантаження Вашого %s %s\n"
 "Це може зайняти декілька хвилин"
 
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-"Вигляд Вашої передньої панелі буде змінено\n"
+"Ваша передня панель буде оновлена\n"
 "Це може зайняти кілька хвилин"
 
 #, python-format
@@ -21534,9 +21465,6 @@ msgstr "Переключити"
 
 msgid "ZOOM"
 msgstr "ЗБІЛЬШЕННЯ"
-
-msgid "ZOOM long"
-msgstr "ZOOM довге натискання"
 
 msgid "ZPicon"
 msgstr "ZПікон"
@@ -21643,11 +21571,11 @@ msgstr "[редагування фаворитів]"
 msgid "[Image Info]\n"
 msgstr "[Інформація про Імідж]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
-msgstr "[Таймшифт] Перезапуск таймшифта!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Таймшифт] Помилка злиття записів!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[Таймшифт] Перезапуск таймшифта!"
 
 msgid "[alternative edit]"
 msgstr "[редагування вибраного]"
@@ -21736,14 +21664,8 @@ msgstr "алфавітний"
 msgid "alphabetic reverse"
 msgstr "зворотньо по алфавіту"
 
-msgid "alphabetical"
-msgstr "за алфавіту"
-
 msgid "alpharev then newest"
 msgstr "по алфавіту у зворотньому порядку"
-
-msgid "alternative"
-msgstr "альтернативний"
 
 msgid "am"
 msgstr "до обіду"
@@ -21753,9 +21675,6 @@ msgstr "і"
 
 msgid "and never ask again this session again"
 msgstr "і більше не питати в цій сесії"
-
-msgid "any recordings"
-msgstr "будь-які записи"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -21772,18 +21691,6 @@ msgstr "мистецтво/культура (без музики, загальн
 
 msgid "arts/culture magazine"
 msgstr "предача про мистецтво/культуру"
-
-msgid "as plugin in extended bar"
-msgstr "як плагін в розширеній панелі"
-
-msgid "ask user"
-msgstr "запитати користувача"
-
-msgid "at beginning"
-msgstr "на початок"
-
-msgid "at end"
-msgstr "у кінець"
 
 msgid "athletics"
 msgstr "легка атлетика"
@@ -21836,9 +21743,6 @@ msgstr "чорний список"
 msgid "blue"
 msgstr "синій"
 
-msgid "bottom"
-msgstr "знизу"
-
 msgid "broadcasting/press"
 msgstr "мовлення/преса"
 
@@ -21866,15 +21770,6 @@ msgstr "card сервер"
 
 msgid "cartoon/puppets"
 msgstr "мультфільм/ляльки"
-
-msgid "center"
-msgstr "центр"
-
-msgid "centered"
-msgstr "по центру"
-
-msgid "centered, wrapped"
-msgstr "по центру, прихований"
 
 msgid "change Volume down"
 msgstr "зменшити рівень звуку"
@@ -22054,9 +21949,6 @@ msgstr "кінець редагування тут"
 msgid "end favorites edit"
 msgstr "кінець редагування фаворитів"
 
-msgid "end zapping"
-msgstr "кінець переключення"
-
 msgid "enigma2 and network"
 msgstr "enigma2 і мережа"
 
@@ -22195,9 +22087,6 @@ msgstr "отримати картки сервера"
 msgid "goto current channel and now"
 msgstr "перейти до поточного каналу зараз"
 
-msgid "goto deep-standby"
-msgstr "вимкнути"
-
 msgid "goto first channel"
 msgstr "перейти на перший канал"
 
@@ -22206,9 +22095,6 @@ msgstr "перейти на наступний канал"
 
 msgid "goto now"
 msgstr "перейти зараз"
-
-msgid "goto standby"
-msgstr "перейти в режим очікування"
 
 msgid "grab this frame as bitmap"
 msgstr "захопити цей кадр як растрове зображення"
@@ -22331,15 +22217,6 @@ msgstr "перейти до наступного епізоду"
 msgid "jump to chapter by number"
 msgstr "перейти до розділу по номеру"
 
-msgid "just abort, no message"
-msgstr "просто перервати, без повідомлення"
-
-msgid "just abort, show message"
-msgstr "просто перервати, показати повідомлення"
-
-msgid "just boot"
-msgstr "просто запустити"
-
 msgid "languages"
 msgstr "мов"
 
@@ -22348,9 +22225,6 @@ msgstr "вийти з програвача"
 
 msgid "left"
 msgstr "лівий"
-
-msgid "left, wrapped"
-msgstr "зліва, прихований"
 
 msgid "leisure hobbies (general)"
 msgstr "дозвілля та відпочинок (загальний)"
@@ -22388,20 +22262,8 @@ msgstr "бойові види спорту"
 msgid "medicine/physiology/psychology"
 msgstr "медицина/фізіологія/психологія"
 
-msgid "menu"
-msgstr "меню"
-
-msgid "middle"
-msgstr "по середині"
-
 msgid "min"
 msgstr "хв"
-
-msgid "minute"
-msgstr "хвилина"
-
-msgid "minutes"
-msgstr "хвилин"
 
 msgid "month"
 msgstr "місяць"
@@ -22459,12 +22321,6 @@ msgstr "не визначено"
 
 msgid "nature/animals/environment"
 msgstr "природа/тварини/навколишнє середовище"
-
-msgid "never"
-msgstr "ніколи"
-
-msgid "never abort"
-msgstr "ніколи не переривати"
 
 msgid "new media"
 msgstr "нові медіа"
@@ -22610,12 +22466,6 @@ msgstr "дитяча програма дошкільного віку"
 msgid "previous channel page"
 msgstr "попередня сторінка каналів"
 
-msgid "previous/next Bouquet"
-msgstr "попередній/наступний Фаворит"
-
-msgid "previous/next Page"
-msgstr "попередня/наступна сторінка"
-
 msgid "provid:"
 msgstr "пров.:"
 
@@ -22627,19 +22477,6 @@ msgstr "очистити видалені фаворити"
 
 msgid "python"
 msgstr "python"
-
-msgid "real or pseudo recordings"
-msgstr "реальні, або псевдо записи"
-
-msgid "real recordings"
-msgstr "реальні записи"
-
-msgid "real recordings or streaming"
-msgstr "реальні записи, або потокове мовлення"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "час запису змінився, зробити зміну зараз: %s"
 
 msgid "red"
 msgstr "червоний"
@@ -22674,11 +22511,8 @@ msgstr "видалити фаворит з батьківського контр
 msgid "remove cable services"
 msgstr "видалити кабельні канали"
 
-msgid "Remove directory"
-msgstr "видалити директорію"
-
 msgid "remove entry"
-msgstr "видалити канал"
+msgstr "видалити запис"
 
 msgid "remove from parental protection"
 msgstr "видалити з батьківського контролю"
@@ -22699,7 +22533,7 @@ msgid "rename"
 msgstr "перейменувати"
 
 msgid "rename entry"
-msgstr "перейменувати канал"
+msgstr "перейменувати запис"
 
 msgid "restore deleted user bouquets"
 msgstr "відновити видалені фаворити"
@@ -22718,9 +22552,6 @@ msgstr "rgb"
 
 msgid "right"
 msgstr "правий"
-
-msgid "right, wrapped"
-msgstr "справа, прихований"
 
 msgid "rock/pop"
 msgstr "рок/поп"
@@ -22756,12 +22587,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "пошук ЕПГ..."
-
-msgid "seconds"
-msgstr "секунди"
-
-msgid "select"
-msgstr "вибрати"
 
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
@@ -22904,17 +22729,11 @@ msgstr "стандартний"
 msgid "start cut here"
 msgstr "початок вирізання тут"
 
-msgid "start recording"
-msgstr "почати запис"
-
 msgid "step size"
 msgstr "розмір кроку"
 
 msgid "stereo"
 msgstr "стерео"
-
-msgid "stop recording"
-msgstr "зупинити запис"
 
 msgid "stop using as startup service"
 msgstr "припинити користуватися каналом запуску"
@@ -22927,9 +22746,6 @@ msgstr "перемикання режиму відображення з 12 до 
 
 msgid "switch Nand and SDcard"
 msgstr "перемикач Nand і SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "перейти до закладок"
 
 msgid "switch to the next angle"
 msgstr "перейти до наступного кута"
@@ -22975,9 +22791,6 @@ msgstr "до каталогу"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "основна інформація"
-
-msgid "top"
-msgstr "вгору"
 
 msgid "tourism/travel"
 msgstr "туризм/подорожі"
@@ -23057,9 +22870,6 @@ msgstr "оновлено"
 msgid "updates available."
 msgstr "оновлень доступно."
 
-msgid "upper line"
-msgstr "вгору"
-
 msgid "use best / controlled by HDMI"
 msgstr "використовувати краще / контролюється HDMI"
 
@@ -23068,9 +22878,6 @@ msgstr "використовуйте збільшену напругу '14/18В 
 
 msgid "use_hdmi_cacenter"
 msgstr "використати центр hdmi"
-
-msgid "user defined"
-msgstr "на вибір користувача"
 
 msgid "userdefined"
 msgstr "на вибір користувача"
@@ -23111,9 +22918,6 @@ msgstr ""
 "\n"
 "Копія була відправлена."
 
-msgid "white"
-msgstr "білий"
-
 msgid "wide"
 msgstr "широкий"
 
@@ -23139,15 +22943,6 @@ msgstr[2] "з %d помилками"
 msgid "with errors"
 msgstr "з помилками"
 
-msgid "with exit button"
-msgstr "кнопкою exit"
-
-msgid "with left/right buttons"
-msgstr "кнопками вліво/вправо"
-
-msgid "with long OK press"
-msgstr "довгим натисканням кнопки OK"
-
 msgid "with_errors"
 msgstr "з помилками"
 
@@ -23167,8 +22962,330 @@ msgstr "так (зберігати фіди)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "ваш %s %s може стати непридатним тепер. Прочитайте керівництво по використанню перш ніж перезавантажити Ваш %s %s."
 
-msgid "zapping"
-msgstr "переключення"
-
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select an acceptable directory."
+#~ msgstr "Виберіть прийнятний каталог."
+
+#~ msgid "Aspect long"
+#~ msgstr "Широкоформатний вигляд"
+
+#~ msgid "Audio long"
+#~ msgstr "Аудіо довге натискання"
+
+#~ msgid "Context long"
+#~ msgstr "Контекст довге натискання"
+
+#~ msgid "Directory long"
+#~ msgstr "Каталог довгий"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "ВидалитиCD довге натискання"
+
+#~ msgid "End long"
+#~ msgstr "Кінець довге натискання"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "ЕПГ/Гід довге натискання"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 довге натискання"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 довге натискання"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 довге натискання"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 довге натиснення"
+
+#~ msgid "Favorites long"
+#~ msgstr "Fav довге натискання"
+
+#~ msgid "File long"
+#~ msgstr "Файл довге натискання"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Прошити онлайн Ваш %s %s."
+
+#~ msgid "Help long"
+#~ msgstr "Help довге натискання"
+
+#~ msgid "History long"
+#~ msgstr "Історія довге натискання"
+
+#~ msgid "Home long"
+#~ msgstr "Додому довге натискання"
+
+#~ msgid "Homepage long"
+#~ msgstr "Homepage довге натискання"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Інфо (ЕПГ) довге натискання"
+
+#~ msgid "Keyboard long"
+#~ msgstr "Клавіатура довго"
+
+#~ msgid "Kodi long"
+#~ msgstr "Kodi довго"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN довго"
+
+#~ msgid "Left long"
+#~ msgstr "Вліво довге натискання"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Список/Фав довге натискання"
+
+#~ msgid "MOUSE long"
+#~ msgstr "МИШКА довго"
+
+#~ msgid "Magic long"
+#~ msgstr "Magic довго"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Позначити/Портал/Список довге натискання"
+
+#~ msgid "Media long"
+#~ msgstr "Медіа довге натискання"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong довго"
+
+#~ msgid "OK long"
+#~ msgstr "OK довге натискання"
+
+#~ msgid "Open long"
+#~ msgstr "Відкрити довге натискання"
+
+#~ msgid "Option long"
+#~ msgstr "Вибір довге натискання"
+
+#~ msgid "PC long"
+#~ msgstr "PC довго"
+
+#~ msgid "PIP long"
+#~ msgstr "ПІП довге натискання"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR довго"
+
+#~ msgid "PageDown long"
+#~ msgstr "Сторінка вниз довго"
+
+#~ msgid "PageUp long"
+#~ msgstr "Сторінка вгору довго"
+
+#~ msgid "Playlist long"
+#~ msgstr "Довге натискання список відтворення"
+
+#~ msgid "Power long"
+#~ msgstr "Кнопка виключення довге натискання"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Поп. пісня довге натискання"
+
+#~ msgid "Program long"
+#~ msgstr "Передача довге натискання"
+
+#~ msgid "Prov long"
+#~ msgstr "Prov довге натискання"
+
+#~ msgid "RADIO long"
+#~ msgstr "Радіо довге натискання"
+
+#~ msgid "Rec long"
+#~ msgstr "Запис довге натискання"
+
+#~ msgid "Right long"
+#~ msgstr "Вправо довге натискання"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT довге натискання"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Search/WEB довге натискання"
+
+#~ msgid "Sleep long"
+#~ msgstr "Очікування довге натискання"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Субтитри довге натискання"
+
+#~ msgid "Teletext long"
+#~ msgstr "Teletext довго"
+
+#~ msgid "Time long"
+#~ msgstr "Відрізок часу"
+
+#~ msgid "VOD long"
+#~ msgstr "VOD довге натискання"
+
+#~ msgid "Www long"
+#~ msgstr "Www довге натискання"
+
+#~ msgid "YouTube long"
+#~ msgstr "YouTube довго"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM довге натискання"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2с"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3с"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4с"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5с"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6с"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7с"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8с"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9с"
+
+#~ msgid "1 GB"
+#~ msgstr "1 ГБ"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2с"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5с"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7с"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MБ/с"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MБ/с"
+
+#~ msgid "1s"
+#~ msgstr "1с"
+
+#~ msgid "2 GB"
+#~ msgstr "2 ГБ"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5с"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MБ/с"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Годин"
+
+#~ msgid "24- Hours"
+#~ msgstr "24- Годин"
+
+#~ msgid "2s"
+#~ msgstr "2с"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5с"
+
+#~ msgid "3s"
+#~ msgstr "3с"
+
+#~ msgid "4 GB"
+#~ msgstr "4 ГБ"
+
+#~ msgid "4s"
+#~ msgstr "4с"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 МБ/с"
+
+#~ msgid "5s"
+#~ msgstr "5с"
+
+#~ msgid "8 GB"
+#~ msgstr "8 ГБ"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Авто Таймер"
+
+#~ msgid "Hour"
+#~ msgstr "Година"
+
+#~ msgid "Once per day"
+#~ msgstr "Один раз в день"
+
+#~ msgid "alphabetical"
+#~ msgstr "за алфавіту"
+
+#~ msgid "alternative"
+#~ msgstr "альтернативний"
+
+#~ msgid "user defined"
+#~ msgstr "на вибір користувача"
+
+#~ msgid "white"
+#~ msgstr "білий"
+
+#~ msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+#~ msgstr "'Декодувати та записувати ECM' дає можливість дешифрувати пізніше, якщо дешифрування під час запису не вдалося. 'Не декодувати, записати ECM' зберігає кодований запис, який можна декодувати під час відтворення. 'Звичайний' означає дешифрування запису та відсутність запису ECM."
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Підключення '%s' мало вільного місця для запису."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймера (pm_timers.xml) є пошкодженим і не може бути виконаний."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Файл таймера (timers.xml) є пошкодженим і не може бути виконаний."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "В файлі pm_timers.xml виявлено дублювання!\n"
+#~ "Будь-ласка, перевірте його!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Виявлено перекреття таймерів в timers.xml!\n"
+#~ "Будь ласка, перевірти його!"
+
+#~ msgid "ask user"
+#~ msgstr "запитати користувача"
+
+#~ msgid "end zapping"
+#~ msgstr "кінець переключення"
+
+#~ msgid "menu"
+#~ msgstr "меню"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "час запису змінився, зробити зміну зараз: %s"
+
+#~ msgid "select"
+#~ msgstr "вибрати"
+
+#~ msgid "start recording"
+#~ msgstr "почати запис"
+
+#~ msgid "stop recording"
+#~ msgstr "зупинити запис"
+
+#~ msgid "zapping"
+#~ msgstr "переключення"

@@ -5,7 +5,6 @@ from os.path import exists, realpath, isdir
 from skin import getSkinFactor
 from time import sleep
 
-from boxbranding import getMachineBrand, getMachineName, getBrandOEM
 from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation, BT_SCALE
 
 from Components.ActionMap import ActionMap
@@ -15,7 +14,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 
 import NavigationInstance
 
@@ -44,17 +43,11 @@ from Tools.Directories import isPluginInstalled
 
 
 NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
-
 AUDIOSYNC = isPluginInstalled("AudioSync")
-
 VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
-
 DFLASH = isPluginInstalled("dFlash")
-
 DBACKUP = isPluginInstalled("dBackup")
-
 POSSETUP = isPluginInstalled("PositionerSetup")
-
 SATFINDER = isPluginInstalled("Satfinder")
 
 
@@ -299,12 +292,10 @@ class QuickMenu(Screen, ProtectedScreen):
 
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
-		model = BoxInfo.getItem("model")
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)")))
-		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
+		if BoxInfo.getItem("canImageBackup"):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
-		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
@@ -504,7 +495,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()), default=False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % getBoxDisplayName(), default=False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Show Default Backup Files"):

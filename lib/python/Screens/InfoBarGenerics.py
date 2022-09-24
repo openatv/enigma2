@@ -12,7 +12,6 @@ import pickle
 from sys import maxsize
 from time import localtime, strftime, time
 
-from boxbranding import getMachineBrand, getMachineBuild, getMachineName
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
@@ -28,7 +27,7 @@ from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.TimerList import TimerList  # Deprecated!
 from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
@@ -69,7 +68,7 @@ seek_withjumps_muted = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
-energyTimerCallBack = None
+keyPressCallback = []
 
 
 def isStandardInfoBar(self):
@@ -289,8 +288,8 @@ class InfoBarUnhandledKey:
 
 	def actionA(self, key, flag):  # This function is called on every keypress!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
-		if energyTimerCallBack and str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
-			energyTimerCallBack(config.usage.energyTimer.value, showMessage=False)
+		for callback in keyPressCallback:
+			callback()
 # TODO : TEST
 #		if flag != 2: # Don't hide on repeat.
 		self.unhandledKeyDialog.hide()
@@ -2993,7 +2992,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			if config.timeshift.showinfobar.value:
+			if config.timeshift.showInfoBar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 		if not self.isSeekable():
@@ -3004,8 +3003,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying), "r")
+		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
@@ -3507,7 +3506,7 @@ class InfoBarPiP:
 			info = service and service.info()
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
+			if info and int(xres) <= 720 or BoxInfo.getItem("model") != 'blackbox7405':
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
@@ -3553,7 +3552,7 @@ class InfoBarPiP:
 						self.session.pipshown = False
 						del self.session.pip
 			elif info:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 			else:
 				self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO, timeout=5)
 		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
@@ -3705,6 +3704,8 @@ class InfoBarInstantRecord:
 			serviceref = ServiceReference(serviceref)
 
 		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
+		recording.marginBefore = 0
+		recording.marginAfter = 0
 		recording.dontSave = True
 
 		if event is None or limitEvent == False:
@@ -3791,7 +3792,7 @@ class InfoBarInstantRecord:
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
-				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Time shift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
@@ -3840,6 +3841,8 @@ class InfoBarInstantRecord:
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
+			entry.eventBegin = entry.begin
+			entry.eventEnd = entry.end
 		#else:
 		#	if entry.end != int(time()):
 		#		entry.autoincrease = False
@@ -3873,8 +3876,8 @@ class InfoBarInstantRecord:
 				(_("Add recording (enter recording duration)"), "manualduration"),
 				(_("Add recording (enter recording end time)"), "manualendtime"),)
 
-			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
-				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+			timeshiftcommon = ((_("Time shift save recording (stop after current event)"), "savetimeshift"),
+				(_("Time shift save recording (Select event)"), "savetimeshiftEvent"),)
 		else:
 			common = ()
 			timeshiftcommon = ()
@@ -4981,7 +4984,7 @@ class InfoBarHdmi:
 			return _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
-		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+		if BoxInfo.getItem("model") in ('dm7080', 'dm820', 'dm900', 'dm920'):
 			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
@@ -5019,7 +5022,7 @@ class InfoBarHdmi:
 					del self.session.pip
 
 	def HDMIInFull(self):
-		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+		if BoxInfo.getItem("model") in ('dm7080', 'dm820', 'dm900', 'dm920'):
 			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
@@ -5034,7 +5037,7 @@ class InfoBarHdmi:
 				self.oldvideomode_60hz = f.read()
 				f.close()
 				f = open("/proc/stb/video/videomode", "w")
-				if getMachineBuild() in ('dm900', 'dm920'):
+				if BoxInfo.getItem("model") in ('dm900', 'dm920'):
 					f.write("1080p")
 				else:
 					f.write("720p")
@@ -5074,14 +5077,14 @@ class InfoBarHdmi:
 
 class InfoBarSleepTimer:
 	def __init__(self):
-		global energyTimerCallBack
-		self.sleepTimer = eTimer()
+		global keyPressCallback
 		self.sleepStartTime = 0
+		self.sleepTimer = eTimer()
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
-		self.energyTimer = eTimer()
 		self.energyStartTime = 0
+		self.energyTimer = eTimer()
 		self.energyTimer.callback.append(self.energyTimerTimeout)
-		energyTimerCallBack = self.setEnergyTimer
+		keyPressCallback.append(self.resetEnergyTimer)
 
 	def sleepTimerState(self):
 		return self.getTimerRemaining(self.sleepTimer, self.sleepStartTime)
@@ -5091,7 +5094,7 @@ class InfoBarSleepTimer:
 
 	def getTimerRemaining(self, timer, startTime):
 		if timer.isActive():
-			return (startTime - time())
+			return (startTime - int(time()))
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage=True):
@@ -5099,6 +5102,10 @@ class InfoBarSleepTimer:
 
 	def setEnergyTimer(self, energyTime, showMessage=True):
 		self.energyStartTime = self.setTimer(energyTime, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=showMessage)
+
+	def resetEnergyTimer(self):
+		if str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
+			self.energyStartTime = self.setTimer(config.usage.energyTimer.value, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=False)
 
 	def setTimer(self, delay, previous, timer, name, showMessage):
 		minutes = delay // 60
@@ -5250,7 +5257,7 @@ class InfoBarHandleBsod:
 				txt += _("A crash log was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
-			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("never"))
+			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("Never"))
 			if bsodcnt >= maxbs:
 				txt += "\n" + "-" * 80 + "\n"
 				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")

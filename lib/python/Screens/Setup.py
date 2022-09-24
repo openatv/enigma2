@@ -7,7 +7,7 @@ from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, con
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
@@ -151,7 +151,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		else:
 			itemText = _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " "))
-		item = eval(element.text or "") if element.text else ""
+		item = eval(element.text) if element.text else ""
 		if item == "":
 			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
 		elif not isinstance(item, ConfigNothing):
@@ -162,10 +162,10 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 			self.graphicSwitchChanged = True
 
 	def formatItemText(self, itemText):
-		return itemText.replace("%s %s", "%s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
+		return itemText.replace("%s %s", "%s %s" % getBoxDisplayName())
 
 	def formatItemDescription(self, item, itemDescription):
-		itemDescription = itemDescription.replace("%s %s", "%s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
+		itemDescription = itemDescription.replace("%s %s", "%s %s" % getBoxDisplayName())
 		if config.usage.setupShowDefault.value:
 			spacer = "\n" if config.usage.setupShowDefault.value == "newline" else "  "
 			itemDefault = item.toDisplayString(item.default)

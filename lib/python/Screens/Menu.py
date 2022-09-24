@@ -8,7 +8,7 @@ from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
@@ -19,9 +19,6 @@ from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-
-DISPLAY_BRAND = BoxInfo.getItem("displaybrand")
-DISPLAY_MODEL = BoxInfo.getItem("displaymodel")
 
 MENU_TEXT = 0
 MENU_MODULE = 1
@@ -306,7 +303,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 						break
 				description = plugins.getDescriptionForMenuEntryID(self.menuID, pluginKey)  # It is assumed that description is already translated by the plugin!
 				if "%s %s" in description:
-					description = description % (DISPLAY_BRAND, DISPLAY_MODEL)
+					description = description % getBoxDisplayName()
 				image = self.getMenuEntryImage(plugin[PLUGIN_KEY], lastKey)
 				if len(plugin) > PLUGIN_CLOSEALL and plugin[PLUGIN_CLOSEALL]:  # Was "len(plugin) > 4".
 					self.menuList.append((plugin[PLUGIN_TEXT], boundFunction(plugin[PLUGIN_MODULE], self.session, self.close), plugin[PLUGIN_KEY], plugin[PLUGIN_WEIGHT] or 50, description, image))
@@ -411,7 +408,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	def processDisplayedText(self, text):
 		text = _(text) if text else ""
 		if "%s %s" in text:
-			text = text % (DISPLAY_BRAND, DISPLAY_MODEL)
+			text = text % getBoxDisplayName()
 		return text
 
 	def getMenuEntryImage(self, key, lastKey):
@@ -456,7 +453,6 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self["menu"].setList(menu)
 
 	def layoutFinished(self):
-		# self["menu"].allowNativeKeys(False)
 		self["menu"].setStyle(config.usage.menuEntryStyle.value)
 		self.selectionChanged()
 

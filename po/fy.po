@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -214,17 +214,17 @@ msgid "%-I:%M:%S%^p"
 msgstr ""
 
 #
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%-d %B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr ""
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr ""
 
@@ -339,7 +339,7 @@ msgid "%03d MB"
 msgstr ""
 
 #, python-format
-msgid "%2.1f sec"
+msgid "%2.1f Seconds"
 msgstr ""
 
 #
@@ -347,7 +347,7 @@ msgstr ""
 msgid "%A"
 msgstr "A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr ""
 
@@ -574,11 +574,11 @@ msgstr ""
 msgid "%I:%M:%S%^p"
 msgstr ""
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr ""
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr ""
 
@@ -626,21 +626,21 @@ msgstr ""
 msgid "%a"
 msgstr ""
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr ""
 
 #
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 #, fuzzy
 msgid "%a %-d %B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr ""
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr ""
 
@@ -928,6 +928,12 @@ msgid "%d %b %Y"
 msgstr ""
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -936,7 +942,35 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d GB"
+msgstr ""
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Hours"
 msgstr ""
 
 #, python-format
@@ -945,6 +979,10 @@ msgstr ""
 
 #, python-format
 msgid "%d MB"
+msgstr ""
+
+#, python-format
+msgid "%d MB/s"
 msgstr ""
 
 #, python-format
@@ -974,6 +1012,36 @@ msgid_plural "%d Mins"
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, fuzzy, python-format
@@ -989,20 +1057,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1014,12 +1070,6 @@ msgstr ""
 #, python-format
 msgid "%d min"
 msgstr "%d min"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "%d minutes"
@@ -1079,20 +1129,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d sec"
 msgstr ""
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
 
 #
 #, fuzzy, python-format
@@ -1327,6 +1365,10 @@ msgstr ""
 msgid "%s is password protected."
 msgstr ""
 
+#, python-format
+msgid "%s long"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%s not available."
@@ -1404,10 +1446,10 @@ msgstr ""
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr ""
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
+msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
 msgid "'WeatherPlugin' is not installed!"
@@ -1470,6 +1512,9 @@ msgstr ""
 msgid "+24"
 msgstr "2"
 
+msgid "+24 Hours"
+msgstr ""
+
 msgctxt "Text list separator"
 msgid ", "
 msgstr ""
@@ -1481,6 +1526,9 @@ msgstr ""
 #, fuzzy
 msgid "-24"
 msgstr "2"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr ""
@@ -1500,35 +1548,8 @@ msgstr ""
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr ""
-
-msgid "0.3s"
-msgstr ""
-
-msgid "0.4s"
-msgstr ""
-
-msgid "0.5s"
-msgstr ""
-
-msgid "0.6s"
-msgstr ""
-
-msgid "0.7s"
-msgstr ""
-
-msgid "0.8s"
-msgstr ""
-
-msgid "0.9s"
-msgstr ""
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr ""
 
 msgid "1 hour"
 msgstr ""
@@ -1545,25 +1566,10 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr ""
-
-msgid "1.5s"
-msgstr ""
-
-msgid "1.7s"
-msgstr ""
-
-msgid "10 MB/s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "10 minutes"
 msgstr "minuten"
-
-msgid "100 MB/s"
-msgstr ""
 
 msgid "1024 Mb"
 msgstr ""
@@ -1684,9 +1690,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr ""
-
 msgid "1st InfoBar timeout"
 msgstr ""
 
@@ -1696,9 +1699,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr ""
-
 msgid "2 hours"
 msgstr ""
 
@@ -1706,12 +1706,6 @@ msgstr ""
 #, fuzzy
 msgid "2 minutes"
 msgstr "minuten"
-
-msgid "2.5s"
-msgstr ""
-
-msgid "20 MB/s"
-msgstr ""
 
 msgid "2048 Mb"
 msgstr ""
@@ -1743,12 +1737,6 @@ msgid "24"
 msgstr "2"
 
 msgid "24 hours"
-msgstr ""
-
-msgid "24+ Hours"
-msgstr ""
-
-msgid "24- Hours"
 msgstr ""
 
 msgid "24p/24p"
@@ -1814,9 +1802,6 @@ msgstr ""
 msgid "2nd InfoBar timeout"
 msgstr ""
 
-msgid "2s"
-msgstr ""
-
 msgid "2x"
 msgstr ""
 
@@ -1833,9 +1818,6 @@ msgid "3"
 msgstr "3"
 
 msgid "3 hours"
-msgstr ""
-
-msgid "3.5s"
 msgstr ""
 
 #
@@ -1878,17 +1860,11 @@ msgstr "Lûd"
 msgid "3D Surround Speaker Position"
 msgstr ""
 
-msgid "3s"
-msgstr ""
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr ""
 
 msgid "4 hours"
 msgstr ""
@@ -1920,9 +1896,6 @@ msgstr "4:3 PanScan"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
@@ -1933,9 +1906,6 @@ msgid "5 hours"
 msgstr ""
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "50 MB/s"
 msgstr ""
 
 msgid "50p/24p"
@@ -1954,9 +1924,6 @@ msgid "50p/60p"
 msgstr ""
 
 msgid "512 Mb"
-msgstr ""
-
-msgid "5s"
 msgstr ""
 
 msgid "6"
@@ -2009,9 +1976,6 @@ msgstr ""
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr ""
 
 msgid "8 character"
 msgstr ""
@@ -2078,36 +2042,28 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "In tiidsbarren wol de %s %s yn sliipstand\n"
 "skeakelje... No nei de sliipstand ?"
 
 #
 #, fuzzy
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "In tiidsbarren wol de %s %s yn sliipstand\n"
 "skeakelje... No nei de sliipstand ?"
 
 #
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "In tiidsbarren wol de %s %s yn sliipstand\n"
 "skeakelje... No nei de sliipstand ?"
 
 #
 #, fuzzy, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "In tiidsbarren wol de %s %s\n"
 "útskeakelje... No útskeakelje ?"
@@ -2636,6 +2592,9 @@ msgstr ""
 msgid "After recording"
 msgstr "An it opnimmen"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2853,10 +2812,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-#
-msgid "Error: An empty filename is illegal!"
-msgstr "Gjin triemnamme is net tastien"
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr ""
 
@@ -2900,6 +2855,9 @@ msgid "Antigua and Barbuda"
 msgstr ""
 
 msgid "Any activity"
+msgstr ""
+
+msgid "Any recordings"
 msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
@@ -3028,14 +2986,17 @@ msgstr ""
 msgid "Aruba"
 msgstr ""
 
+msgid "As plugin in extended bar"
+msgstr ""
+
 #
 msgid "Ask user"
 msgstr "freechje gebrûker"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr ""
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr ""
 
 msgid "Aspect"
@@ -3047,9 +3008,6 @@ msgid "Aspect Ratio Actions"
 msgstr "Kies Lokaasje"
 
 msgid "Aspect list..."
-msgstr ""
-
-msgid "Aspect long"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -3071,6 +3029,12 @@ msgid "Astra 2 28.2e"
 msgstr ""
 
 msgid "Astra 3 23.5e"
+msgstr ""
+
+msgid "At beginning"
+msgstr ""
+
+msgid "At end"
 msgstr ""
 
 msgid "At end of current program"
@@ -3133,9 +3097,6 @@ msgstr ""
 msgid "Audio language selection 4"
 msgstr ""
 
-msgid "Audio long"
-msgstr ""
-
 msgid "Audio options..."
 msgstr ""
 
@@ -3193,11 +3154,6 @@ msgstr "Auto scart skeakelje"
 
 #
 #, fuzzy
-msgid "Auto Timer"
-msgstr "In tiidsbarren tafoegje"
-
-#
-#, fuzzy
 msgid "Auto Timers"
 msgstr "In tiidsbarren tafoegje"
 
@@ -3238,6 +3194,9 @@ msgid "Auto(not available)"
 msgstr ""
 
 msgid "AutoMountManager"
+msgstr ""
+
+msgid "AutoTimer"
 msgstr ""
 
 #
@@ -3567,7 +3526,7 @@ msgstr ""
 msgid "Begin time"
 msgstr "Begjin tiid"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr ""
 
 #
@@ -3723,6 +3682,9 @@ msgstr ""
 msgid "Botswana"
 msgstr ""
 
+msgid "Bottom"
+msgstr ""
+
 msgid "Bouquet List"
 msgstr ""
 
@@ -3818,7 +3780,7 @@ msgstr ""
 msgid "Burmese"
 msgstr ""
 
-msgid "Burn Blue-ray disc"
+msgid "Burn Blu-ray disc"
 msgstr ""
 
 #
@@ -4163,12 +4125,12 @@ msgstr ""
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
@@ -4324,6 +4286,15 @@ msgstr ""
 msgid "Celsius"
 msgstr ""
 
+msgid "Center"
+msgstr ""
+
+msgid "Centered"
+msgstr ""
+
+msgid "Centered, wrapped"
+msgstr ""
+
 msgid "Central African Republic"
 msgstr ""
 
@@ -4418,7 +4389,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr "Kanaal"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr ""
 
 msgid "Channel Info"
@@ -5436,9 +5407,6 @@ msgstr "Ynhald past net op in DVD !"
 msgid "Context"
 msgstr ""
 
-msgid "Context long"
-msgstr ""
-
 msgid "Continent"
 msgstr ""
 
@@ -5596,7 +5564,7 @@ msgstr ""
 msgid "Create"
 msgstr ""
 
-msgid "Create Blue-ray disc ISO file"
+msgid "Create Blu-ray disc ISO file"
 msgstr ""
 
 #
@@ -5636,21 +5604,16 @@ msgstr "herhelle"
 msgid "Create: Recovery Fullbackup %s"
 msgstr ""
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr ""
-
-msgid "Creating Hardlink to Timeshift file failed!"
-msgstr ""
-
-#
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Meitjse fan map %s is mislearre"
 
 #
 #, fuzzy
 msgid "Creating file system"
 msgstr "Bestânsysteem neisjen"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr ""
 
 msgid "Creating partition"
 msgstr ""
@@ -5720,6 +5683,10 @@ msgstr ""
 #, fuzzy
 msgid "Current installed"
 msgstr "Hjoeddeiske ynstellingen:"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -6190,7 +6157,7 @@ msgid "Default folder if the left or right folder isn't saved, and target folder
 msgstr ""
 
 #
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr ""
 
 #
@@ -6477,18 +6444,6 @@ msgstr ""
 msgid "Depth"
 msgstr ""
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
-msgid "Descramble and record ECM"
-msgstr ""
-
-msgid "Descramble http streams"
-msgstr ""
-
-msgid "Descramble receiving http streams"
-msgstr ""
-
 #
 msgid "Description"
 msgstr "Beskriuwing"
@@ -6617,9 +6572,6 @@ msgstr ""
 
 #
 msgid "Directory browser"
-msgstr ""
-
-msgid "Directory long"
 msgstr ""
 
 #
@@ -7028,9 +6980,6 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-msgid "Don't descramble, record ECM"
-msgstr ""
-
 msgid "Don't restart"
 msgstr ""
 
@@ -7043,6 +6992,9 @@ msgstr ""
 #
 msgid "Don't stop current event but disable future events"
 msgstr "Dit barren net stopje, maar oankommende barren útskeakelje"
+
+msgid "Don't unscramble, record ECM"
+msgstr ""
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -7072,6 +7024,9 @@ msgid "Download Plugins"
 msgstr ""
 
 msgid "Download Softcams"
+msgstr ""
+
+msgid "Download and flash images on your %s %s."
 msgstr ""
 
 msgid "Download and install Plugins"
@@ -7179,9 +7134,6 @@ msgid "ECM-Time"
 msgstr ""
 
 msgid "EJECTCD"
-msgstr ""
-
-msgid "EJECTCD long"
 msgstr ""
 
 msgid "EPG"
@@ -7671,9 +7623,6 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-msgid "End long"
-msgstr ""
-
 #
 msgid "End time"
 msgstr "Eintiid"
@@ -7848,9 +7797,6 @@ msgstr ""
 msgid "Epg/Guide"
 msgstr ""
 
-msgid "Epg/Guide long"
-msgstr ""
-
 msgid "Equal to"
 msgstr ""
 
@@ -8011,6 +7957,10 @@ msgstr ""
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+#
+msgid "Error: An empty filename is illegal!"
+msgstr "Gjin triemnamme is net tastien"
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -8020,6 +7970,11 @@ msgstr ""
 msgid "Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."
 msgstr ""
 
+#
+#, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Meitjse fan map %s is mislearre"
+
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
@@ -8027,8 +7982,23 @@ msgstr ""
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Unjildige map selektearre: %s"
+
+#
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Ferwiderje fan map %s mislearre ( miskien is der net leech )"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "It paad %s bestiit al."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
@@ -8115,7 +8085,7 @@ msgstr ""
 msgid "Ewe"
 msgstr ""
 
-msgid "Exceeds Blue-ray disc medium!"
+msgid "Exceeds Blu-ray disc medium!"
 msgstr ""
 
 #
@@ -8312,25 +8282,13 @@ msgstr ""
 msgid "F1"
 msgstr ""
 
-msgid "F1 long"
-msgstr ""
-
 msgid "F2"
-msgstr ""
-
-msgid "F2 long"
 msgstr ""
 
 msgid "F3"
 msgstr ""
 
-msgid "F3 long"
-msgstr ""
-
 msgid "F4"
-msgstr ""
-
-msgid "F4 long"
 msgstr ""
 
 msgid "FCC 1953"
@@ -8464,9 +8422,6 @@ msgstr ""
 msgid "Favorites"
 msgstr ""
 
-msgid "Favorites long"
-msgstr ""
-
 msgid "Feed URL"
 msgstr ""
 
@@ -8546,9 +8501,6 @@ msgid "File checksums to calculate for button 9"
 msgstr ""
 
 msgid "File checksums/hashes"
-msgstr ""
-
-msgid "File long"
 msgstr ""
 
 #
@@ -8693,9 +8645,6 @@ msgstr ""
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
-
-msgid "Flash on the fly your %s %s."
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -9143,13 +9092,16 @@ msgstr ""
 msgid "Goto Date/Timer"
 msgstr ""
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr ""
 
 #
 #, fuzzy
 msgid "Goto X"
 msgstr "Gjin nei 0"
+
+msgid "Goto deep standby"
+msgstr ""
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -9174,6 +9126,9 @@ msgid "Goto previous event"
 msgstr ""
 
 msgid "Goto specific date/time"
+msgstr ""
+
+msgid "Goto standby"
 msgstr ""
 
 #
@@ -9415,9 +9370,6 @@ msgstr "Ynformaasje"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr ""
-
 msgid "Help screen style"
 msgstr ""
 
@@ -9530,9 +9482,6 @@ msgstr ""
 msgid "History buttons mode"
 msgstr ""
 
-msgid "History long"
-msgstr ""
-
 msgid "History next"
 msgstr ""
 
@@ -9556,13 +9505,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-msgid "Home long"
-msgstr ""
-
 msgid "Homepage"
-msgstr ""
-
-msgid "Homepage long"
 msgstr ""
 
 msgid "Honduras"
@@ -9617,16 +9560,13 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hour"
-msgstr ""
-
 msgid "Hourly"
 msgstr ""
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr ""
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr ""
 
 #
@@ -9921,7 +9861,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "direkt útskeakelje"
 
 msgid "Immediately restart selected devices."
@@ -10055,9 +9995,6 @@ msgid "Info"
 msgstr ""
 
 msgid "Info (EPG)"
-msgstr ""
-
-msgid "Info (EPG) Long"
 msgstr ""
 
 msgid "Info button (long)"
@@ -10374,13 +10311,8 @@ msgid "Invalid"
 msgstr "Plak net tastien"
 
 #
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Unjildige map selektearre: %s"
-
-#
 #, fuzzy
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Plak net tastien"
 
 #
@@ -10542,6 +10474,15 @@ msgstr ""
 msgid "Jump to the currently active locale/language"
 msgstr ""
 
+msgid "Just abort, no message"
+msgstr ""
+
+msgid "Just abort, show message"
+msgstr ""
+
+msgid "Just boot"
+msgstr ""
+
 msgid "Just change Bouquet"
 msgstr ""
 
@@ -10611,11 +10552,6 @@ msgstr "Toetseboerd Map"
 
 #
 #, fuzzy
-msgid "Keyboard long"
-msgstr "Toetseboerd Map"
-
-#
-#, fuzzy
 msgid "Keyboard map"
 msgstr "Toetseboerd Map"
 
@@ -10638,9 +10574,6 @@ msgid "Kodi MediaCenter"
 msgstr ""
 
 msgid "Kodi installed:"
-msgstr ""
-
-msgid "Kodi long"
 msgstr ""
 
 #
@@ -10691,9 +10624,6 @@ msgid "LAN adapter"
 msgstr "LAN oanslúting"
 
 msgid "LAN connection"
-msgstr ""
-
-msgid "LAN long"
 msgstr ""
 
 msgid "LCD Skin Settings"
@@ -10847,13 +10777,11 @@ msgstr "Links"
 
 #
 #, fuzzy
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Kanaal sykje"
 
-#
-#, fuzzy
-msgid "Left long"
-msgstr "Links"
+msgid "Left, wrapped"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr ""
@@ -10975,9 +10903,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "List/Fav"
-msgstr ""
-
-msgid "List/Fav long"
 msgstr ""
 
 #
@@ -11258,9 +11183,6 @@ msgstr "MEER"
 msgid "MOUSE"
 msgstr ""
 
-msgid "MOUSE long"
-msgstr ""
-
 msgid "MTD boot"
 msgstr ""
 
@@ -11284,11 +11206,6 @@ msgstr ""
 
 msgid "Magic"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Magic long"
-msgstr "Tiidsbarren log"
 
 #
 msgid "Main Menu"
@@ -11394,21 +11311,18 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Extra tiid foar by it opnimmen"
 
 #
 #, fuzzy
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Extra tiid foar by it opnimmen"
 
 msgid "Mark service as dedicated 3D service"
 msgstr ""
 
 msgid "Mark/Portal/Playlist"
-msgstr ""
-
-msgid "Mark/Portal/Playlist long"
 msgstr ""
 
 #
@@ -11490,9 +11404,6 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Portal"
-msgstr ""
-
-msgid "Media long"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -11579,7 +11490,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr ""
 
 msgid "Merlin EPG Center"
@@ -11601,6 +11512,9 @@ msgid "Mexico"
 msgstr ""
 
 msgid "Micronesia, Federated States of"
+msgstr ""
+
+msgid "Middle"
 msgstr ""
 
 msgid "Middle - Lite image"
@@ -11642,7 +11556,16 @@ msgstr ""
 msgid "Mins"
 msgstr ""
 
-msgid "Mins Secs"
+#
+#, fuzzy
+msgid "Minute"
+msgstr "minuten"
+
+#
+msgid "Minutes"
+msgstr "minuten"
+
+msgid "Minutes Seconds"
 msgstr ""
 
 #
@@ -11768,10 +11691,6 @@ msgid "Motor running timeout"
 msgstr ""
 
 msgid "Mount"
-msgstr ""
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
 msgstr ""
 
 msgid "Mount Actions"
@@ -12036,6 +11955,9 @@ msgstr ""
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Tiidsbarren seleksje"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 #
 #, fuzzy
@@ -12372,6 +12294,13 @@ msgstr ""
 msgid "Neutrino  (keymap.ntr)"
 msgstr ""
 
+#
+msgid "Never"
+msgstr "nea"
+
+msgid "Never abort"
+msgstr ""
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr ""
 
@@ -12465,9 +12394,6 @@ msgstr ""
 msgid "Nextsong"
 msgstr ""
 
-msgid "Nextsong long"
-msgstr ""
-
 msgid "Nicaragua"
 msgstr ""
 
@@ -12511,9 +12437,6 @@ msgid ""
 msgstr ""
 
 msgid "No TS recorder available"
-msgstr ""
-
-msgid "No Timeshift found to save as recording!"
 msgstr ""
 
 msgid "No active channel found."
@@ -12660,6 +12583,9 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr "Gjin merkers oanwêzig op dizze films"
 
+msgid "No time shift found to save as recording!"
+msgstr ""
+
 #
 #, fuzzy
 msgid "No timeout"
@@ -12672,7 +12598,7 @@ msgstr ""
 msgid "No transparency"
 msgstr ""
 
-msgid "No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!"
 msgstr ""
 
 msgid ""
@@ -12959,9 +12885,6 @@ msgstr ""
 msgid "OK button mode"
 msgstr ""
 
-msgid "OK long"
-msgstr ""
-
 #
 msgid "OK, guide me through the upgrade process"
 msgstr "Ok, rin troch it bywurkjen proces"
@@ -13054,9 +12977,6 @@ msgstr ""
 msgid "Once"
 msgstr "ienmalig"
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "Ien"
@@ -13143,9 +13063,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr ""
 
-msgid "Open long"
-msgstr ""
-
 msgid "Open satellites list"
 msgstr ""
 
@@ -13222,9 +13139,6 @@ msgstr ""
 #, fuzzy
 msgid "Option"
 msgstr "Encryption"
-
-msgid "Option long"
-msgstr ""
 
 msgid "Option to disable picons on the Infobar"
 msgstr ""
@@ -13342,9 +13256,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr ""
 
-msgid "PC long"
-msgstr ""
-
 msgid "PCM"
 msgstr ""
 
@@ -13374,10 +13285,6 @@ msgstr ""
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -13397,9 +13304,6 @@ msgid "PRIMETIME"
 msgstr ""
 
 msgid "PVR"
-msgstr ""
-
-msgid "PVR long"
 msgstr ""
 
 #
@@ -13449,15 +13353,7 @@ msgstr "ofspiellyst opslaan"
 msgid "PageDown"
 msgstr ""
 
-#
-#, fuzzy
-msgid "PageDown long"
-msgstr "Binnenheljen fan"
-
 msgid "PageUp"
-msgstr ""
-
-msgid "PageUp long"
 msgstr ""
 
 msgid "Pakistan"
@@ -13770,10 +13666,13 @@ msgstr "Begjin tiid"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr ""
 
-msgid "Playlist"
+msgid "Playback Settings"
 msgstr ""
 
-msgid "Playlist long"
+msgid "Playback, Recording & Time Shift"
+msgstr ""
+
+msgid "Playlist"
 msgstr ""
 
 msgid "Playpause"
@@ -13832,20 +13731,20 @@ msgid "Please enter a name for the new bouquet"
 msgstr "Namme ynjefte foar it nije bouquet"
 
 #
+msgid "Please enter a name for the new directory:"
+msgstr "Jou in namme yn foar de nije map"
+
+#
 msgid "Please enter a name for the new marker"
 msgstr "Namme ynjefte foar in nije markering"
 
 #
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Jou in nije bestânnamme yn"
 
 #
 msgid "Please enter filename (empty = use current date)"
 msgstr "Jou in triemnamme yn (leech = datum fan hjoed)"
-
-#
-msgid "Please enter a name for the new directory:"
-msgstr "Jou in namme yn foar de nije map"
 
 #
 #, fuzzy
@@ -13948,9 +13847,6 @@ msgstr "Selektearje in undersender..."
 #
 msgid "Please select a subservice..."
 msgstr "Selektearje in undersender..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr ""
@@ -14308,9 +14204,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "Power long"
-msgstr ""
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
@@ -14327,9 +14220,6 @@ msgstr ""
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr ""
-
 msgid "PowerTimer Overview"
 msgstr ""
 
@@ -14337,6 +14227,9 @@ msgid "PowerTimer Settings"
 msgstr ""
 
 msgid "PowerTimer Standby"
+msgstr ""
+
+msgid "PowerTimer deep standby"
 msgstr ""
 
 msgid "PowerTimer log"
@@ -14383,7 +14276,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Extra tiid foar by it opnimmen"
 
 #
@@ -14527,17 +14420,20 @@ msgstr "kanaal tafoegje oan bouquet"
 msgid "Previous page"
 msgstr "Foar-oanskouwing"
 
-msgid "Prevsong"
+msgid "Previous/Next bouquet"
 msgstr ""
 
-msgid "Prevsong long"
+msgid "Previous/Next page"
+msgstr ""
+
+msgid "Prevsong"
 msgstr ""
 
 #
 msgid "Primary DNS"
 msgstr "Eerste DNS"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr ""
 
 msgid "Primetime hour"
@@ -14597,9 +14493,6 @@ msgstr ""
 msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
-msgstr ""
-
-msgid "Program long"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -14695,9 +14588,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Prov"
-msgstr ""
-
-msgid "Prov long"
 msgstr ""
 
 #
@@ -14826,9 +14716,6 @@ msgstr ""
 msgid "RADIO"
 msgstr "RADIO"
 
-msgid "RADIO long"
-msgstr ""
-
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14940,6 +14827,15 @@ msgstr ""
 msgid "Real Life"
 msgstr ""
 
+msgid "Real or pseudo recordings"
+msgstr ""
+
+msgid "Real recordings"
+msgstr ""
+
+msgid "Real recordings or streaming"
+msgstr ""
+
 msgid "Really WOL now?"
 msgstr ""
 
@@ -15003,9 +14899,6 @@ msgid "Rebuild LCN bouquet now?"
 msgstr ""
 
 msgid "Rec"
-msgstr ""
-
-msgid "Rec long"
 msgstr ""
 
 msgid "Receiver"
@@ -15162,9 +15055,6 @@ msgstr ""
 msgid "Recordings"
 msgstr ""
 
-msgid "Recordings & Timeshift"
-msgstr ""
-
 msgid "Recordings abort PiP"
 msgstr ""
 
@@ -15177,6 +15067,9 @@ msgstr ""
 #
 msgid "Recordings always have priority"
 msgstr "Opnimmen hat altiid foarrang"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 #
 #, fuzzy
@@ -15398,7 +15291,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr ""
 
 msgid "Remove current folder from bookmarks"
@@ -15407,6 +15300,10 @@ msgstr ""
 #
 msgid "Remove currently selected title"
 msgstr "Ferwiderje it selektearre bestan"
+
+#
+msgid "Remove directory"
+msgstr "map ferwiderje"
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -15434,11 +15331,6 @@ msgstr ""
 
 msgid "Removing Service"
 msgstr ""
-
-#
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Ferwiderje fan map %s mislearre ( miskien is der net leech )"
 
 #
 #, fuzzy
@@ -15775,13 +15667,11 @@ msgstr ""
 msgid "Right"
 msgstr "Rjochts"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Right long"
-msgstr "Rjochts"
+msgid "Right, wrapped"
+msgstr ""
 
 msgid "Roll-off"
 msgstr ""
@@ -15893,9 +15783,6 @@ msgid "SABnzbd Settings"
 msgstr ""
 
 msgid "SAT"
-msgstr ""
-
-msgid "SAT long"
 msgstr ""
 
 msgid "SATA"
@@ -16171,10 +16058,10 @@ msgstr ""
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving Timeshift files"
+msgid "Saving time shift as movie now. This might take a while!"
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift files"
 msgstr ""
 
 #
@@ -16330,9 +16217,6 @@ msgstr "Sykje west"
 msgid "Search/WEB"
 msgstr ""
 
-msgid "Search/WEB long"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Searching"
@@ -16362,6 +16246,10 @@ msgstr ""
 #
 msgid "Secondary DNS"
 msgstr "Twadde DNS"
+
+#
+msgid "Seconds"
+msgstr "seconden"
 
 msgid "Security"
 msgstr ""
@@ -16607,10 +16495,19 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
+msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr ""
 
 msgid "Select Software Update"
+msgstr ""
+
+msgid "Select Time Shift Location"
 msgstr ""
 
 #
@@ -17037,10 +16934,10 @@ msgstr "Kies fideo moadus"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr ""
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -17370,7 +17267,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Begjin tiid"
 
 msgid "Set CI assignment for detection of available services."
@@ -17436,16 +17333,16 @@ msgstr "Bewrukje de nammeserver ynstellingen fan de %s %s."
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -17877,7 +17774,7 @@ msgstr ""
 msgid "Show EPG for current channel..."
 msgstr ""
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr ""
 
 #
@@ -18367,7 +18264,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "útskeakel menu sjen litte"
 
 msgid "Show single EPG for current channel"
@@ -18382,7 +18279,7 @@ msgstr ""
 msgid "Show source packages"
 msgstr ""
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr ""
 
 msgid "Show subservice selection"
@@ -18734,13 +18631,8 @@ msgstr ""
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Sleep long"
-msgstr "Tiidstjoering"
 
 msgid "Sleep timer"
 msgstr ""
@@ -19107,7 +18999,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Sud"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr ""
 
 #, python-format
@@ -19178,7 +19070,7 @@ msgstr "Paraatmode"
 msgid "Standby / Restart"
 msgstr "Paraatmode / Nijstart"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr ""
 
 msgid "Start"
@@ -19543,9 +19435,6 @@ msgstr ""
 msgid "Subtitle language selection 4"
 msgstr ""
 
-msgid "Subtitle long"
-msgstr ""
-
 msgid "Subtitle position"
 msgstr ""
 
@@ -19695,6 +19584,10 @@ msgstr ""
 
 msgid "Switch to TV mode"
 msgstr ""
+
+#
+msgid "Switch to bookmarks"
+msgstr "skeakelje nei boekmerkers"
 
 #
 #, fuzzy
@@ -19967,11 +19860,6 @@ msgstr ""
 msgid "Teletext font and resolution"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Teletext long"
-msgstr "Tiidstjoering"
-
 msgid "Teletext subtitle color"
 msgstr ""
 
@@ -20091,11 +19979,6 @@ msgstr ""
 msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
-msgstr ""
-
-msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
 msgid ""
@@ -20219,6 +20102,11 @@ msgid ""
 "Press OK to continue using the %s %s."
 msgstr ""
 
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr ""
@@ -20248,11 +20136,6 @@ msgid ""
 msgstr ""
 "De WLAN ynstekker is net ynstallearre!\n"
 "Ynstallearje dizze earst."
-
-#
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "It paad %s bestiit al."
 
 #
 msgid "The pin code you entered is wrong."
@@ -20299,14 +20182,9 @@ msgstr ""
 msgid "The time is multiplied by the current repeat counter."
 msgstr ""
 
-#
-#, fuzzy
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
-
-#
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -20819,6 +20697,9 @@ msgstr ""
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr ""
+
 msgid "Time Update in Minutes:"
 msgstr ""
 
@@ -20857,13 +20738,55 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Time long"
-msgstr "Tiidsbarren log"
-
 #, python-format
 msgid "Time required for this process: %s"
+msgstr ""
+
+msgid "Time shift buffer delete after zap"
+msgstr ""
+
+msgid "Time shift buffer limit"
+msgstr ""
+
+#
+msgid "Time shift buffer location"
+msgstr ""
+
+msgid "Time shift checking for free space"
+msgstr ""
+
+msgid "Time shift checking for older files"
+msgstr ""
+
+msgid "Time shift event based file splitting"
+msgstr ""
+
+msgid "Time shift event limit"
+msgstr ""
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+#
+msgid "Time shift not possible!"
+msgstr "Tiidsskowen is net mooglik !"
+
+msgid "Time shift save action on zap"
+msgstr ""
+
+msgid "Time shift save failed!"
+msgstr ""
+
+msgid "Time shift save recording (Select event)"
+msgstr ""
+
+msgid "Time shift save recording (stop after current event)"
+msgstr ""
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr ""
+
+msgid "Time shift will get saved at end of event!"
 msgstr ""
 
 #
@@ -20932,22 +20855,15 @@ msgstr "Tiidsbarren item"
 msgid "Timer log"
 msgstr "Tiidsbarren log"
 
-#
-#, fuzzy
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Tiidstjoerings conflicten fûn yn timers.xml\n"
-"Graach nei sjen en meitsje!"
 
-#
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Tiidstjoerings conflicten fûn yn timers.xml\n"
-"Graach nei sjen en meitsje!"
 
 #
 #, fuzzy
@@ -20984,53 +20900,6 @@ msgstr ""
 #
 msgid "Timeshift"
 msgstr "Tiidsskowen"
-
-msgid "Timeshift Settings"
-msgstr ""
-
-msgid "Timeshift buffer delete after zap"
-msgstr ""
-
-msgid "Timeshift buffer limit [in hours]"
-msgstr ""
-
-msgid "Timeshift checking for free space"
-msgstr ""
-
-msgid "Timeshift checking for older files [in minutes]"
-msgstr ""
-
-msgid "Timeshift event based file splitting"
-msgstr ""
-
-msgid "Timeshift last events limit [number of events]"
-msgstr ""
-
-#
-msgid "Timeshift location"
-msgstr ""
-
-#
-msgid "Timeshift not possible!"
-msgstr "Tiidsskowen is net mooglik !"
-
-msgid "Timeshift save failed!"
-msgstr ""
-
-msgid "Timeshift save recording (Select event)"
-msgstr ""
-
-msgid "Timeshift save recording (stop after current event)"
-msgstr ""
-
-msgid "Timeshift saved to your harddisk!"
-msgstr ""
-
-msgid "Timeshift will get saved at end of event!"
-msgstr ""
-
-msgid "Timeshift-save action on zap"
-msgstr ""
 
 msgid "Timezone"
 msgstr ""
@@ -21140,6 +21009,9 @@ msgid "Tone mode"
 msgstr "Toan moadus"
 
 msgid "Tonga"
+msgstr ""
+
+msgid "Top"
 msgstr ""
 
 msgid "Top and Bottom"
@@ -21660,6 +21532,15 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr ""
 
+msgid "Unscramble and record ECM"
+msgstr ""
+
+msgid "Unscramble http streams"
+msgstr ""
+
+msgid "Unscramble receiving http streams"
+msgstr ""
+
 #
 msgid "Unsupported"
 msgstr ""
@@ -21803,6 +21684,9 @@ msgid "Upper USB"
 msgstr ""
 
 msgid "Upper case"
+msgstr ""
+
+msgid "Upper line"
 msgstr ""
 
 msgid "Uptime"
@@ -22106,9 +21990,6 @@ msgid "VOB file"
 msgstr ""
 
 msgid "VOD"
-msgstr ""
-
-msgid "VOD long"
 msgstr ""
 
 msgid "VPN"
@@ -22815,7 +22696,7 @@ msgstr ""
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr ""
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -22914,10 +22795,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr ""
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -22954,6 +22835,9 @@ msgstr "Wêr wolle jo de gegevens opslaan?"
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Wêr moatte it opnimmen mei tiidsferskowing opslein wurde ?"
+
+msgid "What do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr ""
@@ -22996,13 +22880,22 @@ msgstr ""
 msgid "Wireless network state"
 msgstr ""
 
+msgid "With EXIT button"
+msgstr ""
+
+msgid "With LEFT/RIGHT buttons"
+msgstr ""
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr ""
 
 msgid "With errors:"
 msgstr ""
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr ""
+
+msgid "With pop up"
 msgstr ""
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -23023,7 +22916,7 @@ msgstr ""
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr ""
 
 msgid "Without query"
@@ -23061,9 +22954,6 @@ msgid "Write failed!"
 msgstr "Skriuw flater!"
 
 msgid "Www"
-msgstr ""
-
-msgid "Www long"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -23315,9 +23205,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "YouTube long"
-msgstr ""
-
 msgid "Your %s %s does not have an Internet connection"
 msgstr ""
 
@@ -23533,9 +23420,6 @@ msgstr ""
 msgid "ZOOM"
 msgstr ""
 
-msgid "ZOOM long"
-msgstr ""
-
 msgid "ZPicon"
 msgstr ""
 
@@ -23651,10 +23535,10 @@ msgstr "[favorieten bewurkje]"
 msgid "[Image Info]\n"
 msgstr ""
 
-msgid "[TimeShift] Restarting Timeshift!"
+msgid "[Timeshift] Merging records failed!"
 msgstr ""
 
-msgid "[Timeshift] Merging records failed!"
+msgid "[Timeshift] Restarting time shift!"
 msgstr ""
 
 #
@@ -23759,18 +23643,8 @@ msgstr ""
 msgid "alphabetic reverse"
 msgstr ""
 
-#
-#, fuzzy
-msgid "alphabetical"
-msgstr "ferticaal"
-
 msgid "alpharev then newest"
 msgstr ""
-
-#
-#, fuzzy
-msgid "alternative"
-msgstr "alernatief tafoegje"
 
 msgid "am"
 msgstr ""
@@ -23779,9 +23653,6 @@ msgid "and"
 msgstr ""
 
 msgid "and never ask again this session again"
-msgstr ""
-
-msgid "any recordings"
 msgstr ""
 
 msgid ""
@@ -23796,18 +23667,6 @@ msgid "arts/culture (without music, general)"
 msgstr ""
 
 msgid "arts/culture magazine"
-msgstr ""
-
-msgid "as plugin in extended bar"
-msgstr ""
-
-msgid "ask user"
-msgstr ""
-
-msgid "at beginning"
-msgstr ""
-
-msgid "at end"
 msgstr ""
 
 msgid "athletics"
@@ -23869,9 +23728,6 @@ msgstr "swarte lyst"
 msgid "blue"
 msgstr "blauw"
 
-msgid "bottom"
-msgstr ""
-
 msgid "broadcasting/press"
 msgstr ""
 
@@ -23898,15 +23754,6 @@ msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
-msgstr ""
-
-msgid "center"
-msgstr ""
-
-msgid "centered"
-msgstr ""
-
-msgid "centered, wrapped"
 msgstr ""
 
 msgid "change Volume down"
@@ -24110,9 +23957,6 @@ msgstr "stop stik hjirre"
 msgid "end favorites edit"
 msgstr "bewurkjen favoriet út"
 
-msgid "end zapping"
-msgstr ""
-
 msgid "enigma2 and network"
 msgstr ""
 
@@ -24263,9 +24107,6 @@ msgstr ""
 msgid "goto current channel and now"
 msgstr ""
 
-msgid "goto deep-standby"
-msgstr ""
-
 msgid "goto first channel"
 msgstr ""
 
@@ -24275,9 +24116,6 @@ msgid "goto last channel"
 msgstr "net feroarje"
 
 msgid "goto now"
-msgstr ""
-
-msgid "goto standby"
 msgstr ""
 
 #
@@ -24414,15 +24252,6 @@ msgstr "foarút nei de folgende titel"
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "just abort, no message"
-msgstr ""
-
-msgid "just abort, show message"
-msgstr ""
-
-msgid "just boot"
-msgstr ""
-
 msgid "languages"
 msgstr ""
 
@@ -24434,9 +24263,6 @@ msgstr "film ôfspieljen ferlitte..."
 #
 msgid "left"
 msgstr "links"
-
-msgid "left, wrapped"
-msgstr ""
 
 msgid "leisure hobbies (general)"
 msgstr ""
@@ -24479,25 +24305,9 @@ msgid "medicine/physiology/psychology"
 msgstr ""
 
 #
-msgid "menu"
-msgstr "menu"
-
-msgid "middle"
-msgstr ""
-
-#
 #, fuzzy
 msgid "min"
 msgstr "min"
-
-#
-#, fuzzy
-msgid "minute"
-msgstr "minuten"
-
-#
-msgid "minutes"
-msgstr "minuten"
 
 #
 msgid "month"
@@ -24566,13 +24376,6 @@ msgid "n/a"
 msgstr ""
 
 msgid "nature/animals/environment"
-msgstr ""
-
-#
-msgid "never"
-msgstr "nea"
-
-msgid "never abort"
 msgstr ""
 
 msgid "new media"
@@ -24744,12 +24547,6 @@ msgstr ""
 msgid "previous channel page"
 msgstr ""
 
-msgid "previous/next Bouquet"
-msgstr ""
-
-msgid "previous/next Page"
-msgstr ""
-
 msgid "provid:"
 msgstr ""
 
@@ -24760,19 +24557,6 @@ msgid "purge deleted user bouquets"
 msgstr ""
 
 msgid "python"
-msgstr ""
-
-msgid "real or pseudo recordings"
-msgstr ""
-
-msgid "real recordings"
-msgstr ""
-
-msgid "real recordings or streaming"
-msgstr ""
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
 msgstr ""
 
 #
@@ -24814,10 +24598,6 @@ msgstr ""
 
 msgid "remove cable services"
 msgstr ""
-
-#
-msgid "Remove directory"
-msgstr "map ferwiderje"
 
 #
 msgid "remove entry"
@@ -24870,9 +24650,6 @@ msgstr ""
 msgid "right"
 msgstr "rjochts"
 
-msgid "right, wrapped"
-msgstr ""
-
 msgid "rock/pop"
 msgstr ""
 
@@ -24904,14 +24681,6 @@ msgstr ""
 
 msgid "search EPG..."
 msgstr ""
-
-#
-msgid "seconds"
-msgstr "seconden"
-
-#
-msgid "select"
-msgstr "kies"
 
 #
 msgid "select CAId's"
@@ -25071,22 +24840,12 @@ msgstr "standert"
 msgid "start cut here"
 msgstr "start stik hjirre"
 
-#
-#, fuzzy
-msgid "start recording"
-msgstr "dit opnimmen"
-
 msgid "step size"
 msgstr ""
 
 #
 msgid "stereo"
 msgstr "stereo"
-
-#
-#, fuzzy
-msgid "stop recording"
-msgstr "dit opnimmen"
 
 msgid "stop using as startup service"
 msgstr ""
@@ -25099,10 +24858,6 @@ msgstr ""
 
 msgid "switch Nand and SDcard"
 msgstr ""
-
-#
-msgid "Switch to bookmarks"
-msgstr "skeakelje nei boekmerkers"
 
 #
 msgid "switch to the next angle"
@@ -25157,9 +24912,6 @@ msgstr ""
 #
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "tiid, haadstik, lûd en undertiteling ynfo omskeakelje"
-
-msgid "top"
-msgstr ""
 
 msgid "tourism/travel"
 msgstr ""
@@ -25248,9 +25000,6 @@ msgstr "Bywurkje"
 msgid "updates available."
 msgstr ""
 
-msgid "upper line"
-msgstr ""
-
 msgid "use best / controlled by HDMI"
 msgstr ""
 
@@ -25259,10 +25008,6 @@ msgstr ""
 
 msgid "use_hdmi_cacenter"
 msgstr ""
-
-#
-msgid "user defined"
-msgstr "brûkers ynstelling"
 
 #
 #, fuzzy
@@ -25306,9 +25051,6 @@ msgid ""
 "A copy has been sent to yourself."
 msgstr ""
 
-msgid "white"
-msgstr ""
-
 msgid "wide"
 msgstr ""
 
@@ -25333,15 +25075,6 @@ msgstr[1] ""
 msgid "with errors"
 msgstr ""
 
-msgid "with exit button"
-msgstr ""
-
-msgid "with left/right buttons"
-msgstr ""
-
-msgid "with long OK press"
-msgstr ""
-
 msgid "with_errors"
 msgstr ""
 
@@ -25364,10 +25097,113 @@ msgstr "ja (feeds hâlde)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
-#
-#, fuzzy
-msgid "zapping"
-msgstr "knipt"
-
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Toetseboerd Map"
+
+#
+#, fuzzy
+#~ msgid "Left long"
+#~ msgstr "Links"
+
+#
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Tiidsbarren log"
+
+#
+#, fuzzy
+#~ msgid "PageDown long"
+#~ msgstr "Binnenheljen fan"
+
+#
+#, fuzzy
+#~ msgid "Right long"
+#~ msgstr "Rjochts"
+
+#
+#, fuzzy
+#~ msgid "Sleep long"
+#~ msgstr "Tiidstjoering"
+
+#
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Tiidstjoering"
+
+#
+#, fuzzy
+#~ msgid "Time long"
+#~ msgstr "Tiidsbarren log"
+
+#
+#, fuzzy
+#~ msgid "Auto Timer"
+#~ msgstr "In tiidsbarren tafoegje"
+
+#
+#, fuzzy
+#~ msgid "alphabetical"
+#~ msgstr "ferticaal"
+
+#
+#, fuzzy
+#~ msgid "alternative"
+#~ msgstr "alernatief tafoegje"
+
+#
+#~ msgid "user defined"
+#~ msgstr "brûkers ynstelling"
+
+#
+#, fuzzy
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
+
+#
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "De tiidsbarrenlyst is korrupt en koe net laden wurde."
+
+#
+#, fuzzy
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Tiidstjoerings conflicten fûn yn timers.xml\n"
+#~ "Graach nei sjen en meitsje!"
+
+#
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Tiidstjoerings conflicten fûn yn timers.xml\n"
+#~ "Graach nei sjen en meitsje!"
+
+#
+#~ msgid "menu"
+#~ msgstr "menu"
+
+#
+#~ msgid "select"
+#~ msgstr "kies"
+
+#
+#, fuzzy
+#~ msgid "start recording"
+#~ msgstr "dit opnimmen"
+
+#
+#, fuzzy
+#~ msgid "stop recording"
+#~ msgstr "dit opnimmen"
+
+#
+#, fuzzy
+#~ msgid "zapping"
+#~ msgstr "knipt"

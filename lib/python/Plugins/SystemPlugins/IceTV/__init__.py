@@ -8,10 +8,10 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 from enigma import eEPGCache
-from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo, \
     ConfigSelectionNumber
+from Components.SystemInfo import getBoxDisplayName
 
 
 def getIceTVDeviceType():
@@ -21,7 +21,7 @@ def getIceTVDeviceType():
         ("Beyonwiz", "T4"): 30,
         ("Beyonwiz", "U4"): 36,
         ("Beyonwiz", "V2"): 38,
-    }.get((getMachineBrand(), getMachineName()), 39)
+    }.get(getBoxDisplayName(), 39)
 
 
 config.plugins.icetv = ConfigSubsection()
@@ -40,7 +40,7 @@ config.plugins.icetv.member.send_logs = ConfigYesNo(default=True)
 config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", fixed_size=False))
 
 config.plugins.icetv.device = ConfigSubsection()
-config.plugins.icetv.device.label = ConfigText(default="%s %s" % (getMachineBrand(), getMachineName()))
+config.plugins.icetv.device.label = ConfigText(default="%s %s" % getBoxDisplayName())
 config.plugins.icetv.device.id = ConfigNumber()
 config.plugins.icetv.device.type_id = ConfigNumber(default=getIceTVDeviceType())
 

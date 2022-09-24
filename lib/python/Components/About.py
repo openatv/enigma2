@@ -12,16 +12,17 @@ from subprocess import PIPE, Popen
 from sys import maxsize, modules, version as pyversion
 from time import localtime, strftime
 
-from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileReadLine, fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]
 
 socfamily = BoxInfo.getItem("socfamily")
+MODEL = BoxInfo.getItem("model")
+
 
 def getModelString():
-	model = getBoxType()
+	model = BoxInfo.getItem("machinebuild")
 	return model
 
 
@@ -64,11 +65,11 @@ def getIfTransferredData(ifname):
 
 
 def getVersionString():
-	return getImageVersion()
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getImageVersionString():
-	return getImageVersion()
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getFlashDateString():
@@ -97,7 +98,7 @@ def getUpdateDateString():
 
 
 def getEnigmaVersionString():
-	return getImageVersion()
+	return str(BoxInfo.getItem("imageversion"))
 
 
 def getGStreamerVersionString():
@@ -131,21 +132,23 @@ def getCPUSerial():
 
 
 def _getCPUSpeedMhz():
-	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
+	if MODEL in ('u41', 'u42', 'u43', 'u45'):
 		return 1000
-	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
+	elif MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
+		return 1200
+	elif MODEL in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
 		return 1500
-	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
+	elif MODEL in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
 		return 1300
-	elif getMachineBuild() in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
+	elif MODEL in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
 		return 1600
-	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
+	elif MODEL in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
 		return 1700
-	elif getMachineBuild() in ('alien5', 'hzero', 'h8', 'sfx6008'):
+	elif MODEL in ('alien5',):
 		return 2000
-	elif getMachineBuild() in ('vuduo4k',):
+	elif MODEL in ('vuduo4k',):
 		return 2100
-	elif getMachineBuild() in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
+	elif MODEL in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 		try:
 			return round(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 1000000, 1)
 		except:
@@ -236,15 +239,15 @@ def getSystemTemperature():
 
 
 def getChipSetString():
-	if getMachineBuild() in ('dm7080', 'dm820'):
+	if MODEL in ('dm7080', 'dm820'):
 		return "7435"
-	elif getMachineBuild() in ('dm520', 'dm525'):
+	elif MODEL in ('dm520', 'dm525'):
 		return "73625"
-	elif getMachineBuild() in ('dm900', 'dm920', 'et13000', 'sf5008'):
+	elif MODEL in ('dm900', 'dm920', 'et13000', 'sf5008'):
 		return "7252S"
-	elif getMachineBuild() in ('hd51', 'vs1500', 'h7'):
+	elif MODEL in ('hd51', 'vs1500', 'h7'):
 		return "7251S"
-	elif getMachineBuild() in ('alien5',):
+	elif MODEL in ('alien5',):
 		return "S905D"
 	else:
 		chipset = fileReadLine("/proc/stb/info/chipset", source=MODULE_NAME)
@@ -340,7 +343,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	ifaces = []
 	for index in range(0, outbytes, structSize):
-		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0] # PY3
+		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0]  # PY3
 		# ifaceName = str(names.tolist[index:index + 16]).split("\0", 1)[0] # PY2
 		if ifaceName != "lo":
 			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
@@ -356,11 +359,11 @@ def getBoxUptime():
 	if secs > 86400:
 		days = secs // 86400
 		secs = secs % 86400
-		times.append(ngettext("%d day", "%d days", days) % days)
+		times.append(ngettext("%d Day", "%d Days", days) % days)
 	h = secs // 3600
 	m = (secs % 3600) // 60
-	times.append(ngettext("%d hour", "%d hours", h) % h)
-	times.append(ngettext("%d minute", "%d minutes", m) % m)
+	times.append(ngettext("%d Hour", "%d Hours", h) % h)
+	times.append(ngettext("%d Minute", "%d Minutes", m) % m)
 	return " ".join(times)
 
 

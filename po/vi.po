@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:48+0000\n"
+"POT-Creation-Date: 2022-09-17 15:27+0200\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -224,16 +224,16 @@ msgstr "%-I:%M:%S%P"
 msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
-#. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
 msgstr "%-d %B %Y"
 
-#. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
+#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
 msgstr "%-d %b"
 
-#. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
 msgstr "%-d %b %Y"
 
@@ -350,13 +350,13 @@ msgid "%03d MB"
 msgstr "%03d MB"
 
 #, python-format
-msgid "%2.1f sec"
-msgstr "%2.1f sec"
+msgid "%2.1f Seconds"
+msgstr "%2.1f Seconds"
 
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
 msgstr "%A %-d %B"
 
@@ -558,11 +558,11 @@ msgstr "%I:%M:%S%P"
 msgid "%I:%M:%S%^p"
 msgstr "%I:%M:%S%^p"
 
-#. TRANSLATORS: short time representation hour:minute (Same as "Default")
+#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
+#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
 msgid "%T"
 msgstr "%T"
 
@@ -608,19 +608,19 @@ msgstr "%Y/%m/%d"
 msgid "%a"
 msgstr "%a"
 
-#. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
 msgid "%a %-d"
 msgstr "%a %-d"
 
-#. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%a %-d %b"
 msgstr "%a %-d %b"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -887,6 +887,11 @@ msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
 #, python-format
+msgid "%d + %d + %d Minute"
+msgid_plural "%d + %d + %d Minutes"
+msgstr[0] ""
+
+#, python-format
 msgid "%d DMIPS per core"
 msgstr ""
 
@@ -895,8 +900,32 @@ msgid "%d DMIPS with %d cores"
 msgstr ""
 
 #, python-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Digit"
+msgid_plural "%d Digits"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Event"
+msgid_plural "%d Events"
+msgstr[0] ""
+
+#, python-format
 msgid "%d GB"
 msgstr "%d GB"
+
+#, python-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] "%d giờ"
+
+#, python-format
+msgid "%d Hours"
+msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -905,6 +934,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MB/s"
+msgstr ""
 
 #, python-format
 msgid "%d MHz"
@@ -932,6 +965,33 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 
+#, python-format
+msgid "%d Minute"
+msgid_plural "%d Minutes"
+msgstr[0] "%d phút"
+
+#, python-format
+msgid "%d Minutes"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "%d Pixel wide"
+msgid_plural "%d Pixels wide"
+msgstr[0] "%d pixel rộng"
+
+#, python-format
+msgid "%d Pixels"
+msgstr ""
+
+#, python-format
+msgid "%d Second"
+msgid_plural "%d Seconds"
+msgstr[0] "%d giây"
+
+#, python-format
+msgid "%d Seconds"
+msgstr ""
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -944,19 +1004,9 @@ msgid_plural "%d cores"
 msgstr[0] ""
 
 #, python-format
-msgid "%d day"
-msgid_plural "%d days"
-msgstr[0] ""
-
-#, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
-
-#, python-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d giờ"
 
 #, python-format
 msgid "%d kB"
@@ -965,11 +1015,6 @@ msgstr "%d kB"
 #, python-format
 msgid "%d min"
 msgstr "%d phút"
-
-#, python-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d phút"
 
 #, python-format
 msgid "%d minutes"
@@ -1020,18 +1065,8 @@ msgid_plural "%d packages were upgraded."
 msgstr[0] ""
 
 #, python-format
-msgid "%d pixel wide"
-msgid_plural "%d pixels wide"
-msgstr[0] "%d pixel rộng"
-
-#, python-format
 msgid "%d sec"
 msgstr "%d giây"
-
-#, python-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d giây"
 
 #, python-format
 msgid "%d times"
@@ -1248,6 +1283,10 @@ msgid "%s is password protected."
 msgstr "%s là mật khẩu được bảo vệ."
 
 #, python-format
+msgid "%s long"
+msgstr ""
+
+#, python-format
 msgid "%s not available."
 msgstr "%s không có sẵn."
 
@@ -1318,11 +1357,11 @@ msgstr "'%s' chưa được cài đặt và không có gói nào được biết
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
 
-msgid "'Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
-
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
+
+msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
+msgstr "Descramble & record ECM 'cung cấp tùy chọn để giải mã sau đó nếu việc giải mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản ghi và không ghi ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'Weatherplugin' chưa được cài đặt!"
@@ -1376,6 +1415,9 @@ msgstr "* hoạt hình hiện tại"
 msgid "+24"
 msgstr "+24"
 
+msgid "+24 Hours"
+msgstr ""
+
 #, fuzzy
 msgctxt "Text list separator"
 msgid ", "
@@ -1386,6 +1428,9 @@ msgstr ""
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24 Hours"
+msgstr ""
 
 msgid "-24h/+24 Hours"
 msgstr "-24h / + 24 giờ"
@@ -1405,35 +1450,8 @@ msgstr "/var thư mục"
 msgid "0"
 msgstr "0"
 
-msgid "0.2s"
-msgstr "0.2s"
-
-msgid "0.3s"
-msgstr "0.3s"
-
-msgid "0.4s"
-msgstr "0.4s"
-
-msgid "0.5s"
-msgstr "0.5s"
-
-msgid "0.6s"
-msgstr "0.6s"
-
-msgid "0.7s"
-msgstr "0.7s"
-
-msgid "0.8s"
-msgstr "0.8s"
-
-msgid "0.9s"
-msgstr "0.9s"
-
 msgid "1"
 msgstr "1"
-
-msgid "1 GB"
-msgstr "1 GB"
 
 #, fuzzy
 msgid "1 hour"
@@ -1448,24 +1466,9 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-msgid "1.2s"
-msgstr "1.2s"
-
-msgid "1.5s"
-msgstr "1.5s"
-
-msgid "1.7s"
-msgstr "1.7s"
-
-msgid "10 MB/s"
-msgstr "10 MB/s"
-
 #, fuzzy
 msgid "10 minutes"
 msgstr "30 minutes"
-
-msgid "100 MB/s"
-msgstr "100 MB/s"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -1571,9 +1574,6 @@ msgstr ""
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1s"
-msgstr "1s"
-
 msgid "1st InfoBar timeout"
 msgstr "hết giờ Infobar"
 
@@ -1583,9 +1583,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "2 GB"
-msgstr "2 GB"
-
 #, fuzzy
 msgid "2 hours"
 msgstr "24+ Hours"
@@ -1593,12 +1590,6 @@ msgstr "24+ Hours"
 #, fuzzy
 msgid "2 minutes"
 msgstr "5 phút"
-
-msgid "2.5s"
-msgstr "2.5s"
-
-msgid "20 MB/s"
-msgstr "20 MB/s"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1630,12 +1621,6 @@ msgstr "24"
 #, fuzzy
 msgid "24 hours"
 msgstr "24+ Hours"
-
-msgid "24+ Hours"
-msgstr "24+ Hours"
-
-msgid "24- Hours"
-msgstr "24 tiếng"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1695,9 +1680,6 @@ msgstr "Hiển thị thông tin về t điện tử trong infobar"
 msgid "2nd InfoBar timeout"
 msgstr "hết giờ Infobar lần 2"
 
-msgid "2s"
-msgstr "2s"
-
 msgid "2x"
 msgstr "2x"
 
@@ -1716,9 +1698,6 @@ msgstr "3"
 #, fuzzy
 msgid "3 hours"
 msgstr "%d giờ"
-
-msgid "3.5s"
-msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -1756,17 +1735,11 @@ msgstr "Vòm 3D"
 msgid "3D Surround Speaker Position"
 msgstr "Vị trí loa vòm 3D"
 
-msgid "3s"
-msgstr "3s"
-
 msgid "3x"
 msgstr ""
 
 msgid "4"
 msgstr "4"
-
-msgid "4 GB"
-msgstr "4 GB"
 
 #, fuzzy
 msgid "4 hours"
@@ -1796,9 +1769,6 @@ msgstr "Quét 4: 3 Pan"
 msgid "4K"
 msgstr ""
 
-msgid "4s"
-msgstr "4s"
-
 msgid "4x"
 msgstr ""
 
@@ -1811,9 +1781,6 @@ msgstr "%d giờ"
 
 msgid "5 minutes"
 msgstr "5 phút"
-
-msgid "50 MB/s"
-msgstr "50 MB/s"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -1832,9 +1799,6 @@ msgstr "50p/60p"
 
 msgid "512 Mb"
 msgstr "512 Mb"
-
-msgid "5s"
-msgstr "5s"
 
 msgid "6"
 msgstr "6"
@@ -1888,9 +1852,6 @@ msgstr "720p50: 24p/50p/60p"
 
 msgid "8"
 msgstr "8"
-
-msgid "8 GB"
-msgstr "8 GB"
 
 msgid "8 character"
 msgstr "8 ký tự"
@@ -1949,32 +1910,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại %s% s của bạn.\n"
 "Làm điều đó bây giờ?"
 
-msgid ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại giao diện người dùng.\n"
 "Làm điều đó bây giờ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
+msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn thiết lập của bạn\n"
 "%s %s để chờ. Làm điều đó bây giờ?"
 
 #, python-format
-msgid ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
+msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn tắt % s% s của bạn.\n"
 "Làm điều đó bây giờ?"
@@ -2449,6 +2402,9 @@ msgstr "Sau khi nhấn OK, vui lòng đợi!"
 msgid "After recording"
 msgstr "Sau khi ghi âm"
 
+msgid "After zap"
+msgstr ""
+
 msgid "Akan"
 msgstr ""
 
@@ -2649,9 +2605,6 @@ msgstr ""
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
-msgid "Error: An empty filename is illegal!"
-msgstr "Một tên tệp trống là bất hợp pháp."
-
 msgid "An error occurred while downloading the packet list. Please try again."
 msgstr "Đã xảy ra lỗi trong khi tải xuống danh sách gói. Vui lòng thử lại."
 
@@ -2694,6 +2647,9 @@ msgstr "Antigua và Barbuda"
 
 msgid "Any activity"
 msgstr "Bất kỳ hoạt động"
+
+msgid "Any recordings"
+msgstr "bất kỳ bản ghi âm"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr ""
@@ -2822,13 +2778,16 @@ msgstr "Nghệ thuật / Văn hóa"
 msgid "Aruba"
 msgstr "Argentina"
 
+msgid "As plugin in extended bar"
+msgstr "như plugin trong thanh mở rộng"
+
 msgid "Ask user"
 msgstr "Hỏi người dùng"
 
-msgid "Ask user (with default as 'no')"
+msgid "Ask user (with default as 'No')"
 msgstr "Người dùng sk (với mặc định là 'không')"
 
-msgid "Ask user (with default as 'yes')"
+msgid "Ask user (with default as 'Yes')"
 msgstr "Hỏi người dùng (với mặc định là 'có')"
 
 msgid "Aspect"
@@ -2840,9 +2799,6 @@ msgstr "Tỷ lệ khung hình"
 
 msgid "Aspect list..."
 msgstr "Tỷ lệ khung hình...."
-
-msgid "Aspect long"
-msgstr "Tỷ lệ khung hình"
 
 msgid "Aspect ratio"
 msgstr "Tỷ lệ khung hình"
@@ -2864,6 +2820,12 @@ msgstr "Astra 2 28.2e"
 
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
+
+msgid "At beginning"
+msgstr "khi bắt đầu"
+
+msgid "At end"
+msgstr "cuối cùng"
 
 msgid "At end of current program"
 msgstr ""
@@ -2923,9 +2885,6 @@ msgstr "Lựa chọn ngôn ngữ âm thanh 23"
 msgid "Audio language selection 4"
 msgstr "Lựa chọn ngôn ngữ âm thanh 4"
 
-msgid "Audio long"
-msgstr "Âm thanh dài"
-
 msgid "Audio options..."
 msgstr "Tùy chọn âm thanh ..."
 
@@ -2972,9 +2931,6 @@ msgstr "Chế độ tự động được chọn."
 msgid "Auto SCART switching"
 msgstr "Tự động chuyển mạch"
 
-msgid "Auto Timer"
-msgstr "Hẹn giờ tự động"
-
 msgid "Auto Timers"
 msgstr "Hẹn giờ tự động"
 
@@ -3010,6 +2966,9 @@ msgstr "Tự động (không khả dụng)"
 
 msgid "AutoMountManager"
 msgstr "Trình quản lý tự động"
+
+msgid "AutoTimer"
+msgstr ""
 
 msgid "AutoUpdate"
 msgstr "Cập nhật tự động"
@@ -3311,7 +3270,7 @@ msgstr "Basque"
 msgid "Begin time"
 msgstr "Thời gian bắt đầu"
 
-msgid "Behave like stop-button"
+msgid "Behave like STOP button"
 msgstr "Xử dụng như nút dừng"
 
 msgid "Behavior of 'pause' when paused"
@@ -3457,6 +3416,9 @@ msgstr "Tiếng Estonia"
 msgid "Botswana"
 msgstr "Botswana"
 
+msgid "Bottom"
+msgstr "dưới cùng"
+
 msgid "Bouquet List"
 msgstr "Thêm gói kênh"
 
@@ -3547,7 +3509,7 @@ msgstr "Burkina Faso"
 msgid "Burmese"
 msgstr ""
 
-msgid "Burn Blue-ray disc"
+msgid "Burn Blu-ray disc"
 msgstr "Ghi vào đĩa DVD"
 
 msgid "Burn DVD"
@@ -3877,14 +3839,14 @@ msgstr ""
 
 msgid ""
 "Can't going to live TV!\n"
-"Switch to live TV and restart Timeshift ?"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Không thể lên truyền hình trực tiếp!\n"
 "Chuyển sang truyền hình trực tiếp và khởi động lại Timeshift?"
 
 msgid ""
-"Can't play the next Timeshift file!\n"
-"Switch to live TV and restart Timeshift ?"
+"Can't play the next time shift file!\n"
+"Switch to live TV and restart time shift ?"
 msgstr ""
 "Không thể phát tệp Timeshift tiếp theo!\n"
 "Chuyển sang truyền hình trực tiếp và khởi động lại Timeshift?"
@@ -4032,6 +3994,15 @@ msgstr "Quần đảo Cayman"
 msgid "Celsius"
 msgstr "Độ"
 
+msgid "Center"
+msgstr "trung tâm"
+
+msgid "Centered"
+msgstr "trung tâm"
+
+msgid "Centered, wrapped"
+msgstr "trung tâm, bao bọc"
+
 msgid "Central African Republic"
 msgstr "Cộng hòa trung phi"
 
@@ -4113,7 +4084,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr "Kênh 1"
 
-msgid "Channel 1 with Primetime"
+msgid "Channel 1 with Prime time"
 msgstr "Kênh 1 với Primetime"
 
 msgid "Channel Info"
@@ -5068,9 +5039,6 @@ msgstr "Nội dung không phù hợp với DVD!"
 msgid "Context"
 msgstr "Bối cảnh"
 
-msgid "Context long"
-msgstr "Bối cảnh dài"
-
 msgid "Continent"
 msgstr ""
 
@@ -5221,7 +5189,7 @@ msgstr "Tai nạn tại lỗi da vì lý do gỡ lỗi?"
 msgid "Create"
 msgstr "Tạo"
 
-msgid "Create Blue-ray disc ISO file"
+msgid "Create Blu-ray disc ISO file"
 msgstr "Tạo tập tin ISO Bludisc"
 
 msgid "Create DVD-ISO"
@@ -5255,18 +5223,14 @@ msgstr "Tạo nên:"
 msgid "Create: Recovery Fullbackup %s"
 msgstr "Tạo: Phục hồi Fullbackup%s"
 
-msgid "Creating AP and SC Files"
+msgid "Creating .ap and .sc files"
 msgstr "Tạo tập tin AP và SC"
-
-msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
-
-#, python-format
-msgid "Error: Creating directory '%s' failed!"
-msgstr "Tạo thư mục%s không thành công."
 
 msgid "Creating file system"
 msgstr "Tạo hệ thống tập tin"
+
+msgid "Creating hard link to time shift file failed!"
+msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
 
 msgid "Creating partition"
 msgstr "Tạo phân vùng"
@@ -5329,6 +5293,10 @@ msgstr ""
 
 msgid "Current installed"
 msgstr "Cài đặt hiện tại chưa cài đặt"
+
+#, python-format
+msgid "Current location is '%s'."
+msgstr ""
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5755,7 +5723,7 @@ msgstr "Thư mục mặc định"
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
 msgstr "Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư mục đích cho nút 5."
 
-msgid "Default movie location"
+msgid "Default movie selection location"
 msgstr "Vị trí phim mặc định"
 
 msgid "Default recording type"
@@ -6016,18 +5984,6 @@ msgstr "Đan mạch"
 msgid "Depth"
 msgstr "Độ sâu"
 
-msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Descramble & record ECM 'cung cấp tùy chọn để giải mã sau đó nếu việc giải mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản ghi và không ghi ECM."
-
-msgid "Descramble and record ECM"
-msgstr "giải mã và ghi lại ecm"
-
-msgid "Descramble http streams"
-msgstr "Luồng http của Descramble"
-
-msgid "Descramble receiving http streams"
-msgstr "Độ cao tính toán bằng mili"
-
 msgid "Description"
 msgstr "Sự miêu tả"
 
@@ -6144,9 +6100,6 @@ msgstr ""
 
 msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
-
-msgid "Directory long"
-msgstr "Thư mục dài"
 
 msgid "Disable"
 msgstr "Vô hiệu hóa"
@@ -6537,9 +6490,6 @@ msgstr "Đừng thêm bản ghi này"
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
 
-msgid "Don't descramble, record ECM"
-msgstr "không giải mã, ghi lại ecm"
-
 msgid "Don't restart"
 msgstr ""
 
@@ -6552,6 +6502,9 @@ msgstr "Sắp xếp theo mặc định"
 
 msgid "Don't stop current event but disable future events"
 msgstr "Đừng dừng sự kiện hiện tại mà vô hiệu hóa các sự kiện sắp tới"
+
+msgid "Don't unscramble, record ECM"
+msgstr "không giải mã, ghi lại ecm"
 
 msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
@@ -6583,6 +6536,9 @@ msgstr "Tải xuống plugin"
 
 msgid "Download Softcams"
 msgstr "Tải xuống Softcam"
+
+msgid "Download and flash images on your %s %s."
+msgstr ""
 
 msgid "Download and install Plugins"
 msgstr "Tải xuống và cài đặt Plugin"
@@ -6682,9 +6638,6 @@ msgstr "Thời gian ECM"
 
 msgid "EJECTCD"
 msgstr "ĐỐI TƯỢNG"
-
-msgid "EJECTCD long"
-msgstr "ĐỐI TƯỢNG dài"
 
 msgid "EPG"
 msgstr "EPG"
@@ -7145,9 +7098,6 @@ msgstr "Mã hóa:"
 msgid "End"
 msgstr "Cuối cùng"
 
-msgid "End long"
-msgstr "Kết thúc lâu"
-
 msgid "End time"
 msgstr "Thời gian kết thúc"
 
@@ -7315,9 +7265,6 @@ msgstr ""
 
 msgid "Epg/Guide"
 msgstr "Epg / Hướng dẫn"
-
-msgid "Epg/Guide long"
-msgstr "Epg / Hướng dẫn dài"
 
 msgid "Equal to"
 msgstr "Tương đương với"
@@ -7494,6 +7441,9 @@ msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
+msgid "Error: An empty filename is illegal!"
+msgstr "Một tên tệp trống là bất hợp pháp."
+
 msgid "Error: Cannot find any images!"
 msgstr ""
 
@@ -7504,14 +7454,30 @@ msgid "Error: Could not find a suitable device! Please remove some downloaded im
 msgstr "Không thể tìm thấy phương tiện phù hợp - Vui lòng xóa một số hình ảnh đã tải xuống hoặc chèn phương tiện (ví dụ: thẻ nhớ USB) với không gian trống đầy đủ và thử lại!"
 
 #, python-format
+msgid "Error: Creating directory '%s' failed!"
+msgstr "Tạo thư mục%s không thành công."
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
+#, python-format
+msgid "Error: Invalid directory '%s' selected!"
+msgstr "Thư mục không hợp lệ được chọn:%s"
+
+#, python-format
+msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
+msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
+
 msgid "Error: The new password may not be blank!"
 msgstr ""
+
+#, python-format
+msgid "Error: The path '%s' already exists!"
+msgstr "Đường dẫn%s đã tồn tại."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
@@ -7597,7 +7563,7 @@ msgstr "Mọi nơi"
 msgid "Ewe"
 msgstr ""
 
-msgid "Exceeds Blue-ray disc medium!"
+msgid "Exceeds Blu-ray disc medium!"
 msgstr "Vượt quá Bludisc vừa!"
 
 msgid "Exceeds dual layer medium!"
@@ -7764,26 +7730,14 @@ msgstr "F1"
 msgid "F1"
 msgstr "F1"
 
-msgid "F1 long"
-msgstr "F1 dài"
-
 msgid "F2"
 msgstr "F2"
-
-msgid "F2 long"
-msgstr "F2 dài"
 
 msgid "F3"
 msgstr "F3"
 
-msgid "F3 long"
-msgstr "F3 dài"
-
 msgid "F4"
 msgstr "F4"
-
-msgid "F4 long"
-msgstr "F4 dài"
 
 msgid "FCC 1953"
 msgstr "FCC 1953"
@@ -7908,9 +7862,6 @@ msgstr "Tốc độ chuyển tiếp nhanh"
 msgid "Favorites"
 msgstr "Yêu thích"
 
-msgid "Favorites long"
-msgstr "Yêu thích dài"
-
 msgid "Feed URL"
 msgstr ""
 
@@ -7989,9 +7940,6 @@ msgstr "Tổng kiểm tra tệp để tính cho nút 9"
 
 msgid "File checksums/hashes"
 msgstr "Tổng kiểm tra / băm"
-
-msgid "File long"
-msgstr "Tập tin dài"
 
 #, python-format
 msgid "File not found: %s"
@@ -8125,9 +8073,6 @@ msgstr ""
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
-
-msgid "Flash on the fly your %s %s."
-msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash khi đang bay phần mềm Nhận của bạn."
@@ -8533,11 +8478,14 @@ msgstr "Ngày / Thời gian"
 msgid "Goto Date/Timer"
 msgstr "Ngày / Hẹn giờ"
 
-msgid "Goto Primetime"
+msgid "Goto Prime time"
 msgstr "Giờ nguyên thủy"
 
 msgid "Goto X"
 msgstr "Đi X"
+
+msgid "Goto deep standby"
+msgstr "đến chế độ - chờ"
 
 msgid "Goto next bouquet"
 msgstr "Tới gói kênh tiếp theo"
@@ -8562,6 +8510,9 @@ msgstr "Sự kiện trước đó"
 
 msgid "Goto specific date/time"
 msgstr "Dữ liệu cụ thể / thời gian"
+
+msgid "Goto standby"
+msgstr "đi đến chế độ chờ"
 
 msgid "GotoX calibration"
 msgstr "Hiệu chuẩn GotoX"
@@ -8788,9 +8739,6 @@ msgstr "Thông tin thiết bị"
 msgid "Help animation speed"
 msgstr ""
 
-msgid "Help long"
-msgstr "Giúp lâu"
-
 msgid "Help screen style"
 msgstr ""
 
@@ -8899,9 +8847,6 @@ msgstr "Lịch sử trở lại"
 msgid "History buttons mode"
 msgstr "Chế độ nút lịch sử"
 
-msgid "History long"
-msgstr "Lịch sử lâu dài"
-
 msgid "History next"
 msgstr "Lịch sử tiếp theo"
 
@@ -8924,14 +8869,8 @@ msgstr ""
 msgid "Home"
 msgstr "Nhà"
 
-msgid "Home long"
-msgstr "Nhà dài"
-
 msgid "Homepage"
 msgstr "Trang chủ"
-
-msgid "Homepage long"
-msgstr "Trang chủ dài"
 
 msgid "Honduras"
 msgstr "Honduras"
@@ -8981,16 +8920,13 @@ msgstr "Phím nóng"
 msgid "Hotkey Settings"
 msgstr "Cài đặt phím nóng"
 
-msgid "Hour"
-msgstr "Giờ"
-
 msgid "Hourly"
 msgstr "Hàng giờ"
 
-msgid "Hours Mins"
+msgid "Hours Minutes"
 msgstr "Giờ tối thiểu"
 
-msgid "Hours Mins Secs"
+msgid "Hours Minutes Seconds"
 msgstr "Giờ phút giây"
 
 msgid "How many minutes do you want to record?"
@@ -9269,7 +9205,7 @@ msgstr "Tạo hình ảnh thất bại - "
 msgid "ImageWizard"
 msgstr "Hình ảnh"
 
-msgid "Immediate shutdown"
+msgid "Immediate shut down"
 msgstr "Tắt máy ngay lập tức"
 
 msgid "Immediately restart selected devices."
@@ -9399,9 +9335,6 @@ msgstr "Thông tin"
 
 msgid "Info (EPG)"
 msgstr "Thông tin (EPG)"
-
-msgid "Info (EPG) Long"
-msgstr "Thông tin (EPG) Dài"
 
 msgid "Info button (long)"
 msgstr "Nút thông tin (dài)"
@@ -9664,11 +9597,7 @@ msgstr ""
 msgid "Invalid"
 msgstr "Không hợp lệ"
 
-#, python-format
-msgid "Error: Invalid directory '%s' selected!"
-msgstr "Thư mục không hợp lệ được chọn:%s"
-
-msgid "Invalid location"
+msgid "Invalid location!"
 msgstr "Vị trí không hợp lệ"
 
 msgid "Invalid transponder data"
@@ -9819,6 +9748,15 @@ msgstr "Chuyển đến thời gian chính"
 msgid "Jump to the currently active locale/language"
 msgstr ""
 
+msgid "Just abort, no message"
+msgstr "chỉ cần hủy bỏ, không có tin nhắn"
+
+msgid "Just abort, show message"
+msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
+
+msgid "Just boot"
+msgstr "chỉ khởi động"
+
 msgid "Just change Bouquet"
 msgstr "Chỉ cần thay đổi Gói kênh"
 
@@ -9881,10 +9819,6 @@ msgstr "Thiết lập bàn phím"
 msgid "Keyboard data entry"
 msgstr "Nhập dữ liệu bàn phím"
 
-#, fuzzy
-msgid "Keyboard long"
-msgstr "Bàn phím"
-
 msgid "Keyboard map"
 msgstr "Bản đồ bàn phím"
 
@@ -9908,9 +9842,6 @@ msgstr "Trung tâm truyền thông Kodi"
 
 msgid "Kodi installed:"
 msgstr "Kodi đã cài đặt:"
-
-msgid "Kodi long"
-msgstr ""
 
 msgid "Kodi media player"
 msgstr "Máy nghe nhạc Kodi"
@@ -9956,9 +9887,6 @@ msgstr "Bộ điều hợp mạng LAN"
 
 msgid "LAN connection"
 msgstr "Kết nối mạng nội bộ"
-
-msgid "LAN long"
-msgstr "LAN dài"
 
 msgid "LCD Skin Settings"
 msgstr "Thiết lập da LCD"
@@ -10098,11 +10026,11 @@ msgstr "Lebanon"
 msgid "Left"
 msgstr "Trái"
 
-msgid "Left from servicename"
+msgid "Left from service name"
 msgstr "Còn lại từ tên dịch vụ"
 
-msgid "Left long"
-msgstr "Còn lại dài"
+msgid "Left, wrapped"
+msgstr "trái, bọc"
 
 msgid "Leisure hobbies"
 msgstr "Sở thích giải trí"
@@ -10205,9 +10133,6 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] "Liệt kê phiên bản %d, tìm thấy%d kênh"
 
 msgid "List/Fav"
-msgstr "Danh sách / Fav"
-
-msgid "List/Fav long"
 msgstr "Danh sách / Fav"
 
 #, fuzzy
@@ -10463,9 +10388,6 @@ msgstr "HƠN"
 msgid "MOUSE"
 msgstr "CHUỘT"
 
-msgid "MOUSE long"
-msgstr "Chuột dài"
-
 msgid "MTD boot"
 msgstr ""
 
@@ -10490,10 +10412,6 @@ msgstr "Madagascar"
 
 msgid "Magic"
 msgstr ""
-
-#, fuzzy
-msgid "Magic long"
-msgstr "Truyền thông"
 
 msgid "Main Menu"
 msgstr "Menu chính"
@@ -10591,10 +10509,10 @@ msgstr ""
 msgid "Marathi"
 msgstr "MaraM9"
 
-msgid "Margin after recording (minutes)"
+msgid "Margin after recording"
 msgstr "Ký quỹ sau khi ghi (phút)"
 
-msgid "Margin before recording (minutes)"
+msgid "Margin before recording"
 msgstr "Ký quỹ trước khi ghi (phút)"
 
 msgid "Mark service as dedicated 3D service"
@@ -10602,9 +10520,6 @@ msgstr "Đánh dấu dịch vụ là dịch vụ 3D chuyên dụng"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Đánh dấu / Cổng thông tin / Danh sách phát"
-
-msgid "Mark/Portal/Playlist long"
-msgstr "Đánh dấu / Cổng thông tin / Danh sách phát dài"
 
 #, fuzzy
 msgid "Marker Actions"
@@ -10680,9 +10595,6 @@ msgstr ""
 
 msgid "Media Portal"
 msgstr "Cổng thông tin truyền thông"
-
-msgid "Media long"
-msgstr "Truyền thông"
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Phát lại đa phương tiện Còn lại / Đã qua"
@@ -10760,7 +10672,7 @@ msgstr ""
 msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
-msgid "Merging Timeshift files"
+msgid "Merging time shift files"
 msgstr "Hợp nhất các tập tin Timeshift"
 
 msgid "Merlin EPG Center"
@@ -10785,6 +10697,9 @@ msgstr "Mexico"
 #, fuzzy
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia (Liên bang)"
+
+msgid "Middle"
+msgstr "ở giữa"
 
 msgid "Middle - Lite image"
 msgstr ""
@@ -10824,7 +10739,13 @@ msgstr "Khoảng thời gian gửi tối thiểu"
 msgid "Mins"
 msgstr "Phút"
 
-msgid "Mins Secs"
+msgid "Minute"
+msgstr "phút"
+
+msgid "Minutes"
+msgstr "phút"
+
+msgid "Minutes Seconds"
 msgstr "Giây giây"
 
 #, fuzzy
@@ -10944,10 +10865,6 @@ msgstr "Hết thời gian chạy động cơ"
 
 msgid "Mount"
 msgstr "Núi"
-
-#, python-format
-msgid "Mount '%s' has not enough free space to record."
-msgstr "Mount '% s' không đủ không gian trống để ghi."
 
 msgid "Mount Actions"
 msgstr ""
@@ -11182,6 +11099,9 @@ msgstr "Thiết lập danh sách phim"
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Lựa chọn phim"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie selection"
 msgstr "Lựa chọn phim"
@@ -11484,6 +11404,12 @@ msgstr "Thuật sĩ mạng"
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino (keymap.ntr)"
 
+msgid "Never"
+msgstr "không bao giờ"
+
+msgid "Never abort"
+msgstr "không bao giờ"
+
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Không bao giờ giải mã nội dung trong khi ghi. Điều này ghi đè cài đặt hẹn giờ riêng trên toàn cầu. Nếu được bật, các bản ghi được lưu trữ trong bản trình bày được mã hóa và phải được giải mã sau đó (đôi khi được gọi là giải mã ngoại tuyến). Mặc định: tắt."
 
@@ -11569,9 +11495,6 @@ msgstr "Kênh quad PiP tiếp theo"
 msgid "Nextsong"
 msgstr "Bài hát tiếp theo"
 
-msgid "Nextsong long"
-msgstr "Nextsong dài"
-
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
@@ -11615,9 +11538,6 @@ msgstr ""
 #, fuzzy
 msgid "No TS recorder available"
 msgstr "Không có chỉ số miễn phí có sẵn"
-
-msgid "No Timeshift found to save as recording!"
-msgstr "Không tìm thấy Timeshift để lưu dưới dạng ghi âm!"
 
 msgid "No active channel found."
 msgstr "Không tìm thấy kênh hoạt động."
@@ -11742,6 +11662,9 @@ msgstr "Không tìm thấy sat tuner phù hợp!"
 msgid "No tags are set on these movies."
 msgstr "Không có thẻ được đặt trên những bộ phim này."
 
+msgid "No time shift found to save as recording!"
+msgstr "Không tìm thấy Timeshift để lưu dưới dạng ghi âm!"
+
 msgid "No timeout"
 msgstr "Không có thời gian chờ"
 
@@ -11751,8 +11674,8 @@ msgstr "Không cho tất cả"
 msgid "No transparency"
 msgstr "Không minh bạch"
 
-msgid "No tuner is available for recording a timer!\n"
-msgstr "Không có bộ chỉnh có sẵn để ghi lại một bộ đếm thời gian!\n"
+msgid "No tuner is available for recording a timer!"
+msgstr "Không có bộ chỉnh có sẵn để ghi lại một bộ đếm thời gian!"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -12017,9 +11940,6 @@ msgstr "Nút OK (ngắn)"
 msgid "OK button mode"
 msgstr "Chế độ nút OK"
 
-msgid "OK long"
-msgstr "Đồng ý"
-
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, hướng dẫn tôi qua quá trình nâng cấp"
 
@@ -12104,9 +12024,6 @@ msgstr "Trên các ONID hợp lệ, bỏ qua phần mạng phụ tần số"
 msgid "Once"
 msgstr "một lần"
 
-msgid "Once per day"
-msgstr "Một lần một ngày"
-
 msgid "One"
 msgstr "Một"
 
@@ -12186,9 +12103,6 @@ msgstr ""
 msgid "Open favorites list"
 msgstr "Mở danh sách yêu thích"
 
-msgid "Open long"
-msgstr "Mở lâu"
-
 msgid "Open satellites list"
 msgstr "Mở danh sách vệ tinh"
 
@@ -12264,9 +12178,6 @@ msgstr "Trạng thái đèn LED hoạt động trong khi chạy"
 
 msgid "Option"
 msgstr "Tùy chọn"
-
-msgid "Option long"
-msgstr "Tùy chọn dài"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Tùy chọn tắt picons trên Infobar"
@@ -12379,9 +12290,6 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC"
 
-msgid "PC long"
-msgstr "PC dài"
-
 msgid "PCM"
 msgstr "PCM"
 
@@ -12409,10 +12317,6 @@ msgstr "Mã PIN cần thiết"
 msgid "PIP"
 msgstr ""
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP long"
-msgstr "PIP dài"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -12433,9 +12337,6 @@ msgstr "TIẾNG VIỆT"
 
 msgid "PVR"
 msgstr "PVR"
-
-msgid "PVR long"
-msgstr "PVR dài"
 
 msgid "Package Manager"
 msgstr "Quản lý gói"
@@ -12480,14 +12381,8 @@ msgstr "Danh sách trang lên"
 msgid "PageDown"
 msgstr "Trang dưới"
 
-msgid "PageDown long"
-msgstr "Trang dài"
-
 msgid "PageUp"
 msgstr "Trang lên"
-
-msgid "PageUp long"
-msgstr "Trang dài"
 
 msgid "Pakistan"
 msgstr "Pakistan"
@@ -12752,11 +12647,14 @@ msgstr "Chơi tiêu đề"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Phát / xem / chỉnh sửa / cài đặt / giải nén / chạy tệp hoặc vào thư mục"
 
+msgid "Playback Settings"
+msgstr ""
+
+msgid "Playback, Recording & Time Shift"
+msgstr "Ghi âm & Timeshift"
+
 msgid "Playlist"
 msgstr "Danh sách phát"
-
-msgid "Playlist long"
-msgstr "Danh sách phát dài"
 
 msgid "Playpause"
 msgstr "Tạm dừng chơi"
@@ -12808,17 +12706,17 @@ msgstr ""
 msgid "Please enter a name for the new bouquet"
 msgstr "Vui lòng nhập tên cho gói kênh mới"
 
+msgid "Please enter a name for the new directory:"
+msgstr "Vui lòng nhập tên của thư mục mới"
+
 msgid "Please enter a name for the new marker"
 msgstr "Vui lòng nhập tên cho điểm đánh dấu mới"
 
-msgid "Please enter a new filename"
+msgid "Please enter a new filename:"
 msgstr "Vui lòng nhập tên tệp mới"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Vui lòng nhập tên tệp (trống = sử dụng ngày hiện tại)"
-
-msgid "Please enter a name for the new directory:"
-msgstr "Vui lòng nhập tên của thư mục mới"
 
 msgid "Please enter name of the new symlink"
 msgstr "Vui lòng nhập tên của symlink mới"
@@ -12896,9 +12794,6 @@ msgstr "Vui lòng chọn một dịch vụ phụ ..."
 
 msgid "Please select a subservice..."
 msgstr "Vui lòng chọn một dịch vụ phụ ..."
-
-msgid "Please select an acceptable directory."
-msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "Vui lòng chọn tỷ lệ khung hình ..."
@@ -13239,9 +13134,6 @@ msgstr "Trạng thái LED nguồn trong chế độ chờ."
 msgid "Power On Display"
 msgstr "Năng lượng hiển thị"
 
-msgid "Power long"
-msgstr "Sức mạnh lâu"
-
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Quản lý năng lượng. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm thông tin."
 
@@ -13257,9 +13149,6 @@ msgstr "Thời gian quyền lực"
 msgid "PowerTimer Actions"
 msgstr ""
 
-msgid "PowerTimer DeepStandby"
-msgstr "Thời gian chờ quyền lực"
-
 msgid "PowerTimer Overview"
 msgstr "Tổng quan về PowerTimer"
 
@@ -13268,6 +13157,9 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr "Chế độ chờ PowerTimer"
+
+msgid "PowerTimer deep standby"
+msgstr "Thời gian chờ quyền lực"
 
 msgid "PowerTimer log"
 msgstr "Nhật ký PowerManager"
@@ -13308,7 +13200,7 @@ msgstr "Bộ chỉnh ưu tiên cho bản ghi"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Bộ điều chỉnh ưa thích cho bản ghi, cho phép nhiều lựa chọn"
 
-msgid "Preparation time for recording (seconds)"
+msgid "Preparation time for recording"
 msgstr "Thời gian chuẩn bị để ghi âm (giây)"
 
 msgid "Preparing... Please wait"
@@ -13433,16 +13325,20 @@ msgstr "Tới gói kênh trước"
 msgid "Previous page"
 msgstr "Trước"
 
+#, fuzzy
+msgid "Previous/Next bouquet"
+msgstr "trang trước / trang tiếp theo"
+
+msgid "Previous/Next page"
+msgstr "trang trước / trang tiếp theo"
+
 msgid "Prevsong"
 msgstr "Trước"
-
-msgid "Prevsong long"
-msgstr "Lâu dài"
 
 msgid "Primary DNS"
 msgstr "DNS chính"
 
-msgid "Primetime"
+msgid "Prime time"
 msgstr "Thời nguyên thủy"
 
 msgid "Primetime hour"
@@ -13509,9 +13405,6 @@ msgid ""
 msgstr ""
 "Chương trình '% s' chưa được cài đặt.\n"
 "Gói chứa chương trình này không được biết đến."
-
-msgid "Program long"
-msgstr "Chương trình dài"
 
 msgid "Programmlisten History"
 msgstr "Lịch sử chương trình"
@@ -13604,9 +13497,6 @@ msgstr "Giao thức"
 
 msgid "Prov"
 msgstr "Chứng minh"
-
-msgid "Prov long"
-msgstr "Cung cấp dài"
 
 msgid "Provider"
 msgstr "Nhà cung cấp"
@@ -13724,9 +13614,6 @@ msgstr ""
 msgid "RADIO"
 msgstr "RADIO"
 
-msgid "RADIO long"
-msgstr "Đài phát thanh dài"
-
 msgid "RAM (Details)"
 msgstr ""
 
@@ -13831,6 +13718,15 @@ msgstr "Sẵn sàng để loại bỏ% s?"
 msgid "Real Life"
 msgstr ""
 
+msgid "Real or pseudo recordings"
+msgstr "ghi âm thật hay giả"
+
+msgid "Real recordings"
+msgstr "ghi âm thực"
+
+msgid "Real recordings or streaming"
+msgstr "ghi âm thực hoặc phát trực tuyến"
+
 msgid "Really WOL now?"
 msgstr "Thực sự WOL bây giờ?"
 
@@ -13883,9 +13779,6 @@ msgstr "Tái tạo gói kênh LCN bây giờ?"
 
 msgid "Rec"
 msgstr "Ghi"
-
-msgid "Rec long"
-msgstr "Rec dài"
 
 msgid "Receiver"
 msgstr ""
@@ -14024,9 +13917,6 @@ msgstr ""
 msgid "Recordings"
 msgstr "Ghi chép"
 
-msgid "Recordings & Timeshift"
-msgstr "Ghi âm & Timeshift"
-
 msgid "Recordings abort PiP"
 msgstr "Bản ghi hủy bỏ PIP"
 
@@ -14038,6 +13928,9 @@ msgstr "Bản ghi hủy bỏ phát trực tuyến"
 
 msgid "Recordings always have priority"
 msgstr "Ghi chép luôGhi chép luôn được ưu tiênn được ưu tiên"
+
+msgid "Recordings may not work correctly without an acceptable directory."
+msgstr ""
 
 msgid "Records"
 msgstr "Hồ sơ"
@@ -14245,7 +14138,7 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
-msgid "Remove completed timers after (days)"
+msgid "Remove completed timers after"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
 
 msgid "Remove current folder from bookmarks"
@@ -14253,6 +14146,9 @@ msgstr "Xóa thư mục hiện tại khỏi bookmark"
 
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
+
+msgid "Remove directory"
+msgstr "xóa thư mục"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
@@ -14277,10 +14173,6 @@ msgstr "Loại bỏ"
 
 msgid "Removing Service"
 msgstr "Xóa dịch vụ"
-
-#, python-format
-msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
-msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
 
 msgid "Removing partition table"
 msgstr "Xóa bảng phân vùng"
@@ -14568,11 +14460,11 @@ msgstr "Viết lại phụ đề"
 msgid "Right"
 msgstr "Đúng"
 
-msgid "Right from servicename"
+msgid "Right from service name"
 msgstr "Ngay từ tên dịch vụ"
 
-msgid "Right long"
-msgstr "Phải dài"
+msgid "Right, wrapped"
+msgstr "phải, bọc"
 
 msgid "Roll-off"
 msgstr "Lăn khỏi"
@@ -14680,9 +14572,6 @@ msgstr "Thiết lập SABnzbd"
 
 msgid "SAT"
 msgstr "SAT"
-
-msgid "SAT long"
-msgstr "SAT dài"
 
 msgid "SATA"
 msgstr "SATA"
@@ -14930,11 +14819,11 @@ msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
 msgid "Saving EPG Cache..."
 msgstr "Lưu bộ nhớ cache EPG ..."
 
-msgid "Saving Timeshift files"
-msgstr "Lưu tập tin Timeshift"
-
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Tiết kiệm timeshift như phim bây giờ. Có lẽ sẽ mất một lúc!"
+
+msgid "Saving time shift files"
+msgstr "Lưu tập tin Timeshift"
 
 msgid "Scaler sharpness"
 msgstr "Độ sắc nét"
@@ -15075,9 +14964,6 @@ msgstr "Tìm kiếm về phía tây"
 msgid "Search/WEB"
 msgstr "Tìm kiếm / WEB"
 
-msgid "Search/WEB long"
-msgstr "Tìm kiếm / WEB dài"
-
 msgid "Searching"
 msgstr "Đang tìm kiếm"
 
@@ -15098,6 +14984,9 @@ msgstr "Cáp thứ hai của LNB cơ giới"
 
 msgid "Secondary DNS"
 msgstr "DNS phụ"
+
+msgid "Seconds"
+msgstr "giây"
 
 msgid "Security"
 msgstr "bảo vệ"
@@ -15331,11 +15220,20 @@ msgstr "Chọn Lan / Wlan"
 msgid "Select Location"
 msgstr "Chọn địa điểm"
 
+msgid "Select Movie Location"
+msgstr ""
+
+msgid "Select Playback Location"
+msgstr ""
+
 msgid "Select Quad Channels"
 msgstr "Chọn kênh Quad"
 
 msgid "Select Software Update"
 msgstr "Chọn Cập nhật phần mềm"
+
+msgid "Select Time Shift Location"
+msgstr ""
 
 msgid "Select Upgrade Source"
 msgstr "Chọn nguồn nâng cấp"
@@ -15736,10 +15634,10 @@ msgstr "Chọn chế độ video"
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Khi đến cuối tệp trong khi phát lại, bạn có thể chọn hành vi của hộp."
 
-msgid "Select what do do after the timer has completed."
+msgid "Select what do do after the timer recording has completed."
 msgstr ""
 
-msgid "Select what do do after the timer recording has completed."
+msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
@@ -16058,7 +15956,7 @@ msgstr "Dịch vụ"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Dịch vụ có thể được nhóm trong bó hoa. Khi được bật, bạn có thể sử dụng nhiều hơn một gói kênh."
 
-msgid "Set Basetime"
+msgid "Set Base time"
 msgstr "Đặt thời gian"
 
 msgid "Set CI assignment for detection of available services."
@@ -16119,16 +16017,16 @@ msgstr "Đặt địa chỉ MAC của % s% s của bạn."
 msgid "Set the aspect ratio of the service picons."
 msgstr "Đặt tỷ lệ khung hình của các picons dịch vụ."
 
-msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
-
-msgid "Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
-msgid "Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location."
+msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
+
+msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid "Set the default sorting method."
@@ -16549,7 +16447,7 @@ msgstr "Hiển thị EPG"
 msgid "Show EPG for current channel..."
 msgstr "Hiển thị EPG cho kênh hiện tại ..."
 
-msgid "Show Eventview"
+msgid "Show EventView"
 msgstr "Hiển thị sự kiện"
 
 #, fuzzy
@@ -16983,7 +16881,7 @@ msgstr ""
 msgid "Show setup menu..."
 msgstr ""
 
-msgid "Show shutdown menu"
+msgid "Show shut down menu"
 msgstr "Hiển thị menu tắt"
 
 msgid "Show single EPG for current channel"
@@ -16998,7 +16896,7 @@ msgstr "Hiển thị EPG dịch vụ duy nhất"
 msgid "Show source packages"
 msgstr "Hiển thị các gói nguồn"
 
-msgid "Show status messages when switch to live TV"
+msgid "Show status messages on switch to live TV"
 msgstr "Hiển thị thông báo trạng thái khi chuyển sang truyền hình trực tiếp"
 
 msgid "Show subservice selection"
@@ -17308,11 +17206,8 @@ msgstr "Hẹn giờ ngủ"
 msgid "Sleep Timers"
 msgstr ""
 
-msgid "Sleep delay (in minutes)"
+msgid "Sleep delay"
 msgstr ""
-
-msgid "Sleep long"
-msgstr "Ngủ lâu"
 
 msgid "Sleep timer"
 msgstr ""
@@ -17662,7 +17557,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Phía nam Sudan"
 
-msgid "Space to reserve for recordings (in GB)"
+msgid "Space to reserve for recordings (GB)"
 msgstr "Dung lượng đĩa để dự trữ cho bản ghi (tính bằng GB)"
 
 #, python-format
@@ -17731,7 +17626,7 @@ msgstr "Tắt ở chế độ chờ"
 msgid "Standby / Restart"
 msgstr "Chờ / Khởi động lại"
 
-msgid "Standby without TV shutdown"
+msgid "Standby without TV shut down"
 msgstr "Chờ mà không tắt TV"
 
 msgid "Start"
@@ -18053,9 +17948,6 @@ msgstr "Lựa chọn ngôn ngữ phụ đề 3"
 msgid "Subtitle language selection 4"
 msgstr "Lựa chọn ngôn ngữ phụ đề 4"
 
-msgid "Subtitle long"
-msgstr "Phụ đề dài"
-
 msgid "Subtitle position"
 msgstr "Vị trí phụ đề"
 
@@ -18192,6 +18084,9 @@ msgstr "Chuyển sang chế độ TV"
 
 msgid "Switch to TV mode"
 msgstr "Chuyển sang chế độ TV"
+
+msgid "Switch to bookmarks"
+msgstr "chuyển sang đánh dấu"
 
 msgid "Switch to file list"
 msgstr "Chuyển sang filelist"
@@ -18449,10 +18344,6 @@ msgstr "Khả năng hiển thị cơ sở Teletext"
 msgid "Teletext font and resolution"
 msgstr "Phông chữ và độ phân giải"
 
-#, fuzzy
-msgid "Teletext long"
-msgstr "Điện thoại"
-
 msgid "Teletext subtitle color"
 msgstr "Màu phụ đề Teletext"
 
@@ -18573,13 +18464,6 @@ msgid ""
 msgstr ""
 "Plugin EPGSearch chưa được cài đặt!\n"
 "Vui lòng cài đặt nó."
-
-msgid ""
-"The Filesystem on your Timeshift-Device does not support hardlinks.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
-"Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -18717,6 +18601,13 @@ msgid ""
 "Press OK to continue using the %s %s."
 msgstr ""
 
+msgid ""
+"The file system on your time shift device does not support hard links.\n"
+"Make sure it is formatted in EXT2, EXT3 or EXT4!"
+msgstr ""
+"Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
+"Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
+
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
 
@@ -18745,10 +18636,6 @@ msgid ""
 msgstr ""
 "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
 "Vui lòng cài đặt nó."
-
-#, python-format
-msgid "Error: The path '%s' already exists!"
-msgstr "Đường dẫn%s đã tồn tại."
 
 msgid "The pin code you entered is wrong."
 msgstr "Mã pin bạn nhập là sai."
@@ -18791,11 +18678,9 @@ msgstr "Không thể kiểm tra trạng thái của bản cập nhật hiện t�
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Thời gian được nhân với bộ đếm lặp lại hiện tại."
 
-msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Tệp hẹn giờ (pm_timers.xml) bị hỏng và không thể tải được."
-
-msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Tệp hẹn giờ (timers.xml) bị hỏng và không thể tải được."
+#, python-format
+msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19300,6 +19185,9 @@ msgstr "Cài đặt thời gian"
 msgid "Time Setup Actions"
 msgstr ""
 
+msgid "Time Shift Settings"
+msgstr "Cài đặt thời gian"
+
 msgid "Time Update in Minutes:"
 msgstr "Cập nhật thời gian trong vài phút:"
 
@@ -19337,12 +19225,54 @@ msgstr "Khoảng thời gian lặp lại bước nhảy để tiến / lùi nhan
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Time jump: Use normal fast forward for speeds"
 
-msgid "Time long"
-msgstr "Thời gian dài"
-
 #, python-format
 msgid "Time required for this process: %s"
 msgstr "Thời gian cần thiết cho quá trình này:% s"
+
+msgid "Time shift buffer delete after zap"
+msgstr "Timeshift đệm xóa sau zap?"
+
+msgid "Time shift buffer limit"
+msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
+
+msgid "Time shift buffer location"
+msgstr "Địa điểm hẹn giờ"
+
+msgid "Time shift checking for free space"
+msgstr "Timeshift kiểm tra không gian miễn phí?"
+
+msgid "Time shift checking for older files"
+msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
+
+msgid "Time shift event based file splitting"
+msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
+
+msgid "Time shift event limit"
+msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
+
+msgid "Time shift may not work correctly without an acceptable directory."
+msgstr ""
+
+msgid "Time shift not possible!"
+msgstr "Timeshift không thể!"
+
+msgid "Time shift save action on zap"
+msgstr "Timeshift-lưu hành động trên zap"
+
+msgid "Time shift save failed!"
+msgstr "Lưu thời gian không thành công!"
+
+msgid "Time shift save recording (Select event)"
+msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
+
+msgid "Time shift save recording (stop after current event)"
+msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
+
+msgid "Time shift saved to your hard disk drive!"
+msgstr "Timeshift lưu vào đĩa cứng của bạn!"
+
+msgid "Time shift will get saved at end of event!"
+msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
 
 msgid "Time style"
 msgstr "Phong cách thời gian"
@@ -19398,19 +19328,15 @@ msgstr "Nhập giờ"
 msgid "Timer log"
 msgstr "Nhật ký hẹn giờ"
 
+#, python-format
 msgid ""
-"Timer overlap in pm_timers.xml detected!\n"
+"Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
-"Đã phát hiện trùng lặp bộ đếm thời gian trong pm_timers.xml!\n"
-"Vui lòng kiểm tra lại!"
 
-msgid ""
-"Timer overlap in timers.xml detected!\n"
-"Please recheck it!"
+#, python-format
+msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr ""
-"Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
-"Vui lòng kiểm tra lại!"
 
 msgid "Timer recording location"
 msgstr "Vị trí ghi thời gian"
@@ -19437,51 +19363,6 @@ msgstr "Bộ hẹn giờ"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Timeshift Settings"
-msgstr "Cài đặt thời gian"
-
-msgid "Timeshift buffer delete after zap"
-msgstr "Timeshift đệm xóa sau zap?"
-
-msgid "Timeshift buffer limit [in hours]"
-msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
-
-msgid "Timeshift checking for free space"
-msgstr "Timeshift kiểm tra không gian miễn phí?"
-
-msgid "Timeshift checking for older files [in minutes]"
-msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
-
-msgid "Timeshift event based file splitting"
-msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
-
-msgid "Timeshift last events limit [number of events]"
-msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
-
-msgid "Timeshift location"
-msgstr "Địa điểm hẹn giờ"
-
-msgid "Timeshift not possible!"
-msgstr "Timeshift không thể!"
-
-msgid "Timeshift save failed!"
-msgstr "Lưu thời gian không thành công!"
-
-msgid "Timeshift save recording (Select event)"
-msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
-
-msgid "Timeshift save recording (stop after current event)"
-msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
-
-msgid "Timeshift saved to your harddisk!"
-msgstr "Timeshift lưu vào đĩa cứng của bạn!"
-
-msgid "Timeshift will get saved at end of event!"
-msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
-
-msgid "Timeshift-save action on zap"
-msgstr "Timeshift-lưu hành động trên zap"
 
 msgid "Timezone"
 msgstr ""
@@ -19584,6 +19465,9 @@ msgstr "Chế độ tone"
 
 msgid "Tonga"
 msgstr "Lưỡi"
+
+msgid "Top"
+msgstr "hàng đầu"
 
 msgid "Top and Bottom"
 msgstr "Trên và dưới"
@@ -20046,6 +19930,15 @@ msgstr "Giải nén đến % s"
 msgid "Unpack to current folder"
 msgstr "Giải nén vào thư mục hiện tại"
 
+msgid "Unscramble and record ECM"
+msgstr "giải mã và ghi lại ecm"
+
+msgid "Unscramble http streams"
+msgstr "Luồng http của Descramble"
+
+msgid "Unscramble receiving http streams"
+msgstr "Độ cao tính toán bằng mili"
+
 msgid "Unsupported"
 msgstr "Không được hỗ trợ"
 
@@ -20185,6 +20078,10 @@ msgstr "USB trên"
 
 msgid "Upper case"
 msgstr "Hồ sơ ở trên"
+
+#, fuzzy
+msgid "Upper line"
+msgstr "Một dòng"
 
 msgid "Uptime"
 msgstr "Thời gian hoạt động"
@@ -20474,9 +20371,6 @@ msgstr ""
 
 msgid "VOD"
 msgstr "VOD"
-
-msgid "VOD long"
-msgstr "VODdài"
 
 msgid "VPN"
 msgstr "VPN"
@@ -21141,7 +21035,7 @@ msgstr "Khi được bật, một bản ghi được phép làm gián đoạn tr
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Khi được bật, một cảnh báo sẽ được hiển thị và người dùng sẽ có tùy chọn dừng hoặc tiếp tục chuyển đổi thời gian."
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Khi được bật, luôn luôn giải mã các luồng http. Điều này chiếm nhiều tài nguyên hơn (giải mã giải mã), chỉ kích hoạt nếu cần thiết. Các luồng riêng lẻ luôn được giải mã nếu 0x100 được thêm vào loại dịch vụ, bất kể cài đặt này. Tắt mặc định."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -21240,10 +21134,10 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Khi được bật, bộ thu của bạn sẽ phát hiện hoạt động trên đầu vào VCR SCART."
 
-msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
+msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Khi khác, một bản ghi sẽ bắt đầu sớm hơn thời gian bắt đầu được chỉ định bởi EPG."
 
-msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
+msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Khi khác 0, bản ghi sẽ dừng muộn hơn thời gian kết thúc được chỉ định bởi EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -21278,6 +21172,9 @@ msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Lưu bản ghi timeshift tạm thời ở đâu?"
+
+msgid "What do you want to set as the default movie location?"
+msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Sự kiện nào bạn muốn lưu vĩnh viễn?"
@@ -21316,13 +21213,22 @@ msgstr "Thiết lập kết nối mạng không dây."
 msgid "Wireless network state"
 msgstr "Trạng thái mạng không dây"
 
+msgid "With EXIT button"
+msgstr "với nút thoát"
+
+msgid "With LEFT/RIGHT buttons"
+msgstr "với các nút trái / phải"
+
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Với chế độ RAW T2MI bị tắt (mặc định), chúng ta có thể sử dụng khử đóng gói PLMI T2MI duy nhất. Với chế độ RAW T2MI được bật, chúng tôi có thể sử dụng astra-sm để phân tích T2MI"
 
 msgid "With errors:"
 msgstr "Có lỗi:"
 
-msgid "With popup"
+msgid "With long OK press"
+msgstr "nhấn OK lâu"
+
+msgid "With pop up"
 msgstr "Với cửa sổ bật lên"
 
 msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
@@ -21343,7 +21249,7 @@ msgstr "Với tùy chọn này, bạn có thể chuyển đổi màu đèn LED h
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Với cài đặt này, bạn có thể cải thiện chất lượng tín hiệu hoặc loại bỏ các sự cố có thể xảy ra với cáp HDMI dài hơn."
 
-msgid "Without popup"
+msgid "Without pop up"
 msgstr "Không có cửa sổ bật lên"
 
 msgid "Without query"
@@ -21380,9 +21286,6 @@ msgstr "Viết thất bại!"
 
 msgid "Www"
 msgstr "Www"
-
-msgid "Www long"
-msgstr "Wwwdài"
 
 msgid "XBox 360 support"
 msgstr "Hỗ trợ XBox 360"
@@ -21620,9 +21523,6 @@ msgid "You should flash a new image!"
 msgstr ""
 
 msgid "YouTube"
-msgstr ""
-
-msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an Internet connection"
@@ -21870,9 +21770,6 @@ msgstr "ZAP"
 msgid "ZOOM"
 msgstr "THU PHÓNG"
 
-msgid "ZOOM long"
-msgstr "ZOOM dài"
-
 #, fuzzy
 msgid "ZPicon"
 msgstr "Picon"
@@ -21984,11 +21881,11 @@ msgstr "[chỉnh sửa yêu thích]"
 msgid "[Image Info]\n"
 msgstr "[Thông tin hình ảnh]\n"
 
-msgid "[TimeShift] Restarting Timeshift!"
-msgstr "[TimeShift] Khởi động lại Timeshift!"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Hồ sơ hợp nhất thất bại!"
+
+msgid "[Timeshift] Restarting time shift!"
+msgstr "[TimeShift] Khởi động lại Timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[chỉnh sửa thay thế]"
@@ -22078,14 +21975,8 @@ msgstr "bảng chữ cái"
 msgid "alphabetic reverse"
 msgstr "bảng chữ cái ngược"
 
-msgid "alphabetical"
-msgstr "bảng chữ cái"
-
 msgid "alpharev then newest"
 msgstr "alpharev sau đó mới nhất"
-
-msgid "alternative"
-msgstr "thay thế"
 
 msgid "am"
 msgstr "am"
@@ -22095,9 +21986,6 @@ msgstr ""
 
 msgid "and never ask again this session again"
 msgstr "và không bao giờ hỏi lại phiên này một lần nữa"
-
-msgid "any recordings"
-msgstr "bất kỳ bản ghi âm"
 
 msgid ""
 "are you sure you want to restore\n"
@@ -22115,18 +22003,6 @@ msgstr "nghệ thuật / văn hóa (không có âm nhạc, nói chung)"
 
 msgid "arts/culture magazine"
 msgstr "tạp chí văn hóa nghệ thuật"
-
-msgid "as plugin in extended bar"
-msgstr "như plugin trong thanh mở rộng"
-
-msgid "ask user"
-msgstr "hỏi người dùng"
-
-msgid "at beginning"
-msgstr "khi bắt đầu"
-
-msgid "at end"
-msgstr "cuối cùng"
 
 msgid "athletics"
 msgstr "điền kinh"
@@ -22179,9 +22055,6 @@ msgstr "danh sách đen"
 msgid "blue"
 msgstr "màu xanh da trời"
 
-msgid "bottom"
-msgstr "dưới cùng"
-
 msgid "broadcasting/press"
 msgstr "phát thanh / báo chí"
 
@@ -22209,15 +22082,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "phim hoạt hình / con rối"
-
-msgid "center"
-msgstr "trung tâm"
-
-msgid "centered"
-msgstr "trung tâm"
-
-msgid "centered, wrapped"
-msgstr "trung tâm, bao bọc"
 
 msgid "change Volume down"
 msgstr "thay đổi Giảm âm lượng"
@@ -22404,9 +22268,6 @@ msgstr "kết thúc cắt ở đây"
 msgid "end favorites edit"
 msgstr "kết thúc yêu thích chỉnh sửa"
 
-msgid "end zapping"
-msgstr "kết thúc hạ gục"
-
 msgid "enigma2 and network"
 msgstr "enigma2 và mạng"
 
@@ -22546,9 +22407,6 @@ msgstr "lấy máy chủ của thẻ"
 msgid "goto current channel and now"
 msgstr "đến kênh hiện tại và bây giờ"
 
-msgid "goto deep-standby"
-msgstr "đến chế độ - chờ"
-
 msgid "goto first channel"
 msgstr "đến kênh đầu tiên"
 
@@ -22557,9 +22415,6 @@ msgstr "đến kênh cuối cùng"
 
 msgid "goto now"
 msgstr "đến bây giờ"
-
-msgid "goto standby"
-msgstr "đi đến chế độ chờ"
 
 msgid "grab this frame as bitmap"
 msgstr "lấy khung này làm bitmap"
@@ -22685,15 +22540,6 @@ msgstr "nhảy tới tiêu đề tiếp theo"
 msgid "jump to chapter by number"
 msgstr "nhảy đến chương theo số"
 
-msgid "just abort, no message"
-msgstr "chỉ cần hủy bỏ, không có tin nhắn"
-
-msgid "just abort, show message"
-msgstr "chỉ cần hủy bỏ, hiển thị tin nhắn"
-
-msgid "just boot"
-msgstr "chỉ khởi động"
-
 msgid "languages"
 msgstr "ngôn ngữ"
 
@@ -22703,9 +22549,6 @@ msgstr "rời khỏi máy nghe nhạc ..."
 
 msgid "left"
 msgstr "trái"
-
-msgid "left, wrapped"
-msgstr "trái, bọc"
 
 msgid "leisure hobbies (general)"
 msgstr "sở thích giải trí (chung)"
@@ -22743,20 +22586,8 @@ msgstr "võ thuật"
 msgid "medicine/physiology/psychology"
 msgstr "y học / sinh lý / tâm lý"
 
-msgid "menu"
-msgstr "menu chính"
-
-msgid "middle"
-msgstr "ở giữa"
-
 #, fuzzy
 msgid "min"
-msgstr "phút"
-
-msgid "minute"
-msgstr "phút"
-
-msgid "minutes"
 msgstr "phút"
 
 msgid "month"
@@ -22817,12 +22648,6 @@ msgstr "n/a"
 
 msgid "nature/animals/environment"
 msgstr "thiên nhiên / động vật / môi trường"
-
-msgid "never"
-msgstr "không bao giờ"
-
-msgid "never abort"
-msgstr "không bao giờ"
 
 msgid "new media"
 msgstr "phương tiện truyền thông mới"
@@ -22969,13 +22794,6 @@ msgstr "chương trình trẻ em"
 msgid "previous channel page"
 msgstr "trang kênh trước"
 
-#, fuzzy
-msgid "previous/next Bouquet"
-msgstr "trang trước / trang tiếp theo"
-
-msgid "previous/next Page"
-msgstr "trang trước / trang tiếp theo"
-
 msgid "provid:"
 msgstr "cung cấp:"
 
@@ -22987,19 +22805,6 @@ msgstr "thanh lọc người dùng đã xóa"
 
 msgid "python"
 msgstr "python"
-
-msgid "real or pseudo recordings"
-msgstr "ghi âm thật hay giả"
-
-msgid "real recordings"
-msgstr "ghi âm thực"
-
-msgid "real recordings or streaming"
-msgstr "ghi âm thực hoặc phát trực tuyến"
-
-#, python-format
-msgid "record time changed, start prepare is now: %s"
-msgstr "thời gian thay đổi kỷ lục, bắt đầu chuẩn bị ngay bây giờ:% s"
 
 msgid "red"
 msgstr "màu đỏ"
@@ -23033,9 +22838,6 @@ msgstr "loại bỏ bó hoa khỏi sự bảo vệ của cha mẹ"
 
 msgid "remove cable services"
 msgstr "loại bỏ dịch vụ cáp"
-
-msgid "Remove directory"
-msgstr "xóa thư mục"
 
 msgid "remove entry"
 msgstr "xoá mục nhập"
@@ -23079,9 +22881,6 @@ msgstr "rgb"
 msgid "right"
 msgstr "phải"
 
-msgid "right, wrapped"
-msgstr "phải, bọc"
-
 msgid "rock/pop"
 msgstr "nhạc rock / pop"
 
@@ -23116,12 +22915,6 @@ msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "tìm kiếm EPG ..."
-
-msgid "seconds"
-msgstr "giây"
-
-msgid "select"
-msgstr "lựa chọn"
 
 msgid "select CAId's"
 msgstr "chọn CAId"
@@ -23266,17 +23059,11 @@ msgstr "tiêu chuẩn"
 msgid "start cut here"
 msgstr "bắt đầu cắt ở đây"
 
-msgid "start recording"
-msgstr "bắt đầu ghi âm"
-
 msgid "step size"
 msgstr "kích cỡ"
 
 msgid "stereo"
 msgstr "âm thanh nổi"
-
-msgid "stop recording"
-msgstr "dừng ghi âm"
 
 msgid "stop using as startup service"
 msgstr "ngừng sử dụng làm dịch vụ khởi động"
@@ -23289,9 +23076,6 @@ msgstr "chuyển chế độ hiển thị 12 đến 8 ký tự"
 
 msgid "switch Nand and SDcard"
 msgstr "chuyển Nand và SDcard"
-
-msgid "Switch to bookmarks"
-msgstr "chuyển sang đánh dấu"
 
 msgid "switch to the next angle"
 msgstr "chuyển sang góc tiếp theo"
@@ -23338,9 +23122,6 @@ msgstr "chỉ đạo"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "chuyển thời gian, chương, âm thanh, thông tin phụ đề"
-
-msgid "top"
-msgstr "hàng đầu"
 
 msgid "tourism/travel"
 msgstr "du lịch / du lịch"
@@ -23420,10 +23201,6 @@ msgstr "cập nhật"
 msgid "updates available."
 msgstr "cập nhật có sẵn."
 
-#, fuzzy
-msgid "upper line"
-msgstr "Một dòng"
-
 msgid "use best / controlled by HDMI"
 msgstr "sử dụng tốt nhất / được kiểm soát bởi HDMI"
 
@@ -23432,9 +23209,6 @@ msgstr "sử dụng điện áp tăng '14 / 18V 'nếu có vấn đề khi chuy�
 
 msgid "use_hdmi_cacenter"
 msgstr "sử dụng_hdmi_cacenter"
-
-msgid "user defined"
-msgstr "đã xác định người dùng"
 
 msgid "userdefined"
 msgstr "đã xác định người dùng"
@@ -23475,9 +23249,6 @@ msgstr ""
 "\n"
 "Một bản sao đã được gửi cho chính bạn."
 
-msgid "white"
-msgstr "trắng"
-
 msgid "wide"
 msgstr "rộng"
 
@@ -23501,15 +23272,6 @@ msgstr[0] "với lỗi %d"
 msgid "with errors"
 msgstr "có lỗi"
 
-msgid "with exit button"
-msgstr "với nút thoát"
-
-msgid "with left/right buttons"
-msgstr "với các nút trái / phải"
-
-msgid "with long OK press"
-msgstr "nhấn OK lâu"
-
 msgid "with_errors"
 msgstr "có -lỗi"
 
@@ -23529,8 +23291,321 @@ msgstr "có (giữ thức ăn)"
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng dẫn để được hỗ trợ thêm trước khi khởi động lại% s% s của bạn."
 
-msgid "zapping"
-msgstr "hạ gục"
-
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect long"
+#~ msgstr "Tỷ lệ khung hình"
+
+#~ msgid "Audio long"
+#~ msgstr "Âm thanh dài"
+
+#~ msgid "Context long"
+#~ msgstr "Bối cảnh dài"
+
+#~ msgid "Directory long"
+#~ msgstr "Thư mục dài"
+
+#~ msgid "EJECTCD long"
+#~ msgstr "ĐỐI TƯỢNG dài"
+
+#~ msgid "End long"
+#~ msgstr "Kết thúc lâu"
+
+#~ msgid "Epg/Guide long"
+#~ msgstr "Epg / Hướng dẫn dài"
+
+#~ msgid "F1 long"
+#~ msgstr "F1 dài"
+
+#~ msgid "F2 long"
+#~ msgstr "F2 dài"
+
+#~ msgid "F3 long"
+#~ msgstr "F3 dài"
+
+#~ msgid "F4 long"
+#~ msgstr "F4 dài"
+
+#~ msgid "Favorites long"
+#~ msgstr "Yêu thích dài"
+
+#~ msgid "File long"
+#~ msgstr "Tập tin dài"
+
+#~ msgid "Flash on the fly your %s %s."
+#~ msgstr "Flash dang chạy trên hình ảnh% s% s của bạn."
+
+#~ msgid "Help long"
+#~ msgstr "Giúp lâu"
+
+#~ msgid "History long"
+#~ msgstr "Lịch sử lâu dài"
+
+#~ msgid "Home long"
+#~ msgstr "Nhà dài"
+
+#~ msgid "Homepage long"
+#~ msgstr "Trang chủ dài"
+
+#~ msgid "Info (EPG) Long"
+#~ msgstr "Thông tin (EPG) Dài"
+
+#, fuzzy
+#~ msgid "Keyboard long"
+#~ msgstr "Bàn phím"
+
+#~ msgid "LAN long"
+#~ msgstr "LAN dài"
+
+#~ msgid "Left long"
+#~ msgstr "Còn lại dài"
+
+#~ msgid "List/Fav long"
+#~ msgstr "Danh sách / Fav"
+
+#~ msgid "MOUSE long"
+#~ msgstr "Chuột dài"
+
+#, fuzzy
+#~ msgid "Magic long"
+#~ msgstr "Truyền thông"
+
+#~ msgid "Mark/Portal/Playlist long"
+#~ msgstr "Đánh dấu / Cổng thông tin / Danh sách phát dài"
+
+#~ msgid "Media long"
+#~ msgstr "Truyền thông"
+
+#~ msgid "Nextsong long"
+#~ msgstr "Nextsong dài"
+
+#~ msgid "OK long"
+#~ msgstr "Đồng ý"
+
+#~ msgid "Open long"
+#~ msgstr "Mở lâu"
+
+#~ msgid "Option long"
+#~ msgstr "Tùy chọn dài"
+
+#~ msgid "PC long"
+#~ msgstr "PC dài"
+
+#~ msgid "PIP long"
+#~ msgstr "PIP dài"
+
+#~ msgid "PVR long"
+#~ msgstr "PVR dài"
+
+#~ msgid "PageDown long"
+#~ msgstr "Trang dài"
+
+#~ msgid "PageUp long"
+#~ msgstr "Trang dài"
+
+#~ msgid "Playlist long"
+#~ msgstr "Danh sách phát dài"
+
+#~ msgid "Power long"
+#~ msgstr "Sức mạnh lâu"
+
+#~ msgid "Prevsong long"
+#~ msgstr "Lâu dài"
+
+#~ msgid "Program long"
+#~ msgstr "Chương trình dài"
+
+#~ msgid "Prov long"
+#~ msgstr "Cung cấp dài"
+
+#~ msgid "RADIO long"
+#~ msgstr "Đài phát thanh dài"
+
+#~ msgid "Rec long"
+#~ msgstr "Rec dài"
+
+#~ msgid "Right long"
+#~ msgstr "Phải dài"
+
+#~ msgid "SAT long"
+#~ msgstr "SAT dài"
+
+#~ msgid "Search/WEB long"
+#~ msgstr "Tìm kiếm / WEB dài"
+
+#~ msgid "Sleep long"
+#~ msgstr "Ngủ lâu"
+
+#~ msgid "Subtitle long"
+#~ msgstr "Phụ đề dài"
+
+#, fuzzy
+#~ msgid "Teletext long"
+#~ msgstr "Điện thoại"
+
+#~ msgid "Time long"
+#~ msgstr "Thời gian dài"
+
+#~ msgid "VOD long"
+#~ msgstr "VODdài"
+
+#~ msgid "Www long"
+#~ msgstr "Wwwdài"
+
+#~ msgid "ZOOM long"
+#~ msgstr "ZOOM dài"
+
+#~ msgid "0.2s"
+#~ msgstr "0.2s"
+
+#~ msgid "0.3s"
+#~ msgstr "0.3s"
+
+#~ msgid "0.4s"
+#~ msgstr "0.4s"
+
+#~ msgid "0.5s"
+#~ msgstr "0.5s"
+
+#~ msgid "0.6s"
+#~ msgstr "0.6s"
+
+#~ msgid "0.7s"
+#~ msgstr "0.7s"
+
+#~ msgid "0.8s"
+#~ msgstr "0.8s"
+
+#~ msgid "0.9s"
+#~ msgstr "0.9s"
+
+#~ msgid "1 GB"
+#~ msgstr "1 GB"
+
+#~ msgid "1.2s"
+#~ msgstr "1.2s"
+
+#~ msgid "1.5s"
+#~ msgstr "1.5s"
+
+#~ msgid "1.7s"
+#~ msgstr "1.7s"
+
+#~ msgid "10 MB/s"
+#~ msgstr "10 MB/s"
+
+#~ msgid "100 MB/s"
+#~ msgstr "100 MB/s"
+
+#~ msgid "1s"
+#~ msgstr "1s"
+
+#~ msgid "2 GB"
+#~ msgstr "2 GB"
+
+#~ msgid "2.5s"
+#~ msgstr "2.5s"
+
+#~ msgid "20 MB/s"
+#~ msgstr "20 MB/s"
+
+#~ msgid "24+ Hours"
+#~ msgstr "24+ Hours"
+
+#~ msgid "24- Hours"
+#~ msgstr "24 tiếng"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "3.5s"
+#~ msgstr "3.5s"
+
+#~ msgid "3s"
+#~ msgstr "3s"
+
+#~ msgid "4 GB"
+#~ msgstr "4 GB"
+
+#~ msgid "4s"
+#~ msgstr "4s"
+
+#~ msgid "50 MB/s"
+#~ msgstr "50 MB/s"
+
+#~ msgid "5s"
+#~ msgstr "5s"
+
+#~ msgid "8 GB"
+#~ msgstr "8 GB"
+
+#~ msgid "Auto Timer"
+#~ msgstr "Hẹn giờ tự động"
+
+#~ msgid "Hour"
+#~ msgstr "Giờ"
+
+#~ msgid "Once per day"
+#~ msgstr "Một lần một ngày"
+
+#~ msgid "alphabetical"
+#~ msgstr "bảng chữ cái"
+
+#~ msgid "alternative"
+#~ msgstr "thay thế"
+
+#~ msgid "user defined"
+#~ msgstr "đã xác định người dùng"
+
+#~ msgid "white"
+#~ msgstr "trắng"
+
+#, python-format
+#~ msgid "Mount '%s' has not enough free space to record."
+#~ msgstr "Mount '% s' không đủ không gian trống để ghi."
+
+#~ msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Tệp hẹn giờ (pm_timers.xml) bị hỏng và không thể tải được."
+
+#~ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+#~ msgstr "Tệp hẹn giờ (timers.xml) bị hỏng và không thể tải được."
+
+#~ msgid ""
+#~ "Timer overlap in pm_timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Đã phát hiện trùng lặp bộ đếm thời gian trong pm_timers.xml!\n"
+#~ "Vui lòng kiểm tra lại!"
+
+#~ msgid ""
+#~ "Timer overlap in timers.xml detected!\n"
+#~ "Please recheck it!"
+#~ msgstr ""
+#~ "Đã phát hiện sự trùng lặp về thời gian trong bộ đếm thời gian!\n"
+#~ "Vui lòng kiểm tra lại!"
+
+#~ msgid "ask user"
+#~ msgstr "hỏi người dùng"
+
+#~ msgid "end zapping"
+#~ msgstr "kết thúc hạ gục"
+
+#~ msgid "menu"
+#~ msgstr "menu chính"
+
+#, python-format
+#~ msgid "record time changed, start prepare is now: %s"
+#~ msgstr "thời gian thay đổi kỷ lục, bắt đầu chuẩn bị ngay bây giờ:% s"
+
+#~ msgid "select"
+#~ msgstr "lựa chọn"
+
+#~ msgid "start recording"
+#~ msgstr "bắt đầu ghi âm"
+
+#~ msgid "stop recording"
+#~ msgstr "dừng ghi âm"
+
+#~ msgid "zapping"
+#~ msgstr "hạ gục"

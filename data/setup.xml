@@ -419,7 +419,7 @@
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="0" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="0" text="Space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="0" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="0" text="Font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.movielist.fontsize</item>
@@ -481,6 +481,39 @@
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>
+	<setup key="Playback" title="Playback Settings">
+		<item level="0" text="Default movie selection location" description="Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.default_path</item>
+		<item level="2" text="Show movie lengths in movie list" description="When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
+		<item level="2" text="Show watch status" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
+		<item level="2" text="Allow quit movie player with exit" description="When enabled, it is possible to leave the movie player with exit.">config.usage.leave_movieplayer_onExit</item>
+		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
+		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
+		<item level="2" text="Action at end of media" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
+		<item level="2" text="Display message before playing next movie" description="When enabled, a pop up message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
+		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
+		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
+		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
+		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
+		<item level="2" text="Seekbar activation" description="Select seekbar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
+		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
+		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
+		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
+		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>
+		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed.">config.seek.enter_forward</item>
+		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind button, winding will start at this speed.">config.seek.enter_backward</item>
+		<item level="2" text="Use time jumps for fast forward/backward" description="This will go fast forward/backward with time frames of x secs">config.seek.withjumps</item>
+		<item level="2" text="Time jump: Use normal fast forward for speeds" description="Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps.">config.seek.withjumps_after_ff_speed</item>
+		<item level="2" text="Time jump multiplier for fast forward" description="Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files.">config.seek.withjumps_forwards_ms</item>
+		<item level="2" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
+		<item level="2" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
+		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
+		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
+		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
+	</setup>
 	<setup key="PluginBrowser" title="Plugin Browser Settings" level="2" showOpenWebif="1">
 		<item level="2" text="Show translation packages" description="Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen.">config.pluginbrowser.src</item>
@@ -510,7 +543,7 @@
 		<!--item level="0" text="Description" description="Enter a description for this timer.">self.timerDescription</item-->
 		<if conditional="self.timerType.value in ('autostandby', 'autodeepstandby')">
 			<item level="0" text="Execution condition" description="The setting 'Without query' is the same as 'Standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) persist." conditional="self.timerType.value == 'autodeepstandby'">self.timerActiveInStandby</item>
-			<item level="0" text="Sleep delay (in minutes)" description="Select the delay before the timer activates.">self.timerSleepDelay</item>
+			<item level="0" text="Sleep delay" description="Select the delay before the timer activates.">self.timerSleepDelay</item>
 			<item level="0" text="Repeat type" description="Select if this timer is to be repeated.">self.timerAutoSleepRepeat</item>
 			<item level="0" text="Restrict the active time range" description="Select if there is to be a time window within which this timer can be active.">self.timerSleepWindow</item>
 			<if conditional="self.timerSleepWindow.value">
@@ -560,9 +593,8 @@
 		</if>
 	</setup>
 	<setup key="Recording" title="Recording Settings" showOpenWebif="1">
-		<item level="0" text="Default movie location" description="Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.default_path</item>
-		<item level="2" text="Timer recording location" description="Set the default location for your timers. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.timer_path</item>
-		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.instantrec_path</item>
+		<item level="2" text="Timer recording location" description="Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.timer_path</item>
+		<item level="2" text="Instant recording location" description="Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.usage.instantrec_path</item>
 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner for recordings will be preferred, when more than one tuner is available.">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Preferred tuners for recordings, multiple selection allowed" description="In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available." conditional="config.usage.recording_frontend_priority.value in ('experimental_mode', 'expert_mode')">config.usage.recording_frontend_priority_multiselect</item>
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
@@ -570,47 +602,22 @@
 		<item level="1" text="Recordings abort PiP" description="When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners.">config.recording.ask_to_abort_pip</item>
 		<item level="1" text="Recordings abort pseudo recordings" description="When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners.">config.recording.ask_to_abort_pseudo_rec</item>
 		<item level="1" text="Recordings abort streaming" description="When enabled, a recording is allowed to abort streaming, when there are no free tuners.">config.recording.ask_to_abort_streaming</item>
-		<item level="0" text="Preparation time for recording (seconds)" description="During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased.">config.recording.prepare_time</item>
-		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
-		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
+		<item level="0" text="Preparation time for recording" description="During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased.">config.recording.prepare_time</item>
+		<item level="0" text="Margin before recording" description="When nonzero, a recording will start the nominated period before the starting time indicated in the EPG.">config.recording.margin_before</item>
+		<item level="0" text="Margin after recording" description="When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a pop up message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
-		<item level="2" text="Show movie lengths in movie list" description="When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
-		<item level="2" text="Show watch status" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
-		<item level="2" text="Allow quit movie player with exit" description="When enabled, it is possible to leave the movie player with exit.">config.usage.leave_movieplayer_onExit</item>
-		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
-		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
-		<item level="2" text="Action at end of media" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
-		<item level="2" text="Display message before playing next movie" description="When enabled, a pop up message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
-		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
-		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
-		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
-		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
-		<item level="2" text="Seekbar activation" description="Select seekbar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
-		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
-		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
-		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
-		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>
-		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed.">config.seek.enter_forward</item>
-		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind button, winding will start at this speed.">config.seek.enter_backward</item>
-		<item level="2" text="Use time jumps for fast forward/backward" description="This will go fast forward/backward with time frames of x secs">config.seek.withjumps</item>
-		<item level="2" text="Time jump: Use normal fast forward for speeds" description="Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps.">config.seek.withjumps_after_ff_speed</item>
-		<item level="2" text="Time jump multiplier for fast forward" description="Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files.">config.seek.withjumps_forwards_ms</item>
-		<item level="2" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
-		<item level="2" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
-		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info">config.recording.filename_composition</item>
-		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="2" text="Remove completed timers after" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
 		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="1" text="Space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Always include ECM in recordings" description="Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off.">config.recording.always_ecm</item>
 		<item level="2" text="Never decrypt while recording" description="Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off.">config.recording.never_decrypt</item>
 		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
-		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">config.recording.ecm_data</item>
+		<item level="2" text="Default recording type" description="'Unscramble &amp; record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM.">config.recording.ecm_data</item>
 		<item level="2" text="Default 'Timer type' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_timertype</item>
 		<item level="2" text="Default 'After event' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_afterevent</item>
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
@@ -641,20 +648,20 @@
 			</if>
 			<item level="0" text="Rename name and description for new events" description="Select if the timer name and description modification code is run on repeating timers." conditional="self.timerType.value != 'zap'">self.timerRename</item>
 		</if>
+		<item level="0" text="Margin before recording" description="When nonzero, a recording will start the nominated period before the starting time indicated in the EPG.">self.timerMarginBefore</item>
 		<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
-		<!--item level="0" text="Margin before recording" description="When nonzero, a recording will start this many minutes before the starting time indicated by the EPG.">self.timerMarginBefore</item-->
-		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerShowEndTime</item>
-		<if conditional="self.timerType.value != 'zap' or self.timerShowEndTime.value">
+		<item level="0" text="Set end time" description="Select if an end time is required." conditional="self.timerType.value == 'zap'">self.timerHasEndTime</item>
+		<if conditional="self.timerType.value != 'zap' or self.timerHasEndTime.value">
 			<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
-			<!--item level="0" text="Margin after recording" description="When nonzero, a recording will stop this many minutes after the ending time indicated by the EPG.">self.timerMarginAfter</item-->
+			<item level="0" text="Margin after recording" description="When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG.">self.timerMarginAfter</item>
 		</if>
 		<item level="0" text="Channel / Service" description="Select the channel or service to be used for this timer.">self.timerService</item>
 		<if conditional="self.timerType.value != 'zap'">
-			<item level="0" text="Recording type" description="'Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">self.timerRecordingType</item>
+			<item level="0" text="Recording type" description="'Unscramble &amp; record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM.">self.timerRecordingType</item>
 			<item level="2" text="Recording location" description="Select where the recording should be saved.">self.timerLocation</item>
 		</if>
 		<if conditional="self.timerType.value == 'zap'">
-			<item level="0" text="After event" description="Select what do do after the timer has completed.">self.timerAfterEvent</item>
+			<item level="0" text="After zap" description="Select what do do after the timer zap has completed." conditional="self.timerHasEndTime.value">self.timerAfterEvent</item>
 		<else />
 			<item level="0" text="Tags" description="Select the tags that should be used for this recording.">self.timerTags</item>
 			<item level="0" text="After recording" description="Select what do do after the timer recording has completed.">self.timerAfterEvent</item>
@@ -748,20 +755,20 @@
 		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
 		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
-	<setup key="Timeshift" title="Timeshift Settings" level="1" showOpenWebif="1">
-		<item level="2" text="Timeshift location" description="Set the default location for your time shift files. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.timeshift_path</item>
-		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startdelay</item>
-		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.usage.check_timeshift</item>
-		<item level="2" text="Show status messages when switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showlivetvmsg</item>
-		<item level="2" text="Timeshift-save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopwhilerecording</item>
-		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showinfobar</item>
-		<item level="2" text="Timeshift buffer limit [in hours]" description="Older files in the time shift directory are removed on every event change.">config.timeshift.timeshiftMaxHours</item>
-		<item level="2" text="Timeshift last events limit [number of events]" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.timeshiftMaxEvents</item>
-		<item level="2" text="Timeshift checking for older files [in minutes]" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.timeshiftCheckEvents</item>
-		<item level="2" text="Timeshift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files.">config.timeshift.timeshiftCheckFreeSpace</item>
-		<item level="2" text="Timeshift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting.">config.timeshift.deleteAfterZap</item>
-		<item level="2" text="Timeshift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file.">config.timeshift.filesplitting</item>
+	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
+		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
+		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
+		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.timeshift.check</item>
+		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showLiveTVMsg</item>
+		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
+		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopWhileRecording</item>
+		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showInfoBar</item>
+		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change.">config.timeshift.maxHours</item>
+		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.maxEvents</item>
+		<item level="2" text="Time shift checking for older files" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.checkEvents</item>
+		<item level="2" text="Time shift checking for free space" description="If the free space is less than setting value, then an attempt is made to delete the old time shift files.">config.timeshift.checkFreeSpace</item>
+		<item level="2" text="Time shift buffer delete after zap" description="Select 'No' to save older events even after zapping or interrupting time shifting.">config.timeshift.deleteAfterZap</item>
+		<item level="2" text="Time shift event based file splitting" description="Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file.">config.timeshift.fileSplitting</item>
 	</setup>
 	<setup key="Tuner" title="Tuner Settings" level="1">
 		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
@@ -796,8 +803,8 @@
 		<item level="2" text="Experimental: strict limitation to preferred tuners for recordings" description="Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel." conditional="config.usage.recording_frontend_priority.value == 'experimental_mode'">config.usage.recording_frontend_priority_strictly</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
-		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
-		<item level="2" text="Descramble receiving http streams" description="When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting.">config.streaming.descramble_client</item>
+		<item level="2" text="Unscramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
+		<item level="2" text="Unscramble receiving http streams" description="When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting.">config.streaming.descramble_client</item>
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 		<item level="2" text="Http(s) stream start delay" description="Define additional delay in milliseconds before start of http(s) streams.">config.usage.http_startdelay</item>
 		<item level="2" text="Load unlinked user bouquets" description="When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>

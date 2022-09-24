@@ -131,8 +131,12 @@
 
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_MENU" mapto="MENU" flags="b" />
+		<key id="KEY_MENU" mapto="menuLong" flags="l" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_SPACE" mapto="menu" flags="m" />
+		<key id="KEY_SPACE" mapto="MENU" flags="b" />
+		<key id="KEY_SPACE" mapto="menuLong" flags="l" />
 	</map>
 
 	<map context="NavigationActions">
@@ -318,6 +322,17 @@
 		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="m" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_SPACE" mapto="showMenu" flags="m" />
+	</map>
+
+	<map context="LocaleSelectionActions">
+		<key id="KEY_RED" mapto="cancel" flags="m" />
+		<key id="KEY_GREEN" mapto="save" flags="m" />
+		<key id="KEY_YELLOW" mapto="manage" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<key id="KEY_OK" mapto="select" flags="m" />
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_INFO" mapto="current" flags="m" />
 	</map>
 
 	<map context="MsgBoxActions">
@@ -1067,12 +1082,6 @@
 		<key id="KEY_EPG" mapto="openSingleServiceEPG" flags="m" />
 	</map>
 
-	<map context="MenuActions">
-		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_MENU" mapto="MENU" flags="b" />
-		<key id="KEY_MENU" mapto="menuLong" flags="l" />
-	</map>
-
 	<map context="DirectionActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
@@ -1393,16 +1402,5 @@
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
 		<key id="KEY_RED" mapto="subtitles" flags="m" />
-	</map>
-
-	<map context="LocaleSelectionActions">
-		<key id="KEY_RED" mapto="cancel" flags="m" />
-		<key id="KEY_GREEN" mapto="save" flags="m" />
-		<key id="KEY_YELLOW" mapto="manage" flags="m" />
-		<key id="KEY_EXIT" mapto="cancel" flags="b" />
-		<key id="KEY_EXIT" mapto="close" flags="l" />
-		<key id="KEY_OK" mapto="select" flags="m" />
-		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_INFO" mapto="current" flags="m" />
 	</map>
 </keymap>

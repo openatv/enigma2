@@ -1,11 +1,9 @@
-from os.path import isfile
+from os.path import join as pathjoin, isfile
 from time import time
-from boxbranding import getBoxType
-from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileWriteLine, resolveFilename
+
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
-
-model = getBoxType()
 
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100
@@ -16,6 +14,22 @@ totalTime = 1
 timeStamp = None
 profileFile = resolveFilename(SCOPE_CONFIG, "profile")
 profileFd = None
+# model = BoxInfo.get("machinebuild")  # For when we can use BoxInfo.
+model = None
+
+# Workaround to get the model name.  When SystemInfo can be loaded earlier in
+# the boot process we can use BoxInfo directly rather than using this code.
+#
+lines = []
+lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.info"), lines, source=MODULE_NAME)
+for line in lines:
+	if line.startswith("#") or line.strip() == "":
+		continue
+	if "=" in line:
+		item, value = [x.strip() for x in line.split("=", 1)]
+		if item == "machinebuild":
+			model = value
+			break
 
 profileOld = fileReadLines(profileFile, source=MODULE_NAME)
 if profileOld:
@@ -41,7 +55,7 @@ def profile(checkPoint):
 		if checkPoint in profileData:
 			timeStamp = profileData[checkPoint]
 			if totalTime:
-				percentage = timeStamp * (PERCENTAGE_END - PERCENTAGE_START) / totalTime + PERCENTAGE_START
+				percentage = timeStamp * (PERCENTAGE_END - PERCENTAGE_START) // totalTime + PERCENTAGE_START
 			else:
 				percentage = PERCENTAGE_START
 			if model in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"):

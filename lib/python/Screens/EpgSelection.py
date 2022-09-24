@@ -373,8 +373,8 @@ class EPGSelection(Screen, HelpableScreen):
 					"6": (self.keyNumberGlobal, _("next channel page")),
 					"7": (self.keyNumberGlobal, _("goto now")),
 					"8": (self.keyNumberGlobal, _("all events down")),
-					"9": (self.keyNumberGlobal, _("Goto Primetime")),
-					"5": (self.keyNumberGlobal, _("Set Basetime"))
+					"9": (self.keyNumberGlobal, _("Goto Prime time")),
+					"5": (self.keyNumberGlobal, _("Set Base time"))
 			}, prio=-1, description=_("EPG Other Actions"))
 
 		if self.type == EPG_TYPE_GRAPH:
@@ -2022,8 +2022,8 @@ class EPGSelection(Screen, HelpableScreen):
 			"prevpage": _("Previous page"),
 			"nextbouquet": _("Next bouquet"),
 			"prevbouquet": _("Previous bouquet"),
-			"gotoprimetime": _("Goto Primetime"),
-			"setbasetime": _("Set Basetime")
+			"gotoprimetime": _("Goto Prime time"),
+			"setbasetime": _("Set Base time")
 		}
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self["key_red"] = StaticText(buttonOptions.get(config.epgselection.graph_red.value, "imdb"))

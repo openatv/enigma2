@@ -1346,6 +1346,7 @@ RESULT eDVBServicePlay::start()
 	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
 	bool scrambled = true;
 	int packetsize = 188;
+	RESULT ret = 0;
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
 
 	if(tryFallbackTuner(/*REF*/service, /*REF*/m_is_stream, m_is_pvr, /*simulate*/false))
@@ -1397,7 +1398,7 @@ RESULT eDVBServicePlay::start()
 
 	m_first_program_info = 1;
 	ePtr<iTsSource> source = createTsSource(service, packetsize);
-	m_service_handler.tuneExt(service, source, service.path.c_str(), m_cue, false, m_dvb_service, type, scrambled);
+	ret = m_service_handler.tuneExt(service, source, service.path.c_str(), m_cue, false, m_dvb_service, type, scrambled);
 
 	if (m_is_pvr)
 	{
@@ -1414,7 +1415,7 @@ RESULT eDVBServicePlay::start()
 		}
 		m_event(this, evStart);
 	}
-	return 0;
+	return ret;
 }
 
 RESULT eDVBServicePlay::stop()
@@ -1759,7 +1760,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 		if (!m_timeshift_enabled)
 		{
 			/* query config path */
-			std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
+			std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
 			if(tspath == "")
 			{
 				eDebug("[eDVBServicePlay] time shift could not query ts path from config");
@@ -2539,7 +2540,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
+	std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
 	if (tspath == "")
 	{
 		eDebug("[eDVBServicePlay] could not query time shift path");
