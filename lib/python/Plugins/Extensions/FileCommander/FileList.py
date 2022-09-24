@@ -3,7 +3,7 @@ from re import match
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
+from Tools.Directories import fileExists, resolveFilename, SCOPE_GUISKIN
 
 from enigma import RT_HALIGN_LEFT, BT_SCALE, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
@@ -37,7 +37,7 @@ EXTENSIONS.update(LOCAL_EXTENSIONS)
 
 imagePath = resolveFilename(SCOPE_GUISKIN, 'FCimages')
 if not os.path.isdir(imagePath):
-	imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
+	imagePath = resolveFilename(SCOPE_GUISKIN, "extensions")
 
 
 def getPNGByExt(name):
