@@ -171,7 +171,7 @@ class OscamInfo:
 		else:
 			self.url = "%s://%s:%s/%s.html?part=%s" % (self.proto, self.ip, self.port, self.api, part)
 		if part is not None and reader is not None:
-			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % (self.proto, self.ip, self.port, self.api, part, reader)
+			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % (self.proto, self.ip, self.port, self.api, part, urllib.parse.quote_plus(reader))
 
 		opener = urllib.request.build_opener(HTTPHandler)
 		if not self.username == "":
