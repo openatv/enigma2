@@ -1,32 +1,32 @@
 #################################################################################################################
-#																												#
-#	Weatherinfo for openTV																						#
-#	Coded by Mr.Servo @ openATV and jbleyel @ openATV (c) 2022													#
-#	Purpose: get weather forecasts from MSN-Weather and/or OpenWeatherMap (OWM)									#
-#	Output : DICT (MSN & OWM), JSON-file (MSN & OWM), XML-string (MSN only), XML-file (MSN only)				#
-#	MSN : parsing MSN-homepage (without API-Key)																#
-#	OWM : accessing API-server (API-Key required)																#
+#                                                                                                               #
+#   Weatherinfo for openTV                                                                                      #
+#   Coded by Mr.Servo @ openATV and jbleyel @ openATV (c) 2022                                                  #
+#   Purpose: get weather forecasts from MSN-Weather and/or OpenWeatherMap (OWM)                                 #
+#   Output : DICT (MSN & OWM), JSON-file (MSN & OWM), XML-string (MSN only), XML-file (MSN only)                #
+#   MSN : parsing MSN-homepage (without API-Key)                                                                #
+#   OWM : accessing API-server (API-Key required)                                                               #
 #---------------------------------------------------------------------------------------------------------------#
-#	initialization and functions for MSN:																		#
-#	WI = WeatherInfo(mode="MSN")																				#
-#	{continue with 'geodata = WI.getCitylist(...)' > or set tuple geodata = ('Berlin', '0', '0')}				#
-#   msnxmlData = WI.getmsnxml() 		> get XML-string (similar to the old MSN-Weather API)					#
-#	msnxmlData = WI.writemsnxml()		> get XML-string & write as file (similar to the old MSN-Weater API)	#
+#   initialization and functions for MSN:                                                                       #
+#   WI = WeatherInfo(mode="MSN")                                                                                #
+#   {continue with 'geodata = WI.getCitylist(...)' > or set tuple geodata = ('Berlin', '0', '0')}               #
+#   msnxmlData = WI.getmsnxml() 		> get XML-string (similar to the old MSN-Weather API)                   #
+#   msnxmlData = WI.writemsnxml()		> get XML-string & write as file (similar to the old MSN-Weater API)    #
 #---------------------------------------------------------------------------------------------------------------#
-#	initialization for OWM:																						#
-#	WI = WeatherInfo(mode="OWM", apikey='my_apikey')															#
-#	{continue with 'geodata = WI.getCitylist(...)' only, no alternatives possible}								#
+#   initialization for OWM:                                                                                     #
+#   WI = WeatherInfo(mode="OWM", apikey='my_apikey')                                                            #
+#   {continue with 'geodata = WI.getCitylist(...)' only, no alternatives possible}                              #
 #---------------------------------------------------------------------------------------------------------------#
-#	common usage for MSN and OWM																				#
-#	geodata = WI.getCitylist(cityname='Berlin', scheme="it-it")		> get a list of search hits					#
-#   WI.start(geodata=geodata, units="metric", scheme="it-it", callback=MyCallbackFunction)						#
-#	DICT = WI.getinfo() 				> alternatively: DICT = WI.info											#
-#	WI.writejson(filename) 				> writes DICT as JSON-string in a file									#
-#	DICT = WI.getreducedinfo() 			> get reduced DICT for a simple forecast (e.g. Metrix-Weather)			#
-#	WI.writereducedjson(filename) 		> get reduced DICT & write reduced JSON-string as file					#
+#   common usage for MSN and OWM                                                                                #
+#   geodata = WI.getCitylist(cityname='Berlin', scheme="it-it")		> get a list of search hits                 #
+#   WI.start(geodata=geodata, units="metric", scheme="it-it", callback=MyCallbackFunction)                      #
+#   DICT = WI.getinfo() 				> alternatively: DICT = WI.info                                         #
+#   WI.writejson(filename) 				> writes DICT as JSON-string in a file                                  #
+#   DICT = WI.getreducedinfo() 			> get reduced DICT for a simple forecast (e.g. Metrix-Weather)          #
+#   WI.writereducedjson(filename) 		> get reduced DICT & write reduced JSON-string as file                  #
 #---------------------------------------------------------------------------------------------------------------#
-#	Interactive call is also possible by setting WI.start(..., callback=None)	example: see 'def main(argv)'	#
-#																												#
+#   Interactive call is also possible by setting WI.start(..., callback=None)	example: see 'def main(argv)'   #
+#                                                                                                               #
 #################################################################################################################
 
 from sys import exit, argv
@@ -38,7 +38,6 @@ from requests import get, exceptions
 from getopt import getopt, GetoptError
 from twisted.internet.reactor import callInThread
 from xml.etree.ElementTree import Element, tostring
-# from Components.config import config
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -52,7 +51,7 @@ class Weatherinfo:
 					  	"15": ("41", "V"), "16": ("17", "X"), "17": ("9", "Q"), "19": ("9", "Q"), "20": ("14", "U"), "22": ("11", "Q"),
 						"23": ("12", "R"), "26": ("46", "U"), "27": ("4", "P"), "28": ("31", "C"), "29": ("33", "C"), "30": ("29", "I"),
 						"31": ("27", "I"), "32": ("27", "I"), "39": ("22", "K"), "43": ("17", "X"), "44": ("9", "Q"), "50": ("12", "R"),
-			   			"77": ("5", "W"), "78": ("5", "W"), "82": ("46", "U"), "91": ("24", "S"), "na": ("NA", ")")
+						"67": ("4", "P"), "77": ("5", "W"), "78": ("5", "W"), "82": ("46", "U"), "91": ("24", "S"), "na": ("NA", ")")
 						}
 		self.owmCodes = {"200": ("4", "O"), "201": ("4", "O"), "202": ("4", "P"), "210": ("39", "O"), "211": ("4", "O"), "212": ("3", "P"),
 		 				"221": ("38", "O"), "230": ("4", "O"), "231": ("4", "O"), "232": ("4", "O"), "300": ("9", "Q"), "301": ("9", "Q"),
@@ -73,8 +72,8 @@ class Weatherinfo:
 						"24": "RainSnowV2", "26": "SnowShowersDayV2", "27": "ThunderstormsV2", "28": "ClearNightV3",
 	  					"29": "MostlyClearNight", "30": "PartlyCloudyNightV2", "31": "MostlyCloudyNightV2",
 		   				"32": "ClouddyHazeSmokeNightV2_106", "39": "HazeSmokeNightV2_106", "43": "HailNightV2", "44": "LightRainShowerNight",
-			   			"50": "RainShowersNightV2", "77": "RainSnowV2", "78": "RainSnowShowersNightV2", "82": "SnowShowersNightV2",
-		   				"91": "WindyV2", "na": "NA"
+			   			"50": "RainShowersNightV2", "67": "ThunderstormsV2", "77": "RainSnowV2", "78": "RainSnowShowersNightV2",
+						"82": "SnowShowersNightV2", "91": "WindyV2", "na": "NA"
 			   			}
 		self.owmDescs = {"200": "thunderstorm with light rain", "201": "thunderstorm with rain", "202": "thunderstorm with heavy rain",
 				 		"210": "light thunderstorm", "211": "thunderstorm", "212": "heavy thunderstorm", "221": "ragged thunderstorm",
@@ -162,8 +161,7 @@ class Weatherinfo:
 		else:
 			result["yahooCode"] = "N/A"
 			result["meteoCode"] = "N/A"
-			self.error = "[%s] ERROR in module 'convert2icon': key '%s' not found in converting dicts." % (MODULE_NAME, code)
-			return None
+			print("[%s] WARNING in module 'convert2icon': key '%s' not found in converting dicts." % (MODULE_NAME, code))
 		return result
 
 	def getCitylist(self, cityname=None, scheme="de-de"):
@@ -712,6 +710,12 @@ def main(argv):
 					print(weather.error.replace("[__main__]", ""))
 		exit()
 	citylist = weather.getCitylist(city, scheme)
+	if weather.error:
+		print(weather.error.replace("[__main__]", ""))
+		exit()
+	if len(citylist) == 0:
+		print("No cites found. Try another wording.")
+		exit()
 	geodata = citylist[0]
 	if citylist and len(citylist) > 1:
 		if not quiet:
@@ -728,9 +732,6 @@ def main(argv):
 				print("Choice '%s' is not allowable (only numbers 1 to %s are valid).\nPlease try again." % (choice, len(citylist)))
 				exit()
 	info = weather.start(geodata=geodata, units=units, scheme=scheme)  # INTERACTIVE CALL (unthreaded)
-	if weather.error:
-		print(weather.error.replace("[__main__]", ""))
-		exit()
 	if info is not None and not control:
 		if not quiet:
 			if mode == "msn":
@@ -757,6 +758,10 @@ def main(argv):
 				if not quiet:
 					print("ERROR: XML is only supported in mode 'msn'.\nFile '%s' was not created..." % xml)
 		exit()
+	else:
+		if weather.error:
+			print(weather.error.replace("[__main__]", ""))
+			exit()
 
 
 if __name__ == "__main__":
