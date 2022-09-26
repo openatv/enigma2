@@ -739,6 +739,9 @@ class PowerTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
+		if isinstance(result, bool) and result:  # Special case for close recursive
+			self.close(True)
+			return
 		if result[0]:
 			self.session.nav.PowerTimer.record(result[1])
 			self.loadTimerList()
@@ -765,10 +768,10 @@ class PowerTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, PowerTimerEdit, timer)
 
 	def editTimerCallback(self, result):
+		if isinstance(result, bool) and result:  # Special case for close recursive
+			self.close(True)
+			return
 		if result[0]:
-			if len(result) == 1:  # Special case for close recursive
-				self.close(True)
-				return
 			entry = result[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			print("[Timers] PowerTimer updated.")
@@ -936,6 +939,9 @@ class RecordTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, RecordTimerEdit, RecordTimerEntry(serviceRef, checkOldTimers=True, dirname=preferredTimerPath(), fixDescription=True, *data))
 
 	def addTimerCallback(self, result):
+		if isinstance(result, bool) and result:  # Special case for close recursive
+			self.close(True)
+			return
 		if result[0]:
 			entry = result[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -972,10 +978,10 @@ class RecordTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, RecordTimerEdit, timer)
 
 	def editTimerCallback(self, result):
+		if isinstance(result, bool) and result:  # Special case for close recursive
+			self.close(True)
+			return
 		if result[0]:
-			if len(result) == 1:  # Special case for close recursive
-				self.close(True)
-				return
 			entry = result[1]
 			timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
