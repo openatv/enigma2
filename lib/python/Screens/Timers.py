@@ -766,6 +766,9 @@ class PowerTimerOverview(TimerOverviewBase):
 
 	def editTimerCallback(self, result):
 		if result[0]:
+			if len(result) == 1:  # Special case for close recursive
+				self.close(True)
+				return
 			entry = result[1]
 			self.session.nav.PowerTimer.timeChanged(entry)
 			print("[Timers] PowerTimer updated.")
@@ -970,6 +973,9 @@ class RecordTimerOverview(TimerOverviewBase):
 
 	def editTimerCallback(self, result):
 		if result[0]:
+			if len(result) == 1:  # Special case for close recursive
+				self.close(True)
+				return
 			entry = result[1]
 			timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -1317,7 +1323,7 @@ class PowerTimerEdit(Setup):
 				self.timerRepeat.value = "once"  # Stop it being set again.
 			self.timer.autosleepwindow = self.timerSleepWindow.value
 			if self.timerSleepWindow.value:
-				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)	
+				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)
 				self.timer.autosleepend = self.getTimeStamp(now, self.timerSleepEnd.value)
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
