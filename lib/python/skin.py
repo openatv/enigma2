@@ -722,6 +722,9 @@ class AttributeParser:
 	def excludes(self, value):
 		pass
 
+	def evaluate(self, value):
+		pass
+
 	def flags(self, value):
 		if value in variables:
 			value = variables[value]
@@ -1493,6 +1496,13 @@ def readSkin(screen, skin, names, desktop):
 		for w in widgets.findall('constant-widget'):
 			processConstant(w, context)
 		for w in widgets:
+			evaluate = w.attrib.get("evaluate")
+			if evaluate and ":" not in evaluate and "/" not in evaluate and "%" not in evaluate:  # Don't allow ':', '/' and '%' in evaluate string
+				try:
+					if not bool(eval(evaluate)):
+						continue
+				except Exception as err:
+					print("[%s] ERROR - Evaluation of command='%s' failed!" % (MODULE_NAME, evaluate))
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
