@@ -1468,7 +1468,7 @@ class RecordTimerEntry(TimerEntry, object):
 			bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_RADIO)
 		else:
 			if InfoBar.instance.servicelist.mode != 0:
-				InfoBar.instance.servicelist.setModeTV()
+				InfoBar.instance.servicelist.setModeTv()
 				InfoBar.instance.servicelist.radioTV = 0
 			InfoBar.instance.servicelist.clearPath()
 			rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet")
