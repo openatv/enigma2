@@ -402,7 +402,6 @@ def runScreenTest():
 	vol = VolumeControl(session)
 	profile("InitPowerKey")
 	power = PowerKey(session)
-
 	if BoxInfo.getItem("VFDSymbols"):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
@@ -605,7 +604,7 @@ from sys import stdout
 MODULE_NAME = __name__.split(".")[-1]
 
 profile("Twisted")
-try:  # Configure the twisted processor
+try:  # Configure the twisted processor.
 	from twisted.python.runtime import platform
 	platform.supportsThreads = lambda: True
 	from e2reactor import install
@@ -621,14 +620,14 @@ except ImportError:
 	def runReactor():
 		enigma.runMainloop()
 
-try:  # Configure the twisted logging
+try:  # Configure the twisted logging.
 	from twisted.python import log, util
 
 	def quietEmit(self, eventDict):
 		text = log.textFromEventDict(eventDict)
 		if text is None:
 			return
-		if "/api/statusinfo" in text:  # do not log OWF statusinfo
+		if "/api/statusinfo" in text:  # Do not log OpenWebif status info.
 			return
 		# Log with time stamp.
 		#
