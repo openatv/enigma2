@@ -739,7 +739,7 @@ class PowerTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, PowerTimerEdit, PowerTimerEntry(begin, end, checkOldTimers=True))
 
 	def addTimerCallback(self, result=(False,)):
-		if isinstance(result, bool) and result:  # Special case for close recursive
+		if isinstance(result, bool) and result:  # Special case for close recursive.
 			self.close(True)
 			return
 		if result[0]:
@@ -768,7 +768,7 @@ class PowerTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, PowerTimerEdit, timer)
 
 	def editTimerCallback(self, result):
-		if isinstance(result, bool) and result:  # Special case for close recursive
+		if isinstance(result, bool) and result:  # Special case for close recursive.
 			self.close(True)
 			return
 		if result[0]:
@@ -939,7 +939,7 @@ class RecordTimerOverview(TimerOverviewBase):
 		self.session.openWithCallback(self.addTimerCallback, RecordTimerEdit, RecordTimerEntry(serviceRef, checkOldTimers=True, dirname=preferredTimerPath(), fixDescription=True, *data))
 
 	def addTimerCallback(self, result):
-		if isinstance(result, bool) and result:  # Special case for close recursive
+		if isinstance(result, bool) and result:  # Special case for close recursive.
 			self.close(True)
 			return
 		if result[0]:
@@ -978,7 +978,7 @@ class RecordTimerOverview(TimerOverviewBase):
 			self.session.openWithCallback(self.editTimerCallback, RecordTimerEdit, timer)
 
 	def editTimerCallback(self, result):
-		if isinstance(result, bool) and result:  # Special case for close recursive
+		if isinstance(result, bool) and result:  # Special case for close recursive.
 			self.close(True)
 			return
 		if result[0]:
@@ -1324,7 +1324,7 @@ class PowerTimerEdit(Setup):
 			self.timer.autosleepinstandbyonly = self.timerActiveInStandby.value
 			self.timer.autosleepdelay = self.timerSleepDelay.value
 			self.timer.autosleeprepeat = self.timerAutoSleepRepeat.value
-			if self.timerRepeat.value == "repeated":  # Ensure that the timer repeated is cleared if we have an autosleeprepeat.
+			if self.timerRepeat.value == "repeated":  # Ensure that the timer repeated is cleared if we have an "autosleeprepeat".
 				self.timer.resetRepeated()
 				self.timerRepeat.value = "once"  # Stop it being set again.
 			self.timer.autosleepwindow = self.timerSleepWindow.value
@@ -1361,7 +1361,7 @@ class PowerTimerEdit(Setup):
 			notifier()
 		self.close((True, self.timer))
 
-	def getTimeStamp(self, date, time):  # Note: The 'date' can be a float() or an int() while 'time' is a two item list.
+	def getTimeStamp(self, date, time):  # Note: The "date" can be a float() or an int() while "time" is a two item list.
 		localDate = localtime(date)
 		return int(mktime(datetime(localDate.tm_year, localDate.tm_mon, localDate.tm_mday, time[0], time[1]).timetuple()))
 
@@ -1651,7 +1651,7 @@ class RecordTimerEdit(Setup):
 			notifier()
 		self.close((True, self.timer))
 
-	def getTimeStamp(self, date, time):  # Note: The 'date' can be a float() or an int() while 'time' is a two item list.
+	def getTimeStamp(self, date, time):  # Note: The "date" can be a float() or an int() while "time" is a two item list.
 		localDate = localtime(date)
 		return int(mktime(datetime(localDate.tm_year, localDate.tm_mon, localDate.tm_mday, time[0], time[1]).timetuple()))
 
