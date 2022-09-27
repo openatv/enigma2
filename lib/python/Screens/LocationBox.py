@@ -222,7 +222,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.switchToFileList()
 
 	def getCurrentDirectory(self):
-		return pathjoin(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename() or "") if self.currList == "filelist" else self["bookmarklist"].getCurrent()
+		if self.currList == "filelist":
+			currentDirectory = self["filelist"].getCurrentDirectory()
+			return pathjoin(currentDirectory, self["filelist"].getFilename() or "") if currentDirectory else None
+		else:
+			return self["bookmarklist"].getCurrent()
 
 	def showHideRename(self):
 		if self.filename:  # Don't allow renaming when filename is empty.
@@ -253,7 +257,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					if (status.f_bavail * status.f_bsize) / 1000000 > self.minFree:
 						return self.keySelectCallback(True)  # Automatically confirm if we have enough free disk space available.
 				except OSError as err:
-					print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currFolder, err.strerror))
+					print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currentFolder, err.strerror))
 				self.session.openWithCallback(self.keySelectCallback, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
 			else:  # No minimum free space means we can safely close.
 				self.keySelectCallback(True)
