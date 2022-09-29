@@ -69,6 +69,7 @@ def getBoxProcTypeName():
 		"10": _("Single Tuner"),
 		"11": _("Twin Tuner"),
 		"12": _("Combo Tuner"),
+		"21": _("Twin Hybrid"),
 		"22": _("Hybrid Tuner")
 	}
 	procType = getBoxProcType()
