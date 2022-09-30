@@ -1,5 +1,3 @@
-from os import system
-
 # Components
 from Components.config import config
 from Components.Label import Label
@@ -16,7 +14,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 
 # Tools
-from Tools.Directories import fileExists, fileReadLines
+from Tools.Directories import fileExists, fileReadLines, fileWriteLines, copyFile
 
 # Various
 from ..InputBox import InputBoxWide
@@ -185,7 +183,7 @@ class vEditor(Screen, HelpableScreen):
 						else:
 							newline = "0000" + ": " + newline
 						self.list.remove(x)
-						self.list.insert(self.selLine, newline + '\n')
+						self.list.insert(self.selLine, newline)
 				k += 1
 		self.findtab = -1
 		self.selLine = None
@@ -208,7 +206,7 @@ class vEditor(Screen, HelpableScreen):
 
 	def ins_Line(self):
 		self.selLine = self["filedata"].getSelectionIndex()
-		self.list.insert(self.selLine, "0000: " + "" + '\n')
+		self.list.insert(self.selLine, "0000: ")
 		self.isChanged = True
 		self.refreshList()
 
@@ -223,19 +221,11 @@ class vEditor(Screen, HelpableScreen):
 
 	def SaveFile(self, answer):
 		if answer is True:
-			try:
-				if fileExists(self.file_name):
-					system("cp " + self.file_name + " " + self.file_name + ".bak")
-				eFile = open(self.file_name, "w")
-				for x in self.list:
-					my_x = x.partition(": ")[2]
-					eFile.writelines(my_x)
-				eFile.close()
-			except OSError:
-				pass
-			self.close()
-		else:
-			self.close()
+			if fileExists(self.file_name):
+				copyFile(self.file_name, self.file_name + ".bak")
+			newlines = [x.partition(": ")[2] for x in self.list]
+			fileWriteLines(self.file_name, newlines)
+		self.close()
 
 
 class ImageViewer(Screen, HelpableScreen):
