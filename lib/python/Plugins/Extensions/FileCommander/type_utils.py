@@ -17,7 +17,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import fileExists, fileReadLines, fileWriteLines, copyFile
 
 # Various
-from ..InputBox import InputBoxWide
+from .InputBox import InputBoxWide
 from enigma import eTimer, ePicLoad, getDesktop, gFont, eSize
 
 from Tools.TextBoundary import getTextBoundarySize

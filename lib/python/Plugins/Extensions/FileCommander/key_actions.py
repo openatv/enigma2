@@ -1,5 +1,3 @@
-# -*- coding: iso-8859-1 -*-
-
 from grp import getgrgid
 from mimetypes import guess_type
 import os
@@ -32,11 +30,7 @@ import Tools.Notifications
 from enigma import eServiceReference, eActionMap
 
 # Addons
-from .unrar import RarMenuScreen
-from .tar import TarMenuScreen
-from .unzip import UnzipMenuScreen
-from .gz import GunzipMenuScreen
-from .ipk import ipkMenuScreen
+from .unarchiver import RarMenuScreen, TarMenuScreen, UnzipMenuScreen, GunzipMenuScreen, ipkMenuScreen
 from .type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))

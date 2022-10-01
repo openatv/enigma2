@@ -11,6 +11,16 @@ import subprocess
 import skin
 import six
 
+from os.path import splitext
+
+from re import findall
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+
+from Components.PluginComponent import plugins
+from Screens.Console import Console
+from Tools.Directories import shellquote, fileExists, resolveFilename, SCOPE_PLUGINS
+
+
 COMMONINFO = (
 	_("File Commander - generalised archive handler"),
 	_("unpack archives"),
@@ -283,7 +293,7 @@ class ArchiverInfoScreen(Screen):
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT
-		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in repr(self):
+		if 'Plugins.Extensions.FileCommander.unarchiver.UnpackInfoScreen' in repr(self):
 			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			y *= 2
 		return [
@@ -293,3 +303,212 @@ class ArchiverInfoScreen(Screen):
 
 	def cancel(self):
 		self.close()
+
+
+class UnzipMenuScreen(ArchiverMenuScreen):
+	ADDONINFO = (
+		_("File Commander - unzip Addon"),
+		_("unpack zip Files"),
+		"0.3"
+	)
+
+	def __init__(self, session, sourcelist, targetlist):
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.initList(_("Show contents of zip file"))
+
+	def unpackModus(self, selectid):
+		print("[UnzipMenuScreen] unpackModus %s" % selectid)
+		if selectid == self.ID_SHOW:
+			cmd = ("unzip", "-l", self.sourceDir + self.filename)
+			self.unpackPopen(cmd, UnpackInfoScreen, self.ADDONINFO)
+		else:
+			cmd = ["unzip", "-o", self.sourceDir + self.filename, "-d"]
+			cmd.append(self.getPathBySelectId(selectid))
+			self.unpackEConsoleApp(cmd)
+
+
+class UnpackInfoScreen(ArchiverInfoScreen):
+	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
+		ArchiverInfoScreen.__init__(self, session, liste, sourceDir, filename, addoninfo)
+		font = skin.fonts.get("FileList", ("Console", 20, 30))
+		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1] * 0.85)))
+
+
+class RarMenuScreen(ArchiverMenuScreen):
+
+	DEFAULT_PW = "2D1U3MP!"
+
+	ADDONINFO = (
+		_("File Commander - unrar Addon"),
+		_("unpack Rar Files"),
+		"0.3"
+	)
+
+	def __init__(self, session, sourcelist, targetlist):
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+
+		self.unrar = "unrar"
+		self.defaultPW = self.DEFAULT_PW
+
+		self.initList(_("Show contents of rar file"))
+
+	def ok(self):
+		selectName = self['list_left'].getCurrent()[0][0]
+		self.selectId = self['list_left'].getCurrent()[0][1]
+		print("[RarMenuScreen] Select: %s %s" % (selectName, self.selectId))
+		self.checkPW(self.defaultPW)
+
+	def checkPW(self, pwd):
+		self.defaultPW = pwd
+		print("[RarMenuScreen] Current pw: %s" % self.defaultPW)
+		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
+		try:
+			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+		except OSError as ex:
+			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmd[0], ex.strerror, cmd[0])
+			print("[RarMenuScreen] %s" % msg)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+			return
+		stdlog = p.stdout.read()
+		if stdlog:
+			print("[RarMenuScreen] checkPW stdout %s" % len(stdlog))
+			print(stdlog)
+			if 'Corrupt file or wrong password.' in stdlog:
+				print("[RarMenuScreen] pw incorrect!")
+				self.session.openWithCallback(self.setPW, VirtualKeyBoard, title=_("%s is password protected.") % self.filename + " " + _("Please enter password"), text="")
+			else:
+				print("[RarMenuScreen] pw correct!")
+				self.unpackModus(self.selectId)
+
+	def setPW(self, pwd):
+		if pwd is None or pwd.strip() == "":
+			self.defaultPW = self.DEFAULT_PW
+		else:
+			self.checkPW(pwd)
+
+	def unpackModus(self, selectid):
+		print("[RarMenuScreen] unpackModus %s" % selectid)
+		if selectid == self.ID_SHOW:
+			cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.sourceDir + self.filename)
+			self.unpackPopen(cmd, ArchiverInfoScreen, self.ADDONINFO)
+		else:
+			cmd = [self.unrar, "x", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+"]
+			cmd.append(self.getPathBySelectId(selectid))
+			self.unpackEConsoleApp(cmd, exePath=self.unrar, logCallback=self.log)
+
+	def log(self, data):
+		# print "[RarMenuScreen] log", data
+		status = findall('(\d+)%', data)
+		if status:
+			if not status[0] in self.ulist:
+				self.ulist.append((status[0]))
+				self.chooseMenuList2.setList(list(map(self.UnpackListEntry, status)))
+				self['unpacking'].selectionEnabled(0)
+
+		if 'All OK' in data:
+			self.chooseMenuList2.setList(list(map(self.UnpackListEntry, ['100'])))
+			self['unpacking'].selectionEnabled(0)
+
+	def extractDone(self, filename, data):
+		if data:
+			if self.errlog and not self.errlog.endswith("\n"):
+				self.errlog += "\n"
+			self.errlog += {
+				1: "Non fatal error(s) occurred.",
+				2: "A fatal error occurred.",
+				3: "Invalid checksum. Data is damaged.",
+				4: "Attempt to modify an archive locked by 'k' command.",
+				5: "Write error.",
+				6: "File open error.",
+				7: "Wrong command line option.",
+				8: "Not enough memory.",
+				9: "File create error",
+				10: "No files matching the specified mask and options were found.",
+				11: "Wrong password.",
+				255: "User stopped the process.",
+			}.get(data, "Unknown error")
+		super(RarMenuScreen, self).extractDone(filename, data)
+
+
+class GunzipMenuScreen(ArchiverMenuScreen):
+	ADDONINFO = (
+		_("File Commander - gzip Addon"),
+		_("unpack gzip Files"),
+		"0.3"
+	)
+
+	def __init__(self, session, sourcelist, targetlist):
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.initList()
+
+	def unpackModus(self, selectid):
+		print("[GunzipMenuScreen] unpackModus %s" % selectid)
+		pathName = self.sourceDir + self.filename
+		if selectid == self.ID_CURRENTDIR:
+			cmd = ("gunzip", pathName)
+		elif selectid in (self.ID_TARGETDIR, self.ID_DEFAULTDIR):
+			baseName, ext = splitext(self.filename)
+			if ext != ".gz":
+				return
+			dest = self.getPathBySelectId(id)
+			dest += baseName
+			cmd = "gunzip -c %s > %s && rm %s" % (shellquote(pathName), shellquote(dest), shellquote(pathName))
+		self.unpackEConsoleApp(cmd)
+
+
+class ipkMenuScreen(ArchiverMenuScreen):
+
+	ADDONINFO = (
+		_("File Commander - ipk Addon"),
+		_("install/unpack ipk Files"),
+		"0.3"
+	)
+
+	def __init__(self, session, sourcelist, targetlist):
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.list.append((_("Show contents of ipk file"), self.ID_SHOW))
+		self.list.append((_("Install"), self.ID_INSTALL))
+
+	def unpackModus(self, selectid):
+		if selectid == self.ID_SHOW:
+			# This is done in a subshell because using two
+			# communicating Popen commands can deadlock on the
+			# pipe output. Using communicate() avoids deadlock
+			# on reading stdout and stderr from the pipe.
+			fname = shellquote(self.sourceDir + self.filename)
+			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % fname, shell=True)
+			if p.wait():
+				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
+			else:
+				cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
+			self.unpackPopen(cmd, ArchiverInfoScreen, self.ADDONINFO)
+		elif selectid == self.ID_INSTALL:
+			self.ulist = []
+			if fileExists("/usr/bin/opkg"):
+				self.session.openWithCallback(self.doCallBack, Console, title=_("Installing Plugin ..."), cmdlist=(("opkg", "install", self.sourceDir + self.filename),))
+
+	def doCallBack(self):
+		if self.filename.startswith("enigma2-plugin-"):
+			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+
+class TarMenuScreen(ArchiverMenuScreen):
+	ADDONINFO = (
+		_("File Commander - tar Addon"),
+		_("unpack tar/compressed tar Files"),
+		"0.3"
+	)
+
+	def __init__(self, session, sourcelist, targetlist):
+		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.initList(_("Show contents of tar or compressed tar file"))
+
+	def unpackModus(self, selectid):
+		print("[TarMenuScreen] unpackModus %s" % selectid)
+		if selectid == self.ID_SHOW:
+			cmd = ("tar", "-tf", self.sourceDir + self.filename)
+			self.unpackPopen(cmd, ArchiverInfoScreen, self.ADDONINFO)
+		else:
+			cmd = ["tar", "-xvf", self.sourceDir + self.filename, "-C"]
+			cmd.append(self.getPathBySelectId(selectid))
+			self.unpackEConsoleApp(cmd)
