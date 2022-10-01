@@ -1,8 +1,8 @@
-# openATV 7.0 (still in development!)
+# openATV 7.1 (still in development!)
 
 ## Build status
 
-[![Build status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
+[![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
 [Active Build Status](https://images.mynonpublic.com/openatv/build_status_mipsel_6.html "Active Build Status") - shows which box is currently being built 
 
@@ -36,9 +36,9 @@
 
 ## Git repositories involved
 
-* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.0 "OE Alliance Core") - Core framework
-* [openATV 7.0](https://github.com/openatv/enigma2/tree/7.0 "openATV 7.0") - openATV core
-* [MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin") - Default openATV skin
+* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.1 "OE Alliance Core") - Core framework
+* [openATV 7.1](https://github.com/openatv/enigma2/tree/7.1 "openATV 7.1") - openATV core
+* [MetrixHD](https://github.com/openatv/MetrixHD/tree/7.1 "openATV Skin") - Default openATV skin
 * ...
 
 ## DOXYGEN Documentation
@@ -106,7 +106,7 @@
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.0
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.1
     ```
 
 1. Switch to folder build-enviroment
