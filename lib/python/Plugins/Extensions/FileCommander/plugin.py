@@ -485,7 +485,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			bookmarks.insert(0, dirname)
 			order = config.misc.pluginlist.fc_bookmarks_order.value
 			if dirname not in order:
-				order = "%%,%s" % (dirname, order)
+				order = "%s,%s" % (dirname, order)
 				config.misc.pluginlist.fc_bookmarks_order.value = order
 				config.misc.pluginlist.fc_bookmarks_order.save()
 		config.plugins.filecommander.bookmarks.value = bookmarks
@@ -804,7 +804,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 									rename(pathjoin(sourceDir, movie) + ".eit", pathjoin(sourceDir, newmovie) + ".eit")
 								else:
 									rename(pathjoin(sourceDir, filename) + "." + ext, pathjoin(sourceDir, newname) + "." + ext)
-							except:
+							except OSError:
 								pass
 			except OSError as oe:
 				self.session.open(MessageBox, _("Error renaming %s to %s:\n%s") % (filename, newname, oe.strerror), type=MessageBox.TYPE_ERROR)
@@ -820,36 +820,34 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if targetDir is None or filename is None or not self.SOURCELIST.getSelectionID():
-			return
-		if filename.startswith("/"):
-			if filename == "/":
-				filename = "root"
-			else:
-				filename = basename(normpath(filename))
-		elif sourceDir is None:
-			return
-		self.session.openWithCallback(self.doMakesym, VirtualKeyBoard, title=_("Please enter name of the new symlink"), text=filename)
+		if targetDir and filename and self.SOURCELIST.getSelectionID():
+			if filename.startswith("/"):
+				if filename == "/":
+					filename = "root"
+				else:
+					filename = basename(normpath(filename))
+			elif sourceDir is None:
+				return
+			self.session.openWithCallback(self.doMakesym, VirtualKeyBoard, title=_("Please enter name of the new symlink"), text=filename)
 
 	def doMakesym(self, newname):
 		if newname:
 			oldname = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
-			if targetDir is None or oldname is None:
-				return
-			if oldname.startswith("/"):
-				oldpath = oldname
-			elif sourceDir is not None:
-				oldpath = pathjoin(sourceDir, oldname)
-			else:
-				return
-			newpath = pathjoin(targetDir, newname)
-			try:
-				symlink(oldpath, newpath)
-			except OSError as oe:
-				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
-			self.doRefresh()
+			if targetDir and oldname:
+				if oldname.startswith("/"):
+					oldpath = oldname
+				elif sourceDir is not None:
+					oldpath = pathjoin(sourceDir, oldname)
+				else:
+					return
+				newpath = pathjoin(targetDir, newname)
+				try:
+					symlink(oldpath, newpath)
+				except OSError as oe:
+					self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
+				self.doRefresh()
 
 # ## File/directory information
 	def gofileStatInfo(self):
@@ -864,25 +862,21 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if (filename is None) or (sourceDir is None) or (targetDir is None):
-			return
-		movetext = _("Symlink to ") if sourceDir in filename else _("Create symlink to file")
-		testfile = filename[:-1]
-		if (filename is None) or (sourceDir is None):
-			return
-		if islink(testfile):
-			return
-		self.session.openWithCallback(self.domakeSymlink, MessageBox, text="%s %s in %s" % (movetext, filename, targetDir))
+		if filename and sourceDir and targetDir:
+			movetext = _("Symlink to ") if sourceDir in filename else _("Create symlink to file")
+			testfile = filename[:-1]
+			if islink(testfile):
+				return
+			self.session.openWithCallback(self.domakeSymlink, MessageBox, text="%s %s in %s" % (movetext, filename, targetDir))
 
 	def domakeSymlink(self, answer):
 		if answer:
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
-			if (filename is None) or (sourceDir is None) or (targetDir is None):
-				return
-			if sourceDir in filename:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("create symlink ..."), cmdlist=(("ln", "-s", filename, targetDir),))
+			if filename and sourceDir and targetDir:
+				if sourceDir in filename:
+					self.session.openWithCallback(self.doRenameCB, Console, title=_("create symlink ..."), cmdlist=(("ln", "-s", filename, targetDir),))
 
 # ## new folder ###
 	def gomakeDir(self):
@@ -890,20 +884,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if sourceDir:
-			return
-		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_('New folder'))
+			self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text=_('New folder'))
 
 	def doMakedir(self, newname):
 		if newname:
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
-			if sourceDir is None:
-				return
-			# self.session.openWithCallback(self.doMakedirCB, Console, title = _("create folder"), cmdlist=["mkdir \"" + sourceDir + newname + "\""])
-			try:
-				mkdir(pathjoin(sourceDir, newname))
-			except OSError as oe:
-				self.session.open(MessageBox, _("Error creating directory %s:\n%s") % (pathjoin(sourceDir, newname), oe.strerror), type=MessageBox.TYPE_ERROR)
-			self.doRefresh()
+			if sourceDir:
+				try:
+					mkdir(pathjoin(sourceDir, newname))
+				except OSError as oe:
+					self.session.open(MessageBox, _("Error creating directory %s:\n%s") % (pathjoin(sourceDir, newname), oe.strerror), type=MessageBox.TYPE_ERROR)
+				self.doRefresh()
 
 	def doMakedirCB(self):
 		self.doRefresh()
