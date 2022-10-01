@@ -671,6 +671,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.SwitchSecondInfoBarScreen()
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.__onExecBegin)
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_INFOBARLOADED):
+			plugin(reason=1, session=self.session, instance=self, typeInfoBar=self.__class__.__name__)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_INFOBARLOADED):
+			plugin(reason=0, session=self.session, instance=self, typeInfoBar=self.__class__.__name__)
 
 	def __onExecBegin(self):
 		self.showHideVBI()
