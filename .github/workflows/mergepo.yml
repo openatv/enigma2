@@ -19,7 +19,7 @@ jobs:
           git config --global user.name "atv enigma po Bot"
           git config advice.addignoredfile false
           git clean -fd
-          git checkout 7.10
+          git checkout 7.1
           git clone --depth 1 https://github.com/openatv/enigma2-po.git ponew
           cp ponew/po/*.po po/
           rm -rf ponew

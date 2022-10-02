@@ -91,16 +91,16 @@
     su - openatvbuilder
     ```
 
-1. Create folder openatv7.0
+1. Create folder openatv7.1
 
     ```sh
-    mkdir -p openatv7.0
+    mkdir -p openatv7.1
     ```
 
-1. Switch to folder openatv7.0
+1. Switch to folder openatv7.1
 
     ```sh
-    cd openatv7.0
+    cd openatv7.1
     ```
 
 1. Clone oe-alliance repository
