@@ -22,6 +22,7 @@
 		<item level="0" text="I/O priority for script execution" description="Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.filecommander.script_priority_ionice</item>
 		<!--item level="0" text="Input length - Filename" description="Number of characters visible in filename entry popup windows.">config.plugins.filecommander.input_length</item-->
 		<item level="0" text="File checksums/hashes" description="File checksums to calculate for button 9">config.plugins.filecommander.hashes</item>
-		<item level="0" text="Time for Slideshow" description="Time between slides in image viewer slideshow.">config.plugins.filecommander.diashow</item>
+		<item level="0" text="Slide show delay" description="Time between slides in image viewer slide show.">config.plugins.filecommander.slideshowDelay</item>
+		<item level="0" text="Slide show loop" description="Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop.">config.plugins.filecommander.slideshowLoop</item>
 	</setup>
 </setupxml>
