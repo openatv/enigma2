@@ -1082,10 +1082,10 @@ class ConflictTimerOverview(TimerOverviewBase):
 		self.close((False, self.timers[0]))
 
 	def loadTimerList(self):
-		for index, item in enumerate(self.session.nav.RecordTimer.timer_list):
-			print("[TimerSanityCheck] timer_list DEBUG 1: Entry %d: %s." % (index + 1, str(item)))
-		for index, item in enumerate(self.timers):
-			print("[TimerSanityCheck] timers     DEBUG 2: Entry %d: %s." % (index + 1, str(item)))
+		# for index, item in enumerate(self.session.nav.RecordTimer.timer_list):
+		# 	print("[TimerSanityCheck] timer_list DEBUG 1: Entry %d: %s." % (index + 1, str(item)))
+		# for index, item in enumerate(self.timers):
+		# 	print("[TimerSanityCheck] timers     DEBUG 2: Entry %d: %s." % (index + 1, str(item)))
 		timerList = []
 		timerList.extend([(timer, False) for timer in self.timers])
 		# timerList.sort(key=lambda x: x[0].begin)  # This was causing the timer order in simulTimerList to change and hide the *NEW* unsaved timer.
@@ -1418,12 +1418,13 @@ class RecordTimerEdit(Setup):
 		for day in DAY_LIST:
 			self.timerDay[day] = ConfigYesNo(default=days[day])
 		self.timerRename = ConfigYesNo(default=self.timer.rename_repeat != 0)
-		self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
+		# self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=config.usage.date.daylong.value, increment=86400)
 		# self.timerStartTime = ConfigClock(default=self.timer.begin)
 		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
 		marginChoices = [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(121)]
 		self.timerMarginBefore = ConfigSelection(default=self.timer.marginBefore // 60, choices=marginChoices)
-		print("[Timers] DEBUG: default=%d, value=%d, margin=%d." % (self.timerMarginBefore.value, self.timerMarginBefore.default, self.timer.marginBefore // 60))
+		# print("[Timers] DEBUG: default=%d, value=%d, margin=%d." % (self.timerMarginBefore.value, self.timerMarginBefore.default, self.timer.marginBefore // 60))
 		# self.timerHasEndTime = ConfigYesNo(default=self.timer.end > self.timer.begin + 3 and self.timer.justplay != 0)
 		self.timerHasEndTime = ConfigYesNo(default=self.timer.hasEndTime)
 		# self.timerEndTime = ConfigClock(default=self.timer.end)
