@@ -24,7 +24,6 @@ from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTEN
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Scanner import openFile
-from Components.ScrollLabel import ScrollLabel
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -317,12 +316,19 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		# Can warning if image information is not available.
 		# self.session.open(MessageBox, _("The ImageViewer component of FileCommander requires the PicturePlayer extension. Install PicturePlayer to enable this feature."), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 		self.updateHeadLeft_Timer = eTimer()
-		self.updateRightLeft_Timer = eTimer()
+		self.updateHeadRight_Timer = eTimer()
 		self.updateHeadLeft_Timer.callback.append(self.updateHeadLeft)
-		self.updateRightLeft_Timer.callback.append(self.updateHeadRight)
+		self.updateHeadRight_Timer.callback.append(self.updateHeadRight)
 
 	def calculate_directorysizeChanged(self, configElement):
 		self.calculate_directorysize = configElement.value
+
+	@staticmethod
+	def fileFilter():
+		if config.plugins.filecommander.extension.value == "myfilter":
+			return "^.*\.%s" % config.plugins.filecommander.my_extension.value
+		else:
+			return config.plugins.filecommander.extension.value
 
 	def layoutFinished(self):
 		self["list_left"].onSelectionChanged.append(self.selectionChangedLeft)
@@ -333,13 +339,15 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		self.updateHeadLeft_Timer.start(500)
 
 	def selectionChangedRight(self):
-		self.updateRightLeft_Timer.stop()
-		self.updateRightLeft_Timer.start(500)
+		self.updateHeadRight_Timer.stop()
+		self.updateHeadRight_Timer.start(500)
 
 	def updateHeadLeft(self):
+		self.updateHeadLeft_Timer.stop()
 		self.updateHeadLeftRight("list_left")
 
 	def updateHeadRight(self):
+		self.updateHeadRight_Timer.stop()
 		self.updateHeadLeftRight("list_right")
 
 	def updateHeadLeftRight(self, side):
@@ -357,9 +365,68 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 				pathname = directory  # parent folder
 		self["%s_head1" % side].text = pathname
 		self["%s_head2" % side].updateList(self.statInfo(self[side], calculate_directorysize) if pathname else ())
+		self.updateButtons()
 
 	def updateButtons(self):  # this will be overwritten in child class
 		pass
+
+	def goUp(self):
+		self.ACTIVELIST.up()
+
+	def goDown(self):
+		self.ACTIVELIST.down()
+
+	def goLeft(self):
+		self.ACTIVELIST.pageUp()
+
+	def goRight(self):
+		self.ACTIVELIST.pageDown()
+
+	def goLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == "yes":
+			self.listLeft()
+		else:
+			self.goLeft()
+
+	def goRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == "yes":
+			self.listRight()
+		else:
+			self.goRight()
+
+	def listRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == "yes":
+			self.goLeft()
+		elif config.plugins.filecommander.change_navbutton.value == "always" and self.ACTIVELIST == self["list_right"]:
+			self.listLeft()
+		else:
+			self.listRight()
+
+	def listLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == "yes":
+			self.goRight()
+		elif config.plugins.filecommander.change_navbutton.value == "always" and self.ACTIVELIST == self["list_left"]:
+			self.listRight()
+		else:
+			self.listLeft()
+
+	def listLeft(self):
+		self["list_left"].selectionEnabled(1)
+		self["list_right"].selectionEnabled(0)
+		self.ACTIVELIST = self["list_left"]
+		if self.multiselect:
+			return
+		self.SOURCELIST = self["list_left"]
+		self.TARGETLIST = self["list_right"]
+
+	def listRight(self):
+		self["list_left"].selectionEnabled(0)
+		self["list_right"].selectionEnabled(1)
+		self.ACTIVELIST = self["list_right"]
+		if self.multiselect:
+			return
+		self.SOURCELIST = self["list_right"]
+		self.TARGETLIST = self["list_left"]
 
 	def get_dirSize(self, folder: str) -> int:
 		return sum(p.stat().st_size for p in (f for f in Path(folder).rglob("*") if f.is_file()))
@@ -517,13 +584,6 @@ class FileCommanderScreen(FileCommanderBase):
 	@staticmethod
 	def filterSettings():
 		return(config.plugins.filecommander.extension.value, config.plugins.filecommander.my_extension.value)
-
-	@staticmethod
-	def fileFilter():
-		if config.plugins.filecommander.extension.value == "myfilter":
-			return "^.*\.%s" % config.plugins.filecommander.my_extension.value
-		else:
-			return config.plugins.filecommander.extension.value
 
 	def run_hashes(self):
 		if not config.plugins.filecommander.hashes.value:
@@ -727,17 +787,12 @@ class FileCommanderScreen(FileCommanderBase):
 	def ok(self):
 		if self.SOURCELIST.canDescent():  # isDir
 			self.SOURCELIST.descent()
-			self.updateHead()
 		else:
 			self.onFileAction(self.SOURCELIST, self.TARGETLIST)
-			# self.updateHead()
-			self.doRefresh()
 
 	def onFileAction(self, dirsource, dirtarget):
 		longname = dirsource.getFilename()
 		filename = basename(longname)
-		self.SOURCELIST = dirsource
-		self.TARGETLIST = dirtarget
 		sourceDir = dirsource.getCurrentDirectory()
 		lowerfilename = filename.lower()
 		filetype = splitext(filename)[1].lower()
@@ -1069,12 +1124,10 @@ class FileCommanderScreen(FileCommanderBase):
 	def locationCB(self, answer):
 		if answer:
 			self.SOURCELIST.changeDir(answer[1])
-			self.updateHead()
 
 	def goParentfolder(self):
 		if self.SOURCELIST.getParentDirectory() != False:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
-			self.updateHead()
 
 	def goRestart(self, *answer):
 		if hasattr(self, "oldFilterSettings"):
@@ -1093,34 +1146,6 @@ class FileCommanderScreen(FileCommanderBase):
 		self["list_right"].setSortBy(sortFilesRight)
 		self.doRefresh()
 
-	def goLeftB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.listLeft()
-		else:
-			self.goLeft()
-
-	def goRightB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.listRight()
-		else:
-			self.goRight()
-
-	def goLeft(self):
-		self.SOURCELIST.pageUp()
-		self.updateHead()
-
-	def goRight(self):
-		self.SOURCELIST.pageDown()
-		self.updateHead()
-
-	def goUp(self):
-		self.SOURCELIST.up()
-		self.updateHead()
-
-	def goDown(self):
-		self.SOURCELIST.down()
-		self.updateHead()
-
 	def listSelect(self):  # Multiselect.
 		if not self.SOURCELIST.getCurrentDirectory():
 			return
@@ -1131,7 +1156,6 @@ class FileCommanderScreen(FileCommanderBase):
 		config.plugins.filecommander.sortingRight_tmp.value = self["list_right"].getSortBy()
 		leftactive = self.SOURCELIST == self["list_left"]
 		self.session.openWithCallback(self.doRefreshDir, FileCommanderScreenFileSelect, leftactive, selectedid)
-		self.updateHead()
 
 	def openTasklist(self):
 		self.tasklist = []
@@ -1400,9 +1424,6 @@ class FileCommanderScreen(FileCommanderBase):
 					self.session.open(MessageBox, _("Error creating directory %s:\n%s") % (pathjoin(sourceDir, newname), err.strerror), type=MessageBox.TYPE_ERROR)
 				self.doRefresh()
 
-	def doMakedirCB(self):
-		self.doRefresh()
-
 	def downloadSubtitles(self):  # Download subtitles.
 		testFileName = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -1415,24 +1436,6 @@ class FileCommanderScreen(FileCommanderBase):
 
 	def subCallback(self, answer=False):
 		self.doRefresh()
-
-	def updateHead(self):  # Basic functions.
-		return
-		for side in ("list_left", "list_right"):
-			directory = self[side].getCurrentDirectory()
-			if directory is not None:
-				filename = self[side].getFilename() or ""
-				if filename.startswith(directory):
-					pathname = filename  # subfolder
-				elif not directory.startswith(filename):
-					pathname = pathjoin(directory, filename)  # filepath
-				else:
-					pathname = directory  # parent folder
-				self["%s_head1" % side].text = pathname
-				self["%s_head2" % side].updateList(self.statInfo(self[side], self.calculate_directorysize))
-			else:
-				self["%s_head1" % side].text = ""
-				self["%s_head2" % side].updateList(())
 
 	def updateButtons(self):
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
@@ -1455,7 +1458,6 @@ class FileCommanderScreen(FileCommanderBase):
 		else:
 			self["list_left"].selectionEnabled(0)
 			self["list_right"].selectionEnabled(1)
-		self.updateHead()
 
 	def doRefresh(self):
 		sortDirsLeft, sortFilesLeft = self["list_left"].getSortBy().split(",")
@@ -1466,37 +1468,6 @@ class FileCommanderScreen(FileCommanderBase):
 		self["sort_right"].setText(sortRight)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
-		self.updateHead()
-
-	def listRightB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.goLeft()
-		elif config.plugins.filecommander.change_navbutton.value == "always" and self.SOURCELIST == self["list_right"]:
-			self.listLeft()
-		else:
-			self.listRight()
-
-	def listLeftB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.goRight()
-		elif config.plugins.filecommander.change_navbutton.value == "always" and self.SOURCELIST == self["list_left"]:
-			self.listRight()
-		else:
-			self.listLeft()
-
-	def listRight(self):
-		self["list_left"].selectionEnabled(0)
-		self["list_right"].selectionEnabled(1)
-		self.SOURCELIST = self["list_right"]
-		self.TARGETLIST = self["list_left"]
-		self.updateHead()
-
-	def listLeft(self):
-		self["list_left"].selectionEnabled(1)
-		self["list_right"].selectionEnabled(0)
-		self.SOURCELIST = self["list_left"]
-		self.TARGETLIST = self["list_right"]
-		self.updateHead()
 
 	def call_change_mode(self):
 		self.change_mod(self.SOURCELIST)
@@ -1588,7 +1559,6 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 		filtered = "" if config.plugins.filecommander.extension.value == "^.*" else "(*)"
 		self.setTitle("%s %s %s" % (PNAME, filtered, _("(Selectmode)")))
 		self.SOURCELIST.moveToIndex(self.selectedid)
-		self.updateHead()
 
 	def changeSelectionState(self):
 		if self.ACTIVELIST == self.SOURCELIST:
@@ -1608,42 +1578,12 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 		else:
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descent()
-			self.updateHead()
 
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			return
 		if self.ACTIVELIST.getParentDirectory() != False:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
-			self.updateHead()
-
-	def goLeftB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.listLeft()
-		else:
-			self.goLeft()
-
-	def goRightB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.listRight()
-		else:
-			self.goRight()
-
-	def goLeft(self):
-		self.ACTIVELIST.pageUp()
-		self.updateHead()
-
-	def goRight(self):
-		self.ACTIVELIST.pageDown()
-		self.updateHead()
-
-	def goUp(self):
-		self.ACTIVELIST.up()
-		self.updateHead()
-
-	def goDown(self):
-		self.ACTIVELIST.down()
-		self.updateHead()
 
 	def openTasklist(self):
 		self.tasklist = []
@@ -1768,24 +1708,6 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 	def goBlue(self):
 		self.exit()
 
-	def updateHead(self):  # Basic functions.
-		return
-		for side in ("list_left", "list_right"):
-			directory = self[side].getCurrentDirectory()
-			if directory is not None:
-				filename = self[side].getFilename() or ""
-				if filename.startswith(directory):
-					pathname = filename  # subfolder
-				elif not directory.startswith(filename):
-					pathname = pathjoin(directory, filename)  # filepath
-				else:
-					pathname = directory  # parent folder
-				self["%s_head1" % side].text = pathname
-				self["%s_head2" % side].updateList(self.statInfo(self[side]))
-			else:
-				self["%s_head1" % side].text = ""
-				self["%s_head2" % side].updateList(())
-
 	def updateButtons(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		selected = len(self.selectedFiles)
@@ -1800,35 +1722,6 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 		print("[FileCommander] selectedFiles %s." % self.selectedFiles)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
-		self.updateHead()
-
-	def listRightB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.goLeft()
-		elif config.plugins.filecommander.change_navbutton.value == "always" and self.ACTIVELIST == self["list_right"]:
-			self.listLeft()
-		else:
-			self.listRight()
-
-	def listLeftB(self):
-		if config.plugins.filecommander.change_navbutton.value == "yes":
-			self.goRight()
-		elif config.plugins.filecommander.change_navbutton.value == "always" and self.ACTIVELIST == self["list_left"]:
-			self.listRight()
-		else:
-			self.listLeft()
-
-	def listRight(self):
-		self["list_left"].selectionEnabled(0)
-		self["list_right"].selectionEnabled(1)
-		self.ACTIVELIST = self["list_right"]
-		self.updateHead()
-
-	def listLeft(self):
-		self["list_left"].selectionEnabled(1)
-		self["list_right"].selectionEnabled(0)
-		self.ACTIVELIST = self["list_left"]
-		self.updateHead()
 
 	def cleanList(self):  # Remove movie parts if the movie is present.
 		for file in self.selectedFiles[:]:

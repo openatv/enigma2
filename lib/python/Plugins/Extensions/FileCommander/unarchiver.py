@@ -1,23 +1,21 @@
-from Screens.MessageBox import MessageBox
-from Components.Label import Label
-from Screens.Screen import Screen
-from Components.config import config
-from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from Tools.BoundFunction import boundFunction
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryProgress
-from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-import subprocess
-import skin
-import six
-
-from os.path import splitext
-
 from re import findall
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from os.path import splitext
+from subprocess import Popen, PIPE, STDOUT
 
+from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+from Components.ActionMap import ActionMap
+from Components.config import config
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryProgress
 from Components.PluginComponent import plugins
+from Components.Sources.StaticText import StaticText
+from skin import fonts, parameters
 from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import shellquote, fileExists, resolveFilename, SCOPE_PLUGINS
 
 
@@ -62,28 +60,28 @@ class ArchiverMenuScreen(Screen):
 		Screen.__init__(self, session)
 		self.filename = self.SOURCELIST.getFilename()
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
-		self.targetDir = self.TARGETLIST.getCurrentDirectory() or '/tmp/'
+		self.targetDir = self.TARGETLIST.getCurrentDirectory() or "/tmp/"
 		self.list = []
 		self.commands = {}
 		self.errlog = ""
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		font = skin.fonts.get("FileList", ("Regular", 20, 25))
+		font = fonts.get("FileList", ("Regular", 20, 25))
 		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
 		self.chooseMenuList.l.setItemHeight(font[2])
-		self['list_left'] = self.chooseMenuList
+		self["list_left"] = self.chooseMenuList
 
 		self.chooseMenuList2 = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList2.l.setFont(0, gFont(font[0], font[1]))
 		self.chooseMenuList2.l.setItemHeight(font[2])
-		self['unpacking'] = self.chooseMenuList2
-		self['unpacking'].selectionEnabled(0)
+		self["unpacking"] = self.chooseMenuList2
+		self["unpacking"].selectionEnabled(0)
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("OK"))
-		self["key_yellow"] = Label("")
-		self["key_blue"] = Label("")
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["setupActions"] = ActionMap(["SetupActions"], {
 			"cancel": self.cancel,
@@ -113,9 +111,9 @@ class ArchiverMenuScreen(Screen):
 		self.list.append((_("Unpack to %s") % config.usage.default_path.value, self.ID_DEFAULTDIR))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
+		x, y, w, h = parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
-		w = self['list_left'].l.getItemSize().width()
+		w = self["list_left"].l.getItemSize().width()
 		return [
 			entry,
 			MultiContentEntryText(pos=(x, y), size=(w - x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
@@ -125,10 +123,10 @@ class ArchiverMenuScreen(Screen):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		x, y, w, h = skin.parameters.get("FileListMultiName", (60, 0, 1180, 25))
+		x, y, w, h = parameters.get("FileListMultiName", (60, 0, 1180, 25))
 		x2 = x
 		x = 10
-		w = self['list_left'].l.getItemSize().width()
+		w = self["list_left"].l.getItemSize().width()
 		return [
 			entry,
 			MultiContentEntryProgress(pos=(x + x2, y + int(h / 3)), size=(w - (x + x2), int(h / 3)), percent=int(currentProgress), borderWidth=1),
@@ -136,8 +134,8 @@ class ArchiverMenuScreen(Screen):
 		]
 
 	def ok(self):
-		selectName = self['list_left'].getCurrent()[0][0]
-		self.selectId = self['list_left'].getCurrent()[0][1]
+		selectName = self["list_left"].getCurrent()[0][0]
+		self.selectId = self["list_left"].getCurrent()[0][1]
 		print("[ArchiverMenuScreen] Select: %s %s" % (selectName, self.selectId))
 		self.unpackModus(self.selectId)
 
@@ -161,7 +159,7 @@ class ArchiverMenuScreen(Screen):
 		print("[ArchiverMenuScreen] unpackPopen %s" % cmd)
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
-			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+			p = Popen(cmd, shell=shellcmd, stdout=PIPE, stderr=PIPE, text=True)
 		except OSError as ex:
 			cmdname = cmd.split()[0] if shellcmd else cmd[0]
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
@@ -170,8 +168,8 @@ class ArchiverMenuScreen(Screen):
 			return
 		stdout, stderr = p.communicate()
 		output = []
-		output.append(stdout.split('\n'))
-		output.append(stderr.split('\n'))
+		output.append(stdout.split("\n"))
+		output.append(stderr.split("\n"))
 		if stdout and stderr:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
@@ -211,7 +209,7 @@ class ArchiverMenuScreen(Screen):
 	def extractDone(self, filename, data):
 		print("[ArchiverMenuScreen] extractDone %s" % data)
 		if data:
-			type = MessageBox.TYPE_ERROR
+			messagetype = MessageBox.TYPE_ERROR
 			timeout = 15
 			message = _("%s - extraction errors.") % filename
 			if data == -1:
@@ -222,13 +220,14 @@ class ArchiverMenuScreen(Screen):
 				message += "\n----------\n" + self.errlog
 			self.errlog = ""
 		else:
-			type = MessageBox.TYPE_INFO
+			messagetype = MessageBox.TYPE_INFO
 			timeout = 8
 			message = _("%s successfully extracted.") % filename
-		self.session.open(MessageBox, message, type, timeout=timeout)
+		self.session.open(MessageBox, message, messagetype, timeout=timeout)
 
 	def logerrs(self, data):
-		data = six.ensure_str(data)
+		if isinstance(data, bytes):
+			data = data.decode()
 		self.errlog += data
 
 	def cancel(self):
@@ -262,18 +261,18 @@ class ArchiverInfoScreen(Screen):
 		self.filename = filename
 		Screen.__init__(self, session)
 
-		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		font = skin.fonts.get("FileList", ("Regular", 20, 25))
+		self.chooseMenuList = MenuList([], content=eListboxPythonMultiContent)
+		font = fonts.get("FileList", ("Regular", 20, 25))
 		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
 		self.chooseMenuList.l.setItemHeight(font[2])
-		self['list_left'] = self.chooseMenuList
+		self["list_left"] = self.chooseMenuList
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
 
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("OK"))
-		self["key_yellow"] = Label("")
-		self["key_blue"] = Label("")
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["setupActions"] = ActionMap(["SetupActions"], {
 			"cancel": self.cancel,
@@ -289,11 +288,11 @@ class ArchiverInfoScreen(Screen):
 			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
+		x, y, w, h = parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
-		w = self['list_left'].l.getItemSize().width()
+		w = self["list_left"].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT
-		if 'Plugins.Extensions.FileCommander.unarchiver.UnpackInfoScreen' in repr(self):
+		if "Plugins.Extensions.FileCommander.unarchiver.UnpackInfoScreen" in repr(self):
 			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			y *= 2
 		return [
@@ -314,6 +313,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.skinname = ["UnzipMenuScreen", "ArchiverMenuScreen"]
 		self.initList(_("Show contents of zip file"))
 
 	def unpackModus(self, selectid):
@@ -330,8 +330,9 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 class UnpackInfoScreen(ArchiverInfoScreen):
 	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
 		ArchiverInfoScreen.__init__(self, session, liste, sourceDir, filename, addoninfo)
-		font = skin.fonts.get("FileList", ("Console", 20, 30))
-		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1] * 0.85)))
+		self.skinname = ["UnpackInfoScreen", "ArchiverInfoScreen"]
+		font = fonts.get("FileList", ("Console", 20, 30))
+		self.chooseMenuList.l.setFont(0, gFont("Console", int(font[1] * 0.85)))
 
 
 class RarMenuScreen(ArchiverMenuScreen):
@@ -346,6 +347,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.skinname = ["RarMenuScreen", "ArchiverMenuScreen"]
 
 		self.unrar = "unrar"
 		self.defaultPW = self.DEFAULT_PW
@@ -353,8 +355,8 @@ class RarMenuScreen(ArchiverMenuScreen):
 		self.initList(_("Show contents of rar file"))
 
 	def ok(self):
-		selectName = self['list_left'].getCurrent()[0][0]
-		self.selectId = self['list_left'].getCurrent()[0][1]
+		selectName = self["list_left"].getCurrent()[0][0]
+		self.selectId = self["list_left"].getCurrent()[0][1]
 		print("[RarMenuScreen] Select: %s %s" % (selectName, self.selectId))
 		self.checkPW(self.defaultPW)
 
@@ -363,7 +365,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		print("[RarMenuScreen] Current pw: %s" % self.defaultPW)
 		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
 		try:
-			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+			p = Popen(cmd, shell=False, stdout=PIPE, stderr=STDOUT, text=True)
 		except OSError as ex:
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmd[0], ex.strerror, cmd[0])
 			print("[RarMenuScreen] %s" % msg)
@@ -373,7 +375,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		if stdlog:
 			print("[RarMenuScreen] checkPW stdout %s" % len(stdlog))
 			print(stdlog)
-			if 'Corrupt file or wrong password.' in stdlog:
+			if "Corrupt file or wrong password." in stdlog:
 				print("[RarMenuScreen] pw incorrect!")
 				self.session.openWithCallback(self.setPW, VirtualKeyBoard, title=_("%s is password protected.") % self.filename + " " + _("Please enter password"), text="")
 			else:
@@ -398,16 +400,15 @@ class RarMenuScreen(ArchiverMenuScreen):
 
 	def log(self, data):
 		# print "[RarMenuScreen] log", data
-		status = findall('(\d+)%', data)
-		if status:
-			if not status[0] in self.ulist:
-				self.ulist.append((status[0]))
-				self.chooseMenuList2.setList(list(map(self.UnpackListEntry, status)))
-				self['unpacking'].selectionEnabled(0)
+		status = findall("(\d+)%", data)
+		if status and status[0] not in self.ulist:
+			self.ulist.append((status[0]))
+			self.chooseMenuList2.setList(list(map(self.UnpackListEntry, status)))
+			self["unpacking"].selectionEnabled(0)
 
-		if 'All OK' in data:
-			self.chooseMenuList2.setList(list(map(self.UnpackListEntry, ['100'])))
-			self['unpacking'].selectionEnabled(0)
+		if "All OK" in data:
+			self.chooseMenuList2.setList(list(map(self.UnpackListEntry, ["100"])))
+			self["unpacking"].selectionEnabled(0)
 
 	def extractDone(self, filename, data):
 		if data:
@@ -439,6 +440,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.skinname = ["GunzipMenuScreen", "ArchiverMenuScreen"]
 		self.initList()
 
 	def unpackModus(self, selectid):
@@ -450,8 +452,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 			baseName, ext = splitext(self.filename)
 			if ext != ".gz":
 				return
-			dest = self.getPathBySelectId(id)
-			dest += baseName
+			dest = "%s%s" % (self.getPathBySelectId(id), baseName)
 			cmd = "gunzip -c %s > %s && rm %s" % (shellquote(pathName), shellquote(dest), shellquote(pathName))
 		self.unpackEConsoleApp(cmd)
 
@@ -466,6 +467,7 @@ class ipkMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.skinname = ["ipkMenuScreen", "ArchiverMenuScreen"]
 		self.list.append((_("Show contents of ipk file"), self.ID_SHOW))
 		self.list.append((_("Install"), self.ID_INSTALL))
 
@@ -476,7 +478,7 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			# pipe output. Using communicate() avoids deadlock
 			# on reading stdout and stderr from the pipe.
 			fname = shellquote(self.sourceDir + self.filename)
-			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % fname, shell=True)
+			p = Popen("ar -t %s > /dev/null 2>&1" % fname, shell=True)
 			if p.wait():
 				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
 			else:
@@ -501,6 +503,7 @@ class TarMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
 		ArchiverMenuScreen.__init__(self, session, sourcelist, targetlist, addoninfo=self.ADDONINFO)
+		self.skinname = ["TarMenuScreen", "ArchiverMenuScreen"]
 		self.initList(_("Show contents of tar or compressed tar file"))
 
 	def unpackModus(self, selectid):
