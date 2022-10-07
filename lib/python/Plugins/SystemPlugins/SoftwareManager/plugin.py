@@ -110,7 +110,7 @@ class RestoreMenu(RestoreMenu):
 
 class SoftwareManagerSetup(Setup):
 	def __init__(self, session):
-		Setup.__init__(self, session, "SoftwareManager", plugin="Extensions/SoftwareManager")
+		Setup.__init__(self, session, "SoftwareManager", plugin="SystemPlugins/SoftwareManager")
 
 
 class PluginManager(Screen, PackageInfoHandler):
