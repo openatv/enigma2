@@ -231,10 +231,11 @@ void eListbox::updateScrollBar()
 				if (entries > 1 && entries > m_items_per_page)
 				{
 					float fthumb = (float)m_items_per_page / (float)entries * range;
-					int steps = (int)(((float)(range - fthumb) / (float)entries) + 0.5);
-					start = m_selected * steps;
-					int thumb = range - (steps * (entries - 1));
-					int visblethumb = (int)thumb < 4 ? 4 : (int)thumb;
+					float fsteps = ((float)(range - fthumb) / (float)entries);
+					float fstart = (float)m_selected * fsteps;
+					fthumb = (float)range - (fsteps * (float)(entries - 1));
+					int visblethumb = fthumb < 4 ? 4 : (int)(fthumb + 0.5);
+					start = (int)(fstart + 0.5);
 					end = start + visblethumb;
 					if (end > range) {
 						end = range;
