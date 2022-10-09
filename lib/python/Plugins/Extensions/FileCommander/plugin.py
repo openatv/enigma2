@@ -1,6 +1,6 @@
 from grp import getgrgid
 from mimetypes import guess_type
-from os import X_OK, access, environ, lstat, mkdir, readlink, remove, rename, sep, stat as osstat, statvfs, symlink, system
+from os import X_OK, access, chdir, chmod, environ, getcwd, lstat, mkdir, readlink, remove, rename, rmdir, sep, stat as osstat, statvfs, symlink, system, waitpid
 from os.path import basename, exists, isfile, isdir, islink, join as pathjoin, normpath, splitext
 from pathlib import Path
 from pwd import getpwuid
@@ -9,10 +9,13 @@ from string import digits
 from subprocess import PIPE, STDOUT, Popen
 from sys import maxsize
 import stat
+from tarfile import open as taropen
+from tempfile import mkdtemp
 from time import localtime, strftime
 
 from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eActionMap, eConsoleAppContainer, eListboxPythonMultiContent, ePicLoad, eServiceReference, eTimer, getDesktop, gFont
 
+from skin import fonts, parameters
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -27,6 +30,7 @@ from Components.MultiContent import MultiContentEntryProgress, MultiContentEntry
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.Scanner import openFile
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -44,8 +48,7 @@ from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.TaskList import TaskListScreen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from skin import fonts, parameters
-from Tools.Directories import copyFile, fileReadLines, fileWriteLines, resolveFilename, shellquote, SCOPE_PLUGINS
+from Tools.Directories import SCOPE_PLUGINS, copyFile, fileReadLines, fileWriteLines, resolveFilename, shellquote
 from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
 import Tools.Notifications
@@ -58,6 +61,9 @@ PVERS = "%s%s" % (_("Version"), "3.00")
 
 MOVIE_EXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
+ARCHIVE_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("7z", "bz2", "gz", "ipk", "rar", "tar", "xz", "zip")])
+MEDIA_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("music", "picture", "movie")])
+TEXT_FILES = frozenset([x for x, y in EXTENSIONS.items() if y in ("cfg", "html", "log", "lst", "py", "sh", "txt", "xml")])
 
 config.plugins.filecommander = ConfigSubsection()
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default=False)
@@ -65,9 +71,9 @@ config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default=False
 config.plugins.filecommander.savedir_left = ConfigYesNo(default=False)
 config.plugins.filecommander.savedir_right = ConfigYesNo(default=False)
 config.plugins.filecommander.editposition_lineend = ConfigYesNo(default=False)
-config.plugins.filecommander.path_default = ConfigDirectory(default="")
-config.plugins.filecommander.path_left = ConfigText(default="")
-config.plugins.filecommander.path_right = ConfigText(default="")
+config.plugins.filecommander.pathDefault = ConfigDirectory(default="")
+config.plugins.filecommander.pathLeft = ConfigText(default="")
+config.plugins.filecommander.pathRight = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[
 	("^.*", _("Without")),
@@ -108,7 +114,7 @@ choicelist = [
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
-config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
+config.plugins.filecommander.pathLeft_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.showScriptCompleted_message = ConfigYesNo(default=True)
 CHECKSUM_HASHES = {
@@ -125,8 +131,8 @@ defaultSort = "%s,%s" % (config.plugins.filecommander.sortDirs.value, config.plu
 config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=defaultSort))
 defaultSort = "%s,%s" % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=defaultSort))
-config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
-config.plugins.filecommander.path_right_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_right.value))
+config.plugins.filecommander.pathLeft_tmp = NoSave(ConfigText(default=config.plugins.filecommander.pathLeft.value))
+config.plugins.filecommander.pathRight_tmp = NoSave(ConfigText(default=config.plugins.filecommander.pathRight.value))
 config.plugins.filecommander.calculate_directorysize = ConfigYesNo(default=False)
 
 
@@ -245,11 +251,11 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 	PROG_PACKAGES = {
 		"file": "file",
 		"ffprobe": "ffmpeg",
-		#  "mediainfo": "mediainfo",
+		# "mediainfo": "mediainfo",
 	}
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["Test"])
 		HelpableScreen.__init__(self)
 		StatInfo.__init__(self)
 		self.multiselect = False
@@ -453,44 +459,44 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		)]
 
 
-class FileCommanderScreen(FileCommanderBase):
-	def __init__(self, session, path_left=None):
+class FileCommander(FileCommanderBase):
+	def __init__(self, session, pathLeft=None):
 		FileCommanderBase.__init__(self, session)
-		# path_left == "" means device list, whereas path_left == None means saved or default value
-		if path_left is None:
-			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and isdir(config.plugins.filecommander.path_left.value):
-				path_left = config.plugins.filecommander.path_left.value
-			elif config.plugins.filecommander.path_default.value and isdir(config.plugins.filecommander.path_default.value):
-				path_left = config.plugins.filecommander.path_default.value
-		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and isdir(config.plugins.filecommander.path_right.value):
-			path_right = config.plugins.filecommander.path_right.value
-		elif config.plugins.filecommander.path_default.value and isdir(config.plugins.filecommander.path_default.value):
-			path_right = config.plugins.filecommander.path_default.value
+		# pathLeft == "" means device list, whereas pathLeft == None means saved or default value
+		if pathLeft is None:
+			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.pathLeft.value and isdir(config.plugins.filecommander.pathLeft.value):
+				pathLeft = config.plugins.filecommander.pathLeft.value
+			elif config.plugins.filecommander.pathDefault.value and isdir(config.plugins.filecommander.pathDefault.value):
+				pathLeft = config.plugins.filecommander.pathDefault.value
+		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.pathRight.value and isdir(config.plugins.filecommander.pathRight.value):
+			pathRight = config.plugins.filecommander.pathRight.value
+		elif config.plugins.filecommander.pathDefault.value and isdir(config.plugins.filecommander.pathDefault.value):
+			pathRight = config.plugins.filecommander.pathDefault.value
 		else:
-			path_right = None
-		if path_left and isdir(path_left) and path_left[-1] != "/":
-			path_left += "/"
-		if path_right and isdir(path_right) and path_right[-1] != "/":
-			path_right += "/"
-		if path_left == "":
-			path_left = None
-		if path_right == "":
-			path_right = None
+			pathRight = None
+		if pathLeft and isdir(pathLeft) and pathLeft[-1] != "/":
+			pathLeft += "/"
+		if pathRight and isdir(pathRight) and pathRight[-1] != "/":
+			pathRight += "/"
+		if pathLeft == "":
+			pathLeft = None
+		if pathRight == "":
+			pathRight = None
 		filefilter = self.fileFilter()  # Set filter.
 		self.jobs = 0
 		self.jobs_old = 0
 		self.updateDirs = set()
 		self.containers = []
-		self["list_left_head1"] = Label(path_left)  # Set current folder.
+		self["list_left_head1"] = Label(pathLeft)  # Set current folder.
 		self["list_left_head2"] = List()
-		self["list_right_head1"] = Label(path_right)
+		self["list_right_head1"] = Label(pathRight)
 		self["list_right_head2"] = List()
 		sortDirs = config.plugins.filecommander.sortDirs.value  # Set sorting.
 		sortFilesLeft = config.plugins.filecommander.sortFiles_left.value
 		sortFilesRight = config.plugins.filecommander.sortFiles_right.value
 		firstDirs = config.plugins.filecommander.firstDirs.value
-		self["list_left"] = FileList(path_left, matchingPattern=filefilter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-		self["list_right"] = FileList(path_right, matchingPattern=filefilter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
+		self["list_left"] = FileList(pathLeft, matchingPattern=filefilter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+		self["list_right"] = FileList(pathRight, matchingPattern=filefilter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 		sortLeft = formatSortingTyp(sortDirs, sortFilesLeft)
 		sortRight = formatSortingTyp(sortDirs, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
@@ -541,7 +547,7 @@ class FileCommanderScreen(FileCommanderBase):
 		FileCommanderBase.layoutFinished(self)
 		self["list_left"].instance.enableAutoNavigation(False)
 		self["list_right"].instance.enableAutoNavigation(False)
-		if config.plugins.filecommander.path_left_selected:
+		if config.plugins.filecommander.pathLeft_selected:
 			self.listLeft()
 		else:
 			self.listRight()
@@ -728,25 +734,25 @@ class FileCommanderScreen(FileCommanderBase):
 
 	def file_viewer(self):
 		longname = self.viewable_file()
-		if longname is not None:
+		if longname:
 			self.session.open(FileCommanderEditor, longname)
 			self.onFileActionCB(True)
 
-	def onFileActionCB(self, result):
+	def onFileActionCB(self, result=None):
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 
 	def exit(self):
 		if self["list_left"].getCurrentDirectory() and config.plugins.filecommander.savedir_left.value:
-			config.plugins.filecommander.path_left.value = self["list_left"].getCurrentDirectory()
-			config.plugins.filecommander.path_left.save()
+			config.plugins.filecommander.pathLeft.value = self["list_left"].getCurrentDirectory()
+			config.plugins.filecommander.pathLeft.save()
 		else:
-			config.plugins.filecommander.path_left.value = config.plugins.filecommander.path_default.value
+			config.plugins.filecommander.pathLeft.value = config.plugins.filecommander.pathDefault.value
 		if self["list_right"].getCurrentDirectory() and config.plugins.filecommander.savedir_right.value:
-			config.plugins.filecommander.path_right.value = self["list_right"].getCurrentDirectory()
-			config.plugins.filecommander.path_right.save()
+			config.plugins.filecommander.pathRight.value = self["list_right"].getCurrentDirectory()
+			config.plugins.filecommander.pathRight.save()
 		else:
-			config.plugins.filecommander.path_right.value = config.plugins.filecommander.path_default.value
+			config.plugins.filecommander.pathRight.value = config.plugins.filecommander.pathDefault.value
 		self.running = False
 		self.close(self.session, True)
 
@@ -762,12 +768,14 @@ class FileCommanderScreen(FileCommanderBase):
 		sourceDir = dirsource.getCurrentDirectory()
 		lowerfilename = filename.lower()
 		filetype = splitext(filename)[1].lower()
+		if search("\.r\d+$", filetype):
+			filetype = ".rar"
 		print("[FileCommander] onFileAction DEBUG: %s %s %s" % (filename, sourceDir, lowerfilename))
 		if not isfile(longname):
 			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 			return
-		if filetype == ".ipk":
-			self.session.openWithCallback(self.onFileActionCB, ArchiverMenuScreen, self.SOURCELIST, self.TARGETLIST, ArchiverMenuScreen.MODE_IPK)
+		if filetype[1:] in ARCHIVE_FILES:
+			self.session.openWithCallback(self.onFileActionCB, FileCommanderArchive, longname)
 		elif filetype == ".ts":
 			fileRef = eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, longname)
 			self.session.open(FileCommanderMoviePlayer, fileRef)
@@ -778,14 +786,6 @@ class FileCommanderScreen(FileCommanderBase):
 			self.session.open(DVDPlayer, dvd_filelist=[longname])
 		elif filetype in AUDIO_EXTENSIONS:
 			self.play_music(self.SOURCELIST)
-		elif filetype == ".rar" or search("\.r\d+$", filetype):
-			self.session.openWithCallback(self.onFileActionCB, ArchiverMenuScreen, self.SOURCELIST, self.TARGETLIST, ArchiverMenuScreen.MODE_RAR)
-		elif lowerfilename.endswith(".tar.gz") or filetype in (".tgz", ".tar"):
-			self.session.openWithCallback(self.onFileActionCB, ArchiverMenuScreen, self.SOURCELIST, self.TARGETLIST, ArchiverMenuScreen.MODE_TAR)
-		elif filetype == ".gz":  # Must follow test for .tar.gz
-			self.session.openWithCallback(self.onFileActionCB, ArchiverMenuScreen, self.SOURCELIST, self.TARGETLIST, ArchiverMenuScreen.MODE_GZIP)
-		elif filetype == ".zip":
-			self.session.openWithCallback(self.onFileActionCB, ArchiverMenuScreen, self.SOURCELIST, self.TARGETLIST, ArchiverMenuScreen.MODE_ZIP)
 		elif filetype in IMAGE_EXTENSIONS:
 			if self.SOURCELIST.getCurrentIndex() != 0:
 				self.session.openWithCallback(
@@ -815,7 +815,7 @@ class FileCommanderScreen(FileCommanderBase):
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
-			if (xfile.st_size < 1000000):
+			if longname and xfile.st_size < 1000000:
 				self.session.open(FileCommanderEditor, longname)
 				self.onFileActionCB(True)
 		else:
@@ -885,7 +885,7 @@ class FileCommanderScreen(FileCommanderBase):
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (self.commando, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
-			if (yfile.st_size < 1000000):
+			if self.commando and yfile.st_size < 1000000:
 				self.session.open(FileCommanderEditor, self.commando)
 
 		if answer and answer not in ("NO", "VIEW"):
@@ -1077,8 +1077,8 @@ class FileCommanderScreen(FileCommanderBase):
 	def goDefaultfolder(self):
 		bookmarks = config.plugins.filecommander.bookmarks.value
 		if not bookmarks:
-			if config.plugins.filecommander.path_default.value:
-				bookmarks.append(config.plugins.filecommander.path_default.value)
+			if config.plugins.filecommander.pathDefault.value:
+				bookmarks.append(config.plugins.filecommander.pathDefault.value)
 			bookmarks.append("/home/root/")
 			bookmarks.append(defaultMoviePath())
 			config.plugins.filecommander.bookmarks.value = bookmarks
@@ -1112,12 +1112,12 @@ class FileCommanderScreen(FileCommanderBase):
 		if not self.SOURCELIST.getCurrentDirectory():
 			return
 		selectedid = self.SOURCELIST.getSelectionID()
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
+		config.plugins.filecommander.pathLeft_tmp.value = self["list_left"].getCurrentDirectory() or ""
+		config.plugins.filecommander.pathRight_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		config.plugins.filecommander.sortingLeft_tmp.value = self["list_left"].getSortBy()
 		config.plugins.filecommander.sortingRight_tmp.value = self["list_right"].getSortBy()
 		leftactive = self.SOURCELIST == self["list_left"]
-		self.session.openWithCallback(self.doRefreshDir, FileCommanderScreenFileSelect, leftactive, selectedid)
+		self.session.openWithCallback(self.doRefreshDir, FileCommanderFileSelect, leftactive, selectedid)
 
 	def addJob(self, job, updateDirs):
 		self.jobs += 1
@@ -1341,7 +1341,9 @@ class FileCommanderScreen(FileCommanderBase):
 				self.doRefresh()
 
 	def gofileStatInfo(self):  # File/directory information.
-		self.session.open(FileCommanderInformation, self.SOURCELIST)
+		path = self.SOURCELIST.getPath()
+		if path:
+			self.session.open(FileCommanderInformation, path)
 
 	def gomakeSymlink(self):  # Symlink by folder.
 		filename = self.SOURCELIST.getFilename()
@@ -1404,8 +1406,8 @@ class FileCommanderScreen(FileCommanderBase):
 		if jobs:
 			for job in jobs:
 				self.addJob(job, updateDirs)
-		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value or None)
-		self["list_right"].changeDir(config.plugins.filecommander.path_right_tmp.value or None)
+		self["list_left"].changeDir(config.plugins.filecommander.pathLeft_tmp.value or None)
+		self["list_right"].changeDir(config.plugins.filecommander.pathRight_tmp.value or None)
 		if self.SOURCELIST == self["list_left"]:
 			self["list_left"].selectionEnabled(1)
 			self["list_right"].selectionEnabled(0)
@@ -1450,14 +1452,14 @@ class FileCommanderScreen(FileCommanderBase):
 		self.doRefresh()
 
 
-class FileCommanderScreenFileSelect(FileCommanderBase):
+class FileCommanderFileSelect(FileCommanderBase):
 	def __init__(self, session, leftactive, selectedid):
 		FileCommanderBase.__init__(self, session)
 		self.multiselect = True
 		self.selectedFiles = []
 		self.selectedid = selectedid
-		path_left = config.plugins.filecommander.path_left_tmp.value or None
-		path_right = config.plugins.filecommander.path_right_tmp.value or None
+		pathLeft = config.plugins.filecommander.pathLeft_tmp.value or None
+		pathRight = config.plugins.filecommander.pathRight_tmp.value or None
 		sortDirsLeft, sortFilesLeft = config.plugins.filecommander.sortingLeft_tmp.value.split(",")  # Set sorting.
 		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(",")
 		firstDirs = config.plugins.filecommander.firstDirs.value
@@ -1466,19 +1468,19 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 		filefilter = self.fileFilter()  # Set filter.
-		self["list_left_head1"] = Label(path_left)  # Set current folder.
+		self["list_left_head1"] = Label(pathLeft)  # Set current folder.
 		self["list_left_head2"] = List()
-		self["list_right_head1"] = Label(path_right)
+		self["list_right_head1"] = Label(pathRight)
 		self["list_right_head2"] = List()
 		if leftactive:
-			self["list_left"] = FileListMultiSelect(self.selectedFiles, path_left, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-			self["list_right"] = FileList(path_right, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
+			self["list_left"] = FileListMultiSelect(self.selectedFiles, pathLeft, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = FileList(pathRight, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.onLayoutFinish.append(self.listLeft)
 		else:
-			self["list_left"] = FileList(path_left, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-			self["list_right"] = FileListMultiSelect(self.selectedFiles, path_right, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
+			self["list_left"] = FileList(pathLeft, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = FileListMultiSelect(self.selectedFiles, pathRight, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.onLayoutFinish.append(self.listRight)
@@ -1515,8 +1517,8 @@ class FileCommanderScreenFileSelect(FileCommanderBase):
 			self.goDown()
 
 	def exit(self, jobs=None, updateDirs=None):
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
+		config.plugins.filecommander.pathLeft_tmp.value = self["list_left"].getCurrentDirectory() or ""
+		config.plugins.filecommander.pathRight_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		self.close(jobs, updateDirs)
 
 	def ok(self):
@@ -1676,7 +1678,7 @@ class FileCommanderContextMenu(Screen):
 	</screen>"""
 
 	def __init__(self, session, contexts, menuList):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["Test"])
 		if not self.getTitle():
 			self.setTitle(_("File Commander Context Menu"))
 		if "OkCancelActions" not in contexts:
@@ -1712,22 +1714,22 @@ class FileCommanderSetup(Setup):
 		Setup.__init__(self, session, "FileCommander", plugin="Extensions/FileCommander")
 
 	def keySelect(self):
-		if self.getCurrentItem() == config.plugins.filecommander.path_default:
-			currDir = config.plugins.filecommander.path_default.value if config.plugins.filecommander.path_default.value else None
+		if self.getCurrentItem() == config.plugins.filecommander.pathDefault:
+			currDir = config.plugins.filecommander.pathDefault.value if config.plugins.filecommander.pathDefault.value else None
 			self.session.openWithCallback(self.keySelectCallback, LocationBox, text=_("Select default File Commander directory:"), currDir=currDir, minFree=100)
 		else:
 			Setup.keySelect(self)
 
 	def keySelectCallback(self, path):
 		if path:
-			config.plugins.filecommander.path_default.value = path
+			config.plugins.filecommander.pathDefault.value = path
 
 
 class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 	skin = ["""
-	<screen name="FileCommanderInformation" title="File/Directory Status Information" position="center,center" size="545,335" resolution="1280,720">
-		<widget name="filename" position="0,0" size="545,25" font="Regular;20" valign="center" />
-		<widget source="list" render="Listbox" position="0,35" size="545,300">
+	<screen name="FileCommanderInformation" title="File/Directory Status Information" position="center,center" size="700,410" resolution="1280,720">
+		<widget name="path" position="0,0" size="700,50" font="Regular;20" valign="center" />
+		<widget source="data" render="Listbox" position="0,60" size="700,300">
 			<convert type="TemplatedMultiContent">
 				{
 				"template":
@@ -1744,6 +1746,15 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 				}
 			</convert>
 		</widget>
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>""",
 		15, 200, 25,
 		245, 300, 25,
@@ -1751,83 +1762,101 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 		25
 	]
 
-	def __init__(self, session, source):
-		Screen.__init__(self, session)
+	def __init__(self, session, path):
+		Screen.__init__(self, session, mandatoryWidgets=["path", "data", "Test"])
 		HelpableScreen.__init__(self)
 		StatInfo.__init__(self)
-		self.source = source
+		self.path = normpath(path) if path.endswith(sep) else path
 		self.skinname = ["FileCommanderInformation", "FileCommanderFileStatInfo"]
-		self.statusList = []
-		self["filename"] = Label()
-		self["list"] = List(self.statusList)
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
-			"cancel": (self.close, _("Close this screen")),
-			"ok": (self.close, _("Close this screen")),
-		}, prio=0, description=_("File/Directory Status Actions"))
-		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self["list"].goTop, _("Move to first line / screen")),
-			"pageUp": (self["list"].goPageUp, _("Move up a screen")),
-			"up": (self["list"].goLineUp, _("Move up a line")),
-			# "left": (self["list"].goPageUp, _("Move up a screen")),
-			# "right": (self["list"].goPageDown, _("Move down a screen")),
-			"down": (self["list"].goLineDown, _("Move down a line")),
-			"pageDown": (self["list"].goPageDown, _("Move down a screen")),
-			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
-		}, prio=0, description=_("File/Directory Status Actions"))
 		if not self.getTitle():
 			self.setTitle(_("File/Directory Status Information"))
+		self.data = []
+		self["path"] = Label(self.path)
+		self["data"] = List(self.data)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText("")
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.close, _("Close this screen")),
+			"ok": (self.close, _("Close this screen")),
+			"red": (self.close, _("Close this screen"))
+		}, prio=0, description=_("File/Directory Status Actions"))
+		self["detailAction"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keyDetails, _("Display more information about this file"))
+		}, prio=0, description=_("File/Directory Status Actions"))
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
+			"up": (self["data"].goLineUp, _("Move up a line")),
+			# "left": (self["data"].goPageUp, _("Move up a screen")),
+			# "right": (self["data"].goPageDown, _("Move down a screen")),
+			"down": (self["data"].goLineDown, _("Move down a line")),
+			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
+			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("File/Directory Status Actions"))
 		self.onShown.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["list"].downstream_elements[0].downstream_elements[0].instance.enableAutoNavigation(False)
-		self.height = self["list"].downstream_elements[0].downstream_elements[0].instance.size().height()
-		self.itemHeight = self["list"].downstream_elements[0].template.get("itemHeight", 25)
+		self["data"].downstream_elements[0].downstream_elements[0].instance.enableAutoNavigation(False)
+		self.height = self["data"].downstream_elements[0].downstream_elements[0].instance.size().height()
+		self.itemHeight = self["data"].downstream_elements[0].template.get("itemHeight", 25)
 		self.getStatus()
 
 	def getStatus(self):
-		filename = self.source.getFilename()
-		sourceDir = self.source.getCurrentDirectory()
-		if filename is None:
-			self.session.open(MessageBox, _("Error: It is not possible to get the file status of '<List of Storage Devices>'!"), type=MessageBox.TYPE_ERROR)
-			self.close()
-		if filename.endswith(sep):
-			filepath = normpath(filename)
-			filename = sep if filepath == sep else filepath
+		extension = splitext(self.path)[1][1:].lower()
+		if extension in MEDIA_FILES:
+			self["key_green"].setText(_("MediaInfo"))
+			self["detailAction"].setEnabled(True)
+		elif extension in TEXT_FILES:
+			self["key_green"].setText(_("Edit File"))
+			self["detailAction"].setEnabled(True)
+		elif extension in ARCHIVE_FILES:
+			self["key_green"].setText(_("Unpack File"))
+			self["detailAction"].setEnabled(True)
 		else:
-			filepath = pathjoin(sourceDir, filename)
-		filename = basename(normpath(filename))
-		self["filename"].setText(filename)
-		self.statusList = []
+			self["key_green"].setText("")
+			self["detailAction"].setEnabled(False)
+		self.data = []
 		try:
 			lines = 10
-			status = lstat(filepath)
+			status = lstat(self.path)
 			mode = status.st_mode
-			self.statusList.append((_("Type:"), self.fileTypeStr(mode)))
+			self.data.append((_("Type:"), self.fileTypeStr(mode)))
 			if stat.S_ISLNK(mode):
 				try:
-					link = readlink(filepath)
+					link = readlink(self.path)
 				except OSError as err:
 					link = _("Error %d: %s") % (err.errno, err.strerror)
 				lines += 1
-				self.statusList.append((_("Link target:"), link))
-			self.statusList.append((_("Owner:"), "%s (%d)" % (self.username(status.st_uid), status.st_uid)))
-			self.statusList.append((_("Group:"), "%s (%d)" % (self.groupname(status.st_gid), status.st_gid)))
+				self.data.append((_("Link target:"), link))
+			self.data.append((_("Owner:"), "%s (%d)" % (self.username(status.st_uid), status.st_uid)))
+			self.data.append((_("Group:"), "%s (%d)" % (self.groupname(status.st_gid), status.st_gid)))
 			permissions = stat.S_IMODE(mode)
-			self.statusList.append((_("Permissions:"), _("%s (%04o)") % (stat.filemode(permissions), permissions)))
+			self.data.append((_("Permissions:"), _("%s (%04o)") % (stat.filemode(mode), permissions)))
 			if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
 				lines += 1
-				self.statusList.append(("%s:" % _("Size"), "%s (%sB)" % ("{:n}".format(status.st_size), " ".join(self.SIZESCALER.scale(status.st_size)))))
-			self.statusList.append((_("Modified:"), self.formatTime(status.st_mtime)))
-			self.statusList.append((_("Accessed:"), self.formatTime(status.st_atime)))
-			self.statusList.append((_("Metadata changed:"), self.formatTime(status.st_ctime)))
-			self.statusList.append((_("Links:"), "%d" % status.st_nlink))
-			self.statusList.append((_("Inode:"), "%d" % status.st_ino))
-			self.statusList.append((_("Device number:"), "%d, %d" % ((status.st_dev >> 8) & 0xff, status.st_dev & 0xff)))
-			self["list"].updateList(self.statusList)
+				self.data.append(("%s:" % _("Size"), "%s (%sB)" % ("{:n}".format(status.st_size), " ".join(self.SIZESCALER.scale(status.st_size)))))
+			self.data.append((_("Modified:"), self.formatTime(status.st_mtime)))
+			self.data.append((_("Accessed:"), self.formatTime(status.st_atime)))
+			self.data.append((_("Metadata changed:"), self.formatTime(status.st_ctime)))
+			self.data.append((_("Links:"), "%d" % status.st_nlink))
+			self.data.append((_("Inode:"), "%d" % status.st_ino))
+			self.data.append((_("Device number:"), "%d, %d" % ((status.st_dev >> 8) & 0xff, status.st_dev & 0xff)))
+			self["data"].updateList(self.data)
 			self["navigationActions"].setEnabled(self.height < self.itemHeight * lines)
 		except OSError as err:
-			self.session.open(MessageBox, _("%s: %s") % (filepath, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Error %s: Unable to get information for '%s'!  (%s)") % (err.errno, path, err.strerror), type=MessageBox.TYPE_ERROR)
 			self.close()
+
+	def keyDetails(self):
+		extension = splitext(self.path)[1][1:].lower()
+		if extension in MEDIA_FILES:
+			# self.session.open(FileCommanderMediaInfo, self.path)
+			pass
+		elif extension in TEXT_FILES:
+			self.session.open(FileCommanderEditor, self.path)
+		elif extension in ARCHIVE_FILES:
+			# self.session.open(FileCommanderArchive, self.path)
+			pass
 
 
 # Play media with MoviePlayer.
@@ -1910,7 +1939,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	]
 
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
-		Screen.__init__(self, session, mandatoryWidgets=["infolabels"])
+		Screen.__init__(self, session, mandatoryWidgets=["infolabels", "Test"])
 		HelpableScreen.__init__(self)
 		self.startIndex = index
 		self.lastIndex = index
@@ -2088,10 +2117,10 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 #
 class FileCommanderEditor(Screen, HelpableScreen):
 	skin = """
-	<screen name="FileCommanderEditor" title="File Commander Text Editor" position="40,80" size="1200,585" resolution="1280,720">
-		<widget name="filename" position="0,0" size="1030,25" font="Regular;20" foregroundColor="#00fff000" />
-		<widget name="line" position="1050,0" size="150,25" font="Regular;20" foregroundColor="#00fff000" halign="right" />
-		<widget name="filedata" position="0,35" size="1200,500" font="Regular;20" itemHeight="25" />
+	<screen name="FileCommanderEditor" title="File Commander Text Editor" position="40,80" size="1200,610" resolution="1280,720">
+		<widget name="path" position="0,0" size="1030,50" font="Regular;20" foregroundColor="#00fff000" valign="center" />
+		<widget name="location" position="1050,12" size="150,25" font="Regular;20" foregroundColor="#00fff000" halign="right" valign="center" />
+		<widget name="data" position="0,60" size="1200,500" font="Regular;20" itemHeight="25" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -2106,30 +2135,27 @@ class FileCommanderEditor(Screen, HelpableScreen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, file):
-		Screen.__init__(self, session, mandatoryWidgets=["filename", "line"])
+	def __init__(self, session, path):
+		Screen.__init__(self, session, mandatoryWidgets=["path", "location", "data", "Test"])
 		HelpableScreen.__init__(self)
-		self.filename = file
+		self.path = normpath(path) if path.endswith(sep) else path
 		self.skinName = ["FileCommanderEditor", "vEditorScreen"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Text Editor"))
-		self.textList = []
-		self["filename"] = Label(file)
-		self["line"] = Label()
-		self["filedata"] = MenuList(self.textList)
+		self.data = []
+		self["path"] = Label(self.path)
+		self["location"] = Label()
+		self["data"] = MenuList(self.data)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Exit editor and discard any changes")),
 			"ok": (self.keyEdit, _("Edit current line")),
 			"red": (self.keyCancel, _("Exit editor and discard any changes")),
-			"green": (self.keySave, _("Exit editor and save any changes")),
-			"yellow": (self.keyDelete, _("Delete current line")),
-			"blue": (self.keyInsert, _("Insert line before current line")),
-			"top": (self["filedata"].goTop, _("Move to first line / screen")),
-			"pageUp": (self["filedata"].goPageUp, _("Move up a screen")),
-			"up": (self["filedata"].goLineUp, _("Move up a line")),
-			"down": (self["filedata"].goLineDown, _("Move down a line")),
-			"pageDown": (self["filedata"].goPageDown, _("Move down a screen")),
-			"bottom": (self["filedata"].goBottom, _("Move to last line / screen"))
+			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
+			"up": (self["data"].goLineUp, _("Move up a line")),
+			"down": (self["data"].goLineDown, _("Move down a line")),
+			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
+			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
 			# Add command to sort the file.
 		}, prio=0, description=_("File Commander Text Editor Actions"))
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {
@@ -2138,37 +2164,67 @@ class FileCommanderEditor(Screen, HelpableScreen):
 		self["moveDownAction"] = HelpableActionMap(self, ["NavigationActions"], {
 			"right": (self.keyMoveLineDown, _("Move the current line down")),
 		}, prio=0, description=_("File Commander Text Editor Actions"))
+		self["editActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keySave, _("Exit editor and save any changes")),
+			"yellow": (self.keyDelete, _("Delete current line")),
+			"blue": (self.keyInsert, _("Insert line before current line")),
+		}, prio=0, description=_("File Commander Text Editor Actions"))
+
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Delete Line"))
 		self["key_blue"] = StaticText(_("Insert Line"))
 		self.isChanged = False
+		self.isBinary = False
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["filedata"].instance.enableAutoNavigation(False)  # Override listbox navigation.
-		self.textList = fileReadLines(self.filename, default=[], source=MODULE_NAME)
-		self["filedata"].setList(self.textList)
-		self["filedata"].onSelectionChanged.append(self.updateLine)
+		self["data"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		try:
+			self.data = fileReadLines(self.path, default=[], source=MODULE_NAME)
+		except UnicodeDecodeError:
+			self["editActions"].setEnabled(0)
+			self["moveUpAction"].setEnabled(0)
+			self["moveDownAction"].setEnabled(0)
+			self["key_green"].setText("")
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+			self.isBinary = True
+			try:
+				BLOCK_WIDTH = 32
+				encoding = "utf-8"
+				filedata = None
+				lines = []
+				with open(self.path, "rb") as file:
+					filedata = file.read()
+				if filedata:
+					rows = [filedata[i:i + BLOCK_WIDTH]for i in range(0, len(filedata), BLOCK_WIDTH)]
+					for row in rows:
+						hexchars = " ".join(["{:02X}".format(byte) for byte in row])
+						chars = "".join([char if 0x20 < ord(char) < 0x7F else "?" for char in row.decode(encoding=encoding, errors="replace")])
+						lines.append("%s\t%s" % (hexchars, chars))
+				self.data = lines
+			except OSError:
+				pass
+		self["data"].setList(self.data)
+		self["data"].onSelectionChanged.append(self.updateLine)
 		self.updateLine()
 
 	def updateLine(self):
-		count = self["filedata"].count()
-		index = self["filedata"].getCurrentIndex()
+		count = self["data"].count()
+		index = self["data"].getCurrentIndex()
+		if self.isBinary:
+			return
 		if count:
-			self["line"].setText(_("Line %d / %d") % (index + 1, count))
+			self["location"].setText(_("Line %d / %d") % (index + 1, count))
 		else:
-			self["line"].setText(_("Empty file"))
-		if index == 0:
-			self["moveUpAction"].setEnabled(False)
-			self["moveDownAction"].setEnabled(True)
-		elif index == count - 1:
-			self["moveUpAction"].setEnabled(True)
-			self["moveDownAction"].setEnabled(False)
+			self["location"].setText(_("Empty file"))
+		self["moveUpAction"].setEnabled(index > 0)
+		self["moveDownAction"].setEnabled(index < count - 1)
 
 	def keyCancel(self):
 		if self.isChanged:
-			msg = _("The file '%s' has been changed. Do you discard the changes?" % self.filename)
+			msg = _("The file '%s' has been changed. Do you discard the changes?" % self.path)
 			self.session.openWithCallback(self.keyCancelCallback, MessageBox, msg, MessageBox.TYPE_YESNO, default=False, windowTitle=self.getTitle())
 		else:
 			self.close()
@@ -2179,7 +2235,7 @@ class FileCommanderEditor(Screen, HelpableScreen):
 
 	def keySave(self):
 		if self.isChanged:
-			msg = [_("The file '%s' has been changed. Do you want to save it?") % self.filename]
+			msg = [_("The file '%s' has been changed. Do you want to save it?") % self.path]
 			msg.append("")
 			msg.append(_("WARNING:"))
 			msg.append(_("The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"))
@@ -2189,13 +2245,15 @@ class FileCommanderEditor(Screen, HelpableScreen):
 
 	def keyExitCallback(self, answer):
 		if answer:
-			if isfile(self.filename):
-				copyFile(self.filename, "%s.bak" % self.filename)
-			result = fileWriteLines(self.filename, "\n".join(self.textList), source=MODULE_NAME)
+			if isfile(self.path):
+				copyFile(self.path, "%s.bak" % self.path)
+			result = fileWriteLines(self.path, "\n".join(self.data), source=MODULE_NAME)
 		self.close()
 
 	def keyEdit(self):
-		line = self["filedata"].getCurrent()
+		if self.isBinary:
+			return
+		line = self["data"].getCurrent()
 		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
 		currPos = None if config.plugins.filecommander.editposition_lineend.value == True else 0
 		self.session.openWithCallback(self.editLineCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
@@ -2203,19 +2261,19 @@ class FileCommanderEditor(Screen, HelpableScreen):
 	def editLineCallback(self, line):
 		if line is not None:
 			# Find and resetore TABs from a special single character.  This could also be helpful for NEWLINE as well.
-			self.textList[self["filedata"].getCurrentIndex()] = line
-			self["filedata"].setList(self.textList)
+			self.data[self["data"].getCurrentIndex()] = line
+			self["data"].setList(self.data)
 			self.isChanged = True
 
 	def keyDelete(self):
-		if self.textList:
-			del self.textList[self["filedata"].getCurrentIndex()]
-			self["filedata"].setList(self.textList)
+		if self.data:
+			del self.data[self["data"].getCurrentIndex()]
+			self["data"].setList(self.data)
 			self.isChanged = True
 
 	def keyInsert(self):
-		self.textList.insert(self["filedata"].getCurrentIndex(), "")
-		self["filedata"].setList(self.textList)
+		self.data.insert(self["data"].getCurrentIndex(), "")
+		self["data"].setList(self.data)
 		self.isChanged = True
 
 	def keyMoveLineUp(self):
@@ -2225,15 +2283,192 @@ class FileCommanderEditor(Screen, HelpableScreen):
 		self.moveLine(+1)
 
 	def moveLine(self, direction):
-		index = self["filedata"].getCurrentIndex() + direction
-		self.textList.insert(index, self.textList.pop(index - direction))
-		self["filedata"].setList(self.textList)
-		self["filedata"].setCurrentIndex(index)
+		index = self["data"].getCurrentIndex() + direction
+		self.data.insert(index, self.data.pop(index - direction))
+		self["data"].setList(self.data)
+		self["data"].setCurrentIndex(index)
 		self.isChanged = True
 
 
-class ArchiverMenuScreen(Screen, HelpableScreen):
+class FileCommanderArchive(Screen, HelpableScreen):
+	skin = """
+	<screen name="FileCommanderArchive" title="File Commander Archive" position="50,50" size="1180,600" resolution="1280,720">
+		<widget name="path" position="0,0" size="1180,55" font="Regular;20" foregroundColor="#00fff000" valign="center" />
+		<widget name="data" position="0,65" size="1180,485" font="Console;20" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
 
+	def __init__(self, session, path):
+		Screen.__init__(self, session, mandatoryWidgets=["Test"])
+		HelpableScreen.__init__(self)
+		self.skinName = ["FileCommanderArchive"]
+		if not self.getTitle():
+			self.setTitle(_("File Commander Archive"))
+		self.path = normpath(path) if path.endswith(sep) else path
+		self.extension = splitext(self.path)[1][1:].lower()
+		self.tar = ".tar" in splitext(self.path)[0].lower() or self.extension == "tar"
+		if search("\.r\d+$", splitext(self.path)[1].lower()):
+			self.extension = "rar"
+		self["path"] = Label(self.path)
+		self["data"] = ScrollLabel(_("Please select an action from the color buttons to proceed."))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("View"))
+		self["key_yellow"] = StaticText(_("Extract"))
+		self["key_blue"] = StaticText(_("Install") if self.extension == "ipk" else "")
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"cancel": (self.keyCancel, _("Close the screen")),
+			"ok": (self.keyCancel, _("Close the screen")),
+			"red": (self.keyCancel, _("Close the screen")),
+			"green": (self.keyView, _("View the contents of the archive")),
+			"yellow": (self.keyExtract, _("Extract the contents of the archive")),
+			"top": (self["data"].moveTop, _("Move to first line / screen")),
+			"pageUp": (self["data"].pageUp, _("Move up a screen")),
+			"up": (self["data"].moveUp, _("Move up a line")),
+			"down": (self["data"].moveDown, _("Move down a line")),
+			"pageDown": (self["data"].pageDown, _("Move down a screen")),
+			"bottom": (self["data"].moveBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("File Commander Archiver Content Actions"))
+
+	def keyCancel(self):
+		self.close()
+
+	def keyView(self):
+		if self.tar:
+			def displayData(retVal, data):
+				self["data"].setText(data)
+
+			self.processArguments(None, ["/bin/tar", "/bin/tar", "-tf", self.path], displayData)
+		elif self.extension == "ipk":
+			def processArchive(retVal, data):
+				files = []
+				path = pathjoin(tempDir, "control.tar.gz")
+				if isfile(path):
+					data = taropen(path, mode="r")
+					files.append(_("Control files:"))
+					files.extend(data.getnames())
+					data.close()
+				for file in ("data.tar.gz", "data.tar.xz"):
+					path = pathjoin(tempDir, file)
+					if isfile(path):
+						data = taropen(path, mode="r")
+						files.append("")
+						files.append(_("Package files:"))
+						files.extend(data.getnames())
+						data.close()
+						break
+				for file in ("debian-binary", "control.tar.gz", "data.tar.gz", "data.tar.xz"):
+					path = pathjoin(tempDir, file)
+					if isfile(path):
+						try:
+							remove(path)
+						except OSError:
+							pass
+				try:
+					rmdir(tempDir)
+				except OSError:
+					pass
+				self["data"].setText("\n".join(files))
+
+			tempDir = mkdtemp()
+			self.processArguments(tempDir, ["/usr/bin/ar", "/usr/bin/ar", "x", self.path], processArchive)
+		elif self.extension == "rar":
+			def displayData(retVal, data):
+				self["data"].setText(data)
+
+			self.processArguments(None, ["/usr/bin/unrar", "/usr/bin/unrar", "lb", self.path], displayData)
+		else:
+			def displayData(retVal, data):
+				self["data"].setText("\n".join([x.split(None, 5)[-1] for x in [x for x in data.split("\n") if x]]))
+
+			self.processArguments(None, ["/usr/bin/7za", "/usr/bin/7za", "l", "-ba", self.path], displayData)
+
+	def keyExtract(self):
+		tempDir = mkdtemp()
+		if self.tar:
+			def displayData(retVal, data):
+				self["data"].setText(data)
+
+			filename = splitext(self.path)[1][1:].lower()
+
+			self.processArguments(tempDir, ["/bin/tar", "/bin/tar", "-xvf", self.path], displayData)
+		elif self.extension == "ipk":
+			def processArchive(retVal, data):
+				files = []
+				path = pathjoin(tempDir, "control.tar.gz")
+				if isfile(path):
+					data = taropen(path, mode="r")
+					files.append(_("Control files:"))
+					files.extend(data.getnames())
+					data.close()
+				for file in ("data.tar.gz", "data.tar.xz"):
+					path = pathjoin(tempDir, file)
+					if isfile(path):
+						data = taropen(path, mode="r")
+						files.append("")
+						files.append(_("Package files:"))
+						files.extend(data.getnames())
+						data.close()
+						break
+				for file in ("debian-binary", "control.tar.gz", "data.tar.gz", "data.tar.xz"):
+					path = pathjoin(tempDir, file)
+					if isfile(path):
+						try:
+							remove(path)
+						except OSError:
+							pass
+				try:
+					rmdir(tempDir)
+				except OSError:
+					pass
+				self["data"].setText("\n".join(files))
+
+			tempDir = mkdtemp()
+			self.processArguments(tempDir, ["/usr/bin/ar", "/usr/bin/ar", "x", self.path], processArchive)
+		elif self.extension == "rar":
+			def displayData(retVal, data):
+				self["data"].setText(data)
+
+			self.processArguments(tempDir, ["/usr/bin/unrar", "/usr/bin/unrar", "x", self.path], displayData)
+		else:
+			def displayData(retVal, data):
+				self["data"].setText("\n".join([x.split(None, 5)[-1] for x in [x for x in data.split("\n") if x]]))
+
+			self.processArguments(tempDir, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", self.path], displayData)
+
+	def processArguments(self, directory, arguments, display):
+		def dataAvail(data):
+			if isinstance(data, bytes):
+				data = data.decode()
+			self.buffer = "%s%s" % (self.buffer, data)
+
+		def appClosed(retVal):
+			del self.container.dataAvail[:]
+			del self.container.appClosed[:]
+			del self.container
+			display(retVal, self.buffer)
+
+		self.buffer = ""
+		self.container = eConsoleAppContainer()
+		if directory:
+			self.container.setCWD(directory)
+		self.container.dataAvail.append(dataAvail)
+		self.container.appClosed.append(appClosed)
+		self.container.execute(*arguments)
+		self["data"].setText(_("Please wait while the data is extracted."))
+
+
+class ArchiverMenuScreen(Screen, HelpableScreen):
 	DEFAULT_PW = "2D1U3MP!"
 
 	ID_SHOW = 0
@@ -2250,18 +2485,18 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 
 	# TODO Do we really need this
 	MODEINFO = {
-		MODE_TAR: (_("File Commander - tar Addon"), _("unpack tar/compressed tar Files")),
-		MODE_GZIP: (_("File Commander - gzip Addon"), _("unpack gzip Files")),
-		MODE_ZIP: (_("File Commander - unzip Addon"), _("unpack zip Files")),
-		MODE_RAR: (_("File Commander - unrar Addon"), _("unpack Rar Files")),
-		MODE_IPK: (_("File Commander - ipk Addon"), _("install/unpack ipk Files"))
+		MODE_TAR: (_("File Commander - tar Addon"), _("unpack tar/compressed tar Files"), _("tar/compressed tar")),
+		MODE_GZIP: (_("File Commander - gzip Addon"), _("unpack gzip Files"), _("gzip")),
+		MODE_ZIP: (_("File Commander - unzip Addon"), _("unpack zip Files"), _("zip")),
+		MODE_RAR: (_("File Commander - unrar Addon"), _("unpack Rar Files"), _("rar")),
+		MODE_IPK: (_("File Commander - ipk Addon"), _("install/unpack ipk Files"), _("ipk"))
 	}
 
 	skin = """
-	<screen name="ArchiverMenuScreen" title="File Archiver Menu Screen" position="40,80" size="1200,585" resolution="1280,720">
-		<widget name="list_left_head" position="10,10" size="1180,60" font="Regular;20" foregroundColor="#00fff000"/>
-		<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
-		<widget name="unpacking" position="10,250" size="570,30" scrollbarMode="showOnDemand" foregroundColor="#00ffffff"/>
+	<screen name="ArchiverMenuScreen" title="File Archiver Context Menu" position="50,50" size="1180,585" resolution="1280,720">
+		<widget name="list_left_head" position="0,0" size="1180,60" font="Regular;20" foregroundColor="#00fff000" valign="center" />
+		<widget name="list_left" position="0,70" size="570,470" />
+		<widget name="unpacking" position="0,250" size="570,30" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -2277,7 +2512,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, sourcelist, targetlist, mode=MODE_GZIP):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["Test"])
 		HelpableScreen.__init__(self)
 		self.mode = mode
 		self.addoninfo = self.MODEINFO.get(mode)
@@ -2295,7 +2530,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		self.commands = {}
 		self.errlog = ""
 
-		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
+		self.chooseMenuList = MenuList([], content=eListboxPythonMultiContent)
 		font = fonts.get("FileList", ("Regular", 20, 25))
 		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
 		self.chooseMenuList.l.setItemHeight(font[2])
@@ -2310,8 +2545,6 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText("")
 
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
@@ -2436,7 +2669,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		if self.mode == self.MODE_TAR:
 			if selectid == self.ID_SHOW:
 				cmd = ("tar", "-tf", self.filename)
-				self.unpackPopen(cmd, ArchiverInfoScreen, self.addoninfo)
+				self.unpackPopen(cmd, FileCommanderArchiveContent, self.addoninfo)
 			else:
 				cmd = ["tar", "-xvf", self.filename, "-C"]
 				cmd.append(self.getPathBySelectId(selectid))
@@ -2453,7 +2686,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 					cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
 				else:
 					cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
-				self.unpackPopen(cmd, ArchiverInfoScreen, self.addoninfo)
+				self.unpackPopen(cmd, FileCommanderArchiveContent, self.addoninfo)
 			elif selectid == self.ID_INSTALL:
 				self.ulist = []
 				if isfile("/usr/bin/opkg"):
@@ -2471,7 +2704,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		elif self.mode == self.MODE_ZIP:
 			if selectid == self.ID_SHOW:
 				cmd = ("unzip", "-l", self.filename)
-				self.unpackPopen(cmd, UnpackInfoScreen, self.addoninfo)
+				self.unpackPopen(cmd, FileCommanderArchiveContent, self.addoninfo)
 			else:
 				cmd = ["unzip", "-o", self.filename, "-d"]
 				cmd.append(self.getPathBySelectId(selectid))
@@ -2479,7 +2712,7 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		elif self.mode == self.MODE_RAR:
 			if selectid == self.ID_SHOW:
 				cmd = (self.unrar, "lb", "-p" + self.defaultPW, self.filename)
-				self.unpackPopen(cmd, ArchiverInfoScreen, self.addoninfo)
+				self.unpackPopen(cmd, FileCommanderArchiveContent, self.addoninfo)
 			else:
 				cmd = [self.unrar, "x", "-p" + self.defaultPW, self.filename, "-o+"]
 				cmd.append(self.getPathBySelectId(selectid))
@@ -2491,18 +2724,13 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 
 	# unpackPopen and unpackEConsoleApp run unpack and info
 	# commands for the specific archive unpackers.
-
+	#
+	# cmd is either a string or a list/tuple containing the command name and arguments.
+	# If it is a string, it is passed to the shell for interpretation. If it's a tuple/list,
+	# it is effectively run by execvp(). infoScreen is used by to display the output
+	# of the command. It must have an API compatible with FileCommanderArchiveContent.
+	#
 	def unpackPopen(self, cmd, infoScreen, addoninfo):
-
-		# cmd is either a string or a list/tuple
-		# containing the command name and arguments.
-		# It it's a string, it's passed to the shell
-		# for interpretation. If it's a tuple/list,
-		# it's effectively run by execvp().
-		# infoScreen is used by to display the output
-		# of the command. It must have an API compatible
-		# with ArchiverInfoScreen.
-
 		print("[ArchiverMenuScreen] unpackPopen %s" % str(cmd))
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
@@ -2523,30 +2751,23 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 			self.extractlist = [(_("No files found."),)]
 		self.session.open(infoScreen, self.extractlist, self.sourceDir, self.filename, addoninfo)
 
+	# cmd is either a string or a list/tuple containing the command name and arguments.
+	# If it is a string, it is passed to the shell for interpretation. If it's a tuple/list,
+	# it effectively run by execvp(). exePath is the optional full pathname of the command,
+	# otherwise a search of $PATH is used to find the command. Only used if cmd is a
+	# list/tuple. logCallback is used to update the command progress indicator using the
+	# command output (see unrar.py).
+	#
 	def unpackEConsoleApp(self, cmd, exePath=None, logCallback=None):
-
-		# cmd is either a string or a list/tuple
-		# containing the command name and arguments.
-		# It it's a string, it's passed to the shell
-		# for interpretation. If it's a tuple/list,
-		# it's effectively run by execvp().
-		# exePath is the optional full pathname of the
-		# command, otherwise a search of $PATH is used
-		# to find the command. Only used if cmd is a
-		# list/tuple
-		# logCallback is used to update the command
-		# progress indicator using the command output
-		# (see unrar.py)
-
 		print("[ArchiverMenuScreen] unpackEConsoleApp %s" % cmd)
 		self.errlog = ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(boundFunction(self.extractDone, basename(self.filename)))
-		if logCallback is not None:
+		if logCallback:
 			self.container.stdoutAvail.append(self.log)
 		self.container.stderrAvail.append(self.logerrs)
 		self.ulist = []
-		if type(cmd) in (tuple, list):
+		if isinstance(cmd, (tuple, list)):
 			exe = exePath or cmd[0]
 			self.container.execute(exe, *cmd)
 		else:
@@ -2597,83 +2818,38 @@ class ArchiverMenuScreen(Screen, HelpableScreen):
 		self.close(False)
 
 
-class ArchiverInfoScreen(Screen):
-
+class FileCommanderArchiveContent(Screen, HelpableScreen):
 	skin = """
-	<screen name="ArchiverInfoScreen" title="File Commander Archiver Info" position="40,80" size="1200,585" resolution="1280,720">
-		<widget name="list_left_head" position="10,10" size="1180,60" font="Regular;20" foregroundColor="#00fff000"/>
-		<widget name="list_left" position="10,85" size="1180,470" scrollbarMode="showOnDemand"/>
+	<screen name="FileCommanderArchiveContent" title="File Commander Archiver Info" position="50,50" size="1180,600" resolution="1280,720">
+		<widget name="archive" position="0,0" size="1180,55" font="Regular;20" foregroundColor="#00fff000" valign="center" />
+		<widget name="content" position="0,65" size="1180,485" font="Console;20" />
 		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
-		Screen.__init__(self, session)
-		self.pname = addoninfo[0]
-		self.pdesc = addoninfo[1]
-		self.list = liste
-		self.sourceDir = sourceDir
-		self.filename = filename
-		self.chooseMenuList = MenuList([], content=eListboxPythonMultiContent)
-		font = fonts.get("FileList", ("Regular", 20, 25))
-		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
-		self.chooseMenuList.l.setItemHeight(font[2])
-		self["list_left"] = self.chooseMenuList
-		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
+	def __init__(self, session, archiveList, sourceDir, filename, archiveInfo=None):
+		Screen.__init__(self, session, mandatoryWidgets=["Test"])
+		HelpableScreen.__init__(self)
+		self.skinName = ["FileCommanderArchiveContent", "ArchiverInfoScreen"]
+		self.setTitle(_("File Commander Archive Content - (%s)") % archiveInfo[2])
+		self["archive"] = Label(pathjoin(sourceDir, filename))
+		self["content"] = ScrollLabel("\n".join([x[0] for x in archiveList if x[0]]))
 		self["key_red"] = StaticText(_("Close"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"ok": (self.keyCancel, _("Close the screen")),
 			"red": (self.keyCancel, _("Close the screen")),
-			"top": (self["list_left"].goTop, _("Move to first line / screen")),
-			"pageUp": (self["list_left"].goPageUp, _("Move up a screen")),
-			"up": (self["list_left"].goLineUp, _("Move up a line")),
-			"down": (self["list_left"].goLineDown, _("Move down a line")),
-			"pageDown": (self["list_left"].goPageDown, _("Move down a screen")),
-			"bottom": (self["list_left"].goBottom, _("Move to last line / screen"))
-			# Add command to sort the file.
-		}, prio=0, description=_("File Commander Archiver Info Actions"))
-
-		self.onLayoutFinish.append(self.onLayout)
-
-	def onLayout(self):
-		self.setTitle(self.pname)
-		if len(self.list) != 0:
-			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
-
-	def ListEntry(self, entry):
-		x, y, w, h = parameters.get("FileListName", (10, 0, 1180, 25))
-		x = 10
-		w = self["list_left"].l.getItemSize().width()
-		flags = RT_HALIGN_LEFT
-		if "Plugins.Extensions.FileCommander.unarchiver.UnpackInfoScreen" in repr(self):
-			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-			y *= 2
-		return [
-			entry,
-			MultiContentEntryText(pos=(x, int(y)), size=(w - x, h), font=0, flags=flags, text=entry[0])
-		]
+			"top": (self["content"].moveTop, _("Move to first line / screen")),
+			"pageUp": (self["content"].pageUp, _("Move up a screen")),
+			"up": (self["content"].moveUp, _("Move up a line")),
+			"down": (self["content"].moveDown, _("Move down a line")),
+			"pageDown": (self["content"].pageDown, _("Move down a screen")),
+			"bottom": (self["content"].moveBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("File Commander Archiver Content Actions"))
 
 	def keyCancel(self):
 		self.close()
-
-
-class UnpackInfoScreen(ArchiverInfoScreen):
-	def __init__(self, session, liste, sourceDir, filename, addoninfo=None):
-		ArchiverInfoScreen.__init__(self, session, liste, sourceDir, filename, addoninfo)
-		self.skinName = ["UnpackInfoScreen", "ArchiverInfoScreen"]
-		font = fonts.get("FileList", ("Console", 20, 30))
-		self.chooseMenuList.l.setFont(0, gFont("Console", int(font[1] * 0.85)))
 
 
 class task_postconditions(Condition):
@@ -2754,7 +2930,7 @@ def formatSortingTyp(sortDirs, sortFiles):
 #
 def filescan_open(list, session, **kwargs):
 	path = "/".join(list[0].path.split("/")[:-1]) + "/"
-	session.open(FileCommanderScreen, path_left=path)
+	session.open(FileCommander, pathLeft=path)
 
 
 def start_from_filescan(**kwargs):
@@ -2777,12 +2953,12 @@ def start_from_mainmenu(menuid, **kwargs):
 
 
 def start_from_pluginmenu(session, **kwargs):
-	session.openWithCallback(exit, FileCommanderScreen)
+	session.openWithCallback(exit, FileCommander)
 
 
 def exit(session, result):
 	if not result:
-		session.openWithCallback(exit, FileCommanderScreen)
+		session.openWithCallback(exit, FileCommander)
 
 
 def Plugins(path, **kwargs):
