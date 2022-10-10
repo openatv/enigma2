@@ -209,38 +209,29 @@ class ScrollLabel(GUIComponent):
 		self.leftText.move(ePoint(self.leftColX, -self.currentPosition))
 		self.rightText.move(ePoint(self.rightColX, -self.currentPosition))
 
-	def moveTop(self):
+	def goTop(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(0)
 
-	def homePage(self):  # Deprecated navigation (no use found).
-		return self.moveTop()
-
-	def pageUp(self):
+	def goPageUp(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(self.currentPosition - self.pageHeight)
 
-	def moveUp(self):
+	def goLineUp(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(self.currentPosition - self.sliderScroll)
 
-	def moveDown(self):
+	def goLineDown(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(self.currentPosition + self.sliderScroll)
 
-	def pageDown(self):
+	def goPageDown(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(self.currentPosition + self.pageHeight)
 
-	def moveBottom(self):
+	def goBottom(self):
 		if self.totalTextHeight > self.pageHeight:
 			self.setPos(self.totalTextHeight - self.pageHeight)
-
-	def endPage(self):  # Deprecated navigation (no use found).
-		return self.moveBottom()
-
-	def lastPage(self):  # Deprecated navigation (only minimal use).
-		return self.moveBottom()
 
 	def updateScrollbar(self):
 		visible = min(max(1000 * self.pageHeight // self.totalTextHeight, 4), 1000)
@@ -249,3 +240,32 @@ class ScrollLabel(GUIComponent):
 
 	def isAtLastPage(self):
 		return self.totalTextHeight <= self.pageHeight or self.currentPosition == self.totalTextHeight - self.pageHeight
+
+	# Old navigation method names.
+	#
+	def moveTop(self):
+		self.goTop()
+
+	def homePage(self):  # Deprecated navigation (no use found).
+		return self.goTop()
+
+	def pageUp(self):
+		self.goPageUp()
+
+	def moveUp(self):
+		self.goLineUp()
+
+	def moveDown(self):
+		self.goLineDown()
+
+	def pageDown(self):
+		self.goPageDown()
+
+	def moveBottom(self):
+		self.goBottom()
+
+	def endPage(self):  # Deprecated navigation (no use found).
+		return self.goBottom()
+
+	def lastPage(self):  # Deprecated navigation (only minimal use).
+		return self.goBottom()

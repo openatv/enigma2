@@ -611,7 +611,7 @@ def parseVerticalAlignment(value):
 		"middle": 1,
 		"bottom": 2
 	}
-	return parseOptions(options, "horizontalAlignment", value, 1)
+	return parseOptions(options, "verticalAlignment", value, 1)
 
 
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seekPointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarBackgroundPixmap", "scrollbarForegroundPixmap", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture", "scrollbarSliderPicture"))):
