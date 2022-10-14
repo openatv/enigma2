@@ -303,11 +303,11 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 
 	def selectionChangedLeft(self):
 		self.updateHeadLeft_Timer.stop()
-		self.updateHeadLeft_Timer.start(500)
+		self.updateHeadLeft_Timer.start(300)
 
 	def selectionChangedRight(self):
 		self.updateHeadRight_Timer.stop()
-		self.updateHeadRight_Timer.start(500)
+		self.updateHeadRight_Timer.start(300)
 
 	def updateHeadLeft(self):
 		self.updateHeadLeft_Timer.stop()
@@ -376,6 +376,8 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 			return
 		self.SOURCELIST = self["list_left"]
 		self.TARGETLIST = self["list_right"]
+		self.updateHeadLeftRight("list_left")
+		self.updateHeadLeftRight("list_right")
 
 	def listRight(self):
 		self["list_left"].selectionEnabled(0)
@@ -385,6 +387,8 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 			return
 		self.SOURCELIST = self["list_right"]
 		self.TARGETLIST = self["list_left"]
+		self.updateHeadLeftRight("list_left")
+		self.updateHeadLeftRight("list_right")
 
 	def get_dirSize(self, folder: str) -> int:
 		return sum(p.stat().st_size for p in (f for f in Path(folder).rglob("*") if f.is_file()))
@@ -399,7 +403,7 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 
 	def statInfo(self, dirsource, dirsize=False):
 		pathname = dirsource.getPath()
-		if pathname and dirsource.getSelectionIndex():
+		if pathname:
 			pathname = normpath(pathname)
 			try:
 				st = lstat(pathname)
@@ -711,92 +715,89 @@ class FileCommander(FileCommanderBase):
 
 	def ok(self):
 		if self.SOURCELIST.canDescent():  # isDir
-			self.SOURCELIST.descent()
+			self.SOURCELIST.descend()
 		else:
-			self.onFileAction(self.SOURCELIST, self.TARGETLIST)
-
-	def onFileAction(self, dirsource, dirtarget):
-		try:
-			fileType = fromfile(dirsource.getPath())
-			print("[FileCommander] DEBUG: File extension identified as '%s'." % fileType)
-			fileType = magicfile(dirsource.getPath())
-			print("[FileCommander] DEBUG: File type identified as '%s'." % fileType)
-		except PureError as err:
-			print("[FileCommander] Error: Unable to identify file content!  (%s)" % err)
-		longname = dirsource.getPath()
-		filename = basename(longname)
-		sourceDir = dirsource.getCurrentDirectory()
-		lowerfilename = filename.lower()
-		filetype = splitext(filename)[1].lower()
-		if search("\.r\d+$", filetype):
-			filetype = ".rar"
-		print("[FileCommander] onFileAction DEBUG: %s %s %s" % (filename, sourceDir, lowerfilename))
-		if not isfile(longname):
-			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
-			return
-		if filetype in ARCHIVE_FILES:
-			self.session.openWithCallback(self.onFileActionCB, FileCommanderArchive, longname, dirtarget.getCurrentDirectory())
-		elif filetype == ".ts":
-			fileRef = eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, longname)
-			self.session.open(FileCommanderMoviePlayer, fileRef)
-		elif filetype in MOVIE_EXTENSIONS:
-			fileRef = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, longname)
-			self.session.open(FileCommanderMoviePlayer, fileRef)
-		elif filetype in DVD_EXTENSIONS:
-			self.session.open(DVDPlayer, dvd_filelist=[longname])
-		elif filetype in AUDIO_EXTENSIONS:
-			self.play_music(self.SOURCELIST)
-		elif filetype in IMAGE_EXTENSIONS:
-			if self.SOURCELIST.getCurrentIndex() != 0:
-				self.session.openWithCallback(
-					self.cbShowPicture,
-					FileCommanderImageViewer,
-					self.SOURCELIST.getFileList(),
-					self.SOURCELIST.getCurrentIndex(),
-					self.SOURCELIST.getCurrentDirectory(),  # DEBUG: path is not needed!
-					filename
-				)
-		elif filetype in (".sh", ".py", ".pyc"):
-			self.run_script(longname, self.TARGETLIST.getPath())
-		elif filetype == ".mvi":
-			self.file_name = longname
-			self.tmp_file = "/tmp/grab_%s_mvi.png" % filename[:-4]
-			choice = [(_("No"), "no"),
-					(_("Show as Picture (press any key to close)"), "show")]
-			savetext = ""
-			stat = statvfs("/tmp/")
-			if stat.f_bavail * stat.f_bsize > 1000000:
-				choice.append((_("Show as Picture and save as file ('%s')") % self.tmp_file, "save"))
-				savetext = _(" or save additional the picture to a file")
-			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") % (longname, savetext), simple=True, list=choice)
-		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
-				xfile = osstat(longname)
-			except OSError as oe:
-				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
+				fileType = fromfile(self.SOURCELIST.getPath())
+				print("[FileCommander] DEBUG: File extension identified as '%s'." % fileType)
+				fileType = magicfile(self.SOURCELIST.getPath())
+				print("[FileCommander] DEBUG: File type identified as '%s'." % fileType)
+			except PureError as err:
+				print("[FileCommander] Error: Unable to identify file content!  (%s)" % err)
+			longname = self.SOURCELIST.getPath()
+			filename = basename(longname)
+			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			lowerfilename = filename.lower()
+			filetype = splitext(filename)[1].lower()
+			if search("\.r\d+$", filetype):
+				filetype = ".rar"
+			print("[FileCommander] onFileAction DEBUG: %s %s %s" % (filename, sourceDir, lowerfilename))
+			if not isfile(longname):
+				self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 				return
-			if longname:
-				if xfile.st_size < 1000000:
-					self.session.open(FileCommanderEditor, longname)
+			if filetype in ARCHIVE_FILES:
+				self.session.openWithCallback(self.onFileActionCB, FileCommanderArchive, longname, self.TARGETLIST.getCurrentDirectory())
+			elif filetype == ".ts":
+				fileRef = eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, longname)
+				self.session.open(FileCommanderMoviePlayer, fileRef)
+			elif filetype in MOVIE_EXTENSIONS:
+				fileRef = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, longname)
+				self.session.open(FileCommanderMoviePlayer, fileRef)
+			elif filetype in DVD_EXTENSIONS:
+				self.session.open(DVDPlayer, dvd_filelist=[longname])
+			elif filetype in AUDIO_EXTENSIONS:
+				self.play_music(self.SOURCELIST)
+			elif filetype in IMAGE_EXTENSIONS:
+				if self.SOURCELIST.getCurrentIndex() != 0:
+					self.session.openWithCallback(
+						self.cbShowPicture,
+						FileCommanderImageViewer,
+						self.SOURCELIST.getFileList(),
+						self.SOURCELIST.getCurrentIndex(),
+						self.SOURCELIST.getCurrentDirectory(),  # DEBUG: path is not needed!
+						filename
+					)
+			elif filetype in (".sh", ".py", ".pyc"):
+				self.run_script(longname, self.TARGETLIST.getPath())
+			elif filetype == ".mvi":
+				self.file_name = longname
+				self.tmp_file = "/tmp/grab_%s_mvi.png" % filename[:-4]
+				choice = [(_("No"), "no"),
+						(_("Show as Picture (press any key to close)"), "show")]
+				savetext = ""
+				stat = statvfs("/tmp/")
+				if stat.f_bavail * stat.f_bsize > 1000000:
+					choice.append((_("Show as Picture and save as file ('%s')") % self.tmp_file, "save"))
+					savetext = _(" or save additional the picture to a file")
+				self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") % (longname, savetext), simple=True, list=choice)
+			elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
+				try:
+					xfile = osstat(longname)
+				except OSError as oe:
+					self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
+					return
+				if longname:
+					if xfile.st_size < 1000000:
+						self.session.open(FileCommanderEditor, longname)
+						self.onFileActionCB(True)
+					else:
+						self.session.open(FileCommanderViewer, longname, 2)
+			elif filetype == ".hex":
+				try:
+					xfile = osstat(longname)
+				except OSError as oe:
+					self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
+					return
+				if longname:
+					self.session.open(FileCommanderViewer, longname)
 					self.onFileActionCB(True)
-				else:
-					self.session.open(FileCommanderViewer, longname, 2)
-		elif filetype == ".hex":
-			try:
-				xfile = osstat(longname)
-			except OSError as oe:
-				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
-				return
-			if longname:
-				self.session.open(FileCommanderViewer, longname)
-				self.onFileActionCB(True)
-		else:
-			try:
-				found_viewer = openFile(self.session, guess_type(longname)[0], longname)
-			except TypeError:
-				found_viewer = False
-			if not found_viewer:
-				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
+			else:
+				try:
+					found_viewer = openFile(self.session, guess_type(longname)[0], longname)
+				except TypeError:
+					found_viewer = False
+				if not found_viewer:
+					self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
 
 	def run_script(self, source, target):
 		self.commando = source
@@ -1340,7 +1341,7 @@ class FileCommander(FileCommanderBase):
 
 	def updateButtons(self):
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
-		valid = self.SOURCELIST and self.SOURCELIST.count() and self.SOURCELIST.getPath() and self.SOURCELIST.getCurrentIndex()
+		valid = self.SOURCELIST and self.SOURCELIST.count() and self.SOURCELIST.getPath() and self.SOURCELIST.getCurrentDirectory() and self.SOURCELIST.getCurrentIndex()
 		self["ColorActions"].setEnabled = valid
 		self["key_green"].setText(_("Move") if valid else "")
 		self["key_yellow"].setText(_("Copy") if valid else "")
@@ -1471,7 +1472,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 			self.changeSelectionState()
 		else:
 			if self.ACTIVELIST.canDescent():  # isDir
-				self.ACTIVELIST.descent()
+				self.ACTIVELIST.descend()
 
 	def goRed(self):  # Delete selected.
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -1589,7 +1590,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 		self.exit()
 
 	def updateButtons(self):
-		targetDir = self.TARGETLIST.getCurrentDirectory()
+		targetDir = self.TARGETLIST.getCurrentDirectory() if self.TARGETLIST.getCurrentIndex() else None
 		selected = len(self.selectedFiles)
 		valid = targetDir and selected
 		self["ColorActions"].setEnabled = valid
