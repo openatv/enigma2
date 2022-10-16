@@ -37,7 +37,7 @@ class EventViewBase:
 			self.similarBroadcastTimer = eTimer()
 			self.similarBroadcastTimer.callback.append(self.getSimilarEvents)
 		self.similarEPGCB = similarEPGCB
-		self.isRecording = (not serviceRef.ref.flags & eServiceReference.isGroup) and serviceRef.ref.getPath()
+		self.isRecording = (not serviceRef.ref.flags & eServiceReference.isGroup) and serviceRef.ref.getPath() and "%3a//" not in serviceRef.ref.toString()
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
