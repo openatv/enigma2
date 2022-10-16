@@ -1,19 +1,18 @@
 from errno import EEXIST
 from grp import getgrgid
-from mimetypes import guess_type
-from os import R_OK, X_OK, access, chmod, environ, lstat, mkdir, readlink, remove, rename, rmdir, sep, stat as osstat, statvfs, symlink
+from os import R_OK, X_OK, access, chmod, close as osclose, environ, lstat, mkdir, readlink, remove, rename, rmdir, sep, stat as osstat, symlink
 from os.path import basename, dirname, exists, isfile, isdir, islink, join as pathjoin, normpath, splitext
 from pathlib import Path
 from pwd import getpwuid
-from puremagic import PureError, from_file as fromfile, magic_file as magicfile
-from re import compile, search
+from puremagic import PureError, from_file as fromfile
+from re import compile
 from string import digits
-from sys import maxsize
 import stat
-from tempfile import gettempdir, mkdtemp
+from tempfile import gettempdir, mkdtemp, mkstemp
 from time import localtime, strftime
+from twisted.internet.threads import deferToThread
 
-from enigma import eActionMap, eConsoleAppContainer, ePicLoad, eServiceReference, eTimer, getDesktop
+from enigma import eConsoleAppContainer, ePicLoad, eServiceReference, eTimer, getDesktop
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.AVSwitch import AVSwitch
@@ -26,9 +25,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
-from Components.Scanner import openFile
 from Components.ScrollLabel import ScrollLabel
-from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Task import Condition, Job, job_manager, Task
@@ -55,6 +52,8 @@ MODULE_NAME = __name__.split(".")[-1]
 PNAME = _("File Commander")
 PDESC = _("Manage and explore files and directories.")
 PVERS = "%s%s" % (_("Version"), "3.00")
+
+MAX_EDIT_SIZE = 1048576
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 RECORDING_EXTENSIONS = frozenset((".ap", ".cuts", ".eit", ".meta", ".sc"))
@@ -245,10 +244,11 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		25
 	]
 
-	PROG_PACKAGES = {
+	OPTIONAL_PACKAGES = {
 		"file": "file",
+		"ffmpeg": "ffmpeg",
 		"ffprobe": "ffmpeg",
-		# "mediainfo": "mediainfo",
+		"mediainfo": "mediainfo"
 	}
 
 	def __init__(self, session):
@@ -278,8 +278,11 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		# self.session.open(MessageBox, _("The ImageViewer component of FileCommander requires the PicturePlayer extension. Install PicturePlayer to enable this feature."), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 		self.updateHeadLeft_Timer = eTimer()
 		self.updateHeadRight_Timer = eTimer()
-		self.updateHeadLeft_Timer.callback.append(self.updateHeadLeft)
-		self.updateHeadRight_Timer.callback.append(self.updateHeadRight)
+		# MODE 0 refresh timer only for calculate_directorysize
+		# MODE 1 refresh timer also for file stat
+		self.updateHeaderMode = 0
+		self.updateHeadLeft_Timer.callback.append(self.updateHeadLeftTimer)
+		self.updateHeadRight_Timer.callback.append(self.updateHeadRightTimer)
 
 	def calculate_directorysizeChanged(self, configElement):
 		self.calculate_directorysize = configElement.value
@@ -302,28 +305,55 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
 
 	def selectionChangedLeft(self):
+		print("selectionChangedLeft")
+		self.updateButtons()
 		self.updateHeadLeft_Timer.stop()
-		self.updateHeadLeft_Timer.start(300)
+		side = "list_left"
+		pathname = self[side].getPath()
+		calculate_directorysize = not self.multiselect and self.calculate_directorysize and pathname and isdir(pathname) and self[side].getCurrentDirectory() is not None
+		self["%s_head1" % side].text = pathname
+		if self.updateHeaderMode == 0:
+			self["%s_head2" % side].updateList(self.statInfo(self[side], False) if pathname else ())
+			if calculate_directorysize:
+				self.updateHeadLeft_Timer.start(500)
+		else:
+			self["%s_head2" % side].updateList(())
+			if pathname:
+				self.updateHeadLeft_Timer.start(500)
 
 	def selectionChangedRight(self):
+		print("selectionChangedRight")
+		self.updateButtons()
 		self.updateHeadRight_Timer.stop()
-		self.updateHeadRight_Timer.start(300)
+		side = "list_right"
+		pathname = self[side].getPath()
+		calculate_directorysize = not self.multiselect and self.calculate_directorysize and pathname and isdir(pathname) and self[side].getCurrentDirectory() is not None
+		self["%s_head1" % side].text = pathname
+		if self.updateHeaderMode == 0:
+			self["%s_head2" % side].updateList(self.statInfo(self[side], False) if pathname else ())
+			if calculate_directorysize:
+				self.updateHeadRight_Timer.start(500)
+		else:
+			self["%s_head2" % side].updateList(())
+			if pathname:
+				self.updateHeadRight_Timer.start(500)
 
-	def updateHeadLeft(self):
+	def updateHeadLeftTimer(self):
+		print("updateHeadLeftTimer")
 		self.updateHeadLeft_Timer.stop()
 		self.updateHeadLeftRight("list_left")
 
-	def updateHeadRight(self):
+	def updateHeadRightTimer(self):
+		print("updateHeadRightTimer")
 		self.updateHeadRight_Timer.stop()
 		self.updateHeadLeftRight("list_right")
 
 	def updateHeadLeftRight(self, side):
 		print("[FileCommander] DEBUG updateHead %s" % side)
 		pathname = self[side].getPath()
-		calculate_directorysize = not self.multiselect and self.calculate_directorysize and pathname and isdir(pathname)
+		calculate_directorysize = not self.multiselect and self.calculate_directorysize and pathname and isdir(pathname) and self[side].getCurrentDirectory() is not None
 		self["%s_head1" % side].text = pathname
 		self["%s_head2" % side].updateList(self.statInfo(self[side], calculate_directorysize) if pathname else ())
-		self.updateButtons()
 
 	def updateButtons(self):  # this will be overwritten in child class
 		pass
@@ -493,9 +523,9 @@ class FileCommander(FileCommanderBase):
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 		self["key_blue"].setText(_("Rename"))
-		self["VKeyIcon"] = Boolean(False)
-		self["actions"] = HelpableActionMap(self, ["DirectionActions", "OkCancelActions", "InfoActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
-			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
+		self["key_text"] = StaticText()
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "DirectionActions", "InfoActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
+			"ok": (self.keyOk, _("Enter directory or process file (play/view/edit/install/extract/run)")),
 			"cancel": (self.exit, _("Leave File Commander")),
 			"menu": (self.goContext, _("Open settings/actions menu")),
 			"moveDown": (self.listRight, _("Activate right-hand file list as source")),
@@ -504,7 +534,7 @@ class FileCommander(FileCommanderBase):
 			"chminus": (self.listLeftB, _("Activate left-hand file list as source")),
 			"1": (self.gomakeDir, _("Create directory/folder")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
-			"3": (self.gofileStatInfo, _("File/Directory Status Information")),
+			"3": (self.keyInformation, _("File/Directory Status Information")),
 			"4": (self.call_change_mode, _("Change execute permissions (755/644)")),
 			"5": (self.goDefaultfolder, _("Go to bookmarked folder")),
 			"6": (self.run_file, self.help_run_file),
@@ -512,7 +542,7 @@ class FileCommander(FileCommanderBase):
 			"8": (self.run_dirsize, self.help_run_dirsize),
 			# "8": (self.run_mediainfo, self.help_run_mediainfo),
 			"9": (self.run_hashes, _("Calculate file checksums")),
-			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
+			"startTeletext": (self.keyViewEdit, _("View or edit file (edit if size < 1MB)")),
 			"0": (self.doRefresh, _("Refresh screen")),
 			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
 			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
@@ -543,6 +573,225 @@ class FileCommander(FileCommanderBase):
 		else:
 			self.listRight()
 		self.checkJobs_TimerCB()
+
+	def keyOk(self):
+		if self.SOURCELIST.canDescend():
+			self.SOURCELIST.descend()
+		else:
+			path = self.SOURCELIST.getPath()
+			print("[FileCommander] keyOk DEBUG: path='%s', dir='%s', file='%s'." % (path, self.SOURCELIST.getCurrentDirectory(), basename(path)))
+			if not path:
+				return
+			fileType = splitext(path)[1].lower()
+			try:
+				magicType = fromfile(path)
+			except PureError as err:
+				magicType = None
+				print("[FileCommander] Error: Unable to identify file via magic fingerprint!  (%s)" % err)
+			if fileType and magicType and fileType != magicType:
+				print("[FileCommander] DEBUG: File identified as extension='%s', magic='%s'." % (fileType, magicType))
+				if fileType == ".ipk" and magicType == ".lib":
+					magicType = ".ipk"
+				if fileType == ".py" and magicType == ".wsgi":
+					magicType = ".py"
+				if fileType == ".mvi" and magicType == ".mpg":
+					magicType = ".mvi"
+				fileType = magicType
+			if fileType in ARCHIVE_FILES:
+				self.session.open(FileCommanderArchive, path, self.TARGETLIST)
+			elif fileType == ".ts":
+				self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
+			elif fileType in MOVIE_EXTENSIONS:
+				self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
+			elif fileType in DVD_EXTENSIONS:
+				self.session.open(DVDPlayer, dvd_filelist=[path])
+			elif fileType in AUDIO_EXTENSIONS:
+				choiceList = [
+					(_("Cancel"), ""),
+					(_("Play the audio file"), "SINGLE"),
+					(_("Play all audio files in the directory"), "LIST")
+				]
+				self.session.openWithCallback(self.keyOkMusicCallback, MessageBox, text="%s\n\n%s" % (_("What would you like to do with the audio file:"), path), list=choiceList, windowTitle=self.getTitle())
+			elif fileType in IMAGE_EXTENSIONS:
+				self.session.openWithCallback(self.keyOkImageCallback, FileCommanderImageViewer, self.SOURCELIST.getFileList(), self.SOURCELIST.getCurrentIndex(), self.SOURCELIST.getCurrentDirectory(), basename(path))  # DEBUG: path is not needed!
+			elif fileType in (".sh", ".py", ".pyc"):
+				choiceList = [
+					(_("Cancel"), ""),
+					(_("View or edit this %s script") % (_("shell") if path.endswith(".sh") else _("Python")), "VIEW"),
+					(_("Run script"), "YES"),
+					(_("Run script in background"), "YES_BG")
+				]
+				parameter = self.TARGETLIST.getPath() or ""
+				if parameter:
+					choiceList.append((_("Run script with optional parameter"), "PAR"))
+					choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
+					parameter = "\n\n%s: %s" % (_("Optional parameter"), parameter)
+				self.session.openWithCallback(self.keyOkScriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, parameter), list=choiceList, windowTitle=self.getTitle())
+			elif fileType == ".mvi":
+				if isfile("/usr/bin/ffmpeg"):
+					choiceList = [
+						(_("Cancel"), ""),
+						(_("Show image"), "SHOW"),
+						(_("Save image as '%s'") % "/tmp", "SAVE"),
+						(_("Show image and save as '%s'") % "/tmp", "SAVESHOW")
+					]
+					target = self.TARGETLIST.getCurrentDirectory()
+					if target:
+						choiceList.append((_("Save image as '%s'") % target, "SAVETARGET"))
+						choiceList.append((_("Show image and save as '%s'") % target, "SAVESHOWTARGET"))
+					self.session.openWithCallback(self.keyOkMviCallback, MessageBox, "%s\n\n%s" % (_("What would you like to do with the background image file:"), path), list=choiceList, windowTitle=self.getTitle())
+				else:
+					self.session.open(MessageBox, _("FFMpeg is not installed so '.mvi' file actions are not available!"), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			elif fileType in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
+				self.keyViewEdit(path)
+			else:
+				self.session.open(MessageBox, _("There is no action to process '%s'!") % path, type=MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.getTitle())
+
+	def keyOkCallback(self, result=None):
+		self.SOURCELIST.refresh()
+		self.TARGETLIST.refresh()
+
+	def keyOkMusicCallback(self, answer):
+		if answer:
+			path = self.SOURCELIST.getPath()
+			if answer == "SINGLE":
+				self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, path))
+			elif answer == "LIST":
+				from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+				mediaPlayer = self.session.open(MediaPlayer)
+				mediaPlayer.playlist.clear()
+				mediaPlayer.savePlaylistOnExit = False
+				fileList = self.SOURCELIST.getFileList()
+				elements = len(fileList[0])
+				currentIndex = 0
+				index = 0
+				for fileData in fileList:
+					audioPath = fileData[0][FILE_PATH] if elements > 1 else fileData[4]
+					extension = splitext(audioPath)[1].lower() if audioPath and not fileData[0][FILE_IS_DIR] else None
+					if extension and extension in AUDIO_EXTENSIONS:
+						mediaPlayer.playlist.addFile(eServiceReference(4097, 0, audioPath))
+						if audioPath.endswith(basename(path)):
+							currentIndex = index
+						index += 1
+				mediaPlayer.changeEntry(currentIndex)
+				mediaPlayer.switchToPlayList()
+
+	def keyOkImageCallback(self, index=0):
+		self.SOURCELIST.moveToIndex(index)
+
+	def keyOkScriptCallback(self, answer):
+		if answer:
+			if answer in ("YES", "PAR", "YES_BG", "PAR_BG"):
+				if not access(self.commando, R_OK):
+					self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+					return
+				nice = config.plugins.filecommander.script_priority_nice.value or ""
+				ionice = config.plugins.filecommander.script_priority_ionice.value or ""
+				if nice:
+					nice = "nice -n %d " % nice
+				if ionice:
+					ionice = "ionice -c %d " % ionice
+				priority = "%s%s" % (nice, ionice)
+				if self.commando.endswith(".sh"):
+					if access(self.commando, X_OK):
+						cmdline = "%s%s" % (priority, self.commando)
+					else:
+						cmdline = "%s/bin/sh %s" % (priority, self.commando)
+				else:
+					cmdline = "%s/usr/bin/python %s" % (priority, self.commando)
+				if "PAR" in answer:
+					cmdline = "%s '%s'" % (cmdline, self.parameter)
+			elif answer == "VIEW":
+				try:
+					yfile = osstat(self.commando)
+				except OSError as oe:
+					self.session.open(MessageBox, _("%s: %s") % (self.commando, oe.strerror), type=MessageBox.TYPE_ERROR)
+					return
+				if self.commando:
+					if yfile.st_size < MAX_EDIT_SIZE:
+						self.session.open(FileCommanderEditor, self.commando)
+					else:
+						self.session.open(FileCommanderViewer, self.commando, isText=self.isFileText(self.commando), initialView="T")
+			if answer != "VIEW":
+				if answer.endswith("_BG"):
+					global task_Stout, task_Sterr
+					task_Stout = []
+					task_Sterr = []
+					if "PAR" in answer:
+						name = "%s%s %s" % (priority, self.commando, self.parameter)
+					else:
+						name = "%s%s" % (priority, self.commando)
+					job = Job(_("Run script") + " ('%s')" % name)
+					task = Task(job, name)
+					task.postconditions.append(task_postconditions())
+					task.processStdout = task_processStdout
+					task.processStderr = task_processSterr
+					task.setCmdline(cmdline)
+					job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
+					self.jobs += 1
+					self.onLayout()
+				else:
+					self.session.open(Console, cmdlist=(cmdline,))
+
+	def keyOkMviCallback(self, answer=None):
+		if answer:
+			path = self.SOURCELIST.getPath()
+			fd, tmpFile = mkstemp(suffix=".jpg")
+			osclose(fd)
+			console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", tmpFile], self.keyOkMviActionCallback, (answer, path, tmpFile))
+
+	def keyOkMviActionCallback(self, data, retVal, extraArgs):
+		def cleanUp(index):
+			remove(tmpFile)
+			if refresh == "S" and self.SOURCELIST.getCurrentDirectory() == gettempdir():
+				self.SOURCELIST.refresh()
+			if refresh == "T":
+				self.TARGETLIST.refresh()
+
+		print("[FileCommander] DEBUG: Return value is %d\n%s." % (retVal, data))
+		answer, path, tmpFile = extraArgs
+		if retVal == 0:
+			if "TARGET" in answer:
+				path = pathjoin(self.TARGETLIST.getCurrentDirectory(), "%s.jpg" % splitext(basename(path))[0])
+				refresh = "T"
+			else:
+				path = pathjoin(gettempdir(), "%s.jpg" % splitext(basename(path))[0])
+				refresh = "S"
+			if "SAVE" in answer:
+				chmod(tmpfile, 0o644)
+				copyFile(tmpFile, path)
+			if "SHOW" in answer:
+				self.session.openWithCallback(cleanUp, FileCommanderImageViewer, path, 0, None, basename(path))
+			else:
+				cleanUp(0)
+
+	def isFileText(self, path):
+		text = True
+		try:
+			with open(path, mode="r", encoding="UTF-8", errors="strict") as fd:
+				fd.read(4096)
+		except Exception:
+			text = False
+		return text
+
+	def keyInformation(self, path=None):
+		if path is None:
+			path = self.SOURCELIST.getPath()
+		self.session.open(FileCommanderInformation, path, self.TARGETLIST)
+
+	def keyViewEdit(self, path=None):
+		if path is None:
+			path = self.SOURCELIST.getPath()
+		if self.isFileText(path):
+			if osstat(path).st_size < MAX_EDIT_SIZE:
+				modTime = osstat(path).st_mtime
+				self.session.open(FileCommanderEditor, path)
+				if modTime != osstat(path).st_mtime:
+					self.SOURCELIST.refresh()
+			else:
+				self.session.open(FileCommanderViewer, path, isText=True, initialView="T")
+		else:
+			self.session.open(FileCommanderViewer, path, isText=False, initialView="H")
 
 	@staticmethod
 	def filterSettings():
@@ -581,7 +830,7 @@ class FileCommander(FileCommanderBase):
 
 	def run_prog(self, prog, args=None):
 		if not self.have_program(prog):
-			pkg = self.PROG_PACKAGES.get(prog)
+			pkg = self.OPTIONAL_PACKAGES.get(prog)
 			if pkg:
 				self._opkgArgs = ("install", pkg)
 				self.session.openWithCallback(self.doOpkgCB, MessageBox, _("Program '%s' needs to be installed to run this action.\nInstall the '%s' package to install the program?") % (prog, pkg), type=MessageBox.TYPE_YESNO, default=True)
@@ -625,10 +874,10 @@ class FileCommander(FileCommanderBase):
 		if self.have_program(prog):
 			return _("Run '%s' command") % prog
 		else:
-			if prog in self.PROG_PACKAGES:
+			if prog in self.OPTIONAL_PACKAGES:
 				return _("Install '%s' and enable this operation") % prog
 			else:
-				return _("'%s' not installed and no known package") % prog
+				return _("'%s' not installed and package is unknown") % prog
 
 	def help_run_dirsize(self):
 		return _("Show Directory size")
@@ -678,23 +927,6 @@ class FileCommander(FileCommanderBase):
 		self.jobs_old -= self.jobs
 		self.onLayout()
 
-	def viewable_file(self):
-		filename = self.SOURCELIST.getPath()
-		if filename:
-			try:
-				xfile = osstat(filename)
-				if (xfile.st_size < 1000000):
-					return filename
-			except OSError:
-				pass
-		return None
-
-	def file_viewer(self):
-		longname = self.viewable_file()
-		if longname:
-			self.session.open(FileCommanderEditor, longname)
-			self.onFileActionCB(True)
-
 	def onFileActionCB(self, result=None):
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
@@ -712,249 +944,6 @@ class FileCommander(FileCommanderBase):
 			config.plugins.filecommander.pathRight.value = config.plugins.filecommander.pathDefault.value
 		self.running = False
 		self.close(self.session, True)
-
-	def ok(self):
-		if self.SOURCELIST.canDescent():  # isDir
-			self.SOURCELIST.descend()
-		else:
-			try:
-				fileType = fromfile(self.SOURCELIST.getPath())
-				print("[FileCommander] DEBUG: File extension identified as '%s'." % fileType)
-				fileType = magicfile(self.SOURCELIST.getPath())
-				print("[FileCommander] DEBUG: File type identified as '%s'." % fileType)
-			except PureError as err:
-				print("[FileCommander] Error: Unable to identify file content!  (%s)" % err)
-			longname = self.SOURCELIST.getPath()
-			filename = basename(longname)
-			sourceDir = self.SOURCELIST.getCurrentDirectory()
-			lowerfilename = filename.lower()
-			filetype = splitext(filename)[1].lower()
-			if search("\.r\d+$", filetype):
-				filetype = ".rar"
-			print("[FileCommander] onFileAction DEBUG: %s %s %s" % (filename, sourceDir, lowerfilename))
-			if not isfile(longname):
-				self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
-				return
-			if filetype in ARCHIVE_FILES:
-				self.session.openWithCallback(self.onFileActionCB, FileCommanderArchive, longname, self.TARGETLIST.getCurrentDirectory())
-			elif filetype == ".ts":
-				fileRef = eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, longname)
-				self.session.open(FileCommanderMoviePlayer, fileRef)
-			elif filetype in MOVIE_EXTENSIONS:
-				fileRef = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, longname)
-				self.session.open(FileCommanderMoviePlayer, fileRef)
-			elif filetype in DVD_EXTENSIONS:
-				self.session.open(DVDPlayer, dvd_filelist=[longname])
-			elif filetype in AUDIO_EXTENSIONS:
-				self.play_music(self.SOURCELIST)
-			elif filetype in IMAGE_EXTENSIONS:
-				if self.SOURCELIST.getCurrentIndex() != 0:
-					self.session.openWithCallback(
-						self.cbShowPicture,
-						FileCommanderImageViewer,
-						self.SOURCELIST.getFileList(),
-						self.SOURCELIST.getCurrentIndex(),
-						self.SOURCELIST.getCurrentDirectory(),  # DEBUG: path is not needed!
-						filename
-					)
-			elif filetype in (".sh", ".py", ".pyc"):
-				self.run_script(longname, self.TARGETLIST.getPath())
-			elif filetype == ".mvi":
-				self.file_name = longname
-				self.tmp_file = "/tmp/grab_%s_mvi.png" % filename[:-4]
-				choice = [(_("No"), "no"),
-						(_("Show as Picture (press any key to close)"), "show")]
-				savetext = ""
-				stat = statvfs("/tmp/")
-				if stat.f_bavail * stat.f_bsize > 1000000:
-					choice.append((_("Show as Picture and save as file ('%s')") % self.tmp_file, "save"))
-					savetext = _(" or save additional the picture to a file")
-				self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") % (longname, savetext), simple=True, list=choice)
-			elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
-				try:
-					xfile = osstat(longname)
-				except OSError as oe:
-					self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
-					return
-				if longname:
-					if xfile.st_size < 1000000:
-						self.session.open(FileCommanderEditor, longname)
-						self.onFileActionCB(True)
-					else:
-						self.session.open(FileCommanderViewer, longname, 2)
-			elif filetype == ".hex":
-				try:
-					xfile = osstat(longname)
-				except OSError as oe:
-					self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
-					return
-				if longname:
-					self.session.open(FileCommanderViewer, longname)
-					self.onFileActionCB(True)
-			else:
-				try:
-					found_viewer = openFile(self.session, guess_type(longname)[0], longname)
-				except TypeError:
-					found_viewer = False
-				if not found_viewer:
-					self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
-
-	def run_script(self, source, target):
-		self.commando = source
-		filename = basename(self.commando)
-		self.parameter = target or ""
-		stxt = _("shell") if self.commando.endswith(".sh") else _("python")
-		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") % stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
-		if self.parameter:
-			askList.append((_("Run script with optional parameter"), "PAR"))
-			askList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-			filename += _("\noptional parameter:\n%s") % self.parameter
-		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
-
-	def do_run_script(self, answer):
-		answer = answer and answer[1]
-		if answer in ("YES", "PAR", "YES_BG", "PAR_BG"):
-			if not access(self.commando, R_OK):
-				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
-				return
-			nice = config.plugins.filecommander.script_priority_nice.value or ""
-			ionice = config.plugins.filecommander.script_priority_ionice.value or ""
-			if nice:
-				nice = "nice -n %d " % nice
-			if ionice:
-				ionice = "ionice -c %d " % ionice
-			priority = "%s%s" % (nice, ionice)
-			if self.commando.endswith(".sh"):
-				if access(self.commando, X_OK):
-					cmdline = "%s%s" % (priority, self.commando)
-				else:
-					cmdline = "%s/bin/sh %s" % (priority, self.commando)
-			else:
-				cmdline = "%s/usr/bin/python %s" % (priority, self.commando)
-			if "PAR" in answer:
-				cmdline = "%s '%s'" % (cmdline, self.parameter)
-		elif answer == "VIEW":
-			try:
-				yfile = osstat(self.commando)
-			except OSError as oe:
-				self.session.open(MessageBox, _("%s: %s") % (self.commando, oe.strerror), type=MessageBox.TYPE_ERROR)
-				return
-			if self.commando:
-				if yfile.st_size < 1000000:
-					self.session.open(FileCommanderEditor, self.commando)
-				else:
-					self.session.open(FileCommanderViewer, self.commando, 2)
-
-		if answer and answer not in ("NO", "VIEW"):
-			if answer.endswith("_BG"):
-				global task_Stout, task_Sterr
-				task_Stout = []
-				task_Sterr = []
-				if "PAR" in answer:
-					name = "%s%s %s" % (priority, self.commando, self.parameter)
-				else:
-					name = "%s%s" % (priority, self.commando)
-				job = Job(_("Run script") + " ('%s')" % name)
-				task = Task(job, name)
-				task.postconditions.append(task_postconditions())
-				task.processStdout = task_processStdout
-				task.processStderr = task_processSterr
-				task.setCmdline(cmdline)
-				job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
-				self.jobs += 1
-				self.onLayout()
-			else:
-				self.session.open(Console, cmdlist=(cmdline,))
-
-	def play_music(self, dirsource):
-		self.sourceDir = dirsource
-		askList = [(_("Play title"), "SINGLE"), (_("Play folder"), "LIST"), (_("Cancel"), "NO")]
-		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n") + basename(self.sourceDir.getPath()), list=askList)
-
-	def do_play_music(self, answer):
-		longname = self.sourceDir.getPath()
-		answer = answer and answer[1]
-		if answer == "SINGLE":
-			fileRef = eServiceReference(eServiceReference.idServiceMP3, eServiceReference.noFlags, longname)
-			self.session.open(FileCommanderMoviePlayer, fileRef)
-		elif answer == "LIST":
-			self.music_playlist()
-
-	def music_playlist(self):
-		fileList = []
-		from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
-		self.beforeService = self.session.nav.getCurrentlyPlayingServiceReference()
-		path = self.sourceDir.getCurrentDirectory()
-		mp = self.session.open(MediaPlayer)
-		mp.callback = self.cbmusic_playlist
-		mp.playlist.clear()
-		mp.savePlaylistOnExit = False
-		i = 0
-		start_song = -1
-		filename = self.sourceDir.getPath()
-		fileList = self.sourceDir.getFileList()
-		for x in fileList:
-			l = len(x)
-			if x[0][0] is not None:
-				testFileName = x[0][0].lower()
-				_, filetype = splitext(testFileName)
-			else:
-				testFileName = x[0][0]  # "empty"
-				filetype = None
-			if l == 3 or l == 2:
-				if not x[0][1]:
-					if filetype in AUDIO_EXTENSIONS:
-						if filename == x[0][0]:
-							start_song = i
-						i += 1
-						mp.playlist.addFile(eServiceReference(4097, 0, path + x[0][0]))
-			elif l >= 5:
-				testFileName = x[4].lower()
-				_, filetype = splitext(testFileName)
-				if filetype in AUDIO_EXTENSIONS:
-					if filename == x[0][0]:
-						start_song = i
-					i += 1
-					mp.playlist.addFile(eServiceReference(4097, 0, path + x[4]))
-		if start_song < 0:
-			start_song = 0
-		mp.changeEntry(start_song)
-		mp.switchToPlayList()
-
-	def cbmusic_playlist(self, data=None):
-		if self.beforeService is not None:
-			self.session.nav.playService(self.beforeService)
-			self.beforeService = None
-
-	def mviFileCB(self, ret=None):
-		if ret and ret == "show":
-			self.last_service = self.session.nav.getCurrentlyPlayingServiceReference()
-			cmd = "/usr/bin/showiframe '%s'" % self.file_name
-			self.session.nav.stopService()
-			self.hide()
-			eActionMap.getInstance().bindAction("", -maxsize - 1, self.showCB)
-			console().ePopen(cmd)
-		elif ret == "save":
-			if isfile(self.tmp_file):
-				remove(self.tmp_file)
-			cmd = ["/usr/bin/ffmpeg -hide_banner -f mpegvideo -i %s -frames:v 1 -r 1/1 %s" % (self.file_name, self.tmp_file)]
-			console().eBatch(cmd, self.saveCB)
-
-	def showCB(self, key=None, flag=1):
-		self.show()
-		self.session.nav.playService(self.last_service)
-		eActionMap.getInstance().unbindAction("", self.showCB)
-
-	def saveCB(self, extra_args):
-		if isfile(self.tmp_file):
-			filename = self.tmp_file.split("/")[-1]
-			self.session.open(FileCommanderImageViewer, [((filename, ""), "")], 0, self.tmp_file.replace(filename, ""), filename)  # DEBUG: path is not needed!
-		else:
-			self.session.open(MessageBox, _("File not found: %s") % self.tmp_file, type=MessageBox.TYPE_ERROR)
-
-	def cbShowPicture(self, idx=0):
-		if idx > 0:
-			self.SOURCELIST.moveToIndex(idx)
 
 	def goContext(self):
 		dummy_to_translate_in_skin = _("File Commander menu")
@@ -1059,7 +1048,7 @@ class FileCommander(FileCommanderBase):
 	def listSelect(self):  # Multiselect.
 		if not self.SOURCELIST.getCurrentDirectory():
 			return
-		selectedid = self.SOURCELIST.getSelectionID()
+		selectedid = self.SOURCELIST.getCurrentIndex()
 		config.plugins.filecommander.pathLeft_tmp.value = self["list_left"].getCurrentDirectory() or ""
 		config.plugins.filecommander.pathRight_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		config.plugins.filecommander.sortingLeft_tmp.value = self["list_left"].getSortBy()
@@ -1265,7 +1254,7 @@ class FileCommander(FileCommanderBase):
 		filename = self.SOURCELIST.getPath()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if sourceDir and targetDir and filename and self.SOURCELIST.getSelectionID():
+		if sourceDir and targetDir and filename and self.SOURCELIST.getCurrentIndex():
 			filename = basename(normpath(filename))
 			self.session.openWithCallback(self.doMakesym, VirtualKeyBoard, title=_("Please enter name of the new symlink"), text=filename)
 
@@ -1287,11 +1276,6 @@ class FileCommander(FileCommanderBase):
 				except OSError as err:
 					self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, err.strerror), type=MessageBox.TYPE_ERROR)
 				self.doRefresh()
-
-	def gofileStatInfo(self):  # File/directory information.
-		path = self.SOURCELIST.getPath()
-		if path:
-			self.session.open(FileCommanderInformation, path, self.SOURCELIST.getCurrentDirectory())
 
 	def gomakeSymlink(self):  # Symlink by folder.
 		filename = self.SOURCELIST.getPath()
@@ -1340,13 +1324,14 @@ class FileCommander(FileCommanderBase):
 		self.doRefresh()
 
 	def updateButtons(self):
-		self["VKeyIcon"].boolean = self.viewable_file() is not None
-		valid = self.SOURCELIST and self.SOURCELIST.count() and self.SOURCELIST.getPath() and self.SOURCELIST.getCurrentDirectory() and self.SOURCELIST.getCurrentIndex()
-		self["ColorActions"].setEnabled = valid
+		path = self.SOURCELIST.getPath()
+		valid = self.SOURCELIST and self.SOURCELIST.count() and path and self.SOURCELIST.getCurrentDirectory() and self.SOURCELIST.getCurrentIndex()
+		self["ColorActions"].setEnabled(valid)
 		self["key_green"].setText(_("Move") if valid else "")
 		self["key_yellow"].setText(_("Copy") if valid else "")
 		self["key_blue"].setText(_("Rename") if valid else "")
 		self["key_red"].setText(_("Delete") if valid else "")
+		self["key_text"].setText(_("TEXT") if path and not isdir(path) else "")
 
 	def doRefreshDir(self, jobs, updateDirs):
 		if jobs:
@@ -1377,11 +1362,9 @@ class FileCommander(FileCommanderBase):
 	def change_mod(self, dirsource):
 		filename = dirsource.getPath()
 		sourceDir = dirsource.getCurrentDirectory()
-
 		if filename is None or sourceDir is None:
 			self.session.open(MessageBox, _("It is not possible to change the file mode of <List of Storage Devices>"), type=MessageBox.TYPE_ERROR)
 			return
-
 		self.longname = filename
 		if not dirsource.canDescent():
 			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
@@ -1432,7 +1415,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 			self.onLayoutFinish.append(self.listRight)
 		self["key_blue"].setText(_("Skip selection"))
 		self["actions"] = HelpableActionMap(self, ["DirectionActions", "OkCancelActions", "NumberActions", "ColorActions"], {
-			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
+			"ok": (self.keyOk, _("Select (source list) or enter directory (target list)")),
 			"cancel": (self.exit, _("Leave multi-select mode")),
 			"moveDown": (self.listRight, _("Activate right-hand file list as multi-select source")),
 			"moveUp": (self.listLeft, _("Activate left-hand file list as multi-select source")),
@@ -1467,7 +1450,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 		config.plugins.filecommander.pathRight_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		self.close(jobs, updateDirs)
 
-	def ok(self):
+	def keyOk(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.changeSelectionState()
 		else:
@@ -1749,12 +1732,12 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 		self.getStatus()
 
 	def getStatus(self):
-		extension = splitext(self.path)[1][1:].lower()
+		extension = splitext(self.path)[1].lower()
 		if extension in MEDIA_FILES:
 			self["key_green"].setText(_("MediaInfo"))
 			self["detailAction"].setEnabled(True)
 		elif extension in TEXT_FILES:
-			self["key_green"].setText(_("Edit File"))
+			self["key_green"].setText(_("View File"))
 			self["detailAction"].setEnabled(True)
 		elif extension in ARCHIVE_FILES:
 			self["key_green"].setText(_("Unpack File"))
@@ -1795,17 +1778,39 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 			self.close()
 
 	def keyDetails(self):
-		extension = splitext(self.path)[1][1:].lower()
+		extension = splitext(self.path)[1].lower()
 		if extension in MEDIA_FILES:
-			# self.session.open(FileCommanderMediaInfo, self.path)
-			pass
+			self.session.open(FileCommanderMediaInfo, self.path)
 		elif extension in TEXT_FILES:
-			self.session.open(FileCommanderEditor, self.path)
-		elif extension == "hex":
-			self.session.open(FileCommanderViewer, self.path)
+			text = True
+			try:
+				with open(self.path, mode="r", encoding="UTF-8", errors="strict") as fd:
+					fd.read(4096)
+			except Exception:
+				text = False
+			self.session.open(FileCommanderViewer, self.path, isText=text, initialView="T" if text else "H")
 		elif extension in ARCHIVE_FILES:
 			self.session.open(FileCommanderArchive, self.path, self.target)
-			pass
+
+
+class FileCommanderMediaInfo(Screen, HelpableScreen):
+	skin = """
+	<screen name="FileCommanderMediaInfo" title="File Commander Media Information" position="center,center" size="600,410" resolution="1280,720">
+		<widget name="message" position="0,25" size="600,25" font="Regular;20" valign="center" />
+	</screen>"""
+
+	def __init__(self, session, path):
+		Screen.__init__(self, session, mandatoryWidgets=["infolabels", "Test"])
+		HelpableScreen.__init__(self)
+		self.skinName = ["FileCommanderMediaInfo"]
+		if not self.getTitle():
+			self.setTitle(_("File Commander Media Information"))
+		self["message"] = Label(_("Media Information is not yet available."))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.close, _("Close this screen")),
+			"ok": (self.close, _("Close this screen")),
+			"red": (self.close, _("Close this screen"))
+		}, prio=0, description=_("Media Information Actions"))
 
 
 # Play media with MoviePlayer.
@@ -1917,7 +1922,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 		self.infoLabelsText = "%s:" % ":\n".join(self.exifDesc)
 		self["infodata"] = Label()
 		self.currentIndex = 0
-		self.fileList = self.makeFileList(fileList, filename)
+		self.fileList = [fileList] if isinstance(fileList, str) else self.makeFileList(fileList, filename)
 		self.fileListLen = len(self.fileList) - 1
 		self.displayedImage = ()
 		self.currentImage = ()
@@ -1942,14 +1947,12 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 
 	def makeFileList(self, fileList, filename):
 		elements = len(fileList[0])
-		imageExtensions = (".bmp", ".gif", ".jpg", ".jpe", ".jpeg", ".png")
-		# imageExtensions = tuple([".%s" % x for x in IMAGE_EXTENSIONS])
 		imageList = []
 		index = 0
 		for fileData in fileList:
 			imagePath = fileData[0][FILE_PATH] if elements > 1 else fileData[4]
 			extension = splitext(imagePath)[1].lower() if imagePath and not fileData[0][FILE_IS_DIR] else None
-			if extension and extension in imageExtensions:
+			if extension and extension in IMAGE_EXTENSIONS:
 				imageList.append(imagePath)
 				if imagePath.endswith(filename):
 					self.currentIndex = index
@@ -2083,13 +2086,14 @@ class FileCommanderViewer(Screen, HelpableScreen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, path, mode=0):
+	def __init__(self, session, path, isText=False, initialView="H"):
 		Screen.__init__(self, session, mandatoryWidgets=["path", "location", "data", "Test"])
 		HelpableScreen.__init__(self)
 		self.skinName = ["FileCommanderViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Viewer"))
 		self.path = normpath(path) if path.endswith(sep) else path
+		self.isText = isText
 		self["path"] = Label(self.path)
 		self["data"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -2116,19 +2120,29 @@ class FileCommanderViewer(Screen, HelpableScreen):
 		self["textAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.keyText, _("Display file as text"))
 		}, prio=0, description=_("File Commander Viewer Actions"))
-		if mode == 0:
+		if initialView[0].upper() == "H":
 			self.keyHex()
-		elif mode == 1:
+		elif initialView[0].upper() == "O":
 			self.keyOct()
-		elif mode == 2:
+		elif initialView[0].upper() == "T":
 			self.keyText()
 
 	def keyHex(self):
+		deferToThread(self.readHex)
+		self["data"].setText("Please wait while the file is read and processed...")
+		self["key_green"].setText("")
+		self["key_yellow"].setText(_("Octal"))
+		self["key_blue"].setText(_("Text") if self.isText else "")
+		self["hexAction"].setEnabled(False)
+		self["octAction"].setEnabled(True)
+		self["textAction"].setEnabled(self.isText)
+
+	def readHex(self):
 		data = []
 		try:
 			with open(self.path, "rb") as fd:
-				buffer = fd.read(1048576)
-				for position, rowData in [(x, buffer[x:x + 16]) for x in range(0, len(buffer), 16)]:
+				fileBuffer = fd.read(MAX_EDIT_SIZE)
+				for position, rowData in [(x, fileBuffer[x:x + 16]) for x in range(0, len(fileBuffer), 16)]:
 					hexChars = " ".join(["%02X" % x for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
 					count = len(rowData)
@@ -2139,19 +2153,22 @@ class FileCommanderViewer(Screen, HelpableScreen):
 		except OSError as err:
 			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
-		self["key_green"].setText("")
-		self["key_yellow"].setText(_("Octal"))
-		self["key_blue"].setText(_("Text"))
-		self["hexAction"].setEnabled(False)
-		self["octAction"].setEnabled(True)
-		self["textAction"].setEnabled(True)
 
 	def keyOct(self):
+		deferToThread(self.readOct)
+		self["key_green"].setText(_("Hexadecimal"))
+		self["key_yellow"].setText("")
+		self["key_blue"].setText(_("Text") if self.isText else "")
+		self["hexAction"].setEnabled(True)
+		self["octAction"].setEnabled(False)
+		self["textAction"].setEnabled(self.isText)
+
+	def readOct(self):
 		data = []
 		try:
 			with open(self.path, "rb") as fd:
-				buffer = fd.read(1048576)
-				for position, rowData in [(x, buffer[x:x + 8]) for x in range(0, len(buffer), 8)]:
+				fileBuffer = fd.read(MAX_EDIT_SIZE)
+				for position, rowData in [(x, fileBuffer[x:x + 8]) for x in range(0, len(fileBuffer), 8)]:
 					octChars = " ".join(["%03o" % x for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
 					count = len(rowData)
@@ -2159,22 +2176,16 @@ class FileCommanderViewer(Screen, HelpableScreen):
 						octChars = "%s    " % octChars
 						count += 1
 					data.append("%08o: %s  -  %s" % (position, octChars, textChars))
-		except OSError:
+		except OSError as err:
 			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
-		self["key_green"].setText(_("Hexadecimal"))
-		self["key_yellow"].setText("")
-		self["key_blue"].setText(_("Text"))
-		self["hexAction"].setEnabled(True)
-		self["octAction"].setEnabled(False)
-		self["textAction"].setEnabled(True)
 
 	def keyText(self):
 		data = []
 		try:
 			with open(self.path, "r") as fd:
-				data = fd.read(1048576).splitlines()
-		except OSError:
+				data = fd.read(MAX_EDIT_SIZE).splitlines()
+		except OSError as err:
 			data = ["Error %d: Unable to read '%s'!  (%s)" % (err.errno, self.path, err.strerror)]
 		self["data"].setText("\n".join(data))
 		self["key_green"].setText(_("Hexadecimal"))
@@ -2404,7 +2415,7 @@ class FileCommanderArchive(Screen, HelpableScreen):
 					self.processArguments(tempDir, ["/bin/busybox", "tar", "-tf", path], displayData, processArchive)
 
 			def processArchive(retVal):
-				for file in ("data.tar.gz", "data.tar.xz"):
+				for file in ("data.tar.bz2", "data.tar.gz", "data.tar.xz"):
 					path = pathjoin(tempDir, file)
 					if isfile(path):
 						self.textBuffer = "%s\n%s\n" % (self.textBuffer, _("Package files:"))
@@ -2412,7 +2423,7 @@ class FileCommanderArchive(Screen, HelpableScreen):
 						break
 
 			def processCleanup(retVal):
-				for file in ("debian-binary", "control.tar.gz", "data.tar.gz", "data.tar.xz"):
+				for file in ("debian-binary", "control.tar.gz", "data.tar.bz2", "data.tar.gz", "data.tar.xz"):
 					path = pathjoin(tempDir, file)
 					if isfile(path):
 						try:
@@ -2438,87 +2449,79 @@ class FileCommanderArchive(Screen, HelpableScreen):
 			self.processArguments(None, ["/usr/bin/7za", "/usr/bin/7za", "l", "-ba", self.path], displayData, None)
 
 	def keyExtract(self):
+		currentDir = pathjoin(dirname(self.path), "")
+		tempDir = pathjoin(gettempdir(), "")
 		choices = [
-			(_("Cancel extraction"), 0),
-			(_("Current directory (%s)") % pathjoin(dirname(self.path), ""), 1),
-			(_("Default movie location (%s)") % config.usage.default_path.value, 3),
-			(_("Temp directory (%s)") % pathjoin(gettempdir(), ""), 4),
-			(_("Select a directory"), 5)
+			(_("Cancel extraction"), ""),
+			(_("Current directory (%s)") % currentDir, currentDir),
+			(_("Default movie location (%s)") % config.usage.default_path.value, config.usage.default_path.value),
+			(_("Temp directory (%s)") % tempDir, tempDir),
+			(_("Select a directory"), "\0")
 		]
-		if self.target:
-			choices.insert(2, (_("Other panel directory (%s)") % pathjoin(self.target, ""), 2))
-		self.session.openWithCallback(self.keyExtractCallbackA, MessageBox, _("To where would you like to extract '%s'?") % self.path, type=MessageBox.TYPE_YESNO, list=choices, default=0, windowTitle=self.getTitle())
+		if self.target and self.target.getCurrentDirectory():
+			targetDir = self.target.getCurrentDirectory()
+			choices.insert(2, (_("Other panel directory (%s)") % targetDir, targetDir))
+		self.session.openWithCallback(self.keyExtractCallback, MessageBox, _("To where would you like to extract '%s'?") % self.path, type=MessageBox.TYPE_YESNO, list=choices, default=0, windowTitle=self.getTitle())
 
-	def keyExtractCallbackA(self, answer):
-		if answer == 1:
-			self.keyExtractCallbackC(pathjoin(dirname(self.path), ""))
-		elif answer == 2:
-			self.keyExtractCallbackB(pathjoin(self.target, ""))
-		elif answer == 3:
-			self.keyExtractCallbackC(config.usage.default_path.value)
-		elif answer == 4:
-			self.keyExtractCallbackC(pathjoin(gettempdir(), ""))
-		elif answer == 5:
+	def keyExtractCallback(self, target):
+		if target == "\0":
 			minFree = 100  # Get the size of the archive?
-			self.session.openWithCallback(self.keyExtractCallbackB, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=tempDir, minFree=minFree)
+			self.session.openWithCallback(self.keyExtractCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
+		elif target:
+			self.textBuffer = ""
+			if self.extension == "tar":
+				def displayData(data):
+					self["data"].setText(data)
 
-	def keyExtractCallbackB(self, target):
-		if target:
-			self.keyExtractCallbackC(target)
+				self.processArguments(target, ["/bin/busybox", "tar", "-xvf", self.path], displayData, None)
+			elif self.extension == "ipk":
+				def displayData(data):
+					self["data"].setText(data)
 
-	def keyExtractCallbackC(self, target):
-		self.textBuffer = ""
-		if self.extension == "tar":
-			def displayData(data):
-				self["data"].setText(data)
-
-			self.processArguments(target, ["/bin/busybox", "tar", "-xvf", self.path], displayData, None)
-		elif self.extension == "ipk":
-			def displayData(data):
-				self["data"].setText(data)
-
-			def processControl(retVal):
-				path = pathjoin(target, "control.tar.gz")
-				if isfile(path):
-					self.textBuffer = "%s%s\n" % (self.textBuffer, _("Control files:"))
-					self.processArguments(target, ["/bin/busybox", "tar", "-xvf", path], displayData, processArchive)
-
-			def processArchive(retVal):
-				for file in ("data.tar.gz", "data.tar.xz"):
-					path = pathjoin(target, file)
+				def processControl(retVal):
+					path = pathjoin(target, "control.tar.gz")
 					if isfile(path):
-						self.textBuffer = "%s\n%s\n" % (self.textBuffer, _("Package files:"))
-						self.processArguments(target, ["/bin/busybox", "tar", "-xvf", path], displayData, processCleanup)
-						break
+						self.textBuffer = "%s%s\n" % (self.textBuffer, _("Control files:"))
+						self.processArguments(target, ["/bin/busybox", "tar", "-xvf", path], displayData, processArchive)
 
-			def processCleanup(retVal):
-				for file in ("debian-binary", "control.tar.gz", "data.tar.gz", "data.tar.xz"):
-					path = pathjoin(target, file)
-					if isfile(path):
-						try:
-							remove(path)
-						except OSError:
-							pass
+				def processArchive(retVal):
+					for file in ("data.tar.gz", "data.tar.xz"):
+						path = pathjoin(target, file)
+						if isfile(path):
+							self.textBuffer = "%s\n%s\n" % (self.textBuffer, _("Package files:"))
+							self.processArguments(target, ["/bin/busybox", "tar", "-xvf", path], displayData, processCleanup)
+							break
 
-			target = pathjoin(target, splitext(basename(self.path))[0])
-			try:
-				mkdir(target)
-			except OSError as err:
-				if err.errno != EEXIST:
-					self["data"].setText("Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
-					print("[FileCommander] Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
-					return
-			self.processArguments(target, ["/usr/bin/ar", "/usr/bin/ar", "x", self.path], None, processControl)
-		elif self.extension == "rar":
-			def displayData(data):
-				self["data"].setText(data)
+				def processCleanup(retVal):
+					for file in ("debian-binary", "control.tar.gz", "data.tar.gz", "data.tar.xz"):
+						path = pathjoin(target, file)
+						if isfile(path):
+							try:
+								remove(path)
+							except OSError:
+								pass
 
-			self.processArguments(target, ["/usr/bin/unrar", "/usr/bin/unrar", "x", self.path], displayData, None)
-		else:
-			def displayData(data):
-				self["data"].setText("\n".join([x[53:] for x in [x for x in data.split("\n") if x]]))
+				target = pathjoin(target, splitext(basename(self.path))[0])
+				try:
+					mkdir(target)
+				except OSError as err:
+					if err.errno != EEXIST:
+						self["data"].setText("Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
+						print("[FileCommander] Error %d: Unable to create package directory '%s'!  (%s)" % (err.errno, target, err.strerror))
+						return
+				self.processArguments(target, ["/usr/bin/ar", "/usr/bin/ar", "x", self.path], None, processControl)
+			elif self.extension == "rar":
+				def displayData(data):
+					self["data"].setText(data)
 
-			self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", self.path], displayData, None)
+				self.processArguments(target, ["/usr/bin/unrar", "/usr/bin/unrar", "x", self.path], displayData, None)
+			else:
+				def displayData(data):
+					self["data"].setText("\n".join([x[53:] for x in [x for x in data.split("\n") if x]]))
+
+				self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", self.path], displayData, None)
+			if self.target:
+				self.target.refresh()
 
 	def keyInstall(self):
 		def displayData(data):
@@ -2530,6 +2533,7 @@ class FileCommanderArchive(Screen, HelpableScreen):
 		def processPlugin(retVal):
 			if basename(self.path).startswith("enigma2-plugin-"):
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+			# DEBUG: Should we refresh either of the lists?
 
 		self.textBuffer = ""
 		self.processArguments(None, ["/usr/bin/opkg", "/usr/bin/opkg", "update"], displayData, processInstall)
