@@ -6,12 +6,13 @@
 # drakulis <drakulis@interia.pl>, 2022.
 # lareq <lareq@o2.pl>, 2022.
 # Karol Sz <kaolsz@interia.pl>, 2022.
+# Tomasz X <wladyslaw.lam@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-09-18 12:22+0000\n"
+"PO-Revision-Date: 2022-10-06 07:17+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -967,9 +968,9 @@ msgstr "%d Minuty"
 #, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
-msgstr[0] "%d Szerokość pikseli"
-msgstr[1] "%d Szerokośći pikseli"
-msgstr[2] "%d Szerokośćą pikseli"
+msgstr[0] "%d Piksel szeroki"
+msgstr[1] "%d Piksele szeroki"
+msgstr[2] "%d Pikseli szeroki"
 
 #, python-format
 msgid "%d Pixels"
@@ -1290,7 +1291,7 @@ msgstr "%s został wyłączony."
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s nie jest już używany.Powinien być usunięty?"
+msgstr "%s nie jest już używany. Powinien być usunięty?"
 
 #, python-format
 msgid "%s is password protected."
@@ -1392,7 +1393,7 @@ msgstr "(1 praca)"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
-msgstr "(Dostęp do '%s' commit log wymaga połączenia z Internetem)."
+msgstr "(Dostęp do '%s' commit log wymaga połączenia z Internetem.)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -1500,7 +1501,7 @@ msgid "1080i50: 24p/50i/60i"
 msgstr "1080i50: 24p/50i/60i"
 
 msgid "1080p 24Hz"
-msgstr "1080p 24Hz"
+msgstr "————    "
 
 msgid "1080p 25Hz"
 msgstr "1080p 25Hz"
@@ -1910,26 +1911,18 @@ msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
 msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
-msgstr ""
-"Wykonany timer zasilania chce ponownie uruchomić %s %s.\n"
-"Zrobić to teraz?"
+msgstr "Wykonany timer zasilania chce ponownie uruchomić %s %s. Zrobić to teraz?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
-msgstr ""
-"Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika.\n"
-"Czy chcesz to zrobić teraz?"
+msgstr "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika. Czy chcesz to zrobić teraz?"
 
 #, python-format
 msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
-msgstr ""
-"Wykonany timer zasilania chce ustawić\n"
-"%s %s w stan czuwania. Zrobić to teraz?"
+msgstr "Wykonany timer zasilania chce ustawić %s %s w stan czuwania. Zrobić to teraz?"
 
 #, python-format
 msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
-msgstr ""
-"Timer zasilania chce wyłączyć %s %s.\n"
-"Zrobić to teraz?"
+msgstr "Timer zasilania chce wyłączyć %s %s. Zrobić to teraz?"
 
 #, python-format
 msgid ""
@@ -2064,7 +2057,7 @@ msgid "AC3 plus transcoding"
 msgstr "AC3 plus transkodowanie"
 
 msgid "AC3plus transcoding"
-msgstr "Transkodowanie AC3plus"
+msgstr "AC3plus transkodowanie"
 
 msgid "AFL"
 msgstr "AFL"
@@ -2109,7 +2102,7 @@ msgid "Aborted a pseudo recording.\n"
 msgstr "Pseudo nagrywanie anulowane.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr "Anulowano strumieniowanie.\n"
+msgstr "Anulowano strumieniowanie."
 
 msgid "Aborting update progress"
 msgstr "Przerywanie postępu aktualizacji"
@@ -2478,7 +2471,7 @@ msgid "Allow 10bit"
 msgstr "Pozwól 10bit"
 
 msgid "Allow 12bit"
-msgstr "Pozwól na 12bit"
+msgstr "Pozwól 12bit"
 
 msgid "Allow quit movie player with exit"
 msgstr "Pozwól wyjść z Odtwarzacza filmów"
@@ -7506,7 +7499,7 @@ msgid "Execution condition"
 msgstr "Warunek wykonania"
 
 msgid "Execution finished!!"
-msgstr "Kopia zapasowa została utworzona."
+msgstr "Wykonanie zakończone!!"
 
 msgid "Execution progress:"
 msgstr "Postęp wykonywania:"
@@ -11733,7 +11726,7 @@ msgid "Number of rows"
 msgstr "Liczba wierszy"
 
 msgid "Number of rows to display."
-msgstr "Liczba wierszy do wyświetlenia"
+msgstr "Liczba wierszy do wyświetlenia."
 
 msgid "Number or SMS style data entry"
 msgstr "Wprowadzanie danych w stylu numeru lub SMS"
@@ -14558,7 +14551,7 @@ msgid "Save right folder on exit"
 msgstr "Zapisz prawy folder przy wyjściu"
 
 msgid "Save settings and EPG data."
-msgstr "Zapisz ustawienia i dane EPG"
+msgstr "Zapisz ustawienia i dane EPG."
 
 #, python-format
 msgid ""
@@ -14642,9 +14635,9 @@ msgstr "Skanowanie %s..."
 #, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Skanowanie - %d%% ukończone"
-msgstr[1] "Skanowanie - %d%% ukończone"
-msgstr[2] "Skanowanie - %d%% ukończone"
+msgstr[0] "Skanowanie - %d%% ukończono"
+msgstr[1] "Skanowanie - %d%% ukończono"
+msgstr[2] "Skanowanie - %d%% ukończono"
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -15006,7 +14999,7 @@ msgid "Select Upgrade Source"
 msgstr "Źródło aktualizacji"
 
 msgid "Select Upgrade Source To Edit"
-msgstr "Wybierz źródło aktualizacji do edycji."
+msgstr "Wybierz źródło aktualizacji do edycji"
 
 msgid "Select Your Skin"
 msgstr "Wybierz swoją skórę"
@@ -15403,13 +15396,13 @@ msgid "Select what do do after the timer zap has completed."
 msgstr "Wybierz, co zrobić po zakończeniu odliczania czasu."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
-msgstr "Wybierz, co ma się stać, gdy %s %s zostanie włączony. Czy ma się uruchomić normalnie czy przejść w trybu czuwania?"
+msgstr "Wybierz, co ma się stać gdy %s %s zostanie włączony. Czy ma się uruchomić normalnie czy przejść w trybu czuwania."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr "Po przywróceniu zasilania twój %s %s zostanie automatycznie uruchomiony. Wybierz, co należy wtedy zrobić."
 
 msgid "Select what you want the Channel +/- button to activate."
-msgstr "Wybierz, co ma aktywować przycisk Kanał +/-"
+msgstr "Wybierz, co ma aktywować przycisk Kanał +/-."
 
 msgid "Select what you want the EPG button to activate."
 msgstr "Wybierz, co ma aktywować przycisk EPG."
@@ -17364,7 +17357,7 @@ msgid "Start"
 msgstr "Start"
 
 msgid "Start Auto Refresh"
-msgstr "Uruchom automatyczne odświeżanie"
+msgstr "Uruchom auto. odświeżanie"
 
 msgid "Start Kodi"
 msgstr "Uruchom Kodi"
@@ -17476,7 +17469,7 @@ msgid "Stop"
 msgstr "Zatrzymaj"
 
 msgid "Stop Auto Refresh"
-msgstr "Zatrzymaj automatyczne odświeżanie"
+msgstr "Zatrzymaj auto. odświeżanie"
 
 msgid "Stop PiP"
 msgstr "Zatrzymaj PiP"
@@ -17515,7 +17508,7 @@ msgid "Stop streams"
 msgstr "Zatrzymaj strumienie"
 
 msgid "Stop test"
-msgstr "Zakończyć test"
+msgstr "Zakończ test"
 
 msgid "Stop testing plane after # failed transponders"
 msgstr "Zatrzymaj testowanie poziomu po # nieudanych transponderach"
