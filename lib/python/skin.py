@@ -773,6 +773,7 @@ class AttributeParser:
 
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
+		# attribDeprecationWarning("noWrap", "wrap")
 
 	def objectTypes(self, value):
 		pass
@@ -885,8 +886,8 @@ class AttributeParser:
 		self.guiObject.setSelectionEnable(1 if parseBoolean("selection", value) else 0)
 
 	def selectionDisabled(self, value):  # This legacy definition is a redundant option and is uncharacteristic, use 'selection="0"' etc instead!
-		self.guiObject.setSelectionEnable(0)
-		attribDeprecationWarning("selectionDisabled", "selection")
+		self.guiObject.setSelectionEnable(0 if parseBoolean("selection", value) else 1)
+		# attribDeprecationWarning("selectionDisabled", "selection")
 
 	def selectionPixmap(self, value):
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
@@ -942,6 +943,9 @@ class AttributeParser:
 
 	def verticalAlignment(self, value):
 		self.guiObject.setVAlign(parseVerticalAlignment(value))
+
+	def wrap(self, value):
+		self.guiObject.setNoWrap(0 if parseBoolean("wrap", value) else 1)
 
 	def zPosition(self, value):
 		self.guiObject.setZPosition(parseInteger(value))
