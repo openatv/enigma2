@@ -8,12 +8,13 @@ from puremagic import PureError, from_file as fromfile
 from re import compile
 from string import digits
 import stat
-from tempfile import gettempdir, mkdtemp, mkstemp
+from tempfile import gettempdir, mkdtemp
 from time import localtime, strftime
 from twisted.internet.threads import deferToThread
 
-from enigma import eConsoleAppContainer, ePicLoad, eServiceReference, eTimer, getDesktop
+from enigma import eConsoleAppContainer, eLabel, ePicLoad, eServiceReference, eSize, eTimer, getDesktop
 
+from skin import parseFont
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -54,6 +55,7 @@ PDESC = _("Manage and explore files and directories.")
 PVERS = "%s%s" % (_("Version"), "3.00")
 
 MAX_EDIT_SIZE = 1048576
+FILE_CHUNK_SIZE = 16384
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 RECORDING_EXTENSIONS = frozenset((".ap", ".cuts", ".eit", ".meta", ".sc"))
@@ -107,20 +109,12 @@ choicelist = [
 	("2.0", _("Size")),
 	("2.1", _("Size reverse"))
 ]
-config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
-config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)
+config.plugins.filecommander.sortFiles_left = ConfigSelection(default="0.0", choices=choicelist)
+config.plugins.filecommander.sortFiles_right = ConfigSelection(default="0.0", choices=choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
 config.plugins.filecommander.pathLeft_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.showScriptCompleted_message = ConfigYesNo(default=True)
-CHECKSUM_HASHES = {
-	"MD5": "md5sum",
-	"SHA1": "sha1sum",
-	"SHA3": "sha3sum",
-	"SHA256": "sha256sum",
-	"SHA512": "sha512sum",
-}
-config.plugins.filecommander.hashes = ConfigSet(list(CHECKSUM_HASHES.keys()), default=["MD5"])
 config.plugins.filecommander.bookmarks = ConfigLocations(default=None)
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 defaultSort = "%s,%s" % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
@@ -541,21 +535,21 @@ class FileCommander(FileCommanderBase):
 			"7": (self.run_ffprobe, self.help_run_ffprobe),
 			"8": (self.run_dirsize, self.help_run_dirsize),
 			# "8": (self.run_mediainfo, self.help_run_mediainfo),
-			"9": (self.run_hashes, _("Calculate file checksums")),
+			"9": (self.keyHashes, _("Calculate file checksums")),
 			"startTeletext": (self.keyViewEdit, _("View or edit file (edit if size < 1MB)")),
 			"0": (self.doRefresh, _("Refresh screen")),
-			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
+			"showMovies": (self.keyMultiSelect, _("Enter multi-file selection mode")),
 			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
-			"redlong": (self.goRedLong, _("Sorting left files by name, date or size")),
-			"greenlong": (self.goGreenLong, _("Reverse left file sorting")),
-			"yellowlong": (self.goYellowLong, _("Reverse right file sorting")),
-			"bluelong": (self.goBlueLong, _("Sorting right files by name, date or size")),
+			"redlong": (self.keySortLeft, _("Sorting left files by name, date or size")),
+			"greenlong": (self.keySortLeftReverse, _("Reverse left file sorting")),
+			"yellowlong": (self.keySortRightReverse, _("Reverse right file sorting")),
+			"bluelong": (self.keySortRight, _("Sorting right files by name, date or size")),
 		}, prio=-1, description=_("File Commander Actions"))
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"red": (self.goRed, _("Delete file or directory (and all its contents)")),
-			"green": (self.goGreen, _("Move file/directory to target directory")),
-			"yellow": (self.goYellow, _("Copy file/directory to target directory")),
-			"blue": (self.goBlue, _("Rename file/directory")),
+			"red": (self.keyDelete, _("Delete file or directory (and all its contents)")),
+			"green": (self.keyMove, _("Move file/directory to target directory")),
+			"yellow": (self.keyCopy, _("Copy file/directory to target directory")),
+			"blue": (self.keyRename, _("Rename file/directory")),
 		}, prio=-1, description=_("File Commander Actions"))
 		self.running = True
 		self.checkJobs_Timer = eTimer()
@@ -597,8 +591,26 @@ class FileCommander(FileCommanderBase):
 				if fileType == ".mvi" and magicType == ".mpg":
 					magicType = ".mvi"
 				fileType = magicType
+			if fileType == ".mvi" and not exists("/usr/bin/ffmpeg"):  # Disable .mvi viewer if ffmpeg is not available!
+				self.session.open(MessageBox, _("FFMpeg is not installed so '.mvi' file actions are not available!"), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				fileType = None
 			if fileType in ARCHIVE_FILES:
-				self.session.open(FileCommanderArchive, path, self.TARGETLIST)
+				if fileType == ".ipk":
+					viewMsg = _("View the package contents")
+					extractMsg = _("Extract the package contents")
+					promptMsg = _("What would you like to do with the package file:")
+				else:
+					viewMsg = _("View the archive contents")
+					extractMsg = _("Extract the archive contents")
+					promptMsg = _("What would you like to do with the archive file:")
+				choiceList = [
+					(_("Cancel"), ""),
+					(viewMsg, "VIEW"),
+					(extractMsg, "EXTRACT")
+				]
+				if fileType == ".ipk":
+					choiceList.append((_("Install the package"), "INSTALL"))
+				self.session.openWithCallback(self.keyOkArchiveCallback, MessageBox, text="%s\n\n%s" % (promptMsg, path), list=choiceList, windowTitle=self.getTitle())
 			elif fileType == ".ts":
 				self.session.open(FileCommanderMoviePlayer, eServiceReference(eServiceReference.idDVB, eServiceReference.noFlags, path))
 			elif fileType in MOVIE_EXTENSIONS:
@@ -628,28 +640,33 @@ class FileCommander(FileCommanderBase):
 					parameter = "\n\n%s: %s" % (_("Optional parameter"), parameter)
 				self.session.openWithCallback(self.keyOkScriptCallback, MessageBox, text="%s\n\n%s%s" % (_("What would you like to do with the script file:"), path, parameter), list=choiceList, windowTitle=self.getTitle())
 			elif fileType == ".mvi":
-				if isfile("/usr/bin/ffmpeg"):
-					choiceList = [
-						(_("Cancel"), ""),
-						(_("Show image"), "SHOW"),
-						(_("Save image as '%s'") % "/tmp", "SAVE"),
-						(_("Show image and save as '%s'") % "/tmp", "SAVESHOW")
-					]
-					target = self.TARGETLIST.getCurrentDirectory()
-					if target:
-						choiceList.append((_("Save image as '%s'") % target, "SAVETARGET"))
-						choiceList.append((_("Show image and save as '%s'") % target, "SAVESHOWTARGET"))
-					self.session.openWithCallback(self.keyOkMviCallback, MessageBox, "%s\n\n%s" % (_("What would you like to do with the background image file:"), path), list=choiceList, windowTitle=self.getTitle())
-				else:
-					self.session.open(MessageBox, _("FFMpeg is not installed so '.mvi' file actions are not available!"), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				filename = "%s.jpg" % splitext(basename(path))[0]
+				choiceList = [
+					(_("Cancel"), ""),
+					(_("Show image"), "SHOW"),
+					(_("Save image as '%s'") % pathjoin(gettempdir(), filename), "SAVE"),
+					(_("Show image and save as '%s'") % pathjoin(gettempdir(), filename), "SAVESHOW")
+				]
+				target = self.TARGETLIST.getCurrentDirectory()
+				if target:
+					target = pathjoin(target, filename)
+					choiceList.append((_("Save image as '%s'") % target, "SAVETARGET"))
+					choiceList.append((_("Show image and save as '%s'") % target, "SAVESHOWTARGET"))
+				self.session.openWithCallback(self.keyOkMviCallback, MessageBox, "%s\n\n%s" % (_("What would you like to do with the background image file:"), path), list=choiceList, windowTitle=self.getTitle())
 			elif fileType in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 				self.keyViewEdit(path)
 			else:
 				self.session.open(MessageBox, _("There is no action to process '%s'!") % path, type=MessageBox.TYPE_ERROR, close_on_any_key=True, windowTitle=self.getTitle())
 
-	def keyOkCallback(self, result=None):
-		self.SOURCELIST.refresh()
-		self.TARGETLIST.refresh()
+	def keyOkArchiveCallback(self, answer):
+		if answer:
+			path = self.SOURCELIST.getPath()
+			if answer == "VIEW":
+				self.session.open(FileCommanderArchiveView, path)
+			elif answer == "EXTRACT":
+				self.session.open(FileCommanderArchiveExtract, path, self.TARGETLIST)
+			elif answer == "INSTALL":
+				self.session.open(FileCommanderArchiveInstall, path, self.TARGETLIST)
 
 	def keyOkMusicCallback(self, answer):
 		if answer:
@@ -734,36 +751,27 @@ class FileCommander(FileCommanderBase):
 					self.session.open(Console, cmdlist=(cmdline,))
 
 	def keyOkMviCallback(self, answer=None):
+		def processImage(data, retVal, extraArgs):
+			def cleanUp(index):
+				if not filePreExists:
+					remove(imagePath)
+
+			# print("[FileCommander] processImage DEBUG: Return value is %d\n%s." % (retVal, data))
+			answer, path, imagePath, filePreExists = extraArgs
+			if retVal == 0:
+				if not filePreExists:
+					chmod(imagePath, 0o644)
+				if "SHOW" in answer:
+					if "SAVE" in answer or "TARGET" in answer:
+						self.session.open(FileCommanderImageViewer, imagePath, 0, None, basename(imagePath))
+					else:
+						self.session.openWithCallback(cleanUp, FileCommanderImageViewer, imagePath, 0, None, basename(imagePath))
+
 		if answer:
 			path = self.SOURCELIST.getPath()
-			fd, tmpFile = mkstemp(suffix=".jpg")
-			osclose(fd)
-			console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", tmpFile], self.keyOkMviActionCallback, (answer, path, tmpFile))
-
-	def keyOkMviActionCallback(self, data, retVal, extraArgs):
-		def cleanUp(index):
-			remove(tmpFile)
-			if refresh == "S" and self.SOURCELIST.getCurrentDirectory() == gettempdir():
-				self.SOURCELIST.refresh()
-			if refresh == "T":
-				self.TARGETLIST.refresh()
-
-		print("[FileCommander] DEBUG: Return value is %d\n%s." % (retVal, data))
-		answer, path, tmpFile = extraArgs
-		if retVal == 0:
-			if "TARGET" in answer:
-				path = pathjoin(self.TARGETLIST.getCurrentDirectory(), "%s.jpg" % splitext(basename(path))[0])
-				refresh = "T"
-			else:
-				path = pathjoin(gettempdir(), "%s.jpg" % splitext(basename(path))[0])
-				refresh = "S"
-			if "SAVE" in answer:
-				chmod(tmpfile, 0o644)
-				copyFile(tmpFile, path)
-			if "SHOW" in answer:
-				self.session.openWithCallback(cleanUp, FileCommanderImageViewer, path, 0, None, basename(path))
-			else:
-				cleanUp(0)
+			imagePath = pathjoin(self.TARGETLIST.getCurrentDirectory() if "TARGET" in answer else gettempdir(), "%s.jpg" % splitext(basename(path))[0])
+			filePreExists = exists(imagePath)
+			console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", imagePath], processImage, (answer, path, imagePath, filePreExists))
 
 	def isFileText(self, path):
 		text = True
@@ -773,6 +781,32 @@ class FileCommander(FileCommanderBase):
 		except Exception:
 			text = False
 		return text
+
+	def keyHashes(self, path=None):
+		if path is None:
+			path = self.SOURCELIST.getPath()
+		if isfile(normpath(path)):
+			import hashlib
+			print("START HASH")
+			data = {}
+			data["Screen"] = "FileCommanderHashes"
+			data["Title"] = _("File Commander Hashes / Checksums")
+			data["Description"] = _("File Commander Hash / Checksum Actions")
+			textList = ["%s:|%s" % (_("File"), path)]
+			textList.append("")
+			with open(path, "rb") as fd:
+				hashData = {}
+				hashItems = ["BLAKE2B", "BLAKE2S", "MD5", "SHA1", "SHA3_224", "SHA3_256", "SHA3_384", "SHA3_512", "SHA224", "SHA256", "SHA384", "SHA512"]
+				for algorithm in hashItems:
+					hashData[algorithm] = getattr(hashlib, algorithm.lower())()
+				while buffer := fd.read(FILE_CHUNK_SIZE):
+					for algorithm in hashItems:
+						hashData[algorithm].update(buffer)
+				for algorithm in hashItems:
+					textList.append("%s:|%s" % (algorithm, hashData[algorithm].hexdigest()))
+			data["Data"] = textList
+			print("END HASH")
+			self.session.open(FileCommanderData, data)
 
 	def keyInformation(self, path=None):
 		if path is None:
@@ -796,27 +830,6 @@ class FileCommander(FileCommanderBase):
 	@staticmethod
 	def filterSettings():
 		return(config.plugins.filecommander.extension.value, config.plugins.filecommander.my_extension.value)
-
-	def run_hashes(self):
-		if not config.plugins.filecommander.hashes.value:
-			self.session.open(MessageBox, _("No hash calculations configured"), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
-			return
-		progs = tuple((h, CHECKSUM_HASHES[h]) for h in config.plugins.filecommander.hashes.value if h in CHECKSUM_HASHES and self.have_program(CHECKSUM_HASHES[h]))
-		if not progs:
-			self.session.open(MessageBox, _("None of the hash programs for the hashes %s are available") % "".join(config.plugins.filecommander.hashes.value), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
-			return
-		filename = self.SOURCELIST.getPath()
-		if filename is None:
-			self.session.open(MessageBox, _("It is not possible to calculate hashes on <List of Storage Devices>"), type=MessageBox.TYPE_ERROR)
-			return
-		filename = normpath(filename)
-		if isdir(filename):
-			self.session.open(MessageBox, _("The hash of a directory can't be calculated."), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
-			return
-		toRun = []
-		for prog in progs:
-			toRun += [("echo", "-n", prog[0] + ": "), (prog[1], filename)]
-		self.session.open(Console, cmdlist=toRun)
 
 	def progConsoleCB(self):
 		if hasattr(self, "_progConsole") and "text" in self._progConsole:
@@ -1045,7 +1058,7 @@ class FileCommander(FileCommanderBase):
 		self["list_right"].setSortBy(sortFilesRight)
 		self.doRefresh()
 
-	def listSelect(self):  # Multiselect.
+	def keyMultiSelect(self):  # Multiselect.
 		if not self.SOURCELIST.getCurrentDirectory():
 			return
 		selectedid = self.SOURCELIST.getCurrentIndex()
@@ -1132,59 +1145,60 @@ class FileCommander(FileCommanderBase):
 			reverse = 0
 		return "%d.%d" % (sort, reverse)
 
-	def goRedLong(self):  # Sorting files left.
+	def keySortLeft(self):  # Sorting files left.
 		self["list_left"].setSortBy(self.setSort(self["list_left"]))
 		self.doRefresh()
 
-	def goGreenLong(self):  # Reverse sorting files left.
+	def keySortLeftReverse(self):  # Reverse sorting files left.
 		self["list_left"].setSortBy(self.setReverse(self["list_left"]))
 		self.doRefresh()
 
-	def goYellowLong(self):  # Reverse sorting files right.
+	def keySortRightReverse(self):  # Reverse sorting files right.
 		self["list_right"].setSortBy(self.setReverse(self["list_right"]))
 		self.doRefresh()
 
-	def goBlueLong(self):  # Sorting files right.
+	def keySortRight(self):  # Sorting files right.
 		self["list_right"].setSortBy(self.setSort(self["list_right"]))
 		self.doRefresh()
 
-	def getCurrentSelectionFileInfo(self):
+	def getCurrentSelectionData(self):
 		sourcePath = normpath(self.SOURCELIST.getPath())
-		sourceDir = normpath(self.SOURCELIST.getCurrentDirectory())
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		sourceDirNormed = normpath(sourceDir)
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		targetDirNormed = None
 		if targetDir:
-			targetDir = normpath(targetDir)
+			targetDirNormed = normpath(targetDir)
 		sourceName = basename(sourcePath)
 		isFile = isfile(sourcePath)
-		return (sourcePath, sourceName, isFile, sourceDir, targetDir)
+		return (sourcePath, sourceName, isFile, sourceDirNormed, targetDirNormed, sourceDir, targetDir)
 
-	def goYellow(self):  # Copy.
+	def keyCopy(self):  # Copy.
 		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
-		(sourcePath, sourceName, isFile, sourceDir, targetDir) = self.getCurrentSelectionFileInfo()
+		(sourcePath, sourceName, isFile, sourceDirNormed, targetDirNormed, sourceDir, targetDir) = self.getCurrentSelectionData()
 		warntxt = ""
-		if exists(pathjoin(targetDir, sourceName)):
+		if exists(pathjoin(targetDirNormed, sourceName)):
 			warntxt = _(" - file exist! Overwrite") if isFile else _(" - folder exist! Overwrite")
 		copytext = "%s%s" % (_("Copy file"), warntxt) if isFile else "%s%s" % (_("Copy folder"), warntxt)
-		self.session.openWithCallback(self.doCopy, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (copytext, sourceName, _("from dir"), sourceDir, _("to dir"), targetDir))
+		self.session.openWithCallback(self.doCopy, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (copytext, sourceName, _("from dir"), sourceDirNormed, _("to dir"), targetDirNormed))
 
 	def doCopy(self, answer):
 		if answer:
-			(sourcePath, sourceName, isFile, sourceDir, targetDir) = self.getCurrentSelectionFileInfo()
+			(sourcePath, sourceName, isFile, sourceDirNormed, targetDirNormed, sourceDir, targetDir) = self.getCurrentSelectionData()
 			updateDirs = [targetDir]
 			if isFile:
-				self.addJob(FileTransferJob(sourcePath, targetDir, False, True, "%s : %s" % (_("Copy file"), sourceName)), updateDirs)
+				self.addJob(FileTransferJob(sourcePath, targetDirNormed, False, True, "%s : %s" % (_("Copy file"), sourceName)), updateDirs)
 			else:
-				self.addJob(FileTransferJob(sourcePath, targetDir, True, True, "%s : %s" % (_("Copy folder"), sourceName)), updateDirs)
+				self.addJob(FileTransferJob(sourcePath, targetDirNormed, True, True, "%s : %s" % (_("Copy folder"), sourceName)), updateDirs)
 
-	def goRed(self):  # Delete.
+	def keyDelete(self):  # Delete.
 		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
-		filename = normpath(self.SOURCELIST.getPath())
+		filename = basename(normpath(self.SOURCELIST.getPath()))
 		sourceDir = normpath(self.SOURCELIST.getCurrentDirectory())
-		deltext = _("Delete file") if isfile(filename) else _("Delete folder")
-		filename = basename(normpath(filename))
-		self.session.openWithCallback(self.doDelete, MessageBox, text="%s?\n%s\n%s\n%s" % (deltext, filename, _("from dir"), sourceDir))
+		delMsg = _("Delete file '%s' from within directory '%s'?") if isfile(filename) else _("Delete directory '%s' from within directory '%s'?")
+		self.session.openWithCallback(self.doDelete, MessageBox, text=delMsg % (filename, sourceDir))
 
 	def doDelete(self, answer):
 		if answer:
@@ -1196,26 +1210,26 @@ class FileCommander(FileCommanderBase):
 			else:
 				self.addJob([filename], [sourceDir])
 
-	def goGreen(self):  # Move.
+	def keyMove(self):  # Move.
 		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
-		(sourcePath, sourceName, isFile, sourceDir, targetDir) = self.getCurrentSelectionFileInfo()
+		(sourcePath, sourceName, isFile, sourceDirNormed, targetDirNormed, sourceDir, targetDir) = self.getCurrentSelectionData()
 		warntxt = ""
-		if exists(pathjoin(targetDir, sourceName)):
+		if exists(pathjoin(targetDirNormed, sourceName)):
 			warntxt = _(" - file exist! Overwrite") if isFile else _(" - folder exist! Overwrite")
 		movetext = "%s%s" % (_("Move file"), warntxt) if isFile else "%s%s" % (_("Move folder"), warntxt)
-		self.session.openWithCallback(self.doMove, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (movetext, sourceName, _("from dir"), sourceDir, _("to dir"), targetDir))
+		self.session.openWithCallback(self.doMove, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (movetext, sourceName, _("from dir"), sourceDirNormed, _("to dir"), targetDirNormed))
 
 	def doMove(self, answer):
 		if answer:
-			(sourcePath, sourceName, isFile, sourceDir, targetDir) = self.getCurrentSelectionFileInfo()
+			(sourcePath, sourceName, isFile, sourceDirNormed, targetDirNormed, sourceDir, targetDir) = self.getCurrentSelectionData()
 			updateDirs = [sourceDir, targetDir]
 			if isFile:
-				self.addJob(FileTransferJob(sourcePath, targetDir, False, False, "%s : %s" % (_("move file"), sourceName)), updateDirs)
+				self.addJob(FileTransferJob(sourcePath, targetDirNormed, False, False, "%s : %s" % (_("move file"), sourceName)), updateDirs)
 			else:
-				self.addJob(FileTransferJob(sourcePath, targetDir, True, False, "%s : %s" % (_("move folder"), sourceName)), updateDirs)
+				self.addJob(FileTransferJob(sourcePath, targetDirNormed, True, False, "%s : %s" % (_("move folder"), sourceName)), updateDirs)
 
-	def goBlue(self):  # Rename.
+	def keyRename(self):  # Rename.
 		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
 		filename = normpath(self.SOURCELIST.getPath())
@@ -1346,15 +1360,24 @@ class FileCommander(FileCommanderBase):
 			self["list_left"].selectionEnabled(0)
 			self["list_right"].selectionEnabled(1)
 
-	def doRefresh(self):
-		sortDirsLeft, sortFilesLeft = self["list_left"].getSortBy().split(",")
-		sortDirsRight, sortFilesRight = self["list_right"].getSortBy().split(",")
-		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
-		self["sort_left"].setText(sortLeft)
-		self["sort_right"].setText(sortRight)
-		self.SOURCELIST.refresh()
-		self.TARGETLIST.refresh()
+	def doRefresh(self, source=True, target=True):
+		refreshLeft = source
+		refreshRight = target
+		if self.SOURCELIST != self["list_left"]:
+			refreshLeft = target
+			refreshRight = source
+		if refreshLeft:
+			sortDirsLeft, sortFilesLeft = self["list_left"].getSortBy().split(",")
+			sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
+			self["sort_left"].setText(sortLeft)
+		if refreshRight:
+			sortDirsRight, sortFilesRight = self["list_right"].getSortBy().split(",")
+			sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
+			self["sort_right"].setText(sortRight)
+		if source:
+			self.SOURCELIST.refresh()
+		if target:
+			self.TARGETLIST.refresh()
 
 	def call_change_mode(self):
 		self.change_mod(self.SOURCELIST)
@@ -1413,23 +1436,23 @@ class FileCommanderFileSelect(FileCommanderBase):
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.onLayoutFinish.append(self.listRight)
-		self["key_blue"].setText(_("Skip selection"))
-		self["actions"] = HelpableActionMap(self, ["DirectionActions", "OkCancelActions", "NumberActions", "ColorActions"], {
+		self["key_blue"].setText("")
+		self["actions"] = HelpableActionMap(self, ["DirectionActions", "OkCancelActions", "NumberActions", "ColorActions", "InfobarActions"], {
 			"ok": (self.keyOk, _("Select (source list) or enter directory (target list)")),
 			"cancel": (self.exit, _("Leave multi-select mode")),
 			"moveDown": (self.listRight, _("Activate right-hand file list as multi-select source")),
 			"moveUp": (self.listLeft, _("Activate left-hand file list as multi-select source")),
 			"chplus": (self.listRightB, _("Activate right-hand file list as multi-select source")),
 			"chminus": (self.listLeftB, _("Activate left-hand file list as multi-select source")),
-			"blue": (self.goBlue, _("Leave multi-select mode")),
+			"showMovies": (self.keyCloseMultiselect, _("Leave multi-select mode")),
 			"0": (self.doRefresh, _("Refresh screen")),
 		}, prio=-1, description=_("File Commander Selection Actions"))
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"green": (self.goGreen, _("Move file/directory to target directory")),
-			"yellow": (self.goYellow, _("Copy file/directory to target directory")),
+			"green": (self.keyMove, _("Move file/directory to target directory")),
+			"yellow": (self.keyCopy, _("Copy file/directory to target directory")),
 		}, prio=-1, description=_("File Commander Selection Actions"))
 		self["DeleteAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"red": (self.goRed, _("Delete the selected files or directories")),
+			"red": (self.keyDelete, _("Delete the selected files or directories")),
 		}, prio=-1, description=_("File Commander Selection Actions"))
 		self.onLayoutFinish.append(self.onLayout)
 
@@ -1457,7 +1480,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descend()
 
-	def goRed(self):  # Delete selected.
+	def keyDelete(self):  # Delete selected.
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		cnt = 0
 		filename = ""
@@ -1490,7 +1513,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 				remove(file)
 			self.exit([self.delete_dirs], self.delete_updateDirs)
 
-	def goGreen(self):  # Move selected.
+	def keyMove(self):  # Move selected.
 		cnt = 0
 		warncnt = 0
 		warntxt = ""
@@ -1528,7 +1551,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 		if answer:
 			self.exit(self.move_jobs, self.move_updateDirs)
 
-	def goYellow(self):  # Copy selected.
+	def keyCopy(self):  # Copy selected.
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		cnt = 0
@@ -1569,7 +1592,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 		if answer:
 			self.exit(self.copy_jobs, self.copy_updateDirs)
 
-	def goBlue(self):
+	def keyCloseMultiselect(self):
 		self.exit()
 
 	def updateButtons(self):
@@ -1654,6 +1677,71 @@ class FileCommanderSetup(Setup):
 			config.plugins.filecommander.pathDefault.value = path
 
 
+class FileCommanderData(Screen, HelpableScreen):
+	skin = """
+	<screen name="FileCommanderData" title="File Commander Data" position="center,center" size="1000,500" resolution="1280,720">
+		<widget name="data" position="0,0" size="1000,450" font="Regular;20" splitPosition="200" noWrap="0" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_menu" render="Label" position="e-350,e-40" size="80,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_info" render="Label" position="e-260,e-40" size="80,40" backgroundColor="key_back" conditional="key_info" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_text" render="Label" position="e-170,e-40" size="80,40" backgroundColor="key_back" conditional="key_text" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, data):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.skinName = ["FileCommanderData"]
+		if not isinstance(data, dict):
+			print("[FileCommander] Error: FileCommanderData screen requires a formatting dictionary!")
+			self.session.open(MessageBox, _("Error: FileCommanderData screen requires a formatting dictionary!"), MessageBox.TYPE_ERROR, windowTitle=_("File Commander Data"))
+			self.close()
+		self.data = data
+		item = data.get("Screen")
+		if item:
+			self.skinName.insert(0, item)
+		item = data.get("Title")
+		if item:
+			self.setTitle(item)
+		self["data"] = ScrollLabel("\n".join(data.get("Data")))
+		self["key_red"] = StaticText(_("Close"))
+		item = data.get("Description", _("File Commander Data Actions"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"cancel": (self.close, _("Close this screen")),
+			"ok": (self.close, _("Close this screen")),
+			"red": (self.close, _("Close this screen"))
+		}, prio=0, description=item)
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"top": (self["data"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
+			"up": (self["data"].goLineUp, _("Move up a line")),
+			# "left": (self["data"].goPageUp, _("Move up a screen")),
+			# "right": (self["data"].goPageDown, _("Move down a screen")),
+			"down": (self["data"].goLineDown, _("Move down a line")),
+			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
+			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
+		}, prio=0, description=item)
+
+
 class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 	skin = ["""
 	<screen name="FileCommanderInformation" title="File/Directory Status Information" position="center,center" size="800,410" resolution="1280,720">
@@ -1663,9 +1751,6 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 				{
 				"template":
 					[
-					# 0   100 200 300 400 500
-					# |   |   |   |   |   |
-					# 00000000 1111111111111
 					MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=0), # Index 0 is a label.
 					MultiContentEntryText(pos=(%d, 0), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1)  # Index 1 is the information.
 					],
@@ -1695,7 +1780,7 @@ class FileCommanderInformation(Screen, HelpableScreen, StatInfo):
 		Screen.__init__(self, session, mandatoryWidgets=["path", "data", "Test"])
 		HelpableScreen.__init__(self)
 		StatInfo.__init__(self)
-		self.skinname = ["FileCommanderInformation", "FileCommanderFileStatInfo"]
+		self.skinName = ["FileCommanderInformation", "FileCommanderFileStatInfo"]
 		if not self.getTitle():
 			self.setTitle(_("File/Directory Status Information"))
 		self.path = normpath(path) if path.endswith(sep) else path
@@ -2340,7 +2425,7 @@ class FileCommanderEditor(Screen, HelpableScreen):
 		self.isChanged = True
 
 
-class FileCommanderArchive(Screen, HelpableScreen):
+class FileCommanderArchiveBase(Screen, HelpableScreen):
 	skin = """
 	<screen name="FileCommanderArchive" title="File Commander Archive" position="50,50" size="1180,600" resolution="1280,720">
 		<widget name="path" position="0,0" size="1180,55" font="Regular;20" foregroundColor="#00fff000" valign="center" />
@@ -2371,17 +2456,12 @@ class FileCommanderArchive(Screen, HelpableScreen):
 			self.extension = "tar"
 		self.target = target
 		self["path"] = Label(self.path)
-		self["data"] = ScrollLabel(_("Please select an action from the color buttons to proceed."))
+		self["data"] = ScrollLabel(_("Please wait while the data is extracted."))
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("View"))
-		self["key_yellow"] = StaticText(_("Extract"))
-		self["key_blue"] = StaticText(_("Install") if self.extension == "ipk" else "")
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"ok": (self.keyCancel, _("Close the screen")),
 			"red": (self.keyCancel, _("Close the screen")),
-			"green": (self.keyView, _("View the contents of the archive/package")),
-			"yellow": (self.keyExtract, _("Extract the contents of the archive/package")),
 			"top": (self["data"].goTop, _("Move to first line / screen")),
 			"pageUp": (self["data"].goPageUp, _("Move up a screen")),
 			"up": (self["data"].goLineUp, _("Move up a line")),
@@ -2389,15 +2469,41 @@ class FileCommanderArchive(Screen, HelpableScreen):
 			"pageDown": (self["data"].goPageDown, _("Move down a screen")),
 			"bottom": (self["data"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("File Commander Archiver Content Actions"))
-		self["installAction"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
-			"blue": (self.keyInstall, _("Install the package"))
-		}, prio=0, description=_("File Commander Archiver Content Actions"))
-		self["installAction"].setEnabled(self.extension == "ipk")
 
 	def keyCancel(self):
 		self.close()
 
-	def keyView(self):
+	def processArguments(self, directory, arguments, display, finished):
+		def dataAvail(data):
+			if isinstance(data, bytes):
+				data = data.decode()
+			self.textBuffer = "%s%s" % (self.textBuffer, data)
+			if callable(display):
+				display(self.textBuffer)
+
+		def appClosed(retVal):
+			del self.container.dataAvail[:]
+			del self.container.appClosed[:]
+			del self.container
+			if callable(display):
+				display(self.textBuffer)
+			if callable(finished):
+				finished(retVal)
+
+		self.container = eConsoleAppContainer()
+		if directory:
+			self.container.setCWD(directory)
+		self.container.dataAvail.append(dataAvail)
+		self.container.appClosed.append(appClosed)
+		self.container.execute(*arguments)
+
+
+class FileCommanderArchiveView(FileCommanderArchiveBase):
+	def __init__(self, session, path):
+		FileCommanderArchiveBase.__init__(self, session, path, target=None)
+		self.callLater(self.viewArchive)
+
+	def viewArchive(self):
 		self.textBuffer = ""
 		if self.extension == "tar":
 			def displayData(data):
@@ -2448,7 +2554,13 @@ class FileCommanderArchive(Screen, HelpableScreen):
 
 			self.processArguments(None, ["/usr/bin/7za", "/usr/bin/7za", "l", "-ba", self.path], displayData, None)
 
-	def keyExtract(self):
+
+class FileCommanderArchiveExtract(FileCommanderArchiveBase):
+	def __init__(self, session, path, target=None):
+		FileCommanderArchiveBase.__init__(self, session, path, target)
+		self.callLater(self.extractArchive)
+
+	def extractArchive(self):
 		currentDir = pathjoin(dirname(self.path), "")
 		tempDir = pathjoin(gettempdir(), "")
 		choices = [
@@ -2461,12 +2573,12 @@ class FileCommanderArchive(Screen, HelpableScreen):
 		if self.target and self.target.getCurrentDirectory():
 			targetDir = self.target.getCurrentDirectory()
 			choices.insert(2, (_("Other panel directory (%s)") % targetDir, targetDir))
-		self.session.openWithCallback(self.keyExtractCallback, MessageBox, _("To where would you like to extract '%s'?") % self.path, type=MessageBox.TYPE_YESNO, list=choices, default=0, windowTitle=self.getTitle())
+		self.session.openWithCallback(self.extractArchiveCallback, MessageBox, _("To where would you like to extract '%s'?") % self.path, type=MessageBox.TYPE_YESNO, list=choices, default=0, windowTitle=self.getTitle())
 
-	def keyExtractCallback(self, target):
+	def extractArchiveCallback(self, target):
 		if target == "\0":
 			minFree = 100  # Get the size of the archive?
-			self.session.openWithCallback(self.keyExtractCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
+			self.session.openWithCallback(self.extractArchiveCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
 		elif target:
 			self.textBuffer = ""
 			if self.extension == "tar":
@@ -2514,16 +2626,22 @@ class FileCommanderArchive(Screen, HelpableScreen):
 				def displayData(data):
 					self["data"].setText(data)
 
-				self.processArguments(target, ["/usr/bin/unrar", "/usr/bin/unrar", "x", self.path], displayData, None)
+				self.processArguments(target, ["/usr/bin/unrar", "/usr/bin/unrar", "x", "-y", self.path], displayData, None)
 			else:
 				def displayData(data):
 					self["data"].setText("\n".join([x[53:] for x in [x for x in data.split("\n") if x]]))
 
-				self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", self.path], displayData, None)
+				self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", "-y", self.path], displayData, None)
 			if self.target:
 				self.target.refresh()
 
-	def keyInstall(self):
+
+class FileCommanderArchiveInstall(FileCommanderArchiveBase):
+	def __init__(self, session, path, target=None):
+		FileCommanderArchiveBase.__init__(self, session, path, target)
+		self.callLater(self.installArchive)
+
+	def installArchive(self):
 		def displayData(data):
 			self["data"].setText(data)
 
@@ -2533,35 +2651,9 @@ class FileCommanderArchive(Screen, HelpableScreen):
 		def processPlugin(retVal):
 			if basename(self.path).startswith("enigma2-plugin-"):
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-			# DEBUG: Should we refresh either of the lists?
 
 		self.textBuffer = ""
 		self.processArguments(None, ["/usr/bin/opkg", "/usr/bin/opkg", "update"], displayData, processInstall)
-
-	def processArguments(self, directory, arguments, display, finished):
-		def dataAvail(data):
-			if isinstance(data, bytes):
-				data = data.decode()
-			self.textBuffer = "%s%s" % (self.textBuffer, data)
-			if callable(display):
-				display(self.textBuffer)
-
-		def appClosed(retVal):
-			del self.container.dataAvail[:]
-			del self.container.appClosed[:]
-			del self.container
-			if callable(display):
-				display(self.textBuffer)
-			if callable(finished):
-				finished(retVal)
-
-		self.container = eConsoleAppContainer()
-		if directory:
-			self.container.setCWD(directory)
-		self.container.dataAvail.append(dataAvail)
-		self.container.appClosed.append(appClosed)
-		self.container.execute(*arguments)
-		self["data"].setText(_("Please wait while the data is extracted."))
 
 
 class task_postconditions(Condition):
