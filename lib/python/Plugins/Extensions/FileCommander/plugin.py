@@ -53,7 +53,9 @@ PNAME = _("File Commander")
 PDESC = _("Manage and explore files and directories.")
 PVERS = "%s%s" % (_("Version"), "3.00")
 
+HASH_CHECK_SIZE = 134, 217, 728
 MAX_EDIT_SIZE = 1048576
+MAX_HEXVIEW_SIZE = 262144
 BLOCK_CHUNK_SIZE = 4096
 FILE_CHUNK_SIZE = 16384
 
@@ -250,6 +252,7 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 		HelpableScreen.__init__(self)
 		StatInfo.__init__(self)
 		self.multiselect = False
+		self.selectedItems = []
 		self.calculate_directorysize = False
 		self.skinName = ["FileCommander", "FileCommanderScreen", "FileCommanderScreenFileSelect"]
 		self["key_menu"] = StaticText(_("MENU"))
@@ -472,6 +475,9 @@ class FileCommanderBase(Screen, HelpableScreen, StatInfo):
 			self.formatTime(st.st_atime),  # 14
 			self.formatTime(st.st_ctime)  # 15
 		)]
+
+	def showFileTooBigMessage():
+		self.session.open(MessageBox, _("This function is not available because processing of large files will take too long to run on this hardware."))
 
 
 class FileCommander(FileCommanderBase):
@@ -786,27 +792,30 @@ class FileCommander(FileCommanderBase):
 		if path is None:
 			path = self.SOURCELIST.getPath()
 		if isfile(normpath(path)):
-			import hashlib
-			print("START HASH")
-			data = {}
-			data["Screen"] = "FileCommanderHashes"
-			data["Title"] = _("File Commander Hashes / Checksums")
-			data["Description"] = _("File Commander Hash / Checksum Actions")
-			textList = ["%s:|%s" % (_("File"), path)]
-			textList.append("")
-			with open(path, "rb") as fd:
-				hashData = {}
-				hashItems = ["BLAKE2B", "BLAKE2S", "MD5", "SHA1", "SHA3_224", "SHA3_256", "SHA3_384", "SHA3_512", "SHA224", "SHA256", "SHA384", "SHA512"]
-				for algorithm in hashItems:
-					hashData[algorithm] = getattr(hashlib, algorithm.lower())()
-				while buffer := fd.read(FILE_CHUNK_SIZE):
+			if osstat(path).st_size < HASH_CHECK_SIZE:
+				import hashlib
+				print("START HASH")
+				data = {}
+				data["Screen"] = "FileCommanderHashes"
+				data["Title"] = _("File Commander Hashes / Checksums")
+				data["Description"] = _("File Commander Hash / Checksum Actions")
+				textList = ["%s:|%s" % (_("File"), path)]
+				textList.append("")
+				with open(path, "rb") as fd:
+					hashData = {}
+					hashItems = ["BLAKE2B", "BLAKE2S", "MD5", "SHA1", "SHA3_224", "SHA3_256", "SHA3_384", "SHA3_512", "SHA224", "SHA256", "SHA384", "SHA512"]
 					for algorithm in hashItems:
-						hashData[algorithm].update(buffer)
-				for algorithm in hashItems:
-					textList.append("%s:|%s" % (algorithm, hashData[algorithm].hexdigest()))
-			data["Data"] = textList
-			print("END HASH")
-			self.session.open(FileCommanderData, data)
+						hashData[algorithm] = getattr(hashlib, algorithm.lower())()
+					while fileBuffer := fd.read(FILE_CHUNK_SIZE):
+						for algorithm in hashItems:
+							hashData[algorithm].update(fileBuffer)
+					for algorithm in hashItems:
+						textList.append("%s:|%s" % (algorithm, hashData[algorithm].hexdigest()))
+				data["Data"] = textList
+				print("END HASH")
+				self.session.open(FileCommanderData, data)
+			else:
+				self.showFileTooBigMessage()
 
 	def keyInformation(self, path=None):
 		if path is None:
@@ -825,7 +834,10 @@ class FileCommander(FileCommanderBase):
 			else:
 				self.session.open(FileCommanderFileViewer, path, isText=True, initialView="T")
 		else:
-			self.session.open(FileCommanderFileViewer, path, isText=False, initialView="H")
+			if osstat(path).st_size < MAX_HEXVIEW_SIZE:
+				self.session.open(FileCommanderFileViewer, path, isText=False, initialView="H")
+			else:
+				self.showFileTooBigMessage()
 
 	@staticmethod
 	def filterSettings():
@@ -1408,7 +1420,6 @@ class FileCommanderFileSelect(FileCommanderBase):
 	def __init__(self, session, leftactive, selectedid):
 		FileCommanderBase.__init__(self, session)
 		self.multiselect = True
-		self.selectedFiles = []
 		self.selectedid = selectedid
 		pathLeft = config.plugins.filecommander.pathLeft_tmp.value or None
 		pathRight = config.plugins.filecommander.pathRight_tmp.value or None
@@ -1425,14 +1436,14 @@ class FileCommanderFileSelect(FileCommanderBase):
 		self["list_right_head1"] = Label(pathRight)
 		self["list_right_head2"] = List()
 		if leftactive:
-			self["list_left"] = FileListMultiSelect(self.selectedFiles, pathLeft, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_left"] = FileListMultiSelect(self.selectedItems, pathLeft, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
 			self["list_right"] = FileList(pathRight, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.onLayoutFinish.append(self.listLeft)
 		else:
 			self["list_left"] = FileList(pathLeft, matchingPattern=filefilter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-			self["list_right"] = FileListMultiSelect(self.selectedFiles, pathRight, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
+			self["list_right"] = FileListMultiSelect(self.selectedItems, pathRight, matchingPattern=filefilter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.onLayoutFinish.append(self.listRight)
@@ -1464,8 +1475,8 @@ class FileCommanderFileSelect(FileCommanderBase):
 	def changeSelectionState(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.ACTIVELIST.changeSelectionState()
-			self.selectedFiles = self.ACTIVELIST.getSelectedList()
-			print("[FileCommander] selectedFiles %s." % self.selectedFiles)
+			self.selectedItems = self.ACTIVELIST.getSelectedList()
+			print("[FileCommander] selectedFiles %s." % self.selectedItems)
 			self.goDown()
 
 	def exit(self, jobs=None, updateDirs=None):
@@ -1480,14 +1491,45 @@ class FileCommanderFileSelect(FileCommanderBase):
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descend()
 
+	def showConsentMessage(self, mode, targetdir, callback):
+		files = []
+		directories = []
+		msgitems = []
+		for item in self.selectedItems:
+			if isdir(item):
+				directories.append(item)
+			if isfile(item):
+				files.append(item)
+			if len(msgitems) < 5:
+				msgitems.append(normpath(item))
+
+		if mode == 0:  # Delete
+			modestr = _("delete")
+		if mode == 1:  # Copy
+			modestr = _("copy")
+		if mode == 2:  # Move
+			modestr = _("move")
+
+		msgtext = _("Do you wan't to %s the following files or directories") % modestr
+		if len(files) == 0:
+			msgtext = ngettext("Do you wan't to %s the following directory", "Do you wan't to %s the following directories", len(directories)) % modestr
+		elif len(directories) == 0:
+			msgtext = ngettext("Do you wan't to %s the following file", "Do you wan't to %s the following files", len(files)) % modestr
+
+		msgtext += "\n%s" % "\n".join(msgitems)
+		if mode != 0:
+			msgtext += "\n to directory '%s'?" % targetdir
+
+		self.session.openWithCallback(callback, MessageBox, text=msgtext)
+
 	def keyDelete(self):  # Delete selected.
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		cnt = 0
 		filename = ""
 		self.delete_dirs = []
 		self.delete_files = []
-		self.delete_updateDirs = [sourceDir]
-		for file in self.selectedFiles:
+		self.updateDirs = [sourceDir]
+		for file in self.selectedItems:
 			print("[FileCommander] Delete '%s'." % file)
 			if not cnt:
 				filename += "%s" % file
@@ -1501,7 +1543,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 			else:
 				self.delete_files.append(file)
 		if cnt > 1:
-			deltext = _("Delete %d elements") % len(self.selectedFiles)
+			deltext = _("Delete %d elements") % len(self.selectedItems)
 		else:
 			deltext = _("Delete 1 element")
 		self.session.openWithCallback(self.doDelete, MessageBox, text="%s?\n%s\n%s\n%s" % (deltext, filename, _("from dir"), sourceDir))
@@ -1511,7 +1553,7 @@ class FileCommanderFileSelect(FileCommanderBase):
 			for file in self.delete_files:
 				print("[FileCommander] Delete '%s'." % file)
 				remove(file)
-			self.exit([self.delete_dirs], self.delete_updateDirs)
+			self.exit([self.delete_dirs], self.updateDirs)
 
 	def keyMove(self):  # Move selected.
 		cnt = 0
@@ -1521,9 +1563,9 @@ class FileCommanderFileSelect(FileCommanderBase):
 		self.cleanList()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		self.move_updateDirs = [targetDir, sourceDir]
+		self.updateDirs = [targetDir, sourceDir]
 		self.move_jobs = []
-		for file in self.selectedFiles:
+		for file in self.selectedItems:
 			if not cnt:
 				filename += "%s" % file
 			elif cnt < 3:
@@ -1542,14 +1584,14 @@ class FileCommanderFileSelect(FileCommanderBase):
 				targetDir = dst_file[:-1]
 			self.move_jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		if cnt > 1:
-			movetext = (_("Move %d elements") % len(self.selectedFiles)) + warntxt
+			movetext = (_("Move %d elements") % len(self.selectedItems)) + warntxt
 		else:
 			movetext = _("Move 1 element") + warntxt
 		self.session.openWithCallback(self.doMove, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (movetext, filename, _("from dir"), sourceDir, _("to dir"), targetDir))
 
 	def doMove(self, answer):
 		if answer:
-			self.exit(self.move_jobs, self.move_updateDirs)
+			self.exit(self.move_jobs, self.updateDirs)
 
 	def keyCopy(self):  # Copy selected.
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -1559,9 +1601,9 @@ class FileCommanderFileSelect(FileCommanderBase):
 		warntxt = ""
 		filename = ""
 		self.cleanList()
-		self.copy_updateDirs = [targetDir]
+		self.updateDirs = [targetDir]
 		self.copy_jobs = []
-		for file in self.selectedFiles:
+		for file in self.selectedItems:
 			if not cnt:
 				filename += "%s" % file
 			elif cnt < 3:
@@ -1583,21 +1625,21 @@ class FileCommanderFileSelect(FileCommanderBase):
 			else:
 				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("Copy file"), file)))
 		if cnt > 1:
-			copytext = (_("Copy %d elements") % len(self.selectedFiles)) + warntxt
+			copytext = (_("Copy %d elements") % len(self.selectedItems)) + warntxt
 		else:
 			copytext = _("Copy 1 element") + warntxt
 		self.session.openWithCallback(self.doCopy, MessageBox, text="%s?\n%s\n%s\n%s\n%s\n%s" % (copytext, filename, _("from dir"), sourceDir, _("to dir"), targetDir))
 
 	def doCopy(self, answer):
 		if answer:
-			self.exit(self.copy_jobs, self.copy_updateDirs)
+			self.exit(self.copy_jobs, self.updateDirs)
 
 	def keyCloseMultiselect(self):
 		self.exit()
 
 	def updateButtons(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory() if self.TARGETLIST.getCurrentIndex() else None
-		selected = len(self.selectedFiles)
+		selected = len(self.selectedItems)
 		valid = targetDir and selected
 		self["ColorActions"].setEnabled = valid
 		self["key_green"].setText(_("Move") if valid else "")
@@ -1606,12 +1648,12 @@ class FileCommanderFileSelect(FileCommanderBase):
 		self["key_red"].setText(_("Delete") if selected else "")
 
 	def doRefresh(self):
-		print("[FileCommander] selectedFiles %s." % self.selectedFiles)
+		print("[FileCommander] selectedFiles %s." % self.selectedItems)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 
 	def cleanList(self):  # Remove movie parts if the movie is present.
-		for file in self.selectedFiles[:]:
+		for file in self.selectedItems[:]:
 			movie, extension = splitext(file)
 			if extension in RECORDING_EXTENSIONS:
 				if extension == ".eit":
@@ -1619,8 +1661,8 @@ class FileCommanderFileSelect(FileCommanderBase):
 					movie = "%s%s" % (movie, extension)
 				else:
 					extension = splitext(movie)[1]
-				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
-					self.selectedFiles.remove(file)
+				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedItems:
+					self.selectedItems.remove(file)
 
 
 class FileCommanderContextMenu(Screen):
@@ -1806,7 +1848,7 @@ class FileCommanderArchiveExtract(FileCommanderArchiveBase):
 			minFree = 100  # Get the size of the archive?
 			self.session.openWithCallback(self.extractArchiveCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
 		elif target:
-			self.textBuffer = "%s:\n\n" % self.path
+			self.textBuffer = "- %s:\n- \n" % self.path
 			if self.extension == "tar":
 				def displayData(data):
 					self["data"].setText(data)
@@ -1856,11 +1898,11 @@ class FileCommanderArchiveExtract(FileCommanderArchiveBase):
 				self.processArguments(target, ["/usr/bin/unrar", "/usr/bin/unrar", "x", "-y", self.path], displayData, self.updateActionMap)
 			else:
 				def displayData(data):
-					self["data"].setText("\n".join([x[53:] for x in [x for x in data.split("\n") if x]]))
+					self["data"].setText("\n".join([x[2:] for x in [x for x in data.split("\n") if x.startswith("- ")]]))
 
-				self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", "-y", self.path], displayData, self.updateActionMap)
+				self.processArguments(target, ["/usr/bin/7za", "/usr/bin/7za", "x", "-ba", "-bb1", "-bd", "-y", self.path], displayData, self.updateActionMap)
 
-	def updateActionMap(self):
+	def updateActionMap(self, retVal=None):
 		self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 		if self.target:
 			self.target.refresh()
@@ -1893,7 +1935,7 @@ class FileCommanderArchiveView(FileCommanderArchiveBase):
 		self.callLater(self.viewArchive)
 
 	def viewArchive(self):
-		self.textBuffer = "%s:\n\n" % self.path
+		self.textBuffer = "%s%s:\n%s\n" % (" " * 53, self.path, " " * 53)
 		if self.extension == "tar":
 			def displayData(data):
 				self["data"].setText(data)
@@ -1944,7 +1986,7 @@ class FileCommanderArchiveView(FileCommanderArchiveBase):
 
 			self.processArguments(None, ["/usr/bin/7za", "/usr/bin/7za", "l", "-ba", self.path], displayData, self.updateActionMap)
 
-	def updateActionMap(self):
+	def updateActionMap(self, retVal=None):
 		self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 
 
@@ -2022,7 +2064,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 		data = []
 		try:
 			with open(self.path, "rb") as fd:
-				fileBuffer = fd.read(MAX_EDIT_SIZE)
+				fileBuffer = fd.read(MAX_HEXVIEW_SIZE)
 				for position, rowData in [(x, fileBuffer[x:x + 16]) for x in range(0, len(fileBuffer), 16)]:
 					hexChars = " ".join(["%02X" % x for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
@@ -2048,7 +2090,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 		data = []
 		try:
 			with open(self.path, "rb") as fd:
-				fileBuffer = fd.read(MAX_EDIT_SIZE)
+				fileBuffer = fd.read(MAX_HEXVIEW_SIZE)
 				for position, rowData in [(x, fileBuffer[x:x + 8]) for x in range(0, len(fileBuffer), 8)]:
 					octChars = " ".join(["%03o" % x for x in rowData])
 					textChars = " ".join([chr(x) if 0x20 <= x < 0x7F else "?" for x in rowData])
