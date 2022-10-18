@@ -170,22 +170,26 @@ class ScrollLabel(GUIComponent):
 				rightText = []
 				for line in text.split("\n"):
 					line = line.split(self.splitCharacter, 1)
+					if len(line) > 1:
+						rightData = line[1].lstrip() if self.splitTrim else line[1]
+					else:
+						rightData = ""
 					if self.font:  # We are going to be wrapping long lines.
 						leftHeight = eLabel.calculateTextSize(self.font, line[0], eSize(self.leftWidth, 10000), False).height() if line[0] else self.lineHeight
 						rightHeight = eLabel.calculateTextSize(self.font, line[1], eSize(self.rightWidth, 10000), False).height() if len(line) > 1 and line[1] else self.lineHeight
 						blankLines = "\n" * (max(leftHeight // self.lineHeight, rightHeight // self.lineHeight) - 1)
 						if blankLines and leftHeight > rightHeight:
 							leftText.append(line[0])
-							rightText.append("%s%s" % ("" if len(line) < 2 else (line[1].lstrip() if self.splitTrim else line[1]), blankLines))
+							rightText.append("%s%s" % (rightData, blankLines))
 						elif blankLines and leftHeight < rightHeight:
 							leftText.append("%s%s" % (line[0], blankLines))
-							rightText.append("" if len(line) < 2 else (line[1].lstrip() if self.splitTrim else line[1]))
+							rightText.append(rightData)
 						else:
 							leftText.append(line[0])
-							rightText.append("" if len(line) < 2 else (line[1].lstrip() if self.splitTrim else line[1]))
+							rightText.append(rightData)
 					else:
 						leftText.append(line[0])
-						rightText.append("" if len(line) < 2 else (line[1].lstrip() if self.splitTrim else line[1]))
+						rightText.append(rightData)
 				self.leftText.setText("\n".join(leftText))
 				self.rightText.setText("\n".join(rightText))
 			else:
