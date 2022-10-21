@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -5215,6 +5215,9 @@ msgstr "Текущ статус:"
 msgid "Current crash log"
 msgstr "Текущ дневник на сривовете"
 
+msgid "Current directory"
+msgstr ""
+
 msgid "Current installed"
 msgstr "Текущо инсталиран"
 
@@ -10132,9 +10135,6 @@ msgstr "Дълго ляво/дясно"
 msgid "Long filenames"
 msgstr "Дълги имена на файлове"
 
-msgid "Long key press"
-msgstr "Дълго натискане на клавиш"
-
 msgid "Long press emulation with button"
 msgstr "Дълго натискане на емулация с бутон"
 
@@ -11248,10 +11248,10 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr ""
 
-msgid "Next Image"
-msgstr "Следващо изображение"
-
 msgid "Next Log"
+msgstr ""
+
+msgid "Next Picture"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11372,9 +11372,6 @@ msgstr "Не са открити твърди дискове."
 msgid "No hash calculations configured"
 msgstr "Няма конфигурирани хеш изчисления"
 
-msgid "No images available"
-msgstr ""
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
@@ -11395,6 +11392,9 @@ msgstr "Няма превключвател на елементите (увел�
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Няма обновени все още пакети.Проверите вашата мрежа и опитайте отново."
+
+msgid "No pictures available"
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr "Не е открит съвместим входящ позиционер."
@@ -11640,6 +11640,9 @@ msgstr "Не е тестван:"
 
 msgid "Nothing"
 msgstr "Нищо"
+
+msgid "Nothing connected"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -12303,6 +12306,12 @@ msgstr "Широчина на пикона"
 
 msgid "Picons"
 msgstr "пикони"
+
+msgid "Picture Information"
+msgstr ""
+
+msgid "Picture Information Actions"
+msgstr ""
 
 msgid "Picture in EPG"
 msgstr "Снимка в EPG"
@@ -13058,10 +13067,10 @@ msgstr "Меню за предварителен преглед"
 msgid "Previous"
 msgstr "Предишен"
 
-msgid "Previous Image"
+msgid "Previous Log"
 msgstr ""
 
-msgid "Previous Log"
+msgid "Previous Picture"
 msgstr ""
 
 msgid "Previous bouquet"
@@ -13519,12 +13528,6 @@ msgstr "Запис"
 
 msgid "Receiver"
 msgstr "Приемник"
-
-msgid "Receiver Image Actions"
-msgstr "Действия за изображение на приемника"
-
-msgid "Receiver Images"
-msgstr ""
 
 msgid "Receiver Information"
 msgstr "Информация за приемника"
@@ -16465,9 +16468,6 @@ msgstr ""
 msgid "Show next event"
 msgstr "Показване на следващото събитие"
 
-msgid "Show next image"
-msgstr "Показване на следващото изображение"
-
 msgid "Show next page"
 msgstr "Показване на следващата страница"
 
@@ -16492,6 +16492,9 @@ msgstr "Показване на инфобара за постоянно по в
 msgid "Show picon background color"
 msgstr "Показване на цвета на фона на пиконите"
 
+msgid "Show picture information"
+msgstr ""
+
 msgid "Show positioner movement"
 msgstr "Показване на движение позиционер"
 
@@ -16507,9 +16510,6 @@ msgstr ""
 msgid "Show previous event"
 msgstr "Показване на предишно събитие"
 
-msgid "Show previous image"
-msgstr "Показване на предишна снимка"
-
 msgid "Show previous page"
 msgstr "Показване на предишна страница"
 
@@ -16521,9 +16521,6 @@ msgstr ""
 
 msgid "Show quickmenu..."
 msgstr "Показване на бързо меню ..."
-
-msgid "Show receiver image information"
-msgstr ""
 
 msgid "Show record indicator"
 msgstr "Показване на индикатора за запис"
@@ -19382,6 +19379,9 @@ msgstr ""
 msgid "Twi"
 msgstr ""
 
+msgid "Twin Hybrid"
+msgstr ""
+
 msgid "Twin Tuner"
 msgstr "Тунер с двоен тунер"
 
@@ -19898,9 +19898,6 @@ msgstr "Използване на съветника, за да настроит
 
 msgid "Use these input device settings?"
 msgstr "Използване на тези настройки за входно устройство?"
-
-msgid "Use these settings?"
-msgstr "Използване на тези настройки?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Използване на тези настройки за видео аксесоар?"
@@ -20598,6 +20595,9 @@ msgstr "Какво искате да сканирате?\n"
 msgid "What do you want to scan?"
 msgstr "Какво искате да сканирате?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr ""
+
 msgid "What would you like to do?"
 msgstr "Какво искаш да правиш?"
 
@@ -20789,9 +20789,6 @@ msgstr "Къде искате да архивирате вашите настр�
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Къде да запазя временните TimeShift записи?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Кое събитие искате да запазите перманентно?"
@@ -22883,6 +22880,24 @@ msgstr "вашият %s %s може да бъде неизползваем се�
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Long key press"
+#~ msgstr "Дълго натискане на клавиш"
+
+#~ msgid "Next Image"
+#~ msgstr "Следващо изображение"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "Действия за изображение на приемника"
+
+#~ msgid "Show next image"
+#~ msgstr "Показване на следващото изображение"
+
+#~ msgid "Show previous image"
+#~ msgstr "Показване на предишна снимка"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Използване на тези настройки?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Моля, изберете приемлива директория."

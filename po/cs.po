@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-09-19 15:41+0000\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
+"PO-Revision-Date: 2022-10-20 14:54+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 msgid ""
 "\n"
@@ -5234,6 +5234,9 @@ msgstr "Aktuální stav:"
 msgid "Current crash log"
 msgstr "Aktuální protokol o haváriích"
 
+msgid "Current directory"
+msgstr "Současný adresář"
+
 msgid "Current installed"
 msgstr "Aktuálně nainstalovaný"
 
@@ -10160,9 +10163,6 @@ msgstr "L/P - dlouhý stisk"
 msgid "Long filenames"
 msgstr "Dlouhé názvy souborů"
 
-msgid "Long key press"
-msgstr "Dlouhé stlačení klávesy"
-
 msgid "Long press emulation with button"
 msgstr "Emulace dlouhého stisku tlačítka"
 
@@ -11276,11 +11276,11 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Další"
 
-msgid "Next Image"
-msgstr "Další obrázek"
-
 msgid "Next Log"
 msgstr "Další protokol"
+
+msgid "Next Picture"
+msgstr "Další obrázek"
 
 msgid "Next bouquet"
 msgstr "Další přehled"
@@ -11400,9 +11400,6 @@ msgstr "Nebyly zjištěny žádné pevné disky."
 msgid "No hash calculations configured"
 msgstr "Nejsou nakonfigurovány žádné výpočty hash"
 
-msgid "No images available"
-msgstr "Nejsou k dispozici žádné obrázky"
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
 
@@ -11423,6 +11420,9 @@ msgstr "Není co přepnout (zvýšit nebo snížit)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Zatím nebyly upgradovány žádné balíčky. Můžete tedy zkontrolovat síť a zkusit to znovu."
+
+msgid "No pictures available"
+msgstr "Nejsou k dispozici žádné obrázky"
 
 msgid "No positioner capable frontend found."
 msgstr "Nebyl nalezen žádný vhodný pozicionér."
@@ -11668,6 +11668,9 @@ msgstr "Netestováno:"
 
 msgid "Nothing"
 msgstr "Nic"
+
+msgid "Nothing connected"
+msgstr "Nic není připojeno"
 
 msgid ""
 "Nothing to scan!\n"
@@ -12331,6 +12334,12 @@ msgstr "Šířka piconů kanálů"
 
 msgid "Picons"
 msgstr "Pikony"
+
+msgid "Picture Information"
+msgstr "Informace o obrázku"
+
+msgid "Picture Information Actions"
+msgstr "Akce informace o obrázku"
 
 msgid "Picture in EPG"
 msgstr "Obrázek v EPG"
@@ -13086,11 +13095,11 @@ msgstr "Náhled menu"
 msgid "Previous"
 msgstr "Předchozí"
 
-msgid "Previous Image"
-msgstr "Předchozí obrázek"
-
 msgid "Previous Log"
 msgstr "Předchozí záznam"
+
+msgid "Previous Picture"
+msgstr "Předchozí obrázek"
 
 msgid "Previous bouquet"
 msgstr "Předchozí přehled"
@@ -13547,12 +13556,6 @@ msgstr "Rec"
 
 msgid "Receiver"
 msgstr "Přijímač"
-
-msgid "Receiver Image Actions"
-msgstr "Akce s obrázky přijímače"
-
-msgid "Receiver Images"
-msgstr "Obrázky přijímače"
 
 msgid "Receiver Information"
 msgstr "Informace o přijímači"
@@ -16494,9 +16497,6 @@ msgstr "Zobrazit následující soubor protokolu ladění"
 msgid "Show next event"
 msgstr "Zobrazit následující událost"
 
-msgid "Show next image"
-msgstr "Zobrazit následující obrázek"
-
 msgid "Show next page"
 msgstr "Zobrazit další stránku"
 
@@ -16521,6 +16521,9 @@ msgstr "Při pozastavení zobrazovat trvalý informační panel"
 msgid "Show picon background color"
 msgstr "Zobrazit barvu pozadí piconů"
 
+msgid "Show picture information"
+msgstr "Zobrazit informace o obrázku"
+
 msgid "Show positioner movement"
 msgstr "Zobrazit otáčení motoru"
 
@@ -16536,9 +16539,6 @@ msgstr "Zobrazit předchozí soubor protokolu ladění"
 msgid "Show previous event"
 msgstr "Zobrazit předchozí událost"
 
-msgid "Show previous image"
-msgstr "Zobrazit předchozí obrázek"
-
 msgid "Show previous page"
 msgstr "Zobrazit předchozí stránku"
 
@@ -16550,9 +16550,6 @@ msgstr "Zobrazit předchozí obrazovku s informacemi o systému"
 
 msgid "Show quickmenu..."
 msgstr "Zobrazit rychlé menu..."
-
-msgid "Show receiver image information"
-msgstr "Zobrazit informace o obrázku přijímače"
 
 msgid "Show record indicator"
 msgstr "Zobrazit indikátor nahrávání"
@@ -19425,6 +19422,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Twi"
 
+msgid "Twin Hybrid"
+msgstr "Dvojitý hybrid"
+
 msgid "Twin Tuner"
 msgstr "Dvojitý tuner"
 
@@ -19941,9 +19941,6 @@ msgstr "Použijte průvodce pro nastavení základních funkcí"
 
 msgid "Use these input device settings?"
 msgstr "Použít nastavení tohoto vstupního zařízení?"
-
-msgid "Use these settings?"
-msgstr "Použít tato nastavení?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Použít toto rozšířené nastavení?"
@@ -20667,6 +20664,9 @@ msgstr "Co chcete přehrát?\n"
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr "Kde chcete nastavit výchozí umístění filmu?"
+
 msgid "What would you like to do?"
 msgstr "Co byste chtěli dělat?"
 
@@ -20858,9 +20858,6 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr "Kde chcete nastavit výchozí umístění filmu?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Který pořad chcete uložit trvale?"
@@ -22957,6 +22954,36 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "Dlouhé stlačení klávesy"
+
+#~ msgid "Next Image"
+#~ msgstr "Další obrázek"
+
+#~ msgid "No images available"
+#~ msgstr "Nejsou k dispozici žádné obrázky"
+
+#~ msgid "Previous Image"
+#~ msgstr "Předchozí obrázek"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "Akce s obrázky přijímače"
+
+#~ msgid "Receiver Images"
+#~ msgstr "Obrázky přijímače"
+
+#~ msgid "Show next image"
+#~ msgstr "Zobrazit následující obrázek"
+
+#~ msgid "Show previous image"
+#~ msgstr "Zobrazit předchozí obrázek"
+
+#~ msgid "Show receiver image information"
+#~ msgstr "Zobrazit informace o obrázku přijímače"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Použít tato nastavení?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Vyberte požadovaný adresář."

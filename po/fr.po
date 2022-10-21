@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
 "PO-Revision-Date: 2022-05-29 00:20+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -5228,6 +5228,9 @@ msgstr "Statut courant :"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 msgid "Current installed"
 msgstr "Actuellement installé"
 
@@ -10155,9 +10158,6 @@ msgstr "Long gauche/droit"
 msgid "Long filenames"
 msgstr "Nom de fichiers long"
 
-msgid "Long key press"
-msgstr "Appui long sur touche"
-
 msgid "Long press emulation with button"
 msgstr "Émulation de pression prolongée avec bouton"
 
@@ -11274,10 +11274,10 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Suivant"
 
-msgid "Next Image"
+msgid "Next Log"
 msgstr ""
 
-msgid "Next Log"
+msgid "Next Picture"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11398,9 +11398,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Aucun calcul de hachage configuré"
 
-msgid "No images available"
-msgstr ""
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
@@ -11421,6 +11418,9 @@ msgstr "Nombre d'éléments à permuter (augmenter ou diminuer)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Aucun paquet n'a été mis à jour. Veuillez vérifier votre réseau et réessayer."
+
+msgid "No pictures available"
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr "Aucun positionneur tuner détecté."
@@ -11666,6 +11666,9 @@ msgstr "Pas testé:"
 
 msgid "Nothing"
 msgstr "Ne rien faire"
+
+msgid "Nothing connected"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -12332,6 +12335,12 @@ msgstr "Largeur picon"
 
 msgid "Picons"
 msgstr "Picons"
+
+msgid "Picture Information"
+msgstr ""
+
+msgid "Picture Information Actions"
+msgstr ""
 
 msgid "Picture in EPG"
 msgstr "Image dans l'EPG"
@@ -13087,10 +13096,10 @@ msgstr "Menu aperçu"
 msgid "Previous"
 msgstr "Précédent"
 
-msgid "Previous Image"
+msgid "Previous Log"
 msgstr ""
 
-msgid "Previous Log"
+msgid "Previous Picture"
 msgstr ""
 
 msgid "Previous bouquet"
@@ -13547,12 +13556,6 @@ msgid "Rec"
 msgstr "Enr"
 
 msgid "Receiver"
-msgstr ""
-
-msgid "Receiver Image Actions"
-msgstr ""
-
-msgid "Receiver Images"
 msgstr ""
 
 msgid "Receiver Information"
@@ -16497,9 +16500,6 @@ msgstr ""
 msgid "Show next event"
 msgstr "Afficher l'événement suivant"
 
-msgid "Show next image"
-msgstr ""
-
 msgid "Show next page"
 msgstr "Afficher la page suivante"
 
@@ -16524,6 +16524,9 @@ msgstr "Afficher l'infobarre en permanence en pause"
 msgid "Show picon background color"
 msgstr "Afficher la couleur de fond des picons"
 
+msgid "Show picture information"
+msgstr ""
+
 msgid "Show positioner movement"
 msgstr "Afficher le mouvement du positionneur"
 
@@ -16539,9 +16542,6 @@ msgstr ""
 msgid "Show previous event"
 msgstr "Afficher l'événement précédent"
 
-msgid "Show previous image"
-msgstr ""
-
 msgid "Show previous page"
 msgstr "Afficher la page précédente"
 
@@ -16554,9 +16554,6 @@ msgstr ""
 # TODO
 msgid "Show quickmenu..."
 msgstr "Afficher Menu Rapide…"
-
-msgid "Show receiver image information"
-msgstr ""
 
 msgid "Show record indicator"
 msgstr "Afficher l'indication d'enregistrement"
@@ -19438,6 +19435,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Twi"
 
+msgid "Twin Hybrid"
+msgstr ""
+
 msgid "Twin Tuner"
 msgstr ""
 
@@ -19954,9 +19954,6 @@ msgstr "Utiliser l'assistant pour les réglages de base"
 
 msgid "Use these input device settings?"
 msgstr "Utiliser les paramètres de ce périphérique d'entrée ?"
-
-msgid "Use these settings?"
-msgstr "Utiliser ces paramètres ?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Utiliser ces paramètres d'amélioration de la vidéo ?"
@@ -20654,6 +20651,9 @@ msgstr "Que voulez-vous jouer ?\n"
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser ?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr ""
+
 msgid "What would you like to do?"
 msgstr "Que voulez-vous faire?"
 
@@ -20845,9 +20845,6 @@ msgstr "Où voulez-vous sauver vos paramètres ?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Où sauvegarder les enregistrements temporaires de timeshift ?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Quel événement voulez-vous sauvegarder de façon permanente ?"
@@ -22945,6 +22942,12 @@ msgstr "Votre %s %s pourrait être inutilisable maintenant. Merci de consulter l
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "Appui long sur touche"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Utiliser ces paramètres ?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Veuillez sélectionner un répertoire acceptable."

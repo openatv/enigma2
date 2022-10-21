@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-10-04 08:18+0000\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
+"PO-Revision-Date: 2022-10-19 20:52+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -5216,6 +5216,9 @@ msgstr "Stato attuale:"
 msgid "Current crash log"
 msgstr "Registro di arresto anomalo attuale"
 
+msgid "Current directory"
+msgstr "Directory corrente"
+
 msgid "Current installed"
 msgstr "Attualmente installato"
 
@@ -10138,9 +10141,6 @@ msgstr "Lungo Sinistra / Destra"
 msgid "Long filenames"
 msgstr "Nomi file lunghi"
 
-msgid "Long key press"
-msgstr "Press. prolungata tasto"
-
 msgid "Long press emulation with button"
 msgstr "Simulazione pressione lunga con un tasto"
 
@@ -11254,11 +11254,11 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Successivo"
 
-msgid "Next Image"
-msgstr "Immagine successiva"
-
 msgid "Next Log"
 msgstr "Registro successivo"
+
+msgid "Next Picture"
+msgstr "Immagine successiva"
 
 msgid "Next bouquet"
 msgstr "Il prossimo bouquet"
@@ -11378,9 +11378,6 @@ msgstr "Nessun disco rigido rilevato."
 msgid "No hash calculations configured"
 msgstr "Nessun calcolo hash configurato"
 
-msgid "No images available"
-msgstr "Nessuna immagine disponibile"
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nessun file di registro trovato, quindi i registri di debug non sono disponibili!"
 
@@ -11401,6 +11398,9 @@ msgstr "Nessun elemento da cambiare (aumentare o ridurre)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Nessun pacchetto è stato aggiornato. Puoi verificare le configurazioni della tua rete e riprovare."
+
+msgid "No pictures available"
+msgstr "Nessuna immagine disponibile"
 
 msgid "No positioner capable frontend found."
 msgstr "Nessun frontend compatibile con il posizionatore trovato."
@@ -11646,6 +11646,9 @@ msgstr "Non testato:"
 
 msgid "Nothing"
 msgstr "Non fare nulla"
+
+msgid "Nothing connected"
+msgstr "Niente connesso"
 
 msgid ""
 "Nothing to scan!\n"
@@ -12309,6 +12312,12 @@ msgstr "Larghezza picon"
 
 msgid "Picons"
 msgstr "Picon"
+
+msgid "Picture Information"
+msgstr "Informazioni immagine"
+
+msgid "Picture Information Actions"
+msgstr "Azioni informazioni immagine"
 
 msgid "Picture in EPG"
 msgstr "Immagine in EPG"
@@ -13064,11 +13073,11 @@ msgstr "Menu anteprima"
 msgid "Previous"
 msgstr "Precedente"
 
-msgid "Previous Image"
-msgstr "Immagine precedente"
-
 msgid "Previous Log"
 msgstr "Registro precedente"
+
+msgid "Previous Picture"
+msgstr "Immagine precedente"
 
 msgid "Previous bouquet"
 msgstr "Bouquet precedente"
@@ -13525,12 +13534,6 @@ msgstr "Rec"
 
 msgid "Receiver"
 msgstr "Ricevitore"
-
-msgid "Receiver Image Actions"
-msgstr "Azioni dell'immagine del ricevitore"
-
-msgid "Receiver Images"
-msgstr "Immagini del ricevitore"
 
 msgid "Receiver Information"
 msgstr "Informazioni sul ricevitore"
@@ -16470,9 +16473,6 @@ msgstr "Mostra il prossimo file di registro di debug"
 msgid "Show next event"
 msgstr "Mostra il prossimo evento"
 
-msgid "Show next image"
-msgstr "Mostra immagine successiva"
-
 msgid "Show next page"
 msgstr "Mostra la pagina successiva"
 
@@ -16497,6 +16497,9 @@ msgstr "Mostra la infobar permanentemente durante la pausa"
 msgid "Show picon background color"
 msgstr "Mostra il colore di sfondo dell'icona"
 
+msgid "Show picture information"
+msgstr "Mostra informazioni immagine"
+
 msgid "Show positioner movement"
 msgstr "Mostra il movimento motore"
 
@@ -16512,9 +16515,6 @@ msgstr "Mostra il file di registro di debug precedente"
 msgid "Show previous event"
 msgstr "Mostra evento precedente"
 
-msgid "Show previous image"
-msgstr "Mostra immagine precedente"
-
 msgid "Show previous page"
 msgstr "Mostra la pagina precedente"
 
@@ -16526,9 +16526,6 @@ msgstr "Mostra la schermata delle informazioni di sistema precedente"
 
 msgid "Show quickmenu..."
 msgstr "Mostra menu rapido..."
-
-msgid "Show receiver image information"
-msgstr "Informazioni immagine del ricevitore"
 
 msgid "Show record indicator"
 msgstr "Mostra indicatore di registrazione"
@@ -19399,6 +19396,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Twi"
 
+msgid "Twin Hybrid"
+msgstr "Gemello ibrido "
+
 msgid "Twin Tuner"
 msgstr "Sintonizzatore doppio"
 
@@ -19915,9 +19915,6 @@ msgstr "Utilizza la procedura guidata per impostare le funzioni di base"
 
 msgid "Use these input device settings?"
 msgstr "Usa queste impostazioni dei dispositivi di input?"
-
-msgid "Use these settings?"
-msgstr "Usa queste impostazioni?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Utilizzare queste impostazioni di miglioramento video?"
@@ -20641,6 +20638,9 @@ msgstr "Cosa vuoi riprodurre?\n"
 msgid "What do you want to scan?"
 msgstr "Cosa desideri cercare?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr "Dove vuoi impostare la posizione predefinita dei film?"
+
 msgid "What would you like to do?"
 msgstr "Cosa ti piacerebbe fare?"
 
@@ -20832,9 +20832,6 @@ msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Dove salvo le registrazioni timeshift temporanee?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr "Dove vuoi impostare la posizione predefinita dei film?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Quale evento vuoi salvare in modo permanente?"
@@ -22930,6 +22927,36 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "Press. prolungata tasto"
+
+#~ msgid "Next Image"
+#~ msgstr "Immagine successiva"
+
+#~ msgid "No images available"
+#~ msgstr "Nessuna immagine disponibile"
+
+#~ msgid "Previous Image"
+#~ msgstr "Immagine precedente"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "Azioni dell'immagine del ricevitore"
+
+#~ msgid "Receiver Images"
+#~ msgstr "Immagini del ricevitore"
+
+#~ msgid "Show next image"
+#~ msgstr "Mostra immagine successiva"
+
+#~ msgid "Show previous image"
+#~ msgstr "Mostra immagine precedente"
+
+#~ msgid "Show receiver image information"
+#~ msgstr "Informazioni immagine del ricevitore"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Usa queste impostazioni?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Seleziona una directory accettabile."

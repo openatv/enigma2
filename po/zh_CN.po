@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -5221,6 +5221,9 @@ msgstr "当前状态:"
 msgid "Current crash log"
 msgstr "当前崩溃日志"
 
+msgid "Current directory"
+msgstr ""
+
 msgid "Current installed"
 msgstr "当前已安装"
 
@@ -10141,9 +10144,6 @@ msgstr "长按 左/右键"
 msgid "Long filenames"
 msgstr "长文件名"
 
-msgid "Long key press"
-msgstr "长按此键"
-
 msgid "Long press emulation with button"
 msgstr "长按模拟按键"
 
@@ -11257,10 +11257,10 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "接下来"
 
-msgid "Next Image"
-msgstr "下一张图片"
-
 msgid "Next Log"
+msgstr ""
+
+msgid "Next Picture"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11381,9 +11381,6 @@ msgstr "未检测到硬盘."
 msgid "No hash calculations configured"
 msgstr "未配置哈希计算"
 
-msgid "No images available"
-msgstr ""
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
@@ -11404,6 +11401,9 @@ msgstr "没有项目开关(增加或减少)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "未找到升级包.您可以检查您的网络,然后再试一次."
+
+msgid "No pictures available"
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr "未发现有支持的极轴天线."
@@ -11649,6 +11649,9 @@ msgstr "未测试:"
 
 msgid "Nothing"
 msgstr "无动作"
+
+msgid "Nothing connected"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -12312,6 +12315,12 @@ msgstr "Picon宽度"
 
 msgid "Picons"
 msgstr "Picons"
+
+msgid "Picture Information"
+msgstr ""
+
+msgid "Picture Information Actions"
+msgstr ""
 
 msgid "Picture in EPG"
 msgstr "EPG中的图片"
@@ -13067,10 +13076,10 @@ msgstr "预览菜单"
 msgid "Previous"
 msgstr "前一个"
 
-msgid "Previous Image"
+msgid "Previous Log"
 msgstr ""
 
-msgid "Previous Log"
+msgid "Previous Picture"
 msgstr ""
 
 msgid "Previous bouquet"
@@ -13528,12 +13537,6 @@ msgstr "录制"
 
 msgid "Receiver"
 msgstr "接收器"
-
-msgid "Receiver Image Actions"
-msgstr "接收器图像操作"
-
-msgid "Receiver Images"
-msgstr ""
 
 msgid "Receiver Information"
 msgstr "接收器信息"
@@ -16470,9 +16473,6 @@ msgstr ""
 msgid "Show next event"
 msgstr "显示下一个事件"
 
-msgid "Show next image"
-msgstr "显示下一个镜像"
-
 msgid "Show next page"
 msgstr "显示下一页"
 
@@ -16497,6 +16497,9 @@ msgstr "暂停时一直显示信息栏"
 msgid "Show picon background color"
 msgstr "显示台标背景颜色"
 
+msgid "Show picture information"
+msgstr ""
+
 msgid "Show positioner movement"
 msgstr "显示马达移动动画"
 
@@ -16512,9 +16515,6 @@ msgstr ""
 msgid "Show previous event"
 msgstr "显示上一个事件"
 
-msgid "Show previous image"
-msgstr "显示上一个镜像"
-
 msgid "Show previous page"
 msgstr "显示上一页"
 
@@ -16526,9 +16526,6 @@ msgstr ""
 
 msgid "Show quickmenu..."
 msgstr "显示快速菜单..."
-
-msgid "Show receiver image information"
-msgstr ""
 
 msgid "Show record indicator"
 msgstr "显示录像指示符"
@@ -19388,6 +19385,9 @@ msgstr "图瓦卢"
 msgid "Twi"
 msgstr "契维语"
 
+msgid "Twin Hybrid"
+msgstr ""
+
 msgid "Twin Tuner"
 msgstr "双调谐器"
 
@@ -19904,9 +19904,6 @@ msgstr "使用向导配置基本功能"
 
 msgid "Use these input device settings?"
 msgstr "是否使用这些输入设备设置?"
-
-msgid "Use these settings?"
-msgstr "是否使用这些设置?"
 
 msgid "Use this video enhancement settings?"
 msgstr "是否使用此视频增强设置?"
@@ -20604,6 +20601,9 @@ msgstr "您想对此做什么操作?\n"
 msgid "What do you want to scan?"
 msgstr "是否开始扫描？"
 
+msgid "What do you want to set as the default movie location?"
+msgstr ""
+
 msgid "What would you like to do?"
 msgstr "您需要采取什么操作？"
 
@@ -20795,9 +20795,6 @@ msgstr "要备份你的设置到哪里？"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "临时时移录像要保存到哪里？"
-
-msgid "What do you want to set as the default movie location?"
-msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "您要永久保存哪个事件？"
@@ -22889,6 +22886,24 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "长按此键"
+
+#~ msgid "Next Image"
+#~ msgstr "下一张图片"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "接收器图像操作"
+
+#~ msgid "Show next image"
+#~ msgstr "显示下一个镜像"
+
+#~ msgid "Show previous image"
+#~ msgstr "显示上一个镜像"
+
+#~ msgid "Use these settings?"
+#~ msgstr "是否使用这些设置?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "请选择一个合适的目录."
