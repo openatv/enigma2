@@ -74,8 +74,8 @@ class AusClassifications(dict):
 #
 # If there is no matching country then the default ETSI should be selected.
 
-countries = {
-	"INT": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
+COUNTRIES = {
+	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
 	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png"))
 }
 
@@ -117,6 +117,7 @@ class EventName(Converter):
 		# Arguments...
 		"Name": ("type", NAME),
 		"Description": ("type", SHORT_DESCRIPTION),
+		"ShortDescription": ("type", SHORT_DESCRIPTION),
 		"ExtendedDescription": ("type", EXTENDED_DESCRIPTION),
 		"FullDescription": ("type", FULL_DESCRIPTION),
 		"ID": ("type", ID),
@@ -223,9 +224,9 @@ class EventName(Converter):
 			if rating:
 				age = rating.getRating()
 				country = rating.getCountryCode().upper()
-				c = countries[country] if country in countries else countries["INT"]
+				c = COUNTRIES[country] if country in COUNTRIES else COUNTRIES["ETSI"]
 				if config.misc.epgratingcountry.value:
-					c = countries[config.misc.epgratingcountry.value]
+					c = COUNTRIES[config.misc.epgratingcountry.value]
 				rating = c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
 				if rating:
 					if self.type == self.RATING:
@@ -241,7 +242,7 @@ class EventName(Converter):
 				if self.type == self.GENRE:
 					genres = genres[0:1]
 				rating = event.getParentalData()
-				country = rating.getCountryCode().upper() if rating else "INT"
+				country = rating.getCountryCode().upper() if rating else "ETSI"
 				if config.misc.epggenrecountry.value:
 					country = config.misc.epggenrecountry.value
 				return self.separator.join((genretext for genretext in (self.trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
