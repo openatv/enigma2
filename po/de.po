@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-09-27 23:20+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
+"PO-Revision-Date: 2022-10-19 20:52+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4661,7 +4661,7 @@ msgid "Close the screen"
 msgstr "Bildschirm schließen"
 
 msgid "Close the screen and exit all menus"
-msgstr "Screen schließen und alle Menüs verlassen"
+msgstr "Bildschirm schließen und alle Menüs verlassen"
 
 msgid "Close the screen without saving any changes"
 msgstr "Bildschirm schließen, ohne die Änderungen zu speichern"
@@ -5522,6 +5522,9 @@ msgstr "Status:"
 
 msgid "Current crash log"
 msgstr "Aktuelles Crash-Log"
+
+msgid "Current directory"
+msgstr "Aktuelles Verzeichnis"
 
 msgid "Current installed"
 msgstr "Aktuell installiert"
@@ -10760,10 +10763,6 @@ msgstr "Lang Links/Rechts"
 msgid "Long filenames"
 msgstr "Lange Dateinamen"
 
-# Help
-msgid "Long key press"
-msgstr "Langer Tastendruck"
-
 msgid "Long press emulation with button"
 msgstr "Emulation 'Langer-Druck' mit Taste"
 
@@ -11407,7 +11406,7 @@ msgstr "Hoch/Runter"
 
 #
 msgid "Move down a line"
-msgstr "Eine Zeile nach unten bewegen"
+msgstr "Eine Zeile nach unten gehen"
 
 msgid "Move down a page"
 msgstr "Seitenweise nach unten blättern"
@@ -11514,7 +11513,7 @@ msgstr "Zur letzten Zeile / Bildschirm wechseln"
 
 #
 msgid "Move up a line"
-msgstr "Eine Zeile nach oben verschieben"
+msgstr "Eine Zeile nach oben gehen"
 
 msgid "Move up a page"
 msgstr "Seitenweise nach oben blättern"
@@ -11523,7 +11522,7 @@ msgid "Move up a page / screen"
 msgstr "Eine Seite/Bildschirm nach oben"
 
 msgid "Move up a screen"
-msgstr "Bildschirm nach oben gehen"
+msgstr "Einen Bildschirm nach oben gehen"
 
 msgid "Move up list"
 msgstr "Eintrag hoch"
@@ -11984,11 +11983,11 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Nächstes"
 
-msgid "Next Image"
-msgstr "Nächstes Bild"
-
 msgid "Next Log"
 msgstr "Nächstes Log"
+
+msgid "Next Picture"
+msgstr "Nächstes Bild"
 
 #
 msgid "Next bouquet"
@@ -12123,9 +12122,6 @@ msgstr "Keine Festplatten gefunden!"
 msgid "No hash calculations configured"
 msgstr "Keine Hash-Berechnungen konfiguriert"
 
-msgid "No images available"
-msgstr "Keine Bilder verfügbar!"
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Keine Log-Dateien gefunden, daher sind keine Debug-Logs verfügbar!"
 
@@ -12151,6 +12147,9 @@ msgid "No packages were upgraded yet. So you can check your network and try agai
 msgstr ""
 "Es wurden noch keine Pakete aktualisiert!\n"
 "Bitte überprüfen Sie das Netzwerk und versuchen es dann erneut."
+
+msgid "No pictures available"
+msgstr "Keine Bilder verfügbar"
 
 #
 msgid "No positioner capable frontend found."
@@ -12422,6 +12421,9 @@ msgstr "Nicht getestet:"
 
 msgid "Nothing"
 msgstr "Nichts"
+
+msgid "Nothing connected"
+msgstr "Keine Verbindung"
 
 #
 msgid ""
@@ -13141,6 +13143,12 @@ msgstr "Picon Breite"
 
 msgid "Picons"
 msgstr "Picons"
+
+msgid "Picture Information"
+msgstr "Bild-Informationen"
+
+msgid "Picture Information Actions"
+msgstr "Aktionen für Bildinformationen"
 
 msgid "Picture in EPG"
 msgstr "MiniTV im vertikalen EPG anzeigen"
@@ -14001,11 +14009,11 @@ msgstr "Vorschau des DVD-Menüs"
 msgid "Previous"
 msgstr "Vorheriges"
 
-msgid "Previous Image"
-msgstr "Vorheriges Bild"
-
 msgid "Previous Log"
 msgstr "Vorheriges Log"
+
+msgid "Previous Picture"
+msgstr "Vorheriges Bild"
 
 #
 msgid "Previous bouquet"
@@ -14490,12 +14498,6 @@ msgstr "Aufnahme"
 
 msgid "Receiver"
 msgstr "Receiver"
-
-msgid "Receiver Image Actions"
-msgstr "Receiver Imageaktionen"
-
-msgid "Receiver Images"
-msgstr "Bilder des Receivers"
 
 msgid "Receiver Information"
 msgstr "Receiver-Informationen"
@@ -17648,9 +17650,6 @@ msgstr "Nächstes Debug-Log anzeigen"
 msgid "Show next event"
 msgstr "Nächste Sendung anzeigen"
 
-msgid "Show next image"
-msgstr "Nächstes Bild anzeigen"
-
 msgid "Show next page"
 msgstr "Nächste Seite anzeigen"
 
@@ -17676,6 +17675,9 @@ msgstr "Infoleiste während Pause permanent anzeigen"
 msgid "Show picon background color"
 msgstr "Hintergrundfarbe des Senderlogos (Picons)"
 
+msgid "Show picture information"
+msgstr "Bildinformationen anzeigen"
+
 #
 msgid "Show positioner movement"
 msgstr "Rotorbewegung anzeigen"
@@ -17692,9 +17694,6 @@ msgstr "Vorheriges Debug-Log anzeigen"
 msgid "Show previous event"
 msgstr "Vorherige Sendung anzeigen"
 
-msgid "Show previous image"
-msgstr "Vorheriges Bild anzeigen"
-
 msgid "Show previous page"
 msgstr "Vorherige Seite anzeigen"
 
@@ -17707,9 +17706,6 @@ msgstr "Vorherigen System-Informations-Bildschirm anzeigen"
 # HelpMenu
 msgid "Show quickmenu..."
 msgstr "Schnellstartmenü anzeigen"
-
-msgid "Show receiver image information"
-msgstr "Bildinformationen des Empfängers anzeigen"
 
 msgid "Show record indicator"
 msgstr "Aufnahmeindikator anzeigen"
@@ -20806,6 +20802,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Twi"
 
+msgid "Twin Hybrid"
+msgstr "Twin-Hybrid"
+
 msgid "Twin Tuner"
 msgstr "Twin-Tuner"
 
@@ -21371,9 +21370,6 @@ msgstr "Assistenten für die Grundeinstellung benutzen"
 
 msgid "Use these input device settings?"
 msgstr "Diese Eingabegeräte-Einstellungen verwenden?"
-
-msgid "Use these settings?"
-msgstr "Diese Einstellungen verwenden?"
 
 #
 msgid "Use this video enhancement settings?"
@@ -22163,6 +22159,9 @@ msgstr "Was möchten Sie wiedergeben?\n"
 msgid "What do you want to scan?"
 msgstr "Was möchten Sie scannen?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr "Welches Verzeichnis möchten Sie als Standardspeicherort für Filme festlegen?"
+
 msgid "What would you like to do?"
 msgstr "Was möchten Sie tun?"
 
@@ -22370,9 +22369,6 @@ msgstr "Wohin möchten Sie die Einstellungen sichern?"
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Wo möchten Sie temporäre Timeshift-Aufnahmen speichern?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr "Welches Verzeichnis möchten Sie als Standardspeicherort für Filme festlegen?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Welche Sendung soll dauerhaft gespeichert werden?"
@@ -24681,6 +24677,37 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+# Help
+#~ msgid "Long key press"
+#~ msgstr "Langer Tastendruck"
+
+#~ msgid "Next Image"
+#~ msgstr "Nächstes Bild"
+
+#~ msgid "No images available"
+#~ msgstr "Keine Bilder verfügbar!"
+
+#~ msgid "Previous Image"
+#~ msgstr "Vorheriges Bild"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "Receiver Imageaktionen"
+
+#~ msgid "Receiver Images"
+#~ msgstr "Bilder des Receivers"
+
+#~ msgid "Show next image"
+#~ msgstr "Nächstes Bild anzeigen"
+
+#~ msgid "Show previous image"
+#~ msgstr "Vorheriges Bild anzeigen"
+
+#~ msgid "Show receiver image information"
+#~ msgstr "Bildinformationen des Empfängers anzeigen"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Diese Einstellungen verwenden?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Bitte ein passendes Verzeichnis auswählen."

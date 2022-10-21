@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -5271,6 +5271,9 @@ msgstr "Jelenlegi állapot:"
 msgid "Current crash log"
 msgstr ""
 
+msgid "Current directory"
+msgstr ""
+
 msgid "Current installed"
 msgstr "Aktuálisan telepített"
 
@@ -10245,9 +10248,6 @@ msgstr "Hosszan Bal/Jobb"
 msgid "Long filenames"
 msgstr "Hosszú fájlnevek"
 
-msgid "Long key press"
-msgstr "Hosszú gombnyomás"
-
 msgid "Long press emulation with button"
 msgstr "Emulációhoz a gombot hosszan nyomja"
 
@@ -11399,10 +11399,10 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Következő"
 
-msgid "Next Image"
+msgid "Next Log"
 msgstr ""
 
-msgid "Next Log"
+msgid "Next Picture"
 msgstr ""
 
 msgid "Next bouquet"
@@ -11524,9 +11524,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Nincs Hash kalkuláció konfigurálva"
 
-msgid "No images available"
-msgstr ""
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
@@ -11547,6 +11544,9 @@ msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Még nem lettek frissítve a csomagok. Ellenőrizze újra a hálózatot, és próbálja meg újra."
+
+msgid "No pictures available"
+msgstr ""
 
 msgid "No positioner capable frontend found."
 msgstr "Nem találtam forgatómotort támogató tunert."
@@ -11795,6 +11795,9 @@ msgstr "Nincs tesztelve:"
 
 msgid "Nothing"
 msgstr "Semmi"
+
+msgid "Nothing connected"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -12471,6 +12474,12 @@ msgstr "Picon szélessége"
 
 msgid "Picons"
 msgstr "pikons"
+
+msgid "Picture Information"
+msgstr ""
+
+msgid "Picture Information Actions"
+msgstr ""
 
 msgid "Picture in EPG"
 msgstr "Előnézeti kép az EPG-ben"
@@ -13226,10 +13235,10 @@ msgstr "Előnézeti menü"
 msgid "Previous"
 msgstr "Előző"
 
-msgid "Previous Image"
+msgid "Previous Log"
 msgstr ""
 
-msgid "Previous Log"
+msgid "Previous Picture"
 msgstr ""
 
 msgid "Previous bouquet"
@@ -13688,12 +13697,6 @@ msgid "Rec"
 msgstr "Felvétel"
 
 msgid "Receiver"
-msgstr ""
-
-msgid "Receiver Image Actions"
-msgstr ""
-
-msgid "Receiver Images"
 msgstr ""
 
 msgid "Receiver Information"
@@ -16662,9 +16665,6 @@ msgstr ""
 msgid "Show next event"
 msgstr ""
 
-msgid "Show next image"
-msgstr ""
-
 msgid "Show next page"
 msgstr ""
 
@@ -16689,6 +16689,9 @@ msgstr "Információs sáv mindig látható Pause módban"
 msgid "Show picon background color"
 msgstr "A pikon háttérszínének megjelenítése"
 
+msgid "Show picture information"
+msgstr ""
+
 msgid "Show positioner movement"
 msgstr "A forgatómotor mozgásának megjelenítése"
 
@@ -16704,9 +16707,6 @@ msgstr ""
 msgid "Show previous event"
 msgstr ""
 
-msgid "Show previous image"
-msgstr ""
-
 msgid "Show previous page"
 msgstr ""
 
@@ -16718,9 +16718,6 @@ msgstr ""
 
 msgid "Show quickmenu..."
 msgstr "Gyors menü megjelenítése..."
-
-msgid "Show receiver image information"
-msgstr ""
 
 msgid "Show record indicator"
 msgstr "Felvétel jelző ikon mutatása"
@@ -19625,6 +19622,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Kettő"
 
+msgid "Twin Hybrid"
+msgstr ""
+
 msgid "Twin Tuner"
 msgstr ""
 
@@ -20142,9 +20142,6 @@ msgstr "Használja a varázslót az alapbeállításokhoz"
 
 msgid "Use these input device settings?"
 msgstr "Használhatók ezek a beviteli eszköz beállítások?"
-
-msgid "Use these settings?"
-msgstr "Ezen beállítások használata?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Alkalmazhatók a Videó-beállítások?"
@@ -20852,6 +20849,9 @@ msgstr "Mit akarsz játszani?\n"
 msgid "What do you want to scan?"
 msgstr "Mit szeretne beolvasni?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr ""
+
 msgid "What would you like to do?"
 msgstr ""
 
@@ -21043,9 +21043,6 @@ msgstr "Hova szeretné elmenteni a beállításait?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr ""
 
 msgid "Which event do you want to save permanently?"
 msgstr "Melyik műsort szeretné tartósan menteni?"
@@ -23147,6 +23144,12 @@ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "Hosszú gombnyomás"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Ezen beállítások használata?"
 
 #~ msgid "Aspect long"
 #~ msgstr "Képarány hosszan"

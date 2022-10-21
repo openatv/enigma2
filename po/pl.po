@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-17 15:27+0200\n"
-"PO-Revision-Date: 2022-10-06 07:17+0000\n"
+"POT-Creation-Date: 2022-10-18 20:56+0000\n"
+"PO-Revision-Date: 2022-10-19 20:52+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5248,6 +5248,9 @@ msgstr "Aktualny Status:"
 msgid "Current crash log"
 msgstr "Aktualny log awarii"
 
+msgid "Current directory"
+msgstr "Aktualny katalog"
+
 msgid "Current installed"
 msgstr "Obecnie zainstalowany"
 
@@ -10175,9 +10178,6 @@ msgstr "Lewo/Prawo (długo)"
 msgid "Long filenames"
 msgstr "Długie nazwy plików"
 
-msgid "Long key press"
-msgstr "Długie naciśnięcie przycisku"
-
 msgid "Long press emulation with button"
 msgstr "Emuluj długie wciśnięcie dla przycisku"
 
@@ -11291,11 +11291,11 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Następny"
 
-msgid "Next Image"
-msgstr "Następny obraz"
-
 msgid "Next Log"
 msgstr "Następny Log"
+
+msgid "Next Picture"
+msgstr "Następny obraz"
 
 msgid "Next bouquet"
 msgstr "Następna lista kanałów"
@@ -11415,9 +11415,6 @@ msgstr "Nie wykryto twardych dysków."
 msgid "No hash calculations configured"
 msgstr "Nie skonfigurowano obliczeń skrótu"
 
-msgid "No images available"
-msgstr "Brak dostępnych systemów"
-
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nie znaleziono plików logów, więc logi debugowania są niedostępne!"
 
@@ -11438,6 +11435,9 @@ msgstr "Brak elementów przełącznika (zwiększyć lub zmniejszyć)"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Brak zaktualizowanych pakietów. Sprawdź sieć i spróbuj ponownie."
+
+msgid "No pictures available"
+msgstr "Brak dostępnych obrazów"
 
 msgid "No positioner capable frontend found."
 msgstr "Nie znaleziono nadającego się pozycjonera."
@@ -11683,6 +11683,9 @@ msgstr "Nie testowane:"
 
 msgid "Nothing"
 msgstr "Nic"
+
+msgid "Nothing connected"
+msgstr "Nic nie podłączone"
 
 msgid ""
 "Nothing to scan!\n"
@@ -12347,6 +12350,12 @@ msgstr "Szerokość Pikon"
 
 msgid "Picons"
 msgstr "pikony"
+
+msgid "Picture Information"
+msgstr "Informacje o obrazie"
+
+msgid "Picture Information Actions"
+msgstr "Akcje informacji o obrazie"
 
 msgid "Picture in EPG"
 msgstr "Obraz w EPG"
@@ -13102,11 +13111,11 @@ msgstr "Menu podglądu"
 msgid "Previous"
 msgstr "Poprzedni"
 
-msgid "Previous Image"
-msgstr "Poprzedni System"
-
 msgid "Previous Log"
 msgstr "Poprzedni Log"
+
+msgid "Previous Picture"
+msgstr "Poprzedni obraz"
 
 msgid "Previous bouquet"
 msgstr "Poprzednia lista kanałów"
@@ -13563,12 +13572,6 @@ msgstr "Nagrywanie"
 
 msgid "Receiver"
 msgstr "Odbiornik"
-
-msgid "Receiver Image Actions"
-msgstr "Działania związane z obrazem odbiornika"
-
-msgid "Receiver Images"
-msgstr "Systemy odbiornika"
 
 msgid "Receiver Information"
 msgstr "Info o odbiorniku"
@@ -16510,9 +16513,6 @@ msgstr "Pokaż następny plik log debugu"
 msgid "Show next event"
 msgstr "Pokaż następne wydarzenie"
 
-msgid "Show next image"
-msgstr "Pokaż następny obraz"
-
 msgid "Show next page"
 msgstr "Pokaż następną stronę"
 
@@ -16537,6 +16537,9 @@ msgstr "Pokaż pasek informacyjny na stałe w trybie pauzy"
 msgid "Show picon background color"
 msgstr "Pokaż kolor tła pikonów"
 
+msgid "Show picture information"
+msgstr "Pokaż informacje o obrazie"
+
 msgid "Show positioner movement"
 msgstr "Pokaż ruchy pozycjonera"
 
@@ -16552,9 +16555,6 @@ msgstr "Pokaż poprzedni plik log debugowania"
 msgid "Show previous event"
 msgstr "Pokaż poprzednie wydarzenie"
 
-msgid "Show previous image"
-msgstr "Pokaż poprzedni obraz"
-
 msgid "Show previous page"
 msgstr "Pokaż poprzednią stronę"
 
@@ -16566,9 +16566,6 @@ msgstr "Pokaż poprzedni ekran informacji o systemie"
 
 msgid "Show quickmenu..."
 msgstr "Pokaż szybkie menu..."
-
-msgid "Show receiver image information"
-msgstr "Pokaż informacje o systemie odbiornika"
 
 msgid "Show record indicator"
 msgstr "Pokaż wskaźnik nagrywania"
@@ -19442,6 +19439,9 @@ msgstr "Tuvalu"
 msgid "Twi"
 msgstr "Twi"
 
+msgid "Twin Hybrid"
+msgstr "Podwójna hybryda"
+
 msgid "Twin Tuner"
 msgstr "Podwójny tuner"
 
@@ -19958,9 +19958,6 @@ msgstr "Użyj kreatora aby ustawić podstawowe funkcje"
 
 msgid "Use these input device settings?"
 msgstr "Użyć tych ustawień dla urządzenia?"
-
-msgid "Use these settings?"
-msgstr "Użyć tych ustawień?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Użyć tych ustawień korekcji obrazu?"
@@ -20684,6 +20681,9 @@ msgstr "Co chcesz odtworzyć?\n"
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
 
+msgid "What do you want to set as the default movie location?"
+msgstr "Gdzie chcesz ustawić domyślną lokalizację filmu?"
+
 msgid "What would you like to do?"
 msgstr "Co chcesz zrobić?"
 
@@ -20875,9 +20875,6 @@ msgstr "Gdzie chcesz utworzyć kopię zapasową ustawień?"
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Gdzie zapisywać tymczasowe nagrania timeshiftu?"
-
-msgid "What do you want to set as the default movie location?"
-msgstr "Gdzie chcesz ustawić domyślną lokalizację filmu?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Które wydarzenie chcesz zapisać na stałe?"
@@ -22974,6 +22971,36 @@ msgstr "%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Long key press"
+#~ msgstr "Długie naciśnięcie przycisku"
+
+#~ msgid "Next Image"
+#~ msgstr "Następny obraz"
+
+#~ msgid "No images available"
+#~ msgstr "Brak dostępnych systemów"
+
+#~ msgid "Previous Image"
+#~ msgstr "Poprzedni System"
+
+#~ msgid "Receiver Image Actions"
+#~ msgstr "Działania związane z obrazem odbiornika"
+
+#~ msgid "Receiver Images"
+#~ msgstr "Systemy odbiornika"
+
+#~ msgid "Show next image"
+#~ msgstr "Pokaż następny obraz"
+
+#~ msgid "Show previous image"
+#~ msgstr "Pokaż poprzedni obraz"
+
+#~ msgid "Show receiver image information"
+#~ msgstr "Pokaż informacje o systemie odbiornika"
+
+#~ msgid "Use these settings?"
+#~ msgstr "Użyć tych ustawień?"
 
 #~ msgid "Please select an acceptable directory."
 #~ msgstr "Wskaż akceptowalny katalog."
