@@ -1023,7 +1023,7 @@ class EPGFetcher(object):
             timer["id"] = local_timer.ice_timer_id
             timer["eit_id"] = local_timer.eit
             timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
             if local_timer.isRunning():
                 timer["state"] = "running"
                 timer["message"] = "Recording on %s" % config.plugins.icetv.device.label.value
@@ -1068,7 +1068,7 @@ class EPGFetcher(object):
                 req.data["device_id"] = config.plugins.icetv.device.id.value
                 req.data["channel_id"] = channel_id
                 req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
                 res = req.post()
                 try:
                     local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
