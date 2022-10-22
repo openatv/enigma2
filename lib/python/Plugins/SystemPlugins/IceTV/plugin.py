@@ -791,14 +791,14 @@ class EPGFetcher(object):
                 batch_fetch = added_channels or (max_fetch and len(fetch_chans) != len(chan_list))
                 is_last_fetch = i == len(channels_lists) - 1 and pos + len(fetch_chans) >= len(chan_list)
                 shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=is_last_fetch, fetch_from_epoch=chan_list is added_channels)
-            channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in list(channel_show_map.keys()):
-                if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
-                if i == 0 and pos == 0 and "last_update_time" in shows:
-                    last_update_time = shows["last_update_time"]
-            if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimers()
+                channel_show_map = self.makeChanShowMap(shows["shows"])
+                for channel_id in list(channel_show_map.keys()):
+                    if channel_id in self.channel_service_map:
+                        epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
+                    if i == 0 and pos == 0 and "last_update_time" in shows:
+                        last_update_time = shows["last_update_time"]
+                if self.updateDescriptions(channel_show_map):
+                    NavigationInstance.instance.RecordTimer.saveTimers()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
