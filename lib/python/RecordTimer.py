@@ -590,12 +590,14 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 
 def getBqRootStr(reference):
 	reference = reference.toString()
-	if reference.startswith("1:0:2:") or reference.startswith("1:0:10:"):
+	radio = False
+	if reference.startswith("1:0:2:") or reference.startswith("1:0:A:"):
 		serviceTypes = SERVICE_TYPES_RADIO
 		if config.usage.multibouquet.value:
 			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
 		else:
 			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet" % serviceTypes
+		radio = True
 	else:
 		serviceTypes = SERVICE_TYPES_TV
 		if config.usage.multibouquet.value:
@@ -603,7 +605,7 @@ def getBqRootStr(reference):
 		else:
 			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet" % serviceTypes
 
-	return bqRootStr
+	return bqRootStr, radio
 
 
 def createRecordTimerEntry(timer):
@@ -925,7 +927,7 @@ class RecordTimerEntry(TimerEntry, object):
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
-						bqRootStr = getBqRootStr(self.service_ref.ref)
+						bqRootStr, isradio = getBqRootStr(self.service_ref.ref)
 						serviceHandler = eServiceCenter.getInstance()
 						rootBouquet = eServiceReference(bqRootStr)
 						bouquet = eServiceReference(bqRootStr)
@@ -949,24 +951,36 @@ class RecordTimerEntry(TimerEntry, object):
 									notFound = True
 									break
 								if bouquet.flags & eServiceReference.isDirectory:
-									ChannelSelectionInstance.clearPath()
-									ChannelSelectionInstance.setRoot(bouquet)
 									servicelist = serviceHandler.list(bouquet)
 									if servicelist is not None:
 										serviceIterator = servicelist.getNext()
 										while serviceIterator.valid():
 											if self.service_ref.ref == serviceIterator:
+												found = True
 												break
 											serviceIterator = servicelist.getNext()
 										if self.service_ref.ref == serviceIterator:
+											found = True
 											break
-							if found:
-								ChannelSelectionInstance.enterPath(rootBouquet)
-								ChannelSelectionInstance.enterPath(bouquet)
-								ChannelSelectionInstance.saveRoot()
-								ChannelSelectionInstance.saveChannel(self.service_ref.ref)
 						if found:
+							# TODO: this block should be done in ChannelSelection
+							# TODO: this zap needs to fix for radio if the service is also in last scanned bouquet
+							# TODO: this block can cause a crash on the next restart
+							if ChannelSelectionInstance.getRoot() != bouquet:
+								if isradio:
+									ChannelSelectionInstance.setModeRadio()
+									ChannelSelectionInstance.radioTV = 1
+								else:
+									ChannelSelectionInstance.setModeTv()
+									ChannelSelectionInstance.radioTV = 0
+								ChannelSelectionInstance.clearPath()
+								if ChannelSelectionInstance.bouquet_root != rootBouquet:
+									ChannelSelectionInstance.bouquet_root = rootBouquet
+								ChannelSelectionInstance.enterPath(bouquet)
+							ChannelSelectionInstance.setCurrentSelection(self.service_ref.ref)
 							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+							ChannelSelectionInstance.zap()
+							return True
 					if notFound:
 						# Can we get a result for that?  See if you want to delete the running timer.
 						self.switchToAll()
@@ -1400,7 +1414,7 @@ class RecordTimerEntry(TimerEntry, object):
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			if ChannelSelectionInstance:
-				bqRootStr = getBqRootStr(self.service_ref.ref)
+				bqRootStr, isradio = getBqRootStr(self.service_ref.ref)
 				serviceHandler = eServiceCenter.getInstance()
 				rootBouquet = eServiceReference(bqRootStr)
 				bouquet = eServiceReference(bqRootStr)
@@ -1424,8 +1438,6 @@ class RecordTimerEntry(TimerEntry, object):
 							notFound = True
 							break
 						if bouquet.flags & eServiceReference.isDirectory:
-							ChannelSelectionInstance.clearPath()
-							ChannelSelectionInstance.setRoot(bouquet)
 							servicelist = serviceHandler.list(bouquet)
 							if servicelist is not None:
 								serviceIterator = servicelist.getNext()
@@ -1437,17 +1449,28 @@ class RecordTimerEntry(TimerEntry, object):
 								if self.service_ref.ref == serviceIterator:
 									found = True
 									break
-					if found:
-						ChannelSelectionInstance.enterPath(rootBouquet)
-						ChannelSelectionInstance.enterPath(bouquet)
-						ChannelSelectionInstance.saveRoot()
-						ChannelSelectionInstance.saveChannel(self.service_ref.ref)
 				if found:
+					# TODO: this block should be done in ChannelSelection
+					# TODO: this zap needs to fix for radio if the service is also in last scanned bouquet
+					# TODO: this block can cause a crash on the next restart
+					if ChannelSelectionInstance.getRoot() != bouquet:
+						if isradio:
+							ChannelSelectionInstance.setModeRadio()
+							ChannelSelectionInstance.radioTV = 1
+						else:
+							ChannelSelectionInstance.setModeTv()
+							ChannelSelectionInstance.radioTV = 0
+						ChannelSelectionInstance.clearPath()
+						if ChannelSelectionInstance.bouquet_root != rootBouquet:
+							ChannelSelectionInstance.bouquet_root = rootBouquet
+						ChannelSelectionInstance.enterPath(bouquet)
+					ChannelSelectionInstance.setCurrentSelection(self.service_ref.ref)
 					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+					ChannelSelectionInstance.zap()
 			if notFound:
 				# Can we get a result for that?  See if you want to delete the running timer.
 				self.switchToAll()
-			else:
+			elif not found:
 				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
 		else:
@@ -1459,7 +1482,7 @@ class RecordTimerEntry(TimerEntry, object):
 		global InfoBar
 		if not InfoBar:
 			from Screens.InfoBar import InfoBar
-		if refStr.startswith("1:0:2:"):
+		if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
 			if InfoBar.instance.servicelist.mode != 1:
 				InfoBar.instance.servicelist.setModeRadio()
 				InfoBar.instance.servicelist.radioTV = 1
