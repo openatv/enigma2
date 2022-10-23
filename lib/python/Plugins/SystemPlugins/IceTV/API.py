@@ -27,7 +27,8 @@ print("[IceTV] server set to", config.plugins.icetv.server.name.value)
 
 iceTVServers = {
     _("Australia"): "api.icetv.com.au",
-    _("Germany"): "api.icetv.de",
+    # The German IceTV service has closed down
+    # _("Germany"): "api.icetv.de",
 }
 
 

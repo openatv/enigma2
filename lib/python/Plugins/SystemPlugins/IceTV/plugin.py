@@ -1637,6 +1637,8 @@ class IceTVLogin(Screen, IceTVUIBase):
     def layoutFinished(self):
         qrcode = {
             "AUS": "au_qr_code.png",
+            # The German IceTV service has closed down
+            # "DEU": "de_qr_code.png",
         }.get(config.plugins.icetv.member.country.value, "au_qr_code.png")
         qrcode_path = resolveFilename(SCOPE_PLUGINS, path.join("SystemPlugins/IceTV", qrcode))
         if path.isfile(qrcode_path):
