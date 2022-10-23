@@ -1419,6 +1419,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("Please enter your email address, which will be your login.\n"
@@ -1435,7 +1436,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
         self["instructions"] = Label(self._instructions)
-        self["HelpWindow"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
@@ -1734,6 +1734,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("The IceTV server has requested password for %s.")
