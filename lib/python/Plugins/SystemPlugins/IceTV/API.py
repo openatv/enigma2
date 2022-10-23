@@ -7,6 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 from __future__ import print_function
+import six
 
 import requests
 import json
@@ -26,7 +27,8 @@ print("[IceTV] server set to", config.plugins.icetv.server.name.value)
 
 iceTVServers = {
     _("Australia"): "api.icetv.com.au",
-    _("Germany"): "api.icetv.de",
+    # The German IceTV service has closed down
+    # _("Germany"): "api.icetv.de",
 }
 
 
@@ -46,9 +48,9 @@ def getMacAddress(ifname):
     sock = socket(AF_INET, SOCK_DGRAM)
     # noinspection PyBroadException
     try:
-        iface = pack('256s', ifname[:15])
+        iface = pack('256s', six.ensure_binary(ifname[:15], "utf-8"))
         info = ioctl(sock.fileno(), 0x8927, iface)
-        result = ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
+        result = ''.join(['%02x:' % six.byte2int([char]) for char in info[18:24]])[:-1].upper()
     except:
         pass
     sock.close()
