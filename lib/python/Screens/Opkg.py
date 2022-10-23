@@ -2,7 +2,9 @@ from __future__ import print_function
 from Components.ActionMap import ActionMap
 from Components.Opkg import OpkgComponent
 from Components.Label import Label
+from Components.ScrollLabel import ScrollLabel
 from Components.Slider import Slider
+from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from enigma import eTimer
@@ -28,6 +30,10 @@ class Opkg(Screen):
 		self.package = Label()
 		self["package"] = self.package
 
+		self["log"] = ScrollLabel()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_blue"] = StaticText(_("Log"))
+
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
@@ -41,12 +47,16 @@ class Opkg(Screen):
 		self.opkg.addCallback(self.opkgCallback)
 
 		self.runningCmd = None
+		self.commandOutput = ""
+		self.showlog = False
 		self.runNextCmd()
 
-		self["actions"] = ActionMap(["WizardActions"],
+		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
 		{
 			"ok": self.exit,
-			"back": self.exit
+			"back": self.exit,
+			"red": self.exit,
+			"blue": self.keyLog,
 		}, -1)
 
 	def runNextCmd(self):
@@ -112,6 +122,7 @@ class Opkg(Screen):
 		elif event == OpkgComponent.EVENT_ERROR:
 			self.error += 1
 		elif event == OpkgComponent.EVENT_DONE:
+			self.commandOutput += self.opkg.cache
 			self.runNextCmd()
 		elif event == OpkgComponent.EVENT_MODIFIED:
 			self.session.openWithCallback(
@@ -126,3 +137,20 @@ class Opkg(Screen):
 	def exit(self):
 		if not self.opkg.isRunning():
 			self.close()
+
+	def keyLog(self):
+		if self.showlog:
+			self["key_blue"].setText(_("Status"))
+			self["log"].show()
+			self["log"].setText(self.commandOutput)
+			self["package"].hide()
+			self["slider"].hide()
+			self["activityslider"].hide()
+			self["status"].hide()
+		else:
+			self["key_blue"].setText(_("Status"))
+			self["log"].hide()
+			self["package"].show()
+			self["slider"].show()
+			self["activityslider"].show()
+			self["status"].show()
