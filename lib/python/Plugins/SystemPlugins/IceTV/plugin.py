@@ -791,14 +791,14 @@ class EPGFetcher(object):
                 batch_fetch = added_channels or (max_fetch and len(fetch_chans) != len(chan_list))
                 is_last_fetch = i == len(channels_lists) - 1 and pos + len(fetch_chans) >= len(chan_list)
                 shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=is_last_fetch, fetch_from_epoch=chan_list is added_channels)
-            channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in list(channel_show_map.keys()):
-                if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
-                if i == 0 and pos == 0 and "last_update_time" in shows:
-                    last_update_time = shows["last_update_time"]
-            if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimers()
+                channel_show_map = self.makeChanShowMap(shows["shows"])
+                for channel_id in list(channel_show_map.keys()):
+                    if channel_id in self.channel_service_map:
+                        epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
+                    if i == 0 and pos == 0 and "last_update_time" in shows:
+                        last_update_time = shows["last_update_time"]
+                if self.updateDescriptions(channel_show_map):
+                    NavigationInstance.instance.RecordTimer.saveTimers()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
@@ -1023,7 +1023,7 @@ class EPGFetcher(object):
             timer["id"] = local_timer.ice_timer_id
             timer["eit_id"] = local_timer.eit
             timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
             if local_timer.isRunning():
                 timer["state"] = "running"
                 timer["message"] = "Recording on %s" % config.plugins.icetv.device.label.value
@@ -1068,7 +1068,7 @@ class EPGFetcher(object):
                 req.data["device_id"] = config.plugins.icetv.device.id.value
                 req.data["channel_id"] = channel_id
                 req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
                 res = req.post()
                 try:
                     local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
@@ -1312,7 +1312,10 @@ class IceTVServerSetup(Screen, IceTVUIBase):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Please select the IceTV service that you wish to use.")
+    _instructions = _(
+        "Please select the IceTV service that you wish to use.\n\n"
+        "IceTV is a subscription service that is only available in the listed countries."
+    )
 
     def __init__(self, session):
         self.have_region_list = False
@@ -1419,6 +1422,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("Please enter your email address, which will be your login.\n"
@@ -1435,7 +1439,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
         self["instructions"] = Label(self._instructions)
-        self["HelpWindow"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
@@ -1637,6 +1640,8 @@ class IceTVLogin(Screen, IceTVUIBase):
     def layoutFinished(self):
         qrcode = {
             "AUS": "au_qr_code.png",
+            # The German IceTV service has closed down
+            # "DEU": "de_qr_code.png",
         }.get(config.plugins.icetv.member.country.value, "au_qr_code.png")
         qrcode_path = resolveFilename(SCOPE_PLUGINS, path.join("SystemPlugins/IceTV", qrcode))
         if path.isfile(qrcode_path):
@@ -1734,6 +1739,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("The IceTV server has requested password for %s.")

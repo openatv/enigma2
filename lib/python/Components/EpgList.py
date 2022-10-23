@@ -832,7 +832,7 @@ class EPGList(GUIComponent):
 		r5 = self.remaining_rect
 		borderw = self.progress_borderwidth
 
-		if self.isIceTV(service) and config.epg.eit.value:
+		if self.isIceTV(service) and config.epg.eit.value and self.icetvicon:
 			iceicon_size = self.icetvicon.size()
 			r_ice = Rect(0, 0, iceicon_size.width(), iceicon_size.height())
 		else:
@@ -988,7 +988,7 @@ class EPGList(GUIComponent):
 				color=serviceForeColor, color_sel=serviceForeColor,
 				backcolor=serviceBackColor, backcolor_sel=serviceBackColor))
 
-		if self.isIceTV(service) and config.epg.eit.value:
+		if self.isIceTV(service) and config.epg.eit.value and self.icetvicon:
 			iceicon_size = self.icetvicon.size()
 			res.append(MultiContentEntryPixmapAlphaBlend(
 				pos=(r1.x + r1.w - self.serviceBorderWidth - iceicon_size.width(), r1.y + r1.h - self.serviceBorderWidth - iceicon_size.height()),
