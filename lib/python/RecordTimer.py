@@ -928,7 +928,8 @@ class RecordTimerEntry(TimerEntry, object):
 						if ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True):
 							ChannelSelectionInstance.zap()
 							return True
-					self.switchToAll()
+					if self.switchToAll():
+						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, "Start recording.")
@@ -1351,48 +1352,52 @@ class RecordTimerEntry(TimerEntry, object):
 			self.log(13, "Okay, zapped away.")
 			self.messageString += _("The TV was switched to the recording service!\n")
 			self.messageStringShow = True
-			found = False
+			nofound = True
 			# NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			if ChannelSelectionInstance:
 				if ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True):
 					ChannelSelectionInstance.zap()
-					found = True
-			if not found:
-				self.switchToAll()
+					nofound = False
+			if nofound and self.switchToAll():
+				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
 		else:
 			self.log(14, "User didn't want to zap away, recording will probably fail!")
 		self.messageBoxAnswerPending = False
 
 	def switchToAll(self):
-		refStr = self.service_ref.ref.toString()
 		global InfoBar
-		if not InfoBar:
-			from Screens.InfoBar import InfoBar
-		if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
-			if InfoBar.instance.servicelist.mode != 1:
-				InfoBar.instance.servicelist.setModeRadio()
-				InfoBar.instance.servicelist.radioTV = 1
-			InfoBar.instance.servicelist.clearPath()
-			rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet")
-			bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_RADIO)
-		else:
-			if InfoBar.instance.servicelist.mode != 0:
-				InfoBar.instance.servicelist.setModeTv()
-				InfoBar.instance.servicelist.radioTV = 0
-			InfoBar.instance.servicelist.clearPath()
-			rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet")
-			bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_TV)
-		if InfoBar.instance.servicelist.bouquet_root != rootBouquet:
-			InfoBar.instance.servicelist.bouquet_root = rootBouquet
-		InfoBar.instance.servicelist.enterPath(bouquet)
-		InfoBar.instance.servicelist.setCurrentSelection(self.service_ref.ref)
-		InfoBar.instance.servicelist.zap(enable_pipzap=True)
-		InfoBar.instance.servicelist.correctChannelNumber()
-		InfoBar.instance.servicelist.startRoot = bouquet
-		InfoBar.instance.servicelist.addToHistory(self.service_ref.ref)
+		if config.usage.multibouquet.value:
+			if not InfoBar:
+				from Screens.InfoBar import InfoBar
+			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+				refStr = self.service_ref.ref.toString()
+				if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
+					if InfoBar.instance.servicelist.mode != 1:
+						InfoBar.instance.servicelist.setModeRadio()
+						InfoBar.instance.servicelist.radioTV = 1
+					InfoBar.instance.servicelist.clearPath()
+					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet")
+					bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_RADIO)
+				else:
+					if InfoBar.instance.servicelist.mode != 0:
+						InfoBar.instance.servicelist.setModeTv()
+						InfoBar.instance.servicelist.radioTV = 0
+					InfoBar.instance.servicelist.clearPath()
+					rootBouquet = eServiceReference("1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet")
+					bouquet = eServiceReference("%s ORDER BY name" % SERVICE_TYPES_TV)
+				if InfoBar.instance.servicelist.bouquet_root != rootBouquet:
+					InfoBar.instance.servicelist.bouquet_root = rootBouquet
+				InfoBar.instance.servicelist.enterPath(bouquet)
+				InfoBar.instance.servicelist.setCurrentSelection(self.service_ref.ref)
+				InfoBar.instance.servicelist.zap(enable_pipzap=True)
+				InfoBar.instance.servicelist.correctChannelNumber()
+				InfoBar.instance.servicelist.startRoot = bouquet
+				InfoBar.instance.servicelist.addToHistory(self.service_ref.ref)
+				return False
+		return True
 
 	def check_justplay(self):
 		if self.justplay:
