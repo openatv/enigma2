@@ -789,6 +789,8 @@ class ImageBackup(Screen):
 							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
 								userbouqet = fd.readline()
 							bouquetsTV.append(userbouqet.replace("#NAME ", ""))
+						except UnicodeDecodeError:
+							bouquetsTV.append("Error: %s / not UTF-8" % bouqet[3])
 						except OSError:
 							pass
 
@@ -803,6 +805,8 @@ class ImageBackup(Screen):
 							with open("/etc/enigma2/%s" % bouqet[3], "r") as fd:
 								userbouqet = fd.readline()
 							bouquetsRadio.append(userbouqet.replace("#NAME ", ""))
+						except UnicodeDecodeError:
+							bouquetsRadio.append("Error: %s / not UTF-8" % bouqet[3])
 						except OSError:
 							pass
 
