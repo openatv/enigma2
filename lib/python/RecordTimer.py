@@ -921,71 +921,14 @@ class RecordTimerEntry(TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 				else:
 					self.log(11, "Zapping.")
-					found = False
-					notFound = False
 					NavigationInstance.instance.isMovieplayerActive()
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
-						bqRootStr, isradio = getBqRootStr(self.service_ref.ref)
-						serviceHandler = eServiceCenter.getInstance()
-						rootBouquet = eServiceReference(bqRootStr)
-						bouquet = eServiceReference(bqRootStr)
-						bouquetList = serviceHandler.list(bouquet)
-						# We need a way out of the loop, if channel is not in bouquets.
-						bouquetCount = 0
-						bouquets = []
-						if bouquetList is not None:
-							while True:
-								bouquet = bouquetList.getNext()
-								# Can we make it easier, or find a way to make another way?
-								if bouquets == []:
-									bouquets.append(bouquet)
-								else:
-									for item in bouquets:
-										if item != bouquet:
-											bouquets.append(bouquet)
-										else:
-											bouquetCount += 1
-								if bouquetCount >= 5:
-									notFound = True
-									break
-								if bouquet.flags & eServiceReference.isDirectory:
-									servicelist = serviceHandler.list(bouquet)
-									if servicelist is not None:
-										serviceIterator = servicelist.getNext()
-										while serviceIterator.valid():
-											if self.service_ref.ref == serviceIterator:
-												found = True
-												break
-											serviceIterator = servicelist.getNext()
-										if self.service_ref.ref == serviceIterator:
-											found = True
-											break
-						if found:
-							# TODO: this block should be done in ChannelSelection
-							# TODO: this zap needs to fix for radio if the service is also in last scanned bouquet
-							# TODO: this block can cause a crash on the next restart
-							if ChannelSelectionInstance.getRoot() != bouquet:
-								if isradio:
-									ChannelSelectionInstance.setModeRadio()
-									ChannelSelectionInstance.radioTV = 1
-								else:
-									ChannelSelectionInstance.setModeTv()
-									ChannelSelectionInstance.radioTV = 0
-								ChannelSelectionInstance.clearPath()
-								if ChannelSelectionInstance.bouquet_root != rootBouquet:
-									ChannelSelectionInstance.bouquet_root = rootBouquet
-								ChannelSelectionInstance.enterPath(bouquet)
-							ChannelSelectionInstance.setCurrentSelection(self.service_ref.ref)
-							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+						if ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True):
 							ChannelSelectionInstance.zap()
 							return True
-					if notFound:
-						# Can we get a result for that?  See if you want to delete the running timer.
-						self.switchToAll()
-					else:
-						NavigationInstance.instance.playService(self.service_ref.ref)
+					self.switchToAll()
 				return True
 			else:
 				self.log(11, "Start recording.")
@@ -1409,69 +1352,15 @@ class RecordTimerEntry(TimerEntry, object):
 			self.messageString += _("The TV was switched to the recording service!\n")
 			self.messageStringShow = True
 			found = False
-			notFound = False
 			# NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			if ChannelSelectionInstance:
-				bqRootStr, isradio = getBqRootStr(self.service_ref.ref)
-				serviceHandler = eServiceCenter.getInstance()
-				rootBouquet = eServiceReference(bqRootStr)
-				bouquet = eServiceReference(bqRootStr)
-				bouquetList = serviceHandler.list(bouquet)
-				# We need a way out of the loop, if channel is not in bouquets.
-				bouquetCount = 0
-				bouquets = []
-				if bouquetList is not None:
-					while True:
-						bouquet = bouquetList.getNext()
-						# Can we make it easier, or find a way to make another way?
-						if bouquets == []:
-							bouquets.append(bouquet)
-						else:
-							for item in bouquets:
-								if item != bouquet:
-									bouquets.append(bouquet)
-								else:
-									bouquetCount += 1
-						if bouquetCount >= 5:
-							notFound = True
-							break
-						if bouquet.flags & eServiceReference.isDirectory:
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									if self.service_ref.ref == serviceIterator:
-										found = True
-										break
-									serviceIterator = servicelist.getNext()
-								if self.service_ref.ref == serviceIterator:
-									found = True
-									break
-				if found:
-					# TODO: this block should be done in ChannelSelection
-					# TODO: this zap needs to fix for radio if the service is also in last scanned bouquet
-					# TODO: this block can cause a crash on the next restart
-					if ChannelSelectionInstance.getRoot() != bouquet:
-						if isradio:
-							ChannelSelectionInstance.setModeRadio()
-							ChannelSelectionInstance.radioTV = 1
-						else:
-							ChannelSelectionInstance.setModeTv()
-							ChannelSelectionInstance.radioTV = 0
-						ChannelSelectionInstance.clearPath()
-						if ChannelSelectionInstance.bouquet_root != rootBouquet:
-							ChannelSelectionInstance.bouquet_root = rootBouquet
-						ChannelSelectionInstance.enterPath(bouquet)
-					ChannelSelectionInstance.setCurrentSelection(self.service_ref.ref)
-					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+				if ChannelSelectionInstance.servicelist.setCurrent(self.service_ref.ref, True):
 					ChannelSelectionInstance.zap()
-			if notFound:
-				# Can we get a result for that?  See if you want to delete the running timer.
+					found = True
+			if not found:
 				self.switchToAll()
-			elif not found:
-				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
 		else:
 			self.log(14, "User didn't want to zap away, recording will probably fail!")
