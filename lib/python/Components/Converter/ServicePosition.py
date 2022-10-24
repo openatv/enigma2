@@ -106,10 +106,16 @@ class ServicePosition(Poll, Converter):
 		seek = self.getSeek()
 		if seek is None:
 			return ""
-		if self.type == self.TYPE_SUMMARY:
+		if self.type in (self.TYPE_SUMMARY, self.TYPE_ENDTIME):
 			s = self.position / 90000
 			e = (self.length / 90000) - s
-			return "%02d:%02d +%2dm" % (s / 60, s % 60, e / 60)
+			if self.type == self.TYPE_SUMMARY:
+				return "%02d:%02d +%2dm" % (s / 60, s % 60, e / 60)
+			else:
+				if self.showNoSeconds or self.showNoSeconds2:
+					return strftime("%H:%M", localtime(getTime() + e))
+				else:
+					return strftime("%H:%M:%S", localtime(getTime() + e))
 
 		l = self.length
 		p = self.position
@@ -125,9 +131,7 @@ class ServicePosition(Poll, Converter):
 
 		if self.negate:
 			l = -l
-		if self.negate:
 			p = -p
-		if self.negate:
 			r = -r
 
 		if l >= 0:
@@ -162,18 +166,18 @@ class ServicePosition(Poll, Converter):
 				if self.type == self.TYPE_LENGTH:
 					return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 				elif self.type == self.TYPE_POSITION:
-					if config.usage.swap_time_remaining_on_osd.value == "1": # Elapsed
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					else:
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 				elif self.type == self.TYPE_REMAINING:
-					if config.usage.swap_time_remaining_on_osd.value == "1": # Elapsed
+					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
@@ -183,16 +187,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_POSITION:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d  " % (p / 60, p % 60) + sign_r + "%d:%02d" % (r / 60, r % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d  " % (r / 60, r % 60) + sign_p + "%d:%02d" % (p / 60, p % 60)
 					else:
 						return sign_r + "%d:%02d" % (r / 60, r % 60)
 				elif self.type == self.TYPE_REMAINING:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d" % (r / 60, r % 60)
@@ -202,16 +206,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_POSITION:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d  " % (p / 3600, p % 3600 / 60) + sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d  " % (r / 3600, r % 3600 / 60) + sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
 					else:
 						return sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
 				elif self.type == self.TYPE_REMAINING:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
@@ -221,16 +225,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_POSITION:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d:%02d  " % (p / 3600, p % 3600 / 60, p % 60) + sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d:%02d  " % (r / 3600, r % 3600 / 60, r % 60) + sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
 					else:
 						return sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
 				elif self.type == self.TYPE_REMAINING:
 					if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
@@ -243,12 +247,12 @@ class ServicePosition(Poll, Converter):
 							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2":  # Elapsed & Remaining
 						try:
 							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_osd.value == "3":  # Remaining & Elapsed
 						try:
 							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
@@ -265,7 +269,7 @@ class ServicePosition(Poll, Converter):
 							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_osd.value == "2" or config.usage.swap_time_remaining_on_osd.value == "3":  # Elapsed & Remaining
 						return ""
 					else:
 						try:
@@ -273,7 +277,7 @@ class ServicePosition(Poll, Converter):
 						except:
 							return ""
 
-			else: # Skin Setting
+			else:  # Skin Setting
 				if not self.detailed:
 					if not self.vfd:
 						if self.showHours:
@@ -360,18 +364,18 @@ class ServicePosition(Poll, Converter):
 				if self.type == self.TYPE_VFD_LENGTH:
 					return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 				elif self.type == self.TYPE_VFD_POSITION:
-					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elapsed
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					else:
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 				elif self.type == self.TYPE_VFD_REMAINING:
-					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elapsed
+					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
@@ -381,16 +385,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_VFD_POSITION:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d  " % (p / 60, p % 60) + sign_r + "%d:%02d" % (r / 60, r % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d  " % (r / 60, r % 60) + sign_p + "%d:%02d" % (p / 60, p % 60)
 					else:
 						return sign_r + "%d:%02d" % (r / 60, r % 60)
 				elif self.type == self.TYPE_VFD_REMAINING:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d" % (r / 60, r % 60)
@@ -400,16 +404,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_VFD_POSITION:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d  " % (p / 3600, p % 3600 / 60) + sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d  " % (r / 3600, r % 3600 / 60) + sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
 					else:
 						return sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
 				elif self.type == self.TYPE_VFD_REMAINING:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d" % (p / 3600, p % 3600 / 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d" % (r / 3600, r % 3600 / 60)
@@ -419,16 +423,16 @@ class ServicePosition(Poll, Converter):
 				elif self.type == self.TYPE_VFD_POSITION:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2":  # Elapsed & Remaining
 						return sign_p + "%d:%02d:%02d  " % (p / 3600, p % 3600 / 60, p % 60) + sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return sign_r + "%d:%02d:%02d  " % (r / 3600, r % 3600 / 60, r % 60) + sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
 					else:
 						return sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
 				elif self.type == self.TYPE_VFD_REMAINING:
 					if config.usage.swap_time_remaining_on_vfd.value == "1":  # Elapsed
 						return sign_p + "%d:%02d:%02d" % (p / 3600, p % 3600 / 60, p % 60)
-					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						return ""
 					else:
 						return sign_r + "%d:%02d:%02d" % (r / 3600, r % 3600 / 60, r % 60)
@@ -441,12 +445,12 @@ class ServicePosition(Poll, Converter):
 							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2":  # Elapsed & Remaining
 						try:
 							return sign_p + "%d%%  " % ((float(p + 0.0) / float(l + 0.0)) * 100) + sign_r + "%d%%" % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
+					elif config.usage.swap_time_remaining_on_vfd.value == "3":  # Remaining & Elapsed
 						try:
 							return sign_r + "%d%%  " % ((float(r + 0.0) / float(l + 0.0)) * 100 + 1) + sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
@@ -463,7 +467,7 @@ class ServicePosition(Poll, Converter):
 							return sign_p + "%d%%" % ((float(p + 0.0) / float(l + 0.0)) * 100)
 						except:
 							return ""
-					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3": # Elapsed & Remaining
+					elif config.usage.swap_time_remaining_on_vfd.value == "2" or config.usage.swap_time_remaining_on_vfd.value == "3":  # Elapsed & Remaining
 						return ""
 					else:
 						try:
@@ -471,7 +475,7 @@ class ServicePosition(Poll, Converter):
 						except:
 							return ""
 
-			else: # Skin Setting
+			else:  # Skin Setting
 				if not self.detailed:
 					if self.showHours:
 						if self.showNoSeconds:
