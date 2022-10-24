@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-18 20:56+0000\n"
-"PO-Revision-Date: 2022-10-13 00:41+0000\n"
+"PO-Revision-Date: 2022-10-23 19:04+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1002,8 +1002,8 @@ msgstr[1] "%d núcleos"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d Se ha actualizado el paquete del repositorio"
-msgstr[1] "%d Se han actualizado los paquetes del repositorio"
+msgstr[0] "%d se ha actualizado el paquete del repositorio"
+msgstr[1] "%d se han actualizado los paquetes del repositorio"
 
 #, python-format
 msgid "%d kB"
@@ -1434,7 +1434,7 @@ msgid "+24"
 msgstr "+24"
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24 Horas"
 
 msgctxt "Text list separator"
 msgid ", "
@@ -1447,7 +1447,7 @@ msgid "-24"
 msgstr "-24"
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "-24 Horas"
 
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Horas"
@@ -2484,7 +2484,7 @@ msgid "After recording"
 msgstr "Después de grabar"
 
 msgid "After zap"
-msgstr ""
+msgstr "Tras el zapping"
 
 msgid "Akan"
 msgstr "Akan"
@@ -3071,7 +3071,7 @@ msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
 
 msgid "AutoTimer"
-msgstr ""
+msgstr "Temporizador automático"
 
 #
 msgid "AutoUpdate"
@@ -3546,7 +3546,7 @@ msgid "Botswana"
 msgstr "Botsuana"
 
 msgid "Bottom"
-msgstr ""
+msgstr "Al final"
 
 msgid "Bouquet List"
 msgstr "Lista de grupos"
@@ -4443,7 +4443,7 @@ msgid "Choose dvb wait delay for ci response."
 msgstr "Elegir el retardo de espera dvb para la respuesta ci."
 
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
-msgstr ""
+msgstr "Elija la cuanto historial de la EPG desea ver, en caso de que haya alguno, para mantenerlo en la caché de la EPG. Estos datos históricos se pueden consultar en cualquiera de las vistas de la EPG. Esto puede ser útil cuando se necesita información sobre un evento que ha terminado recientemente."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Elegir la frecuencia con la que se conectará al servidor IceTV para comprobar si hay actualizaciones."
@@ -5489,14 +5489,14 @@ msgid "Current crash log"
 msgstr "Registro actual de bloqueos"
 
 msgid "Current directory"
-msgstr ""
+msgstr "Directorio actual"
 
 msgid "Current installed"
 msgstr "Actual instalado"
 
 #, python-format
 msgid "Current location is '%s'."
-msgstr ""
+msgstr "La ubicación actual es '%s'."
 
 # PiPSetup.py
 #, python-format
@@ -6806,7 +6806,7 @@ msgid "Download Softcams"
 msgstr "Descargar Softcams"
 
 msgid "Download and flash images on your %s %s."
-msgstr ""
+msgstr "Descarga y flashea imágenes en tu %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Descargar e instalar complementos"
@@ -7311,10 +7311,10 @@ msgid "Enable this option to add action map / remote control mapping data to the
 msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr ""
+msgstr "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr ""
+msgstr "Activa esta opción para añadir datos extra de la EPG al archivo de registro de depuración."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo de registro de depuración."
@@ -7329,7 +7329,7 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
-msgstr ""
+msgstr "Activa esta opción para añadir los datos de depuración del temporizador al archivo de registro de depuración."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Habilitar esta opción si su sistema de antena necesita energía"
@@ -7592,7 +7592,7 @@ msgstr "Error %d: ¡No se puede cambiar la contraseña!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "Error %d Imposible comprobar el espacio!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7865,6 +7865,13 @@ msgid ""
 "\n"
 "IceTV's smartphone and tablet apps can be downloaded by scanning the code above."
 msgstr ""
+"Todo en un solo lugar - ¡IceTV lo hace por ti!\n"
+"\n"
+"Utilizando la aplicación o el sitio web de IceTV, 'Mis programas' es el lugar al que debes acudir. Vea los próximos 7 días de sus grabaciones, programas favoritos, notificaciones de palabras clave, emisiones de nuevas series y nuestras recomendaciones.\n"
+"\n"
+"Todo en un solo lugar. Simplemente selecciona algo nuevo y pulsa Grabar.\n"
+"\n"
+"Las aplicaciones de IceTV para smartphones y tabletas pueden descargarse escaneando el código anterior."
 
 msgid "Everywhere"
 msgstr "En todo"
@@ -7895,7 +7902,7 @@ msgid "Exif"
 msgstr "Exif"
 
 msgid "Existing or trial customer"
-msgstr ""
+msgstr "Cliente existente o en modo prueba"
 
 #
 msgid "Exit"
@@ -7907,18 +7914,17 @@ msgstr "Abandonar EPG"
 msgid "Exit MAC address configuration"
 msgstr "Salir de la configuración de dirección MAC"
 
-#, fuzzy
 msgid "Exit Quad Channel Selection"
-msgstr "Configurar canales"
+msgstr "Salir de la selección de canal cuádruple"
 
 msgid "Exit all menus"
-msgstr ""
+msgstr "Salir de todos los menus"
 
 msgid "Exit editor"
 msgstr "Salir del editor"
 
 msgid "Exit editor and write changes (if any)"
-msgstr ""
+msgstr "Salir del editor y guardar los cambios (si hay)"
 
 msgid "Exit input device selection."
 msgstr "Salir de la selección de dispositivo de entrada."
@@ -7931,7 +7937,7 @@ msgid "Exit mediaplayer"
 msgstr "Salir del reproductor de recursos"
 
 msgid "Exit menu"
-msgstr ""
+msgstr "Salir del menu"
 
 #
 msgid "Exit movie list"
@@ -7945,7 +7951,7 @@ msgid "Exit network adapter configuration"
 msgstr "Salir de la configuración del adaptador de red"
 
 msgid "Exit network adapter setup menu"
-msgstr ""
+msgstr "Salir del menu configuración del adaptador de red"
 
 msgid "Exit network interface list"
 msgstr "Salir de la lista de interfaces de red"
@@ -7955,35 +7961,31 @@ msgid "Exit network wizard"
 msgstr "Salir del asistente de red"
 
 msgid "Exit picture viewer"
-msgstr ""
+msgstr "Salir del visor de imagenes"
 
-#, fuzzy
 msgid "Exit quad PiP"
-msgstr "PiP externo"
+msgstr "Salir de PiP cuádruple"
 
 #
 msgid "Exit the wizard"
 msgstr "Salir del asistente"
 
 msgid "Expand"
-msgstr ""
+msgstr "Expandir"
 
-#, fuzzy
 msgid "Experimental mode"
-msgstr "Experimental"
+msgstr "Modo experimental"
 
-#, fuzzy
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Sintonizador preferido para grabaciones"
+msgstr "Experimental: limitación estricta a los sintonizadores preferidos para las grabaciones"
 
 #
 msgid "Expert"
 msgstr "Experto"
 
 #
-#, fuzzy
 msgid "Expert mode"
-msgstr "Experto"
+msgstr "Modo experto"
 
 #, fuzzy
 msgid "Ext. NumberZap"
@@ -8002,9 +8004,8 @@ msgstr "Ajustes de la interfaz"
 msgid "Extended Networksetup Plugin..."
 msgstr "Complemento de configuración de red extendido..."
 
-#, fuzzy
 msgid "Extended PID info"
-msgstr "Ajustes de la interfaz"
+msgstr "PID información extendida"
 
 #
 msgid "Extended Setup..."
@@ -8014,9 +8015,8 @@ msgid "Extended Shares"
 msgstr "Intercambios extendidos"
 
 #
-#, fuzzy
 msgid "Extension Actions"
-msgstr "Extensiones"
+msgstr "Extensiones Acciones"
 
 #
 msgid "Extensions"
@@ -8054,9 +8054,8 @@ msgstr "Opciones extras de motor"
 msgid "Extrude from left"
 msgstr "Extruir desde la izquierda"
 
-#, fuzzy
 msgid "F"
-msgstr "F1"
+msgstr "F"
 
 msgid "F1"
 msgstr "F1"
@@ -8071,40 +8070,38 @@ msgid "F4"
 msgstr "F4"
 
 msgid "FCC 1953"
-msgstr ""
+msgstr "FCC 1953"
 
 msgid "FCC enabled"
-msgstr ""
+msgstr "FCC habilitado"
 
 #
 msgid "FEC"
 msgstr "FEC"
 
 msgid "FEC modes"
-msgstr ""
+msgstr "Modos FEC"
 
 msgid "FFmpeg version"
-msgstr ""
+msgstr "Versión FFmpeg"
 
 msgid "FHD"
-msgstr ""
+msgstr "FHD"
 
 msgid "FIFO"
-msgstr ""
+msgstr "FIFO"
 
 msgid "FLASH"
 msgstr "FLASH"
 
-#, fuzzy
 msgid "FP Upgrade"
-msgstr "Actualización FPGA"
+msgstr "Actualización FP"
 
 msgid "FPU"
-msgstr ""
+msgstr "FPU"
 
-#, fuzzy
 msgid "FSBL Update Check"
-msgstr "Caché de actualización"
+msgstr "FSBL comprobar actualización"
 
 msgid "FTA"
 msgstr "FTA"
@@ -8113,22 +8110,22 @@ msgid "FTP"
 msgstr "FTP"
 
 msgid "FTP Actions"
-msgstr ""
+msgstr "Acciones del FTP"
 
 msgid "FTP Settings"
 msgstr "Configurar FTP"
 
 msgid "Factory Reset"
-msgstr ""
+msgstr "Restablecimiento de fábrica"
 
 msgid "Factory release"
-msgstr ""
+msgstr "Lanzamiento de fabrica"
 
 msgid "Fade the InfoBar on hide"
 msgstr "Atenuar la barra de información al ocultar"
 
 msgid "Fahrenheit"
-msgstr ""
+msgstr "Fahrenheit"
 
 #
 msgid "Failed"
@@ -8138,50 +8135,47 @@ msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "No se pudo escribir /tmp/positionersetup.log: "
 
 #
-#, fuzzy
 msgid "Failed:"
-msgstr "Fallido"
+msgstr "Fallido:"
 
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Islas Malvinas "
 
 msgid "Fallback remote receiver URL"
 msgstr "Receptor remoto reserva URL"
 
-#, fuzzy
 msgid "False"
 msgstr "Falso"
 
 msgid "Family"
-msgstr ""
+msgstr "Familia"
 
 #, python-format
 msgid "Fan %d"
 msgstr "Ventilador %d"
 
 msgid "Fantasy"
-msgstr ""
+msgstr "Fantasia"
 
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Islas Faroe"
 
 msgid "Faroese"
-msgstr ""
+msgstr "Feroz"
 
 # Language
-#, fuzzy
 msgid "Farsi / Persian"
-msgstr "Persa"
+msgstr "Farsi / Persa"
 
 #
 msgid "Fast"
 msgstr "Rápido"
 
 msgid "Fast Channel Change"
-msgstr ""
+msgstr "Cambio rapido de canal"
 
 msgid "Fast Channel Change Setup"
-msgstr ""
+msgstr "Configuración del cambio rapido de canal"
 
 #
 msgid "Fast DiSEqC"
@@ -8204,16 +8198,16 @@ msgid "Favorites"
 msgstr "Favoritos"
 
 msgid "Feed URL"
-msgstr ""
+msgstr "URL de la fuente"
 
 msgid "Feed disabled!"
-msgstr ""
+msgstr "Fuente inactiva!"
 
 msgid "Feed stable."
-msgstr ""
+msgstr "Fuente estable."
 
 msgid "Feed unstable!"
-msgstr ""
+msgstr "Fuente inestable!"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
