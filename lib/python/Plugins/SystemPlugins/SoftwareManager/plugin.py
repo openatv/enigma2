@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta, date
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat, system
-from os.path import dirname, exists, isdir, isfile
+from os.path import dirname, exists, isdir, isfile, normpath, join as pathjoin
 import requests
 from stat import ST_MTIME
 from pickle import dump, load
@@ -34,7 +34,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
@@ -1639,9 +1638,9 @@ class IpkgInstaller(Screen):
 		}, prio=-1)
 
 	def install(self):
-		list = self.selectionList.getSelectionsList()
-		cmdList = []
-		for item in list:
+		packages = self.selectionList.getSelectionsList()
+		cmdList = [(OpkgComponent.CMD_UPDATE)]
+		for item in packages:
 			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
 		self.session.open(Opkg, cmdList=cmdList)
 
@@ -1693,12 +1692,39 @@ class BackupHelper(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 4:
-			parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-			for x in parts:
-				if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
-					parts.remove(x)
-			if len(parts):
-				self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
+			seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
+			choices = []
+			oldpath = config.plugins.configurationbackup.backuplocation.value
+			index = 0
+			for partition in harddiskmanager.getMountedPartitions(onlyhotplug=False):
+				path = pathjoin(partition.mountpoint, "")
+				if path in seenMountPoints:  # TODO: Fix Hardisk.py to remove duplicated mount points!
+					continue
+				if access(path, F_OK | R_OK | W_OK) and path != "/":
+					seenMountPoints.append(path)
+					choices.append(("%s (%s)" % (path, partition.description), path))
+					if oldpath and oldpath == path:
+						index = len(choices) - 1
+
+			def backuplocationCB(path):
+				oldpath = config.plugins.configurationbackup.backuplocation.value
+				if path is not None:
+					config.plugins.configurationbackup.backuplocation.setValue(path)
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					config.save()
+					if path != oldpath:
+						print("Creating backup folder if not already there...")
+						self.backuppath = getBackupPath()
+						try:
+							if not exists(self.backuppath):
+								makedirs(self.backuppath)
+						except OSError:
+							self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+				self.close()
+
+			if len(choices):
+				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"))
 				doClose = False
 			else:
 				self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -1710,29 +1736,6 @@ class BackupHelper(Screen):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
 		if doClose:
 			self.close()
-
-	def backuplocation_choosen(self, option):
-		oldpath = config.plugins.configurationbackup.backuplocation.value
-		if option is not None:
-			config.plugins.configurationbackup.backuplocation.setValue(str(option[1]))
-		config.plugins.configurationbackup.backuplocation.save()
-		config.plugins.configurationbackup.save()
-		config.save()
-		newpath = config.plugins.configurationbackup.backuplocation.value
-		if newpath != oldpath:
-			self.createBackupfolders()
-		else:
-			self.close()
-
-	def createBackupfolders(self):
-		print("Creating backup folder if not already there...")
-		self.backuppath = getBackupPath()
-		try:
-			if not exists(self.backuppath):
-				makedirs(self.backuppath)
-		except OSError:
-			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
-		self.close()
 
 	def startRestore(self, ret=False):
 		if (ret == True):
