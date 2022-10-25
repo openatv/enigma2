@@ -1705,8 +1705,8 @@ class BackupHelper(Screen):
 						index = len(choices) - 1
 
 			def backuplocationCB(path):
-				oldpath = config.plugins.configurationbackup.backuplocation.value
-				if path is not None:
+				if path:
+					oldpath = config.plugins.configurationbackup.backuplocation.value
 					config.plugins.configurationbackup.backuplocation.setValue(path)
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
