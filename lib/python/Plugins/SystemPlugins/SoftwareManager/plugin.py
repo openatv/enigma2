@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta, date
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat, system
-from os.path import dirname, exists, isdir, isfile, normpath, join as pathjoin
+from os.path import dirname, exists, isdir, isfile, join as pathjoin
 import requests
 from stat import ST_MTIME
 from pickle import dump, load
@@ -11,18 +11,16 @@ from time import time
 
 from twisted.internet import reactor
 
-from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eTimer, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
+from enigma import eTimer, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import AVSwitch
-from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.International import international
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.Opkg import OpkgComponent
 from Components.PackageInfo import PackageInfoHandler
 from Components.Pixmap import Pixmap
