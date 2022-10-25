@@ -1133,7 +1133,7 @@ class oscReaderStats(Screen, OscamInfo):
 							title2 = _("(Show only reader:") + "%s )" % self.reader
 
 		outlist = self.sortData(result, 7, True)
-		out = [(_("Label"), _("CAID"), _("Channel"), _("ECM avg"), _("ECM last"), _("Status"), _("Last Req."), _("Total"))]
+		out = [(_("Label"), _("CAID"), _("Channel"), _("ECM avg"), _("ECM last"), _("Status"), _("Last Request"), _("Total"))]
 		for i in outlist:
 			out.append((i[0], i[1], i[2], i[3], i[4], i[5], i[6], str(i[7])))
 
