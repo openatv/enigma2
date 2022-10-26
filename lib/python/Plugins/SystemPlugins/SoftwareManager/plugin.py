@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta, date
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, remove, stat, system
-from os.path import dirname, exists, isdir, isfile
+from os.path import dirname, exists, isdir, isfile, join as pathjoin
 import requests
 from stat import ST_MTIME
 from pickle import dump, load
@@ -11,18 +11,16 @@ from time import time
 
 from twisted.internet import reactor
 
-from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER, eTimer, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
+from enigma import eTimer, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, getEnigmaVersionString
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import AVSwitch
-from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.International import international
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.Opkg import OpkgComponent
 from Components.PackageInfo import PackageInfoHandler
 from Components.Pixmap import Pixmap
@@ -34,7 +32,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
@@ -59,9 +56,8 @@ def write_cache(cache_file, cache_data):  # Does a cPickle dump.
 			mkdir(dirname(cache_file))
 		except OSError:
 			print("%s is a file" % dirname(cache_file))
-	fd = open(cache_file, "wb")
-	dump(cache_data, fd, -1)
-	fd.close()
+	with open(cache_file, "wb") as fd:
+		dump(cache_data, fd, -1)
 
 
 def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is still living.
@@ -77,17 +73,15 @@ def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is s
 
 
 def load_cache(cache_file):  # Does a cPickle load.
-	fd = open(cache_file, "rb")
-	cache_data = load(fd)
-	fd.close()
+	cache_data = None
+	with open(cache_file, "rb") as fd:
+		cache_data = load(fd)
 	return cache_data
 
 
 def Check_Softcam_Emu():
 	found = False
-	if fileExists("/etc/enigma2/noemu"):
-		found = False
-	else:
+	if not isfile("/etc/enigma2/noemu"):
 		for x in listdir("/etc"):
 			if x.find(".emu") > -1:
 				found = True
@@ -174,7 +168,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		self["status"] = StaticText("")
 		self.cmdList = []
 		self.okText = _("After pressing OK, please wait!")
-		if not self.selectionChanged in self["list"].onSelectionChanged:
+		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.currList = ""
 		self.currentSelectedTag = None
@@ -366,8 +360,8 @@ class PluginManager(Screen, PackageInfoHandler):
 		if current:
 			if self.currList == "packages":
 				if current[7] != "":
-					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
-					if (exists(detailsfile) == True):
+					detailsfile = pathjoin(iSoftwareTools.directory[0], current[1])
+					if exists(detailsfile):
 						self.saved_currentSelectedPackage = self.currentSelectedPackage
 						self.session.openWithCallback(self.detailsClosed, PluginDetails, current)
 					else:
@@ -492,8 +486,8 @@ class PluginManager(Screen, PackageInfoHandler):
 			self.cmdList.append((OpkgComponent.CMD_UPGRADE, {"test_only": False}))
 		if self.selectedFiles and len(self.selectedFiles):
 			for plugin in self.selectedFiles:
-				detailsfile = iSoftwareTools.directory[0] + "/" + plugin[0]
-				if (exists(detailsfile) == True):
+				detailsfile = pathjoin(iSoftwareTools.directory[0], plugin[0])
+				if exists(detailsfile):
 					iSoftwareTools.fillPackageDetails(plugin[0])
 					self.package = iSoftwareTools.packageDetails[0]
 					if "attributes" in self.package[0]:
@@ -1639,9 +1633,9 @@ class IpkgInstaller(Screen):
 		}, prio=-1)
 
 	def install(self):
-		list = self.selectionList.getSelectionsList()
-		cmdList = []
-		for item in list:
+		packages = self.selectionList.getSelectionsList()
+		cmdList = [(OpkgComponent.CMD_UPDATE)]
+		for item in packages:
 			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
 		self.session.open(Opkg, cmdList=cmdList)
 
@@ -1671,7 +1665,7 @@ class BackupHelper(Screen):
 		if not isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = pathjoin(self.backuppath, self.backupfile)
 		self.callLater(self.doAction)
 
 	def doAction(self):
@@ -1693,12 +1687,39 @@ class BackupHelper(Screen):
 			except:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 4:
-			parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-			for x in parts:
-				if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
-					parts.remove(x)
-			if len(parts):
-				self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
+			seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
+			choices = []
+			oldpath = config.plugins.configurationbackup.backuplocation.value
+			index = 0
+			for partition in harddiskmanager.getMountedPartitions(onlyhotplug=False):
+				path = pathjoin(partition.mountpoint, "")
+				if path in seenMountPoints:  # TODO: Fix Hardisk.py to remove duplicated mount points!
+					continue
+				if access(path, F_OK | R_OK | W_OK) and path != "/":
+					seenMountPoints.append(path)
+					choices.append(("%s (%s)" % (path, partition.description), path))
+					if oldpath and oldpath == path:
+						index = len(choices) - 1
+
+			def backuplocationCB(path):
+				if path:
+					oldpath = config.plugins.configurationbackup.backuplocation.value
+					config.plugins.configurationbackup.backuplocation.setValue(path)
+					config.plugins.configurationbackup.backuplocation.save()
+					config.plugins.configurationbackup.save()
+					config.save()
+					if path != oldpath:
+						print("Creating backup folder if not already there...")
+						self.backuppath = getBackupPath()
+						try:
+							if not exists(self.backuppath):
+								makedirs(self.backuppath)
+						except OSError:
+							self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+				self.close()
+
+			if len(choices):
+				self.session.openWithCallback(backuplocationCB, MessageBox, _("Select Location"), list=choices, default=index, windowTitle=_("Backup Location"))
 				doClose = False
 			else:
 				self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -1710,29 +1731,6 @@ class BackupHelper(Screen):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
 		if doClose:
 			self.close()
-
-	def backuplocation_choosen(self, option):
-		oldpath = config.plugins.configurationbackup.backuplocation.value
-		if option is not None:
-			config.plugins.configurationbackup.backuplocation.setValue(str(option[1]))
-		config.plugins.configurationbackup.backuplocation.save()
-		config.plugins.configurationbackup.save()
-		config.save()
-		newpath = config.plugins.configurationbackup.backuplocation.value
-		if newpath != oldpath:
-			self.createBackupfolders()
-		else:
-			self.close()
-
-	def createBackupfolders(self):
-		print("Creating backup folder if not already there...")
-		self.backuppath = getBackupPath()
-		try:
-			if not exists(self.backuppath):
-				makedirs(self.backuppath)
-		except OSError:
-			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
-		self.close()
 
 	def startRestore(self, ret=False):
 		if (ret == True):
