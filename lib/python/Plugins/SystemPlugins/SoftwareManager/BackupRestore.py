@@ -1,5 +1,5 @@
 from os import popen, makedirs, listdir, stat, rename, remove
-from os.path import exists as pathexists, isdir
+from os.path import exists, isdir, join as pathjoin
 from datetime import date
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -22,17 +22,12 @@ from Tools.Directories import *
 from . import ShellCompatibleFunctions
 
 
-distro = BoxInfo.getItem("distro")
-
-boxtype = BoxInfo.getItem("machinebuild")
+MACHINEBUILD = BoxInfo.getItem("machinebuild")
 
 
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
-	if resolve == path:
-		return []
-	else:
-		return resolve.split()
+	return [] if resolve == path else resolve.split()
 
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files, shared with ShellCompatibleFunctions for FastRestore
@@ -49,8 +44,8 @@ def InitConfig():
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/etc/vtuner.conf',
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf',
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
-		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/enigma2/nameserversdns.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
+		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/enigma2/nameserversdns.conf', '/etc/default_gw', '/etc/hostname', '/etc/hosts', '/etc/epgimport/', '/etc/exports',
+		'/etc/enigmalight.conf', '/etc/enigma2/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
 		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
 		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
 		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
@@ -81,12 +76,12 @@ def InitConfig():
 	# Drop non existant paths from list
 	tmpfiles = []
 	for f in BACKUPFILES:
-		if pathexists(f):
+		if exists(f):
 			tmpfiles.append(f)
 	backupset = tmpfiles
 
 	config.plugins.configurationbackup = ConfigSubsection()
-	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not pathexists("/media/hdd/backup_%s" % boxtype):
+	if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not exists("/media/hdd/backup_%s" % MACHINEBUILD):
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
@@ -101,18 +96,12 @@ config.plugins.configurationbackup = InitConfig()
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + distro + '_' + boxtype
-	else:
-		return backuppath + '/backup_' + distro + '_' + boxtype
+	return pathjoin(backuppath, "backup_%s_%s" % (BoxInfo.getItem("distro"), MACHINEBUILD))
 
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	if backuppath.endswith('/'):
-		return backuppath + 'backup'
-	else:
-		return backuppath + '/backup'
+	return pathjoin(backuppath, "backup")
 
 
 def getBackupFilename():
@@ -120,11 +109,7 @@ def getBackupFilename():
 
 
 def SettingsEntry(name, checked):
-	if checked:
-		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_on.png"))
-	else:
-		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_off.png"))
-
+	picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_%s.png" % ("on" if checked else "off")))
 	return (name, picture, checked)
 
 
@@ -170,27 +155,26 @@ class BackupScreen(Screen, ConfigListScreen):
 		except:
 			pass
 		try:
-			if pathexists(self.backuppath) == False:
+			if exists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
 			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			for f in config.plugins.configurationbackup.backupdirs.value:
-				if not f.strip("/") in self.backupdirs:
+				if f.strip("/") not in self.backupdirs:
 					self.backupdirs += " " + f.strip("/")
-			if not "tmp/installed-list.txt" in self.backupdirs:
+			if "tmp/installed-list.txt" not in self.backupdirs:
 				self.backupdirs += " tmp/installed-list.txt"
-			if not "tmp/changed-configfiles.txt" in self.backupdirs:
+			if "tmp/changed-configfiles.txt" not in self.backupdirs:
 				self.backupdirs += " tmp/changed-configfiles.txt"
-			if not "tmp/passwd.txt" in self.backupdirs:
+			if "tmp/passwd.txt" not in self.backupdirs:
 				self.backupdirs += " tmp/passwd.txt"
-			if not "tmp/groups.txt" in self.backupdirs:
+			if "tmp/groups.txt" not in self.backupdirs:
 				self.backupdirs += " tmp/groups.txt"
 
 			ShellCompatibleFunctions.backupUserDB()
 			pkgs = ShellCompatibleFunctions.listpkg(type="user")
-			installed = open("/tmp/installed-list.txt", "w")
-			installed.write('\n'.join(pkgs))
-			installed.close()
+			with open("/tmp/installed-list.txt", "w") as fd:
+				fd.write("\n".join(pkgs))
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -C / -czvf " + self.fullbackupfilename
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
@@ -199,10 +183,10 @@ class BackupScreen(Screen, ConfigListScreen):
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			cmd3 = cmd3 + " " + self.backupdirs
 			cmd = [cmd2, cmd3]
-			if pathexists(self.fullbackupfilename):
+			if exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
-				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
-				if pathexists(self.newfilename):
+				self.newfilename = pathjoin(self.backuppath, "%s-%s" % (dt, self.backupfile))
+				if exists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
@@ -273,7 +257,7 @@ class BackupSelection(Screen):
 			"up": self.up,
 			"info": self.keyInfo
 		}, -1)
-		if not self.selectionChanged in self["checkList"].onSelectionChanged:
+		if self.selectionChanged not in self["checkList"].onSelectionChanged:
 			self["checkList"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -385,7 +369,7 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = getBackupPath()
-		if pathexists(self.path) == False:
+		if not exists(self.path):
 			makedirs(self.path)
 		for file in listdir(self.path):
 			if file.endswith(".tar.gz"):
@@ -413,7 +397,7 @@ class RestoreMenu(Screen):
 		self.checkSummary()
 
 	def startRestore(self, ret=False):
-		if ret == True:
+		if ret:
 			self.session.openWithCallback(self.CB_startRestore, MessageBox, _("Do you want to delete the old settings in /etc/enigma2 first?"))
 
 	def CB_startRestore(self, ret=False):
@@ -423,7 +407,7 @@ class RestoreMenu(Screen):
 			tarcmd = tarcmd + " --exclude " + f.strip("/")
 
 		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
-		if ret == True:
+		if ret:
 			cmds.insert(0, "rm -R /etc/enigma2")
 			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 		else:
@@ -437,10 +421,10 @@ class RestoreMenu(Screen):
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
 	def startDelete(self, ret=False):
-		if ret == True:
+		if ret:
 			self.exe = True
 			print("removing: %s" % self.val)
-			if pathexists(self.val) == True:
+			if exists(self.val):
 				remove(self.val)
 			self.exe = False
 			self.fill_list()
@@ -481,7 +465,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		for f in BLACKLISTED:
 			tarcmd = tarcmd + " --exclude " + f.strip("/")
 		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
-		if pathexists("/proc/stb/vmpeg/0/dst_width"):
+		if exists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
@@ -493,8 +477,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
-		if pathexists("/tmp/installed-list.txt"):
-			if pathexists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
+		if exists("/tmp/installed-list.txt"):
+			if exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
 				self.userRestoreScript()
 			else:
 				self.session.openWithCallback(self.userRestoreScript, installedPlugins)
@@ -510,7 +494,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 		startSH = None
 		for SH in SH_List:
-			if pathexists(SH):
+			if exists(SH):
 				startSH = SH
 				break
 
@@ -524,9 +508,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def rebootSYS(self, ret=None):
 		try:
-			f = open("/tmp/rebootSYS.sh", "w")
-			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
-			f.close()
+			with open("/tmp/rebootSYS.sh", "w") as fd:
+				fd.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
 		except:
 			self.restartGUI()
@@ -535,9 +518,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 		configfile.load()
 		configfile.save()
 		try:
-			f = open("/etc/enigma2/settings", "r")
-			s = f.read()
-			f.close()
+			s = ""
+			with open("/etc/enigma2/settings", "r") as fd:
+				s = fd.read()
 			restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
 		except:
 			restore = False
@@ -649,7 +632,6 @@ class installedPlugins(Screen):
 			for line in f:
 				if line.strip() not in installedpkgs:
 					self.PluginList.append(line.strip())
-		f.close()
 		self.createMenuList()
 
 	def createMenuList(self):
@@ -660,7 +642,7 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			if pathexists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			if exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
 				self.startInstall(True)
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
@@ -706,7 +688,7 @@ class RestorePlugins(Screen):
 	def setWindowTitle(self):
 		self.selectionChanged()
 		self.setTitle(_("Restore Plugins"))
-		if pathexists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+		if exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
 			self.green()
 
 	def exit(self):
@@ -774,7 +756,7 @@ class RestorePlugins(Screen):
 		self.index = index
 
 	def drawList(self):
-		self["menu"].setList(self.Menulist)
+		self["menu"].setList(self.list)
 		self["menu"].setIndex(self.index)
 
 	def exitNoPlugin(self, ret):
