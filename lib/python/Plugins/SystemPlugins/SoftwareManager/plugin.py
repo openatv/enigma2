@@ -1719,7 +1719,7 @@ class BackupHelper(Screen):
 				self.close()
 
 			if len(choices):
-				self.session.openWithCallback(backuplocationCB, MessageBox, _("Select Location"), list=choices, default=index, windowTitle=_("Backup Location"))
+				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"))
 				doClose = False
 			else:
 				self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
