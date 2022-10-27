@@ -873,7 +873,11 @@ ntpSyncPoller.startTimer()
 
 profile("keymapparser")
 import keymapparser
-keymapparser.readKeymap(config.usage.keymap.value)
+DEFAULTKEYMAP = Components.UsageConfig.DEFAULTKEYMAP
+keymapparser.readKeymap(DEFAULTKEYMAP)
+if config.usage.keymap.value != DEFAULTKEYMAP:
+	if os.path.exists(config.usage.keymap.value):
+		keymapparser.readKeymap(config.usage.keymap.value)
 keymapparser.readKeymap(config.usage.keytrans.value)
 if os.path.exists(config.usage.keymap_usermod.value):
 	keymapparser.readKeymap(config.usage.keymap_usermod.value)

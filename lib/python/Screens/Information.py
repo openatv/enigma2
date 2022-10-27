@@ -298,7 +298,7 @@ class CommitInformation(InformationBase):
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_yellow"] = StaticText(_("Previous Log"))
 		self["key_blue"] = StaticText(_("Next Log"))
-		self["commitActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
+		self["commitActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "ConfigListNavigationActions"], {
 			"menu": (self.showCommitMenu, _("Show selection menu for commit logs")),
 			"yellow": (self.previousCommitLog, _("Show previous commit log")),
 			"blue": (self.nextCommitLog, _("Show next commit log")),
@@ -397,7 +397,7 @@ class DebugInformation(InformationBase):
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["debugActions"] = HelpableActionMap(self, ["MenuActions", "InfoActions", "ColorActions", "NavigationActions"], {
+		self["debugActions"] = HelpableActionMap(self, ["MenuActions", "InfoActions", "ColorActions", "ConfigListNavigationActions"], {
 			"menu": (self.showLogMenu, _("Show selection menu for debug log files")),
 			"info": (self.showLogSettings, _("Show the Logs Settings screen")),
 			"yellow": (self.deleteLog, _("Delete the currently displayed log file")),
@@ -1242,7 +1242,7 @@ class PictureInformation(Screen, HelpableScreen):
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
 			"red": (self.keyCancel, _("Close the screen")),
 		}, prio=0, description=_("Picture Information Actions"))
-		self["pictureActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+		self["pictureActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "ConfigListNavigationActions"], {
 			"ok": (self.nextPicture, _("Show next picture")),
 			"yellow": (self.prevPicture, _("Show previous picture")),
 			"blue": (self.nextPicture, _("Show next picture")),
@@ -1670,7 +1670,7 @@ class SystemInformation(InformationBase):
 		self.skinName.insert(0, "SystemInformation")
 		self["key_yellow"] = StaticText(_("Previous"))
 		self["key_blue"] = StaticText(_("Next"))
-		self["systemActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "NavigationActions"], {
+		self["systemActions"] = HelpableActionMap(self, ["MenuActions", "ColorActions", "ConfigListNavigationActions"], {
 			"menu": (self.showSystemMenu, _("Show selection for system information screen")),
 			"yellow": (self.previousSystem, _("Show previous system information screen")),
 			"blue": (self.nextSystem, _("Show next system information screen")),

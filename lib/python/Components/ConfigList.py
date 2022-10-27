@@ -189,7 +189,7 @@ class ConfigListScreen:
 		self["configActions"] = HelpableActionMap(self, ["ConfigListActions"], {
 			"select": (self.keySelect, _("Select, toggle, process or edit the current entry"))
 		}, prio=1, description=_("Common Setup Actions"))
-		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+		self["navigationActions"] = HelpableActionMap(self, ["ConfigListNavigationActions"], {
 			"top": (self.keyTop, _("Move to first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),

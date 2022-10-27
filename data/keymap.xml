@@ -145,8 +145,8 @@
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<!-- <key id="KEY_PREVIOUS" mapto="first" flags="m" /> -->
 		<key id="KEY_STOP" mapto="first" flags="m" /><!-- Was for text editing. -->
-		<key id="KEY_LEFT" mapto="left" flags="mr" />
-		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_LEFT" mapto="pageUp" flags="mr" />
+		<key id="KEY_RIGHT" mapto="pageDown" flags="mr" />
 		<!-- <key id="KEY_NEXT" mapto="last" flags="m" /> -->
 		<key id="KEY_PLAYPAUSE" mapto="last" flags="m" /><!-- Was for text editing. -->
 		<key id="KEY_PLAY" mapto="last" flags="m" /><!-- Was for text editing. -->
@@ -278,7 +278,7 @@
 	</map>
 
 	<map context="ConfigListActions">
-		<!-- Also uses NavigationActions -->
+		<!-- Also uses ConfigListNavigationActions -->
 		<!-- Also uses NumberActions -->
 		<!-- Also uses TextEditActions -->
 		<key id="KEY_RED" mapto="cancel" flags="m" />
@@ -299,6 +299,32 @@
 		<key id="KEY_ESC" mapto="close" flags="l" />
 		<key id="KEY_ENTER" mapto="select" flags="m" />
 		<key id="KEY_TAB" mapto="menu" flags="m" />
+	</map>
+
+	<map context="ConfigListNavigationActions">
+		<key id="KEY_REWIND" mapto="top" flags="m" />
+		<key id="KEY_CHANNELUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<!-- <key id="KEY_PREVIOUS" mapto="first" flags="m" /> -->
+		<key id="KEY_STOP" mapto="first" flags="m" /><!-- Was for text editing. -->
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<!-- <key id="KEY_NEXT" mapto="last" flags="m" /> -->
+		<key id="KEY_PLAYPAUSE" mapto="last" flags="m" /><!-- Was for text editing. -->
+		<key id="KEY_PLAY" mapto="last" flags="m" /><!-- Was for text editing. -->
+		<key id="KEY_PAUSE" mapto="last" flags="m" /><!-- Was for text editing. -->
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_CHANNELDOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_FASTFORWARD" mapto="bottom" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_HOME" mapto="top" flags="m" />
+		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_PREVIOUSSONG" mapto="first" flags="m" />
+		<key id="KEY_F9" mapto="first" flags="m" />
+		<key id="KEY_F10" mapto="last" flags="m" />
+		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
+		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_END" mapto="bottom" flags="m" />
 	</map>
 
 	<map context="DNSSettingsActions">
