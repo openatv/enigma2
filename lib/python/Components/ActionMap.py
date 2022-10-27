@@ -10,7 +10,6 @@ keyBindings = {}
 unmapDict = {}
 
 
-
 class KeymapError(Exception):
 	def __init__(self, message):
 		self.msg = message
@@ -111,6 +110,9 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 		if not error:
 			if unmap is None:  # If a key was unmapped, it can only be assigned a new function in the same keymap file (avoid file parsing sequence dependency).
 				if unmapDict.get((context, keyName, mapto)) in [filename, None]:
+					if context == "NavigationActions" and not config.usage.keymapUseLRforPageing.value:
+						if keyName in ("KEY_RIGHT", "KEY_LEFT"):
+							continue
 					if config.crash.debugActionMaps.value:
 						print("[ActionMap] Context '%s' keyName '%s' (%d) mapped to '%s' (Device: %s)." % (context, keyName, keyId, mapto, device.capitalize()))
 					actionMapInstance.bindKey(filename, device, keyId, flags, context, mapto)
@@ -118,6 +120,7 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 			else:
 				actionMapInstance.unbindPythonKey(context, keyId, unmap)
 				unmapDict.update({(context, keyName, unmap): filename})
+
 
 # FIME Remove keytranslation.xml
 def getKeyId(id):
