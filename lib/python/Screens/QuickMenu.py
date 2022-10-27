@@ -103,7 +103,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 
-		self["NavigationActions"] = ActionMap(["OkCancelActions", "NavigationActions"],
+		self["NavigationActions"] = ActionMap(["OkCancelActions", "ConfigListNavigationActions"],
 		{
 			"ok": self.ok,
 			"cancel": self.keyred,
