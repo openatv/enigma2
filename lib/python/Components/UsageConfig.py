@@ -18,6 +18,8 @@ from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_HDD, SCOPE_SYSETC, SCOPE_TIMESHIFT, defaultRecordingLocation, fileContains, isPluginInstalled, resolveFilename
 from Tools.HardwareInfo import HardwareInfo
 
+DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+
 
 def InitUsageConfig():
 	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
@@ -1261,17 +1263,16 @@ def InitUsageConfig():
 		"u80": _("UP80  (keymap.u80)")
 	}
 
-	keymapdefault = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	keymapchoices = []
 	for kmap in KM.keys():
 		kmfile = eEnv.resolve("${datadir}/enigma2/keymap.%s" % kmap)
 		if isfile(kmfile):
 			keymapchoices.append((kmfile, KM.get(kmap)))
 
-	if not isfile(keymapdefault):  # BIG PROBLEM
-		keymapchoices.append((keymapdefault, KM.get("xml")))
+	if not isfile(DEFAULTKEYMAP):  # BIG PROBLEM
+		keymapchoices.append((DEFAULTKEYMAP, KM.get("xml")))
 
-	config.usage.keymap = ConfigSelection(default=keymapdefault, choices=keymapchoices)
+	config.usage.keymap = ConfigSelection(default=DEFAULTKEYMAP, choices=keymapchoices)
 	config.usage.keytrans = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
 

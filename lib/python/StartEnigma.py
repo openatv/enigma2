@@ -873,11 +873,15 @@ from Components.NetworkTime import ntpSyncPoller
 ntpSyncPoller.startTimer()
 
 profile("keymapparser")
-import keymapparser
-keymapparser.readKeymap(config.usage.keymap.value)
-keymapparser.readKeymap(config.usage.keytrans.value)
+from Components.ActionMap import loadKeymap
+DEFAULTKEYMAP = Components.UsageConfig.DEFAULTKEYMAP
+loadKeymap(DEFAULTKEYMAP)
+if config.usage.keymap.value != DEFAULTKEYMAP:
+	if os.path.exists(config.usage.keymap.value):
+		loadKeymap(config.usage.keymap.value, True)
+loadKeymap(config.usage.keytrans.value)
 if os.path.exists(config.usage.keymap_usermod.value):
-	keymapparser.readKeymap(config.usage.keymap_usermod.value)
+	loadKeymap(config.usage.keymap_usermod.value)
 
 profile("Network")
 import Components.Network
