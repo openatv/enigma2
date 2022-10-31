@@ -268,6 +268,7 @@ def InitUsageConfig():
 		("0", _("No timeout"))
 	] + [(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 21)]
 	config.usage.infobar_timeout = ConfigSelection(default="5", choices=choiceList)
+	config.usage.unhandledkey_timeout = ConfigSelection(default="2", choices=[(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 4)])
 	config.usage.show_infobar_on_zap = ConfigYesNo(default=True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default=True)
 	config.usage.show_infobar_locked_on_pause = ConfigYesNo(default=True)

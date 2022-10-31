@@ -269,8 +269,6 @@ class InfoBarUnhandledKey:
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
 		self.unhandledKeyDialog.setAnimationMode(0)
-		self.hideUnhandledKeySymbolTimer = eTimer()
-		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
@@ -317,8 +315,7 @@ class InfoBarUnhandledKey:
 
 	def checkUnused(self):
 		if self.flags == self.uflags:
-			self.unhandledKeyDialog.show()
-			self.hideUnhandledKeySymbolTimer.start(2000, True)
+			self.unhandledKeyDialog.displayUnhandledKey()
 
 
 class InfoBarScreenSaver:
