@@ -873,6 +873,12 @@ class ConfigSelection(ConfigElement):
 	def toDisplayString(self, val):
 		return self.description[val]
 
+	def getChoices(self):
+		return self.choices.__list__()
+
+	def getDescriptions(self):
+		return self.description.__list__()
+
 	def setChoices(self, choices, default=None):
 		value = self.value
 		self.choices = choicesList(choices)
