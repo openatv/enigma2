@@ -1,8 +1,8 @@
 from enigma import eTimer
 
-from Screens.Screen import Screen
-from Components.Pixmap import Pixmap
 from Components.config import config
+from Components.Pixmap import Pixmap
+from Screens.Screen import Screen
 
 
 class UnhandledKey(Screen):
@@ -11,8 +11,9 @@ class UnhandledKey(Screen):
 		self["UnhandledKeyPixmap"] = Pixmap()
 		self.unhandledKeyTimer = eTimer()
 		self.unhandledKeyTimer.callback.append(self.hide)
-		self.timeout = int(config.usage.unhandledkey_timeout.value) * 1000
+		self.setAnimationMode(0)
+		self.hide()
+		self.onShow.append(self.startAutoHide)
 
-	def displayUnhandledKey(self):
-		self.show()
-		self.unhandledKeyTimer.start(self.timeout, True)
+	def startAutoHide(self):
+		self.unhandledKeyTimer.start(config.usage.unhandledKeyTimeout.value * 1000, True)
