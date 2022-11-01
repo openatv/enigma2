@@ -69,6 +69,7 @@ jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
 keyPressCallback = []
+unhandledKey = None
 
 
 def isStandardInfoBar(self):
@@ -254,11 +255,10 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection)  # highest prio
+		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection)  # Highest priority.
 		self.LongButtonPressed = False
 
-	#this function is called on every keypress!
-	def detection(self, key, flag):
+	def detection(self, key, flag):  # This function is called on every key press!
 		if flag == 3:
 			self.LongButtonPressed = True
 		elif flag == 0:
@@ -267,11 +267,11 @@ class InfoBarLongKeyDetection:
 
 class InfoBarUnhandledKey:
 	def __init__(self):
-		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
-		self.unhandledKeyDialog.setAnimationMode(0)
+		global unhandledKey
+		self.unhandledKey = self.session.instantiateDialog(UnhandledKey)
+		unhandledKey = self.unhandledKey
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
-		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
 		eActionMap.getInstance().bindAction("", -maxsize - 1, self.actionA)  # Highest priority.
 		eActionMap.getInstance().bindAction("", maxsize, self.actionB)  # Lowest priority.
 		self.flags = (1 << 1)
@@ -284,24 +284,24 @@ class InfoBarUnhandledKey:
 			KEYIDS["KEY_NEXT"], KEYIDS["KEY_PREVIOUS"]
 		)
 
-	def actionA(self, key, flag):  # This function is called on every keypress!
+	def actionA(self, key, flag):  # This function is called on every key press!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
 		for callback in keyPressCallback:
 			callback()
-# TODO : TEST
-#		if flag != 2: # Don't hide on repeat.
-		self.unhandledKeyDialog.hide()
+		# TODO : TEST
+		# if flag != 2:  # Don't hide on repeat.
+		self.unhandledKey.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		if flag != 4:
-# TODO: TEST
-#			if flag == 0:
+			# TODO: TEST
+			# if flag == 0:
 			if self.flags & (1 << 1):
 				self.flags = self.uflags = 0
 			self.flags |= (1 << flag)
-# TODO : TEST
-#			if flag == 1 or flag == 3:  # Break and Long.
+			# TODO : TEST
+			# if flag == 1 or flag == 3:  # Break and Long.
 			if flag == 1:  # Break
 				self.checkUnusedTimer.start(0, True)
 		return 0
@@ -315,7 +315,7 @@ class InfoBarUnhandledKey:
 
 	def checkUnused(self):
 		if self.flags == self.uflags:
-			self.unhandledKeyDialog.displayUnhandledKey()
+			self.unhandledKey.show()
 
 
 class InfoBarScreenSaver:
