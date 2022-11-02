@@ -254,11 +254,10 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection)  # highest prio
+		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection)  # Highest priority.
 		self.LongButtonPressed = False
 
-	#this function is called on every keypress!
-	def detection(self, key, flag):
+	def detection(self, key, flag):  # This function is called on every key press!
 		if flag == 3:
 			self.LongButtonPressed = True
 		elif flag == 0:
@@ -267,58 +266,64 @@ class InfoBarLongKeyDetection:
 
 class InfoBarUnhandledKey:
 	def __init__(self):
-		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
-		self.unhandledKeyDialog.setAnimationMode(0)
-		self.hideUnhandledKeySymbolTimer = eTimer()
-		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
+		self.unhandledKey = self.session.instantiateDialog(UnhandledKey)
+		eActionMap.getInstance().bindAction("", -maxsize - 1, self.processKeyA)  # Highest priority.
+		eActionMap.getInstance().bindAction("", maxsize, self.processKeyB)  # Lowest priority.
 		self.checkUnusedTimer = eTimer()
-		self.checkUnusedTimer.callback.append(self.checkUnused)
-		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction("", -maxsize - 1, self.actionA)  # Highest priority.
-		eActionMap.getInstance().bindAction("", maxsize, self.actionB)  # Lowest priority.
-		self.flags = (1 << 1)
-		self.uflags = 0
+		self.checkUnusedTimer.callback.append(self.isUnhandledKey)
+		self.flagBitmap = 0b0010
+		self.prevBitmap = 0b0000
 		self.sibIgnoreKeys = (
-			KEYIDS["KEY_VOLUMEDOWN"], KEYIDS["KEY_VOLUMEUP"],
-			KEYIDS["KEY_INFO"], KEYIDS["KEY_OK"],
-			KEYIDS["KEY_UP"], KEYIDS["KEY_DOWN"],
-			KEYIDS["KEY_CHANNELUP"], KEYIDS["KEY_CHANNELDOWN"],
-			KEYIDS["KEY_NEXT"], KEYIDS["KEY_PREVIOUS"]
+			KEYIDS["KEY_VOLUMEDOWN"],  # 114.
+			KEYIDS["KEY_VOLUMEUP"],  # 115.
+			KEYIDS["KEY_INFO"],  # 358.
+			KEYIDS["KEY_OK"],  # 352.
+			KEYIDS["KEY_UP"],  # 103.
+			KEYIDS["KEY_DOWN"],  # 108.
+			KEYIDS["KEY_CHANNELUP"],  # 402.
+			KEYIDS["KEY_CHANNELDOWN"],  # 403.
+			KEYIDS["KEY_NEXT"],  #407.
+			KEYIDS["KEY_PREVIOUS"]  # 412.
 		)
 
-	def actionA(self, key, flag):  # This function is called on every keypress!
+	# Flags:
+	# 	0 = Make.
+	# 	1 = Break.
+	# 	2 = Repeat.
+	# 	3 = Long.
+	# 	4 = ASCII.
+	def processKeyA(self, key, flag):  # This function is called on every key press!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
 		for callback in keyPressCallback:
 			callback()
-# TODO : TEST
-#		if flag != 2: # Don't hide on repeat.
-		self.unhandledKeyDialog.hide()
-		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+		if self.closeSecondInfoBar(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 		if flag != 4:
-# TODO: TEST
-#			if flag == 0:
-			if self.flags & (1 << 1):
-				self.flags = self.uflags = 0
-			self.flags |= (1 << flag)
-# TODO : TEST
-#			if flag == 1 or flag == 3:  # Break and Long.
-			if flag == 1:  # Break
+			if flag == 0:
+				self.unhandledKey.hide()
+			if self.flagBitmap & 0b0010:  # The button is repeating.
+				self.flagBitmap = 0b0000
+				self.prevBitmap = 0b0000
+			self.flagBitmap |= (1 << flag)
+			# if flag == 1 or flag == 3:  # Break and Long.  # TODO: TEST.
+			if flag == 1:
 				self.checkUnusedTimer.start(0, True)
 		return 0
 
-	def closeSIB(self, key):
-		return True if key >= 12 and key not in self.sibIgnoreKeys else False  # (114, 115, 103, 108, 402, 403, 407, 412, 352, 358)
-
-	def actionB(self, key, flag):  # This function is only called when no other action has handled this key.
+	def processKeyB(self, key, flag):  # This function is only called when no other action has handled this key.
 		if flag != 4:
-			self.uflags |= (1 << flag)
+			self.prevBitmap |= (1 << flag)
 
-	def checkUnused(self):
-		if self.flags == self.uflags:
-			self.unhandledKeyDialog.show()
-			self.hideUnhandledKeySymbolTimer.start(2000, True)
+	def closeSecondInfoBar(self, key):
+		return key >= 12 and key not in self.sibIgnoreKeys
+
+	def isUnhandledKey(self):
+		if self.flagBitmap == self.prevBitmap:
+			self.unhandledKey.show()
+
+	def showUnhandledKey(self):
+		self.unhandledKey.show()
 
 
 class InfoBarScreenSaver:
