@@ -203,7 +203,8 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					eServiceReference ref = db->searchReference(tsid, onid, sid);
 					ePtr<eDVBService> service;
 					db->getService(*(eServiceReferenceDVB*) &ref, service);
-					channelName = service->m_service_name;
+					if(service)
+						channelName = service->m_service_name;
 					auto cridd = (ContentIdentifierDescriptor *)*desc;
 					auto crid = cridd->getIdentifier();
 					for (auto it = crid->begin(); it != crid->end(); ++it)
