@@ -133,7 +133,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 		if self.type == EPG_TYPE_INFOBAR:
 			epgCursoractions["left"] = (self.prevService, _("Goto previous channel"))
-			epgCursoractions["right"] = (self.prevService, _("Goto next channel"))
+			epgCursoractions["right"] = (self.nextService, _("Goto next channel"))
 		elif self.type in [EPG_TYPE_ENHANCED, EPG_TYPE_SINGLE]:
 			epgCursoractions["left"] = (self.prevPage, _("Move up a page"))
 			epgCursoractions["right"] = (self.nextPage, _("Move down a page"))
