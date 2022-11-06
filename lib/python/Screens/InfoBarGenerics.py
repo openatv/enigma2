@@ -3389,7 +3389,7 @@ class InfoBarPlugins:
 	def getPluginList(self):
 		l = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			args = inspect.getargspec(p.__call__)[0]
+			args = inspect.getfullargspec(p.__call__)[0]
 			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
 				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
 		l.sort(key=lambda e: e[2])  # sort by name
