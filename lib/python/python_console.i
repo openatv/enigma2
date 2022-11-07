@@ -220,7 +220,7 @@ extern "C" {
 		int nice = 0;
 		if (!PyArg_ParseTuple(args, "i", &nice))
 			return NULL;
-		if (nice > 1 && nice <= 20 ) 
+		if (nice >= 1 && nice <= 20 ) 
 			self->cont->setNice(nice);
 		else
 			PyErr_SetString(PyExc_TypeError, "nice must be (1-20)");
