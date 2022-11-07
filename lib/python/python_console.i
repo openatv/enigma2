@@ -220,7 +220,11 @@ extern "C" {
 		int nice = 0;
 		if (!PyArg_ParseTuple(args, "i", &nice))
 			return NULL;
-		self->cont->setNice(nice);
+		if (nice > 1 && nice <= 20 ) 
+			self->cont->setNice(nice);
+		else
+			PyErr_SetString(PyExc_TypeError, "nice must be (1-20)");
+
 		Py_RETURN_NONE;
 	}
 
@@ -230,7 +234,10 @@ extern "C" {
 		int ionice = 0;
 		if (!PyArg_ParseTuple(args, "i", &ionice))
 			return NULL;
-		self->cont->setIONice(ionice);
+		if (ionice >= 0 && ionice <= 7 )
+			self->cont->setIONice(ionice);
+		else
+			PyErr_SetString(PyExc_TypeError, "ionice must be (0-7)");
 		Py_RETURN_NONE;
 	}
 

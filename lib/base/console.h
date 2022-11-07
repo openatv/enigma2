@@ -41,8 +41,8 @@ public:
 	~eConsoleAppContainer();
 	int setCWD( const char *path );
 	void setBufferSize(int size);
-	void setNice(int nice) { if (nice < 1 && nice <= 20 ) m_nice = nice}
-	void setIONice(int ionice) { if (ionice >= 0 && ionice <= 7 ) m_ionice = ionice}
+	void setNice(int nice) { m_nice = nice;}
+	void setIONice(int ionice) { m_ionice = ionice;}
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int getPID() { return pid; }
