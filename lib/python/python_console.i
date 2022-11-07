@@ -223,8 +223,7 @@ extern "C" {
 		if (nice >= 1 && nice <= 20 ) 
 			self->cont->setNice(nice);
 		else
-			PyErr_SetString(PyExc_TypeError, "nice must be (1-20)");
-
+			eWarning("eConsoleAppContainer::setNice / nice must be (1-20) not %d", nice);
 		Py_RETURN_NONE;
 	}
 
@@ -237,7 +236,7 @@ extern "C" {
 		if (ionice >= 0 && ionice <= 7 )
 			self->cont->setIONice(ionice);
 		else
-			PyErr_SetString(PyExc_TypeError, "ionice must be (0-7)");
+			eWarning("eConsoleAppContainer::setIONice / ionice must be (0-7) not %d", ionice);
 		Py_RETURN_NONE;
 	}
 
