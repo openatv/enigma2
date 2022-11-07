@@ -215,6 +215,26 @@ extern "C" {
 	}
 
 	static PyObject *
+	eConsolePy_setNice(eConsolePy* self, PyObject *args)
+	{
+		int nice = 0;
+		if (!PyArg_ParseTuple(args, "i", &nice))
+			return NULL;
+		self->cont->setNice(nice);
+		Py_RETURN_NONE;
+	}
+
+	static PyObject *
+	eConsolePy_setIONice(eConsolePy* self, PyObject *args)
+	{
+		int ionice = 0;
+		if (!PyArg_ParseTuple(args, "i", &ionice))
+			return NULL;
+		self->cont->setIONice(ionice);
+		Py_RETURN_NONE;
+	}
+
+	static PyObject *
 	eConsolePy_getPID(eConsolePy* self)
 	{
 		return PyInt_FromLong(self->cont->getPID());
@@ -311,6 +331,12 @@ extern "C" {
 	}
 
 	static PyMethodDef eConsolePy_methods[] = {
+		{(char*)"setNice", (PyCFunction)eConsolePy_setNice, METH_VARARGS,
+		(char*)"set nice"
+		},
+		{(char*)"setIONice", (PyCFunction)eConsolePy_setIONice, METH_VARARGS,
+		(char*)"set ionice"
+		},
 		{(char*)"setCWD", (PyCFunction)eConsolePy_setCWD, METH_VARARGS,
 		(char*)"set working dir"
 		},

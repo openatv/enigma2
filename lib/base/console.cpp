@@ -1,5 +1,8 @@
+#include <sys/time.h>
+#include <sys/resource.h>
 #include <lib/base/console.h>
 #include <lib/base/eerror.h>
+#include <lib/base/ioprio.h>
 #include <sys/vfs.h> // for statfs
 #include <unistd.h>
 #include <signal.h>
@@ -61,7 +64,9 @@ DEFINE_REF(eConsoleAppContainer);
 eConsoleAppContainer::eConsoleAppContainer():
 	pid(-1),
 	killstate(0),
-	buffer(2048)
+	buffer(2048),
+	m_nice(-1),
+	m_ionice(-1)
 {
 	for (int i=0; i < 3; ++i)
 	{
@@ -118,6 +123,16 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 		eDebug("[eConsoleAppContainer] failed to start %s", cmdline);
 		return -3;
 	}
+
+	if(m_nice != -1)
+	{
+		if (setpriority(PRIO_PROCESS, pid, m_nice) < 0) {
+			eDebug("[eConsoleAppContainer] failed to set priority to %d" , m_nice);
+		}
+	}
+
+	if(m_ionice != -1)
+		setIoPrio(IOPRIO_CLASS_BE, m_ionice, pid);
 
 //	eDebug("[eConsoleAppContainer] pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 

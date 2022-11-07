@@ -30,6 +30,8 @@ class eConsoleAppContainer: public sigc::trackable, public iObject
 	std::queue<struct queue_data> outbuf;
 	ePtr<eSocketNotifier> in, out, err;
 	std::vector<char> buffer;
+	int m_nice;
+	int m_ionice;
 	void readyRead(int what);
 	void readyErrRead(int what);
 	void readyWrite(int what);
@@ -39,6 +41,8 @@ public:
 	~eConsoleAppContainer();
 	int setCWD( const char *path );
 	void setBufferSize(int size);
+	void setNice(int nice) { if (nice < 1 && nice <= 20 ) m_nice = nice}
+	void setIONice(int ionice) { if (ionice >= 0 && ionice <= 7 ) m_ionice = ionice}
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int getPID() { return pid; }
