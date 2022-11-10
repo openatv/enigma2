@@ -45,7 +45,7 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 			eDebug("[eConsoleAppContainer] failed to change directory to %s (%m)", cwd);
 
 
-		if( nice != -1)
+		if( nice != -1) {
 			eDebug("[eConsoleAppContainer] use priority %d" , nice);
 			if (setpriority(PRIO_PROCESS, 0, nice) < 0 )
 				eDebug("[eConsoleAppContainer] failed to set priority to %d" , nice);
