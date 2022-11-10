@@ -45,12 +45,22 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 			eDebug("[eConsoleAppContainer] failed to change directory to %s (%m)", cwd);
 
 
-		if( nice != -1 && setpriority(PRIO_PROCESS, 0, nice) < 0 ) {
-			eDebug("[eConsoleAppContainer] failed to set priority to %d" , nice);
+		if( nice != -1)
+			eDebug("[eConsoleAppContainer] use priority %d" , nice);
+			if (setpriority(PRIO_PROCESS, 0, nice) < 0 )
+				eDebug("[eConsoleAppContainer] failed to set priority to %d" , nice);
 		}
 
-		if(ionice != -1)
-			setIoPrio(IOPRIO_CLASS_IDLE, ionice);
+		if(ionice != -1) {
+			if( ionice == 8) {
+				eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_IDLE");
+				setIoPrio(IOPRIO_CLASS_IDLE, 7);
+			}
+			else {
+				eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_BE / %d", ionice);
+				setIoPrio(IOPRIO_CLASS_BE, ionice);
+			}
+		}
 
 		execvp(cmd, (char * const *)argv);
 				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */

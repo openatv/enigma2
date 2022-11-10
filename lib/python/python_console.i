@@ -233,10 +233,10 @@ extern "C" {
 		int ionice = 0;
 		if (!PyArg_ParseTuple(args, "i", &ionice))
 			return NULL;
-		if (ionice >= 0 && ionice <= 7 )
+		if (ionice >= 0 && ionice <= 8 )
 			self->cont->setIONice(ionice);
 		else
-			eWarning("eConsoleAppContainer::setIONice / ionice must be (0-7) not %d", ionice);
+			eWarning("eConsoleAppContainer::setIONice / ionice must be (0-8) not %d", ionice);
 		Py_RETURN_NONE;
 	}
 
