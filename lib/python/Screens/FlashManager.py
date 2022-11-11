@@ -596,12 +596,12 @@ class FlashImage(Screen, HelpableScreen):
 		self["summary_header"].setText(self["header"].getText())
 		imageFiles = findImageFiles(self.unzippedImage)
 		if imageFiles:
-			rootSubDir = "none"
+			rootSubDir = None
 			bootSlots = MultiBoot.getBootSlots()
 			if bootSlots:
 				mtdKernel = bootSlots[self.slotCode]["kernel"].split(sep)[2]
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
-				if MultiBoot.hasRootSubdir():
+				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
