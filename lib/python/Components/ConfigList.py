@@ -190,16 +190,16 @@ class ConfigListScreen:
 			"select": (self.keySelect, _("Select, toggle, process or edit the current entry"))
 		}, prio=1, description=_("Common Setup Actions"))
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
-			"first": (self.keyFirst, _("Jump to first item in list or the start of text")),
-			"left": (self.keyLeft, _("Select the previous item in list or move cursor left")),
-			"right": (self.keyRight, _("Select the next item in list or move cursor right")),
-			"last": (self.keyLast, _("Jump to last item in list or the end of text")),
+			"first": (self.keyFirst, _("Select the first item in list or move to the start of text")),
+			"left": (self.keyLeft, _("Select the previous item in list or move the cursor left")),
+			"right": (self.keyRight, _("Select the next item in list or move the cursor right")),
+			"last": (self.keyLast, _("Select the last item in list or move to the end of text")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=1, description=_("Common Setup Actions"))
 		self["menuConfigActions"] = HelpableActionMap(self, "ConfigListActions", {
 			"menu": (self.keyMenu, _("Display selection list as a selection menu")),
@@ -223,7 +223,7 @@ class ConfigListScreen:
 			"backspace": (self.keyBackspace, _("Delete character to left of cursor or select AM times")),
 			"delete": (self.keyDelete, _("Delete character under cursor or select PM times")),
 			"erase": (self.keyErase, _("Delete all the text")),
-			"toggleOverwrite": (self.keyToggle, _("Toggle new text inserts before or overwrites existing text")),
+			"toggleOverwrite": (self.keyToggle, _("Toggle if new text inserts before or overwrites existing text")),
 		}, prio=1, description=_("Common Setup Actions"))
 		self["editConfigActions"].setEnabled(False if fullUI else True)
 		self["virtualKeyBoardActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
