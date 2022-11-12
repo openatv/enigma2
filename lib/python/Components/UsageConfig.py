@@ -1982,6 +1982,7 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultValue, choices=[(defaultValue, defaultValue), (savedValue, savedValue)])
 			config.timeshift.path.value = savedValue
 	config.timeshift.path.save()
+	config.timeshift.skipreturntolive = ConfigYesNo(default=False)
 	config.timeshift.showInfoBar = ConfigYesNo(default=True)
 	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)
 	choiceList = [
