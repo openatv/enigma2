@@ -1,100 +1,119 @@
-# -*- coding: utf-8 -*-
-# taken from mytube plugin
-
-from __future__ import print_function
 from enigma import eTimer
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.Label import Label
-from Components.Sources.List import List
-from Components.MultiContent import MultiContentEntryText
+
+from Components.ActionMap import HelpableActionMap
 from Components.Task import job_manager
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.HelpMenu import HelpableScreen
+from Screens.Screen import Screen
+from Screens.TaskView import TaskView
 
 
-class TaskListScreen(Screen):
-	skin = """
-		<screen name="TaskListScreen" position="center,center" size="720,576" title="Task list" >
-			<widget source="tasklist" render="Listbox" position="10,10" size="690,490" zPosition="7" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (5, 1), size = (675, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # name
-							MultiContentEntryText(pos = (5, 25), size = (150, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # state
-							MultiContentEntryProgress(pos = (160, 25), size = (390, 20), percent = -3), # progress
-							MultiContentEntryText(pos = (560, 25), size = (100, 24), font=1, flags = RT_HALIGN_RIGHT, text = 4), # percentage
-						],
-					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
-					"itemHeight": 50
-					}
-				</convert>
-			</widget>
-			<ePixmap position="10,530" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="10,530" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1"/>
-		</screen>"""
+class TaskList(Screen, HelpableScreen):
+	skin = ["""
+	<screen name="TaskList" title="Task List" position="center,center" size="700,350" resolution="1280,720">
+		<widget source="tasklist" render="Listbox" position="0,0" size="700,300">
+			<convert type="TemplatedMultiContent">
+				{
+				"template":
+					[
+					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),  # Name.
+					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=2),  # State.
+					MultiContentEntryProgress(pos=(%d, %d), size=(%d, %d), percent=-3),  # Progress.
+					MultiContentEntryText(pos=(%d, %d), size=(%d, %d), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=4),  # Percentage.
+					],
+				"fonts": [parseFont("Regular;%d")],
+				"itemHeight": %d
+				}
+			</convert>
+		</widget>
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>""",
+		15, 0, 700, 25,  # Name.
+		15, 25, 155, 25,  # State.
+		190, 28, 400, 19,  # Progress.
+		600, 25, 80, 25,  # Percentage.
+		20,  # Font.
+		50  # ItemHeight.
+	]
 
 	def __init__(self, session, tasklist):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.tasklist = tasklist
+		self.skinName = ["TaskList", "TaskListScreen"]
+		if not self.getTitle():
+			self.setTitle(_("Task List"))
 		self["tasklist"] = List(self.tasklist)
-
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "MediaPlayerActions"],
-		{
-			"ok": self.keyOK,
-			"back": self.keyCancel,
-			"red": self.keyCancel,
-		}, -1)
-
-		self["key_red"] = Button(_("Close"))
-
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
+			"cancel": (self.keyCancel, _("Close Task List")),
+			"red": (self.keyCancel, _("Close Task List")),
+			"top": (self["tasklist"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["tasklist"].goPageUp, _("Move up a screen")),
+			"up": (self["tasklist"].goLineUp, _("Move up a line")),
+			"down": (self["tasklist"].goLineDown, _("Move down a line")),
+			"pageDown": (self["tasklist"].goPageDown, _("Move down a screen")),
+			"bottom": (self["tasklist"].goBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("Task List Actions"))
+		self["detailAction"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"ok": (self.keyOK, _("Show details of highlighted task")),
+			"green": (self.keyOK, _("Show details of highlighted task"))
+		}, prio=0, description=_("Task List Actions"))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self.timer = eTimer()
+		self.timer.callback.append(self.timerFire)
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.onShown.append(self.setWindowTitle)
-		self.onClose.append(self.__onClose)
-		self.Timer = eTimer()
-		self.Timer.callback.append(self.TimerFire)
-
-	def __onClose(self):
-		del self.Timer
+		self.timerFire()
 
 	def layoutFinished(self):
-		self.Timer.startLongTimer(1)
+		self["tasklist"].downstream_elements.downstream_elements.instance.enableAutoNavigation(False)
 
-	def TimerFire(self):
-		self.Timer.stop()
-		self.rebuildTaskList()
+	def keyCancel(self):
+		self.timer.stop()
+		self.close()
 
-	def rebuildTaskList(self):
-		idx = self['tasklist'].getIndex()
+	def keyOK(self):
+		def TaskViewCallback(result):
+			print("[TaskList] TaskView returned: '%s'." % result)
+			self.timerFire()
+
+		self.timer.stop()
+		current = self["tasklist"].getCurrent()
+		if current:
+			self.session.openWithCallback(TaskViewCallback, TaskView, current[0])
+
+	def timerFire(self):
+		self.timer.stop()
+		index = self["tasklist"].getIndex()
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
-			#self.tasklist.append((job,job.name,job.getStatustext(),int(100*job.progress/float(job.end)) ,str(100*job.progress/float(job.end)) + "%" ))
+			# self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			if job.name.startswith(_("Run script")) and job.status == job.IN_PROGRESS: #fake progress for scripts
+			if job.name.startswith(_("Run script")) and job.status == job.IN_PROGRESS:  # Fake progress for scripts.
 				if progress >= 99:
 					job.tasks[job.current_task].setProgress(51)
 				else:
 					job.tasks[job.current_task].setProgress(progress + 1)
-			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %"))
-		self['tasklist'].setList(self.tasklist)
-		self['tasklist'].updateList(self.tasklist)
-		self['tasklist'].setIndex(idx)
-		self.Timer.startLongTimer(1)
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, "%d %%" % progress))
+		self["tasklist"].updateList(self.tasklist)
+		self["tasklist"].setIndex(index)
+		if self.tasklist:
+			self["key_green"].setText(_("Details"))
+			self["detailAction"].setEnabled(True)
+		else:
+			self["key_green"].setText("")
+			self["detailAction"].setEnabled(False)
+		self.timer.startLongTimer(1)
 
-	def setWindowTitle(self):
-		self.setTitle(_("Task list"))
 
-	def keyOK(self):
-		current = self["tasklist"].getCurrent()
-		print(current)
-		if current:
-			job = current[0]
-			from Screens.TaskView import JobView
-			self.session.openWithCallback(self.JobViewCB, JobView, job)
-
-	def JobViewCB(self, why):
-		print("WHY---", why)
-
-	def keyCancel(self):
-		self.close()
-
-	def keySave(self):
-		self.close()
+class TaskListScreen(TaskList):
+	pass
