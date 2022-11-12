@@ -211,22 +211,28 @@ class MultiBootClass():
 					startupFile = bootSlots[slotCode].get("startupfile")
 					if startupFile:
 						if isinstance(startupFile, dict):
-							print("[MultiBoot]     Startup files:")
-							for key in sorted(startupFile.keys()):
-								print("[MultiBoot]         Mode '%s': '%s'." % (key, startupFile[key]))
+							if "" in startupFile:
+								print("[MultiBoot]     Startup file: '%s'." % startupFile[""])
+							else:
+								print("[MultiBoot]     Startup files:")
+								for key in sorted(startupFile.keys()):
+									print("[MultiBoot]         Mode '%s': '%s'." % (key, startupFile[key]))
 						else:
-							print("[MultiBoot]    Startup file: '%s'." % startupFile)
+							print("[MultiBoot]     Startup file: '%s'." % startupFile)
 					commandLine = bootSlots[slotCode].get("cmdline")
 					if commandLine:
-						print("[MultiBoot]     Command lines:")
 						if isinstance(commandLine, dict):
-							for key in sorted(commandLine.keys()):
-								print("[MultiBoot]         Mode '%s': '%s'." % (key, commandLine[key]))
+							if "" in startupFile:
+								print("[MultiBoot]     Command line: '%s'." % startupFile[""])
+							else:
+								print("[MultiBoot]     Command lines:")
+								for key in sorted(commandLine.keys()):
+									print("[MultiBoot]         Mode '%s': '%s'." % (key, commandLine[key]))
 						else:
-							print("[MultiBoot]    Command line: '%s'." % startupFile)
-					print("[MultiBoot]     Kernel device: '%s'." % bootSlots[slotCode].get("kernel", "Error"))
-					print("[MultiBoot]     Root device: '%s'." % bootSlots[slotCode].get("device", "Error"))
-					print("[MultiBoot]     Root directory: '%s'." % bootSlots[slotCode].get("rootsubdir", "Error"))
+							print("[MultiBoot]     Command line: '%s'." % startupFile)
+					print("[MultiBoot]     Kernel device: '%s'." % bootSlots[slotCode].get("kernel", "Unknown"))
+					print("[MultiBoot]     Root device: '%s'." % bootSlots[slotCode].get("device", "Unknown"))
+					print("[MultiBoot]     Root directory: '%s'." % bootSlots[slotCode].get("rootsubdir", "Unknown"))
 					print("[MultiBoot]     UBI device: '%s'." % ("Yes" if bootSlots[slotCode].get("ubi", False) else "No"))
 				print("[MultiBoot] %d boot slots detected." % len(bootSlots))
 		return bootSlots, bootSlotsKeys
@@ -301,21 +307,26 @@ class MultiBootClass():
 				"ubi": hasMultiBootMTD,
 				"bootCodes": self.bootSlots[self.slotCode].get("bootCodes", [""]),
 				"device": self.bootSlots[self.slotCode].get("device", _("Unknown")),
-				"root": self.bootSlots[self.slotCode].get("rootsubdir", _("Not required"))
+				"devicelog": self.bootSlots[self.slotCode].get("device", "Unknown"),
+				"root": self.bootSlots[self.slotCode].get("rootsubdir", _("Not required")),
+				"rootlog": self.bootSlots[self.slotCode].get("rootsubdir", "Not required")
 			}
 			if self.slotCode == "A":
-				self.imageList[self.slotCode]["detection"] = _("Found an Android slot")
+				self.imageList[self.slotCode]["detection"] = "Found an Android slot"
 				self.imageList[self.slotCode]["imagename"] = _("Android")
+				self.imageList[self.slotCode]["imagelogname"] = "Android"
 				self.imageList[self.slotCode]["status"] = "android"
 				self.findSlot()
 			elif self.slotCode == "L":
-				self.imageList[self.slotCode]["detection"] = _("Found an Android Linux SE slot")
+				self.imageList[self.slotCode]["detection"] = "Found an Android Linux SE slot"
 				self.imageList[self.slotCode]["imagename"] = _("Android Linux SE")
+				self.imageList[self.slotCode]["imagelogname"] = "Android Linux SE"
 				self.imageList[self.slotCode]["status"] = "androidlinuxse"
 				self.findSlot()
 			elif self.slotCode == "R":
-				self.imageList[self.slotCode]["detection"] = _("Found a Recovery slot")
+				self.imageList[self.slotCode]["detection"] = "Found a Recovery slot"
 				self.imageList[self.slotCode]["imagename"] = _("Recovery")
+				self.imageList[self.slotCode]["imagelogname"] = "Recovery"
 				self.imageList[self.slotCode]["status"] = "recovery"
 				self.findSlot()
 			elif self.bootSlots[self.slotCode].get("device"):
@@ -326,8 +337,9 @@ class MultiBootClass():
 				else:
 					Console().ePopen([MOUNT, MOUNT, self.device, self.tempDir], self.analyzeSlot)
 			else:
-				self.imageList[self.slotCode]["detection"] = _("Found an unexpected/ill-defined slot")
+				self.imageList[self.slotCode]["detection"] = "Found an unexpected/ill-defined slot"
 				self.imageList[self.slotCode]["imagename"] = _("Unknown")
+				self.imageList[self.slotCode]["imagelogname"] = "Unknown"
 				self.imageList[self.slotCode]["status"] = "unknown"
 				self.findSlot()
 		else:
@@ -335,11 +347,11 @@ class MultiBootClass():
 			if self.debugMode:
 				for slotCode in sorted(self.imageList.keys()):
 					# print("[MultiBoot] findSlot DEBUG: Image slot '%s': %s" % (slotCode, self.imageList[slotCode]))
-					print("[MultiBoot] Slot '%s' content: '%s'." % (slotCode, self.imageList[slotCode].get("imagename", "Error")))
-					print("[MultiBoot]     Device: '%s'." % self.imageList[slotCode].get("device", "Error"))
-					print("[MultiBoot]     Root: '%s'." % self.imageList[slotCode].get("root", "Unknown"))
-					print("[MultiBoot]     Detection: '%s'." % self.imageList[slotCode].get("detection", "Error"))
-					print("[MultiBoot]     Status: '%s'." % self.imageList[slotCode].get("status", "Error").capitalize())
+					print("[MultiBoot] Slot '%s' content: '%s'." % (slotCode, self.imageList[slotCode].get("imagelogname", "Unknown")))
+					print("[MultiBoot]     Device: '%s'." % self.imageList[slotCode].get("devicelog", "Unknown"))
+					print("[MultiBoot]     Root: '%s'." % self.imageList[slotCode].get("rootlog", "Unknown"))
+					print("[MultiBoot]     Detection: '%s'." % self.imageList[slotCode].get("detection", "Unknown"))
+					print("[MultiBoot]     Status: '%s'." % self.imageList[slotCode].get("status", "Unknown").capitalize())
 					modes = self.imageList[slotCode].get("bootCodes")
 					if modes and modes != [""]:
 						print("[MultiBoot]     Boot modes: '%s'." % "', '".join(modes))
@@ -349,8 +361,9 @@ class MultiBootClass():
 
 	def analyzeSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
-			self.imageList[self.slotCode]["detection"] = _("Error %d: Unable to mount slot '%s' (%s) for analysis" % (retVal, self.slotCode, self.device))
+			self.imageList[self.slotCode]["detection"] = "Error %d: Unable to mount slot '%s' (%s) for analysis" % (retVal, self.slotCode, self.device)
 			self.imageList[self.slotCode]["imagename"] = _("Inaccessible")
+			self.imageList[self.slotCode]["imagelogname"] = "Inaccessible"
 			self.imageList[self.slotCode]["status"] = "unknown"
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
@@ -366,19 +379,22 @@ class MultiBootClass():
 					revision = " %s" % revision
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
-				self.imageList[self.slotCode]["detection"] = _("Found an enigma information file")
+				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, compileDate)
+				self.imageList[self.slotCode]["imagelogname"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, compileDate)
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)
 				compileDate = str(info.get("compiledate"))
 				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
-				self.imageList[self.slotCode]["detection"] = _("Found an enigma2 binary file")
+				self.imageList[self.slotCode]["detection"] = "Found an enigma2 binary file"
 				self.imageList[self.slotCode]["imagename"] = "%s %s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), compileDate)
+				self.imageList[self.slotCode]["imagelogname"] = "%s %s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), compileDate)
 				self.imageList[self.slotCode]["status"] = "active"
 			else:
-				self.imageList[self.slotCode]["detection"] = _("Found no enigma files")
+				self.imageList[self.slotCode]["detection"] = "Found no enigma files"
 				self.imageList[self.slotCode]["imagename"] = _("Empty")
+				self.imageList[self.slotCode]["imagelogname"] = "Empty"
 				self.imageList[self.slotCode]["status"] = "empty"
 		if ismount(self.tempDir):
 			Console().ePopen([UMOUNT, UMOUNT, self.tempDir], self.finishSlot)
