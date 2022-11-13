@@ -215,6 +215,32 @@ extern "C" {
 	}
 
 	static PyObject *
+	eConsolePy_setNice(eConsolePy* self, PyObject *args)
+	{
+		int nice = 0;
+		if (!PyArg_ParseTuple(args, "i", &nice))
+			return NULL;
+		if (nice >= 1 && nice < 20 ) 
+			self->cont->setNice(nice);
+		else
+			eWarning("eConsoleAppContainer::setNice / nice must be (1-19) not %d", nice);
+		Py_RETURN_NONE;
+	}
+
+	static PyObject *
+	eConsolePy_setIONice(eConsolePy* self, PyObject *args)
+	{
+		int ionice = 0;
+		if (!PyArg_ParseTuple(args, "i", &ionice))
+			return NULL;
+		if (ionice >= 0 && ionice <= 8 )
+			self->cont->setIONice(ionice);
+		else
+			eWarning("eConsoleAppContainer::setIONice / ionice must be (0-8) not %d", ionice);
+		Py_RETURN_NONE;
+	}
+
+	static PyObject *
 	eConsolePy_getPID(eConsolePy* self)
 	{
 		return PyInt_FromLong(self->cont->getPID());
@@ -311,6 +337,12 @@ extern "C" {
 	}
 
 	static PyMethodDef eConsolePy_methods[] = {
+		{(char*)"setNice", (PyCFunction)eConsolePy_setNice, METH_VARARGS,
+		(char*)"set nice"
+		},
+		{(char*)"setIONice", (PyCFunction)eConsolePy_setIONice, METH_VARARGS,
+		(char*)"set ionice"
+		},
 		{(char*)"setCWD", (PyCFunction)eConsolePy_setCWD, METH_VARARGS,
 		(char*)"set working dir"
 		},
