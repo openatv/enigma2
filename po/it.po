@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-18 20:56+0000\n"
-"PO-Revision-Date: 2022-10-31 04:47+0000\n"
+"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"PO-Revision-Date: 2022-11-12 02:49+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -954,8 +954,8 @@ msgstr "%d Minuti"
 #, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
-msgstr[0] "larghezza %d pixel"
-msgstr[1] "larghezza %d pixel"
+msgstr[0] "%d larghezza pixel"
+msgstr[1] "%d larghezza pixel"
 
 #, python-format
 msgid "%d Pixels"
@@ -1261,7 +1261,7 @@ msgstr "%s è stato disattivato."
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s non è più utilizzato. Vuoi cancellarlo?"
+msgstr "%s non è più utilizzato. Vuoi eliminarlo?"
 
 #, python-format
 msgid "%s is password protected."
@@ -2623,10 +2623,10 @@ msgid "Are you ready to run the script ?"
 msgstr "Sei pronto per eseguire lo script?"
 
 msgid "Are you sure to cancel all changes?"
-msgstr "Sei sicuro di voler cancellare tutti i cambiamenti?"
+msgstr "Sei sicuro di annullare tutte le modifiche?"
 
 msgid "Are you sure to delete all cuts and marks?"
-msgstr "Sei sicuro di cancellare tutti i tagli e i contrassegni?"
+msgstr "Sei sicuro di eliminare tutti i tagli e i cotrassegni?"
 
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Sei sicuro di eliminare definitivamente i bouquet utente cancellati?"
@@ -2651,14 +2651,14 @@ msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
 msgstr ""
-"Sei sicuro di voler cancellare\n"
+"Sei sicuro di voler eliminare\n"
 "il seguente backup:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Sei sicuro di voler eliminare tutti i registri selezionati:\n"
 
 msgid "Are you sure you want to delete the EPG data from:\n"
-msgstr "Sei sicuro di voler cancellare i dati EPG da:\n"
+msgstr "Sei sicuro di voler eliminare i dati EPG da:\n"
 
 msgid "Are you sure you want to delete this image?"
 msgstr "Sei sicuro di voler eliminare questa immagine?"
@@ -2667,7 +2667,7 @@ msgid "Are you sure you want to delete this log:\n"
 msgstr "Sei sicuro di voler eliminare questo registro:\n"
 
 msgid "Are you sure you want to delete this?"
-msgstr "Sei sicuro di voler cancellare questo?"
+msgstr "Sei sicuro di voler eliminare questo?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Sei sicuro di voler uscire dalla procedura guidata?"
@@ -3083,7 +3083,7 @@ msgid "Background delete option"
 msgstr "Opzione elimina in background"
 
 msgid "Background delete speed"
-msgstr "Velocità cancellazione in background"
+msgstr "Velocità eliminazione in background"
 
 msgid "Background selected:"
 msgstr "Selezionato background:"
@@ -3476,6 +3476,9 @@ msgstr "Affari & Finanza"
 
 msgid "Button Setup"
 msgstr "Impostazioni tasti"
+
+msgid "Button error timeout"
+msgstr "Timeout errore pulsante"
 
 msgid "ButtonSetup"
 msgstr "Impost. tasto"
@@ -4232,13 +4235,13 @@ msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Scegli la modalità del protocollo CI: Standard o CIplus."
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Scegli il formato di visualizzazione delle date per lo schermo. 'D' / 'DD' identifica il giorno e 'M' / 'MM' il mese in cifre. ('DD' e 'MM' mostrano lo zero iniziale per numeri ad una cifra.) La visualizzazione a schermo sarà basata sulla tua scelta, a meno di impostazioni diverse della skin."
+msgstr "Scegli il formato di visualizzazione delle date per lo schermo. 'D' / 'DD' identifica il giorno e 'M' / 'MM' il mese in cifre ('DD' e 'MM' mostrano lo zero iniziale per numeri ad una cifra). La visualizzazione a schermo sarà basata sulla tua scelta, a meno di impostazioni diverse della skin."
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Scegli lo stile degli orari del display. ‘H’ / ‘HH’ è l’ora in formato 24 ore; ‘h / hh’ è l’ora in formato 12 ore; ‘mm’ sono i minuti e ‘ss’ i secondi.  (‘HH’ ed ‘hh’ hanno degli zeri iniziali per le cifre singole). Lo stile di data scelto potrà, però, essere influenzato anche dalla skin utilizzata."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Scegli lo stile delle date del display LCD (display frontale). ‘D’ / ‘DD’ è il giorno; ‘M’ / ‘MM’ il mese in cifre.  (‘DD’ ed ‘MM’ hanno degli zeri iniziali per le cifre singole). Lo stile di data scelto potrà, però, essere influenzato anche dalla skin utilizzata."
+msgstr "Scegli lo stile delle date del display LCD (display frontale). ‘D’ / ‘DD’ è il giorno; ‘M’ / ‘MM’ il mese in cifre (‘DD’ ed ‘MM’ hanno degli zeri iniziali per le cifre singole). Lo stile di data scelto potrà, però, essere influenzato anche dalla skin utilizzata."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Scegli lo stile degli orari del display LCD (display frontale). ‘H’ / ‘HH’ è l’ora in formato 24 ore; ‘h / hh’ è l’ora in formato 12 ore; ‘mm’ sono i minuti e ‘ss’ i secondi.  (‘HH’ ed ‘hh’ hanno degli zeri iniziali per le cifre singole). Lo stile di data scelto potrà, però, essere influenzato anche dalla skin utilizzata."
@@ -5772,7 +5775,7 @@ msgid "Delete %s?"
 msgstr "Eliminare %s?"
 
 msgid "Delete 1 element"
-msgstr "Elimina un elemento"
+msgstr "Elimina 1 elemento"
 
 msgid "Delete Confirmation"
 msgstr "Conferma eliminazione"
@@ -5799,10 +5802,10 @@ msgid "Delete all tags"
 msgstr "Elimina tutti i tag"
 
 msgid "Delete all the text"
-msgstr "Cancella tutto il testo"
+msgstr "Elimina tutto il testo"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
-msgstr "Elimina e disinstalla i plugin. Questo rimuoverà il plug-in dal tuo ricevitore"
+msgstr "Elimina e disinstalla i plugin. Questo rimuoverà il plugin dal tuo ricevitore"
 
 msgid "Delete character to left of cursor or select AM times"
 msgstr "Elimina il carattere a sinistra del cursore o seleziona gli orari AM"
@@ -5820,7 +5823,7 @@ msgid "Delete failed!"
 msgstr "Eliminazione fallita!"
 
 msgid "Delete file"
-msgstr "Rimuovere file"
+msgstr "Elimina file"
 
 msgid "Delete file or directory (and all its contents)"
 msgstr "Elimina file o directory (e tutti i suoi contenuti)"
@@ -5875,7 +5878,7 @@ msgstr "Eliminato"
 
 #, python-format
 msgid "Deleted %s!"
-msgstr "Eliminato %s!"
+msgstr "%s eliminato!"
 
 msgid "Deleted items"
 msgstr "Elementi eliminati"
@@ -6031,10 +6034,10 @@ msgid "Disable IceTV"
 msgstr "Disabilita IceTV"
 
 msgid "Disable MiniTV"
-msgstr "Disabilitare la MiniTV"
+msgstr "Disabilita MiniTV"
 
 msgid "Disable Picture in Picture"
-msgstr "Disabilitare il PiP"
+msgstr "Disabilita PiP"
 
 msgid "Disable background scanning"
 msgstr "Disabilita scansione in background"
@@ -6205,7 +6208,7 @@ msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
-"Vuoi davvero eliminare tutti i tag '%s'?\n"
+"Vuoi davvero eliminare tutti i '%s' tag?\n"
 "(NOTA: 'Annulla' non può annullare questa operazione!)"
 
 msgid ""
@@ -6812,16 +6815,16 @@ msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginn
 msgstr "Abilita i tasti Su/Giù per la funzione 'Tutto su/giù'? (all'inizio o alla fine della colonna)"
 
 msgid "Enable VPS"
-msgstr "Abilitare VPS"
+msgstr "Abilita VPS"
 
 msgid "Enable VPS by default (new timers)"
-msgstr "Abilitare VPS di default (su nuovi timer)"
+msgstr "Abilita VPS di default (su nuovi timer)"
 
 msgid "Enable VPS on instant records"
-msgstr "Abilitare VPS per le registrazioni istantanee"
+msgstr "Abilita VPS per le registrazioni istantanee"
 
 msgid "Enable VPS-Plugin"
-msgstr "Abilitare il plugin VPS"
+msgstr "Abilita plugin VPS"
 
 msgid "Enable ViaSat EPG"
 msgstr "Abilita ViaSat EPG"
@@ -6876,7 +6879,7 @@ msgid "Enable digital downmix"
 msgstr "Abilita il downmix digitale"
 
 msgid "Enable fallback remote receiver"
-msgstr "Abilitare ricevitore remoto fallback"
+msgstr "Abilita ricevitore remoto fallback"
 
 msgid "Enable freesat EPG"
 msgstr "Abilita FreeSat EPG"
@@ -6915,7 +6918,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Abilita le opzioni di impostazione avanzate di HDMI-CEC."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
-msgstr "Abilitare questa opzione per aggiungere i dati di mappatura delle azioni/controllo remoto al file di registro di debug."
+msgstr "Abilita questa opzione per aggiungere i dati di mappatura delle azioni/controllo remoto al file di registro di debug."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di scansione DVB extra al file di registro di debug."
@@ -6951,7 +6954,7 @@ msgid "Enable to display setup entries alphabetically."
 msgstr "Abilita per visualizzare le voci di configurazione in ordine alfabetico."
 
 msgid "Enable to display the Extension menu entries alphabetically."
-msgstr "Abilitare per visualizzare le voci del menu Estensioni in ordine alfabetico."
+msgstr "Abilita per visualizzare le voci del menu Estensioni in ordine alfabetico."
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Abilita la visione del valore attuale dello slider alla fine della barra."
@@ -8490,7 +8493,7 @@ msgid "HDMI HDR Type"
 msgstr "Tipo HDMI HDR "
 
 msgid "HDMI Recording Settings"
-msgstr "Impostazioni di registrazione HDMI"
+msgstr "Impostazioni registrazione HDMI"
 
 msgid "HDMI color depth"
 msgstr "Profondità colore HDMI"
@@ -8511,7 +8514,7 @@ msgid "HDMI-IN Actions"
 msgstr "Azioni HDMI-IN"
 
 msgid "HDMI-In Recording Settings"
-msgstr "Impostazioni di registrazione HDMI-In"
+msgstr "Impostazioni registrazione HDMI-In"
 
 msgid "HDMIin"
 msgstr "HDMI in"
@@ -8574,7 +8577,7 @@ msgid "Harddisk Setup"
 msgstr "Configurazione HDD"
 
 msgid "Hardware MultiBoot device"
-msgstr "Dispositivo hardware MultiBoot"
+msgstr "Dispositivo MultiBoot"
 
 msgid "Hardware information"
 msgstr "Informazioni sull'hardware"
@@ -8990,7 +8993,7 @@ msgid "If the deep standby workaround is enabled wait until the system time is s
 msgstr "Se è abilitata la soluzione di spegnimento attendere fino a quando l'ora di sistema non viene sincronizzata. A seconda delle esigenze, la riattivazione del dispositivo continuerà dopo un massimo di 2 minuti."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Se lo spazio disponibile si riduce, vengono cancellati tutti i vecchi file timeshift."
+msgstr "Se lo spazio libero è inferiore al valore impostato, verranno eliminati i vecchi file di timeshift."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Se il testo è troppo lungo per essere visualizzato sul pannello frontale, verrà ripetuto (numero di volte)."
@@ -10010,7 +10013,7 @@ msgid "Load unlinked user bouquets"
 msgstr "Carica bouquet utente orfani"
 
 msgid "Load/Save/Delete"
-msgstr "Carica, salva o cancella"
+msgstr "Carica, salva o elimina"
 
 msgid "Loading information, please wait..."
 msgstr "Caricamento informazioni, attendere..."
@@ -10921,7 +10924,7 @@ msgid "Mozambique"
 msgstr "Mozambico"
 
 msgid "Multi EPG"
-msgstr "Multi EPG"
+msgstr "EPG multiplo"
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -11896,7 +11899,7 @@ msgid "Open the movie list"
 msgstr "Apri elenco registrazioni"
 
 msgid "Open the multi service EPG view"
-msgstr "Aprire la vista EPG multi servizi"
+msgstr "Apri la vista EPG multi servizi"
 
 msgid "Open the single service EPG view"
 msgstr "Apri la vista EPG a servizio singolo"
@@ -11939,6 +11942,12 @@ msgstr "Stato del LED operativo durante lo standby"
 
 msgid "Operating LED status while running"
 msgstr "Stato del LED operativo durante il funzionamento"
+
+msgid "Opkg Actions"
+msgstr "Azioni opkg"
+
+msgid "Opkg Log Actions"
+msgstr "Azioni registro opkg"
 
 msgid "Option"
 msgstr "Opzione"
@@ -12266,7 +12275,7 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Eliminare definitivamente tutte le registrazioni nel cestino?"
 
 msgid "Permanently remove all deleted items"
-msgstr "Rimuovere definitivamente tutti gli elementi eliminati"
+msgstr "Rimuovi definitivamente tutti gli elementi eliminati"
 
 msgid "Permissions:"
 msgstr "Autorizzazioni:"
@@ -12543,7 +12552,7 @@ msgid "Please select a line to edit or select add to create new line."
 msgstr "Seleziona una riga da modificare o seleziona aggiungi per creare una nuova riga."
 
 msgid "Please select a play list to delete..."
-msgstr "Seleziona la playlist da rimuovere..."
+msgstr "Seleziona una playlist da eliminare..."
 
 msgid "Please select a play list..."
 msgstr "Seleziona una playlist..."
@@ -12572,8 +12581,14 @@ msgstr "Seleziona il supporto su cui effettuare il backup"
 msgid "Please select tag to filter..."
 msgstr "Seleziona una etichetta come filtro..."
 
-msgid "Please select the IceTV service that you wish to use."
-msgstr "Seleziona il servizio IceTV che desideri utilizzare."
+msgid ""
+"Please select the IceTV service that you wish to use.\n"
+"\n"
+"IceTV is a subscription service that is only available in the listed countries."
+msgstr ""
+"Seleziona il servizio IceTV che desideri utilizzare.\n"
+"\n"
+"IceTV è un servizio in abbonamento disponibile solo nei paesi elencati."
 
 msgid "Please select the movie path..."
 msgstr "Seleziona percorso registrazioni..."
@@ -13050,7 +13065,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Premi OK per utilizzare queste impostazioni locali.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Premere i pulsanti SU/GIÙ per selezionare uno slot e premere OK o VERDE per riavviare l'immagine. Se disponibile, GIALLO cancellerà o cancellerà definitivamente l'immagine. Un'immagine eliminata può essere ripristinata con il pulsante BLU. Un'immagine cancellata viene completamente rimossa e non può essere ripristinata!"
+msgstr "Premere i pulsanti SU/GIÙ per selezionare uno slot e premere OK o VERDE per riavviare l'immagine. Se disponibile, GIALLO eliminerà o cancellerà definitivamente l'immagine. Un'immagine eliminata può essere ripristinata con il pulsante BLU. Un'immagine cancellata definitivamente viene completamente rimossa e non può essere ripristinata!"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Premendo questo tasto si simula una pressione lunga del tasto premuto successivamente (questo sovrascrive ogni altra azione assegnata al tasto)."
@@ -13283,13 +13298,13 @@ msgid "Purge"
 msgstr "Purge"
 
 msgid "Purge 'Trash' after (days)"
-msgstr "Rimuovere elementi dal cestino dopo (nr. giorni)"
+msgstr "Svuota cestino dopo (giorni)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "Elimina tutto tranne / Aggiungi / Elimina la lingua/località attualmente evidenziata"
 
 msgid "Purge all but the current and permanent locales/languages.  Add the current locale/language if it is not installed.  Delete the current locale/language if it is installed."
-msgstr "Eliminare tutte le impostazioni locali/lingue tranne quelle correnti e permanenti.  Aggiungere le impostazioni locali/lingua attuale se non è installata.  Eliminare le impostazioni locali/lingua attuale se è installata."
+msgstr "Elimina tutte le impostazioni locali/lingue tranne quelle correnti e permanenti.  Aggiungi le impostazioni locali/lingua attuale se non è installata.  Elimina le impostazioni locali/lingua attuale se è installata."
 
 msgid "Purging all unused locales/languages..."
 msgstr "Eliminazione di tutte le impostazioni locali/lingue inutilizzate..."
@@ -13486,7 +13501,7 @@ msgid "Really close without saving settings?"
 msgstr "Uscire senza salvare le modifiche?"
 
 msgid "Really delete this entry?"
-msgstr "Vuoi davvero cancellare questa voce?"
+msgstr "Eliminare davvero questa voce?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire davvero dai sotto servizi con lo zapping veloce?"
@@ -13592,7 +13607,7 @@ msgid "RecordTimer Overview"
 msgstr "Panoramica Timer di registrazione"
 
 msgid "RecordTimer Settings"
-msgstr "Impostazioni Timer di registrazione"
+msgstr "Impostazioni Timer registrazione"
 
 msgid "RecordTimers"
 msgstr "Timer di registrazione"
@@ -13607,7 +13622,7 @@ msgid "Recording Actions"
 msgstr "Azioni di registrazione"
 
 msgid "Recording Settings"
-msgstr "Impostazioni di registrazione"
+msgstr "Impostazioni registrazione"
 
 msgid "Recording Setup"
 msgstr "Configura registrazione"
@@ -13813,7 +13828,7 @@ msgid "Remote control type"
 msgstr "Tipo di telecomando"
 
 msgid "Remove"
-msgstr "Rimuovere"
+msgstr "Rimuovi"
 
 msgid "Remove Bookmark"
 msgstr "Rimuovi segnalibro"
@@ -13837,13 +13852,13 @@ msgid "Remove Service"
 msgstr "Rimuovi servizio"
 
 msgid "Remove a DNS entry"
-msgstr "Rimuovere una voce DNS"
+msgstr "Rimuovi voce DNS"
 
 msgid "Remove a mark"
 msgstr "Rim. contrassegno"
 
 msgid "Remove all bouquet/tuning data"
-msgstr "Rimuovere tutti i dati del bouquet/sintonizzazione"
+msgstr "Rimuovi tutti i dati del bouquet/sintonizzazione"
 
 msgid "Remove all cuts and marks"
 msgstr "Elimina tutti i tagli e contrassegni"
@@ -13855,37 +13870,37 @@ msgid "Remove all other data"
 msgstr "Rimuovi tutti gli altri dati"
 
 msgid "Remove all plugin setting data"
-msgstr "Rimuovere tutti i dati di impostazione del plugin"
+msgstr "Rimuovi tutti i dati di impostazione del plugin"
 
 msgid "Remove all resume point data"
 msgstr "Rimuovo tutti i dati del punto di ripristino"
 
 msgid "Remove all settings data"
-msgstr "Rimuovere tutti i dati delle impostazioni"
+msgstr "Rimuovi tutti i dati delle impostazioni"
 
 msgid "Remove all skin data"
 msgstr "Rimuovi tutti i dati della skin"
 
 msgid "Remove all timer data"
-msgstr "Rimuovere tutti i dati del timer"
+msgstr "Rimuovi tutti i dati del timer"
 
 msgid "Remove all user interface data"
-msgstr "Rimuovere tutti i dati dell'interfaccia utente"
+msgstr "Rimuovi tutti i dati dell'interfaccia utente"
 
 msgid "Remove completed timers after"
-msgstr "Rimuovere i timer conclusi dopo (giorni)"
+msgstr "Rimuovi timer conclusi dopo (giorni)"
 
 msgid "Remove current folder from bookmarks"
 msgstr "Rimuovi la cartella attuale dai segnalibri"
 
 msgid "Remove currently selected title"
-msgstr "Rimuovere il titolo selezionato"
+msgstr "Rimuovi titolo attualmente selezionato"
 
 msgid "Remove directory"
-msgstr "rimuovere cartella"
+msgstr "Rimuovi directory"
 
 msgid "Remove hide VBI line for this service"
-msgstr "Rimuovere la linea VBI nascosta per questo servizio"
+msgstr "Rimuovi linea VBI nascosta per questo servizio"
 
 msgid "Remove selected folder from bookmarks"
 msgstr "Rimuovi la cartella selezionata dai segnalibri"
@@ -15037,6 +15052,9 @@ msgstr "Seleziona file che saranno esclusi dal backup"
 msgid "Select files/folders to backup"
 msgstr "Seleziona file o cartelle di cui eseguire il backup"
 
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr "Seleziona per quanto tempo visualizzare il messaggio di errore del pulsante. L'immissione di pulsanti è ancora consentita mentre è visualizzato il pop up."
+
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Tempo di visualizzazione del volume prima che si nasconda automaticamente (in secondi)."
 
@@ -15516,10 +15534,10 @@ msgid "Server:"
 msgstr "Server:"
 
 msgid "Servers"
-msgstr "Servers"
+msgstr "Server"
 
 msgid "Servers:"
-msgstr "Servers:"
+msgstr "Server:"
 
 msgid "Service"
 msgstr "Servizio"
@@ -16060,7 +16078,7 @@ msgid "Should the crash counter be reset to prevent a restart?"
 msgstr "Il contatore degli arresti anomali deve essere ripristinato per impedire un riavvio?"
 
 msgid "Show"
-msgstr "Mostrare"
+msgstr "Mostra"
 
 #, python-format
 msgid ""
@@ -16116,7 +16134,7 @@ msgid "Show 720p 24fps as"
 msgstr "Mostra 720p 24fps come"
 
 msgid "Show Audioselection"
-msgstr "Mostra la selezione audio"
+msgstr "Mostra selezione audio"
 
 msgid "Show AutoTimer List"
 msgstr "Mostra elenco Timer automatici"
@@ -16131,19 +16149,19 @@ msgid "Show CCcam in extensions"
 msgstr "Mostra CCcam nelle estensioni"
 
 msgid "Show CI messages"
-msgstr "Mostra notifiche CI"
+msgstr "Mostra messaggi CI"
 
 msgid "Show Clients"
 msgstr "Mostra client"
 
 msgid "Show Default Backup Files"
-msgstr "File di backup predefiniti"
+msgstr "Mostra file di backup predefiniti"
 
 msgid "Show Directory size"
 msgstr "Mostra dimensione directory"
 
 msgid "Show Display Icons"
-msgstr "Mostra Icone nel Display"
+msgstr "Mostra icone di visualizzazione"
 
 msgid "Show EPG"
 msgstr "Mostra EPG"
@@ -16161,34 +16179,34 @@ msgid "Show Graphical EPG"
 msgstr "Mostra EPG grafico"
 
 msgid "Show HDD progress"
-msgstr "Mostra progresso HDD"
+msgstr "Mostra avanzamento HDD"
 
 msgid "Show HDMI Output Resolution"
-msgstr "Mostra la risoluzione dell'output HDMI"
+msgstr "Mostra risoluzione dell'uscita HDMI"
 
 msgid "Show HDMI-Output Res"
-msgstr "Mostra la risoluzione dell'output HDMI"
+msgstr "Mostra risoluzione uscita HDMI"
 
 msgid "Show HDMIRecord setup..."
 msgstr "Mostra impostazione registrazione HDMI..."
 
 msgid "Show InfoBar"
-msgstr "Mostra infobar"
+msgstr "Mostra InfoBar"
 
 msgid "Show InfoBar lite *"
-msgstr "Mostra infobar lite *"
+msgstr "Mostra InfoBar lite *"
 
 msgid "Show InfoBar on channel change"
-msgstr "Mostra infobar su cambio canale"
+msgstr "Mostra InfoBar su cambio canale"
 
 msgid "Show InfoBar on event change"
-msgstr "Mostra infobar su cambio evento"
+msgstr "Mostra InfoBar su cambio evento"
 
 msgid "Show InfoBar on skip forward/backward"
-msgstr "Mostra infobar su FFW/REW"
+msgstr "Mostra InfoBar su salto avanti/indietro"
 
 msgid "Show InfoBar picons"
-msgstr "Mostra le icone sulla barra delle informazioni"
+msgstr "Mostra picon su InfoBar"
 
 msgid "Show Information"
 msgstr "Mostra informazioni"
@@ -16200,22 +16218,22 @@ msgid "Show Log"
 msgstr "Mostra registro"
 
 msgid "Show Log Manager in extensions list"
-msgstr "Mostra Registro Manager nell'elenco delle estensioni"
+msgstr "Mostra Log Manager nell'elenco estensioni"
 
 msgid "Show Media Player in Main Menu"
-msgstr "mostra mediaplayer nel menu principale"
+msgstr "Mostra Media Player nel menu principale"
 
 msgid "Show Media playback Remaining/Elapsed as"
-msgstr "Mostra riproduzione media rimanente/trascorso come"
+msgstr "Mostra riproduzione rimanente/trascorsa come"
 
 msgid "Show Merlin EPG Center"
-msgstr "Mostra Centro EPG Merlin"
+msgstr "Mostra centro EPG Merlin"
 
 msgid "Show MiniTV in the Front Display"
-msgstr "Mostra MiniTV nel display frontale"
+msgstr "Mostra MiniTV sullo schermo anteriore"
 
 msgid "Show Movies List"
-msgstr "Mostra elenco registrazioni"
+msgstr "Mostra elenco film"
 
 msgid "Show Multi EPG"
 msgstr "Mostra EPG multiplo"
@@ -16227,7 +16245,7 @@ msgid "Show OScam in extensions"
 msgstr "Mostra OScam nelle estensioni"
 
 msgid "Show PVR status in MoviePlayer InfoBar"
-msgstr "Mostra lo stato PVR nella barra delle informazioni di MoviePlayer"
+msgstr "Mostra stato PVR nella InfoBar di MoviePlayer"
 
 msgid "Show PiP"
 msgstr "Mostra PiP"
@@ -16236,7 +16254,7 @@ msgid "Show PiP in MiniTV"
 msgstr "Mostra PIP nella MIniTV"
 
 msgid "Show PiP in the Front Display"
-msgstr "Mostra PiP nel display frontale"
+msgstr "Mostra PiP nello schermo anteriore"
 
 msgid "Show RFmod setup..."
 msgstr "Mostra configurazione RFmod..."
@@ -16245,31 +16263,31 @@ msgid "Show Readers/Proxies"
 msgstr "Mostra Readers/Proxies"
 
 msgid "Show Record Movies"
-msgstr "Mostra registrazioni"
+msgstr "Mostra registrazioni film"
 
 msgid "Show Restart Network in Extensions *"
-msgstr "Mostra Riavviare rete nell'elenco estensioni *"
+msgstr "Mostra Riavviare rete nelle estensioni *"
 
 msgid "Show SD as"
 msgstr "Mostra SD come"
 
 msgid "Show Script completed message"
-msgstr "Mostra un messaggio di completamento dello script"
+msgstr "Mostra messaggio script completato"
 
 msgid "Show Single EPG"
 msgstr "Mostra EPG singolo"
 
 msgid "Show Task's completed message"
-msgstr "Mostra un messaggio di completamento dei task"
+msgstr "Mostra messaggio task completato"
 
 msgid "Show Timer List"
-msgstr "Mostra la lista dei Timer"
+msgstr "Mostra lista Timer"
 
 msgid "Show True/False as graphical switch"
 msgstr "Mostra Vero/Falso come interruttore grafico"
 
 msgid "Show VCR SCART on main menu"
-msgstr "Mostra VCR scart nel menu principale"
+msgstr "Mostra VCR SCART nel menu principale"
 
 msgid "Show Vertical EPG"
 msgstr "Mostra EPG verticale"
@@ -16278,29 +16296,29 @@ msgid "Show WLAN status"
 msgstr "Mostra stato WLAN"
 
 msgid "Show a spinning logo when the system is busy."
-msgstr "Mostra un logo che gira quando il sistema è occupato."
+msgstr "Mostra un logo rotante quando il sistema è occupato."
 
 msgid "Show additional slider value"
-msgstr "Mostra valore di scorrimento aggiuntivo"
+msgstr "Mostra valore scorrimento aggiuntivo"
 
 msgid "Show advanced settings"
 msgstr "Mostra impostazioni avanzate"
 
 msgid "Show animation while busy"
-msgstr "Mostra spinner quando occupato"
+msgstr "Mostra animazione quando occupato"
 
 msgid "Show as Picture (press any key to close)"
-msgstr "Mostra come un'immagine (premi un tasto qualsiasi per chiudere)"
+msgstr "Mostra come immagine (premi un tasto per chiudere)"
 
 #, python-format
 msgid "Show as Picture and save as file ('%s')"
-msgstr "Mostra come un'immagine e salva come file ('%s')"
+msgstr "Mostra come immagine e salva come file ('%s')"
 
 msgid "Show background in Radio Mode"
 msgstr "Mostra sfondo in modalità Radio"
 
 msgid "Show background when tuned to a radio channel."
-msgstr "Mostra immagine di background quando sintonizzato su canale radio."
+msgstr "Mostra sfondo quando sei sintonizzato su un canale radio."
 
 msgid "Show bouquet on launch"
 msgstr "Mostra bouquet all'avvio"
@@ -16309,88 +16327,88 @@ msgid "Show build information"
 msgstr "Mostra informazioni build"
 
 msgid "Show channel number in InfoBar"
-msgstr "Mostra numero canale nella infobar"
+msgstr "Mostra numero canale nella InfoBar"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Mostra numero canale nella Selezione canali"
 
 msgid "Show channel selection"
-msgstr "Mostra la selezione del canale"
+msgstr "Mostra selezione canale"
 
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
-msgstr "Mostra la posizione dei capitoli per tipi video supportati (versione GStreamer superiore a 1)"
+msgstr "Mostra posizione dei capitoli per tipi video supportati (versione GStreamer superiore a 1)"
 
 msgid "Show columns"
 msgstr "Mostra colonne"
 
 msgid "Show commit log information"
-msgstr "Mostra le informazioni del registro commit"
+msgstr "Mostra informazioni del registro commit"
 
 msgid "Show contents of ipk file"
-msgstr "Mostra i contenuti del file ipk"
+msgstr "Mostra contenuti dei file ipk"
 
 msgid "Show contents of rar file"
-msgstr "Mostra i contenuti del file rar"
+msgstr "Mostra contenuti dei file rar"
 
 msgid "Show contents of tar or compressed tar file"
-msgstr "Mostra i contenuti del tar o del file tar compresso"
+msgstr "Mostra contenuti dei tar o dei file tar compressi"
 
 msgid "Show contents of zip file"
-msgstr "Mostra i contenuti del file zip"
+msgstr "Mostra i contenuti dei file zip"
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Arresti anomali sullo schermo e scrivi nel registro per x volte"
+msgstr "Mostra arresti anomali sullo schermo e scrivili nel registro x volte"
 
 msgid "Show crypto icons"
-msgstr "Mostra le icone di codifica"
+msgstr "Mostra icone di codifica"
 
 msgid "Show crypto info in InfoBar"
-msgstr "Mostra le info di codifica nella infobar"
+msgstr "Mostra info di codifica nella InfoBar"
 
 msgid "Show debug log information"
-msgstr "Mostra le informazioni del registro di debug"
+msgstr "Mostra informazioni del registro di debug"
 
 msgid "Show default after description"
-msgstr "Mostra l'impostazione predefinita dopo la descrizione"
+msgstr "Mostra impostazione predefinita dopo la descrizione"
 
 msgid "Show default on new line"
-msgstr "Mostra l'impostazione predefinita su una nuova riga"
+msgstr "Mostra impostazione predefinita su una nuova riga"
 
 msgid "Show detailed event info"
 msgstr "Mostra informazioni dettagliate evento"
 
 msgid "Show detailed event info (setup in menu)"
-msgstr "Mostra le informazioni dettagliate del programma (setup nel menu)"
+msgstr "Mostra informazioni dettagliate sull'evento"
 
 msgid "Show development packages in opkg"
-msgstr "Mostra i pacchetti di sviluppo in opkg"
+msgstr "Mostra pacchetti di sviluppo in opkg"
 
 msgid "Show directories first"
 msgstr "Mostra prima le cartelle"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr "Mostra le directory al primo o all'ultimo posto nell'elenco (devi riavviare File Commander)"
+msgstr "Mostra cartelle al primo o all'ultimo posto nell'elenco (riavvia File Commander)"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
-msgstr "Mostra le informazioni sulla crittografia nella barra delle informazioni (se supportata dalla skin)."
+msgstr "Mostra informazioni sulla crittografia nella InfoBar (se supportata dalla skin)."
 
 msgid "Show event details"
 msgstr "Mostra dettagli evento"
 
 msgid "Show event genre information"
-msgstr "Mostra le informazioni sul genere dell'evento"
+msgstr "Mostra informazioni sul genere dell'evento"
 
 msgid "Show event-progress in channel selection"
-msgstr "Mostra progresso evento in Selezione canali"
+msgstr "Mostra avanzamento evento in Selezione canali"
 
 msgid "Show eventinfo plugins"
-msgstr "Mostra i plugin di eventinfo"
+msgstr "Mostra plugin di eventinfo"
 
 msgid "Show extended description"
 msgstr "Mostra descrizione estesa"
 
 msgid "Show extension selection"
-msgstr "Mostra la selezione dell'estensione"
+msgstr "Mostra selezione estensione"
 
 msgid "Show extensions..."
 msgstr "Mostra estensioni...."
@@ -16399,28 +16417,28 @@ msgid "Show extra spacing in Information"
 msgstr "Mostra spazio extra in Informazioni"
 
 msgid "Show favorites list"
-msgstr "Mostra l'elenco dei preferiti"
+msgstr "Mostra elenco preferiti"
 
 msgid "Show files backed up by default"
-msgstr "Mostra i file di backup predefiniti"
+msgstr "Mostra file sottoposti a backup (predefinito)"
 
 msgid "Show graphical multi EPG"
-msgstr "Mostra multi EPG grafico"
+msgstr "Mostra EPG multiplo grafico"
 
 msgid "Show help"
 msgstr "Mostra aiuto"
 
 msgid "Show icon for new/unseen items"
-msgstr "Mostra icona per i nuovi canali"
+msgstr "Mostra icona per elementi nuovi/non visti"
 
 msgid "Show image information"
-msgstr "Mostra le informazioni dell'immagine"
+msgstr "Mostra informazioni sull'immagine"
 
 msgid "Show in Standby"
 msgstr "Mostra in Standby"
 
 msgid "Show in extensions list"
-msgstr "Mostra nell'elenco delle estensioni"
+msgstr "Mostra nell'elenco estensioni"
 
 msgid "Show info"
 msgstr "Mostra informazioni"
@@ -16429,79 +16447,79 @@ msgid "Show info line"
 msgstr "Mostra linea informazioni"
 
 msgid "Show job tasks in extensions"
-msgstr "Mostra i task di lavoro nelle estensioni"
+msgstr "Mostra task nelle estensioni"
 
 msgid "Show live TV when movie stopped"
-msgstr "Mostra diretta TV su arresto riproduzione"
+msgstr "Mostra TV in diretta quando il film è finito"
 
 msgid "Show marked events"
-msgstr "Mostra programmi contrassegnati"
+msgstr "Mostra eventi contrassegnati"
 
 msgid "Show marked events in all rows."
-msgstr "Mostra gli eventi contrassegnati in tutte le righe."
+msgstr "Mostra eventi contrassegnati in tutte le righe."
 
 msgid "Show menu"
-msgstr "Mostra il menu"
+msgstr "Mostra menu"
 
 msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr "Mostra un messaggio se File Commander è inattivo e tutti i task sono stati completati."
+msgstr "Mostra messaggio se File Commander non è in esecuzione e tutti i task sono state completati."
 
 msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr "Mostra un messaggio se uno script in background è terminato correttamente. Lo 'stout' dello script viene mostrato come info aggiuntiva."
+msgstr "Mostra messaggio se uno script in background termina correttamente. Ha 'stout', quindi questo viene visualizzato come informazioni aggiuntive."
 
 msgid "Show message when recording starts"
-msgstr "Mostra notifica su avvio registrazione"
+msgstr "Mostra messaggio all'inizio della registrazione"
 
 msgid "Show movie lengths in movie list"
-msgstr "Mostra durata del film nella lista registrazioni"
+msgstr "Mostra durata dei film nell'elenco dei film"
 
 msgid "Show movies"
-msgstr "Mostra registrazioni"
+msgstr "Mostra film"
 
 msgid "Show multi channel EPG"
-msgstr "Mostra EPG multicanale"
+msgstr "Mostra EPG multi canale"
 
 msgid "Show network setup menu..."
-msgstr "Mostra il menu di configurazione della rete..."
+msgstr "Mostra menu di configurazione rete..."
 
 msgid "Show next commit log"
 msgstr "Mostra registro commit successivo"
 
 msgid "Show next debug log file"
-msgstr "Mostra il prossimo file di registro di debug"
+msgstr "Mostra prossimo file di registro di debug"
 
 msgid "Show next event"
-msgstr "Mostra il prossimo evento"
+msgstr "Mostra prossimo evento"
 
 msgid "Show next page"
-msgstr "Mostra la pagina successiva"
+msgstr "Mostra pagina successiva"
 
 msgid "Show next picture"
 msgstr "Mostra immagine successiva"
 
 msgid "Show next system information screen"
-msgstr "Mostra la schermata delle informazioni di sistema successiva"
+msgstr "Mostra schermata informazioni di sistema successiva"
 
 msgid "Show or hide the extended description, (skin dependent)."
-msgstr "Mostra o nascondi la descrizione estesa, (dipende dalla skin)."
+msgstr "Mostra o nascondi la descrizione estesa (dipende dalla skin)."
 
 msgid "Show parting lines"
-msgstr "Mostra linee di divisione"
+msgstr "Mostra linee di separazione"
 
 msgid "Show parting lines between events."
-msgstr "Mostra le linee di divisione fra i programmi."
+msgstr "Mostra linee di separazione tra gli eventi."
 
 msgid "Show persistent InfoBar while paused"
-msgstr "Mostra la infobar permanentemente durante la pausa"
+msgstr "Mostra InfoBar persistente durante la pausa"
 
 msgid "Show picon background color"
-msgstr "Mostra il colore di sfondo dell'icona"
+msgstr "Mostra colore di sfondo dell'icona"
 
 msgid "Show picture information"
 msgstr "Mostra informazioni immagine"
 
 msgid "Show positioner movement"
-msgstr "Mostra il movimento motore"
+msgstr "Mostra movimento posizionatore"
 
 msgid "Show preview of current mode (*)."
 msgstr "Mostra anteprima della modalità attuale (*)."
@@ -16510,55 +16528,55 @@ msgid "Show previous commit log"
 msgstr "Mostra registro commit precedente"
 
 msgid "Show previous debug log file"
-msgstr "Mostra il file di registro di debug precedente"
+msgstr "Mostra file di registro di debug precedente"
 
 msgid "Show previous event"
 msgstr "Mostra evento precedente"
 
 msgid "Show previous page"
-msgstr "Mostra la pagina precedente"
+msgstr "Mostra pagina precedente"
 
 msgid "Show previous picture"
 msgstr "Mostra immagine precedente"
 
 msgid "Show previous system information screen"
-msgstr "Mostra la schermata delle informazioni di sistema precedente"
+msgstr "Mostra schermata informazioni di sistema precedente"
 
 msgid "Show quickmenu..."
 msgstr "Mostra menu rapido..."
 
 msgid "Show record indicator"
-msgstr "Mostra indicatore di registrazione"
+msgstr "Mostra indicatore registrazione"
 
 msgid "Show recording symbol"
-msgstr "Mostra il simbolo di registrazione"
+msgstr "Mostra simbolo registrazione"
 
 msgid "Show satellites list"
 msgstr "Mostra elenco satelliti"
 
 msgid "Show screen menu path"
-msgstr "Mostra il percorso del menu dello schermo"
+msgstr "Mostra percorso del menu dello schermo"
 
 msgid "Show screensaver"
 msgstr "Mostra salvaschermo"
 
 msgid "Show selection for system information screen"
-msgstr "Mostra la selezione per la schermata delle informazioni di sistema"
+msgstr "Mostra selezione per la schermata delle informazioni di sistema"
 
 msgid "Show selection menu for commit logs"
 msgstr "Mostra menu di selezione per i registri di commit"
 
 msgid "Show selection menu for debug log files"
-msgstr "Mostra il menu di selezione per i file di registro di debug"
+msgstr "Mostra menu di selezione per i file di registro di debug"
 
 msgid "Show service list"
 msgstr "Mostra elenco servizi"
 
 msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
-msgstr "Mostra il nome del servizio e la descrizione dell'evento tra loro invece che fianco a fianco. Dopo una modifica, è necessario un adeguamento del numero di righe."
+msgstr "Mostra nome del servizio e la descrizione dell'evento tra loro invece che fianco a fianco. Dopo una modifica, è necessario un adeguamento del numero di righe."
 
 msgid "Show service type icons"
-msgstr "Mostra le icone del tipo di servizio"
+msgstr "Mostra icone tipo di servizio"
 
 msgid "Show servicelist or movies"
 msgstr "Mostra elenco servizi o film"
@@ -16567,58 +16585,58 @@ msgid "Show setup"
 msgstr "Mostra configurazione"
 
 msgid "Show setup default value"
-msgstr "Mostra il valore predefinito dell'impostazione"
+msgstr "Mostra valore predefinito impostazione"
 
 msgid "Show setup menu..."
-msgstr "Mostra menu di configurazione..."
+msgstr "Mostra menu configurazione..."
 
 msgid "Show shut down menu"
-msgstr "Mostra menu di spegnimento"
+msgstr "Mostra menu spegnimento"
 
 msgid "Show single EPG for current channel"
-msgstr "Mostra EPG singolo per l'evento in corso"
+msgstr "Mostra EPG singolo per il canale attuale"
 
 msgid "Show single EPG for current channel (setup in menu)"
-msgstr "Mostra EPG singolo per il canale attuale (menu impostazione)"
+msgstr "Mostra EPG singolo per il canale attuale (impostazione nel menu)"
 
 msgid "Show single service EPG"
-msgstr "Mostra EPG servizio singolo"
+msgstr "Mostra EPG di un singolo servizio"
 
 msgid "Show source packages"
-msgstr "Mostra sorgente dei pacchetti"
+msgstr "Mostra pacchetti sorgente"
 
 msgid "Show status messages on switch to live TV"
-msgstr "Avviso se si passa alla TV live"
+msgstr "Mostra messaggi quando si passa alla TV in diretta"
 
 msgid "Show subservice selection"
-msgstr "Mostra la selezione del sotto servizio"
+msgstr "Mostra selezione del sotto servizio"
 
 msgid "Show subtitle quick menu"
-msgstr "Mostra menu veloce sottotitoli "
+msgstr "Mostra menu rapido sottotitoli"
 
 msgid "Show subtitle selection"
 msgstr "Mostra selezione sottotitoli"
 
 msgid "Show system information"
-msgstr "Mostra le informazioni di sistema"
+msgstr "Mostra informazioni di sistema"
 
 msgid "Show task list"
-msgstr "Mostra la lista dei task"
+msgstr "Mostra elenco task"
 
 msgid "Show the CCcam Info Screen"
-msgstr "Mostra la schermata delle informazioni di CCcam"
+msgstr "Mostra schermata delle informazioni di CCcam"
 
 msgid "Show the DreamPlex player..."
-msgstr "Mostra il lettore DreamPlex..."
+msgstr "Mostra lettore DreamPlex..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
-msgstr "Mostra EIT ora/successivo nella barra delle informazioni."
+msgstr "Mostra dati EIT adesso/prossimo nella InfoBar."
 
 msgid "Show the Logs Settings screen"
-msgstr "Mostra la schermata Impostazioni registri"
+msgstr "Mostra schermata Impostazioni registri"
 
 msgid "Show the OScamInfo Screen"
-msgstr "Mostra la schermata OScamInfo"
+msgstr "Mostra schermata OScamInfo"
 
 msgid "Show the PowerTimer"
 msgstr "Mostra timer di avvio "
@@ -16627,40 +16645,40 @@ msgid "Show the SleepTimer"
 msgstr "Mostra timer di spegnimento"
 
 msgid "Show the information on current event."
-msgstr "Mostra le informazioni sull'evento in corso."
+msgstr "Mostra informazioni sull'evento in corso."
 
 msgid "Show the list of AutoTimers."
 msgstr "Mostra elenco Timer automatici."
 
 msgid "Show the list of timers."
-msgstr "Mostra la lista dei Timer."
+msgstr "Mostra elenco dei timer."
 
 msgid "Show the media center"
-msgstr "Mostra il media center"
+msgstr "Mostra media center"
 
 msgid "Show the media player"
-msgstr "Mostra il lettore multimediale"
+msgstr "Mostra lettore multimediale"
 
 msgid "Show the media player..."
-msgstr "Mostra Mediaplayer..."
+msgstr "Mostra lettore multimediale..."
 
 msgid "Show the plugin browser.."
 msgstr "Mostra navigatore plugin..."
 
 msgid "Show the plugins"
-msgstr "Mostra i plugin"
+msgstr "Mostra plugin"
 
 msgid "Show the radio player"
-msgstr "Mostra il lettore radio"
+msgstr "Mostra lettore radio"
 
 msgid "Show the tv player"
-msgstr "Mostra il lettore TV"
+msgstr "Mostra lettore TV"
 
 msgid "Show time elapsed as positive"
 msgstr "Mostra tempo trascorso come positivo"
 
 msgid "Show time in 24 hour clock format."
-msgstr "Mostra gli orari nel formato 24 ore."
+msgstr "Mostra orari nel formato 24 ore."
 
 msgid "Show time remaining/elapsed"
 msgstr "Mostra tempo rimanente/trascorso"
@@ -16669,10 +16687,10 @@ msgid "Show translation information"
 msgstr "Mostra informazioni sulla traduzione"
 
 msgid "Show translation packages"
-msgstr "Mostra i pacchetti di traduzione"
+msgstr "Mostra pacchetti di traduzione"
 
 msgid "Show transponder remaining/elapsed as"
-msgstr "Mostra transponder rimanente / trascorso come"
+msgstr "Mostra transponder rimanente/trascorso come"
 
 msgid "Show two lines per entry"
 msgstr "Mostra due righe per voce"
@@ -16681,13 +16699,13 @@ msgid "Show underscore characters"
 msgstr "Mostra caratteri di sottolineatura"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
-msgstr "Mostra una risoluzione video sconosciuta come la prima disponibile maggiore o come la massima."
+msgstr "Mostra risoluzione video sconosciuta come risoluzione dello schermo successiva o più alta."
 
 msgid "Show unknown extension as text"
-msgstr "Mostra le estensioni sconosciute come testo"
+msgstr "Mostra estensioni sconosciute come testo"
 
 msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Mostra i file con estensioni sconosciute con 'Addon File-Viewer'."
+msgstr "Mostra file con estensioni sconosciute con 'Addon File-Viewer'."
 
 msgid "Show unknown video format as"
 msgstr "Mostra formato video sconosciuto come"
@@ -16696,22 +16714,22 @@ msgid "Show usage and GUI menu..."
 msgstr "Mostra utilizzo e menu GUI..."
 
 msgid "Show vertical Program Guide"
-msgstr "Mostra la guida programmi verticale"
+msgstr "Mostra guida programmi verticale"
 
 msgid "Show warning before restart"
 msgstr "Mostra avviso prima del riavvio"
 
 msgid "Show warning when time shift is stopped"
-msgstr "Avviso su arresto timeshift"
+msgstr "Mostra avviso quando il timeshift viene interrotto"
 
 msgid "Show watch status"
-msgstr "Mostra le icone di stato nella lista registrazioni"
+msgstr "Mostra stato dell'orologio"
 
 msgid "Show/Games show"
 msgstr "Mostra Spettacoli/Giochi"
 
 msgid "Show/Hide focus bar"
-msgstr "Mostra/nascondi la barra di selezione"
+msgstr "Mostra/Nascondi barra di messa a fuoco"
 
 msgid "Showiframe"
 msgstr "Mostra iframe"
@@ -16720,25 +16738,25 @@ msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Mostra navigatore Plugin. Qui puoi impostare i tuoi Plugin"
 
 msgid "Shows available plugins. Here you can download and install them"
-msgstr "Mostra i plugin disponibili. Qui è possibile scaricarli e installarli"
+msgstr "Mostra plugin disponibili. Qui è possibile scaricarli e installarli"
 
 msgid "Shows available softcams. Here you can download and install them"
-msgstr "Mostra le softcam disponibili. Qui puoi scaricarle e installarle"
+msgstr "Mostra softcam disponibili. Qui puoi scaricarle e installarle"
 
 msgid "Shows live tv or informations on LCD."
-msgstr "Mostra la TV in diretta o informazioni sul display LCD."
+msgstr "Mostra TV in diretta o informazioni su LCD."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
-msgstr "Mostra le icone quando nuovo/non visto, altrimenti non mostrare nulla."
+msgstr "Mostra icone quando nuovo/non visto, altrimenti non mostrare nulla."
 
 msgid "Shows the state of your wireless LAN connection."
-msgstr "Mostra lo stato della connessione di rete wireless."
+msgstr "Mostra stato della connessione di rete wireless."
 
 msgid "Shows the watched status of the media."
-msgstr "Mostra lo stato di visione delle registrazioni."
+msgstr "Mostra stato di visione dei supporti."
 
 msgid "Shuffle play list"
-msgstr "Lista riproduzione casuale"
+msgstr "Playlist casuale"
 
 msgid "Shut down"
 msgstr "Spegnimento"
@@ -16750,7 +16768,7 @@ msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
 
 msgid "Side by Side"
-msgstr "Affiancati"
+msgstr "Fianco a fianco"
 
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
@@ -16765,7 +16783,7 @@ msgid "Signal quality"
 msgstr "Qualità segnale:"
 
 msgid "Signal strength"
-msgstr "Potenza del segnale"
+msgstr "Potenza segnale"
 
 msgid "Signal strength:"
 msgstr "Potenza segnale:"
@@ -17450,7 +17468,7 @@ msgid "Stop recording"
 msgstr "Ferma la registrazione"
 
 msgid "Stop recording and delete"
-msgstr "Ferma la registrazione e cancella"
+msgstr "Interrompi la registrazione ed elimina"
 
 msgid "Stop recording now"
 msgstr "Ferma la registrazione adesso"
@@ -18895,7 +18913,7 @@ msgid "Time required for this process: %s"
 msgstr "Tempo necessario per questo processo: %s"
 
 msgid "Time shift buffer delete after zap"
-msgstr "Eliminazione del buffer del timeshift dopo cambio canale"
+msgstr "Eliminazione del buffer timeshift dopo cambio canale"
 
 msgid "Time shift buffer limit"
 msgstr "Limite di buffer per il timeshift (in ore)"
@@ -19059,6 +19077,9 @@ msgstr "Commuta HDMI-IN / Schermo intero"
 msgid "Toggle LCD LiveTV"
 msgstr "Commuta LCD LiveTV"
 
+msgid "Toggle Log and Status"
+msgstr "Attiva/disattiva registro e stato"
+
 msgid "Toggle PiPzap"
 msgstr "Commuta PipZap"
 
@@ -19194,7 +19215,7 @@ msgid "Transmission mode"
 msgstr "Modalità trasmissione"
 
 msgid "Transparent"
-msgstr "Costi"
+msgstr "Trasparente"
 
 msgid "Transponder"
 msgstr "Transponder"
@@ -19508,11 +19529,11 @@ msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
 msgid "Uninstall"
-msgstr "Rimuovere"
+msgstr "Disinstalla"
 
 #, python-format
 msgid "Uninstall '%s' package and disable '%s'"
-msgstr "Rimuovere il pacchetto '%s' e disabilita '%s'"
+msgstr "Disinstalla il pacchetto '%s' e disabilita '%s'"
 
 msgid "United Arab Emirates"
 msgstr "Emirati Arabi Uniti"
@@ -20341,7 +20362,7 @@ msgid "View video CD..."
 msgstr "Riprodurre CD video..."
 
 msgid "View, install and remove available or installed packages."
-msgstr "Elencare, installare e rimuovere i pacchetti disponibili o installati."
+msgstr "Visualizza, installa e rimuovi i pacchetti disponibili o installati."
 
 msgid "Violence"
 msgstr "Violenza"
@@ -20471,7 +20492,7 @@ msgid "Wake up TV from standby"
 msgstr "Riattivare la TV dallo Standby"
 
 msgid "Wake up from Deep-Standby is allowed"
-msgstr "Abilitare il riavvio da spegnimento"
+msgstr "Abilita risveglio se spento"
 
 msgid "Wake up time before a timer begins [mins]"
 msgstr "Risveglio prima dell'inizio di un timer [min]"
@@ -20714,7 +20735,7 @@ msgid "When enabled, continue to the next bouquet when the last channel of the c
 msgstr "Se abilitato, passa al bouquet successivo quando viene raggiunto l'ultimo canale del bouquet attuale mentre si cambia canale."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Se abilitata, le registrazioni eliminate vengono spostate nel cestino, invece di essere cancellate immediatamente."
+msgstr "Se abilitata, le registrazioni eliminate vengono spostate nel cestino, invece di essere eliminate immediatamente."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Se abilitata, i sottotitoli esterni sono sempre accesi per la riproduzione di film."
@@ -20741,7 +20762,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "Se attivata abilita la scomparsa degli indicatori numerici."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Se abilitata, premendo '0 ',vai al primo canale del primo bouquet e cancelli la memoria degli ultimi canali visionati."
+msgstr "Se abilitata, premendo '0 ',vai al primo canale del primo bouquet e elimini la memoria degli ultimi canali visionati."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Se abilitata, riadatta la larghezza dei sottotitoli con quella dello schermo."
@@ -20994,7 +21015,7 @@ msgid "Yes, always"
 msgstr "Sì, sempre"
 
 msgid "Yes, and delete this movie"
-msgstr "Sì, e rimuovere questa registrazione"
+msgstr "Sì, ed elimina questo film"
 
 msgid "Yes, backup my settings!"
 msgstr "Sì, eseguire backup configurazione!"
@@ -21015,7 +21036,7 @@ msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Sì, ma salva il timeshift come registrazione e arrestala"
 
 msgid "Yes, delete this movie and return to movie list"
-msgstr "Si, cancella questa registrazione e ritorna all’elenco"
+msgstr "Sì, elimina questo film e torna all'elenco dei film"
 
 msgid "Yes, do a manual scan now"
 msgstr "Sì, fare una ricerca manuale ora"
@@ -21063,8 +21084,8 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Hai già installato una lista canali,\n"
-"vuoi rimuovere\n"
+"Hai già installato un elenco di canali,\n"
+"vorresti rimuovere\n"
 "\"%s\"?"
 
 msgid "You can Display MiniTV with or without OSD Menu"
@@ -21110,7 +21131,7 @@ msgid "You can't usefully run '%s' on a directory."
 msgstr "Non puoi eseguire '%s' per una cartella."
 
 msgid "You cannot delete this!"
-msgstr "Impossibile rimuovere!"
+msgstr "Non puoi eliminarlo!"
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "Hai già inviato questo registro, sei sicuro di voler inviare nuovamente questo registro:\n"
@@ -21811,13 +21832,13 @@ msgid "default Astra (13e-19e)"
 msgstr "Astra predefinito (13e-19e)"
 
 msgid "delete"
-msgstr "cancella"
+msgstr "elimina"
 
 msgid "delete cut"
-msgstr "rimuovere taglio"
+msgstr "elimina taglio"
 
 msgid "deleted"
-msgstr "cancellato"
+msgstr "eliminato"
 
 msgid "detective/thriller"
 msgstr "detective/thriller"
@@ -21890,10 +21911,10 @@ msgid "enable PiP no HDR"
 msgstr "abilita PIP no HDR"
 
 msgid "enable bouquet edit"
-msgstr "abilitare edit bouquet"
+msgstr "abilita modifica bouquet"
 
 msgid "enable favorite edit"
-msgstr "abilitare edit preferiti"
+msgstr "abilita modifica preferiti"
 
 msgid "enable move mode"
 msgstr "abilita modalità spostamento"
@@ -22437,7 +22458,7 @@ msgid "provider:"
 msgstr "provider:"
 
 msgid "purge deleted user bouquets"
-msgstr "elimina i bouquet utente eliminati"
+msgstr "rimuove i bouquet utente eliminati"
 
 msgid "python"
 msgstr "python"
@@ -22458,40 +22479,40 @@ msgid "remarkable people"
 msgstr "persone straordinarie"
 
 msgid "remove after this position"
-msgstr "rimuovere dopo questa posizione"
+msgstr "rimuovi dopo questa posizione"
 
 msgid "remove all alternatives"
-msgstr "rimuovere tutte le alternative"
+msgstr "rimuovi tutte le alternative"
 
 msgid "remove all new found flags"
-msgstr "rimuovere tutti i nuovi contrassegni trovati"
+msgstr "rimuovi tutti i nuovi flag trovati"
 
 msgid "remove before this position"
-msgstr "Rimuovere prima di questa posizione"
+msgstr "rimuovi prima di questa posizione"
 
 msgid "remove bouquet from parental protection"
 msgstr "togli un bouquet dal controllo genitori"
 
 msgid "remove cable services"
-msgstr "rimuovere i servizi via cavo"
+msgstr "rimuovi servizi via cavo"
 
 msgid "remove entry"
 msgstr "rimuovi voce"
 
 msgid "remove from parental protection"
-msgstr "rimuovere dal controllo genitori"
+msgstr "rimuovi dal controllo genitori"
 
 msgid "remove new found flag"
-msgstr "rimuovere nuovo contrassegno trovato"
+msgstr "rimuovi nuovo flag trovato"
 
 msgid "remove selected satellite"
-msgstr "rimuovere il satellite selezionato"
+msgstr "rimuovi satellite selezionato"
 
 msgid "remove terrestrial services"
-msgstr "rimuovere i servizi terrestri"
+msgstr "rimuovi servizi terrestri"
 
 msgid "remove this mark"
-msgstr "rimuovere contrassegno"
+msgstr "rimuovi contrassegno"
 
 msgid "rename"
 msgstr "rinomina"
@@ -22500,7 +22521,7 @@ msgid "rename entry"
 msgstr "rinomina voce"
 
 msgid "restore deleted user bouquets"
-msgstr "ripristina i bouquet cancellati"
+msgstr "ripristina i bouquet utente eliminati"
 
 msgid "restoring satellites.xml not possible!"
 msgstr "ripristino di satellites.xml non possibile!"
@@ -22927,6 +22948,9 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select the IceTV service that you wish to use."
+#~ msgstr "Seleziona il servizio IceTV che desideri utilizzare."
 
 #~ msgid "Long key press"
 #~ msgstr "Press. prolungata tasto"

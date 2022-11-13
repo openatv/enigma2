@@ -1,20 +1,21 @@
 # openATV <openatv@gmail.com>, 2021.
 # igorrrrr <igorzhugan66@gmail.com>, 2021, 2022.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
+# Вячеслав Диконов <sdiconov@mail.ru>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-18 20:56+0000\n"
-"PO-Revision-Date: 2022-10-28 23:04+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"PO-Revision-Date: 2022-11-12 02:49+0000\n"
+"Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -2446,7 +2447,7 @@ msgid "All satellites 4 (USALS)"
 msgstr "Все спутники 4 (USALS)"
 
 msgid "All services provider"
-msgstr "Все провайдеры"
+msgstr "Все каналы провайдера"
 
 msgid "All supported"
 msgstr "Все поддерживаемые"
@@ -3497,6 +3498,9 @@ msgstr "Бизнес и финансы"
 
 msgid "Button Setup"
 msgstr "Кнопки"
+
+msgid "Button error timeout"
+msgstr "Тайм-аут ошибки кнопки"
 
 msgid "ButtonSetup"
 msgstr "Кнопки"
@@ -11965,6 +11969,12 @@ msgstr "Состояние индикатора работы в режиме о�
 msgid "Operating LED status while running"
 msgstr "Состояние светодиодного индикатора во время работы"
 
+msgid "Opkg Actions"
+msgstr "Действия opkg"
+
+msgid "Opkg Log Actions"
+msgstr "Действия с логом opkg"
+
 msgid "Option"
 msgstr "Выбор"
 
@@ -12597,8 +12607,14 @@ msgstr "Пожалуйста, выберите носитель для копи�
 msgid "Please select tag to filter..."
 msgstr "Выберите тег для фильтра..."
 
-msgid "Please select the IceTV service that you wish to use."
-msgstr "Выберите раскладку, которую Вы хотите использовать."
+msgid ""
+"Please select the IceTV service that you wish to use.\n"
+"\n"
+"IceTV is a subscription service that is only available in the listed countries."
+msgstr ""
+"Пожалуйста, выберите услугу IceTV, которую Вы хотите использовать.\n"
+"\n"
+"IceTV — это услуга подписки, доступная только в перечисленных странах."
 
 msgid "Please select the movie path..."
 msgstr "Пожалуйста, выберите путь к фильму ..."
@@ -15063,6 +15079,9 @@ msgstr "Выбор исключаемых файлов из резервных �
 
 msgid "Select files/folders to backup"
 msgstr "Файлы/папки для копирования"
+
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr "Выберите, как долго будет отображаться всплывающее окно с ошибкой кнопки. Ввод кнопок по-прежнему разрешён, пока отображается всплывающее окно."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Выберите, как долго в секундах отображается отображение громкости, прежде чем оно автоматически скроется."
@@ -17917,7 +17936,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 27.10.2022"
+msgstr "Коррекция перевода Monja 02.11.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19087,6 +19106,9 @@ msgstr "Переключение HDMI-In для основной картинк�
 
 msgid "Toggle LCD LiveTV"
 msgstr "Переключение дисплея на просматриваемый канал"
+
+msgid "Toggle Log and Status"
+msgstr "Переключить журнал и статус"
 
 msgid "Toggle PiPzap"
 msgstr "Переключение PiPzap"
@@ -22957,6 +22979,9 @@ msgstr "Ваш %s %s может стать непригодным теперь. 
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select the IceTV service that you wish to use."
+#~ msgstr "Выберите раскладку, которую Вы хотите использовать."
 
 #~ msgid "Long key press"
 #~ msgstr "Долгое нажатие"
