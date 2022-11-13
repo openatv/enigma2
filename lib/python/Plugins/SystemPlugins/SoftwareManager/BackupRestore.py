@@ -39,25 +39,25 @@ BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
 
 def InitConfig():
 	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
-	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/',
-		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local',
-		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/etc/vtuner.conf',
-		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf',
-		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
-		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/enigma2/nameserversdns.conf', '/etc/default_gw', '/etc/hostname', '/etc/hosts', '/etc/epgimport/', '/etc/exports',
-		'/etc/enigmalight.conf', '/etc/enigma2/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
-		'/usr/share/enigma2/MetrixHD/skinparts/',
-		'/usr/share/enigma2/display/skin_display_usr.xml',
-		'/usr/share/enigma2/display/userskin.png',
-		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
-		'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
-		'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
-		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
-		'/etc/rc3.d/S99tuner.sh',
-		'/usr/bin/enigma2_pre_start.sh',
+	BACKUPFILES = ["/etc/enigma2/", "/etc/CCcam.cfg", "/usr/keys/",
+		"/etc/davfs2/", "/etc/tuxbox/config/", "/etc/auto.network", "/etc/feeds.xml", "/etc/machine-id", "/etc/rc.local",
+		"/etc/openvpn/", "/etc/ipsec.conf", "/etc/ipsec.secrets", "/etc/ipsec.user", "/etc/strongswan.conf", "/etc/vtuner.conf",
+		"/etc/default/crond", "/etc/dropbear/", "/etc/default/dropbear", "/home/", "/etc/samba/", "/etc/fstab", "/etc/inadyn.conf",
+		"/etc/network/interfaces", "/etc/wpa_supplicant.conf", "/etc/wpa_supplicant.ath0.conf",
+		"/etc/wpa_supplicant.wlan0.conf", "/etc/wpa_supplicant.wlan1.conf", "/etc/resolv.conf", "/etc/enigma2/nameserversdns.conf", "/etc/default_gw", "/etc/hostname", "/etc/hosts", "/etc/epgimport/", "/etc/exports",
+		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config",
+		"/usr/share/enigma2/MetrixHD/skinparts/",
+		"/usr/share/enigma2/display/skin_display_usr.xml",
+		"/usr/share/enigma2/display/userskin.png",
+		"/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db", "/etc/ConfFS",
+		"/etc/rc3.d/S99tuner.sh",
+		"/usr/bin/enigma2_pre_start.sh",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
@@ -81,12 +81,12 @@ def InitConfig():
 	backupset = tmpfiles
 
 	config.plugins.configurationbackup = ConfigSubsection()
-	if MACHINEBUILD in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not exists("/media/hdd/backup_%s" % MACHINEBUILD):
-		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
-	else:
-		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
+	defaultlocation = "/media/hdd/"
+	if MACHINEBUILD in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6") and not exists("/media/hdd/backup_%s" % MACHINEBUILD):
+		defaultlocation = "/media/backup/"
+	config.plugins.configurationbackup.backuplocation = ConfigText(default=defaultlocation, visible_width=50, fixed_size=False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
-	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # "backupdirs_addon" is called "backupdirs" for backwards compatibility, holding the user"s old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
 
@@ -239,7 +239,7 @@ class BackupSelection(Screen):
 		self["summary_description"] = StaticText(_("default"))
 
 		self.selectedFiles = self.configBackupDirs.value
-		defaultDir = '/'
+		defaultDir = "/"
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
 		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
@@ -409,9 +409,7 @@ class RestoreMenu(Screen):
 		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret:
 			cmds.insert(0, "rm -R /etc/enigma2")
-			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
-		else:
-			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
+		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -487,10 +485,10 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def userRestoreScript(self, ret=None):
 		SH_List = []
-		SH_List.append('/media/hdd/images/config/myrestore.sh')
-		SH_List.append('/media/usb/images/config/myrestore.sh')
-		SH_List.append('/media/mmc/images/config/myrestore.sh')
-		SH_List.append('/media/cf/images/config/myrestore.sh')
+		SH_List.append("/media/hdd/images/config/myrestore.sh")
+		SH_List.append("/media/usb/images/config/myrestore.sh")
+		SH_List.append("/media/mmc/images/config/myrestore.sh")
+		SH_List.append("/media/cf/images/config/myrestore.sh")
 
 		startSH = None
 		for SH in SH_List:
@@ -609,14 +607,14 @@ class installedPlugins(Screen):
 			strData = strData.decode("UTF-8", "ignore")
 		if self.type == self.LIST:
 			strData = self.remainingdata + strData
-			lines = strData.split('\n')
+			lines = strData.split("\n")
 			if len(lines[-1]):
 				self.remainingdata = lines[-1]
 				lines = lines[0:-1]
 			else:
 				self.remainingdata = ""
 			for x in lines:
-				self.pluginsInstalled.append(x[:x.find(' - ')])
+				self.pluginsInstalled.append(x[:x.find(" - ")])
 
 	def runFinished(self, retval):
 		if self.type == self.UPDATE:
@@ -628,7 +626,7 @@ class installedPlugins(Screen):
 	def readPluginList(self):
 		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
-		with open('/tmp/installed-list.txt') as f:
+		with open("/tmp/installed-list.txt") as f:
 			for line in f:
 				if line.strip() not in installedpkgs:
 					self.PluginList.append(line.strip())
@@ -715,35 +713,31 @@ class RestorePlugins(Screen):
 
 		# Install previously installed feeds first, they might be required for the other packages to install ...
 		if len(self.pluginlistfirst) > 0:
-			self.session.open(Console, title=_("Installing feeds from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPKFeeds, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing feeds from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlistfirst) + " ; opkg update"], finishedCallback=self.installLocalIPKFeeds, closeOnSuccess=True)
 		else:
 			self.installLocalIPKFeeds()
 
 	def installLocalIPKFeeds(self):
 		if len(self.myipklistfirst) > 0:
-			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklistfirst) + " ; opkg update"], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
 		else:
 			self.installLocalIPK()
 
 	def installLocalIPK(self):
 		if len(self.myipklist) > 0:
-			self.session.open(Console, title=_("Installing plugins from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklist)], finishedCallback=self.installPlugins, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing plugins from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklist)], finishedCallback=self.installPlugins, closeOnSuccess=True)
 		else:
 			self.installPlugins()
 
 	def installPlugins(self):
 		if len(self.pluginlist) > 0:
-			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
 
 	def ok(self):
 		index = self["menu"].getIndex()
 		item = self["menu"].getCurrent()[0]
 		state = self["menu"].getCurrent()[2]
-		if state:
-			self.list[index] = SettingsEntry(item, False)
-		else:
-			self.list[index] = SettingsEntry(item, True)
-
+		self.list[index] = SettingsEntry(item, False if state else True)
 		self["menu"].setList(self.list)
 		self["menu"].setIndex(index)
 
@@ -754,10 +748,6 @@ class RestorePlugins(Screen):
 		else:
 			self["summary_description"].text = self["menu"].getCurrent()[0]
 		self.index = index
-
-	def drawList(self):
-		self["menu"].setList(self.list)
-		self["menu"].setIndex(self.index)
 
 	def exitNoPlugin(self, ret):
 		self.close()
