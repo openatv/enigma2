@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-18 20:56+0000\n"
-"PO-Revision-Date: 2022-10-28 23:04+0000\n"
+"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"PO-Revision-Date: 2022-11-02 23:54+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -3488,6 +3488,9 @@ msgstr "Liiketoiminta ja rahoitus"
 
 msgid "Button Setup"
 msgstr "Näppäinmääritykset"
+
+msgid "Button error timeout"
+msgstr "Virheen aikakatkaisu"
 
 msgid "ButtonSetup"
 msgstr "Näppäinmääritykset"
@@ -11966,6 +11969,12 @@ msgstr "LED tila valmistilassa"
 msgid "Operating LED status while running"
 msgstr "LED tila käytössä"
 
+msgid "Opkg Actions"
+msgstr "Opkg toiminnot"
+
+msgid "Opkg Log Actions"
+msgstr "Opkg lokitoiminnot"
+
 msgid "Option"
 msgstr "Vaihtoehto"
 
@@ -12598,8 +12607,14 @@ msgstr "Valitse tallennuspaikka varmuuskopiolle"
 msgid "Please select tag to filter..."
 msgstr "Valitse suodatettava avainsana."
 
-msgid "Please select the IceTV service that you wish to use."
-msgstr "Valitse IceTV palvelu, jota haluat käyttää."
+msgid ""
+"Please select the IceTV service that you wish to use.\n"
+"\n"
+"IceTV is a subscription service that is only available in the listed countries."
+msgstr ""
+"Valitse IceTV-palvelu, jota haluat käyttää.\n"
+"\n"
+"IceTV on tilauspalvelu, joka on käytettävissä vain luetelluissa maissa."
 
 msgid "Please select the movie path..."
 msgstr "Valitse tallennehakemisto..."
@@ -15072,6 +15087,9 @@ msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
 
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
+
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr "Valitse, kuinka kauan painikevirhe ponnahtaa näkyviin. Painikkeiden syöttö on edelleen sallittua, kun ponnahdusikkuna on näkyvissä."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Valitse, kuinka kauan (sekunteina) äänenvoimakkuuden näyttö näkyy ennen kuin se piilotetaan automaattisesti."
@@ -19105,6 +19123,9 @@ msgstr "Valitse HDMI-tulo kokoruudulle"
 msgid "Toggle LCD LiveTV"
 msgstr "Valitse tv kuva etupaneeliin"
 
+msgid "Toggle Log and Status"
+msgstr "Loki ja tila päälle/pois"
+
 msgid "Toggle PiPzap"
 msgstr "Valitse PiP-kaappaus"
 
@@ -22982,6 +23003,9 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select the IceTV service that you wish to use."
+#~ msgstr "Valitse IceTV palvelu, jota haluat käyttää."
 
 #~ msgid "Long key press"
 #~ msgstr "Pitkä painallus"

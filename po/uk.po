@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-18 20:56+0000\n"
-"PO-Revision-Date: 2022-10-09 11:07+0000\n"
-"Last-Translator: kvinto <badsystem@ukr.net>\n"
+"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"PO-Revision-Date: 2022-11-06 05:53+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3502,6 +3502,9 @@ msgstr "Бізнес і фінанси"
 msgid "Button Setup"
 msgstr "Налаштування кнопок"
 
+msgid "Button error timeout"
+msgstr "Час очікування помилки кнопки"
+
 msgid "ButtonSetup"
 msgstr "Налаштування кнопок"
 
@@ -5242,7 +5245,7 @@ msgid "Current crash log"
 msgstr "Поточний журнал збоїв"
 
 msgid "Current directory"
-msgstr ""
+msgstr "Поточний каталог"
 
 msgid "Current installed"
 msgstr "Встановлено поточний"
@@ -9844,7 +9847,7 @@ msgid "Large"
 msgstr "Великий"
 
 msgid "Last Request"
-msgstr "Останній запит."
+msgstr "Останній запит"
 
 msgid "Last config"
 msgstr "Остання конфігурація"
@@ -11287,7 +11290,7 @@ msgid "Next Log"
 msgstr "Наступний лог"
 
 msgid "Next Picture"
-msgstr ""
+msgstr "Наступне зображення"
 
 msgid "Next bouquet"
 msgstr "Наступний фаворит"
@@ -11429,7 +11432,7 @@ msgid "No packages were upgraded yet. So you can check your network and try agai
 msgstr "Жодного пакета не було оновлено. Перевірте налаштування мережі і спробуйте знову."
 
 msgid "No pictures available"
-msgstr ""
+msgstr "Немає зображень"
 
 msgid "No positioner capable frontend found."
 msgstr "Не знайдено позиціонера."
@@ -11677,7 +11680,7 @@ msgid "Nothing"
 msgstr "Нічого"
 
 msgid "Nothing connected"
-msgstr ""
+msgstr "Нічого не підключено"
 
 msgid ""
 "Nothing to scan!\n"
@@ -11968,6 +11971,12 @@ msgstr "Яскравість LED у режимі очікування"
 
 msgid "Operating LED status while running"
 msgstr "LED статус під час роботи"
+
+msgid "Opkg Actions"
+msgstr "Дії оpkg"
+
+msgid "Opkg Log Actions"
+msgstr "Дії логу оpkg"
 
 msgid "Option"
 msgstr "Вибір"
@@ -12343,10 +12352,10 @@ msgid "Picons"
 msgstr "пікони"
 
 msgid "Picture Information"
-msgstr ""
+msgstr "Інформація про зображення"
 
 msgid "Picture Information Actions"
-msgstr ""
+msgstr "Дії з інформацією про зображення"
 
 msgid "Picture in EPG"
 msgstr "Міні-ТВ в EПГ"
@@ -12601,8 +12610,14 @@ msgstr "Будь-ласка, виберіть носій для розташув
 msgid "Please select tag to filter..."
 msgstr "Будь-ласка, виберіть тег для фільтру..."
 
-msgid "Please select the IceTV service that you wish to use."
-msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."
+msgid ""
+"Please select the IceTV service that you wish to use.\n"
+"\n"
+"IceTV is a subscription service that is only available in the listed countries."
+msgstr ""
+"Виберіть послугу IceTV, якою Ви бажаєте скористатися.\n"
+"\n"
+"IceTV — це послуга передплати, яка доступна лише в перелічених країнах."
 
 msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
@@ -13106,7 +13121,7 @@ msgid "Previous Log"
 msgstr "Попередній Лог"
 
 msgid "Previous Picture"
-msgstr ""
+msgstr "Попереднє зображення"
 
 msgid "Previous bouquet"
 msgstr "Попередній фаворит"
@@ -14630,7 +14645,7 @@ msgstr "Сканування %s..."
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Сканування - %d%% завершено"
-msgstr[1] "Сканування - %d%%  -азавершено"
+msgstr[1] "Сканування - %d%%  -а завершено"
 msgstr[2] "Сканування - %d%%  -ів завершено"
 
 #, python-format
@@ -15067,6 +15082,9 @@ msgstr "Виберіть файли, які будуть виключені з �
 
 msgid "Select files/folders to backup"
 msgstr "Виберіть файли/теки для резерв. копії"
+
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr "Виберіть, як довго відображати спливаюче повідомлення про помилку кнопки. Введення кнопок все ще дозволено, поки відображається спливаюче вікно."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Виберіть час у секундах, протягом якого відображення гучності буде показано, перш ніж воно автоматично приховається."
@@ -16529,7 +16547,7 @@ msgid "Show picon background color"
 msgstr "Показати фоновий колір для піконів"
 
 msgid "Show picture information"
-msgstr ""
+msgstr "Показати інформацію про зображення"
 
 msgid "Show positioner movement"
 msgstr "Показувати рух позиціонера"
@@ -17921,7 +17939,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 08.10.2022"
+msgstr "Переклад: kvinto - 05.11.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19092,6 +19110,9 @@ msgstr "Перемикання HDMI-In повноекранний режим"
 msgid "Toggle LCD LiveTV"
 msgstr "Перемикання LCD LiveTV"
 
+msgid "Toggle Log and Status"
+msgstr "Перемкнути лог і статус"
+
 msgid "Toggle PiPzap"
 msgstr "Переключення PIPzap"
 
@@ -19430,7 +19451,7 @@ msgid "Twi"
 msgstr "Twi"
 
 msgid "Twin Hybrid"
-msgstr ""
+msgstr "Твін-гібрид"
 
 msgid "Twin Tuner"
 msgstr "Подвійний тюнер"
@@ -22961,6 +22982,9 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Please select the IceTV service that you wish to use."
+#~ msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."
 
 #~ msgid "Long key press"
 #~ msgstr "Довге натиснення"

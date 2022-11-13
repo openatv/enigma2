@@ -1706,7 +1706,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
 	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
 	config.epgselection.infobar_prevtime = ConfigClock(default=time())
-	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes")) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
