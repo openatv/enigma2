@@ -12,7 +12,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd , int nice, int ionice)
+int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd)
 {
 	int pfdin[2];  /* from child to parent */
 	int pfdout[2]; /* from parent to child */
@@ -44,31 +44,13 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 		if (cwd && chdir(cwd) < 0)
 			eDebug("[eConsoleAppContainer] failed to change directory to %s (%m)", cwd);
 
-
-		if( nice != -1) {
-			eDebug("[eConsoleAppContainer] use priority %d" , nice);
-			if (setpriority(PRIO_PROCESS, 0, nice) < 0 )
-				eDebug("[eConsoleAppContainer] failed to set priority to %d" , nice);
-		}
-
-		if(ionice != -1) {
-			if( ionice == 8) {
-				eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_IDLE");
-				setIoPrio(IOPRIO_CLASS_IDLE, 7);
-			}
-			else {
-				eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_BE / %d", ionice);
-				setIoPrio(IOPRIO_CLASS_BE, ionice);
-			}
-		}
-
 		execvp(cmd, (char * const *)argv);
-				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
+		/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
 		eDebug("[eConsoleAppContainer] Finished %s", cmd);
 		_exit(0);
 	}
 	if (close(pfdout[0]) == -1 || close(pfdin[1]) == -1 || close(pfderr[1]) == -1)
-			return(-1);
+		return(-1);
 
 	pfd[0] = pfdin[0];
 	pfd[1] = pfdout[1];
@@ -133,11 +115,29 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	killstate=0;
 
 	// get one read, one write and the err pipe to the prog..
-	pid = bidirpipe(fd, cmdline, argv, m_cwd.empty() ? 0 : m_cwd.c_str(), m_nice, m_ionice);
+	pid = bidirpipe(fd, cmdline, argv, m_cwd.empty() ? 0 : m_cwd.c_str());
 
 	if ( pid == -1 ) {
 		eDebug("[eConsoleAppContainer] failed to start %s", cmdline);
 		return -3;
+	}
+
+
+	if( m_nice != -1) {
+		eDebug("[eConsoleAppContainer] use priority %d" , m_nice);
+		if (setpriority(PRIO_PROCESS, pid, m_nice) < 0 )
+			eDebug("[eConsoleAppContainer] failed to set priority to %d" , m_nice);
+	}
+
+	if(m_ionice != -1) {
+		if( m_ionice == 8) {
+			eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_IDLE");
+			setIoPrio(IOPRIO_CLASS_IDLE, 7, pid);
+		}
+		else {
+			eDebug("[eConsoleAppContainer] use IOPRIO_CLASS_BE / %d", m_ionice);
+			setIoPrio(IOPRIO_CLASS_BE, m_ionice, pid);
+		}
 	}
 
 //	eDebug("[eConsoleAppContainer] pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
