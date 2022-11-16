@@ -351,7 +351,9 @@ int main(int argc, char **argv)
 		int i = 0;
 		std::string skinpath = "${datadir}/enigma2/" + active_skin;
 		std::string defpath = "${datadir}/enigma2/spinner";
+		std::string userpath = "${sysconfdir}/enigma2/spinner";
 		bool def = (skinpath.compare(defpath) == 0);
+		bool user = true;
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		while(i < MAX_SPINNER)
 		{
@@ -359,10 +361,20 @@ int main(int argc, char **argv)
 			std::string rfilename;
 			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
+
+			std::string ufilename;
+			snprintf(filename, sizeof(filename), "%s/wait%d.png", userpath.c_str(), i + 1);
+			ufilename = eEnv::resolve(filename);
+
 			wait[i] = 0;
 			struct stat st;
-			if (::stat(rfilename.c_str(), &st) == 0)
-				loadPNG(wait[i], rfilename.c_str());
+			if (user && ::stat(ufilename.c_str(), &st) == 0)
+				loadPNG(wait[i], ufilename.c_str());
+			else {
+				user = false;
+				if (::stat(rfilename.c_str(), &st) == 0)
+					loadPNG(wait[i], rfilename.c_str());
+			}
 
 			if (!wait[i]) 
 			{
