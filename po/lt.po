@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-06-30 16:10+0000\n"
+"PO-Revision-Date: 2022-11-15 22:47+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -980,7 +980,7 @@ msgstr[2] "%d sekundžių"
 
 #, python-format
 msgid "%d Seconds"
-msgstr ""
+msgstr "%d sekundės"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2275,7 +2275,7 @@ msgid "Add new CCcam line"
 msgstr ""
 
 msgid "Add new NewCamd line"
-msgstr ""
+msgstr "Pridėti naują NewCamd eilutę"
 
 msgid "Add new tag"
 msgstr "Pridėti naują žymę"
@@ -2398,7 +2398,7 @@ msgid "After recording"
 msgstr "Po įrašymo"
 
 msgid "After zap"
-msgstr ""
+msgstr "Po perjungimo"
 
 msgid "Akan"
 msgstr "Akanas"
@@ -2820,7 +2820,7 @@ msgstr "Dabartinės programos pabaigoje"
 
 #, python-format
 msgid "At end: %s"
-msgstr ""
+msgstr "Pabaigoje: %s"
 
 msgid "Athletics"
 msgstr "Atletika"
@@ -2941,7 +2941,7 @@ msgid "Auto install log"
 msgstr "Automatinio diegimo žurnalas"
 
 msgid "Auto shut down"
-msgstr ""
+msgstr "Automatinis išjungimas"
 
 msgid "Auto standby"
 msgstr "Automatinis budėjimo režimas"
@@ -2953,7 +2953,7 @@ msgid "AutoMountManager"
 msgstr "Automatinių pajungimų valdymas"
 
 msgid "AutoTimer"
-msgstr ""
+msgstr "Auto laikmatis"
 
 msgid "AutoUpdate"
 msgstr "Automatinis atnaujinimas"
@@ -3283,11 +3283,11 @@ msgid "Belize"
 msgstr "Belizas"
 
 msgid "Benchmark Information"
-msgstr ""
+msgstr "Lyginamoji informacija"
 
 #, python-format
 msgid "Benchmark information for %s %s"
-msgstr ""
+msgstr "Lyginamoji informacija dėl %s %s"
 
 msgid "Bengali"
 msgstr "Bengalų"
@@ -3435,10 +3435,10 @@ msgid "British Indian Ocean Territory"
 msgstr "Indijos Vandenyno Britų Sritis"
 
 msgid "Broadcast address"
-msgstr ""
+msgstr "Transliacijos adresas"
 
 msgid "Broadcast systems"
-msgstr ""
+msgstr "Transliavimo sistemos"
 
 msgid "Broadcom"
 msgstr "Broadcom"
@@ -3470,7 +3470,7 @@ msgstr "Kurti informaciją"
 
 #, python-format
 msgid "Build information for %s %s"
-msgstr ""
+msgstr "Sukurta %s %s"
 
 #, python-format
 msgid "Build: %s"
@@ -3513,7 +3513,7 @@ msgid "Button Setup"
 msgstr "Mygtukų nustatymas"
 
 msgid "Button error timeout"
-msgstr ""
+msgstr "Mygtuko klaidos skirtasis laikas"
 
 msgid "ButtonSetup"
 msgstr "Mygtukų sąranka"
@@ -3546,10 +3546,10 @@ msgid "CCCam Information"
 msgstr "CCCam informacija"
 
 msgid "CCcam"
-msgstr ""
+msgstr "CCcam"
 
 msgid "CCcam - Lines"
-msgstr ""
+msgstr "CCcam - eilutės"
 
 msgid "CCcam Client Info"
 msgstr "CCcam kliento informacija"
@@ -3579,16 +3579,16 @@ msgid "CCcam Info Config"
 msgstr "CCcam informacijos konfigūravimas"
 
 msgid "CCcam Information"
-msgstr ""
+msgstr "CCcam informacija"
 
 msgid "CCcam Line Edit Actions"
-msgstr ""
+msgstr "CCcam eilutės redagavimo veiksmai"
 
 msgid "CCcam Line Editor"
-msgstr ""
+msgstr "CCcam eilutės redaktorius"
 
 msgid "CCcam Profile Settings"
-msgstr ""
+msgstr "CCcam profilio nustatymai"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam teikėjo informacija"
@@ -3606,7 +3606,7 @@ msgid "CCcam Shares Info"
 msgstr "CCcam bendrinimų informacija"
 
 msgid "CCcam.cfg Basic Line Editor"
-msgstr ""
+msgstr "CCcam.cfg pagrindinės eilutės redaktorius"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo pagrindinis meniu"
@@ -3675,13 +3675,13 @@ msgstr "Procesorius"
 
 #, python-format
 msgid "CPU / Core %d type"
-msgstr ""
+msgstr "CPU / Branduolio %d tipas"
 
 msgid "CPU architecture"
 msgstr "Architektūra"
 
 msgid "CPU benchmark"
-msgstr ""
+msgstr "CPU etalonas"
 
 msgid "CPU brand"
 msgstr "Gamintojas"
@@ -3690,7 +3690,7 @@ msgid "CPU priority for script execution"
 msgstr "CPU prioritetas scenarijų vykdymui"
 
 msgid "CPU rating"
-msgstr ""
+msgstr "CPU įvertinimas"
 
 msgid "CPU speed/cores"
 msgstr "Greitis/branduoliai"
@@ -3726,10 +3726,10 @@ msgid "Calculate file checksums"
 msgstr "Apskaičiuoti failo kontrolines sumas"
 
 msgid "Calculating benchmark..."
-msgstr ""
+msgstr "Skaičiuojamas etalonas..."
 
 msgid "Calculating rating..."
-msgstr ""
+msgstr "Skaičiuojamas reitingas..."
 
 msgid "Calculation complete"
 msgstr "Apskaičiavimas baigtas"
