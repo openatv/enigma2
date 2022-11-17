@@ -1474,7 +1474,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self["okactions"].setEnabled(False)
 		if "epgcursoractions" in self:
 			self["epgcursoractions"].setEnabled(False)
-		self["coloractions"].setEnabled(False)
+		if "coloractions" in self:
+			self["coloractions"].setEnabled(False)
+		if "colouractions" in self:
+			self["colouractions"].setEnabled(False)
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
@@ -1491,7 +1494,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self["okactions"].setEnabled(True)
 		if "epgcursoractions" in self:
 			self["epgcursoractions"].setEnabled(True)
-		self["coloractions"].setEnabled(True)
+		if "coloractions" in self:
+			self["coloractions"].setEnabled(True)
+		if "colouractions" in self:
+			self["colouractions"].setEnabled(True)
 		self["recordingactions"].setEnabled(True)
 		self["epgactions"].setEnabled(True)
 		if "input_actions" in self:
