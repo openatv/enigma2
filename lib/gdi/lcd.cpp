@@ -349,7 +349,17 @@ void eDBoxLCD::dumpLCD2PNG(void)
  					}
  					break;
  				case 32:
- 					eDebug("[eDboxLCD]  32 bit not supportet yet");
+					{
+						srcptr += _stride/4;
+						dstptr += pixmap32->surface->stride/4;
+						for (int y = lcd_hight; y != 0; --y)
+						{
+							memcpy(dstptr, srcptr, lcd_width*bpp);
+							srcptr += _stride;
+							dstptr += pixmap32->surface->stride;
+						}
+							savePNG("/tmp/lcd.png", pixmap32);
+					}
  					break;
  				default:
  					eDebug("[eDboxLCD] %d bit not supportet yet",bpp);
