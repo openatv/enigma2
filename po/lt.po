@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-15 22:47+0000\n"
+"PO-Revision-Date: 2022-11-20 19:50+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -861,17 +861,17 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d + %d + %d minutė"
+msgstr[1] "%d + %d + %d minutės"
+msgstr[2] "%d + %d + %d minučių"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr ""
+msgstr "%d DMIPS vienam branduoliui"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d DMIPS su %d branduoliais"
 
 #, python-format
 msgid "%d Day"
@@ -883,16 +883,16 @@ msgstr[2] "%d Dienų"
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d skaitmuo"
+msgstr[1] "%d skaitmenys"
+msgstr[2] "%d skaitmenų"
 
 #, python-format
 msgid "%d Event"
 msgid_plural "%d Events"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d įvykis"
+msgstr[1] "%d įvykiai"
+msgstr[2] "%d įvykių"
 
 #, python-format
 msgid "%d GB"
@@ -907,7 +907,7 @@ msgstr[2] "%d val."
 
 #, python-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d Valandos"
 
 #, python-format
 msgid "%d KB"
@@ -919,7 +919,7 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MB/s"
-msgstr ""
+msgstr "%d MB/s"
 
 #, python-format
 msgid "%d MHz"
@@ -958,7 +958,7 @@ msgstr[2] "%d Minučių"
 
 #, python-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d minutės"
 
 #, fuzzy, python-format
 msgid "%d Pixel wide"
@@ -969,7 +969,7 @@ msgstr[2] "%d pikselių pločio"
 
 #, python-format
 msgid "%d Pixels"
-msgstr ""
+msgstr "%d pikseliai"
 
 #, python-format
 msgid "%d Second"
@@ -1123,7 +1123,7 @@ msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1267,7 +1267,7 @@ msgstr "%s Sąranka"
 
 #, python-format
 msgid "%s View"
-msgstr ""
+msgstr "%s peržiūra"
 
 #, python-format
 msgid "%s additional screens"
@@ -1292,7 +1292,7 @@ msgstr "%s yra apsaugota slaptažodžiu."
 
 #, python-format
 msgid "%s long"
-msgstr ""
+msgstr "%s ilgas"
 
 #, python-format
 msgid "%s not available."
@@ -1425,7 +1425,7 @@ msgid "+24"
 msgstr "+24"
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24 valandos"
 
 msgctxt "Text list separator"
 msgid ", "
@@ -1438,7 +1438,7 @@ msgid "-24"
 msgstr "-24"
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "-24 valandos"
 
 msgid "-24h/+24 Hours"
 msgstr "-24v/+ 24 valandos"
@@ -2245,7 +2245,7 @@ msgid "Add a new tag"
 msgstr "Įtraukti naują žymę"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "Pridėti naują laikmatį"
 
 msgid "Add a new title"
 msgstr "Pridėkite naują pavadinimą"
@@ -2272,7 +2272,7 @@ msgid "Add files to play list"
 msgstr "Pridėti failus į grojaraštį"
 
 msgid "Add new CCcam line"
-msgstr ""
+msgstr "Pridėkite naują CCcam eilutę"
 
 msgid "Add new NewCamd line"
 msgstr "Pridėti naują NewCamd eilutę"
@@ -3881,7 +3881,7 @@ msgid "Cancel any text changes and exit"
 msgstr "Atšaukti bet kokius tekstinius pakeitimus ir užverti"
 
 msgid "Cancel conflict resolution"
-msgstr ""
+msgstr "Konfliktų sprendimo atšaukimas"
 
 msgid "Cancel execution?"
 msgstr "Atšaukti vykdymą?"
@@ -4062,7 +4062,7 @@ msgid "Channel +/- button mode"
 msgstr "Kanalo +/-mygtukų režimas"
 
 msgid "Channel / Service"
-msgstr ""
+msgstr "Kanalas / paslauga"
 
 msgid "Channel 1"
 msgstr "1 kanalas"
@@ -4173,10 +4173,10 @@ msgid "Check HDD"
 msgstr "Tikrinti HDD"
 
 msgid "Check for PDC"
-msgstr ""
+msgstr "Patikrinkite, ar nėra PDC"
 
 msgid "Check for PDC availability on each service"
-msgstr ""
+msgstr "Patikrinkite, ar kiekvienoje paslaugoje nėra PDC prieinamumo"
 
 msgid "Check power and input state from TV"
 msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
@@ -4261,7 +4261,7 @@ msgid "Choose dvb wait delay for ci response."
 msgstr "Pasirinkite DVB laukimo delsą CI atsakymui."
 
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
-msgstr ""
+msgstr "Pasirinkite, kiek EPG istorijos, jei tokia yra, norite laikyti EPG talpykloje. Šiuos istorinius duomenis galima naršyti bet kuriame EPG rodinyje. Tai gali būti naudinga, kai jums reikia informacijos apie neseniai pasibaigusį įvykį."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Pasirinkite, kaip dažnai prisijungti prie IceTV serverio, kad patikrintumėte atnaujinimus."
@@ -4366,13 +4366,13 @@ msgid "Clean network 'Trash'"
 msgstr "Išvalyti tinklo šiukšliadėžes"
 
 msgid "Clean up (delete) all completed timers?"
-msgstr ""
+msgstr "Išvalyti (ištrinti) visus užbaigtus laikmačius?"
 
 msgid "Clean up and remove all completed timers"
-msgstr ""
+msgstr "Išvalykite ir pašalinkite visus užbaigtus laikmačius"
 
 msgid "Clean up and remove all completed timers?"
-msgstr ""
+msgstr "Išvalyti ir pašalinti visus užbaigtus laikmačius?"
 
 msgid "Cleaning Trashes"
 msgstr "Valomos šiukšliadėžės"
@@ -4396,7 +4396,7 @@ msgid "Clear play list"
 msgstr "Išvalyti grojaraštį"
 
 msgid "Clear the logs for this timer"
-msgstr ""
+msgstr "Išvalykite šio laikmačio žurnalus"
 
 msgid "Clear the virtual memory caches"
 msgstr "Virtualiosios atminties talpyklų išvalymas"
@@ -4454,7 +4454,7 @@ msgid "Close the screen and exit all menus"
 msgstr "Uždarykite ekraną ir išeikite iš visų meniu"
 
 msgid "Close the screen without saving any changes"
-msgstr ""
+msgstr "Uždarykite ekraną neišsaugodami jokių pakeitimų"
 
 msgid "Close the window"
 msgstr "Uždaryti langą"
@@ -4523,10 +4523,10 @@ msgid "Commit Information Actions"
 msgstr "Vykdyti informacijos veiksmus"
 
 msgid "Commit Log"
-msgstr ""
+msgstr "Įsipareigoti žurnalą"
 
 msgid "Commit Log Information"
-msgstr ""
+msgstr "Pateikti žurnalo informaciją"
 
 msgid "Commit Logs"
 msgstr "Naujinių žurnalai"
@@ -4956,7 +4956,7 @@ msgid "Configuring"
 msgstr "Konfigūruojama"
 
 msgid "ConflictTimer Actions"
-msgstr ""
+msgstr "Laikmačio nesuderinamumas"
 
 msgid "ConflictTimer Overview"
 msgstr "Laikmačio nesuderinamumas"
@@ -5150,7 +5150,7 @@ msgstr "Šalis EPG įvykio reitingo informacijai"
 
 #, python-format
 msgid "Crash %d/%d"
-msgstr ""
+msgstr "Gedimas %d/%d"
 
 msgid "Crash Logs"
 msgstr "Gedimų žurnalai"
@@ -5244,7 +5244,7 @@ msgid "Current"
 msgstr "Dabartinis"
 
 msgid "Current 1/1"
-msgstr ""
+msgstr "Dabartinis 1/1"
 
 msgid "Current Affairs"
 msgstr "Dabartiniai reikalai"
@@ -5262,14 +5262,14 @@ msgid "Current crash log"
 msgstr "Dabartinis gedimų žurnalas"
 
 msgid "Current directory"
-msgstr ""
+msgstr "Dabartinis katalogas"
 
 msgid "Current installed"
 msgstr "Dabar įdiegtas atvaizdas"
 
 #, python-format
 msgid "Current location is '%s'."
-msgstr ""
+msgstr "Dabartinė vieta yra '%s'."
 
 #, python-format
 msgid "Current mode: %s \n"
@@ -5394,7 +5394,7 @@ msgid "DUAL LAYER DVD"
 msgstr "DVISLUOKSNIS DVD"
 
 msgid "DVB API version"
-msgstr ""
+msgstr "DVB API versija"
 
 msgid "DVB CI Delay"
 msgstr "DVB CI delsa"
@@ -5467,7 +5467,7 @@ msgstr "Datos/laiko įvestis"
 
 #, python-format
 msgid "Date: %s   Author: %s"
-msgstr ""
+msgstr "Data: %s   Authorius: %s"
 
 msgid "Day D Mon"
 msgstr "Diena D Pir"
@@ -5518,7 +5518,7 @@ msgid "Day Mon-DD"
 msgstr "Diena DD-Pir"
 
 msgid "Day of week"
-msgstr ""
+msgstr "Savaitės diena"
 
 msgid "Dayname D Month Year"
 msgstr "Metai Mėnuo D SavDiena"
@@ -5615,16 +5615,16 @@ msgstr "Išjungti"
 
 #, python-format
 msgid "Debug %d/%d"
-msgstr ""
+msgstr "Derinti %d/%d"
 
 msgid "Debug Information"
-msgstr ""
+msgstr "Derinimo informacija"
 
 msgid "Debug Log Information"
-msgstr ""
+msgstr "Derinimo žurnalo informacija"
 
 msgid "Debug Log Information Actions"
-msgstr ""
+msgstr "Derinimo žurnalo informacijos veiksmai"
 
 msgid "Debug Logs"
 msgstr "Derinimo žurnalai"
@@ -5639,7 +5639,7 @@ msgid "Deep Standby"
 msgstr "Visiškai išjungti"
 
 msgid "Deep standby"
-msgstr ""
+msgstr "Gilus budėjimo režimas"
 
 msgid "Default"
 msgstr "Numatytasis"
@@ -5803,7 +5803,7 @@ msgstr "Delsimas:"
 
 #, python-format
 msgid "Delay: %s"
-msgstr ""
+msgstr "Vėlavimas: %s"
 
 msgid "Delete"
 msgstr "Trinti"
@@ -5838,7 +5838,7 @@ msgid "Delete all log files"
 msgstr "Naikinti visus žurnalo failus"
 
 msgid "Delete all logs"
-msgstr ""
+msgstr "Ištrinti visus žurnalus"
 
 msgid "Delete all tags"
 msgstr "Šalinti visas žymes"
@@ -5874,7 +5874,7 @@ msgid "Delete folder"
 msgstr "Trinti aplanką"
 
 msgid "Delete log"
-msgstr ""
+msgstr "Trinti žurnalą"
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Naikinti arba išvalyti paryškintą lizdą"
@@ -5901,7 +5901,7 @@ msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr "Ištrinkite šiuo metu paryškintą paslaugą iš garsumo išjungimo rinkinių sąrašo"
 
 msgid "Delete the currently selected timer"
-msgstr ""
+msgstr "Naikinti šiuo metu pasirinktą laikmatį"
 
 msgid "Delete the selected files or directories"
 msgstr "Ištrinkite pasirinktus failus ar katalogus"
@@ -6139,7 +6139,7 @@ msgid "Display and user interface"
 msgstr "Monitorius ir vartotojo sąsaja"
 
 msgid "Display log for the currently selected timer"
-msgstr ""
+msgstr "Šiuo metu pasirinkto laikmačio rodymo žurnalas"
 
 msgid "Display message before playing next movie"
 msgstr "Prieš sekantį filmą, parodyti žinutę"
@@ -6170,7 +6170,7 @@ msgstr "Išdalijimas"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
-msgstr ""
+msgstr "Informacijos apie %s %s platinimas \"%s\""
 
 msgid "Distribution architecture"
 msgstr "Paskirstymo architektūra"
@@ -6305,7 +6305,7 @@ msgstr "Ar tikrai norite pašalinti savo %s žymę?"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
-msgstr ""
+msgstr "Ar tikrai norite sustabdyti ir ištrinti laikmatį \"%s\"?"
 
 msgid "Do you want change rights?\n"
 msgstr "Ar norite pakeisti teises?\n"
@@ -6427,7 +6427,7 @@ msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital kanalų suliejimas"
 
 msgid "Domain"
-msgstr ""
+msgstr "Domenas"
 
 msgid "Dominica"
 msgstr "Dominika"
@@ -6481,7 +6481,7 @@ msgid "Down"
 msgstr "Žemyn"
 
 msgid "Down / Inactive"
-msgstr ""
+msgstr "Žemyn / Neaktyvus"
 
 msgid "Download Plugins"
 msgstr "Parsisiųsti priedus"
@@ -6490,7 +6490,7 @@ msgid "Download Softcams"
 msgstr "Parsisiųsti emuliatorius"
 
 msgid "Download and flash images on your %s %s."
-msgstr ""
+msgstr "Atsisiųskite ir įdiekite atvaizdus savo %s %s."
 
 msgid "Download and install Plugins"
 msgstr "Parsisiųsti ir įdiegti priedus"
@@ -6720,42 +6720,42 @@ msgid "Edit settings"
 msgstr "Redaguoti nustatymus"
 
 msgid "Edit the CCcam/NewCamd server hostname."
-msgstr ""
+msgstr "Redaguokite CCcam/NewCamd serverio pagrindinio kompiuterio pavadinimą."
 
 msgid "Edit the CCcam/NewCamd server port."
-msgstr ""
+msgstr "Redaguokite CCcam / NewCamd serverio prievadą."
 
 #, python-format
 msgid "Edit the DNS configuration of your %s %s."
 msgstr "Redaguokite %s %s DNS konfigūraciją."
 
 msgid "Edit the NewCamd DES Key."
-msgstr ""
+msgstr "Redaguokite NewCamd DES raktą."
 
 msgid "Edit the currently selected timer"
-msgstr ""
+msgstr "Redaguoti šiuo metu pasirinktą laikmatį"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s."
 msgstr "Redaguokite %s %s tinklo konfigūraciją."
 
 msgid "Edit the password."
-msgstr ""
+msgstr "Redaguokite slaptažodį."
 
 msgid "Edit the profile name."
-msgstr ""
+msgstr "Redaguokite profilio pavadinimą."
 
 msgid "Edit the remote CCCam port."
-msgstr ""
+msgstr "Redaguokite nuotolinį CCCam prievadą."
 
 msgid "Edit the remote IP address."
-msgstr ""
+msgstr "Redaguokite nuotolinį IP adresą."
 
 msgid "Edit the upgrade source address."
 msgstr "Redaguoti naujinimo šaltinio adresą."
 
 msgid "Edit the username."
-msgstr ""
+msgstr "Redaguokite vartotojo vardą."
 
 msgid "Education"
 msgstr "Išsilavinimas"
@@ -6964,10 +6964,10 @@ msgid "Enable this option to add action map / remote control mapping data to the
 msgstr "Įjunkite šią parinktį, jei norite pridėti veiksmų schemą / nuotolinio valdymo susiejimo duomenis į derinimo žurnalo failą."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr ""
+msgstr "Įjunkite šią parinktį, kad pridėtumėte papildomų DVB nuskaitymo duomenų prie derinimo žurnalo failo."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr ""
+msgstr "Įjunkite šią parinktį, kad pridėtumėte papildomų EPG duomenų prie derinimo žurnalo failo."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti klaviatūros klavišų plano duomenis."
@@ -6982,13 +6982,13 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Įjunkite šią parinktį, jei į derinimo žurnalo failą norite įtraukti ekrano pavadinimus ir skiriamosios gebos duomenis."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
-msgstr ""
+msgstr "Įjunkite šią parinktį, kad pridėtumėte laikmačio derinimo duomenis prie derinimo žurnalo failo."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Įjunkite šį nustatymą, jei jūsų antenos sistemai reikia galios"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
-msgstr ""
+msgstr "Įgalinkite, kad pridėtumėte papildomų tarpų prie informacijos ekranų. Tai gali pagerinti skaitomumą."
 
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Įgalinkite rodyti visas True/False, Yes/Ne, On/Off ir Enable/Disable sąrankos parinktis kaip grafinį jungiklį."
@@ -7068,10 +7068,10 @@ msgid "EnergySaver activation delay"
 msgstr "Energijos taupymo aktyvavimo vėlavimas"
 
 msgid "EnergyTimer Actions"
-msgstr ""
+msgstr "EnergyTimer veiksmai"
 
 msgid "EnergyTimer Overview"
-msgstr ""
+msgstr "EnergyTimer apžvalga"
 
 msgid "English"
 msgstr "Anglų"
@@ -7132,10 +7132,10 @@ msgid "Enter PIN"
 msgstr "Įrašykite PIN kodą"
 
 msgid "Enter a description for this timer."
-msgstr ""
+msgstr "Įveskite šio laikmačio aprašą."
 
 msgid "Enter a name for this timer."
-msgstr ""
+msgstr "Įveskite šio laikmačio pavadinimą."
 
 msgid "Enter a new name for this device."
 msgstr "Įveskite naują šio įrenginio pavadinimą."
@@ -7224,7 +7224,7 @@ msgstr "klaida %d: žurnalo failas '%s' nebuvo panaikintas!  (%s)"
 
 #, python-format
 msgid "Error %d: System information file '%s' can't be read!  (%s)"
-msgstr ""
+msgstr "%d klaida: negalima perskaityti sistemos informacijos failo \"%s\"!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
@@ -7232,7 +7232,7 @@ msgstr "Klaida %d: slaptažodžio keisti neįmanoma!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to check space!  (%s)"
-msgstr ""
+msgstr "%d klaida: nepavyko patikrinti vietos!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -7244,7 +7244,7 @@ msgstr "Klaida %d: Nepavyko paleisti 'passwd' komandos!"
 
 #, python-format
 msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
-msgstr ""
+msgstr "%s klaida: nepavyko atkurti \"%s\" failo!  (%s)"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the '%s' commit log!"
@@ -7376,7 +7376,7 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 
 msgid "Error: A location to save the recording has not been selected!"
-msgstr ""
+msgstr "Klaida: vieta, kurioje norite išsaugoti įrašą, nepasirinkta!"
 
 msgid "Error: An empty filename is illegal!"
 msgstr "Tuščias failo pavadinimas negalimas."
@@ -7689,7 +7689,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FEC modes"
-msgstr ""
+msgstr "FEC režimai"
 
 msgid "FFmpeg version"
 msgstr "FFmpeg versija"
@@ -7943,7 +7943,7 @@ msgid "Find similar events in the EPG"
 msgstr "Rasti panašius įvykius EPG"
 
 msgid "Finding available log files, please wait..."
-msgstr ""
+msgstr "Radę galimus žurnalo failus, palaukite..."
 
 msgid "Fine movement"
 msgstr "Tikslus sukimas"
@@ -8143,7 +8143,7 @@ msgid "Frequency bands"
 msgstr "Dažnio juostos"
 
 msgid "Frequency range"
-msgstr ""
+msgstr "Dažnių diapazonas"
 
 msgid "Frequency scan step size(khz)"
 msgstr "Paieškos dažnio žingsnio dydis(khz)"
@@ -8306,7 +8306,7 @@ msgstr "Geografinės vietos nustatymo informacijos nuskaityti negalima, bandykit
 
 #, python-format
 msgid "Geolocation information for %s %s"
-msgstr ""
+msgstr "%s %s geografinės vietos informacija"
 
 msgid "Geolocation is not available."
 msgstr "Geografinė vieta negalima."
@@ -8888,22 +8888,22 @@ msgid "IP"
 msgstr "IP adresas"
 
 msgid "IP Address 1"
-msgstr ""
+msgstr "IP adresas 1"
 
 msgid "IP Address 2"
-msgstr ""
+msgstr "IP adresas 2"
 
 msgid "IP Address 3"
-msgstr ""
+msgstr "IP adresas 3"
 
 msgid "IP Address 4"
-msgstr ""
+msgstr "IP adresas 4"
 
 msgid "IP Address 5"
-msgstr ""
+msgstr "IP adresas 5"
 
 msgid "IP Address to be checked on timer activation."
-msgstr ""
+msgstr "IP adresas, kurį reikia patikrinti aktyvinant laikmatį."
 
 msgid "IP address"
 msgstr "IP adresas"
@@ -8912,7 +8912,7 @@ msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
 
 msgid "IPv6 address"
-msgstr ""
+msgstr "IPv6 adresas"
 
 msgid "ISO file is too large for this file system!"
 msgstr "ISO failas yra per didelis šiai failų sistemai!"
@@ -9080,7 +9080,7 @@ msgid "Igbo"
 msgstr "Igbo"
 
 msgid "Ignore"
-msgstr ""
+msgstr "Ignoruoti"
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Ignoruoti DVB-C pavadinimų srities potinklį"
@@ -9181,7 +9181,7 @@ msgid "Include CI assignment"
 msgstr "Įtraukti CI priskyrimą"
 
 msgid "Include DVB scan data"
-msgstr ""
+msgstr "Įtraukite DVB nuskaitymo duomenis"
 
 msgid "Include ECM in http streams"
 msgstr "Įtraukti ECM http srautus"
@@ -9190,7 +9190,7 @@ msgid "Include EIT in http streams"
 msgstr "Įtraukti EIT į http srautus"
 
 msgid "Include EPG data"
-msgstr ""
+msgstr "Įtraukite EPG duomenis"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Įtraukite SDT, BAT į http srautus"
@@ -9211,7 +9211,7 @@ msgid "Include screen load data"
 msgstr "Įtraukti ekrano įkėlimo duomenis"
 
 msgid "Include timer data"
-msgstr ""
+msgstr "Įtraukti laikmačio duomenis"
 
 msgid "Incorrect type service for PiP!"
 msgstr "Kanalas netinkamas PiP!"
@@ -9359,7 +9359,7 @@ msgid "Install '%s' and enable this operation"
 msgstr "Įdiegti '%s' ir įjungti šią operaciją"
 
 msgid "Install 1/1"
-msgstr ""
+msgstr "Įdiekite 1/1"
 
 msgid "Install Failed !!"
 msgstr "Įdiegti nepavyko !!"
@@ -9688,7 +9688,7 @@ msgid "Kazakhstan"
 msgstr "Kazachstanas"
 
 msgid "Keep EPG history (in minutes)"
-msgstr ""
+msgstr "Saugokite EPG istoriją (minutėmis)"
 
 msgid "Keep service"
 msgstr "Išlaikyti kanalą"
@@ -10144,7 +10144,7 @@ msgstr "Žurnalas"
 
 #, python-format
 msgid "Log %d/%d"
-msgstr ""
+msgstr "Gedimų žurnalas %d/%d"
 
 msgid "Log Manager"
 msgstr "Žurnalų valdymas"
@@ -10155,7 +10155,7 @@ msgstr "Žurnalo failas '%s' panaikintas."
 
 #, python-format
 msgid "Log file: '%s'  (%s)"
-msgstr ""
+msgstr "Žurnalo failas: '%s'  (%s)"
 
 msgid "Log python stack trace on spinner"
 msgstr "Prisijungti python steką ant suktuko"
@@ -17956,7 +17956,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-06-29 adga45@gmail.com"
+msgstr "2022-11-20 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
