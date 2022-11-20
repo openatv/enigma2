@@ -387,7 +387,7 @@ class MultiBootClass():
 		valueTest = value.upper() if value else ""
 		if value is None:
 			pass
-		elif value.startswith("\"") or value.startswith("'") and value.endswith(value[0]):
+		elif (value.startswith("\"") or value.startswith("'")) and value.endswith(value[0]):
 			value = value[1:-1]
 		elif value.startswith("(") and value.endswith(")"):
 			data = []
@@ -405,7 +405,7 @@ class MultiBootClass():
 			value = False
 		elif valueTest in ("TRUE", "YES", "ON", "ENABLED"):
 			value = True
-		elif value.isdigit() or (value[0:1] == "-" and value[1:].isdigit()):
+		elif value.isdigit() or ((value[0:1] == "-" or value[0:1] == "+") and value[1:].isdigit()):
 			value = int(value)
 		elif valueTest.startswith("0X"):
 			try:
