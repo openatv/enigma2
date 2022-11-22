@@ -47,7 +47,7 @@ class TimeshiftSettings(Setup):
 			path = self.getCurrentValue()
 			if not isdir(path):
 				footnote = _("Directory '%s' does not exist!") % path
-			elif stat(path).st_dev in DEFAULT_INHIBIT_DEVICES:
+			elif stat(path).st_dev in DEFAULT_INHIBIT_DEVICES and config.timeshift.skipreturntolive.value is False:
 				footnote = _("Flash directory '%s' not allowed!") % path
 			elif not fileAccess(path, "w"):
 				footnote = _("Directory '%s' not writable!") % path
