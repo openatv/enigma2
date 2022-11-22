@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: '7.1'
+          ref: '7.0'
 
       - name: updatepot
         run: |
@@ -19,7 +19,7 @@ jobs:
           git config --global user.name "atv enigma po Bot"
           git config advice.addignoredfile false
           git clean -fd
-          git checkout 7.1
+          git checkout 7.0
           git clone --depth 1 https://github.com/openatv/enigma2-po.git ponew
           cp ponew/po/*.po po/
           rm -rf ponew
@@ -27,4 +27,4 @@ jobs:
           git add * || :
           git commit -m "translation update"
           git remote add upstream https://${GITHUB_TOKEN}@github.com/openatv/enigma2.git > /dev/null 2>&1
-          git push --quiet upstream 7.1 || echo "failed to push with error $?"
+          git push --quiet upstream 7.0 || echo "failed to push with error $?"
