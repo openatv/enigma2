@@ -1,7 +1,7 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import mkdir, remove, system as ossystem
-from os.path import exists, isfile, join as pathjoin, normpath
+from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
@@ -13,7 +13,6 @@ from Components.About import about
 from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
-from Components.RcModel import rc_model
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_HDD, SCOPE_SYSETC, SCOPE_TIMESHIFT, defaultRecordingLocation, fileContains, isPluginInstalled, resolveFilename
@@ -21,22 +20,16 @@ from Tools.HardwareInfo import HardwareInfo
 
 
 def InitUsageConfig():
-	AvailRemotes = glob("/usr/share/enigma2/rc_models/*")
+	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
-	DefaultRemote = rc_model.getRcFolder(GetDefault=True)
+	DefaultRemote = BoxInfo.getItem("rcname")
 
 	remoteSelectable = False
 	if AvailRemotes is not None:
 		for remote in AvailRemotes:
-			if isfile(remote + "/rc.png") and isfile(remote + "/rcpositions.xml") and isfile(remote + "/remote.html"):
-				pass
-			else:
-				AvailRemotes.remove(remote)
-		if len(AvailRemotes) > 1:
-			remoteSelectable = True
-			for remote in AvailRemotes:
-				toadd = (remote.split("/")[-1], remote.split("/")[-1])
-				RemoteChoices.append(toadd)
+			pngfile = "%s.png" % remote
+			if isfile(pngfile):
+				RemoteChoices.append(remote.split("/")[-1])
 
 	config.misc.SettingsVersion = ConfigFloat(default=[1, 1], limits=[(1, 10), (0, 99)])
 	config.misc.SettingsVersion.value = [1, 1]
@@ -1615,7 +1608,7 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
 		choiceList = [("0", _("None"))]
-		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
+		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
 			choiceList.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choiceList.append((str(y + 1), _("All")))
