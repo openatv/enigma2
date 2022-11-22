@@ -931,9 +931,6 @@ profile("Init:CI")
 import Screens.Ci
 Screens.Ci.InitCiConfig()
 
-profile("RcModel")
-import Components.RcModel
-
 # ###############################################################################
 # NOTE: This migration helper can be used to update Enigma2 settings, files etc #
 #       etc that may need to change based on recent code changes.               #
