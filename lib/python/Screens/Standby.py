@@ -373,6 +373,9 @@ class TryQuitMainloop(MessageBox):
 			reason = _("Client is streaming from this box!")
 			default_yes = False
 			timeout = 30
+			clients = eStreamServer.getInstance().getConnectedClients()
+			if len(clients) == 1 and len(clients[0]) == 3 and clients[0][0] == "::ffff:127.0.0.1":  # ignore internal streams
+				reason = ""
 		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
 			reason = _("A file from media is in use!")
 			default_yes = False
