@@ -23,6 +23,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table=-1, int
 std::string convertLatin1UTF8(const std::string &string);
 int isUTF8(const std::string &string);
 unsigned int truncateUTF8(std::string &s, unsigned int newsize);
+std::string fixUTF8(std::string &str);
 
 std::string removeDVBChars(const std::string &s);
 void makeUpper(std::string &s);
