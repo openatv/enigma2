@@ -98,35 +98,39 @@ class HddMount(Screen):
 	def updateList2(self):
 		self.activityTimer.stop()
 		self.list = []
-		list2 = []
-		f = open('/proc/partitions', 'r')
-		for line in f.readlines():
-			parts = line.strip().split()
-			if not parts:
-				continue
-			device = parts[3]
-			if not search('^sd[a-z][1-9][0-9]*$', device) and not search('mmcblk[0-9]p[1-9]', device):
-				continue
-			if MODEL in ('multibox', 'multiboxse', 'dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
-				continue
-			if MODEL in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
-				continue
-			if device in list2:
-				continue
-			self.buildMy_rec(device)
-			list2.append(device)
 
-		f.close()
-		self['list'].list = self.list
-		self['lab1'].hide()
+		def swapCallback(data, retVal, extraArgs):
+			list2 = []
+			swapdevices = data.replace('\n', '').split('/')
+			f = open('/proc/partitions', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if not parts:
+					continue
+				device = parts[3]
+				if not search(r'^sd[a-z][1-9][\d]*$', device) and not search(r'^mmcblk[\d]p[\d]*$', device):
+					continue
+				if BoxInfo.getItem("mtdrootfs").startswith("mmcblk0p") and device.startswith("mmcblk0p"):
+					continue
+				if BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p") and device.startswith("mmcblk1p"):
+					continue
+				if device in list2:
+					continue
+				self.buildMy_rec(device, swapdevices)
+				list2.append(device)
+			f.close()
+			self['list'].list = self.list
+			self['lab1'].hide()
 
-	def buildMy_rec(self, device):
+		self.Console = Console()
+		self.Console.ePopen("sfdisk -l | grep swap | awk '{print $(NF-9)}'", swapCallback)
+
+	def buildMy_rec(self, device, swapdevices):
 		if device.startswith('mmcblk'):
-			device2 = sub('p[1-9]', '', device)
+			device2 = device[:7]
 		else:
-			device2 = sub('[1-9]', '', device)
+			device2 = sub(r'[\d]', '', device)
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
-		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
@@ -147,19 +151,6 @@ class HddMount(Screen):
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/share/enigma2/icons/dev_hdd.png'
 		name = name + model
-		self.Console = Console()
-		self.Console.ePopen("sfdisk -l | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
-		sleep(0.5)
-		try:
-			f = open('/tmp/devices.tmp', 'r')
-			swapdevices = f.read()
-			f.close()
-		except:
-			swapdevices = ' '
-		if path.exists('/tmp/devices.tmp'):
-			remove('/tmp/devices.tmp')
-		swapdevices = swapdevices.replace('\n', '')
-		swapdevices = swapdevices.split('/')
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			if line.find(device) != -1:
@@ -346,11 +337,11 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('^sd[a-z][1-9][0-9]*$', device) and not search('mmcblk[0-9]p[1-9]', device):
+			if not search(r'^sd[a-z][1-9][\d]*$', device) and not search(r'^mmcblk[\d]p[\d]*$', device):
 				continue
-			if MODEL in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'hd66se', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'ip8', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'og2ott4k') and search('mmcblk0p[1-9]', device):
+			if BoxInfo.getItem("mtdrootfs").startswith("mmcblk0p") and device.startswith("mmcblk0p"):
 				continue
-			if MODEL in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
+			if BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p") and device.startswith("mmcblk1p"):
 				continue
 			if device in list2:
 				continue
@@ -365,11 +356,10 @@ class DevicePanelConf(Screen, ConfigListScreen):
 
 	def buildMy_rec(self, device):
 		if device.startswith('mmcblk'):
-			device2 = sub('p[1-9]', '', device)
+			device2 = device[:7]
 		else:
-			device2 = sub('[1-9]', '', device)
+			device2 = sub(r'[\d]', '', device)
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
-		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
@@ -392,7 +382,6 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				d1 = parts[1]
 				dtype = parts[2]
 				break
-				continue
 			else:
 				d1 = _("None")
 				dtype = _("unavailable")

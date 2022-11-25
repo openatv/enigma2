@@ -692,7 +692,7 @@ class QuickMenuDevices(Screen):
 		def swapCallback(data, retVal, extraArgs):
 			list2 = []
 			swapdevices = data.replace('\n', '').split('/')
-			f = open('/tmp/partitions', 'r')
+			f = open('/proc/partitions', 'r')
 			for line in f.readlines():
 				parts = line.strip().split()
 				if not parts:
