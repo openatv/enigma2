@@ -1,6 +1,4 @@
-
-
-from re import search
+from re import search, sub
 from os.path import exists, realpath, isdir
 from skin import getSkinFactor
 from time import sleep
@@ -335,7 +333,6 @@ class QuickMenu(Screen, ProtectedScreen):
 #####################################################################
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
-
 
 	def okList(self):
 		item = self["list"].getCurrent()
@@ -697,7 +694,7 @@ class QuickMenuDevices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]', device):
+			if not search('sd[a-z]([1-9]|[1-9][1-9])', device):
 				continue
 			if device in list2:
 				continue
@@ -712,7 +709,7 @@ class QuickMenuDevices(Screen):
 			self['lab1'].hide()
 
 	def buildMy_rec(self, device):
-		device2 = device[:-1]  # strip device number
+		device2 = sub('[1-9]', '', device)  # strip device number
 		devicetype = realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
