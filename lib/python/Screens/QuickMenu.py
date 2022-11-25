@@ -694,7 +694,7 @@ class QuickMenuDevices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z]([1-9]|[1-9][1-9])', device):
+			if not search('^sd[a-z][1-9][0-9]*$', device):
 				continue
 			if device in list2:
 				continue
