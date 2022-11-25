@@ -1235,6 +1235,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				except PureError as err:
 					magicType = None
 					print("[FileCommander] Error: Unable to identify file via magic fingerprint!  (%s)" % err)
+				except OSError as err:
+					self.session.open(MessageBox, _("Error %d: File '%s' cannot be opened!  (%s)") % (err.errno, basename(path), err.strerror), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
+					return
 				if fileType and magicType and fileType != magicType:
 					# print("[FileCommander] DEBUG: File identified as extension='%s', magic='%s'." % (fileType, magicType))
 					if fileType == ".ipk" and magicType == ".lib":
@@ -2701,7 +2704,7 @@ class FileTransferTask(Task):
 		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):
-		self.srcSize = float(self.dirSize() if isdir(self.srcPath) else getsize(self.srcPath))
+		self.srcSize = float(self.dirSize(self.srcPath) if isdir(self.srcPath) else getsize(self.srcPath))
 		self.updateTime = max(1000, int(self.srcSize * 0.000001 * 0.5))  # Based on 20Mb/s transfer rate.
 		self.progressTimer.start(self.updateTime, True)
 
