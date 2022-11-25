@@ -13,20 +13,6 @@
 
 #if !defined(SKIP_PART1) && !defined(SWIG)
 
-#if PY_MAJOR_VERSION >= 3
-#define PyStringObject PyUnicodeObject
-#define PyString_FromStringAndSize PyUnicode_FromStringAndSize
-#define PyString_AS_STRING PyUnicode_AsUTF8
-#define PyString_AsString PyUnicode_AsUTF8
-#define PyString_Check PyUnicode_Check
-
-#define PyInt_AsLong PyLong_AsLong
-#define PyInt_Check PyLong_Check
-#define PyInt_AsUnsignedLongMask PyLong_AsUnsignedLongMask
-
-#define PyExc_StandardError PyExc_Exception
-#endif
-
 class ePyObject
 {
 	PyObject *m_ob;
@@ -46,7 +32,7 @@ public:
 	inline ePyObject(PyDictObject *ob);
 	inline ePyObject(PyTupleObject *ob);
 	inline ePyObject(PyListObject *ob);
-	inline ePyObject(PyStringObject *ob);
+	inline ePyObject(PyUnicodeObject *ob);
 	operator bool() const { return !!m_ob; }
 	operator bool() { return !!m_ob; }
 	ePyObject &operator=(const ePyObject &);
@@ -55,12 +41,12 @@ public:
 	ePyObject &operator=(PyDictObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyTupleObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyListObject *ob) { return operator=((PyObject*)ob); }
-	ePyObject &operator=(PyStringObject *ob) { return operator=((PyObject*)ob); }
+	ePyObject &operator=(PyUnicodeObject *ob) { return operator=((PyObject*)ob); }
 	operator PyObject*();
 	operator PyVarObject*() { return (PyVarObject*)operator PyVarObject*(); } // NOSONAR
 	operator PyTupleObject*() { return (PyTupleObject*)operator PyObject*(); }
 	operator PyListObject*() { return (PyListObject*)operator PyObject*(); }
-	operator PyStringObject*() { return (PyStringObject*)operator PyObject*(); }
+	operator PyUnicodeObject*() { return (PyUnicodeObject*)operator PyObject*(); }
 	operator PyDictObject*() { return (PyDictObject*)operator PyObject*(); }
 	PyObject *operator->() { return operator PyObject*(); }
 #ifdef PYTHON_REFCOUNT_DEBUG
@@ -137,7 +123,7 @@ inline ePyObject::ePyObject(PyListObject *ob)
 {
 }
 
-inline ePyObject::ePyObject(PyStringObject *ob)
+inline ePyObject::ePyObject(PyUnicodeObject *ob)
 	:m_ob((PyObject*)ob)
 #ifdef PYTHON_REFCOUNT_DEBUG
 	,m_file(0), m_line(0), m_from(0), m_to(0), m_erased(false)
