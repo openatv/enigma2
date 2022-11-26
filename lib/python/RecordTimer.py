@@ -94,8 +94,8 @@ def parseEvent(event, description=True, newTimerData=False, isZapTimer=False):  
 		cridEpisode = cridEpisode and cridEpisode[0][2]
 		cridRecommendation = event.getCridData(eServiceEventEnums.RECOMMENDATION_MATCH)
 		cridRecommendation = cridRecommendation and cridRecommendation[0][2]  # DEBUG: (Type, Location, "Value")
-	marginBefore = (config.recording.zap_margin_before.value * 60 if isZapTimer else config.recording.margin_before.value) * 60
-	marginAfter = (config.recording.zap_margin_after.value * 60 if isZapTimer else config.recording.margin_after.value) * 60
+	marginBefore = (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
+	marginAfter = (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
 	# print("[RecordTimer] DEBUG: series='%s', episode='%s', recommendation='%s', before=%d, after=%d." % (cridSeries, cridEpisode, cridRecommendation, marginBefore, marginAfter))
 	begin = eventBegin - marginBefore
 	end = eventEnd + marginAfter
@@ -212,9 +212,9 @@ class RecordTimer(Timer):
 		eventEnd = int(timerDom.get("eventEnd") or "0")
 		marginAfter = int(timerDom.get("marginAfter") or "0")
 		if marginBefore == 0:
-			marginBefore = (config.recording.zap_margin_before.value if justplay else config.recording.margin_before.value) * 60
+			marginBefore = (getattr(config.recording, "zap_margin_before" if justplay else "margin_before").value * 60)
 		if marginAfter == 0:
-			marginAfter = (config.recording.zap_margin_after.value if justplay else config.recording.margin_after.value) * 60
+			marginAfter = (getattr(config.recording, "zap_margin_after" if justplay else "margin_after").value * 60)
 		if eventBegin == 0:
 			eventBegin = begin + marginBefore
 		if eventEnd == 0:
@@ -620,8 +620,8 @@ class RecordTimerEntry(TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None):
 		TimerEntry.__init__(self, int(begin), int(end))
 		# print("[RecordTimerEntry] DEBUG: Running init code.")
-		self.marginBefore = (config.recording.zap_margin_before.value if justplay == TIMERTYPE.JUSTPLAY else config.recording.margin_before.value) * 60
-		self.marginAfter = (config.recording.zap_margin_after.value if justplay == TIMERTYPE.JUSTPLAY else config.recording.margin_after.value) * 60
+		self.marginBefore = (getattr(config.recording, "zap_margin_before" if justplay == TIMERTYPE.JUSTPLAY else "margin_before").value * 60)
+		self.marginAfter = (getattr(config.recording, "zap_margin_after" if justplay == TIMERTYPE.JUSTPLAY else "margin_after").value * 60)
 		self.eventBegin = begin + self.marginBefore
 		self.eventEnd = end - self.marginAfter
 		if checkOldTimers and self.begin < int(time()) - 1209600:

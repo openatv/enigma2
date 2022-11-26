@@ -738,11 +738,11 @@ class SelectionEventInfo:
 		self["Event"].newEvent(service.event)
 
 
-def parseCurentEvent(list):
+def parseCurentEvent(list, isZapTimer=False):
 	if len(list) >= 0:
 		list = list[0]
-		begin = list[2] - (config.recording.margin_before.value * 60)
-		end = list[2] + list[3] + (config.recording.margin_after.value * 60)
+		begin = list[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
+		end = list[2] + list[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
 		name = list[1]
 		description = list[5]
 		eit = list[0]
@@ -750,11 +750,11 @@ def parseCurentEvent(list):
 	return False
 
 
-def parseNextEvent(list):
+def parseNextEvent(list, isZapTimer=False):
 	if len(list) > 0:
 		list = list[1]
-		begin = list[2] - (config.recording.margin_before.value * 60)
-		end = list[2] + list[3] + (config.recording.margin_after.value * 60)
+		begin = list[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
+		end = list[2] + list[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
 		name = list[1]
 		description = list[5]
 		eit = list[0]
