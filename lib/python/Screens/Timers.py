@@ -1673,9 +1673,9 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 		self.keySave()
 
 	def keySave(self, result=None):
-		if self.timer.justplay:
-			self.timer.begin += config.recording.margin_before.value * 60
-			self.timer.end = self.timer.begin + 1
+		#if self.timer.justplay:
+		#	self.timer.begin += config.recording.margin_before.value * 60
+		#	self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
 		self.session.nav.RecordTimer.saveTimers()
 
