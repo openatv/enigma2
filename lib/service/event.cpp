@@ -34,6 +34,19 @@ DEFINE_REF(eParentalData);
 DEFINE_REF(eCridData);
 
 std::string eServiceEvent::crid_scheme = "crid://";
+int eServiceEvent::m_fixUTF8 = 0;
+
+std::string eServiceEvent::getShortDescription() { 
+	if(m_fixUTF8 == 0)
+		return m_short_description;
+	return fixUTF8(m_short_description, m_fixUTF8==2);
+}
+
+std::string eServiceEvent::getExtendedDescription() {
+	if(m_fixUTF8 == 0)
+		return m_extended_description;
+	return fixUTF8(m_extended_description, m_fixUTF8==2);
+}
 
 std::string eServiceEvent::normalise_crid(std::string crid, ePtr<eDVBService> service)
 {

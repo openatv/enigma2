@@ -5,7 +5,7 @@ from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder, eServiceEvent
 
 from keyids import KEYIDS
 from skin import parameters
@@ -146,6 +146,16 @@ def InitUsageConfig():
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
+
+	def fixUTF8Change(configElement):
+		eServiceEvent.setUTF8Fix(int(configElement.value))
+
+	config.usage.fixUTF8 = ConfigSelection(default="0", choices=[
+		("0", _("Disabled")),
+		("1", _("Enabled")),
+		("2", _("Enabled (Debug)"))
+	])
+	config.usage.fixUTF8.addNotifier(fixUTF8Change)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default=False)
 

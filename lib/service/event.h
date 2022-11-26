@@ -164,8 +164,8 @@ public:
 	int getPdcPil() const { return m_pdc_pil; }
 	int getRunningStatus() const { return m_running_status; }
 	std::string getEventName() const { return m_event_name; }
-	std::string getShortDescription() const { return m_short_description; }
-	std::string getExtendedDescription() const { return m_extended_description; }
+	std::string getShortDescription() const;
+	std::string getExtendedDescription() const;
 	std::string getExtraEventData() const { return m_extra_event_data; }
 	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
@@ -200,8 +200,9 @@ public:
 
 	PyObject *getCridData(int mask) const;
 	static void setDebug(bool debug) {m_Debug = debug;}
+	static void setUTF8Fix (int mode) { m_fixUTF8 = mode; }
 	private:
-		static bool m_Debug;
+		static bool m_Debug, m_fixUTF8;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,

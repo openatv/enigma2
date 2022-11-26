@@ -793,8 +793,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	// remove character emphasis control characters:
 	output = replace_all(replace_all(replace_all(replace_all(output, "\xC2\x86", ""), "\xEE\x82\x86", ""), "\xC2\x87", ""), "\xEE\x82\x87", "");
 
-	output = fixUTF8(output);
-
 	return output;
 }
 
@@ -941,13 +939,16 @@ unsigned int getInvalidUTF8Pos(const char *str, unsigned len) {
     return 0;
 }
 
-std::string fixUTF8(std::string &str) {
+std::string fixUTF8(std::string &str, bool debug) {
 
 	std::string ret = str;
 	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), ret.size());
 
 	if(badchar) {
-		eTrace("[fixUTF8] output:%s\n",string_to_hex(ret).c_str());
+		if(debug)
+			eDebug("[fixUTF8] hex output:%s\nstr output:%s\nBad char:%d",string_to_hex(ret).c_str(),ret.c_str(),badchar);
+		else
+			eTrace("[fixUTF8] hex output:%s\nstr output:%s\nBad char:%d",string_to_hex(ret).c_str(),ret.c_str(),badchar);
 	}
 
 	int max = 4;

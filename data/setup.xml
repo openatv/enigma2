@@ -190,6 +190,7 @@
 		<item level="2" text="Include SDT, BAT in http streams" description="When enabled, SDT, BAT data will be included in http streams.">config.streaming.stream_sdtbat</item>
 		<item level="2" text="Country for EPG event rating information" description="Choose a country scheme for decoding rating information in EPG events.">config.misc.epgratingcountry</item>
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
+		<item level="2" text="Fix invalid EPG data" description="Choose the option to fix invalid EPG data.">config.usage.fixUTF8</item>
 	</setup>
 	<setup key="EPGEnhanced" title="SingleEPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="Channel preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list.">config.epgselection.enhanced_preview_mode</item>
