@@ -456,7 +456,7 @@ class RecordTimer(Timer):
 		isAutoTimer = 0
 		beginTime = None
 		checkOffsetTimeRecord = not config.recording.margin_before.value and not config.recording.margin_after.value
-		checkOffsetTimeZap = not config.recording.zap_margin_before.value and not config.zap_recording.margin_after.value
+		checkOffsetTimeZap = not config.recording.zap_margin_before.value and not config.recording.zap_margin_after.value
 		end = begin + duration
 		reference = ":".join(service.split(":")[:11])
 		for timer in self.timer_list:
