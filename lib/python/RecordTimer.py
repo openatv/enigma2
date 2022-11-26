@@ -590,7 +590,7 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 
 def getBqRootStr(reference):
 	reference = reference.toString()
-	if reference.startswith("1:0:2:") or reference.startswith("1:0:10:"):
+	if reference.startswith("1:0:2:") or reference.startswith("1:0:A:"):
 		serviceTypes = SERVICE_TYPES_RADIO
 		if config.usage.multibouquet.value:
 			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
@@ -1459,7 +1459,7 @@ class RecordTimerEntry(TimerEntry, object):
 		global InfoBar
 		if not InfoBar:
 			from Screens.InfoBar import InfoBar
-		if refStr.startswith("1:0:2:"):
+		if refStr.startswith("1:0:2:") or refStr.startswith("1:0:A:"):
 			if InfoBar.instance.servicelist.mode != 1:
 				InfoBar.instance.servicelist.setModeRadio()
 				InfoBar.instance.servicelist.radioTV = 1
