@@ -36,13 +36,15 @@ DEFINE_REF(eCridData);
 std::string eServiceEvent::crid_scheme = "crid://";
 int eServiceEvent::m_fixUTF8 = 0;
 
-std::string eServiceEvent::getShortDescription() { 
+std::string eServiceEvent::getShortDescription() const
+{ 
 	if(m_fixUTF8 == 0)
 		return m_short_description;
 	return fixUTF8(m_short_description, m_fixUTF8==2);
 }
 
-std::string eServiceEvent::getExtendedDescription() {
+std::string eServiceEvent::getExtendedDescription() const
+{
 	if(m_fixUTF8 == 0)
 		return m_extended_description;
 	return fixUTF8(m_extended_description, m_fixUTF8==2);

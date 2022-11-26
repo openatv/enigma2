@@ -202,7 +202,8 @@ public:
 	static void setDebug(bool debug) {m_Debug = debug;}
 	static void setUTF8Fix (int mode) { m_fixUTF8 = mode; }
 	private:
-		static bool m_Debug, m_fixUTF8;
+		static bool m_Debug;
+		static int m_fixUTF8;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,
