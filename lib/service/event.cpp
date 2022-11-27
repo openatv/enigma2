@@ -292,6 +292,22 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 		m_extended_description_items = "";
 	}
 
+	if(eServiceEvent::m_fixUTF8 > 0)
+	{
+		if(m_short_description.size() > 0 && !isUTF8(m_short_description))
+		{
+			if(eServiceEvent::m_fixUTF8 == 2)
+				eDebug("[eServiceEvent] repairUTF8 hex output:%s\nstr output:%s\n",string_to_hex(m_short_description).c_str(),m_short_description.c_str());
+			m_short_description = repairUTF8(m_short_description.c_str(), m_short_description.size());
+		}
+		if(m_extended_description.size() > 0 && !isUTF8(m_extended_description))
+		{
+			if(eServiceEvent::m_fixUTF8 == 2)
+				eDebug("[eServiceEvent] repairUTF8 hex output:%s\nstr output:%s\n",string_to_hex(m_extended_description).c_str(),m_extended_description.c_str());
+			m_extended_description = repairUTF8(m_extended_description.c_str(), m_extended_description.size());
+		}
+	}
+
 	return retval;
 }
 
