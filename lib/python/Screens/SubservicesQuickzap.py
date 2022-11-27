@@ -83,7 +83,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 	def subserviceSelected(self, service):
 		if service:
 			index = self.getSubserviceIndex(eServiceReference(service[1]))
-			if index != self.__lastservice:
+			if index != self.currentlyPlayingSubservice:
 				self.playSubservice(index)
 
 	def keyOK(self):
