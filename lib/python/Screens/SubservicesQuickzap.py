@@ -82,7 +82,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 
 	def subserviceSelected(self, service):
 		if service:
-			self.playSubservice(service[1])
+			self.playSubservice(self.getSubserviceIndex(eServiceReference(service[1])))
 
 	def keyOK(self):
 		self.doShow()
