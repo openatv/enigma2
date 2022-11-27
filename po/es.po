@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-16 21:45+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Juanjo-EA1CJ <juanjo.ea1cj@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -1944,6 +1944,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Comprobación de actualización en segundo plano en curso. Espera unos minutos y vuelve a intentarlo."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Una tarea completada quiere poner su %s %s en espera. ¿Quieres hacerlo ahora?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Una tarea completada quiere apagar su %s %s. ¿Apagar ahora?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Se creó un registro de cuelgues %s en '%s'"
 
@@ -2042,24 +2050,6 @@ msgstr ""
 "Se ha encontrado una segunda interfaz configurada.\n"
 "\n"
 "¿Quieres deshabilitar la segunda interfaz de red?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Un temporizador de apagado quiere poner tu\n"
-"%s %s en modo espera. ¿Hacerlo ahora?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Un temporizador de apagado quiere apagar\n"
-"tu %s %s. ¿Apagar ahora?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -2386,6 +2376,9 @@ msgstr "Agregar carpeta seleccionada a los marcadores"
 msgid "Add service"
 msgstr "Añadir canal"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Añadir el directorio actual como favorito"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Añadir el servicio actual a la lista de compensaciones de volumen"
 
@@ -2468,6 +2461,9 @@ msgstr "Afganistán"
 
 msgid "Afrikaans"
 msgstr "Afrikaans"
+
+msgid "After Event"
+msgstr "Después del evento"
 
 # Powerlost setup.xml
 msgid "After PowerLost"
@@ -3498,6 +3494,9 @@ msgstr "Bolivia"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr "Acciones de la secuencia de favoritos"
+
 #
 msgid "Bookmarks"
 msgstr "Marcadores"
@@ -4025,6 +4024,9 @@ msgstr "Cancelar"
 msgid "Cancel / Close the software update screen"
 msgstr "Cancelar / Cerrar la pantalla de actualización del software"
 
+msgid "Cancel Task"
+msgstr "Cancelar la tarea"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Cancelar los cambios de los ajustes y salir"
 
@@ -4055,6 +4057,9 @@ msgstr "No guardar Timeshift como película"
 msgid "Cancel selection"
 msgstr "Cancelar la selección"
 
+msgid "Cancel selection and exit"
+msgstr "Cancelar la selección y salir"
+
 msgid "Cancel the flash process"
 msgstr "Cancelar el proceso de flasheo"
 
@@ -4075,6 +4080,9 @@ msgstr "Cancelar la selección de ranura y salir"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Cancelar la selección de ranura y salir de todos los menús"
+
+msgid "Cancel the task"
+msgstr "Anular la tarea"
 
 msgid "Cancel the update"
 msgstr "Cancelar la actualización"
@@ -4622,6 +4630,12 @@ msgstr "Cerrar"
 # /data/setup.xml
 msgid "Close PiP on exit"
 msgstr "Cerrar PiP al salir"
+
+msgid "Close Task List"
+msgstr "Cerrar la lista de tareas"
+
+msgid "Close Task View"
+msgstr "Cerrar la vista de tareas"
 
 msgid "Close bouquet list"
 msgstr "Cerrar lista de bouquet"
@@ -5253,6 +5267,9 @@ msgstr "Continuar reproducción"
 msgid "Continue playing"
 msgstr "Continuar reproduciendo"
 
+msgid "Continue to run the task in the background"
+msgstr "Seguir ejecutando la tarea en segundo plano"
+
 msgid "Continue with the flash process"
 msgstr "Continuar con el proceso de flasheo"
 
@@ -5392,6 +5409,9 @@ msgstr "Crear archivo ISO Bludisc"
 #
 msgid "Create DVD-ISO"
 msgstr "Crear DVD-ISO"
+
+msgid "Create Directory"
+msgstr "Crear un directorio"
 
 msgid "Create ISO"
 msgstr "Crear ISO"
@@ -6080,6 +6100,9 @@ msgstr "Eliminar 1 elemento"
 msgid "Delete Confirmation"
 msgstr "Confirmación de borrado"
 
+msgid "Delete Directory"
+msgstr "Borrar el directorio"
+
 msgid "Delete EPG"
 msgstr "Eliminar EPG"
 
@@ -6223,6 +6246,9 @@ msgstr "Los paquetes deseleccionados suelen producirse porque los empaquetados s
 msgid "Detail of GStreamer log"
 msgstr "Detalle del registro GStreamer"
 
+msgid "Details"
+msgstr "Detalles"
+
 #
 msgid "Device Manager"
 msgstr "Administrador de dispositivos"
@@ -6313,6 +6339,9 @@ msgstr "Selección directa de elementos del menú"
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Reproduce los títulos enlazados sin menú"
+
+msgid "Directories"
+msgstr "Directorios"
 
 msgid "Directory"
 msgstr "Directorio"
@@ -6426,6 +6455,9 @@ msgstr "Ajustes de LCD"
 
 msgid "Display and user interface"
 msgstr "Pantalla y interfaz de usuario"
+
+msgid "Display context menu"
+msgstr "Mostrar el menú contextual"
 
 msgid "Display log for the currently selected timer"
 msgstr "Mostrar el registro del temporizador seleccionado"
@@ -7298,9 +7330,6 @@ msgstr "Habilitar vista previa"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Habilitar receptor Enigma2 remoto para tratar de sintonizar canales que no se pueden sintonizar de forma local (por ejemplo, el sintonizador está ocupado o el tipo de canal no está disponible para el sintonizador local). Especifica la URL completa incluyendo http:// y el puerto (normalmente …:8001), por ejemplo http://segundo_receptor:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Habilitar captura de pantalla de LCD en /tmp"
-
 msgid "Enable teletext caching"
 msgstr "Habilitar caché de teletexto"
 
@@ -7309,6 +7338,9 @@ msgstr "Habilitar LCN terrestre:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Habilitar las opciones de ajuste avanzadas de HDMI-CEC."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Active esta opción para añadir la información de MultiBoot detectada durante el arranque del sistema al archivo de registro de depuración."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
@@ -7509,6 +7541,9 @@ msgstr "Ir al menú principal..."
 #
 msgid "Enter multi-file selection mode"
 msgstr "Introducir el modo de selección de múltiples archivos"
+
+msgid "Enter new directory name:"
+msgstr "Introduzca el nuevo nombre del directorio:"
 
 msgid "Enter number to jump to channel"
 msgstr "Introducir número para ir al canal"
@@ -7765,6 +7800,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "¡Ha fallado la creación del directorio %s. !"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Error: El archivo o directorio '%s' ya existe!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Error: ¡La imagen '%s' a instalar no es válida!"
 
@@ -7794,6 +7833,10 @@ msgstr "Error: ¡No se han podido crear los directorios necesarios en el disposi
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Error: No se ha podido procesar el comando.  Por favor, inténtelo de nuevo más tarde."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Error: No se ha podido renombrar el directorio '%s' a '%s'!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8485,9 +8528,8 @@ msgid "Force Legacy Signal stats"
 msgstr "Forzar estadisticas clasicas de la señal"
 
 #
-#, fuzzy
 msgid "Force ToneBurst"
-msgstr "Tone burst"
+msgstr "Forzar ToneBurst"
 
 msgid "Force de-interlace"
 msgstr "Forzar desentrelazado"
@@ -9115,6 +9157,9 @@ msgstr "Velocidad de animación de indicadores de ayuda"
 msgid "Help screen style"
 msgstr "Estilo de la pantalla de ayuda"
 
+msgid "Help text uninitialized"
+msgstr "Texto de ayuda no inicializado"
+
 msgid "Helps setting up your signal"
 msgstr "Ayuda a ajustar la señal"
 
@@ -9513,6 +9558,9 @@ msgstr "Si es posible, x minutos antes de que comience un temporizador VPS-Plugi
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Si se ajusta a \"Sí\", se enviarán al televisor los mismos comandos para los eventos de espera profunda que se envían durante los eventos de espera normales."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Si se ajusta a \"sí\", permite utilizar timeshift con plugins de audio alternativos."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solución de espera profunda está activada, espere a que se sincronice la hora del sistema. Dependiendo de los requisitos, el dispositivo se despertará después de un máximo de 2 minutos."
 
@@ -9671,6 +9719,9 @@ msgstr "Incluir EIT en retransmisiones http"
 
 msgid "Include EPG data"
 msgstr "Incluir datos de EPG"
+
+msgid "Include MultiBoot data *"
+msgstr "Incluye los datos de MultiBoot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Incluir SDT, BAT en los flujos http"
@@ -9925,16 +9976,14 @@ msgstr "Instalando Software…"
 msgid "Installing feeds from IPK ..."
 msgstr "Instalación de fuentes desde IPK ..."
 
-#, fuzzy
 msgid "Installing feeds from feed ..."
-msgstr "Instalando complementos..."
+msgstr "Instalando feeds desde el feed ..."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Instalando complementos desde IPK ..."
 
-#, fuzzy
 msgid "Installing plugins from feed ..."
-msgstr "Instalando complementos..."
+msgstr "Instalando complementos desde el feed ..."
 
 msgid "Instant record"
 msgstr "Grabación instantánea"
@@ -10113,10 +10162,6 @@ msgstr "Javanés"
 msgid "Jersey"
 msgstr "Jersey"
 
-#
-msgid "Job View"
-msgstr "Visor de tareas"
-
 msgid "Job overview"
 msgstr "Resumen de trabajo"
 
@@ -10140,12 +10185,6 @@ msgstr "Saltar a la hora actual"
 
 msgid "Jump to end of list"
 msgstr "Ir al final de la lista"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Saltar al primer elemento de la lista o al inicio del texto"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Saltar al último elemento de la lista o al final del texto"
 
 #
 msgid "Jump to next marked position"
@@ -10690,6 +10729,9 @@ msgstr "Localidades que se mostrarán"
 msgid "Location"
 msgstr "Ubicación"
 
+msgid "Location Selection Actions"
+msgstr "Acciones de selección de ubicación"
+
 msgid "Location information"
 msgstr "Información sobre la ubicación"
 
@@ -10724,7 +10766,7 @@ msgid "Log file: '%s'  (%s)"
 msgstr "Archivo de registro: '%s' (%s)"
 
 msgid "Log python stack trace on spinner"
-msgstr ""
+msgstr "Registrar el stack trace de python en el spinner"
 
 #
 msgid "Log results to harddisk"
@@ -11411,6 +11453,9 @@ msgstr "Mover arriba/abajo"
 msgid "Move down a line"
 msgstr "Bajar una línea"
 
+msgid "Move down a line in the panel"
+msgstr "Desplazarse hacia abajo una línea en el panel"
+
 msgid "Move down a page"
 msgstr "Bajar una página"
 
@@ -11419,6 +11464,9 @@ msgstr "Desplazarse hacia abajo en una página / pantalla"
 
 msgid "Move down a screen"
 msgstr "Desplazarse hacia abajo en una pantalla"
+
+msgid "Move down a screen in the panel"
+msgstr "Desplazarse pantalla abajo en el panel"
 
 msgid "Move down list"
 msgstr "Desplazar hacia abajo la lista"
@@ -11465,6 +11513,12 @@ msgstr "Mover la entrada DNS actual una línea hacia abajo"
 msgid "Move the current DNS entry up one line"
 msgstr "Mover la entrada DNS actual una línea hacia arriba"
 
+msgid "Move the current bookmark down"
+msgstr "Mover el marcador actual hacia abajo"
+
+msgid "Move the current bookmark up"
+msgstr "Mover el marcador actual hacia arriba"
+
 msgid "Move the keyboard cursor down"
 msgstr "Mover el cursor del teclado hacia abajo"
 
@@ -11495,6 +11549,9 @@ msgstr "Pasar a la primera línea"
 msgid "Move to first line / screen"
 msgstr "Pasar a la primera línea / pantalla"
 
+msgid "Move to first line / screen in the panel"
+msgstr "Mover a la primera línea / pantalla en el panel"
+
 msgid "Move to home of list"
 msgstr "Mover a la lista de inicio"
 
@@ -11504,8 +11561,20 @@ msgstr "Move to last line"
 msgid "Move to last line / screen"
 msgstr "Pasar a la última línea / pantalla"
 
+msgid "Move to last line / screen in the panel"
+msgstr "Pasar a la última línea / pantalla del panel"
+
+msgid "Move to the first line / screen"
+msgstr "Ir a la primera línea / pantalla"
+
+msgid "Move to the last line / screen"
+msgstr "Ir a la última línea / pantalla"
+
 msgid "Move up a line"
 msgstr "Avanzar una línea"
+
+msgid "Move up a line in the panel"
+msgstr "Subir una línea en el panel"
 
 msgid "Move up a page"
 msgstr "Subir una página"
@@ -11515,6 +11584,9 @@ msgstr "Avanzar una página / pantalla"
 
 msgid "Move up a screen"
 msgstr "Avanzar una pantalla"
+
+msgid "Move up a screen in the panel"
+msgstr "Subir una pantalla en el panel"
 
 #
 #, fuzzy
@@ -11760,6 +11832,9 @@ msgstr "Naurú"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo"
+
+msgid "Navigate to the selected directory"
+msgstr "Navegar al directorio seleccionado"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navegue hacia arriba/abajo con los botones ARRIBA/ABAJO y paguina arriba/abajo con IZQUIERDA/DERECHA. Pulsa OK para realizar la acción descrita en la ayuda actualmente resaltada."
@@ -12393,6 +12468,9 @@ msgstr ""
 "Tamaño de archivo: %sMB\n"
 "Espacio libre: %sMB\n"
 "Ruta: %s"
+
+msgid "Not required"
+msgstr "No es necesario"
 
 #
 msgid "Not running"
@@ -13307,9 +13385,8 @@ msgstr "Introduce el nombre del directorio nuevo"
 msgid "Please enter a name for the new marker"
 msgstr "Pon un nombre para el nuevo marcador"
 
-#
-msgid "Please enter a new filename:"
-msgstr "Introduce un nombre de archivo nuevo"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Por favor, introduzca un nuevo nombre de archivo, la extensión no puede ser cambiada:"
 
 #
 msgid "Please enter filename (empty = use current date)"
@@ -14717,6 +14794,9 @@ msgstr "Religión"
 msgid "Reload"
 msgstr "Recargar"
 
+msgid "Reload Bookmarks"
+msgstr "Recargar los favoritos"
+
 #
 msgid "Reload Services"
 msgstr "Recargar canales"
@@ -14849,10 +14929,6 @@ msgstr "Eliminar la carpeta actual de los favoritos"
 msgid "Remove currently selected title"
 msgstr "Borrar el título seleccionado"
 
-#
-msgid "Remove directory"
-msgstr "Borrar directorio"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Eliminar la línea de ocultación del VBI para este servicio"
 
@@ -14864,6 +14940,9 @@ msgstr "Eliminar los textos para sordos de los subtítulos externos (música ins
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Eliminar la línea de CCcam.cfg"
+
+msgid "Remove the current bookmark"
+msgstr "Eliminar el favorito actual"
 
 #
 msgid "Remove timer"
@@ -14887,6 +14966,9 @@ msgstr "Eliminando tabla de particiones"
 msgid "Rename"
 msgstr "Renombrar"
 
+msgid "Rename Directory"
+msgstr "Cambiar el nombre del directorio"
+
 msgid "Rename failed!"
 msgstr "¡Error al renombrar!"
 
@@ -14896,6 +14978,9 @@ msgstr "Cambiar el nombre del archivo/directorio"
 
 msgid "Rename name and description for new events"
 msgstr "Renombrar nombre y descripción para nuevos eventos"
+
+msgid "Rename the proposed file to be created"
+msgstr "Cambiar el nombre del archivo propuesto para ser creado"
 
 msgid "Rename this tag"
 msgstr "Cambia el nombre de esta etiqueta"
@@ -15353,7 +15438,7 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr "Cambio de tarjeta SD ¡ERROR! - ya está en Nand"
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
+msgstr "¡ERROR! en el switch de la tarjeta SD ¡ERROR! - ya está en mmc"
 
 #
 msgid "SINGLE LAYER DVD"
@@ -15573,7 +15658,7 @@ msgid "Save the log changes and exit"
 msgstr "Guarde los cambios del registro y salga"
 
 msgid "Save the right folder list location on exit."
-msgstr ""
+msgstr "Guarda la ubicación de la lista de carpetas correcta al salir."
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Guardar Timeshift como película y seguir grabando"
@@ -15666,32 +15751,29 @@ msgid "Scans default lamedbs sorted by satellite with a connected dish positione
 msgstr "Buscar lamedbs por defecto ordenados por satélite con un motor conectado"
 
 msgid "Scheduled load of epg.dat"
-msgstr ""
+msgstr "Carga programada de epg.dat"
 
 msgid "Scheduled save of epg.dat"
-msgstr ""
+msgstr "Guardado programado de epg.dat"
 
 msgid "Sci-Fi"
-msgstr ""
+msgstr "Ciencia Ficción"
 
 msgid "Science"
-msgstr ""
+msgstr "Ciencia"
 
 msgid "Science & Tech"
-msgstr ""
+msgstr "Ciencia y tecnología"
 
 msgid "Scope"
-msgstr ""
-
-msgid "Screenshot of LCD in /tmp"
-msgstr ""
+msgstr "Alcance"
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
-msgstr ""
+msgstr "El script '%s' debe tener permiso de lectura para poder ejecutarlo"
 
 msgid "Script Manager"
-msgstr ""
+msgstr "Gestor de scripts"
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
@@ -15730,9 +15812,8 @@ msgstr "Buscar eventos similares"
 msgid "Search the epg for current event."
 msgstr "Buscar en el epg para el evento actual."
 
-#, fuzzy
 msgid "Search weather location ID"
-msgstr "Seleccionar ubicación"
+msgstr "Buscar el ID de la ubicación meteorológica"
 
 #
 msgid "Search west"
@@ -15777,9 +15858,8 @@ msgstr "seguridad"
 msgid "Seek"
 msgstr "Buscar"
 
-#, fuzzy
 msgid "Seek Actions"
-msgstr "Acciones rápidas"
+msgstr "Busque las acciones"
 
 #
 #, fuzzy
@@ -15799,23 +15879,20 @@ msgid "Seek forward"
 msgstr "Buscar hacia delante"
 
 #
-#, fuzzy
 msgid "Seek forward  short"
-msgstr "Buscar hacia delante"
+msgstr "Busqueda hacia delante  corta"
 
 #
 msgid "Seek forward (enter time)"
 msgstr "Buscar hacia delante (introducir hora)"
 
 #
-#, fuzzy
 msgid "Seek forward long"
-msgstr "Buscar hacia delante"
+msgstr "Busqueda hacia delante langa"
 
 #
-#, fuzzy
 msgid "Seekbar"
-msgstr "Buscar"
+msgstr "Barra de busqueda"
 
 msgid "Seekbar activation"
 msgstr "Activación de la barra de búsqueda"
@@ -15824,42 +15901,41 @@ msgid "Seekbar sensibility"
 msgstr "Sensibilidad de la barra de búsqueda"
 
 msgid "Seeking connected events"
-msgstr ""
+msgstr "Búsqueda de eventos relacionados"
 
 #
 msgid "Select"
 msgstr "Seleccionar"
 
 msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
-msgstr ""
+msgstr "Seleccione '1.0' para interruptores estándar comprometidos, '1.1' para interruptores no comprometidos y '1.2' para sistemas que utilizan un posicionador."
 
 msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
-msgstr ""
+msgstr "Seleccione \"A\" o \"B\" si su sistema de antena lo requiere, de lo contrario seleccione \"ninguno\". Si no está seguro, seleccione \"ninguno\"."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Si se ajusta a ‘no’, timeshift usará solo un fichero como buffer. Se recomienda ajustar ‘Comprobación de archivos más antiguos de Timeshift [en minutos]’ y ‘¿Comprobación de espacio libre de timeshift?’."
 
 msgid "Select 'No' to only write a log message to the debug log file."
-msgstr ""
+msgstr "Seleccione \"No\" para escribir sólo un mensaje de registro en el archivo de registro de depuración."
 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
 msgstr "Si se ajusta a ‘no’, puedes guardar los eventos más antiguos incluso tras zapear o interrumpir timeshift."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr ""
+msgstr "Seleccione \"Sí\" si se requiere una hora de finalización para este temporizador."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
-msgstr ""
+msgstr "Seleccione \"Sí\" si se debe comprobar el tráfico de la red antes de activar el temporizador."
 
 msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
+msgstr "Seleccione \"Sí\" si los ajustes de volumen deben aplicarse a las pistas de sonido Dolby."
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
-msgstr ""
+msgstr "Seleccione \"Sí\" si está utilizando un multiswitch que requiere una señal de comando DiSEqC en el Puerto-A. Seleccione 'No' para todas las demás configuraciones."
 
-#, fuzzy
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Si se ajusta a ‘sí’, la barra de información aparecerá cuando empiece un programa nuevo."
+msgstr "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin tiempo de espera, mientras la reproducción multimedia está en pausa."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Si se ajusta a 'sí', te permitirá usar la barra de búsqueda para avanzar a cualquier momento del programa."
@@ -15868,7 +15944,7 @@ msgid "Select 'Yes' to always show the bouquet screen first when opening the cha
 msgstr "Con esta opción en ‘Sí’ la lista de canales te mostrará primero la lista de grupos. En ‘No’ se abrirá el grupo actual."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
-msgstr ""
+msgstr "Seleccione \"Sí\" para comprobar si las conexiones de red provienen de direcciones IP nominadas en el momento de la activación del temporizador. Si es así, el temporizador se desactivará."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Si se ajusta a ‘sí’, se mostrará una pantalla pequeña de TV en el EPG."
@@ -15889,7 +15965,7 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Si se ajusta a 'sí', la barra de información mostrará el número del canal."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
-msgstr ""
+msgstr "Seleccione \"Sí\" para permitir la edición de los ajustes de este dispositivo. Si se selecciona \"No\", se restablecen los valores predeterminados de los dispositivos."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
@@ -15901,40 +15977,40 @@ msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Si se ajusta a ‘sí’, no se mostrarán los canales sin EPG."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración de los ajustes principales. Al seleccionar esta opción, todos los ajustes de Enigma2 volverán a sus valores por defecto. Esto también hará que Enigma2 ejecute el Asistente de Bienvenida al reiniciar."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de reanudación del reproductor multimedia. Al seleccionar esta opción se eliminarán los datos utilizados para permitir que la reproducción de archivos multimedia se reanude desde la posición en la que se detuvo la reproducción por última vez. La posición de reproducción de las grabaciones no se ve afectada."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de montaje de red. Al seleccionar esta opción se eliminarán todos los datos de red, incluidos los montajes automáticos y los datos de conexión de red, incluidas las cuentas y las contraseñas de conexión. Esto podría hacer que algunas funciones de Enigma2 fallen si están configuradas para utilizar estos recursos de red."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los demás archivos y directorios no cubiertos por las opciones anteriores."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración del plugin. Al seleccionar esta opción se eliminarán todos los datos de configuración de los plugins almacenados en la carpeta de configuración de Enigma2. Esto hará que todos los plugins afectados vuelvan a su configuración por defecto. Esto podría causar que algunos plugins no funcionen hasta que se configuren."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los ajustes, datos de sintonización, temporizadores, punteros de reanudación, etc. Al seleccionar esta opción se restablecerá la configuración a los ajustes iniciales antes de que se aplicara cualquier ajuste de configuración. Esta es la forma más fiable de Restauración de Fábrica."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración de los temporizadores. Al seleccionar esta opción, se borrarán todos los temporizadores, los temporizadores automáticos y los temporizadores de encendido."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de sintonización. Al seleccionar esta opción se eliminarán todos los datos de sintonización y bouquets, los temporizadores dejarán de funcionar hasta que se vuelva a sintonizar el receptor."
 
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todas las personalizaciones del usuario de los datos de la piel. Al seleccionar esta opción se eliminarán todas las personalizaciones de pieles basadas en el usuario. Todas las apariencias afectadas volverán a su configuración estándar. Esto también borrará los logotipos de arranque y los fondos personalizados."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
-msgstr ""
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de la interfaz de usuario. Al seleccionar esta opción, se eliminarán todos los datos del mapa de teclas, de los menús y de la configuración y se restaurarán las definiciones por defecto."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
-msgstr ""
+msgstr "Seleccione \"Sí\" para restablecer la configuración de red por defecto. Esto habilitará el puerto Ethernet si existe y configurará el receptor para usar DHCP. Todas las demás interfaces de red serán eliminadas."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Seleccione \"Sí\" para mostrar las opciones de configuración avanzada."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
 msgstr "Si se ajusta a 'sí', se mostrarán los grupos cada vez que abras el EPG."
@@ -15943,43 +16019,43 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Si se ajusta a ‘sí’, la lista de canales aparecerá en los cambios entre modo radio y TV."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr ""
+msgstr "Seleccione \"Sí\" para utilizar los valores de la señal (SNR, etc.) calculados a partir de la antigua API V3. Esta versión de la API ha sido sustituida."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Si se ajusta a 'sí', la barra de información se mostrará en el avance o rebobinado durante la reproducción de recursos."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr ""
+msgstr "Seleccione \"banda\" si utiliza un LNB \"universal\"; en caso contrario, consulte la hoja de especificaciones de su LNB."
 
 msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
-msgstr ""
+msgstr "Seleccione \"activado\" si este sintonizador tiene un cable de señal conectado, de lo contrario seleccione \"nada conectado\"."
 
 msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
-msgstr ""
+msgstr "Seleccione \"polarización\" si utiliza un LNB \"universal\"; en caso contrario, consulte la hoja de especificaciones de su LNB."
 
 msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
-msgstr ""
+msgstr "Selecciona \"proveedor\" para escanear desde la lista predefinida de multiplexores de cable. Selecciona \"bandas\" para escanear sólo ciertas partes del espectro. Selecciona \"pasos\" para escanear en pasos un ancho de banda de frecuencia concreto."
 
 msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
-msgstr ""
+msgstr "Seleccione \"sí\" si este sintonizador está conectado al dispositivo SCR a través de otro sintonizador, de lo contrario seleccione \"no\"."
 
 #, python-format
 msgid "Select 'yes' to include %s multiplexes in your search."
-msgstr ""
+msgstr "Seleccione \"sí\" para incluir %s multiplexes en su búsqueda."
 
 #, python-format
 msgid "Select 'yes' to include symbol rate %s in your search."
-msgstr ""
+msgstr "Seleccione \"sí\" para incluir el symbol rate %s en su búsqueda."
 
 #, python-format
 msgid "Select 'yes' to include the %s band in your search."
-msgstr ""
+msgstr "Seleccione \"sí\" para incluir la banda %s en su búsqueda."
 
 msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
-msgstr ""
+msgstr "Seleccione \"sí\" para que sólo se envíe el comando DiSEqC al cambiar de un satélite a otro, o seleccione \"no\" para que el comando DiSEqC se reenvíe en cada zapping."
 
 msgid "Select (source list) or enter directory (target list)"
-msgstr ""
+msgstr "Seleccione (lista de origen) o introduzca el directorio (lista de destino)"
 
 msgid "Select Additional Backup Files"
 msgstr "Seleccionar los archivos adicionales de la copia de seguridad"
@@ -15992,15 +16068,14 @@ msgid "Select CAId"
 msgstr "Seleccionar CAId"
 
 # Quick Menue
-#, fuzzy
 msgid "Select Enigma2 Skin"
-msgstr "Configurar Enigma2"
+msgstr "Seleccione la skin Enigma2"
 
 msgid "Select Excluded Backup Files"
 msgstr "Seleccionar archivos excluidos del copiado de seguridad"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
+msgstr "Seleccione DiSEqC rápido si su sistema de antena lo admite. Si no está seguro, seleccione \"no\"."
 
 msgid "Select Folders"
 msgstr "Seleccionar carpetas"
@@ -16008,9 +16083,8 @@ msgstr "Seleccionar carpetas"
 msgid "Select HDD"
 msgstr "Seleccionar HDD"
 
-#, fuzzy
 msgid "Select LCD Skin"
-msgstr "Seleccionar skin:"
+msgstr "Seleccionar la skin del LCD"
 
 msgid "Select Lan/Wlan"
 msgstr "Seleccione LAN/WLAN"
@@ -16019,22 +16093,21 @@ msgstr "Seleccione LAN/WLAN"
 msgid "Select Location"
 msgstr "Seleccionar ubicación"
 
-msgid "Select Movie Location"
-msgstr ""
+msgid "Select Media Location"
+msgstr "Seleccione la ubicación del medio"
 
 msgid "Select Playback Location"
-msgstr ""
+msgstr "Seleccione la ubicación de la reproducción"
 
-#, fuzzy
 msgid "Select Quad Channels"
-msgstr "Seleccionar un sintonizador"
+msgstr "Seleccionar canales cuádruples"
 
 #
 msgid "Select Software Update"
 msgstr "Seleccionar actualización de software"
 
 msgid "Select Time Shift Location"
-msgstr ""
+msgstr "Seleccione la ubicación de Time Shift"
 
 msgid "Select Upgrade Source"
 msgstr "Seleccionar fuente de actualización"
@@ -16043,21 +16116,20 @@ msgstr "Seleccionar fuente de actualización"
 msgid "Select Upgrade Source To Edit"
 msgstr "Seleccione fuente de actualización a editar"
 
-#, fuzzy
 msgid "Select Your Skin"
-msgstr "Seleccionar skin:"
+msgstr "Seleccionar skin"
 
 msgid "Select a bouquet"
 msgstr "Seleccionar un grupo"
 
 msgid "Select a cardserver from the available list."
-msgstr ""
+msgstr "Seleccione un servidor de tarjetas de la lista disponible."
 
 msgid "Select a debug log file to view:"
-msgstr ""
+msgstr "Seleccione un archivo de registro de depuración para verlo:"
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr ""
+msgstr "Seleccione la distribución de la que se van a obtener las imágenes"
 
 #
 msgid "Select a movie"
@@ -16066,19 +16138,18 @@ msgstr "Seleccionar película"
 msgid "Select a network adapter"
 msgstr "Seleccionar un adaptador de red"
 
-#, fuzzy
 msgid "Select a path"
-msgstr "Seleccionar un sintonizador"
+msgstr "Seleccione una ruta"
 
 msgid "Select a repository commit log to view:"
-msgstr ""
+msgstr "Seleccione el registro de confirmación de un repositorio para verlo:"
 
 #
 msgid "Select a script to run:"
 msgstr "Seleccione el script a ejecutar:"
 
 msgid "Select a softcam from the available list."
-msgstr ""
+msgstr "Seleccione una softcam de la lista disponible."
 
 msgid "Select a tuner"
 msgstr "Seleccionar un sintonizador"
@@ -16087,9 +16158,8 @@ msgid "Select a wireless network"
 msgstr "Seleccione una red inalámbrica"
 
 #
-#, fuzzy
 msgid "Select action"
-msgstr "Seleccionar ubicación"
+msgstr "Seleccione la acción"
 
 #, python-format
 msgid "Select action for timer %s:"
@@ -16098,17 +16168,19 @@ msgstr "Seleccione acción para el temporizador %s:"
 msgid "Select additional files to backup"
 msgstr "Seleccionar los archivos adicionales del copiado de seguridad"
 
+msgid "Select an action to perform when the task has completed."
+msgstr "Seleccione una acción a realizar cuando la tarea haya finalizado."
+
 #
 msgid "Select audio track"
 msgstr "Seleccionar pista de audio"
 
 msgid "Select cardserver"
-msgstr ""
+msgstr "Seleccione el servidor de tarjetas"
 
 #
-#, fuzzy
 msgid "Select channel audio"
-msgstr "Seleccionar canal a grabar"
+msgstr "Seleccione el canal de audio"
 
 msgid "Select copy destination for:"
 msgstr "Seleccionar ubicación de la copia de:"
@@ -16127,19 +16199,19 @@ msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el copiado de seguridad"
 
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
-msgstr ""
+msgstr "Seleccione cuánto tiempo se mostrará la ventana emergente de error del botón. La entrada a traves de los botones sigue estando permitida mientras se muestra la ventana emergente."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr ""
+msgstr "Seleccione el tiempo, en segundos, que se muestra la pantalla de volumen antes de que se oculte automáticamente."
 
 msgid "Select how often this timer is to be repeated."
-msgstr ""
+msgstr "Seleccione la frecuencia con la que se debe repetir este temporizador."
 
 msgid "Select how quickly the dish should move between satellites."
-msgstr ""
+msgstr "Seleccione la velocidad con la que la antena parabólica debe moverse entre los satélites."
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
-msgstr ""
+msgstr "Seleccione cómo está configurada la antena parabólica, es decir, antena fija, LNB único, interruptor DiSEqC, posicionador, etc."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
@@ -16149,43 +16221,43 @@ msgid "Select how your box will upgrade."
 msgstr "Seleccione como actualizar tu receptor."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Seleccione si se requiere una hora de finalización."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
-msgstr ""
+msgstr "Seleccione si se muestra el valor por defecto de una entrada de configuración y, si es así, dónde se muestra en relación con la descripción."
 
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
-msgstr ""
+msgstr "Seleccione si se muestra el historial de rutas del menú de la pantalla y, en caso afirmativo, cómo debe mostrarse."
 
 msgid "Select if the timer name and description modification code is run on repeating timers."
-msgstr ""
+msgstr "Seleccione si el código de modificación del nombre y la descripción del temporizador se ejecuta en los temporizadores repetidos."
 
 msgid "Select if there is to be a time window within which this timer can be active."
-msgstr ""
+msgstr "Seleccione si debe haber una ventana de tiempo dentro de la cual este temporizador puede estar activo."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa un viernes."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa un lunes."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa en sábado."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa en domingo."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa un jueves."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa un martes."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Seleccione si este temporizador se activa un miércoles."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Seleccione si este temporizador debe repetirse."
 
 msgid "Select if time shift must continue when set to record."
 msgstr "Seleccione si Timeshift debe continuar cuando haya una grabación pendiente."
@@ -16204,7 +16276,7 @@ msgid "Select interface"
 msgstr "Seleccionar interfaz"
 
 msgid "Select menu entry"
-msgstr ""
+msgstr "Seleccione la entrada del menú"
 
 #
 msgid "Select movie"
@@ -16229,129 +16301,149 @@ msgid "Select service to add..."
 msgstr "Seleccionar canal a añadir..."
 
 msgid "Select softcam"
-msgstr ""
+msgstr "Seleccionar softcam"
 
 msgid "Select sort method:"
 msgstr "Seleccione el método de ordenación:"
 
 msgid "Select system information to view:"
-msgstr ""
+msgstr "Seleccione la información del sistema que desea ver:"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
 #
 msgid "Select the Swap File Size:"
 msgstr "Seleccione el tamaño de la memoria Swap:"
 
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
-msgstr ""
+msgstr "Seleccione el canal Unicable que se asignará a este sintonizador. Este es un valor único. Asegúrese de que ningún otro dispositivo conectado a este mismo sistema Unicable esté asignado al mismo canal Unicable."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. Se trata de un índice en la tabla de frecuencias que el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. Se trata de un índice en la tabla de frecuencias que el conmutador SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Seleccione la frecuencia de banda de usuario que se asignará a este sintonizador. Esta es la frecuencia que el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Seleccione la frecuencia de banda de usuario que se asignará a este sintonizador. Esta es la frecuencia que el conmutador SCR o el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Seleccione respuesta Sí / Verdadero"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Seleccione la acción a realizar cuando el temporizador termine."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
-msgstr ""
+msgstr "Seleccione la velocidad de animación de los indicadores de los botones en las pantallas de ayuda. 'Desactivado' desactiva la animación para que los indicadores salten entre los botones."
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Seleccione el canal desde el que desea grabar:"
 
 msgid "Select the channel or service to be used for this timer."
-msgstr ""
+msgstr "Seleccione el canal o servicio que se utilizará para este temporizador."
 
 msgid "Select the character or action under the keyboard cursor"
-msgstr ""
+msgstr "Seleccione el carácter o la acción bajo el cursor del teclado"
+
+msgid "Select the current bookmarked location and exit"
+msgstr "Seleccionar la ubicación actual de los marcadores y salir"
 
 msgid "Select the current menu item"
-msgstr ""
+msgstr "Seleccione la opción de menú actual"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Seleccione el idioma regional actual de la interfaz de usuario"
 
 msgid "Select the currently highlighted service"
-msgstr ""
+msgstr "Seleccione el servicio que esta actualmente resaltado"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Seleccione la fecha a partir de la cual se activará este temporizador."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Seleccione la fecha en la que se activará este temporizador."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Seleccione la fecha de inicio de este temporizador."
 
 msgid "Select the day of the week that this timer will activate."
-msgstr ""
+msgstr "Seleccione el día de la semana en que se activará este temporizador."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Seleccione el retardo antes de que se active el temporizador."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Seleccione la función deseada y pulsa ‘OK’ para asignar. Usa “CH+/-” para cambiar entre listas. Seleccione una función asignada y pulsa ‘OK’ para desasignar. Usa “Siguiente/Anterior” para cambiar el orden de las funciones asignadas."
 
 msgid "Select the display design for menus."
-msgstr ""
+msgstr "Seleccione el diseño de la pantalla para los menús."
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
-msgstr ""
+msgstr "Seleccione las opciones de visualización para cada elemento del menú. Si se dispone de números de menú, los botones numéricos pueden utilizarse para seleccionar directamente las entradas de menú numeradas."
+
+msgid "Select the first item in list or move to the start of text"
+msgstr "Seleccionar el primer elemento de la lista o desplazarse al principio del texto"
+
+msgid "Select the first item in the list"
+msgstr "Seleccione el primer elemento de la lista"
 
 msgid "Select the function to be assigned to this button."
 msgstr "Seleccione la función asignada a este botón."
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr ""
+msgstr "Seleccione la imagen resaltada y proceda a la selección de la ranura"
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Seleccione la ranura resaltada y reinicie"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
-msgstr ""
+msgstr "Seleccione la posición inicial del marcador de la línea de tiempo. El marcador es la línea vertical dibujada en la EPG que muestra la hora actual. Cuanto mayor sea el valor, más se moverá el marcador hacia la derecha mostrando más historia y menos de los próximos eventos."
 
-#, fuzzy
+msgid "Select the last item in list or move to the end of text"
+msgstr "Seleccionar el último elemento de la lista o desplazarse al final del texto"
+
+msgid "Select the last item in the list"
+msgstr "Seleccione el último elemento de la lista"
+
 msgid "Select the locale from a menu"
-msgstr "Seleccione los archivos que desea excluir de la copia de seguridad"
+msgstr "Seleccione la ubicación desde el menú"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Seleccione la ubicación en la que desea almacenar la grabación:"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
-msgstr ""
+msgstr "Seleccione el fabricante de su dispositivo SCR. Si el fabricante no aparece en la lista, establezca \"SCR\" como \"definido por el usuario\" e introduzca los parámetros del dispositivo manualmente según su hoja de especificaciones."
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
-msgstr ""
+msgstr "Seleccione el método de restauración de la resolución de la pantalla y del framebuffer al salir del teletexto."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
-msgstr ""
+msgstr "Seleccione el número de modelo de su dispositivo Unicable. Si el número de modelo no aparece en la lista, configure \"SCR\" como \"definido por el usuario\" e introduzca manualmente los parámetros del dispositivo según su hoja de especificaciones."
 
 #
 msgid "Select the movie path"
 msgstr "Seleccionar directorio de películas"
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
-msgstr ""
+msgstr "Seleccione la tasa de datos de la red por debajo de la cual el temporizador debe activarse según lo especificado. El tráfico por encima de esta tasa desactiva el temporizador."
 
-msgid "Select the next item in list or move cursor right"
-msgstr ""
+msgid "Select the next item in list or move the cursor right"
+msgstr "Seleccionar el siguiente elemento de la lista o mover el cursor hacia la derecha"
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr "Seleccione el siguiente elemento de la lista"
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr "Seleccione el elemento anterior de la lista o mueva el cursor hacia la izquierda"
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -17561,6 +17653,9 @@ msgstr "Mostrar información detallada del programa"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Mostrar información detallada del programa"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -18129,6 +18224,9 @@ msgstr "Saltar canales vacíos"
 msgid "Skip forward"
 msgstr "Saltar hacia delante"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 #, fuzzy
 msgid "Skip selection"
 msgstr "Selección de película"
@@ -18319,6 +18417,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "Configuracion de Softcam"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "Softcams"
 
@@ -18448,6 +18549,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Ordenar"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "Ordenar la lista EPG"
@@ -19074,6 +19178,12 @@ msgstr ""
 msgid "Switch TV to correct input"
 msgstr "Cambiar TV a entrada correcta"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 # AudioSelection.py
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Cambiar entre audio y página de subtítulos"
@@ -19104,13 +19214,15 @@ msgstr "Cambiar a TV"
 msgid "Switch to TV mode"
 msgstr "Cambiar a modo TV"
 
-#
-msgid "Switch to bookmarks"
-msgstr "Cambiar a marcadores"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 # Mediaplayer playlist Menue
 msgid "Switch to file list"
 msgstr "Cambiar a lista de archivos"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #
 #, fuzzy
@@ -19328,9 +19440,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#, fuzzy
-msgid "Task list"
-msgstr "Lista de paquetes"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr ""
@@ -20548,6 +20668,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -21453,6 +21576,9 @@ msgstr "Utilice los botones ARRIBA y ABAJO para seleccionar su idioma regional y
 # Menue Anpassungen OSD
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Usar el modo de radio alternativo o convencional."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -24833,6 +24959,53 @@ msgstr "Tu %s %s podría estar inutilizable. Consulta el manual antes de reinici
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Un temporizador de apagado quiere poner tu\n"
+#~ "%s %s en modo espera. ¿Hacerlo ahora?"
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Un temporizador de apagado quiere apagar\n"
+#~ "tu %s %s. ¿Apagar ahora?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Habilitar captura de pantalla de LCD en /tmp"
+
+#
+#~ msgid "Job View"
+#~ msgstr "Visor de tareas"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Saltar al primer elemento de la lista o al inicio del texto"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Saltar al último elemento de la lista o al final del texto"
+
+#
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Introduce un nombre de archivo nuevo"
+
+#
+#~ msgid "Remove directory"
+#~ msgstr "Borrar directorio"
+
+#
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Cambiar a marcadores"
+
+#, fuzzy
+#~ msgid "Task list"
+#~ msgstr "Lista de paquetes"
 
 #
 #, fuzzy

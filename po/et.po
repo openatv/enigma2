@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1890,6 +1890,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Krahhilogi %s loodi '%s'"
 
@@ -1981,22 +1989,6 @@ msgstr ""
 "Leiti teine võrguliides.\n"
 "\n"
 "Kas see tuleks keelata?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Unetaimer soovib panna %s %s\n"
-"ooteseisundisse. Kas nõustud?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Unetaimer soovib %s %s välja lülitada.\n"
-"Kas nõustud?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kasutatavate ikoonide olekute ja tegevuste lühiülevaade."
@@ -2303,6 +2295,9 @@ msgstr "Lisa kataloog järjehoidjatesse"
 msgid "Add service"
 msgstr "Lisa kanal"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2379,6 +2374,9 @@ msgid "Afghanistan"
 msgstr "Afghanistan"
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 # Powerlost setup.xml
@@ -3374,6 +3372,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "Järjehoidjad"
 
@@ -3880,6 +3881,9 @@ msgstr "Tühista"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Tühista kõik teksti muudatused ja välju"
@@ -3915,6 +3919,9 @@ msgstr "Tühista ajanihke salvestuseks muutmine"
 msgid "Cancel selection"
 msgstr "Kanalivalik"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -3936,6 +3943,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4465,6 +4475,12 @@ msgstr "Sulge"
 
 msgid "Close PiP on exit"
 msgstr "Sulge PiP 'EXIT' nupuga"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr ""
@@ -5075,6 +5091,9 @@ msgstr "Jätka taasesitust"
 msgid "Continue playing"
 msgstr "Jätka taasesitust"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5216,6 +5235,9 @@ msgstr "Loo Bludisc ISO"
 
 msgid "Create DVD-ISO"
 msgstr "Loo DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr "Loo ISO"
@@ -5890,6 +5912,9 @@ msgstr "Kustuta 1 üksus"
 msgid "Delete Confirmation"
 msgstr "Kustutamise kinnitus"
 
+msgid "Delete Directory"
+msgstr ""
+
 msgid "Delete EPG"
 msgstr "Kustuta EPG"
 
@@ -6028,6 +6053,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 #
 msgid "Device Manager"
 msgstr "Seadmehaldur"
@@ -6112,6 +6140,9 @@ msgstr ""
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Salvestuste taasesitus ilma menüüta"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Kataloog"
@@ -6220,6 +6251,9 @@ msgstr "Esipaneeli seaded"
 
 msgid "Display and user interface"
 msgstr "Esipaneel ja kasutajaliides"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -7050,9 +7084,6 @@ msgstr "Eelvaatlus lubatud"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Luba kasutada enigma2 kaugvastuvõtjat häälestumiseks kanalitele, mida kohalik vastuvõtja ei ole võimeline vastu võtma (nt. tuuner on hõivatud või kanalitüüp on kohalikule tuunerile sobimatu). Vajalik on täielik URL k.a. http:/ ja pordi number (tavaliselt ...:8001). Näiteks http://teine_tuuner:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "LCD ekraanipildi salvestus /tmp kataloogi"
-
 msgid "Enable teletext caching"
 msgstr "Teleteksti puhverdamine"
 
@@ -7060,6 +7091,9 @@ msgid "Enable terrestrial LCN:"
 msgstr "Luba dvb-t LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7254,6 +7288,9 @@ msgstr "Peamenüü."
 
 msgid "Enter multi-file selection mode"
 msgstr "Luba hulgivaliku režiim"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "kanalile minekuks sisesta number."
@@ -7503,6 +7540,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Kataloogi %s loomine nurjus."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7530,6 +7571,10 @@ msgstr "Nõutud kataloogide loomine andmekandjal (USB pulk või kõvaketas) nurj
 #, fuzzy
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr ""
@@ -8801,6 +8846,9 @@ msgstr "Abiindikaatorite animatsiooni kiirus"
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "Hõlbustab antenni seadistamist"
 
@@ -9194,6 +9242,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9347,6 +9398,9 @@ msgid "Include EIT in http streams"
 msgstr "EIT kaasatud http voogudesse"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -9773,9 +9827,6 @@ msgstr ""
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Töövaade"
-
 msgid "Job overview"
 msgstr "Töövaade"
 
@@ -9799,12 +9850,6 @@ msgstr "Hüpe hetke ajale"
 
 msgid "Jump to end of list"
 msgstr "Hüpe nimekirja lõppu"
-
-msgid "Jump to first item in list or the start of text"
-msgstr ""
-
-msgid "Jump to last item in list or the end of text"
-msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Hüpe järgmise märgini"
@@ -10322,6 +10367,9 @@ msgstr ""
 
 msgid "Location"
 msgstr "Asukoht"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -11027,6 +11075,9 @@ msgstr "Liiguta üles/alla"
 msgid "Move down a line"
 msgstr "Liigu lehe lõppu"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "Liigu lehe lõppu"
 
@@ -11034,6 +11085,9 @@ msgid "Move down a page / screen"
 msgstr ""
 
 msgid "Move down a screen"
+msgstr ""
+
+msgid "Move down a screen in the panel"
 msgstr ""
 
 msgid "Move down list"
@@ -11082,6 +11136,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 #, fuzzy
 msgid "Move the keyboard cursor down"
 msgstr "Liiguta virtuaalklahvistiku kursorit alla"
@@ -11120,6 +11180,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr ""
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Liigu nimekirja kodukataloogi"
 
@@ -11129,9 +11192,21 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr ""
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 #, fuzzy
 msgid "Move up a line"
 msgstr "Liigu lehe algusesse"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "Liigu lehe algusesse"
@@ -11140,6 +11215,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen in the panel"
 msgstr ""
 
 msgid "Move up list"
@@ -11381,6 +11459,9 @@ msgid "Nauru"
 msgstr "Nauru"
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -11987,6 +12068,9 @@ msgstr ""
 "Faili suurus: %sMB\n"
 "Vaba ruumi: %sMB\n"
 "Asukoht: %s"
+
+msgid "Not required"
+msgstr ""
 
 #, fuzzy
 msgid "Not running"
@@ -12876,8 +12960,8 @@ msgstr "Sisesta uue kataloogi nimi"
 msgid "Please enter a name for the new marker"
 msgstr "Sisesta uue markeri nimi"
 
-msgid "Please enter a new filename:"
-msgstr "Sisesta uus faili nimi"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Sisesta faili nimi (tühi = tänane kuupäev)"
@@ -14201,6 +14285,9 @@ msgstr "religioon"
 msgid "Reload"
 msgstr "Värskenda"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 #
 msgid "Reload Services"
 msgstr "Värskenda kanalid"
@@ -14330,9 +14417,6 @@ msgstr "Eemalda praegune kataloog järjehoidjatest"
 msgid "Remove currently selected title"
 msgstr "Eemalda valitud nimetus"
 
-msgid "Remove directory"
-msgstr "Kustuta kataloog"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Lõpeta punktiirjoone peitmine sellel kanalil"
 
@@ -14343,6 +14427,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "Eemalda välistelt subtiitritelt vaegkuuljatele mõeldud tekst (instrumentaalmuusika või taustahelid, nt. ''uksekell heliseb'', ''püssipauk''.)"
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -14363,6 +14450,9 @@ msgstr "Partitsioonitabeli eemaldamine"
 msgid "Rename"
 msgstr "Nimeta ümber"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Ümbernimetamine nurjus!"
 
@@ -14371,6 +14461,9 @@ msgstr "Nimeta fail/kataloog ümber"
 
 msgid "Rename name and description for new events"
 msgstr "Nimeta uued saated ja kirjeldused ümber"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr ""
@@ -15107,9 +15200,6 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "LCD ekraanipilt /tmp kataloogi"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skripti '%s' käivitamiseks peavad sel olema lugemisõigused"
@@ -15421,7 +15511,7 @@ msgstr "Vali Lan/Wlan"
 msgid "Select Location"
 msgstr "Vali asukoht"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -15493,6 +15583,9 @@ msgstr "Vali tegevus taimerile %s:"
 
 msgid "Select additional files to backup"
 msgstr "Vali veel faile varundamiseks"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "Vali heliriba"
@@ -15668,6 +15761,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -15701,6 +15797,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
@@ -15711,6 +15813,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #, fuzzy
@@ -15735,10 +15843,16 @@ msgstr "Vali salvestuskataloog"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16891,6 +17005,9 @@ msgstr "Kuva põhjalik saatetutvustus"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Kuva põhjalik saatetutvustus (sea menüüs)"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -17422,6 +17539,9 @@ msgstr "Tühje kanaleid ei kuvata"
 msgid "Skip forward"
 msgstr "Edasihüpe"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 msgid "Skip selection"
 msgstr "Jäta valitud vahele"
 
@@ -17604,6 +17724,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "EMU seadistamine"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "Emulaatorid"
 
@@ -17727,6 +17850,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Järjestus"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "Saatekava järjestamine"
@@ -18302,6 +18428,12 @@ msgstr "Vaheta režiimi HDR või PiP lubamiseks"
 msgid "Switch TV to correct input"
 msgstr "Lülita teler õigele sisendile"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 # AudioSelection.py
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Heli ja subtiitrite menüü vahetamine"
@@ -18330,11 +18462,14 @@ msgstr "Lülitus TV režiimi"
 msgid "Switch to TV mode"
 msgstr "Lülitus telerežiimi"
 
-msgid "Switch to bookmarks"
-msgstr "Ava järjehoidjad"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "Mine faililoendisse"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to next EPG Event"
@@ -18538,8 +18673,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr "Tansaania"
 
-msgid "Task list"
-msgstr "Ülesanded"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Tatar"
@@ -19703,6 +19847,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -20542,6 +20689,9 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Kasuta alternatiivset või tavapärast raadiovaadet."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Kasuta kursorinuppe paigaldatud püsivara valikuks ja siis nuppu 'Käivita'."
@@ -23636,6 +23786,43 @@ msgstr "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi l
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Unetaimer soovib panna %s %s\n"
+#~ "ooteseisundisse. Kas nõustud?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Unetaimer soovib %s %s välja lülitada.\n"
+#~ "Kas nõustud?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "LCD ekraanipildi salvestus /tmp kataloogi"
+
+#~ msgid "Job View"
+#~ msgstr "Töövaade"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Sisesta uus faili nimi"
+
+#~ msgid "Remove directory"
+#~ msgstr "Kustuta kataloog"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "LCD ekraanipilt /tmp kataloogi"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Ava järjehoidjad"
+
+#~ msgid "Task list"
+#~ msgstr "Ülesanded"
 
 #, fuzzy
 #~ msgid "Please select the IceTV service that you wish to use."

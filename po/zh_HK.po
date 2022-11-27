@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1921,6 +1921,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr ""
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr ""
 
@@ -2013,22 +2021,6 @@ msgstr ""
 "發現第二個網路介面配置.\n"
 "\n"
 "您想禁用第二個網路介面?"
-
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"睡眠計時器要設定Dreambox待機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"睡眠計時器要設定Dreambox關機.\n"
-"確定嗎?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "可用圖示狀態和動作的簡要概述."
@@ -2357,6 +2349,9 @@ msgstr "選擇要備份的檔/目錄"
 msgid "Add service"
 msgstr ""
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2439,6 +2434,9 @@ msgid "Afghanistan"
 msgstr ""
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 #, fuzzy
@@ -3489,6 +3487,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "書簽"
 
@@ -4010,6 +4011,9 @@ msgstr "取消"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "頻道選擇"
@@ -4045,6 +4049,9 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "頻道選擇"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4066,6 +4073,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4628,6 +4638,12 @@ msgid "Close"
 msgstr "關閉"
 
 msgid "Close PiP on exit"
+msgstr ""
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
 msgstr ""
 
 msgid "Close bouquet list"
@@ -5243,6 +5259,9 @@ msgstr ""
 msgid "Continue playing"
 msgstr "繼續播放"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5383,6 +5402,9 @@ msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "創建DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 #, fuzzy
 msgid "Create ISO"
@@ -6086,6 +6108,9 @@ msgstr "刪除項目"
 msgid "Delete Confirmation"
 msgstr "LT 配置"
 
+msgid "Delete Directory"
+msgstr ""
+
 #, fuzzy
 msgid "Delete EPG"
 msgstr "刪除"
@@ -6228,6 +6253,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 #, fuzzy
 msgid "Device Manager"
 msgstr "裝置管理..."
@@ -6315,6 +6343,9 @@ msgstr ""
 
 msgid "Direct playback of linked titles without menu"
 msgstr "直接播放鏈結標題，不使用功能表"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "目錄"
@@ -6425,6 +6456,9 @@ msgstr "OLED設定"
 #, fuzzy
 msgid "Display and user interface"
 msgstr "顯示和用戶介面"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -7264,9 +7298,6 @@ msgstr "啟用計時器"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr ""
-
 msgid "Enable teletext caching"
 msgstr ""
 
@@ -7274,6 +7305,9 @@ msgid "Enable terrestrial LCN:"
 msgstr ""
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7470,6 +7504,9 @@ msgstr "進入主功能表..."
 #, fuzzy
 msgid "Enter multi-file selection mode"
 msgstr "關閉標題選項"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr ""
@@ -7699,6 +7736,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "創建目錄%s 失敗."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7724,6 +7765,10 @@ msgid "Error: Unable to create the required directories on the target device (e.
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
+msgstr ""
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 msgid "Esperanto"
@@ -9060,6 +9105,9 @@ msgstr ""
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr ""
 
@@ -9465,6 +9513,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9617,6 +9668,9 @@ msgid "Include EIT in http streams"
 msgstr ""
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -10066,9 +10120,6 @@ msgstr ""
 msgid "Jersey"
 msgstr ""
 
-msgid "Job View"
-msgstr "作業視圖"
-
 msgid "Job overview"
 msgstr ""
 
@@ -10093,12 +10144,6 @@ msgid "Jump to current time"
 msgstr "當前標題屬性"
 
 msgid "Jump to end of list"
-msgstr ""
-
-msgid "Jump to first item in list or the start of text"
-msgstr ""
-
-msgid "Jump to last item in list or the end of text"
 msgstr ""
 
 msgid "Jump to next marked position"
@@ -10636,6 +10681,9 @@ msgstr ""
 
 msgid "Location"
 msgstr "位置"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -11355,6 +11403,9 @@ msgstr ""
 msgid "Move down a line"
 msgstr "向下移動到最後項目"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 #, fuzzy
 msgid "Move down a page"
 msgstr "向下移動到最後項目"
@@ -11363,6 +11414,9 @@ msgid "Move down a page / screen"
 msgstr ""
 
 msgid "Move down a screen"
+msgstr ""
+
+msgid "Move down a screen in the panel"
 msgstr ""
 
 #, fuzzy
@@ -11414,6 +11468,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 #, fuzzy
 msgid "Move the keyboard cursor down"
 msgstr "打開虛擬鍵盤輸入幫助"
@@ -11450,6 +11510,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr ""
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 #, fuzzy
 msgid "Move to home of list"
 msgstr "螢幕左移"
@@ -11460,9 +11523,21 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr ""
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 #, fuzzy
 msgid "Move up a line"
 msgstr "電影列表"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr ""
@@ -11471,6 +11546,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen in the panel"
 msgstr ""
 
 #, fuzzy
@@ -11719,6 +11797,9 @@ msgid "Nauru"
 msgstr ""
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -12329,6 +12410,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not required"
 msgstr ""
 
 #, fuzzy
@@ -13253,8 +13337,8 @@ msgstr "為新的目錄重命名"
 msgid "Please enter a name for the new marker"
 msgstr "重命名標籤"
 
-msgid "Please enter a new filename:"
-msgstr "請輸入一個新的檔案名"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "請輸入檔案名 (空=使用當時日期命名)"
@@ -14624,6 +14708,9 @@ msgstr ""
 msgid "Reload"
 msgstr "重新載入"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 #, fuzzy
 msgid "Reload Services"
 msgstr "添加頻道"
@@ -14759,9 +14846,6 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "移除當前選擇的標題"
 
-msgid "Remove directory"
-msgstr "移除目錄"
-
 msgid "Remove hide VBI line for this service"
 msgstr ""
 
@@ -14773,6 +14857,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr ""
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -14794,6 +14881,9 @@ msgstr ""
 msgid "Rename"
 msgstr "重命"
 
+msgid "Rename Directory"
+msgstr ""
+
 #, fuzzy
 msgid "Rename failed!"
 msgstr "移除失敗."
@@ -14805,6 +14895,9 @@ msgstr "創建目錄"
 #, fuzzy
 msgid "Rename name and description for new events"
 msgstr "編輯計時器和掃描新的事件"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr ""
@@ -15571,9 +15664,6 @@ msgstr "Science & Technology"
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr ""
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
@@ -15897,7 +15987,7 @@ msgstr "選擇位置"
 msgid "Select Location"
 msgstr "選擇位置"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -15973,6 +16063,9 @@ msgstr "選擇一個計時器導入"
 #, fuzzy
 msgid "Select additional files to backup"
 msgstr "選擇要備份的檔/目錄"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "選擇音軌"
@@ -16152,6 +16245,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -16185,6 +16281,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
@@ -16195,6 +16297,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #, fuzzy
@@ -16219,10 +16327,16 @@ msgstr ""
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -17440,6 +17554,9 @@ msgstr ""
 msgid "Show detailed event info (setup in menu)"
 msgstr ""
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -18020,6 +18137,9 @@ msgstr ""
 msgid "Skip forward"
 msgstr "快進"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 #, fuzzy
 msgid "Skip selection"
 msgstr "計時器選擇"
@@ -18202,6 +18322,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "保護設定"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr ""
 
@@ -18322,6 +18445,9 @@ msgid ""
 msgstr ""
 
 msgid "Sort"
+msgstr ""
+
+msgid "Sort Bookmarks"
 msgstr ""
 
 #, fuzzy
@@ -18927,6 +19053,12 @@ msgstr ""
 msgid "Switch TV to correct input"
 msgstr ""
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr ""
 
@@ -18959,11 +19091,14 @@ msgstr "切換到檔列表"
 msgid "Switch to TV mode"
 msgstr ""
 
-msgid "Switch to bookmarks"
-msgstr "切換到書簽"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "切換到檔列表"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to next EPG Event"
@@ -19170,9 +19305,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#, fuzzy
-msgid "Task list"
-msgstr "黑名單"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr ""
@@ -20315,6 +20458,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -21169,6 +21315,9 @@ msgid "Use the UP and DOWN buttons to select your locale/language then press the
 msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
+msgstr ""
+
+msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
@@ -24273,6 +24422,38 @@ msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox待機.\n"
+#~ "確定嗎?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox關機.\n"
+#~ "確定嗎?"
+
+#~ msgid "Job View"
+#~ msgstr "作業視圖"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "請輸入一個新的檔案名"
+
+#~ msgid "Remove directory"
+#~ msgstr "移除目錄"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "切換到書簽"
+
+#, fuzzy
+#~ msgid "Task list"
+#~ msgstr "黑名單"
 
 #, fuzzy
 #~ msgid "Please select the IceTV service that you wish to use."

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-02 23:54+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-24 03:46+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid ""
 "\n"
@@ -1870,6 +1870,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Suoritettu tehtävä haluaa asettaa %s %s valmiustilaan. Tehdäänkö se nyt?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Suoritettu tehtävä haluaa sammuttaa %s %s. Sammutetaanko nyt?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Kaatumisloki luotiin\" %s '%s'"
 
@@ -1964,22 +1972,6 @@ msgstr ""
 "Toinen määritetty verkkosovitin löytyi.\n"
 "\n"
 "Kytketäänkö se pois päältä?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Uniajastimeen asetettu aika on kulunut umpeen.\n"
-"Sammutetaanko %s %s valmiustilaan?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Uniajastimeen asetettu aika on kulunut umpeen.\n"
-"Sammutetaanko %s %s virransäästötilaan?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -2282,6 +2274,9 @@ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 msgid "Add service"
 msgstr "Lisää kanava"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Lisää nykyinen hakemisto kirjanmerkiksi"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Lisää nykyinen kanava Äänen voimakkuuden Offsetti listalle"
 
@@ -2363,6 +2358,9 @@ msgstr "Afghanistani"
 
 msgid "Afrikaans"
 msgstr "Afrikka"
+
+msgid "After Event"
+msgstr "Ajastuksen jälkeen"
 
 msgid "After PowerLost"
 msgstr "Virtakatkon jälkeen"
@@ -3329,6 +3327,9 @@ msgstr "Bolivia"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr "Kirjanmerkkisarjan toiminnot"
+
 msgid "Bookmarks"
 msgstr "Kirjanmerkit"
 
@@ -3840,6 +3841,9 @@ msgstr "Peruuta"
 msgid "Cancel / Close the software update screen"
 msgstr "Peruuta / Sulje ohjelmiston päivitys ikkuna"
 
+msgid "Cancel Task"
+msgstr "Peruuta tehtävä"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Peruuta kaikki muutokset ja poistu"
 
@@ -3870,6 +3874,9 @@ msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 msgid "Cancel selection"
 msgstr "Peruuta valinta"
 
+msgid "Cancel selection and exit"
+msgstr "Peruuta valinta ja poistu"
+
 msgid "Cancel the flash process"
 msgstr "Peruuta päivittäminen"
 
@@ -3890,6 +3897,9 @@ msgstr "Peruuta paikka valinta ja poistu"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Peruuta paikka valinta ja poistu kaikista valikoista"
+
+msgid "Cancel the task"
+msgstr "Peruuta tehtävä"
 
 msgid "Cancel the update"
 msgstr "Peruuta päivitys"
@@ -4409,6 +4419,12 @@ msgstr "Sulje"
 
 msgid "Close PiP on exit"
 msgstr "Sulje PiP exit näppäimellä"
+
+msgid "Close Task List"
+msgstr "Sulje tehtävälista"
+
+msgid "Close Task View"
+msgstr "Sulje tehtävänäkymä"
 
 msgid "Close bouquet list"
 msgstr "Sulje kanavalista"
@@ -5003,6 +5019,9 @@ msgstr "Jatka toistoa"
 msgid "Continue playing"
 msgstr "Jatka toistoa"
 
+msgid "Continue to run the task in the background"
+msgstr "Jatka tehtävän suorittamista taustalla"
+
 msgid "Continue with the flash process"
 msgstr "Jatka päivittämistä"
 
@@ -5137,6 +5156,9 @@ msgstr "Luo Bluray ISO tiedosto"
 
 msgid "Create DVD-ISO"
 msgstr "Luo DVD-ISO"
+
+msgid "Create Directory"
+msgstr "Luo hakemisto"
 
 msgid "Create ISO"
 msgstr "Luo ISO-tiedosto"
@@ -5793,6 +5815,9 @@ msgstr "Poista 1 elementti"
 msgid "Delete Confirmation"
 msgstr "Poistamisen vahvistuskysely"
 
+msgid "Delete Directory"
+msgstr "Poista hakemisto"
+
 msgid "Delete EPG"
 msgstr "Poista ohjelmaopas"
 
@@ -5928,6 +5953,9 @@ msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien 
 msgid "Detail of GStreamer log"
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
 
+msgid "Details"
+msgstr "Yksityiskohtaiset tiedot"
+
 msgid "Device Manager"
 msgstr "Laitehallinta"
 
@@ -6008,6 +6036,9 @@ msgstr "Suora valikko kohdan valinta"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Linkitettyjen tallenteiden toisto ilman valikkoa"
+
+msgid "Directories"
+msgstr "Hakemistot"
 
 msgid "Directory"
 msgstr "Hakemisto"
@@ -6108,6 +6139,9 @@ msgstr "Näyttö Asetukset"
 
 msgid "Display and user interface"
 msgstr "Näyttö ja käyttöliittymä"
+
+msgid "Display context menu"
+msgstr "Näytä konteksti valikko"
 
 msgid "Display log for the currently selected timer"
 msgstr "Näytä parhaillaan valitun ajastuksen loki"
@@ -6918,9 +6952,6 @@ msgstr "Aktivoi esikatselu"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Salli vastaanottimen virittyä ulkopuolisiin vastaanottimiin (esim. jos viritin on varattu ja lähiverkon palvelu on saatavilla. Määrittele URL-osoite mukaan luettuna http:// ja portin numero (normaalisti :8001), esim. http://second_box:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Ota kuvakaappaus etupaneeliin näytöstä /tmp"
-
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
 
@@ -6929,6 +6960,9 @@ msgstr "Aktivoi antenni LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ota käyttöön HDMI CEC:n laajennetut asetus vaihtoehdot."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä järjestelmän käynnistyksen aikana havaitut MultiBoot tiedot debug lokitiedostoon."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä toimintakarttatietoja virheenkorjauslokiin."
@@ -7119,6 +7153,9 @@ msgstr "Avaa päävalikko..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Aktivoi useita valinta tiloja"
+
+msgid "Enter new directory name:"
+msgstr "Kirjoita uuden hakemiston nimi:"
 
 msgid "Enter number to jump to channel"
 msgstr "Syötä numero hypätäksesi kanavalle"
@@ -7363,6 +7400,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Hakemiston %s luominen epäonnistui!"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Virhe: Tiedosto tai hakemisto '%s' on jo olemassa!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Virhe: Asennettava ohjelmisto %s on virheellinen!"
 
@@ -7389,6 +7430,10 @@ msgstr "Virhe: Tarvittavia kansioita ei voi luoda kohdelaitteeseen (esim. USB-ti
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Virhe: Komento voidaan suorittaa!  Yritä myöhemmin uudelleen."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Virhe: Ei voida nimetä hakemistoa '%s' uudelleen muotoon '%s'!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8625,6 +8670,9 @@ msgstr "Animaationopeus ohje näkymässä"
 msgid "Help screen style"
 msgstr "Ohje näytön tyyli"
 
+msgid "Help text uninitialized"
+msgstr "Ohjeteksti alustamaton"
+
 msgid "Helps setting up your signal"
 msgstr "Auttaa määrittämään signaalin"
 
@@ -9004,6 +9052,9 @@ msgstr "Jos mahdollista, x minuuttia ennen ajastuksen käynnistymistä VPS Plugi
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jos virransäästötilaa on käytössä , järjestelmä odottaa, kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
 
@@ -9161,6 +9212,9 @@ msgstr "Sisällytä EIT http striimeihin"
 
 msgid "Include EPG data"
 msgstr "Sisällytä EPG tiedot"
+
+msgid "Include MultiBoot data *"
+msgstr "Sisällytä MultiBoot tiedot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Sisällytä SDT, BAT http striimeihin"
@@ -9567,9 +9621,6 @@ msgstr "Jaavan kieli"
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Työnäkymä"
-
 msgid "Job overview"
 msgstr "Työn yleiskatsaus"
 
@@ -9593,12 +9644,6 @@ msgstr "Hyppää nykyiseen aikaan"
 
 msgid "Jump to end of list"
 msgstr "Mene listan loppuun"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Siirtyminen luettelon ensimmäiseen kohtaan tai tekstin alkuun"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Siirtyminen luettelon viimeiseen kohtaan tai tekstin loppuun"
 
 msgid "Jump to next marked position"
 msgstr "Hyppää seuraavaan merkittyyn kohtaan"
@@ -10094,6 +10139,9 @@ msgstr "Näytettävät alueet"
 
 msgid "Location"
 msgstr "Kohdehakemisto"
+
+msgid "Location Selection Actions"
+msgstr "Sijainnin valinta toiminnot"
 
 msgid "Location information"
 msgstr "Sijaintitiedot"
@@ -10758,6 +10806,9 @@ msgstr "Siirrä ylös/alas"
 msgid "Move down a line"
 msgstr "Siirry alaspäin yhdellä rivillä"
 
+msgid "Move down a line in the panel"
+msgstr "Siirrä riviä alaspäin paneelissa"
+
 msgid "Move down a page"
 msgstr "Siirry sivu alas"
 
@@ -10766,6 +10817,9 @@ msgstr "Siirrä sivua/näyttöä alaspäin"
 
 msgid "Move down a screen"
 msgstr "Siirry ruutua alaspäin"
+
+msgid "Move down a screen in the panel"
+msgstr "Siirrä riviä alaspäin paneelissa"
 
 msgid "Move down list"
 msgstr "Siirry alas"
@@ -10811,6 +10865,12 @@ msgstr "Siirrä nykyistä DNS merkintää yhden rivin alaspäin"
 msgid "Move the current DNS entry up one line"
 msgstr "Siirrä nykyistä DNS merkintää yhdellä rivillä ylöspäin"
 
+msgid "Move the current bookmark down"
+msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
+
+msgid "Move the current bookmark up"
+msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
+
 msgid "Move the keyboard cursor down"
 msgstr "Siirrä näppäimistön kohdistin alas"
 
@@ -10841,6 +10901,9 @@ msgstr "Siirry ensimmäiselle riville"
 msgid "Move to first line / screen"
 msgstr "Siirry ensimmäiselle riville / näytölle"
 
+msgid "Move to first line / screen in the panel"
+msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
+
 msgid "Move to home of list"
 msgstr "Siirry luettelon alkuun"
 
@@ -10850,8 +10913,20 @@ msgstr "Siirry viimeiselle riville"
 msgid "Move to last line / screen"
 msgstr "Siirry viimeiselle riville/näytölle"
 
+msgid "Move to last line / screen in the panel"
+msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
+
+msgid "Move to the first line / screen"
+msgstr "Siirry ensimmäiselle riville / näytölle"
+
+msgid "Move to the last line / screen"
+msgstr "Siirry viimeiselle riville/näytölle"
+
 msgid "Move up a line"
 msgstr "Siirry ylöspäin yhdellä rivillä"
+
+msgid "Move up a line in the panel"
+msgstr "Siirrä riviä alaspäin paneelissa"
 
 msgid "Move up a page"
 msgstr "Vieritä sivua kerrallaan"
@@ -10861,6 +10936,9 @@ msgstr "Siirrä sivua/näyttöä ylöspäin"
 
 msgid "Move up a screen"
 msgstr "Siirry ylös näyttöön"
+
+msgid "Move up a screen in the panel"
+msgstr "Siirrä riviä alaspäin paneelissa"
 
 msgid "Move up list"
 msgstr "Siirrä listaa ylöspäin"
@@ -11088,6 +11166,9 @@ msgstr "Nauru"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr "Siirry valittuun hakemistoon"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Käytä YLÖS / ALAS -painikkeita siirtyäksesi ylös / alas ja VASEN / OIKEA sivulle sivulta. OK suorittaa toiminnon, joka on kuvattu parhaillaan korostetussa ohjeessa."
@@ -11666,6 +11747,9 @@ msgstr ""
 "Tiedostokoko: %sMB\n"
 "Vapaa levytila: %sMB\n"
 "Hakemisto: %s"
+
+msgid "Not required"
+msgstr "Ei tarvita"
 
 msgid "Not running"
 msgstr "Ei käynnissä"
@@ -12507,8 +12591,8 @@ msgstr "Syötä uuden hakemiston nimi"
 msgid "Please enter a name for the new marker"
 msgstr "Uusi väliotsikko"
 
-msgid "Please enter a new filename:"
-msgstr "Syötä uusi nimi"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Anna uusi tiedostonimi, laajennusta ei voi muuttaa:"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Syötä tiedoston nimi (tyhjä = nykyinen päiväys)"
@@ -13799,6 +13883,9 @@ msgstr "Uskonto"
 msgid "Reload"
 msgstr "Päivitä"
 
+msgid "Reload Bookmarks"
+msgstr "Lataa kirjanmerkit uudelleen"
+
 msgid "Reload Services"
 msgstr "Lataa kanavalista uudelleen"
 
@@ -13922,9 +14009,6 @@ msgstr "Poista nykyinen kansio kirjanmerkeistä"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
-msgid "Remove directory"
-msgstr "poista hakemisto"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
@@ -13936,6 +14020,9 @@ msgstr "Kyllä poistaa kuulovammaisille tarkoitetut tekstit ulkoisista tekstityk
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Poista rivi CCcam.cfg-tiedostosta"
+
+msgid "Remove the current bookmark"
+msgstr "Poista nykyinen kirjanmerkki"
 
 msgid "Remove timer"
 msgstr "Poista ajastus"
@@ -13955,6 +14042,9 @@ msgstr "Poistetaan levyosioita"
 msgid "Rename"
 msgstr "Uudelleennimeä"
 
+msgid "Rename Directory"
+msgstr "Nimeä hakemisto uudelleen"
+
 msgid "Rename failed!"
 msgstr "Uudelleennimeäminen epäonnistui!"
 
@@ -13963,6 +14053,9 @@ msgstr "Uudelleen nimeä tiedosto / hakemisto"
 
 msgid "Rename name and description for new events"
 msgstr "Muokkaa nimi ja kuvaus uusille tallenteille"
+
+msgid "Rename the proposed file to be created"
+msgstr "Nimeä ehdotettu tiedosto uudelleen"
 
 msgid "Rename this tag"
 msgstr "Nimeä tämä tunniste uudelleen"
@@ -14677,9 +14770,6 @@ msgstr "Tiede & tekniikka"
 msgid "Scope"
 msgstr "Alue"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Kuvankaappaus näytössä /tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Script '%s' on oltava lukuoikeus voidakseen käyttää sitä"
@@ -14994,8 +15084,8 @@ msgstr "Valitse LAN/WLAN"
 msgid "Select Location"
 msgstr "Valitse Sijainti"
 
-msgid "Select Movie Location"
-msgstr "Valitse elokuva sijainti"
+msgid "Select Media Location"
+msgstr "Valitse Media Sijainti"
 
 msgid "Select Playback Location"
 msgstr "Valitse Toisto sijainti"
@@ -15063,6 +15153,9 @@ msgstr "Valitse toiminto ajastimelle %s:"
 
 msgid "Select additional files to backup"
 msgstr "Valitse varmuuskopioitavat lisätiedostot"
+
+msgid "Select an action to perform when the task has completed."
+msgstr "Valitse toiminto, joka suoritetaan, kun tehtävä on suoritettu."
 
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
@@ -15237,6 +15330,9 @@ msgstr "Valitse tälle ajastimelle käytettävä kanava."
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Valitse kursorin alla oleva merkki tai toiminta"
 
+msgid "Select the current bookmarked location and exit"
+msgstr "Valitse nykyinen kirjanmerkki ja poistu"
+
 msgid "Select the current menu item"
 msgstr "Valitse nykyinen valikko kohta"
 
@@ -15270,6 +15366,12 @@ msgstr "Valitse valikoiden näyttö rakenne."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Valitse näytön vaihtoehdot jokaiselle valikon kohteelle. Jos valikkonumerot ovat käytettävissä, numeroita voidaan käyttää suoraan tiettyjen valikkojen valitsemiseen."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr "Valitse luettelon ensimmäinen kohta tai siirry tekstin alkuun."
+
+msgid "Select the first item in the list"
+msgstr "Valitse listan ensimmäinen kohde"
+
 msgid "Select the function to be assigned to this button."
 msgstr "Voit määrittää valitun toiminnon tällä painikkeelle."
 
@@ -15281,6 +15383,12 @@ msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Valitse aikajana merkin alkuasento. Merkki on EPG:hen piirretty pystysuora viiva, joka näyttää nykyisen ajan. Mitä suurempi arvo on, sitä enemmän merkki siirtyy oikealle ja näyttää enemmän historiaa ja vähemmän tulevia ohjelmia."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr "Valitse listan ensimmäinen kohta tai siirry tekstin alkuun."
+
+msgid "Select the last item in the list"
+msgstr "Valitse listan viimeinen kohde"
 
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
@@ -15303,11 +15411,17 @@ msgstr "Valitse tallennus hakemisto"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Valitse verkon tiedonsiirtonopeus, milloin ajastus tulee aktivoida määritetyllä tavalla. Tämän nopeuden ylittävä liikenne poistaa ajastuksen käytöstä."
 
-msgid "Select the next item in list or move cursor right"
-msgstr "Valitse seuraava kohde luettelosta tai siirrä kursori oikealle"
+msgid "Select the next item in list or move the cursor right"
+msgstr "Valitse listan seuraava kohde tai siirrä kohdistinta oikealle"
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr "Valitse listan seuraavan kohteen."
+
+msgid "Select the previous item in list or move the cursor left"
 msgstr "Valitse luettelon edellinen kohde tai siirrä kursori vasemmalle"
+
+msgid "Select the previous item in the list"
+msgstr "Valitse listan edellinen kohde"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Valitse SCR:n käyttämä protokolla. Vaihtoehdot ovat 'SCR Unicable' (Unicable) tai 'SCR JESS' (JESS, tunnetaan myös Unicable II:na)."
@@ -16420,6 +16534,9 @@ msgstr "Näytä tarkempi ohjelmatieto"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Näytä tarkempi ohjelmatieto"
 
+msgid "Show details of highlighted task"
+msgstr "Näytä yksityiskohdat korostuneesta tehtävästä"
+
 msgid "Show development packages in opkg"
 msgstr "Näytä kehityspaketit opkg"
 
@@ -16933,6 +17050,9 @@ msgstr "Ohita tyhjät kanavat"
 msgid "Skip forward"
 msgstr "Siirry eteenpäin"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr "Ohita suora, kun käytät ajansiirtoa laajennuksilla"
+
 msgid "Skip selection"
 msgstr "Teeman valinta"
 
@@ -17109,6 +17229,9 @@ msgstr "Softcam Toiminnot"
 msgid "Softcam Settings"
 msgstr "Softcam Asetukset"
 
+msgid "Softcam Setup"
+msgstr "Softcam Asetukset"
+
 msgid "Softcams"
 msgstr "softcammit"
 
@@ -17231,6 +17354,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Järjestys"
+
+msgid "Sort Bookmarks"
+msgstr "Lajittele kirjanmerkit"
 
 msgid "Sort EPG List"
 msgstr "Järjestä EPG lista"
@@ -17786,6 +17912,12 @@ msgstr "Valitse joko HDR (High Dynamic Range) tai PIP (Picture in Picture). Mole
 msgid "Switch TV to correct input"
 msgstr "Vaihda TV oikealle sisäänmenolle"
 
+msgid "Switch To Bookmarks Panel"
+msgstr "Siirry kirjanmerkki paneeliin"
+
+msgid "Switch To File List Panel"
+msgstr "Vaihda tiedosto luettelo paneeliin"
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Vaihda ääni ja tekstityksen valinta sivua"
 
@@ -17813,10 +17945,13 @@ msgstr "Vaihda televisioon"
 msgid "Switch to TV mode"
 msgstr "Vaihda TV-tilaan"
 
-msgid "Switch to bookmarks"
-msgstr "vaihda kirjanmerkkeihin"
+msgid "Switch to bookmarks panel"
+msgstr "Siirry kirjanmerkki paneeliin"
 
 msgid "Switch to file list"
+msgstr "Vaihda tiedostolistaan"
+
+msgid "Switch to file list panel"
 msgstr "Vaihda tiedostolistaan"
 
 msgid "Switch to next EPG Event"
@@ -17947,7 +18082,7 @@ msgstr "TEKSTI"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 28.10.2022\n"
+"Suomenkielinen käännös: 24.11.2022\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -18010,8 +18145,17 @@ msgstr "Tamil"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, United Republic of"
 
-msgid "Task list"
+msgid "Task List"
 msgstr "Tehtävälista"
+
+msgid "Task List Actions"
+msgstr "Tehtäväluettelon toiminnot"
+
+msgid "Task View"
+msgstr "Tehtävänäkymä"
+
+msgid "Task View Actions"
+msgstr "Tehtävänäkymän toiminnot"
 
 msgid "Tatar"
 msgstr "Qatar"
@@ -19153,6 +19297,9 @@ msgstr "Ota käyttöön / poista käytöstä valittuna oleva ajastus"
 msgid "Toggle hide/show of the current item"
 msgstr "Nykyisen kohteen piilottamisen/näyttämisen vaihtaminen"
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr "Vaihda uuden tekstin asennusosat ensiksi tai ylikirjoita nykyinen teksti"
+
 msgid "Toggle item edit mode on/off"
 msgstr "Vaihda kohteen muokkaustila päälle/pois"
 
@@ -19964,6 +20111,9 @@ msgstr "Valitse kieli ylös/alas näppäimillä ja paina OK näppäintä."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Käytä vaihtoehtoista tai tavallista radiotilaa."
+
+msgid "Use the current selection and exit"
+msgstr "Käytä nykyistä valintaa ja poistu"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Käytä nuolinäppäimiä valitsevaksi asennettu image ja sitten Käynnistä näppäintä."
@@ -23003,6 +23153,58 @@ msgstr "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita enne
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Uniajastimeen asetettu aika on kulunut umpeen.\n"
+#~ "Sammutetaanko %s %s valmiustilaan?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Uniajastimeen asetettu aika on kulunut umpeen.\n"
+#~ "Sammutetaanko %s %s virransäästötilaan?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Ota kuvakaappaus etupaneeliin näytöstä /tmp"
+
+#~ msgid "Job View"
+#~ msgstr "Työnäkymä"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Siirtyminen luettelon ensimmäiseen kohtaan tai tekstin alkuun"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Siirtyminen luettelon viimeiseen kohtaan tai tekstin loppuun"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Syötä uusi nimi"
+
+#~ msgid "Remove directory"
+#~ msgstr "poista hakemisto"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Kuvankaappaus näytössä /tmp"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Valitse elokuva sijainti"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Valitse seuraava kohde luettelosta tai siirrä kursori oikealle"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Valitse luettelon edellinen kohde tai siirrä kursori vasemmalle"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "vaihda kirjanmerkkeihin"
+
+#~ msgid "Task list"
+#~ msgstr "Tehtävälista"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Valitse IceTV palvelu, jota haluat käyttää."

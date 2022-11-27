@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2022-10-02 11:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1873,6 +1873,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Een crashlog is %s gemaakt in '%s'"
 
@@ -1967,22 +1975,6 @@ msgstr ""
 "Er is een tweede geconfigureerde interface gevonden.\n"
 "\n"
 "Wilt u de tweede netwerkinterface uitschakelen?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Een Slaaptimer wil uw\n"
-"%s %s in stand-by zetten. Dat nu doen?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Een Slaaptimer wil uw\n"
-"%s %s uitschakelen. Dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
@@ -2283,6 +2275,9 @@ msgstr "Geselecteerde map aan bookmarks toevoegen"
 msgid "Add service"
 msgstr "Zender toevoegen"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Voeg de huidige zender toe aan de Volume Offset lijst"
 
@@ -2360,6 +2355,9 @@ msgstr "Afghanistan"
 
 msgid "Afrikaans"
 msgstr "Afrikaans"
+
+msgid "After Event"
+msgstr ""
 
 msgid "After PowerLost"
 msgstr "Na stroomuitval"
@@ -3325,6 +3323,9 @@ msgstr "Bolivia"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "Bookmarks"
 
@@ -3835,6 +3836,9 @@ msgstr "Annuleren"
 msgid "Cancel / Close the software update screen"
 msgstr "De software-update annuleren"
 
+msgid "Cancel Task"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "Annuleer alle gewijzigde instellingen en Exit."
 
@@ -3865,6 +3869,9 @@ msgstr "Annuleer het opslaan van Timeshift als opname"
 msgid "Cancel selection"
 msgstr "Annuleer selectie"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr "De flash procedure annuleren"
 
@@ -3885,6 +3892,9 @@ msgstr "Annuleer de selectie en exit"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Annuleer de selectie en exit uit alle menu's"
+
+msgid "Cancel the task"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "De update annuleren"
@@ -4407,6 +4417,12 @@ msgstr "Sluiten"
 
 msgid "Close PiP on exit"
 msgstr "Sluit PiP met de EXIT-knop"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr "Sluit de bouquet-lijst."
@@ -5101,6 +5117,9 @@ msgstr "Afspelen wordt hervat"
 msgid "Continue playing"
 msgstr "Afspelen voortzetten"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr "De flash procedure voortzetten"
 
@@ -5235,6 +5254,9 @@ msgstr "Maak Bludisc ISO file"
 
 msgid "Create DVD-ISO"
 msgstr "DVD-ISO maken"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr "Maak ISO"
@@ -5897,6 +5919,9 @@ msgstr "Verwijder 1 element"
 msgid "Delete Confirmation"
 msgstr "Bevestig verwijderen"
 
+msgid "Delete Directory"
+msgstr ""
+
 msgid "Delete EPG"
 msgstr "EPG verwijderen"
 
@@ -6034,6 +6059,9 @@ msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn me
 msgid "Detail of GStreamer log"
 msgstr "Detailniveau van het GStreamer log"
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Beheer opslagmedia"
 
@@ -6114,6 +6142,9 @@ msgstr "Directe menu item selectie"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Direct afspelen van titels zonder menu"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Map"
@@ -6214,6 +6245,9 @@ msgstr "LCD instellingen"
 
 msgid "Display and user interface"
 msgstr "Scherm- en gebruikersinterface"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr "Het Log-bestand voor de geselecteerde timer tonen"
@@ -7026,9 +7060,6 @@ msgstr "Voorbeeld inschakelen"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Indien geactiveerd, wordt een verbinding met een externe enigma2 ontvanger actief waarmee er, naast de lokale tuners, een extra tuner beschikbaar komt. Hiermee wordt de flexibiliteit om meer zenders simultaan vanaf één ontvanger te kunnen opnemen aanzienlijk vergroot. De opties worden hierna uitgelegd."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Screenshot van LCD in /tmp Inschakelen"
-
 msgid "Enable teletext caching"
 msgstr "Teletekst caching inschakelen"
 
@@ -7037,6 +7068,9 @@ msgstr "Activeer dvb-t LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Activeer de geavanceerde instellingen voor HDMI-CEC."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Activeer deze optie om gebruik van de afstandsbediening mee te nemen in het debug log bestand."
@@ -7237,6 +7271,9 @@ msgstr "Ga naar hoofdmenu..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Open multi-bestand selecteer modus"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "Geef een zendernummer op om er naar toe te zappen."
@@ -7481,6 +7518,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Het aanmaken van de map %s is mislukt!"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Fout: Het te installeren Image '%s' is niet geschikt!"
 
@@ -7507,6 +7548,10 @@ msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB sti
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Fout: Kan het commando niet uitvoeren!  A.u.b. later nog een keer proberen."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8743,6 +8788,9 @@ msgstr "Animatiesnelheid van help pictogrammen"
 msgid "Help screen style"
 msgstr "Help-scherm stijl"
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "Helpt u het signaal in te stellen"
 
@@ -9123,6 +9171,9 @@ msgstr "Indien mogelijk zal de plugin x minuten voor de ingestelde starttijd con
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd voor deep standby als voor de normale standby functies."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de ontvanger binnen maximaal 2 minuten opstarten."
 
@@ -9281,6 +9332,9 @@ msgstr "EIT toevoegen aan http-streams"
 
 msgid "Include EPG data"
 msgstr "EPG gegevens meenemen"
+
+msgid "Include MultiBoot data *"
+msgstr ""
 
 msgid "Include SDT, BAT in http streams"
 msgstr "SDT en BAT in http streams opnemen"
@@ -9687,9 +9741,6 @@ msgstr "Javanees"
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Taken"
-
 msgid "Job overview"
 msgstr "Taak overzicht"
 
@@ -9713,12 +9764,6 @@ msgstr "Spring naar EPG voor actuele tijd (Nu)"
 
 msgid "Jump to end of list"
 msgstr "Spring naar einde van de lijst"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Spring naar het eerste item in de lijst of het begin van de tekst"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Spring naar het laatste item in de lijst of het eind van de tekst"
 
 msgid "Jump to next marked position"
 msgstr "Spring naar de volgende markering"
@@ -10214,6 +10259,9 @@ msgstr "Locales zichtbaar maken"
 
 msgid "Location"
 msgstr "Locatie"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr "Locatie informatie"
@@ -10878,6 +10926,9 @@ msgstr "Verplaats omhoog/omlaag"
 msgid "Move down a line"
 msgstr "Een regel naar beneden"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "Ga een pagina naar beneden"
 
@@ -10886,6 +10937,9 @@ msgstr "Een scherm naar beneden"
 
 msgid "Move down a screen"
 msgstr "Een scherm naar beneden"
+
+msgid "Move down a screen in the panel"
+msgstr ""
 
 msgid "Move down list"
 msgstr "Verplaats de lijst omlaag"
@@ -10929,6 +10983,12 @@ msgstr "De huidige DNS invoer één regel naar beneden verplaatsen"
 msgid "Move the current DNS entry up one line"
 msgstr "De huidige DNS invoer één regel naar boven verplaatsen"
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr "Verplaats de cursor van het virtuele toetsenbord naar onder"
 
@@ -10959,6 +11019,9 @@ msgstr "Ga naar de eerste regel"
 msgid "Move to first line / screen"
 msgstr "Ga naar de eerste regel / scherm"
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Ga naar begin van de lijst"
 
@@ -10968,8 +11031,20 @@ msgstr "Ga naar de laatste regel"
 msgid "Move to last line / screen"
 msgstr "Ga naar de laatste regel / scherm"
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Een regel omhoog"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "Ga een pagina omhoog"
@@ -10979,6 +11054,9 @@ msgstr "Een scherm naar boven"
 
 msgid "Move up a screen"
 msgstr "Een scherm naar boven"
+
+msgid "Move up a screen in the panel"
+msgstr ""
 
 msgid "Move up list"
 msgstr "Verplaats de lijst omhoog"
@@ -11206,6 +11284,9 @@ msgstr "Nauru"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navigeer met de Omhoog/Omlaag knoppen en Pagina Omhoog/Omlaag met Links/Rechts. Druk OK om een actie uit te voeren die op dit moment in het help-menu is gearceerd."
@@ -11778,6 +11859,9 @@ msgstr ""
 "Bestandgrtootte: %sMB\n"
 "Vrije ruimte: %sMB\n"
 "Pad: %s"
+
+msgid "Not required"
+msgstr ""
 
 msgid "Not running"
 msgstr "Niet Actief"
@@ -12622,8 +12706,8 @@ msgstr "Voer de naam van de nieuwe map in"
 msgid "Please enter a name for the new marker"
 msgstr "Voer de naam voor uw nieuwe markeerpunt in"
 
-msgid "Please enter a new filename:"
-msgstr "Voer een bestandsnaam in"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Voer een bestandsnaam in (leeg= huidige datum)"
@@ -13914,6 +13998,9 @@ msgstr "Religie"
 msgid "Reload"
 msgstr "Herladen"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr "Zenderlijst opnieuw laden"
 
@@ -14037,9 +14124,6 @@ msgstr "Verwijder huidige map van bookmarks"
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
 
-msgid "Remove directory"
-msgstr "Map verwijderen"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
 
@@ -14051,6 +14135,9 @@ msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. 
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Deze Line verwijderen uit CCcam.cfg"
+
+msgid "Remove the current bookmark"
+msgstr ""
 
 msgid "Remove timer"
 msgstr "Verwijder timer"
@@ -14070,6 +14157,9 @@ msgstr "Verwijderd de partitietabel"
 msgid "Rename"
 msgstr "Hernoemen"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Hernoemen mislukt!"
 
@@ -14078,6 +14168,9 @@ msgstr "Hernoem bestand/map"
 
 msgid "Rename name and description for new events"
 msgstr "Hernoem de naam en de omschrijving voor nieuwe programma's"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "Hernoem deze tag"
@@ -14794,9 +14887,6 @@ msgstr "Wetenschap & Techniek"
 msgid "Scope"
 msgstr "Scope"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Screenshot van LCD in /tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Script '%s' moet lees permissies hebben om te kunnen worden uitgevoerd"
@@ -15107,8 +15197,8 @@ msgstr "Selecteer een lan of wlan adapter"
 msgid "Select Location"
 msgstr "Selecteer locatie"
 
-msgid "Select Movie Location"
-msgstr "Een opnamelocatie selecteren"
+msgid "Select Media Location"
+msgstr ""
 
 msgid "Select Playback Location"
 msgstr "Selecteer een afspeellocatie"
@@ -15176,6 +15266,9 @@ msgstr "Selecteer actie voor de timer%s:"
 
 msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "Selecteer een Audio spoor"
@@ -15350,6 +15443,9 @@ msgstr "Kies de zender die voor deze timer gebruikt moet worden."
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Selecteer het karakter of de actie onder de cursor van het virtuele toetsenbord"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr "Kies het huidige menu item"
 
@@ -15385,6 +15481,12 @@ msgstr ""
 "Selecteer de weergave opties voor elk menu item.\n"
 "Wanneer er nummers beschikbaar zijn kunt u die gebruiken om de gewenste items direct te selecteren."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr "Wijs de gekozen functie toe aan deze knop."
 
@@ -15396,6 +15498,12 @@ msgstr "Selecteer het actuele slot en herstarten"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Selecteer de positie van de tijdlijn in de Grafische EPG. Dit is de verticale lijn die de actuele tijd markeert. Bij een hoger getal zal de tijdlijn naar rechts schuiven en meer historie tonen en minder komende programma's."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
@@ -15418,11 +15526,17 @@ msgstr "Selecteer het opnamepad"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Selecteer het netwerkverkeer waaronder de Timer moet worden geactiveerd als opgegeven. Bij netwerkverkeer boven deze waarde zal de Timer worden gedeactiveerd."
 
-msgid "Select the next item in list or move cursor right"
-msgstr "Selecteer het volgende item in de lijst of ga met de cursor naar rechts"
+msgid "Select the next item in list or move the cursor right"
+msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "Selecteer het vorige item in de lijst of ga met de cursor naar links"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Selecteer het format van uw SCR-apparaat. keuzes zijn 'SCR Unicable' (Unicable) en 'SCR JESS' (JESS, ook bekend als Unicable 2)."
@@ -16551,6 +16665,9 @@ msgstr "Gedetailleerde EPG info weergeven"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Toon gedetailleerde programma info"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr "Toon development pakketten in OPKG"
 
@@ -17068,6 +17185,9 @@ msgstr "Zenders zonder EPG-info overslaan"
 msgid "Skip forward"
 msgstr "Spring vooruit"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 msgid "Skip selection"
 msgstr "Skip selecteren"
 
@@ -17244,6 +17364,9 @@ msgstr "Softcam Acties"
 msgid "Softcam Settings"
 msgstr "Softcam configuratie"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "Softcams"
 
@@ -17365,6 +17488,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Sorteren"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "Sorteer EPG-lijst"
@@ -17920,6 +18046,12 @@ msgstr "Wissel modus om HDR modi of PiP functies in te schakelen"
 msgid "Switch TV to correct input"
 msgstr "Schakel de TV naar de juiste ingang"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Schakel tussen Audio en Ondertitel pagina"
 
@@ -17947,11 +18079,14 @@ msgstr "Schakel over naar TV"
 msgid "Switch to TV mode"
 msgstr "Schakel naar de TV modus"
 
-msgid "Switch to bookmarks"
-msgstr "Schakel naar bookmarks"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "Schakel naar bestandenlijst"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 msgid "Switch to next EPG Event"
 msgstr "Ga naar de volgende EPG vermelding"
@@ -18144,8 +18279,17 @@ msgstr "Tamil"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Verenigde republiek van"
 
-msgid "Task list"
-msgstr "Takenlijst"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr "Tataars"
@@ -19323,6 +19467,9 @@ msgstr "Activeer of deactiveer de geselecteerde Timer"
 msgid "Toggle hide/show of the current item"
 msgstr "Tonen of verbergen van het huidige item kiezen"
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr "Edit modus in- of uitschakelen"
 
@@ -20133,6 +20280,9 @@ msgstr "Gebruik de Omhoog/Omlaag knoppen om uw taal te kiezen en druk op OK om d
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Gebruik de alternatieve of de conventionele radio modus."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (groen)."
@@ -23186,6 +23336,58 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voor
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Een Slaaptimer wil uw\n"
+#~ "%s %s in stand-by zetten. Dat nu doen?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Een Slaaptimer wil uw\n"
+#~ "%s %s uitschakelen. Dat nu doen?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Screenshot van LCD in /tmp Inschakelen"
+
+#~ msgid "Job View"
+#~ msgstr "Taken"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Spring naar het eerste item in de lijst of het begin van de tekst"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Spring naar het laatste item in de lijst of het eind van de tekst"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Voer een bestandsnaam in"
+
+#~ msgid "Remove directory"
+#~ msgstr "Map verwijderen"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Screenshot van LCD in /tmp"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Een opnamelocatie selecteren"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Selecteer het volgende item in de lijst of ga met de cursor naar rechts"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Selecteer het vorige item in de lijst of ga met de cursor naar links"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Schakel naar bookmarks"
+
+#~ msgid "Task list"
+#~ msgstr "Takenlijst"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Selecteer a.u.b. de IceTV service die u wilt gebruiken."

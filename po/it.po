@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-19 04:47+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-25 19:31+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1425,10 +1425,10 @@ msgid "/sec]"
 msgstr "/sec]"
 
 msgid "/usr/share/enigma2 directory"
-msgstr "directory /usr/share/enigma2"
+msgstr "cartella /usr/share/enigma2"
 
 msgid "/var directory"
-msgstr "/var directory"
+msgstr "/var cartella"
 
 msgid "0"
 msgstr "0"
@@ -1872,6 +1872,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "È in corso un controllo dell'aggiornamento in background, attendi qualche minuto e riprova."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Un'attività completata vuole mettere il tuo %s %s in standby. Farlo adesso?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Un'attività completata vuole spegnere il tuo %s %s. Spengo ora?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "È stato creato un registro degli arresti anomali %s in '%s'"
 
@@ -1958,22 +1966,6 @@ msgstr ""
 "Rilevata una seconda interfaccia di rete configurata.\n"
 "\n"
 "Disabilitare la seconda interfaccia di rete?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Un timer di spegnimento vuole impostare il tuo\n"
-"%s %s in standby. Fallo ora?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Un timer di spegnimento vuole spegnersi\n"
-"il tuo %s %s. Spegnimento ora?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Rapida panoramica delle icone di stato e delle azioni disponibili."
@@ -2274,6 +2266,9 @@ msgstr "Aggiungi la cartella selezionata ai segnalibri"
 msgid "Add service"
 msgstr "Aggiungi servizio"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Aggiungi la cartella corrente come segnalibro"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Aggiungi il servizio attuale all'elenco Offset volume"
 
@@ -2351,6 +2346,9 @@ msgstr "Afghanistan"
 
 msgid "Afrikaans"
 msgstr "Afrikaans"
+
+msgid "After Event"
+msgstr "Dopo l'evento"
 
 msgid "After PowerLost"
 msgstr "Dopo l'assenza di elettricità"
@@ -3317,6 +3315,9 @@ msgstr "Bolivia"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr "Azioni sequenza di segnalibri"
+
 msgid "Bookmarks"
 msgstr "Segnalibri"
 
@@ -3685,7 +3686,7 @@ msgid "Calculate"
 msgstr "Calcolare"
 
 msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr "Calcola e mostra la dimensione della directory. Nota: questo può rallentare l'interfaccia utente durante la selezione di una cartella!"
+msgstr "Calcola e mostra la dimensione della cartella. Nota: questo può rallentare l'interfaccia utente durante la selezione di una cartella!"
 
 msgid "Calculate file checksums"
 msgstr "Calcola i checksum dei file"
@@ -3827,6 +3828,9 @@ msgstr "Annulla"
 msgid "Cancel / Close the software update screen"
 msgstr "Annulla o chiude la schermata di aggiornamento del software"
 
+msgid "Cancel Task"
+msgstr "Annulla attività"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Annulla le impostazioni modificate ed esci"
 
@@ -3857,6 +3861,9 @@ msgstr "Annullare salvataggio registrazione timeshift"
 msgid "Cancel selection"
 msgstr "Annulla selezione"
 
+msgid "Cancel selection and exit"
+msgstr "Annulla selezione ed esci"
+
 msgid "Cancel the flash process"
 msgstr "Annulla il processo di flash"
 
@@ -3878,8 +3885,11 @@ msgstr "Annulla la selezione dello slot ed esci"
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Annulla la selezione dello slot ed esci da tutti i menu"
 
+msgid "Cancel the task"
+msgstr "Annulla attività"
+
 msgid "Cancel the update"
-msgstr "Annulla l'aggiornamento"
+msgstr "Annulla aggiornamento"
 
 msgid "Cancelled upon user request"
 msgstr "Annullato dopo la richiesta all'utente"
@@ -4396,6 +4406,12 @@ msgstr "Chiudi"
 
 msgid "Close PiP on exit"
 msgstr "Chiudi PiP con EXIT"
+
+msgid "Close Task List"
+msgstr "Chiudi elenco attività"
+
+msgid "Close Task View"
+msgstr "Chiudi visualizzazione attività"
 
 msgid "Close bouquet list"
 msgstr "Chiudi la lista dei bouquet"
@@ -4990,6 +5006,9 @@ msgstr "Continuare la riproduzione"
 msgid "Continue playing"
 msgstr "Continuare la riproduzione"
 
+msgid "Continue to run the task in the background"
+msgstr "Continua a eseguire l'attività in background"
+
 msgid "Continue with the flash process"
 msgstr "Continua con il processo di flash"
 
@@ -5125,6 +5144,9 @@ msgstr "Crea file ISO Bludisc"
 msgid "Create DVD-ISO"
 msgstr "Crea DVD-ISO"
 
+msgid "Create Directory"
+msgstr "Crea cartella"
+
 msgid "Create ISO"
 msgstr "Crea ISO"
 
@@ -5258,7 +5280,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Offset del volume attualmente definito:"
 
 msgid "Custom"
-msgstr "Personalizzare"
+msgstr "Personalizza"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Salto di tempo per i tasti 1-3"
@@ -5273,7 +5295,7 @@ msgid "Customize"
 msgstr "Personalizza"
 
 msgid "Customize System Settings"
-msgstr "Personalizza le impostazioni di sistema"
+msgstr "Personalizza impostazioni sistema"
 
 msgid "Customize enigma2 personal settings"
 msgstr "Personalizza la tua configurazione di Enigma2"
@@ -5627,7 +5649,7 @@ msgid "Default Services Scanner"
 msgstr "Scanner dei servizi predefinito"
 
 msgid "Default directory sorting"
-msgstr "Ordinamento di directory predefinito"
+msgstr "Ordinamento di cartella predefinito"
 
 msgid "Default file sorting left"
 msgstr "Ordinamento file predefinito a sinistra"
@@ -5780,6 +5802,9 @@ msgstr "Elimina 1 elemento"
 msgid "Delete Confirmation"
 msgstr "Conferma eliminazione"
 
+msgid "Delete Directory"
+msgstr "Elimina cartella"
+
 msgid "Delete EPG"
 msgstr "Elimina EPG"
 
@@ -5826,7 +5851,7 @@ msgid "Delete file"
 msgstr "Elimina file"
 
 msgid "Delete file or directory (and all its contents)"
-msgstr "Elimina file o directory (e tutti i suoi contenuti)"
+msgstr "Elimina file o cartella (e tutti i suoi contenuti)"
 
 msgid "Delete folder"
 msgstr "Elimina cartella"
@@ -5862,7 +5887,7 @@ msgid "Delete the currently selected timer"
 msgstr "Elimina il timer attualmente selezionato"
 
 msgid "Delete the selected files or directories"
-msgstr "Elimina i file o le directory selezionati"
+msgstr "Elimina i file o le cartella selezionati"
 
 msgid "Delete the selected locally stored image"
 msgstr "Elimina l'immagine selezionata memorizzata localmente"
@@ -5914,6 +5939,9 @@ msgstr "I pacchetti deselezionati di solito si verificano perché quelli impacch
 
 msgid "Detail of GStreamer log"
 msgstr "Dettaglio del registro di GStreamer"
+
+msgid "Details"
+msgstr "Dettagli"
 
 msgid "Device Manager"
 msgstr "Gestione dispositivi"
@@ -5996,6 +6024,9 @@ msgstr "Selezione diretta delle voci di menu"
 msgid "Direct playback of linked titles without menu"
 msgstr "Riproduzione diretta dei titoli collegati, senza menu"
 
+msgid "Directories"
+msgstr "Directory"
+
 msgid "Directory"
 msgstr "Cartella"
 
@@ -6005,11 +6036,11 @@ msgstr "La cartella %s non esiste."
 
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Impossibile collegare la directory '%s' alle registrazioni!"
+msgstr "Impossibile collegare la cartella '%s' alle registrazioni!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
-msgstr "La directory '%s' non esiste!"
+msgstr "La cartella '%s' non esiste!"
 
 #, python-format
 msgid "Directory '%s' not writable!"
@@ -6095,6 +6126,9 @@ msgstr "Impostazioni di visualizzazione"
 
 msgid "Display and user interface"
 msgstr "Display ed interfaccia grafica"
+
+msgid "Display context menu"
+msgstr "Visualizza il menu contestuale"
 
 msgid "Display log for the currently selected timer"
 msgstr "Visualizza registro per il timer attualmente selezionato"
@@ -6247,7 +6281,7 @@ msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
-msgstr "Vuoi davvero rimuovere la directory %s dal disco?"
+msgstr "Vuoi davvero rimuovere la cartella %s dal disco?"
 
 #, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
@@ -6905,9 +6939,6 @@ msgstr "Attiva anteprima"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Abilita il ricevitore Enigma2 remoto a provare a sintonizzarsi su servizi che non possono essere sintonizzati localmente (ad es. il sintonizzatore è occupato o il tipo di servizio non è disponibile sul sintonizzatore locale. Specificare l'URL completo includendo http:// e numero di porta (normalmente ...:8001 ), ad esempio http://secondo_ricevitore:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Abilita screenshot dell'LCD in /tmp"
-
 msgid "Enable teletext caching"
 msgstr "Abilita la cache televideo"
 
@@ -6916,6 +6947,9 @@ msgstr "Abilita LCN terrestre:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Abilita le opzioni di impostazione avanzate di HDMI-CEC."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Abilita questa opzione per aggiungere le informazioni MultiBoot rilevate durante l'avvio del sistema al file di registro di debug."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere i dati di mappatura delle azioni/controllo remoto al file di registro di debug."
@@ -7107,6 +7141,9 @@ msgstr "Entra nel menu principale..."
 msgid "Enter multi-file selection mode"
 msgstr "Entra nella modalità di selezione multipla file"
 
+msgid "Enter new directory name:"
+msgstr "Inserisci il nuovo nome della cartella:"
+
 msgid "Enter number to jump to channel"
 msgstr "inserisci il numero di canale da vedere"
 
@@ -7254,7 +7291,7 @@ msgid ""
 "Error creating directory %s:\n"
 "%s"
 msgstr ""
-"Errore durante la creazione della directory %s:\n"
+"Errore durante la creazione della cartella %s:\n"
 "%s"
 
 #, python-format
@@ -7347,7 +7384,11 @@ msgstr "Errore: impossibile trovare un dispositivo adatto! Rimuovi alcune immagi
 
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
-msgstr "Errore: creazione della directory '%s' non riuscita!"
+msgstr "Errore: creazione della cartella '%s' non riuscita!"
+
+#, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Errore: il file o la cartella '%s' esiste già!"
 
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
@@ -7372,10 +7413,14 @@ msgid "Error: The path '%s' already exists!"
 msgstr "Errore: il percorso '%s' esiste già!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
-msgstr "Errore: impossibile creare le directory richieste sul dispositivo di destinazione (ad es. chiavetta USB o disco rigido)! Verifica il dispositivo e riprova."
+msgstr "Errore: impossibile creare le cartelle richieste sul dispositivo di destinazione (ad es. chiavetta USB o disco rigido)! Verifica il dispositivo e riprova."
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Errore: impossibile elaborare il comando! Per favore riprova più tardi."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Errore: impossibile rinominare la cartella '%s' in '%s'!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -7850,7 +7895,7 @@ msgid "File write error: '%s'"
 msgstr "Errore di scrittura file: '%s'"
 
 msgid "File/Directory Status Information"
-msgstr "Informazioni sullo stato di file/directory"
+msgstr "Informazioni sullo stato di file/cartella"
 
 msgid "Filename"
 msgstr "Nome del file"
@@ -8316,7 +8361,7 @@ msgid "Go to first movie or top of list"
 msgstr "Vai alla prima registrazione o in cima all'elenco"
 
 msgid "Go to parent directory"
-msgstr "Vai alla directory superiore"
+msgstr "Vai alla cartella superiore"
 
 msgid "Go to standby"
 msgstr "vai in standby"
@@ -8612,6 +8657,9 @@ msgstr "Aiuta la velocità di animazione"
 msgid "Help screen style"
 msgstr "Stile della schermata della Guida"
 
+msgid "Help text uninitialized"
+msgstr "Testo di aiuto non inizializzato"
+
 msgid "Helps setting up your signal"
 msgstr "Aiuta a configurare il tuo segnale"
 
@@ -8778,10 +8826,10 @@ msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
 msgid "Hotkey"
-msgstr "Hotkey"
+msgstr "Tasti di scelta rapida"
 
 msgid "Hotkey Settings"
-msgstr "Impostazioni Hotkey"
+msgstr "Impostazioni tasti di scelta rapida"
 
 msgid "Hourly"
 msgstr "Ogni ora"
@@ -8989,6 +9037,9 @@ msgstr "Se possibile, VPS verificherà n minuti prima dell'avvio di un timer che
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Se impostato su \"Sì\", gli stessi comandi verranno inviati alla TV per gli eventi di spegnimento che vengono inviati durante i normali eventi di standby."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Se impostato su 'sì', consente di utilizzare il timeshift con plugin audio alternativi."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Se è abilitata la soluzione di spegnimento attendere fino a quando l'ora di sistema non viene sincronizzata. A seconda delle esigenze, la riattivazione del dispositivo continuerà dopo un massimo di 2 minuti."
 
@@ -9143,6 +9194,9 @@ msgstr "Includi EIT nei flussi http"
 
 msgid "Include EPG data"
 msgstr "Includi dati EPG"
+
+msgid "Include MultiBoot data *"
+msgstr "Includi dati MultiBoot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Includi SDT, BAT nei flussi http"
@@ -9549,9 +9603,6 @@ msgstr "Giavanese"
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Vista attività"
-
 msgid "Job overview"
 msgstr "Vista attività"
 
@@ -9575,12 +9626,6 @@ msgstr "Vai all’ora attuale"
 
 msgid "Jump to end of list"
 msgstr "Vai a fine lista"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Passa al primo elemento nell'elenco o all'inizio del testo"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Passa all'ultimo elemento nell'elenco o alla fine del testo"
 
 msgid "Jump to next marked position"
 msgstr "Vai alla prossima posizione contrassegnata"
@@ -10076,6 +10121,9 @@ msgstr "Impostazioni locali da visualizzare"
 
 msgid "Location"
 msgstr "Percorso"
+
+msgid "Location Selection Actions"
+msgstr "Azioni di selezione della posizione"
 
 msgid "Location information"
 msgstr "Informazioni sulla posizione"
@@ -10738,100 +10786,127 @@ msgid "Move Up/Down"
 msgstr "Sposta SU/GIÙ"
 
 msgid "Move down a line"
-msgstr "Spostarsi verso il basso di una riga"
+msgstr "Sposta giù una riga"
+
+msgid "Move down a line in the panel"
+msgstr "Sposta giù una riga nel pannello"
 
 msgid "Move down a page"
-msgstr "Sposta verso il basso della pagina"
+msgstr "Sposta giù una pagina"
 
 msgid "Move down a page / screen"
-msgstr "Sposta in basso una pagina/schermata"
+msgstr "Sposta giù una pagina/schermata"
 
 msgid "Move down a screen"
-msgstr "Scorri verso il basso di una schermata"
+msgstr "Sposta giù una schermata"
+
+msgid "Move down a screen in the panel"
+msgstr "Sposta giù una schermata nel pannello"
 
 msgid "Move down list"
-msgstr "Sposta l'elenco verso il basso"
+msgstr "Sposta giù l'elenco"
 
 msgid "Move down one line"
-msgstr "Spostarsi verso il basso di una riga"
+msgstr "Sposta giù una riga"
 
 msgid "Move down one line.  Move to the top of the next screen if this is the last line of the screen.  Move to the first line of the list if this is the last line on the list."
-msgstr "Spostati di una riga in basso. Passa all'inizio della schermata successiva se questa è l'ultima riga dello schermo. Passa alla prima riga dell'elenco se questa è l'ultima riga dell'elenco."
+msgstr "Sposta giù una riga. Passa all'inizio della schermata successiva se questa è l'ultima riga dello schermo. Passa alla prima riga dell'elenco se questa è l'ultima riga dell'elenco."
 
 msgid "Move down one screen"
-msgstr "Spostarsi verso il basso di una schermata"
+msgstr "Sposta giù una schermata"
 
 msgid "Move down one screen.  Move to the last line of the screen if this is the last screen."
-msgstr "Scorri verso il basso di una schermata. Passa all'ultima riga dello schermo se questa è l'ultima schermata."
+msgstr "Sposta giù una schermata. Passa all'ultima riga dello schermo se questa è l'ultima schermata."
 
 msgid "Move down to last line"
-msgstr "Spostarsi verso il basso fino all'ultima riga"
+msgstr "Sposta giù fino all'ultima riga"
 
 msgid "Move down to the last line in the list."
-msgstr "Spostati all'ultima riga dell'elenco."
+msgstr "Sposta giù fino all'ultima riga nella elenco."
 
 msgid "Move east"
-msgstr "Spostati a est"
+msgstr "Sposta a est"
 
 msgid "Move file"
-msgstr "Sposta il file"
+msgstr "Sposta file"
 
 msgid "Move file/directory to target directory"
 msgstr "Sposta file/cartella nella cartella di destinazione"
 
 msgid "Move files/directories to target directory"
-msgstr "Sposta file o cartelle in un'altra cartella"
+msgstr "Sposta file/cartelle nella cartella di destinazione"
 
 msgid "Move folder"
-msgstr "Sposta la cartella"
+msgstr "Sposta cartella"
 
 msgid "Move the current DNS entry down one line"
-msgstr "Sposta la voce DNS attuale in basso di una riga"
+msgstr "Sposta la voce DNS attuale giù di una riga"
 
 msgid "Move the current DNS entry up one line"
-msgstr "Sposta la voce DNS attuale in alto di una riga"
+msgstr "Sposta la voce DNS attuale su di una riga"
+
+msgid "Move the current bookmark down"
+msgstr "Sposta il segnalibro corrente giù"
+
+msgid "Move the current bookmark up"
+msgstr "Sposta il segnalibro corrente su"
 
 msgid "Move the keyboard cursor down"
-msgstr "Spostare il cursore della tastiera verso il basso"
+msgstr "Sposta il cursore della tastiera giù"
 
 msgid "Move the keyboard cursor left"
-msgstr "Spostare il cursore della tastiera a sinistra"
+msgstr "Sposta il cursore della tastiera a sinistra"
 
 msgid "Move the keyboard cursor right"
-msgstr "Spostare il cursore della tastiera a destra"
+msgstr "Sposta il cursore della tastiera a destra"
 
 msgid "Move the keyboard cursor up"
-msgstr "Spostare il cursore della tastiera verso l'alto"
+msgstr "Sposta il cursore della tastiera su"
 
 msgid "Move the text cursor left"
-msgstr "Spostare il cursore di testo a sinistra"
+msgstr "Sposta il cursore di testo a sinistra"
 
 msgid "Move the text cursor right"
-msgstr "Spostare il cursore di testo verso destra"
+msgstr "Sposta il cursore di testo a destra"
 
 msgid "Move the text cursor to the first character"
-msgstr "Spostare il cursore di testo sul primo carattere"
+msgstr "Sposta il cursore di testo sul primo carattere"
 
 msgid "Move the text cursor to the last character"
 msgstr "Sposta il cursore del testo sull'ultimo carattere"
 
 msgid "Move to first line"
-msgstr "Passa alla prima riga"
+msgstr "Sposta alla prima riga"
 
 msgid "Move to first line / screen"
-msgstr "Passa alla prima riga/schermata"
+msgstr "Sposta alla prima riga/schermata"
+
+msgid "Move to first line / screen in the panel"
+msgstr "Sposta alla prima riga/schermata nel pannello"
 
 msgid "Move to home of list"
-msgstr "Passa alla home dell'elenco"
+msgstr "Sposta alla home dell'elenco"
 
 msgid "Move to last line"
-msgstr "Passa all'ultima riga"
+msgstr "Sposta all'ultima riga"
 
 msgid "Move to last line / screen"
-msgstr "Passa all'ultima riga/schermata"
+msgstr "Sposta all'ultima riga/schermata"
+
+msgid "Move to last line / screen in the panel"
+msgstr "Sposta all'ultima riga/schermata nel pannello"
+
+msgid "Move to the first line / screen"
+msgstr "Sposta alla prima riga/schermata"
+
+msgid "Move to the last line / screen"
+msgstr "Sposta all'ultima riga/schermata"
 
 msgid "Move up a line"
-msgstr "Spostarsi verso l'alto di una riga"
+msgstr "Sposta su una riga"
+
+msgid "Move up a line in the panel"
+msgstr "Sposta su una riga nel pannello"
 
 msgid "Move up a page"
 msgstr "Sposta su una pagina"
@@ -10842,35 +10917,38 @@ msgstr "Sposta su una pagina/schermata"
 msgid "Move up a screen"
 msgstr "Sposta su una schermata"
 
+msgid "Move up a screen in the panel"
+msgstr "Sposta su una schermata nel pannello"
+
 msgid "Move up list"
-msgstr "Sposta l'elenco"
+msgstr "Sposta su l'elenco"
 
 msgid "Move up one line"
-msgstr "Spostati in alto di una riga"
+msgstr "Sposta su una riga"
 
 msgid "Move up one line.  Move to the bottom of the previous screen if this is the first line of the screen.  Move to the last of the entry / list if this is the first line of the list."
-msgstr "Spostati verso l'alto di una riga.  Spostarsi nella parte inferiore della schermata precedente se questa è la prima riga dello schermo.  Passare all'ultima voce/elenco se questa è la prima riga della lista."
+msgstr "Sposta su una riga. Passa alla parte inferiore della schermata precedente se questa è la prima riga dello schermo. Passa all'ultima voce/elenco se questa è la prima riga dell'elenco."
 
 msgid "Move up one screen"
-msgstr "Sposta in alto di una schermata"
+msgstr "Sposta su una schermata"
 
 msgid "Move up one screen.  Move to the first line of the screen if this is the first screen."
-msgstr "Sposta in alto di una schermata. Passa alla prima riga dello schermo se questa è la prima schermata."
+msgstr "Sposta su una schermata. Passa alla prima riga dello schermo se questa è la prima schermata."
 
 msgid "Move up to first line"
-msgstr "Spostati su alla prima riga"
+msgstr "Sposta su alla prima riga"
 
 msgid "Move up to the first line in the list."
-msgstr "Spostati su alla prima riga dell'elenco."
+msgstr "Sposta su alla prima riga dell'elenco."
 
 msgid "Move west"
-msgstr "Spostati a ovest"
+msgstr "Sposta a ovest"
 
 msgid "Moved to position 0"
 msgstr "Spostato in posizione 0"
 
 msgid "Moved to position at index"
-msgstr "Spostato in posizione Index"
+msgstr "Spostato in posizione all'indice"
 
 msgid "Movement"
 msgstr "Movimento"
@@ -10894,7 +10972,7 @@ msgid "Movie Player Actions"
 msgstr "Azioni del riproduttore di film"
 
 msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "La riproduzione del filmato potrebbe non utilizzare una directory non valida/inappropriata."
+msgstr "La riproduzione del filmato potrebbe non utilizzare una cartella non valida/inappropriata."
 
 msgid "Movie selection"
 msgstr "Selezione registrazione"
@@ -11068,6 +11146,9 @@ msgstr "Nauru"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr "Passa alla cartella selezionata"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Naviga su/giù con i pulsanti SU/GIÙ e pagina su/giù con SINISTRA/DESTRA. OK per eseguire l'azione descritta nella guida attualmente evidenziata."
@@ -11641,6 +11722,9 @@ msgstr ""
 "SpazioLibero: %sMB\n"
 "Percorso: %s"
 
+msgid "Not required"
+msgstr "Non richiesto"
+
 msgid "Not running"
 msgstr "Non in esecuzione"
 
@@ -11827,10 +11911,10 @@ msgid "Only log debug information of GStreamer category. * means all categories.
 msgstr "Registra solo le informazioni di debug della categoria GStreamer. * indica tutte le categorie."
 
 msgid "Only move the dish quickly after this hour."
-msgstr "Spostare il disco rapidamente solo dopo di quest'ora."
+msgstr "Sposta il disco rapidamente solo dopo di quest'ora."
 
 msgid "Only move the dish quickly before this hour."
-msgstr "Spostare il disco rapidamente solo prima di quest'ora."
+msgstr "Sposta il disco rapidamente solo prima di quest'ora."
 
 msgid "Only on startup"
 msgstr "Solo in avvio"
@@ -12481,8 +12565,8 @@ msgstr "Inserire un nome per la nuova cartella"
 msgid "Please enter a name for the new marker"
 msgstr "Inserire un nome per il nuovo contrassegno"
 
-msgid "Please enter a new filename:"
-msgstr "Inserire un nome per il nuovo file"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Inserisci un nuovo nome per il file, l'estensione non può essere modificata:"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Inserire un nome per il file (nulla -> data attuale)"
@@ -13683,7 +13767,7 @@ msgid "Recordings always have priority"
 msgstr "Registrazioni hanno sempre la priorità"
 
 msgid "Recordings may not work correctly without an acceptable directory."
-msgstr "Le registrazioni potrebbero non funzionare correttamente senza una directory accettabile."
+msgstr "Le registrazioni potrebbero non funzionare correttamente senza una cartella accettabile."
 
 msgid "Records"
 msgstr "Registrazioni"
@@ -13772,6 +13856,9 @@ msgstr "Religione"
 
 msgid "Reload"
 msgstr "Ricarica"
+
+msgid "Reload Bookmarks"
+msgstr "Ricarica segnalibri"
 
 msgid "Reload Services"
 msgstr "Ricarica servizi"
@@ -13896,9 +13983,6 @@ msgstr "Rimuovi la cartella attuale dai segnalibri"
 msgid "Remove currently selected title"
 msgstr "Rimuovi titolo attualmente selezionato"
 
-msgid "Remove directory"
-msgstr "Rimuovi directory"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Rimuovi linea VBI nascosta per questo servizio"
 
@@ -13910,6 +13994,9 @@ msgstr "Rimuovi i testi per i non utenti dai sottotitoli (musica strumentale o s
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Rimuovi la linea da CCcam.cfg"
+
+msgid "Remove the current bookmark"
+msgstr "Rimuovi il segnalibro corrente"
 
 msgid "Remove timer"
 msgstr "Rimuovi timer"
@@ -13929,6 +14016,9 @@ msgstr "Rimozione tabelle di partizione"
 msgid "Rename"
 msgstr "Rinomina"
 
+msgid "Rename Directory"
+msgstr "Rinomina cartella"
+
 msgid "Rename failed!"
 msgstr "Rinomina fallito!"
 
@@ -13937,6 +14027,9 @@ msgstr "Rinomina file/cartella"
 
 msgid "Rename name and description for new events"
 msgstr "Cambia nome e descrizione per nuovi programmi"
+
+msgid "Rename the proposed file to be created"
+msgstr "Rinomina il file proposto da creare"
 
 msgid "Rename this tag"
 msgstr "Rinomina questo tag"
@@ -14235,7 +14328,7 @@ msgid "Root"
 msgstr "Root"
 
 msgid "Root directory"
-msgstr "Root directory"
+msgstr "Root cartella"
 
 msgid "Root file"
 msgstr "File radice"
@@ -14651,9 +14744,6 @@ msgstr "Scienza e tecnologia"
 msgid "Scope"
 msgstr "Scope"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Screenshot dell'LCD in /tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Lo script '%s' deve avere permessi di lettura per poter funzionare"
@@ -14854,7 +14944,7 @@ msgid "Select 'Yes' to remove all network mount data. Selecting this option will
 msgstr "Seleziona 'Sì' per rimuovere tutti i dati di montaggio di rete. Selezionando questa opzione verranno rimossi tutti i dati di rete inclusi i montaggi automatici e i dati di connessione di rete inclusi account di connessione e password. Ciò potrebbe causare il fallimento di alcune funzioni di Enigma2 se sono configurate per utilizzare queste risorse di rete."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
-msgstr "Seleziona 'Sì' per rimuovere tutti gli altri file e directory non coperti dalle opzioni precedenti."
+msgstr "Seleziona 'Sì' per rimuovere tutti gli altri file e cartelle non coperti dalle opzioni precedenti."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
 msgstr "Seleziona 'Sì' per rimuovere tutti i dati di configurazione del plugin. Selezionando questa opzione verranno rimossi tutti i dati di configurazione del plugin archiviati nella cartella di configurazione di Enigma2. Ciò farà sì che tutti i plugin interessati tornino alle impostazioni predefinite. Ciò potrebbe causare il mancato funzionamento di alcuni plugin finché non vengono configurati."
@@ -14923,7 +15013,7 @@ msgid "Select 'yes' to only send the DiSEqC command when changing from one satel
 msgstr "Seleziona 'sì' per inviare il comando DiSEqC solo quando si passa da un satellite all'altro, oppure selezionare 'no' per inviare nuovamente il comando DiSEqC ad ogni zap."
 
 msgid "Select (source list) or enter directory (target list)"
-msgstr "Seleziona (elenco di origine) o inserisci la directory (elenco di destinazione)"
+msgstr "Seleziona (elenco di origine) o inserisci la cartella (elenco di destinazione)"
 
 msgid "Select Additional Backup Files"
 msgstr "File da aggiungere al backup"
@@ -14958,8 +15048,8 @@ msgstr "Seleziona LAN/WLAN"
 msgid "Select Location"
 msgstr "Seleziona località"
 
-msgid "Select Movie Location"
-msgstr "Seleziona posizione film"
+msgid "Select Media Location"
+msgstr "Seleziona percorso multimediale"
 
 msgid "Select Playback Location"
 msgstr "Seleziona posizione riproduzione"
@@ -15027,6 +15117,9 @@ msgstr "Seleziona azione per il timer %s:"
 
 msgid "Select additional files to backup"
 msgstr "Seleziona file aggiuntivi di cui eseguire il backup"
+
+msgid "Select an action to perform when the task has completed."
+msgstr "Seleziona un'azione da eseguire quando l'attività è stata completata."
 
 msgid "Select audio track"
 msgstr "Seleziona una traccia audio"
@@ -15199,6 +15292,9 @@ msgstr "Seleziona il canale o il servizio da utilizzare per questo timer."
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleziona il carattere o l'azione sotto il cursore della tastiera"
 
+msgid "Select the current bookmarked location and exit"
+msgstr "Seleziona l'attuale posizione del segnalibro ed esci"
+
 msgid "Select the current menu item"
 msgstr "Seleziona la voce di menu attuale"
 
@@ -15232,6 +15328,12 @@ msgstr "Seleziona il design del display per i menu."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Seleziona le opzioni di visualizzazione per ciascuna voce di menu. Se sono disponibili numeri di menu, è possibile utilizzare i pulsanti numerici per selezionare direttamente le voci di menu numerate."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr "Seleziona il primo elemento nell'elenco o spostati all'inizio del testo"
+
+msgid "Select the first item in the list"
+msgstr "Seleziona il primo elemento nell'elenco"
+
 msgid "Select the function to be assigned to this button."
 msgstr "Seleziona la funzione da assegnare a questo pulsante."
 
@@ -15243,6 +15345,12 @@ msgstr "Seleziona lo slot evidenziato e riavvia"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Seleziona la posizione iniziale dell'indicatore della timeline. Il marcatore è la linea verticale tracciata sull'EPG che mostra l'ora corrente. Maggiore è il valore, più il marcatore si sposterà a destra mostrando più cronologia e meno eventi imminenti."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr "Seleziona l'ultimo elemento nell'elenco o spostati alla fine del testo"
+
+msgid "Select the last item in the list"
+msgstr "Seleziona l'ultimo elemento nell'elenco"
 
 msgid "Select the locale from a menu"
 msgstr "Seleziona le impostazioni locali da un menu"
@@ -15265,11 +15373,17 @@ msgstr "Seleziona il percorso del film"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Seleziona la velocità dati di rete al di sotto della quale il timer deve attivarsi. Il traffico superiore a questa velocità disattiverà il timer."
 
-msgid "Select the next item in list or move cursor right"
-msgstr "Seleziona l'elemento successivo nell'elenco o sposta il cursore a destra"
+msgid "Select the next item in list or move the cursor right"
+msgstr "Seleziona l'elemento successivo nell'elenco o sposta il cursore verso destra"
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr "Seleziona l'elemento successivo nell'elenco"
+
+msgid "Select the previous item in list or move the cursor left"
 msgstr "Seleziona l'elemento precedente nell'elenco o sposta il cursore a sinistra"
+
+msgid "Select the previous item in the list"
+msgstr "Seleziona l'elemento precedente nell'elenco"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Seleziona il protocollo utilizzato dal tuo dispositivo SCR. Le scelte sono \"SCR Unicable\" (Unicable) o \"SCR JESS\" (JESS, noto anche come Unicable II)."
@@ -15806,7 +15920,7 @@ msgid "Set this to 'Yes' to keep playing this play list in a continuously repeat
 msgstr "Impostalo su \"Sì\" per continuare a riprodurre questa playlist in un ciclo ripetuto continuamente. Se impostato su \"No\", la playlist verrà riprodotta solo una volta."
 
 msgid "Set this to 'Yes' to save the current directory when exiting the Media Player."
-msgstr "Imposta su 'Sì' per salvare la directory attuale all'uscita dal Media Player."
+msgstr "Imposta su 'Sì' per salvare la cartella attuale all'uscita dal Media Player."
 
 msgid "Set this to 'Yes' to save the current play list when exiting the Media Player."
 msgstr "Impostalo su 'Sì' per salvare la playlist attuale quando esci da Media Player."
@@ -15815,7 +15929,7 @@ msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr "Impostalo su \"Sì\" per ordinare le playlist in ordine alfabetico."
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Impostare su 'Disabilitato' per sostituire i caratteri di sottolineatura, '_', nei nomi di file e directory con spazi."
+msgstr "Impostare su 'Disabilitato' per sostituire i caratteri di sottolineatura, '_', nei nomi di file e cartella con spazi."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Impostare come ora di Prima serata."
@@ -16158,7 +16272,7 @@ msgid "Show Default Backup Files"
 msgstr "Mostra file di backup predefiniti"
 
 msgid "Show Directory size"
-msgstr "Mostra dimensione directory"
+msgstr "Mostra dimensione cartella"
 
 msgid "Show Display Icons"
 msgstr "Mostra icone di visualizzazione"
@@ -16379,6 +16493,9 @@ msgstr "Mostra informazioni dettagliate evento"
 
 msgid "Show detailed event info (setup in menu)"
 msgstr "Mostra informazioni dettagliate sull'evento"
+
+msgid "Show details of highlighted task"
+msgstr "Mostra i dettagli dell'attività evidenziata"
 
 msgid "Show development packages in opkg"
 msgstr "Mostra pacchetti di sviluppo in opkg"
@@ -16893,6 +17010,9 @@ msgstr "Salta i servizi vuoti"
 msgid "Skip forward"
 msgstr "Salta avanti"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr "Salta alla Live TV durante il timeshift con i plugin"
+
 msgid "Skip selection"
 msgstr "Salta la selezione"
 
@@ -17069,6 +17189,9 @@ msgstr "Azioni softcam"
 msgid "Softcam Settings"
 msgstr "Impostazioni softcam"
 
+msgid "Softcam Setup"
+msgstr "Installazione softcam"
+
 msgid "Softcams"
 msgstr "Softcam"
 
@@ -17192,6 +17315,9 @@ msgstr ""
 msgid "Sort"
 msgstr "Ordinamento"
 
+msgid "Sort Bookmarks"
+msgstr "Ordina segnalibri"
+
 msgid "Sort EPG List"
 msgstr "Ordina elenco EPG"
 
@@ -17287,7 +17413,7 @@ msgid "Special Features Settings"
 msgstr "Caratteristiche speciali"
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr "Specifica la directory da utilizzare all'avvio di Media Player."
+msgstr "Specifica la cartella da utilizzare all'avvio di Media Player."
 
 msgid "Speed"
 msgstr "Velocità"
@@ -17329,7 +17455,7 @@ msgid "Start"
 msgstr "Avvio"
 
 msgid "Start Auto Refresh"
-msgstr "Auto aggiornamento On"
+msgstr "Auto aggiorna On"
 
 msgid "Start Kodi"
 msgstr "Avvia Kodi"
@@ -17441,7 +17567,7 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop Auto Refresh"
-msgstr "Auto aggiornamento Off"
+msgstr "Auto aggiorna Off"
 
 msgid "Stop PiP"
 msgstr "Chiudere PiP"
@@ -17746,6 +17872,12 @@ msgstr "Cambia le modalità per abilitare l'HDR oppure le funzioni PIP"
 msgid "Switch TV to correct input"
 msgstr "Cambia ingresso corretto alla TV"
 
+msgid "Switch To Bookmarks Panel"
+msgstr "Passa al pannello dei segnalibri"
+
+msgid "Switch To File List Panel"
+msgstr "Passa al pannello elenco file"
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Passa tra audio e sottotitoli"
 
@@ -17753,13 +17885,13 @@ msgid "Switch between file list/play list"
 msgstr "Scambiare tra filelist / playlist"
 
 msgid "Switch config"
-msgstr "Configurazione Switch"
+msgstr "Cambia configurazione"
 
 msgid "Switch next channel"
 msgstr "Passa al prossimo canale"
 
 msgid "Switch off the TV to correct input"
-msgstr "Commutare la TV sull'ingresso corretto"
+msgstr "Spegni la TV per correggere l'ingresso"
 
 msgid "Switch to HDMI in mode"
 msgstr "Passa modalità HDMI"
@@ -17773,11 +17905,14 @@ msgstr "Passa alla TV"
 msgid "Switch to TV mode"
 msgstr "Passa alla modalità TV"
 
-msgid "Switch to bookmarks"
-msgstr "passa ai segnalibri"
+msgid "Switch to bookmarks panel"
+msgstr "Passa al pannello dei segnalibri"
 
 msgid "Switch to file list"
 msgstr "Passa all'elenco file"
+
+msgid "Switch to file list panel"
+msgstr "Passa al pannello dell'elenco dei file"
 
 msgid "Switch to next EPG Event"
 msgstr "Passa al prossimo evento EPG"
@@ -17816,7 +17951,7 @@ msgid "Switchable tuner types:"
 msgstr "Tipi di sintonizzatore commutabile:"
 
 msgid "Switching to live TV - time shift is still active!"
-msgstr "Commuta alla diretta TV - timeshift è ancora attivo!"
+msgstr "Passaggio alla TV in diretta: il timeshift è ancora attivo!"
 
 msgid "Switzerland"
 msgstr "Svizzera"
@@ -17968,8 +18103,17 @@ msgstr "Tamil"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Repubblica Unita"
 
-msgid "Task list"
-msgstr "Lista delle attività"
+msgid "Task List"
+msgstr "Elenco attività"
+
+msgid "Task List Actions"
+msgstr "Azioni elenco attività"
+
+msgid "Task View"
+msgstr "Vista attività"
+
+msgid "Task View Actions"
+msgstr "Azioni vista attività"
 
 msgid "Tatar"
 msgstr "Tataro"
@@ -18308,7 +18452,7 @@ msgstr ""
 "Non premere alcun tasto finché non si vedrà l’immagine del file mvi!"
 
 msgid "The hash of a directory can't be calculated."
-msgstr "Il codice hash della directory non può essere calcolato."
+msgstr "Il codice hash della cartella non può essere calcolato."
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "L'altezza dell'immagine. Quella di input sarà ridimensionata per raggiungere questo valore."
@@ -19106,6 +19250,9 @@ msgstr "Attiva/disattiva il timer attualmente selezionato"
 
 msgid "Toggle hide/show of the current item"
 msgstr "Attiva/disattiva nascondi/mostra l'elemento attuale"
+
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr "Attiva/disattiva se il nuovo testo viene inserito prima o sovrascrive il testo esistente"
 
 msgid "Toggle item edit mode on/off"
 msgstr "Attiva/disattiva la modalità di modifica degli elementi"
@@ -19915,6 +20062,9 @@ msgstr "Utilizza i pulsanti SU e GIÙ per selezionare le impostazioni locali e l
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Utilizza la modalità radio alternativa o convenzionale."
+
+msgid "Use the current selection and exit"
+msgstr "Usa la selezione corrente ed esci"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Usa i tasti cursori per selezionare un'immagine installata e quindi premere il tasto Start."
@@ -22948,6 +23098,58 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Un timer di spegnimento vuole impostare il tuo\n"
+#~ "%s %s in standby. Fallo ora?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Un timer di spegnimento vuole spegnersi\n"
+#~ "il tuo %s %s. Spegnimento ora?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Abilita screenshot dell'LCD in /tmp"
+
+#~ msgid "Job View"
+#~ msgstr "Vista attività"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Passa al primo elemento nell'elenco o all'inizio del testo"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Passa all'ultimo elemento nell'elenco o alla fine del testo"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Inserire un nome per il nuovo file"
+
+#~ msgid "Remove directory"
+#~ msgstr "Rimuovi directory"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Screenshot dell'LCD in /tmp"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Seleziona posizione film"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Seleziona l'elemento successivo nell'elenco o sposta il cursore a destra"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Seleziona l'elemento precedente nell'elenco o sposta il cursore a sinistra"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "passa ai segnalibri"
+
+#~ msgid "Task list"
+#~ msgstr "Lista delle attività"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Seleziona il servizio IceTV che desideri utilizzare."

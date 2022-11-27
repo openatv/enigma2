@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -2061,6 +2061,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "En uppdatering pågår i bakgrunden, vänta några minuter och försök igen."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr ""
 
@@ -2163,24 +2171,6 @@ msgstr ""
 "Ett andra konfigurerat nätverkskort har hittats.\n"
 "\n"
 "Vill du avaktivera sekundärt nätverkskort?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"En sovtimer vill försätta din %s %s i viloläge.\n"
-"Utför det?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"En sovtimer vill stänga av din %s %s.\n"
-"Stänga av nu?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -2515,6 +2505,9 @@ msgstr "Ange filer/bibliotek att ta backup på"
 msgid "Add service"
 msgstr "Lägg till tjänst"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2602,6 +2595,9 @@ msgid "Afghanistan"
 msgstr ""
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 msgid "After PowerLost"
@@ -3671,6 +3667,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 #
 msgid "Bookmarks"
 msgstr "Bokmärken"
@@ -4183,6 +4182,9 @@ msgstr "Avbryt"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4223,6 +4225,9 @@ msgstr "Spara inte time shift som film"
 msgid "Cancel selection"
 msgstr "Kanalval"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4246,6 +4251,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4820,6 +4828,12 @@ msgstr "Stäng"
 #
 msgid "Close PiP on exit"
 msgstr "Stäng BiB vid avslut"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr ""
@@ -5471,6 +5485,9 @@ msgstr "Fortsätt spela"
 msgid "Continue playing"
 msgstr "Fortsätt spela"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5619,6 +5636,9 @@ msgstr ""
 #
 msgid "Create DVD-ISO"
 msgstr "Skapa DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr ""
@@ -6341,6 +6361,9 @@ msgstr "Ta bort post"
 msgid "Delete Confirmation"
 msgstr "Konfirmera Borttagning"
 
+msgid "Delete Directory"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Delete EPG"
@@ -6492,6 +6515,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr ""
 
@@ -6582,6 +6608,9 @@ msgstr ""
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkt uppspelning av länkade titlar utan meny"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Katalog"
@@ -6701,6 +6730,9 @@ msgstr ""
 #
 msgid "Display and user interface"
 msgstr "Bildskärm och användargränssnitt"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -7586,9 +7618,6 @@ msgstr "Aktivera FreeSat EPG"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Aktivera fjärrmottagare för att försöka ställa in kanaler som inte kan ställas in lokalt (t.ex. att tuner är upptagen eller kanalen inte är tillgänglig på den lokala tunern). Ange den fullständiga webbadressen inklusive http://och portnummer (vanligtvis ...:8001), till exempel http://andra boxen:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr ""
-
 msgid "Enable teletext caching"
 msgstr "Aktivera teletext cache"
 
@@ -7596,6 +7625,9 @@ msgid "Enable terrestrial LCN:"
 msgstr ""
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7796,6 +7828,9 @@ msgstr "Gå till huvudmeny..."
 #, fuzzy
 msgid "Enter multi-file selection mode"
 msgstr "Stäng titelval"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "mata in kanalnummer."
@@ -8039,6 +8074,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Skapande av katalogen %s misslyckades."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -8069,6 +8108,10 @@ msgstr ""
 #, fuzzy
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Tyvärr, feeds är nere för underåll, v.v. försök igen senare."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr ""
@@ -9442,6 +9485,9 @@ msgstr ""
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr ""
 
@@ -9855,6 +9901,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10007,6 +10056,9 @@ msgid "Include EIT in http streams"
 msgstr "Inkludera EIT i http strömmar"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -10478,10 +10530,6 @@ msgstr ""
 msgid "Jersey"
 msgstr ""
 
-#
-msgid "Job View"
-msgstr "Arbets Vy"
-
 msgid "Job overview"
 msgstr "Arbets Vy"
 
@@ -10507,12 +10555,6 @@ msgstr "Hoppa till nutid"
 #
 msgid "Jump to end of list"
 msgstr "Gå till slutet av listan"
-
-msgid "Jump to first item in list or the start of text"
-msgstr ""
-
-msgid "Jump to last item in list or the end of text"
-msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Gå till nästa markerade position"
@@ -11075,6 +11117,9 @@ msgstr ""
 #
 msgid "Location"
 msgstr "Sökväg"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -11814,6 +11859,9 @@ msgstr "Flytta Upp/Ned"
 msgid "Move down a line"
 msgstr "Flytta ner en sida"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "Flytta ner en sida"
 
@@ -11821,6 +11869,9 @@ msgid "Move down a page / screen"
 msgstr ""
 
 msgid "Move down a screen"
+msgstr ""
+
+msgid "Move down a screen in the panel"
 msgstr ""
 
 #, fuzzy
@@ -11877,6 +11928,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -11907,6 +11964,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr ""
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Flytta till början av listan"
 
@@ -11916,9 +11976,21 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr ""
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 #, fuzzy
 msgid "Move up a line"
 msgstr "Flytta upp en sida"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "Flytta upp en sida"
@@ -11927,6 +11999,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen in the panel"
 msgstr ""
 
 #, fuzzy
@@ -12199,6 +12274,9 @@ msgid "Nauru"
 msgstr ""
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -12851,6 +12929,9 @@ msgstr ""
 "Filstorlek: %sMB\n"
 "Ledigt utrymme: %sMB\n"
 "Sökväg: %s"
+
+msgid "Not required"
+msgstr ""
 
 #
 #, fuzzy
@@ -13793,9 +13874,8 @@ msgstr "Vänligen ange namn till det nya biblioteket"
 msgid "Please enter a name for the new marker"
 msgstr "Vänligen ange namn för ny markör"
 
-#
-msgid "Please enter a new filename:"
-msgstr "Vänligen ange nytt filnamn"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 #
 msgid "Please enter filename (empty = use current date)"
@@ -15225,6 +15305,9 @@ msgstr "religion"
 msgid "Reload"
 msgstr "Ladda om"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr ""
 
@@ -15361,10 +15444,6 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Ta bort vald titel"
 
-#
-msgid "Remove directory"
-msgstr "ta bort katalog"
-
 msgid "Remove hide VBI line for this service"
 msgstr ""
 
@@ -15375,6 +15454,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr ""
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 #
@@ -15400,6 +15482,9 @@ msgstr "Tar bort partitionstabell"
 msgid "Rename"
 msgstr "Byt namn"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Namnbyte misslyckades!"
 
@@ -15410,6 +15495,9 @@ msgstr "Skapa katalog"
 
 msgid "Rename name and description for new events"
 msgstr "Skriv om namn och beskrivning för nya program"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr ""
@@ -16213,9 +16301,6 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr ""
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
@@ -16546,7 +16631,7 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -16624,6 +16709,9 @@ msgid "Select action for timer %s:"
 msgstr "Välj destination för:"
 
 msgid "Select additional files to backup"
+msgstr ""
+
+msgid "Select an action to perform when the task has completed."
 msgstr ""
 
 #
@@ -16808,6 +16896,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -16841,6 +16932,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
@@ -16851,6 +16948,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #
@@ -16877,10 +16980,16 @@ msgstr "Välj film sökväg"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -18076,6 +18185,9 @@ msgstr "Visa detaljerad programinfo"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Visa detaljerad programinfo "
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -18667,6 +18779,9 @@ msgstr "Hoppa över tomma kanaler"
 msgid "Skip forward"
 msgstr "Hoppa framåt"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Skip selection"
@@ -18860,6 +18975,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr ""
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr ""
 
@@ -18983,6 +19101,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Sortera"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "Sortera EPG Listan"
@@ -19614,6 +19735,12 @@ msgstr ""
 msgid "Switch TV to correct input"
 msgstr "Växla till korrekt ingång på TV"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr ""
 
@@ -19645,13 +19772,15 @@ msgstr ""
 msgid "Switch to TV mode"
 msgstr "Växla till TV läge"
 
-#
-msgid "Switch to bookmarks"
-msgstr "byt till bokmärke"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 #
 msgid "Switch to file list"
 msgstr "Byt till fillista"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #
 #, fuzzy
@@ -19861,10 +19990,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Task list"
-msgstr "svartlista"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr ""
@@ -21075,6 +21211,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -21964,6 +22103,9 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Använd alternativt eller konventionellt radioläge."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -25290,6 +25432,45 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "En sovtimer vill försätta din %s %s i viloläge.\n"
+#~ "Utför det?"
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "En sovtimer vill stänga av din %s %s.\n"
+#~ "Stänga av nu?"
+
+#
+#~ msgid "Job View"
+#~ msgstr "Arbets Vy"
+
+#
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Vänligen ange nytt filnamn"
+
+#
+#~ msgid "Remove directory"
+#~ msgstr "ta bort katalog"
+
+#
+#~ msgid "Switch to bookmarks"
+#~ msgstr "byt till bokmärke"
+
+#
+#, fuzzy
+#~ msgid "Task list"
+#~ msgstr "svartlista"
 
 #
 #, fuzzy

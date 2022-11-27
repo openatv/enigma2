@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2086,6 +2086,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr ""
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr ""
 
@@ -2172,18 +2180,6 @@ msgid ""
 msgstr ""
 "Najden je bil še en vmesnik.\n"
 "Ga želite izključiti?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -2538,6 +2534,9 @@ msgstr "Izberite datoteke za varnostno kopijo"
 msgid "Add service"
 msgstr "dodajanje kanala"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2625,6 +2624,9 @@ msgid "Afghanistan"
 msgstr ""
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 msgid "After PowerLost"
@@ -3708,6 +3710,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 #
 msgid "Bookmarks"
 msgstr "Zaznamki"
@@ -4231,6 +4236,9 @@ msgstr "Izhod"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4271,6 +4279,9 @@ msgstr ""
 msgid "Cancel selection"
 msgstr "Seznam kanalov"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -4294,6 +4305,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4875,6 +4889,12 @@ msgstr "Izhod"
 #, fuzzy
 msgid "Close PiP on exit"
 msgstr "ob izhodu se naj shrani seznam predvajanja"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr ""
@@ -5519,6 +5539,9 @@ msgstr ""
 msgid "Continue playing"
 msgstr "Nadaljuj predvajanje"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5673,6 +5696,9 @@ msgstr ""
 #
 msgid "Create DVD-ISO"
 msgstr "Kreiraj DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr ""
@@ -6418,6 +6444,9 @@ msgstr "Izbris vnosa"
 msgid "Delete Confirmation"
 msgstr ""
 
+msgid "Delete Directory"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Delete EPG"
@@ -6574,6 +6603,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr ""
 
@@ -6663,6 +6695,9 @@ msgstr ""
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Neposredno predvajanje povezanih naslovov"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Mapa"
@@ -6781,6 +6816,9 @@ msgid "Display Settings"
 msgstr ""
 
 msgid "Display and user interface"
+msgstr ""
+
+msgid "Display context menu"
 msgstr ""
 
 msgid "Display log for the currently selected timer"
@@ -7674,9 +7712,6 @@ msgstr "Freesat EPG sistem"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr ""
-
 #
 msgid "Enable teletext caching"
 msgstr "Predpolnjenje teleteksta"
@@ -7685,6 +7720,9 @@ msgid "Enable terrestrial LCN:"
 msgstr ""
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7889,6 +7927,9 @@ msgstr "Vstop v glavni meni"
 #, fuzzy
 msgid "Enter multi-file selection mode"
 msgstr "Zapri izbirnik imena"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr ""
@@ -8129,6 +8170,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Ustvarjanje mape %s ni uspelo."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -8157,6 +8202,10 @@ msgid "Error: Unable to create the required directories on the target device (e.
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
+msgstr ""
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 msgid "Esperanto"
@@ -9536,6 +9585,9 @@ msgstr ""
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr ""
 
@@ -9954,6 +10006,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10112,6 +10167,9 @@ msgid "Include EIT in http streams"
 msgstr "Prisotnost EIT podatkov v HTTP toku"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -10595,10 +10653,6 @@ msgstr ""
 msgid "Jersey"
 msgstr ""
 
-#
-msgid "Job View"
-msgstr "Ogled opravila"
-
 msgid "Job overview"
 msgstr ""
 
@@ -10624,12 +10678,6 @@ msgstr ""
 #, fuzzy
 msgid "Jump to end of list"
 msgstr "skoči na konec seznama"
-
-msgid "Jump to first item in list or the start of text"
-msgstr ""
-
-msgid "Jump to last item in list or the end of text"
-msgstr ""
 
 msgid "Jump to next marked position"
 msgstr ""
@@ -11210,6 +11258,9 @@ msgstr ""
 #
 msgid "Location"
 msgstr "Lokacija"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -11955,6 +12006,9 @@ msgstr ""
 msgid "Move down a line"
 msgstr "Premikajte proti zahodu"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr ""
 
@@ -11962,6 +12016,9 @@ msgid "Move down a page / screen"
 msgstr ""
 
 msgid "Move down a screen"
+msgstr ""
+
+msgid "Move down a screen in the panel"
 msgstr ""
 
 #
@@ -12024,6 +12081,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -12054,6 +12117,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr ""
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr ""
 
@@ -12063,10 +12129,22 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr ""
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Move up a line"
 msgstr "Premikanje proti vzhodu"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr ""
@@ -12075,6 +12153,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen in the panel"
 msgstr ""
 
 #
@@ -12357,6 +12438,9 @@ msgid "Nauru"
 msgstr ""
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -13009,6 +13093,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not required"
 msgstr ""
 
 #, fuzzy
@@ -13972,9 +14059,8 @@ msgstr "Vnesite ime nove mape:"
 msgid "Please enter a name for the new marker"
 msgstr "Vnesite ime za novo oznako:"
 
-#
-msgid "Please enter a new filename:"
-msgstr "Vnesite novo ime datoteke:"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 #
 msgid "Please enter filename (empty = use current date)"
@@ -15428,6 +15514,9 @@ msgstr ""
 msgid "Reload"
 msgstr "Ponovno naloži"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr ""
 
@@ -15567,10 +15656,6 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Odstrani izbrane naslove"
 
-#
-msgid "Remove directory"
-msgstr "odstranitev mape"
-
 msgid "Remove hide VBI line for this service"
 msgstr ""
 
@@ -15581,6 +15666,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr ""
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 #
@@ -15607,6 +15695,9 @@ msgstr "Odstrani naslov"
 msgid "Rename"
 msgstr "Preimenovanje"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr ""
 
@@ -15616,6 +15707,9 @@ msgid "Rename file/directory"
 msgstr "Ustvarite mapo"
 
 msgid "Rename name and description for new events"
+msgstr ""
+
+msgid "Rename the proposed file to be created"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16433,9 +16527,6 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr ""
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
@@ -16771,7 +16862,7 @@ msgstr ""
 msgid "Select Location"
 msgstr ""
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -16851,6 +16942,9 @@ msgid "Select action for timer %s:"
 msgstr "Izberite končno pot za:"
 
 msgid "Select additional files to backup"
+msgstr ""
+
+msgid "Select an action to perform when the task has completed."
 msgstr ""
 
 #
@@ -17037,6 +17131,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -17070,6 +17167,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
@@ -17080,6 +17183,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #
@@ -17107,10 +17216,16 @@ msgstr "Izberite pot do posnetka"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -18318,6 +18433,9 @@ msgstr "Prikaz podrobnih informacij o dogodku"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Prikaz podrobnih informacij o dogodku"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -18921,6 +19039,9 @@ msgstr "Preskoči kanale brez sporeda"
 msgid "Skip forward"
 msgstr ""
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 #, fuzzy
 msgid "Skip selection"
 msgstr "Movie lokacija"
@@ -19117,6 +19238,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr ""
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr ""
 
@@ -19239,6 +19363,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Razvrstitev"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr ""
@@ -19884,6 +20011,12 @@ msgstr ""
 msgid "Switch TV to correct input"
 msgstr "Preklop TVja na pravilni vhod"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr ""
 
@@ -19914,14 +20047,16 @@ msgstr ""
 msgid "Switch to TV mode"
 msgstr ""
 
-#
-msgid "Switch to bookmarks"
-msgstr "preklop na zaznamke"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 #
 #, fuzzy
 msgid "Switch to file list"
 msgstr "preklop na seznam datotek"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #
 #, fuzzy
@@ -20140,10 +20275,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Task list"
-msgstr "črni seznam"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr ""
@@ -21318,6 +21460,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -22213,6 +22358,9 @@ msgid "Use the UP and DOWN buttons to select your locale/language then press the
 msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
+msgstr ""
+
+msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
@@ -25509,6 +25657,27 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Job View"
+#~ msgstr "Ogled opravila"
+
+#
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Vnesite novo ime datoteke:"
+
+#
+#~ msgid "Remove directory"
+#~ msgstr "odstranitev mape"
+
+#
+#~ msgid "Switch to bookmarks"
+#~ msgstr "preklop na zaznamke"
+
+#
+#, fuzzy
+#~ msgid "Task list"
+#~ msgstr "črni seznam"
 
 #
 #, fuzzy

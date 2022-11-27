@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1870,6 +1870,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "En opdateringskontrol er i gang i baggrund, vent venligst nogle minutter og prøv igen."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "En nedbrudslog %s blev oprettet i '%s'"
 
@@ -1961,22 +1969,6 @@ msgstr ""
 "Der blev fundet en anden konfigureret grænseflade.\n"
 "\n"
 "Vil du deaktivere den anden netværksgrænseflade ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"En DvaleTimer ønsker at sætte din\n"
-"%s %s i Standby. Gør det nu ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"En DvaleTimer ønsker at slukke\n"
-"din %s %s. Sluk nu ?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "En lille oversigt over tilgængelige ikon-tilstande og handlinger."
@@ -2277,6 +2269,9 @@ msgstr "Tilføj valgte mappe til bogmærker"
 msgid "Add service"
 msgstr "Tilføj kanal"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2353,6 +2348,9 @@ msgid "Afghanistan"
 msgstr "Afghanistan"
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 msgid "After PowerLost"
@@ -3324,6 +3322,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "Bogmærker"
 
@@ -3834,6 +3835,9 @@ msgstr "Afbryd"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "Afbryd alle ændringer og afslut"
 
@@ -3864,6 +3868,9 @@ msgstr "Afbryd gem Timeshift som film"
 msgid "Cancel selection"
 msgstr "Kanalvalg"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -3883,6 +3890,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4404,6 +4414,12 @@ msgstr "Afslut"
 
 msgid "Close PiP on exit"
 msgstr "Luk PiP med EXIT"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr ""
@@ -5001,6 +5017,9 @@ msgstr "Fortsæt afspilning"
 msgid "Continue playing"
 msgstr "Fortsæt afspilning"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5136,6 +5155,9 @@ msgstr "Opret Bluedisk ISO fil"
 
 msgid "Create DVD-ISO"
 msgstr "Opret DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr "Opret ISO"
@@ -5792,6 +5814,9 @@ msgstr "Slet 1 element"
 msgid "Delete Confirmation"
 msgstr "Bekræft sletning"
 
+msgid "Delete Directory"
+msgstr ""
+
 msgid "Delete EPG"
 msgstr "Slet EPG"
 
@@ -5927,6 +5952,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Enhedshåndtering"
 
@@ -6007,6 +6035,9 @@ msgstr ""
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte afspilning af lænkede titler uden menu"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Mappe"
@@ -6107,6 +6138,9 @@ msgstr "Display-indstillinger"
 
 msgid "Display and user interface"
 msgstr "Skærm og brugergrænseflade"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -6913,9 +6947,6 @@ msgstr "Aktiver forhåndsvisning"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Aktiver at Enigma2 fjernmodtager forsøges til at finde kanaler der ikke kan findes lokal (f.eks. Tuneren er optaget eller tjenesttype utilgængelig på den lokale Tuner. Angiv en komplet URL inklusiv http:// samt portnummer (normalt ...:8001), eksempelvis http://anden_boks:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Aktiver skærmdump af LCD i /temp"
-
 msgid "Enable teletext caching"
 msgstr "Aktiver Tekst-TV mellemlagring"
 
@@ -6923,6 +6954,9 @@ msgid "Enable terrestrial LCN:"
 msgstr "Aktiver antenne LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7114,6 +7148,9 @@ msgstr "Åben hovedmenu..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Gå til flere-fils valgtilstand"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "Indtast nummer for at springe til kanal."
@@ -7356,6 +7393,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Oprettelse af mappen %s mislykkedes."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7382,6 +7423,10 @@ msgstr "Ikke i stand til at oprette de nødvendige mapper på mediet (f.eks. USB
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Fejl: Kan ikke udføre kommandoen! prøv venligst igen senere."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr ""
@@ -8627,6 +8672,9 @@ msgstr "Animationshastighed for hjælpeindikatorer"
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "Hjælper med at sætte dit signal op"
 
@@ -9009,6 +9057,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9163,6 +9214,9 @@ msgid "Include EIT in http streams"
 msgstr "Inkluder EIT i http stream"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -9580,9 +9634,6 @@ msgstr ""
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Opgaveoversigt"
-
 msgid "Job overview"
 msgstr "Opgave overblik"
 
@@ -9606,12 +9657,6 @@ msgstr "Hop til aktuel tid"
 
 msgid "Jump to end of list"
 msgstr "Hop til slutning af liste"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Spring til første punkt i liste eller tekstes start"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Spring til sidste punkt i liste eller tekstens slutning"
 
 msgid "Jump to next marked position"
 msgstr "Hop til næste positionmærke"
@@ -10121,6 +10166,9 @@ msgstr ""
 
 msgid "Location"
 msgstr "Placering"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -10805,6 +10853,9 @@ msgstr "Flyt Op/Ned"
 msgid "Move down a line"
 msgstr "Flyt en linje ned"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "Flyt en side ned"
 
@@ -10813,6 +10864,9 @@ msgstr ""
 
 msgid "Move down a screen"
 msgstr "Flyt en skærm ned"
+
+msgid "Move down a screen in the panel"
+msgstr ""
 
 msgid "Move down list"
 msgstr "Flyt nedad liste"
@@ -10860,6 +10914,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr "Flyt tastatur markøren ned"
 
@@ -10890,6 +10950,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr "Flyt til første linje / skærm"
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Flyt til hjem på liste"
 
@@ -10899,8 +10962,20 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr "Flyt til sidste linje / skærm"
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Flyt en linje op"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "Flyt en side op"
@@ -10910,6 +10985,9 @@ msgstr ""
 
 msgid "Move up a screen"
 msgstr "Flyt en skærm op"
+
+msgid "Move up a screen in the panel"
+msgstr ""
 
 msgid "Move up list"
 msgstr "Flyt opad liste"
@@ -11143,6 +11221,9 @@ msgid "Nauru"
 msgstr "Nauru"
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -11723,6 +11804,9 @@ msgstr ""
 "Filstørrelse: %sMB\n"
 "Fri plads: %sMB\n"
 "Sti: %s"
+
+msgid "Not required"
+msgstr ""
 
 msgid "Not running"
 msgstr "Kører ikke"
@@ -12580,8 +12664,8 @@ msgstr "Indtast venligst navn på den ny mappe"
 msgid "Please enter a name for the new marker"
 msgstr "Indtast venligst navn for ny mærke"
 
-msgid "Please enter a new filename:"
-msgstr "Indtast venligst nyt filnavn"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Skriv venligst filnavn (tom = brug aktuel dato)"
@@ -13876,6 +13960,9 @@ msgstr "Religion"
 msgid "Reload"
 msgstr "Genindlæs"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr "Genindlæs kanaler"
 
@@ -13999,9 +14086,6 @@ msgstr "Fjern nuværende mappe fra bogmærker"
 msgid "Remove currently selected title"
 msgstr "Fjern nuværende valgte titel"
 
-msgid "Remove directory"
-msgstr "Fjern mappe"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Fjern skjul VBI-linje for denne kanal"
 
@@ -14012,6 +14096,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "Fjerner tekst for hørehæmmede fra eksterne undertekster (instrumental musik eller omgivelsesstøj, f.eks nå en dørklokke ringere eller et geværskud høres)."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -14032,6 +14119,9 @@ msgstr "Fjern partitionstabel"
 msgid "Rename"
 msgstr "Omdøb"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Omdøbning mislykkedes!"
 
@@ -14040,6 +14130,9 @@ msgstr "Omdøb fil/mappe"
 
 msgid "Rename name and description for new events"
 msgstr "Omdøb navn og beskrivelse for nye begivenheder"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr ""
@@ -14761,9 +14854,6 @@ msgstr "Viden & Teknologi"
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "SKærmdump af LCD i /tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skript '%s' kræver læserettigheder for at det kan køres"
@@ -15073,7 +15163,7 @@ msgstr "Vælg LAN/WLAN"
 msgid "Select Location"
 msgstr "Vælg placering"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -15142,6 +15232,9 @@ msgstr "Vælg handling for Timer %s:"
 
 msgid "Select additional files to backup"
 msgstr "Vælg yderligere filer til sikkerhedskopiering"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "Vælg lydspor"
@@ -15314,6 +15407,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Vælg tegnet eller handlingen under det virtuelle tastaturs markør"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -15347,6 +15443,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
@@ -15357,6 +15459,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #, fuzzy
@@ -15381,11 +15489,17 @@ msgstr "Vælg sti til film"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
-msgstr "Vælg næste punkt på listen eller flyt markør til højre"
+msgid "Select the next item in list or move the cursor right"
+msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "Vælg forrige punkt på listen eller flyt markør til højre"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vælg den protokol der bruges af din SRC enhed. Mulighederne er 'SCR Unicable' (Unicable), eller 'SCR JESS' (JESS, også kendt som Unicable II)."
@@ -16513,6 +16627,9 @@ msgstr "Vis detaljeret begivenhedsinfo"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Vis detaljeret begivenhedsinfo (opsætning i menu)"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -17039,6 +17156,9 @@ msgstr "Hop over tomme kanaler"
 msgid "Skip forward"
 msgstr "Hop fremad"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 msgid "Skip selection"
 msgstr "Hop over valg"
 
@@ -17216,6 +17336,9 @@ msgstr "SoftCAM handlinger"
 msgid "Softcam Settings"
 msgstr "Softcam opsætning"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "Softcams"
 
@@ -17338,6 +17461,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Sorter"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "Sorter EPG liste"
@@ -17903,6 +18029,12 @@ msgstr "Skift tilstand for at aktivere HDR tilstande eller PiP funktioner"
 msgid "Switch TV to correct input"
 msgstr "Skift TV til rigtig indgang"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Skift mellem Lyd- og Undertekstside"
 
@@ -17930,11 +18062,14 @@ msgstr "Skift til TV"
 msgid "Switch to TV mode"
 msgstr "Skift til TV-tilstand"
 
-msgid "Switch to bookmarks"
-msgstr "Skift til bogmærker"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "Skift til filliste"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to next EPG Event"
@@ -18131,8 +18266,17 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Forenede Republik"
 
-msgid "Task list"
-msgstr "Opgaveliste"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Tatar"
@@ -19261,6 +19405,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -20079,6 +20226,9 @@ msgstr "Brug OP og NED knapper til at vælge dit område/sprog og tryk på OK kn
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Brug alternativ eller konventionel Radio-tilstand."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Brug markørtasterne til at vælge et installeret Image og så Start knappen."
@@ -23108,6 +23258,55 @@ msgstr "din %s %s er måske ubrugelig nu. Se venligst brugervejledningen for yde
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at sætte din\n"
+#~ "%s %s i Standby. Gør det nu ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at slukke\n"
+#~ "din %s %s. Sluk nu ?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Aktiver skærmdump af LCD i /temp"
+
+#~ msgid "Job View"
+#~ msgstr "Opgaveoversigt"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Spring til første punkt i liste eller tekstes start"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Spring til sidste punkt i liste eller tekstens slutning"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Indtast venligst nyt filnavn"
+
+#~ msgid "Remove directory"
+#~ msgstr "Fjern mappe"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "SKærmdump af LCD i /tmp"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Vælg næste punkt på listen eller flyt markør til højre"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Vælg forrige punkt på listen eller flyt markør til højre"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Skift til bogmærker"
+
+#~ msgid "Task list"
+#~ msgstr "Opgaveliste"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Vælg venligst den IceTV kanal som du ønsker at bruge."

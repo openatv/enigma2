@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-22 01:16+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1925,6 +1925,14 @@ msgstr ""
 "Bitte warten Sie einige Minuten und versuchen es dann erneut."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Eine abgeschlossene Aufgabe möchte Ihre %s %s in den Standby-Modus versetzen. Wollen Sie das jetzt?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Eine abgeschlossene Aufgabe möchte Ihre %s %s herunterfahren. Jetzt herunterfahren?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Ein Crash-Log wurde %s in '%s' erstellt"
 
@@ -2037,24 +2045,6 @@ msgstr ""
 "Eine zweite konfigurierte Netzwerkschnittstelle wurde gefunden.\n"
 "\n"
 "Möchten Sie diese Netzwerkschnittstelle deaktivieren?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Ein Ausschalttimer möchte Ihre %s %s in den Standby versetzen.\n"
-"Jetzt ausführen?"
-
-#
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Ein Ausschalttimer möchte Ihre %s %s ausschalten.\n"
-"Jetzt herunterfahren?"
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -2390,6 +2380,9 @@ msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
 msgid "Add service"
 msgstr "Kanal hinzufügen"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Das aktuelle Verzeichnis als Lesezeichen hinzufügen"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Aktuellen Sender zur Liste der Lautstärke-Offsets hinzufügen"
 
@@ -2471,6 +2464,9 @@ msgstr "Afghanistan"
 
 msgid "Afrikaans"
 msgstr "Afrikaans"
+
+msgid "After Event"
+msgstr "Nach dem Ereignis"
 
 # Powerlost setup.xml
 msgid "After PowerLost"
@@ -3499,6 +3495,9 @@ msgstr "Bolivien"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr "Lesezeichen-Sequenzaktionen"
+
 #
 msgid "Bookmarks"
 msgstr "Lesezeichen"
@@ -4028,6 +4027,9 @@ msgstr "Abbrechen"
 msgid "Cancel / Close the software update screen"
 msgstr "Abbruch / Update beenden"
 
+msgid "Cancel Task"
+msgstr "Aufgabe abbrechen"
+
 #
 msgid "Cancel any changed settings and exit"
 msgstr "Änderungen verwerfen und verlassen"
@@ -4063,6 +4065,9 @@ msgstr "Timeshift nicht als Film speichern"
 msgid "Cancel selection"
 msgstr "Auswahl abbrechen"
 
+msgid "Cancel selection and exit"
+msgstr "Auswahl abbrechen und beenden"
+
 msgid "Cancel the flash process"
 msgstr "Flash-Vorgang Abbrechen"
 
@@ -4085,6 +4090,9 @@ msgstr "Auswahl des Slots abbrechen und beenden"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Auswahl des Slots abbrechen und alle Menüs verlassen"
+
+msgid "Cancel the task"
+msgstr "Aufgabe abbrechen"
 
 msgid "Cancel the update"
 msgstr "Update abbrechen"
@@ -4643,6 +4651,12 @@ msgstr "Schließen"
 # /data/setup.xml
 msgid "Close PiP on exit"
 msgstr "Beende Bild im Bild mit EXIT"
+
+msgid "Close Task List"
+msgstr "Aufgabenliste schließen"
+
+msgid "Close Task View"
+msgstr "Aufgabenansicht schließen"
 
 msgid "Close bouquet list"
 msgstr "Bouquetliste schließen"
@@ -5288,6 +5302,9 @@ msgstr "Abspielen fortsetzen"
 msgid "Continue playing"
 msgstr "Weiter abspielen"
 
+msgid "Continue to run the task in the background"
+msgstr "Die Aufgabe im Hintergrund weiterlaufen lassen"
+
 msgid "Continue with the flash process"
 msgstr "Flash-Vorgang fortsetzen"
 
@@ -5427,6 +5444,9 @@ msgstr "Blu-ray ISO-Datei erstellen"
 #
 msgid "Create DVD-ISO"
 msgstr "DVD ISO-Datei erstellen"
+
+msgid "Create Directory"
+msgstr "Verzeichnis erstellen"
 
 msgid "Create ISO"
 msgstr "ISO-Datei erstellen"
@@ -6109,6 +6129,9 @@ msgstr "1 Element löschen"
 msgid "Delete Confirmation"
 msgstr "Löschbestätigung"
 
+msgid "Delete Directory"
+msgstr "Verzeichnis löschen"
+
 msgid "Delete EPG"
 msgstr "EPG löschen"
 
@@ -6254,6 +6277,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr "Umfang des GStreamer-Logs"
 
+msgid "Details"
+msgstr "Details"
+
 #
 msgid "Device Manager"
 msgstr "Geräteverwaltung"
@@ -6343,6 +6369,9 @@ msgstr "Direkte Menüpunktauswahl"
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
+
+msgid "Directories"
+msgstr "Verzeichnisse"
 
 msgid "Directory"
 msgstr "Verzeichnis"
@@ -6456,6 +6485,9 @@ msgstr "Displayeinstellungen"
 # SoftwareManager/plugin.py
 msgid "Display and user interface"
 msgstr "Anzeige und Oberfläche"
+
+msgid "Display context menu"
+msgstr "Kontextmenü anzeigen"
 
 msgid "Display log for the currently selected timer"
 msgstr "Anzeige des Logs für den aktuell ausgewählten Timer"
@@ -7320,9 +7352,6 @@ msgstr "Vorschau aktivieren"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Mit 'Ja' Reserve-Enigma2-Box aktivieren, die versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z.B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Geben Sie die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') an, also z.B. 'http://zweite_box:8001'."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Wenn aktiviert, wird ein Screenshot vom Display in '/tmp' gespeichert."
-
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
 
@@ -7331,6 +7360,9 @@ msgstr "Terrestrisches LCN aktivieren:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Aktivieren Sie diese Option, um MultiBoot-Informationen, die während des Systemstarts erkannt werden, in die Debug-Protokolldatei aufzunehmen."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
@@ -7535,6 +7567,9 @@ msgstr "Hauptmenü öffnen..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Mehrfachauswahlmodus aktivieren"
+
+msgid "Enter new directory name:"
+msgstr "Neuen Verzeichnisnamen eingeben:"
 
 msgid "Enter number to jump to channel"
 msgstr "Nummer, um zum Kanal zu wechseln"
@@ -7792,6 +7827,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Fehler: Datei oder Verzeichnis '%s' existiert bereits!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Fehler: Das zu installierende Image '%s' ist ungültig!"
 
@@ -7825,6 +7864,10 @@ msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
 "Fehler: Der Befehl kann nicht ausgeführt werden!\n"
 "Bitte versuchen Sie es später erneut."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Fehler: Das Verzeichnis '%s' kann nicht in '%s' umbenannt werden!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -9133,6 +9176,9 @@ msgstr "Animationsgeschwindigkeit der Tasten-Hilfe"
 msgid "Help screen style"
 msgstr "Fernbedienungstasten-Hilfe"
 
+msgid "Help text uninitialized"
+msgstr "Hilfetext nicht initialisiert"
+
 msgid "Helps setting up your signal"
 msgstr "Hilft bei der Einrichtung Ihres Signals."
 
@@ -9526,6 +9572,9 @@ msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem B
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Wenn diese Option auf \"Ja\" gesetzt ist, können Sie Timeshift mit alternativen Audio-Plugins verwenden."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wenn der Deep-Standby-Workaround aktiviert ist, wird gewartet, bis die Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
@@ -9685,6 +9734,9 @@ msgstr "EIT in HTTP-Streams integrieren"
 
 msgid "Include EPG data"
 msgstr "Inklusive EPG-Daten"
+
+msgid "Include MultiBoot data *"
+msgstr "Inklusive MultiBoot-Daten *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "SDT und BAT in HTTP-Stream integrieren"
@@ -10121,10 +10173,6 @@ msgstr "Javanisch"
 msgid "Jersey"
 msgstr "Jersey"
 
-#
-msgid "Job View"
-msgstr "Jobansicht"
-
 msgid "Job overview"
 msgstr "Jobübersicht"
 
@@ -10148,12 +10196,6 @@ msgstr "Springe zur aktuellen Zeit"
 
 msgid "Jump to end of list"
 msgstr "Zum Ende der Liste springen"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Sprung zum ersten Eintrag in der Liste oder zum Textanfang"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Sprung zum letzten Eintrag in der Liste oder zum Textende"
 
 #
 msgid "Jump to next marked position"
@@ -10691,6 +10733,9 @@ msgstr "Anzuzeigende Sprachregion"
 #
 msgid "Location"
 msgstr "Zielverzeichnis"
+
+msgid "Location Selection Actions"
+msgstr "Standortauswahl-Aktionen"
 
 msgid "Location information"
 msgstr "Standort-Informationen"
@@ -11408,13 +11453,19 @@ msgstr "Hoch/Runter"
 msgid "Move down a line"
 msgstr "Eine Zeile nach unten gehen"
 
+msgid "Move down a line in the panel"
+msgstr "Eine Zeile nach unten gehen"
+
 msgid "Move down a page"
 msgstr "Seitenweise nach unten blättern"
 
 msgid "Move down a page / screen"
-msgstr "Eine Seite/Bildschirm nach unten"
+msgstr "Eine Seite / Bildschirm nach unten"
 
 msgid "Move down a screen"
+msgstr "Einen Bildschirm nach unten gehen"
+
+msgid "Move down a screen in the panel"
 msgstr "Einen Bildschirm nach unten gehen"
 
 msgid "Move down list"
@@ -11464,6 +11515,12 @@ msgstr "Den aktuellen DNS-Eintrag eine Zeile nach unten verschieben"
 msgid "Move the current DNS entry up one line"
 msgstr "Den aktuellen DNS-Eintrag eine Zeile nach oben verschieben"
 
+msgid "Move the current bookmark down"
+msgstr "Das aktuelle Lesezeichen nach unten verschieben"
+
+msgid "Move the current bookmark up"
+msgstr "Das aktuelle Lesezeichen nach oben verschieben"
+
 #
 msgid "Move the keyboard cursor down"
 msgstr "Bewegen Sie den Tastatur-Cursor nach unten"
@@ -11502,6 +11559,9 @@ msgstr "Zur ersten Zeile wechseln"
 msgid "Move to first line / screen"
 msgstr "Zur ersten Zeile / Bildschirm wechseln"
 
+msgid "Move to first line / screen in the panel"
+msgstr "Zur ersten Zeile / Bildschirm wechseln"
+
 msgid "Move to home of list"
 msgstr "Springe zum Anfang der Liste"
 
@@ -11511,17 +11571,32 @@ msgstr "Zur letzten Zeile wechseln"
 msgid "Move to last line / screen"
 msgstr "Zur letzten Zeile / Bildschirm wechseln"
 
+msgid "Move to last line / screen in the panel"
+msgstr "Zur letzten Zeile / Bildschirm wechseln"
+
+msgid "Move to the first line / screen"
+msgstr "Zur ersten Zeile / Bildschirm wechseln"
+
+msgid "Move to the last line / screen"
+msgstr "Zur letzten Zeile / Bildschirm wechseln"
+
 #
 msgid "Move up a line"
+msgstr "Eine Zeile nach oben gehen"
+
+msgid "Move up a line in the panel"
 msgstr "Eine Zeile nach oben gehen"
 
 msgid "Move up a page"
 msgstr "Seitenweise nach oben blättern"
 
 msgid "Move up a page / screen"
-msgstr "Eine Seite/Bildschirm nach oben"
+msgstr "Eine Seite / Bildschirm nach oben"
 
 msgid "Move up a screen"
+msgstr "Einen Bildschirm nach oben gehen"
+
+msgid "Move up a screen in the panel"
 msgstr "Einen Bildschirm nach oben gehen"
 
 msgid "Move up list"
@@ -11772,6 +11847,9 @@ msgstr "Nauru"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr "Navigiere zum ausgewählten Verzeichnis"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navigieren Sie mit den Tasten Hoch/Runter nach oben/unten und mit Links/Rechts seitenweise. OK drücken, um die in der aktuell markierten Hilfe beschriebene Aktion auszuführen."
@@ -12411,6 +12489,9 @@ msgstr ""
 "Dateigröße: %sMB\n"
 "Freier Speicher: %sMB\n"
 "Pfad: %s"
+
+msgid "Not required"
+msgstr "Nicht erforderlich"
 
 #
 msgid "Not running"
@@ -13334,9 +13415,8 @@ msgstr "Bitte den Namen des neuen Verzeichnisses eingeben:"
 msgid "Please enter a name for the new marker"
 msgstr "Bitte den Namen für den neuen Marker eingeben"
 
-#
-msgid "Please enter a new filename:"
-msgstr "Bitte neuen Dateinamen eingeben:"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Bitte geben Sie einen neuen Dateinamen ein und die Erweiterung wird nicht geändert:"
 
 #
 msgid "Please enter filename (empty = use current date)"
@@ -14747,6 +14827,9 @@ msgstr "Religion"
 msgid "Reload"
 msgstr "Aktualisieren"
 
+msgid "Reload Bookmarks"
+msgstr "Lesezeichen neu laden"
+
 #
 msgid "Reload Services"
 msgstr "Senderlisten aktualisieren"
@@ -14879,10 +14962,6 @@ msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
 msgid "Remove currently selected title"
 msgstr "Entferne aktuell ausgewählten Titel"
 
-#
-msgid "Remove directory"
-msgstr "Verzeichnis entfernen"
-
 msgid "Remove hide VBI line for this service"
 msgstr "VBI-Line für diesen Kanal wieder anzeigen"
 
@@ -14894,6 +14973,9 @@ msgstr "'Ja' entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B.
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Entfernen Sie diese Line aus 'CCcam.cfg'"
+
+msgid "Remove the current bookmark"
+msgstr "Aktuelles Lesezeichen entfernen"
 
 #
 msgid "Remove timer"
@@ -14917,6 +14999,9 @@ msgstr "Partitionstabelle entfernen"
 msgid "Rename"
 msgstr "Umbenennen"
 
+msgid "Rename Directory"
+msgstr "Verzeichnis umbenennen"
+
 msgid "Rename failed!"
 msgstr "Umbenennen fehlgeschlagen!"
 
@@ -14925,6 +15010,9 @@ msgstr "Datei/Verzeichnis umbenennen"
 
 msgid "Rename name and description for new events"
 msgstr "Namen und Beschreibung für neue Aufnahmen anpassen"
+
+msgid "Rename the proposed file to be created"
+msgstr "Benennen Sie die vorgeschlagene zu erstellende Datei um"
 
 msgid "Rename this tag"
 msgstr "Tag umbenennen"
@@ -15707,9 +15795,6 @@ msgstr "Wissenschaft & Technik"
 msgid "Scope"
 msgstr "Scope"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Display-Screenshot in '/tmp' erstellen"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skript '%s' muss über Leseberechtigung verfügen, um es ausführen zu können."
@@ -16035,8 +16120,8 @@ msgstr "Auswahl LAN/WLAN"
 msgid "Select Location"
 msgstr "Speicherort auswählen"
 
-msgid "Select Movie Location"
-msgstr "Filmverzeichnis auswählen"
+msgid "Select Media Location"
+msgstr "Medienspeicherort auswählen"
 
 msgid "Select Playback Location"
 msgstr "Wiedergabeverzeichnis auswählen"
@@ -16108,6 +16193,9 @@ msgstr "Aktion für Timer %s auswählen:"
 
 msgid "Select additional files to backup"
 msgstr "Dateien auswählen, die zusätzlich gesichert werden"
+
+msgid "Select an action to perform when the task has completed."
+msgstr "Wählen Sie eine Aktion aus, die durchgeführt werden soll, wenn die Aufgabe abgeschlossen ist."
 
 #
 msgid "Select audio track"
@@ -16292,6 +16380,9 @@ msgstr "Wählen Sie den Kanal/Service, der für diesen Timer verwendet werden so
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
+msgid "Select the current bookmarked location and exit"
+msgstr "Den aktuellen Speicherort vom Lesezeichen auswählen und beenden"
+
 msgid "Select the current menu item"
 msgstr "Wählen Sie den aktuellen Menüpunkt aus"
 
@@ -16327,6 +16418,12 @@ msgstr ""
 "Wählen Sie die Anzeigeoptionen für Menüeinträge.\n"
 "Sind Nummern vorhanden, können diese zur direkten Anwahl von Menüeinträgen verwendet werden."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr "Den ersten Eintrag in der Liste auswählen oder an den Anfang des Textes gehen"
+
+msgid "Select the first item in the list"
+msgstr "Den ersten Eintrag in der Liste wählen"
+
 msgid "Select the function to be assigned to this button."
 msgstr "Ausgewählte Funktion der Taste zuweisen."
 
@@ -16338,6 +16435,12 @@ msgstr "Wählen Sie den markierten Slot und starten Sie neu"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Wählen Sie die Anfangsposition der Zeitleisten-Markierung. Dies ist die vertikale Linie im EPG für die aktuelle Zeit. Je größer der Wert, desto mehr bewegt sie sich nach rechts und zeigt mehr vergangene, dafür aber weniger kommende Ereignisse an."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr "Den letzten Eintrag in der Liste wählen oder an das Textende springen"
+
+msgid "Select the last item in the list"
+msgstr "Den letzten Eintrag in der Liste wählen"
 
 #
 msgid "Select the locale from a menu"
@@ -16362,11 +16465,17 @@ msgstr "Den Filmpfad auswählen"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Wählen Sie die Netzwerkdatenrate, unterhalb derer der Timer wie angegeben aktiviert werden soll. Bei Datenverkehr über dieser Rate wird der Timer deaktiviert."
 
-msgid "Select the next item in list or move cursor right"
-msgstr "Nächstes Element in der Liste auswählen oder Cursor nach rechts bewegen"
+msgid "Select the next item in list or move the cursor right"
+msgstr "Den nächsten Eintrag in der Liste auswählen oder den Cursor nach rechts bewegen"
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "Vorheriges Element in der Liste auswählen oder den Cursor nach links bewegen"
+msgid "Select the next item in the list"
+msgstr "Den nächsten Eintrag in der Liste wählen"
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr "Den vorherigen Eintrag in der Liste wählen oder den Cursor nach links bewegen"
+
+msgid "Select the previous item in the list"
+msgstr "Den vorherigen Eintrag in der Liste wählen"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Wählen Sie das Protokoll Ihres Unicable/SCR-Geräts. Zur Auswahl stehen 'SCR Unicable' (Unicable I-Format) oder 'SCR JESS' (Unicable II-Format)."
@@ -17547,6 +17656,9 @@ msgstr "Detaillierte Sendungsinformationen anzeigen"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Detaillierte Sendungsinformationen anzeigen (Einstellung im Menü)"
 
+msgid "Show details of highlighted task"
+msgstr "Details der markierten Aufgabe anzeigen"
+
 msgid "Show development packages in opkg"
 msgstr "Entwicklungspakete in opkg anzeigen"
 
@@ -18099,6 +18211,9 @@ msgstr "Überspringen leerer Dienste"
 msgid "Skip forward"
 msgstr "Vorwärts spulen"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr "Bei Timeshift mittels Plugins nicht zur Live-Übertragung springen"
+
 msgid "Skip selection"
 msgstr "Auswahl überspringen"
 
@@ -18281,6 +18396,9 @@ msgstr "Softcam-Aktionen"
 msgid "Softcam Settings"
 msgstr "Softcam-Einrichtung"
 
+msgid "Softcam Setup"
+msgstr "Softcam-Einrichtung"
+
 msgid "Softcams"
 msgstr "Softcams"
 
@@ -18418,6 +18536,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Sortierung"
+
+msgid "Sort Bookmarks"
+msgstr "Lesezeichen sortieren"
 
 msgid "Sort EPG List"
 msgstr "EPG-Liste sortieren"
@@ -19011,6 +19132,12 @@ msgstr "Den Boxmodus wechseln, um den HDR-Modus oder die Bild im Bild Funktionen
 msgid "Switch TV to correct input"
 msgstr "TV auf korrekten Eingang schalten"
 
+msgid "Switch To Bookmarks Panel"
+msgstr "Zu Lesezeichen wechseln"
+
+msgid "Switch To File List Panel"
+msgstr "Zur Dateiliste wechseln"
+
 # AudioSelection.py
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Mittels Steuerkreuz Tonspur oder Untertitel wählen"
@@ -19040,12 +19167,14 @@ msgstr "Auf TV umschalten"
 msgid "Switch to TV mode"
 msgstr "In den TV-Modus umschalten"
 
-#
-msgid "Switch to bookmarks"
+msgid "Switch to bookmarks panel"
 msgstr "Zu Lesezeichen wechseln"
 
 # Mediaplayer playlist Menue
 msgid "Switch to file list"
+msgstr "Zur Dateiliste wechseln"
+
+msgid "Switch to file list panel"
 msgstr "Zur Dateiliste wechseln"
 
 #
@@ -19254,8 +19383,17 @@ msgstr "Tamil"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania"
 
-msgid "Task list"
+msgid "Task List"
 msgstr "Aufgabenliste"
+
+msgid "Task List Actions"
+msgstr "Aufgabenlisten-Aktionen"
+
+msgid "Task View"
+msgstr "Aufgabenansicht"
+
+msgid "Task View Actions"
+msgstr "Aktionen in der Aufgabenansicht"
 
 msgid "Tatar"
 msgstr "Tatarisch"
@@ -20482,6 +20620,9 @@ msgstr "Umschalten zwischen Aktivierung/Deaktivierung des aktuell ausgewählten 
 msgid "Toggle hide/show of the current item"
 msgstr "Anzeigen/Verstecken vom aktuellen Eintrag umschalten"
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
+
 msgid "Toggle item edit mode on/off"
 msgstr "Editmodus An/Aus umschalten"
 
@@ -21361,6 +21502,9 @@ msgstr ""
 # Menue Anpassungen OSD
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Bei 'Ja' wird der alternative Radiomodus verwendet, ansonsten der normale."
+
+msgid "Use the current selection and exit"
+msgstr "Die aktuelle Auswahl verwenden und beenden"
 
 # ImageBackup.py
 msgid "Use the cursor keys to select an installed image and then Start button."
@@ -24695,6 +24839,64 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Ein Ausschalttimer möchte Ihre %s %s in den Standby versetzen.\n"
+#~ "Jetzt ausführen?"
+
+#
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Ein Ausschalttimer möchte Ihre %s %s ausschalten.\n"
+#~ "Jetzt herunterfahren?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Wenn aktiviert, wird ein Screenshot vom Display in '/tmp' gespeichert."
+
+#
+#~ msgid "Job View"
+#~ msgstr "Jobansicht"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Sprung zum ersten Eintrag in der Liste oder zum Textanfang"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Sprung zum letzten Eintrag in der Liste oder zum Textende"
+
+#
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Bitte neuen Dateinamen eingeben:"
+
+#
+#~ msgid "Remove directory"
+#~ msgstr "Verzeichnis entfernen"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Display-Screenshot in '/tmp' erstellen"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Filmverzeichnis auswählen"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Nächstes Element in der Liste auswählen oder Cursor nach rechts bewegen"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Vorheriges Element in der Liste auswählen oder den Cursor nach links bewegen"
+
+#
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Zu Lesezeichen wechseln"
+
+#~ msgid "Task list"
+#~ msgstr "Aufgabenliste"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Bitte den gewünschten IceTV-Dienst auswählen."

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-14 11:03+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1897,6 +1897,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Виконане завдання хоче перевести Ваш %s %s у режим очікування. Зроби це зараз?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Виконане завдання хоче вимкнути Ваш %s %s. Вимкнути зараз?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Журнал аварійного завершення роботи %s створено в '%s'"
 
@@ -1983,22 +1991,6 @@ msgstr ""
 "Знайдено другий налаштований інтерфейс.\n"
 "\n"
 "Бажаєте відключити другий мережевий інтерфейс?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Таймер переведе приймач\n"
-" %s %s в режим очікування. Зробити це зараз?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Таймер сну хоче вимкнути\n"
-"Ваш %s %s. Вимкнути зараз?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Невеликий огляд доступного стану іконок і дій."
@@ -2299,6 +2291,9 @@ msgstr "Додати вибрану теку у закладки"
 msgid "Add service"
 msgstr "Додати канал"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Додати поточний каталог як закладку"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Додайте поточну службу до списку зміщення гучності"
 
@@ -2376,6 +2371,9 @@ msgstr "Афганістан"
 
 msgid "Afrikaans"
 msgstr "Африканська"
+
+msgid "After Event"
+msgstr "Після передачі"
 
 msgid "After PowerLost"
 msgstr "Після втрати живлення"
@@ -3331,7 +3329,7 @@ msgid "Block noise reduction"
 msgstr "Зниження блокових шумів"
 
 msgid "Blue"
-msgstr "Синій"
+msgstr "Синя"
 
 msgid "Bluetooth Setup"
 msgstr "Налаштування Bluetooth"
@@ -3341,6 +3339,9 @@ msgstr "Болівія"
 
 msgid "Bonaire"
 msgstr "Бонайре"
+
+msgid "Bookmark Sequence Actions"
+msgstr "Дії послідовності в закладках"
 
 msgid "Bookmarks"
 msgstr "Закладки"
@@ -3852,6 +3853,9 @@ msgstr "Скасувати"
 msgid "Cancel / Close the software update screen"
 msgstr "Скасувати/Закрити вікно оновлення ПЗ"
 
+msgid "Cancel Task"
+msgstr "Скасувати завдання"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Скасувати будь-які зміни налаштувань та вийти"
 
@@ -3882,6 +3886,9 @@ msgstr "Скасувати збереження таймшифт як фільм
 msgid "Cancel selection"
 msgstr "Скасувати вибір"
 
+msgid "Cancel selection and exit"
+msgstr "Скасувати вибір і вийти"
+
 msgid "Cancel the flash process"
 msgstr "Скасувати процес флеш-пам’яті"
 
@@ -3902,6 +3909,9 @@ msgstr "Скасувати вибір слота та вийти"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Скасуйте вибір слота та вийдіть з усіх меню"
+
+msgid "Cancel the task"
+msgstr "Скасувати завдання"
 
 msgid "Cancel the update"
 msgstr "Скасувати оновлення"
@@ -4421,6 +4431,12 @@ msgstr "Закрити"
 
 msgid "Close PiP on exit"
 msgstr "Закрити ПІП на виході"
+
+msgid "Close Task List"
+msgstr "Закрити список завдань"
+
+msgid "Close Task View"
+msgstr "Закрити перегляд завдань"
 
 msgid "Close bouquet list"
 msgstr "Закрити фаворитний список"
@@ -5015,6 +5031,9 @@ msgstr "Продовжити відтворення"
 msgid "Continue playing"
 msgstr "Продовжити перегляд"
 
+msgid "Continue to run the task in the background"
+msgstr "Продовжити виконання завдання у фоновому режимі"
+
 msgid "Continue with the flash process"
 msgstr "Продовжити процес прошивки"
 
@@ -5149,6 +5168,9 @@ msgstr "Створити Блю-рей диск з ISO файлом"
 
 msgid "Create DVD-ISO"
 msgstr "Створити образ DVD-ISO"
+
+msgid "Create Directory"
+msgstr "Створити каталог"
 
 msgid "Create ISO"
 msgstr "Створити ISO"
@@ -5805,6 +5827,9 @@ msgstr "Видалити 1 елемент"
 msgid "Delete Confirmation"
 msgstr "Підтвердження видалення"
 
+msgid "Delete Directory"
+msgstr "Видалити каталог"
+
 msgid "Delete EPG"
 msgstr "Видалити EPG"
 
@@ -5940,6 +5965,9 @@ msgstr "Скасування виділених пакетів зазвичай 
 msgid "Detail of GStreamer log"
 msgstr "Деталі журналу GStreamer"
 
+msgid "Details"
+msgstr "Подробиці"
+
 msgid "Device Manager"
 msgstr "Диспетчер пристроїв"
 
@@ -6020,6 +6048,9 @@ msgstr "Прямий вибір пункту меню"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Пряме відтворення зв'язаних епізодів без меню"
+
+msgid "Directories"
+msgstr "Каталоги"
 
 msgid "Directory"
 msgstr "Каталог"
@@ -6120,6 +6151,9 @@ msgstr "Налаштування дисплея"
 
 msgid "Display and user interface"
 msgstr "Дисплей і графічний інтерфейс користувача"
+
+msgid "Display context menu"
+msgstr "Відобразити контекстне меню"
 
 msgid "Display log for the currently selected timer"
 msgstr "Показати лог для поточного вибраного таймера"
@@ -6931,9 +6965,6 @@ msgstr "Включити перегляд"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Включити віддалений приймач enigma2, щоб спробувати настроїтись на канали, які неможливо настроїти на місцевому рівні (наприклад, приймач зайнятий або тип каналу недоступний на локальному тюнері. Вкажіть повну URL-адресу, включаючи http: // та номер порту (зазвичай: 8001), наприклад http: //second_box: 8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Включити знімок екрана в / tmp"
-
 msgid "Enable teletext caching"
 msgstr "Включити кешування телетексту"
 
@@ -6942,6 +6973,9 @@ msgstr "Включити наземний LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ввімкнути розширені параметри налаштування HDMI-CEC."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Увімкніть цей параметр, щоб додати інформацію MultiBoot, виявлену під час завантаження системи, до файлу журналу налагодження."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Увімкніть цю опцію, щоб додати дані відображення карти дій/віддаленого керування до файлу журналу налагодження."
@@ -7134,6 +7168,9 @@ msgstr "Вхід у Головне Меню..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Вхід у режим вибору декількох файлів"
+
+msgid "Enter new directory name:"
+msgstr "Введіть нову назву каталогу:"
 
 msgid "Enter number to jump to channel"
 msgstr "Введіть номер, щоб перейти на канал"
@@ -7378,6 +7415,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Створення директорії %s невдале!"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Помилка: файл або каталог '%s' вже існує!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Помилка: імідж '%s' для встановлення недійсний!"
 
@@ -7404,6 +7445,10 @@ msgstr "Помилка: неможливо створити необхідні �
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Помилка: неможливо обробити команду! Будь-ласка, спробуйте пізніше."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Помилка: неможливо перейменувати каталог '%s' на '%s'!"
 
 msgid "Esperanto"
 msgstr "Есперанто"
@@ -8440,7 +8485,7 @@ msgid "Greek"
 msgstr "Грецька"
 
 msgid "Green"
-msgstr "Зелений"
+msgstr "Зелена"
 
 msgid "Greenland"
 msgstr "Гренландія"
@@ -8639,6 +8684,9 @@ msgstr "Швидкість анімації показників допомог�
 
 msgid "Help screen style"
 msgstr "Довідковий стиль екрана"
+
+msgid "Help text uninitialized"
+msgstr "Текст довідки неініціалізований"
 
 msgid "Helps setting up your signal"
 msgstr "Допомагає налаштовувати Ваш сигнал"
@@ -9017,6 +9065,9 @@ msgstr "Якщо можливо, за x хвилин до запуску тай�
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Якщо встановлено значення 'Так', для подій глибокого очікування на телевізор надсилатимуться ті самі команди, що й під час звичайних подій очікування."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Якщо встановлено значення 'так', ви можете використовувати зміщення часу з альтернативними аудіоплагінами."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Якщо обхідний шлях для глибокого очікування ввімкнено, дочекайтеся синхронізації системного часу. Залежно від вимоги пробудження пристрою триватиме максимум через 2 хвилини."
 
@@ -9171,6 +9222,9 @@ msgstr "Додати EIT до http потоку"
 
 msgid "Include EPG data"
 msgstr "Включити дані EPG"
+
+msgid "Include MultiBoot data *"
+msgstr "Включити дані MultiBoot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Долучити SDT, BAT у потоки HTTP"
@@ -9577,9 +9631,6 @@ msgstr "Яванська"
 msgid "Jersey"
 msgstr "Джерсі"
 
-msgid "Job View"
-msgstr "Хід виконання"
-
 msgid "Job overview"
 msgstr "Огляд завдань"
 
@@ -9603,12 +9654,6 @@ msgstr "Перейти на поточний час"
 
 msgid "Jump to end of list"
 msgstr "Перейти в кінець списку"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Перейти до першого елемента списку, або на початок тексту"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Перейти до останнього елемента списку, або у кінець тексту"
 
 msgid "Jump to next marked position"
 msgstr "Перейти до наступної мітки"
@@ -10105,6 +10150,9 @@ msgstr "Мови для відображення"
 
 msgid "Location"
 msgstr "Розташування"
+
+msgid "Location Selection Actions"
+msgstr "Дії по вибору місця розташування"
 
 msgid "Location information"
 msgstr "Інформація місцезнаходження"
@@ -10769,6 +10817,9 @@ msgstr "Перемістити вгору/вниз"
 msgid "Move down a line"
 msgstr "Перемістити на позицію вниз"
 
+msgid "Move down a line in the panel"
+msgstr "Переміщення на рядок вниз на панелі"
+
 msgid "Move down a page"
 msgstr "Переміститися на сторінку вниз"
 
@@ -10777,6 +10828,9 @@ msgstr "Перейти вниз на сторінку/екран"
 
 msgid "Move down a screen"
 msgstr "Переміщення вниз по вікну"
+
+msgid "Move down a screen in the panel"
+msgstr "Перемістіть екран вниз на панелі"
 
 msgid "Move down list"
 msgstr "Перемістити список вниз"
@@ -10820,6 +10874,12 @@ msgstr "Перемістити поточний запис DNS на один р�
 msgid "Move the current DNS entry up one line"
 msgstr "Перемістити поточний запис DNS на один рядок вгору"
 
+msgid "Move the current bookmark down"
+msgstr "Перемістити поточну закладку вниз"
+
+msgid "Move the current bookmark up"
+msgstr "Перемістити поточну закладку вгору"
+
 msgid "Move the keyboard cursor down"
 msgstr "Перемістіть курсор клавіатури вниз"
 
@@ -10850,6 +10910,9 @@ msgstr "Перейти до першого рядка"
 msgid "Move to first line / screen"
 msgstr "Перейти до першого рядка/екрана"
 
+msgid "Move to first line / screen in the panel"
+msgstr "Перейти до першого рядка/екрана на панелі"
+
 msgid "Move to home of list"
 msgstr "Переміститися на домашню сторінку"
 
@@ -10859,8 +10922,20 @@ msgstr "Перейти до останнього рядка"
 msgid "Move to last line / screen"
 msgstr "Перейти до останнього рядка/екрана"
 
+msgid "Move to last line / screen in the panel"
+msgstr "Перейти до останнього рядка/екрана на панелі"
+
+msgid "Move to the first line / screen"
+msgstr "Перейти до першого рядка / екрана"
+
+msgid "Move to the last line / screen"
+msgstr "Перейти до останнього рядка / екрану"
+
 msgid "Move up a line"
 msgstr "Перемістити на позицію вгору"
+
+msgid "Move up a line in the panel"
+msgstr "Перейти на рядок вгору на панелі"
 
 msgid "Move up a page"
 msgstr "Переміститися на сторінку вгору"
@@ -10870,6 +10945,9 @@ msgstr "Перейти вверх на сторінку/екран"
 
 msgid "Move up a screen"
 msgstr "Переміститися на екран вгору"
+
+msgid "Move up a screen in the panel"
+msgstr "Переміщення на екран панелі вгору"
 
 msgid "Move up list"
 msgstr "Переміститися вгору списку"
@@ -11097,6 +11175,9 @@ msgstr "Науру"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr "Перейти у вибраний каталог"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Переміщення вгору/вниз за допомогою кнопок ВГОРУ/ВНИЗ та прокручування сторінок вгору/вниз за допомогою ВЛІВО/ВПРАВО. ОК, щоб виконати дію, описану в поточній довідці."
@@ -11669,6 +11750,9 @@ msgstr ""
 "Розмір файлу: %sMБ\n"
 "Вільне місце: %sMБ\n"
 "Шлях: %s"
+
+msgid "Not required"
+msgstr "Не потрібно"
 
 msgid "Not running"
 msgstr "Не працює"
@@ -12510,8 +12594,8 @@ msgstr "Будь ласка, введіть назву нового катало
 msgid "Please enter a name for the new marker"
 msgstr "Будь ласка, введіть назву для нової закладки"
 
-msgid "Please enter a new filename:"
-msgstr "Будь ласка, введіть нову назву файла"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Будь ласка, введіть нову назву файлу, розширення не можна змінити:"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Будь ласка, введіть назву файла (пусто = актуальна дата)"
@@ -13459,7 +13543,7 @@ msgid "RED button"
 msgstr "Червона кнопка"
 
 msgid "RED long"
-msgstr "Червоний довге натискання"
+msgstr "Червона довге натискання"
 
 msgid "RF Output Settings"
 msgstr "RF вихід"
@@ -13724,7 +13808,7 @@ msgid "Recovery Mode"
 msgstr "Режим відновлення"
 
 msgid "Red"
-msgstr "Червоний"
+msgstr "Червона"
 
 msgid "Red button..."
 msgstr "Червона кнопка..."
@@ -13801,6 +13885,9 @@ msgstr "Релігія"
 
 msgid "Reload"
 msgstr "Оновити"
+
+msgid "Reload Bookmarks"
+msgstr "Перезавантажити закладки"
 
 msgid "Reload Services"
 msgstr "перезавантажити канали"
@@ -13925,9 +14012,6 @@ msgstr "Видалити поточну теку зі закладок"
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
 
-msgid "Remove directory"
-msgstr "видалити директорію"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
 
@@ -13939,6 +14023,9 @@ msgstr "Видалити тексти для слабочуючих із зов�
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Видалити рядок із CCcam.cfg"
+
+msgid "Remove the current bookmark"
+msgstr "Видалити поточну закладку"
 
 msgid "Remove timer"
 msgstr "Видалити таймер"
@@ -13958,6 +14045,9 @@ msgstr "Видалення таблиці розділів"
 msgid "Rename"
 msgstr "Перейменувати"
 
+msgid "Rename Directory"
+msgstr "Перейменувати каталог"
+
 msgid "Rename failed!"
 msgstr "Не вдалося перейменувати!"
 
@@ -13966,6 +14056,9 @@ msgstr "Перейменувати файл/теку"
 
 msgid "Rename name and description for new events"
 msgstr "Перейменувати ім'я та опис для нових подій"
+
+msgid "Rename the proposed file to be created"
+msgstr "Перейменуйте файл, який пропонується створити"
 
 msgid "Rename this tag"
 msgstr "Перейменуйте цей тег"
@@ -14682,9 +14775,6 @@ msgstr "Наука і техніка"
 msgid "Scope"
 msgstr "Межі"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Знімок екрана в /tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Скрипт '%s' повинен мати дозвіл на читання для його запуску"
@@ -14989,8 +15079,8 @@ msgstr "Вибір Lan/Wi-Fi"
 msgid "Select Location"
 msgstr "Вибрати місце розташування"
 
-msgid "Select Movie Location"
-msgstr "Виберіть місце розташування запису"
+msgid "Select Media Location"
+msgstr "Виберіть розташування медіафайлів"
 
 msgid "Select Playback Location"
 msgstr "Виберіть місце відтворення"
@@ -15058,6 +15148,9 @@ msgstr "Вибір дії для таймеру %s:"
 
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
+
+msgid "Select an action to perform when the task has completed."
+msgstr "Виберіть дію, яку потрібно виконати після завершення завдання."
 
 msgid "Select audio track"
 msgstr "Вибір аудіо доріжки"
@@ -15230,6 +15323,9 @@ msgstr "Виберіть канал або послугу для цього та
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
 
+msgid "Select the current bookmarked location and exit"
+msgstr "Виберіть поточне місце в закладках та вийдіть"
+
 msgid "Select the current menu item"
 msgstr "Вибрати поточний пункт меню"
 
@@ -15263,6 +15359,12 @@ msgstr "Виберіть дизайн дисплея для меню."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Виберіть параметри відображення для кожного пункту меню. Якщо номери меню доступні, цифрові кнопки можна використовувати для безпосереднього вибору пронумерованих пунктів меню."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr "Виберіть перший елемент у списку, або перейдіть на початок тексту"
+
+msgid "Select the first item in the list"
+msgstr "Виберіть перший елемент у списку"
+
 msgid "Select the function to be assigned to this button."
 msgstr "Дозволяє призначити вибрану функцію для цієї кнопки."
 
@@ -15274,6 +15376,12 @@ msgstr "Виберіть виділений слот і перезавантаж
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Виберіть початкове положення маркера шкали часу. Маркер — це вертикальна лінія, намальована на EPG, яка показує поточний час. Чим більше значення, тим більше маркер переміщуватиметься праворуч, показуючи більше історії та менше майбутніх подій."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr "Виберіть останній елемент у списку, або перейдіть до кінця тексту"
+
+msgid "Select the last item in the list"
+msgstr "Виберіть останній елемент у списку"
 
 msgid "Select the locale from a menu"
 msgstr "Виберіть мову клавіатури в меню"
@@ -15296,11 +15404,17 @@ msgstr "Виберіть теку для фільмів"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Виберіть швидкість передачі даних мережі, нижче якої має активуватися таймер, як зазначено. Трафік вище цієї норми з відключенням таймера."
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "Виберіть наступний елемент у списку, або перемістіть курсор ліворуч"
+msgid "Select the next item in the list"
+msgstr "Виберіть наступний елемент у списку"
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr "Виберіть попередній елемент у списку, або перемістіть курсор ліворуч"
+
+msgid "Select the previous item in the list"
+msgstr "Виберіть попередній елемент у списку"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Виберіть протокол, який використовується Вашим пристроєм SCR. Виберіть 'SCR Unicable' (Unicable), або 'SCR JESS' (JESS, також відомий як Unicable II)."
@@ -16411,6 +16525,9 @@ msgstr "Показати докладну інформацію події"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Показати докладну інформацію події (налаштування в меню)"
 
+msgid "Show details of highlighted task"
+msgstr "Показати деталі виділеного завдання"
+
 msgid "Show development packages in opkg"
 msgstr "Показати пакети розробки в opkg"
 
@@ -16924,6 +17041,9 @@ msgstr "Пропускати порожні канали"
 msgid "Skip forward"
 msgstr "Перейти вперед"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr "Пропустіть перехід до прямого ефіру під час зміщення часу за допомогою плагінів"
+
 msgid "Skip selection"
 msgstr "Пропустити вибір"
 
@@ -17102,6 +17222,9 @@ msgstr "Дії для Softcam"
 msgid "Softcam Settings"
 msgstr "Налаштування емуляторів"
 
+msgid "Softcam Setup"
+msgstr "Налаштування Softcam"
+
 msgid "Softcams"
 msgstr "емулятори"
 
@@ -17224,6 +17347,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Сортувати"
+
+msgid "Sort Bookmarks"
+msgstr "Сортувати закладки"
 
 msgid "Sort EPG List"
 msgstr "Сортувати список ЕПГ"
@@ -17779,6 +17905,12 @@ msgstr "Перемикач режиму для включення режимів
 msgid "Switch TV to correct input"
 msgstr "Переключити ТВ на коректний вхід"
 
+msgid "Switch To Bookmarks Panel"
+msgstr "Перейти на Панель закладок"
+
+msgid "Switch To File List Panel"
+msgstr "Перейти на Панель списку файлів"
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Переключити між сторінками Аудіо і Субтитрів"
 
@@ -17806,11 +17938,14 @@ msgstr "Переключити на ТБ"
 msgid "Switch to TV mode"
 msgstr "Переключити на режим TV"
 
-msgid "Switch to bookmarks"
-msgstr "перейти до закладок"
+msgid "Switch to bookmarks panel"
+msgstr "Перейти на панель закладок"
 
 msgid "Switch to file list"
 msgstr "Переключити на список файлів"
+
+msgid "Switch to file list panel"
+msgstr "Перейти до панелі списку файлів"
 
 msgid "Switch to next EPG Event"
 msgstr "Перейти до наступної передачі EPG"
@@ -17939,7 +18074,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 05.11.2022"
+msgstr "Переклад: kvinto - 27.11.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18001,8 +18136,17 @@ msgstr "Тамільська"
 msgid "Tanzania, United Republic of"
 msgstr "Танзанія, Об'єднана Республіка"
 
-msgid "Task list"
+msgid "Task List"
 msgstr "Список завдань"
+
+msgid "Task List Actions"
+msgstr "Дії зі списком завдань"
+
+msgid "Task View"
+msgstr "Перегляд завдань"
+
+msgid "Task View Actions"
+msgstr "Перегляд завдань"
 
 msgid "Tatar"
 msgstr "Татарська"
@@ -19140,6 +19284,9 @@ msgstr "Увімкнення/вимкнення поточного вибран�
 msgid "Toggle hide/show of the current item"
 msgstr "Увімкнути або приховати/показати поточний елемент"
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr "Увімкніть, якщо новий текст вставляється перед існуючим текстом, або замінює його"
+
 msgid "Toggle item edit mode on/off"
 msgstr "Увімкнути/вимкнути режим редагування елементів"
 
@@ -19948,6 +20095,9 @@ msgstr "За допомогою кнопок ВВЕРХ і ВНИЗ вибері
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Можете вибрати альтернативний або нормальний режим Радіо."
+
+msgid "Use the current selection and exit"
+msgstr "Використайте поточний вибір і вийдіть"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Використовуйте кнопки керування курсором, щоб вибрати встановлений імідж, а потім кнопку Старт."
@@ -21027,7 +21177,7 @@ msgid "Year"
 msgstr "Рік"
 
 msgid "Yellow"
-msgstr "Жовтий"
+msgstr "Жовта"
 
 msgid "Yellow DVB subtitles"
 msgstr "Жовті DVB субтитри"
@@ -22982,6 +23132,58 @@ msgstr "ваш %s %s може стати непридатним тепер. Пр
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Таймер переведе приймач\n"
+#~ " %s %s в режим очікування. Зробити це зараз?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Таймер сну хоче вимкнути\n"
+#~ "Ваш %s %s. Вимкнути зараз?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Включити знімок екрана в / tmp"
+
+#~ msgid "Job View"
+#~ msgstr "Хід виконання"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Перейти до першого елемента списку, або на початок тексту"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Перейти до останнього елемента списку, або у кінець тексту"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Будь ласка, введіть нову назву файла"
+
+#~ msgid "Remove directory"
+#~ msgstr "видалити директорію"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Знімок екрана в /tmp"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Виберіть місце розташування запису"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Виберіть наступний елемент у списку, або перемістіть курсор праворуч"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Виберіть наступний елемент у списку, або перемістіть курсор ліворуч"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "перейти до закладок"
+
+#~ msgid "Task list"
+#~ msgstr "Список завдань"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."

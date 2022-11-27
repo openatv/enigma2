@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
-"PO-Revision-Date: 2022-11-05 09:03+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"PO-Revision-Date: 2022-11-23 09:43+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid ""
 "\n"
@@ -1890,6 +1890,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "Kontrola aktualizace na pozadí probíhá, prosím vyčkejte několik minut a zkuste to znovu."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr "Dokončený úkol chce nastavit váš %s %s do pohotovostního režimu. Chcete to udělat nyní?"
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr "Dokončený úkol chce vypnout váš %s %s. Vypnout nyní?"
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "V '%s' byl vytvořen protokol o selhání %s"
 
@@ -1976,22 +1984,6 @@ msgstr ""
 "Bylo nalezeno druhé nakonfigurované rozhraní.\n"
 "\n"
 "Přejete si druhý síťový adaptér zakázat?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Časovač chce nastavit \n"
-"%s %s do pohotovostního režimu. Určitě, teď?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Časovač vypnutí chce vypnout Vaše %s %s.\n"
-"Určitě, teď?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Přehled zobrazovaných stavů a možných akcí."
@@ -2292,6 +2284,9 @@ msgstr "Přidat vybranou složku do záložek"
 msgid "Add service"
 msgstr "Přidat program"
 
+msgid "Add the current directory as a bookmark"
+msgstr "Přidat aktuální adresář jako záložku"
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Přidat službu do seznamu Volume Offsets"
 
@@ -2369,6 +2364,9 @@ msgstr "Afghánistán"
 
 msgid "Afrikaans"
 msgstr "Afrikánština"
+
+msgid "After Event"
+msgstr "Po události"
 
 msgid "After PowerLost"
 msgstr "Akce po přerušení napájení"
@@ -3335,6 +3333,9 @@ msgstr "Bolívie"
 msgid "Bonaire"
 msgstr "Bonaire"
 
+msgid "Bookmark Sequence Actions"
+msgstr "Záložkové sekvence akcí"
+
 msgid "Bookmarks"
 msgstr "Záložky"
 
@@ -3845,6 +3846,9 @@ msgstr "Zavřít"
 msgid "Cancel / Close the software update screen"
 msgstr "Zrušit / Zavřít obrazovku aktualizace softwaru"
 
+msgid "Cancel Task"
+msgstr "Zrušit úkol"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Zrušit všechny změny a ukončit"
 
@@ -3875,6 +3879,9 @@ msgstr "Zrušit uložení časového posunu jako filmu"
 msgid "Cancel selection"
 msgstr "Zrušit výběr"
 
+msgid "Cancel selection and exit"
+msgstr "Zrušit výběr a odejít"
+
 msgid "Cancel the flash process"
 msgstr "Zrušit proces flashování"
 
@@ -3895,6 +3902,9 @@ msgstr "Zrušit výběr slotu a odejít"
 
 msgid "Cancel the slot selection and exit all menus"
 msgstr "Zrušit výběr slotu a opustit všechny nabídky"
+
+msgid "Cancel the task"
+msgstr "Zrušte úkol"
 
 msgid "Cancel the update"
 msgstr "Zrušit aktualizaci"
@@ -4414,6 +4424,12 @@ msgstr "Zavřít"
 
 msgid "Close PiP on exit"
 msgstr "Tlačítkem Exit ukončit PiP"
+
+msgid "Close Task List"
+msgstr "Zavřít Seznam úkolů"
+
+msgid "Close Task View"
+msgstr "Zavřít zobrazení úkolů"
 
 msgid "Close bouquet list"
 msgstr "Zavřít seznam přehledů"
@@ -5008,6 +5024,9 @@ msgstr "Pokračovat v přehrávání"
 msgid "Continue playing"
 msgstr "Pokračovat v přehrávání"
 
+msgid "Continue to run the task in the background"
+msgstr "Pokračovat ve spuštění úlohy na pozadí"
+
 msgid "Continue with the flash process"
 msgstr "Pokračujte v procesu flashání"
 
@@ -5142,6 +5161,9 @@ msgstr "Vytvořit soubor ISO disku Blu-ray"
 
 msgid "Create DVD-ISO"
 msgstr "Vytvořit DVD-ISO"
+
+msgid "Create Directory"
+msgstr "Vytvořit adresář"
 
 msgid "Create ISO"
 msgstr "Vytvořte ISO"
@@ -5798,6 +5820,9 @@ msgstr "Smazat 1 prvek"
 msgid "Delete Confirmation"
 msgstr "Smazat potvrzení"
 
+msgid "Delete Directory"
+msgstr "Smazat adresář"
+
 msgid "Delete EPG"
 msgstr "Smazat EPG"
 
@@ -5933,6 +5958,9 @@ msgstr "Zrušené balíčky se obvykle vyskytují, protože tyto balíčky nejso
 msgid "Detail of GStreamer log"
 msgstr "Detail protokolu GStreamer"
 
+msgid "Details"
+msgstr "Podrobnosti"
+
 msgid "Device Manager"
 msgstr "Správce připojených zařízení"
 
@@ -6013,6 +6041,9 @@ msgstr "Přímý výběr položky menu"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Okamžité přehrávání připojených titulů bez menu"
+
+msgid "Directories"
+msgstr "Adresáře"
 
 msgid "Directory"
 msgstr "Adresář"
@@ -6113,6 +6144,9 @@ msgstr "Nastavení VFD displeje"
 
 msgid "Display and user interface"
 msgstr "Displej a uživatelské rozhraní"
+
+msgid "Display context menu"
+msgstr "Zobrazit kontextové menu"
 
 msgid "Display log for the currently selected timer"
 msgstr "Zobrazit protokol pro aktuálně vybraný časovač"
@@ -6924,9 +6958,6 @@ msgstr "Povolit náhled"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "K naladění služeb, které nemohou být naladěny místně povolte vzdálený přijímač s Enigmou2 (např. Je-li tuner je obsazen, nebo typ služby je nedostupný na místním tuneru. Zadejte úplnou adresu URL, včetně http:// číslo portu (obvykle ...: 8001 ), např. http://second_box:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "Povolit snímek obrazovky LCD v /tmp"
-
 msgid "Enable teletext caching"
 msgstr "Povolit vyrovnávací paměť teletextu"
 
@@ -6935,6 +6966,9 @@ msgstr "Povolit pozemní LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Povolit pokročilé možnosti nastavení HDMI-CEC."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Povolením této možnosti přidáte do souboru protokolu ladění informace MultiBoot zjištěné během spouštění systému."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat data mapování akcí / vzdáleného ovládání."
@@ -7127,6 +7161,9 @@ msgstr "Vstoupit do hlavního menu..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Vstup do režimu výběru více souborů"
+
+msgid "Enter new directory name:"
+msgstr "Zadejte nový název adresáře:"
 
 msgid "Enter number to jump to channel"
 msgstr "Vložte číslo programu na které chcete skočit"
@@ -7371,6 +7408,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Chyba: Vytvoření adresáře '%s' se nezdařilo!"
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr "Chyba: Soubor nebo adresář '%s' již existuje!"
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr "Chyba: Obrázek '%s' k instalaci je neplatný!"
 
@@ -7397,6 +7438,10 @@ msgstr "Chyba: Nelze vytvořit požadované adresáře na cílovém zařízení 
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Chyba: Nelze zpracovat příkaz! Prosím zkuste to znovu později."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr "Chyba: Nelze přejmenovat adresář '%s' na '%s'!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8633,6 +8678,9 @@ msgstr "Rychlosti animace nápovědy"
 msgid "Help screen style"
 msgstr "Styl obrazovky nápovědy"
 
+msgid "Help text uninitialized"
+msgstr "Text nápovědy neinicializován"
+
 msgid "Helps setting up your signal"
 msgstr "Pomáhá s nastavením vašeho signálu"
 
@@ -9010,6 +9058,9 @@ msgstr "Pokud je to možné, kontroluje se x minut před skutečným začátkem,
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "Je-li nastaveno na „Ano“, budou do televizoru odesílány stejné příkazy pro události hlubokého spánku, jaké jsou odesílány během běžných událostí pohotovostního režimu."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr "Pokud je nastaveno na „ano“, umožňuje vám používat časový posun s alternativními audio pluginy."
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Pokud je povoleno řešení hlubokého spánku, počkejte, dokud nebude synchronizován systémový čas. V závislosti na požadavku bude buzení zařízení pokračovat maximálně po 2 minutách."
 
@@ -9164,6 +9215,9 @@ msgstr "Zahrnout EIT do http streamů"
 
 msgid "Include EPG data"
 msgstr "Zahrnout data EPG"
+
+msgid "Include MultiBoot data *"
+msgstr "Zahrnout data MultiBoot *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "Zahrnout SDT, BAT do http streamů"
@@ -9570,9 +9624,6 @@ msgstr "Jávština"
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Přehled práce"
-
 msgid "Job overview"
 msgstr "Přehled práce"
 
@@ -9596,12 +9647,6 @@ msgstr "Přejít na akt. čas"
 
 msgid "Jump to end of list"
 msgstr "Přejít na konec seznamu"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "Přejít na první položku v seznamu nebo na začátek textu"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "Přejít na poslední položku v seznamu nebo na konec textu"
 
 msgid "Jump to next marked position"
 msgstr "Na další označenou pozici"
@@ -10098,6 +10143,9 @@ msgstr "Místní nastavení, která se mají zobrazit"
 
 msgid "Location"
 msgstr "Umístění"
+
+msgid "Location Selection Actions"
+msgstr "Akce pro výběr umístění"
 
 msgid "Location information"
 msgstr "Informace o poloze"
@@ -10762,6 +10810,9 @@ msgstr "Přesun Nahoru/Dolů"
 msgid "Move down a line"
 msgstr "Posunout se o řádek dolů"
 
+msgid "Move down a line in the panel"
+msgstr "Posunout se v panelu o řádek dolů"
+
 msgid "Move down a page"
 msgstr "Přesun na konec stránky"
 
@@ -10770,6 +10821,9 @@ msgstr "Posunout stránku/obrazovku dolů"
 
 msgid "Move down a screen"
 msgstr "Posunout obrazovku dolů"
+
+msgid "Move down a screen in the panel"
+msgstr "Posunout se v panelu o obrazovku dolů"
 
 msgid "Move down list"
 msgstr "Posunout seznam dolů"
@@ -10813,6 +10867,12 @@ msgstr "Přesunout aktuální položku DNS o jeden řádek dolů"
 msgid "Move the current DNS entry up one line"
 msgstr "Přesunout aktuální položku DNS o jeden řádek nahoru"
 
+msgid "Move the current bookmark down"
+msgstr "Přesunout aktuální záložku dolů"
+
+msgid "Move the current bookmark up"
+msgstr "Přesunout aktuální záložku nahoru"
+
 msgid "Move the keyboard cursor down"
 msgstr "Přesunout kurzor na klávesnici dolů"
 
@@ -10843,6 +10903,9 @@ msgstr "Přechod na první řádek"
 msgid "Move to first line / screen"
 msgstr "Přechod na první řádek/obrazovku"
 
+msgid "Move to first line / screen in the panel"
+msgstr "Přejít v panelu na první řádek / obrazovku"
+
 msgid "Move to home of list"
 msgstr "Přesun na začátek seznamu"
 
@@ -10852,8 +10915,20 @@ msgstr "Přechod na poslední řádek"
 msgid "Move to last line / screen"
 msgstr "Přechod na poslední řádek/obrazovku"
 
+msgid "Move to last line / screen in the panel"
+msgstr "Přejít v panelu na poslední řádek / obrazovku"
+
+msgid "Move to the first line / screen"
+msgstr "Přejít na první řádek / obrazovku"
+
+msgid "Move to the last line / screen"
+msgstr "Přejít na poslední řádek / obrazovku"
+
 msgid "Move up a line"
 msgstr "Posunout se o řádek nahoru"
+
+msgid "Move up a line in the panel"
+msgstr "Posunout se v panelu o řádek nahoru"
 
 msgid "Move up a page"
 msgstr "Přesun na začátek"
@@ -10863,6 +10938,9 @@ msgstr "Posunout o stránku/obrazovku nahoru"
 
 msgid "Move up a screen"
 msgstr "Posunout o obrazovku nahoru"
+
+msgid "Move up a screen in the panel"
+msgstr "Posunout se v panelu o obrazovku nahoru"
 
 msgid "Move up list"
 msgstr "Posunout seznam nahoru"
@@ -11090,6 +11168,9 @@ msgstr "Nauru"
 
 msgid "Navajo / Navaho"
 msgstr "Navajo / Navaho"
+
+msgid "Navigate to the selected directory"
+msgstr "Přejít do vybraného adresáře"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Procházejte nahoru/dolů pomocí tlačítek NAHORU/DOLŮ a listujte nahoru/dolů pomocí VLEVO/VPRAVO. OK pro provedení akce popsané v aktuálně zvýrazněné nápovědě."
@@ -11662,6 +11743,9 @@ msgstr ""
 "Velikost: %sMB\n"
 "Volných: %sMB\n"
 "Cesta: %s"
+
+msgid "Not required"
+msgstr "Není požadováno"
 
 msgid "Not running"
 msgstr "Nefunguje"
@@ -12503,8 +12587,8 @@ msgstr "Zadejte prosím název nového adresáře:"
 msgid "Please enter a name for the new marker"
 msgstr "Zadejte název pro novou záložku"
 
-msgid "Please enter a new filename:"
-msgstr "Zadejte nové jméno souboru"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr "Zadejte nový název souboru, přípona se nesmí změnit:"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Zadejte název souboru (prázdné = dnešní datum)"
@@ -13795,6 +13879,9 @@ msgstr "Náboženství"
 msgid "Reload"
 msgstr "Znovu načíst"
 
+msgid "Reload Bookmarks"
+msgstr "Znovu načíst záložky"
+
 msgid "Reload Services"
 msgstr "Obnovit programy"
 
@@ -13918,9 +14005,6 @@ msgstr "Odstranit aktuální složku ze záložek"
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
-msgid "Remove directory"
-msgstr "Odebrat adresář"
-
 msgid "Remove hide VBI line for this service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
 
@@ -13932,6 +14016,9 @@ msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrum
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Odstranit řádek z CCcam.cfg"
+
+msgid "Remove the current bookmark"
+msgstr "Odebrat aktuální záložku"
 
 msgid "Remove timer"
 msgstr "Odstranit časovač"
@@ -13951,6 +14038,9 @@ msgstr "Odstraňuje se tabulka rozdělení disku"
 msgid "Rename"
 msgstr "Přejmenovat"
 
+msgid "Rename Directory"
+msgstr "Přejmenovat adresář"
+
 msgid "Rename failed!"
 msgstr "Přejmenování selhalo!"
 
@@ -13959,6 +14049,9 @@ msgstr "Přejmenovat soubor/adresář"
 
 msgid "Rename name and description for new events"
 msgstr "Přejmenovat název a popis pro nové události"
+
+msgid "Rename the proposed file to be created"
+msgstr "Přejmenujte navrhovaný soubor, který má být vytvořen"
 
 msgid "Rename this tag"
 msgstr "Přejmenovat tuto značku"
@@ -14675,9 +14768,6 @@ msgstr "Věda a technika"
 msgid "Scope"
 msgstr "Rozsah"
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "Snímek obrazovky LCD v / tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skript '%s' musí mít oprávnění ke čtení, aby jej bylo možné spustit"
@@ -14982,8 +15072,8 @@ msgstr "Vybrat LAN/Wlan"
 msgid "Select Location"
 msgstr "Vyberte umístění"
 
-msgid "Select Movie Location"
-msgstr "Vyberte umístění filmu"
+msgid "Select Media Location"
+msgstr "Vyberte umístění médií"
 
 msgid "Select Playback Location"
 msgstr "Vyberte umístění přehrávání"
@@ -15051,6 +15141,9 @@ msgstr "Vybrat akci pro časovač %s:"
 
 msgid "Select additional files to backup"
 msgstr "Přidat další soubory k zálohování"
+
+msgid "Select an action to perform when the task has completed."
+msgstr "Vyberte akci, která se má provést po dokončení úlohy."
 
 msgid "Select audio track"
 msgstr "Výběr zvukové stopy"
@@ -15223,6 +15316,9 @@ msgstr "Vyberte kanál nebo službu, které se mají pro tento časovač použí
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Vyberte znak nebo akci pod kurzorem klávesnice"
 
+msgid "Select the current bookmarked location and exit"
+msgstr "Vyberte aktuální záložku a ukončete"
+
 msgid "Select the current menu item"
 msgstr "Vyberte aktuální položku nabídky"
 
@@ -15256,6 +15352,12 @@ msgstr "Vyberte vzhled zobrazení pro nabídky."
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Vyberte možnosti zobrazení pro jednotlivé položky nabídky. Pokud jsou k dispozici čísla nabídek, lze číselná tlačítka použít k přímému výběru položek nabídky s číslem."
 
+msgid "Select the first item in list or move to the start of text"
+msgstr "Vyberte první položku v seznamu nebo přejděte na začátek textu"
+
+msgid "Select the first item in the list"
+msgstr "Vyberte první položku v seznamu"
+
 msgid "Select the function to be assigned to this button."
 msgstr "Vyberte funkci, která má být přiřazena tomuto tlačítku."
 
@@ -15267,6 +15369,12 @@ msgstr "Vyberte zvýrazněný slot a restartujte"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Vyberte počáteční pozici značky na časové ose. Značka je svislá čára nakreslená v EPG, která ukazuje aktuální čas. Čím větší hodnota, tím více se značka posune doprava a zobrazí více historie a méně nadcházejících událostí."
+
+msgid "Select the last item in list or move to the end of text"
+msgstr "Vyberte poslední položku v seznamu nebo se posuňte na konec textu"
+
+msgid "Select the last item in the list"
+msgstr "Vyberte poslední položku v seznamu"
 
 msgid "Select the locale from a menu"
 msgstr "Z nabídky vyberte národní prostředí"
@@ -15289,11 +15397,17 @@ msgstr "Vyberte cestu k filmu"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Vyberte rychlost přenosu dat v síti, pod kterou by se měl časovač aktivovat podle specifikace. Provoz nad touto rychlostí s deaktivací časovače."
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr "Vyberte další položku v seznamu nebo posuňte kurzor vpravo"
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr "Vyberte další položku v seznamu"
+
+msgid "Select the previous item in list or move the cursor left"
 msgstr "Vyberte předchozí položku v seznamu nebo posuňte kurzor vlevo"
+
+msgid "Select the previous item in the list"
+msgstr "Vyberte předchozí položku v seznamu"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou „SCR Unicable“ (Unicable) nebo „SCR JESS“ (JESS, také známý jako Unicable II)."
@@ -16404,6 +16518,9 @@ msgstr "Zobrazit detailní informace o pořadu"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Zobrazit podrobné informace o události (nastavení v nabídce)"
 
+msgid "Show details of highlighted task"
+msgstr "Zobrazit detaily zvýrazněného úkolu"
+
 msgid "Show development packages in opkg"
 msgstr "Zobrazit vývojové balíčky v opkg"
 
@@ -16917,6 +17034,9 @@ msgstr "Přeskakovat prázdné programy"
 msgid "Skip forward"
 msgstr "Přeskočit vpřed"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr "Vynechat živé přeskakování při timeshiftu pomocí pluginů"
+
 msgid "Skip selection"
 msgstr "Přeskočit výběr"
 
@@ -17095,6 +17215,9 @@ msgstr "Akce Softcam"
 msgid "Softcam Settings"
 msgstr "Nastavení Softcamu"
 
+msgid "Softcam Setup"
+msgstr "Nastavení Softcam"
+
 msgid "Softcams"
 msgstr "Softcamy"
 
@@ -17217,6 +17340,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Třídění"
+
+msgid "Sort Bookmarks"
+msgstr "Řazení záložek"
 
 msgid "Sort EPG List"
 msgstr "Třídit seznam EPG"
@@ -17772,6 +17898,12 @@ msgstr "Přepnutím režimu zapnete režimy HDR nebo funkce PiP"
 msgid "Switch TV to correct input"
 msgstr "Přepnout TV na správný vstup"
 
+msgid "Switch To Bookmarks Panel"
+msgstr "Přepnout na panel záložek"
+
+msgid "Switch To File List Panel"
+msgstr "Přepnout na panel Seznam souborů"
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Přepnout Výběr Zvuku, Výběr Titulků"
 
@@ -17799,11 +17931,14 @@ msgstr "Přepnout na TV"
 msgid "Switch to TV mode"
 msgstr "Režim TV"
 
-msgid "Switch to bookmarks"
-msgstr "Přepnout na záložky"
+msgid "Switch to bookmarks panel"
+msgstr "Přepnout na panel záložek"
 
 msgid "Switch to file list"
 msgstr "Přepnout na seznam souborů"
+
+msgid "Switch to file list panel"
+msgstr "Přepnout na panel seznamu souborů"
 
 msgid "Switch to next EPG Event"
 msgstr "Přepnout na další EPG událost"
@@ -17994,8 +18129,17 @@ msgstr "Tamilština"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzanie, Sjednocená republika"
 
-msgid "Task list"
+msgid "Task List"
 msgstr "Seznam úkolů"
+
+msgid "Task List Actions"
+msgstr "Akce seznamu úkolů"
+
+msgid "Task View"
+msgstr "Zobrazení úkolu"
+
+msgid "Task View Actions"
+msgstr "Akce zobrazení úkolů"
 
 msgid "Tatar"
 msgstr "Tatarský"
@@ -19133,6 +19277,9 @@ msgstr "Přepnout zapnutí/vypnutí aktuálně zvoleného časovače"
 msgid "Toggle hide/show of the current item"
 msgstr "Přepnout zobrazení/skrytí aktuální položky"
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr "Přepnout, pokud nový text vloží před nebo přepíše stávající text"
+
 msgid "Toggle item edit mode on/off"
 msgstr "Zapnout/vypnout režim úpravy položky"
 
@@ -19941,6 +20088,9 @@ msgstr "Pomocí tlačítek NAHORU a DOLŮ vyberte své národní prostředí/jaz
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Použít alternativní nebo konvenční režim Rádia."
+
+msgid "Use the current selection and exit"
+msgstr "Použít aktuální výběr a odejít"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Pomocí kurzorových kláves vyberte nainstalovaný image a poté stiskněte tlačítko Start."
@@ -22975,6 +23125,58 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Časovač chce nastavit \n"
+#~ "%s %s do pohotovostního režimu. Určitě, teď?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Časovač vypnutí chce vypnout Vaše %s %s.\n"
+#~ "Určitě, teď?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "Povolit snímek obrazovky LCD v /tmp"
+
+#~ msgid "Job View"
+#~ msgstr "Přehled práce"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "Přejít na první položku v seznamu nebo na začátek textu"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "Přejít na poslední položku v seznamu nebo na konec textu"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Zadejte nové jméno souboru"
+
+#~ msgid "Remove directory"
+#~ msgstr "Odebrat adresář"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "Snímek obrazovky LCD v / tmp"
+
+#~ msgid "Select Movie Location"
+#~ msgstr "Vyberte umístění filmu"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "Vyberte další položku v seznamu nebo posuňte kurzor vpravo"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "Vyberte předchozí položku v seznamu nebo posuňte kurzor vlevo"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "Přepnout na záložky"
+
+#~ msgid "Task list"
+#~ msgstr "Seznam úkolů"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Vyberte službu IceTV, kterou chcete používat."

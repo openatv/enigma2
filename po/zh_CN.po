@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1871,6 +1871,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "崩溃日志 %s 已创建到 '%s'"
 
@@ -1962,22 +1970,6 @@ msgstr ""
 "已找到第二个网卡配置.\n"
 "\n"
 "是否禁用第二个网卡?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"睡眠定时器要设置 %s %s 到待机状态 \n"
-"是否现在进入待机？"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"睡眠计时器要设置 %s %s 关机\n"
-"是否现在关机？"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "可用的图标状态和执行情况概述."
@@ -2278,6 +2270,9 @@ msgstr "添加选中的文件夹到书签"
 msgid "Add service"
 msgstr "添加频道"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2355,6 +2350,9 @@ msgstr "阿富汗"
 
 msgid "Afrikaans"
 msgstr "南非荷兰语"
+
+msgid "After Event"
+msgstr ""
 
 msgid "After PowerLost"
 msgstr "关闭电源后"
@@ -3321,6 +3319,9 @@ msgstr "玻利维亚"
 msgid "Bonaire"
 msgstr "博内尔岛"
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "书签"
 
@@ -3831,6 +3832,9 @@ msgstr "取消"
 msgid "Cancel / Close the software update screen"
 msgstr "取消/关闭软件更新屏幕"
 
+msgid "Cancel Task"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "取消所有更改并退出"
 
@@ -3861,6 +3865,9 @@ msgstr "取消保存时移为电影"
 msgid "Cancel selection"
 msgstr "取消选择"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -3880,6 +3887,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4400,6 +4410,12 @@ msgstr "关闭"
 
 msgid "Close PiP on exit"
 msgstr "退出时关闭画中画"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr "关闭自定义列表"
@@ -4996,6 +5012,9 @@ msgstr "继续播放"
 msgid "Continue playing"
 msgstr "继续播放"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5130,6 +5149,9 @@ msgstr "创建蓝光ISO文件"
 
 msgid "Create DVD-ISO"
 msgstr "创建DVD-ISO"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr "创建ISO"
@@ -5786,6 +5808,9 @@ msgstr "删除1个元素"
 msgid "Delete Confirmation"
 msgstr "确认删除"
 
+msgid "Delete Directory"
+msgstr ""
+
 msgid "Delete EPG"
 msgstr "删除EPG"
 
@@ -5921,6 +5946,9 @@ msgstr "取消选择的包通常发生,因为打包的包与现有包不兼容. 
 msgid "Detail of GStreamer log"
 msgstr "GStreamer日志的详细信息"
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "设备管理器"
 
@@ -6001,6 +6029,9 @@ msgstr "直接菜单项选择"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "直接播放链接标题无需菜单操作"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "目录"
@@ -6101,6 +6132,9 @@ msgstr "显示选项"
 
 msgid "Display and user interface"
 msgstr "显示和用户界面"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -6911,9 +6945,6 @@ msgstr "启用预览"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "允许远程enigma2接收器尝试调谐到本地无法调谐到的频道(例如,调谐器被占用或本地调谐器上的频道类型不可用)指定完整的URL,包括http://和端口号(通常…：8001),例如.http://second_box:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "启用 LCD 截图到 /tmp"
-
 msgid "Enable teletext caching"
 msgstr "启用图文电视缓存"
 
@@ -6922,6 +6953,9 @@ msgstr "启用地面波LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级HDMI-CEC设置选项."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "启用此选项可将操作映射/远程控制映射数据添加到调试日志文件."
@@ -7112,6 +7146,9 @@ msgstr "输入主菜单..."
 
 msgid "Enter multi-file selection mode"
 msgstr "输入多文件选择模式"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "输入要转到的频道编号"
@@ -7354,6 +7391,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "创建目录%s 失败."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7380,6 +7421,10 @@ msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒�
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "错误:无法处理命令.请稍后再试."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr "世界语"
@@ -8616,6 +8661,9 @@ msgstr "帮助指示器的动画速度"
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "帮助设置您的信号"
 
@@ -8993,6 +9041,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "如果设置为'是',则将向电视发送与在常规待机事件期间发送的深度待机事件相同的命令."
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方法,则会等待系统时间同步.根据要求,设备唤醒将在最多2分钟后继续."
 
@@ -9146,6 +9197,9 @@ msgid "Include EIT in http streams"
 msgstr "在Http串流中包含EIT信息"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -9553,9 +9607,6 @@ msgstr "爪哇语"
 msgid "Jersey"
 msgstr "泽西岛"
 
-msgid "Job View"
-msgstr "工作视图"
-
 msgid "Job overview"
 msgstr "工作概述"
 
@@ -9579,12 +9630,6 @@ msgstr "跳到当前时间"
 
 msgid "Jump to end of list"
 msgstr "跳到列表末尾"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "跳到列表中的第一项或文本的开头"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "跳到列表中的最后一项或文本末尾"
 
 msgid "Jump to next marked position"
 msgstr "跳到下一个标记位置"
@@ -10080,6 +10125,9 @@ msgstr "需要显示的本地项"
 
 msgid "Location"
 msgstr "位置"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr "位置信息"
@@ -10744,6 +10792,9 @@ msgstr "上/下 移动"
 msgid "Move down a line"
 msgstr "下移一行"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "向下移动一个页面"
 
@@ -10752,6 +10803,9 @@ msgstr "向下移动一个页面/屏幕"
 
 msgid "Move down a screen"
 msgstr "向下移动一个屏幕"
+
+msgid "Move down a screen in the panel"
+msgstr ""
 
 msgid "Move down list"
 msgstr "下拉列表"
@@ -10795,6 +10849,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr "向下移动键盘光标"
 
@@ -10825,6 +10885,9 @@ msgstr "移动到第一行"
 msgid "Move to first line / screen"
 msgstr "移动到第一行/屏幕"
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "移动到主列表"
 
@@ -10834,8 +10897,20 @@ msgstr "移动到最后一行"
 msgid "Move to last line / screen"
 msgstr "移动到最后一行/屏幕"
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "向上移动一行"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "向上移动一页"
@@ -10845,6 +10920,9 @@ msgstr "向上移动页面/屏幕"
 
 msgid "Move up a screen"
 msgstr "向上移动一页"
+
+msgid "Move up a screen in the panel"
+msgstr ""
 
 msgid "Move up list"
 msgstr "上拉列表"
@@ -11072,6 +11150,9 @@ msgstr "瑙鲁"
 
 msgid "Navajo / Navaho"
 msgstr "纳瓦霍语/纳瓦霍语"
+
+msgid "Navigate to the selected directory"
+msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "使用UP/DOWN键向上/向下导航,使用LEFT/RIGHT键向上/向下翻页.确定执行当前突出显示的帮助中描述的操作."
@@ -11644,6 +11725,9 @@ msgstr ""
 "文件大小: %sМB\n"
 "可用空间: %sМB\n"
 "路径: %s"
+
+msgid "Not required"
+msgstr ""
 
 msgid "Not running"
 msgstr "未运行"
@@ -12485,8 +12569,8 @@ msgstr "请输入新目录的名称"
 msgid "Please enter a name for the new marker"
 msgstr "请输入新标记的名称"
 
-msgid "Please enter a new filename:"
-msgstr "请输入一个新的文件名"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "请输入文件名(留空＝使用当前日期)"
@@ -13774,6 +13858,9 @@ msgstr "宗教"
 msgid "Reload"
 msgstr "重新載入"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr "重新加载频道"
 
@@ -13897,9 +13984,6 @@ msgstr "从书签中删除当前文件夹"
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
 
-msgid "Remove directory"
-msgstr "删除目录"
-
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
 
@@ -13910,6 +13994,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -13930,6 +14017,9 @@ msgstr "删除分区表"
 msgid "Rename"
 msgstr "重命名"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "重命名失败!"
 
@@ -13938,6 +14028,9 @@ msgstr "重命名文件/目录"
 
 msgid "Rename name and description for new events"
 msgstr "重命名新事件的名称和描述"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "重命名此标签"
@@ -14652,9 +14745,6 @@ msgstr "科技"
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "LCD截屏到/tmp"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "脚本'%s'必须具有读取权限才能运行它"
@@ -14959,7 +15049,7 @@ msgstr "选择 有线/无线网络"
 msgid "Select Location"
 msgstr "选择位置"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -15028,6 +15118,9 @@ msgstr "选择定时器 %s 的操作:"
 
 msgid "Select additional files to backup"
 msgstr "选择额外的文件来备份"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "选择音轨"
@@ -15200,6 +15293,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr "选择当前菜单项"
 
@@ -15233,6 +15329,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr "允许您将所选功能分配给此按键."
 
@@ -15243,6 +15345,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 msgid "Select the locale from a menu"
@@ -15266,11 +15374,17 @@ msgstr "选择电影路径"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
-msgstr "选择列表中的下一项或向右移动光标"
+msgid "Select the next item in list or move the cursor right"
+msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "选择列表中的上一项或向左移动光标"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "选择SCR设备使用的协议.可选择的选项有'SCR Unicable'(可选)或'SCR JESS'(JESS,也称为Unicable II)."
@@ -16378,6 +16492,9 @@ msgstr "显示详细的事件信息"
 msgid "Show detailed event info (setup in menu)"
 msgstr "显示详细的事件信息(在菜单中设置)"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr "在opkg中显示开发包"
 
@@ -16891,6 +17008,9 @@ msgstr "跳过空频道"
 msgid "Skip forward"
 msgstr "向前快进"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 msgid "Skip selection"
 msgstr "调过此选项"
 
@@ -17067,6 +17187,9 @@ msgstr "Softcam 操作"
 msgid "Softcam Settings"
 msgstr "Softcam设置"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "softcams共享设置"
 
@@ -17190,6 +17313,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "排序"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "EPG列表排序"
@@ -17745,6 +17871,12 @@ msgstr "切换模式以启用HDR模式或PIP功能"
 msgid "Switch TV to correct input"
 msgstr "切换电视到正确的输入"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "在音频 - 字幕页之间切换"
 
@@ -17772,11 +17904,14 @@ msgstr "切换到电视"
 msgid "Switch to TV mode"
 msgstr "切换到电视模式"
 
-msgid "Switch to bookmarks"
-msgstr "切换到书签"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "切换到文件列表"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 msgid "Switch to next EPG Event"
 msgstr "切换到下一个EPG事件"
@@ -17967,8 +18102,17 @@ msgstr "泰米尔语"
 msgid "Tanzania, United Republic of"
 msgstr "坦桑尼亚联合共和国"
 
-msgid "Task list"
-msgstr "任务列表"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr "塔塔尔语"
@@ -19094,6 +19238,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -19902,6 +20049,9 @@ msgstr "使用向上和向下键选择您的区域设置/语言,然后按OK键�
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备选或传统广播模式."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "使用光标键选择已安装的镜像,然后使用开始键."
@@ -22905,6 +23055,55 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "睡眠定时器要设置 %s %s 到待机状态 \n"
+#~ "是否现在进入待机？"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "睡眠计时器要设置 %s %s 关机\n"
+#~ "是否现在关机？"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "启用 LCD 截图到 /tmp"
+
+#~ msgid "Job View"
+#~ msgstr "工作视图"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "跳到列表中的第一项或文本的开头"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "跳到列表中的最后一项或文本末尾"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "请输入一个新的文件名"
+
+#~ msgid "Remove directory"
+#~ msgstr "删除目录"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "LCD截屏到/tmp"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "选择列表中的下一项或向右移动光标"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "选择列表中的上一项或向左移动光标"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "切换到书签"
+
+#~ msgid "Task list"
+#~ msgstr "任务列表"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "请选择您要使用的IceTV服务."

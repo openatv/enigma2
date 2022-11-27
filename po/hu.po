@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-22 19:10+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1911,6 +1911,14 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
 #, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Összeomlási napló %s létrehozva a '%s'"
 
@@ -2002,22 +2010,6 @@ msgstr ""
 "Egy második bekonfigurált interfész is van a rendszerben.\n"
 "\n"
 "Le szeretné tiltani a második hálózati interfészt?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Az elalvás időzítő készenléti állapotba \n"
-"akarja helyezni a(z) %s %s készüléket. Engedélyezi?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Az alvás időzítő le akarja állítani\n"
-" a(z) %s %s készüléket. Leállítsa most?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Egy gyors áttekintés az elérhető ikonokról és állapotokról."
@@ -2320,6 +2312,9 @@ msgstr "Kijelölt mappa hozzáadása könyvjelzőkhöz"
 msgid "Add service"
 msgstr "Csatorna hozzáadása"
 
+msgid "Add the current directory as a bookmark"
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -2396,6 +2391,9 @@ msgid "Afghanistan"
 msgstr "Afganisztán"
 
 msgid "Afrikaans"
+msgstr ""
+
+msgid "After Event"
 msgstr ""
 
 msgid "After PowerLost"
@@ -3372,6 +3370,9 @@ msgstr ""
 msgid "Bonaire"
 msgstr ""
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "Könyvjelzők"
 
@@ -3865,6 +3866,9 @@ msgstr "Mégse"
 msgid "Cancel / Close the software update screen"
 msgstr ""
 
+msgid "Cancel Task"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Szövegmódosítás visszavonása és kilépés"
@@ -3900,6 +3904,9 @@ msgstr "Timeshift felvételének megszakítása"
 msgid "Cancel selection"
 msgstr "Csatorna választás"
 
+msgid "Cancel selection and exit"
+msgstr ""
+
 msgid "Cancel the flash process"
 msgstr ""
 
@@ -3921,6 +3928,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -4445,6 +4455,12 @@ msgstr "Bezárás"
 
 msgid "Close PiP on exit"
 msgstr "Kép-a-Képben bezárása kilépéskor"
+
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
 
 msgid "Close bouquet list"
 msgstr ""
@@ -5042,6 +5058,9 @@ msgstr "Lejátszás folytatása"
 msgid "Continue playing"
 msgstr "Lejátszás folytatása"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5179,6 +5198,9 @@ msgstr "Hozzon létre egy Bludisc ISO fájlt"
 
 msgid "Create DVD-ISO"
 msgstr "DVD képfájl készítés"
+
+msgid "Create Directory"
+msgstr ""
 
 msgid "Create ISO"
 msgstr "ISO készítés"
@@ -5844,6 +5866,9 @@ msgstr "1 elem törlése"
 msgid "Delete Confirmation"
 msgstr "Törlés megerősítése"
 
+msgid "Delete Directory"
+msgstr ""
+
 msgid "Delete EPG"
 msgstr "EPG törlése"
 
@@ -5982,6 +6007,9 @@ msgstr ""
 msgid "Detail of GStreamer log"
 msgstr ""
 
+msgid "Details"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Eszközkezelő"
 
@@ -6063,6 +6091,9 @@ msgstr ""
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Linkelt tételek menü nélküli közvetlen lejátszása"
+
+msgid "Directories"
+msgstr ""
 
 msgid "Directory"
 msgstr "Mappa"
@@ -6163,6 +6194,9 @@ msgstr "Kijelző beállítások"
 
 msgid "Display and user interface"
 msgstr "Kijelző és felhasználói felület"
+
+msgid "Display context menu"
+msgstr ""
 
 msgid "Display log for the currently selected timer"
 msgstr ""
@@ -6971,9 +7005,6 @@ msgstr "Előnézet engedélyezése"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Lehetővé teszi, hogy egy távoli enigma2 készülékről próbálja meg a csatorna megjelenítését, ha a helyi tuner erre nem képes (pl. a tuner foglalt, mert egy másik csatornát vesz). Adja meg a tljes URL-t, beleértve a 'http://' részt és a port számát is. Pl: http://second_box:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "LCD képernyőmentése a /tmp-be"
-
 msgid "Enable teletext caching"
 msgstr "Teletext gyorsítótárazása"
 
@@ -6981,6 +7012,9 @@ msgid "Enable terrestrial LCN:"
 msgstr "A földi LCN engedélyezése:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
@@ -7173,6 +7207,9 @@ msgstr "Belépés a főmenübe..."
 
 msgid "Enter multi-file selection mode"
 msgstr "Többfájlos kijelölési mód megadása"
+
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "írja be a számot a csatorna ugrásához."
@@ -7415,6 +7452,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "A %s mappa létrehozása nem sikerült."
 
 #, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7442,6 +7483,10 @@ msgstr "Nem lehet létrehozni a szükséges könyvtárakat az adathordozón (pl.
 #, fuzzy
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr ""
@@ -8693,6 +8738,9 @@ msgstr "Súgó ikonok animáció-sebessége"
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "Segít beállítani a jelet"
 
@@ -9072,6 +9120,9 @@ msgstr ""
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr ""
 
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9226,6 +9277,9 @@ msgid "Include EIT in http streams"
 msgstr "Legyen EIT a HTTP jelfolyamban"
 
 msgid "Include EPG data"
+msgstr ""
+
+msgid "Include MultiBoot data *"
 msgstr ""
 
 msgid "Include SDT, BAT in http streams"
@@ -9642,9 +9696,6 @@ msgstr ""
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job View"
-msgstr "Folyamat nézet"
-
 msgid "Job overview"
 msgstr "Folyamat nézet"
 
@@ -9668,12 +9719,6 @@ msgstr "Ugrás az aktuális időpontra"
 
 msgid "Jump to end of list"
 msgstr "Ugrás a lista végére"
-
-msgid "Jump to first item in list or the start of text"
-msgstr ""
-
-msgid "Jump to last item in list or the end of text"
-msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Ugrás a következő megjelölt ponthoz"
@@ -10183,6 +10228,9 @@ msgstr ""
 
 msgid "Location"
 msgstr "Hely"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr ""
@@ -10863,6 +10911,9 @@ msgstr "Mozgat Fel/Le"
 msgid "Move down a line"
 msgstr "Lépjen le egy sorral"
 
+msgid "Move down a line in the panel"
+msgstr ""
+
 msgid "Move down a page"
 msgstr "Ugrás a következő lapra"
 
@@ -10870,6 +10921,9 @@ msgid "Move down a page / screen"
 msgstr ""
 
 msgid "Move down a screen"
+msgstr ""
+
+msgid "Move down a screen in the panel"
 msgstr ""
 
 msgid "Move down list"
@@ -10918,6 +10972,12 @@ msgstr ""
 msgid "Move the current DNS entry up one line"
 msgstr ""
 
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
 #, fuzzy
 msgid "Move the keyboard cursor down"
 msgstr "A virtuális billentyűzet kurzorának lefelé mozgatása"
@@ -10956,6 +11016,9 @@ msgstr ""
 msgid "Move to first line / screen"
 msgstr ""
 
+msgid "Move to first line / screen in the panel"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "A lista elejére"
 
@@ -10965,8 +11028,20 @@ msgstr ""
 msgid "Move to last line / screen"
 msgstr ""
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Feljebb lép egy sorral"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "Ugrás a előző lapra"
@@ -10975,6 +11050,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen in the panel"
 msgstr ""
 
 msgid "Move up list"
@@ -11209,6 +11287,9 @@ msgid "Nauru"
 msgstr "Nauru"
 
 msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
@@ -11789,6 +11870,9 @@ msgstr ""
 "Fájlméret: %s MB\n"
 "Szabad terület: %s MB\n"
 "Útvonal: %s"
+
+msgid "Not required"
+msgstr ""
 
 msgid "Not running"
 msgstr "Nem fut"
@@ -12644,8 +12728,8 @@ msgstr "Kérem, adja meg az új mappa nevét"
 msgid "Please enter a name for the new marker"
 msgstr "Adja meg az új jelölő nevét"
 
-msgid "Please enter a new filename:"
-msgstr "Adja meg az új fájlnevet"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Adja meg a fájlnevet (üres = jelenlegi adatok használata)"
@@ -13935,6 +14019,9 @@ msgstr "Vallás"
 msgid "Reload"
 msgstr "Újratöltés"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr "Szolgáltatások újratöltése"
 
@@ -14058,9 +14145,6 @@ msgstr "Aktuális mappa eltávolítása könyvjelzőkből"
 msgid "Remove currently selected title"
 msgstr "Kijelölt címek eltávolítása"
 
-msgid "Remove directory"
-msgstr "mappa eltávolítása"
-
 msgid "Remove hide VBI line for this service"
 msgstr "A kép tetején lévő villogó csík eltakarása ezen csatornánál"
 
@@ -14071,6 +14155,9 @@ msgid "Remove texts for the hearing impaired from external subtitles (instrument
 msgstr "Távolítsa el a halláskárosult szövegeket a külső feliratokból (hangszeres zenét vagy környezeti hangokat, például amikor csengő gyűrűt vagy fegyverlövést hallat)."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -14091,6 +14178,9 @@ msgstr "Partíciós tábla eltávolítása"
 msgid "Rename"
 msgstr "Átnevezés"
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Átnevezés sikertelen!"
 
@@ -14099,6 +14189,9 @@ msgstr "Fájl/könyvtár átnevezése"
 
 msgid "Rename name and description for new events"
 msgstr "Új események nevének és leírásának szerkesztése"
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr ""
@@ -14819,9 +14912,6 @@ msgstr "Tudomány & Tech"
 msgid "Scope"
 msgstr ""
 
-msgid "Screenshot of LCD in /tmp"
-msgstr "LCD képernyőmentése a /tmp-be"
-
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "A(z) '%s' parancsfájlnak olvasási engedéllyel kell rendelkeznie a futtatásához"
@@ -15130,7 +15220,7 @@ msgstr "Lan/Wlan választása"
 msgid "Select Location"
 msgstr "Hely kiválasztása"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -15199,6 +15289,9 @@ msgstr "Művelet kiválasztása a(z) %s időzítőhöz:"
 
 msgid "Select additional files to backup"
 msgstr "Biztonsági mentésbe helyezendő fájlok"
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
 
 msgid "Select audio track"
 msgstr "Hangsáv kiválasztása"
@@ -15372,6 +15465,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr ""
 
@@ -15405,6 +15501,12 @@ msgstr ""
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr ""
 
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
+msgstr ""
+
 msgid "Select the function to be assigned to this button."
 msgstr "Lehetővé teszi a kiválasztott funkció hozzárendelését ehhez a gombhoz."
 
@@ -15415,6 +15517,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 #, fuzzy
@@ -15439,10 +15547,16 @@ msgstr "Válassza ki a felvételek útvonalát"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
+msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16569,6 +16683,9 @@ msgstr "Részletes esemény információ"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Részletes esemény információk megjelenítése (beállítás a menüben)"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr ""
 
@@ -17092,6 +17209,9 @@ msgstr "Üres csatornák átugrása"
 msgid "Skip forward"
 msgstr "Előre kihagyása"
 
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
 msgid "Skip selection"
 msgstr "Kinézet választás"
 
@@ -17269,6 +17389,9 @@ msgstr ""
 msgid "Softcam Settings"
 msgstr "Softcam beállítások"
 
+msgid "Softcam Setup"
+msgstr ""
+
 msgid "Softcams"
 msgstr "Softcams"
 
@@ -17391,6 +17514,9 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Rendezés"
+
+msgid "Sort Bookmarks"
+msgstr ""
 
 msgid "Sort EPG List"
 msgstr "EPG lista rendezése"
@@ -17953,6 +18079,12 @@ msgstr "Kapcsolási mód, hogy engedélyezze a HDR módokat vagy a Kép-a-Képbe
 msgid "Switch TV to correct input"
 msgstr "TV-bemenet kiválasztása"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Váltás a Hang és a Feliratozás megjelenítése között"
 
@@ -17980,11 +18112,14 @@ msgstr "Váltás TV módra"
 msgid "Switch to TV mode"
 msgstr "Váltás TV módra"
 
-msgid "Switch to bookmarks"
-msgstr "átkapcsolás a bookmarkokra"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "Váltás fájllistára"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 #, fuzzy
 msgid "Switch to next EPG Event"
@@ -18189,8 +18324,17 @@ msgstr "Család"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzánia"
 
-msgid "Task list"
-msgstr "Feladatlista"
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Tatar"
@@ -19322,6 +19466,9 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
@@ -20139,6 +20286,9 @@ msgstr ""
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Használja az alternatív vagy a hagyományos rádió üzemmódot."
+
+msgid "Use the current selection and exit"
+msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
@@ -23162,6 +23312,43 @@ msgstr "a(z) %s %s készülék most lehet, hogy használhatatlanná válhat. A(z
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "Az elalvás időzítő készenléti állapotba \n"
+#~ "akarja helyezni a(z) %s %s készüléket. Engedélyezi?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Az alvás időzítő le akarja állítani\n"
+#~ " a(z) %s %s készüléket. Leállítsa most?"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "LCD képernyőmentése a /tmp-be"
+
+#~ msgid "Job View"
+#~ msgstr "Folyamat nézet"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "Adja meg az új fájlnevet"
+
+#~ msgid "Remove directory"
+#~ msgstr "mappa eltávolítása"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "LCD képernyőmentése a /tmp-be"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "átkapcsolás a bookmarkokra"
+
+#~ msgid "Task list"
+#~ msgstr "Feladatlista"
 
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "Kérjük, válassza ki a használni kívánt IceTV szolgáltatást."
