@@ -147,15 +147,15 @@ def InitUsageConfig():
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
-	def fixUTF8Change(configElement):
+	def correctInvalidEPGDataChange(configElement):
 		eServiceEvent.setUTF8Fix(int(configElement.value))
 
-	config.usage.fixUTF8 = ConfigSelection(default="0", choices=[
+	config.usage.correct_invalid_epgdata = ConfigSelection(default="0", choices=[
 		("0", _("Disabled")),
 		("1", _("Enabled")),
-		("2", _("Enabled (Debug)"))
+		("2", _("Debug"))
 	])
-	config.usage.fixUTF8.addNotifier(fixUTF8Change)
+	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default=False)
 
