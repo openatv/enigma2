@@ -911,7 +911,7 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
-unsigned int getInvalidUTF8Pos(const char *str, unsigned len, bool debug) {
+unsigned int getInvalidUTF8Pos(const char *str, unsigned int len, bool debug) {
 	unsigned int n;
 	for (unsigned i = 0; i < len; ++i) {
 		unsigned char c = (unsigned char) str[i];
@@ -947,10 +947,10 @@ unsigned int getInvalidUTF8Pos(const char *str, unsigned len, bool debug) {
 	return 0;
 }
 
-std::string fixUTF8(std::string &str, bool debug) {
+std::string fixUTF8(const std::string &str, bool debug) {
 
 	std::string ret = str;
-	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), ret.size(), debug);
+	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
 
 	if(badchar) {
 		if(debug)
@@ -961,12 +961,12 @@ std::string fixUTF8(std::string &str, bool debug) {
 
 	int retry = 1;
 	while(badchar!=0 && retry<5) {
-		char *cstr = new char[ret.size() + 1];
+		char *cstr = new char[(unsigned int)ret.size() + 1];
 		strcpy(cstr, ret.c_str());
 		cstr[badchar] = ' ';
 		ret = cstr;
 		delete [] cstr;
-		badchar = getInvalidUTF8Pos(ret.c_str(), ret.size(), debug);
+		badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
 		if(debug && badchar)
 			eDebug("[fixUTF8] retry:%d\n hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",retry,string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
 		retry++;
