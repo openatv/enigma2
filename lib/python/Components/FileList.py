@@ -80,6 +80,7 @@ EXTENSIONS = {
 	# Playlist file types.
 	".e2pls": "playlist",
 	".m3u": "playlist",
+	".m3u8": "playlist",
 	".pls": "playlist",
 	# Other file types.
 	".7z": "7z",
@@ -93,10 +94,10 @@ EXTENSIONS = {
 	".htm": "html",
 	".html": "html",
 	".ipk": "ipk",
-	".iso": "iso",
 	".log": "log",
 	".lst": "lst",
 	".meta": "txt",
+	".nfo": "txt",
 	".py": "py",
 	".pyc": "pyc",
 	".pyo": "pyc",
@@ -239,11 +240,11 @@ class FileListBase(MenuList):
 		if directory:
 			directory = normpath(directory)
 		if directory is None and self.showMountPoints:  # Present available mount points.
-			seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
+			seenMountPoints = []  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 			for partition in harddiskmanager.getMountedPartitions():
 				# print("[FileList] DEBUG: Partition='%s'." % partition)
 				path = normpath(partition.mountpoint)
-				if path in seenMountPoints:  # TODO: Fix Hardisk.py to remove duplicated mount points!
+				if path in seenMountPoints:  # TO DO: Fix Hardisk.py to remove duplicated mount points!
 					continue
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
