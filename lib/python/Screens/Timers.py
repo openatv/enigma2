@@ -1682,6 +1682,7 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 		if self.timer.justplay:
 			self.timer.begin += config.recording.zap_margin_before.value * 60
 			self.timer.end = self.timer.begin + 1
+			self.timer.hasEndTime = False
 		self.timer.resetRepeated()
 		self.session.nav.RecordTimer.saveTimers()
 
