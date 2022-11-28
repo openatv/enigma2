@@ -2720,7 +2720,7 @@ class FileTransferTask(Task):
 		if exists(srcPath) and exists(dstPath):
 			self.srcPath = srcPath
 			self.dstPath = dstPath
-			target = pathjoin(dstPath, basename(normpath(srcPath)), "") if isdir(srcPath) else pathjoin(dstPath, basename(normpath(srcPath)))
+			target = pathjoin(dstPath, "") if isdir(srcPath) else pathjoin(dstPath, basename(normpath(srcPath)))
 			if jobType == self.JOB_COPY:
 				cmdLine = ("cp", "-pr", srcPath, target)
 			elif jobType == self.JOB_MOVE:
