@@ -921,69 +921,6 @@ std::string repairUTF8(const char *szIn, int len)
 	return res;
 }
 
-unsigned int getInvalidUTF8Pos(const char *str, unsigned int len, bool debug) {
-	unsigned int n;
-	for (unsigned i = 0; i < len; ++i) {
-		unsigned char c = (unsigned char) str[i];
-		//if (c==0x09 || c==0x0a || c==0x0d || (0x20 <= c && c <= 0x7e) ) n = 0; // is_printable_ascii
-		if (!(c & 0x80)) {
-			n = 0; // 0bbbbbbb
-		} else if ((c & 0xE0) == 0xC0) {
-			n = 1; // 110bbbbb
-		} else if ( c == 0xED && i < (len-1) && ((unsigned char)str[i+1] & 0xA0) == 0xA0) {  //U+d800 to U+dfff
-			if(debug)
-				eDebug("[getInvalidUTF8Pos] pos=%d / chars=%02X %02X / No fix" , i , c, (unsigned char)str[i+1]);
-// TODO
-//			return (i == 0) ? 0 : (i + 100000);
-			return 0;
-		} else if ((c & 0xF0) == 0xE0) {
-			n = 2; // 1110bbbb
-		} else if ((c & 0xF8) == 0xF0) {
-			n = 3; // 11110bbb
-		} else {
-			if(debug)
-				eDebug("[getInvalidUTF8Pos] pos=%d / char=%02X / No fix" , i , c);
-// TODO
-			return 0;
-		}
-		for (unsigned j = 0; j < n && i < len; ++j) { // n bytes matching 10bbbbbb follow ?
-			if ((++i == len) || (((unsigned char)str[i] & 0xC0) != 0x80)) {
-				if(debug)
-					eDebug("[getInvalidUTF8Pos] pos=%d / char=%02X" , i+1 , (unsigned char)str[i+1]);
-				return (i>0) ? i-1 : 0; // remove char at pos -2
-			}
-		}
-	}
-	return 0;
-}
-
-std::string fixUTF8(const std::string &str, bool debug) {
-
-	std::string ret = str;
-	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
-
-	if(badchar) {
-		if(debug)
-			eDebug("[fixUTF8] hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
-		else
-			eTrace("[fixUTF8] hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
-	}
-
-	int retry = 1;
-	while(badchar!=0 && retry<5) {
-		char *cstr = new char[(unsigned int)ret.size() + 1];
-		strcpy(cstr, ret.c_str());
-		cstr[badchar] = ' ';
-		ret = cstr;
-		delete [] cstr;
-		badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
-		if(debug && badchar)
-			eDebug("[fixUTF8] retry:%d\n hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",retry,string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
-		retry++;
-	}
-	return ret;
-} 
-
 unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {
 	unsigned int len = s.size();

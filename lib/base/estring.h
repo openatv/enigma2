@@ -25,7 +25,6 @@ int isUTF8(const std::string &string);
 std::string repairUTF8(const char *szIn, int len);
 
 unsigned int truncateUTF8(std::string &s, unsigned int newsize);
-std::string fixUTF8(const std::string &str, bool debug=false);
 
 std::string removeDVBChars(const std::string &s);
 void makeUpper(std::string &s);

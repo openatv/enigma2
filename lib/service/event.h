@@ -145,7 +145,7 @@ class eServiceEvent: public iObject
 	std::string m_series_crid, m_episode_crid, m_recommendation_crid;
 	static std::string m_language, m_language_alternative;
 	std::list<eCridData> m_crids;
-	static int m_fixUTF8;
+	static int m_UTF8CorrectMode;
 	// .. additional info
 public:
 	eServiceEvent();
@@ -158,7 +158,7 @@ public:
 	RESULT parseFrom(const std::string& filename, int tsidonid=0);
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
-	static void setUTF8Fix (int mode) { m_fixUTF8 = mode; }
+	static void setUTF8CorrectMode (int mode) { m_UTF8CorrectMode = mode; }
 #endif
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
@@ -166,8 +166,8 @@ public:
 	int getPdcPil() const { return m_pdc_pil; }
 	int getRunningStatus() const { return m_running_status; }
 	std::string getEventName() const { return m_event_name; }
-	std::string getShortDescription() const;
-	std::string getExtendedDescription() const;
+	std::string getShortDescription() const { return m_short_description; }
+	std::string getExtendedDescription() const { return m_extended_description; }
 	std::string getExtraEventData() const { return m_extra_event_data; }
 	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
@@ -219,9 +219,9 @@ SWIG_EXTEND(ePtr<eServiceEvent>,
 	}
 );
 SWIG_EXTEND(ePtr<eServiceEvent>,
-	static void setUTF8Fix(int mode)
+	static void setUTF8CorrectMode(int mode)
 	{
-		eServiceEvent::setUTF8Fix(mode);
+		eServiceEvent::setUTF8CorrectMode(mode);
 	}
 );
 

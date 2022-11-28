@@ -148,7 +148,7 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
 	def correctInvalidEPGDataChange(configElement):
-		eServiceEvent.setUTF8Fix(int(configElement.value))
+		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
 
 	config.usage.correct_invalid_epgdata = ConfigSelection(default="0", choices=[
 		("0", _("Disabled")),
