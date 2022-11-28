@@ -957,7 +957,8 @@ class ConfigSatlist(ConfigSatellite):
 #
 # NOTE: If the units argument is used please ensure that the text to be used is
 # 	already defined and translated elsewhere so that unit strings are properly
-# 	available for translation.
+# 	available for translation. If the strings are not used elsewhere in the
+# 	code then the translations can be added to the TranslationHelper.py file.
 #
 class ConfigSelectionNumber(ConfigSelection):
 	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
