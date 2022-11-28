@@ -2741,8 +2741,8 @@ class FileTransferTask(Task):
 				self.processStderr = taskProcessStderr
 				# print("[Directories] FileTransferTask DEBUG: Command line '/bin/busybox %s'." % " ".join(cmdLine))
 				self.setCommandline("/bin/busybox", cmdLine)
-				# self.setNice(10)
-				# self.setIONice(8)
+				# self.nice = 0
+				self.ionice = 8
 				self.progressTimer = eTimer()
 				self.progressTimer.callback.append(self.progressUpdate)
 
