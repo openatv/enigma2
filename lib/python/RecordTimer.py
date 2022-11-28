@@ -620,8 +620,8 @@ class RecordTimerEntry(TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None):
 		TimerEntry.__init__(self, int(begin), int(end))
 		# print("[RecordTimerEntry] DEBUG: Running init code.")
-		self.marginBefore = (getattr(config.recording, "zap_margin_before" if justplay == TIMERTYPE.JUSTPLAY else "margin_before").value * 60)
-		self.marginAfter = (getattr(config.recording, "zap_margin_after" if justplay == TIMERTYPE.JUSTPLAY else "margin_after").value * 60)
+		self.marginBefore = (getattr(config.recording, "zap_margin_before" if justplay == TIMERTYPE.ZAP else "margin_before").value * 60)
+		self.marginAfter = (getattr(config.recording, "zap_margin_after" if justplay == TIMERTYPE.ZAP else "margin_after").value * 60)
 		self.eventBegin = begin + self.marginBefore
 		self.eventEnd = end - self.marginAfter
 		if checkOldTimers and self.begin < int(time()) - 1209600:
