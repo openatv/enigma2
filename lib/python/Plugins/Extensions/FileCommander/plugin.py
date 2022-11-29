@@ -1339,6 +1339,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						(_("Run script in background"), "YES_BG")
 					]
 					parameter = self.targetColumn.getPath() or ""
+					msg = ""
 					if parameter:
 						choiceList.append((_("Run script with optional parameter"), "PAR"))
 						choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
