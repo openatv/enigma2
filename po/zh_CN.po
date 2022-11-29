@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 11:21+0000\n"
+"POT-Creation-Date: 2022-11-27 17:29+0000\n"
 "PO-Revision-Date: 2022-11-22 18:20+0000\n"
 "Last-Translator: tzyy1970 <haotzyy1970@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -77,16 +77,6 @@ msgstr ""
 "\n"
 "[用户- 自定义组(广播)]\n"
 
-#, python-format
-msgid ""
-"\n"
-"optional parameter:\n"
-"%s"
-msgstr ""
-"\n"
-"可选参数:\n"
-"%s"
-
 msgid " "
 msgstr " "
 
@@ -107,18 +97,6 @@ msgstr "  录制  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  红色键:显示/隐藏频道名称"
-
-#, python-format
-msgid " ('%s') ends successfully."
-msgstr " ('%s') 已完成."
-
-#, python-format
-msgid " ('%s') ends with error messages."
-msgstr " ('%s') 返回错误信息."
-
-#, python-format
-msgid " ('%s') ends with error number [%d]."
-msgstr " ('%s') 返回错误码 [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -152,19 +130,6 @@ msgstr " (高于任何自动极轴)"
 msgid " (lower than any auto)"
 msgstr " (低于任何自动)"
 
-#, python-format
-msgid " - %d elements exist! Overwrite"
-msgstr " - %d元素存在!改写"
-
-msgid " - 1 element exist! Overwrite"
-msgstr " -1个元素存在!覆盖"
-
-msgid " - file exist! Overwrite"
-msgstr " - 文件已存在! 覆盖"
-
-msgid " - folder exist! Overwrite"
-msgstr " - 文件夹已存在! 覆盖"
-
 msgid " <No Channel>"
 msgstr " <无频道>"
 
@@ -188,9 +153,6 @@ msgstr ""
 
 msgid " of "
 msgstr " 与 "
-
-msgid " or save additional the picture to a file"
-msgstr " 或将图片另存到文件中"
 
 msgid " updated"
 msgstr " 已更新"
@@ -1150,10 +1112,6 @@ msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1194,10 +1152,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s"
-msgstr "%s (%s"
-
-#, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
@@ -1212,10 +1166,6 @@ msgstr "%s - %s (%s%d 分钟)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - 设置"
-
-#, python-format
-msgid "%s - extraction errors."
-msgstr "%s - 提取错误."
 
 #, python-format
 msgid "%s GHz"
@@ -1263,20 +1213,12 @@ msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s不再使用,是否删除？"
 
 #, python-format
-msgid "%s is password protected."
-msgstr "%s 受密码保护."
-
-#, python-format
 msgid "%s long"
 msgstr ""
 
 #, python-format
 msgid "%s not available."
 msgstr "%s 不可用."
-
-#, python-format
-msgid "%s successfully extracted."
-msgstr "%s 已成功提取."
 
 #, python-format
 msgid "%s%d min"
@@ -1334,10 +1276,6 @@ msgstr "%s 将1080i显示为1080p"
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' 包含 %d 个文件和 %d 个子目录.\n"
 
-#, python-format
-msgid "'%s' not installed and no known package"
-msgstr "“%s”未安装且未找到对应安装包"
-
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'缓冲时间'或'最后事件',删除旧的时移文件时,发生第一条件优先."
 
@@ -1354,13 +1292,6 @@ msgid "( All readers)"
 msgstr "(所有读卡器)"
 
 #, python-format
-msgid "(%d jobs)"
-msgstr "(%d 个任务)"
-
-msgid "(1 job)"
-msgstr "(1 个任务)"
-
-#, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "访问 %s 提交日志需要互联网连接."
 
@@ -1370,9 +1301,6 @@ msgstr "(注意: 将在 %d 次崩溃后重新启动.)"
 
 msgid "(FTA Service)"
 msgstr "(免费频道)"
-
-msgid "(Selectmode)"
-msgstr "(选择模式)"
 
 msgid "(Show only reader:"
 msgstr "(仅显示读卡器:"
@@ -1837,9 +1765,6 @@ msgstr "8位"
 msgid "9"
 msgstr "9"
 
-msgid ": "
-msgstr ": "
-
 msgid "< Alternate Skin >"
 msgstr "< 可选皮肤 >"
 
@@ -1861,14 +1786,22 @@ msgstr "<默认录像位置>"
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
-msgid "?"
-msgstr "?"
-
 msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "正在进行后台更新检查,请等待几分钟,然后重试."
+
+msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A completed task wants to shut down your %s %s. Shutdown now?"
+msgstr ""
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -1962,22 +1895,6 @@ msgstr ""
 "已找到第二个网卡配置.\n"
 "\n"
 "是否禁用第二个网卡?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"睡眠定时器要设置 %s %s 到待机状态 \n"
-"是否现在进入待机？"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"睡眠计时器要设置 %s %s 关机\n"
-"是否现在关机？"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "可用的图标状态和执行情况概述."
@@ -2101,8 +2018,8 @@ msgstr "无线接入点:"
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "访问地理位置信息需要互联网连接."
 
-msgid "Accessed:"
-msgstr "最后访问时间:"
+msgid "Accessed"
+msgstr ""
 
 msgid "Action"
 msgstr "动作"
@@ -2131,23 +2048,11 @@ msgstr "激活画中画"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "激活从命令行发送单个或特定内部HDMI-CEC命令的方式."
 
-msgid "Activate left-hand file list as multi-select source"
-msgstr "激活左侧文件列表作为多选源"
-
-msgid "Activate left-hand file list as source"
-msgstr "激活左侧文件列表作为源"
-
 msgid "Activate network adapter configuration"
 msgstr "激活网卡配置"
 
 msgid "Activate network settings"
 msgstr "激活网络设置"
-
-msgid "Activate right-hand file list as multi-select source"
-msgstr "激活右侧文件列表作为多选源"
-
-msgid "Activate right-hand file list as source"
-msgstr "激活右侧文件列表作为源"
 
 msgid "Activate the configured network settings."
 msgstr "激活已配置的网络设置."
@@ -2170,6 +2075,10 @@ msgstr "适配器设置"
 msgid "Add"
 msgstr "添加"
 
+#, python-format
+msgid "Add '%s' To Bookmarks"
+msgstr ""
+
 msgid "Add AutoTimer"
 msgstr "添加自动定时器"
 
@@ -2178,6 +2087,18 @@ msgstr "添加书签"
 
 msgid "Add Current"
 msgstr "添加当前"
+
+msgid "Add File Commander to Extensions Menu"
+msgstr ""
+
+msgid "Add File Commander to Main Menu"
+msgstr ""
+
+msgid "Add File Commander to the Extensions Menu list of options."
+msgstr ""
+
+msgid "Add File Commander to the Main Menu list of options."
+msgstr ""
 
 msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
@@ -2230,9 +2151,6 @@ msgstr "为当前事件添加定时器"
 msgid "Add an AutoTimer for the current event"
 msgstr "为当前事件添加自动计时器"
 
-msgid "Add current folder to bookmarks"
-msgstr "将当前文件夹添加到书签"
-
 msgid "Add directory to play list"
 msgstr "将目录添加到播放列表"
 
@@ -2251,12 +2169,6 @@ msgstr ""
 msgid "Add new tag"
 msgstr "添加新标签"
 
-msgid "Add plugin to Extensions menu*"
-msgstr "将插件添加到扩展菜单*"
-
-msgid "Add plugin to main menu*"
-msgstr "将插件添加到主菜单*"
-
 msgid "Add provider"
 msgstr "添加供应商"
 
@@ -2272,11 +2184,11 @@ msgstr "添加录制(不限时)"
 msgid "Add recording (stop after current event)"
 msgstr "添加录制(当前事件后停止)"
 
-msgid "Add selected folder to bookmarks"
-msgstr "添加选中的文件夹到书签"
-
 msgid "Add service"
 msgstr "添加频道"
+
+msgid "Add the current directory as a bookmark"
+msgstr ""
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
@@ -2356,6 +2268,9 @@ msgstr "阿富汗"
 msgid "Afrikaans"
 msgstr "南非荷兰语"
 
+msgid "After Event"
+msgstr ""
+
 msgid "After PowerLost"
 msgstr "关闭电源后"
 
@@ -2412,6 +2327,9 @@ msgstr "所有频道"
 
 msgid "All ages"
 msgstr "所有年龄段"
+
+msgid "All files"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "所有分辨率"
@@ -2610,6 +2528,9 @@ msgstr "任何活动"
 
 msgid "Any recordings"
 msgstr "任何录制"
+
+msgid "Aperture F number"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "对活动区域设置/语言应用任何更改并退出"
@@ -3321,6 +3242,9 @@ msgstr "玻利维亚"
 msgid "Bonaire"
 msgstr "博内尔岛"
 
+msgid "Bookmark Sequence Actions"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "书签"
 
@@ -3514,6 +3438,9 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam信息"
 
+msgid "CCD-Width"
+msgstr ""
+
 msgid "CCcam"
 msgstr ""
 
@@ -3655,8 +3582,8 @@ msgstr ""
 msgid "CPU brand"
 msgstr "处理器品牌"
 
-msgid "CPU priority for script execution"
-msgstr "脚本执行的CPU优先级"
+msgid "CPU priority for scripts"
+msgstr ""
 
 msgid "CPU rating"
 msgstr ""
@@ -3688,16 +3615,16 @@ msgstr "已缓存"
 msgid "Calculate"
 msgstr "计算"
 
-msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgid "Calculate file hashes/checksums"
 msgstr ""
-
-msgid "Calculate file checksums"
-msgstr "计算文件校验和"
 
 msgid "Calculating benchmark..."
 msgstr ""
 
 msgid "Calculating rating..."
+msgstr ""
+
+msgid "Calculating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -3708,6 +3635,9 @@ msgstr "校准"
 
 msgid "Cambodia"
 msgstr "柬埔寨"
+
+msgid "Camera"
+msgstr ""
 
 msgid "Cameroon"
 msgstr "喀麦隆"
@@ -3775,14 +3705,6 @@ msgstr "无法检索IceTV设置"
 msgid "Can not retrieve channel map"
 msgstr "无法检索频道映射"
 
-#, python-format
-msgid ""
-"Can not run %s: %s.\n"
-"%s may be in a plugin that is not installed."
-msgstr ""
-"无法运行 %s: %s.\n"
-"%s 可能在未安装的插件中."
-
 msgid "Can not update timer"
 msgstr "无法更新定时器"
 
@@ -3815,10 +3737,6 @@ msgstr ""
 msgid "Can't play the previous time shift file! You can try again."
 msgstr "不能播放以前的时移文件!你可以再试一次."
 
-#, python-format
-msgid "Can't read link contents: %s"
-msgstr "无法读取链接内容：%s"
-
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "无法卸载分区,确保它不被用来交换或录制/时移路径"
 
@@ -3830,6 +3748,9 @@ msgstr "取消"
 
 msgid "Cancel / Close the software update screen"
 msgstr "取消/关闭软件更新屏幕"
+
+msgid "Cancel Task"
+msgstr ""
 
 msgid "Cancel any changed settings and exit"
 msgstr "取消所有更改并退出"
@@ -3855,11 +3776,17 @@ msgstr ""
 msgid "Cancel execution?"
 msgstr "是否取消执行?"
 
+msgid "Cancel extraction"
+msgstr ""
+
 msgid "Cancel save time shift as movie"
 msgstr "取消保存时移为电影"
 
 msgid "Cancel selection"
 msgstr "取消选择"
+
+msgid "Cancel selection and exit"
+msgstr ""
 
 msgid "Cancel the flash process"
 msgstr ""
@@ -3880,6 +3807,9 @@ msgid "Cancel the slot selection and exit"
 msgstr ""
 
 msgid "Cancel the slot selection and exit all menus"
+msgstr ""
+
+msgid "Cancel the task"
 msgstr ""
 
 msgid "Cancel the update"
@@ -3986,9 +3916,6 @@ msgstr "更改定时器"
 msgid "Change bouquets in quickzap"
 msgstr "快速切换自定义组"
 
-msgid "Change buttons for list navigation"
-msgstr "更改列表导航键"
-
 msgid "Change execute permissions (755/644)"
 msgstr "更改执行权限(755/644)"
 
@@ -4015,6 +3942,9 @@ msgstr "更改步进大小"
 
 msgid "Change to bouquet"
 msgstr "更改为自定义组"
+
+msgid "Changed"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4050,9 +3980,6 @@ msgstr "频道列表菜单"
 
 msgid "Channel Selection Settings"
 msgstr "频道选择设置"
-
-msgid "Channel button always changes sides"
-msgstr "Channel键总是用于切换窗口"
 
 msgid "Channel buttons"
 msgstr "频道 按键"
@@ -4259,6 +4186,9 @@ msgstr "选择关闭%s %s时存储EPG数据的位置.该位置必须在启动时
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "选择在关闭 %s %s 时保存EPG数据的文件名.这可以方便地区分几个机顶盒."
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -4401,6 +4331,12 @@ msgstr "关闭"
 msgid "Close PiP on exit"
 msgstr "退出时关闭画中画"
 
+msgid "Close Task List"
+msgstr ""
+
+msgid "Close Task View"
+msgstr ""
+
 msgid "Close bouquet list"
 msgstr "关闭自定义列表"
 
@@ -4427,6 +4363,9 @@ msgstr ""
 
 msgid "Close the window"
 msgstr "关闭此窗口"
+
+msgid "Close this screen"
+msgstr ""
 
 msgid "Close title selection"
 msgstr "关闭标题选择"
@@ -4475,6 +4414,10 @@ msgstr "组合调谐器"
 
 msgid "Comedy"
 msgstr "喜剧片"
+
+#, python-format
+msgid "Command '%s' is unknown"
+msgstr ""
 
 msgid "Command execution..."
 msgstr "执行命令..."
@@ -4532,6 +4475,9 @@ msgstr "综合(允许混合音轨和相位)"
 
 msgid "Composition of the recording filenames"
 msgstr "录制文件名的组成"
+
+msgid "Compressed bits/pixel"
+msgstr ""
 
 msgid "Config"
 msgstr "配置"
@@ -4996,6 +4942,9 @@ msgstr "继续播放"
 msgid "Continue playing"
 msgstr "继续播放"
 
+msgid "Continue to run the task in the background"
+msgstr ""
+
 msgid "Continue with the flash process"
 msgstr ""
 
@@ -5013,6 +4962,9 @@ msgstr "对比度"
 
 msgid "Control LED can be turned on or off here."
 msgstr "控制LED可在此处打开或关闭."
+
+msgid "Control files:"
+msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "定位控制,已结束的定时器在定时器列表中如何显示."
@@ -5044,30 +4996,40 @@ msgstr "烹饪"
 msgid "Copy"
 msgstr "复制"
 
+msgid "Copy all related files"
+msgstr ""
+
+msgid "Copy directory/file to target directory"
+msgstr ""
+
+msgid "Copy job completed."
+msgstr ""
+
+msgid "Copy job failed!"
+msgstr ""
+
+msgid "Copy job queued."
+msgstr ""
+
+msgid "Copy only highlighted file"
+msgstr ""
+
 #, python-format
-msgid "Copy %d elements"
-msgstr "复制 %d 个元素"
+msgid "Copy the directory/file '%s'?"
+msgstr ""
 
-msgid "Copy 1 element"
-msgstr "复制1个元素"
-
-msgid "Copy file"
-msgstr "复制文件"
-
-msgid "Copy file/directory to target directory"
-msgstr "将文件/目录复制到目标目录"
-
-msgid "Copy files/directories to target directory"
-msgstr "将文件/目录复制到目标目录"
-
-msgid "Copy folder"
-msgstr "复制文件夹"
+#, python-format
+msgid "Copy these %d directories/files?"
+msgstr ""
 
 msgid "Copying files"
 msgstr "复制文件"
 
 msgid "Cornish"
 msgstr "康沃尔语"
+
+msgid "Correct invalid EPG data"
+msgstr ""
 
 msgid "Corsican"
 msgstr "科西嘉岛"
@@ -5131,26 +5093,26 @@ msgstr "创建蓝光ISO文件"
 msgid "Create DVD-ISO"
 msgstr "创建DVD-ISO"
 
+msgid "Create Directory"
+msgstr ""
+
 msgid "Create ISO"
 msgstr "创建ISO"
 
+msgid "Create a directory"
+msgstr ""
+
 msgid "Create a randomly generated password"
+msgstr ""
+
+msgid "Create a symbolic link"
 msgstr ""
 
 msgid "Create directory"
 msgstr "创建目录"
 
-msgid "Create directory/folder"
-msgstr "创建目录/文件夹"
-
 msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户自定义组"
-
-msgid "Create symlink to file"
-msgstr "为文件创建符号链接"
-
-msgid "Create user-named symbolic link"
-msgstr "创建用户命名的符号链接"
 
 msgid "Create:"
 msgstr "创建:"
@@ -5216,6 +5178,9 @@ msgstr "时事"
 msgid "Current CEC address"
 msgstr "当前CEC地址"
 
+msgid "Current Directory"
+msgstr ""
+
 msgid "Current Event:"
 msgstr "当前事件:"
 
@@ -5225,7 +5190,8 @@ msgstr "当前状态:"
 msgid "Current crash log"
 msgstr "当前崩溃日志"
 
-msgid "Current directory"
+#, python-format
+msgid "Current directory (%s)"
 msgstr ""
 
 msgid "Current installed"
@@ -5420,8 +5386,14 @@ msgstr "丹麦语"
 msgid "Date"
 msgstr "日期"
 
-msgid "Date reverse"
-msgstr "日期反序"
+msgid "Date / Time"
+msgstr ""
+
+msgid "Date ascending"
+msgstr ""
+
+msgid "Date descending"
+msgstr ""
 
 msgid "Date style"
 msgstr "日期样式"
@@ -5577,6 +5549,9 @@ msgstr "格式 年/月/日"
 msgid "Deactivate"
 msgstr "停用"
 
+msgid "Debug"
+msgstr ""
+
 #, python-format
 msgid "Debug %d/%d"
 msgstr ""
@@ -5617,14 +5592,14 @@ msgstr "默认'事件后'*"
 msgid "Default 'Timer type' *"
 msgstr "默认'定时器类型' *"
 
-msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "执行脚本的默认CPU优先级(nice).这可以减少负载, 这样脚本就不会干扰系统的其他部分.(较高的值=较低的优先级)"
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
 
-msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "执行脚本的默认I/O优先级(ionice).这可以减少负载, 这样脚本就不会干扰系统的其他部分.(较高的值=较低的优先级)"
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Modes Selected."
 msgstr "已选择默认模式."
@@ -5632,23 +5607,15 @@ msgstr "已选择默认模式."
 msgid "Default Services Scanner"
 msgstr "默认频道扫描"
 
-msgid "Default directory sorting"
-msgstr "默认目录排序"
-
-msgid "Default file sorting left"
-msgstr "默认左侧文件排序"
-
-msgid "Default file sorting right"
-msgstr "默认右侧文件排序"
-
 msgid "Default files/folders to backup"
 msgstr "默认要备份的文件/文件夹"
 
-msgid "Default folder"
-msgstr "默认文件夹"
+msgid "Default left column directory"
+msgstr ""
 
-msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "如果左侧或右侧文件夹未保存,则为默认文件夹,以及按键5的目标文件夹."
+#, python-format
+msgid "Default movie location (%s)"
+msgstr ""
 
 msgid "Default movie selection location"
 msgstr "默认电影位置"
@@ -5656,17 +5623,23 @@ msgstr "默认电影位置"
 msgid "Default recording type"
 msgstr "默认录制类型"
 
+msgid "Default right column directory"
+msgstr ""
+
 msgid "Default settings"
 msgstr "默认设置"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "两侧目录的默认排序方法."
+msgid "Default sort order for directories in the left column"
+msgstr ""
 
-msgid "Default sorting method for files on the left side."
-msgstr "左侧文件的默认排序方法."
+msgid "Default sort order for directories in the right column."
+msgstr ""
 
-msgid "Default sorting method for files on the right side."
-msgstr "右侧文件的默认排序方法."
+msgid "Default sort order for files in the left column."
+msgstr ""
+
+msgid "Default sort order for files in the right column."
+msgstr ""
 
 msgid "Default volume offset"
 msgstr ""
@@ -5773,24 +5746,27 @@ msgid "Delete"
 msgstr "删除"
 
 #, python-format
-msgid "Delete %d elements"
-msgstr "已删除%d项目"
-
-#, python-format
 msgid "Delete %s?"
 msgstr "是否删除 %s?"
 
-msgid "Delete 1 element"
-msgstr "删除1个元素"
+#, python-format
+msgid "Delete '%s'?"
+msgstr ""
 
 msgid "Delete Confirmation"
 msgstr "确认删除"
+
+msgid "Delete Directory"
+msgstr ""
 
 msgid "Delete EPG"
 msgstr "删除EPG"
 
 msgid "Delete Image"
 msgstr "删除镜像"
+
+msgid "Delete Line"
+msgstr ""
 
 msgid "Delete Plugins"
 msgstr "删除插件"
@@ -5802,6 +5778,9 @@ msgid "Delete all log files"
 msgstr "删除所有日志文件"
 
 msgid "Delete all logs"
+msgstr ""
+
+msgid "Delete all related files"
 msgstr ""
 
 msgid "Delete all tags"
@@ -5822,6 +5801,9 @@ msgstr "删除光标下的字符或选择PM时间"
 msgid "Delete current line"
 msgstr "删除当前行"
 
+msgid "Delete directory or file"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "删除节目"
 
@@ -5831,13 +5813,19 @@ msgstr "删除失败！"
 msgid "Delete file"
 msgstr "删除文件"
 
-msgid "Delete file or directory (and all its contents)"
-msgstr "删除文件或目录(及其所有内容)"
+msgid "Delete job completed."
+msgstr ""
 
-msgid "Delete folder"
-msgstr "删除文件夹"
+msgid "Delete job failed!"
+msgstr ""
+
+msgid "Delete job queued."
+msgstr ""
 
 msgid "Delete log"
+msgstr ""
+
+msgid "Delete only highlighted file"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -5867,8 +5855,8 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected files or directories"
-msgstr "删除选定的文件或目录"
+msgid "Delete the selected directories/files?"
+msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr ""
@@ -5914,12 +5902,21 @@ msgstr "详情描述"
 msgid "Deselect"
 msgstr "取消选择"
 
+msgid "Deselect all related files"
+msgstr ""
+
+msgid "Deselect only highlighted file"
+msgstr ""
+
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "取消选择的包通常发生,因为打包的包与现有包不兼容. 虽然这基本上是无害的,但您的 %s %s 可能会遇到问题."
 
 msgid "Detail of GStreamer log"
 msgstr "GStreamer日志的详细信息"
+
+msgid "Details"
+msgstr ""
 
 msgid "Device Manager"
 msgstr "设备管理器"
@@ -5935,6 +5932,9 @@ msgstr "设备挂载"
 
 msgid "Device name:"
 msgstr "设备名称:"
+
+msgid "Device number"
+msgstr ""
 
 msgid "Device: "
 msgstr "设备: "
@@ -6002,6 +6002,9 @@ msgstr "直接菜单项选择"
 msgid "Direct playback of linked titles without menu"
 msgstr "直接播放链接标题无需菜单操作"
 
+msgid "Directories"
+msgstr ""
+
 msgid "Directory"
 msgstr "目录"
 
@@ -6023,6 +6026,16 @@ msgstr "目录“%s”不可写！"
 
 msgid "Directory browser"
 msgstr "目录浏览器"
+
+#, python-format
+msgid "Directory/File %d of %d"
+msgstr ""
+
+msgid "Directory/File Status Actions"
+msgstr ""
+
+msgid "Directory/File Status Information"
+msgstr ""
 
 msgid "Disable"
 msgstr "禁用"
@@ -6102,11 +6115,26 @@ msgstr "显示选项"
 msgid "Display and user interface"
 msgstr "显示和用户界面"
 
+msgid "Display context menu"
+msgstr ""
+
+msgid "Display file as hexadecimal"
+msgstr ""
+
+msgid "Display file as octal"
+msgstr ""
+
+msgid "Display file as text"
+msgstr ""
+
 msgid "Display log for the currently selected timer"
 msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "在播放下一部电影之前显示消息"
+
+msgid "Display more information about this file"
+msgstr ""
 
 msgid "Display oscam information."
 msgstr "显示oscam信息."
@@ -6128,6 +6156,9 @@ msgstr "显示用于数据输入的虚拟键盘"
 
 msgid "Display type"
 msgstr "显示类型"
+
+msgid "Distance"
+msgstr ""
 
 msgid "Distribution"
 msgstr "分发"
@@ -6271,8 +6302,9 @@ msgstr "是否确定要删除 %s 的书签?"
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr ""
 
-msgid "Do you want change rights?\n"
-msgstr "是否要更改权限?\n"
+#, python-format
+msgid "Do you want change '%s' access mode?"
+msgstr ""
 
 msgid "Do you want to add any additional information ?"
 msgstr "是否添加任何额外的信息?"
@@ -6380,9 +6412,6 @@ msgstr "是否升级您的机顶盒？"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "是否升级软件包:\n"
-
-msgid "Do you want to view or run the script?\n"
-msgstr "是否要查看或运行脚本?\n"
 
 msgid "Documentary"
 msgstr "纪录片"
@@ -6631,6 +6660,9 @@ msgstr "EPG搜索"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "错误 - 扫描 (%s) 失败！"
 
+msgid "EXIF-Version"
+msgstr ""
+
 msgid "East"
 msgstr "东"
 
@@ -6672,12 +6704,6 @@ msgstr "编辑当前标题章节"
 
 msgid "Edit current line"
 msgstr "编辑当前行"
-
-msgid "Edit line "
-msgstr "编辑行 "
-
-msgid "Edit position is the line end"
-msgstr "编辑位置在末尾"
 
 msgid "Edit settings"
 msgstr "编辑设置"
@@ -6751,6 +6777,9 @@ msgid "Embedded"
 msgstr "嵌入式"
 
 msgid "Empty"
+msgstr ""
+
+msgid "Empty file"
 msgstr ""
 
 msgid "Enable"
@@ -6911,9 +6940,6 @@ msgstr "启用预览"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "允许远程enigma2接收器尝试调谐到本地无法调谐到的频道(例如,调谐器被占用或本地调谐器上的频道类型不可用)指定完整的URL,包括http://和端口号(通常…：8001),例如.http://second_box:8001."
 
-msgid "Enable screenshot of LCD in /tmp"
-msgstr "启用 LCD 截图到 /tmp"
-
 msgid "Enable teletext caching"
 msgstr "启用图文电视缓存"
 
@@ -6922,6 +6948,9 @@ msgstr "启用地面波LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级HDMI-CEC设置选项."
+
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "启用此选项可将操作映射/远程控制映射数据添加到调试日志文件."
@@ -7095,6 +7124,9 @@ msgstr "输入PIN"
 msgid "Enter a description for this timer."
 msgstr ""
 
+msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
+msgstr ""
+
 msgid "Enter a name for this timer."
 msgstr ""
 
@@ -7110,8 +7142,8 @@ msgstr "输入您是否在赤道以北或以南."
 msgid "Enter main menu..."
 msgstr "输入主菜单..."
 
-msgid "Enter multi-file selection mode"
-msgstr "输入多文件选择模式"
+msgid "Enter new directory name:"
+msgstr ""
 
 msgid "Enter number to jump to channel"
 msgstr "输入要转到的频道编号"
@@ -7180,6 +7212,14 @@ msgid "Error"
 msgstr "错误"
 
 #, python-format
+msgid "Error %d: %s"
+msgstr ""
+
+#, python-format
+msgid "Error %d: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "错误%d:未删除日志文件'%s'!   (%s)"
 
@@ -7196,11 +7236,35 @@ msgid "Error %d: Unable to check space!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to set access mode on '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
+msgstr ""
+
+#, python-format
+msgid "Error %s: Unable to get information for '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7256,14 +7320,6 @@ msgstr ""
 "请重启MyMetrixLite插件后检查并应用设置."
 
 #, python-format
-msgid ""
-"Error creating directory %s:\n"
-"%s"
-msgstr ""
-"创建目录%s 失败.\n"
-"%s"
-
-#, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
 
@@ -7275,14 +7331,6 @@ msgid ""
 "Error getting link via %s\n"
 "%s"
 msgstr ""
-
-#, python-format
-msgid ""
-"Error linking %s to %s:\n"
-"%s"
-msgstr ""
-"链接 %s 到 %s时出错:\n"
-"%s"
 
 msgid "Error opening recording file"
 msgstr "打开录制文件时出错"
@@ -7296,13 +7344,8 @@ msgstr "读取电视组时出错"
 msgid "Error reading webpage!"
 msgstr "读取网页时出错！"
 
-#, python-format
-msgid ""
-"Error renaming %s to %s:\n"
-"%s"
+msgid "Error text:"
 msgstr ""
-"重命名 %s 到 %s 时出错:\n"
-"%s"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
@@ -7310,9 +7353,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
-
-msgid "Error..."
-msgstr "错误..."
 
 #, python-format
 msgid ""
@@ -7354,6 +7394,17 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "创建目录%s 失败."
 
 #, python-format
+msgid "Error: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+msgid "Error: FileCommanderData screen requires a formatting dictionary!"
+msgstr ""
+
+#, python-format
 msgid "Error: Image '%s' to install is invalid!"
 msgstr ""
 
@@ -7365,8 +7416,20 @@ msgid "Error: Invalid directory '%s' selected!"
 msgstr "选定的目录无效: %s"
 
 #, python-format
+msgid "Error: It is not possible to run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
+msgstr ""
+
+#, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "删除目录 %s 失败.(文件夹是否为空?)"
+
+#, python-format
+msgid "Error: Script '%s' must have read permission to be able to run!"
+msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
@@ -7375,11 +7438,39 @@ msgstr ""
 msgid "Error: The path '%s' already exists!"
 msgstr "路径 %s 已存在."
 
+msgid "Error: The root file system can not be copied!"
+msgstr ""
+
+msgid "Error: The root file system can not be deleted!"
+msgstr ""
+
+msgid "Error: The root file system can not be moved!"
+msgstr ""
+
+msgid "Error: The root file system can not be renamed!"
+msgstr ""
+
+#, python-format
+msgid "Error: There was a problem writing '%s'!"
+msgstr ""
+
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒体并重试!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "错误:无法处理命令.请稍后再试."
+
+#, python-format
+msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on a directory!"
+msgstr ""
 
 msgid "Esperanto"
 msgstr "世界语"
@@ -7491,6 +7582,9 @@ msgstr "退出"
 msgid "Exit EPG"
 msgstr "退出EPG"
 
+msgid "Exit File Commander"
+msgstr ""
+
 msgid "Exit MAC address configuration"
 msgstr "退出MAC地址配置"
 
@@ -7503,8 +7597,14 @@ msgstr "退出所有菜单"
 msgid "Exit editor"
 msgstr "退出编辑器"
 
-msgid "Exit editor and write changes (if any)"
-msgstr "退出编辑器并写入更改(如果有)"
+msgid "Exit editor and discard any changes"
+msgstr ""
+
+msgid "Exit editor and save any changes"
+msgstr ""
+
+msgid "Exit image viewer"
+msgstr ""
 
 msgid "Exit input device selection."
 msgstr "退出输入设备选择."
@@ -7536,14 +7636,14 @@ msgstr "退出网络界面列表"
 msgid "Exit network wizard"
 msgstr "退出网络安装向导"
 
-msgid "Exit picture viewer"
-msgstr "退出图片浏览器"
-
 msgid "Exit quad PiP"
 msgstr "退出四宫格画中画"
 
 msgid "Exit the wizard"
 msgstr "退出此向导"
+
+msgid "Exit viewer"
+msgstr ""
 
 msgid "Expand"
 msgstr "展开"
@@ -7559,6 +7659,15 @@ msgstr "专家"
 
 msgid "Expert mode"
 msgstr "专家模式"
+
+msgid "Exposure bias"
+msgstr ""
+
+msgid "Exposure program"
+msgstr ""
+
+msgid "Exposure time"
+msgstr ""
 
 msgid "Ext. NumberZap"
 msgstr "配置键盘快捷键"
@@ -7618,6 +7727,12 @@ msgstr "外挂字幕切换字体"
 msgid "Extra motor options"
 msgstr "额外的马达选项"
 
+msgid "Extract the archive contents"
+msgstr ""
+
+msgid "Extract the package contents"
+msgstr ""
+
 msgid "Extrude from left"
 msgstr "在左侧"
 
@@ -7646,6 +7761,12 @@ msgid "FEC"
 msgstr "前向纠错"
 
 msgid "FEC modes"
+msgstr ""
+
+msgid "FFmpeg Probe"
+msgstr ""
+
+msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
 msgid "FFmpeg version"
@@ -7781,63 +7902,87 @@ msgstr "斐济语"
 msgid "File"
 msgstr "文件"
 
+#, python-format
+msgid "File %d of %d"
+msgstr ""
+
 msgid "File Commander"
 msgstr "文件管理器"
 
-msgid "File Commander - Addon File-Viewer"
-msgstr "文件管理器- 插件文件查看器"
+msgid "File Commander - All tasks are complete."
+msgstr ""
 
-msgid "File Commander - Addon Mediaplayer"
-msgstr "文件管理器- 插件媒体播放器"
+msgid "File Commander Actions"
+msgstr ""
 
-msgid "File Commander - Addon Movieplayer"
-msgstr "文件管理器- 插件电影播放器"
+msgid "File Commander Archive"
+msgstr ""
 
-msgid "File Commander - all Task's are completed!"
-msgstr "文件管理器 - 所有任务都已完成!"
+msgid "File Commander Archive Actions"
+msgstr ""
 
-msgid "File Commander - generalised archive handler"
-msgstr "文件管理器 - 通用文档处理器"
+msgid "File Commander Context Menu"
+msgstr ""
 
-msgid "File Commander - gzip Addon"
-msgstr "文件管理器 - gzip压缩插件"
+msgid "File Commander Copy"
+msgstr ""
 
-msgid "File Commander - ipk Addon"
-msgstr "文件管理器 - ipk包管理插件"
+msgid "File Commander Data"
+msgstr ""
 
-msgid "File Commander - tar Addon"
-msgstr "文件管理器 - tar压缩插件"
+msgid "File Commander Data Actions"
+msgstr ""
 
-msgid "File Commander - unrar Addon"
-msgstr "文件管理器 - unrar压缩插件"
+msgid "File Commander Delete"
+msgstr ""
 
-msgid "File Commander - unzip Addon"
-msgstr "文件管理器 - unzip解压插件"
+msgid "File Commander Directory/File Information"
+msgstr ""
+
+msgid "File Commander File Viewer"
+msgstr ""
+
+msgid "File Commander File Viewer Actions"
+msgstr ""
+
+msgid "File Commander Hash / Checksum Actions"
+msgstr ""
+
+msgid "File Commander Hashes / Checksums"
+msgstr ""
+
+msgid "File Commander Image Viewer"
+msgstr ""
+
+msgid "File Commander Image Viewer Actions"
+msgstr ""
+
+msgid "File Commander Information Actions"
+msgstr ""
+
+msgid "File Commander Media Information"
+msgstr ""
+
+msgid "File Commander Media Information Actions"
+msgstr ""
+
+msgid "File Commander Move"
+msgstr ""
 
 msgid "File Commander Settings"
 msgstr "文件管理器设置"
 
-msgid "File Commander context menu"
-msgstr "文件管理器上下文菜单"
+msgid "File Commander Text Editor"
+msgstr ""
 
-msgid "File Commander menu"
-msgstr "文件管理器菜单"
+msgid "File Commander Text Editor Actions"
+msgstr ""
 
 msgid "File System Check"
 msgstr "检查文件系统"
 
 msgid "File appears to be busy.\n"
 msgstr "文件占用中.\n"
-
-msgid "File checksums to calculate for button 9"
-msgstr "为按钮9计算文件校验和"
-
-msgid "File checksums/hashes"
-msgstr "文件校验和/哈希"
-
-#, python-format
-msgid "File not found: %s"
-msgstr "文件未找到: %s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -7846,15 +7991,15 @@ msgstr ""
 "找不到文件oscam.conf.\n"
 "请手动输入用户名/密码."
 
+msgid "File transfer was canceled by user!"
+msgstr ""
+
 msgid "File transfer was cancelled by user"
 msgstr "文件传输已被用户取消"
 
 #, python-format
 msgid "File write error: '%s'"
 msgstr "文件写入错误:'%s'"
-
-msgid "File/Directory Status Information"
-msgstr "文件/目录状态信息"
 
 msgid "Filename"
 msgstr "文件名"
@@ -7871,14 +8016,11 @@ msgstr "当无法从IceTV 获取节目的EPG时,EPG信息将会从实时流广�
 msgid "Film-Noir"
 msgstr "黑白电影"
 
-msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr "在'筛选器扩展名'和‘我的扩展名’设置筛选器扩展名使用不带'.'的扩展名 '.'."
+msgid "Filter extensions"
+msgstr ""
 
-msgid "Filter extension, (*) appears in title"
-msgstr "过滤器扩展名, (*) 出现在标题中"
-
-msgid "Filter visible file classes by extension."
-msgstr "按扩展名筛选可见文件类."
+msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
+msgstr ""
 
 msgid "Final position at"
 msgstr "最终位置在"
@@ -7970,6 +8112,9 @@ msgstr "在线或从本地来源刷写接收器镜像."
 
 msgid "Flash type"
 msgstr "闪存类型"
+
+msgid "Flash used"
+msgstr ""
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
@@ -8304,14 +8449,8 @@ msgstr "Glibc版本"
 msgid "Go down the list"
 msgstr "下拉列表"
 
-msgid "Go to bookmarked folder"
-msgstr "转到书签文件夹"
-
 msgid "Go to deep standby"
 msgstr "进入深度待机"
-
-msgid "Go to end of file"
-msgstr "转到文件末尾"
 
 msgid "Go to first movie or last item"
 msgstr "转到第一部电影或最后一个项目"
@@ -8319,14 +8458,11 @@ msgstr "转到第一部电影或最后一个项目"
 msgid "Go to first movie or top of list"
 msgstr "转到第一部电影或列表顶部"
 
-msgid "Go to parent directory"
-msgstr "跳转到上级目录"
+msgid "Go to parent directory of the current column"
+msgstr ""
 
 msgid "Go to standby"
 msgstr "进入待机"
-
-msgid "Go to start of file"
-msgstr "转到文件开头"
 
 msgid "Go up the list"
 msgstr "上拉列表"
@@ -8427,8 +8563,8 @@ msgstr "格林纳达"
 msgid "Grey"
 msgstr "灰色"
 
-msgid "Group:"
-msgstr "组别:"
+msgid "Group"
+msgstr ""
 
 msgid "Grow drop"
 msgstr "自上而下"
@@ -8616,6 +8752,9 @@ msgstr "帮助指示器的动画速度"
 msgid "Help screen style"
 msgstr ""
 
+msgid "Help text uninitialized"
+msgstr ""
+
 msgid "Helps setting up your signal"
 msgstr "帮助设置您的信号"
 
@@ -8639,6 +8778,9 @@ msgstr "在这里您可以指定应添加到备份文件的其他文件."
 
 msgid "Herero"
 msgstr "赫雷罗"
+
+msgid "Hexadecimal"
+msgstr ""
 
 msgid "HiSilicon"
 msgstr "海思"
@@ -8817,8 +8959,8 @@ msgstr "混合调谐器"
 msgid "I"
 msgstr "I"
 
-msgid "I/O priority for script execution"
-msgstr "执行脚本的I/O优先级"
+msgid "I/O priority for scripts"
+msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
@@ -8876,6 +9018,9 @@ msgstr "ISO文件对此文件系统太大!"
 
 msgid "ISO path"
 msgstr "ISO路径"
+
+msgid "ISO speed rating"
+msgstr ""
 
 msgid "ISP"
 msgstr "联网提供"
@@ -8960,9 +9105,6 @@ msgstr ""
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某选项是用户可配置的,则其帮助条目将被标记为'(C)'后缀."
 
-msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr "如果编辑一个文件,是否可以将光标开始位置设置在行尾或行首."
-
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr ""
 
@@ -8992,6 +9134,9 @@ msgstr ""
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
 msgstr "如果设置为'是',则将向电视发送与在常规待机事件期间发送的深度待机事件相同的命令."
+
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方法,则会等待系统时间同步.根据要求,设备唤醒将在最多2分钟后继续."
@@ -9148,6 +9293,9 @@ msgstr "在Http串流中包含EIT信息"
 msgid "Include EPG data"
 msgstr ""
 
+msgid "Include MultiBoot data *"
+msgstr ""
+
 msgid "Include SDT, BAT in http streams"
 msgstr ""
 
@@ -9271,8 +9419,8 @@ msgstr "初始化"
 msgid "Initializing storage device..."
 msgstr "正在初始化存储设备..."
 
-msgid "Inode:"
-msgstr "节点:"
+msgid "Inode"
+msgstr ""
 
 msgid "Inotify Monitoring"
 msgstr "Inotify监控"
@@ -9301,8 +9449,8 @@ msgstr "输入配置文件名:"
 msgid "Input scroll position"
 msgstr "输入滚动位置"
 
-msgid "Insert"
-msgstr "插入"
+msgid "Insert Line"
+msgstr ""
 
 msgid "Insert line before current line"
 msgstr "在当前行之前插入一行"
@@ -9311,8 +9459,8 @@ msgid "Install"
 msgstr "安裝"
 
 #, python-format
-msgid "Install '%s' and enable this operation"
-msgstr "安装'%s'并启用此操作"
+msgid "Install '%s' command"
+msgstr ""
 
 msgid "Install 1/1"
 msgstr ""
@@ -9353,6 +9501,9 @@ msgstr "安装或删除完成."
 msgid "Install picons on"
 msgstr "将picons安装到"
 
+msgid "Install the package"
+msgstr ""
+
 msgid "Install/Remove plugin"
 msgstr "安装/删除插件"
 
@@ -9365,9 +9516,6 @@ msgstr "安装"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "正在安装%s (%s)..."
-
-msgid "Installing Plugin ..."
-msgstr "正在安装插件..."
 
 msgid "Installing Service"
 msgstr "安装服务"
@@ -9510,22 +9658,6 @@ msgstr "以色列"
 msgid "It follows:"
 msgstr "下一个事件:"
 
-msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr "无法在<存储设备列表>上计算哈希值"
-
-msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr "无法更改<存储设备列表>的文件模式"
-
-msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr "无法获取<存储设备列表>的文件状态"
-
-#, python-format
-msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr "无法在<存储设备列表>上运行'%s'"
-
-msgid "It's not possible to rename the file system root."
-msgstr "无法重命名文件系统根目录."
-
 msgid "Italian"
 msgstr "意大利语"
 
@@ -9553,9 +9685,6 @@ msgstr "爪哇语"
 msgid "Jersey"
 msgstr "泽西岛"
 
-msgid "Job View"
-msgstr "工作视图"
-
 msgid "Job overview"
 msgstr "工作概述"
 
@@ -9579,12 +9708,6 @@ msgstr "跳到当前时间"
 
 msgid "Jump to end of list"
 msgstr "跳到列表末尾"
-
-msgid "Jump to first item in list or the start of text"
-msgstr "跳到列表中的第一项或文本的开头"
-
-msgid "Jump to last item in list or the end of text"
-msgstr "跳到列表中的最后一项或文本末尾"
 
 msgid "Jump to next marked position"
 msgstr "跳到下一个标记位置"
@@ -9837,6 +9960,9 @@ msgstr "最后播放速度"
 msgid "Last update"
 msgstr "最后更新"
 
+msgid "Last used column"
+msgstr ""
+
 msgid "Last used share: "
 msgstr "最后使用的共享: "
 
@@ -9859,12 +9985,6 @@ msgstr "拉脱维亚语"
 msgid "Leave DVD player?"
 msgstr "是否退出DVD播放器?"
 
-msgid "Leave File Commander"
-msgstr "退出文件管理器"
-
-msgid "Leave multi-select mode"
-msgstr "退出多重选择模式"
-
 msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr "将此设置保留为'是',除非您完全理解要调整它的原因."
 
@@ -9873,6 +9993,15 @@ msgstr "黎巴嫩"
 
 msgid "Left"
 msgstr "左箭头"
+
+msgid "Left column"
+msgstr ""
+
+msgid "Left column directory sort"
+msgstr ""
+
+msgid "Left column file sort"
+msgstr ""
 
 msgid "Left from service name"
 msgstr "频道名称左边"
@@ -9911,6 +10040,9 @@ msgstr "生活"
 msgid "Light Grey"
 msgstr "浅灰色"
 
+msgid "Light source"
+msgstr ""
+
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "林堡"
 
@@ -9941,6 +10073,10 @@ msgstr "限制关闭"
 msgid "Limits on"
 msgstr "限制开启"
 
+#, python-format
+msgid "Line %d / %d"
+msgstr ""
+
 msgid "Lingala"
 msgstr "林加拉语"
 
@@ -9950,8 +10086,8 @@ msgstr "检测到链接"
 msgid "Link quality:"
 msgstr "信号质量:"
 
-msgid "Link target:"
-msgstr "链接目标:"
+msgid "Link target"
+msgstr ""
 
 msgid "Link:"
 msgstr "链接:"
@@ -9959,8 +10095,8 @@ msgstr "链接:"
 msgid "Linked titles with a DVD menu"
 msgstr "以DVD菜单链接标题"
 
-msgid "Links:"
-msgstr "链接:"
+msgid "Links"
+msgstr ""
 
 msgid "List EPG functions..."
 msgstr "EPG功能列表..."
@@ -9970,6 +10106,9 @@ msgstr "列出导航操作"
 
 msgid "List available networks"
 msgstr "可用网络列表"
+
+msgid "List of Storage Devices"
+msgstr ""
 
 msgid "List of storage devices"
 msgstr "存储设备列表"
@@ -10080,6 +10219,9 @@ msgstr "需要显示的本地项"
 
 msgid "Location"
 msgstr "位置"
+
+msgid "Location Selection Actions"
+msgstr ""
 
 msgid "Location information"
 msgstr "位置信息"
@@ -10254,11 +10396,8 @@ msgstr "主菜单"
 msgid "Maintain your multi boot device."
 msgstr "管理和维护你的多重启动设备."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "使文件管理器可从扩展菜单访."
-
-msgid "Make File Commander accessible from the main menu."
-msgstr "使文件管理器可从主菜单访问."
+msgid "Make"
+msgstr ""
 
 msgid "Make this mark an 'in' point"
 msgstr "这个标记作为'入'节点"
@@ -10301,6 +10440,9 @@ msgstr "管理扩展"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "管理本地/语言选择设置"
+
+msgid "Manage and explore directories and files."
+msgstr ""
 
 msgid "Manage network mounts"
 msgstr "管理网络挂载"
@@ -10432,6 +10574,9 @@ msgstr "媒体扫描器"
 msgid "Media service"
 msgstr "媒体中心"
 
+msgid "MediaInfo"
+msgstr ""
+
 msgid "MediaPlayer"
 msgstr "媒体播放器"
 
@@ -10508,11 +10653,14 @@ msgstr "信息"
 msgid "Message Box Actions"
 msgstr "消息框功能"
 
+msgid "Message pop up timeout"
+msgstr ""
+
 msgid "Message..."
 msgstr "信息..."
 
-msgid "Metadata changed:"
-msgstr "元数据已更改:"
+msgid "Metering mode"
+msgstr ""
 
 msgid "Mexico"
 msgstr "墨西哥"
@@ -10598,10 +10746,6 @@ msgstr "移动连接"
 msgid "Mode"
 msgstr "模式"
 
-#, python-format
-msgid "Mode %s (%04o)"
-msgstr "模式 %s (%04o)"
-
 msgid "Mode 1"
 msgstr "模式 1"
 
@@ -10623,8 +10767,8 @@ msgstr "型号"
 msgid "Model: "
 msgstr "型号: "
 
-msgid "Modified:"
-msgstr "最后修改:"
+msgid "Modified"
+msgstr ""
 
 msgid "Modulation"
 msgstr "调制"
@@ -10716,13 +10860,6 @@ msgstr "挂载设置"
 msgid "Move"
 msgstr "移动"
 
-#, python-format
-msgid "Move %d elements"
-msgstr "移动 %d 个元素"
-
-msgid "Move 1 element"
-msgstr "移动1元素"
-
 msgid "Move Left/Right"
 msgstr "左/右 移动"
 
@@ -10741,8 +10878,17 @@ msgstr "移动画中画至主画面"
 msgid "Move Up/Down"
 msgstr "上/下 移动"
 
+msgid "Move all related files"
+msgstr ""
+
+msgid "Move directory/file to target directory"
+msgstr ""
+
 msgid "Move down a line"
 msgstr "下移一行"
+
+msgid "Move down a line in the panel"
+msgstr ""
 
 msgid "Move down a page"
 msgstr "向下移动一个页面"
@@ -10753,8 +10899,8 @@ msgstr "向下移动一个页面/屏幕"
 msgid "Move down a screen"
 msgstr "向下移动一个屏幕"
 
-msgid "Move down list"
-msgstr "下拉列表"
+msgid "Move down a screen in the panel"
+msgstr ""
 
 msgid "Move down one line"
 msgstr "下移一行"
@@ -10777,22 +10923,38 @@ msgstr "向下移动到列表中的最后一行."
 msgid "Move east"
 msgstr "向东移动"
 
-msgid "Move file"
-msgstr "移动文件"
+msgid "Move job completed."
+msgstr ""
 
-msgid "Move file/directory to target directory"
-msgstr "将文件/目录剪切到目标目录"
+msgid "Move job failed!"
+msgstr ""
 
-msgid "Move files/directories to target directory"
-msgstr "将文件/目录移动到目标目录"
+msgid "Move job queued."
+msgstr ""
 
-msgid "Move folder"
-msgstr "移动文件夹"
+msgid "Move only highlighted file"
+msgstr ""
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
 
 msgid "Move the current DNS entry up one line"
+msgstr ""
+
+msgid "Move the current bookmark down"
+msgstr ""
+
+msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current line down"
+msgstr ""
+
+msgid "Move the current line up"
+msgstr ""
+
+#, python-format
+msgid "Move the directory/file '%s'?"
 msgstr ""
 
 msgid "Move the keyboard cursor down"
@@ -10819,11 +10981,17 @@ msgstr "将文本光标移动到第一个字符"
 msgid "Move the text cursor to the last character"
 msgstr "将文本光标移动到最后一个字符"
 
+msgid "Move these directories/files?"
+msgstr ""
+
 msgid "Move to first line"
 msgstr "移动到第一行"
 
 msgid "Move to first line / screen"
 msgstr "移动到第一行/屏幕"
+
+msgid "Move to first line / screen in the panel"
+msgstr ""
 
 msgid "Move to home of list"
 msgstr "移动到主列表"
@@ -10834,8 +11002,20 @@ msgstr "移动到最后一行"
 msgid "Move to last line / screen"
 msgstr "移动到最后一行/屏幕"
 
+msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to the first line / screen"
+msgstr ""
+
+msgid "Move to the last line / screen"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "向上移动一行"
+
+msgid "Move up a line in the panel"
+msgstr ""
 
 msgid "Move up a page"
 msgstr "向上移动一页"
@@ -10846,8 +11026,8 @@ msgstr "向上移动页面/屏幕"
 msgid "Move up a screen"
 msgstr "向上移动一页"
 
-msgid "Move up list"
-msgstr "上拉列表"
+msgid "Move up a screen in the panel"
+msgstr ""
 
 msgid "Move up one line"
 msgstr "向上移动一行"
@@ -10908,6 +11088,9 @@ msgstr "电影/剧情"
 
 msgid "Movieplayer"
 msgstr "电影播放器"
+
+msgid "Movies"
+msgstr ""
 
 msgid "Moving"
 msgstr "正在移动"
@@ -10991,8 +11174,8 @@ msgstr "音乐剧"
 msgid "Mute"
 msgstr "静音"
 
-msgid "My extension"
-msgstr "我的扩展"
+msgid "My extensions"
+msgstr ""
 
 msgid "Myanmar"
 msgstr "缅甸"
@@ -11018,6 +11201,14 @@ msgstr "NFS设置"
 msgid "NIM & Type"
 msgstr "NIM模块类型"
 
+#, python-format
+msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
+msgstr ""
+
+#, python-format
+msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
 msgid "NOW"
 msgstr "正在播放"
 
@@ -11033,8 +11224,11 @@ msgstr "NTSC制式"
 msgid "Name"
 msgstr "调谐器名称"
 
-msgid "Name reverse"
-msgstr "名称反向"
+msgid "Name ascending"
+msgstr ""
+
+msgid "Name descending"
+msgstr ""
 
 #, python-format
 msgid "Name server %d"
@@ -11072,6 +11266,9 @@ msgstr "瑙鲁"
 
 msgid "Navajo / Navaho"
 msgstr "纳瓦霍语/纳瓦霍语"
+
+msgid "Navigate to the selected directory"
+msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "使用UP/DOWN键向上/向下导航,使用LEFT/RIGHT键向上/向下翻页.确定执行当前突出显示的帮助中描述的操作."
@@ -11227,9 +11424,6 @@ msgstr "新客户"
 msgid "New event info"
 msgstr "新事件信息"
 
-msgid "New folder"
-msgstr "新建文件夹"
-
 msgid "New password"
 msgstr "新密码"
 
@@ -11246,6 +11440,9 @@ msgid "NewCamd"
 msgstr ""
 
 msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewDirectory"
 msgstr ""
 
 msgid "News"
@@ -11370,9 +11567,6 @@ msgstr "没有发现事件信息,录制无限期."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "还没有快进可用..但你可以使用数字键向前/向后跳过！"
 
-msgid "No files found."
-msgstr "没有找到文件."
-
 msgid "No free index available"
 msgstr "没有剩余索引可用"
 
@@ -11381,9 +11575,6 @@ msgstr "没有空闲的调谐器！"
 
 msgid "No hard disks detected."
 msgstr "未检测到硬盘."
-
-msgid "No hash calculations configured"
-msgstr "未配置哈希计算"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
@@ -11493,10 +11684,6 @@ msgstr "没有可用的更新.请稍后再试."
 msgid "No valid region details were found"
 msgstr "未找到有效的区域详细信息"
 
-#, python-format
-msgid "No viewer installed for this file type: %s"
-msgstr "没有为此文件类型安装查看器: %s"
-
 msgid "No wireless networks found! Searching..."
 msgstr "没有发现无线网络!搜索中..."
 
@@ -11560,10 +11747,6 @@ msgstr ""
 msgid "None"
 msgstr "无"
 
-#, python-format
-msgid "None of the hash programs for the hashes %s are available"
-msgstr "没有找到哈希值为%s的应用"
-
 msgid "Norfolk Island"
 msgstr "诺福克岛"
 
@@ -11618,9 +11801,6 @@ msgstr "未安装"
 msgid "Not Shown"
 msgstr "不显示"
 
-msgid "Not allowed with folders"
-msgstr "不允许与文件夹一起使用"
-
 msgid "Not associated"
 msgstr "未关联"
 
@@ -11644,6 +11824,9 @@ msgstr ""
 "文件大小: %sМB\n"
 "可用空间: %sМB\n"
 "路径: %s"
+
+msgid "Not required"
+msgstr ""
 
 msgid "Not running"
 msgstr "未运行"
@@ -11691,9 +11874,6 @@ msgstr ""
 
 msgid "Number of digits in channel number"
 msgstr "频道序号位数"
-
-msgid "Number of lines in script messages"
-msgstr "脚本消息中的行数"
 
 msgid "Number of rows"
 msgstr "行数"
@@ -11767,6 +11947,9 @@ msgstr "OVR"
 msgid "Occitan"
 msgstr "奥克语"
 
+msgid "Octal"
+msgstr ""
+
 msgid "Off"
 msgstr "关"
 
@@ -11787,9 +11970,6 @@ msgstr "阿曼"
 
 msgid "On"
 msgstr "开"
-
-msgid "On device:"
-msgstr "在设备上:"
 
 msgid "On end of movie"
 msgstr "在电影结尾"
@@ -11872,6 +12052,9 @@ msgstr "打开自定义组列表"
 msgid "Open context menu"
 msgstr "打开上下文菜单"
 
+msgid "Open context menu (contains settings menu)"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "打开收藏夹列表"
 
@@ -11892,9 +12075,6 @@ msgstr "打开频道列表并选择上一个频道"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "打开频道列表并选择上一频道为画中画"
-
-msgid "Open settings/actions menu"
-msgstr "打开设置/操作菜单"
 
 msgid "Open the Plugin Browser"
 msgstr "打开插件浏览器"
@@ -11962,11 +12142,17 @@ msgstr "在信息栏选项中禁用picons"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "启用硬件待机定时器的选项"
 
+msgid "Optional parameter"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "轨道位置"
 
 msgid "Ordinary"
 msgstr "普通"
+
+msgid "Orientation"
+msgstr ""
 
 msgid "Original"
 msgstr "原始"
@@ -12004,6 +12190,13 @@ msgstr "其他字幕和语言"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr "如果有可用的帮助,其他按钮将跳转到该按钮的帮助信息."
+
+#, python-format
+msgid "Other panel directory (%s)"
+msgstr ""
+
+msgid "Output text:"
+msgstr ""
 
 msgid "Overall progress:"
 msgstr "总体进度:"
@@ -12053,8 +12246,8 @@ msgstr "在软件升级期间覆盖softcam文件？"
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "在软件升级期间覆盖微调器文件？"
 
-msgid "Owner:"
-msgstr "所有者:"
+msgid "Owner"
+msgstr ""
 
 msgid "PAGE UP/DOWN"
 msgstr "上一页/下一页"
@@ -12114,6 +12307,9 @@ msgstr "PVR"
 msgid "Package Manager"
 msgstr "软件包管理"
 
+msgid "Package files:"
+msgstr ""
+
 msgid "Package information currently not available!"
 msgstr "软件包信息暂时不可用!"
 
@@ -12135,9 +12331,6 @@ msgstr "数据包管理器"
 msgid "Page down"
 msgstr "向下翻页"
 
-msgid "Page down list"
-msgstr "向下翻页列表"
-
 msgid "Page left"
 msgstr "页面左边"
 
@@ -12146,9 +12339,6 @@ msgstr "页面右侧"
 
 msgid "Page up"
 msgstr "向上翻页"
-
-msgid "Page up list"
-msgstr "向上翻页列表"
 
 msgid "PageDown"
 msgstr "Page-键"
@@ -12191,8 +12381,8 @@ msgstr "巴布亚新几内亚"
 msgid "Paraguay"
 msgstr "巴拉圭"
 
-msgid "Parent directory"
-msgstr "父目录"
+msgid "Parent Directory"
+msgstr ""
 
 msgid "Parental Guidance Recommended"
 msgstr "建议家长指导"
@@ -12281,8 +12471,8 @@ msgstr "是否永久删除垃圾桶中的所有录制？"
 msgid "Permanently remove all deleted items"
 msgstr "永久删除所有已删除的项目"
 
-msgid "Permissions:"
-msgstr "权限:"
+msgid "Permissions"
+msgstr ""
 
 msgid "Persian"
 msgstr "波斯语"
@@ -12375,6 +12565,9 @@ msgstr "播放DVD"
 msgid "Play DVDs"
 msgstr "播放DVD光盘"
 
+msgid "Play all audio files in the directory"
+msgstr ""
+
 msgid "Play audio in background"
 msgstr "在后台播放音频"
 
@@ -12386,9 +12579,6 @@ msgstr "播放媒体文件"
 
 msgid "Play entry"
 msgstr "播放条目"
-
-msgid "Play folder"
-msgstr "播放文件夹"
 
 msgid "Play from next mark or play list entry"
 msgstr "从下一个标记或播放列表条目播放"
@@ -12414,11 +12604,8 @@ msgstr "播放上一个"
 msgid "Play recorded movies"
 msgstr "播放录制的影片"
 
-msgid "Play title"
-msgstr "播放标题"
-
-msgid "Play/view/edit/install/extract/run file or enter directory"
-msgstr "播放/查看/编辑/安装/解压缩/运行文件或输入目录"
+msgid "Play the audio file"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr ""
@@ -12485,20 +12672,17 @@ msgstr "请输入新目录的名称"
 msgid "Please enter a name for the new marker"
 msgstr "请输入新标记的名称"
 
-msgid "Please enter a new filename:"
-msgstr "请输入一个新的文件名"
+msgid "Please enter a new filename, the extension may not be changed:"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "请输入文件名(留空＝使用当前日期)"
 
-msgid "Please enter name of the new symlink"
-msgstr "请输入新符号链接的名称"
+msgid "Please enter name of the new symbolic link:"
+msgstr ""
 
 msgid "Please enter new name:"
 msgstr "请输入新名称:"
-
-msgid "Please enter password"
-msgstr "请输入密码"
 
 msgid "Please enter search string for your location"
 msgstr "请输入字符串以搜索您的位置"
@@ -12506,11 +12690,11 @@ msgstr "请输入字符串以搜索您的位置"
 msgid "Please enter the correct pin code"
 msgstr "请输入正确的密码"
 
-msgid "Please enter the new directory name"
-msgstr "请输入新的目录名称"
+msgid "Please enter the new directory name:"
+msgstr ""
 
-msgid "Please enter the new file name"
-msgstr "请输入新文件名"
+msgid "Please enter the new file name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "请输入新标签:"
@@ -12764,6 +12948,9 @@ msgstr "正在收集数据,请稍候..."
 msgid "Please wait while scanning is in progress..."
 msgstr "正在进行扫描,请稍候..."
 
+msgid "Please wait while the data is extracted..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "正在收集数据,请稍候..."
 
@@ -12788,8 +12975,8 @@ msgstr "正在恢复皮肤设置,请等待..."
 msgid "Please wait whilst feeds state is checked."
 msgstr "正在检查源状态,请等待."
 
-msgid "Please wait, Loading image."
-msgstr "请稍候,正在加载图片."
+msgid "Please wait, loading image..."
+msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -13150,36 +13337,8 @@ msgid "Program"
 msgstr "程序"
 
 #, python-format
-msgid ""
-"Program '%s' is installed.\n"
-"The package containing this program isn't known, so it can't be uninstalled."
+msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
-"程序'%s'已安装.\n"
-"包含此程序的包未知,因此无法卸载."
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run the '%s' action.\n"
-"Uninstall the '%s' package to uninstall the program?"
-msgstr ""
-"需要安装程序'%s'才能运行'%s'操作.\n"
-"是否卸载'%s'包来卸载程序?"
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run this action.\n"
-"Install the '%s' package to install the program?"
-msgstr ""
-"需要安装程序'%s'才能运行此操作.\n"
-"是否安装'%s'软件包以安装程序?"
-
-#, python-format
-msgid ""
-"Program '%s' not installed.\n"
-"The package containing this program isn't known."
-msgstr ""
-"未安装程序“%s”.\n"
-"包含此程序的软件包未知."
 
 msgid "Programmlisten History"
 msgstr "节目收听历史"
@@ -13318,6 +13477,9 @@ msgstr "将电视置于待机状态"
 
 msgid "Put your AV Receiver in standby"
 msgstr "把你的AV接收机在待机状态"
+
+msgid "Python"
+msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "/tmp/mmi.socket的Python前端"
@@ -13686,9 +13848,6 @@ msgstr "录像总是有优先权"
 msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Records"
-msgstr "录制"
-
 msgid "Recovery"
 msgstr ""
 
@@ -13774,6 +13933,9 @@ msgstr "宗教"
 msgid "Reload"
 msgstr "重新載入"
 
+msgid "Reload Bookmarks"
+msgstr ""
+
 msgid "Reload Services"
 msgstr "重新加载频道"
 
@@ -13830,6 +13992,10 @@ msgstr "遥控器类型"
 
 msgid "Remove"
 msgstr "移除"
+
+#, python-format
+msgid "Remove '%s' From Bookmarks"
+msgstr ""
 
 msgid "Remove Bookmark"
 msgstr "删除书签"
@@ -13891,25 +14057,19 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "保留已完成定时器的天数"
 
-msgid "Remove current folder from bookmarks"
-msgstr "从书签中删除当前文件夹"
-
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
 
-msgid "Remove directory"
-msgstr "删除目录"
-
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
-
-msgid "Remove selected folder from bookmarks"
-msgstr "从书签中删除选定的文件夹"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "从外部字幕(器乐或环境声音,例如,当门铃响或听到枪声)中删除听力受损者的文本."
 
 msgid "Remove the Line from CCcam.cfg"
+msgstr ""
+
+msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove timer"
@@ -13930,14 +14090,26 @@ msgstr "删除分区表"
 msgid "Rename"
 msgstr "重命名"
 
+msgid "Rename Directory"
+msgstr ""
+
+msgid "Rename all related files"
+msgstr ""
+
+msgid "Rename directory/file"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "重命名失败!"
 
-msgid "Rename file/directory"
-msgstr "重命名文件/目录"
-
 msgid "Rename name and description for new events"
 msgstr "重命名新事件的名称和描述"
+
+msgid "Rename only highlighted file"
+msgstr ""
+
+msgid "Rename the proposed file to be created"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "重命名此标签"
@@ -14017,6 +14189,9 @@ msgstr "将HDMI-CEC设置重置为默认值"
 msgid "Reset and renumerate title names"
 msgstr "重置并重新计算标题名称"
 
+msgid "Reset executable mode (644)"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14043,6 +14218,9 @@ msgstr "转帖:"
 
 msgid "Resolution"
 msgstr "分辨率"
+
+msgid "Resolution unit"
+msgstr ""
 
 msgid "Restart"
 msgstr "重新启动"
@@ -14190,14 +14368,8 @@ msgstr "返回到上一频道"
 msgid "Reverse bouquet buttons"
 msgstr "反向自定义键"
 
-msgid "Reverse left file sorting"
-msgstr "左文件反向排序"
-
 msgid "Reverse list"
 msgstr "反向列表"
-
-msgid "Reverse right file sorting"
-msgstr "右文件反向排序"
 
 msgid "Rewind"
 msgstr "快退"
@@ -14210,6 +14382,15 @@ msgstr "重新换行字幕"
 
 msgid "Right"
 msgstr "右箭头"
+
+msgid "Right column"
+msgstr ""
+
+msgid "Right column directory sort"
+msgstr ""
+
+msgid "Right column file sort"
+msgstr ""
 
 msgid "Right from service name"
 msgstr "频道名称右侧"
@@ -14356,6 +14537,9 @@ msgstr "SD卡切换错误!-已经在内部mmc闪存中"
 
 msgid "SINGLE LAYER DVD"
 msgstr "单层DVD"
+
+msgid "SMS style QuickSelect entry selection"
+msgstr ""
 
 msgid "SMS style QuickSelect location selection"
 msgstr "短信样式快速选择位置选择"
@@ -14519,8 +14703,12 @@ msgstr ""
 msgid "Save every (in hours)"
 msgstr "保存每一个(小时)"
 
-msgid "Save left folder on exit"
-msgstr "退出时保存左侧文件夹"
+#, python-format
+msgid "Save image as '%s'"
+msgstr ""
+
+msgid "Save left directory on exit"
+msgstr ""
 
 msgid "Save play list"
 msgstr "保存播放列表"
@@ -14528,8 +14716,8 @@ msgstr "保存播放列表"
 msgid "Save play list on EXIT"
 msgstr "退出时保存播放列表"
 
-msgid "Save right folder on exit"
-msgstr "退出时保存右侧文件夹"
+msgid "Save right directory on exit"
+msgstr ""
 
 msgid "Save settings and EPG data."
 msgstr "保存设置和EPG数据"
@@ -14542,20 +14730,23 @@ msgstr ""
 "将命令和输出保存到文件中?\n"
 "('%s')"
 
-msgid "Save the left folder list location on exit."
-msgstr "退出时保存左侧文件夹列表位置."
+msgid "Save the left column directory location on exit."
+msgstr ""
 
 msgid "Save the log changes and exit"
 msgstr ""
 
-msgid "Save the right folder list location on exit."
-msgstr "退出时保存正确的文件夹列表位置."
+msgid "Save the right column directory location on exit."
+msgstr ""
 
 msgid "Save time shift as movie and continue recording"
 msgstr "保存时移为影片并继续录制"
 
 msgid "Save time shift as movie and stop recording"
 msgstr "保存时移为影片并停止录制"
+
+msgid "Saved lines in script messages"
+msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "保存EPG缓存..."
@@ -14651,13 +14842,6 @@ msgstr "科技"
 
 msgid "Scope"
 msgstr ""
-
-msgid "Screenshot of LCD in /tmp"
-msgstr "LCD截屏到/tmp"
-
-#, python-format
-msgid "Script '%s' must have read permission to be able to run it"
-msgstr "脚本'%s'必须具有读取权限才能运行它"
 
 msgid "Script Manager"
 msgstr "脚本管理器"
@@ -14815,6 +14999,9 @@ msgstr "该选项设为'是',频道列表将始终首先向您显示自定义组
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr ""
 
+msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "如果设置为'是',显示EPG小电视屏幕."
 
@@ -14832,6 +15019,9 @@ msgstr "如果设置为'是'时,将看到信息栏显示变化的频道."
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "如果设置为'是'的频道数将显示在看到信息栏."
+
+msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择'是'可编辑此设备的设置.选择'否'会将设备设置重置为默认值."
@@ -14878,6 +15068,12 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
+msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
+msgstr ""
+
+msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -14887,8 +15083,14 @@ msgstr "如果设置为'是'每次打开EPG将显示自定义."
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "如果设置为'是'的频道列表将显示在广播和电视模式之间切换."
 
+msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "如果设置为'是',信号值(信噪比等)将根据API v3计算. 这是一个旧的API版本,现已被取代."
+
+msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr ""
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "如果设置为'是'在媒体播放中快进或快退将会显示信息栏."
@@ -14923,14 +15125,14 @@ msgstr "选择'是'可在搜索中包括 %s 波段."
 msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
 msgstr "选择‘是’仅在从一颗卫星转换为另一颗卫星时发送DiSEqC命令,或者选择'否'以使DiSEqC命令在每次切换时都重新发送."
 
-msgid "Select (source list) or enter directory (target list)"
-msgstr "选择(源列表)或输入目录(目标列表)"
-
 msgid "Select Additional Backup Files"
 msgstr "选择额外的备份文件"
 
 msgid "Select Backup Location"
 msgstr "选择备份位置"
+
+msgid "Select Bookmark"
+msgstr ""
 
 msgid "Select CAId"
 msgstr "选择CAId"
@@ -14959,7 +15161,7 @@ msgstr "选择 有线/无线网络"
 msgid "Select Location"
 msgstr "选择位置"
 
-msgid "Select Movie Location"
+msgid "Select Media Location"
 msgstr ""
 
 msgid "Select Playback Location"
@@ -14992,7 +15194,17 @@ msgstr "从可用列表中选择一个卡服务器."
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a directory"
+msgstr ""
+
+msgid "Select a directory from the bookmarks"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
+msgstr ""
+
+#, python-format
+msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a movie"
@@ -15000,9 +15212,6 @@ msgstr "选择一部电影"
 
 msgid "Select a network adapter"
 msgstr "选择网络适配器"
-
-msgid "Select a path"
-msgstr "选择路径"
 
 msgid "Select a repository commit log to view:"
 msgstr ""
@@ -15029,6 +15238,12 @@ msgstr "选择定时器 %s 的操作:"
 msgid "Select additional files to backup"
 msgstr "选择额外的文件来备份"
 
+msgid "Select all related files"
+msgstr ""
+
+msgid "Select an action to perform when the task has completed."
+msgstr ""
+
 msgid "Select audio track"
 msgstr "选择音轨"
 
@@ -15044,6 +15259,9 @@ msgstr "选择复制目标为:"
 msgid "Select default EPG type..."
 msgstr "选择默认的EPG类型..."
 
+msgid "Select default File Commander directory:"
+msgstr ""
+
 msgid "Select destination for:"
 msgstr "选择目标为:"
 
@@ -15053,7 +15271,13 @@ msgstr "选择要从备份中排除的文件"
 msgid "Select files/folders to backup"
 msgstr "选择要备份的文件/文件夹"
 
+msgid "Select how long to display status messages."
+msgstr ""
+
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr ""
+
+msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
@@ -15134,6 +15358,9 @@ msgstr ""
 msgid "Select movie"
 msgstr "选择影片"
 
+msgid "Select only highlighted file"
+msgstr ""
+
 msgid "Select provider to add..."
 msgstr "选择并添加供应商..."
 
@@ -15156,6 +15383,12 @@ msgid "Select sort method:"
 msgstr "选择排序方法:"
 
 msgid "Select system information to view:"
+msgstr ""
+
+msgid "Select temporary directory sort order for the current column"
+msgstr ""
+
+msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
@@ -15200,6 +15433,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
+msgid "Select the current bookmarked location and exit"
+msgstr ""
+
 msgid "Select the current menu item"
 msgstr "选择当前菜单项"
 
@@ -15221,16 +15457,36 @@ msgstr ""
 msgid "Select the day of the week that this timer will activate."
 msgstr ""
 
+msgid "Select the default directory to be used if the left column directory is not saved."
+msgstr ""
+
+msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
 msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "按OK关联所需的功能.使用 \"CH+/-\" 列表翻页.关联的功能再按OK将取消关联.使用 \"Next/Previous\"键对关联功能进行排序."
 
+#, python-format
+msgid "Select the directory sort order for the %s column:"
+msgstr ""
+
 msgid "Select the display design for menus."
 msgstr ""
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
+msgstr ""
+
+#, python-format
+msgid "Select the file sort order for the %s column:"
+msgstr ""
+
+msgid "Select the first item in list or move to the start of text"
+msgstr ""
+
+msgid "Select the first item in the list"
 msgstr ""
 
 msgid "Select the function to be assigned to this button."
@@ -15243,6 +15499,12 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the last item in list or move to the end of text"
+msgstr ""
+
+msgid "Select the last item in the list"
 msgstr ""
 
 msgid "Select the locale from a menu"
@@ -15266,11 +15528,17 @@ msgstr "选择电影路径"
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
 
-msgid "Select the next item in list or move cursor right"
-msgstr "选择列表中的下一项或向右移动光标"
+msgid "Select the next item in list or move the cursor right"
+msgstr ""
 
-msgid "Select the previous item in list or move cursor left"
-msgstr "选择列表中的上一项或向左移动光标"
+msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the previous item in list or move the cursor left"
+msgstr ""
+
+msgid "Select the previous item in the list"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "选择SCR设备使用的协议.可选择的选项有'SCR Unicable'(可选)或'SCR JESS'(JESS,也称为Unicable II)."
@@ -15309,6 +15577,9 @@ msgid "Select the sort order of the menu entries. User defined also allows the m
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
@@ -15693,9 +15964,6 @@ msgstr "设置MiniTV帧率"
 msgid "Set action for 'Info' key"
 msgstr "为'Info'键设置动作"
 
-msgid "Set archive mode (644)"
-msgstr "设置存档模式 (644)"
-
 msgid "Set current CEC address as fixed address"
 msgstr "将当前CEC地址设置为固定地址"
 
@@ -15710,9 +15978,6 @@ msgstr "设置可执行模式 (755)"
 
 msgid "Set fixed"
 msgstr "设置固定"
-
-msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-msgstr "为'stout'和'sterr'设置脚本信息或脚本错误消息中的行数."
 
 msgid "Set fps for external subtitles"
 msgstr "设置外挂字幕的fps"
@@ -15762,6 +16027,9 @@ msgstr "设置重复循环之间的延迟时间,用于某些皮肤中的软件�
 
 msgid "Set the jump-size of the seekbar."
 msgstr "设置搜索栏的跳跃大小."
+
+msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
 
 msgid "Set the position of the recording icons"
 msgstr "设置录像图标的位置"
@@ -16078,14 +16346,6 @@ msgstr "是否应该重置崩溃计数器以防止重新启动？"
 msgid "Show"
 msgstr "显示"
 
-#, python-format
-msgid ""
-"Show '%s' as picture%s?\n"
-"The current service must interrupted!"
-msgstr ""
-"是否将'%s'显示为图片%s?\n"
-"当前频道必须中断!"
-
 msgid "Show /tmp/ecm.info"
 msgstr "显示 /tmp/ecm.info"
 
@@ -16154,9 +16414,6 @@ msgstr "显示客户端"
 
 msgid "Show Default Backup Files"
 msgstr "显示默认备份文件"
-
-msgid "Show Directory size"
-msgstr ""
 
 msgid "Show Display Icons"
 msgstr "显示图标"
@@ -16269,14 +16526,11 @@ msgstr "在扩展列表中显示重启网络*"
 msgid "Show SD as"
 msgstr "将SD显示为"
 
-msgid "Show Script completed message"
-msgstr "显示脚本完成消息"
-
 msgid "Show Single EPG"
 msgstr "显示单个EPG"
 
-msgid "Show Task's completed message"
-msgstr "显示任务的完成消息"
+msgid "Show Task List"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "显示定时器列表"
@@ -16304,13 +16558,6 @@ msgstr "显示高级设置"
 
 msgid "Show animation while busy"
 msgstr "系统繁忙时显示动画"
-
-msgid "Show as Picture (press any key to close)"
-msgstr "显示为图片(按任意键关闭)"
-
-#, python-format
-msgid "Show as Picture and save as file ('%s')"
-msgstr "显示为图片并保存为文件('%s')"
 
 msgid "Show background in Radio Mode"
 msgstr "在广播模式下显示背景"
@@ -16342,18 +16589,6 @@ msgstr "显示列"
 msgid "Show commit log information"
 msgstr ""
 
-msgid "Show contents of ipk file"
-msgstr "显示ipk文件的内容"
-
-msgid "Show contents of rar file"
-msgstr "显示rar文件的内容"
-
-msgid "Show contents of tar or compressed tar file"
-msgstr "显示tar或压缩的tar文件的内容"
-
-msgid "Show contents of zip file"
-msgstr "显示zip文件的内容"
-
 msgid "Show crash info on screen and write crash log for x times"
 msgstr "在屏幕上显示崩溃信息并写入崩溃日志x次"
 
@@ -16362,6 +16597,9 @@ msgstr "显示加密图标"
 
 msgid "Show crypto info in InfoBar"
 msgstr "在信息条上显示加密信息"
+
+msgid "Show current directory"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr ""
@@ -16378,14 +16616,14 @@ msgstr "显示详细的事件信息"
 msgid "Show detailed event info (setup in menu)"
 msgstr "显示详细的事件信息(在菜单中设置)"
 
+msgid "Show details of highlighted task"
+msgstr ""
+
 msgid "Show development packages in opkg"
 msgstr "在opkg中显示开发包"
 
 msgid "Show directories first"
 msgstr "首先显示目录"
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr "在列表中的第一个或最后一个显示目录(必须重新启动文件管理器)."
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "显示在信息栏加密信息(当皮肤支持时)."
@@ -16420,6 +16658,9 @@ msgstr "显示收藏夹列表"
 msgid "Show files backed up by default"
 msgstr "显示默认备份的文件"
 
+msgid "Show first image"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "显示图形化多个EPG"
 
@@ -16429,8 +16670,12 @@ msgstr "显示帮助"
 msgid "Show icon for new/unseen items"
 msgstr "显示新发现/未见项目的图标"
 
-msgid "Show image information"
-msgstr "显示镜像信息"
+msgid "Show image"
+msgstr ""
+
+#, python-format
+msgid "Show image and save as '%s'"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "在待机状态下显示"
@@ -16447,6 +16692,9 @@ msgstr "显示信息行"
 msgid "Show job tasks in extensions"
 msgstr "在扩展中显示工作任务"
 
+msgid "Show last image"
+msgstr ""
+
 msgid "Show live TV when movie stopped"
 msgstr "电影停止时显示电视直播"
 
@@ -16458,12 +16706,6 @@ msgstr "在所有行中显示标记的事件."
 
 msgid "Show menu"
 msgstr "显示菜单"
-
-msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr "如果文件管理器未运行且所有任务都已完成,则显示消息."
-
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr "如果后台脚本成功结束,则显示消息.有'stout',则显示为附加信息."
 
 msgid "Show message when recording starts"
 msgstr "录像开始时显示消息"
@@ -16488,6 +16730,9 @@ msgstr ""
 
 msgid "Show next event"
 msgstr "显示下一个事件"
+
+msgid "Show next image"
+msgstr "显示下一个镜像"
 
 msgid "Show next page"
 msgstr "显示下一页"
@@ -16531,6 +16776,9 @@ msgstr ""
 msgid "Show previous event"
 msgstr "显示上一个事件"
 
+msgid "Show previous image"
+msgstr "显示上一个镜像"
+
 msgid "Show previous page"
 msgstr "显示上一页"
 
@@ -16557,6 +16805,12 @@ msgstr "显示屏幕菜单路径"
 
 msgid "Show screensaver"
 msgstr "显示屏保"
+
+msgid "Show script messages"
+msgstr ""
+
+msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
 
 msgid "Show selection for system information screen"
 msgstr "显示系统信息画面的选择"
@@ -16618,8 +16872,11 @@ msgstr "显示字幕选择"
 msgid "Show system information"
 msgstr "显示系统信息"
 
-msgid "Show task list"
-msgstr "显示任务列表"
+msgid "Show task messages"
+msgstr ""
+
+msgid "Show task messages if File Commander is not running and all task are completed."
+msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr ""
@@ -16669,6 +16926,9 @@ msgstr "显示插件"
 msgid "Show the radio player"
 msgstr "显示广播播放器"
 
+msgid "Show the task list"
+msgstr ""
+
 msgid "Show the tv player"
 msgstr "显示电视播放器"
 
@@ -16698,12 +16958,6 @@ msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "将未知的视频分辨率显示为下一个更高或最高的屏幕分辨率."
-
-msgid "Show unknown extension as text"
-msgstr "将未知扩展名显示为文本"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "使用'加载项文件查看器'显示未知的文件扩展名."
 
 msgid "Show unknown video format as"
 msgstr "将未知的视频格式显示为"
@@ -16852,8 +17106,11 @@ msgstr "情景喜剧"
 msgid "Size"
 msgstr "大小"
 
-msgid "Size reverse"
-msgstr "大小次序颠倒"
+msgid "Size ascending"
+msgstr ""
+
+msgid "Size descending"
+msgstr ""
 
 msgid "Skin"
 msgstr "皮肤"
@@ -16891,8 +17148,8 @@ msgstr "跳过空频道"
 msgid "Skip forward"
 msgstr "向前快进"
 
-msgid "Skip selection"
-msgstr "调过此选项"
+msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
 
 msgid "Sleep"
 msgstr "睡眠"
@@ -16904,6 +17161,9 @@ msgid "Sleep Timers"
 msgstr ""
 
 msgid "Sleep delay"
+msgstr ""
+
+msgid "Sleep test"
 msgstr ""
 
 msgid "Sleep timer"
@@ -16960,8 +17220,14 @@ msgstr "循环播放幻灯片"
 msgid "Slide right to left"
 msgstr "从右到左滑动"
 
+msgid "Slide show delay"
+msgstr ""
+
 msgid "Slide show interval (sec.)"
 msgstr "幻灯片放映间隔(秒.)"
+
+msgid "Slide show loop"
+msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "从上到下滑动"
@@ -17066,6 +17332,9 @@ msgstr "Softcam 操作"
 
 msgid "Softcam Settings"
 msgstr "Softcam设置"
+
+msgid "Softcam Setup"
+msgstr ""
 
 msgid "Softcams"
 msgstr "softcams共享设置"
@@ -17191,6 +17460,9 @@ msgstr ""
 msgid "Sort"
 msgstr "排序"
 
+msgid "Sort Bookmarks"
+msgstr ""
+
 msgid "Sort EPG List"
 msgstr "EPG列表排序"
 
@@ -17221,11 +17493,9 @@ msgstr "语言列表的排序顺序."
 msgid "Sort playlists"
 msgstr "播放列表排序"
 
-msgid "Sorting left files by name, date or size"
-msgstr "按名称、日期或大小对左侧文件进行排序"
-
-msgid "Sorting right files by name, date or size"
-msgstr "按名称、日期或大小对正确的文件进行排序"
+#, python-format
+msgid "Sort: Directories by %s %s; Files by %s %s."
+msgstr ""
 
 msgid "Sotho, Southern"
 msgstr "南部的索托"
@@ -17339,6 +17609,9 @@ msgstr "启动RDS交互"
 msgid "Start date"
 msgstr ""
 
+msgid "Start edit at line end"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "从头开始"
 
@@ -17384,6 +17657,9 @@ msgstr "开始向导"
 msgid "Starting Softcam"
 msgstr "正在启动 Softcam"
 
+msgid "Starting column"
+msgstr ""
+
 msgid "Starting date"
 msgstr ""
 
@@ -17405,6 +17681,9 @@ msgstr ""
 
 msgid "Status"
 msgstr "网络状态"
+
+msgid "Status message timeout"
+msgstr ""
 
 msgid "Status of the display during operation"
 msgstr "操作期间的LED显示状态"
@@ -17703,9 +17982,6 @@ msgstr "将SNR '%' 替换为 'db'"
 msgid "Swap Size:"
 msgstr "交换文件大小:"
 
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "用频道+/-右/左交换键或频道键始终在一侧更改."
-
 msgid "Swap services"
 msgstr "交换频道"
 
@@ -17745,6 +18021,12 @@ msgstr "切换模式以启用HDR模式或PIP功能"
 msgid "Switch TV to correct input"
 msgstr "切换电视到正确的输入"
 
+msgid "Switch To Bookmarks Panel"
+msgstr ""
+
+msgid "Switch To File List Panel"
+msgstr ""
+
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "在音频 - 字幕页之间切换"
 
@@ -17772,11 +18054,14 @@ msgstr "切换到电视"
 msgid "Switch to TV mode"
 msgstr "切换到电视模式"
 
-msgid "Switch to bookmarks"
-msgstr "切换到书签"
+msgid "Switch to bookmarks panel"
+msgstr ""
 
 msgid "Switch to file list"
 msgstr "切换到文件列表"
+
+msgid "Switch to file list panel"
+msgstr ""
 
 msgid "Switch to next EPG Event"
 msgstr "切换到下一个EPG事件"
@@ -17811,6 +18096,12 @@ msgstr ""
 msgid "Switch to the available TV services"
 msgstr ""
 
+msgid "Switch to the left column"
+msgstr ""
+
+msgid "Switch to the right column"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "可切换调谐器类型:"
 
@@ -17828,9 +18119,6 @@ msgstr "符号率和前向纠错"
 
 msgid "Symbolic link"
 msgstr "符号链接"
-
-msgid "Symlink to "
-msgstr "符号链接到 "
 
 msgid "Sync NTP every (minutes)"
 msgstr "同步NTP间隔(分钟)"
@@ -17967,8 +18255,29 @@ msgstr "泰米尔语"
 msgid "Tanzania, United Republic of"
 msgstr "坦桑尼亚联合共和国"
 
-msgid "Task list"
-msgstr "任务列表"
+#, python-format
+msgid "Task '%s' ended successfully."
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with an error message!"
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with error number %d!"
+msgstr ""
+
+msgid "Task List"
+msgstr ""
+
+msgid "Task List Actions"
+msgstr ""
+
+msgid "Task View"
+msgstr ""
+
+msgid "Task View Actions"
+msgstr ""
 
 msgid "Tatar"
 msgstr "塔塔尔语"
@@ -18042,6 +18351,10 @@ msgstr "Telnet设置"
 msgid "Telugu"
 msgstr "泰卢固语"
 
+#, python-format
+msgid "Temp directory (%s)"
+msgstr ""
+
 msgid "Tennis"
 msgstr "网球"
 
@@ -18051,8 +18364,17 @@ msgstr "地面波"
 msgid "Terrestrial bouquet:"
 msgstr "地面波频道组:"
 
+msgid "Test"
+msgstr ""
+
 msgid "Test DiSEqC settings"
 msgstr "测试DiSEqC设置"
+
+msgid "Test job completed."
+msgstr ""
+
+msgid "Test job failed!"
+msgstr ""
 
 msgid "Test mode"
 msgstr "测试模式"
@@ -18160,9 +18482,6 @@ msgstr ""
 msgid "The IceTV server has requested password for %s."
 msgstr "IceTV服务器已请求%s的密码."
 
-msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-msgstr "文件管理器的镜像查看器组件需要图片播放器扩展名.安装图片播放器以启用此操作."
-
 msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
@@ -18225,8 +18544,8 @@ msgstr ""
 msgid "The aspect ratio of the recording."
 msgstr "录制的宽高比."
 
-msgid "The authors are NOT RESPONSIBLE"
-msgstr "作者概不负责"
+msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
+msgstr ""
 
 msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
@@ -18279,6 +18598,14 @@ msgid ""
 "Press OK to continue using the %s %s."
 msgstr ""
 
+#, python-format
+msgid "The file '%s' has been changed. Do you want to discard the changes?"
+msgstr ""
+
+#, python-format
+msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
 msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
@@ -18286,21 +18613,15 @@ msgstr ""
 "时移录制设备文件系统格式不支持.\n"
 "请确保它的格式为EXT2,EXT3或者EXT4！"
 
+#, python-format
+msgid "The following files are related to '%s':"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "找到以下文件..."
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr "录制的帧率.理想情况下,这将与源的帧速率匹配或为整数倍.如果有疑问,请将其设置为60,这应该适用于大多数来源."
-
-msgid ""
-"The function has interrupted.\n"
-"Don't press in the next time any key until the picture from mvi-file is displayed!"
-msgstr ""
-"功能已中断.\n"
-"下次显示mvi文件中的图片之前不要按任何键!"
-
-msgid "The hash of a directory can't be calculated."
-msgstr "无法计算目录的哈希值."
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "图片的高度.输入将被缩放以匹配该值."
@@ -18407,6 +18728,10 @@ msgstr "至少有 "
 
 msgid "There are currently no outstanding actions."
 msgstr "目前没有任何突出的动作."
+
+#, python-format
+msgid "There are no actions available to process '%s'!"
+msgstr ""
 
 msgid "There are no items currently available for this screen."
 msgstr "当前界面没有可用的选择."
@@ -18516,6 +18841,9 @@ msgstr "此配置选项允许你在下载中显示网页链接模块"
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "此字段使您可以搜索最多 %s 的附加符号率."
 
+msgid "This function is not available as processing of large files may take too long to run on this hardware."
+msgstr ""
+
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "这是一些在切换到待机状态后再次唤醒的设备的解决方法.来自其他设备的唤醒命令将被忽略几秒钟."
 
@@ -18532,9 +18860,6 @@ msgstr ""
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "这是将DISEQC命令发送到天线系统的顺序.顺序必须 与物理设备沿信号电缆(从接收器端 开始)排列的顺序完全一致."
-
-msgid "This line is not editable!"
-msgstr "此行不可编辑！"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr ""
@@ -18864,8 +19189,8 @@ msgstr "时移设置"
 msgid "Time Update in Minutes:"
 msgstr "以分钟为单位更新:"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "图像查看器幻灯片放映中的幻灯片间隔时间."
+msgid "Time between slides in image viewer slide show."
+msgstr ""
 
 msgid "Time delay for the repeated transmission"
 msgstr "重复传输的时间延迟"
@@ -18875,9 +19200,6 @@ msgstr "关机提示框的显示时间"
 
 msgid "Time delay until standby or deep standby"
 msgstr "待机或深度待机的延时"
-
-msgid "Time for Slideshow"
-msgstr "幻灯片放映时间"
 
 msgid "Time for next LCD scrolling"
 msgstr "下一次LCD滚动的时间"
@@ -19049,6 +19371,10 @@ msgstr "标题设置模式"
 msgid "To restore the image:"
 msgstr "要恢复固件:"
 
+#, python-format
+msgid "To where would you like to extract '%s'?"
+msgstr ""
+
 msgid "Today"
 msgstr "今天"
 
@@ -19076,6 +19402,9 @@ msgstr "在图形中切换图片"
 msgid "Toggle a cut mark at the current position"
 msgstr "在当前位置切换剪切标记"
 
+msgid "Toggle all related files"
+msgstr ""
+
 msgid "Toggle aspect ratio..."
 msgstr "切换宽高比..."
 
@@ -19085,8 +19414,14 @@ msgstr ""
 msgid "Toggle between bouquet/EPG lists"
 msgstr "在 自定义组/EPG列表 之间切换"
 
+msgid "Toggle display of image information"
+msgstr ""
+
 msgid "Toggle display of the InfoBar"
 msgstr "切换信息栏的显示"
+
+msgid "Toggle display of the image status overlay"
+msgstr ""
 
 msgid "Toggle enable/disable of the currently selected timer"
 msgstr ""
@@ -19094,10 +19429,16 @@ msgstr ""
 msgid "Toggle hide/show of the current item"
 msgstr ""
 
+msgid "Toggle if new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Toggle item edit mode on/off"
 msgstr ""
 
 msgid "Toggle item move mode on/off"
+msgstr ""
+
+msgid "Toggle multi-selection mode"
 msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
@@ -19221,6 +19562,9 @@ msgstr "垃圾桶:"
 
 msgid "Travel"
 msgstr "旅行"
+
+msgid "Tree size"
+msgstr ""
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
 msgstr "尝试禁用画中画,突然发现没有infobar.instance.\n"
@@ -19425,9 +19769,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr "扫描类型"
 
-msgid "Type:"
-msgstr "类型:"
-
 msgid "Type: "
 msgstr "类型: "
 
@@ -19518,10 +19859,6 @@ msgstr "单一同轴电缆多输出"
 msgid "Uninstall"
 msgstr "撤销安装"
 
-#, python-format
-msgid "Uninstall '%s' package and disable '%s'"
-msgstr "卸载“%s”包并禁用“%s”"
-
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
 
@@ -19582,12 +19919,8 @@ msgstr "取消专用3D频道标记"
 msgid "Unmount"
 msgstr "卸载"
 
-#, python-format
-msgid "Unpack to %s"
-msgstr "解压到 %s"
-
-msgid "Unpack to current folder"
-msgstr "解压到当前文件夹"
+msgid "Unpack File"
+msgstr ""
 
 msgid "Unscramble and record ECM"
 msgstr "解扰并录制ecm"
@@ -19798,6 +20131,9 @@ msgstr "在软件管理器中使用在线刷写"
 msgid "Use OpenTV EPG information when it is available."
 msgstr "当OpenTV EPG信息可用时使用."
 
+msgid "Use QuickSelect"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "使用电视机遥控器"
 
@@ -19903,6 +20239,9 @@ msgstr "使用向上和向下键选择您的区域设置/语言,然后按OK键�
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备选或传统广播模式."
 
+msgid "Use the current selection and exit"
+msgstr ""
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "使用光标键选择已安装的镜像,然后使用开始键."
 
@@ -19933,6 +20272,9 @@ msgstr "快进/快退时使用时间跳跃方式"
 msgid "Use time shift SeekBar while time shifting"
 msgstr "时移时是否使用时移搜索栏?"
 
+msgid "Use viewer for unknown files"
+msgstr ""
+
 msgid "Use workaround for wake up from deep-standby"
 msgstr "使用解决方案从深度待机状态唤醒？"
 
@@ -19956,6 +20298,9 @@ msgstr "用户 - 自定义分组"
 
 msgid "User Feed URL"
 msgstr "用户订阅地址"
+
+msgid "User comments"
+msgstr ""
 
 msgid "User defined"
 msgstr "用戶-自定义"
@@ -20097,6 +20442,9 @@ msgstr "文达"
 
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "委内瑞拉玻利瓦尔共和国"
+
+msgid "Version"
+msgstr ""
 
 #, python-format
 msgid "Version %s %s"
@@ -20258,6 +20606,9 @@ msgstr "越南语"
 msgid "View"
 msgstr "视图"
 
+msgid "View File"
+msgstr ""
+
 msgid "View Rass interactive..."
 msgstr "查看Rass互动..."
 
@@ -20306,9 +20657,6 @@ msgstr "查看可用的系统扩展列表"
 msgid "View mode"
 msgstr "查看模式"
 
-msgid "View or edit file (if size < 1MB)"
-msgstr "查看或编辑文件(如果大小<1MB)"
-
 #, python-format
 msgid "View or edit this %s script"
 msgstr "查看或编辑此 %s 脚本"
@@ -20318,6 +20666,12 @@ msgstr "查看照片..."
 
 msgid "View teletext..."
 msgstr "查看图文电视..."
+
+msgid "View the archive contents"
+msgstr ""
+
+msgid "View the package contents"
+msgstr ""
 
 msgid "View video CD..."
 msgstr "观看视频CD..."
@@ -20391,8 +20745,8 @@ msgstr ""
 msgid "WAN connection information"
 msgstr "广域网连接信息"
 
-msgid "WARNING!"
-msgstr "警告！"
+msgid "WARNING:"
+msgstr ""
 
 msgid "WEP"
 msgstr "WEP"
@@ -20614,13 +20968,25 @@ msgstr ""
 msgid "What day of week?"
 msgstr ""
 
-msgid "What do you want to play?\n"
-msgstr "您想对此做什么操作?\n"
-
 msgid "What do you want to scan?"
 msgstr "是否开始扫描？"
 
 msgid "What do you want to set as the default movie location?"
+msgstr ""
+
+msgid "What would you like to do with the archive file:"
+msgstr ""
+
+msgid "What would you like to do with the audio file:"
+msgstr ""
+
+msgid "What would you like to do with the background image file:"
+msgstr ""
+
+msgid "What would you like to do with the package file:"
+msgstr ""
+
+msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
@@ -20827,6 +21193,9 @@ msgstr "白色"
 msgid "Width"
 msgstr "宽度"
 
+msgid "Width / Height"
+msgstr ""
+
 msgid "Winter Sports"
 msgstr "冬季运动"
 
@@ -20924,6 +21293,9 @@ msgstr "写入失败！"
 msgid "Www"
 msgstr "Www"
 
+msgid "X-Resolution"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr "Xbox 360支持"
 
@@ -20932,6 +21304,9 @@ msgstr "XPicon, ZZZPicon"
 
 msgid "Xhosa"
 msgstr "科萨"
+
+msgid "Y-Resolution"
+msgstr ""
 
 msgid "YCbCr420"
 msgstr "YCbCr420"
@@ -21082,14 +21457,6 @@ msgstr "你可以跳过这个功能,关掉电视当你唤醒接收器待机,并�
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
 msgstr "您可以左右切换调谐器 %s"
-
-#, python-format
-msgid "You can't usefully run '%s' on '%s'."
-msgstr "您无法在\"%s\"上运行\"%s\"."
-
-#, python-format
-msgid "You can't usefully run '%s' on a directory."
-msgstr "您无法在目录上运行\"%s\"."
 
 msgid "You cannot delete this!"
 msgstr "不能删除这个！"
@@ -21770,11 +22137,11 @@ msgstr "复制"
 msgid "copy to bouquets"
 msgstr "复制到自定义组"
 
-msgid "create symlink ..."
-msgstr "创建符号链接..."
-
 msgid "current affairs (general)"
 msgstr "新闻/时事(一般)"
+
+msgid "date"
+msgstr ""
 
 msgid "day"
 msgstr "天"
@@ -21984,9 +22351,6 @@ msgstr "民瑶/传统音乐"
 msgid "football/soccer"
 msgstr "足球运动/足球"
 
-msgid "for DATA LOSS OR DAMAGE !!!"
-msgstr "数据丢失或损坏！！！"
-
 msgid "force AC3plus"
 msgstr "强制AC3"
 
@@ -22010,9 +22374,6 @@ msgstr "可用磁盘空间"
 
 msgid "from"
 msgstr "来自"
-
-msgid "from dir"
-msgstr "从目录"
 
 msgid "further education"
 msgstr "继续教育"
@@ -22067,9 +22428,6 @@ msgstr "手工艺品"
 
 msgid "handled"
 msgstr "处理"
-
-msgid "has been CHANGED! Do you want to save it?"
-msgstr "已经改变了!是否保存?"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -22132,9 +22490,6 @@ msgstr "初始化模块"
 msgid "insert mark here"
 msgstr "在此处插入标记"
 
-msgid "install/unpack ipk Files"
-msgstr "安装/解压缩ipk文件"
-
 msgid "installed"
 msgstr "已安装"
 
@@ -22192,9 +22547,6 @@ msgstr "环路输出"
 msgid "magazines/reports/documentary"
 msgstr "杂志/报告/纪录片"
 
-msgid "manage local Files"
-msgstr "管理本地文件"
-
 msgid "manual"
 msgstr "手动"
 
@@ -22225,12 +22577,6 @@ msgstr "向下移到最后一项"
 msgid "move down to next entry"
 msgstr "移动到下一项"
 
-msgid "move file"
-msgstr "移动文件"
-
-msgid "move folder"
-msgstr "移动文件夹"
-
 msgid "move up to first entry"
 msgstr "向上移到第一项"
 
@@ -22260,6 +22606,9 @@ msgstr "音乐/音乐剧"
 
 msgid "n/a"
 msgstr "无网络"
+
+msgid "name"
+msgstr ""
 
 msgid "nature/animals/environment"
 msgstr "自然/动物/环境"
@@ -22360,9 +22709,6 @@ msgstr "关于如何恢复镜像"
 msgid "only HD"
 msgstr "仅高清"
 
-msgid "original"
-msgstr "原始"
-
 msgid "original language"
 msgstr "原始语言"
 
@@ -22378,17 +22724,11 @@ msgstr "表演艺术"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play Files"
-msgstr "播放文件"
-
 msgid "play as picture in picture"
 msgstr "以画中画播放"
 
 msgid "play in mainwindow"
 msgstr "在主窗口播放"
-
-msgid "play/show Files"
-msgstr "播放/显示文件"
 
 msgid "please press OK when ready"
 msgstr "准备好后,按OK键"
@@ -22416,9 +22756,6 @@ msgstr "供应商:"
 
 msgid "purge deleted user bouquets"
 msgstr "清除已删除的用户频道组"
-
-msgid "python"
-msgstr "python"
 
 msgid "red"
 msgstr "红色"
@@ -22517,12 +22854,6 @@ msgstr "扫描状态"
 
 msgid "science fiction/fantasy/horror"
 msgstr "科幻小说/魔幻/惊险"
-
-msgid "script 'sterr':"
-msgstr "脚本'stderr'："
-
-msgid "script 'stout':"
-msgstr "脚本'stout'："
 
 msgid "sdr"
 msgstr "sdr"
@@ -22623,6 +22954,9 @@ msgstr "随机"
 msgid "simple"
 msgstr "简单"
 
+msgid "size"
+msgstr ""
+
 msgid "skip backward"
 msgstr "快退"
 
@@ -22719,6 +23053,9 @@ msgstr "模板文件"
 msgid "tennis/squash"
 msgstr "网球/壁球"
 
+msgid "text"
+msgstr ""
+
 msgid "this bouquet is protected by a parental control pin"
 msgstr "此频道受家长控制密码保护"
 
@@ -22727,9 +23064,6 @@ msgstr "这段录像"
 
 msgid "this service is protected by a parental control pin"
 msgstr "此频道受家长控制密码保护"
-
-msgid "to dir"
-msgstr "到目录"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切换 时间.章节.音频.字幕 信息"
@@ -22742,6 +23076,9 @@ msgstr "传统(快速)"
 
 msgid "traditional (fast), retune"
 msgstr "传统(快速)重调"
+
+msgid "tree delete"
+msgstr ""
 
 msgid "turbo"
 msgstr "turbo码"
@@ -22782,21 +23119,6 @@ msgstr "未知"
 msgid "unknown error"
 msgstr "未知错误"
 
-msgid "unpack Rar Files"
-msgstr "解压Rar文件"
-
-msgid "unpack archives"
-msgstr "解压文档"
-
-msgid "unpack gzip Files"
-msgstr "解压缩gzip文件"
-
-msgid "unpack tar/compressed tar Files"
-msgstr "解压tar文件"
-
-msgid "unpack zip Files"
-msgstr "解压缩zip文件"
-
 msgid "unpublished"
 msgstr "未发布"
 
@@ -22826,9 +23148,6 @@ msgstr "用户定义"
 
 msgid "using:"
 msgstr "使用："
-
-msgid "v"
-msgstr "v"
 
 msgid "variety show"
 msgstr "综艺节目"
@@ -22887,9 +23206,6 @@ msgstr "错误"
 msgid "with_errors"
 msgstr "有错误"
 
-msgid "without"
-msgstr "无需"
-
 msgid "working"
 msgstr "工作"
 
@@ -22906,6 +23222,816 @@ msgstr "您的 %s %s 现在可能无法使用.重新启动 %s %s 之前,请参�
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "optional parameter:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\n"
+#~ "可选参数:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid " ('%s') ends successfully."
+#~ msgstr " ('%s') 已完成."
+
+#, python-format
+#~ msgid " ('%s') ends with error messages."
+#~ msgstr " ('%s') 返回错误信息."
+
+#, python-format
+#~ msgid " ('%s') ends with error number [%d]."
+#~ msgstr " ('%s') 返回错误码 [%d]."
+
+#, python-format
+#~ msgid " - %d elements exist! Overwrite"
+#~ msgstr " - %d元素存在!改写"
+
+#~ msgid " - 1 element exist! Overwrite"
+#~ msgstr " -1个元素存在!覆盖"
+
+#~ msgid " - file exist! Overwrite"
+#~ msgstr " - 文件已存在! 覆盖"
+
+#~ msgid " - folder exist! Overwrite"
+#~ msgstr " - 文件夹已存在! 覆盖"
+
+#~ msgid " or save additional the picture to a file"
+#~ msgstr " 或将图片另存到文件中"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "%s (%s"
+#~ msgstr "%s (%s"
+
+#, python-format
+#~ msgid "%s - extraction errors."
+#~ msgstr "%s - 提取错误."
+
+#, python-format
+#~ msgid "%s is password protected."
+#~ msgstr "%s 受密码保护."
+
+#, python-format
+#~ msgid "%s successfully extracted."
+#~ msgstr "%s 已成功提取."
+
+#, python-format
+#~ msgid "'%s' not installed and no known package"
+#~ msgstr "“%s”未安装且未找到对应安装包"
+
+#, python-format
+#~ msgid "(%d jobs)"
+#~ msgstr "(%d 个任务)"
+
+#~ msgid "(1 job)"
+#~ msgstr "(1 个任务)"
+
+#~ msgid "(Selectmode)"
+#~ msgstr "(选择模式)"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Accessed:"
+#~ msgstr "最后访问时间:"
+
+#~ msgid "Activate left-hand file list as multi-select source"
+#~ msgstr "激活左侧文件列表作为多选源"
+
+#~ msgid "Activate left-hand file list as source"
+#~ msgstr "激活左侧文件列表作为源"
+
+#~ msgid "Activate right-hand file list as multi-select source"
+#~ msgstr "激活右侧文件列表作为多选源"
+
+#~ msgid "Activate right-hand file list as source"
+#~ msgstr "激活右侧文件列表作为源"
+
+#~ msgid "Add current folder to bookmarks"
+#~ msgstr "将当前文件夹添加到书签"
+
+#~ msgid "Add plugin to Extensions menu*"
+#~ msgstr "将插件添加到扩展菜单*"
+
+#~ msgid "Add plugin to main menu*"
+#~ msgstr "将插件添加到主菜单*"
+
+#~ msgid "Add selected folder to bookmarks"
+#~ msgstr "添加选中的文件夹到书签"
+
+#~ msgid "CPU priority for script execution"
+#~ msgstr "脚本执行的CPU优先级"
+
+#~ msgid "Calculate file checksums"
+#~ msgstr "计算文件校验和"
+
+#, python-format
+#~ msgid ""
+#~ "Can not run %s: %s.\n"
+#~ "%s may be in a plugin that is not installed."
+#~ msgstr ""
+#~ "无法运行 %s: %s.\n"
+#~ "%s 可能在未安装的插件中."
+
+#, python-format
+#~ msgid "Can't read link contents: %s"
+#~ msgstr "无法读取链接内容：%s"
+
+#~ msgid "Change buttons for list navigation"
+#~ msgstr "更改列表导航键"
+
+#~ msgid "Channel button always changes sides"
+#~ msgstr "Channel键总是用于切换窗口"
+
+#, python-format
+#~ msgid "Copy %d elements"
+#~ msgstr "复制 %d 个元素"
+
+#~ msgid "Copy 1 element"
+#~ msgstr "复制1个元素"
+
+#~ msgid "Copy file"
+#~ msgstr "复制文件"
+
+#~ msgid "Copy file/directory to target directory"
+#~ msgstr "将文件/目录复制到目标目录"
+
+#~ msgid "Copy files/directories to target directory"
+#~ msgstr "将文件/目录复制到目标目录"
+
+#~ msgid "Copy folder"
+#~ msgstr "复制文件夹"
+
+#~ msgid "Create directory/folder"
+#~ msgstr "创建目录/文件夹"
+
+#~ msgid "Create symlink to file"
+#~ msgstr "为文件创建符号链接"
+
+#~ msgid "Create user-named symbolic link"
+#~ msgstr "创建用户命名的符号链接"
+
+#~ msgid "Date reverse"
+#~ msgstr "日期反序"
+
+#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "执行脚本的默认CPU优先级(nice).这可以减少负载, 这样脚本就不会干扰系统的其他部分.(较高的值=较低的优先级)"
+
+#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "执行脚本的默认I/O优先级(ionice).这可以减少负载, 这样脚本就不会干扰系统的其他部分.(较高的值=较低的优先级)"
+
+#~ msgid "Default directory sorting"
+#~ msgstr "默认目录排序"
+
+#~ msgid "Default file sorting left"
+#~ msgstr "默认左侧文件排序"
+
+#~ msgid "Default file sorting right"
+#~ msgstr "默认右侧文件排序"
+
+#~ msgid "Default folder"
+#~ msgstr "默认文件夹"
+
+#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+#~ msgstr "如果左侧或右侧文件夹未保存,则为默认文件夹,以及按键5的目标文件夹."
+
+#~ msgid "Default sorting method for directories on both sides."
+#~ msgstr "两侧目录的默认排序方法."
+
+#~ msgid "Default sorting method for files on the left side."
+#~ msgstr "左侧文件的默认排序方法."
+
+#~ msgid "Default sorting method for files on the right side."
+#~ msgstr "右侧文件的默认排序方法."
+
+#, python-format
+#~ msgid "Delete %d elements"
+#~ msgstr "已删除%d项目"
+
+#~ msgid "Delete 1 element"
+#~ msgstr "删除1个元素"
+
+#~ msgid "Delete file or directory (and all its contents)"
+#~ msgstr "删除文件或目录(及其所有内容)"
+
+#~ msgid "Delete folder"
+#~ msgstr "删除文件夹"
+
+#~ msgid "Delete the selected files or directories"
+#~ msgstr "删除选定的文件或目录"
+
+#~ msgid "Do you want change rights?\n"
+#~ msgstr "是否要更改权限?\n"
+
+#~ msgid "Do you want to view or run the script?\n"
+#~ msgstr "是否要查看或运行脚本?\n"
+
+#~ msgid "Edit line "
+#~ msgstr "编辑行 "
+
+#~ msgid "Edit position is the line end"
+#~ msgstr "编辑位置在末尾"
+
+#~ msgid "Enter multi-file selection mode"
+#~ msgstr "输入多文件选择模式"
+
+#, python-format
+#~ msgid ""
+#~ "Error creating directory %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "创建目录%s 失败.\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error linking %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "链接 %s 到 %s时出错:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error renaming %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "重命名 %s 到 %s 时出错:\n"
+#~ "%s"
+
+#~ msgid "Error..."
+#~ msgstr "错误..."
+
+#~ msgid "Exit editor and write changes (if any)"
+#~ msgstr "退出编辑器并写入更改(如果有)"
+
+#~ msgid "Exit picture viewer"
+#~ msgstr "退出图片浏览器"
+
+#~ msgid "File Commander - Addon File-Viewer"
+#~ msgstr "文件管理器- 插件文件查看器"
+
+#~ msgid "File Commander - Addon Mediaplayer"
+#~ msgstr "文件管理器- 插件媒体播放器"
+
+#~ msgid "File Commander - Addon Movieplayer"
+#~ msgstr "文件管理器- 插件电影播放器"
+
+#~ msgid "File Commander - all Task's are completed!"
+#~ msgstr "文件管理器 - 所有任务都已完成!"
+
+#~ msgid "File Commander - generalised archive handler"
+#~ msgstr "文件管理器 - 通用文档处理器"
+
+#~ msgid "File Commander - gzip Addon"
+#~ msgstr "文件管理器 - gzip压缩插件"
+
+#~ msgid "File Commander - ipk Addon"
+#~ msgstr "文件管理器 - ipk包管理插件"
+
+#~ msgid "File Commander - tar Addon"
+#~ msgstr "文件管理器 - tar压缩插件"
+
+#~ msgid "File Commander - unrar Addon"
+#~ msgstr "文件管理器 - unrar压缩插件"
+
+#~ msgid "File Commander - unzip Addon"
+#~ msgstr "文件管理器 - unzip解压插件"
+
+#~ msgid "File Commander context menu"
+#~ msgstr "文件管理器上下文菜单"
+
+#~ msgid "File Commander menu"
+#~ msgstr "文件管理器菜单"
+
+#~ msgid "File checksums to calculate for button 9"
+#~ msgstr "为按钮9计算文件校验和"
+
+#~ msgid "File checksums/hashes"
+#~ msgstr "文件校验和/哈希"
+
+#, python-format
+#~ msgid "File not found: %s"
+#~ msgstr "文件未找到: %s"
+
+#~ msgid "File/Directory Status Information"
+#~ msgstr "文件/目录状态信息"
+
+#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+#~ msgstr "在'筛选器扩展名'和‘我的扩展名’设置筛选器扩展名使用不带'.'的扩展名 '.'."
+
+#~ msgid "Filter extension, (*) appears in title"
+#~ msgstr "过滤器扩展名, (*) 出现在标题中"
+
+#~ msgid "Filter visible file classes by extension."
+#~ msgstr "按扩展名筛选可见文件类."
+
+#~ msgid "Go to bookmarked folder"
+#~ msgstr "转到书签文件夹"
+
+#~ msgid "Go to end of file"
+#~ msgstr "转到文件末尾"
+
+#~ msgid "Go to parent directory"
+#~ msgstr "跳转到上级目录"
+
+#~ msgid "Go to start of file"
+#~ msgstr "转到文件开头"
+
+#~ msgid "Group:"
+#~ msgstr "组别:"
+
+#~ msgid "I/O priority for script execution"
+#~ msgstr "执行脚本的I/O优先级"
+
+#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+#~ msgstr "如果编辑一个文件,是否可以将光标开始位置设置在行尾或行首."
+
+#~ msgid "Inode:"
+#~ msgstr "节点:"
+
+#~ msgid "Insert"
+#~ msgstr "插入"
+
+#, python-format
+#~ msgid "Install '%s' and enable this operation"
+#~ msgstr "安装'%s'并启用此操作"
+
+#~ msgid "Installing Plugin ..."
+#~ msgstr "正在安装插件..."
+
+#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
+#~ msgstr "无法在<存储设备列表>上计算哈希值"
+
+#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
+#~ msgstr "无法更改<存储设备列表>的文件模式"
+
+#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
+#~ msgstr "无法获取<存储设备列表>的文件状态"
+
+#, python-format
+#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
+#~ msgstr "无法在<存储设备列表>上运行'%s'"
+
+#~ msgid "It's not possible to rename the file system root."
+#~ msgstr "无法重命名文件系统根目录."
+
+#~ msgid "Leave File Commander"
+#~ msgstr "退出文件管理器"
+
+#~ msgid "Leave multi-select mode"
+#~ msgstr "退出多重选择模式"
+
+#~ msgid "Link target:"
+#~ msgstr "链接目标:"
+
+#~ msgid "Links:"
+#~ msgstr "链接:"
+
+#~ msgid "Make File Commander accessible from the Extensions menu."
+#~ msgstr "使文件管理器可从扩展菜单访."
+
+#~ msgid "Make File Commander accessible from the main menu."
+#~ msgstr "使文件管理器可从主菜单访问."
+
+#~ msgid "Metadata changed:"
+#~ msgstr "元数据已更改:"
+
+#, python-format
+#~ msgid "Mode %s (%04o)"
+#~ msgstr "模式 %s (%04o)"
+
+#~ msgid "Modified:"
+#~ msgstr "最后修改:"
+
+#, python-format
+#~ msgid "Move %d elements"
+#~ msgstr "移动 %d 个元素"
+
+#~ msgid "Move 1 element"
+#~ msgstr "移动1元素"
+
+#~ msgid "Move down list"
+#~ msgstr "下拉列表"
+
+#~ msgid "Move file"
+#~ msgstr "移动文件"
+
+#~ msgid "Move file/directory to target directory"
+#~ msgstr "将文件/目录剪切到目标目录"
+
+#~ msgid "Move files/directories to target directory"
+#~ msgstr "将文件/目录移动到目标目录"
+
+#~ msgid "Move folder"
+#~ msgstr "移动文件夹"
+
+#~ msgid "Move up list"
+#~ msgstr "上拉列表"
+
+#~ msgid "My extension"
+#~ msgstr "我的扩展"
+
+#~ msgid "Name reverse"
+#~ msgstr "名称反向"
+
+#~ msgid "New folder"
+#~ msgstr "新建文件夹"
+
+#~ msgid "No files found."
+#~ msgstr "没有找到文件."
+
+#~ msgid "No hash calculations configured"
+#~ msgstr "未配置哈希计算"
+
+#, python-format
+#~ msgid "No viewer installed for this file type: %s"
+#~ msgstr "没有为此文件类型安装查看器: %s"
+
+#, python-format
+#~ msgid "None of the hash programs for the hashes %s are available"
+#~ msgstr "没有找到哈希值为%s的应用"
+
+#~ msgid "Not allowed with folders"
+#~ msgstr "不允许与文件夹一起使用"
+
+#~ msgid "Number of lines in script messages"
+#~ msgstr "脚本消息中的行数"
+
+#~ msgid "On device:"
+#~ msgstr "在设备上:"
+
+#~ msgid "Open settings/actions menu"
+#~ msgstr "打开设置/操作菜单"
+
+#~ msgid "Owner:"
+#~ msgstr "所有者:"
+
+#~ msgid "Page down list"
+#~ msgstr "向下翻页列表"
+
+#~ msgid "Page up list"
+#~ msgstr "向上翻页列表"
+
+#~ msgid "Parent directory"
+#~ msgstr "父目录"
+
+#~ msgid "Permissions:"
+#~ msgstr "权限:"
+
+#~ msgid "Play folder"
+#~ msgstr "播放文件夹"
+
+#~ msgid "Play title"
+#~ msgstr "播放标题"
+
+#~ msgid "Play/view/edit/install/extract/run file or enter directory"
+#~ msgstr "播放/查看/编辑/安装/解压缩/运行文件或输入目录"
+
+#~ msgid "Please enter name of the new symlink"
+#~ msgstr "请输入新符号链接的名称"
+
+#~ msgid "Please enter password"
+#~ msgstr "请输入密码"
+
+#~ msgid "Please enter the new directory name"
+#~ msgstr "请输入新的目录名称"
+
+#~ msgid "Please enter the new file name"
+#~ msgstr "请输入新文件名"
+
+#~ msgid "Please wait, Loading image."
+#~ msgstr "请稍候,正在加载图片."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' is installed.\n"
+#~ "The package containing this program isn't known, so it can't be uninstalled."
+#~ msgstr ""
+#~ "程序'%s'已安装.\n"
+#~ "包含此程序的包未知,因此无法卸载."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run the '%s' action.\n"
+#~ "Uninstall the '%s' package to uninstall the program?"
+#~ msgstr ""
+#~ "需要安装程序'%s'才能运行'%s'操作.\n"
+#~ "是否卸载'%s'包来卸载程序?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run this action.\n"
+#~ "Install the '%s' package to install the program?"
+#~ msgstr ""
+#~ "需要安装程序'%s'才能运行此操作.\n"
+#~ "是否安装'%s'软件包以安装程序?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' not installed.\n"
+#~ "The package containing this program isn't known."
+#~ msgstr ""
+#~ "未安装程序“%s”.\n"
+#~ "包含此程序的软件包未知."
+
+#~ msgid "Records"
+#~ msgstr "录制"
+
+#~ msgid "Remove current folder from bookmarks"
+#~ msgstr "从书签中删除当前文件夹"
+
+#~ msgid "Remove selected folder from bookmarks"
+#~ msgstr "从书签中删除选定的文件夹"
+
+#~ msgid "Rename file/directory"
+#~ msgstr "重命名文件/目录"
+
+#~ msgid "Reverse left file sorting"
+#~ msgstr "左文件反向排序"
+
+#~ msgid "Reverse right file sorting"
+#~ msgstr "右文件反向排序"
+
+#~ msgid "Save left folder on exit"
+#~ msgstr "退出时保存左侧文件夹"
+
+#~ msgid "Save right folder on exit"
+#~ msgstr "退出时保存右侧文件夹"
+
+#~ msgid "Save the left folder list location on exit."
+#~ msgstr "退出时保存左侧文件夹列表位置."
+
+#~ msgid "Save the right folder list location on exit."
+#~ msgstr "退出时保存正确的文件夹列表位置."
+
+#, python-format
+#~ msgid "Script '%s' must have read permission to be able to run it"
+#~ msgstr "脚本'%s'必须具有读取权限才能运行它"
+
+#~ msgid "Select (source list) or enter directory (target list)"
+#~ msgstr "选择(源列表)或输入目录(目标列表)"
+
+#~ msgid "Select a path"
+#~ msgstr "选择路径"
+
+#~ msgid "Set archive mode (644)"
+#~ msgstr "设置存档模式 (644)"
+
+#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+#~ msgstr "为'stout'和'sterr'设置脚本信息或脚本错误消息中的行数."
+
+#, python-format
+#~ msgid ""
+#~ "Show '%s' as picture%s?\n"
+#~ "The current service must interrupted!"
+#~ msgstr ""
+#~ "是否将'%s'显示为图片%s?\n"
+#~ "当前频道必须中断!"
+
+#~ msgid "Show Script completed message"
+#~ msgstr "显示脚本完成消息"
+
+#~ msgid "Show Task's completed message"
+#~ msgstr "显示任务的完成消息"
+
+#~ msgid "Show as Picture (press any key to close)"
+#~ msgstr "显示为图片(按任意键关闭)"
+
+#, python-format
+#~ msgid "Show as Picture and save as file ('%s')"
+#~ msgstr "显示为图片并保存为文件('%s')"
+
+#~ msgid "Show contents of ipk file"
+#~ msgstr "显示ipk文件的内容"
+
+#~ msgid "Show contents of rar file"
+#~ msgstr "显示rar文件的内容"
+
+#~ msgid "Show contents of tar or compressed tar file"
+#~ msgstr "显示tar或压缩的tar文件的内容"
+
+#~ msgid "Show contents of zip file"
+#~ msgstr "显示zip文件的内容"
+
+#~ msgid "Show directories on first or last in list.(must restart File Commander)"
+#~ msgstr "在列表中的第一个或最后一个显示目录(必须重新启动文件管理器)."
+
+#~ msgid "Show image information"
+#~ msgstr "显示镜像信息"
+
+#~ msgid "Show message if File Commander is not running and all Task's are completed."
+#~ msgstr "如果文件管理器未运行且所有任务都已完成,则显示消息."
+
+#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+#~ msgstr "如果后台脚本成功结束,则显示消息.有'stout',则显示为附加信息."
+
+#~ msgid "Show task list"
+#~ msgstr "显示任务列表"
+
+#~ msgid "Show unknown extension as text"
+#~ msgstr "将未知扩展名显示为文本"
+
+#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
+#~ msgstr "使用'加载项文件查看器'显示未知的文件扩展名."
+
+#~ msgid "Size reverse"
+#~ msgstr "大小次序颠倒"
+
+#~ msgid "Skip selection"
+#~ msgstr "调过此选项"
+
+#~ msgid "Sorting left files by name, date or size"
+#~ msgstr "按名称、日期或大小对左侧文件进行排序"
+
+#~ msgid "Sorting right files by name, date or size"
+#~ msgstr "按名称、日期或大小对正确的文件进行排序"
+
+#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
+#~ msgstr "用频道+/-右/左交换键或频道键始终在一侧更改."
+
+#~ msgid "Symlink to "
+#~ msgstr "符号链接到 "
+
+#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
+#~ msgstr "文件管理器的镜像查看器组件需要图片播放器扩展名.安装图片播放器以启用此操作."
+
+#~ msgid "The authors are NOT RESPONSIBLE"
+#~ msgstr "作者概不负责"
+
+#~ msgid ""
+#~ "The function has interrupted.\n"
+#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
+#~ msgstr ""
+#~ "功能已中断.\n"
+#~ "下次显示mvi文件中的图片之前不要按任何键!"
+
+#~ msgid "The hash of a directory can't be calculated."
+#~ msgstr "无法计算目录的哈希值."
+
+#~ msgid "This line is not editable!"
+#~ msgstr "此行不可编辑！"
+
+#~ msgid "Time between slides in image viewer slideshow."
+#~ msgstr "图像查看器幻灯片放映中的幻灯片间隔时间."
+
+#~ msgid "Time for Slideshow"
+#~ msgstr "幻灯片放映时间"
+
+#~ msgid "Type:"
+#~ msgstr "类型:"
+
+#, python-format
+#~ msgid "Uninstall '%s' package and disable '%s'"
+#~ msgstr "卸载“%s”包并禁用“%s”"
+
+#, python-format
+#~ msgid "Unpack to %s"
+#~ msgstr "解压到 %s"
+
+#~ msgid "Unpack to current folder"
+#~ msgstr "解压到当前文件夹"
+
+#~ msgid "View or edit file (if size < 1MB)"
+#~ msgstr "查看或编辑文件(如果大小<1MB)"
+
+#~ msgid "WARNING!"
+#~ msgstr "警告！"
+
+#~ msgid "What do you want to play?\n"
+#~ msgstr "您想对此做什么操作?\n"
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on '%s'."
+#~ msgstr "您无法在\"%s\"上运行\"%s\"."
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on a directory."
+#~ msgstr "您无法在目录上运行\"%s\"."
+
+#~ msgid "create symlink ..."
+#~ msgstr "创建符号链接..."
+
+#~ msgid "for DATA LOSS OR DAMAGE !!!"
+#~ msgstr "数据丢失或损坏！！！"
+
+#~ msgid "from dir"
+#~ msgstr "从目录"
+
+#~ msgid "has been CHANGED! Do you want to save it?"
+#~ msgstr "已经改变了!是否保存?"
+
+#~ msgid "install/unpack ipk Files"
+#~ msgstr "安装/解压缩ipk文件"
+
+#~ msgid "manage local Files"
+#~ msgstr "管理本地文件"
+
+#~ msgid "move file"
+#~ msgstr "移动文件"
+
+#~ msgid "move folder"
+#~ msgstr "移动文件夹"
+
+#~ msgid "original"
+#~ msgstr "原始"
+
+#~ msgid "play Files"
+#~ msgstr "播放文件"
+
+#~ msgid "play/show Files"
+#~ msgstr "播放/显示文件"
+
+#~ msgid "python"
+#~ msgstr "python"
+
+#~ msgid "script 'sterr':"
+#~ msgstr "脚本'stderr'："
+
+#~ msgid "script 'stout':"
+#~ msgstr "脚本'stout'："
+
+#~ msgid "to dir"
+#~ msgstr "到目录"
+
+#~ msgid "unpack Rar Files"
+#~ msgstr "解压Rar文件"
+
+#~ msgid "unpack archives"
+#~ msgstr "解压文档"
+
+#~ msgid "unpack gzip Files"
+#~ msgstr "解压缩gzip文件"
+
+#~ msgid "unpack tar/compressed tar Files"
+#~ msgstr "解压tar文件"
+
+#~ msgid "unpack zip Files"
+#~ msgstr "解压缩zip文件"
+
+#~ msgid "v"
+#~ msgstr "v"
+
+#~ msgid "without"
+#~ msgstr "无需"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your\n"
+#~ "%s %s to standby. Do that now?"
+#~ msgstr ""
+#~ "睡眠定时器要设置 %s %s 到待机状态 \n"
+#~ "是否现在进入待机？"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "睡眠计时器要设置 %s %s 关机\n"
+#~ "是否现在关机？"
+
+#~ msgid "Enable screenshot of LCD in /tmp"
+#~ msgstr "启用 LCD 截图到 /tmp"
+
+#~ msgid "Job View"
+#~ msgstr "工作视图"
+
+#~ msgid "Jump to first item in list or the start of text"
+#~ msgstr "跳到列表中的第一项或文本的开头"
+
+#~ msgid "Jump to last item in list or the end of text"
+#~ msgstr "跳到列表中的最后一项或文本末尾"
+
+#~ msgid "Please enter a new filename:"
+#~ msgstr "请输入一个新的文件名"
+
+#~ msgid "Remove directory"
+#~ msgstr "删除目录"
+
+#~ msgid "Screenshot of LCD in /tmp"
+#~ msgstr "LCD截屏到/tmp"
+
+#~ msgid "Select the next item in list or move cursor right"
+#~ msgstr "选择列表中的下一项或向右移动光标"
+
+#~ msgid "Select the previous item in list or move cursor left"
+#~ msgstr "选择列表中的上一项或向左移动光标"
+
+#~ msgid "Switch to bookmarks"
+#~ msgstr "切换到书签"
+
+#~ msgid "Task list"
+#~ msgstr "任务列表"
+
 #~ msgid "Please select the IceTV service that you wish to use."
 #~ msgstr "请选择您要使用的IceTV服务."
 
@@ -22917,12 +24043,6 @@ msgstr "®"
 
 #~ msgid "Receiver Image Actions"
 #~ msgstr "接收器图像操作"
-
-#~ msgid "Show next image"
-#~ msgstr "显示下一个镜像"
-
-#~ msgid "Show previous image"
-#~ msgstr "显示上一个镜像"
 
 #~ msgid "Use these settings?"
 #~ msgstr "是否使用这些设置?"

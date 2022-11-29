@@ -4015,8 +4015,8 @@ class InfoBarSubserviceSelection:
 		self.session.nav.event.remove(self.checkSubservicesAvail)
 
 	def checkSubservicesAvail(self):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if not serviceRef or not hasActiveSubservicesForCurrentChannel(serviceRef.toString()):
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if not refstr or not hasActiveSubservicesForCurrentChannel(refstr):
 			self["SubserviceQuickzapAction"].setEnabled(False)
 			self.bouquets = self.bsel = self.selectedSubservice = None
 
@@ -4032,11 +4032,11 @@ class InfoBarSubserviceSelection:
 		self.session.nav.playService(ref, checkParentalControl=False, adjust=False)
 
 	def changeSubservice(self, direction):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if serviceRef:
-			subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-			if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
-				selection = [x[1] for x in subservices].index(serviceRef.toString())
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if refstr:
+			subservices = getActiveSubservicesForCurrentChannel(refstr)
+			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
+				selection = [x[1] for x in subservices].index(refstr)
 				selection += direction % len(subservices)
 				try:
 					newservice = eServiceReference(subservices[selection][0])
@@ -4046,11 +4046,11 @@ class InfoBarSubserviceSelection:
 					self.playSubservice(newservice)
 
 	def subserviceSelection(self):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if serviceRef:
-			subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-			if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
-				selection = [x[1] for x in subservices].index(serviceRef.toString())
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if refstr:
+			subservices = getActiveSubservicesForCurrentChannel(refstr)
+			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
+				selection = [x[1] for x in subservices].index(refstr)
 				self.bouquets = self.servicelist and self.servicelist.getBouquetList()
 				#if self.bouquets and len(self.bouquets):
 				#	keys = ["red", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -4114,10 +4114,10 @@ class InfoBarSubserviceSelection:
 		elif config.plisettings.Subservice.value == "1":
 			self.openPluginBrowser()
 		else:
-			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-			if serviceRef:
-				subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-				if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
+			refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+			if refstr:
+				subservices = getActiveSubservicesForCurrentChannel(refstr)
+				if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
 					self.subserviceSelection()
 				else:
 					if config.plisettings.Subservice.value == "2":

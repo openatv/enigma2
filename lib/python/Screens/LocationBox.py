@@ -189,7 +189,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.showHideRename()
 
 	def updateState(self):
-		directory = self.getCurrentDirectory()
+		directory = self.getSelectedDirectory()
 		if directory:  # Write combination of directory & filename when directory is valid.
 			self["target"].setText("".join((directory, self.filename)))
 			try:
@@ -221,10 +221,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self["panelActions"].setEnabled(False)
 				self.switchToFileList()
 
-	def getCurrentDirectory(self):
+	def getSelectedDirectory(self):
 		if self.currList == "filelist":
-			currentDirectory = self["filelist"].getCurrentDirectory()
-			return pathjoin(currentDirectory, self["filelist"].getFilename() or "") if currentDirectory else None
+			return self["filelist"].getPath() if self["filelist"].getPath() else self["filelist"].getCurrentDirectory()
 		else:
 			return self["bookmarklist"].getCurrent()
 
@@ -249,7 +248,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.keySelect()
 
 	def keySelect(self):
-		currentFolder = self.getCurrentDirectory()
+		currentFolder = self.getSelectedDirectory()
 		if currentFolder is not None:  # Do nothing unless current directory is valid.
 			if self.minFree is not None:  # Check if we need to have a minimum of free space available.
 				try:
@@ -264,10 +263,10 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def keySelectCallback(self, answer):
 		if answer:
-			answer = pathjoin(self.getCurrentDirectory(), self.filename)
+			answer = self.getSelectedDirectory()
 			if self.bookmarks:
 				if self.autoAdd and answer not in self.bookmarksList:
-					self.bookmarksList.insert(0, self.getCurrentDirectory())
+					self.bookmarksList.insert(0, self.getSelectedDirectory())
 				if self.bookmarksList != self.bookmarks.value:
 					self.bookmarks.value = self.bookmarksList
 					self.bookmarks.save()
@@ -316,7 +315,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.updateState()
 
 	def addRemoveBookmark(self):
-		current = self.getCurrentDirectory()
+		current = self.getSelectedDirectory()
 		if self.currList == "filelist":  # Add bookmark.
 			if current not in self.bookmarksList:
 				self.bookmarksList.insert(0, current)
