@@ -1482,8 +1482,8 @@ class RecordTimerEdit(Setup):
 		if current == self.timerType and self.timerType.value == "zap":
 			if self.initEndTime:
 				self.initEndTime = False
-				self.timer.hasEndTime = False
-				self.timerHasEndTime.value = False
+				self.timer.hasEndTime = config.recording.zap_has_endtime.value
+				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
 				Setup.createSetup(self)
 
 	def selectionChanged(self):
@@ -1681,8 +1681,9 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 	def keySave(self, result=None):
 		if self.timer.justplay:
 			self.timer.begin += config.recording.zap_margin_before.value * 60
-			self.timer.end = self.timer.begin + 1
-			self.timer.hasEndTime = False
+			self.timer.hasEndTime = config.recording.zap_has_endtime.value
+			if not self.timer.hasEndTime:
+				self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
 		self.session.nav.RecordTimer.saveTimers()
 
