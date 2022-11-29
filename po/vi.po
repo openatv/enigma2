@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"POT-Creation-Date: 2022-11-27 17:29+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -79,16 +79,6 @@ msgstr ""
 "\n"
 "[Người dùng - gói kênh (RADIO)]\n"
 
-#, python-format
-msgid ""
-"\n"
-"optional parameter:\n"
-"%s"
-msgstr ""
-"\n"
-"tham số tùy chọn:\n"
-"%s"
-
 msgid " "
 msgstr " "
 
@@ -109,18 +99,6 @@ msgstr ""
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Phím đỏ: Hiển thị / Ẩn tên kênh"
-
-#, python-format
-msgid " ('%s') ends successfully."
-msgstr " ('% s') kết thúc thành công."
-
-#, python-format
-msgid " ('%s') ends with error messages."
-msgstr " ('% s') kết thúc bằng thông báo lỗi."
-
-#, python-format
-msgid " ('%s') ends with error number [%d]."
-msgstr " ('% s') kết thúc bằng số lỗi [% d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -154,19 +132,6 @@ msgstr " (chế độ động cơ tự động cao hơn)"
 msgid " (lower than any auto)"
 msgstr " (chế độ tự động thấp hơn)"
 
-#, python-format
-msgid " - %d elements exist! Overwrite"
-msgstr " -% d yếu tố tồn tại!Ghi đè"
-
-msgid " - 1 element exist! Overwrite"
-msgstr " - 1 yếu tố tồn tại!Ghi đè"
-
-msgid " - file exist! Overwrite"
-msgstr " - tập tin tồn tại!Ghi đè"
-
-msgid " - folder exist! Overwrite"
-msgstr " - thư mục tồn tại! Ghi đè"
-
 msgid " <No Channel>"
 msgstr " <Không có kênh>"
 
@@ -190,9 +155,6 @@ msgstr ""
 
 msgid " of "
 msgstr " của "
-
-msgid " or save additional the picture to a file"
-msgstr " Lưu tập tin timeshift trong thư mục phim"
 
 msgid " updated"
 msgstr " cập nhật"
@@ -1165,10 +1127,6 @@ msgstr "%m/%d "
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
-#, python-format
-msgid "%s"
-msgstr "%s"
-
 #, fuzzy, python-format
 msgid "%s  (%s)"
 msgstr "%s (%s)"
@@ -1209,10 +1167,6 @@ msgstr "%s (%s Thẻ)"
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
-#, fuzzy, python-format
-msgid "%s (%s"
-msgstr "%s (%s)"
-
 #, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
@@ -1228,10 +1182,6 @@ msgstr "vị trí % s -% s-% s "
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - Cài đặt"
-
-#, python-format
-msgid "%s - extraction errors."
-msgstr "%s - lỗi trích xuất."
 
 #, python-format
 msgid "%s GHz"
@@ -1279,20 +1229,12 @@ msgid "%s is no longer used. Should it be deleted?"
 msgstr "% s không còn được sử dụng. Có nên xóa nó không?"
 
 #, python-format
-msgid "%s is password protected."
-msgstr "%s là mật khẩu được bảo vệ."
-
-#, python-format
 msgid "%s long"
 msgstr ""
 
 #, python-format
 msgid "%s not available."
 msgstr "%s không có sẵn."
-
-#, python-format
-msgid "%s successfully extracted."
-msgstr "%s được trích xuất thành công."
 
 #, python-format
 msgid "%s%d min"
@@ -1350,10 +1292,6 @@ msgstr "%s hiển thị 1080i với 1080p"
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'% s' chứa%d tập tin và%d thư mục con.\n"
 
-#, python-format
-msgid "'%s' not installed and no known package"
-msgstr "'%s' chưa được cài đặt và không có gói nào được biết đến"
-
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
 
@@ -1370,13 +1308,6 @@ msgid "( All readers)"
 msgstr "(Tất cả độc giả)"
 
 #, python-format
-msgid "(%d jobs)"
-msgstr "(%d công việc)"
-
-msgid "(1 job)"
-msgstr "(1 công việc)"
-
-#, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr ""
 
@@ -1387,9 +1318,6 @@ msgstr "(Chú ý: Sẽ có khởi động lại sau khi%d gặp sự cố.)"
 #, fuzzy
 msgid "(FTA Service)"
 msgstr "Tất cả các nhà cung cấp dịch vụ"
-
-msgid "(Selectmode)"
-msgstr "(Chọn chế độ)"
 
 msgid "(Show only reader:"
 msgstr "(Chỉ hiển thị người đọc:"
@@ -1869,9 +1797,6 @@ msgstr "8bit"
 msgid "9"
 msgstr "9"
 
-msgid ": "
-msgstr ": "
-
 msgid "< Alternate Skin >"
 msgstr "<Da thay thế>"
 
@@ -1893,14 +1818,14 @@ msgstr "<Vị trí phim mặc định>"
 msgid "<Last timer location>"
 msgstr "<Vị trí hẹn giờ cuối>"
 
-msgid "?"
-msgstr "?"
-
 msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
+
+msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
+msgstr ""
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -2126,8 +2051,8 @@ msgstr "Điểm truy cập:"
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
-msgid "Accessed:"
-msgstr "Truy cập:"
+msgid "Accessed"
+msgstr ""
 
 #, fuzzy
 msgid "Action"
@@ -2157,23 +2082,11 @@ msgstr "Kích hoạt hình ảnh trong hình ảnh"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
-msgid "Activate left-hand file list as multi-select source"
-msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn đa lựa chọn"
-
-msgid "Activate left-hand file list as source"
-msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn"
-
 msgid "Activate network adapter configuration"
 msgstr "kích hoạt cấu hình bộ điều hợp mạng"
 
 msgid "Activate network settings"
 msgstr "Kích hoạt cài đặt mạng"
-
-msgid "Activate right-hand file list as multi-select source"
-msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn đa lựa chọn"
-
-msgid "Activate right-hand file list as source"
-msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn"
 
 msgid "Activate the configured network settings."
 msgstr "Kích hoạt cài đặt mạng được cấu hình."
@@ -2196,6 +2109,10 @@ msgstr "Cài đặt bộ điều hợp"
 msgid "Add"
 msgstr "Thêm vào"
 
+#, python-format
+msgid "Add '%s' To Bookmarks"
+msgstr ""
+
 msgid "Add AutoTimer"
 msgstr "Thêm vThêm tự động trả lờiào"
 
@@ -2204,6 +2121,18 @@ msgstr "Thêm dấu trang"
 
 msgid "Add Current"
 msgstr "thêm hiện tại"
+
+msgid "Add File Commander to Extensions Menu"
+msgstr ""
+
+msgid "Add File Commander to Main Menu"
+msgstr ""
+
+msgid "Add File Commander to the Extensions Menu list of options."
+msgstr ""
+
+msgid "Add File Commander to the Main Menu list of options."
+msgstr ""
 
 msgid "Add New Quad Channel Entry"
 msgstr "Thêm mục nhập kênh Quad mới"
@@ -2256,9 +2185,6 @@ msgstr ""
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
-msgid "Add current folder to bookmarks"
-msgstr "Thêm thư mục hiện tại vào bookmark"
-
 msgid "Add directory to play list"
 msgstr "Thêm thư mục vào danh sách phát"
 
@@ -2277,12 +2203,6 @@ msgstr ""
 msgid "Add new tag"
 msgstr ""
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Thêm plugin vào menu Tiện ích mở rộng *"
-
-msgid "Add plugin to main menu*"
-msgstr "Thêm plugin vào menu chính *"
-
 msgid "Add provider"
 msgstr "Thêm nhà cung cấp"
 
@@ -2297,9 +2217,6 @@ msgstr "Thêm ghi âm (vô thời hạn)"
 
 msgid "Add recording (stop after current event)"
 msgstr "Thêm ghi âm (dừng sau sự kiện hiện tại)"
-
-msgid "Add selected folder to bookmarks"
-msgstr "Thêm thư mục đã chọn vào bookmark"
 
 msgid "Add service"
 msgstr "Thêm dịch vụ"
@@ -2447,6 +2364,9 @@ msgstr "Tất cả các nhà cung cấp dịch vụ"
 
 msgid "All ages"
 msgstr "Mọi lứa tuổi"
+
+msgid "All files"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Tất cả các nghị quyết"
@@ -2648,6 +2568,9 @@ msgstr "Bất kỳ hoạt động"
 
 msgid "Any recordings"
 msgstr "bất kỳ bản ghi âm"
+
+msgid "Aperture F number"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr ""
@@ -3568,6 +3491,9 @@ msgstr "CAID: SrvID"
 msgid "CCCam Information"
 msgstr ""
 
+msgid "CCD-Width"
+msgstr ""
+
 msgid "CCcam"
 msgstr ""
 
@@ -3706,8 +3632,8 @@ msgstr ""
 msgid "CPU brand"
 msgstr ""
 
-msgid "CPU priority for script execution"
-msgstr "CPU ưu tiên thực thi tập lệnh"
+msgid "CPU priority for scripts"
+msgstr ""
 
 msgid "CPU rating"
 msgstr ""
@@ -3739,16 +3665,16 @@ msgstr ""
 msgid "Calculate"
 msgstr "Tính toán"
 
-msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgid "Calculate file hashes/checksums"
 msgstr ""
-
-msgid "Calculate file checksums"
-msgstr "Tính toán tổng kiểm tra"
 
 msgid "Calculating benchmark..."
 msgstr ""
 
 msgid "Calculating rating..."
+msgstr ""
+
+msgid "Calculating..."
 msgstr ""
 
 msgid "Calculation complete"
@@ -3759,6 +3685,9 @@ msgstr "Hiệu chỉnh"
 
 msgid "Cambodia"
 msgstr "Campuchia"
+
+msgid "Camera"
+msgstr ""
 
 msgid "Cameroon"
 msgstr "Ca-mơ-run"
@@ -3815,14 +3744,6 @@ msgstr ""
 msgid "Can not retrieve channel map"
 msgstr ""
 
-#, python-format
-msgid ""
-"Can not run %s: %s.\n"
-"%s may be in a plugin that is not installed."
-msgstr ""
-"Không thể chạy%s:%s.\n"
-"%s có thể nằm trong một plugin chưa được cài đặt."
-
 #, fuzzy
 msgid "Can not update timer"
 msgstr "Không thể xóa tập tin"
@@ -3857,10 +3778,6 @@ msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
 msgstr "Không thể phát tệp timeshift trước đó! Bạn có thể thử lại."
-
-#, python-format
-msgid "Can't read link contents: %s"
-msgstr "Không thể đọc nội dung liên kết:%s"
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Không thể ngắt kết nối phân vùng, đảm bảo rằng nó không được sử dụng cho các đường dẫn trao đổi hoặc ghi / timeshift"
@@ -3904,6 +3821,9 @@ msgstr ""
 
 msgid "Cancel execution?"
 msgstr "Hủy thực thi?"
+
+msgid "Cancel extraction"
+msgstr ""
 
 msgid "Cancel save time shift as movie"
 msgstr "Hủy lưu timeshift như phim"
@@ -4047,9 +3967,6 @@ msgstr "Thay đổi bộ đếm thời gian"
 msgid "Change bouquets in quickzap"
 msgstr "Thay đổi bó hoa trong quickzap"
 
-msgid "Change buttons for list navigation"
-msgstr "Thay đổi nút để điều hướng danh sách"
-
 msgid "Change execute permissions (755/644)"
 msgstr "Thay đổi quyền thực thi (755/644)"
 
@@ -4076,6 +3993,9 @@ msgstr "Thay đổi kích thước bước"
 
 msgid "Change to bouquet"
 msgstr "Đổi thành gói kênh"
+
+msgid "Changed"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4111,9 +4031,6 @@ msgstr "Danh sách lít kênh"
 
 msgid "Channel Selection Settings"
 msgstr "Cài đặt chọn kênh"
-
-msgid "Channel button always changes sides"
-msgstr "Nút kênh luôn thay đổi bên"
 
 msgid "Channel buttons"
 msgstr "Nút kênh"
@@ -4324,6 +4241,9 @@ msgstr "Chọn vị trí lưu trữ dữ liệu EPG khi tắt% s% s. Vị trí p
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Chọn tên của tệp chứa dữ liệu EPG khi tắt% s% s. Điều này có thể thuận tiện để phân biệt giữa một số hộp."
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -4499,6 +4419,9 @@ msgstr ""
 msgid "Close the window"
 msgstr ""
 
+msgid "Close this screen"
+msgstr ""
+
 msgid "Close title selection"
 msgstr "Đóng lựa chọn tiêu đề"
 
@@ -4547,6 +4470,10 @@ msgstr ""
 #, fuzzy
 msgid "Comedy"
 msgstr "phim hài"
+
+#, python-format
+msgid "Command '%s' is unknown"
+msgstr ""
 
 msgid "Command execution..."
 msgstr "Thực hiện lệnh .."
@@ -4605,6 +4532,9 @@ msgstr "Phức tạp (cho phép trộn các rãnh âm thanh và các khía cạn
 
 msgid "Composition of the recording filenames"
 msgstr "Thành phần của tên tệp ghi âm"
+
+msgid "Compressed bits/pixel"
+msgstr ""
 
 #, fuzzy
 msgid "Config"
@@ -5095,6 +5025,9 @@ msgstr "Tương phản"
 msgid "Control LED can be turned on or off here."
 msgstr "Đèn LED nguồn có thể được bật hoặc tắt ở đây."
 
+msgid "Control files:"
+msgstr ""
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Kiểm soát vị trí cách bộ hẹn giờ hoàn thành được hiển thị trong Danh sách hẹn giờ."
 
@@ -5126,24 +5059,31 @@ msgstr "nấu ăn"
 msgid "Copy"
 msgstr "Sao chép"
 
+msgid "Copy all related files"
+msgstr ""
+
+msgid "Copy directory/file to target directory"
+msgstr ""
+
+msgid "Copy job completed."
+msgstr ""
+
+msgid "Copy job failed!"
+msgstr ""
+
+msgid "Copy job queued."
+msgstr ""
+
+msgid "Copy only highlighted file"
+msgstr ""
+
 #, python-format
-msgid "Copy %d elements"
-msgstr "Sao chép các phần tử%d"
+msgid "Copy the directory/file '%s'?"
+msgstr ""
 
-msgid "Copy 1 element"
-msgstr "Sao chép 1 phần tử"
-
-msgid "Copy file"
-msgstr "Sao chép tập tin"
-
-msgid "Copy file/directory to target directory"
-msgstr "Sao chép tập tin / thư mục vào thư mục đích"
-
-msgid "Copy files/directories to target directory"
-msgstr "Sao chép tập tin / thư mục vào thư mục đích"
-
-msgid "Copy folder"
-msgstr "Sao chép các tệp tin"
+#, python-format
+msgid "Copy these %d directories/files?"
+msgstr ""
 
 msgid "Copying files"
 msgstr "Sao chép các tập tin"
@@ -5151,6 +5091,9 @@ msgstr "Sao chép các tập tin"
 #, fuzzy
 msgid "Cornish"
 msgstr "Người Đan Mạch"
+
+msgid "Correct invalid EPG data"
+msgstr ""
 
 msgid "Corsican"
 msgstr ""
@@ -5223,23 +5166,20 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Tạo ISO"
 
+msgid "Create a directory"
+msgstr ""
+
 msgid "Create a randomly generated password"
+msgstr ""
+
+msgid "Create a symbolic link"
 msgstr ""
 
 msgid "Create directory"
 msgstr "Tạo thư mục"
 
-msgid "Create directory/folder"
-msgstr "Tạo thư mục / thư mục"
-
 msgid "Create separate radio user bouquet"
 msgstr "Tạo gói kênh radio riêng"
-
-msgid "Create symlink to file"
-msgstr "Tạo symlink vào tập tin"
-
-msgid "Create user-named symbolic link"
-msgstr "Tạo liên kết tượng trưng có tên người dùng"
 
 msgid "Create:"
 msgstr "Tạo nên:"
@@ -5307,6 +5247,9 @@ msgstr "Tin tức thời sự"
 msgid "Current CEC address"
 msgstr "Địa chỉ CEC hiện tại"
 
+msgid "Current Directory"
+msgstr ""
+
 msgid "Current Event:"
 msgstr "Sự kiện hiện tại:"
 
@@ -5316,7 +5259,8 @@ msgstr "Tình trạng hiện tại:"
 msgid "Current crash log"
 msgstr ""
 
-msgid "Current directory"
+#, python-format
+msgid "Current directory (%s)"
 msgstr ""
 
 msgid "Current installed"
@@ -5515,8 +5459,14 @@ msgstr "Người Đan Mạch"
 msgid "Date"
 msgstr "Ngày"
 
-msgid "Date reverse"
-msgstr "Ngày đảo ngược"
+msgid "Date / Time"
+msgstr ""
+
+msgid "Date ascending"
+msgstr ""
+
+msgid "Date descending"
+msgstr ""
 
 msgid "Date style"
 msgstr "Phong cách ngày"
@@ -5678,6 +5628,9 @@ msgstr "Tên ngày MM / DD / Năm"
 msgid "Deactivate"
 msgstr "Vô hiệu hóa"
 
+msgid "Debug"
+msgstr ""
+
 #, python-format
 msgid "Debug %d/%d"
 msgstr ""
@@ -5718,14 +5671,14 @@ msgstr "Mặc định 'Sau sự kiện' *"
 msgid "Default 'Timer type' *"
 msgstr "Mặc định 'Kiểu hẹn giờ' *"
 
-msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Ưu tiên CPU mặc định (đẹp) cho các tập lệnh được thực thi. Điều này có thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá trị cao hơn = mức độ ưu tiên thấp hơn)"
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
 
-msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Ưu tiên I / O mặc định (ionice) cho các tập lệnh được thực thi. Điều này có thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá trị cao hơn = mức độ ưu tiên thấp hơn)"
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Modes Selected."
 msgstr "Các chế độ mặc định được chọn."
@@ -5733,23 +5686,15 @@ msgstr "Các chế độ mặc định được chọn."
 msgid "Default Services Scanner"
 msgstr "Máy quét dịch vụ mặc định"
 
-msgid "Default directory sorting"
-msgstr "Sắp xếp thư mục mặc định"
-
-msgid "Default file sorting left"
-msgstr "Sắp xếp tập tin mặc định bên trái"
-
-msgid "Default file sorting right"
-msgstr "Sắp xếp tập tin mặc định"
-
 msgid "Default files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
-msgid "Default folder"
-msgstr "Thư mục mặc định"
+msgid "Default left column directory"
+msgstr ""
 
-msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư mục đích cho nút 5."
+#, python-format
+msgid "Default movie location (%s)"
+msgstr ""
 
 msgid "Default movie selection location"
 msgstr "Vị trí phim mặc định"
@@ -5757,17 +5702,23 @@ msgstr "Vị trí phim mặc định"
 msgid "Default recording type"
 msgstr "Kiểu ghi mặc định"
 
+msgid "Default right column directory"
+msgstr ""
+
 msgid "Default settings"
 msgstr "Thiết lập mặc định"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Phương pháp sắp xếp mặc định cho các thư mục ở cả hai bên."
+msgid "Default sort order for directories in the left column"
+msgstr ""
 
-msgid "Default sorting method for files on the left side."
-msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên trái."
+msgid "Default sort order for directories in the right column."
+msgstr ""
 
-msgid "Default sorting method for files on the right side."
-msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên phải."
+msgid "Default sort order for files in the left column."
+msgstr ""
+
+msgid "Default sort order for files in the right column."
+msgstr ""
 
 msgid "Default volume offset"
 msgstr ""
@@ -5874,15 +5825,12 @@ msgid "Delete"
 msgstr "Xóa bỏ"
 
 #, python-format
-msgid "Delete %d elements"
-msgstr "Xóa các phần tử%d"
-
-#, python-format
 msgid "Delete %s?"
 msgstr "Bạn Xóa %s?"
 
-msgid "Delete 1 element"
-msgstr "Xóa 1 phần tử"
+#, python-format
+msgid "Delete '%s'?"
+msgstr ""
 
 msgid "Delete Confirmation"
 msgstr "Xóa xác nhận"
@@ -5896,6 +5844,9 @@ msgstr "Xóa EPG"
 msgid "Delete Image"
 msgstr "Xóa hình ảnh"
 
+msgid "Delete Line"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Xóa plugin"
 
@@ -5906,6 +5857,9 @@ msgid "Delete all log files"
 msgstr ""
 
 msgid "Delete all logs"
+msgstr ""
+
+msgid "Delete all related files"
 msgstr ""
 
 msgid "Delete all tags"
@@ -5926,6 +5880,9 @@ msgstr ""
 msgid "Delete current line"
 msgstr "Xóa dòng hiện tại"
 
+msgid "Delete directory or file"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Xóa mục nhập"
 
@@ -5935,13 +5892,19 @@ msgstr "Xóa thất bại!"
 msgid "Delete file"
 msgstr "Xóa tài liệu"
 
-msgid "Delete file or directory (and all its contents)"
-msgstr "Xóa tập tin hoặc thư mục (và tất cả nội dung của nó)"
+msgid "Delete job completed."
+msgstr ""
 
-msgid "Delete folder"
-msgstr "Xóa thư mục"
+msgid "Delete job failed!"
+msgstr ""
+
+msgid "Delete job queued."
+msgstr ""
 
 msgid "Delete log"
+msgstr ""
+
+msgid "Delete only highlighted file"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
@@ -5973,8 +5936,8 @@ msgstr ""
 msgid "Delete the currently selected timer"
 msgstr ""
 
-msgid "Delete the selected files or directories"
-msgstr "Xóa các tập tin hoặc thư mục đã chọn"
+msgid "Delete the selected directories/files?"
+msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr ""
@@ -6021,6 +5984,12 @@ msgstr "Sự miêu tả"
 msgid "Deselect"
 msgstr "Bỏ chọn"
 
+msgid "Deselect all related files"
+msgstr ""
+
+msgid "Deselect only highlighted file"
+msgstr ""
+
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
@@ -6045,6 +6014,9 @@ msgstr "Giá đỡ thiết bị"
 
 msgid "Device name:"
 msgstr "Tên thiết bị:"
+
+msgid "Device number"
+msgstr ""
 
 msgid "Device: "
 msgstr "Thiết bị: "
@@ -6138,6 +6110,16 @@ msgstr ""
 msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
 
+#, python-format
+msgid "Directory/File %d of %d"
+msgstr ""
+
+msgid "Directory/File Status Actions"
+msgstr ""
+
+msgid "Directory/File Status Information"
+msgstr ""
+
 msgid "Disable"
 msgstr "Vô hiệu hóa"
 
@@ -6224,11 +6206,23 @@ msgstr "Giao diện hiển thị và người dùng"
 msgid "Display context menu"
 msgstr ""
 
+msgid "Display file as hexadecimal"
+msgstr ""
+
+msgid "Display file as octal"
+msgstr ""
+
+msgid "Display file as text"
+msgstr ""
+
 msgid "Display log for the currently selected timer"
 msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Hiển thị thông báo trước khi phát phim tiếp theo"
+
+msgid "Display more information about this file"
+msgstr ""
 
 msgid "Display oscam information."
 msgstr ""
@@ -6249,6 +6243,9 @@ msgid "Display the virtual keyboard for data entry"
 msgstr ""
 
 msgid "Display type"
+msgstr ""
+
+msgid "Distance"
 msgstr ""
 
 msgid "Distribution"
@@ -6395,8 +6392,9 @@ msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr ""
 
-msgid "Do you want change rights?\n"
-msgstr "Bạn có muốn thay đổi quyền không?\n"
+#, python-format
+msgid "Do you want change '%s' access mode?"
+msgstr ""
 
 msgid "Do you want to add any additional information ?"
 msgstr "Bạn có muốn thêm bất kỳ thông tin bổ sung?"
@@ -6504,9 +6502,6 @@ msgstr "Bạn có muốn cập nhật đầu thu của bạn?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Bạn có muốn nâng cấp gói:\n"
-
-msgid "Do you want to view or run the script?\n"
-msgstr "Bạn có muốn xem hoặc chạy tập lệnh?\n"
 
 #, fuzzy
 msgid "Documentary"
@@ -6759,6 +6754,9 @@ msgstr "Tìm kiếm EPG"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERROR - failed to scan (%s)!"
 
+msgid "EXIF-Version"
+msgstr ""
+
 msgid "East"
 msgstr "Đông"
 
@@ -6801,12 +6799,6 @@ msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
 
 msgid "Edit current line"
 msgstr "Chỉnh sửa các chương của tiêu đề hiện tại"
-
-msgid "Edit line "
-msgstr "Chỉnh sửa dòng "
-
-msgid "Edit position is the line end"
-msgstr "Chỉnh sửa vị trí là cuối dòng"
 
 msgid "Edit settings"
 msgstr "Chỉnh sửa cài đặt"
@@ -6887,6 +6879,9 @@ msgid "Embedded"
 msgstr ""
 
 msgid "Empty"
+msgstr ""
+
+msgid "Empty file"
 msgstr ""
 
 msgid "Enable"
@@ -7233,6 +7228,9 @@ msgstr "Nhập PIN"
 msgid "Enter a description for this timer."
 msgstr ""
 
+msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
+msgstr ""
+
 msgid "Enter a name for this timer."
 msgstr ""
 
@@ -7247,9 +7245,6 @@ msgstr "Nhập nếu bạn ở phía bắc hoặc phía nam của đường xíc
 
 msgid "Enter main menu..."
 msgstr "Vào menu chính ..."
-
-msgid "Enter multi-file selection mode"
-msgstr "Vào chế độ chọn nhiều tập tin"
 
 msgid "Enter new directory name:"
 msgstr ""
@@ -7322,6 +7317,14 @@ msgid "Error"
 msgstr "Lỗi"
 
 #, python-format
+msgid "Error %d: %s"
+msgstr ""
+
+#, python-format
+msgid "Error %d: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr ""
 
@@ -7338,11 +7341,35 @@ msgid "Error %d: Unable to check space!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to set access mode on '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
+msgstr ""
+
+#, python-format
+msgid "Error %s: Unable to get information for '%s'!  (%s)"
 msgstr ""
 
 #, python-format
@@ -7402,14 +7429,6 @@ msgstr ""
 "Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài đặt của bạn."
 
 #, python-format
-msgid ""
-"Error creating directory %s:\n"
-"%s"
-msgstr ""
-"Lỗi tạo thư mục%s:\n"
-"%s"
-
-#, python-format
 msgid "Error downloading image '%s'!"
 msgstr ""
 
@@ -7421,14 +7440,6 @@ msgid ""
 "Error getting link via %s\n"
 "%s"
 msgstr ""
-
-#, python-format
-msgid ""
-"Error linking %s to %s:\n"
-"%s"
-msgstr ""
-"Lỗi liên kết% s đến% s:\n"
-"%s"
 
 #, fuzzy
 msgid "Error opening recording file"
@@ -7443,13 +7454,8 @@ msgstr "Lỗi đọc gói kênh.tv"
 msgid "Error reading webpage!"
 msgstr "Lỗi đọc trang web!"
 
-#, python-format
-msgid ""
-"Error renaming %s to %s:\n"
-"%s"
+msgid "Error text:"
 msgstr ""
-"Lỗi đổi tên% s thành% s:\n"
-"%s"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
@@ -7457,9 +7463,6 @@ msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Lỗi, chưa biết kết quả!"
-
-msgid "Error..."
-msgstr "Lỗi..."
 
 #, python-format
 msgid ""
@@ -7501,7 +7504,14 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Tạo thư mục%s không thành công."
 
 #, python-format
+msgid "Error: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+msgid "Error: FileCommanderData screen requires a formatting dictionary!"
 msgstr ""
 
 #, python-format
@@ -7516,8 +7526,20 @@ msgid "Error: Invalid directory '%s' selected!"
 msgstr "Thư mục không hợp lệ được chọn:%s"
 
 #, python-format
+msgid "Error: It is not possible to run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
+msgstr ""
+
+#, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Xóa thư mục%s không thành công. (Có lẽ không trống.)"
+
+#, python-format
+msgid "Error: Script '%s' must have read permission to be able to run!"
+msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr ""
@@ -7525,6 +7547,22 @@ msgstr ""
 #, python-format
 msgid "Error: The path '%s' already exists!"
 msgstr "Đường dẫn%s đã tồn tại."
+
+msgid "Error: The root file system can not be copied!"
+msgstr ""
+
+msgid "Error: The root file system can not be deleted!"
+msgstr ""
+
+msgid "Error: The root file system can not be moved!"
+msgstr ""
+
+msgid "Error: The root file system can not be renamed!"
+msgstr ""
+
+#, python-format
+msgid "Error: There was a problem writing '%s'!"
+msgstr ""
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
@@ -7535,6 +7573,14 @@ msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng 
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on a directory!"
 msgstr ""
 
 msgid "Esperanto"
@@ -7641,6 +7687,9 @@ msgstr "Thoát"
 msgid "Exit EPG"
 msgstr "Thoát EPG"
 
+msgid "Exit File Commander"
+msgstr ""
+
 msgid "Exit MAC address configuration"
 msgstr "Thoát cấu hình địa chỉ MAC"
 
@@ -7653,8 +7702,14 @@ msgstr ""
 msgid "Exit editor"
 msgstr "Thoát biên tập"
 
-msgid "Exit editor and write changes (if any)"
-msgstr "Thoát khỏi trình chỉnh sửa và viết các thay đổi (nếu có)"
+msgid "Exit editor and discard any changes"
+msgstr ""
+
+msgid "Exit editor and save any changes"
+msgstr ""
+
+msgid "Exit image viewer"
+msgstr ""
 
 msgid "Exit input device selection."
 msgstr "Thoát lựa chọn thiết bị đầu vào."
@@ -7686,14 +7741,14 @@ msgstr "Thoát khỏi danh sách giao diện mạng"
 msgid "Exit network wizard"
 msgstr "Thoát khỏi thuật sĩ mạng"
 
-msgid "Exit picture viewer"
-msgstr "Thoát khỏi trình xem ảnh"
-
 msgid "Exit quad PiP"
 msgstr "Thoát khỏi PiP"
 
 msgid "Exit the wizard"
 msgstr "Thoát khỏi trình hướng dẫn"
+
+msgid "Exit viewer"
+msgstr ""
 
 msgid "Expand"
 msgstr "Mở rộng"
@@ -7709,6 +7764,15 @@ msgstr "Chuyên gia"
 
 msgid "Expert mode"
 msgstr "Chế độ chuyên gia"
+
+msgid "Exposure bias"
+msgstr ""
+
+msgid "Exposure program"
+msgstr ""
+
+msgid "Exposure time"
+msgstr ""
 
 #, fuzzy
 msgid "Ext. NumberZap"
@@ -7771,6 +7835,12 @@ msgstr "Phông chữ chuyển đổi phụ đề bên ngoài"
 msgid "Extra motor options"
 msgstr "Tùy chọn động cơ bổ sung"
 
+msgid "Extract the archive contents"
+msgstr ""
+
+msgid "Extract the package contents"
+msgstr ""
+
 msgid "Extrude from left"
 msgstr "Đùn từ trái"
 
@@ -7800,6 +7870,12 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FEC modes"
+msgstr ""
+
+msgid "FFmpeg Probe"
+msgstr ""
+
+msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
 msgid "FFmpeg version"
@@ -7938,63 +8014,87 @@ msgstr "Phi-gi"
 msgid "File"
 msgstr "Tập tin"
 
+#, python-format
+msgid "File %d of %d"
+msgstr ""
+
 msgid "File Commander"
 msgstr "Chỉ huy tập tin"
 
-msgid "File Commander - Addon File-Viewer"
-msgstr "Trình chỉ huy tệp - Trình xem tệp Addon"
+msgid "File Commander - All tasks are complete."
+msgstr ""
 
-msgid "File Commander - Addon Mediaplayer"
-msgstr "Chỉ huy tập tin - Addon Mediaplayer"
+msgid "File Commander Actions"
+msgstr ""
 
-msgid "File Commander - Addon Movieplayer"
-msgstr "Chỉ huy tập tin - Addon Movieplayer"
+msgid "File Commander Archive"
+msgstr ""
 
-msgid "File Commander - all Task's are completed!"
-msgstr "Chỉ huy tập tin - tất cả các nhiệm vụ đã hoàn thành!"
+msgid "File Commander Archive Actions"
+msgstr ""
 
-msgid "File Commander - generalised archive handler"
-msgstr "File Commander - trình xử lý lưu trữ tổng quát"
+msgid "File Commander Context Menu"
+msgstr ""
 
-msgid "File Commander - gzip Addon"
-msgstr "Chỉ huy tập tin - gzip Addon"
+msgid "File Commander Copy"
+msgstr ""
 
-msgid "File Commander - ipk Addon"
-msgstr "Chỉ huy tin tin - gzip Addon"
+msgid "File Commander Data"
+msgstr ""
 
-msgid "File Commander - tar Addon"
-msgstr "Chỉ huy tập tin - tar Addon"
+msgid "File Commander Data Actions"
+msgstr ""
 
-msgid "File Commander - unrar Addon"
-msgstr "Chỉ huy tập tin - unrar Addon"
+msgid "File Commander Delete"
+msgstr ""
 
-msgid "File Commander - unzip Addon"
-msgstr "File Commander - giải nén Addon"
+msgid "File Commander Directory/File Information"
+msgstr ""
+
+msgid "File Commander File Viewer"
+msgstr ""
+
+msgid "File Commander File Viewer Actions"
+msgstr ""
+
+msgid "File Commander Hash / Checksum Actions"
+msgstr ""
+
+msgid "File Commander Hashes / Checksums"
+msgstr ""
+
+msgid "File Commander Image Viewer"
+msgstr ""
+
+msgid "File Commander Image Viewer Actions"
+msgstr ""
+
+msgid "File Commander Information Actions"
+msgstr ""
+
+msgid "File Commander Media Information"
+msgstr ""
+
+msgid "File Commander Media Information Actions"
+msgstr ""
+
+msgid "File Commander Move"
+msgstr ""
 
 msgid "File Commander Settings"
 msgstr "Cài đặt chỉ huy tập tin"
 
-msgid "File Commander context menu"
-msgstr "Trình đơn ngữ cảnh tập tin"
+msgid "File Commander Text Editor"
+msgstr ""
 
-msgid "File Commander menu"
-msgstr "Trình đơn tập tin"
+msgid "File Commander Text Editor Actions"
+msgstr ""
 
 msgid "File System Check"
 msgstr "Kiểm tra hệ thống tập tin"
 
 msgid "File appears to be busy.\n"
 msgstr "Tập tin có vẻ bận rộn.\n"
-
-msgid "File checksums to calculate for button 9"
-msgstr "Tổng kiểm tra tệp để tính cho nút 9"
-
-msgid "File checksums/hashes"
-msgstr "Tổng kiểm tra / băm"
-
-#, python-format
-msgid "File not found: %s"
-msgstr "Không tìm thấy tệp:% s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -8003,15 +8103,15 @@ msgstr ""
 "Không tìm thấy tệp oscam.conf.\n"
 "Vui lòng nhập tên người dùng / mật khẩu bằng tay."
 
+msgid "File transfer was canceled by user!"
+msgstr ""
+
 msgid "File transfer was cancelled by user"
 msgstr "Chuyển tập tin đã bị hủy bởi người dùng"
 
 #, python-format
 msgid "File write error: '%s'"
 msgstr "Lỗi ghi tệp: '%s'"
-
-msgid "File/Directory Status Information"
-msgstr "Thông tin trạng thái tệp / thư mục"
 
 #, fuzzy
 msgid "Filename"
@@ -8029,14 +8129,11 @@ msgstr ""
 msgid "Film-Noir"
 msgstr ""
 
-msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr "Tiện ích mở rộng bộ lọc cho cài đặt 'Tiện ích mở rộng của tôi' của 'Tiện ích mở rộng bộ lọc'. Sử dụng tên mở rộng mà không có '.'."
+msgid "Filter extensions"
+msgstr ""
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Phần mở rộng bộ lọc, (*) xuất hiện trong tiêu đề"
-
-msgid "Filter visible file classes by extension."
-msgstr "Lọc các lớp tệp có thể nhìn thấy bằng phần mở rộng."
+msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
+msgstr ""
 
 msgid "Final position at"
 msgstr "Vị trí cuối cùng tại"
@@ -8129,6 +8226,9 @@ msgid "Flash on the fly your your Receiver software."
 msgstr "Flash khi đang bay phần mềm Nhận của bạn."
 
 msgid "Flash type"
+msgstr ""
+
+msgid "Flash used"
 msgstr ""
 
 #, python-format
@@ -8478,14 +8578,8 @@ msgstr ""
 msgid "Go down the list"
 msgstr "Đi xuống danh sách"
 
-msgid "Go to bookmarked folder"
-msgstr "Chuyển đến thư mục được đánh dấu"
-
 msgid "Go to deep standby"
 msgstr "đi đến chế độ chờ sâu"
-
-msgid "Go to end of file"
-msgstr "Đi đến cuối tập tin"
 
 msgid "Go to first movie or last item"
 msgstr "Chuyển đến bộ phim đầu tiên hoặc mục cuối cùng"
@@ -8493,14 +8587,11 @@ msgstr "Chuyển đến bộ phim đầu tiên hoặc mục cuối cùng"
 msgid "Go to first movie or top of list"
 msgstr "Chuyển đến bộ phim đầu tiên hoặc đầu danh sách"
 
-msgid "Go to parent directory"
-msgstr "Chuyển đến thư mục cha mẹ"
+msgid "Go to parent directory of the current column"
+msgstr ""
 
 msgid "Go to standby"
 msgstr "đi đến chế độ chờ"
-
-msgid "Go to start of file"
-msgstr "Bắt đầu tập tin"
 
 msgid "Go up the list"
 msgstr "Lên danh sách"
@@ -8601,8 +8692,8 @@ msgstr "Grenada"
 msgid "Grey"
 msgstr "Xám"
 
-msgid "Group:"
-msgstr "Nhóm:"
+msgid "Group"
+msgstr ""
 
 msgid "Grow drop"
 msgstr "Tăng giảm"
@@ -8820,6 +8911,9 @@ msgstr "Tại đây bạn có thể chỉ định các tệp bổ sung cần đ�
 msgid "Herero"
 msgstr ""
 
+msgid "Hexadecimal"
+msgstr ""
+
 msgid "HiSilicon"
 msgstr ""
 
@@ -9005,8 +9099,8 @@ msgstr ""
 msgid "I"
 msgstr "IP"
 
-msgid "I/O priority for script execution"
-msgstr "Ưu tiên I / O để thực thi tập lệnh"
+msgid "I/O priority for scripts"
+msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
@@ -9064,6 +9158,9 @@ msgstr "Tập tin ISO quá lớn cho hệ thống tập tin này!"
 
 msgid "ISO path"
 msgstr "Đường dẫn ISO"
+
+msgid "ISO speed rating"
+msgstr ""
 
 msgid "ISP"
 msgstr ""
@@ -9152,9 +9249,6 @@ msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
-
-msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr "Nếu chỉnh sửa tệp, bạn có thể đặt vị trí bắt đầu con trỏ ở cuối hoặc đầu dòng."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr ""
@@ -9471,8 +9565,8 @@ msgstr "Khởi tạo"
 msgid "Initializing storage device..."
 msgstr "Đang khởi tạo thiết bị lưu trữ ..."
 
-msgid "Inode:"
-msgstr "Nút:"
+msgid "Inode"
+msgstr ""
 
 msgid "Inotify Monitoring"
 msgstr "Giám sát inotify"
@@ -9501,8 +9595,8 @@ msgstr "Tên tập tin cấu hình đầu vào:"
 msgid "Input scroll position"
 msgstr ""
 
-msgid "Insert"
-msgstr "Chèn"
+msgid "Insert Line"
+msgstr ""
 
 msgid "Insert line before current line"
 msgstr "Chèn dòng trước dòng hiện tại"
@@ -9511,8 +9605,8 @@ msgid "Install"
 msgstr "Ráp vào"
 
 #, python-format
-msgid "Install '%s' and enable this operation"
-msgstr "Cài đặt '% s' và kích hoạt thao tác này"
+msgid "Install '%s' command"
+msgstr ""
 
 msgid "Install 1/1"
 msgstr ""
@@ -9553,6 +9647,9 @@ msgstr "Cài đặt hoặc gỡ bỏ hoàn thành."
 msgid "Install picons on"
 msgstr "Cài đặt picons trên"
 
+msgid "Install the package"
+msgstr ""
+
 msgid "Install/Remove plugin"
 msgstr ""
 
@@ -9564,9 +9661,6 @@ msgstr "Đang Cài đặt"
 
 #, fuzzy, python-format
 msgid "Installing %s (%s)..."
-msgstr "Cài đặt Plugin ..."
-
-msgid "Installing Plugin ..."
 msgstr "Cài đặt Plugin ..."
 
 msgid "Installing Service"
@@ -9712,22 +9806,6 @@ msgstr "Ixraen"
 
 msgid "It follows:"
 msgstr "Nó như sau:"
-
-msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr "Không thể tính băm trên <Danh sách thiết bị lưu trữ>"
-
-msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr "Không thể thay đổi chế độ tệp của <Danh sách thiết bị lưu trữ>"
-
-msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr "Không thể có được trạng thái tệp của <Danh sách thiết bị lưu trữ>"
-
-#, python-format
-msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr "Không thể chạy '% s' trên <Danh sách thiết bị lưu trữ>"
-
-msgid "It's not possible to rename the file system root."
-msgstr "Không thể đổi tên root hệ thống tập tin."
 
 msgid "Italian"
 msgstr "Người Ý"
@@ -10039,6 +10117,9 @@ msgstr "Tốc độ cuối"
 msgid "Last update"
 msgstr ""
 
+msgid "Last used column"
+msgstr ""
+
 msgid "Last used share: "
 msgstr "Chia sẻ được sử dụng lần cuối: "
 
@@ -10062,12 +10143,6 @@ msgstr "Tiếng Latvia"
 msgid "Leave DVD player?"
 msgstr "Rời khỏi đầu DVD?"
 
-msgid "Leave File Commander"
-msgstr "Để lại tập lệnh"
-
-msgid "Leave multi-select mode"
-msgstr "Để chế độ đa lựa chọn"
-
 msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr "Đặt bộ này thành 'có' trừ khi bạn hoàn toàn hiểu lý do tại sao bạn điều chỉnh nó."
 
@@ -10076,6 +10151,15 @@ msgstr "Lebanon"
 
 msgid "Left"
 msgstr "Trái"
+
+msgid "Left column"
+msgstr ""
+
+msgid "Left column directory sort"
+msgstr ""
+
+msgid "Left column file sort"
+msgstr ""
 
 msgid "Left from service name"
 msgstr "Còn lại từ tên dịch vụ"
@@ -10115,6 +10199,9 @@ msgstr "Phong cách thời gian"
 msgid "Light Grey"
 msgstr "Xám nhạt"
 
+msgid "Light source"
+msgstr ""
+
 msgid "Limburgan / Limburger / Limburgish"
 msgstr ""
 
@@ -10145,6 +10232,10 @@ msgstr "Giới hạn tắt"
 msgid "Limits on"
 msgstr "Giới hạn trên"
 
+#, python-format
+msgid "Line %d / %d"
+msgstr ""
+
 msgid "Lingala"
 msgstr ""
 
@@ -10154,8 +10245,8 @@ msgstr ""
 msgid "Link quality:"
 msgstr "Chất lượng liên kết:"
 
-msgid "Link target:"
-msgstr "Liên kết mục tiêu:"
+msgid "Link target"
+msgstr ""
 
 msgid "Link:"
 msgstr "Liên kết:"
@@ -10163,8 +10254,8 @@ msgstr "Liên kết:"
 msgid "Linked titles with a DVD menu"
 msgstr "Tiêu đề được liên kết với menu DVD"
 
-msgid "Links:"
-msgstr "Liên kết:"
+msgid "Links"
+msgstr ""
 
 msgid "List EPG functions..."
 msgstr "Liệt kê các chức năng EPG ..."
@@ -10174,6 +10265,9 @@ msgstr ""
 
 msgid "List available networks"
 msgstr "Liệt kê các mạng khả dụng"
+
+msgid "List of Storage Devices"
+msgstr ""
 
 msgid "List of storage devices"
 msgstr "Danh sách các thiết bị lưu trữ"
@@ -10470,11 +10564,8 @@ msgstr "Menu chính"
 msgid "Maintain your multi boot device."
 msgstr "Duy trì thiết bị đa khởi động của bạn."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Làm cho File Commander có thể truy cập từ menu Tiện ích mở rộng."
-
-msgid "Make File Commander accessible from the main menu."
-msgstr "Làm cho File Commander có thể truy cập từ menu chính."
+msgid "Make"
+msgstr ""
 
 msgid "Make this mark an 'in' point"
 msgstr "Đặt dấu này thành một điểm 'trong'"
@@ -10522,6 +10613,9 @@ msgstr "Quản lý tiện ích mở rộng"
 #, fuzzy
 msgid "Manage Locale/Language Selection settings"
 msgstr "Cài đặt chọn kênh"
+
+msgid "Manage and explore directories and files."
+msgstr ""
 
 msgid "Manage network mounts"
 msgstr "Quản lý kết nối mạng"
@@ -10656,6 +10750,9 @@ msgstr "Máy quét phương tiện truyền thông"
 msgid "Media service"
 msgstr ""
 
+msgid "MediaInfo"
+msgstr ""
+
 msgid "MediaPlayer"
 msgstr "Phương tiện truyền thông"
 
@@ -10736,11 +10833,14 @@ msgstr "Thông điệp"
 msgid "Message Box Actions"
 msgstr "Chức năng KeyBoard ảo"
 
+msgid "Message pop up timeout"
+msgstr ""
+
 msgid "Message..."
 msgstr "Thông điệp..."
 
-msgid "Metadata changed:"
-msgstr "Siêu dữ liệu đã thay đổi:"
+msgid "Metering mode"
+msgstr ""
 
 msgid "Mexico"
 msgstr "Mexico"
@@ -10829,10 +10929,6 @@ msgstr ""
 msgid "Mode"
 msgstr "Chế độ"
 
-#, python-format
-msgid "Mode %s (%04o)"
-msgstr "Chế độ % s (% 04o)"
-
 msgid "Mode 1"
 msgstr "Chế độ 1"
 
@@ -10854,8 +10950,8 @@ msgstr ""
 msgid "Model: "
 msgstr "Mô hình: "
 
-msgid "Modified:"
-msgstr "Đã sửa đổi:"
+msgid "Modified"
+msgstr ""
 
 msgid "Modulation"
 msgstr "Điều chế"
@@ -10950,13 +11046,6 @@ msgstr "Thiết lập"
 msgid "Move"
 msgstr "Di chuyển"
 
-#, python-format
-msgid "Move %d elements"
-msgstr "Di chuyển các yếu tố %d"
-
-msgid "Move 1 element"
-msgstr "Di chuyển 1 yếu tố"
-
 msgid "Move Left/Right"
 msgstr "Di chuyển sang trái / phải"
 
@@ -10974,6 +11063,12 @@ msgstr "Di chuyển PiP sang hình ảnh chính"
 
 msgid "Move Up/Down"
 msgstr "Di chuyển lên / xuống"
+
+msgid "Move all related files"
+msgstr ""
+
+msgid "Move directory/file to target directory"
+msgstr ""
 
 #, fuzzy
 msgid "Move down a line"
@@ -10993,9 +11088,6 @@ msgstr ""
 
 msgid "Move down a screen in the panel"
 msgstr ""
-
-msgid "Move down list"
-msgstr "Di chuyển xuống danh sách"
 
 #, fuzzy
 msgid "Move down one line"
@@ -11022,17 +11114,17 @@ msgstr "di chuyển xuống mục cuối cùng"
 msgid "Move east"
 msgstr "Di chuyển về phía đông"
 
-msgid "Move file"
-msgstr "Di chuyển tập tin"
+msgid "Move job completed."
+msgstr ""
 
-msgid "Move file/directory to target directory"
-msgstr "Di chuyển tập tin / thư mục đến thư mục đích"
+msgid "Move job failed!"
+msgstr ""
 
-msgid "Move files/directories to target directory"
-msgstr "Di chuyển tệp / thư mục vào thư mục đích"
+msgid "Move job queued."
+msgstr ""
 
-msgid "Move folder"
-msgstr "Di chuyển thư mục"
+msgid "Move only highlighted file"
+msgstr ""
 
 msgid "Move the current DNS entry down one line"
 msgstr ""
@@ -11044,6 +11136,16 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current line down"
+msgstr ""
+
+msgid "Move the current line up"
+msgstr ""
+
+#, python-format
+msgid "Move the directory/file '%s'?"
 msgstr ""
 
 #, fuzzy
@@ -11077,6 +11179,9 @@ msgstr "Di chuyển con trỏ bộ đệm văn bản đến ký tự đầu tiê
 #, fuzzy
 msgid "Move the text cursor to the last character"
 msgstr "Di chuyển con trỏ bộ đệm văn bản đến ký tự cuối cùng"
+
+msgid "Move these directories/files?"
+msgstr ""
 
 msgid "Move to first line"
 msgstr ""
@@ -11123,9 +11228,6 @@ msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr ""
-
-msgid "Move up list"
-msgstr "Di chuyển lên danh sách"
 
 #, fuzzy
 msgid "Move up one line"
@@ -11192,6 +11294,9 @@ msgstr "Phim / Kịch"
 
 msgid "Movieplayer"
 msgstr "Người xem phim"
+
+msgid "Movies"
+msgstr ""
 
 msgid "Moving"
 msgstr "Di chuyển"
@@ -11276,8 +11381,8 @@ msgstr "Âm nhạc"
 msgid "Mute"
 msgstr "Tắt tiếng"
 
-msgid "My extension"
-msgstr "Gia hạn của tôi"
+msgid "My extensions"
+msgstr ""
 
 msgid "Myanmar"
 msgstr "Myanmar"
@@ -11305,6 +11410,14 @@ msgstr "Thiết lập NFS"
 msgid "NIM & Type"
 msgstr "Loại HDMI HDR"
 
+#, python-format
+msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
+msgstr ""
+
+#, python-format
+msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
 msgid "NOW"
 msgstr "HIỆN NAY"
 
@@ -11320,8 +11433,11 @@ msgstr "NTSC"
 msgid "Name"
 msgstr "Tên"
 
-msgid "Name reverse"
-msgstr "Tên ngược"
+msgid "Name ascending"
+msgstr ""
+
+msgid "Name descending"
+msgstr ""
 
 #, python-format
 msgid "Name server %d"
@@ -11523,9 +11639,6 @@ msgstr "Thư mục mới"
 msgid "New event info"
 msgstr "Thông tin sự kiện"
 
-msgid "New folder"
-msgstr "Thư mục mới"
-
 msgid "New password"
 msgstr "Mật khẩu mới"
 
@@ -11543,6 +11656,9 @@ msgid "NewCamd"
 msgstr ""
 
 msgid "NewCamd DES Key"
+msgstr ""
+
+msgid "NewDirectory"
 msgstr ""
 
 msgid "News"
@@ -11674,9 +11790,6 @@ msgstr "Không tìm thấy thông tin sự kiện, ghi lại vô thời hạn."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Không có cuộn dây nhanh nào có thể .. nhưng bạn có thể sử dụng các nút số để bỏ qua tiến / lùi!"
 
-msgid "No files found."
-msgstr "Không tìm thấy tập tin."
-
 msgid "No free index available"
 msgstr "Không có chỉ số miễn phí có sẵn"
 
@@ -11685,9 +11798,6 @@ msgstr "Không có bộ chỉnh miễn phí!"
 
 msgid "No hard disks detected."
 msgstr ""
-
-msgid "No hash calculations configured"
-msgstr "Không có tính toán băm được cấu hình"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
@@ -11796,10 +11906,6 @@ msgstr ""
 msgid "No valid region details were found"
 msgstr ""
 
-#, python-format
-msgid "No viewer installed for this file type: %s"
-msgstr "Không có người xem nào được cài đặt cho loại tệp này:%s"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Không tìm thấy mạng không dây! Đang tìm kiếm..."
 
@@ -11863,10 +11969,6 @@ msgstr ""
 msgid "None"
 msgstr "Không"
 
-#, python-format
-msgid "None of the hash programs for the hashes %s are available"
-msgstr "Không có chương trình băm nào cho băm %s có sẵn"
-
 msgid "Norfolk Island"
 msgstr "Đảo Norfolk"
 
@@ -11925,9 +12027,6 @@ msgstr "Kodi đã cài đặt:"
 
 msgid "Not Shown"
 msgstr "Không được hiển thị"
-
-msgid "Not allowed with folders"
-msgstr "Không được phép với các thư mục"
 
 msgid "Not associated"
 msgstr "Không liên quan"
@@ -12003,9 +12102,6 @@ msgstr ""
 msgid "Number of digits in channel number"
 msgstr "Số chữ số trong số kênh"
 
-msgid "Number of lines in script messages"
-msgstr "Số dòng trong thông điệp script"
-
 msgid "Number of rows"
 msgstr "Số hàng"
 
@@ -12078,6 +12174,9 @@ msgstr "OVR"
 msgid "Occitan"
 msgstr ""
 
+msgid "Octal"
+msgstr ""
+
 msgid "Off"
 msgstr "Tắt"
 
@@ -12098,9 +12197,6 @@ msgstr "Ô-man"
 
 msgid "On"
 msgstr "Trên"
-
-msgid "On device:"
-msgstr "Trên thiết bị:"
 
 msgid "On end of movie"
 msgstr "Cuối phim"
@@ -12190,6 +12286,9 @@ msgstr "Mở danh sách gói kênh ..."
 msgid "Open context menu"
 msgstr ""
 
+msgid "Open context menu (contains settings menu)"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "Mở danh sách yêu thích"
 
@@ -12210,9 +12309,6 @@ msgstr "Mở danh sách dịch vụ và chọn kênh trước"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Mở danh sách dịch vụ và chọn kênh trước cho PiP"
-
-msgid "Open settings/actions menu"
-msgstr "Mở menu cài đặt / hành động"
 
 msgid "Open the Plugin Browser"
 msgstr "Mở Trình duyệt Plugin"
@@ -12281,11 +12377,17 @@ msgstr "Tùy chọn tắt picons trên Infobar"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Tùy chọn để bật Hẹn giờ chờ phần cứng"
 
+msgid "Optional parameter"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Vị trí quỹ đạo"
 
 msgid "Ordinary"
 msgstr "Bình thường"
+
+msgid "Orientation"
+msgstr ""
 
 msgid "Original"
 msgstr "Nguyên"
@@ -12324,6 +12426,13 @@ msgid "Other Subtitles & lang"
 msgstr "Phụ đề dài"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
+msgstr ""
+
+#, python-format
+msgid "Other panel directory (%s)"
+msgstr ""
+
+msgid "Output text:"
 msgstr ""
 
 msgid "Overall progress:"
@@ -12374,8 +12483,8 @@ msgstr "Ghi đè tập tin cấu hình trong quá trình nâng cấp phần mề
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Ghi đè tập tin cấu hình trong quá trình nâng cấp phần mềm?"
 
-msgid "Owner:"
-msgstr "Chủ nhân:"
+msgid "Owner"
+msgstr ""
 
 msgid "PAGE UP/DOWN"
 msgstr "TRANG LÊN / XUỐNG"
@@ -12437,6 +12546,9 @@ msgstr "PVR"
 msgid "Package Manager"
 msgstr "Quản lý gói"
 
+msgid "Package files:"
+msgstr ""
+
 msgid "Package information currently not available!"
 msgstr ""
 
@@ -12459,9 +12571,6 @@ msgstr "Quản lý gói"
 msgid "Page down"
 msgstr "Trang dưới"
 
-msgid "Page down list"
-msgstr "Trang xuống danh sách"
-
 msgid "Page left"
 msgstr "trang còn lại"
 
@@ -12470,9 +12579,6 @@ msgstr "Trang bên phải"
 
 msgid "Page up"
 msgstr "Trang lên"
-
-msgid "Page up list"
-msgstr "Danh sách trang lên"
 
 msgid "PageDown"
 msgstr "Trang dưới"
@@ -12515,8 +12621,8 @@ msgstr "Papua New Guinea"
 msgid "Paraguay"
 msgstr "Paraguay"
 
-msgid "Parent directory"
-msgstr "Thư mục phụ huynh"
+msgid "Parent Directory"
+msgstr ""
 
 msgid "Parental Guidance Recommended"
 msgstr ""
@@ -12608,8 +12714,8 @@ msgstr "Xóa vĩnh viễn tất cả các bản ghi trong thùng rác?"
 msgid "Permanently remove all deleted items"
 msgstr "Xóa vĩnh viễn tất cả các mục đã xóa"
 
-msgid "Permissions:"
-msgstr "Quyền:"
+msgid "Permissions"
+msgstr ""
 
 msgid "Persian"
 msgstr "Ba Tư"
@@ -12703,6 +12809,9 @@ msgstr "Chơi DVD"
 msgid "Play DVDs"
 msgstr "Chơi DVD"
 
+msgid "Play all audio files in the directory"
+msgstr ""
+
 msgid "Play audio in background"
 msgstr "Phát âm thanh trong nền"
 
@@ -12714,9 +12823,6 @@ msgstr "Phát lại tập tin phương tiện"
 
 msgid "Play entry"
 msgstr "Chơi nhập cảnh"
-
-msgid "Play folder"
-msgstr "Chơi thư mục"
 
 msgid "Play from next mark or play list entry"
 msgstr "Phát từ mục tiếp theo hoặc danh sách phát"
@@ -12743,11 +12849,8 @@ msgstr "Chơi trước"
 msgid "Play recorded movies"
 msgstr "Chơi phim đã ghi ..."
 
-msgid "Play title"
-msgstr "Chơi tiêu đề"
-
-msgid "Play/view/edit/install/extract/run file or enter directory"
-msgstr "Phát / xem / chỉnh sửa / cài đặt / giải nén / chạy tệp hoặc vào thư mục"
+msgid "Play the audio file"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr ""
@@ -12820,14 +12923,11 @@ msgstr ""
 msgid "Please enter filename (empty = use current date)"
 msgstr "Vui lòng nhập tên tệp (trống = sử dụng ngày hiện tại)"
 
-msgid "Please enter name of the new symlink"
-msgstr "Vui lòng nhập tên của symlink mới"
+msgid "Please enter name of the new symbolic link:"
+msgstr ""
 
 msgid "Please enter new name:"
 msgstr "Vui lòng nhập tên mới:"
-
-msgid "Please enter password"
-msgstr "Xin vui lòng nhập mật khẩu"
 
 msgid "Please enter search string for your location"
 msgstr "Vui lòng nhập chuỗi tìm kiếm cho vị trí của bạn"
@@ -12835,11 +12935,11 @@ msgstr "Vui lòng nhập chuỗi tìm kiếm cho vị trí của bạn"
 msgid "Please enter the correct pin code"
 msgstr "Vui lòng nhập mã pin chính xác"
 
-msgid "Please enter the new directory name"
-msgstr "Vui lòng nhập tên thư mục mới"
+msgid "Please enter the new directory name:"
+msgstr ""
 
-msgid "Please enter the new file name"
-msgstr "Vui lòng nhập tên tệp mới"
+msgid "Please enter the new file name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr ""
@@ -13088,6 +13188,9 @@ msgstr "Vui lòng đợi trong khi thu thập dữ liệu ..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Vui lòng đợi trong khi quá trình quét đang diễn ra ..."
 
+msgid "Please wait while the data is extracted..."
+msgstr ""
+
 #, fuzzy
 msgid "Please wait while the list downloads..."
 msgstr "Vui lòng đợi trong khi thu thập dữ liệu ..."
@@ -13113,8 +13216,8 @@ msgstr "Xin vui lòng chờ trong khi thiết lập làn da của bạn đang kh
 msgid "Please wait whilst feeds state is checked."
 msgstr "Xin vui lòng chờ trong khi trạng thái thức ăn được kiểm tra."
 
-msgid "Please wait, Loading image."
-msgstr "Xin vui lòng chờ, Đang tải hình ảnh."
+msgid "Please wait, loading image..."
+msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -13479,36 +13582,8 @@ msgid "Program"
 msgstr "Chương trình"
 
 #, python-format
-msgid ""
-"Program '%s' is installed.\n"
-"The package containing this program isn't known, so it can't be uninstalled."
+msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
-"Chương trình '% s' được cài đặt.\n"
-"Gói chứa chương trình này không được biết đến, vì vậy nó không thể được gỡ cài đặt."
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run the '%s' action.\n"
-"Uninstall the '%s' package to uninstall the program?"
-msgstr ""
-"Chương trình '% s' cần được cài đặt để chạy hành động '% s'.\n"
-"Gỡ cài đặt gói '% s' để gỡ cài đặt chương trình?"
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run this action.\n"
-"Install the '%s' package to install the program?"
-msgstr ""
-"Chương trình '% s' cần được cài đặt để chạy hành động này.\n"
-"Cài đặt gói '% s' để cài đặt chương trình?"
-
-#, python-format
-msgid ""
-"Program '%s' not installed.\n"
-"The package containing this program isn't known."
-msgstr ""
-"Chương trình '% s' chưa được cài đặt.\n"
-"Gói chứa chương trình này không được biết đến."
 
 msgid "Programmlisten History"
 msgstr "Lịch sử chương trình"
@@ -13652,6 +13727,9 @@ msgstr "Đặt TV ở chế độ chờ"
 
 msgid "Put your AV Receiver in standby"
 msgstr "Đặt Bộ thu AV của bạn ở chế độ chờ"
+
+msgid "Python"
+msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Giao diện  /tmp/mmi.socket"
@@ -14030,9 +14108,6 @@ msgstr "Ghi chép luôGhi chép luôn được ưu tiênn được ưu tiên"
 msgid "Recordings may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Records"
-msgstr "Hồ sơ"
-
 msgid "Recovery"
 msgstr ""
 
@@ -14182,6 +14257,10 @@ msgstr "Loại điều khiển từ xa"
 msgid "Remove"
 msgstr "Tẩy"
 
+#, python-format
+msgid "Remove '%s' From Bookmarks"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Xóa dấu trang"
 
@@ -14242,17 +14321,11 @@ msgstr ""
 msgid "Remove completed timers after"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
 
-msgid "Remove current folder from bookmarks"
-msgstr "Xóa thư mục hiện tại khỏi bookmark"
-
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
-
-msgid "Remove selected folder from bookmarks"
-msgstr "Xóa thư mục đã chọn khỏi dấu trang"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Xóa văn bản cho người khiếm thính khỏi phụ đề bên ngoài (nhạc cụ hoặc âm thanh môi trường, ví dụ: khi nghe tiếng chuông cửa hoặc tiếng súng nổ)."
@@ -14284,14 +14357,20 @@ msgstr "Đổi tên"
 msgid "Rename Directory"
 msgstr ""
 
+msgid "Rename all related files"
+msgstr ""
+
+msgid "Rename directory/file"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Đổi tên thất bại!"
 
-msgid "Rename file/directory"
-msgstr "Đổi tên tập tin / thư mục"
-
 msgid "Rename name and description for new events"
 msgstr "Đổi tên và mô tả cho các sự kiện mới"
+
+msgid "Rename only highlighted file"
+msgstr ""
 
 msgid "Rename the proposed file to be created"
 msgstr ""
@@ -14373,6 +14452,9 @@ msgstr ""
 msgid "Reset and renumerate title names"
 msgstr "Đặt lại và gia hạn tên tiêu đề"
 
+msgid "Reset executable mode (644)"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr ""
 
@@ -14399,6 +14481,9 @@ msgstr "Chia sẻ lại:"
 
 msgid "Resolution"
 msgstr "Nghị quyết"
+
+msgid "Resolution unit"
+msgstr ""
 
 msgid "Restart"
 msgstr "Khởi động lại"
@@ -14546,14 +14631,8 @@ msgstr "Quay trở lại dịch vụ trước"
 msgid "Reverse bouquet buttons"
 msgstr "Nút gói kênh"
 
-msgid "Reverse left file sorting"
-msgstr "Sắp xếp ngược lại tập tin"
-
 msgid "Reverse list"
 msgstr "Danh sách ngược"
-
-msgid "Reverse right file sorting"
-msgstr "Đảo ngược sắp xếp tập tin"
 
 msgid "Rewind"
 msgstr "Tua lại"
@@ -14566,6 +14645,15 @@ msgstr "Viết lại phụ đề"
 
 msgid "Right"
 msgstr "Đúng"
+
+msgid "Right column"
+msgstr ""
+
+msgid "Right column directory sort"
+msgstr ""
+
+msgid "Right column file sort"
+msgstr ""
 
 msgid "Right from service name"
 msgstr "Ngay từ tên dịch vụ"
@@ -14717,6 +14805,9 @@ msgstr "Chuyển đổi thẻ SD LRI! - đã có trên mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "Đĩa đơn"
+
+msgid "SMS style QuickSelect entry selection"
+msgstr ""
 
 msgid "SMS style QuickSelect location selection"
 msgstr ""
@@ -14885,8 +14976,12 @@ msgstr "lưu thư mục cuối cùng khi thoát"
 msgid "Save every (in hours)"
 msgstr "Tiết kiệm mỗi (tính theo giờ)"
 
-msgid "Save left folder on exit"
-msgstr "Lưu thư mục bên trái khi thoát"
+#, python-format
+msgid "Save image as '%s'"
+msgstr ""
+
+msgid "Save left directory on exit"
+msgstr ""
 
 msgid "Save play list"
 msgstr "Lưu danh sách phát"
@@ -14894,8 +14989,8 @@ msgstr "Lưu danh sách phát"
 msgid "Save play list on EXIT"
 msgstr "lưu danh sách phát khi thoát"
 
-msgid "Save right folder on exit"
-msgstr "Tạo thư mục bên phải khi thoát"
+msgid "Save right directory on exit"
+msgstr ""
 
 msgid "Save settings and EPG data."
 msgstr "Lưu cài đặt và dữ liệu EPG"
@@ -14908,20 +15003,23 @@ msgstr ""
 "Lưu các lệnh và đầu ra vào một tập tin?\n"
 "('%s')"
 
-msgid "Save the left folder list location on exit."
-msgstr "Lưu vị trí danh sách thư mục bên trái khi thoát."
+msgid "Save the left column directory location on exit."
+msgstr ""
 
 msgid "Save the log changes and exit"
 msgstr ""
 
-msgid "Save the right folder list location on exit."
-msgstr "Lưu đúng vị trí danh sách thư mục khi thoát."
+msgid "Save the right column directory location on exit."
+msgstr ""
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Lưu timeshift như phim và tiếp tục ghi"
 
 msgid "Save time shift as movie and stop recording"
 msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
+
+msgid "Saved lines in script messages"
+msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "Lưu bộ nhớ cache EPG ..."
@@ -15015,10 +15113,6 @@ msgstr ""
 
 msgid "Scope"
 msgstr ""
-
-#, python-format
-msgid "Script '%s' must have read permission to be able to run it"
-msgstr "Tập lệnh '% s' phải có quyền đọc để có thể chạy nó"
 
 msgid "Script Manager"
 msgstr ""
@@ -15180,6 +15274,9 @@ msgstr "Với tùy chọn này được đặt thành 'có', danh sách kênh s�
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr ""
 
+msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Nếu được đặt thành 'có', sẽ hiển thị một màn hình TV nhỏ trong EPG."
 
@@ -15197,6 +15294,9 @@ msgstr "Nếu được đặt thành 'có', infobar sẽ được hiển thị k
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Nếu được đặt thành 'có', số kênh sẽ được hiển thị trong infobar."
+
+msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
@@ -15243,6 +15343,12 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
+msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
+msgstr ""
+
+msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -15252,8 +15358,14 @@ msgstr "Nếu được đặt thành 'có', các bó hoa sẽ được hiển th
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "Nếu được đặt thành 'có', danh sách kênh sẽ được hiển thị sau khi chuyển đổi giữa chế độ radio và TV."
 
+msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Nếu được đặt thành giá trị tín hiệu 'có' (SNR, v.v.) sẽ được tính từ API V3. Đây là một phiên bản API cũ đã được thay thế."
+
+msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr ""
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Nếu được đặt thành 'có; infobar sẽ được hiển thị khi Chuyển tiếp nhanh hoặc tua lại trong khi phát lại phương tiện."
@@ -15288,14 +15400,14 @@ msgstr "Chọn 'có' để bao gồm nhóm %s trong tìm kiếm của bạn."
 msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
 msgstr "Chọn 'có' để chỉ gửi lệnh DiSEqC khi thay đổi từ vệ tinh này sang vệ tinh khác hoặc chọn 'không' để lệnh DiSEqC được gửi lại trên mỗi zap."
 
-msgid "Select (source list) or enter directory (target list)"
-msgstr "Chọn (danh sách nguồn) hoặc nhập thư mục (danh sách đích)"
-
 msgid "Select Additional Backup Files"
 msgstr "Chọn tập tin sao lưu bổ sung"
 
 msgid "Select Backup Location"
 msgstr "Chọn vị trí dự phòng"
+
+msgid "Select Bookmark"
+msgstr ""
 
 msgid "Select CAId"
 msgstr "Chọn CAId"
@@ -15357,7 +15469,17 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a directory"
+msgstr ""
+
+msgid "Select a directory from the bookmarks"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
+msgstr ""
+
+#, python-format
+msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a movie"
@@ -15365,9 +15487,6 @@ msgstr "Chọn một bộ phim"
 
 msgid "Select a network adapter"
 msgstr "Chọn bộ điều hợp mạng"
-
-msgid "Select a path"
-msgstr "Chọn đường dẫn"
 
 msgid "Select a repository commit log to view:"
 msgstr ""
@@ -15394,6 +15513,9 @@ msgstr "Chọn hành động cho bộ đếm thời gian % s:"
 msgid "Select additional files to backup"
 msgstr "Chọn tập tin bổ sung để sao lưu"
 
+msgid "Select all related files"
+msgstr ""
+
 msgid "Select an action to perform when the task has completed."
 msgstr ""
 
@@ -15412,6 +15534,9 @@ msgstr "Chọn đích sao chép cho:"
 msgid "Select default EPG type..."
 msgstr "Chọn loại EPG mặc định ..."
 
+msgid "Select default File Commander directory:"
+msgstr ""
+
 msgid "Select destination for:"
 msgstr "Chọn điểm đến cho:"
 
@@ -15421,7 +15546,13 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
+msgid "Select how long to display status messages."
+msgstr ""
+
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr ""
+
+msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
@@ -15502,6 +15633,9 @@ msgstr ""
 msgid "Select movie"
 msgstr "Chọn phim"
 
+msgid "Select only highlighted file"
+msgstr ""
+
 msgid "Select provider to add..."
 msgstr "Lựa chọn hướng dẫn cho logfile...."
 
@@ -15524,6 +15658,12 @@ msgid "Select sort method:"
 msgstr "Chọn phương pháp sắp xếp:"
 
 msgid "Select system information to view:"
+msgstr ""
+
+msgid "Select temporary directory sort order for the current column"
+msgstr ""
+
+msgid "Select temporary file sort order for the current column"
 msgstr ""
 
 msgid "Select the No / False response"
@@ -15593,16 +15733,30 @@ msgstr ""
 msgid "Select the day of the week that this timer will activate."
 msgstr ""
 
+msgid "Select the default directory to be used if the left column directory is not saved."
+msgstr ""
+
+msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
 msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Chọn chức năng mong muốn và nhấp vào \"OK\" để gán nó. Sử dụng \"CH +/-\" để chuyển đổi giữa các danh sách. Chọn một chức năng được chỉ định và nhấp vào \"OK\" để hủy gán nó. Sử dụng \"Tiếp theo / Trước\" để thay đổi thứ tự của các chức năng được gán."
 
+#, python-format
+msgid "Select the directory sort order for the %s column:"
+msgstr ""
+
 msgid "Select the display design for menus."
 msgstr ""
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
+msgstr ""
+
+#, python-format
+msgid "Select the file sort order for the %s column:"
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -15702,6 +15856,9 @@ msgid "Select the sort order of the menu entries. User defined also allows the m
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
@@ -16099,9 +16256,6 @@ msgstr "Đặt tốc độ khung hình cho MiniTV"
 msgid "Set action for 'Info' key"
 msgstr "Đặt hành động cho khóa 'Thông tin'"
 
-msgid "Set archive mode (644)"
-msgstr "Đặt chế độ lưu trữ (644)"
-
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -16116,9 +16270,6 @@ msgstr "Đặt chế độ thực thi (755)"
 
 msgid "Set fixed"
 msgstr "Đặt cố định"
-
-msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-msgstr "Đặt cho 'stout' và 'sterr' số lượng dòng trong thông tin tập lệnh hoặc thông báo lỗi tập lệnh."
 
 msgid "Set fps for external subtitles"
 msgstr "Đặt khung hình / giây cho phụ đề bên ngoài"
@@ -16168,6 +16319,9 @@ msgstr "Đặt thời gian trễ giữa các vòng lặp lặp lại, điều n�
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Đặt kích thước bước nhảy của thanh tìm kiếm."
+
+msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
 
 msgid "Set the position of the recording icons"
 msgstr "Đặt vị trí của các biểu tượng ghi âm"
@@ -16488,14 +16642,6 @@ msgstr "Có nên thiết lập lại bộ đếm sự cố để ngăn khởi đ
 msgid "Show"
 msgstr "Hiển thị EPG"
 
-#, python-format
-msgid ""
-"Show '%s' as picture%s?\n"
-"The current service must interrupted!"
-msgstr ""
-"Hiển thị '% s' dưới dạng hình ảnh % s?\n"
-"Dịch vụ hiện tại phải gián đoạn!"
-
 msgid "Show /tmp/ecm.info"
 msgstr "Hiển thị /tmp/ecm.info"
 
@@ -16565,9 +16711,6 @@ msgstr "Hiển thị khách hàng"
 
 msgid "Show Default Backup Files"
 msgstr "Hiển thị tập tin sao lưu mặc định"
-
-msgid "Show Directory size"
-msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Hiển thị biểu tượng hiển thị"
@@ -16682,14 +16825,11 @@ msgstr "Hiển thị mạng khởi động lại trong danh sách Tiện ích m�
 msgid "Show SD as"
 msgstr "Hiển thị SD dưới dạng"
 
-msgid "Show Script completed message"
-msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
-
 msgid "Show Single EPG"
 msgstr "Hiển thị EPG đơn"
 
-msgid "Show Task's completed message"
-msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+msgid "Show Task List"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Hiển thị danh sách hẹn giờ"
@@ -16717,13 +16857,6 @@ msgstr "Hiển thị cài đặt nâng cao"
 
 msgid "Show animation while busy"
 msgstr "Hiển thị hình ảnh động trong khi bận rộn"
-
-msgid "Show as Picture (press any key to close)"
-msgstr "Hiển thị dưới dạng Ảnh (nhấn phím bất kỳ để đóng)"
-
-#, python-format
-msgid "Show as Picture and save as file ('%s')"
-msgstr "Hiển thị dưới dạng Ảnh và lưu dưới dạng tệp ('% s')"
 
 msgid "Show background in Radio Mode"
 msgstr "Hiển thị nền trong Chế độ radio"
@@ -16755,18 +16888,6 @@ msgstr "Hiển thị cột"
 msgid "Show commit log information"
 msgstr ""
 
-msgid "Show contents of ipk file"
-msgstr "Hiển thị nội dung của tập tin ipk"
-
-msgid "Show contents of rar file"
-msgstr "Hiển thị nội dung của tập tin rar"
-
-msgid "Show contents of tar or compressed tar file"
-msgstr "Hiển thị nội dung của tệp tar hoặc nén tar"
-
-msgid "Show contents of zip file"
-msgstr "Hiển thị nội dung của tệp zip"
-
 msgid "Show crash info on screen and write crash log for x times"
 msgstr "Hiển thị thông tin sự cố trên màn hình và viết nhật ký sự cố cho x lần"
 
@@ -16775,6 +16896,9 @@ msgstr "Hiển thị biểu tượng  điện tử"
 
 msgid "Show crypto info in InfoBar"
 msgstr "Hiển thị thông tin về t điện tử trong infobar"
+
+msgid "Show current directory"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr ""
@@ -16801,9 +16925,6 @@ msgstr ""
 
 msgid "Show directories first"
 msgstr "Hiển thị thư mục đầu tiên"
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr "Hiển thị các thư mục trên đầu tiên hoặc cuối cùng trong danh sách. (Phải khởi động lại File Commander)"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Hiển thị thông tin mã hóa trong infobar (khi được hỗ trợ bởi skin)."
@@ -16839,6 +16960,9 @@ msgstr "Hiển thị danh sách yêu thích"
 msgid "Show files backed up by default"
 msgstr "Hiển thị tập tin được sao lưu theo mặc định"
 
+msgid "Show first image"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Hiển thị đồ họa đa EPG"
 
@@ -16848,8 +16972,12 @@ msgstr "Hiển thị trợ giúp"
 msgid "Show icon for new/unseen items"
 msgstr "Hiển thị biểu tượng cho các mục mới / chưa thấy"
 
-msgid "Show image information"
-msgstr "Hiển thị thông tin hình ảnh"
+msgid "Show image"
+msgstr ""
+
+#, python-format
+msgid "Show image and save as '%s'"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Hiển thị trong chế độ chờ"
@@ -16866,6 +16994,9 @@ msgstr "Hiển thị dòng thông tin"
 msgid "Show job tasks in extensions"
 msgstr "Hiển thị nhiệm vụ công việc trong phần mở rộng"
 
+msgid "Show last image"
+msgstr ""
+
 msgid "Show live TV when movie stopped"
 msgstr "Hiển thị truyền hình trực tiếp khi phim dừng"
 
@@ -16877,12 +17008,6 @@ msgstr "Hiển thị các sự kiện được đánh dấu trong tất cả cá
 
 msgid "Show menu"
 msgstr "Hiển thị menu"
-
-msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr "Hiển thị thông báo nếu File Commander không chạy và tất cả các tác vụ đã hoàn thành."
-
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr "Hiển thị thông báo nếu một kịch bản nền kết thúc thành công. Có 'stout', sau đó điều này được hiển thị dưới dạng thông tin bổ sung."
 
 msgid "Show message when recording starts"
 msgstr "Hiển thị thông báo khi bắt đầu ghi"
@@ -16906,6 +17031,9 @@ msgid "Show next debug log file"
 msgstr ""
 
 msgid "Show next event"
+msgstr ""
+
+msgid "Show next image"
 msgstr ""
 
 msgid "Show next page"
@@ -16950,6 +17078,9 @@ msgstr ""
 msgid "Show previous event"
 msgstr ""
 
+msgid "Show previous image"
+msgstr ""
+
 msgid "Show previous page"
 msgstr ""
 
@@ -16977,6 +17108,12 @@ msgstr "Hiển thị bảo vệ màn hình"
 
 msgid "Show screensaver"
 msgstr "Hiển thị bảo vệ màn hình"
+
+msgid "Show script messages"
+msgstr ""
+
+msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
 
 msgid "Show selection for system information screen"
 msgstr ""
@@ -17039,8 +17176,11 @@ msgstr "Hiển thị lựa chọn phụ đề"
 msgid "Show system information"
 msgstr ""
 
-msgid "Show task list"
-msgstr "Hiển thị danh sách nhiệm vụ"
+msgid "Show task messages"
+msgstr ""
+
+msgid "Show task messages if File Commander is not running and all task are completed."
+msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr ""
@@ -17096,6 +17236,9 @@ msgstr "Hiển thị các plugin ..."
 msgid "Show the radio player"
 msgstr "Hiển thị trình phát radio ..."
 
+msgid "Show the task list"
+msgstr ""
+
 #, fuzzy
 msgid "Show the tv player"
 msgstr "Hiển thị trình phát tv ..."
@@ -17127,12 +17270,6 @@ msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Hiển thị Videoresolution không xác định là độ phân giải màn hình cao hơn hoặc cao hơn tiếp theo."
-
-msgid "Show unknown extension as text"
-msgstr "Hiển thị lựa chọn mở rộng"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Hiển thị phần mở rộng tệp không xác định với 'Addon File-Viewer'."
 
 msgid "Show unknown video format as"
 msgstr "Hiển thị định dạng video không xác định là"
@@ -17283,8 +17420,11 @@ msgstr ""
 msgid "Size"
 msgstr "Kích thước"
 
-msgid "Size reverse"
-msgstr "Kích thước ngược"
+msgid "Size ascending"
+msgstr ""
+
+msgid "Size descending"
+msgstr ""
 
 msgid "Skin"
 msgstr "Da"
@@ -17325,9 +17465,6 @@ msgstr "Bỏ qua"
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr ""
 
-msgid "Skip selection"
-msgstr "Bỏ qua lựa chọn"
-
 msgid "Sleep"
 msgstr "Ngủ"
 
@@ -17338,6 +17475,9 @@ msgid "Sleep Timers"
 msgstr ""
 
 msgid "Sleep delay"
+msgstr ""
+
+msgid "Sleep test"
 msgstr ""
 
 msgid "Sleep timer"
@@ -17392,8 +17532,14 @@ msgstr "Trượt hình ảnh trong vòng lặp"
 msgid "Slide right to left"
 msgstr "Trượt từ phải sang trái"
 
+msgid "Slide show delay"
+msgstr ""
+
 msgid "Slide show interval (sec.)"
 msgstr "Khoảng thời gian trình chiếu (giây)"
+
+msgid "Slide show loop"
+msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "Trượt từ trên xuống dưới"
@@ -17660,11 +17806,9 @@ msgstr "Sắp xếp thứ tự cho các mục menu"
 msgid "Sort playlists"
 msgstr "sắp xếp danh sách phát"
 
-msgid "Sorting left files by name, date or size"
-msgstr "Sắp xếp các tập tin bên trái theo tên, ngày hoặc kích thước"
-
-msgid "Sorting right files by name, date or size"
-msgstr "Sắp xếp đúng tệp theo tên, ngày hoặc kích thước"
+#, python-format
+msgid "Sort: Directories by %s %s; Files by %s %s."
+msgstr ""
 
 #, fuzzy
 msgid "Sotho, Southern"
@@ -17782,6 +17926,9 @@ msgstr "Tương tự như trong hoạt động"
 msgid "Start date"
 msgstr ""
 
+msgid "Start edit at line end"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Bắt đầu từ đầu"
 
@@ -17827,6 +17974,9 @@ msgstr "Thuật sĩ bắt đầu"
 msgid "Starting Softcam"
 msgstr "Khởi động Softcam"
 
+msgid "Starting column"
+msgstr ""
+
 msgid "Starting date"
 msgstr ""
 
@@ -17849,6 +17999,9 @@ msgstr ""
 
 msgid "Status"
 msgstr "Bắt đầu"
+
+msgid "Status message timeout"
+msgstr ""
 
 msgid "Status of the display during operation"
 msgstr "Trạng thái của màn hình trong khi hoạt động"
@@ -18152,9 +18305,6 @@ msgstr "Hoán đổi SNR bằng '%' bằng SNR bằng 'db'"
 msgid "Swap Size:"
 msgstr "Kích thước hoán đổi:"
 
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Các nút hoán đổi phải / trái với kênh cộng / trừ hoặc nút kênh luôn thay đổi bên cạnh."
-
 msgid "Swap services"
 msgstr "Dịch vụ hoán đổi"
 
@@ -18272,6 +18422,12 @@ msgstr ""
 msgid "Switch to the available TV services"
 msgstr ""
 
+msgid "Switch to the left column"
+msgstr ""
+
+msgid "Switch to the right column"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "Các loại tuner có thể chuyển đổi:"
 
@@ -18290,9 +18446,6 @@ msgstr "Tỷ lệ biểu tượng"
 
 msgid "Symbolic link"
 msgstr "Liên kết tượng trưng"
-
-msgid "Symlink to "
-msgstr "Liên kết đến "
 
 msgid "Sync NTP every (minutes)"
 msgstr "Đồng bộ hóa NTP mỗi (phút)"
@@ -18434,6 +18587,18 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Cộng hòa Hoa Kỳ"
 
+#, python-format
+msgid "Task '%s' ended successfully."
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with an error message!"
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with error number %d!"
+msgstr ""
+
 msgid "Task List"
 msgstr ""
 
@@ -18520,6 +18685,10 @@ msgstr "Thiết lập Telnet"
 msgid "Telugu"
 msgstr ""
 
+#, python-format
+msgid "Temp directory (%s)"
+msgstr ""
+
 #, fuzzy
 msgid "Tennis"
 msgstr "Phần Lan"
@@ -18530,8 +18699,17 @@ msgstr "TH mặt đất"
 msgid "Terrestrial bouquet:"
 msgstr "Gói kênh TH mặt đất:"
 
+msgid "Test"
+msgstr ""
+
 msgid "Test DiSEqC settings"
 msgstr "Kiểm tra cài đặt DiSEqC"
+
+msgid "Test job completed."
+msgstr ""
+
+msgid "Test job failed!"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Chế độ kiểm tra"
@@ -18637,9 +18815,6 @@ msgstr ""
 msgid "The IceTV server has requested password for %s."
 msgstr ""
 
-msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-msgstr "Thành phần Trình xem hình ảnh của Trình chỉ huy tệp yêu cầu tiện ích mở rộng PicturePlayer. Cài đặt PicturePlayer để kích hoạt thao tác này."
-
 msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
@@ -18702,8 +18877,8 @@ msgstr ""
 msgid "The aspect ratio of the recording."
 msgstr "Tỷ lệ khung hình của bản ghi."
 
-msgid "The authors are NOT RESPONSIBLE"
-msgstr "Các tác giả KHÔNG TRÁCH NHIỆM"
+msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
+msgstr ""
 
 msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
@@ -18756,6 +18931,14 @@ msgid ""
 "Press OK to continue using the %s %s."
 msgstr ""
 
+#, python-format
+msgid "The file '%s' has been changed. Do you want to discard the changes?"
+msgstr ""
+
+#, python-format
+msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
 msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
@@ -18763,21 +18946,15 @@ msgstr ""
 "Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
 "Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
 
+#, python-format
+msgid "The following files are related to '%s':"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr "Tốc độ khung hình của bản ghi. Lý tưởng nhất, điều này sẽ phù hợp với tốc độ khung hình của nguồn hoặc là bội số nguyên. Nếu nghi ngờ, hãy đặt thành 60, sẽ hoạt động với hầu hết các nguồn."
-
-msgid ""
-"The function has interrupted.\n"
-"Don't press in the next time any key until the picture from mvi-file is displayed!"
-msgstr ""
-"Các chức năng đã bị gián đoạn.\n"
-"Không nhấn vào lần tiếp theo bất kỳ phím nào cho đến khi hình ảnh từ tập tin mvi được hiển thị!"
-
-msgid "The hash of a directory can't be calculated."
-msgstr "Băm của một thư mục không thể được tính toán."
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Chiều cao của hình ảnh. Đầu vào sẽ được thu nhỏ để phù hợp với giá trị này."
@@ -18884,6 +19061,10 @@ msgstr "Có ít nhất "
 
 msgid "There are currently no outstanding actions."
 msgstr "Hiện tại không có hành động nổi bật."
+
+#, python-format
+msgid "There are no actions available to process '%s'!"
+msgstr ""
 
 msgid "There are no items currently available for this screen."
 msgstr ""
@@ -18996,6 +19177,9 @@ msgstr "Điều này cho phép bạn hiển thị các mô-đun liên kết web 
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Trường này cho phép bạn tìm kiếm tỷ lệ biểu tượng bổ sung lên đến%s."
 
+msgid "This function is not available as processing of large files may take too long to run on this hardware."
+msgstr ""
+
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr ""
 
@@ -19012,9 +19196,6 @@ msgstr ""
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Đây là thứ tự mà các lệnh DiSEqC được gửi đến hệ thống trên không. Thứ tự phải tương ứng chính xác với thứ tự các thiết bị vật lý được sắp xếp dọc theo cáp tín hiệu (bắt đầu từ đầu thu)."
-
-msgid "This line is not editable!"
-msgstr "Dòng này không thể chỉnh sửa!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr ""
@@ -19346,8 +19527,8 @@ msgstr "Cài đặt thời gian"
 msgid "Time Update in Minutes:"
 msgstr "Cập nhật thời gian trong vài phút:"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Thời gian giữa các slide trong trình chiếu hình ảnh xem."
+msgid "Time between slides in image viewer slide show."
+msgstr ""
 
 msgid "Time delay for the repeated transmission"
 msgstr "Thời gian trễ cho việc truyền lặp lại"
@@ -19358,9 +19539,6 @@ msgstr "Thời gian trễ cho việc truyền lặp lại"
 
 msgid "Time delay until standby or deep standby"
 msgstr "Thời gian trễ cho đến khi chờ hoặc chờ sâu"
-
-msgid "Time for Slideshow"
-msgstr "Thời gian bắt đầu"
 
 msgid "Time for next LCD scrolling"
 msgstr "Thời gian để cuộn LCD tiếp theo"
@@ -19538,6 +19716,10 @@ msgstr "Chế độ tiêu đề"
 msgid "To restore the image:"
 msgstr "Để khôi phục lại hình ảnh:"
 
+#, python-format
+msgid "To where would you like to extract '%s'?"
+msgstr ""
+
 msgid "Today"
 msgstr "Hôm nay"
 
@@ -19565,6 +19747,9 @@ msgstr "Chuyển đổi hình ảnh trong đồ họa"
 msgid "Toggle a cut mark at the current position"
 msgstr "Chuyển đổi dấu cắt ở vị trí hiện tại"
 
+msgid "Toggle all related files"
+msgstr ""
+
 msgid "Toggle aspect ratio..."
 msgstr "Chuyển đổi tỷ lệ khung hình ..."
 
@@ -19574,7 +19759,13 @@ msgstr ""
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Chuyển đổi giữa các danh sách bó / epg"
 
+msgid "Toggle display of image information"
+msgstr ""
+
 msgid "Toggle display of the InfoBar"
+msgstr ""
+
+msgid "Toggle display of the image status overlay"
 msgstr ""
 
 msgid "Toggle enable/disable of the currently selected timer"
@@ -19590,6 +19781,9 @@ msgid "Toggle item edit mode on/off"
 msgstr ""
 
 msgid "Toggle item move mode on/off"
+msgstr ""
+
+msgid "Toggle multi-selection mode"
 msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
@@ -19714,6 +19908,9 @@ msgid "Trashcan:"
 msgstr "Thùng rác:"
 
 msgid "Travel"
+msgstr ""
+
+msgid "Tree size"
 msgstr ""
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
@@ -19926,9 +20123,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Loại quét"
 
-msgid "Type:"
-msgstr "Kiểu:"
-
 msgid "Type: "
 msgstr "Kiểu: "
 
@@ -20021,10 +20215,6 @@ msgstr "Uni cáp Matrix"
 msgid "Uninstall"
 msgstr "Gỡ cài đặt"
 
-#, python-format
-msgid "Uninstall '%s' package and disable '%s'"
-msgstr "Gỡ cài đặt gói '% s' và tắt '% s'"
-
 msgid "United Arab Emirates"
 msgstr "Các Tiểu Vương Quốc Ả Rập Thống Nhất"
 
@@ -20087,12 +20277,8 @@ msgstr "Bỏ đánh dấu dịch vụ dưới dạng dịch vụ 3D chuyên dụ
 msgid "Unmount"
 msgstr "Vô song"
 
-#, python-format
-msgid "Unpack to %s"
-msgstr "Giải nén đến % s"
-
-msgid "Unpack to current folder"
-msgstr "Giải nén vào thư mục hiện tại"
+msgid "Unpack File"
+msgstr ""
 
 msgid "Unscramble and record ECM"
 msgstr "giải mã và ghi lại ecm"
@@ -20305,6 +20491,9 @@ msgstr "Sử dụng Flash trực tuyến trong Trình quản lý phần mềm"
 msgid "Use OpenTV EPG information when it is available."
 msgstr "Sử dụng thông tin EIT EPG khi có sẵn."
 
+msgid "Use QuickSelect"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Sử dụng điều khiển từ xa"
 
@@ -20443,6 +20632,9 @@ msgstr "Sử dụng thời gian để nhảy nhanh / lùi"
 msgid "Use time shift SeekBar while time shifting"
 msgstr "Sử dụng thanh tìm kiếm timeshift trong khi timeshifting?"
 
+msgid "Use viewer for unknown files"
+msgstr ""
+
 msgid "Use workaround for wake up from deep-standby"
 msgstr "Sử dụng cách giải quyết để đánh thức từ chế độ chờ sâu?"
 
@@ -20466,6 +20658,9 @@ msgstr "Người dùng - gói kênh"
 
 msgid "User Feed URL"
 msgstr "url nguồn cấp dữ liệu người dùng"
+
+msgid "User comments"
+msgstr ""
 
 msgid "User defined"
 msgstr "Đã xác định người dùng"
@@ -20611,6 +20806,9 @@ msgstr ""
 #, fuzzy
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela (Cộng hòa Bolivar)"
+
+msgid "Version"
+msgstr ""
 
 #, python-format
 msgid "Version %s %s"
@@ -20777,6 +20975,9 @@ msgstr "tên tệp"
 msgid "View"
 msgstr "Lượt xem"
 
+msgid "View File"
+msgstr ""
+
 msgid "View Rass interactive..."
 msgstr "Xem Rass tương tác ..."
 
@@ -20825,9 +21026,6 @@ msgstr "Xem danh sách các phần mở rộng hệ thống có sẵn"
 msgid "View mode"
 msgstr "Chế độ xem sự kiện"
 
-msgid "View or edit file (if size < 1MB)"
-msgstr "Xem hoặc chỉnh sửa tệp (nếu kích thước <1MB)"
-
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Xem hoặc chỉnh sửa tập lệnh % s này"
@@ -20837,6 +21035,12 @@ msgstr "Xem ảnh..."
 
 msgid "View teletext..."
 msgstr "Xem teletext ..."
+
+msgid "View the archive contents"
+msgstr ""
+
+msgid "View the package contents"
+msgstr ""
 
 msgid "View video CD..."
 msgstr "Xem CD video ..."
@@ -20911,8 +21115,8 @@ msgstr ""
 msgid "WAN connection information"
 msgstr ""
 
-msgid "WARNING!"
-msgstr "CẢNH BÁO!"
+msgid "WARNING:"
+msgstr ""
 
 msgid "WEP"
 msgstr "WEP"
@@ -21139,13 +21343,25 @@ msgstr ""
 msgid "What day of week?"
 msgstr ""
 
-msgid "What do you want to play?\n"
-msgstr "Bạn muốn chơi gì\n"
-
 msgid "What do you want to scan?"
 msgstr "Bạn muốn loại dịch vụ quét nào?"
 
 msgid "What do you want to set as the default movie location?"
+msgstr ""
+
+msgid "What would you like to do with the archive file:"
+msgstr ""
+
+msgid "What would you like to do with the audio file:"
+msgstr ""
+
+msgid "What would you like to do with the background image file:"
+msgstr ""
+
+msgid "What would you like to do with the package file:"
+msgstr ""
+
+msgid "What would you like to do with the script file:"
 msgstr ""
 
 msgid "What would you like to do?"
@@ -21352,6 +21568,9 @@ msgstr "Trắng"
 msgid "Width"
 msgstr "Chiều rộng"
 
+msgid "Width / Height"
+msgstr ""
+
 #, fuzzy
 msgid "Winter Sports"
 msgstr "thể thao mùa đông"
@@ -21451,6 +21670,9 @@ msgstr "Viết thất bại!"
 msgid "Www"
 msgstr "Www"
 
+msgid "X-Resolution"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr "Hỗ trợ XBox 360"
 
@@ -21458,6 +21680,9 @@ msgid "XPicon, ZZZPicon"
 msgstr ""
 
 msgid "Xhosa"
+msgstr ""
+
+msgid "Y-Resolution"
 msgstr ""
 
 msgid "YCbCr420"
@@ -21610,14 +21835,6 @@ msgstr "Bạn có thể bỏ qua chức năng này và tắt TV khi bạn đánh
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
 msgstr "Bạn có thể chuyển đổi sang trái và phải bộ chỉnh này loại % s"
-
-#, python-format
-msgid "You can't usefully run '%s' on '%s'."
-msgstr "Bạn không thể chạy '% s' một cách hữu ích trên '% s'."
-
-#, python-format
-msgid "You can't usefully run '%s' on a directory."
-msgstr "Bạn không thể chạy '% s' một cách hữu ích trên một thư mục."
 
 msgid "You cannot delete this!"
 msgstr "Bạn không thể xóa cái này!"
@@ -22306,12 +22523,12 @@ msgstr "bản sao"
 msgid "copy to bouquets"
 msgstr "sao chép vào gói kênh"
 
-msgid "create symlink ..."
-msgstr "tạo liên kết tượng trưng ..."
-
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "tin tức / vấn đề thời sự (chung)"
+
+msgid "date"
+msgstr ""
 
 msgid "day"
 msgstr "ngày"
@@ -22526,9 +22743,6 @@ msgstr "nhạc dân gian / truyền thống"
 msgid "football/soccer"
 msgstr "bóng đá"
 
-msgid "for DATA LOSS OR DAMAGE !!!"
-msgstr "cho DỮ LIỆU MẤT HOẶC DAMAGE !!!"
-
 msgid "force AC3plus"
 msgstr "tác dụng AC3plus"
 
@@ -22552,9 +22766,6 @@ msgstr "không gian trống của đĩa"
 
 msgid "from"
 msgstr "từ"
-
-msgid "from dir"
-msgstr "từ thư mục"
 
 msgid "further education"
 msgstr "giáo dục nâng cao"
@@ -22609,9 +22820,6 @@ msgstr "thủ công"
 
 msgid "handled"
 msgstr "xử lý"
-
-msgid "has been CHANGED! Do you want to save it?"
-msgstr "đã thay đổi! Bạn có muốn lưu nó không?"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -22675,9 +22883,6 @@ msgstr "mô-đun init"
 msgid "insert mark here"
 msgstr "chèn dấu ở đây"
 
-msgid "install/unpack ipk Files"
-msgstr "cài đặt / giải nén tập tin ipk"
-
 #, fuzzy
 msgid "installed"
 msgstr "Gỡ cài đặt"
@@ -22738,9 +22943,6 @@ msgstr "lặp qua"
 msgid "magazines/reports/documentary"
 msgstr "tạp chí / báo cáo / phim tài liệu"
 
-msgid "manage local Files"
-msgstr "quản lý tập tin cục bộ"
-
 msgid "manual"
 msgstr "hướng dẫn sử dụng"
 
@@ -22771,12 +22973,6 @@ msgstr "di chuyển xuống mục cuối cùng"
 
 msgid "move down to next entry"
 msgstr "chuyển xuống mục tiếp theo"
-
-msgid "move file"
-msgstr "di chuyển tập tin"
-
-msgid "move folder"
-msgstr "di chuyển thư mục"
 
 msgid "move up to first entry"
 msgstr "di chuyển đến mục đầu tiên"
@@ -22809,6 +23005,9 @@ msgstr "âm nhạc / ba lê / thương mại (nói chung)"
 
 msgid "n/a"
 msgstr "n/a"
+
+msgid "name"
+msgstr ""
 
 msgid "nature/animals/environment"
 msgstr "thiên nhiên / động vật / môi trường"
@@ -22910,9 +23109,6 @@ msgstr "về cách khôi phục lại hình ảnh"
 msgid "only HD"
 msgstr "chỉ HD"
 
-msgid "original"
-msgstr "nguyên"
-
 msgid "original language"
 msgstr "ngôn ngữ gốc"
 
@@ -22928,17 +23124,11 @@ msgstr "biểu diễn nghệ thuật"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play Files"
-msgstr "chơi tập tin"
-
 msgid "play as picture in picture"
 msgstr "chơi như hình trong ảnh"
 
 msgid "play in mainwindow"
 msgstr "chơi trong gió chính"
-
-msgid "play/show Files"
-msgstr "phát / hiển thị tập tin"
 
 msgid "please press OK when ready"
 msgstr "vui lòng nhấn OK khi sẵn sàng"
@@ -22966,9 +23156,6 @@ msgstr "nhà cung cấp:"
 
 msgid "purge deleted user bouquets"
 msgstr "thanh lọc người dùng đã xóa"
-
-msgid "python"
-msgstr "python"
 
 msgid "red"
 msgstr "màu đỏ"
@@ -23067,12 +23254,6 @@ msgstr "trạng thái quét"
 
 msgid "science fiction/fantasy/horror"
 msgstr "khoa học viễn tưởng / giả tưởng / kinh dị"
-
-msgid "script 'sterr':"
-msgstr "kịch bản 'stderr':"
-
-msgid "script 'stout':"
-msgstr "kịch bản 'stout':"
 
 msgid "sdr"
 msgstr "sdr"
@@ -23173,6 +23354,9 @@ msgstr "xáo trộn"
 msgid "simple"
 msgstr "đơn giản"
 
+msgid "size"
+msgstr ""
+
 msgid "skip backward"
 msgstr "bỏ qua lạc hậu"
 
@@ -23272,6 +23456,9 @@ msgstr "tệp mẫu"
 msgid "tennis/squash"
 msgstr "quần vợt / bóng quần"
 
+msgid "text"
+msgstr ""
+
 msgid "this bouquet is protected by a parental control pin"
 msgstr "gói kênh này được bảo vệ bởi một chốt kiểm soát của cha mẹ"
 
@@ -23280,9 +23467,6 @@ msgstr "bản ghi âm này"
 
 msgid "this service is protected by a parental control pin"
 msgstr "dịch vụ này được bảo vệ bởi pin kiểm soát của phụ huynh"
-
-msgid "to dir"
-msgstr "chỉ đạo"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "chuyển thời gian, chương, âm thanh, thông tin phụ đề"
@@ -23295,6 +23479,9 @@ msgstr "truyền thống (nhanh)"
 
 msgid "traditional (fast), retune"
 msgstr "truyền thống (nhanh), nghỉ hưu"
+
+msgid "tree delete"
+msgstr ""
 
 msgid "turbo"
 msgstr "turbo"
@@ -23335,21 +23522,6 @@ msgstr "không xác định"
 msgid "unknown error"
 msgstr "lỗi không rõ"
 
-msgid "unpack Rar Files"
-msgstr "giải nén tập tin Rar"
-
-msgid "unpack archives"
-msgstr "giải nén tài liệu lưu trữ"
-
-msgid "unpack gzip Files"
-msgstr "giải nén tập tin gzip"
-
-msgid "unpack tar/compressed tar Files"
-msgstr "giải nén tập tin tar / nén tar"
-
-msgid "unpack zip Files"
-msgstr "giải nén tập tin zip"
-
 msgid "unpublished"
 msgstr "chưa được công bố"
 
@@ -23379,9 +23551,6 @@ msgstr "đã xác định người dùng"
 
 msgid "using:"
 msgstr "sử dụng:"
-
-msgid "v"
-msgstr ""
 
 msgid "variety show"
 msgstr "chương trình tạp kỹ"
@@ -23439,9 +23608,6 @@ msgstr "có lỗi"
 msgid "with_errors"
 msgstr "có -lỗi"
 
-msgid "without"
-msgstr "không có"
-
 msgid "working"
 msgstr "đang làm việc"
 
@@ -23457,6 +23623,764 @@ msgstr "bây giờ % s% s của bạn có thể không sử dụng được. Vui
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "optional parameter:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\n"
+#~ "tham số tùy chọn:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid " ('%s') ends successfully."
+#~ msgstr " ('% s') kết thúc thành công."
+
+#, python-format
+#~ msgid " ('%s') ends with error messages."
+#~ msgstr " ('% s') kết thúc bằng thông báo lỗi."
+
+#, python-format
+#~ msgid " ('%s') ends with error number [%d]."
+#~ msgstr " ('% s') kết thúc bằng số lỗi [% d]."
+
+#, python-format
+#~ msgid " - %d elements exist! Overwrite"
+#~ msgstr " -% d yếu tố tồn tại!Ghi đè"
+
+#~ msgid " - 1 element exist! Overwrite"
+#~ msgstr " - 1 yếu tố tồn tại!Ghi đè"
+
+#~ msgid " - file exist! Overwrite"
+#~ msgstr " - tập tin tồn tại!Ghi đè"
+
+#~ msgid " - folder exist! Overwrite"
+#~ msgstr " - thư mục tồn tại! Ghi đè"
+
+#~ msgid " or save additional the picture to a file"
+#~ msgstr " Lưu tập tin timeshift trong thư mục phim"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, fuzzy, python-format
+#~ msgid "%s (%s"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s - extraction errors."
+#~ msgstr "%s - lỗi trích xuất."
+
+#, python-format
+#~ msgid "%s is password protected."
+#~ msgstr "%s là mật khẩu được bảo vệ."
+
+#, python-format
+#~ msgid "%s successfully extracted."
+#~ msgstr "%s được trích xuất thành công."
+
+#, python-format
+#~ msgid "'%s' not installed and no known package"
+#~ msgstr "'%s' chưa được cài đặt và không có gói nào được biết đến"
+
+#, python-format
+#~ msgid "(%d jobs)"
+#~ msgstr "(%d công việc)"
+
+#~ msgid "(1 job)"
+#~ msgstr "(1 công việc)"
+
+#~ msgid "(Selectmode)"
+#~ msgstr "(Chọn chế độ)"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Accessed:"
+#~ msgstr "Truy cập:"
+
+#~ msgid "Activate left-hand file list as multi-select source"
+#~ msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn đa lựa chọn"
+
+#~ msgid "Activate left-hand file list as source"
+#~ msgstr "Kích hoạt danh sách tập tin bên trái dưới dạng nguồn"
+
+#~ msgid "Activate right-hand file list as multi-select source"
+#~ msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn đa lựa chọn"
+
+#~ msgid "Activate right-hand file list as source"
+#~ msgstr "Kích hoạt danh sách tập tin bên phải dưới dạng nguồn"
+
+#~ msgid "Add current folder to bookmarks"
+#~ msgstr "Thêm thư mục hiện tại vào bookmark"
+
+#~ msgid "Add plugin to Extensions menu*"
+#~ msgstr "Thêm plugin vào menu Tiện ích mở rộng *"
+
+#~ msgid "Add plugin to main menu*"
+#~ msgstr "Thêm plugin vào menu chính *"
+
+#~ msgid "Add selected folder to bookmarks"
+#~ msgstr "Thêm thư mục đã chọn vào bookmark"
+
+#~ msgid "CPU priority for script execution"
+#~ msgstr "CPU ưu tiên thực thi tập lệnh"
+
+#~ msgid "Calculate file checksums"
+#~ msgstr "Tính toán tổng kiểm tra"
+
+#, python-format
+#~ msgid ""
+#~ "Can not run %s: %s.\n"
+#~ "%s may be in a plugin that is not installed."
+#~ msgstr ""
+#~ "Không thể chạy%s:%s.\n"
+#~ "%s có thể nằm trong một plugin chưa được cài đặt."
+
+#, python-format
+#~ msgid "Can't read link contents: %s"
+#~ msgstr "Không thể đọc nội dung liên kết:%s"
+
+#~ msgid "Change buttons for list navigation"
+#~ msgstr "Thay đổi nút để điều hướng danh sách"
+
+#~ msgid "Channel button always changes sides"
+#~ msgstr "Nút kênh luôn thay đổi bên"
+
+#, python-format
+#~ msgid "Copy %d elements"
+#~ msgstr "Sao chép các phần tử%d"
+
+#~ msgid "Copy 1 element"
+#~ msgstr "Sao chép 1 phần tử"
+
+#~ msgid "Copy file"
+#~ msgstr "Sao chép tập tin"
+
+#~ msgid "Copy file/directory to target directory"
+#~ msgstr "Sao chép tập tin / thư mục vào thư mục đích"
+
+#~ msgid "Copy files/directories to target directory"
+#~ msgstr "Sao chép tập tin / thư mục vào thư mục đích"
+
+#~ msgid "Copy folder"
+#~ msgstr "Sao chép các tệp tin"
+
+#~ msgid "Create directory/folder"
+#~ msgstr "Tạo thư mục / thư mục"
+
+#~ msgid "Create symlink to file"
+#~ msgstr "Tạo symlink vào tập tin"
+
+#~ msgid "Create user-named symbolic link"
+#~ msgstr "Tạo liên kết tượng trưng có tên người dùng"
+
+#~ msgid "Date reverse"
+#~ msgstr "Ngày đảo ngược"
+
+#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Ưu tiên CPU mặc định (đẹp) cho các tập lệnh được thực thi. Điều này có thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá trị cao hơn = mức độ ưu tiên thấp hơn)"
+
+#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Ưu tiên I / O mặc định (ionice) cho các tập lệnh được thực thi. Điều này có thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá trị cao hơn = mức độ ưu tiên thấp hơn)"
+
+#~ msgid "Default directory sorting"
+#~ msgstr "Sắp xếp thư mục mặc định"
+
+#~ msgid "Default file sorting left"
+#~ msgstr "Sắp xếp tập tin mặc định bên trái"
+
+#~ msgid "Default file sorting right"
+#~ msgstr "Sắp xếp tập tin mặc định"
+
+#~ msgid "Default folder"
+#~ msgstr "Thư mục mặc định"
+
+#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+#~ msgstr "Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư mục đích cho nút 5."
+
+#~ msgid "Default sorting method for directories on both sides."
+#~ msgstr "Phương pháp sắp xếp mặc định cho các thư mục ở cả hai bên."
+
+#~ msgid "Default sorting method for files on the left side."
+#~ msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên trái."
+
+#~ msgid "Default sorting method for files on the right side."
+#~ msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên phải."
+
+#, python-format
+#~ msgid "Delete %d elements"
+#~ msgstr "Xóa các phần tử%d"
+
+#~ msgid "Delete 1 element"
+#~ msgstr "Xóa 1 phần tử"
+
+#~ msgid "Delete file or directory (and all its contents)"
+#~ msgstr "Xóa tập tin hoặc thư mục (và tất cả nội dung của nó)"
+
+#~ msgid "Delete folder"
+#~ msgstr "Xóa thư mục"
+
+#~ msgid "Delete the selected files or directories"
+#~ msgstr "Xóa các tập tin hoặc thư mục đã chọn"
+
+#~ msgid "Do you want change rights?\n"
+#~ msgstr "Bạn có muốn thay đổi quyền không?\n"
+
+#~ msgid "Do you want to view or run the script?\n"
+#~ msgstr "Bạn có muốn xem hoặc chạy tập lệnh?\n"
+
+#~ msgid "Edit line "
+#~ msgstr "Chỉnh sửa dòng "
+
+#~ msgid "Edit position is the line end"
+#~ msgstr "Chỉnh sửa vị trí là cuối dòng"
+
+#~ msgid "Enter multi-file selection mode"
+#~ msgstr "Vào chế độ chọn nhiều tập tin"
+
+#, python-format
+#~ msgid ""
+#~ "Error creating directory %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi tạo thư mục%s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error linking %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi liên kết% s đến% s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error renaming %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi đổi tên% s thành% s:\n"
+#~ "%s"
+
+#~ msgid "Error..."
+#~ msgstr "Lỗi..."
+
+#~ msgid "Exit editor and write changes (if any)"
+#~ msgstr "Thoát khỏi trình chỉnh sửa và viết các thay đổi (nếu có)"
+
+#~ msgid "Exit picture viewer"
+#~ msgstr "Thoát khỏi trình xem ảnh"
+
+#~ msgid "File Commander - Addon File-Viewer"
+#~ msgstr "Trình chỉ huy tệp - Trình xem tệp Addon"
+
+#~ msgid "File Commander - Addon Mediaplayer"
+#~ msgstr "Chỉ huy tập tin - Addon Mediaplayer"
+
+#~ msgid "File Commander - Addon Movieplayer"
+#~ msgstr "Chỉ huy tập tin - Addon Movieplayer"
+
+#~ msgid "File Commander - all Task's are completed!"
+#~ msgstr "Chỉ huy tập tin - tất cả các nhiệm vụ đã hoàn thành!"
+
+#~ msgid "File Commander - generalised archive handler"
+#~ msgstr "File Commander - trình xử lý lưu trữ tổng quát"
+
+#~ msgid "File Commander - gzip Addon"
+#~ msgstr "Chỉ huy tập tin - gzip Addon"
+
+#~ msgid "File Commander - ipk Addon"
+#~ msgstr "Chỉ huy tin tin - gzip Addon"
+
+#~ msgid "File Commander - tar Addon"
+#~ msgstr "Chỉ huy tập tin - tar Addon"
+
+#~ msgid "File Commander - unrar Addon"
+#~ msgstr "Chỉ huy tập tin - unrar Addon"
+
+#~ msgid "File Commander - unzip Addon"
+#~ msgstr "File Commander - giải nén Addon"
+
+#~ msgid "File Commander context menu"
+#~ msgstr "Trình đơn ngữ cảnh tập tin"
+
+#~ msgid "File Commander menu"
+#~ msgstr "Trình đơn tập tin"
+
+#~ msgid "File checksums to calculate for button 9"
+#~ msgstr "Tổng kiểm tra tệp để tính cho nút 9"
+
+#~ msgid "File checksums/hashes"
+#~ msgstr "Tổng kiểm tra / băm"
+
+#, python-format
+#~ msgid "File not found: %s"
+#~ msgstr "Không tìm thấy tệp:% s"
+
+#~ msgid "File/Directory Status Information"
+#~ msgstr "Thông tin trạng thái tệp / thư mục"
+
+#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+#~ msgstr "Tiện ích mở rộng bộ lọc cho cài đặt 'Tiện ích mở rộng của tôi' của 'Tiện ích mở rộng bộ lọc'. Sử dụng tên mở rộng mà không có '.'."
+
+#~ msgid "Filter extension, (*) appears in title"
+#~ msgstr "Phần mở rộng bộ lọc, (*) xuất hiện trong tiêu đề"
+
+#~ msgid "Filter visible file classes by extension."
+#~ msgstr "Lọc các lớp tệp có thể nhìn thấy bằng phần mở rộng."
+
+#~ msgid "Go to bookmarked folder"
+#~ msgstr "Chuyển đến thư mục được đánh dấu"
+
+#~ msgid "Go to end of file"
+#~ msgstr "Đi đến cuối tập tin"
+
+#~ msgid "Go to parent directory"
+#~ msgstr "Chuyển đến thư mục cha mẹ"
+
+#~ msgid "Go to start of file"
+#~ msgstr "Bắt đầu tập tin"
+
+#~ msgid "Group:"
+#~ msgstr "Nhóm:"
+
+#~ msgid "I/O priority for script execution"
+#~ msgstr "Ưu tiên I / O để thực thi tập lệnh"
+
+#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+#~ msgstr "Nếu chỉnh sửa tệp, bạn có thể đặt vị trí bắt đầu con trỏ ở cuối hoặc đầu dòng."
+
+#~ msgid "Inode:"
+#~ msgstr "Nút:"
+
+#~ msgid "Insert"
+#~ msgstr "Chèn"
+
+#, python-format
+#~ msgid "Install '%s' and enable this operation"
+#~ msgstr "Cài đặt '% s' và kích hoạt thao tác này"
+
+#~ msgid "Installing Plugin ..."
+#~ msgstr "Cài đặt Plugin ..."
+
+#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
+#~ msgstr "Không thể tính băm trên <Danh sách thiết bị lưu trữ>"
+
+#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
+#~ msgstr "Không thể thay đổi chế độ tệp của <Danh sách thiết bị lưu trữ>"
+
+#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
+#~ msgstr "Không thể có được trạng thái tệp của <Danh sách thiết bị lưu trữ>"
+
+#, python-format
+#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
+#~ msgstr "Không thể chạy '% s' trên <Danh sách thiết bị lưu trữ>"
+
+#~ msgid "It's not possible to rename the file system root."
+#~ msgstr "Không thể đổi tên root hệ thống tập tin."
+
+#~ msgid "Leave File Commander"
+#~ msgstr "Để lại tập lệnh"
+
+#~ msgid "Leave multi-select mode"
+#~ msgstr "Để chế độ đa lựa chọn"
+
+#~ msgid "Link target:"
+#~ msgstr "Liên kết mục tiêu:"
+
+#~ msgid "Links:"
+#~ msgstr "Liên kết:"
+
+#~ msgid "Make File Commander accessible from the Extensions menu."
+#~ msgstr "Làm cho File Commander có thể truy cập từ menu Tiện ích mở rộng."
+
+#~ msgid "Make File Commander accessible from the main menu."
+#~ msgstr "Làm cho File Commander có thể truy cập từ menu chính."
+
+#~ msgid "Metadata changed:"
+#~ msgstr "Siêu dữ liệu đã thay đổi:"
+
+#, python-format
+#~ msgid "Mode %s (%04o)"
+#~ msgstr "Chế độ % s (% 04o)"
+
+#~ msgid "Modified:"
+#~ msgstr "Đã sửa đổi:"
+
+#, python-format
+#~ msgid "Move %d elements"
+#~ msgstr "Di chuyển các yếu tố %d"
+
+#~ msgid "Move 1 element"
+#~ msgstr "Di chuyển 1 yếu tố"
+
+#~ msgid "Move down list"
+#~ msgstr "Di chuyển xuống danh sách"
+
+#~ msgid "Move file"
+#~ msgstr "Di chuyển tập tin"
+
+#~ msgid "Move file/directory to target directory"
+#~ msgstr "Di chuyển tập tin / thư mục đến thư mục đích"
+
+#~ msgid "Move files/directories to target directory"
+#~ msgstr "Di chuyển tệp / thư mục vào thư mục đích"
+
+#~ msgid "Move folder"
+#~ msgstr "Di chuyển thư mục"
+
+#~ msgid "Move up list"
+#~ msgstr "Di chuyển lên danh sách"
+
+#~ msgid "My extension"
+#~ msgstr "Gia hạn của tôi"
+
+#~ msgid "Name reverse"
+#~ msgstr "Tên ngược"
+
+#~ msgid "New folder"
+#~ msgstr "Thư mục mới"
+
+#~ msgid "No files found."
+#~ msgstr "Không tìm thấy tập tin."
+
+#~ msgid "No hash calculations configured"
+#~ msgstr "Không có tính toán băm được cấu hình"
+
+#, python-format
+#~ msgid "No viewer installed for this file type: %s"
+#~ msgstr "Không có người xem nào được cài đặt cho loại tệp này:%s"
+
+#, python-format
+#~ msgid "None of the hash programs for the hashes %s are available"
+#~ msgstr "Không có chương trình băm nào cho băm %s có sẵn"
+
+#~ msgid "Not allowed with folders"
+#~ msgstr "Không được phép với các thư mục"
+
+#~ msgid "Number of lines in script messages"
+#~ msgstr "Số dòng trong thông điệp script"
+
+#~ msgid "On device:"
+#~ msgstr "Trên thiết bị:"
+
+#~ msgid "Open settings/actions menu"
+#~ msgstr "Mở menu cài đặt / hành động"
+
+#~ msgid "Owner:"
+#~ msgstr "Chủ nhân:"
+
+#~ msgid "Page down list"
+#~ msgstr "Trang xuống danh sách"
+
+#~ msgid "Page up list"
+#~ msgstr "Danh sách trang lên"
+
+#~ msgid "Parent directory"
+#~ msgstr "Thư mục phụ huynh"
+
+#~ msgid "Permissions:"
+#~ msgstr "Quyền:"
+
+#~ msgid "Play folder"
+#~ msgstr "Chơi thư mục"
+
+#~ msgid "Play title"
+#~ msgstr "Chơi tiêu đề"
+
+#~ msgid "Play/view/edit/install/extract/run file or enter directory"
+#~ msgstr "Phát / xem / chỉnh sửa / cài đặt / giải nén / chạy tệp hoặc vào thư mục"
+
+#~ msgid "Please enter name of the new symlink"
+#~ msgstr "Vui lòng nhập tên của symlink mới"
+
+#~ msgid "Please enter password"
+#~ msgstr "Xin vui lòng nhập mật khẩu"
+
+#~ msgid "Please enter the new directory name"
+#~ msgstr "Vui lòng nhập tên thư mục mới"
+
+#~ msgid "Please enter the new file name"
+#~ msgstr "Vui lòng nhập tên tệp mới"
+
+#~ msgid "Please wait, Loading image."
+#~ msgstr "Xin vui lòng chờ, Đang tải hình ảnh."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' is installed.\n"
+#~ "The package containing this program isn't known, so it can't be uninstalled."
+#~ msgstr ""
+#~ "Chương trình '% s' được cài đặt.\n"
+#~ "Gói chứa chương trình này không được biết đến, vì vậy nó không thể được gỡ cài đặt."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run the '%s' action.\n"
+#~ "Uninstall the '%s' package to uninstall the program?"
+#~ msgstr ""
+#~ "Chương trình '% s' cần được cài đặt để chạy hành động '% s'.\n"
+#~ "Gỡ cài đặt gói '% s' để gỡ cài đặt chương trình?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run this action.\n"
+#~ "Install the '%s' package to install the program?"
+#~ msgstr ""
+#~ "Chương trình '% s' cần được cài đặt để chạy hành động này.\n"
+#~ "Cài đặt gói '% s' để cài đặt chương trình?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' not installed.\n"
+#~ "The package containing this program isn't known."
+#~ msgstr ""
+#~ "Chương trình '% s' chưa được cài đặt.\n"
+#~ "Gói chứa chương trình này không được biết đến."
+
+#~ msgid "Records"
+#~ msgstr "Hồ sơ"
+
+#~ msgid "Remove current folder from bookmarks"
+#~ msgstr "Xóa thư mục hiện tại khỏi bookmark"
+
+#~ msgid "Remove selected folder from bookmarks"
+#~ msgstr "Xóa thư mục đã chọn khỏi dấu trang"
+
+#~ msgid "Rename file/directory"
+#~ msgstr "Đổi tên tập tin / thư mục"
+
+#~ msgid "Reverse left file sorting"
+#~ msgstr "Sắp xếp ngược lại tập tin"
+
+#~ msgid "Reverse right file sorting"
+#~ msgstr "Đảo ngược sắp xếp tập tin"
+
+#~ msgid "Save left folder on exit"
+#~ msgstr "Lưu thư mục bên trái khi thoát"
+
+#~ msgid "Save right folder on exit"
+#~ msgstr "Tạo thư mục bên phải khi thoát"
+
+#~ msgid "Save the left folder list location on exit."
+#~ msgstr "Lưu vị trí danh sách thư mục bên trái khi thoát."
+
+#~ msgid "Save the right folder list location on exit."
+#~ msgstr "Lưu đúng vị trí danh sách thư mục khi thoát."
+
+#, python-format
+#~ msgid "Script '%s' must have read permission to be able to run it"
+#~ msgstr "Tập lệnh '% s' phải có quyền đọc để có thể chạy nó"
+
+#~ msgid "Select (source list) or enter directory (target list)"
+#~ msgstr "Chọn (danh sách nguồn) hoặc nhập thư mục (danh sách đích)"
+
+#~ msgid "Select a path"
+#~ msgstr "Chọn đường dẫn"
+
+#~ msgid "Set archive mode (644)"
+#~ msgstr "Đặt chế độ lưu trữ (644)"
+
+#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+#~ msgstr "Đặt cho 'stout' và 'sterr' số lượng dòng trong thông tin tập lệnh hoặc thông báo lỗi tập lệnh."
+
+#, python-format
+#~ msgid ""
+#~ "Show '%s' as picture%s?\n"
+#~ "The current service must interrupted!"
+#~ msgstr ""
+#~ "Hiển thị '% s' dưới dạng hình ảnh % s?\n"
+#~ "Dịch vụ hiện tại phải gián đoạn!"
+
+#~ msgid "Show Script completed message"
+#~ msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+
+#~ msgid "Show Task's completed message"
+#~ msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+
+#~ msgid "Show as Picture (press any key to close)"
+#~ msgstr "Hiển thị dưới dạng Ảnh (nhấn phím bất kỳ để đóng)"
+
+#, python-format
+#~ msgid "Show as Picture and save as file ('%s')"
+#~ msgstr "Hiển thị dưới dạng Ảnh và lưu dưới dạng tệp ('% s')"
+
+#~ msgid "Show contents of ipk file"
+#~ msgstr "Hiển thị nội dung của tập tin ipk"
+
+#~ msgid "Show contents of rar file"
+#~ msgstr "Hiển thị nội dung của tập tin rar"
+
+#~ msgid "Show contents of tar or compressed tar file"
+#~ msgstr "Hiển thị nội dung của tệp tar hoặc nén tar"
+
+#~ msgid "Show contents of zip file"
+#~ msgstr "Hiển thị nội dung của tệp zip"
+
+#~ msgid "Show directories on first or last in list.(must restart File Commander)"
+#~ msgstr "Hiển thị các thư mục trên đầu tiên hoặc cuối cùng trong danh sách. (Phải khởi động lại File Commander)"
+
+#~ msgid "Show image information"
+#~ msgstr "Hiển thị thông tin hình ảnh"
+
+#~ msgid "Show message if File Commander is not running and all Task's are completed."
+#~ msgstr "Hiển thị thông báo nếu File Commander không chạy và tất cả các tác vụ đã hoàn thành."
+
+#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+#~ msgstr "Hiển thị thông báo nếu một kịch bản nền kết thúc thành công. Có 'stout', sau đó điều này được hiển thị dưới dạng thông tin bổ sung."
+
+#~ msgid "Show task list"
+#~ msgstr "Hiển thị danh sách nhiệm vụ"
+
+#~ msgid "Show unknown extension as text"
+#~ msgstr "Hiển thị lựa chọn mở rộng"
+
+#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
+#~ msgstr "Hiển thị phần mở rộng tệp không xác định với 'Addon File-Viewer'."
+
+#~ msgid "Size reverse"
+#~ msgstr "Kích thước ngược"
+
+#~ msgid "Skip selection"
+#~ msgstr "Bỏ qua lựa chọn"
+
+#~ msgid "Sorting left files by name, date or size"
+#~ msgstr "Sắp xếp các tập tin bên trái theo tên, ngày hoặc kích thước"
+
+#~ msgid "Sorting right files by name, date or size"
+#~ msgstr "Sắp xếp đúng tệp theo tên, ngày hoặc kích thước"
+
+#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
+#~ msgstr "Các nút hoán đổi phải / trái với kênh cộng / trừ hoặc nút kênh luôn thay đổi bên cạnh."
+
+#~ msgid "Symlink to "
+#~ msgstr "Liên kết đến "
+
+#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
+#~ msgstr "Thành phần Trình xem hình ảnh của Trình chỉ huy tệp yêu cầu tiện ích mở rộng PicturePlayer. Cài đặt PicturePlayer để kích hoạt thao tác này."
+
+#~ msgid "The authors are NOT RESPONSIBLE"
+#~ msgstr "Các tác giả KHÔNG TRÁCH NHIỆM"
+
+#~ msgid ""
+#~ "The function has interrupted.\n"
+#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
+#~ msgstr ""
+#~ "Các chức năng đã bị gián đoạn.\n"
+#~ "Không nhấn vào lần tiếp theo bất kỳ phím nào cho đến khi hình ảnh từ tập tin mvi được hiển thị!"
+
+#~ msgid "The hash of a directory can't be calculated."
+#~ msgstr "Băm của một thư mục không thể được tính toán."
+
+#~ msgid "This line is not editable!"
+#~ msgstr "Dòng này không thể chỉnh sửa!"
+
+#~ msgid "Time between slides in image viewer slideshow."
+#~ msgstr "Thời gian giữa các slide trong trình chiếu hình ảnh xem."
+
+#~ msgid "Time for Slideshow"
+#~ msgstr "Thời gian bắt đầu"
+
+#~ msgid "Type:"
+#~ msgstr "Kiểu:"
+
+#, python-format
+#~ msgid "Uninstall '%s' package and disable '%s'"
+#~ msgstr "Gỡ cài đặt gói '% s' và tắt '% s'"
+
+#, python-format
+#~ msgid "Unpack to %s"
+#~ msgstr "Giải nén đến % s"
+
+#~ msgid "Unpack to current folder"
+#~ msgstr "Giải nén vào thư mục hiện tại"
+
+#~ msgid "View or edit file (if size < 1MB)"
+#~ msgstr "Xem hoặc chỉnh sửa tệp (nếu kích thước <1MB)"
+
+#~ msgid "WARNING!"
+#~ msgstr "CẢNH BÁO!"
+
+#~ msgid "What do you want to play?\n"
+#~ msgstr "Bạn muốn chơi gì\n"
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on '%s'."
+#~ msgstr "Bạn không thể chạy '% s' một cách hữu ích trên '% s'."
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on a directory."
+#~ msgstr "Bạn không thể chạy '% s' một cách hữu ích trên một thư mục."
+
+#~ msgid "create symlink ..."
+#~ msgstr "tạo liên kết tượng trưng ..."
+
+#~ msgid "for DATA LOSS OR DAMAGE !!!"
+#~ msgstr "cho DỮ LIỆU MẤT HOẶC DAMAGE !!!"
+
+#~ msgid "from dir"
+#~ msgstr "từ thư mục"
+
+#~ msgid "has been CHANGED! Do you want to save it?"
+#~ msgstr "đã thay đổi! Bạn có muốn lưu nó không?"
+
+#~ msgid "install/unpack ipk Files"
+#~ msgstr "cài đặt / giải nén tập tin ipk"
+
+#~ msgid "manage local Files"
+#~ msgstr "quản lý tập tin cục bộ"
+
+#~ msgid "move file"
+#~ msgstr "di chuyển tập tin"
+
+#~ msgid "move folder"
+#~ msgstr "di chuyển thư mục"
+
+#~ msgid "original"
+#~ msgstr "nguyên"
+
+#~ msgid "play Files"
+#~ msgstr "chơi tập tin"
+
+#~ msgid "play/show Files"
+#~ msgstr "phát / hiển thị tập tin"
+
+#~ msgid "python"
+#~ msgstr "python"
+
+#~ msgid "script 'sterr':"
+#~ msgstr "kịch bản 'stderr':"
+
+#~ msgid "script 'stout':"
+#~ msgstr "kịch bản 'stout':"
+
+#~ msgid "to dir"
+#~ msgstr "chỉ đạo"
+
+#~ msgid "unpack Rar Files"
+#~ msgstr "giải nén tập tin Rar"
+
+#~ msgid "unpack archives"
+#~ msgstr "giải nén tài liệu lưu trữ"
+
+#~ msgid "unpack gzip Files"
+#~ msgstr "giải nén tập tin gzip"
+
+#~ msgid "unpack tar/compressed tar Files"
+#~ msgstr "giải nén tập tin tar / nén tar"
+
+#~ msgid "unpack zip Files"
+#~ msgstr "giải nén tập tin zip"
+
+#~ msgid "without"
+#~ msgstr "không có"
 
 #, python-format
 #~ msgid ""

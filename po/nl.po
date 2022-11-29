@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-22 19:10+0000\n"
+"POT-Creation-Date: 2022-11-27 17:29+0000\n"
 "PO-Revision-Date: 2022-10-02 11:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -79,16 +79,6 @@ msgstr ""
 "\n"
 "[User - favorietenlijst (RADIO)]\n"
 
-#, python-format
-msgid ""
-"\n"
-"optional parameter:\n"
-"%s"
-msgstr ""
-"\n"
-"optionele parameter:\n"
-"%s"
-
 msgid " "
 msgstr " "
 
@@ -109,18 +99,6 @@ msgstr "  REC  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Rode kop : Toon/verberg zender naam"
-
-#, python-format
-msgid " ('%s') ends successfully."
-msgstr " ('%s') Succesvol beëindigd."
-
-#, python-format
-msgid " ('%s') ends with error messages."
-msgstr " ('%s') eindigt met foutberichten."
-
-#, python-format
-msgid " ('%s') ends with error number [%d]."
-msgstr " ('%s') eindigt met fout nummer [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -154,19 +132,6 @@ msgstr " (hoger dan de rotor van elke 'auto')"
 msgid " (lower than any auto)"
 msgstr " (lager dan elke auto)"
 
-#, python-format
-msgid " - %d elements exist! Overwrite"
-msgstr " - %d bestaande elementen! Overschrijven"
-
-msgid " - 1 element exist! Overwrite"
-msgstr " -1 element bestaat! Overschrijven"
-
-msgid " - file exist! Overwrite"
-msgstr " -bestand bestaat! Overschrijven"
-
-msgid " - folder exist! Overwrite"
-msgstr " -map bestaat! Overschrijven"
-
 msgid " <No Channel>"
 msgstr " <Geen Zender>"
 
@@ -190,9 +155,6 @@ msgstr ""
 
 msgid " of "
 msgstr " of "
-
-msgid " or save additional the picture to a file"
-msgstr " of extra de afbeelding opslaan in een bestand"
 
 msgid " updated"
 msgstr " bijgewerkt"
@@ -1152,10 +1114,6 @@ msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1196,10 +1154,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s"
-msgstr "%s (%s"
-
-#, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
@@ -1214,10 +1168,6 @@ msgstr "%s - %s (%s%d min)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
-
-#, python-format
-msgid "%s - extraction errors."
-msgstr "%s - uitpak fouten."
 
 #, python-format
 msgid "%s GHz"
@@ -1265,20 +1215,12 @@ msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s wordt niet langer gebruikt. Kan deze verwijderd worden?"
 
 #, python-format
-msgid "%s is password protected."
-msgstr "%s is met wachtwoord beveiligd."
-
-#, python-format
 msgid "%s long"
 msgstr "%s lang"
 
 #, python-format
 msgid "%s not available."
 msgstr "%s niet beschikbaar."
-
-#, python-format
-msgid "%s successfully extracted."
-msgstr "%s succesvol uitgepakt."
 
 #, python-format
 msgid "%s%d min"
@@ -1336,10 +1278,6 @@ msgstr "%s Toon 1080i als 1080p"
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' bevat %d bestand(en) en %d sub-mappen.\n"
 
-#, python-format
-msgid "'%s' not installed and no known package"
-msgstr "'%s' niet geïnstalleerd en geen onbekend pakket"
-
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "Buffer 'in uren' of 'aantal bestanden'. De oudste Timeshift bestanden worden als eerste verwijderd."
 
@@ -1356,13 +1294,6 @@ msgid "( All readers)"
 msgstr "(Alle lezers)"
 
 #, python-format
-msgid "(%d jobs)"
-msgstr "(%d taken)"
-
-msgid "(1 job)"
-msgstr "(1 taak)"
-
-#, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "Voor toegang tot de '%s' commit logs is een internetverbinding noodzakelijk."
 
@@ -1372,9 +1303,6 @@ msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
 
 msgid "(FTA Service)"
 msgstr "(FTA Zender)"
-
-msgid "(Selectmode)"
-msgstr "(Selecteermodus)"
 
 msgid "(Show only reader:"
 msgstr "(Toon alleen lezer:"
@@ -1839,9 +1767,6 @@ msgstr "8bit"
 msgid "9"
 msgstr "9"
 
-msgid ": "
-msgstr ": "
-
 msgid "< Alternate Skin >"
 msgstr "< Alternatieve Skin >"
 
@@ -1863,14 +1788,14 @@ msgstr "<Standaard opnamelocatie>"
 msgid "<Last timer location>"
 msgstr "<Laatste timer locatie>"
 
-msgid "?"
-msgstr "?"
-
 msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
+
+msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
+msgstr ""
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -2098,8 +2023,8 @@ msgstr "Toegangspunt:"
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Voor toegang tot geolocatie informatie is een internetverbinding noodzakelijk."
 
-msgid "Accessed:"
-msgstr "Toegankelijk:"
+msgid "Accessed"
+msgstr ""
 
 msgid "Action"
 msgstr "Actie"
@@ -2128,23 +2053,11 @@ msgstr "Activeer Picture in Picture"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Activeer een manier om individuele of specifieke interne HDMI-CEC commando's via de command-line te sturen."
 
-msgid "Activate left-hand file list as multi-select source"
-msgstr "Activeer de linker bestandslijst als Multi-selecteer bron"
-
-msgid "Activate left-hand file list as source"
-msgstr "Activeer de linker bestandslijst als bron"
-
 msgid "Activate network adapter configuration"
 msgstr "start de netwerkadapter configuratie"
 
 msgid "Activate network settings"
 msgstr "Activeer de netwerkinstellingen"
-
-msgid "Activate right-hand file list as multi-select source"
-msgstr "Activeer de rechter bestandslijst als Multi-selecteer bron"
-
-msgid "Activate right-hand file list as source"
-msgstr "Activeer de rechter bestandslijst als bron"
 
 msgid "Activate the configured network settings."
 msgstr "Activeer de geconfigureerde netwerkinstellingen."
@@ -2167,6 +2080,10 @@ msgstr "Adapter instellingen"
 msgid "Add"
 msgstr "Toevoegen"
 
+#, python-format
+msgid "Add '%s' To Bookmarks"
+msgstr ""
+
 msgid "Add AutoTimer"
 msgstr "AutoTimer toevoegen"
 
@@ -2175,6 +2092,18 @@ msgstr "Bookmark toevoegen"
 
 msgid "Add Current"
 msgstr "Huidige toevoegen"
+
+msgid "Add File Commander to Extensions Menu"
+msgstr ""
+
+msgid "Add File Commander to Main Menu"
+msgstr ""
+
+msgid "Add File Commander to the Extensions Menu list of options."
+msgstr ""
+
+msgid "Add File Commander to the Main Menu list of options."
+msgstr ""
 
 msgid "Add New Quad Channel Entry"
 msgstr "Nieuwe Quad zender toevoegen"
@@ -2227,9 +2156,6 @@ msgstr "Timer toevoegen voor het huidige programma"
 msgid "Add an AutoTimer for the current event"
 msgstr "Een AutoTimer toevoegen voor het huidige programma"
 
-msgid "Add current folder to bookmarks"
-msgstr "Huidige map aan bookmarks toevoegen"
-
 msgid "Add directory to play list"
 msgstr "Map aan afspeellijst toevoegen"
 
@@ -2248,12 +2174,6 @@ msgstr "Nieuwe NewCamd line toevoegen"
 msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Plug-in toevoegen aan het Applicatiemenu*"
-
-msgid "Add plugin to main menu*"
-msgstr "Plug-in toevoegen aan extensies menu*"
-
 msgid "Add provider"
 msgstr "Provider toevoegen"
 
@@ -2268,9 +2188,6 @@ msgstr "Voeg een opname toe (doorlopend)"
 
 msgid "Add recording (stop after current event)"
 msgstr "Voeg een opname toe (stop na huidige uitzending)"
-
-msgid "Add selected folder to bookmarks"
-msgstr "Geselecteerde map aan bookmarks toevoegen"
 
 msgid "Add service"
 msgstr "Zender toevoegen"
@@ -2415,6 +2332,9 @@ msgstr "Alle zenders"
 
 msgid "All ages"
 msgstr "Alle leeftijden"
+
+msgid "All files"
+msgstr ""
 
 msgid "All resolutions"
 msgstr "Alle Resoluties"
@@ -2613,6 +2533,9 @@ msgstr "Elke activiteit"
 
 msgid "Any recordings"
 msgstr "Alle opnames"
+
+msgid "Aperture F number"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Bewaar wijzigingen aan de ingestelde Taal en Exit "
@@ -3519,6 +3442,9 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "CCCam Info"
 
+msgid "CCD-Width"
+msgstr ""
+
 msgid "CCcam"
 msgstr "CCcam"
 
@@ -3660,8 +3586,8 @@ msgstr "CPU benchmark"
 msgid "CPU brand"
 msgstr "CPU merk"
 
-msgid "CPU priority for script execution"
-msgstr "CPU prioriteit voor uitvoeren van script"
+msgid "CPU priority for scripts"
+msgstr ""
 
 msgid "CPU rating"
 msgstr "CPU rating"
@@ -3693,17 +3619,17 @@ msgstr "Cached"
 msgid "Calculate"
 msgstr "Bereken"
 
-msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr "Bereken en toon de grootte van de map. Opmerking: Hierdoor kan de UI trager worden!"
-
-msgid "Calculate file checksums"
-msgstr "Bereken bestand checksums"
+msgid "Calculate file hashes/checksums"
+msgstr ""
 
 msgid "Calculating benchmark..."
 msgstr "Benchmark berekenen..."
 
 msgid "Calculating rating..."
 msgstr "Rating berekenen..."
+
+msgid "Calculating..."
+msgstr ""
 
 msgid "Calculation complete"
 msgstr "Berekening gereed"
@@ -3713,6 +3639,9 @@ msgstr "Kalibreer"
 
 msgid "Cambodia"
 msgstr "Cambodja"
+
+msgid "Camera"
+msgstr ""
 
 msgid "Cameroon"
 msgstr "Kameroen"
@@ -3780,14 +3709,6 @@ msgstr "Kan geen IceTV instellingen vinden"
 msgid "Can not retrieve channel map"
 msgstr "Kan geen zenderinfo vinden"
 
-#, python-format
-msgid ""
-"Can not run %s: %s.\n"
-"%s may be in a plugin that is not installed."
-msgstr ""
-"Kan %s: %s niet uitvoeren.\n"
-"%s bevindt zich mogelijk in een plug-in die niet is geïnstalleerd."
-
 msgid "Can not update timer"
 msgstr "Kan de timer niet actualiseren"
 
@@ -3819,10 +3740,6 @@ msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
 msgstr "Kon het vorige Timeshift-bestand niet afspelen! U kunt het opnieuw proberen."
-
-#, python-format
-msgid "Can't read link contents: %s"
-msgstr "Kan link inhoud niet lezen: %s"
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Kan partitie niet unmounten, zorg ervoor dat deze niet wordt gebruikt voor swap of Opname/Timeshift paden"
@@ -3862,6 +3779,9 @@ msgstr "Conflictoplossing annuleren"
 
 msgid "Cancel execution?"
 msgstr "Uitvoering annuleren?"
+
+msgid "Cancel extraction"
+msgstr ""
 
 msgid "Cancel save time shift as movie"
 msgstr "Annuleer het opslaan van Timeshift als opname"
@@ -4000,9 +3920,6 @@ msgstr "Wijzig een Timer"
 msgid "Change bouquets in quickzap"
 msgstr "Volgende favorietenlijst tijdens Quickzap"
 
-msgid "Change buttons for list navigation"
-msgstr "Wijzig knoppen voor lijst navigeren"
-
 msgid "Change execute permissions (755/644)"
 msgstr "Wijzig uitvoer rechten (755/644)"
 
@@ -4029,6 +3946,9 @@ msgstr "Wijzig stapgrootte"
 
 msgid "Change to bouquet"
 msgstr "Ga naar favorietenlijst"
+
+msgid "Changed"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4064,9 +3984,6 @@ msgstr "Zenderlijst menu"
 
 msgid "Channel Selection Settings"
 msgstr "Zenderlijst"
-
-msgid "Channel button always changes sides"
-msgstr "Zender knop wisselt altijd zijdes"
 
 msgid "Channel buttons"
 msgstr "Zender knoppen"
@@ -4276,6 +4193,9 @@ msgstr ""
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Kies de naam van het bestand waarin de EPG-data moet worden opgeslagen wanneer uw %s %s wordt uitgeschakeld. Het kan handig zijn om onderscheid te maken tussen de bestandsnamen van verschillende ontvangers."
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Kies de stijl en volgorde van de items in de help schermen."
 
@@ -4451,6 +4371,9 @@ msgstr "Dit scherm afsluiten zonder de wijzigingen op te slaan"
 msgid "Close the window"
 msgstr "Sluit het venster"
 
+msgid "Close this screen"
+msgstr ""
+
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
 
@@ -4498,6 +4421,10 @@ msgstr "Combo Tuner"
 
 msgid "Comedy"
 msgstr "Comedy"
+
+#, python-format
+msgid "Command '%s' is unknown"
+msgstr ""
 
 msgid "Command execution..."
 msgstr "Commando uitvoeren..."
@@ -4555,6 +4482,9 @@ msgstr "Complex (mixen audio sporen en aspecten)"
 
 msgid "Composition of the recording filenames"
 msgstr "Samenstelling van de opname bestandsnamen"
+
+msgid "Compressed bits/pixel"
+msgstr ""
 
 msgid "Config"
 msgstr "Configureren"
@@ -5138,6 +5068,9 @@ msgstr "Contrast"
 msgid "Control LED can be turned on or off here."
 msgstr "Power LED kan hier worden in- of uitgeschakeld."
 
+msgid "Control files:"
+msgstr ""
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Stel in waar voltooide timers in de timerlijst moeten staan."
 
@@ -5168,30 +5101,40 @@ msgstr "Koken"
 msgid "Copy"
 msgstr "Kopieër"
 
+msgid "Copy all related files"
+msgstr ""
+
+msgid "Copy directory/file to target directory"
+msgstr ""
+
+msgid "Copy job completed."
+msgstr ""
+
+msgid "Copy job failed!"
+msgstr ""
+
+msgid "Copy job queued."
+msgstr ""
+
+msgid "Copy only highlighted file"
+msgstr ""
+
 #, python-format
-msgid "Copy %d elements"
-msgstr "Kopieer %d elementen"
+msgid "Copy the directory/file '%s'?"
+msgstr ""
 
-msgid "Copy 1 element"
-msgstr "Kopieer 1 element"
-
-msgid "Copy file"
-msgstr "Kopieer bestand"
-
-msgid "Copy file/directory to target directory"
-msgstr "Kopieer bestand/map naar map"
-
-msgid "Copy files/directories to target directory"
-msgstr "Kopieer bestanden/mappen naar map"
-
-msgid "Copy folder"
-msgstr "Kopieer map"
+#, python-format
+msgid "Copy these %d directories/files?"
+msgstr ""
 
 msgid "Copying files"
 msgstr "Kopieert bestanden"
 
 msgid "Cornish"
 msgstr "Cornisch"
+
+msgid "Correct invalid EPG data"
+msgstr ""
 
 msgid "Corsican"
 msgstr "Corsicaans"
@@ -5261,23 +5204,20 @@ msgstr ""
 msgid "Create ISO"
 msgstr "Maak ISO"
 
+msgid "Create a directory"
+msgstr ""
+
 msgid "Create a randomly generated password"
 msgstr "Maak een willekeurig wachtwoord aan"
+
+msgid "Create a symbolic link"
+msgstr ""
 
 msgid "Create directory"
 msgstr "Map aanmaken"
 
-msgid "Create directory/folder"
-msgstr "Creëer directory/map"
-
 msgid "Create separate radio user bouquet"
 msgstr "Creëer apart radio gebruikersbouquet"
-
-msgid "Create symlink to file"
-msgstr "Creëer symlink naar bestand"
-
-msgid "Create user-named symbolic link"
-msgstr "Creëer door gebruiker gedefinieerde symbolic link"
 
 msgid "Create:"
 msgstr "Creëer:"
@@ -5343,6 +5283,9 @@ msgstr "Nieuws/Actualiteiten"
 msgid "Current CEC address"
 msgstr "Huidig CEC adres"
 
+msgid "Current Directory"
+msgstr ""
+
 msgid "Current Event:"
 msgstr "Huidig programma:"
 
@@ -5352,7 +5295,8 @@ msgstr "Status:"
 msgid "Current crash log"
 msgstr "Actuele crash log"
 
-msgid "Current directory"
+#, python-format
+msgid "Current directory (%s)"
 msgstr ""
 
 msgid "Current installed"
@@ -5547,8 +5491,14 @@ msgstr "Deens"
 msgid "Date"
 msgstr "Datum"
 
-msgid "Date reverse"
-msgstr "Datum omgekeerd"
+msgid "Date / Time"
+msgstr ""
+
+msgid "Date ascending"
+msgstr ""
+
+msgid "Date descending"
+msgstr ""
 
 msgid "Date style"
 msgstr "Datumstijl"
@@ -5704,6 +5654,9 @@ msgstr "Dagnaam jaar/MM/DD"
 msgid "Deactivate"
 msgstr "Uitschakelen"
 
+msgid "Debug"
+msgstr ""
+
 #, python-format
 msgid "Debug %d/%d"
 msgstr "Debug %d/%d"
@@ -5744,14 +5697,14 @@ msgstr "Standaard 'na de opname' *"
 msgid "Default 'Timer type' *"
 msgstr "Standaard 'timer soort' *"
 
-msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Standaard CPU Priority (nice) voor uitgevoerde scripts. Dit kan de belasting verminderen, zodat scripts niet interfereren met de rest van het systeem. (hogere waarden = lagere prioriteit)"
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr "Standaard Dolby Digital / Dolby AC-3 offset"
 
-msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Standaard I/O-prioriteit (ionice) voor uitgevoerde scripts. Dit kan de belasting verminderen, zodat scripts niet interfereren met de rest van het systeem. (hogere waarden = lagere prioriteit)"
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
 
 msgid "Default Modes Selected."
 msgstr "Standaard modus geselecteerd."
@@ -5759,23 +5712,15 @@ msgstr "Standaard modus geselecteerd."
 msgid "Default Services Scanner"
 msgstr "Standaard zender zoeker"
 
-msgid "Default directory sorting"
-msgstr "Strandaard directory sortering"
-
-msgid "Default file sorting left"
-msgstr "Strandaard bestand sortering links"
-
-msgid "Default file sorting right"
-msgstr "Strandaard bestand sortering rechts"
-
 msgid "Default files/folders to backup"
 msgstr "Standaard back-up bestanden"
 
-msgid "Default folder"
-msgstr "Standaard map"
+msgid "Default left column directory"
+msgstr ""
 
-msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Standaard map als de linker of rechter map niet is opgeslagen, en doel map voor knop 5."
+#, python-format
+msgid "Default movie location (%s)"
+msgstr ""
 
 msgid "Default movie selection location"
 msgstr "Standaard opnamelocatie"
@@ -5783,17 +5728,23 @@ msgstr "Standaard opnamelocatie"
 msgid "Default recording type"
 msgstr "Standaard opname type"
 
+msgid "Default right column directory"
+msgstr ""
+
 msgid "Default settings"
 msgstr "Standaard instellingen"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Standaard sorteer methode voor mappen aan beide zijden."
+msgid "Default sort order for directories in the left column"
+msgstr ""
 
-msgid "Default sorting method for files on the left side."
-msgstr "Standaard sorteringsmethode voor bestanden aan de linker kant."
+msgid "Default sort order for directories in the right column."
+msgstr ""
 
-msgid "Default sorting method for files on the right side."
-msgstr "Standaard sorteringsmethode voor bestanden aan de rechter kant."
+msgid "Default sort order for files in the left column."
+msgstr ""
+
+msgid "Default sort order for files in the right column."
+msgstr ""
 
 msgid "Default volume offset"
 msgstr "Standaard volume offset"
@@ -5906,15 +5857,12 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #, python-format
-msgid "Delete %d elements"
-msgstr "Verwijder %d elementen"
-
-#, python-format
 msgid "Delete %s?"
 msgstr "Verwijder %s?"
 
-msgid "Delete 1 element"
-msgstr "Verwijder 1 element"
+#, python-format
+msgid "Delete '%s'?"
+msgstr ""
 
 msgid "Delete Confirmation"
 msgstr "Bevestig verwijderen"
@@ -5928,6 +5876,9 @@ msgstr "EPG verwijderen"
 msgid "Delete Image"
 msgstr "Image verwijderen"
 
+msgid "Delete Line"
+msgstr ""
+
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
@@ -5939,6 +5890,9 @@ msgstr "Verwijder alle log bestanden"
 
 msgid "Delete all logs"
 msgstr "Verwijder alle logbestanden"
+
+msgid "Delete all related files"
+msgstr ""
 
 msgid "Delete all tags"
 msgstr "Verwijder alle markeringen"
@@ -5960,6 +5914,9 @@ msgstr "Verwijder het teken onder de cursor of selecteer de PM tijdindeling"
 msgid "Delete current line"
 msgstr "Verwijder huidige regel"
 
+msgid "Delete directory or file"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Verwijder invoer"
 
@@ -5969,14 +5926,20 @@ msgstr "Verwijderen mislukt!"
 msgid "Delete file"
 msgstr "Verwijder bestand"
 
-msgid "Delete file or directory (and all its contents)"
-msgstr "Verwijder bestand of map (en al zijn inhoud)"
+msgid "Delete job completed."
+msgstr ""
 
-msgid "Delete folder"
-msgstr "Verwijder map"
+msgid "Delete job failed!"
+msgstr ""
+
+msgid "Delete job queued."
+msgstr ""
 
 msgid "Delete log"
 msgstr "Verwijder log-bestand"
+
+msgid "Delete only highlighted file"
+msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Verwijder of wis het actuele slot"
@@ -6005,8 +5968,8 @@ msgstr "Verwijder de nu geselecteerde zender van de lijst met Volume Offsets "
 msgid "Delete the currently selected timer"
 msgstr "De geselecteerde timer verwijderen"
 
-msgid "Delete the selected files or directories"
-msgstr "Verwijder de geselecteerde bestanden of mappen"
+msgid "Delete the selected directories/files?"
+msgstr ""
 
 msgid "Delete the selected locally stored image"
 msgstr "Verwijder het geselecteerde lokaal opgeslagen image"
@@ -6052,6 +6015,12 @@ msgstr "Beschrijving"
 msgid "Deselect"
 msgstr "Deselecteer"
 
+msgid "Deselect all related files"
+msgstr ""
+
+msgid "Deselect only highlighted file"
+msgstr ""
+
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn met al geïnstalleerde pakketten. Hoewel dit normaal gesproken geen kwaad kan, is het mogelijk dat uw %s %s daarna problemen ondervindt."
@@ -6076,6 +6045,9 @@ msgstr "Lokale mounts"
 
 msgid "Device name:"
 msgstr "Apparaatnaam:"
+
+msgid "Device number"
+msgstr ""
 
 msgid "Device: "
 msgstr "Apparaat: "
@@ -6168,6 +6140,16 @@ msgstr "Map '%s' niet beschrijfbaar!"
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
 
+#, python-format
+msgid "Directory/File %d of %d"
+msgstr ""
+
+msgid "Directory/File Status Actions"
+msgstr ""
+
+msgid "Directory/File Status Information"
+msgstr ""
+
 msgid "Disable"
 msgstr "Uit"
 
@@ -6249,11 +6231,23 @@ msgstr "Scherm- en gebruikersinterface"
 msgid "Display context menu"
 msgstr ""
 
+msgid "Display file as hexadecimal"
+msgstr ""
+
+msgid "Display file as octal"
+msgstr ""
+
+msgid "Display file as text"
+msgstr ""
+
 msgid "Display log for the currently selected timer"
 msgstr "Het Log-bestand voor de geselecteerde timer tonen"
 
 msgid "Display message before playing next movie"
 msgstr "Bericht weergeven voor het afspelen van de volgende opname of film"
+
+msgid "Display more information about this file"
+msgstr ""
 
 msgid "Display oscam information."
 msgstr "Toon Oscam informatie."
@@ -6275,6 +6269,9 @@ msgstr "Toon het virtuele toetsenbord"
 
 msgid "Display type"
 msgstr "Display type"
+
+msgid "Distance"
+msgstr ""
 
 msgid "Distribution"
 msgstr "Distributie"
@@ -6418,8 +6415,9 @@ msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Wilt u de timer '%s' stoppen en verwijderen?"
 
-msgid "Do you want change rights?\n"
-msgstr "Wilt u de rechten wijzigen?\n"
+#, python-format
+msgid "Do you want change '%s' access mode?"
+msgstr ""
 
 msgid "Do you want to add any additional information ?"
 msgstr "Wilt u aanvullende informatie toevoegen?"
@@ -6527,9 +6525,6 @@ msgstr "Wilt u uw box updaten?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Wilt u een update van dit pakket:\n"
-
-msgid "Do you want to view or run the script?\n"
-msgstr "Wilt u het script bekijken of uitvoeren?\n"
 
 msgid "Documentary"
 msgstr "Documentaire"
@@ -6780,6 +6775,9 @@ msgstr "EPGSearch"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Fout - zoeken mislukt (%s)!"
 
+msgid "EXIF-Version"
+msgstr ""
+
 msgid "East"
 msgstr "Oost"
 
@@ -6821,12 +6819,6 @@ msgstr "Wijzig hoofdstuk van de huidige titel"
 
 msgid "Edit current line"
 msgstr "Wijzig huidige regel"
-
-msgid "Edit line "
-msgstr "Wijzig regel "
-
-msgid "Edit position is the line end"
-msgstr "Bewerk positie is het einde van de regel"
 
 msgid "Edit settings"
 msgstr "Instellingen wijzigen"
@@ -6901,6 +6893,9 @@ msgstr "Insluiten"
 
 msgid "Empty"
 msgstr "Leeg"
+
+msgid "Empty file"
+msgstr ""
 
 msgid "Enable"
 msgstr "Aan"
@@ -7251,6 +7246,9 @@ msgstr ""
 "\n"
 "Via de TXT-toets (Videotekst) kunt u het virtuele toetsenbord gebruiken."
 
+msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
+msgstr ""
+
 msgid "Enter a name for this timer."
 msgstr ""
 "Een naam voor deze timer opgeven.\n"
@@ -7268,9 +7266,6 @@ msgstr "Geef aan of u op het noordelijke of het zuidelijke halfrond bent."
 
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
-
-msgid "Enter multi-file selection mode"
-msgstr "Open multi-bestand selecteer modus"
 
 msgid "Enter new directory name:"
 msgstr ""
@@ -7342,6 +7337,14 @@ msgid "Error"
 msgstr "Fout"
 
 #, python-format
+msgid "Error %d: %s"
+msgstr ""
+
+#, python-format
+msgid "Error %d: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Fout %d: Log-bestand '%s' is niet verwijderd!  (%s)"
 
@@ -7358,12 +7361,36 @@ msgid "Error %d: Unable to check space!  (%s)"
 msgstr "Fout %d: Controle van de schijfruimte niet mogelijk!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Fout %d: Het gedownloade image kan niet gewist worden '%s'!  (%s)"
 
 #, python-format
+msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to set access mode on '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Fout %d: Kan het 'passwd' commando niet starten!"
+
+#, python-format
+msgid "Error %s: Unable to get information for '%s'!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
@@ -7418,14 +7445,6 @@ msgstr ""
 "Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite Plug-in, en bevestig deze via de groene knop."
 
 #, python-format
-msgid ""
-"Error creating directory %s:\n"
-"%s"
-msgstr ""
-"Fout bij creëren van map %s:\n"
-"%s"
-
-#, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Fout bij het downloaden van het image '%s'!"
 
@@ -7440,14 +7459,6 @@ msgstr ""
 "Fout bij het ophalen van een link via %s\n"
 "%s"
 
-#, python-format
-msgid ""
-"Error linking %s to %s:\n"
-"%s"
-msgstr ""
-"Fout bij linken van %s naar %s:\n"
-"%s"
-
 msgid "Error opening recording file"
 msgstr "Fout bij het openen van de opname"
 
@@ -7460,13 +7471,8 @@ msgstr "Fout bij lezen bouquets.tv"
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina!"
 
-#, python-format
-msgid ""
-"Error renaming %s to %s:\n"
-"%s"
+msgid "Error text:"
 msgstr ""
-"Error hernoemen %s naar %s:\n"
-"%s"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
@@ -7474,9 +7480,6 @@ msgstr "Fout bij het uitpakken van het image '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Fout, onbekende uitkomst!"
-
-msgid "Error..."
-msgstr "Fout..."
 
 #, python-format
 msgid ""
@@ -7518,7 +7521,14 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Het aanmaken van de map %s is mislukt!"
 
 #, python-format
+msgid "Error: File '%s' cannot be opened!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File or directory '%s' already exists!"
+msgstr ""
+
+msgid "Error: FileCommanderData screen requires a formatting dictionary!"
 msgstr ""
 
 #, python-format
@@ -7533,8 +7543,20 @@ msgid "Error: Invalid directory '%s' selected!"
 msgstr "Fout: Ongeldige map %s geselecteerd!"
 
 #, python-format
+msgid "Error: It is not possible to run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
+msgstr ""
+
+#, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
+
+#, python-format
+msgid "Error: Script '%s' must have read permission to be able to run!"
+msgstr ""
 
 msgid "Error: The new password may not be blank!"
 msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
@@ -7542,6 +7564,22 @@ msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
 #, python-format
 msgid "Error: The path '%s' already exists!"
 msgstr "Fout: Het pad %s bestaat al!"
+
+msgid "Error: The root file system can not be copied!"
+msgstr ""
+
+msgid "Error: The root file system can not be deleted!"
+msgstr ""
+
+msgid "Error: The root file system can not be moved!"
+msgstr ""
+
+msgid "Error: The root file system can not be renamed!"
+msgstr ""
+
+#, python-format
+msgid "Error: There was a problem writing '%s'!"
+msgstr ""
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Fout: Niet mogelijk om de benodigde map(pen) op het medium (b.v. USB stick of harde schijf) aan te maken! Controleer het medium en probeer het nog een keer."
@@ -7551,6 +7589,14 @@ msgstr "Fout: Kan het commando niet uitvoeren!  A.u.b. later nog een keer prober
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on '%s'!"
+msgstr ""
+
+#, python-format
+msgid "Error: You can't run '%s' on a directory!"
 msgstr ""
 
 msgid "Esperanto"
@@ -7663,6 +7709,9 @@ msgstr "Afsluiten"
 msgid "Exit EPG"
 msgstr "EPG afsluiten"
 
+msgid "Exit File Commander"
+msgstr ""
+
 msgid "Exit MAC address configuration"
 msgstr "Verlaat MAC-adres instellingen"
 
@@ -7675,8 +7724,14 @@ msgstr "Exit uit alle menu's"
 msgid "Exit editor"
 msgstr "Editor afsluiten"
 
-msgid "Exit editor and write changes (if any)"
-msgstr "Verlaat bewerker en wijzigingen opslaan (als deze bestaan)"
+msgid "Exit editor and discard any changes"
+msgstr ""
+
+msgid "Exit editor and save any changes"
+msgstr ""
+
+msgid "Exit image viewer"
+msgstr ""
 
 msgid "Exit input device selection."
 msgstr "Beëindig invoerapparaatselectie."
@@ -7708,14 +7763,14 @@ msgstr "Verlaat het netwerkinterfaceoverzicht"
 msgid "Exit network wizard"
 msgstr "Verlaat de Netwerk Wizard"
 
-msgid "Exit picture viewer"
-msgstr "Picture viewer afsluiten"
-
 msgid "Exit quad PiP"
 msgstr "Verlaat Quad PiP"
 
 msgid "Exit the wizard"
 msgstr "Wizard afsluiten"
+
+msgid "Exit viewer"
+msgstr ""
 
 msgid "Expand"
 msgstr "Uitvouwen"
@@ -7731,6 +7786,15 @@ msgstr "Expert"
 
 msgid "Expert mode"
 msgstr "Expert modus"
+
+msgid "Exposure bias"
+msgstr ""
+
+msgid "Exposure program"
+msgstr ""
+
+msgid "Exposure time"
+msgstr ""
 
 msgid "Ext. NumberZap"
 msgstr "Ext. NumberZap"
@@ -7790,6 +7854,12 @@ msgstr "Wissel het lettertype bij externe ondertitels"
 msgid "Extra motor options"
 msgstr "Extra motor opties"
 
+msgid "Extract the archive contents"
+msgstr ""
+
+msgid "Extract the package contents"
+msgstr ""
+
 msgid "Extrude from left"
 msgstr "Groei vanaf links"
 
@@ -7819,6 +7889,12 @@ msgstr "FEC"
 
 msgid "FEC modes"
 msgstr "FEC-Modi"
+
+msgid "FFmpeg Probe"
+msgstr ""
+
+msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
+msgstr ""
 
 msgid "FFmpeg version"
 msgstr "FFmpeg versie"
@@ -7953,63 +8029,87 @@ msgstr "Fiji"
 msgid "File"
 msgstr "Bestand"
 
+#, python-format
+msgid "File %d of %d"
+msgstr ""
+
 msgid "File Commander"
 msgstr "File Commander"
 
-msgid "File Commander - Addon File-Viewer"
-msgstr "File Commander - Addon File-Viewer"
+msgid "File Commander - All tasks are complete."
+msgstr ""
 
-msgid "File Commander - Addon Mediaplayer"
-msgstr "File Commander - Addon Mediaplayer"
+msgid "File Commander Actions"
+msgstr ""
 
-msgid "File Commander - Addon Movieplayer"
-msgstr "File Commander - Addon Movieplayer"
+msgid "File Commander Archive"
+msgstr ""
 
-msgid "File Commander - all Task's are completed!"
-msgstr "File Commander - alle Taken zijn voltooid!"
+msgid "File Commander Archive Actions"
+msgstr ""
 
-msgid "File Commander - generalised archive handler"
-msgstr "File Commander - algemene archief verwerker"
+msgid "File Commander Context Menu"
+msgstr ""
 
-msgid "File Commander - gzip Addon"
-msgstr "File Commander - gzip Addon"
+msgid "File Commander Copy"
+msgstr ""
 
-msgid "File Commander - ipk Addon"
-msgstr "File Commander - ipk Addon"
+msgid "File Commander Data"
+msgstr ""
 
-msgid "File Commander - tar Addon"
-msgstr "File Commander - tar Addon"
+msgid "File Commander Data Actions"
+msgstr ""
 
-msgid "File Commander - unrar Addon"
-msgstr "File Commander - unrar Addon"
+msgid "File Commander Delete"
+msgstr ""
 
-msgid "File Commander - unzip Addon"
-msgstr "File Commander - unzip Addon"
+msgid "File Commander Directory/File Information"
+msgstr ""
+
+msgid "File Commander File Viewer"
+msgstr ""
+
+msgid "File Commander File Viewer Actions"
+msgstr ""
+
+msgid "File Commander Hash / Checksum Actions"
+msgstr ""
+
+msgid "File Commander Hashes / Checksums"
+msgstr ""
+
+msgid "File Commander Image Viewer"
+msgstr ""
+
+msgid "File Commander Image Viewer Actions"
+msgstr ""
+
+msgid "File Commander Information Actions"
+msgstr ""
+
+msgid "File Commander Media Information"
+msgstr ""
+
+msgid "File Commander Media Information Actions"
+msgstr ""
+
+msgid "File Commander Move"
+msgstr ""
 
 msgid "File Commander Settings"
 msgstr "File Commander instellingen"
 
-msgid "File Commander context menu"
-msgstr "File Commander contextmenu"
+msgid "File Commander Text Editor"
+msgstr ""
 
-msgid "File Commander menu"
-msgstr "File Commander menu"
+msgid "File Commander Text Editor Actions"
+msgstr ""
 
 msgid "File System Check"
 msgstr "Bestandssysteemcontrole"
 
 msgid "File appears to be busy.\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
-
-msgid "File checksums to calculate for button 9"
-msgstr "Bestand checksums berekenen voor knop 9"
-
-msgid "File checksums/hashes"
-msgstr "File checksums/hashes"
-
-#, python-format
-msgid "File not found: %s"
-msgstr "Bestand niet gevonden: %s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -8018,15 +8118,15 @@ msgstr ""
 "Bestand oscam.conf niet gevonden.\n"
 "Geef gebruikersnaam en wachtwoord handmatig op."
 
+msgid "File transfer was canceled by user!"
+msgstr ""
+
 msgid "File transfer was cancelled by user"
 msgstr "Bestandsoverdracht beëindigd door gebruiker"
 
 #, python-format
 msgid "File write error: '%s'"
 msgstr "Schrijffout in bestand: '%s'"
-
-msgid "File/Directory Status Information"
-msgstr "Bestand/Map status informatie"
 
 msgid "Filename"
 msgstr "bestandnaam"
@@ -8043,14 +8143,11 @@ msgstr "Laat de zender EPG automatisch actualiseren wanneer er geen IceTV EPG be
 msgid "Film-Noir"
 msgstr "Misdaadfilm"
 
-msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr "Filter extensie voor 'My Extension' instelling of 'Filter extension'. Gebruik de extensie naam zonder een '.'."
+msgid "Filter extensions"
+msgstr ""
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Filter extension, (*) wordt in de titel weergegeven"
-
-msgid "Filter visible file classes by extension."
-msgstr "Filter zichtbare bestandklassen op extensies."
+msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
+msgstr ""
 
 msgid "Final position at"
 msgstr "Eindpositie op"
@@ -8142,6 +8239,9 @@ msgstr "Flash een image online of via usb naar uw ontvanger."
 
 msgid "Flash type"
 msgstr "Flash type"
+
+msgid "Flash used"
+msgstr ""
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
@@ -8476,14 +8576,8 @@ msgstr "Glibc versie"
 msgid "Go down the list"
 msgstr "Ga naar beneden"
 
-msgid "Go to bookmarked folder"
-msgstr "Ga naar de geselecteerde map"
-
 msgid "Go to deep standby"
 msgstr "Uw ontvanger afsluiten"
-
-msgid "Go to end of file"
-msgstr "Ga naar het einde van het bestand"
 
 msgid "Go to first movie or last item"
 msgstr "Ga naar de eerste opname of het laatste item"
@@ -8491,14 +8585,11 @@ msgstr "Ga naar de eerste opname of het laatste item"
 msgid "Go to first movie or top of list"
 msgstr "Ga naar de eerste opname of naar het eerste item"
 
-msgid "Go to parent directory"
-msgstr "Ga naar bovenliggende map"
+msgid "Go to parent directory of the current column"
+msgstr ""
 
 msgid "Go to standby"
 msgstr "Ga naar stand-by"
-
-msgid "Go to start of file"
-msgstr "Ga naar het begin van het bestand"
 
 msgid "Go up the list"
 msgstr "Ga naar boven in de lijst"
@@ -8599,8 +8690,8 @@ msgstr "Grenada"
 msgid "Grey"
 msgstr "Grijs"
 
-msgid "Group:"
-msgstr "Groep:"
+msgid "Group"
+msgstr ""
 
 msgid "Grow drop"
 msgstr "Groei boven>beneden"
@@ -8818,6 +8909,9 @@ msgstr "Hier kunt u extra bestanden selecteren die aan de standaard back-up moet
 msgid "Herero"
 msgstr "Herero"
 
+msgid "Hexadecimal"
+msgstr ""
+
 msgid "HiSilicon"
 msgstr "HiSilicon"
 
@@ -8995,8 +9089,8 @@ msgstr "Hybride Tuner"
 msgid "I"
 msgstr "I"
 
-msgid "I/O priority for script execution"
-msgstr "I/O-prioriteit voor scriptuitvoering"
+msgid "I/O priority for scripts"
+msgstr ""
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
@@ -9054,6 +9148,9 @@ msgstr "ISO betand is te groot voor dit bestandsysteem!"
 
 msgid "ISO path"
 msgstr "ISO pad"
+
+msgid "ISO speed rating"
+msgstr ""
 
 msgid "ISP"
 msgstr "ISP"
@@ -9137,9 +9234,6 @@ msgstr "Als een programma wordt onderbroken en in aparte events is verdeeld, zal
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
-
-msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr "Wanneer geactiveerd, zal de Plug-in uw ontvanger eerder dan de opgegeven Starttijd inschakelen om te controleren of het programma eventueel eerder begint."
@@ -9459,8 +9553,8 @@ msgstr "Initialiseer"
 msgid "Initializing storage device..."
 msgstr "Opslagapparaat initialiseren..."
 
-msgid "Inode:"
-msgstr "Inode:"
+msgid "Inode"
+msgstr ""
 
 msgid "Inotify Monitoring"
 msgstr "Inotify monitoring"
@@ -9489,8 +9583,8 @@ msgstr "Invoer configuratie bestandsnaam:"
 msgid "Input scroll position"
 msgstr "Invoer scroll positie"
 
-msgid "Insert"
-msgstr "Invoegen"
+msgid "Insert Line"
+msgstr ""
 
 msgid "Insert line before current line"
 msgstr "Regel invoegen voor huidige regel"
@@ -9499,8 +9593,8 @@ msgid "Install"
 msgstr "Installeer"
 
 #, python-format
-msgid "Install '%s' and enable this operation"
-msgstr "Installeer '%s' en activeer deze verrichting"
+msgid "Install '%s' command"
+msgstr ""
 
 msgid "Install 1/1"
 msgstr "Installeren 1/1"
@@ -9541,6 +9635,9 @@ msgstr "Installeren of verwijderen voltooid."
 msgid "Install picons on"
 msgstr "Installeer picons op"
 
+msgid "Install the package"
+msgstr ""
+
 msgid "Install/Remove plugin"
 msgstr "Installeer/Verwijder plug-in"
 
@@ -9553,9 +9650,6 @@ msgstr "Installeert"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Installeren %s (%s)..."
-
-msgid "Installing Plugin ..."
-msgstr "Plug-in wordt geïnstalleerd ..."
 
 msgid "Installing Service"
 msgstr "Installeert service"
@@ -9697,22 +9791,6 @@ msgstr "Israel"
 
 msgid "It follows:"
 msgstr "Het vervolgt:"
-
-msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr "Het is niet mogelijk om hashes te berekenen op <List of Storage Devices>"
-
-msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr "Het is niet mogelijk om de bestandsmodus te wijzigen op <List of Storage Devices>"
-
-msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr "Het is niet mogelijk om de bestandsstatus te verkrijgen van <List of Storage Devices>"
-
-#, python-format
-msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr "Het is niet mogelijk om '%s' uit te voeren op <List of Storage Devices>"
-
-msgid "It's not possible to rename the file system root."
-msgstr "Het is niet mogelijk om het root bestandssysteem te hernoemen."
 
 msgid "Italian"
 msgstr "Italiaans"
@@ -10016,6 +10094,9 @@ msgstr "Laatste snelheid"
 msgid "Last update"
 msgstr "Laatste update"
 
+msgid "Last used column"
+msgstr ""
+
 msgid "Last used share: "
 msgstr "Laatst gebruikte share: "
 
@@ -10038,12 +10119,6 @@ msgstr "Lets"
 msgid "Leave DVD player?"
 msgstr "DVD-speler afsluiten?"
 
-msgid "Leave File Commander"
-msgstr "File Commander afsluiten"
-
-msgid "Leave multi-select mode"
-msgstr "Multi-selecteer modus afsluiten"
-
 msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr "Laat dit ingesteld op 'ja' tenzij u precies begrijpt waarom u dit verandert."
 
@@ -10052,6 +10127,15 @@ msgstr "Libanon"
 
 msgid "Left"
 msgstr "Links"
+
+msgid "Left column"
+msgstr ""
+
+msgid "Left column directory sort"
+msgstr ""
+
+msgid "Left column file sort"
+msgstr ""
 
 msgid "Left from service name"
 msgstr "Links van de zendernaam"
@@ -10090,6 +10174,9 @@ msgstr "Lifestyle"
 msgid "Light Grey"
 msgstr "Lichtgrijs"
 
+msgid "Light source"
+msgstr ""
+
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgs"
 
@@ -10120,6 +10207,10 @@ msgstr "Limieten uit"
 msgid "Limits on"
 msgstr "Limieten aan"
 
+#, python-format
+msgid "Line %d / %d"
+msgstr ""
+
 msgid "Lingala"
 msgstr "Lingala"
 
@@ -10129,8 +10220,8 @@ msgstr "Link gedetecteerd"
 msgid "Link quality:"
 msgstr "Kwaliteit van de verbinding:"
 
-msgid "Link target:"
-msgstr "Link doel:"
+msgid "Link target"
+msgstr ""
 
 msgid "Link:"
 msgstr "Verbinding:"
@@ -10138,8 +10229,8 @@ msgstr "Verbinding:"
 msgid "Linked titles with a DVD menu"
 msgstr "Verbind titels met een DVD menu"
 
-msgid "Links:"
-msgstr "Links:"
+msgid "Links"
+msgstr ""
 
 msgid "List EPG functions..."
 msgstr "Toon EPG functies..."
@@ -10149,6 +10240,9 @@ msgstr "Toon een lijst met navigeer acties"
 
 msgid "List available networks"
 msgstr "Toon beschikbare netwerken"
+
+msgid "List of Storage Devices"
+msgstr ""
 
 msgid "List of storage devices"
 msgstr "Overzicht van opslagmedia"
@@ -10436,11 +10530,8 @@ msgstr "Hoofdmenu"
 msgid "Maintain your multi boot device."
 msgstr "Uw multi-boot device handhaven."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Maak File Commander toegankelijk via het Applicatiemenu (Blauw-lang)."
-
-msgid "Make File Commander accessible from the main menu."
-msgstr "Maak file Commander toegankelijk vanuit het hoofdmenu."
+msgid "Make"
+msgstr ""
 
 msgid "Make this mark an 'in' point"
 msgstr "Markeer dit als 'in' punt"
@@ -10483,6 +10574,9 @@ msgstr "Beheer Applicaties"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Beheer taalselectie instellingen"
+
+msgid "Manage and explore directories and files."
+msgstr ""
 
 msgid "Manage network mounts"
 msgstr "Beheer netwerk verbindingen"
@@ -10614,6 +10708,9 @@ msgstr "Mediascanner"
 msgid "Media service"
 msgstr "Media service"
 
+msgid "MediaInfo"
+msgstr ""
+
 msgid "MediaPlayer"
 msgstr "MediaSpeler"
 
@@ -10690,11 +10787,14 @@ msgstr "Bericht"
 msgid "Message Box Actions"
 msgstr "Dialoogvenster functies"
 
+msgid "Message pop up timeout"
+msgstr ""
+
 msgid "Message..."
 msgstr "Bericht..."
 
-msgid "Metadata changed:"
-msgstr "Metadata gecreëerd:"
+msgid "Metering mode"
+msgstr ""
 
 msgid "Mexico"
 msgstr "Mexico"
@@ -10780,10 +10880,6 @@ msgstr "Mobiele verbinding"
 msgid "Mode"
 msgstr "Modus"
 
-#, python-format
-msgid "Mode %s (%04o)"
-msgstr "Mode %s (%04o)"
-
 msgid "Mode 1"
 msgstr "Modus 1"
 
@@ -10805,8 +10901,8 @@ msgstr "Model"
 msgid "Model: "
 msgstr "Model: "
 
-msgid "Modified:"
-msgstr "Gemodificeerd:"
+msgid "Modified"
+msgstr ""
 
 msgid "Modulation"
 msgstr "Modulatie"
@@ -10898,13 +10994,6 @@ msgstr "Mounts instellen"
 msgid "Move"
 msgstr "Verplaats"
 
-#, python-format
-msgid "Move %d elements"
-msgstr "Verplaats %d elementen"
-
-msgid "Move 1 element"
-msgstr "Verplaats 1 element"
-
 msgid "Move Left/Right"
 msgstr "Verplaats links/rechts"
 
@@ -10923,6 +11012,12 @@ msgstr "PiP verder kijken in normaal beeldformaat"
 msgid "Move Up/Down"
 msgstr "Verplaats omhoog/omlaag"
 
+msgid "Move all related files"
+msgstr ""
+
+msgid "Move directory/file to target directory"
+msgstr ""
+
 msgid "Move down a line"
 msgstr "Een regel naar beneden"
 
@@ -10940,9 +11035,6 @@ msgstr "Een scherm naar beneden"
 
 msgid "Move down a screen in the panel"
 msgstr ""
-
-msgid "Move down list"
-msgstr "Verplaats de lijst omlaag"
 
 msgid "Move down one line"
 msgstr "Ga een regel naar beneden"
@@ -10965,17 +11057,17 @@ msgstr "Ga naar de laatste regel in de lijst."
 msgid "Move east"
 msgstr "Draai oost"
 
-msgid "Move file"
-msgstr "Verplaats bestand"
+msgid "Move job completed."
+msgstr ""
 
-msgid "Move file/directory to target directory"
-msgstr "Verplaats bestand/map naar doelmap"
+msgid "Move job failed!"
+msgstr ""
 
-msgid "Move files/directories to target directory"
-msgstr "Verplaats bestanden/mappen naar doelmap"
+msgid "Move job queued."
+msgstr ""
 
-msgid "Move folder"
-msgstr "Verplaats map"
+msgid "Move only highlighted file"
+msgstr ""
 
 msgid "Move the current DNS entry down one line"
 msgstr "De huidige DNS invoer één regel naar beneden verplaatsen"
@@ -10987,6 +11079,16 @@ msgid "Move the current bookmark down"
 msgstr ""
 
 msgid "Move the current bookmark up"
+msgstr ""
+
+msgid "Move the current line down"
+msgstr ""
+
+msgid "Move the current line up"
+msgstr ""
+
+#, python-format
+msgid "Move the directory/file '%s'?"
 msgstr ""
 
 msgid "Move the keyboard cursor down"
@@ -11012,6 +11114,9 @@ msgstr "Verplaats de cursor naar het eerste karakter"
 
 msgid "Move the text cursor to the last character"
 msgstr "Verplaatst de cursor naar het laatste karakter"
+
+msgid "Move these directories/files?"
+msgstr ""
 
 msgid "Move to first line"
 msgstr "Ga naar de eerste regel"
@@ -11057,9 +11162,6 @@ msgstr "Een scherm naar boven"
 
 msgid "Move up a screen in the panel"
 msgstr ""
-
-msgid "Move up list"
-msgstr "Verplaats de lijst omhoog"
 
 msgid "Move up one line"
 msgstr "Ga een regel omhoog"
@@ -11120,6 +11222,9 @@ msgstr "Film/drama"
 
 msgid "Movieplayer"
 msgstr "Mediaspeler"
+
+msgid "Movies"
+msgstr ""
 
 msgid "Moving"
 msgstr "Draaien"
@@ -11203,8 +11308,8 @@ msgstr "Musical"
 msgid "Mute"
 msgstr "Geluid uit"
 
-msgid "My extension"
-msgstr "Mijn applicaties"
+msgid "My extensions"
+msgstr ""
 
 msgid "Myanmar"
 msgstr "Myanmar"
@@ -11230,6 +11335,14 @@ msgstr "NFS-Bestandsserver"
 msgid "NIM & Type"
 msgstr "NIM & Type"
 
+#, python-format
+msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
+msgstr ""
+
+#, python-format
+msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
 msgid "NOW"
 msgstr "NU"
 
@@ -11245,8 +11358,11 @@ msgstr "NTSC"
 msgid "Name"
 msgstr "Naam"
 
-msgid "Name reverse"
-msgstr "Naam omgekeerd"
+msgid "Name ascending"
+msgstr ""
+
+msgid "Name descending"
+msgstr ""
 
 #, python-format
 msgid "Name server %d"
@@ -11442,9 +11558,6 @@ msgstr "Nieuwe account"
 msgid "New event info"
 msgstr "Nieuwe programma informatie"
 
-msgid "New folder"
-msgstr "Nieuwe map"
-
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
@@ -11462,6 +11575,9 @@ msgstr "NewCamd"
 
 msgid "NewCamd DES Key"
 msgstr "NewCamd DES sleutel"
+
+msgid "NewDirectory"
+msgstr ""
 
 msgid "News"
 msgstr "Nieuws"
@@ -11585,9 +11701,6 @@ msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Snel spoelen is nog niet mogelijk... u kunt echter de cijferknoppen gebruiken om te springen!"
 
-msgid "No files found."
-msgstr "Geen bestanden gevonden."
-
 msgid "No free index available"
 msgstr "Geen vrije index beschikbaar"
 
@@ -11596,9 +11709,6 @@ msgstr "Geen vrije tuner!"
 
 msgid "No hard disks detected."
 msgstr "Geen harde schijven gevonden"
-
-msgid "No hash calculations configured"
-msgstr "Geen hash berekeningen geconfigureerd"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Geen log-bestanden gevonden, daarom zijn er geen debug-logs beschikbaar!"
@@ -11708,10 +11818,6 @@ msgstr "Geen updates beschikbaar. Probeer het later nog een keer."
 msgid "No valid region details were found"
 msgstr "Geen geldige regio informatie gevonden"
 
-#, python-format
-msgid "No viewer installed for this file type: %s"
-msgstr "Geen viewer geïnstalleerd voor dit bestandstype: %s"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Geen draadloze netwerken gevonden! Zoeken..."
 
@@ -11775,10 +11881,6 @@ msgstr "Opgeven hoeveel IP-adressen op actieve verbindingen moeten worden gecont
 msgid "None"
 msgstr "Geen"
 
-#, python-format
-msgid "None of the hash programs for the hashes %s are available"
-msgstr "Geen van de hash-Programma's voor de hashes %s zijn beschikbaar"
-
 msgid "Norfolk Island"
 msgstr "Norfolkeiland"
 
@@ -11832,9 +11934,6 @@ msgstr "Niet geïnstalleerd"
 
 msgid "Not Shown"
 msgstr "Niet zichtbaar"
-
-msgid "Not allowed with folders"
-msgstr "Niet toegestaan met mappen"
 
 msgid "Not associated"
 msgstr "Niet geassocieerd"
@@ -11913,9 +12012,6 @@ msgstr "Aantal IP-adressen"
 msgid "Number of digits in channel number"
 msgstr "Aantal cijfers in het zendernummer"
 
-msgid "Number of lines in script messages"
-msgstr "Aantal regels in script berichten"
-
 msgid "Number of rows"
 msgstr "Aantal zenderregels"
 
@@ -11988,6 +12084,9 @@ msgstr "OVR"
 msgid "Occitan"
 msgstr "Occitaans"
 
+msgid "Octal"
+msgstr ""
+
 msgid "Off"
 msgstr "Uit"
 
@@ -12008,9 +12107,6 @@ msgstr "Oman"
 
 msgid "On"
 msgstr "Aan"
-
-msgid "On device:"
-msgstr "Op apparaat:"
 
 msgid "On end of movie"
 msgstr "Op het einde van de opname"
@@ -12093,6 +12189,9 @@ msgstr "Open favorietenlijst"
 msgid "Open context menu"
 msgstr "Open het context menu"
 
+msgid "Open context menu (contains settings menu)"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr "Open de favorietenlijst"
 
@@ -12113,9 +12212,6 @@ msgstr "Open zenderlijst en vorige zender"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Open zenderlijst en selecteer vorige zender voor PiP"
-
-msgid "Open settings/actions menu"
-msgstr "Open instellingen/actie menu"
 
 msgid "Open the Plugin Browser"
 msgstr "Open de Plug-in browser"
@@ -12183,11 +12279,17 @@ msgstr "Optie om picons uit te schakelen op de informatiebalk"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Optie voor inschakelen Hardware stand-by Timer"
 
+msgid "Optional parameter"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Orbitale positie"
 
 msgid "Ordinary"
 msgstr "Gewone"
+
+msgid "Orientation"
+msgstr ""
 
 msgid "Original"
 msgstr "Origineel"
@@ -12225,6 +12327,13 @@ msgstr "Overige ondertitels & taal"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr "Bij de overige knoppen zal help informatie worden getoond, wanneer die beschikbaar is."
+
+#, python-format
+msgid "Other panel directory (%s)"
+msgstr ""
+
+msgid "Output text:"
+msgstr ""
 
 msgid "Overall progress:"
 msgstr "Algehele voortgang:"
@@ -12274,8 +12383,8 @@ msgstr "Overschrijf Softcam bestanden tijdens software-update?"
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Overschrijf Spinner (bezig animatie) bestanden tijdens software-update?"
 
-msgid "Owner:"
-msgstr "Eigenaar:"
+msgid "Owner"
+msgstr ""
 
 msgid "PAGE UP/DOWN"
 msgstr "PAGINA OP/NEER"
@@ -12335,6 +12444,9 @@ msgstr "PVR"
 msgid "Package Manager"
 msgstr "Pakketbeheer"
 
+msgid "Package files:"
+msgstr ""
+
 msgid "Package information currently not available!"
 msgstr "Pakketinformatie is nu niet beschikbaar!"
 
@@ -12356,9 +12468,6 @@ msgstr "Pakketbeheer"
 msgid "Page down"
 msgstr "Pagina naar beneden"
 
-msgid "Page down list"
-msgstr "Pagina lijst omlaag"
-
 msgid "Page left"
 msgstr "Pagina naar links"
 
@@ -12367,9 +12476,6 @@ msgstr "Pagina naar rechts"
 
 msgid "Page up"
 msgstr "Pagina omhoog"
-
-msgid "Page up list"
-msgstr "Pagina lijst omhoog"
 
 msgid "PageDown"
 msgstr "Knop naar beneden"
@@ -12412,8 +12518,8 @@ msgstr "Papoea-Nieuw-Guinea"
 msgid "Paraguay"
 msgstr "Paraguay"
 
-msgid "Parent directory"
-msgstr "Bovenliggende map"
+msgid "Parent Directory"
+msgstr ""
 
 msgid "Parental Guidance Recommended"
 msgstr "Begeleiding door ouder/verzorger geadviseerd"
@@ -12502,8 +12608,8 @@ msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
 msgid "Permanently remove all deleted items"
 msgstr "Prullenbak leegmaken"
 
-msgid "Permissions:"
-msgstr "Rechten:"
+msgid "Permissions"
+msgstr ""
 
 msgid "Persian"
 msgstr "Perzisch"
@@ -12596,6 +12702,9 @@ msgstr "DVD afspelen"
 msgid "Play DVDs"
 msgstr "DVDs afspelen"
 
+msgid "Play all audio files in the directory"
+msgstr ""
+
 msgid "Play audio in background"
 msgstr "Geluid op de achtergrond afspelen"
 
@@ -12607,9 +12716,6 @@ msgstr "Speel mediabestanden af"
 
 msgid "Play entry"
 msgstr "Afspelen"
-
-msgid "Play folder"
-msgstr "Speel map"
 
 msgid "Play from next mark or play list entry"
 msgstr "Afspelen vanaf het volgende markeerpunt of de volgende opname"
@@ -12635,11 +12741,8 @@ msgstr "Vorige afspelen"
 msgid "Play recorded movies"
 msgstr "Opnames en films afspelen"
 
-msgid "Play title"
-msgstr "Speel titel"
-
-msgid "Play/view/edit/install/extract/run file or enter directory"
-msgstr "Afspelen/bekijk/bewerk/installeer/uitpakken/uitvoeren bestand of map"
+msgid "Play the audio file"
+msgstr ""
 
 msgid "Playback Settings"
 msgstr "Weergave instellingen"
@@ -12712,14 +12815,11 @@ msgstr ""
 msgid "Please enter filename (empty = use current date)"
 msgstr "Voer een bestandsnaam in (leeg= huidige datum)"
 
-msgid "Please enter name of the new symlink"
-msgstr "Voer de naam van de nieuwe symlink in"
+msgid "Please enter name of the new symbolic link:"
+msgstr ""
 
 msgid "Please enter new name:"
 msgstr "A.u.b. een nieuwe naam opgeven:"
-
-msgid "Please enter password"
-msgstr "Wachtwoord invoeren"
 
 msgid "Please enter search string for your location"
 msgstr "Voer uw locatie in om naar te zoeken"
@@ -12727,11 +12827,11 @@ msgstr "Voer uw locatie in om naar te zoeken"
 msgid "Please enter the correct pin code"
 msgstr "A.u.b. de juiste pincode invoeren"
 
-msgid "Please enter the new directory name"
-msgstr "Voer de naam van de nieuwe map naam in"
+msgid "Please enter the new directory name:"
+msgstr ""
 
-msgid "Please enter the new file name"
-msgstr "Geef de nieuwe bestandsnaam op"
+msgid "Please enter the new file name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "A.u.b. de nieuwe tag opgeven: "
@@ -12986,6 +13086,9 @@ msgstr "Een ogenblik geduld, informatie wordt verzameld..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Een ogenblik geduld, zoeken is bezig..."
 
+msgid "Please wait while the data is extracted..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr "Een ogenblik geduld terwijl de lijst wordt geladen..."
 
@@ -13010,8 +13113,8 @@ msgstr "Een ogenblik geduld, de skin instellingen worden teruggezet..."
 msgid "Please wait whilst feeds state is checked."
 msgstr "Een ogenblik geduld, de feed status wordt gecontroleerd."
 
-msgid "Please wait, Loading image."
-msgstr "Een ogenblik geduld, de afbeelding wordt geladen."
+msgid "Please wait, loading image..."
+msgstr ""
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -13374,36 +13477,8 @@ msgid "Program"
 msgstr "Program"
 
 #, python-format
-msgid ""
-"Program '%s' is installed.\n"
-"The package containing this program isn't known, so it can't be uninstalled."
+msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
-"Programma '%s' is geïnstalleerd.\n"
-"Het pakket dat dit programma bevat is onbekend, hierdoor kan het niet worden verwijderd."
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run the '%s' action.\n"
-"Uninstall the '%s' package to uninstall the program?"
-msgstr ""
-"Programma '%s' moet worden geïnstalleerd om de actie '%s' uit te voeren\n"
-"Verwijder het '%s' pakket om programma te verwijderen?"
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run this action.\n"
-"Install the '%s' package to install the program?"
-msgstr ""
-"Programma '%s' moet geïnstalleerd zijn om deze actie uit te voeren\n"
-"Installeer het '%s' pakket om programma te installeren?"
-
-#, python-format
-msgid ""
-"Program '%s' not installed.\n"
-"The package containing this program isn't known."
-msgstr ""
-"Program '%s' is niet geïnstalleerd.\n"
-"Het pakket dat dit programma bevat is onbekend."
 
 msgid "Programmlisten History"
 msgstr "Zenderlijst History"
@@ -13542,6 +13617,9 @@ msgstr "Zet de TV in stand-by"
 
 msgid "Put your AV Receiver in standby"
 msgstr "Zet uw ontvanger in stand-by"
+
+msgid "Python"
+msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend voor /tmp/mmi.socket"
@@ -13910,9 +13988,6 @@ msgstr "Een opname heeft altijd voorrang"
 msgid "Recordings may not work correctly without an acceptable directory."
 msgstr "Opnames kunnen mislukken zonder een geschikte opnamelocatie."
 
-msgid "Records"
-msgstr "Opnames"
-
 msgid "Recovery"
 msgstr "Back-up"
 
@@ -14058,6 +14133,10 @@ msgstr "Type afstandsbediening"
 msgid "Remove"
 msgstr "Verwijderen"
 
+#, python-format
+msgid "Remove '%s' From Bookmarks"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Verwijder bookmark"
 
@@ -14118,17 +14197,11 @@ msgstr "Verwijder alle gebruikers interface data"
 msgid "Remove completed timers after"
 msgstr "Verwijder voltooide timers na (aantal) dagen"
 
-msgid "Remove current folder from bookmarks"
-msgstr "Verwijder huidige map van bookmarks"
-
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
-
-msgid "Remove selected folder from bookmarks"
-msgstr "Verwijder geselecteerde map van bookmarks"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Verwijdert teksten bedoelt voor slechthorenden uit externe ondertitels. Denk aan teksten als 'Deurbel gaat', 'Muziek speelt', enz."
@@ -14160,14 +14233,20 @@ msgstr "Hernoemen"
 msgid "Rename Directory"
 msgstr ""
 
+msgid "Rename all related files"
+msgstr ""
+
+msgid "Rename directory/file"
+msgstr ""
+
 msgid "Rename failed!"
 msgstr "Hernoemen mislukt!"
 
-msgid "Rename file/directory"
-msgstr "Hernoem bestand/map"
-
 msgid "Rename name and description for new events"
 msgstr "Hernoem de naam en de omschrijving voor nieuwe programma's"
+
+msgid "Rename only highlighted file"
+msgstr ""
 
 msgid "Rename the proposed file to be created"
 msgstr ""
@@ -14250,6 +14329,9 @@ msgstr "Reset de HDMI-CEC instellingen naar default"
 msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
 
+msgid "Reset executable mode (644)"
+msgstr ""
+
 msgid "Reset network configuration"
 msgstr "Reset de netwerk configuratie"
 
@@ -14276,6 +14358,9 @@ msgstr "Reshare:"
 
 msgid "Resolution"
 msgstr "Resolutie"
+
+msgid "Resolution unit"
+msgstr ""
 
 msgid "Restart"
 msgstr "Herstarten"
@@ -14423,14 +14508,8 @@ msgstr "Terug naar de laatste zender"
 msgid "Reverse bouquet buttons"
 msgstr "Wissel Bouquet knoppen"
 
-msgid "Reverse left file sorting"
-msgstr "Linker bestandssortering omdraaien"
-
 msgid "Reverse list"
 msgstr "Keer lijst om"
-
-msgid "Reverse right file sorting"
-msgstr "Rechter bestandssortering omdraaien"
 
 msgid "Rewind"
 msgstr "Achteruit spoelen"
@@ -14443,6 +14522,15 @@ msgstr "Breedte ondertitels"
 
 msgid "Right"
 msgstr "Rechts"
+
+msgid "Right column"
+msgstr ""
+
+msgid "Right column directory sort"
+msgstr ""
+
+msgid "Right column file sort"
+msgstr ""
 
 msgid "Right from service name"
 msgstr "Rechts van de zendernaam"
@@ -14589,6 +14677,9 @@ msgstr "SD kaart switch FOUT! - reeds op mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
+
+msgid "SMS style QuickSelect entry selection"
+msgstr ""
 
 msgid "SMS style QuickSelect location selection"
 msgstr "SMS stijl QuickSelect locatie selectie"
@@ -14752,8 +14843,12 @@ msgstr "Bewaar laatste map bij het beëindigen"
 msgid "Save every (in hours)"
 msgstr "Bewaar elke (in uren)"
 
-msgid "Save left folder on exit"
-msgstr "Linker map opslaan bij verlaten"
+#, python-format
+msgid "Save image as '%s'"
+msgstr ""
+
+msgid "Save left directory on exit"
+msgstr ""
 
 msgid "Save play list"
 msgstr "Bewaar afspeellijst"
@@ -14761,8 +14856,8 @@ msgstr "Bewaar afspeellijst"
 msgid "Save play list on EXIT"
 msgstr "Bewaar afspeellijst bij het beëindigen"
 
-msgid "Save right folder on exit"
-msgstr "Rechter map opslaan bij verlaten"
+msgid "Save right directory on exit"
+msgstr ""
 
 msgid "Save settings and EPG data."
 msgstr "Instellingen opslaan inclusief EPG-data."
@@ -14775,20 +14870,23 @@ msgstr ""
 "Commando's en uitvoer opslaan naar bestand? \n"
 "('%s')"
 
-msgid "Save the left folder list location on exit."
-msgstr "Linker mappenlijst locatie opslaan bij verlaten."
+msgid "Save the left column directory location on exit."
+msgstr ""
 
 msgid "Save the log changes and exit"
 msgstr "Log wijzigingen opslaan en exit"
 
-msgid "Save the right folder list location on exit."
-msgstr "Rechter mappenlijst locatie opslaan bij verlaten."
+msgid "Save the right column directory location on exit."
+msgstr ""
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Bewaar Timeshift als opname en ga door met opnemen"
 
 msgid "Save time shift as movie and stop recording"
 msgstr "Bewaar Timeshift als opname en stop opname"
+
+msgid "Saved lines in script messages"
+msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "Bezig EPG Cache op te slaan..."
@@ -14886,10 +14984,6 @@ msgstr "Wetenschap & Techniek"
 
 msgid "Scope"
 msgstr "Scope"
-
-#, python-format
-msgid "Script '%s' must have read permission to be able to run it"
-msgstr "Script '%s' moet lees permissies hebben om te kunnen worden uitgevoerd"
 
 msgid "Script Manager"
 msgstr "Script Manager"
@@ -15051,6 +15145,9 @@ msgstr ""
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr "Kies 'Ja' om te controleren of bij het activeren van de timer de netwerkverbindingen via de opgegeven IP-adressen komen. Wanneer ja, dan wordt de timer gedeactiveerd."
 
+msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bij 'Ja' ziet u een Mini-TV in de EPG."
 
@@ -15068,6 +15165,9 @@ msgstr "Kies 'ja' wanneer u de informatiebalk wilt laten zien bij het overschake
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Kies 'ja' wanneer u zendernummers op de informatiebalk wilt zien."
+
+msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Kies 'Ja' om wijziging van instellingen op dit apparaat mogelijk te maken. Kies 'Nee' om de instellingen te resetten naar default."
@@ -15114,6 +15214,12 @@ msgstr "Kies 'Ja' om alle gebruikers interface data te verwijderen. Hierdoor wor
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Kies 'Ja' om de netwerkconfiguratie te herstellen naar default. Hierdoor zal de Ethernet poort worden geactiveerd (wanneer beschikbaar) en zal de ontvanger DHCP gebruiken. Alle andere netwerk interfaces worden verwijderd."
 
+msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
+msgstr ""
+
+msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Kies 'Ja' om de geavanceerde instellingen te tonen."
 
@@ -15125,8 +15231,14 @@ msgstr ""
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "Bij 'ja' wordt altijd eerst de zenderlijst getoond na het overschakelen van TV naar radio, en omgekeerd."
 
+msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
+
+msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr ""
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Kies 'ja' wanneer u de informatiebalk wilt laten zien bij het en voor- en achteruit spoelen."
@@ -15161,14 +15273,14 @@ msgstr "Selecteer 'ja' om de %s band in uw zoekslag op te nemen."
 msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
 msgstr "Selecteer 'ja' om het DiSEqC-commando alleen te versturen bij veranderen van satelliet; kies 'nee' als het DiSEqC-commando bij elke zap verstuurd moet worden."
 
-msgid "Select (source list) or enter directory (target list)"
-msgstr "Selecteer (bron lijst) of voer directory in (doel lijst)"
-
 msgid "Select Additional Backup Files"
 msgstr "Extra back-up bestanden"
 
 msgid "Select Backup Location"
 msgstr "Selecteer een back-up locatie"
+
+msgid "Select Bookmark"
+msgstr ""
 
 msgid "Select CAId"
 msgstr "Selecteer CAId"
@@ -15230,17 +15342,24 @@ msgstr "Kies een cardserver uit de lijst."
 msgid "Select a debug log file to view:"
 msgstr "Selecteer een debug log-bestand:"
 
+msgid "Select a directory"
+msgstr ""
+
+msgid "Select a directory from the bookmarks"
+msgstr ""
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Selecteer een distributie van welke de images moeten worden opgehaald"
+
+#, python-format
+msgid "Select a location into which to extract '%s':"
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Selecteer een opname"
 
 msgid "Select a network adapter"
 msgstr "Selecteer een netwerkadapter"
-
-msgid "Select a path"
-msgstr "Selecteer een locatie"
 
 msgid "Select a repository commit log to view:"
 msgstr "Selecteer een repository commit-log:"
@@ -15267,6 +15386,9 @@ msgstr "Selecteer actie voor de timer%s:"
 msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
 
+msgid "Select all related files"
+msgstr ""
+
 msgid "Select an action to perform when the task has completed."
 msgstr ""
 
@@ -15285,6 +15407,9 @@ msgstr "Selecteer kopieerbestemming voor:"
 msgid "Select default EPG type..."
 msgstr "Selecteer het standaard EPG type..."
 
+msgid "Select default File Commander directory:"
+msgstr ""
+
 msgid "Select destination for:"
 msgstr "Selecteer bestemming voor:"
 
@@ -15294,7 +15419,13 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
 
+msgid "Select how long to display status messages."
+msgstr ""
+
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr ""
+
+msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
@@ -15377,6 +15508,9 @@ msgstr "Selecteer een menu item"
 msgid "Select movie"
 msgstr "Selecteer opname"
 
+msgid "Select only highlighted file"
+msgstr ""
+
 msgid "Select provider to add..."
 msgstr "Selecteer provider om toe te voegen..."
 
@@ -15400,6 +15534,12 @@ msgstr "Selecteer sorteermethode:"
 
 msgid "Select system information to view:"
 msgstr "Welke systeeminformatie wilt u zien:"
+
+msgid "Select temporary directory sort order for the current column"
+msgstr ""
+
+msgid "Select temporary file sort order for the current column"
+msgstr ""
 
 msgid "Select the No / False response"
 msgstr "Selecteer het onjuiste antwoord"
@@ -15467,11 +15607,21 @@ msgstr "Kies de datum, wanneer deze timer moet starten."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Selecteer de weekdag, wanneer deze timer actief moet worden."
 
+msgid "Select the default directory to be used if the left column directory is not saved."
+msgstr ""
+
+msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr ""
+
 msgid "Select the delay before the timer activates."
 msgstr "Kies de vertraging voordat de timer actief moet worden."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
+
+#, python-format
+msgid "Select the directory sort order for the %s column:"
+msgstr ""
 
 msgid "Select the display design for menus."
 msgstr "Selecteer de weergave opties voor de menu's."
@@ -15480,6 +15630,10 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 "Selecteer de weergave opties voor elk menu item.\n"
 "Wanneer er nummers beschikbaar zijn kunt u die gebruiken om de gewenste items direct te selecteren."
+
+#, python-format
+msgid "Select the file sort order for the %s column:"
+msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
@@ -15576,6 +15730,9 @@ msgstr "Selecteer de volgorde en zichtbaarheid van de menu items."
 
 msgid "Select the source of the default DNS settings."
 msgstr "De locatie van de default DNS instellingen selecteren."
+
+msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr ""
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Selecteer de markeringen die voor deze opname gebruikt moeten worden."
@@ -15964,9 +16121,6 @@ msgstr "Stel de MiniTV framesnelheid in"
 msgid "Set action for 'Info' key"
 msgstr "Selecteer actie voor INFO-knop"
 
-msgid "Set archive mode (644)"
-msgstr "Stel archief mode (644) in"
-
 msgid "Set current CEC address as fixed address"
 msgstr "Stel het huidige CEC adres in als vast adres"
 
@@ -15981,9 +16135,6 @@ msgstr "Stel uitvoerbaar mode (755) in"
 
 msgid "Set fixed"
 msgstr "CEC vastzetten"
-
-msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-msgstr "Stel voor 'stout' en 'sterr' het aantal regels in voor de script info of script foutmelding berichten."
 
 msgid "Set fps for external subtitles"
 msgstr "Frames per seconde wijzigen voor externe ondertitels"
@@ -16033,6 +16184,9 @@ msgstr "Stel de wachttijd in voor het herhalen van een scroll-tekst, deze functi
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Stel hier de grootte in van de tijdsprong van de 'seekbar' in."
+
+msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
 
 msgid "Set the position of the recording icons"
 msgstr "Stel de positie van opname iconen in"
@@ -16361,14 +16515,6 @@ msgstr "Dient de crash teller te worden reset om een herstart te verhinderen?"
 msgid "Show"
 msgstr "Show"
 
-#, python-format
-msgid ""
-"Show '%s' as picture%s?\n"
-"The current service must interrupted!"
-msgstr ""
-"Toon '%s' als afbeelding%s?\n"
-"De huidige dienst moet worden onderbroken!"
-
 msgid "Show /tmp/ecm.info"
 msgstr "Toon /tmp/ecm.info"
 
@@ -16437,9 +16583,6 @@ msgstr "Toon gebruikers"
 
 msgid "Show Default Backup Files"
 msgstr "Standaard back-up bestanden"
-
-msgid "Show Directory size"
-msgstr "Toon map grootte"
 
 msgid "Show Display Icons"
 msgstr "Toon LCD picons"
@@ -16552,14 +16695,11 @@ msgstr "Toon herstart netwerk in het Applicatiemenu *"
 msgid "Show SD as"
 msgstr "Toon SD als"
 
-msgid "Show Script completed message"
-msgstr "Toon Script voltooid bericht"
-
 msgid "Show Single EPG"
 msgstr "Toon de Single-EPG"
 
-msgid "Show Task's completed message"
-msgstr "Toon Taak voltooid bericht"
+msgid "Show Task List"
+msgstr ""
 
 msgid "Show Timer List"
 msgstr "Toon timers"
@@ -16589,13 +16729,6 @@ msgstr "Toon geavanceerde instellingen"
 
 msgid "Show animation while busy"
 msgstr "Toon een Spinner wanneer uw ontvanger bezig is"
-
-msgid "Show as Picture (press any key to close)"
-msgstr "Toon als afbeelding (druk willekeurige knop voor afsluiten)"
-
-#, python-format
-msgid "Show as Picture and save as file ('%s')"
-msgstr "Toon als afbeelding en opslaan als bestand ('%s')"
 
 msgid "Show background in Radio Mode"
 msgstr "Toon een achtergrond in radio modus"
@@ -16629,18 +16762,6 @@ msgstr "Toon / wijzig de kolommen"
 msgid "Show commit log information"
 msgstr "Toon commit-log informatie"
 
-msgid "Show contents of ipk file"
-msgstr "Toon inhoud van ipk bestand"
-
-msgid "Show contents of rar file"
-msgstr "Toon inhoud van rar bestand"
-
-msgid "Show contents of tar or compressed tar file"
-msgstr "Toon inhoud van tar of gecomprimeerd bestand"
-
-msgid "Show contents of zip file"
-msgstr "Toon inhoud van zip bestand"
-
 msgid "Show crash info on screen and write crash log for x times"
 msgstr "Toon crash info op het scherm en schrijf de crashlog x keer"
 
@@ -16649,6 +16770,9 @@ msgstr "Toon icon bij een gecodeerde zender"
 
 msgid "Show crypto info in InfoBar"
 msgstr "Laat versleutel informatie zien in de informatiebalk"
+
+msgid "Show current directory"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr "Toon debug-log informatie"
@@ -16673,9 +16797,6 @@ msgstr "Toon development pakketten in OPKG"
 
 msgid "Show directories first"
 msgstr "Toon eerst mappen"
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr "Mappen weergeven op eerste of laatste in de lijst. (moet herstarten File Commander)"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Toon versleutel informatie in de informatiebalk (als dat door uw skin wordt ondersteund)."
@@ -16710,6 +16831,9 @@ msgstr "Toon favorietenlijst"
 msgid "Show files backed up by default"
 msgstr "Toon standaard geselecteerde back-up bestanden"
 
+msgid "Show first image"
+msgstr ""
+
 msgid "Show graphical multi EPG"
 msgstr "Toon grafische Multi-EPG"
 
@@ -16719,8 +16843,12 @@ msgstr "Toon de help"
 msgid "Show icon for new/unseen items"
 msgstr "Toon icon voor nieuwe/niet bekeken onderdelen"
 
-msgid "Show image information"
-msgstr "Toon image informatie"
+msgid "Show image"
+msgstr ""
+
+#, python-format
+msgid "Show image and save as '%s'"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Toon in stand-by"
@@ -16737,6 +16865,9 @@ msgstr "Toon de infolijn"
 msgid "Show job tasks in extensions"
 msgstr "Toon systeemtaken (Job Tasks) in het Applicatiemenu"
 
+msgid "Show last image"
+msgstr ""
+
 msgid "Show live TV when movie stopped"
 msgstr "Toon live-TV als de opname gestopt is"
 
@@ -16748,12 +16879,6 @@ msgstr "Toon gemarkeerde programma's in alle rijen."
 
 msgid "Show menu"
 msgstr "Menu weergeven"
-
-msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr "Toon bericht als File Commander niet actief is en alle taken zijn voltooid."
-
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr "Toon bericht als een achtergrond script succesvol eindigt. Heeft ' stout ', dan word dit weergegeven als extra info."
 
 msgid "Show message when recording starts"
 msgstr "Toon bericht wanneer opname begint"
@@ -16778,6 +16903,9 @@ msgstr "Toon het volgende debug-log bestand"
 
 msgid "Show next event"
 msgstr "Toon het volgende programma"
+
+msgid "Show next image"
+msgstr "Toon volgend image"
 
 msgid "Show next page"
 msgstr "Toon de volgende pagina"
@@ -16821,6 +16949,9 @@ msgstr "Toon het vorige debug-log bestand"
 msgid "Show previous event"
 msgstr "Toon het vorige programma"
 
+msgid "Show previous image"
+msgstr "Toon vorig image"
+
 msgid "Show previous page"
 msgstr "Toon de vorige pagina"
 
@@ -16847,6 +16978,12 @@ msgstr "Toon het scherm menu adres"
 
 msgid "Show screensaver"
 msgstr "Screensaver"
+
+msgid "Show script messages"
+msgstr ""
+
+msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr ""
 
 msgid "Show selection for system information screen"
 msgstr "Toon selectie voor het systeem informatie scherm"
@@ -16910,8 +17047,11 @@ msgstr "Toon de selectie van de ondertitels"
 msgid "Show system information"
 msgstr "Toon systeem informatie"
 
-msgid "Show task list"
-msgstr "Toon takenlijst"
+msgid "Show task messages"
+msgstr ""
+
+msgid "Show task messages if File Commander is not running and all task are completed."
+msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr "Toon het CCcam informatiescherm"
@@ -16961,6 +17101,9 @@ msgstr "Toon de plug-ins"
 msgid "Show the radio player"
 msgstr "Radio weergave modus"
 
+msgid "Show the task list"
+msgstr ""
+
 msgid "Show the tv player"
 msgstr "Toon de TV weergave modus"
 
@@ -16990,12 +17133,6 @@ msgstr "Toon underscore tekens in bestandsnamen"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
-
-msgid "Show unknown extension as text"
-msgstr "Toon onbekende extensies als tekst"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Toon onbekende bestandsextensies met ' addon File-Viewer '."
 
 msgid "Show unknown video format as"
 msgstr "Toon onbekend video formaat als"
@@ -17146,8 +17283,11 @@ msgstr "Sitcom"
 msgid "Size"
 msgstr "Grootte"
 
-msgid "Size reverse"
-msgstr "Omgekeerd grote"
+msgid "Size ascending"
+msgstr ""
+
+msgid "Size descending"
+msgstr ""
 
 msgid "Skin"
 msgstr "Skin selectie"
@@ -17188,9 +17328,6 @@ msgstr "Spring vooruit"
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr ""
 
-msgid "Skip selection"
-msgstr "Skip selecteren"
-
 msgid "Sleep"
 msgstr "Slaap"
 
@@ -17202,6 +17339,9 @@ msgstr "Slaaptimers"
 
 msgid "Sleep delay"
 msgstr "Slaap vertraging (in minuten)"
+
+msgid "Sleep test"
+msgstr ""
 
 msgid "Sleep timer"
 msgstr "Slaaptimer"
@@ -17257,8 +17397,14 @@ msgstr "Toon foto's opnieuw aan het eind"
 msgid "Slide right to left"
 msgstr "Schuiven rechts>links"
 
+msgid "Slide show delay"
+msgstr ""
+
 msgid "Slide show interval (sec.)"
 msgstr "Diavoorstelling interval (sec.)"
+
+msgid "Slide show loop"
+msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "Schuiven boven>beneden"
@@ -17522,11 +17668,9 @@ msgstr "Sorteervolgorde voor het taaloverzicht."
 msgid "Sort playlists"
 msgstr "Sorteren van afspeellijsten"
 
-msgid "Sorting left files by name, date or size"
-msgstr "Sorteer linker bestanden op naam, datum of grootte"
-
-msgid "Sorting right files by name, date or size"
-msgstr "Sorteer rechter bestanden op naam, datum of grootte"
+#, python-format
+msgid "Sort: Directories by %s %s; Files by %s %s."
+msgstr ""
 
 msgid "Sotho, Southern"
 msgstr "Zuid Sotho"
@@ -17640,6 +17784,9 @@ msgstr "Start RDS interactief"
 msgid "Start date"
 msgstr "Startdatum"
 
+msgid "Start edit at line end"
+msgstr ""
+
 msgid "Start from the beginning"
 msgstr "Start vanaf het begin"
 
@@ -17685,6 +17832,9 @@ msgstr "StartWizard"
 msgid "Starting Softcam"
 msgstr "Starten Softcam"
 
+msgid "Starting column"
+msgstr ""
+
 msgid "Starting date"
 msgstr "Startdatum"
 
@@ -17706,6 +17856,9 @@ msgstr "Statische IP / Aangepast"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Status message timeout"
+msgstr ""
 
 msgid "Status of the display during operation"
 msgstr "Status van het scherm wanneer ingeschakeld"
@@ -18004,9 +18157,6 @@ msgstr "Wissel tussen SNR in dB en %"
 msgid "Swap Size:"
 msgstr "Swap grootte:"
 
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Verwissel knoppen rechts/links met zender plus/minus of de zender knop wisselt altijd de zijde."
-
 msgid "Swap services"
 msgstr "Zenders omwisselen"
 
@@ -18121,6 +18271,12 @@ msgstr "Ga naar de beschikbare RADIO-zenders"
 msgid "Switch to the available TV services"
 msgstr "Ga naar de beschikbare TV-zenders"
 
+msgid "Switch to the left column"
+msgstr ""
+
+msgid "Switch to the right column"
+msgstr ""
+
 msgid "Switchable tuner types:"
 msgstr "Verwisselbare tunertypes:"
 
@@ -18138,9 +18294,6 @@ msgstr "Symbol rate & FEC"
 
 msgid "Symbolic link"
 msgstr "Symbolische link"
-
-msgid "Symlink to "
-msgstr "Symlink naar "
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchroniseer NTP elke (minuten)"
@@ -18279,6 +18432,18 @@ msgstr "Tamil"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Verenigde republiek van"
 
+#, python-format
+msgid "Task '%s' ended successfully."
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with an error message!"
+msgstr ""
+
+#, python-format
+msgid "Task '%s' ended with error number %d!"
+msgstr ""
+
 msgid "Task List"
 msgstr ""
 
@@ -18363,6 +18528,10 @@ msgstr "Telnet netwerkprotocol"
 msgid "Telugu"
 msgstr "Telugu"
 
+#, python-format
+msgid "Temp directory (%s)"
+msgstr ""
+
 msgid "Tennis"
 msgstr "Tennis"
 
@@ -18372,8 +18541,17 @@ msgstr "Terrestrial"
 msgid "Terrestrial bouquet:"
 msgstr "Terrestrisch favorietenlijst:"
 
+msgid "Test"
+msgstr ""
+
 msgid "Test DiSEqC settings"
 msgstr "Test DiSEqC instellingen"
+
+msgid "Test job completed."
+msgstr ""
+
+msgid "Test job failed!"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Test modus"
@@ -18481,9 +18659,6 @@ msgstr ""
 msgid "The IceTV server has requested password for %s."
 msgstr "De IceTV server heeft een wachtwoord aangevraagd voor %s."
 
-msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-msgstr "Het fotoweergave onderdeel van de File Commander heeft de PicturePlayer extensie nodig. Installeer de PicturePlayer om deze bewerking mogelijk te maken."
-
 msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
@@ -18548,8 +18723,8 @@ msgstr ""
 msgid "The aspect ratio of the recording."
 msgstr "Stel de aspectverhouding in van de opname."
 
-msgid "The authors are NOT RESPONSIBLE"
-msgstr "De auteurs zijn NIET VERANTWOORDELIJK"
+msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
+msgstr ""
 
 msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
@@ -18607,6 +18782,14 @@ msgstr ""
 "\n"
 "Druk op OK om de %s %s te blijven gebruiken."
 
+#, python-format
+msgid "The file '%s' has been changed. Do you want to discard the changes?"
+msgstr ""
+
+#, python-format
+msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
 msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
@@ -18614,21 +18797,15 @@ msgstr ""
 "Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2, EXT3 or EXT4!"
 
+#, python-format
+msgid "The following files are related to '%s':"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr "De framesnelheid van de opname. Ideaal komt deze overeen met de bron framesnelheid of integer multiple. Bij twijfel instellen op 60, dit zal met de meeste bronnen werken."
-
-msgid ""
-"The function has interrupted.\n"
-"Don't press in the next time any key until the picture from mvi-file is displayed!"
-msgstr ""
-"De functie is onderbroken.\n"
-"Druk de volgende keer niet op een knop totdat de afbeelding van het mvi-bestand wordt weergegeven!"
-
-msgid "The hash of a directory can't be calculated."
-msgstr "De hash van de directory kan niet worden berekend."
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "De hoogte van het beeld. De invoer wordt aangepast aan deze waarde."
@@ -18740,6 +18917,10 @@ msgstr "Er zijn ten minste "
 
 msgid "There are currently no outstanding actions."
 msgstr "Er zijn geen uitstaande acties."
+
+#, python-format
+msgid "There are no actions available to process '%s'!"
+msgstr ""
 
 msgid "There are no items currently available for this screen."
 msgstr "Er zijn op dit moment geen items beschikbaar voor dit scherm."
@@ -18854,6 +19035,9 @@ msgstr "Hiermee kunt u de weblink modules tonen in downloads"
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Middels dit veld kunt u zoeken naar een additionele symbol rate tot %s."
 
+msgid "This function is not available as processing of large files may take too long to run on this hardware."
+msgstr ""
+
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "Dit is een alternatieve methode (workaround) voor sommige apparaten die weer inschakelen na het in stand-by gaan. De ontwaak commando's van andere apparaten zullen enkele seconden worden genegeerd."
 
@@ -18870,9 +19054,6 @@ msgstr "Dit is de oorspronkelijke / standaard volume offset die gebruikt wordt w
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Dit is de volgorde waarin DiSEqC commando's worden verstuurd naar het antennesysteem. De volgorde moet precies overeenkomen met dat systeem in de volgorde gerekend vanaf de ontvanger.."
-
-msgid "This line is not editable!"
-msgstr "Regel kan niet worden gewijzigd!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Dit menu bevat informatie over uw ontvanger."
@@ -19235,8 +19416,8 @@ msgstr "Timeshift instellingen"
 msgid "Time Update in Minutes:"
 msgstr "Update tijd in minuten:"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
+msgid "Time between slides in image viewer slide show."
+msgstr ""
 
 msgid "Time delay for the repeated transmission"
 msgstr "Vertragingstijd voor de herhaalde verzending"
@@ -19246,9 +19427,6 @@ msgstr "Tijdvertraging voor Uitschakel meldingen"
 
 msgid "Time delay until standby or deep standby"
 msgstr "Tijd vertraging tot stand-by of uitschakelen"
-
-msgid "Time for Slideshow"
-msgstr "Tussenpauze voor slideshow afbeeldingen"
 
 msgid "Time for next LCD scrolling"
 msgstr "Tijd tussen volgende scrollen LCD"
@@ -19422,6 +19600,10 @@ msgstr "Titelset modus"
 msgid "To restore the image:"
 msgstr "Voor het herstellen van een image:"
 
+#, python-format
+msgid "To where would you like to extract '%s'?"
+msgstr ""
+
 msgid "Today"
 msgstr "Vandaag"
 
@@ -19449,6 +19631,9 @@ msgstr "Wissel het beeld in de Mini-TV"
 msgid "Toggle a cut mark at the current position"
 msgstr "Op de huidige positie een snijmarkering aanbrengen"
 
+msgid "Toggle all related files"
+msgstr ""
+
 msgid "Toggle aspect ratio..."
 msgstr "Wissel aspectverhouding..."
 
@@ -19458,8 +19643,14 @@ msgstr "Automatisch verversen in- of uitschakelen"
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Wissel tussen de favorieten- en EPG-lijsten"
 
+msgid "Toggle display of image information"
+msgstr ""
+
 msgid "Toggle display of the InfoBar"
 msgstr "Wissel de weergave van de Informatiebalk"
+
+msgid "Toggle display of the image status overlay"
+msgstr ""
 
 msgid "Toggle enable/disable of the currently selected timer"
 msgstr "Activeer of deactiveer de geselecteerde Timer"
@@ -19475,6 +19666,9 @@ msgstr "Edit modus in- of uitschakelen"
 
 msgid "Toggle item move mode on/off"
 msgstr "Verplaatsmodus in- of uitschakelen"
+
+msgid "Toggle multi-selection mode"
+msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Schakel nieuwe tekst invoegingen in of overschrijf de bestaande tekst"
@@ -19597,6 +19791,9 @@ msgstr "Prullenbak:"
 
 msgid "Travel"
 msgstr "Reizen"
+
+msgid "Tree size"
+msgstr ""
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
 msgstr "Geprobeerd PiP uit te schakelen, maar plotseling geen InfoBar.instance gevonden.\n"
@@ -19801,9 +19998,6 @@ msgstr "Type / Model"
 msgid "Type of scan"
 msgstr "Zoekmodus"
 
-msgid "Type:"
-msgstr "Type:"
-
 msgid "Type: "
 msgstr "Type: "
 
@@ -19894,10 +20088,6 @@ msgstr "Unicable matrix"
 msgid "Uninstall"
 msgstr "De-installeer"
 
-#, python-format
-msgid "Uninstall '%s' package and disable '%s'"
-msgstr "Deinstalleren '%s' pakket en uitschakelen '%s'"
-
 msgid "United Arab Emirates"
 msgstr "Verenigde Arabische Emiraten"
 
@@ -19958,12 +20148,8 @@ msgstr "Déselecteer deze zender als 3D zender"
 msgid "Unmount"
 msgstr "Ontkoppel"
 
-#, python-format
-msgid "Unpack to %s"
-msgstr "Uitpakken naar %s"
-
-msgid "Unpack to current folder"
-msgstr "Uitpakken naar huidige map"
+msgid "Unpack File"
+msgstr ""
 
 msgid "Unscramble and record ECM"
 msgstr "decodeer en ECM opnemen"
@@ -20174,6 +20360,9 @@ msgstr "Gebruik OnlineFlash in softwarebeheer"
 msgid "Use OpenTV EPG information when it is available."
 msgstr "Gebruik OpenTV EPG informatie wanneer deze beschikbaar is."
 
+msgid "Use QuickSelect"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Gebruik de afstandsbediening van de TV"
 
@@ -20314,6 +20503,9 @@ msgstr "Gebruik tijdssprongen voor snel voor- of achteruit ( << / >> )"
 msgid "Use time shift SeekBar while time shifting"
 msgstr "Sta het gebruik van de seekbar toe tijdens Timeshift"
 
+msgid "Use viewer for unknown files"
+msgstr ""
+
 msgid "Use workaround for wake up from deep-standby"
 msgstr "Gebruik de alternatieve methode voor het ontwaken uit deep-standby"
 
@@ -20337,6 +20529,9 @@ msgstr "Gebruiker - favorietenlijst"
 
 msgid "User Feed URL"
 msgstr "eigen feed url"
+
+msgid "User comments"
+msgstr ""
 
 msgid "User defined"
 msgstr "Door u ingesteld"
@@ -20505,6 +20700,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Bolivariaanse Republiek Venezuela"
 
+msgid "Version"
+msgstr ""
+
 #, python-format
 msgid "Version %s %s"
 msgstr "Versie %s %s"
@@ -20664,6 +20862,9 @@ msgstr "Vietnamees"
 msgid "View"
 msgstr "Bekijken"
 
+msgid "View File"
+msgstr ""
+
 msgid "View Rass interactive..."
 msgstr "Rass Interactive weergeven..."
 
@@ -20712,9 +20913,6 @@ msgstr "Bekijk de lijst met beschikbare systeem Applicaties."
 msgid "View mode"
 msgstr "Weergave EPG"
 
-msgid "View or edit file (if size < 1MB)"
-msgstr "Bekijk of bewerk bestand (als grootte <1MB)"
-
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Bekijk of bewerk dit %s script"
@@ -20724,6 +20922,12 @@ msgstr "Bekijk foto's..."
 
 msgid "View teletext..."
 msgstr "Teletekst weergeven..."
+
+msgid "View the archive contents"
+msgstr ""
+
+msgid "View the package contents"
+msgstr ""
 
 msgid "View video CD..."
 msgstr "Bekijk Video CD..."
@@ -20797,8 +21001,8 @@ msgstr "WAN Geolocatie"
 msgid "WAN connection information"
 msgstr "WAN verbinding informatie"
 
-msgid "WARNING!"
-msgstr "WAARSCHUWING!"
+msgid "WARNING:"
+msgstr ""
 
 msgid "WEP"
 msgstr "WEP"
@@ -21020,14 +21224,26 @@ msgstr "Welke dag van de maand?"
 msgid "What day of week?"
 msgstr "Welke dag van de week?"
 
-msgid "What do you want to play?\n"
-msgstr "Wat wilt u afspelen?\n"
-
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
 
 msgid "What do you want to set as the default movie location?"
 msgstr "Welke map wilt u als standaard opname locatie instellen?"
+
+msgid "What would you like to do with the archive file:"
+msgstr ""
+
+msgid "What would you like to do with the audio file:"
+msgstr ""
+
+msgid "What would you like to do with the background image file:"
+msgstr ""
+
+msgid "What would you like to do with the package file:"
+msgstr ""
+
+msgid "What would you like to do with the script file:"
+msgstr ""
 
 msgid "What would you like to do?"
 msgstr "Wat wilt u doen?"
@@ -21250,6 +21466,9 @@ msgstr "Wit"
 msgid "Width"
 msgstr "Breedte"
 
+msgid "Width / Height"
+msgstr ""
+
 msgid "Winter Sports"
 msgstr "Wintersport"
 
@@ -21349,6 +21568,9 @@ msgstr "Schrijven mislukt!"
 msgid "Www"
 msgstr "Www"
 
+msgid "X-Resolution"
+msgstr ""
+
 msgid "XBox 360 support"
 msgstr "XBox 360 ondersteuning"
 
@@ -21357,6 +21579,9 @@ msgstr "XPicon, ZZZPicon"
 
 msgid "Xhosa"
 msgstr "Xhosa"
+
+msgid "Y-Resolution"
+msgstr ""
 
 msgid "YCbCr420"
 msgstr "YCbCr420"
@@ -21509,14 +21734,6 @@ msgstr "U kunt deze instelling overslaan en de TV uitschakelen, wanneer u de ont
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
 msgstr "Met links en recht kunt u het tuner type veranderen %s"
-
-#, python-format
-msgid "You can't usefully run '%s' on '%s'."
-msgstr "U kunt niet '%s' uitvoeren op '%s'."
-
-#, python-format
-msgid "You can't usefully run '%s' on a directory."
-msgstr "U kunt niet '%s' uitvoeren op een directory."
 
 msgid "You cannot delete this!"
 msgstr "U kunt dit niet wissen!"
@@ -22201,11 +22418,11 @@ msgstr "Kopiëer"
 msgid "copy to bouquets"
 msgstr "Kopieer naar favorieten lijst"
 
-msgid "create symlink ..."
-msgstr "Creëer symlink ..."
-
 msgid "current affairs (general)"
 msgstr "Nieuws/Actualiteiten (algemeen)"
+
+msgid "date"
+msgstr ""
 
 msgid "day"
 msgstr "dag"
@@ -22415,9 +22632,6 @@ msgstr "volks/traditionele muziek"
 msgid "football/soccer"
 msgstr "voetbal"
 
-msgid "for DATA LOSS OR DAMAGE !!!"
-msgstr "voor VERLIEZEN VAN DATA OF SCHADE !!"
-
 msgid "force AC3plus"
 msgstr "Forceer AC3plus"
 
@@ -22441,9 +22655,6 @@ msgstr "Schijfruimte vrij"
 
 msgid "from"
 msgstr "van"
-
-msgid "from dir"
-msgstr "van map"
 
 msgid "further education"
 msgstr "vervolgonderwijs"
@@ -22498,9 +22709,6 @@ msgstr "handvaardigheid"
 
 msgid "handled"
 msgstr "Verwerkt"
-
-msgid "has been CHANGED! Do you want to save it?"
-msgstr "Is GEWIJZIGD! Wilt u het opslaan?"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -22563,9 +22771,6 @@ msgstr "modules initialiseren"
 msgid "insert mark here"
 msgstr "Markeerpunt invoegen"
 
-msgid "install/unpack ipk Files"
-msgstr "installeer/uitpakken ipk bestanden"
-
 msgid "installed"
 msgstr "Geïnstalleerd"
 
@@ -22623,9 +22828,6 @@ msgstr "Doorlus naar"
 msgid "magazines/reports/documentary"
 msgstr "tijdschriften/reportages/documentaire"
 
-msgid "manage local Files"
-msgstr "Beheer lokale bestanden"
-
 msgid "manual"
 msgstr "handmatig"
 
@@ -22656,12 +22858,6 @@ msgstr "verplaats omlaag naar laatste ingave"
 msgid "move down to next entry"
 msgstr "verplaats omlaag naar volgende ingave"
 
-msgid "move file"
-msgstr "Verplaats bestand"
-
-msgid "move folder"
-msgstr "verplaats map"
-
 msgid "move up to first entry"
 msgstr "verplaats omhoog naar eerste ingave"
 
@@ -22691,6 +22887,9 @@ msgstr "musical/opera"
 
 msgid "n/a"
 msgstr "Niet beschikbaar"
+
+msgid "name"
+msgstr ""
 
 msgid "nature/animals/environment"
 msgstr "natuur/dieren/milieu"
@@ -22791,9 +22990,6 @@ msgstr "omschrijving hoe een image hersteld kan worden."
 msgid "only HD"
 msgstr "Alleen HD"
 
-msgid "original"
-msgstr "Origineel"
-
 msgid "original language"
 msgstr "orginele taal"
 
@@ -22809,17 +23005,11 @@ msgstr "podiumkunsten"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play Files"
-msgstr "Speel bestanden"
-
 msgid "play as picture in picture"
 msgstr "Bekijken als Picture in Picture"
 
 msgid "play in mainwindow"
 msgstr "afspelen in hoofdscherm"
-
-msgid "play/show Files"
-msgstr "Speel/toon bestanden"
 
 msgid "please press OK when ready"
 msgstr "druk op OK als u gereed bent"
@@ -22847,9 +23037,6 @@ msgstr "Provider:"
 
 msgid "purge deleted user bouquets"
 msgstr "Gewiste favorietenlijsten opruimen"
-
-msgid "python"
-msgstr "python"
 
 msgid "red"
 msgstr "rood"
@@ -22946,12 +23133,6 @@ msgstr "zoekstatus"
 
 msgid "science fiction/fantasy/horror"
 msgstr "science fiction/fantasie/horror"
-
-msgid "script 'sterr':"
-msgstr "script 'sterr':"
-
-msgid "script 'stout':"
-msgstr "script 'stout':"
 
 msgid "sdr"
 msgstr "SDR"
@@ -23052,6 +23233,9 @@ msgstr "Shuffle"
 msgid "simple"
 msgstr "eenvoudig"
 
+msgid "size"
+msgstr ""
+
 msgid "skip backward"
 msgstr "Achteruit springen"
 
@@ -23148,6 +23332,9 @@ msgstr "sjabloonbestand"
 msgid "tennis/squash"
 msgstr "tennis/squash"
 
+msgid "text"
+msgstr ""
+
 msgid "this bouquet is protected by a parental control pin"
 msgstr "Deze favorietenlijst is beschermd met een pincode (kinderslot)."
 
@@ -23156,9 +23343,6 @@ msgstr "Deze opname"
 
 msgid "this service is protected by a parental control pin"
 msgstr "Deze zender is beveiligd met een kinderslot-pincode"
-
-msgid "to dir"
-msgstr "naar map"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Tijd, hoofdstuk, audio en ondertitels instellen"
@@ -23171,6 +23355,9 @@ msgstr "traditioneel (snel)"
 
 msgid "traditional (fast), retune"
 msgstr "traditioneel (snel), retune"
+
+msgid "tree delete"
+msgstr ""
 
 msgid "turbo"
 msgstr "turbo"
@@ -23211,21 +23398,6 @@ msgstr "onbekend"
 msgid "unknown error"
 msgstr "onbekende fout"
 
-msgid "unpack Rar Files"
-msgstr "Uitpakken rar bestanden"
-
-msgid "unpack archives"
-msgstr "Uitpakken archieven"
-
-msgid "unpack gzip Files"
-msgstr "Uitpakken gzip bestanden"
-
-msgid "unpack tar/compressed tar Files"
-msgstr "Uitpakken tar/gecomprimeerde tar bestanden"
-
-msgid "unpack zip Files"
-msgstr "Uitpakken zip bestanden"
-
 msgid "unpublished"
 msgstr "niet gepubliceerd"
 
@@ -23255,9 +23427,6 @@ msgstr "gebruiker gedefinieerd"
 
 msgid "using:"
 msgstr "Gebruikt:"
-
-msgid "v"
-msgstr "v"
 
 msgid "variety show"
 msgstr "diverse shows"
@@ -23318,9 +23487,6 @@ msgstr "met fouten"
 msgid "with_errors"
 msgstr "met_fouten"
 
-msgid "without"
-msgstr "zonder"
-
 msgid "working"
 msgstr "bezig"
 
@@ -23336,6 +23502,773 @@ msgstr "Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voor
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "optional parameter:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\n"
+#~ "optionele parameter:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid " ('%s') ends successfully."
+#~ msgstr " ('%s') Succesvol beëindigd."
+
+#, python-format
+#~ msgid " ('%s') ends with error messages."
+#~ msgstr " ('%s') eindigt met foutberichten."
+
+#, python-format
+#~ msgid " ('%s') ends with error number [%d]."
+#~ msgstr " ('%s') eindigt met fout nummer [%d]."
+
+#, python-format
+#~ msgid " - %d elements exist! Overwrite"
+#~ msgstr " - %d bestaande elementen! Overschrijven"
+
+#~ msgid " - 1 element exist! Overwrite"
+#~ msgstr " -1 element bestaat! Overschrijven"
+
+#~ msgid " - file exist! Overwrite"
+#~ msgstr " -bestand bestaat! Overschrijven"
+
+#~ msgid " - folder exist! Overwrite"
+#~ msgstr " -map bestaat! Overschrijven"
+
+#~ msgid " or save additional the picture to a file"
+#~ msgstr " of extra de afbeelding opslaan in een bestand"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "%s (%s"
+#~ msgstr "%s (%s"
+
+#, python-format
+#~ msgid "%s - extraction errors."
+#~ msgstr "%s - uitpak fouten."
+
+#, python-format
+#~ msgid "%s is password protected."
+#~ msgstr "%s is met wachtwoord beveiligd."
+
+#, python-format
+#~ msgid "%s successfully extracted."
+#~ msgstr "%s succesvol uitgepakt."
+
+#, python-format
+#~ msgid "'%s' not installed and no known package"
+#~ msgstr "'%s' niet geïnstalleerd en geen onbekend pakket"
+
+#, python-format
+#~ msgid "(%d jobs)"
+#~ msgstr "(%d taken)"
+
+#~ msgid "(1 job)"
+#~ msgstr "(1 taak)"
+
+#~ msgid "(Selectmode)"
+#~ msgstr "(Selecteermodus)"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Accessed:"
+#~ msgstr "Toegankelijk:"
+
+#~ msgid "Activate left-hand file list as multi-select source"
+#~ msgstr "Activeer de linker bestandslijst als Multi-selecteer bron"
+
+#~ msgid "Activate left-hand file list as source"
+#~ msgstr "Activeer de linker bestandslijst als bron"
+
+#~ msgid "Activate right-hand file list as multi-select source"
+#~ msgstr "Activeer de rechter bestandslijst als Multi-selecteer bron"
+
+#~ msgid "Activate right-hand file list as source"
+#~ msgstr "Activeer de rechter bestandslijst als bron"
+
+#~ msgid "Add current folder to bookmarks"
+#~ msgstr "Huidige map aan bookmarks toevoegen"
+
+#~ msgid "Add plugin to Extensions menu*"
+#~ msgstr "Plug-in toevoegen aan het Applicatiemenu*"
+
+#~ msgid "Add plugin to main menu*"
+#~ msgstr "Plug-in toevoegen aan extensies menu*"
+
+#~ msgid "Add selected folder to bookmarks"
+#~ msgstr "Geselecteerde map aan bookmarks toevoegen"
+
+#~ msgid "CPU priority for script execution"
+#~ msgstr "CPU prioriteit voor uitvoeren van script"
+
+#~ msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+#~ msgstr "Bereken en toon de grootte van de map. Opmerking: Hierdoor kan de UI trager worden!"
+
+#~ msgid "Calculate file checksums"
+#~ msgstr "Bereken bestand checksums"
+
+#, python-format
+#~ msgid ""
+#~ "Can not run %s: %s.\n"
+#~ "%s may be in a plugin that is not installed."
+#~ msgstr ""
+#~ "Kan %s: %s niet uitvoeren.\n"
+#~ "%s bevindt zich mogelijk in een plug-in die niet is geïnstalleerd."
+
+#, python-format
+#~ msgid "Can't read link contents: %s"
+#~ msgstr "Kan link inhoud niet lezen: %s"
+
+#~ msgid "Change buttons for list navigation"
+#~ msgstr "Wijzig knoppen voor lijst navigeren"
+
+#~ msgid "Channel button always changes sides"
+#~ msgstr "Zender knop wisselt altijd zijdes"
+
+#, python-format
+#~ msgid "Copy %d elements"
+#~ msgstr "Kopieer %d elementen"
+
+#~ msgid "Copy 1 element"
+#~ msgstr "Kopieer 1 element"
+
+#~ msgid "Copy file"
+#~ msgstr "Kopieer bestand"
+
+#~ msgid "Copy file/directory to target directory"
+#~ msgstr "Kopieer bestand/map naar map"
+
+#~ msgid "Copy files/directories to target directory"
+#~ msgstr "Kopieer bestanden/mappen naar map"
+
+#~ msgid "Copy folder"
+#~ msgstr "Kopieer map"
+
+#~ msgid "Create directory/folder"
+#~ msgstr "Creëer directory/map"
+
+#~ msgid "Create symlink to file"
+#~ msgstr "Creëer symlink naar bestand"
+
+#~ msgid "Create user-named symbolic link"
+#~ msgstr "Creëer door gebruiker gedefinieerde symbolic link"
+
+#~ msgid "Date reverse"
+#~ msgstr "Datum omgekeerd"
+
+#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Standaard CPU Priority (nice) voor uitgevoerde scripts. Dit kan de belasting verminderen, zodat scripts niet interfereren met de rest van het systeem. (hogere waarden = lagere prioriteit)"
+
+#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Standaard I/O-prioriteit (ionice) voor uitgevoerde scripts. Dit kan de belasting verminderen, zodat scripts niet interfereren met de rest van het systeem. (hogere waarden = lagere prioriteit)"
+
+#~ msgid "Default directory sorting"
+#~ msgstr "Strandaard directory sortering"
+
+#~ msgid "Default file sorting left"
+#~ msgstr "Strandaard bestand sortering links"
+
+#~ msgid "Default file sorting right"
+#~ msgstr "Strandaard bestand sortering rechts"
+
+#~ msgid "Default folder"
+#~ msgstr "Standaard map"
+
+#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+#~ msgstr "Standaard map als de linker of rechter map niet is opgeslagen, en doel map voor knop 5."
+
+#~ msgid "Default sorting method for directories on both sides."
+#~ msgstr "Standaard sorteer methode voor mappen aan beide zijden."
+
+#~ msgid "Default sorting method for files on the left side."
+#~ msgstr "Standaard sorteringsmethode voor bestanden aan de linker kant."
+
+#~ msgid "Default sorting method for files on the right side."
+#~ msgstr "Standaard sorteringsmethode voor bestanden aan de rechter kant."
+
+#, python-format
+#~ msgid "Delete %d elements"
+#~ msgstr "Verwijder %d elementen"
+
+#~ msgid "Delete 1 element"
+#~ msgstr "Verwijder 1 element"
+
+#~ msgid "Delete file or directory (and all its contents)"
+#~ msgstr "Verwijder bestand of map (en al zijn inhoud)"
+
+#~ msgid "Delete folder"
+#~ msgstr "Verwijder map"
+
+#~ msgid "Delete the selected files or directories"
+#~ msgstr "Verwijder de geselecteerde bestanden of mappen"
+
+#~ msgid "Do you want change rights?\n"
+#~ msgstr "Wilt u de rechten wijzigen?\n"
+
+#~ msgid "Do you want to view or run the script?\n"
+#~ msgstr "Wilt u het script bekijken of uitvoeren?\n"
+
+#~ msgid "Edit line "
+#~ msgstr "Wijzig regel "
+
+#~ msgid "Edit position is the line end"
+#~ msgstr "Bewerk positie is het einde van de regel"
+
+#~ msgid "Enter multi-file selection mode"
+#~ msgstr "Open multi-bestand selecteer modus"
+
+#, python-format
+#~ msgid ""
+#~ "Error creating directory %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fout bij creëren van map %s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error linking %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fout bij linken van %s naar %s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error renaming %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Error hernoemen %s naar %s:\n"
+#~ "%s"
+
+#~ msgid "Error..."
+#~ msgstr "Fout..."
+
+#~ msgid "Exit editor and write changes (if any)"
+#~ msgstr "Verlaat bewerker en wijzigingen opslaan (als deze bestaan)"
+
+#~ msgid "Exit picture viewer"
+#~ msgstr "Picture viewer afsluiten"
+
+#~ msgid "File Commander - Addon File-Viewer"
+#~ msgstr "File Commander - Addon File-Viewer"
+
+#~ msgid "File Commander - Addon Mediaplayer"
+#~ msgstr "File Commander - Addon Mediaplayer"
+
+#~ msgid "File Commander - Addon Movieplayer"
+#~ msgstr "File Commander - Addon Movieplayer"
+
+#~ msgid "File Commander - all Task's are completed!"
+#~ msgstr "File Commander - alle Taken zijn voltooid!"
+
+#~ msgid "File Commander - generalised archive handler"
+#~ msgstr "File Commander - algemene archief verwerker"
+
+#~ msgid "File Commander - gzip Addon"
+#~ msgstr "File Commander - gzip Addon"
+
+#~ msgid "File Commander - ipk Addon"
+#~ msgstr "File Commander - ipk Addon"
+
+#~ msgid "File Commander - tar Addon"
+#~ msgstr "File Commander - tar Addon"
+
+#~ msgid "File Commander - unrar Addon"
+#~ msgstr "File Commander - unrar Addon"
+
+#~ msgid "File Commander - unzip Addon"
+#~ msgstr "File Commander - unzip Addon"
+
+#~ msgid "File Commander context menu"
+#~ msgstr "File Commander contextmenu"
+
+#~ msgid "File Commander menu"
+#~ msgstr "File Commander menu"
+
+#~ msgid "File checksums to calculate for button 9"
+#~ msgstr "Bestand checksums berekenen voor knop 9"
+
+#~ msgid "File checksums/hashes"
+#~ msgstr "File checksums/hashes"
+
+#, python-format
+#~ msgid "File not found: %s"
+#~ msgstr "Bestand niet gevonden: %s"
+
+#~ msgid "File/Directory Status Information"
+#~ msgstr "Bestand/Map status informatie"
+
+#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+#~ msgstr "Filter extensie voor 'My Extension' instelling of 'Filter extension'. Gebruik de extensie naam zonder een '.'."
+
+#~ msgid "Filter extension, (*) appears in title"
+#~ msgstr "Filter extension, (*) wordt in de titel weergegeven"
+
+#~ msgid "Filter visible file classes by extension."
+#~ msgstr "Filter zichtbare bestandklassen op extensies."
+
+#~ msgid "Go to bookmarked folder"
+#~ msgstr "Ga naar de geselecteerde map"
+
+#~ msgid "Go to end of file"
+#~ msgstr "Ga naar het einde van het bestand"
+
+#~ msgid "Go to parent directory"
+#~ msgstr "Ga naar bovenliggende map"
+
+#~ msgid "Go to start of file"
+#~ msgstr "Ga naar het begin van het bestand"
+
+#~ msgid "Group:"
+#~ msgstr "Groep:"
+
+#~ msgid "I/O priority for script execution"
+#~ msgstr "I/O-prioriteit voor scriptuitvoering"
+
+#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+#~ msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
+
+#~ msgid "Inode:"
+#~ msgstr "Inode:"
+
+#~ msgid "Insert"
+#~ msgstr "Invoegen"
+
+#, python-format
+#~ msgid "Install '%s' and enable this operation"
+#~ msgstr "Installeer '%s' en activeer deze verrichting"
+
+#~ msgid "Installing Plugin ..."
+#~ msgstr "Plug-in wordt geïnstalleerd ..."
+
+#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
+#~ msgstr "Het is niet mogelijk om hashes te berekenen op <List of Storage Devices>"
+
+#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
+#~ msgstr "Het is niet mogelijk om de bestandsmodus te wijzigen op <List of Storage Devices>"
+
+#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
+#~ msgstr "Het is niet mogelijk om de bestandsstatus te verkrijgen van <List of Storage Devices>"
+
+#, python-format
+#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
+#~ msgstr "Het is niet mogelijk om '%s' uit te voeren op <List of Storage Devices>"
+
+#~ msgid "It's not possible to rename the file system root."
+#~ msgstr "Het is niet mogelijk om het root bestandssysteem te hernoemen."
+
+#~ msgid "Leave File Commander"
+#~ msgstr "File Commander afsluiten"
+
+#~ msgid "Leave multi-select mode"
+#~ msgstr "Multi-selecteer modus afsluiten"
+
+#~ msgid "Link target:"
+#~ msgstr "Link doel:"
+
+#~ msgid "Links:"
+#~ msgstr "Links:"
+
+#~ msgid "Make File Commander accessible from the Extensions menu."
+#~ msgstr "Maak File Commander toegankelijk via het Applicatiemenu (Blauw-lang)."
+
+#~ msgid "Make File Commander accessible from the main menu."
+#~ msgstr "Maak file Commander toegankelijk vanuit het hoofdmenu."
+
+#~ msgid "Metadata changed:"
+#~ msgstr "Metadata gecreëerd:"
+
+#, python-format
+#~ msgid "Mode %s (%04o)"
+#~ msgstr "Mode %s (%04o)"
+
+#~ msgid "Modified:"
+#~ msgstr "Gemodificeerd:"
+
+#, python-format
+#~ msgid "Move %d elements"
+#~ msgstr "Verplaats %d elementen"
+
+#~ msgid "Move 1 element"
+#~ msgstr "Verplaats 1 element"
+
+#~ msgid "Move down list"
+#~ msgstr "Verplaats de lijst omlaag"
+
+#~ msgid "Move file"
+#~ msgstr "Verplaats bestand"
+
+#~ msgid "Move file/directory to target directory"
+#~ msgstr "Verplaats bestand/map naar doelmap"
+
+#~ msgid "Move files/directories to target directory"
+#~ msgstr "Verplaats bestanden/mappen naar doelmap"
+
+#~ msgid "Move folder"
+#~ msgstr "Verplaats map"
+
+#~ msgid "Move up list"
+#~ msgstr "Verplaats de lijst omhoog"
+
+#~ msgid "My extension"
+#~ msgstr "Mijn applicaties"
+
+#~ msgid "Name reverse"
+#~ msgstr "Naam omgekeerd"
+
+#~ msgid "New folder"
+#~ msgstr "Nieuwe map"
+
+#~ msgid "No files found."
+#~ msgstr "Geen bestanden gevonden."
+
+#~ msgid "No hash calculations configured"
+#~ msgstr "Geen hash berekeningen geconfigureerd"
+
+#, python-format
+#~ msgid "No viewer installed for this file type: %s"
+#~ msgstr "Geen viewer geïnstalleerd voor dit bestandstype: %s"
+
+#, python-format
+#~ msgid "None of the hash programs for the hashes %s are available"
+#~ msgstr "Geen van de hash-Programma's voor de hashes %s zijn beschikbaar"
+
+#~ msgid "Not allowed with folders"
+#~ msgstr "Niet toegestaan met mappen"
+
+#~ msgid "Number of lines in script messages"
+#~ msgstr "Aantal regels in script berichten"
+
+#~ msgid "On device:"
+#~ msgstr "Op apparaat:"
+
+#~ msgid "Open settings/actions menu"
+#~ msgstr "Open instellingen/actie menu"
+
+#~ msgid "Owner:"
+#~ msgstr "Eigenaar:"
+
+#~ msgid "Page down list"
+#~ msgstr "Pagina lijst omlaag"
+
+#~ msgid "Page up list"
+#~ msgstr "Pagina lijst omhoog"
+
+#~ msgid "Parent directory"
+#~ msgstr "Bovenliggende map"
+
+#~ msgid "Permissions:"
+#~ msgstr "Rechten:"
+
+#~ msgid "Play folder"
+#~ msgstr "Speel map"
+
+#~ msgid "Play title"
+#~ msgstr "Speel titel"
+
+#~ msgid "Play/view/edit/install/extract/run file or enter directory"
+#~ msgstr "Afspelen/bekijk/bewerk/installeer/uitpakken/uitvoeren bestand of map"
+
+#~ msgid "Please enter name of the new symlink"
+#~ msgstr "Voer de naam van de nieuwe symlink in"
+
+#~ msgid "Please enter password"
+#~ msgstr "Wachtwoord invoeren"
+
+#~ msgid "Please enter the new directory name"
+#~ msgstr "Voer de naam van de nieuwe map naam in"
+
+#~ msgid "Please enter the new file name"
+#~ msgstr "Geef de nieuwe bestandsnaam op"
+
+#~ msgid "Please wait, Loading image."
+#~ msgstr "Een ogenblik geduld, de afbeelding wordt geladen."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' is installed.\n"
+#~ "The package containing this program isn't known, so it can't be uninstalled."
+#~ msgstr ""
+#~ "Programma '%s' is geïnstalleerd.\n"
+#~ "Het pakket dat dit programma bevat is onbekend, hierdoor kan het niet worden verwijderd."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run the '%s' action.\n"
+#~ "Uninstall the '%s' package to uninstall the program?"
+#~ msgstr ""
+#~ "Programma '%s' moet worden geïnstalleerd om de actie '%s' uit te voeren\n"
+#~ "Verwijder het '%s' pakket om programma te verwijderen?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run this action.\n"
+#~ "Install the '%s' package to install the program?"
+#~ msgstr ""
+#~ "Programma '%s' moet geïnstalleerd zijn om deze actie uit te voeren\n"
+#~ "Installeer het '%s' pakket om programma te installeren?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' not installed.\n"
+#~ "The package containing this program isn't known."
+#~ msgstr ""
+#~ "Program '%s' is niet geïnstalleerd.\n"
+#~ "Het pakket dat dit programma bevat is onbekend."
+
+#~ msgid "Records"
+#~ msgstr "Opnames"
+
+#~ msgid "Remove current folder from bookmarks"
+#~ msgstr "Verwijder huidige map van bookmarks"
+
+#~ msgid "Remove selected folder from bookmarks"
+#~ msgstr "Verwijder geselecteerde map van bookmarks"
+
+#~ msgid "Rename file/directory"
+#~ msgstr "Hernoem bestand/map"
+
+#~ msgid "Reverse left file sorting"
+#~ msgstr "Linker bestandssortering omdraaien"
+
+#~ msgid "Reverse right file sorting"
+#~ msgstr "Rechter bestandssortering omdraaien"
+
+#~ msgid "Save left folder on exit"
+#~ msgstr "Linker map opslaan bij verlaten"
+
+#~ msgid "Save right folder on exit"
+#~ msgstr "Rechter map opslaan bij verlaten"
+
+#~ msgid "Save the left folder list location on exit."
+#~ msgstr "Linker mappenlijst locatie opslaan bij verlaten."
+
+#~ msgid "Save the right folder list location on exit."
+#~ msgstr "Rechter mappenlijst locatie opslaan bij verlaten."
+
+#, python-format
+#~ msgid "Script '%s' must have read permission to be able to run it"
+#~ msgstr "Script '%s' moet lees permissies hebben om te kunnen worden uitgevoerd"
+
+#~ msgid "Select (source list) or enter directory (target list)"
+#~ msgstr "Selecteer (bron lijst) of voer directory in (doel lijst)"
+
+#~ msgid "Select a path"
+#~ msgstr "Selecteer een locatie"
+
+#~ msgid "Set archive mode (644)"
+#~ msgstr "Stel archief mode (644) in"
+
+#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+#~ msgstr "Stel voor 'stout' en 'sterr' het aantal regels in voor de script info of script foutmelding berichten."
+
+#, python-format
+#~ msgid ""
+#~ "Show '%s' as picture%s?\n"
+#~ "The current service must interrupted!"
+#~ msgstr ""
+#~ "Toon '%s' als afbeelding%s?\n"
+#~ "De huidige dienst moet worden onderbroken!"
+
+#~ msgid "Show Directory size"
+#~ msgstr "Toon map grootte"
+
+#~ msgid "Show Script completed message"
+#~ msgstr "Toon Script voltooid bericht"
+
+#~ msgid "Show Task's completed message"
+#~ msgstr "Toon Taak voltooid bericht"
+
+#~ msgid "Show as Picture (press any key to close)"
+#~ msgstr "Toon als afbeelding (druk willekeurige knop voor afsluiten)"
+
+#, python-format
+#~ msgid "Show as Picture and save as file ('%s')"
+#~ msgstr "Toon als afbeelding en opslaan als bestand ('%s')"
+
+#~ msgid "Show contents of ipk file"
+#~ msgstr "Toon inhoud van ipk bestand"
+
+#~ msgid "Show contents of rar file"
+#~ msgstr "Toon inhoud van rar bestand"
+
+#~ msgid "Show contents of tar or compressed tar file"
+#~ msgstr "Toon inhoud van tar of gecomprimeerd bestand"
+
+#~ msgid "Show contents of zip file"
+#~ msgstr "Toon inhoud van zip bestand"
+
+#~ msgid "Show directories on first or last in list.(must restart File Commander)"
+#~ msgstr "Mappen weergeven op eerste of laatste in de lijst. (moet herstarten File Commander)"
+
+#~ msgid "Show image information"
+#~ msgstr "Toon image informatie"
+
+#~ msgid "Show message if File Commander is not running and all Task's are completed."
+#~ msgstr "Toon bericht als File Commander niet actief is en alle taken zijn voltooid."
+
+#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+#~ msgstr "Toon bericht als een achtergrond script succesvol eindigt. Heeft ' stout ', dan word dit weergegeven als extra info."
+
+#~ msgid "Show task list"
+#~ msgstr "Toon takenlijst"
+
+#~ msgid "Show unknown extension as text"
+#~ msgstr "Toon onbekende extensies als tekst"
+
+#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
+#~ msgstr "Toon onbekende bestandsextensies met ' addon File-Viewer '."
+
+#~ msgid "Size reverse"
+#~ msgstr "Omgekeerd grote"
+
+#~ msgid "Skip selection"
+#~ msgstr "Skip selecteren"
+
+#~ msgid "Sorting left files by name, date or size"
+#~ msgstr "Sorteer linker bestanden op naam, datum of grootte"
+
+#~ msgid "Sorting right files by name, date or size"
+#~ msgstr "Sorteer rechter bestanden op naam, datum of grootte"
+
+#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
+#~ msgstr "Verwissel knoppen rechts/links met zender plus/minus of de zender knop wisselt altijd de zijde."
+
+#~ msgid "Symlink to "
+#~ msgstr "Symlink naar "
+
+#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
+#~ msgstr "Het fotoweergave onderdeel van de File Commander heeft de PicturePlayer extensie nodig. Installeer de PicturePlayer om deze bewerking mogelijk te maken."
+
+#~ msgid "The authors are NOT RESPONSIBLE"
+#~ msgstr "De auteurs zijn NIET VERANTWOORDELIJK"
+
+#~ msgid ""
+#~ "The function has interrupted.\n"
+#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
+#~ msgstr ""
+#~ "De functie is onderbroken.\n"
+#~ "Druk de volgende keer niet op een knop totdat de afbeelding van het mvi-bestand wordt weergegeven!"
+
+#~ msgid "The hash of a directory can't be calculated."
+#~ msgstr "De hash van de directory kan niet worden berekend."
+
+#~ msgid "This line is not editable!"
+#~ msgstr "Regel kan niet worden gewijzigd!"
+
+#~ msgid "Time between slides in image viewer slideshow."
+#~ msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
+
+#~ msgid "Time for Slideshow"
+#~ msgstr "Tussenpauze voor slideshow afbeeldingen"
+
+#~ msgid "Type:"
+#~ msgstr "Type:"
+
+#, python-format
+#~ msgid "Uninstall '%s' package and disable '%s'"
+#~ msgstr "Deinstalleren '%s' pakket en uitschakelen '%s'"
+
+#, python-format
+#~ msgid "Unpack to %s"
+#~ msgstr "Uitpakken naar %s"
+
+#~ msgid "Unpack to current folder"
+#~ msgstr "Uitpakken naar huidige map"
+
+#~ msgid "View or edit file (if size < 1MB)"
+#~ msgstr "Bekijk of bewerk bestand (als grootte <1MB)"
+
+#~ msgid "WARNING!"
+#~ msgstr "WAARSCHUWING!"
+
+#~ msgid "What do you want to play?\n"
+#~ msgstr "Wat wilt u afspelen?\n"
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on '%s'."
+#~ msgstr "U kunt niet '%s' uitvoeren op '%s'."
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on a directory."
+#~ msgstr "U kunt niet '%s' uitvoeren op een directory."
+
+#~ msgid "create symlink ..."
+#~ msgstr "Creëer symlink ..."
+
+#~ msgid "for DATA LOSS OR DAMAGE !!!"
+#~ msgstr "voor VERLIEZEN VAN DATA OF SCHADE !!"
+
+#~ msgid "from dir"
+#~ msgstr "van map"
+
+#~ msgid "has been CHANGED! Do you want to save it?"
+#~ msgstr "Is GEWIJZIGD! Wilt u het opslaan?"
+
+#~ msgid "install/unpack ipk Files"
+#~ msgstr "installeer/uitpakken ipk bestanden"
+
+#~ msgid "manage local Files"
+#~ msgstr "Beheer lokale bestanden"
+
+#~ msgid "move file"
+#~ msgstr "Verplaats bestand"
+
+#~ msgid "move folder"
+#~ msgstr "verplaats map"
+
+#~ msgid "original"
+#~ msgstr "Origineel"
+
+#~ msgid "play Files"
+#~ msgstr "Speel bestanden"
+
+#~ msgid "play/show Files"
+#~ msgstr "Speel/toon bestanden"
+
+#~ msgid "python"
+#~ msgstr "python"
+
+#~ msgid "script 'sterr':"
+#~ msgstr "script 'sterr':"
+
+#~ msgid "script 'stout':"
+#~ msgstr "script 'stout':"
+
+#~ msgid "to dir"
+#~ msgstr "naar map"
+
+#~ msgid "unpack Rar Files"
+#~ msgstr "Uitpakken rar bestanden"
+
+#~ msgid "unpack archives"
+#~ msgstr "Uitpakken archieven"
+
+#~ msgid "unpack gzip Files"
+#~ msgstr "Uitpakken gzip bestanden"
+
+#~ msgid "unpack tar/compressed tar Files"
+#~ msgstr "Uitpakken tar/gecomprimeerde tar bestanden"
+
+#~ msgid "unpack zip Files"
+#~ msgstr "Uitpakken zip bestanden"
+
+#~ msgid "v"
+#~ msgstr "v"
+
+#~ msgid "without"
+#~ msgstr "zonder"
 
 #, python-format
 #~ msgid ""
@@ -23409,12 +24342,6 @@ msgstr "®"
 
 #~ msgid "Receiver Images"
 #~ msgstr "Images voor deze ontvanger"
-
-#~ msgid "Show next image"
-#~ msgstr "Toon volgend image"
-
-#~ msgid "Show previous image"
-#~ msgstr "Toon vorig image"
 
 #~ msgid "Show receiver image information"
 #~ msgstr "Toon informatie over de image op uw ontvanger"
