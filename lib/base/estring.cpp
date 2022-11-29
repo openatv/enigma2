@@ -793,8 +793,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	// remove character emphasis control characters:
 	output = replace_all(replace_all(replace_all(replace_all(output, "\xC2\x86", ""), "\xEE\x82\x86", ""), "\xC2\x87", ""), "\xEE\x82\x87", "");
 
-	output = fixUTF8(output);
-
 	return output;
 }
 
@@ -913,52 +911,65 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
-
-unsigned int getInvalidUTF8Pos(const char *str, unsigned len) {
-    unsigned int n;
-    for (unsigned i = 0; i < len; ++i) {
-        unsigned char c = (unsigned char) str[i];
-        //if (c==0x09 || c==0x0a || c==0x0d || (0x20 <= c && c <= 0x7e) ) n = 0; // is_printable_ascii
-        if (0x00 <= c && c <= 0x7f) {
-            n=0; // 0bbbbbbb
-        } else if ((c & 0xE0) == 0xC0) {
-            n=1; // 110bbbbb
-        } else if ( c==0xed && i<(len-1) && ((unsigned char)str[i+1] & 0xa0)==0xa0) {
-            return false; //U+d800 to U+dfff
-        } else if ((c & 0xF0) == 0xE0) {
-            n=2; // 1110bbbb
-        } else if ((c & 0xF8) == 0xF0) {
-            n=3; // 11110bbb
-        } else {
-            return i;
-        }
-        for (unsigned j = 0; j < n && i < len; ++j) { // n bytes matching 10bbbbbb follow ?
-            if ((++i == len) || (( (unsigned char)str[i] & 0xC0) != 0x80)) {
-                return i;
-            }
-        }
-    }
-    return 0;
+unsigned int getInvalidUTF8Pos(const char *str, unsigned int len, bool debug) {
+	unsigned int n;
+	for (unsigned i = 0; i < len; ++i) {
+		unsigned char c = (unsigned char) str[i];
+		//if (c==0x09 || c==0x0a || c==0x0d || (0x20 <= c && c <= 0x7e) ) n = 0; // is_printable_ascii
+		if (!(c & 0x80)) {
+			n = 0; // 0bbbbbbb
+		} else if ((c & 0xE0) == 0xC0) {
+			n = 1; // 110bbbbb
+		} else if ( c == 0xED && i < (len-1) && ((unsigned char)str[i+1] & 0xA0) == 0xA0) {  //U+d800 to U+dfff
+			if(debug)
+				eDebug("[getInvalidUTF8Pos] pos=%d / chars=%02X %02X / No fix" , i , c, (unsigned char)str[i+1]);
+// TODO
+//			return (i == 0) ? 0 : (i + 100000);
+			return 0;
+		} else if ((c & 0xF0) == 0xE0) {
+			n = 2; // 1110bbbb
+		} else if ((c & 0xF8) == 0xF0) {
+			n = 3; // 11110bbb
+		} else {
+			if(debug)
+				eDebug("[getInvalidUTF8Pos] pos=%d / char=%02X / No fix" , i , c);
+// TODO
+			return 0;
+		}
+		for (unsigned j = 0; j < n && i < len; ++j) { // n bytes matching 10bbbbbb follow ?
+			if ((++i == len) || (((unsigned char)str[i] & 0xC0) != 0x80)) {
+				if(debug)
+					eDebug("[getInvalidUTF8Pos] pos=%d / char=%02X" , i+1 , (unsigned char)str[i+1]);
+				return (i>0) ? i-1 : 0; // remove char at pos -2
+			}
+		}
+	}
+	return 0;
 }
 
-std::string fixUTF8(std::string &str) {
+std::string fixUTF8(const std::string &str, bool debug) {
 
 	std::string ret = str;
-	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), ret.size());
+	unsigned badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
 
 	if(badchar) {
-		eTrace("[fixUTF8] output:%s\n",string_to_hex(ret).c_str());
+		if(debug)
+			eDebug("[fixUTF8] hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
+		else
+			eTrace("[fixUTF8] hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
 	}
 
-	int max = 4;
-	while(badchar!=0 && max>0) {
-		char *cstr = new char[ret.size() + 1];
+	int retry = 1;
+	while(badchar!=0 && retry<5) {
+		char *cstr = new char[(unsigned int)ret.size() + 1];
 		strcpy(cstr, ret.c_str());
-		cstr[badchar-1] = ' ';
+		cstr[badchar] = ' ';
 		ret = cstr;
 		delete [] cstr;
-		badchar = getInvalidUTF8Pos(ret.c_str(), ret.size());
-		max--;
+		badchar = getInvalidUTF8Pos(ret.c_str(), (unsigned int)ret.size(), debug);
+		if(debug && badchar)
+			eDebug("[fixUTF8] retry:%d\n hex output:%s\nstr output:%s\nRemove char:%02X at pos:%d",retry,string_to_hex(ret).c_str(),ret.c_str(),(unsigned char)ret[badchar],badchar);
+		retry++;
 	}
 	return ret;
 } 

@@ -17,7 +17,7 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudi
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap, MultiPixmap
-from Components.FileList import FileList
+from Components.FileList import FILE_IS_DIR, FILE_NAME, FileList
 from Components.MediaPlayer import PlayList
 from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServicePosition import ServicePositionGauge
@@ -539,72 +539,42 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			text = ref.getPath()
 			return text.split('/')[-1]
 
-	# FIXME: maybe this code can be optimized
-	def updateCurrentInfo(self):
-		text = ""
+	def updateCurrentInfo(self):  # Display current selected entry on LCD.
 		if self.currList == "filelist":
-			idx = self.filelist.getSelectionIndex()
-			r = self.filelist.list[idx]
-			text = r[1][7]
-			if r[0][1]:
-				if len(text) < 2:
-					text += " "
-				if text[:2] != "..":
-					text = "/" + text
-			self.summaries.setText(text, 1)
-
-			idx += 1
-			if idx < len(self.filelist.list):
-				r = self.filelist.list[idx]
-				text = r[1][7]
-				if r[0][1]:
-					text = "/" + text
-				self.summaries.setText(text, 3)
-			else:
-				self.summaries.setText(" ", 3)
-
-			idx += 1
-			if idx < len(self.filelist.list):
-				r = self.filelist.list[idx]
-				text = r[1][7]
-				if r[0][1]:
-					text = "/" + text
-				self.summaries.setText(text, 4)
-			else:
-				self.summaries.setText(" ", 4)
-
-			text = ""
-			if not self.filelist.canDescent():
-				r = self.filelist.getServiceRef()
-				if r is None:
-					return
-				text = r.getPath()
-				self["currenttext"].setText(os.path.basename(text))
-
+			count = self.filelist.count()
+			index = self.filelist.getCurrentIndex()
+			for offset, field in enumerate([1, 3, 4]):
+				if index + offset < count:
+					entry = self.filelist.list[index + offset][0]
+					text = entry[FILE_NAME]
+					if entry[FILE_IS_DIR]:
+						if len(text) < 2:
+							text += " "
+						if text[:2] != "..":
+							text = "/" + text
+					self.summaries.setText(text, field)
+				else:
+					self.summaries.setText(" ", field)
+			if not self.filelist.canDescend():
+				serviceReference = self.filelist.getServiceRef()
+				if serviceReference:
+					text = serviceReference.getPath()
+					self["currenttext"].setText(os.path.basename(text))
 		if self.currList == "playlist":
-			t = self.playlist.getSelection()
-			if t is None:
-				return
-			#display current selected entry on LCD
-			text = self.getIdentifier(t)
-			self.summaries.setText(text, 1)
-			self["currenttext"].setText(text)
-			idx = self.playlist.getSelectionIndex()
-			idx += 1
-			if idx < len(self.playlist):
-				currref = self.playlist.getServiceRefList()[idx]
-				text = self.getIdentifier(currref)
-				self.summaries.setText(text, 3)
-			else:
-				self.summaries.setText(" ", 3)
-
-			idx += 1
-			if idx < len(self.playlist):
-				currref = self.playlist.getServiceRefList()[idx]
-				text = self.getIdentifier(currref)
-				self.summaries.setText(text, 4)
-			else:
-				self.summaries.setText(" ", 4)
+			entry = self.playlist.getSelection()
+			if entry:
+				text = self.getIdentifier(entry)
+				self.summaries.setText(text, 1)
+				self["currenttext"].setText(text)
+				count = self.playlist.count()
+				index = self.playlist.getCurrentIndex() + 1
+				for offset, field in enumerate([3, 4]):
+					if index + offset < count:
+						entry = self.playlist.getServiceRefList()[index + offset]
+						text = self.getIdentifier(entry)
+						self.summaries.setText(text, field)
+					else:
+						self.summaries.setText(" ", field)
 
 	def ok(self):
 		if self.currList == "filelist":

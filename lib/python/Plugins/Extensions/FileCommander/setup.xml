@@ -1,27 +1,31 @@
 <setupxml>
-	<setup key="filecommander" title="File Commander Settings">
-		<item level="0" text="Add plugin to main menu*" description="Make File Commander accessible from the main menu.">config.plugins.filecommander.add_mainmenu_entry</item>
-		<item level="0" text="Add plugin to Extensions menu*" description="Make File Commander accessible from the Extensions menu.">config.plugins.filecommander.add_extensionmenu_entry</item>
-		<item level="0" text="Save left folder on exit" description="Save the left folder list location on exit.">config.plugins.filecommander.savedir_left</item>
-		<item level="0" text="Save right folder on exit" description="Save the right folder list location on exit.">config.plugins.filecommander.savedir_right</item>
-		<item level="0" text="Show directories first" description="Show directories on first or last in list.(must restart File Commander)">config.plugins.filecommander.firstDirs</item>
-		<item level="0" text="Show Task's completed message" description="Show message if File Commander is not running and all Task's are completed.">config.plugins.filecommander.showTaskCompleted_message</item>
-		<item level="0" text="Show Script completed message" description="Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info.">config.plugins.filecommander.showScriptCompleted_message</item>
-		<item level="0" text="Show Directory size" description="Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!">config.plugins.filecommander.calculate_directorysize</item>
-		<item level="0" text="Number of lines in script messages" description="Set for 'stout' and 'sterr' the number of lines in script info or script error messages.">config.plugins.filecommander.script_messagelen</item>
-		<item level="0" text="Show unknown extension as text" description="Show unknown file extensions with 'Addon File-Viewer'.">config.plugins.filecommander.unknown_extension_as_text</item>
-		<item level="0" text="Edit position is the line end" description="If editing a file, can you set the cursor start position at end or begin of the line.">config.plugins.filecommander.editposition_lineend</item>
-		<item level="0" text="Change buttons for list navigation" description="Swap buttons right/left with channel plus/minus or the channel button changed always the side.">config.plugins.filecommander.change_navbutton</item>
-		<item level="0" text="Default file sorting left" description="Default sorting method for files on the left side.">config.plugins.filecommander.sortFiles_left</item>
-		<item level="0" text="Default file sorting right" description="Default sorting method for files on the right side.">config.plugins.filecommander.sortFiles_right</item>
-		<item level="0" text="Default directory sorting" description="Default sorting method for directories on both sides.">config.plugins.filecommander.sortDirs</item>
-		<item level="0" text="Default folder" description="Default folder if the left or right folder isn't saved, and target folder for button 5.">config.plugins.filecommander.path_default</item>
-		<item level="0" text="My extension" description="Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'.">config.plugins.filecommander.my_extension</item>
-		<item level="0" text="Filter extension, (*) appears in title" description="Filter visible file classes by extension.">config.plugins.filecommander.extension</item>
-		<item level="0" text="CPU priority for script execution" description="Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.filecommander.script_priority_nice</item>
-		<item level="0" text="I/O priority for script execution" description="Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.filecommander.script_priority_ionice</item>
-		<!--item level="0" text="Input length - Filename" description="Number of characters visible in filename entry popup windows.">config.plugins.filecommander.input_length</item-->
-		<item level="0" text="File checksums/hashes" description="File checksums to calculate for button 9">config.plugins.filecommander.hashes</item>
-		<item level="0" text="Time for Slideshow" description="Time between slides in image viewer slideshow.">config.plugins.filecommander.diashow</item>
+	<setup key="FileCommander" title="File Commander Settings">
+		<item level="0" text="Add File Commander to Main Menu" description="Add File Commander to the Main Menu list of options.">config.plugins.FileCommander.addToMainMenu</item>
+		<item level="0" text="Add File Commander to Extensions Menu" description="Add File Commander to the Extensions Menu list of options.">config.plugins.FileCommander.addToExtensionMenu</item>
+		<item level="0" text="Starting column" description="Select the starting/initial column to be activated on File Commander start up.">config.plugins.FileCommander.defaultSide</item>
+		<item level="0" text="Default left column directory" description="Select the default directory to be used if the left column directory is not saved.">config.plugins.FileCommander.defaultPathLeft</item>
+		<item level="0" text="Default right column directory" description="Select the default directory to be used if the right column directory is not saved.">config.plugins.FileCommander.defaultPathRight</item>
+		<item level="0" text="Save left directory on exit" description="Save the left column directory location on exit.">config.plugins.FileCommander.savePathLeft</item>
+		<item level="0" text="Save right directory on exit" description="Save the right column directory location on exit.">config.plugins.FileCommander.savePathRight</item>
+		<item level="0" text="Left column directory sort" description="Default sort order for directories in the left column">config.plugins.FileCommander.sortDirectoriesLeft</item>
+		<item level="0" text="Right column directory sort" description="Default sort order for directories in the right column.">config.plugins.FileCommander.sortDirectoriesRight</item>
+		<item level="0" text="Left column file sort" description="Default sort order for files in the left column.">config.plugins.FileCommander.sortFilesLeft</item>
+		<item level="0" text="Right column file sort" description="Default sort order for files in the right column.">config.plugins.FileCommander.sortFilesRight</item>
+		<item level="0" text="Show directories first" description="Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first.">config.plugins.FileCommander.directoriesFirst</item>
+		<item level="0" text="Show current directory" description="Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect.">config.plugins.FileCommander.showCurrentDirectory</item>
+		<item level="0" text="Use QuickSelect" description="Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts.">config.plugins.FileCommander.useQuickSelect</item>
+		<item level="0" text="Filter extensions" description="Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect.">config.plugins.FileCommander.extension</item>
+		<item level="0" text="My extensions" description="A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.).">config.plugins.FileCommander.myExtensions</item>
+		<item level="0" text="Use viewer for unknown files" description="Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files.">config.plugins.FileCommander.useViewerForUnknown</item>
+		<item level="0" text="Start edit at line end" description="Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line.">config.plugins.FileCommander.editLineEnd</item>
+		<item level="0" text="Slide show delay" description="Time between slides in image viewer slide show.">config.plugins.FileCommander.slideshowDelay</item>
+		<item level="0" text="Slide show loop" description="Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop.">config.plugins.FileCommander.slideshowLoop</item>
+		<item level="0" text="Status message timeout" description="Select how long to display status messages.">config.plugins.FileCommander.displayStatusTimeout</item>
+		<item level="0" text="Show task messages" description="Show task messages if File Commander is not running and all task are completed.">config.plugins.FileCommander.showTaskCompletedMessage</item>
+		<item level="0" text="Show script messages" description="Show script messages if a background script ends. If the script has additional output then this will also be shown.">config.plugins.FileCommander.showScriptCompletedMessage</item>
+		<item level="0" text="Message pop up timeout" description="Select how long to display the task and script message pop up.">config.plugins.FileCommander.completeMessageTimeout</item>
+		<item level="0" text="CPU priority for scripts" description="Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.FileCommander.scriptPriorityNice</item>
+		<item level="0" text="I/O priority for scripts" description="Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.FileCommander.scriptPriorityIONice</item>
+		<item level="0" text="Saved lines in script messages" description="Set the number of lines to be saved for 'stout' and 'sterr' output in scripts.">config.plugins.FileCommander.scriptMessageLength</item>
 	</setup>
 </setupxml>
