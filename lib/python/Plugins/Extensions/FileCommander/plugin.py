@@ -2330,7 +2330,11 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 	def __init__(self, session, path, target):
 		def displayDirectorySize(retVal):
 			if directorySizeIndex:
-				treeSize = int(self.textBuffer.split("\t")[0]) if self.textBuffer else None
+				treeSize = None
+				try:
+					treeSize = int(self.textBuffer.split("\n")[-1].split("\t")[0]) if self.textBuffer else None
+				except:
+					pass
 				if treeSize:
 					info[directorySizeIndex] = "%s:|%s   (%s)   (%s)" % (_("Tree size"), "{:n}".format(treeSize), NumberScaler().scale(treeSize, style="Si", maxNumLen=3, decimals=3), NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3))
 				else:
