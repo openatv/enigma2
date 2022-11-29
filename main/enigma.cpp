@@ -359,11 +359,11 @@ int main(int argc, char **argv)
 		snprintf(filename, sizeof(filename), "%s/wait%d.png", userpath.c_str(), i + 1);
 		rfilename = eEnv::resolve(filename);
 
+		struct stat st;
 		if (::stat(rfilename.c_str(), &st) == 0) {
 			def = true;
 			skinpath = userpath;
 		}
-
 
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		while(i < MAX_SPINNER)
@@ -372,7 +372,6 @@ int main(int argc, char **argv)
 			rfilename = eEnv::resolve(filename);
 
 			wait[i] = 0;
-			struct stat st;
 			if (::stat(rfilename.c_str(), &st) == 0)
 				loadPNG(wait[i], rfilename.c_str());
 
