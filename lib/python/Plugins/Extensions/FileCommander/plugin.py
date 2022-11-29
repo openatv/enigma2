@@ -1466,7 +1466,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				self.sourceColumn.refresh()
 				self.buildSortData()
 
-		column = "left" if self.leftActive else "right"
+		msg = _("Select the directory sort order for the left column:") if self.leftActive else _("Select the directory sort order for the right column:")
 		choiceList = [
 			(_("Cancel"), ""),
 			(_("Name ascending"), "0.0"),
@@ -1474,7 +1474,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			(_("Date ascending"), "1.0"),
 			(_("Date descending"), "1.1")
 		]
-		self.session.openWithCallback(sortDirectoriesCallback, MessageBox, text=(_("Select the directory sort order for the %s column:") % column), list=choiceList, windowTitle=self.getTitle())
+		self.session.openWithCallback(sortDirectoriesCallback, MessageBox, text=msg, list=choiceList, windowTitle=self.getTitle())
 
 	def keySortFiles(self):
 		def sortFilesCallback(answer):
