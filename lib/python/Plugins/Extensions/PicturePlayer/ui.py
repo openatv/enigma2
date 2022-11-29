@@ -140,6 +140,7 @@ class picshow(Screen):
 
 #------------------------------------------------------------------------------------------
 
+
 class Pic_Setup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, setup="PicturePlayer", plugin="Extensions/PicturePlayer")
@@ -210,9 +211,9 @@ class Pic_Thumb(Screen):
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()
-		self.thumbsX = self.size_w / (self.spaceX + self.picX) # thumbnails in X
-		self.thumbsY = self.size_h / (self.spaceY + self.picY) # thumbnails in Y
-		self.thumbsC = int(self.thumbsX * self.thumbsY) # all thumbnails
+		self.thumbsX = self.size_w / (self.spaceX + self.picX)  # thumbnails in X
+		self.thumbsY = self.size_h / (self.spaceY + self.picY)  # thumbnails in Y
+		self.thumbsC = int(self.thumbsX * self.thumbsY)  # all thumbnails
 
 		self.positionlist = []
 		skincontent = ""
@@ -270,7 +271,7 @@ class Pic_Thumb(Screen):
 		Page = 0
 		for x in piclist:
 			if not x[0][1]:
-				self.filelist.append((index, framePos, Page, x[0][0], path + x[0][0]))
+				self.filelist.append((index, framePos, Page, x[0][4], x[0][0]))
 				index += 1
 				framePos += 1
 				if framePos > (self.thumbsC - 1):
@@ -328,7 +329,7 @@ class Pic_Thumb(Screen):
 	def showPic(self, picInfo=""):
 		for x in list(range(len(self.Thumbnaillist))):
 			if self.Thumbnaillist[x][0] == 0:
-				if self.picload.getThumbnail(self.Thumbnaillist[x][2]) == 1: #zu tun probier noch mal
+				if self.picload.getThumbnail(self.Thumbnaillist[x][2]) == 1:  # zu tun probier noch mal
 					self.ThumbTimer.start(500, True)
 				else:
 					self.Thumbnaillist[x][0] = 1
@@ -403,7 +404,7 @@ class Pic_Full_View(Screen):
 			getDesktop(0).resize(eSize(size_w, size_h))
 
 		self.skin = f"""
-			<screen position="0,0" size="{size_w},{size_h}" flags="wfNoBorder"> 
+			<screen position="0,0" size="{size_w},{size_h}" flags="wfNoBorder">
 			<eLabel position="0,0" zPosition="0" size="{size_w},{size_h}" backgroundColor="{self.bgcolor}"/>
 			<widget name="pic" position="{space},{space}" size="{size_w - (space * 2)},{size_h - (space * 2)}" zPosition="1" alphatest="on" />
 			<widget name="point" position="{space + 5},{space + 5}" size="20,20" zPosition="2" pixmap="skin_default/icons/record.png" alphatest="on" />
@@ -439,17 +440,12 @@ class Pic_Full_View(Screen):
 		self.dirlistcount = 0
 
 		for x in filelist:
-			if len(filelist[0]) == 3: #orig. filelist
-				if not x[0][1]:
-					self.filelist.append(path + x[0][0])
-				else:
-					self.dirlistcount += 1
-			elif len(filelist[0]) == 2: #scanlist
+			if len(filelist[0]) in (2, 3):  # orig. filelist / scanlist
 				if not x[0][1]:
 					self.filelist.append(x[0][0])
 				else:
 					self.dirlistcount += 1
-			else: # thumbnaillist
+			else:  # thumbnaillist
 				self.filelist.append(x[T_FULL])
 
 		self.maxentry = len(self.filelist) - 1

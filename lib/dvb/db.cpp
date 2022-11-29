@@ -271,7 +271,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 						Py_DECREF(pArgs);
 						if (pResult != NULL)
 						{
-							is_ci_playable = PyInt_AsLong(pResult);
+							is_ci_playable = PyLong_AsLong(pResult);
 							Py_DECREF(pResult);
 							return is_ci_playable;
 						}

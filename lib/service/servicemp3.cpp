@@ -3251,13 +3251,13 @@ void eServiceMP3::setCutList(ePyObject list)
 			continue;
 		}
 		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
-		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
+		if (!(PyLong_Check(ppts) && PyLong_Check(ptype)))
 		{
-			eDebug("[eServiceMP3] cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
+			eDebug("[eServiceMP3] cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyLong_Check(ptype));
 			continue;
 		}
 		pts_t pts = PyLong_AsLongLong(ppts);
-		int type = PyInt_AsLong(ptype);
+		int type = PyLong_AsLong(ptype);
 		m_cue_entries.insert(cueEntry(pts, type));
 		eDebug("[eServiceMP3] adding %" G_GINT64_FORMAT " type %d", (gint64)pts, type);
 	}

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-22 19:10+0000\n"
-"PO-Revision-Date: 2022-11-23 09:43+0000\n"
+"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"PO-Revision-Date: 2022-11-29 08:56+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -74,16 +74,6 @@ msgstr ""
 "\n"
 "[Uživatelské přehledy (RÁDIO)] \n"
 
-#, python-format
-msgid ""
-"\n"
-"optional parameter:\n"
-"%s"
-msgstr ""
-"\n"
-"Volitelný parametr: \n"
-"%s"
-
 msgid " "
 msgstr " "
 
@@ -104,18 +94,6 @@ msgstr "  REC   "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Červené tlačítko: Zobrazit/skrýt název kanálu"
-
-#, python-format
-msgid " ('%s') ends successfully."
-msgstr " %s úspěšně dokončen."
-
-#, python-format
-msgid " ('%s') ends with error messages."
-msgstr " ('%s') končí chybovými zprávami."
-
-#, python-format
-msgid " ('%s') ends with error number [%d]."
-msgstr " ('%s') dokončeno s číslem chyby [%d] ."
 
 #, python-format
 msgid " (Channel %s)"
@@ -149,19 +127,6 @@ msgstr " (vyšší priorita než nastavení na 'Auto' nebo natáčení)"
 msgid " (lower than any auto)"
 msgstr " (nižší priorita než nastavení na 'Auto')"
 
-#, python-format
-msgid " - %d elements exist! Overwrite"
-msgstr " - %d části existují! Přepsat"
-
-msgid " - 1 element exist! Overwrite"
-msgstr " - jedna část existuje! Přepsat"
-
-msgid " - file exist! Overwrite"
-msgstr " - soubor existuje! Přepsat"
-
-msgid " - folder exist! Overwrite"
-msgstr " - složka existuje! Přepsat"
-
 msgid " <No Channel>"
 msgstr " <Žádný kanál>"
 
@@ -185,9 +150,6 @@ msgstr ""
 
 msgid " of "
 msgstr " z "
-
-msgid " or save additional the picture to a file"
-msgstr " nebo uložit další obrázek do souboru"
 
 msgid " updated"
 msgstr " ktualizace"
@@ -1169,10 +1131,6 @@ msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
 #, python-format
-msgid "%s"
-msgstr "%s"
-
-#, python-format
 msgid "%s  (%s)"
 msgstr "%s  (%s)"
 
@@ -1213,10 +1171,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s"
-msgstr "%s (%s"
-
-#, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
@@ -1231,10 +1185,6 @@ msgstr "%s - %s (%s%d min)"
 #, python-format
 msgid "%s - Setup"
 msgstr "%s – Nastavení"
-
-#, python-format
-msgid "%s - extraction errors."
-msgstr "%s - chyby extrakce."
 
 #, python-format
 msgid "%s GHz"
@@ -1282,20 +1232,12 @@ msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s nepoužívá se. Vymazat?"
 
 #, python-format
-msgid "%s is password protected."
-msgstr "%s je chráněn heslem."
-
-#, python-format
 msgid "%s long"
 msgstr "%s dlouhé"
 
 #, python-format
 msgid "%s not available."
 msgstr "%s není dostupný."
-
-#, python-format
-msgid "%s successfully extracted."
-msgstr "%s úspěšně extrahován."
 
 #, python-format
 msgid "%s%d min"
@@ -1353,10 +1295,6 @@ msgstr "%szobrazit 1080i jako 1080p"
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' obsahuje %d soubor(ů) a %d pod adresářů.\n"
 
-#, python-format
-msgid "'%s' not installed and no known package"
-msgstr "'%s' není nainstalován žádný známý balíček"
-
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer v hodinách' nebo 'počet posledních událostí'. Pro smazání starších Timeshift souborů. Stav, který nastal dčíve má prioritu."
 
@@ -1373,13 +1311,6 @@ msgid "( All readers)"
 msgstr "( Všechny čtečky)"
 
 #, python-format
-msgid "(%d jobs)"
-msgstr "(%d procesy)"
-
-msgid "(1 job)"
-msgstr "(1 proces)"
-
-#, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
 msgstr "(Přístup k protokolu '%s' vyžaduje internetové připojení.)"
 
@@ -1389,9 +1320,6 @@ msgstr "(Upozornění: Po selhání %d dojde k restartu.)"
 
 msgid "(FTA Service)"
 msgstr "(služba FTA)"
-
-msgid "(Selectmode)"
-msgstr "(Vyberte režim)"
 
 msgid "(Show only reader:"
 msgstr "(Pouze čtečku:"
@@ -1856,9 +1784,6 @@ msgstr "8bit"
 msgid "9"
 msgstr "9"
 
-msgid ": "
-msgstr ": "
-
 msgid "< Alternate Skin >"
 msgstr "< Alternativní Skin >"
 
@@ -1880,14 +1805,14 @@ msgstr "<Výchozí umístění>"
 msgid "<Last timer location>"
 msgstr "<Poslední umístění časovače>"
 
-msgid "?"
-msgstr "?"
-
 msgid "A"
 msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Kontrola aktualizace na pozadí probíhá, prosím vyčkejte několik minut a zkuste to znovu."
+
+msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
+msgstr "Čárkami oddělený seznam přípon, které mají být použity pro nastavení 'Moje rozšíření' v části 'Filtrovat příponu'. Názvy přípon zadejte bez úvodní tečky (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -2107,8 +2032,8 @@ msgstr "Přístupový bod:"
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Přístup ke geolokačním informacím vyžaduje připojení k internetu."
 
-msgid "Accessed:"
-msgstr "Zpřístupněno:"
+msgid "Accessed"
+msgstr "Zpřístupněno"
 
 msgid "Action"
 msgstr "Akce"
@@ -2137,23 +2062,11 @@ msgstr "Aktivovat obraz v obraze"
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivuje způsob odesílání jednotlivých nebo specifických interních příkazů HDMI-CEC z příkazového řádku."
 
-msgid "Activate left-hand file list as multi-select source"
-msgstr "Aktivuje levý seznam souborů jako zdroj s vícenásobným výběrem"
-
-msgid "Activate left-hand file list as source"
-msgstr "Aktivuje levý seznam souborů jako zdroj"
-
 msgid "Activate network adapter configuration"
 msgstr "Aktivace nastavení síťového adaptéru"
 
 msgid "Activate network settings"
 msgstr "Aktivovat nastavení sítě"
-
-msgid "Activate right-hand file list as multi-select source"
-msgstr "Aktivuje seznam souborů na pravé straně jako zdroj s vícenásobným výběrem"
-
-msgid "Activate right-hand file list as source"
-msgstr "Aktivuje pravý seznam souborů jako zdroj"
 
 msgid "Activate the configured network settings."
 msgstr "Aktivovat konfiguraci nastavení sítě."
@@ -2176,6 +2089,10 @@ msgstr "Nastavení adaptéru"
 msgid "Add"
 msgstr "Přidat"
 
+#, python-format
+msgid "Add '%s' To Bookmarks"
+msgstr "Přidat '%s' do záložek"
+
 msgid "Add AutoTimer"
 msgstr "Přidat Aut. časovač"
 
@@ -2184,6 +2101,18 @@ msgstr "K oblíbeným"
 
 msgid "Add Current"
 msgstr "Přidat aktuální"
+
+msgid "Add File Commander to Extensions Menu"
+msgstr "Přidejte File Commander do nabídky rozšíření"
+
+msgid "Add File Commander to Main Menu"
+msgstr "Přidejte File Commander do hlavní nabídky"
+
+msgid "Add File Commander to the Extensions Menu list of options."
+msgstr "Přidejte File Commander do seznamu možností nabídky Extensions."
+
+msgid "Add File Commander to the Main Menu list of options."
+msgstr "Přidejte File Commander do seznamu možností hlavní nabídky."
 
 msgid "Add New Quad Channel Entry"
 msgstr "Přidat nový čtyřkanálový záznam"
@@ -2236,9 +2165,6 @@ msgstr "Přidat časovač pro aktuální událost"
 msgid "Add an AutoTimer for the current event"
 msgstr "Přidat automatický časovač k aktuálnímu pořadu"
 
-msgid "Add current folder to bookmarks"
-msgstr "Přidat aktuální složku do záložek"
-
 msgid "Add directory to play list"
 msgstr "Přidat adresář do seznamu přehrávání"
 
@@ -2257,12 +2183,6 @@ msgstr "Přidat novou řadu NewCamd"
 msgid "Add new tag"
 msgstr "Přidat novou značku"
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Přidat plugin do nabídky Rozšíření*"
-
-msgid "Add plugin to main menu*"
-msgstr "Přidat plugin do hlavní nabídky*"
-
 msgid "Add provider"
 msgstr "Přidat poskytovatele"
 
@@ -2277,9 +2197,6 @@ msgstr "Přidat nahrávání (na dobu neurčitou)"
 
 msgid "Add recording (stop after current event)"
 msgstr "Přidat nahrávání (ukončit po současné události)"
-
-msgid "Add selected folder to bookmarks"
-msgstr "Přidat vybranou složku do záložek"
 
 msgid "Add service"
 msgstr "Přidat program"
@@ -2424,6 +2341,9 @@ msgstr "Všechny programy"
 
 msgid "All ages"
 msgstr "Libovolný věk"
+
+msgid "All files"
+msgstr "Všechny soubory"
 
 msgid "All resolutions"
 msgstr "Všechna rozlišení"
@@ -2622,6 +2542,9 @@ msgstr "Po čemkoliv"
 
 msgid "Any recordings"
 msgstr "jakékoliv nahrávání"
+
+msgid "Aperture F number"
+msgstr "Clonové číslo F"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Použít změny pro aktivaci národní prostředí/jazyka a ukončit"
@@ -3529,6 +3452,9 @@ msgstr "CAID:SrvID"
 msgid "CCCam Information"
 msgstr "Informace o CCcam"
 
+msgid "CCD-Width"
+msgstr "Šířka CCD"
+
 msgid "CCcam"
 msgstr "CCcam"
 
@@ -3670,8 +3596,8 @@ msgstr "CPU benchmark"
 msgid "CPU brand"
 msgstr "Značka CPU"
 
-msgid "CPU priority for script execution"
-msgstr "Priorita CPU pro provádění skriptu"
+msgid "CPU priority for scripts"
+msgstr "Priorita CPU pro skripty"
 
 msgid "CPU rating"
 msgstr "Hodnocení CPU"
@@ -3703,17 +3629,17 @@ msgstr "Uloženo do mezipaměti"
 msgid "Calculate"
 msgstr "Výpočet"
 
-msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
-msgstr "Vypočítat a zobrazit velikost adresáře. Poznámka: To může zpomalit uživatelské rozhraní při výběru složky!"
-
-msgid "Calculate file checksums"
-msgstr "Vypočítat kontrolní součty souborů"
+msgid "Calculate file hashes/checksums"
+msgstr "Vypočítat hashe/kontrolní součty souborů"
 
 msgid "Calculating benchmark..."
 msgstr "Výpočet benchmarku..."
 
 msgid "Calculating rating..."
 msgstr "Výpočet hodnocení..."
+
+msgid "Calculating..."
+msgstr "Počítání..."
 
 msgid "Calculation complete"
 msgstr "Výpočet kompletní"
@@ -3723,6 +3649,9 @@ msgstr "Kalibrace"
 
 msgid "Cambodia"
 msgstr "Kambodža"
+
+msgid "Camera"
+msgstr "Kamera"
 
 msgid "Cameroon"
 msgstr "Kamerun"
@@ -3790,14 +3719,6 @@ msgstr "Nelze načíst nastavení IceTV"
 msgid "Can not retrieve channel map"
 msgstr "Nelze načíst mapu kanálu"
 
-#, python-format
-msgid ""
-"Can not run %s: %s.\n"
-"%s may be in a plugin that is not installed."
-msgstr ""
-"Nelze spustit %s: %s.\n"
-"%s může být v pluginu, který není nainstalován."
-
 msgid "Can not update timer"
 msgstr "Nelze aktualizovat časovač"
 
@@ -3829,10 +3750,6 @@ msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
 msgstr "Nelze přehrát předchozí soubor časového posunu! Můžete to zkusit znovu."
-
-#, python-format
-msgid "Can't read link contents: %s"
-msgstr "Nelze přečíst obsah odkazu: %s"
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
 msgstr "Oddíl nelze odpojit, ujistěte se, že není používán pro odkládací cesty nebo cesty k nahrávání/časovému posunu"
@@ -3872,6 +3789,9 @@ msgstr "Zrušit řešení konfliktu"
 
 msgid "Cancel execution?"
 msgstr "Zrušit provedení?"
+
+msgid "Cancel extraction"
+msgstr "Zrušit extrakci"
 
 msgid "Cancel save time shift as movie"
 msgstr "Zrušit uložení časového posunu jako filmu"
@@ -4010,9 +3930,6 @@ msgstr "Změnit časovač"
 msgid "Change bouquets in quickzap"
 msgstr "Měnit přehledy při rychlém přepínání"
 
-msgid "Change buttons for list navigation"
-msgstr "Změna tlačítka pro navigaci v seznamu"
-
 msgid "Change execute permissions (755/644)"
 msgstr "Změna oprávnění ke spuštění (755/644)"
 
@@ -4039,6 +3956,9 @@ msgstr "Změnit velikost kroku"
 
 msgid "Change to bouquet"
 msgstr "Změnit na přehled"
+
+msgid "Changed"
+msgstr "Změněno"
 
 #, python-format
 msgid ""
@@ -4074,9 +3994,6 @@ msgstr "Nabídka Seznam kanálů"
 
 msgid "Channel Selection Settings"
 msgstr "Nastavení výběru kanálu"
-
-msgid "Channel button always changes sides"
-msgstr "Tlačítko kanálu vždy mění strany"
 
 msgid "Channel buttons"
 msgstr "Tlačítka kanálů"
@@ -4283,6 +4200,9 @@ msgstr "Vyberte místo, kam se uloží EPG data, když je %s %s vypnuto.Umístě
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Vyberte název souboru, kam se uloží EPG data, když je %s %s vypnuto.To může být užitečné pro rozlišení mezi několika stb."
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr "Vyberte možnost opravit neplatná data EPG."
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte styl/pořadí, ve kterém se položky zobrazí v oknech nápovědy."
 
@@ -4458,6 +4378,9 @@ msgstr "Zavřít obrazovku bez uložení změn"
 msgid "Close the window"
 msgstr "Zavřít okno"
 
+msgid "Close this screen"
+msgstr "Zavřít tuto obrazovku"
+
 msgid "Close title selection"
 msgstr "Zavřít výběr titulku"
 
@@ -4505,6 +4428,10 @@ msgstr "Kombinovaný tuner"
 
 msgid "Comedy"
 msgstr "Komedie"
+
+#, python-format
+msgid "Command '%s' is unknown"
+msgstr "Příkaz „%s“ není znám"
 
 msgid "Command execution..."
 msgstr "Výkonání příkazu..."
@@ -4562,6 +4489,9 @@ msgstr "Komplexní (umožňuje míchat audio stopy a zobrazení)"
 
 msgid "Composition of the recording filenames"
 msgstr "Vytváření názvů nahrávaných souborů"
+
+msgid "Compressed bits/pixel"
+msgstr "Komprimované bity/pixel"
 
 msgid "Config"
 msgstr "Konfigurace"
@@ -5045,6 +4975,9 @@ msgstr "Kontrast"
 msgid "Control LED can be turned on or off here."
 msgstr "Kontrolní LED lze zde zapnout nebo vypnout."
 
+msgid "Control files:"
+msgstr "Kontrolní soubory:"
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Kontrola pozice po skončení časovače, uvede se v seznamu časovačů."
 
@@ -5075,30 +5008,40 @@ msgstr "Vaření"
 msgid "Copy"
 msgstr "Kopírovat"
 
+msgid "Copy all related files"
+msgstr "Zkopírujte všechny související soubory"
+
+msgid "Copy directory/file to target directory"
+msgstr "Zkopírujte adresář/soubor do cílového adresáře"
+
+msgid "Copy job completed."
+msgstr "Úloha kopírování dokončena."
+
+msgid "Copy job failed!"
+msgstr "Kopírování se nezdařilo!"
+
+msgid "Copy job queued."
+msgstr "Kopírovat úlohu ve frontě."
+
+msgid "Copy only highlighted file"
+msgstr "Kopírovat pouze zvýrazněný soubor"
+
 #, python-format
-msgid "Copy %d elements"
-msgstr "Kopírovat %d prvků"
+msgid "Copy the directory/file '%s'?"
+msgstr "Zkopírovat adresář/soubor '%s'?"
 
-msgid "Copy 1 element"
-msgstr "Kopírovat 1 prvek"
-
-msgid "Copy file"
-msgstr "Zkopírovat soubor"
-
-msgid "Copy file/directory to target directory"
-msgstr "Zkopírovat soubor/adresář do cílového adresáře"
-
-msgid "Copy files/directories to target directory"
-msgstr "Zkopírovat soubory/adresáře do cílového adresáře"
-
-msgid "Copy folder"
-msgstr "Kopírovat složku"
+#, python-format
+msgid "Copy these %d directories/files?"
+msgstr "Zkopírovat tyto %d adresáře/soubory?"
 
 msgid "Copying files"
 msgstr "Kopírování souborů"
 
 msgid "Cornish"
 msgstr "Cornwallský"
+
+msgid "Correct invalid EPG data"
+msgstr "Opravte neplatná data EPG"
 
 msgid "Corsican"
 msgstr "Korsický"
@@ -5168,23 +5111,20 @@ msgstr "Vytvořit adresář"
 msgid "Create ISO"
 msgstr "Vytvořte ISO"
 
+msgid "Create a directory"
+msgstr "Vytvořte adresář"
+
 msgid "Create a randomly generated password"
 msgstr "Vytvořit náhodně vygenerované heslo"
+
+msgid "Create a symbolic link"
+msgstr "Vytvořte symbolický odkaz"
 
 msgid "Create directory"
 msgstr "Založit adresář"
 
-msgid "Create directory/folder"
-msgstr "Vytvořte adresář/složku"
-
 msgid "Create separate radio user bouquet"
 msgstr "Vytvořit samostatný uživatelský přehled rádií"
-
-msgid "Create symlink to file"
-msgstr "Vytvořte symbolický odkaz na soubor"
-
-msgid "Create user-named symbolic link"
-msgstr "Vytvořte symbolický odkaz pojmenovaný uživatelem"
 
 msgid "Create:"
 msgstr "Vytvořit:"
@@ -5250,6 +5190,9 @@ msgstr "Aktuální události"
 msgid "Current CEC address"
 msgstr "Adresa akt. CEC"
 
+msgid "Current Directory"
+msgstr "Aktuální adresář"
+
 msgid "Current Event:"
 msgstr "Aktuální pořad:"
 
@@ -5259,8 +5202,9 @@ msgstr "Aktuální stav:"
 msgid "Current crash log"
 msgstr "Aktuální protokol o haváriích"
 
-msgid "Current directory"
-msgstr "Současný adresář"
+#, python-format
+msgid "Current directory (%s)"
+msgstr "Aktuální adresář (%s)"
 
 msgid "Current installed"
 msgstr "Aktuálně nainstalovaný"
@@ -5454,8 +5398,14 @@ msgstr "Dánsky"
 msgid "Date"
 msgstr "Datum"
 
-msgid "Date reverse"
-msgstr "Datum obráceně"
+msgid "Date / Time"
+msgstr "Datum / Čas"
+
+msgid "Date ascending"
+msgstr "Datum vzestupně"
+
+msgid "Date descending"
+msgstr "Datum sestupně"
 
 msgid "Date style"
 msgstr "Styl data"
@@ -5611,6 +5561,9 @@ msgstr "Název dne Rok/MM/DD"
 msgid "Deactivate"
 msgstr "Deaktivovat"
 
+msgid "Debug"
+msgstr "Ladit"
+
 #, python-format
 msgid "Debug %d/%d"
 msgstr "Ladění %d/%d"
@@ -5651,14 +5604,14 @@ msgstr "Výchozí 'Po události' *"
 msgid "Default 'Timer type' *"
 msgstr "Výchozí „Typ časovače“ *"
 
-msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Výchozí priorita CPU (nice) pro prováděné skripty. To může snížit zatížení, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Výchozí priorita procesoru (hezká) pro spouštěné skripty. To může snížit zatížení systému tak, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr "Výchozí posun Dolby Digital / Dolby AC-3"
 
-msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Výchozí priorita I/O (ionice) pro prováděné skripty. To může snížit zatížení, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Výchozí priorita I/O (ionice) pro prováděné skripty. To může snížit zatížení systému tak, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
 
 msgid "Default Modes Selected."
 msgstr "Vybrány výchozí režimy."
@@ -5666,23 +5619,15 @@ msgstr "Vybrány výchozí režimy."
 msgid "Default Services Scanner"
 msgstr "Výchozí skener služeb"
 
-msgid "Default directory sorting"
-msgstr "Výchozí řazení adresářů"
-
-msgid "Default file sorting left"
-msgstr "Výchozí řazení souborů vlevo"
-
-msgid "Default file sorting right"
-msgstr "Výchozí řazení souborů vpravo"
-
 msgid "Default files/folders to backup"
 msgstr "Výchozí soubory/složky k zálohování"
 
-msgid "Default folder"
-msgstr "Výchozí složka"
+msgid "Default left column directory"
+msgstr "Výchozí adresář levého sloupce"
 
-msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Výchozí složka, pokud levá nebo pravá složka není uložena, a cílová složka pro tlačítko 5."
+#, python-format
+msgid "Default movie location (%s)"
+msgstr "Výchozí umístění filmu (%s)"
 
 msgid "Default movie selection location"
 msgstr "Výchozí umístění záznamů"
@@ -5690,17 +5635,23 @@ msgstr "Výchozí umístění záznamů"
 msgid "Default recording type"
 msgstr "Výchozí typ nahrávání"
 
+msgid "Default right column directory"
+msgstr "Výchozí adresář pravého sloupce"
+
 msgid "Default settings"
 msgstr "Výchozí nastavení"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Výchozí metoda řazení pro adresáře na obou stranách."
+msgid "Default sort order for directories in the left column"
+msgstr "Výchozí pořadí řazení pro adresáře v levém sloupci"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Výchozí způsob řazení souborů na levé straně."
+msgid "Default sort order for directories in the right column."
+msgstr "Výchozí pořadí řazení pro adresáře v pravém sloupci."
 
-msgid "Default sorting method for files on the right side."
-msgstr "Výchozí způsob řazení souborů na pravé straně."
+msgid "Default sort order for files in the left column."
+msgstr "Výchozí pořadí řazení souborů v levém sloupci."
+
+msgid "Default sort order for files in the right column."
+msgstr "Výchozí pořadí řazení souborů v pravém sloupci."
 
 msgid "Default volume offset"
 msgstr "Výchozí posun hlasitosti"
@@ -5807,15 +5758,12 @@ msgid "Delete"
 msgstr "Smazat"
 
 #, python-format
-msgid "Delete %d elements"
-msgstr "Smazat %d prvků"
-
-#, python-format
 msgid "Delete %s?"
 msgstr "Smazat %s?"
 
-msgid "Delete 1 element"
-msgstr "Smazat 1 prvek"
+#, python-format
+msgid "Delete '%s'?"
+msgstr "Smazat '%s'?"
 
 msgid "Delete Confirmation"
 msgstr "Smazat potvrzení"
@@ -5829,6 +5777,9 @@ msgstr "Smazat EPG"
 msgid "Delete Image"
 msgstr "Smazat image"
 
+msgid "Delete Line"
+msgstr "Smazat řádek"
+
 msgid "Delete Plugins"
 msgstr "Smaže vybrané pluginy"
 
@@ -5840,6 +5791,9 @@ msgstr "Smazat všechny soubory protokolu"
 
 msgid "Delete all logs"
 msgstr "Smazat všechny protokoly"
+
+msgid "Delete all related files"
+msgstr "Smazat všechny související soubory"
 
 msgid "Delete all tags"
 msgstr "Smazat všechny značky"
@@ -5859,6 +5813,9 @@ msgstr "Smažte znak pod kurzorem nebo vyberte časy PM"
 msgid "Delete current line"
 msgstr "Smazat aktuální řádek"
 
+msgid "Delete directory or file"
+msgstr "Smazat adresář nebo soubor"
+
 msgid "Delete entry"
 msgstr "Smazat položku"
 
@@ -5868,14 +5825,20 @@ msgstr "Vymazání selhalo!"
 msgid "Delete file"
 msgstr "Smazat soubor"
 
-msgid "Delete file or directory (and all its contents)"
-msgstr "Smazat soubor nebo adresář (a veškerý jeho obsah)"
+msgid "Delete job completed."
+msgstr "Smazání úlohy bylo dokončeno."
 
-msgid "Delete folder"
-msgstr "Smazat složku"
+msgid "Delete job failed!"
+msgstr "Smazání úlohy se nezdařilo!"
+
+msgid "Delete job queued."
+msgstr "Smazat úlohu ve frontě."
 
 msgid "Delete log"
 msgstr "Smazat protokol"
+
+msgid "Delete only highlighted file"
+msgstr "Smazat pouze zvýrazněný soubor"
 
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Vymažte zvýrazněný slot"
@@ -5904,8 +5867,8 @@ msgstr "Smaže aktuálně zvýrazněnou službu ze seznamu Posunutí hlasitosti"
 msgid "Delete the currently selected timer"
 msgstr "Odstraní aktuálně vybraný časovač"
 
-msgid "Delete the selected files or directories"
-msgstr "Odstranit vybrané soubory nebo adresáře"
+msgid "Delete the selected directories/files?"
+msgstr "Smazat vybrané adresáře/soubory?"
 
 msgid "Delete the selected locally stored image"
 msgstr "Odstraní vybraný lokálně uložený obrázek"
@@ -5951,6 +5914,12 @@ msgstr "Popis"
 msgid "Deselect"
 msgstr "Odebrat"
 
+msgid "Deselect all related files"
+msgstr "Zrušit výběr všech souvisejících souborů"
+
+msgid "Deselect only highlighted file"
+msgstr "Zrušit výběr pouze zvýrazněného souboru"
+
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Zrušené balíčky se obvykle vyskytují, protože tyto balíčky nejsou kompatibilní s existujícími balíčky. I když je to většinou neškodné, je možné, že vaše %s %s může mít problémy."
@@ -5975,6 +5944,9 @@ msgstr "Připojená zařízení"
 
 msgid "Device name:"
 msgstr "Název zařízení:"
+
+msgid "Device number"
+msgstr "Číslo zařízení"
 
 msgid "Device: "
 msgstr "Zařízení: "
@@ -6067,6 +6039,16 @@ msgstr "Do adresáře '%s' nelze zapisovat!"
 msgid "Directory browser"
 msgstr "Prohlížeč adresářů"
 
+#, python-format
+msgid "Directory/File %d of %d"
+msgstr "Adresář/soubor %d z %d"
+
+msgid "Directory/File Status Actions"
+msgstr "Akce stavu adresáře/souboru"
+
+msgid "Directory/File Status Information"
+msgstr "Informace o stavu adresáře/souboru"
+
 msgid "Disable"
 msgstr "Zakázat"
 
@@ -6148,11 +6130,23 @@ msgstr "Displej a uživatelské rozhraní"
 msgid "Display context menu"
 msgstr "Zobrazit kontextové menu"
 
+msgid "Display file as hexadecimal"
+msgstr "Zobrazit soubor jako hexadecimální"
+
+msgid "Display file as octal"
+msgstr "Zobrazit soubor jako osmičkové číslo"
+
+msgid "Display file as text"
+msgstr "Zobrazit soubor jako text"
+
 msgid "Display log for the currently selected timer"
 msgstr "Zobrazit protokol pro aktuálně vybraný časovač"
 
 msgid "Display message before playing next movie"
 msgstr "Zobrazit zprávu před dalším přehrávaným filmem"
+
+msgid "Display more information about this file"
+msgstr "Zobrazit další informace o tomto souboru"
 
 msgid "Display oscam information."
 msgstr "Zobrazit informace oscam."
@@ -6174,6 +6168,9 @@ msgstr "Zobrazit virtuální klávesnici pro zadávání dat"
 
 msgid "Display type"
 msgstr "Typ zobrazení"
+
+msgid "Distance"
+msgstr "Vzdálenost"
 
 msgid "Distribution"
 msgstr "Distribuce"
@@ -6317,8 +6314,9 @@ msgstr "Opravdu chcete odstranit záložku pro '%s'?"
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Opravdu chcete zastavit a smazat časovač '%s'?"
 
-msgid "Do you want change rights?\n"
-msgstr "Chcete změnit práva?\n"
+#, python-format
+msgid "Do you want change '%s' access mode?"
+msgstr "Přejete si změnit přístupový režim '%s'?"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Chcete přidat nějaké dodatečné informace ?"
@@ -6426,9 +6424,6 @@ msgstr "Chcete aktualizovat svůj přijímač?"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Chcete aktualizovat balíček:\n"
-
-msgid "Do you want to view or run the script?\n"
-msgstr "Chcete skript zobrazit nebo spustit?\n"
 
 msgid "Documentary"
 msgstr "Dokumentární"
@@ -6678,6 +6673,9 @@ msgstr "Vyhledávání EPG"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "CHYBA - prohledávání selhalo (%s)!"
 
+msgid "EXIF-Version"
+msgstr "Verze EXIF"
+
 msgid "East"
 msgstr "Východní"
 
@@ -6719,12 +6717,6 @@ msgstr "Upravit kapitoly zvoleného titulu"
 
 msgid "Edit current line"
 msgstr "Upravit aktuální řádek"
-
-msgid "Edit line "
-msgstr "Upravit řádek "
-
-msgid "Edit position is the line end"
-msgstr "Pozice úpravy je konec řádku"
 
 msgid "Edit settings"
 msgstr "Upravit nastavení"
@@ -6799,6 +6791,9 @@ msgstr "Vestavěný"
 
 msgid "Empty"
 msgstr "Prázdný"
+
+msgid "Empty file"
+msgstr "Prázdný soubor"
 
 msgid "Enable"
 msgstr "Povolit"
@@ -7144,6 +7139,9 @@ msgstr "Zadejte PIN"
 msgid "Enter a description for this timer."
 msgstr "Zadejte popis tohoto časovače."
 
+msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
+msgstr "Zadejte adresář nebo zpracujte soubor (přehrát/zobrazit/upravit/instalovat/rozbalit/spustit)"
+
 msgid "Enter a name for this timer."
 msgstr "Zadejte název tohoto časovače."
 
@@ -7158,9 +7156,6 @@ msgstr "Zadejte, pokud jste na sever nebo na jih od rovníku."
 
 msgid "Enter main menu..."
 msgstr "Vstoupit do hlavního menu..."
-
-msgid "Enter multi-file selection mode"
-msgstr "Vstup do režimu výběru více souborů"
 
 msgid "Enter new directory name:"
 msgstr "Zadejte nový název adresáře:"
@@ -7232,6 +7227,14 @@ msgid "Error"
 msgstr "Chyba"
 
 #, python-format
+msgid "Error %d: %s"
+msgstr "Chyba %d: %s"
+
+#, python-format
+msgid "Error %d: File '%s' cannot be opened!  (%s)"
+msgstr "Chyba %d: Soubor '%s' nelze otevřít! (%s)"
+
+#, python-format
 msgid "Error %d: Log file '%s' not deleted!  (%s)"
 msgstr "Chyba %d: Soubor protokolu '%s' nebyl smazán! (%s)"
 
@@ -7248,12 +7251,36 @@ msgid "Error %d: Unable to check space!  (%s)"
 msgstr "Chyba %d: Nelze zkontrolovat místo! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create directory '%s'!  (%s)"
+msgstr "Chyba %d: Nelze vytvořit adresář '%s'! (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Chyba %d: Nelze smazat stažený obrázek '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
+msgstr "Chyba %d: Nelze propojit '%s' jako '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
+msgstr "Chyba %d: Nelze přejmenovat soubor '%s' na '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to rename related file '%s' to '%s'!  (%s)"
+msgstr "Chyba %d: Nelze přejmenovat související soubor '%s' na '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to set access mode on '%s'!  (%s)"
+msgstr "Chyba %d: Nelze nastavit režim přístupu na '%s'! (%s)"
+
+#, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
 msgstr "Chyba %d: Nelze spustit příkaz 'passwd'!"
+
+#, python-format
+msgid "Error %s: Unable to get information for '%s'!  (%s)"
+msgstr "Chyba %s: Nelze získat informace pro '%s'! (%s)"
 
 #, python-format
 msgid "Error %s: Unable to retrieve the '%s' file!  (%s)"
@@ -7308,14 +7335,6 @@ msgstr ""
 "Prosím zkontrolujte po restartu MyMetrixLite-Plugin a použijte vaše nastavení."
 
 #, python-format
-msgid ""
-"Error creating directory %s:\n"
-"%s"
-msgstr ""
-"Chyba při vytváření adresáře %s:\n"
-"%s"
-
-#, python-format
 msgid "Error downloading image '%s'!"
 msgstr "Chyba při stahování obrázku '%s'!"
 
@@ -7330,14 +7349,6 @@ msgstr ""
 "Chyba při získávání odkazu přes %s\n"
 "%s"
 
-#, python-format
-msgid ""
-"Error linking %s to %s:\n"
-"%s"
-msgstr ""
-"Chyba při propojování %s s %s:\n"
-"%s"
-
 msgid "Error opening recording file"
 msgstr "Chyba při otevírání souboru záznamu"
 
@@ -7350,13 +7361,8 @@ msgstr "Chyba při čtení bouquets.tv"
 msgid "Error reading webpage!"
 msgstr "Chyba načtení webu!"
 
-#, python-format
-msgid ""
-"Error renaming %s to %s:\n"
-"%s"
-msgstr ""
-"Chyba při přejmenování %s na %s:\n"
-"%s"
+msgid "Error text:"
+msgstr "Text chyby:"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
@@ -7364,9 +7370,6 @@ msgstr "Chyba při rozbalování obrázku '%s'!"
 
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámý výsledek!"
-
-msgid "Error..."
-msgstr "Chyba..."
 
 #, python-format
 msgid ""
@@ -7408,8 +7411,15 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr "Chyba: Vytvoření adresáře '%s' se nezdařilo!"
 
 #, python-format
+msgid "Error: File '%s' cannot be opened!  (%s)"
+msgstr "Chyba: Soubor '%s' nelze otevřít! (%s)"
+
+#, python-format
 msgid "Error: File or directory '%s' already exists!"
 msgstr "Chyba: Soubor nebo adresář '%s' již existuje!"
+
+msgid "Error: FileCommanderData screen requires a formatting dictionary!"
+msgstr "Chyba: Obrazovka FileCommanderData vyžaduje slovník pro formátování!"
 
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
@@ -7423,8 +7433,20 @@ msgid "Error: Invalid directory '%s' selected!"
 msgstr "Chyba: Je vybrán neplatný adresář '%s'!"
 
 #, python-format
+msgid "Error: It is not possible to run '%s' on '%s'!"
+msgstr "Chyba: Není možné spustit '%s' na '%s'!"
+
+#, python-format
+msgid "Error: Program '%s' not installed and the package containing this program is unknown!"
+msgstr "Chyba: Program '%s' není nainstalován a balíček obsahující tento program není znám!"
+
+#, python-format
 msgid "Error: Removing directory '%s' failed! (Maybe the directory is not empty.)"
 msgstr "Chyba: Odebrání adresáře '%s' se nezdařilo! (Možná, že adresář není prázdný.)"
+
+#, python-format
+msgid "Error: Script '%s' must have read permission to be able to run!"
+msgstr "Chyba: Skript '%s' musí mít oprávnění ke čtení, aby mohl být spuštěn!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Chyba: Nové heslo nesmí být prázdné!"
@@ -7432,6 +7454,22 @@ msgstr "Chyba: Nové heslo nesmí být prázdné!"
 #, python-format
 msgid "Error: The path '%s' already exists!"
 msgstr "Chyba: Cesta '%s' již existuje!"
+
+msgid "Error: The root file system can not be copied!"
+msgstr "Chyba: Kořenový souborový systém nelze zkopírovat!"
+
+msgid "Error: The root file system can not be deleted!"
+msgstr "Chyba: Kořenový souborový systém nelze odstranit!"
+
+msgid "Error: The root file system can not be moved!"
+msgstr "Chyba: Kořenový souborový systém nelze přesunout!"
+
+msgid "Error: The root file system can not be renamed!"
+msgstr "Chyba: Kořenový souborový systém nelze přejmenovat!"
+
+#, python-format
+msgid "Error: There was a problem writing '%s'!"
+msgstr "Chyba: Při psaní '%s' došlo k problému!"
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Chyba: Nelze vytvořit požadované adresáře na cílovém zařízení (např. USB klíčenka nebo pevný disk)! Ověřte prosím zařízení a zkuste to znovu."
@@ -7442,6 +7480,14 @@ msgstr "Chyba: Nelze zpracovat příkaz! Prosím zkuste to znovu později."
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Chyba: Nelze přejmenovat adresář '%s' na '%s'!"
+
+#, python-format
+msgid "Error: You can't run '%s' on '%s'!"
+msgstr "Chyba: Nelze spustit '%s' na '%s'!"
+
+#, python-format
+msgid "Error: You can't run '%s' on a directory!"
+msgstr "Chyba: Nelze spustit '%s' v adresáři!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -7553,6 +7599,9 @@ msgstr "Ukončit"
 msgid "Exit EPG"
 msgstr "Ukončit EPG"
 
+msgid "Exit File Commander"
+msgstr "Ukončit File Commander"
+
 msgid "Exit MAC address configuration"
 msgstr "Ukončit konfiguraci MAC adresy"
 
@@ -7565,8 +7614,14 @@ msgstr "Ukončit všechny nabídky"
 msgid "Exit editor"
 msgstr "Zavřít editor"
 
-msgid "Exit editor and write changes (if any)"
-msgstr "Ukončit editor a zapsat změny (pokud existují)"
+msgid "Exit editor and discard any changes"
+msgstr "Ukončit editor a zrušit všechny změny"
+
+msgid "Exit editor and save any changes"
+msgstr "Ukončit editor a uložit všechny změny"
+
+msgid "Exit image viewer"
+msgstr "Ukončit prohlížeč obrázků"
 
 msgid "Exit input device selection."
 msgstr "Zavřít výběr vstupních zařízení."
@@ -7598,14 +7653,14 @@ msgstr "Zavřít seznam síťových rozhraní"
 msgid "Exit network wizard"
 msgstr "Zavřít síťového průvodce"
 
-msgid "Exit picture viewer"
-msgstr "Ukončit prohlížeč obrázků"
-
 msgid "Exit quad PiP"
 msgstr "Ukončit quad PiP"
 
 msgid "Exit the wizard"
 msgstr "Zavřít průvodce"
+
+msgid "Exit viewer"
+msgstr "Ukončit prohlížeč"
 
 msgid "Expand"
 msgstr "Rozbalit"
@@ -7621,6 +7676,15 @@ msgstr "Expertní"
 
 msgid "Expert mode"
 msgstr "Expertní režim"
+
+msgid "Exposure bias"
+msgstr "Expoziční zkreslení"
+
+msgid "Exposure program"
+msgstr "Expoziční program"
+
+msgid "Exposure time"
+msgstr "Expoziční doba"
 
 msgid "Ext. NumberZap"
 msgstr "Ext. ČísloZap"
@@ -7680,6 +7744,12 @@ msgstr "Přepínat externí fonty titulků"
 msgid "Extra motor options"
 msgstr "Extra možnosti motoru"
 
+msgid "Extract the archive contents"
+msgstr "Rozbalit obsah archivu"
+
+msgid "Extract the package contents"
+msgstr "Rozbalit obsah balíčku"
+
 msgid "Extrude from left"
 msgstr "Vytlačení zleva"
 
@@ -7709,6 +7779,12 @@ msgstr "FEC"
 
 msgid "FEC modes"
 msgstr "Režimy FEC"
+
+msgid "FFmpeg Probe"
+msgstr "Sonda FFmpeg"
+
+msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
+msgstr "FFmpeg není nainstalován, takže akce souboru '.mvi' nejsou dostupné!"
 
 msgid "FFmpeg version"
 msgstr "Verze FFmpeg"
@@ -7843,63 +7919,87 @@ msgstr "Fijian"
 msgid "File"
 msgstr "Soubor/List"
 
+#, python-format
+msgid "File %d of %d"
+msgstr "Soubor %d z %d"
+
 msgid "File Commander"
 msgstr "File Commander"
 
-msgid "File Commander - Addon File-Viewer"
-msgstr "File Commander - Addon prohlížeč souborů"
+msgid "File Commander - All tasks are complete."
+msgstr "File Commander - Všechny úkoly jsou dokončeny."
 
-msgid "File Commander - Addon Mediaplayer"
-msgstr "File Commander - Addon Mediaplayer"
+msgid "File Commander Actions"
+msgstr "Akce File Commander"
 
-msgid "File Commander - Addon Movieplayer"
-msgstr "File Commander - Addon Movieplayer"
+msgid "File Commander Archive"
+msgstr "Archiv File Commander"
 
-msgid "File Commander - all Task's are completed!"
-msgstr "File Commander - všechny úkoly jsou splněny!"
+msgid "File Commander Archive Actions"
+msgstr "Akce archivu File Commander"
 
-msgid "File Commander - generalised archive handler"
-msgstr "File Commander - zobecněná obsluha archivu"
+msgid "File Commander Context Menu"
+msgstr "Kontextová nabídka File Commander"
 
-msgid "File Commander - gzip Addon"
-msgstr "File Commander - Addon gzip"
+msgid "File Commander Copy"
+msgstr "Kopírování File Commander"
 
-msgid "File Commander - ipk Addon"
-msgstr "File Commander - Addon ipk"
+msgid "File Commander Data"
+msgstr "File Commander Data"
 
-msgid "File Commander - tar Addon"
-msgstr "File Commander - Addon Tar"
+msgid "File Commander Data Actions"
+msgstr "Akce s daty File Commander"
 
-msgid "File Commander - unrar Addon"
-msgstr "File Commander - Addon unrar"
+msgid "File Commander Delete"
+msgstr "File Commander Odstranit"
 
-msgid "File Commander - unzip Addon"
-msgstr "File Commander - Addon unzip"
+msgid "File Commander Directory/File Information"
+msgstr "File Commander informace o Adresáři/Souboru"
+
+msgid "File Commander File Viewer"
+msgstr "File Commander Prohlížeč souborů"
+
+msgid "File Commander File Viewer Actions"
+msgstr "File Commander Akce prohlížeče souborů"
+
+msgid "File Commander Hash / Checksum Actions"
+msgstr "File Commander akce hash / kontrolní součet"
+
+msgid "File Commander Hashes / Checksums"
+msgstr "File Commander hashe / kontrolní součty"
+
+msgid "File Commander Image Viewer"
+msgstr "File Commander Prohlížeč obrázků"
+
+msgid "File Commander Image Viewer Actions"
+msgstr "File Commander Akce prohlížeče obrázků"
+
+msgid "File Commander Information Actions"
+msgstr "File Commander akce s informacemi"
+
+msgid "File Commander Media Information"
+msgstr "File Commander Informace o médiích"
+
+msgid "File Commander Media Information Actions"
+msgstr "File Commander akce s informacemi o médiích"
+
+msgid "File Commander Move"
+msgstr "File Commander přesunout"
 
 msgid "File Commander Settings"
 msgstr "File Commander - Nastavení"
 
-msgid "File Commander context menu"
-msgstr "Kontextová nabídka File Commander"
+msgid "File Commander Text Editor"
+msgstr "File Commander Textový editor"
 
-msgid "File Commander menu"
-msgstr "Nabídka File Commander"
+msgid "File Commander Text Editor Actions"
+msgstr "File Commander Akce textového editoru"
 
 msgid "File System Check"
 msgstr "Kontrola souborového systému"
 
 msgid "File appears to be busy.\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
-
-msgid "File checksums to calculate for button 9"
-msgstr "Soubor kontrolních součtů pro výpočet pro tlačítko 9"
-
-msgid "File checksums/hashes"
-msgstr "Soubor kontrolních součtů/hash"
-
-#, python-format
-msgid "File not found: %s"
-msgstr "Soubor nenalezen: %s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -7908,15 +8008,15 @@ msgstr ""
 "Soubor oscam.conf nenalezen.\n"
 "Vložte jméno/heslo manuálně."
 
+msgid "File transfer was canceled by user!"
+msgstr "Přenos souboru byl uživatelem zrušen!"
+
 msgid "File transfer was cancelled by user"
 msgstr "Přenos souboru byl zrušen uživatelem"
 
 #, python-format
 msgid "File write error: '%s'"
 msgstr "Chyba zápisu do souboru: '%s'"
-
-msgid "File/Directory Status Information"
-msgstr "Informace o stavu souboru/adresáře"
 
 msgid "Filename"
 msgstr "Název souboru"
@@ -7933,14 +8033,11 @@ msgstr "Vyplnění EPG kanálů z EPG vysílání, pokud pro daný kanál neexis
 msgid "Film-Noir"
 msgstr "Film-Noir"
 
-msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr "Rozšíření filtru pro nastavení „Moje rozšíření“ v části „Přípona filtru“. Použijte název rozšíření bez '.'."
+msgid "Filter extensions"
+msgstr "Filtrovat rozšíření"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Rozšíření filtru, (*) se objeví v názvu"
-
-msgid "Filter visible file classes by extension."
-msgstr "Filtrovat viditelné třídy souborů podle přípony."
+msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
+msgstr "Filtrujte soubory, které mají být uvedeny podle definované přípony. Všimněte si, že pokud je filtrování aktivní, v názvu se objeví symbol '(*)'."
 
 msgid "Final position at"
 msgstr "Konečná pozice na"
@@ -8032,6 +8129,9 @@ msgstr "Flash nové image za běhu software vašeho přijímače."
 
 msgid "Flash type"
 msgstr "Typ flash"
+
+msgid "Flash used"
+msgstr "Flash použitý"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
@@ -8366,14 +8466,8 @@ msgstr "Verze Glibc"
 msgid "Go down the list"
 msgstr "V seznamu dolů"
 
-msgid "Go to bookmarked folder"
-msgstr "Přejděte do složky se záložkami"
-
 msgid "Go to deep standby"
 msgstr "Přejít do hlubokého spánku"
-
-msgid "Go to end of file"
-msgstr "Přejít na konec souboru"
 
 msgid "Go to first movie or last item"
 msgstr "Na první film nebo poslední položku"
@@ -8381,14 +8475,11 @@ msgstr "Na první film nebo poslední položku"
 msgid "Go to first movie or top of list"
 msgstr "Na první film nebo začátek seznamu"
 
-msgid "Go to parent directory"
-msgstr "Přejít do nadřazeného adresáře"
+msgid "Go to parent directory of the current column"
+msgstr "Přejít do nadřazeného adresáře aktuálního sloupce"
 
 msgid "Go to standby"
 msgstr "Přejít do pohotovostního režimu"
-
-msgid "Go to start of file"
-msgstr "Přejít na začátek souboru"
 
 msgid "Go up the list"
 msgstr "V seznamu nahoru"
@@ -8489,8 +8580,8 @@ msgstr "Grenada"
 msgid "Grey"
 msgstr "Šedé"
 
-msgid "Group:"
-msgstr "Skupina:"
+msgid "Group"
+msgstr "Skupina"
 
 msgid "Grow drop"
 msgstr "Nárůst zhora"
@@ -8705,6 +8796,9 @@ msgstr "Zde může být stanoveno, které soubory se zálohují navíc oproti st
 msgid "Herero"
 msgstr "Herero"
 
+msgid "Hexadecimal"
+msgstr "Hexadecimální"
+
 msgid "HiSilicon"
 msgstr "HiSilicon"
 
@@ -8882,8 +8976,8 @@ msgstr "Hybridní tuner"
 msgid "I"
 msgstr "I"
 
-msgid "I/O priority for script execution"
-msgstr "Priorita I/O pro provádění skriptu"
+msgid "I/O priority for scripts"
+msgstr "Priorita I/O pro skripty"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
@@ -8941,6 +9035,9 @@ msgstr "Soubor ISO je pro tento souborový systém příliš velký!"
 
 msgid "ISO path"
 msgstr "Umístění ISO souboru"
+
+msgid "ISO speed rating"
+msgstr "Hodnocení rychlosti ISO"
 
 msgid "ISP"
 msgstr "ISP"
@@ -9024,9 +9121,6 @@ msgstr "Pokud je program přerušen a rozdělen na jednotlivé události, plugin
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Pokud je akce konfigurovatelná uživatelem, její položka nápovědy bude označena příponou '(C)'."
-
-msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr "Pokud upravujete soubor, můžete nastavit počáteční pozici kurzoru na konec nebo začátek řádku."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr "Je-li povoleno a je-li to nutné, plugin probudí přijímač z hlubokého spánku na definovanou dobu spuštění, aby mohl kontrolovat, zda program začne dříve."
@@ -9342,8 +9436,8 @@ msgstr "Inicializovat"
 msgid "Initializing storage device..."
 msgstr "Inicializovat zařízení pro ukládání..."
 
-msgid "Inode:"
-msgstr "Inode:"
+msgid "Inode"
+msgstr "Inode"
 
 msgid "Inotify Monitoring"
 msgstr "Inotify monitorování"
@@ -9372,8 +9466,8 @@ msgstr "Název vstupního konfiguračního souboru:"
 msgid "Input scroll position"
 msgstr "Zadejte pozici posunu"
 
-msgid "Insert"
-msgstr "Vložit"
+msgid "Insert Line"
+msgstr "Vložit řádek"
 
 msgid "Insert line before current line"
 msgstr "Vložit řádek před aktuální řádek"
@@ -9382,8 +9476,8 @@ msgid "Install"
 msgstr "Instalovat"
 
 #, python-format
-msgid "Install '%s' and enable this operation"
-msgstr "Iinstalovat '%s' a povolit tuto operaci"
+msgid "Install '%s' command"
+msgstr "Instalovat příkaz '%s'"
 
 msgid "Install 1/1"
 msgstr "Instalovat 1/1"
@@ -9424,6 +9518,9 @@ msgstr "Instalace nebo odstranění dokončeno."
 msgid "Install picons on"
 msgstr "Instalovat picony do"
 
+msgid "Install the package"
+msgstr "Nainstalovat balíček"
+
 msgid "Install/Remove plugin"
 msgstr "Nainstalovat/Odebrat plugin"
 
@@ -9436,9 +9533,6 @@ msgstr "Instaluji"
 #, python-format
 msgid "Installing %s (%s)..."
 msgstr "Instalace %s (%s)..."
-
-msgid "Installing Plugin ..."
-msgstr "Instalace pluginu..."
 
 msgid "Installing Service"
 msgstr "Instalace služby"
@@ -9580,22 +9674,6 @@ msgstr "Izrael"
 
 msgid "It follows:"
 msgstr "Následovat bude:"
-
-msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr "Na <Seznam úložných zařízení> není možné vypočítat hashe"
-
-msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr "Není možné změnit režim souboru <Seznam úložných zařízení>"
-
-msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr "Není možné získat stav souboru <Seznam úložných zařízení>"
-
-#, python-format
-msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr "Není možné spustit '%s' na <Seznam úložných zařízení>"
-
-msgid "It's not possible to rename the file system root."
-msgstr "Není možné přejmenovat kořen souborového systému."
 
 msgid "Italian"
 msgstr "Italsky"
@@ -9899,6 +9977,9 @@ msgstr "Poslední rychlost"
 msgid "Last update"
 msgstr "Poslední aktualizace"
 
+msgid "Last used column"
+msgstr "Naposledy použitý sloupec"
+
 msgid "Last used share: "
 msgstr "Poslední sdílené: "
 
@@ -9921,12 +10002,6 @@ msgstr "Lotyšsky"
 msgid "Leave DVD player?"
 msgstr "Zavřít DVD přehrávač?"
 
-msgid "Leave File Commander"
-msgstr "Opustit File Commander"
-
-msgid "Leave multi-select mode"
-msgstr "Opustit režim vícenásobného výběru"
-
 msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr "Ponechte toto nastavení na „ano“, pokud plně nerozumíte tomu, proč jej upravujete."
 
@@ -9935,6 +10010,15 @@ msgstr "Libanon"
 
 msgid "Left"
 msgstr "Vlevo"
+
+msgid "Left column"
+msgstr "Levý sloupec"
+
+msgid "Left column directory sort"
+msgstr "Řazení adresáře v levém sloupci"
+
+msgid "Left column file sort"
+msgstr "Řazení souborů v levém sloupci"
 
 msgid "Left from service name"
 msgstr "Nalevo od názvu kanálu"
@@ -9973,6 +10057,9 @@ msgstr "Životní styl"
 msgid "Light Grey"
 msgstr "Světle šedé"
 
+msgid "Light source"
+msgstr "Světelný zdroj"
+
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgan / Limburger / Limburgish"
 
@@ -10003,6 +10090,10 @@ msgstr "Vypnout omezení"
 msgid "Limits on"
 msgstr "Zapnout omezení"
 
+#, python-format
+msgid "Line %d / %d"
+msgstr "Řádek %d / %d"
+
 msgid "Lingala"
 msgstr "Lingala"
 
@@ -10012,8 +10103,8 @@ msgstr "Zjištěn odkaz"
 msgid "Link quality:"
 msgstr "Kvalita spojení:"
 
-msgid "Link target:"
-msgstr "Cíl odkazu:"
+msgid "Link target"
+msgstr "Cíl odkazu"
 
 msgid "Link:"
 msgstr "Spojení:"
@@ -10021,8 +10112,8 @@ msgstr "Spojení:"
 msgid "Linked titles with a DVD menu"
 msgstr "Připojené tituly s DVD nabídkou"
 
-msgid "Links:"
-msgstr "Odkazy:"
+msgid "Links"
+msgstr "Odkazy"
 
 msgid "List EPG functions..."
 msgstr "Seznam funkcí EPG..."
@@ -10032,6 +10123,9 @@ msgstr "Seznam navigačních akcí"
 
 msgid "List available networks"
 msgstr "Seznam dostupných sítí"
+
+msgid "List of Storage Devices"
+msgstr "Seznam úložných zařízení"
 
 msgid "List of storage devices"
 msgstr "Seznam záznamových zařízení"
@@ -10320,11 +10414,8 @@ msgstr "Hlavní menu"
 msgid "Maintain your multi boot device."
 msgstr "Udržujte své multibootovací zařízení."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Zpřístupnit File Commander z nabídky Rozšíření."
-
-msgid "Make File Commander accessible from the main menu."
-msgstr "Zpřístupnit File Commander z hlavní nabídky."
+msgid "Make"
+msgstr "Provést"
 
 msgid "Make this mark an 'in' point"
 msgstr "Udělat z této značky 'in' bod"
@@ -10367,6 +10458,9 @@ msgstr "Správa rozšíření"
 
 msgid "Manage Locale/Language Selection settings"
 msgstr "Správa nastavení národního prostředí/výběru jazyka"
+
+msgid "Manage and explore directories and files."
+msgstr "Správa a prozkoumání adresářů a souborů."
 
 msgid "Manage network mounts"
 msgstr "Správce síťových připojení"
@@ -10498,6 +10592,9 @@ msgstr "Prohledávání médií"
 msgid "Media service"
 msgstr "Mediální služba"
 
+msgid "MediaInfo"
+msgstr "Informace o médiích"
+
 msgid "MediaPlayer"
 msgstr "Přehrávač médií"
 
@@ -10574,11 +10671,14 @@ msgstr "Zpráva"
 msgid "Message Box Actions"
 msgstr "Akce se zprávou"
 
+msgid "Message pop up timeout"
+msgstr "Časový limit vyskakovacího okna zprávy"
+
 msgid "Message..."
 msgstr "Zpráva..."
 
-msgid "Metadata changed:"
-msgstr "Metadata změněna:"
+msgid "Metering mode"
+msgstr "Režim měření"
 
 msgid "Mexico"
 msgstr "Mexiko"
@@ -10664,10 +10764,6 @@ msgstr "Mobilní připojení"
 msgid "Mode"
 msgstr "Režim rozlišení"
 
-#, python-format
-msgid "Mode %s (%04o)"
-msgstr "Režim %s (%04o)"
-
 msgid "Mode 1"
 msgstr "Režim 1"
 
@@ -10689,8 +10785,8 @@ msgstr "Model"
 msgid "Model: "
 msgstr "Model: "
 
-msgid "Modified:"
-msgstr "Změněno:"
+msgid "Modified"
+msgstr "Upraveno"
 
 msgid "Modulation"
 msgstr "Modulace"
@@ -10782,13 +10878,6 @@ msgstr "Nastavení připojení"
 msgid "Move"
 msgstr "Přesunout"
 
-#, python-format
-msgid "Move %d elements"
-msgstr "Přesunout %d prvků"
-
-msgid "Move 1 element"
-msgstr "Přesunout 1 prvek"
-
 msgid "Move Left/Right"
 msgstr "Přesun Vlevo/Vpravo"
 
@@ -10807,6 +10896,12 @@ msgstr "Přesunout PiP do hlavního okna"
 msgid "Move Up/Down"
 msgstr "Přesun Nahoru/Dolů"
 
+msgid "Move all related files"
+msgstr "Přesuňte všechny související soubory"
+
+msgid "Move directory/file to target directory"
+msgstr "Přesunout adresář/soubor do cílového adresáře"
+
 msgid "Move down a line"
 msgstr "Posunout se o řádek dolů"
 
@@ -10824,9 +10919,6 @@ msgstr "Posunout obrazovku dolů"
 
 msgid "Move down a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku dolů"
-
-msgid "Move down list"
-msgstr "Posunout seznam dolů"
 
 msgid "Move down one line"
 msgstr "Posunout se o řádek dolů"
@@ -10849,17 +10941,17 @@ msgstr "Posunout se dolů na poslední řádek v seznamu."
 msgid "Move east"
 msgstr "Posun východně"
 
-msgid "Move file"
-msgstr "Přesunout soubor"
+msgid "Move job completed."
+msgstr "Úloha přesunu dokončena."
 
-msgid "Move file/directory to target directory"
-msgstr "Přesunout soubor/adresář do cílového adresáře"
+msgid "Move job failed!"
+msgstr "Přesunutí se nezdařilo!"
 
-msgid "Move files/directories to target directory"
-msgstr "Přesunout soubory/adresáře do cílového adresáře"
+msgid "Move job queued."
+msgstr "Přesun byl zařazen do fronty."
 
-msgid "Move folder"
-msgstr "Přesunout složku"
+msgid "Move only highlighted file"
+msgstr "Přesunout pouze zvýrazněný soubor"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Přesunout aktuální položku DNS o jeden řádek dolů"
@@ -10872,6 +10964,16 @@ msgstr "Přesunout aktuální záložku dolů"
 
 msgid "Move the current bookmark up"
 msgstr "Přesunout aktuální záložku nahoru"
+
+msgid "Move the current line down"
+msgstr "Přesunout aktuální řádek dolů"
+
+msgid "Move the current line up"
+msgstr "Přesunout aktuální řádek nahoru"
+
+#, python-format
+msgid "Move the directory/file '%s'?"
+msgstr "Přesunout adresář/soubor '%s'?"
 
 msgid "Move the keyboard cursor down"
 msgstr "Přesunout kurzor na klávesnici dolů"
@@ -10896,6 +10998,9 @@ msgstr "Přesunout textový kurzor na první znak"
 
 msgid "Move the text cursor to the last character"
 msgstr "Přesunout textový kurzor na poslední znak"
+
+msgid "Move these directories/files?"
+msgstr "Přesunout tyto adresáře/soubory?"
 
 msgid "Move to first line"
 msgstr "Přechod na první řádek"
@@ -10941,9 +11046,6 @@ msgstr "Posunout o obrazovku nahoru"
 
 msgid "Move up a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku nahoru"
-
-msgid "Move up list"
-msgstr "Posunout seznam nahoru"
 
 msgid "Move up one line"
 msgstr "Posunout se o řádek nahoru"
@@ -11004,6 +11106,9 @@ msgstr "Film/Drama"
 
 msgid "Movieplayer"
 msgstr "Přehrávač filmů"
+
+msgid "Movies"
+msgstr "Filmy"
 
 msgid "Moving"
 msgstr "Natáčení"
@@ -11087,7 +11192,7 @@ msgstr "Muzikál"
 msgid "Mute"
 msgstr "Ztišit"
 
-msgid "My extension"
+msgid "My extensions"
 msgstr "Moje rozšíření"
 
 msgid "Myanmar"
@@ -11114,6 +11219,14 @@ msgstr "Nastavení NFS"
 msgid "NIM & Type"
 msgstr "NIM a typ"
 
+#, python-format
+msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
+msgstr "POZNÁMKA: Adresář/soubor '%s' existuje a bude přepsán!"
+
+#, python-format
+msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr "POZNÁMKA: Tyto %d adresáře/soubory existují a budou přepsány!"
+
 msgid "NOW"
 msgstr "NYNÍ"
 
@@ -11129,8 +11242,11 @@ msgstr "NTSC"
 msgid "Name"
 msgstr "Jméno"
 
-msgid "Name reverse"
-msgstr "Jméno obráceně"
+msgid "Name ascending"
+msgstr "Název vzestupně"
+
+msgid "Name descending"
+msgstr "Název sestupně"
 
 #, python-format
 msgid "Name server %d"
@@ -11326,9 +11442,6 @@ msgstr "Nový zákazník"
 msgid "New event info"
 msgstr "Informace o nové události"
 
-msgid "New folder"
-msgstr "Nová složka"
-
 msgid "New password"
 msgstr "Nové heslo"
 
@@ -11346,6 +11459,9 @@ msgstr "NewCamd"
 
 msgid "NewCamd DES Key"
 msgstr "NewCamd DES Klíč"
+
+msgid "NewDirectory"
+msgstr "Nový adresář"
 
 msgid "News"
 msgstr "Zprávy"
@@ -11469,9 +11585,6 @@ msgstr "Žádná informace o pořadu. Nekonečné nahrávání."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Rychlé přetáčení není nyní možné.. ale můžete použít číselná tlačítka pro přeskočení dopředu/dozadu!"
 
-msgid "No files found."
-msgstr "Nebyly nalezeny žádné soubory."
-
 msgid "No free index available"
 msgstr "Žádný volný index k dispozici"
 
@@ -11480,9 +11593,6 @@ msgstr "Žádný volný tuner!"
 
 msgid "No hard disks detected."
 msgstr "Nebyly zjištěny žádné pevné disky."
-
-msgid "No hash calculations configured"
-msgstr "Nejsou nakonfigurovány žádné výpočty hash"
 
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nebyly nalezeny žádné soubory protokolu, takže protokoly ladění nejsou k dispozici!"
@@ -11592,10 +11702,6 @@ msgstr "Nebyly k dispozici žádné aktualizace. Prosím zkuste to znovu pozděj
 msgid "No valid region details were found"
 msgstr "Nebyly nalezeny žádné platné údaje o regionu"
 
-#, python-format
-msgid "No viewer installed for this file type: %s"
-msgstr "Pro tento typ souboru není nainstalován žádný prohlížeč: %s"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Nenalezena WiFi síť! Hledám..."
 
@@ -11659,10 +11765,6 @@ msgstr "Určete, kolik IP adres má být zkontrolováno pro aktivní připojení
 msgid "None"
 msgstr "Ne"
 
-#, python-format
-msgid "None of the hash programs for the hashes %s are available"
-msgstr "Žádný z hašovacích programů pro haše %s není dostupný"
-
 msgid "Norfolk Island"
 msgstr "Ostrov Norfolk"
 
@@ -11716,9 +11818,6 @@ msgstr "Není nainstalováno"
 
 msgid "Not Shown"
 msgstr "Nezobrazeno"
-
-msgid "Not allowed with folders"
-msgstr "Není povoleno u složek"
 
 msgid "Not associated"
 msgstr "Nepřipojeno"
@@ -11794,9 +11893,6 @@ msgstr "Počet IP adres"
 msgid "Number of digits in channel number"
 msgstr "Počet číslic při volbě kanálu"
 
-msgid "Number of lines in script messages"
-msgstr "Počet řádků ve zprávách skriptu"
-
 msgid "Number of rows"
 msgstr "Počet řádků"
 
@@ -11869,6 +11965,9 @@ msgstr "OVR"
 msgid "Occitan"
 msgstr "Okcitánština"
 
+msgid "Octal"
+msgstr "Osmičkové"
+
 msgid "Off"
 msgstr "Vypnuto"
 
@@ -11889,9 +11988,6 @@ msgstr "Omán"
 
 msgid "On"
 msgstr "Zapnuto"
-
-msgid "On device:"
-msgstr "V zařízení:"
 
 msgid "On end of movie"
 msgstr "Po skončení filmu"
@@ -11974,6 +12070,9 @@ msgstr "Otevřít seznam"
 msgid "Open context menu"
 msgstr "Otevřít kontextovou nabídku"
 
+msgid "Open context menu (contains settings menu)"
+msgstr "Otevřít kontextovou nabídku (obsahuje nabídku nastavení)"
+
 msgid "Open favorites list"
 msgstr "Otevřít seznam oblíbených položek"
 
@@ -11994,9 +12093,6 @@ msgstr "Otevřít seznam programů a vybrat předchozí kanál"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Otevřít seznam programů a vybrat předchozí kanál pro PiP"
-
-msgid "Open settings/actions menu"
-msgstr "Otevřít nabídku nastavení/akcí"
 
 msgid "Open the Plugin Browser"
 msgstr "Prohlížeč pluginů"
@@ -12064,11 +12160,17 @@ msgstr "Možnost povolit nebo zakázat picony v informačním panelu"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Volba aktivace hardware-časovače vypnutí"
 
+msgid "Optional parameter"
+msgstr "Volitelný parametr"
+
 msgid "Orbital position"
 msgstr "Orbitální pozice"
 
 msgid "Ordinary"
 msgstr "Obvyklý"
+
+msgid "Orientation"
+msgstr "Orientace"
 
 msgid "Original"
 msgstr "Originál"
@@ -12106,6 +12208,13 @@ msgstr "Další titulky a jazyk"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr "Ostatní tlačítka přejdou na informace nápovědy pro dané tlačítko, pokud je k dispozici nápověda."
+
+#, python-format
+msgid "Other panel directory (%s)"
+msgstr "Jiný adresář panelu (%s)"
+
+msgid "Output text:"
+msgstr "Výstupní text:"
 
 msgid "Overall progress:"
 msgstr "Celkový stav:"
@@ -12155,8 +12264,8 @@ msgstr "Přepsat soubory Softcamu během aktualizace softwaru ?"
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Přepsat soubory Spinneru během aktualizace softwaru ?"
 
-msgid "Owner:"
-msgstr "Vlastník:"
+msgid "Owner"
+msgstr "Vlastník"
 
 msgid "PAGE UP/DOWN"
 msgstr "STRÁNKA NAHORU/DOLU"
@@ -12216,6 +12325,9 @@ msgstr "PVR"
 msgid "Package Manager"
 msgstr "Správa balíčků"
 
+msgid "Package files:"
+msgstr "Soubory balíčku:"
+
 msgid "Package information currently not available!"
 msgstr "Informace o balíčku nejsou v současné době k dispozici!"
 
@@ -12237,9 +12349,6 @@ msgstr "Správce paketů"
 msgid "Page down"
 msgstr "Dolů"
 
-msgid "Page down list"
-msgstr "Seznam o stránku dolů"
-
 msgid "Page left"
 msgstr "Str. vlevo"
 
@@ -12248,9 +12357,6 @@ msgstr "Vpravo"
 
 msgid "Page up"
 msgstr "Nahoru"
-
-msgid "Page up list"
-msgstr "Seznam o stránku nahoru"
 
 msgid "PageDown"
 msgstr "O stránku dolů"
@@ -12293,7 +12399,7 @@ msgstr "Papua-Nová Guinea"
 msgid "Paraguay"
 msgstr "Paraguay"
 
-msgid "Parent directory"
+msgid "Parent Directory"
 msgstr "Nadřazený adresář"
 
 msgid "Parental Guidance Recommended"
@@ -12383,8 +12489,8 @@ msgstr "Trvale odstranit všechny záznamy z koše?"
 msgid "Permanently remove all deleted items"
 msgstr "Trvale odstranit veškeré smazané položky"
 
-msgid "Permissions:"
-msgstr "Oprávnění:"
+msgid "Permissions"
+msgstr "Oprávnění"
 
 msgid "Persian"
 msgstr "Persky"
@@ -12477,6 +12583,9 @@ msgstr "Přehrát DVD"
 msgid "Play DVDs"
 msgstr "Přehrát DVD"
 
+msgid "Play all audio files in the directory"
+msgstr "Přehrát všechny zvukové soubory v adresáři"
+
 msgid "Play audio in background"
 msgstr "Přehrávat zvuk na pozadí"
 
@@ -12488,9 +12597,6 @@ msgstr "Přehrát soubory"
 
 msgid "Play entry"
 msgstr "Přehrát položku"
-
-msgid "Play folder"
-msgstr "Přehrát složku"
 
 msgid "Play from next mark or play list entry"
 msgstr "Přehrát od další značky nebo položky seznamu přehrávání"
@@ -12516,11 +12622,8 @@ msgstr "Přehrát předchozí"
 msgid "Play recorded movies"
 msgstr "Přehrát nahrané filmy"
 
-msgid "Play title"
-msgstr "Přehrát titul"
-
-msgid "Play/view/edit/install/extract/run file or enter directory"
-msgstr "Přehrát / zobrazit / upravit / nainstalovat / extrahovat / spustit soubor nebo zadat adresář"
+msgid "Play the audio file"
+msgstr "Přehrát zvukový soubor"
 
 msgid "Playback Settings"
 msgstr "Nastavení přehrávání"
@@ -12593,14 +12696,11 @@ msgstr "Zadejte nový název souboru, přípona se nesmí změnit:"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Zadejte název souboru (prázdné = dnešní datum)"
 
-msgid "Please enter name of the new symlink"
-msgstr "Zadejte název nového symbolického odkazu"
+msgid "Please enter name of the new symbolic link:"
+msgstr "Zadejte prosím jméno nového symbolického odkazu:"
 
 msgid "Please enter new name:"
 msgstr "Zadejte nový název:"
-
-msgid "Please enter password"
-msgstr "Prosím vložte heslo"
 
 msgid "Please enter search string for your location"
 msgstr "Zadejte prosím vyhledávací řetězec pro vaši polohu"
@@ -12608,11 +12708,11 @@ msgstr "Zadejte prosím vyhledávací řetězec pro vaši polohu"
 msgid "Please enter the correct pin code"
 msgstr "Zadejte správný PIN"
 
-msgid "Please enter the new directory name"
-msgstr "Zadejte nový název adresáře"
+msgid "Please enter the new directory name:"
+msgstr "Zadejte prosím název nového adresáře:"
 
-msgid "Please enter the new file name"
-msgstr "Zadejte nový název souboru"
+msgid "Please enter the new file name:"
+msgstr "Prosím, zadejte nový název souboru:"
 
 msgid "Please enter the new tag:"
 msgstr "Zadejte prosím novou značku:"
@@ -12869,6 +12969,9 @@ msgstr "Počkejte prosím, shromažďuji údaje ..."
 msgid "Please wait while scanning is in progress..."
 msgstr "Čekejte prosím, dokud probíhá vyhledávání..."
 
+msgid "Please wait while the data is extracted..."
+msgstr "Počkejte prosím, než se data extrahují..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Počkejte prosím, než se seznam stáhne..."
 
@@ -12893,8 +12996,8 @@ msgstr "Čekejte prosím, nastavení vašeho skinu se obnovuje..."
 msgid "Please wait whilst feeds state is checked."
 msgstr "Počkejte prosím, dokud nezkontroluji stav zdrojů."
 
-msgid "Please wait, Loading image."
-msgstr "Čekejte prosím, načítám image."
+msgid "Please wait, loading image..."
+msgstr "Čekejte prosím, načítá se obrázek..."
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -13255,36 +13358,8 @@ msgid "Program"
 msgstr "Program"
 
 #, python-format
-msgid ""
-"Program '%s' is installed.\n"
-"The package containing this program isn't known, so it can't be uninstalled."
-msgstr ""
-"Program '%s' je nainstalován.\n"
-"Balíček obsahující tento program není znám, takže jej nelze odinstalovat."
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run the '%s' action.\n"
-"Uninstall the '%s' package to uninstall the program?"
-msgstr ""
-"Pro spuštění akce '%s' je třeba nainstalovat program '%s'.\n"
-"Chcete odinstalovat balíček '%s' k odinstalaci programu?"
-
-#, python-format
-msgid ""
-"Program '%s' needs to be installed to run this action.\n"
-"Install the '%s' package to install the program?"
-msgstr ""
-"Ke spuštění této akce je třeba nainstalovat program '%s'.\n"
-"Chcete nainstalovat balíček '%s' pro instalaci programu?"
-
-#, python-format
-msgid ""
-"Program '%s' not installed.\n"
-"The package containing this program isn't known."
-msgstr ""
-"Program '%s' není nainstalován.\n"
-"Balíček obsahující tento program není znám."
+msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
+msgstr "K provedení této akce je třeba nainstalovat program '%s'. Chcete nainstalovat balíček '%s' pro instalaci programu?"
 
 msgid "Programmlisten History"
 msgstr "Historie seznamu programů"
@@ -13423,6 +13498,9 @@ msgstr "Uspat TV"
 
 msgid "Put your AV Receiver in standby"
 msgstr "Přepněte AV přijímač do pohotovostního režimu"
+
+msgid "Python"
+msgstr "Python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend pro /tmp/mmi.socket"
@@ -13791,9 +13869,6 @@ msgstr "Nahrávání má vždy prioritu"
 msgid "Recordings may not work correctly without an acceptable directory."
 msgstr "Nahrávky nemusí fungovat správně bez platné složky."
 
-msgid "Records"
-msgstr "Nahrávky"
-
 msgid "Recovery"
 msgstr "Obnova"
 
@@ -13939,6 +14014,10 @@ msgstr "Typ dálkového ovládání"
 msgid "Remove"
 msgstr "Smazat"
 
+#, python-format
+msgid "Remove '%s' From Bookmarks"
+msgstr "Odebrat '%s' ze záložek"
+
 msgid "Remove Bookmark"
 msgstr "Smazat záložku"
 
@@ -13999,17 +14078,11 @@ msgstr "Odstranit všechna data uživatelského rozhraní"
 msgid "Remove completed timers after"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
 
-msgid "Remove current folder from bookmarks"
-msgstr "Odstranit aktuální složku ze záložek"
-
 msgid "Remove currently selected title"
 msgstr "Odstranit vybraný titul"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstranit skrytou linku VBI pro tuto službu"
-
-msgid "Remove selected folder from bookmarks"
-msgstr "Odstranit vybranou složku ze záložek"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Odstranit text v externich titulcích pro sluchově postižené (instrumentální hudbě nebo v oblasti ruchových zvuků, např, když se ozve zvonek, nebo vystřelí zbraň)."
@@ -14041,14 +14114,20 @@ msgstr "Přejmenovat"
 msgid "Rename Directory"
 msgstr "Přejmenovat adresář"
 
+msgid "Rename all related files"
+msgstr "Přejmenovat všechny související soubory"
+
+msgid "Rename directory/file"
+msgstr "Přejmenovat adresář/soubor"
+
 msgid "Rename failed!"
 msgstr "Přejmenování selhalo!"
 
-msgid "Rename file/directory"
-msgstr "Přejmenovat soubor/adresář"
-
 msgid "Rename name and description for new events"
 msgstr "Přejmenovat název a popis pro nové události"
+
+msgid "Rename only highlighted file"
+msgstr "Přejmenovat pouze zvýrazněný soubor"
 
 msgid "Rename the proposed file to be created"
 msgstr "Přejmenujte navrhovaný soubor, který má být vytvořen"
@@ -14131,6 +14210,9 @@ msgstr "Obnovit výchozí nastavení HDMI-CEC"
 msgid "Reset and renumerate title names"
 msgstr "Resetovat a přepočítat titulky"
 
+msgid "Reset executable mode (644)"
+msgstr "Obnovit spustitelný režim (644)"
+
 msgid "Reset network configuration"
 msgstr "Obnovit konfiguraci sítě"
 
@@ -14157,6 +14239,9 @@ msgstr "Přesdílet:"
 
 msgid "Resolution"
 msgstr "Rozlišení"
+
+msgid "Resolution unit"
+msgstr "Jednotka rozlišení"
 
 msgid "Restart"
 msgstr "Restartovat"
@@ -14304,14 +14389,8 @@ msgstr "Návrat na předchozí program"
 msgid "Reverse bouquet buttons"
 msgstr "Reversní tlačítko přehledu"
 
-msgid "Reverse left file sorting"
-msgstr "Obrácené řazení souborů vlevo"
-
 msgid "Reverse list"
 msgstr "Opačný seznam"
-
-msgid "Reverse right file sorting"
-msgstr "Obrácené řazení souborů vpravo"
 
 msgid "Rewind"
 msgstr "Přetočit zpět"
@@ -14324,6 +14403,15 @@ msgstr "Zalamovat titulky"
 
 msgid "Right"
 msgstr "Vpravo"
+
+msgid "Right column"
+msgstr "Pravý sloupec"
+
+msgid "Right column directory sort"
+msgstr "Řazení adresáře v pravém sloupci"
+
+msgid "Right column file sort"
+msgstr "Řazení souborů v pravém sloupci"
 
 msgid "Right from service name"
 msgstr "Napravo od názvu kanálu"
@@ -14470,6 +14558,9 @@ msgstr "SDcard switch ERROR! - již na mmc"
 
 msgid "SINGLE LAYER DVD"
 msgstr "JEDNOVRSTVÉ DVD"
+
+msgid "SMS style QuickSelect entry selection"
+msgstr "Výběr položky ve stylu SMS Quick Select"
 
 msgid "SMS style QuickSelect location selection"
 msgstr "Rychlý výběr místa ve stylu SMS"
@@ -14633,8 +14724,12 @@ msgstr "Uložit poslední adresář při ukončení"
 msgid "Save every (in hours)"
 msgstr "Uložit každých (v hod.)"
 
-msgid "Save left folder on exit"
-msgstr "Při ukončení uložit levou složku"
+#, python-format
+msgid "Save image as '%s'"
+msgstr "Uložit obrázek jako '%s'"
+
+msgid "Save left directory on exit"
+msgstr "Uložit levý adresář při ukončení"
 
 msgid "Save play list"
 msgstr "Uložit seznam přehrávání"
@@ -14642,8 +14737,8 @@ msgstr "Uložit seznam přehrávání"
 msgid "Save play list on EXIT"
 msgstr "Uložit seznam přehrávání při ukončení"
 
-msgid "Save right folder on exit"
-msgstr "Při ukončení uložit pravou složku"
+msgid "Save right directory on exit"
+msgstr "Uložit pravý adresář při ukončení"
 
 msgid "Save settings and EPG data."
 msgstr "Uložit nastavení a EPG data."
@@ -14656,20 +14751,23 @@ msgstr ""
 "Uložit příkazy a výstup do souboru?\n"
 "('%s')"
 
-msgid "Save the left folder list location on exit."
-msgstr "Při ukončení uložit levé umístění seznamu složek."
+msgid "Save the left column directory location on exit."
+msgstr "Při ukončení uložit umístění adresáře levého sloupce."
 
 msgid "Save the log changes and exit"
 msgstr "Uložit změny protokolu a ukončit"
 
-msgid "Save the right folder list location on exit."
-msgstr "Při ukončení uložit pravé umístění seznamu složek."
+msgid "Save the right column directory location on exit."
+msgstr "Při ukončení uložit umístění adresáře pravého sloupce."
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Uložit časový posun jako film a pokračovat v nahrávání"
 
 msgid "Save time shift as movie and stop recording"
 msgstr "Uložit časový posun jako film a zastavit nahrávání"
+
+msgid "Saved lines in script messages"
+msgstr "Uložené řádky ve zprávách skriptu"
 
 msgid "Saving EPG Cache..."
 msgstr "Uložit cache EPG..."
@@ -14767,10 +14865,6 @@ msgstr "Věda a technika"
 
 msgid "Scope"
 msgstr "Rozsah"
-
-#, python-format
-msgid "Script '%s' must have read permission to be able to run it"
-msgstr "Skript '%s' musí mít oprávnění ke čtení, aby jej bylo možné spustit"
 
 msgid "Script Manager"
 msgstr "Správce skriptů"
@@ -14928,6 +15022,9 @@ msgstr "Pokud je tato možnost nastavena na 'ANO' zobrazí se vždy výběr pře
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr "Chcete-li zkontrolovat, zda síťová připojení přicházejí z určených IP adres v době aktivace časovače, vyberte možnost „Ano“. Pokud ano, časovač bude deaktivován."
 
+msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
+msgstr "Vyberte „Ano“ pro nepřetržité zobrazení všech snímků ve smyčce nebo vyberte „Ne“ pro zobrazení všech snímků jednou a poté se zastaví."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Pokud nastavíte na 'ano' zobrazí se náhled TV obrazovky v EPG."
 
@@ -14945,6 +15042,9 @@ msgstr "Pokud je nastaveno na 'ano' Informační panel se zobrazí při změně 
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Pokud je nastaveno na 'ano' čísla programů se zobrazí v infobaru."
+
+msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr "Vyberte 'Ano', chcete-li zobrazit neznámé soubory v prohlížeči souborů File Commander, vyberte 'Ne', pokud nechcete zpracovávat neznámé soubory."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Chcete-li povolit úpravy nastavení tohoto zařízení, vyberte možnost Ano. Výběrem možnosti „Ne“ se resetuje nastavení zařízení na výchozí hodnoty."
@@ -14991,6 +15091,12 @@ msgstr "Chcete-li odstranit všechna data uživatelského rozhraní, vyberte mo�
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Výběrem možnosti „Ano“ resetujete konfiguraci sítě na výchozí. Tím povolíte ethernetový port, pokud existuje, a nastavíte přijímač na použití DHCP. Všechna ostatní síťová rozhraní budou odstraněna."
 
+msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
+msgstr "Vyberte 'Ano' pro nastavení pozice kurzoru na konec řádku při úpravě textového souboru. Vyberte 'Ne' pro nastavení kurzoru na začátek řádku."
+
+msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
+msgstr "Vyberte 'Ano', chcete-li zobrazit adresáře na vrchu/začátku seznamu, nebo vyberte 'Ne' pro zobrazení souborů jako první."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Výběrem možnosti „Ano“ zobrazíte možnosti pokročilého nastavení."
 
@@ -15000,8 +15106,14 @@ msgstr "Pokud je nastaveno na 'ano' přehledy se zobrazí po každém otevření
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "Pokud je nastaveno na 'ano' zobrazí se seznam kanálů po přepnutí mezi Rádio a TV režimem."
 
+msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr "Vyberte 'Ano' pro zobrazení aktuálního adresáře v seznamu adresářů. Pamatujte, že aby se tato změna projevila, musí být File Commander restartován."
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší verze API V3, vyberte možnost „Ano“. Tato verze API byla nyní nahrazena."
+
+msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr "Vyberte „Ano“ pro použití číselných tlačítek pro rychlý výběr souborů/adresářů, vyberte „Ne“ pro použití číselných tlačítek pro zkratky možností MENU."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jestliže nastavíte na ' Ano'; při rychlé přetáčení nebo přetáčení během přehrávání médií se zobrazí informační panel."
@@ -15036,14 +15148,14 @@ msgstr "Vyberte 'ano' pro zahrnutí pásma %s do vyhledávání."
 msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
 msgstr "Vyberte 'ano', chcete-li odeslat příkaz DiSEqC pouze při přechodu z jednoho satelitu na druhý, nebo vyberte 'ne', pokud chcete příkaz DiSEqC znovu odeslat při každém přepnutí."
 
-msgid "Select (source list) or enter directory (target list)"
-msgstr "Vybrat (zdrojový seznam) nebo zadejte adresář (cílový seznam)"
-
 msgid "Select Additional Backup Files"
 msgstr "Vybrat další soubory k zálohování"
 
 msgid "Select Backup Location"
 msgstr "Vyberte umístění záloh"
+
+msgid "Select Bookmark"
+msgstr "Vyberte možnost Záložka"
 
 msgid "Select CAId"
 msgstr "Vybrat CAId(y)"
@@ -15105,17 +15217,24 @@ msgstr "Vyberte cardserver z dostupného seznamu."
 msgid "Select a debug log file to view:"
 msgstr "Vyberte soubor protokolu ladění, který chcete zobrazit:"
 
+msgid "Select a directory"
+msgstr "Vyberte adresář"
+
+msgid "Select a directory from the bookmarks"
+msgstr "Vyberte adresář ze záložek"
+
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Vyberte distribuci, ze které chcete získat obrázky"
+
+#, python-format
+msgid "Select a location into which to extract '%s':"
+msgstr "Vyberte umístění, do kterého chcete extrahovat '%s':"
 
 msgid "Select a movie"
 msgstr "Vyberte film"
 
 msgid "Select a network adapter"
 msgstr "Vyberte síťový adaptér"
-
-msgid "Select a path"
-msgstr "Vybrat cestu"
 
 msgid "Select a repository commit log to view:"
 msgstr "Vyberte protokol potvrzení úložiště, který chcete zobrazit:"
@@ -15142,6 +15261,9 @@ msgstr "Vybrat akci pro časovač %s:"
 msgid "Select additional files to backup"
 msgstr "Přidat další soubory k zálohování"
 
+msgid "Select all related files"
+msgstr "Vyberte všechny související soubory"
+
 msgid "Select an action to perform when the task has completed."
 msgstr "Vyberte akci, která se má provést po dokončení úlohy."
 
@@ -15160,6 +15282,9 @@ msgstr "Zvolte umístění kopie pro:"
 msgid "Select default EPG type..."
 msgstr "Zvolte preferovaný typ EPG..."
 
+msgid "Select default File Commander directory:"
+msgstr "Vyberte výchozí adresář File Commander:"
+
 msgid "Select destination for:"
 msgstr "Zvolte umístění pro:"
 
@@ -15169,8 +15294,14 @@ msgstr "Výběr souborů vyloučených ze zálohování"
 msgid "Select files/folders to backup"
 msgstr "Soubory/složky k zálohování"
 
+msgid "Select how long to display status messages."
+msgstr "Vyberte, jak dlouho se mají zobrazovat stavové zprávy."
+
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
 msgstr "Vyberte, jak dlouho se má zobrazovat vyskakovací okno s chybou tlačítka. Během zobrazení vyskakovacího okna je stále povoleno zadávání pomocí tlačítek."
+
+msgid "Select how long to display the task and script message pop up."
+msgstr "Vyberte, jak dlouho se má úloha a zpráva skriptu zobrazovat."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Vyberte, jak dlouho (v sekundách) má být zobrazen displej hlasitosti, než se automaticky skryje."
@@ -15250,6 +15381,9 @@ msgstr "Vyberte položku nabídky"
 msgid "Select movie"
 msgstr "Vyberte film"
 
+msgid "Select only highlighted file"
+msgstr "Vybrat pouze zvýrazněný soubor"
+
 msgid "Select provider to add..."
 msgstr "Vyberte poskytovatele služeb..."
 
@@ -15273,6 +15407,12 @@ msgstr "Vybrat způsob řazení:"
 
 msgid "Select system information to view:"
 msgstr "Vyberte systémové informace, které chcete zobrazit:"
+
+msgid "Select temporary directory sort order for the current column"
+msgstr "Vyberte dočasné řazení adresáře pro aktuální sloupec"
+
+msgid "Select temporary file sort order for the current column"
+msgstr "Vyberte pořadí řazení dočasných souborů pro aktuální sloupec"
 
 msgid "Select the No / False response"
 msgstr "Vyberte odpověď Ne/Nepravda"
@@ -15340,17 +15480,31 @@ msgstr "Vyberte datum, kdy se tento časovač spustí."
 msgid "Select the day of the week that this timer will activate."
 msgstr "Vyberte den v týdnu, kdy se tento časovač aktivuje."
 
+msgid "Select the default directory to be used if the left column directory is not saved."
+msgstr "Vyberte výchozí adresář, který se použije, pokud adresář v levém sloupci není uložen."
+
+msgid "Select the default directory to be used if the right column directory is not saved."
+msgstr "Vyberte výchozí adresář, který se má použít, pokud není uložen adresář v pravém sloupci."
+
 msgid "Select the delay before the timer activates."
 msgstr "Zvolte prodlevu před aktivací časovače."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Stiskem \"OK\" vyberete a přiřadíte požadovanou funkci. \"CH +/-\" umožňuje přepínat mezi seznamy. Stiskem \"OK\" můžete již přiřazenou funkci také vyřadit. Tlačítkem \"Další / Předchozí\" změňte pořadí přiřazených funkcí."
 
+#, python-format
+msgid "Select the directory sort order for the %s column:"
+msgstr "Vyberte pořadí řazení adresářů pro sloupec %s:"
+
 msgid "Select the display design for menus."
 msgstr "Vyberte vzhled zobrazení pro nabídky."
 
 msgid "Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly."
 msgstr "Vyberte možnosti zobrazení pro jednotlivé položky nabídky. Pokud jsou k dispozici čísla nabídek, lze číselná tlačítka použít k přímému výběru položek nabídky s číslem."
+
+#, python-format
+msgid "Select the file sort order for the %s column:"
+msgstr "Vyberte pořadí řazení souborů pro sloupec %s:"
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Vyberte první položku v seznamu nebo přejděte na začátek textu"
@@ -15447,6 +15601,9 @@ msgstr "Vyberte pořadí řazení položek nabídky. Uživatelsky definované ta
 
 msgid "Select the source of the default DNS settings."
 msgstr "Zvolte zdroj výchozích nastavení DNS."
+
+msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr "Vyberte počáteční sloupec, který se má aktivovat při spuštění File Commanderu."
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Vyberte značky, které by měly být použity pro tento záznam."
@@ -15833,9 +15990,6 @@ msgstr "Nastavit obnovovací kmitočet pro MiniTV"
 msgid "Set action for 'Info' key"
 msgstr "Nastavit akci pro klávesu „Info“"
 
-msgid "Set archive mode (644)"
-msgstr "Nastavit atributy na (644)"
-
 msgid "Set current CEC address as fixed address"
 msgstr "Nastavit aktuální CEC adresu jako pevnou adresu"
 
@@ -15850,9 +16004,6 @@ msgstr "Nastavit atributy na (755)"
 
 msgid "Set fixed"
 msgstr "Pevná adresa"
-
-msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-msgstr "Nastavte pro 'stout' a 'sterr' počet řádků v informacích o skriptu nebo chybových zprávách skriptu."
 
 msgid "Set fps for external subtitles"
 msgstr "Změna FPS pro externí titulky"
@@ -15902,6 +16053,9 @@ msgstr "Nastavení času zpoždění mezi opakovanými smyčkami rolování. Tot
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Nastavte velikost skoku lišty."
+
+msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr "Nastavte počet řádků, které se mají uložit pro výstup 'stout' a 'stderr' ve skriptech."
 
 msgid "Set the position of the recording icons"
 msgstr "Nastavit polohu ikon nahrávání"
@@ -16218,14 +16372,6 @@ msgstr "Má se počítadlo pádů vynulovat, aby se zabránilo restartu?"
 msgid "Show"
 msgstr "Zobrazit"
 
-#, python-format
-msgid ""
-"Show '%s' as picture%s?\n"
-"The current service must interrupted!"
-msgstr ""
-"Zobrazit '%s' jako obraz %s?\n"
-"Aktuální služba musí být přerušena!"
-
 msgid "Show /tmp/ecm.info"
 msgstr "Zobrazit /tmp/ecm.info"
 
@@ -16294,9 +16440,6 @@ msgstr "Zobrazit klienty"
 
 msgid "Show Default Backup Files"
 msgstr "Zobrazit výchozí soubory záloh"
-
-msgid "Show Directory size"
-msgstr "Zobrazit velikost adresáře"
 
 msgid "Show Display Icons"
 msgstr "Zobrazit ikony displeje"
@@ -16409,14 +16552,11 @@ msgstr "Zobrazit restart síťě v rozšířené nabídce (modré tlačítko)"
 msgid "Show SD as"
 msgstr "Zobrazit SD jako"
 
-msgid "Show Script completed message"
-msgstr "Zobrazit zprávu o dokončení skriptu"
-
 msgid "Show Single EPG"
 msgstr "Zobrazit EPG programu"
 
-msgid "Show Task's completed message"
-msgstr "Zobrazit zprávu o dokončeném úkolu"
+msgid "Show Task List"
+msgstr "Zobrazit seznam úkolů"
 
 msgid "Show Timer List"
 msgstr "Zobrazí seznam časovačů"
@@ -16444,13 +16584,6 @@ msgstr "Zobrazit pokročilé nastavení"
 
 msgid "Show animation while busy"
 msgstr "Zobrazit animaci při zaneprázdnění"
-
-msgid "Show as Picture (press any key to close)"
-msgstr "Zobrazit jako obrázek (zavřete stisknutím libovolné klávesy)"
-
-#, python-format
-msgid "Show as Picture and save as file ('%s')"
-msgstr "Zobrazit jako obrázek a uložit jako soubor ('%s')"
 
 msgid "Show background in Radio Mode"
 msgstr "Zobrazit pozadí v rádio módu"
@@ -16482,18 +16615,6 @@ msgstr "Zobrazit sloupce"
 msgid "Show commit log information"
 msgstr "Zobrazit informace commit logu"
 
-msgid "Show contents of ipk file"
-msgstr "Zobrazit obsah souboru ipk"
-
-msgid "Show contents of rar file"
-msgstr "Zobrazit obsah souboru rar"
-
-msgid "Show contents of tar or compressed tar file"
-msgstr "Zobrazit obsah tar nebo komprimovaného tar souboru"
-
-msgid "Show contents of zip file"
-msgstr "Zobrazit obsah souboru zip"
-
 msgid "Show crash info on screen and write crash log for x times"
 msgstr "Zobr. info o selhání na obrazovce a x krát zapsat protokol o selhání"
 
@@ -16502,6 +16623,9 @@ msgstr "Zobrazit ikony šifrování"
 
 msgid "Show crypto info in InfoBar"
 msgstr "Zobrazit informace o kódování v Infobaru jako"
+
+msgid "Show current directory"
+msgstr "Zobrazit aktuální adresář"
 
 msgid "Show debug log information"
 msgstr "Zobrazit informace o protokolu ladění"
@@ -16526,9 +16650,6 @@ msgstr "Zobrazit vývojové balíčky v opkg"
 
 msgid "Show directories first"
 msgstr "Zobrazit nejprve adresáře"
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr "Zobrazit adresáře na prvním nebo posledním místě v seznamu (musí se restartovat File Commander)"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Zobrazit informace o šifrování v Infobaru (je-li podporován skinem)."
@@ -16563,6 +16684,9 @@ msgstr "Zobrazit seznam oblíbených položek"
 msgid "Show files backed up by default"
 msgstr "Zobrazit soubory standardně určené k zálohování"
 
+msgid "Show first image"
+msgstr "Zobrazit první obrázek"
+
 msgid "Show graphical multi EPG"
 msgstr "Zobrazit Grafické Multi EPG"
 
@@ -16572,8 +16696,12 @@ msgstr "Nápověda"
 msgid "Show icon for new/unseen items"
 msgstr "Ikona u nových/neshlédnutých položek"
 
-msgid "Show image information"
-msgstr "Zobrazit informace o image"
+msgid "Show image"
+msgstr "Zobrazit obrázek"
+
+#, python-format
+msgid "Show image and save as '%s'"
+msgstr "Zobrazit obrázek a uložit jako '%s'"
 
 msgid "Show in Standby"
 msgstr "Zobrazit v pohotovostním režimu"
@@ -16590,6 +16718,9 @@ msgstr "Zobrazit informační řádek"
 msgid "Show job tasks in extensions"
 msgstr "Zobrazit úkoly v rozšířené nabídce (modré tlačítko)"
 
+msgid "Show last image"
+msgstr "Zobrazit poslední obrázek"
+
 msgid "Show live TV when movie stopped"
 msgstr "Zobrazit TV vysílání po zastavení filmu"
 
@@ -16601,12 +16732,6 @@ msgstr "Zobrazit označené události ve všech řádcích."
 
 msgid "Show menu"
 msgstr "Zobrazit menu"
-
-msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr "Zobrazit zprávu, pokud File Commander není spuštěn a všechny úkoly jsou dokončeny."
-
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr "Zobrazit zprávu, pokud se skript na pozadí úspěšně spustí. Pokud je „stout“, zpráva se zobrazí jako další informace."
 
 msgid "Show message when recording starts"
 msgstr "Zobrazit zprávu při začátku nahrávání"
@@ -16631,6 +16756,9 @@ msgstr "Zobrazit následující soubor protokolu ladění"
 
 msgid "Show next event"
 msgstr "Zobrazit následující událost"
+
+msgid "Show next image"
+msgstr "Zobrazit následující obrázek"
 
 msgid "Show next page"
 msgstr "Zobrazit další stránku"
@@ -16674,6 +16802,9 @@ msgstr "Zobrazit předchozí soubor protokolu ladění"
 msgid "Show previous event"
 msgstr "Zobrazit předchozí událost"
 
+msgid "Show previous image"
+msgstr "Zobrazit předchozí obrázek"
+
 msgid "Show previous page"
 msgstr "Zobrazit předchozí stránku"
 
@@ -16700,6 +16831,12 @@ msgstr "Zobrazit cestu nabídky obrazovky"
 
 msgid "Show screensaver"
 msgstr "Zobrazit spořič obrazovky"
+
+msgid "Show script messages"
+msgstr "Zobrazit zprávy skriptu"
+
+msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
+msgstr "Pokud skript na pozadí skončí, zobrazit zprávy skriptu. Pokud má skript další výstup, zobrazí se také."
 
 msgid "Show selection for system information screen"
 msgstr "Zobrazit výběr pro obrazovku systémových informací"
@@ -16761,8 +16898,11 @@ msgstr "Nastavení titulků"
 msgid "Show system information"
 msgstr "Zobrazit informace o systému"
 
-msgid "Show task list"
-msgstr "Zobrazit seznam úkolů"
+msgid "Show task messages"
+msgstr "Zobrazit zprávy o úkolech"
+
+msgid "Show task messages if File Commander is not running and all task are completed."
+msgstr "Zobrazit zprávy o úkolech, pokud File Commander není spuštěn a všechny úkoly jsou dokončeny."
 
 msgid "Show the CCcam Info Screen"
 msgstr "Zobrazit informační obrazovku CCcam"
@@ -16812,6 +16952,9 @@ msgstr "Zobrazit pluginy"
 msgid "Show the radio player"
 msgstr "Zobrazit přehrávač rádií"
 
+msgid "Show the task list"
+msgstr "Zobrazit seznam úkolů"
+
 msgid "Show the tv player"
 msgstr "Zobrazit TV přehrávač"
 
@@ -16841,12 +16984,6 @@ msgstr "Zobrazit podtržítka"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zobrazit neznámé rozlišení videa jako nejbližší vyšší nebo nejvyšší rozlišení obrazovky."
-
-msgid "Show unknown extension as text"
-msgstr "Zobrazit neznámé rozšíření jako text"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Zobrazit neznámé přípony souborů pomocí 'Addon File-Viewer'."
 
 msgid "Show unknown video format as"
 msgstr "Zobrazit neznámý formát videa jako"
@@ -16995,8 +17132,11 @@ msgstr "Situační komedie"
 msgid "Size"
 msgstr "Velikost"
 
-msgid "Size reverse"
-msgstr "Obrácená velikost"
+msgid "Size ascending"
+msgstr "Velikost vzestupně"
+
+msgid "Size descending"
+msgstr "Velikost sestupně"
 
 msgid "Skin"
 msgstr "Vzhled"
@@ -17037,9 +17177,6 @@ msgstr "Přeskočit vpřed"
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Vynechat živé přeskakování při timeshiftu pomocí pluginů"
 
-msgid "Skip selection"
-msgstr "Přeskočit výběr"
-
 msgid "Sleep"
 msgstr "Spánek"
 
@@ -17051,6 +17188,9 @@ msgstr "Časovače spánku"
 
 msgid "Sleep delay"
 msgstr "Zpoždění spánku (v minutách)"
+
+msgid "Sleep test"
+msgstr "Test spánku"
 
 msgid "Sleep timer"
 msgstr "Časovač vypnutí"
@@ -17108,8 +17248,14 @@ msgstr "Zobrazit obrázky ve smyčce"
 msgid "Slide right to left"
 msgstr "Klouzat zprava doleva"
 
+msgid "Slide show delay"
+msgstr "Zpoždění prezentace"
+
 msgid "Slide show interval (sec.)"
 msgstr "Interval prezentace (sek.)"
+
+msgid "Slide show loop"
+msgstr "Smyčka prezentace"
 
 msgid "Slide top to bottom"
 msgstr "Klouzat zhora dolů"
@@ -17374,11 +17520,9 @@ msgstr "Pořadí řazení seznamu jazyků."
 msgid "Sort playlists"
 msgstr "Třídění playlistů"
 
-msgid "Sorting left files by name, date or size"
-msgstr "Řazení zbylých souborů podle názvu, data nebo velikosti"
-
-msgid "Sorting right files by name, date or size"
-msgstr "Řazení souborů podle názvu, data nebo velikosti"
+#, python-format
+msgid "Sort: Directories by %s %s; Files by %s %s."
+msgstr "Seřadit: Adresáře podle %s %s; Soubory od %s %s."
 
 msgid "Sotho, Southern"
 msgstr "Sotho, Jižní"
@@ -17492,6 +17636,9 @@ msgstr "Spustit interaktivní RDS"
 msgid "Start date"
 msgstr "Počáteční datum"
 
+msgid "Start edit at line end"
+msgstr "Začít s úpravami na konci řádku"
+
 msgid "Start from the beginning"
 msgstr "Spustit od začátku"
 
@@ -17537,6 +17684,9 @@ msgstr "Průvodce spuštěním"
 msgid "Starting Softcam"
 msgstr "Spuštění Softcam"
 
+msgid "Starting column"
+msgstr "Počáteční sloupec"
+
 msgid "Starting date"
 msgstr "Počáteční datum"
 
@@ -17558,6 +17708,9 @@ msgstr "Statická adresa IP / Vlastní"
 
 msgid "Status"
 msgstr "Stav"
+
+msgid "Status message timeout"
+msgstr "Vypršel časový limit stavové zprávy"
 
 msgid "Status of the display during operation"
 msgstr "Stav displeje za provozu"
@@ -17856,9 +18009,6 @@ msgstr "Zaměnit SNR v '%' za SNR v 'db'"
 msgid "Swap Size:"
 msgstr "Velikost :"
 
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Změnit levá/pravá tlačítka na tlačítka plus/minus kanálu."
-
 msgid "Swap services"
 msgstr "Prohodit programy"
 
@@ -17973,6 +18123,12 @@ msgstr "Přepnout na dostupné služby RÁDIA"
 msgid "Switch to the available TV services"
 msgstr "Přepnout na dostupné televizní služby"
 
+msgid "Switch to the left column"
+msgstr "Přepnout do levého sloupce"
+
+msgid "Switch to the right column"
+msgstr "Přepnout do pravého sloupce"
+
 msgid "Switchable tuner types:"
 msgstr "Přepínatelné typy tunerů:"
 
@@ -17990,9 +18146,6 @@ msgstr "Symbolová rychlost a FEC"
 
 msgid "Symbolic link"
 msgstr "Symbolický odkaz"
-
-msgid "Symlink to "
-msgstr "Symbolický odkaz na "
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronizovat NTP po (min)"
@@ -18129,6 +18282,18 @@ msgstr "Tamilština"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzanie, Sjednocená republika"
 
+#, python-format
+msgid "Task '%s' ended successfully."
+msgstr "Úloha '%s' byla úspěšně ukončena."
+
+#, python-format
+msgid "Task '%s' ended with an error message!"
+msgstr "Úloha '%s' skončila chybovou zprávou!"
+
+#, python-format
+msgid "Task '%s' ended with error number %d!"
+msgstr "Úloha '%s' skončila s číslem chyby %d!"
+
 msgid "Task List"
 msgstr "Seznam úkolů"
 
@@ -18213,6 +18378,10 @@ msgstr "Nastavení Telnetu"
 msgid "Telugu"
 msgstr "Telugština"
 
+#, python-format
+msgid "Temp directory (%s)"
+msgstr "Dočasný adresář (%s)"
+
 msgid "Tennis"
 msgstr "Tenis"
 
@@ -18222,8 +18391,17 @@ msgstr "Pozemní"
 msgid "Terrestrial bouquet:"
 msgstr "Pozemní skupina programů:"
 
+msgid "Test"
+msgstr "Test"
+
 msgid "Test DiSEqC settings"
 msgstr "Test DiSEqC nastavení"
+
+msgid "Test job completed."
+msgstr "Testovací úloha dokončena."
+
+msgid "Test job failed!"
+msgstr "Testovací úloha se nezdařila!"
 
 msgid "Test mode"
 msgstr "Testovací režim"
@@ -18331,9 +18509,6 @@ msgstr ""
 msgid "The IceTV server has requested password for %s."
 msgstr "Server IceTV si vyžádal heslo pro %s."
 
-msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-msgstr "Komponenta Image Viewer v File Commanderu vyžaduje rozšíření PicturePlayer. Pro aktivaci této operace nainstalujte PicturePlayer."
-
 msgid ""
 "The MediaCenter plugin is not installed!\n"
 "Please install it."
@@ -18398,8 +18573,8 @@ msgstr ""
 msgid "The aspect ratio of the recording."
 msgstr "Poměr stran nahrávky."
 
-msgid "The authors are NOT RESPONSIBLE"
-msgstr "Autoři NEODPOVÍDAJÍ"
+msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
+msgstr "Autoři NEODPOVÍDAJÍ ZA ZTRÁTU NEBO POŠKOZENÍ DAT!"
 
 msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
@@ -18457,6 +18632,14 @@ msgstr ""
 "\n"
 "Stiskněte tlačítko OK a pokračujte pomocí %s %s."
 
+#, python-format
+msgid "The file '%s' has been changed. Do you want to discard the changes?"
+msgstr "Soubor '%s' byl změněn. Chcete změny zahodit?"
+
+#, python-format
+msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr "Soubor '%s' byl změněn. Chcete jej uložit?"
+
 msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
@@ -18464,21 +18647,15 @@ msgstr ""
 "Souborový systém Timeshift jednotky nepodporuje hardlinky.\n"
 "Zkontrolujte, zda je ve formátu EXT2, EXT3 nebo EXT4!"
 
+#, python-format
+msgid "The following files are related to '%s':"
+msgstr "Následující soubory souvisejí s '%s':"
+
 msgid "The following files were found..."
 msgstr "Byly nalezeny následující soubory..."
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr "Frekvence snímků záznamu. V ideálním případě se bude shodovat se snímkovou frekvencí zdroje nebo bude celočíselným násobkem. Pokud máte pochybnosti, nastavte hodnotu 60, která by měla fungovat s většinou zdrojů."
-
-msgid ""
-"The function has interrupted.\n"
-"Don't press in the next time any key until the picture from mvi-file is displayed!"
-msgstr ""
-"Funkce se přerušila.\n"
-"Nestiskněte příště žádnou klávesu, dokud se nezobrazí obrázek z mvi-souboru!"
-
-msgid "The hash of a directory can't be calculated."
-msgstr "Hodnotu hash adresáře nelze vypočítat."
 
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr "Výška obrazu. Vstup bude přizpůsoben tak, aby odpovídal této hodnotě."
@@ -18591,6 +18768,10 @@ msgstr "Existuje nejméně "
 msgid "There are currently no outstanding actions."
 msgstr "V současné době nejsou žádné nedokončené akce."
 
+#, python-format
+msgid "There are no actions available to process '%s'!"
+msgstr "Pro zpracování '%s' nejsou k dispozici žádné akce!"
+
 msgid "There are no items currently available for this screen."
 msgstr "Pro tuto obrazovku nejsou v současné době k dispozici žádné položky."
 
@@ -18697,6 +18878,9 @@ msgstr "Tato volba vám umožní zobrazit moduly webových odkazů ve stahován�
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Toto pole vám umožňuje vyhledat další symbolovou rychlost až %s."
 
+msgid "This function is not available as processing of large files may take too long to run on this hardware."
+msgstr "Tato funkce není dostupná, protože zpracování velkých souborů může na tomto hardwaru trvat příliš dlouho."
+
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "Toto je řešení pro některá zařízení, která se po přepnutí do pohotovostního režimu znovu probudí. Příkazy k probuzení z jiných zařízení budou na několik sekund ignorovány."
 
@@ -18713,9 +18897,6 @@ msgstr "Jedná se o počáteční / výchozí posun hlasitosti, který se použi
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Toto je pořadí, ve kterém jsou DiSEqC příkazy odesílány do anténního systému. Pořadí musí přesně odpovídat pořadí, ve kterém jsou fyzická zařízení uspořádána podél signálového kabelu (počínaje od konce přijímače)."
-
-msgid "This line is not editable!"
-msgstr "Tento řádek nelze upravit!"
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Tato nabídka obsahuje volby pro zobrazení informací o přijímači."
@@ -19045,7 +19226,7 @@ msgstr "Nastavení timeshiftu"
 msgid "Time Update in Minutes:"
 msgstr "Aktual. čas v minutách:"
 
-msgid "Time between slides in image viewer slideshow."
+msgid "Time between slides in image viewer slide show."
 msgstr "Doba mezi snímky v prezentaci prohlížeče obrázků."
 
 msgid "Time delay for the repeated transmission"
@@ -19056,9 +19237,6 @@ msgstr "Časová prodleva zpráv pro vypnutí"
 
 msgid "Time delay until standby or deep standby"
 msgstr "Prodleva před přechodem do pohotovosti nebo spánku"
-
-msgid "Time for Slideshow"
-msgstr "Čas na prezentaci"
 
 msgid "Time for next LCD scrolling"
 msgstr "Čas na další rolování LCD"
@@ -19232,6 +19410,10 @@ msgstr "Nastavování titulu"
 msgid "To restore the image:"
 msgstr "Chcete-li obnovit obraz (image):"
 
+#, python-format
+msgid "To where would you like to extract '%s'?"
+msgstr "Kam chcete extrahovat '%s'?"
+
 msgid "Today"
 msgstr "Dnes"
 
@@ -19259,6 +19441,9 @@ msgstr "Přepnout zobrazení v grafice"
 msgid "Toggle a cut mark at the current position"
 msgstr "Přepnout střihovou značku na této pozici"
 
+msgid "Toggle all related files"
+msgstr "Přepnout všechny související soubory"
+
 msgid "Toggle aspect ratio..."
 msgstr "Přepnout poměr stran..."
 
@@ -19268,8 +19453,14 @@ msgstr "Zapnout/vypnout automatické obnovování"
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Přepnout mezi přehledy/EPG seznamy"
 
+msgid "Toggle display of image information"
+msgstr "Přepnout zobrazení informací o obrázku"
+
 msgid "Toggle display of the InfoBar"
 msgstr "Přepnout zobrazení informačního panelu"
+
+msgid "Toggle display of the image status overlay"
+msgstr "Přepnout zobrazení překrytí stavu obrázku"
 
 msgid "Toggle enable/disable of the currently selected timer"
 msgstr "Přepnout zapnutí/vypnutí aktuálně zvoleného časovače"
@@ -19285,6 +19476,9 @@ msgstr "Zapnout/vypnout režim úpravy položky"
 
 msgid "Toggle item move mode on/off"
 msgstr "Zapnout/vypnout režim přesunu položek"
+
+msgid "Toggle multi-selection mode"
+msgstr "Přepnout režim vícenásobného výběru"
 
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Přepíná nové vkládání textu před nebo přepisuje stávající text"
@@ -19407,6 +19601,9 @@ msgstr "Koš:"
 
 msgid "Travel"
 msgstr "Cestování"
+
+msgid "Tree size"
+msgstr "Velikost stromu"
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
 msgstr "Pokusil jsem se zakázat PiP, ale nenašel jsem žádnou instanci InfoBar!\n"
@@ -19611,9 +19808,6 @@ msgstr "Typ / Model"
 msgid "Type of scan"
 msgstr "Typ prohledávání"
 
-msgid "Type:"
-msgstr "Druh:"
-
 msgid "Type: "
 msgstr "Typ: "
 
@@ -19704,10 +19898,6 @@ msgstr "Unicable matice"
 msgid "Uninstall"
 msgstr "Odebrat"
 
-#, python-format
-msgid "Uninstall '%s' package and disable '%s'"
-msgstr "Odinstalovat balíček '%s' a deaktivovat '%s'"
-
 msgid "United Arab Emirates"
 msgstr "Spojené arabské emiráty"
 
@@ -19768,12 +19958,8 @@ msgstr "Odebrat značku 3D programu"
 msgid "Unmount"
 msgstr "Odpojit"
 
-#, python-format
-msgid "Unpack to %s"
-msgstr "Rozbalit do %s"
-
-msgid "Unpack to current folder"
-msgstr "Rozbalit do aktuální složky"
+msgid "Unpack File"
+msgstr "Rozbalit soubor"
 
 msgid "Unscramble and record ECM"
 msgstr "Dekódovat a nahrávat ECM"
@@ -19984,6 +20170,9 @@ msgstr "Použít OnlineFlash v SoftwareManager"
 msgid "Use OpenTV EPG information when it is available."
 msgstr "Použít informace OpenTV EPG, pokud jsou dostupné."
 
+msgid "Use QuickSelect"
+msgstr "Použít Rychlý výběr"
+
 msgid "Use TV remote control"
 msgstr "Používat dálkové ovládání TV"
 
@@ -20122,6 +20311,9 @@ msgstr "Použít časové skoky pro posun vpřed/vzad"
 msgid "Use time shift SeekBar while time shifting"
 msgstr "Při posunu času použijte vyhledávací lištu s časovým posunem"
 
+msgid "Use viewer for unknown files"
+msgstr "Použít prohlížeč pro neznámé soubory"
+
 msgid "Use workaround for wake up from deep-standby"
 msgstr "Použít řešení pro probuzení z hlubokého spánku"
 
@@ -20145,6 +20337,9 @@ msgstr "Uživatelské přehledy"
 
 msgid "User Feed URL"
 msgstr "Adresa URL kanálu uživatele"
+
+msgid "User comments"
+msgstr "Uživatelské komentáře"
 
 msgid "User defined"
 msgstr "Uživatelsky definované"
@@ -20313,6 +20508,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolívarská republika"
 
+msgid "Version"
+msgstr "Verze"
+
 #, python-format
 msgid "Version %s %s"
 msgstr "Verze %s %s"
@@ -20473,6 +20671,9 @@ msgstr "Vietnamština"
 msgid "View"
 msgstr "Náhled"
 
+msgid "View File"
+msgstr "Zobrazit soubor"
+
 msgid "View Rass interactive..."
 msgstr "Prohlížet Rass interaktivně..."
 
@@ -20521,9 +20722,6 @@ msgstr "Prohlédnout seznam dostupných systémových rozšíření"
 msgid "View mode"
 msgstr "Režim zobrazení"
 
-msgid "View or edit file (if size < 1MB)"
-msgstr "Zobrazit nebo upravit soubor (pokud je velikost < 1 MB)"
-
 #, python-format
 msgid "View or edit this %s script"
 msgstr "Zobrazit nebo upravit tento %s skript"
@@ -20533,6 +20731,12 @@ msgstr "Zobrazit fotografie..."
 
 msgid "View teletext..."
 msgstr "Teletext..."
+
+msgid "View the archive contents"
+msgstr "Zobrazit obsah archivu"
+
+msgid "View the package contents"
+msgstr "Zobrazit obsah balíčku"
 
 msgid "View video CD..."
 msgstr "Zobrazit video CD..."
@@ -20606,8 +20810,8 @@ msgstr "Geolokace WAN"
 msgid "WAN connection information"
 msgstr "Informace o připojení WAN"
 
-msgid "WARNING!"
-msgstr "VÝSTRAHA!"
+msgid "WARNING:"
+msgstr "VÝSTRAHA:"
 
 msgid "WEP"
 msgstr "WEP"
@@ -20829,14 +21033,26 @@ msgstr "Který den v měsíci?"
 msgid "What day of week?"
 msgstr "Který den v týdnu?"
 
-msgid "What do you want to play?\n"
-msgstr "Co chcete přehrát?\n"
-
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
 
 msgid "What do you want to set as the default movie location?"
 msgstr "Kde chcete nastavit výchozí umístění filmu?"
+
+msgid "What would you like to do with the archive file:"
+msgstr "Co byste chtěli udělat s archivním souborem:"
+
+msgid "What would you like to do with the audio file:"
+msgstr "Co byste chtěli udělat se zvukovým souborem:"
+
+msgid "What would you like to do with the background image file:"
+msgstr "Co byste chtěli udělat se souborem obrázku na pozadí:"
+
+msgid "What would you like to do with the package file:"
+msgstr "Co byste chtěli udělat se souborem balíčku:"
+
+msgid "What would you like to do with the script file:"
+msgstr "Co byste chtěli udělat se souborem skriptu:"
 
 msgid "What would you like to do?"
 msgstr "Co byste chtěli dělat?"
@@ -21042,6 +21258,9 @@ msgstr "Bílé"
 msgid "Width"
 msgstr "Šířka"
 
+msgid "Width / Height"
+msgstr "Šířka / Výška"
+
 msgid "Winter Sports"
 msgstr "Zimní sporty"
 
@@ -21139,6 +21358,9 @@ msgstr "Zápis selhal!"
 msgid "Www"
 msgstr "Www"
 
+msgid "X-Resolution"
+msgstr "X-rozlišení"
+
 msgid "XBox 360 support"
 msgstr "Podpora XBox 360"
 
@@ -21147,6 +21369,9 @@ msgstr "XPicon, ZZZPicon"
 
 msgid "Xhosa"
 msgstr "Xhosa"
+
+msgid "Y-Resolution"
+msgstr "Y-rozlišení"
 
 msgid "YCbCr420"
 msgstr "YCbCr420"
@@ -21297,14 +21522,6 @@ msgstr "Tuto funkci můžete přeskočit a po probuzení přijímače z pohotovo
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
 msgstr "Tento typ tuneru %s můžete přepínat levým a pravým tunerem"
-
-#, python-format
-msgid "You can't usefully run '%s' on '%s'."
-msgstr "Nemůžete užitečně spustit '%s' na '%s'."
-
-#, python-format
-msgid "You can't usefully run '%s' on a directory."
-msgstr "Nemůžete užitečně spustit '%s' v adresáři."
 
 msgid "You cannot delete this!"
 msgstr "Nemůžete toto smazat!"
@@ -21989,11 +22206,11 @@ msgstr "kopie"
 msgid "copy to bouquets"
 msgstr "zkopírovat do přehledů"
 
-msgid "create symlink ..."
-msgstr "vytvořit symbolický odkaz..."
-
 msgid "current affairs (general)"
 msgstr "aktuální události (obecně)"
+
+msgid "date"
+msgstr "datum"
 
 msgid "day"
 msgstr "den"
@@ -22203,9 +22420,6 @@ msgstr "folk/tradiční hudba"
 msgid "football/soccer"
 msgstr "fotbal"
 
-msgid "for DATA LOSS OR DAMAGE !!!"
-msgstr "za ZTRÁTU NEBO POŠKOZENÍ DAT !!!"
-
 msgid "force AC3plus"
 msgstr "vynutit AC3plus"
 
@@ -22229,9 +22443,6 @@ msgstr "volné místo na HDD"
 
 msgid "from"
 msgstr "z"
-
-msgid "from dir"
-msgstr "z adresáře"
 
 msgid "further education"
 msgstr "další vzdělávání"
@@ -22286,9 +22497,6 @@ msgstr "ruční práce"
 
 msgid "handled"
 msgstr "vyřízeno"
-
-msgid "has been CHANGED! Do you want to save it?"
-msgstr "bylo změněno! Chcete to uložit?"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -22351,9 +22559,6 @@ msgstr "inic moduly"
 msgid "insert mark here"
 msgstr "vložit značku"
 
-msgid "install/unpack ipk Files"
-msgstr "nainstalovat/rozbalit soubory ipk"
-
 msgid "installed"
 msgstr "nainstalováno"
 
@@ -22411,9 +22616,6 @@ msgstr "průchod (smyčka) na"
 msgid "magazines/reports/documentary"
 msgstr "magazíny/reportáže/dokumentární"
 
-msgid "manage local Files"
-msgstr "spravovat místní soubory"
-
 msgid "manual"
 msgstr "ručně"
 
@@ -22444,12 +22646,6 @@ msgstr "přesunout na poslední záznam"
 msgid "move down to next entry"
 msgstr "přesunout na další záznam"
 
-msgid "move file"
-msgstr "přesunout soubor"
-
-msgid "move folder"
-msgstr "přesunout složku"
-
 msgid "move up to first entry"
 msgstr "přesunout na první záznam"
 
@@ -22479,6 +22675,9 @@ msgstr "muzikál/opera"
 
 msgid "n/a"
 msgstr "n/a"
+
+msgid "name"
+msgstr "název"
 
 msgid "nature/animals/environment"
 msgstr "příroda/zvířata/životní prostředí"
@@ -22579,9 +22778,6 @@ msgstr "o tom, jak obnovit obraz (image)"
 msgid "only HD"
 msgstr "pouze HD"
 
-msgid "original"
-msgstr "původní"
-
 msgid "original language"
 msgstr "původní jazyk"
 
@@ -22597,17 +22793,11 @@ msgstr "scénické umění"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "play Files"
-msgstr "přehrávat soubory"
-
 msgid "play as picture in picture"
 msgstr "Aktivovat program jako obraz v obraze"
 
 msgid "play in mainwindow"
 msgstr "přehrát v hlavním okně"
-
-msgid "play/show Files"
-msgstr "přehrát/zobrazit soubory"
 
 msgid "please press OK when ready"
 msgstr "stiskněte OK až budete připraveni"
@@ -22635,9 +22825,6 @@ msgstr "poskyt.:"
 
 msgid "purge deleted user bouquets"
 msgstr "odstranit smazané uživatelské přehledy"
-
-msgid "python"
-msgstr "python"
 
 msgid "red"
 msgstr "červené"
@@ -22736,12 +22923,6 @@ msgstr "stav prohledávání"
 
 msgid "science fiction/fantasy/horror"
 msgstr "scifi/fantastický/horor"
-
-msgid "script 'sterr':"
-msgstr "skript 'stderr':"
-
-msgid "script 'stout':"
-msgstr "skript 'stout':"
 
 msgid "sdr"
 msgstr "sdr"
@@ -22842,6 +23023,9 @@ msgstr "zamíchat"
 msgid "simple"
 msgstr "jednoduchý"
 
+msgid "size"
+msgstr "velikost"
+
 msgid "skip backward"
 msgstr "přeskočit zpět"
 
@@ -22938,6 +23122,9 @@ msgstr "soubor s šablonou"
 msgid "tennis/squash"
 msgstr "tenis/skvoš"
 
+msgid "text"
+msgstr "text"
+
 msgid "this bouquet is protected by a parental control pin"
 msgstr "tento přehled je chráněný rodičovským zámkem"
 
@@ -22946,9 +23133,6 @@ msgstr "tento záznam"
 
 msgid "this service is protected by a parental control pin"
 msgstr "tento program je chráněný rodičovským zámkem"
-
-msgid "to dir"
-msgstr "k dir"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "přepnout informace mezi časem, kapitolou, audiostopou, titulky"
@@ -22961,6 +23145,9 @@ msgstr "tradiční (rychlý)"
 
 msgid "traditional (fast), retune"
 msgstr "tradiční (rychlý), přeladit"
+
+msgid "tree delete"
+msgstr "smazat strom"
 
 msgid "turbo"
 msgstr "turbo"
@@ -23001,21 +23188,6 @@ msgstr "neznámý"
 msgid "unknown error"
 msgstr "neznámá chyba"
 
-msgid "unpack Rar Files"
-msgstr "rozbalit soubory Rar"
-
-msgid "unpack archives"
-msgstr "rozbalit archivy"
-
-msgid "unpack gzip Files"
-msgstr "rozbalit soubory gzip"
-
-msgid "unpack tar/compressed tar Files"
-msgstr "rozbalit soubory tar/komprimované soubory tar"
-
-msgid "unpack zip Files"
-msgstr "rozbalit soubory zip"
-
 msgid "unpublished"
 msgstr "nepublikováno"
 
@@ -23045,9 +23217,6 @@ msgstr "uživatelsky definované"
 
 msgid "using:"
 msgstr "použít:"
-
-msgid "v"
-msgstr "v"
 
 msgid "variety show"
 msgstr "varieté"
@@ -23107,9 +23276,6 @@ msgstr "s chybami"
 msgid "with_errors"
 msgstr "s chybami"
 
-msgid "without"
-msgstr "bez"
-
 msgid "working"
 msgstr "pracuji"
 
@@ -23125,6 +23291,776 @@ msgstr "vaše %s %s je nyní možná nepoužitelné. Před restartováním vaše
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "optional parameter:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\n"
+#~ "Volitelný parametr: \n"
+#~ "%s"
+
+#, python-format
+#~ msgid " ('%s') ends successfully."
+#~ msgstr " %s úspěšně dokončen."
+
+#, python-format
+#~ msgid " ('%s') ends with error messages."
+#~ msgstr " ('%s') končí chybovými zprávami."
+
+#, python-format
+#~ msgid " ('%s') ends with error number [%d]."
+#~ msgstr " ('%s') dokončeno s číslem chyby [%d] ."
+
+#, python-format
+#~ msgid " - %d elements exist! Overwrite"
+#~ msgstr " - %d části existují! Přepsat"
+
+#~ msgid " - 1 element exist! Overwrite"
+#~ msgstr " - jedna část existuje! Přepsat"
+
+#~ msgid " - file exist! Overwrite"
+#~ msgstr " - soubor existuje! Přepsat"
+
+#~ msgid " - folder exist! Overwrite"
+#~ msgstr " - složka existuje! Přepsat"
+
+#~ msgid " or save additional the picture to a file"
+#~ msgstr " nebo uložit další obrázek do souboru"
+
+#, python-format
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, python-format
+#~ msgid "%s (%s"
+#~ msgstr "%s (%s"
+
+#, python-format
+#~ msgid "%s - extraction errors."
+#~ msgstr "%s - chyby extrakce."
+
+#, python-format
+#~ msgid "%s is password protected."
+#~ msgstr "%s je chráněn heslem."
+
+#, python-format
+#~ msgid "%s successfully extracted."
+#~ msgstr "%s úspěšně extrahován."
+
+#, python-format
+#~ msgid "'%s' not installed and no known package"
+#~ msgstr "'%s' není nainstalován žádný známý balíček"
+
+#, python-format
+#~ msgid "(%d jobs)"
+#~ msgstr "(%d procesy)"
+
+#~ msgid "(1 job)"
+#~ msgstr "(1 proces)"
+
+#~ msgid "(Selectmode)"
+#~ msgstr "(Vyberte režim)"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#~ msgid "?"
+#~ msgstr "?"
+
+#~ msgid "Accessed:"
+#~ msgstr "Zpřístupněno:"
+
+#~ msgid "Activate left-hand file list as multi-select source"
+#~ msgstr "Aktivuje levý seznam souborů jako zdroj s vícenásobným výběrem"
+
+#~ msgid "Activate left-hand file list as source"
+#~ msgstr "Aktivuje levý seznam souborů jako zdroj"
+
+#~ msgid "Activate right-hand file list as multi-select source"
+#~ msgstr "Aktivuje seznam souborů na pravé straně jako zdroj s vícenásobným výběrem"
+
+#~ msgid "Activate right-hand file list as source"
+#~ msgstr "Aktivuje pravý seznam souborů jako zdroj"
+
+#~ msgid "Add current folder to bookmarks"
+#~ msgstr "Přidat aktuální složku do záložek"
+
+#~ msgid "Add plugin to Extensions menu*"
+#~ msgstr "Přidat plugin do nabídky Rozšíření*"
+
+#~ msgid "Add plugin to main menu*"
+#~ msgstr "Přidat plugin do hlavní nabídky*"
+
+#~ msgid "Add selected folder to bookmarks"
+#~ msgstr "Přidat vybranou složku do záložek"
+
+#~ msgid "CPU priority for script execution"
+#~ msgstr "Priorita CPU pro provádění skriptu"
+
+#~ msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+#~ msgstr "Vypočítat a zobrazit velikost adresáře. Poznámka: To může zpomalit uživatelské rozhraní při výběru složky!"
+
+#~ msgid "Calculate file checksums"
+#~ msgstr "Vypočítat kontrolní součty souborů"
+
+#, python-format
+#~ msgid ""
+#~ "Can not run %s: %s.\n"
+#~ "%s may be in a plugin that is not installed."
+#~ msgstr ""
+#~ "Nelze spustit %s: %s.\n"
+#~ "%s může být v pluginu, který není nainstalován."
+
+#, python-format
+#~ msgid "Can't read link contents: %s"
+#~ msgstr "Nelze přečíst obsah odkazu: %s"
+
+#~ msgid "Change buttons for list navigation"
+#~ msgstr "Změna tlačítka pro navigaci v seznamu"
+
+#~ msgid "Channel button always changes sides"
+#~ msgstr "Tlačítko kanálu vždy mění strany"
+
+#, python-format
+#~ msgid "Copy %d elements"
+#~ msgstr "Kopírovat %d prvků"
+
+#~ msgid "Copy 1 element"
+#~ msgstr "Kopírovat 1 prvek"
+
+#~ msgid "Copy file"
+#~ msgstr "Zkopírovat soubor"
+
+#~ msgid "Copy file/directory to target directory"
+#~ msgstr "Zkopírovat soubor/adresář do cílového adresáře"
+
+#~ msgid "Copy files/directories to target directory"
+#~ msgstr "Zkopírovat soubory/adresáře do cílového adresáře"
+
+#~ msgid "Copy folder"
+#~ msgstr "Kopírovat složku"
+
+#~ msgid "Create directory/folder"
+#~ msgstr "Vytvořte adresář/složku"
+
+#~ msgid "Create symlink to file"
+#~ msgstr "Vytvořte symbolický odkaz na soubor"
+
+#~ msgid "Create user-named symbolic link"
+#~ msgstr "Vytvořte symbolický odkaz pojmenovaný uživatelem"
+
+#~ msgid "Current directory"
+#~ msgstr "Současný adresář"
+
+#~ msgid "Date reverse"
+#~ msgstr "Datum obráceně"
+
+#~ msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Výchozí priorita CPU (nice) pro prováděné skripty. To může snížit zatížení, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
+
+#~ msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+#~ msgstr "Výchozí priorita I/O (ionice) pro prováděné skripty. To může snížit zatížení, aby skripty nezasahovaly do zbytku systému. (vyšší hodnoty = nižší priorita)"
+
+#~ msgid "Default directory sorting"
+#~ msgstr "Výchozí řazení adresářů"
+
+#~ msgid "Default file sorting left"
+#~ msgstr "Výchozí řazení souborů vlevo"
+
+#~ msgid "Default file sorting right"
+#~ msgstr "Výchozí řazení souborů vpravo"
+
+#~ msgid "Default folder"
+#~ msgstr "Výchozí složka"
+
+#~ msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+#~ msgstr "Výchozí složka, pokud levá nebo pravá složka není uložena, a cílová složka pro tlačítko 5."
+
+#~ msgid "Default sorting method for directories on both sides."
+#~ msgstr "Výchozí metoda řazení pro adresáře na obou stranách."
+
+#~ msgid "Default sorting method for files on the left side."
+#~ msgstr "Výchozí způsob řazení souborů na levé straně."
+
+#~ msgid "Default sorting method for files on the right side."
+#~ msgstr "Výchozí způsob řazení souborů na pravé straně."
+
+#, python-format
+#~ msgid "Delete %d elements"
+#~ msgstr "Smazat %d prvků"
+
+#~ msgid "Delete 1 element"
+#~ msgstr "Smazat 1 prvek"
+
+#~ msgid "Delete file or directory (and all its contents)"
+#~ msgstr "Smazat soubor nebo adresář (a veškerý jeho obsah)"
+
+#~ msgid "Delete folder"
+#~ msgstr "Smazat složku"
+
+#~ msgid "Delete the selected files or directories"
+#~ msgstr "Odstranit vybrané soubory nebo adresáře"
+
+#~ msgid "Do you want change rights?\n"
+#~ msgstr "Chcete změnit práva?\n"
+
+#~ msgid "Do you want to view or run the script?\n"
+#~ msgstr "Chcete skript zobrazit nebo spustit?\n"
+
+#~ msgid "Edit line "
+#~ msgstr "Upravit řádek "
+
+#~ msgid "Edit position is the line end"
+#~ msgstr "Pozice úpravy je konec řádku"
+
+#~ msgid "Enter multi-file selection mode"
+#~ msgstr "Vstup do režimu výběru více souborů"
+
+#, python-format
+#~ msgid ""
+#~ "Error creating directory %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chyba při vytváření adresáře %s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error linking %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chyba při propojování %s s %s:\n"
+#~ "%s"
+
+#, python-format
+#~ msgid ""
+#~ "Error renaming %s to %s:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Chyba při přejmenování %s na %s:\n"
+#~ "%s"
+
+#~ msgid "Error..."
+#~ msgstr "Chyba..."
+
+#~ msgid "Exit editor and write changes (if any)"
+#~ msgstr "Ukončit editor a zapsat změny (pokud existují)"
+
+#~ msgid "Exit picture viewer"
+#~ msgstr "Ukončit prohlížeč obrázků"
+
+#~ msgid "File Commander - Addon File-Viewer"
+#~ msgstr "File Commander - Addon prohlížeč souborů"
+
+#~ msgid "File Commander - Addon Mediaplayer"
+#~ msgstr "File Commander - Addon Mediaplayer"
+
+#~ msgid "File Commander - Addon Movieplayer"
+#~ msgstr "File Commander - Addon Movieplayer"
+
+#~ msgid "File Commander - all Task's are completed!"
+#~ msgstr "File Commander - všechny úkoly jsou splněny!"
+
+#~ msgid "File Commander - generalised archive handler"
+#~ msgstr "File Commander - zobecněná obsluha archivu"
+
+#~ msgid "File Commander - gzip Addon"
+#~ msgstr "File Commander - Addon gzip"
+
+#~ msgid "File Commander - ipk Addon"
+#~ msgstr "File Commander - Addon ipk"
+
+#~ msgid "File Commander - tar Addon"
+#~ msgstr "File Commander - Addon Tar"
+
+#~ msgid "File Commander - unrar Addon"
+#~ msgstr "File Commander - Addon unrar"
+
+#~ msgid "File Commander - unzip Addon"
+#~ msgstr "File Commander - Addon unzip"
+
+#~ msgid "File Commander context menu"
+#~ msgstr "Kontextová nabídka File Commander"
+
+#~ msgid "File Commander menu"
+#~ msgstr "Nabídka File Commander"
+
+#~ msgid "File checksums to calculate for button 9"
+#~ msgstr "Soubor kontrolních součtů pro výpočet pro tlačítko 9"
+
+#~ msgid "File checksums/hashes"
+#~ msgstr "Soubor kontrolních součtů/hash"
+
+#, python-format
+#~ msgid "File not found: %s"
+#~ msgstr "Soubor nenalezen: %s"
+
+#~ msgid "File/Directory Status Information"
+#~ msgstr "Informace o stavu souboru/adresáře"
+
+#~ msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+#~ msgstr "Rozšíření filtru pro nastavení „Moje rozšíření“ v části „Přípona filtru“. Použijte název rozšíření bez '.'."
+
+#~ msgid "Filter extension, (*) appears in title"
+#~ msgstr "Rozšíření filtru, (*) se objeví v názvu"
+
+#~ msgid "Filter visible file classes by extension."
+#~ msgstr "Filtrovat viditelné třídy souborů podle přípony."
+
+#~ msgid "Go to bookmarked folder"
+#~ msgstr "Přejděte do složky se záložkami"
+
+#~ msgid "Go to end of file"
+#~ msgstr "Přejít na konec souboru"
+
+#~ msgid "Go to parent directory"
+#~ msgstr "Přejít do nadřazeného adresáře"
+
+#~ msgid "Go to start of file"
+#~ msgstr "Přejít na začátek souboru"
+
+#~ msgid "Group:"
+#~ msgstr "Skupina:"
+
+#~ msgid "I/O priority for script execution"
+#~ msgstr "Priorita I/O pro provádění skriptu"
+
+#~ msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+#~ msgstr "Pokud upravujete soubor, můžete nastavit počáteční pozici kurzoru na konec nebo začátek řádku."
+
+#~ msgid "Inode:"
+#~ msgstr "Inode:"
+
+#~ msgid "Insert"
+#~ msgstr "Vložit"
+
+#, python-format
+#~ msgid "Install '%s' and enable this operation"
+#~ msgstr "Iinstalovat '%s' a povolit tuto operaci"
+
+#~ msgid "Installing Plugin ..."
+#~ msgstr "Instalace pluginu..."
+
+#~ msgid "It is not possible to calculate hashes on <List of Storage Devices>"
+#~ msgstr "Na <Seznam úložných zařízení> není možné vypočítat hashe"
+
+#~ msgid "It is not possible to change the file mode of <List of Storage Devices>"
+#~ msgstr "Není možné změnit režim souboru <Seznam úložných zařízení>"
+
+#~ msgid "It is not possible to get the file status of <List of Storage Devices>"
+#~ msgstr "Není možné získat stav souboru <Seznam úložných zařízení>"
+
+#, python-format
+#~ msgid "It is not possible to run '%s' on <List of Storage Devices>"
+#~ msgstr "Není možné spustit '%s' na <Seznam úložných zařízení>"
+
+#~ msgid "It's not possible to rename the file system root."
+#~ msgstr "Není možné přejmenovat kořen souborového systému."
+
+#~ msgid "Leave File Commander"
+#~ msgstr "Opustit File Commander"
+
+#~ msgid "Leave multi-select mode"
+#~ msgstr "Opustit režim vícenásobného výběru"
+
+#~ msgid "Link target:"
+#~ msgstr "Cíl odkazu:"
+
+#~ msgid "Links:"
+#~ msgstr "Odkazy:"
+
+#~ msgid "Make File Commander accessible from the Extensions menu."
+#~ msgstr "Zpřístupnit File Commander z nabídky Rozšíření."
+
+#~ msgid "Make File Commander accessible from the main menu."
+#~ msgstr "Zpřístupnit File Commander z hlavní nabídky."
+
+#~ msgid "Metadata changed:"
+#~ msgstr "Metadata změněna:"
+
+#, python-format
+#~ msgid "Mode %s (%04o)"
+#~ msgstr "Režim %s (%04o)"
+
+#~ msgid "Modified:"
+#~ msgstr "Změněno:"
+
+#, python-format
+#~ msgid "Move %d elements"
+#~ msgstr "Přesunout %d prvků"
+
+#~ msgid "Move 1 element"
+#~ msgstr "Přesunout 1 prvek"
+
+#~ msgid "Move down list"
+#~ msgstr "Posunout seznam dolů"
+
+#~ msgid "Move file"
+#~ msgstr "Přesunout soubor"
+
+#~ msgid "Move file/directory to target directory"
+#~ msgstr "Přesunout soubor/adresář do cílového adresáře"
+
+#~ msgid "Move files/directories to target directory"
+#~ msgstr "Přesunout soubory/adresáře do cílového adresáře"
+
+#~ msgid "Move folder"
+#~ msgstr "Přesunout složku"
+
+#~ msgid "Move up list"
+#~ msgstr "Posunout seznam nahoru"
+
+#~ msgid "My extension"
+#~ msgstr "Moje rozšíření"
+
+#~ msgid "Name reverse"
+#~ msgstr "Jméno obráceně"
+
+#~ msgid "New folder"
+#~ msgstr "Nová složka"
+
+#~ msgid "No files found."
+#~ msgstr "Nebyly nalezeny žádné soubory."
+
+#~ msgid "No hash calculations configured"
+#~ msgstr "Nejsou nakonfigurovány žádné výpočty hash"
+
+#, python-format
+#~ msgid "No viewer installed for this file type: %s"
+#~ msgstr "Pro tento typ souboru není nainstalován žádný prohlížeč: %s"
+
+#, python-format
+#~ msgid "None of the hash programs for the hashes %s are available"
+#~ msgstr "Žádný z hašovacích programů pro haše %s není dostupný"
+
+#~ msgid "Not allowed with folders"
+#~ msgstr "Není povoleno u složek"
+
+#~ msgid "Number of lines in script messages"
+#~ msgstr "Počet řádků ve zprávách skriptu"
+
+#~ msgid "On device:"
+#~ msgstr "V zařízení:"
+
+#~ msgid "Open settings/actions menu"
+#~ msgstr "Otevřít nabídku nastavení/akcí"
+
+#~ msgid "Owner:"
+#~ msgstr "Vlastník:"
+
+#~ msgid "Page down list"
+#~ msgstr "Seznam o stránku dolů"
+
+#~ msgid "Page up list"
+#~ msgstr "Seznam o stránku nahoru"
+
+#~ msgid "Parent directory"
+#~ msgstr "Nadřazený adresář"
+
+#~ msgid "Permissions:"
+#~ msgstr "Oprávnění:"
+
+#~ msgid "Play folder"
+#~ msgstr "Přehrát složku"
+
+#~ msgid "Play title"
+#~ msgstr "Přehrát titul"
+
+#~ msgid "Play/view/edit/install/extract/run file or enter directory"
+#~ msgstr "Přehrát / zobrazit / upravit / nainstalovat / extrahovat / spustit soubor nebo zadat adresář"
+
+#~ msgid "Please enter name of the new symlink"
+#~ msgstr "Zadejte název nového symbolického odkazu"
+
+#~ msgid "Please enter password"
+#~ msgstr "Prosím vložte heslo"
+
+#~ msgid "Please enter the new directory name"
+#~ msgstr "Zadejte nový název adresáře"
+
+#~ msgid "Please enter the new file name"
+#~ msgstr "Zadejte nový název souboru"
+
+#~ msgid "Please wait, Loading image."
+#~ msgstr "Čekejte prosím, načítám image."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' is installed.\n"
+#~ "The package containing this program isn't known, so it can't be uninstalled."
+#~ msgstr ""
+#~ "Program '%s' je nainstalován.\n"
+#~ "Balíček obsahující tento program není znám, takže jej nelze odinstalovat."
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run the '%s' action.\n"
+#~ "Uninstall the '%s' package to uninstall the program?"
+#~ msgstr ""
+#~ "Pro spuštění akce '%s' je třeba nainstalovat program '%s'.\n"
+#~ "Chcete odinstalovat balíček '%s' k odinstalaci programu?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' needs to be installed to run this action.\n"
+#~ "Install the '%s' package to install the program?"
+#~ msgstr ""
+#~ "Ke spuštění této akce je třeba nainstalovat program '%s'.\n"
+#~ "Chcete nainstalovat balíček '%s' pro instalaci programu?"
+
+#, python-format
+#~ msgid ""
+#~ "Program '%s' not installed.\n"
+#~ "The package containing this program isn't known."
+#~ msgstr ""
+#~ "Program '%s' není nainstalován.\n"
+#~ "Balíček obsahující tento program není znám."
+
+#~ msgid "Records"
+#~ msgstr "Nahrávky"
+
+#~ msgid "Remove current folder from bookmarks"
+#~ msgstr "Odstranit aktuální složku ze záložek"
+
+#~ msgid "Remove selected folder from bookmarks"
+#~ msgstr "Odstranit vybranou složku ze záložek"
+
+#~ msgid "Rename file/directory"
+#~ msgstr "Přejmenovat soubor/adresář"
+
+#~ msgid "Reverse left file sorting"
+#~ msgstr "Obrácené řazení souborů vlevo"
+
+#~ msgid "Reverse right file sorting"
+#~ msgstr "Obrácené řazení souborů vpravo"
+
+#~ msgid "Save left folder on exit"
+#~ msgstr "Při ukončení uložit levou složku"
+
+#~ msgid "Save right folder on exit"
+#~ msgstr "Při ukončení uložit pravou složku"
+
+#~ msgid "Save the left folder list location on exit."
+#~ msgstr "Při ukončení uložit levé umístění seznamu složek."
+
+#~ msgid "Save the right folder list location on exit."
+#~ msgstr "Při ukončení uložit pravé umístění seznamu složek."
+
+#, python-format
+#~ msgid "Script '%s' must have read permission to be able to run it"
+#~ msgstr "Skript '%s' musí mít oprávnění ke čtení, aby jej bylo možné spustit"
+
+#~ msgid "Select (source list) or enter directory (target list)"
+#~ msgstr "Vybrat (zdrojový seznam) nebo zadejte adresář (cílový seznam)"
+
+#~ msgid "Select a path"
+#~ msgstr "Vybrat cestu"
+
+#~ msgid "Set archive mode (644)"
+#~ msgstr "Nastavit atributy na (644)"
+
+#~ msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+#~ msgstr "Nastavte pro 'stout' a 'sterr' počet řádků v informacích o skriptu nebo chybových zprávách skriptu."
+
+#, python-format
+#~ msgid ""
+#~ "Show '%s' as picture%s?\n"
+#~ "The current service must interrupted!"
+#~ msgstr ""
+#~ "Zobrazit '%s' jako obraz %s?\n"
+#~ "Aktuální služba musí být přerušena!"
+
+#~ msgid "Show Directory size"
+#~ msgstr "Zobrazit velikost adresáře"
+
+#~ msgid "Show Script completed message"
+#~ msgstr "Zobrazit zprávu o dokončení skriptu"
+
+#~ msgid "Show Task's completed message"
+#~ msgstr "Zobrazit zprávu o dokončeném úkolu"
+
+#~ msgid "Show as Picture (press any key to close)"
+#~ msgstr "Zobrazit jako obrázek (zavřete stisknutím libovolné klávesy)"
+
+#, python-format
+#~ msgid "Show as Picture and save as file ('%s')"
+#~ msgstr "Zobrazit jako obrázek a uložit jako soubor ('%s')"
+
+#~ msgid "Show contents of ipk file"
+#~ msgstr "Zobrazit obsah souboru ipk"
+
+#~ msgid "Show contents of rar file"
+#~ msgstr "Zobrazit obsah souboru rar"
+
+#~ msgid "Show contents of tar or compressed tar file"
+#~ msgstr "Zobrazit obsah tar nebo komprimovaného tar souboru"
+
+#~ msgid "Show contents of zip file"
+#~ msgstr "Zobrazit obsah souboru zip"
+
+#~ msgid "Show directories on first or last in list.(must restart File Commander)"
+#~ msgstr "Zobrazit adresáře na prvním nebo posledním místě v seznamu (musí se restartovat File Commander)"
+
+#~ msgid "Show image information"
+#~ msgstr "Zobrazit informace o image"
+
+#~ msgid "Show message if File Commander is not running and all Task's are completed."
+#~ msgstr "Zobrazit zprávu, pokud File Commander není spuštěn a všechny úkoly jsou dokončeny."
+
+#~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+#~ msgstr "Zobrazit zprávu, pokud se skript na pozadí úspěšně spustí. Pokud je „stout“, zpráva se zobrazí jako další informace."
+
+#~ msgid "Show task list"
+#~ msgstr "Zobrazit seznam úkolů"
+
+#~ msgid "Show unknown extension as text"
+#~ msgstr "Zobrazit neznámé rozšíření jako text"
+
+#~ msgid "Show unknown file extensions with 'Addon File-Viewer'."
+#~ msgstr "Zobrazit neznámé přípony souborů pomocí 'Addon File-Viewer'."
+
+#~ msgid "Size reverse"
+#~ msgstr "Obrácená velikost"
+
+#~ msgid "Skip selection"
+#~ msgstr "Přeskočit výběr"
+
+#~ msgid "Sorting left files by name, date or size"
+#~ msgstr "Řazení zbylých souborů podle názvu, data nebo velikosti"
+
+#~ msgid "Sorting right files by name, date or size"
+#~ msgstr "Řazení souborů podle názvu, data nebo velikosti"
+
+#~ msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
+#~ msgstr "Změnit levá/pravá tlačítka na tlačítka plus/minus kanálu."
+
+#~ msgid "Symlink to "
+#~ msgstr "Symbolický odkaz na "
+
+#~ msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
+#~ msgstr "Komponenta Image Viewer v File Commanderu vyžaduje rozšíření PicturePlayer. Pro aktivaci této operace nainstalujte PicturePlayer."
+
+#~ msgid "The authors are NOT RESPONSIBLE"
+#~ msgstr "Autoři NEODPOVÍDAJÍ"
+
+#~ msgid ""
+#~ "The function has interrupted.\n"
+#~ "Don't press in the next time any key until the picture from mvi-file is displayed!"
+#~ msgstr ""
+#~ "Funkce se přerušila.\n"
+#~ "Nestiskněte příště žádnou klávesu, dokud se nezobrazí obrázek z mvi-souboru!"
+
+#~ msgid "The hash of a directory can't be calculated."
+#~ msgstr "Hodnotu hash adresáře nelze vypočítat."
+
+#~ msgid "This line is not editable!"
+#~ msgstr "Tento řádek nelze upravit!"
+
+#~ msgid "Time between slides in image viewer slideshow."
+#~ msgstr "Doba mezi snímky v prezentaci prohlížeče obrázků."
+
+#~ msgid "Time for Slideshow"
+#~ msgstr "Čas na prezentaci"
+
+#~ msgid "Type:"
+#~ msgstr "Druh:"
+
+#, python-format
+#~ msgid "Uninstall '%s' package and disable '%s'"
+#~ msgstr "Odinstalovat balíček '%s' a deaktivovat '%s'"
+
+#, python-format
+#~ msgid "Unpack to %s"
+#~ msgstr "Rozbalit do %s"
+
+#~ msgid "Unpack to current folder"
+#~ msgstr "Rozbalit do aktuální složky"
+
+#~ msgid "View or edit file (if size < 1MB)"
+#~ msgstr "Zobrazit nebo upravit soubor (pokud je velikost < 1 MB)"
+
+#~ msgid "WARNING!"
+#~ msgstr "VÝSTRAHA!"
+
+#~ msgid "What do you want to play?\n"
+#~ msgstr "Co chcete přehrát?\n"
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on '%s'."
+#~ msgstr "Nemůžete užitečně spustit '%s' na '%s'."
+
+#, python-format
+#~ msgid "You can't usefully run '%s' on a directory."
+#~ msgstr "Nemůžete užitečně spustit '%s' v adresáři."
+
+#~ msgid "create symlink ..."
+#~ msgstr "vytvořit symbolický odkaz..."
+
+#~ msgid "for DATA LOSS OR DAMAGE !!!"
+#~ msgstr "za ZTRÁTU NEBO POŠKOZENÍ DAT !!!"
+
+#~ msgid "from dir"
+#~ msgstr "z adresáře"
+
+#~ msgid "has been CHANGED! Do you want to save it?"
+#~ msgstr "bylo změněno! Chcete to uložit?"
+
+#~ msgid "install/unpack ipk Files"
+#~ msgstr "nainstalovat/rozbalit soubory ipk"
+
+#~ msgid "manage local Files"
+#~ msgstr "spravovat místní soubory"
+
+#~ msgid "move file"
+#~ msgstr "přesunout soubor"
+
+#~ msgid "move folder"
+#~ msgstr "přesunout složku"
+
+#~ msgid "original"
+#~ msgstr "původní"
+
+#~ msgid "play Files"
+#~ msgstr "přehrávat soubory"
+
+#~ msgid "play/show Files"
+#~ msgstr "přehrát/zobrazit soubory"
+
+#~ msgid "python"
+#~ msgstr "python"
+
+#~ msgid "script 'sterr':"
+#~ msgstr "skript 'stderr':"
+
+#~ msgid "script 'stout':"
+#~ msgstr "skript 'stout':"
+
+#~ msgid "to dir"
+#~ msgstr "k dir"
+
+#~ msgid "unpack Rar Files"
+#~ msgstr "rozbalit soubory Rar"
+
+#~ msgid "unpack archives"
+#~ msgstr "rozbalit archivy"
+
+#~ msgid "unpack gzip Files"
+#~ msgstr "rozbalit soubory gzip"
+
+#~ msgid "unpack tar/compressed tar Files"
+#~ msgstr "rozbalit soubory tar/komprimované soubory tar"
+
+#~ msgid "unpack zip Files"
+#~ msgstr "rozbalit soubory zip"
+
+#~ msgid "v"
+#~ msgstr "v"
+
+#~ msgid "without"
+#~ msgstr "bez"
 
 #, python-format
 #~ msgid ""
@@ -23198,12 +24134,6 @@ msgstr "®"
 
 #~ msgid "Receiver Images"
 #~ msgstr "Obrázky přijímače"
-
-#~ msgid "Show next image"
-#~ msgstr "Zobrazit následující obrázek"
-
-#~ msgid "Show previous image"
-#~ msgstr "Zobrazit předchozí obrázek"
 
 #~ msgid "Show receiver image information"
 #~ msgstr "Zobrazit informace o obrázku přijímače"
