@@ -478,7 +478,8 @@ class RecordTimer(Timer):
 				if timer.justplay:
 					typeOffset = 5
 					if not timer.hasEndTime or (timerEnd - timer.begin) <= 1:
-						timerEnd = timerBegin + duration  # Special case for zap timer without endtime
+						if timerBegin < end and timerBegin >= begin:
+							timerEnd = timerBegin + duration  # Special case for zap timer without endtime
 				if timer.always_zap:
 					typeOffset = 10
 				if timer.repeated != 0:
