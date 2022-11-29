@@ -475,10 +475,10 @@ class RecordTimer(Timer):
 						timerEnd = end
 					elif 0 < timerBegin - begin <= 59:
 						timerBegin = begin
-#				if timer.justplay:
-#					typeOffset = 5
-#					if (timerEnd - timer.begin) <= 1:
-#						timerEnd += 60
+				if timer.justplay:
+					typeOffset = 5
+					if not timer.hasEndTime or (timerEnd - timer.begin) <= 1:
+						timerEnd = timerBegin + duration  # Special case for zap timer without endtime
 				if timer.always_zap:
 					typeOffset = 10
 				if timer.repeated != 0:
@@ -561,8 +561,8 @@ class RecordTimer(Timer):
 						if timerEnd < end:  # Recording first part of event.
 							timeMatch = timerEnd - begin
 							type = typeOffset + 4
-							# if timer.justplay:  # Don't treat Zap timers differently!
-							# 	type = typeOffset + 2
+							if timer.justplay and (not timer.hasEndTime or (timerEnd - timer.begin) <= 1):
+								type = typeOffset + 2  # Special case for zap timer without end time
 						else:  # Recording whole event.
 							timeMatch = end - begin
 							type = typeOffset + 2
