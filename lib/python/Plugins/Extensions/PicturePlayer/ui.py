@@ -225,8 +225,8 @@ class Pic_Thumb(Screen):
 			if posX >= self.thumbsX:
 				posX = 0
 
-			absX = self.spaceX + (posX * (self.spaceX + self.picX))
-			absY = self.spaceY + (posY * (self.spaceY + self.picY))
+			absX = self.spaceX + int(posX * (self.spaceX + self.picX))
+			absY = self.spaceY + int(posY * (self.spaceY + self.picY))
 			self.positionlist.append((absX, absY))
 			skincontent += f"""
 				<widget source="label{x}" render="Label" position="{absX + 5},{absY + self.picY - textsize}" size="{self.picX - 10},{textsize}" font="Regular;{thumtxt}" zPosition="2" transparent="1" noWrap="1" foregroundColor="{self.textcolor}" />
