@@ -66,8 +66,8 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 			self.playSubservice((self.currentlyPlayingSubservice - 1) % len(self.subservices))
 
 	def getSubserviceIndex(self, service):
-		if self.subservices and service and service.toString() in [x[1] for x in self.subservices]:
-			return [x[1] for x in self.subservices].index(service.toString())
+		if self.subservices and service and service.toCompareString() in [x[1] for x in self.subservices]:
+			return [x[1] for x in self.subservices].index(service.toCompareString())
 
 	def keyNumberGlobal(self, number):
 		if number == 0:
@@ -82,7 +82,9 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 
 	def subserviceSelected(self, service):
 		if service:
-			self.playSubservice(service[1])
+			index = self.getSubserviceIndex(eServiceReference(service[1]))
+			if index != self.currentlyPlayingSubservice:
+				self.playSubservice(index)
 
 	def keyOK(self):
 		self.doShow()

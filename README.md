@@ -1,10 +1,10 @@
-# openATV 7.0 (still in development!)
+# openATV 7.1 (still in development!)
 
 ## Build status
 
-[![Build status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
+[![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_mipsel_6.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_mipsel_7.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 20.04.5 LTS (Kernel 5.4.0) 64-bit
+> Ubuntu 22.04.1 LTS (Kernel 5.15.0) 64-bit
 
 ## Hardware requirements
 
@@ -36,9 +36,9 @@
 
 ## Git repositories involved
 
-* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.0 "OE Alliance Core") - Core framework
-* [openATV 7.0](https://github.com/openatv/enigma2/tree/7.0 "openATV 7.0") - openATV core
-* [MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin") - Default openATV skin
+* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.1 "OE Alliance Core") - Core framework
+* [openATV 7.1](https://github.com/openatv/enigma2/tree/7.1 "openATV 7.1") - openATV core
+* [MetrixHD](https://github.com/openatv/MetrixHD/tree/7.1 "openATV Skin") - Default openATV skin
 * ...
 
 ## DOXYGEN Documentation
@@ -50,7 +50,7 @@
 1. Install required packages
 
     ```sh
-    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-8 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-12 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot lz4
     ```
 
 1. Set `python3` as preferred provider for `python`
@@ -91,22 +91,22 @@
     su - openatvbuilder
     ```
 
-1. Create folder openatv7.0
+1. Create folder openatv7.1
 
     ```sh
-    mkdir -p openatv7.0
+    mkdir -p openatv7.1
     ```
 
-1. Switch to folder openatv7.0
+1. Switch to folder openatv7.1
 
     ```sh
-    cd openatv7.0
+    cd openatv7.1
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.0
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.1
     ```
 
 1. Switch to folder build-enviroment

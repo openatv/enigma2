@@ -251,6 +251,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if BoxInfo.getItem("ci"):
 		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+	if BoxInfo.getItem("SoftCam"):
+		ButtonSetupFunctions.append((_("Softcam Setup"), "Module/Screens.SoftcamSetup/SoftcamSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Videosetup"), "Module/Screens.VideoMode/VideoSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
 	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
@@ -282,8 +284,9 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", "Setup"))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", "Setup"))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", "Setup"))
-	ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
-	ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
+	if BoxInfo.getItem("SoftCam"):
+		ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
+		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
 	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", "Plugins"))
 	if isdir("/etc/ppanels"):
 		for file in [x for x in listdir("/etc/ppanels") if x.endswith(".xml")]:

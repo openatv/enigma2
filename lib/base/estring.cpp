@@ -11,6 +11,7 @@
 #include "freesatv2.h"
 #include "big5.h"
 #include "gb18030.h"
+#include <Python.h>
 
 std::string buildShortName( const std::string &str )
 {
@@ -792,6 +793,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	output = replace_all(replace_all(output, "\xC2\x8A", "\n"), "\xEE\x82\x8A", "\n");
 	// remove character emphasis control characters:
 	output = replace_all(replace_all(replace_all(replace_all(output, "\xC2\x86", ""), "\xEE\x82\x86", ""), "\xC2\x87", ""), "\xEE\x82\x87", "");
+
 	return output;
 }
 
@@ -910,6 +912,14 @@ int isUTF8(const std::string &string)
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
+std::string repairUTF8(const char *szIn, int len)
+{
+	Py_ssize_t sz = len;
+	PyObject * pyinput = PyUnicode_DecodeUTF8Stateful(szIn, sz, "ignore", NULL);
+	std::string res = PyUnicode_AsUTF8(pyinput);
+	Py_DECREF(pyinput);
+	return res;
+}
 
 unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {

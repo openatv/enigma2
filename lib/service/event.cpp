@@ -34,6 +34,7 @@ DEFINE_REF(eParentalData);
 DEFINE_REF(eCridData);
 
 std::string eServiceEvent::crid_scheme = "crid://";
+int eServiceEvent::m_UTF8CorrectMode = 0;
 
 std::string eServiceEvent::normalise_crid(std::string crid, ePtr<eDVBService> service)
 {
@@ -203,7 +204,8 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					eServiceReference ref = db->searchReference(tsid, onid, sid);
 					ePtr<eDVBService> service;
 					db->getService(*(eServiceReferenceDVB*) &ref, service);
-					channelName = service->m_service_name;
+					if(service)
+						channelName = service->m_service_name;
 					auto cridd = (ContentIdentifierDescriptor *)*desc;
 					auto crid = cridd->getIdentifier();
 					for (auto it = crid->begin(); it != crid->end(); ++it)
@@ -274,6 +276,22 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 		m_extended_description += '\n';
 		m_extended_description += m_extended_description_items;
 		m_extended_description_items = "";
+	}
+
+	if(eServiceEvent::m_UTF8CorrectMode > 0)
+	{
+		if(m_short_description.size() > 0 && !isUTF8(m_short_description))
+		{
+			if(eServiceEvent::m_UTF8CorrectMode == 2)
+				eDebug("[eServiceEvent] short description is not UTF8\nhex output:%s\nstr output:%s\n",string_to_hex(m_short_description).c_str(),m_short_description.c_str());
+			m_short_description = repairUTF8(m_short_description.c_str(), m_short_description.size());
+		}
+		if(m_extended_description.size() > 0 && !isUTF8(m_extended_description))
+		{
+			if(eServiceEvent::m_UTF8CorrectMode == 2)
+				eDebug("[eServiceEvent] extended description is not UTF8\nhex output:%s\nstr output:%s\n",string_to_hex(m_extended_description).c_str(),m_extended_description.c_str());
+			m_extended_description = repairUTF8(m_extended_description.c_str(), m_extended_description.size());
+		}
 	}
 
 	return retval;

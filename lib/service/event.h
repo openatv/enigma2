@@ -145,6 +145,7 @@ class eServiceEvent: public iObject
 	std::string m_series_crid, m_episode_crid, m_recommendation_crid;
 	static std::string m_language, m_language_alternative;
 	std::list<eCridData> m_crids;
+	static int m_UTF8CorrectMode;
 	// .. additional info
 public:
 	eServiceEvent();
@@ -157,6 +158,7 @@ public:
 	RESULT parseFrom(const std::string& filename, int tsidonid=0);
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
+	static void setUTF8CorrectMode (int mode) { m_UTF8CorrectMode = mode; }
 #endif
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
@@ -214,6 +216,12 @@ SWIG_EXTEND(ePtr<eServiceEvent>,
 	static void setEPGLanguageAlternative(const std::string& language)
 	{
 		eServiceEvent::setEPGLanguageAlternative(language);
+	}
+);
+SWIG_EXTEND(ePtr<eServiceEvent>,
+	static void setUTF8CorrectMode(int mode)
+	{
+		eServiceEvent::setUTF8CorrectMode(mode);
 	}
 );
 

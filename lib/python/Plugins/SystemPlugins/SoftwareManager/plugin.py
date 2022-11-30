@@ -1634,7 +1634,7 @@ class IpkgInstaller(Screen):
 
 	def install(self):
 		packages = self.selectionList.getSelectionsList()
-		cmdList = [(OpkgComponent.CMD_UPDATE)]
+		cmdList = [(OpkgComponent.CMD_UPDATE, None)]
 		for item in packages:
 			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
 		self.session.open(Opkg, cmdList=cmdList)

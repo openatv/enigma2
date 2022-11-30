@@ -1,16 +1,12 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
-from skin import parseColor, parseFont
-
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
+
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.Renderer.Picon import getPiconName
+from skin import parseColor, parseFont
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-
-from Components.Renderer.Picon import getPiconName
-from Components.config import config
 
 
 def refreshServiceList(configElement=None):
@@ -73,7 +69,7 @@ class ServiceList(GUIComponent):
 		self.progressBarWidth = 52
 		self.fieldMargins = 10
 		self.itemsDistances = 8
-		self.listMarginRight = 25 #scrollbar is fixed 20 + 5 Extra marge
+		self.listMarginRight = 25  # scrollbar is fixed 20 + 5 Extra marge
 		self.listMarginLeft = 5
 
 		self.onSelectionChanged = []
@@ -232,31 +228,34 @@ class ServiceList(GUIComponent):
 		if self.l.setCurrent(ref):
 			return None
 		from Components.ServiceEventTracker import InfoBarCount
-		if adjust and config.usage.multibouquet.value and InfoBarCount == 1 and ref and ref.type != 8192:
+		if adjust and InfoBarCount == 1 and ref and ref.type != 8192:
 			print("[servicelist] search for service in userbouquets")
+			isRadio = ref.toString().startswith("1:0:2:") or ref.toString().startswith("1:0:A:")
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setModeTv()
-				revert_tv_root = self.getRoot()
-				bouquets = self.serviceList.getBouquetList()
-				for bouquet in bouquets:
-					self.serviceList.enterUserbouquet(bouquet[1])
-					if self.l.setCurrent(ref):
-						config.servicelist.lastmode.save()
-						self.serviceList.saveChannel(ref)
-						return True
-				self.serviceList.enterUserbouquet(revert_tv_root)
-				self.serviceList.setModeRadio()
-				revert_radio_root = self.getRoot()
-				bouquets = self.serviceList.getBouquetList()
-				for bouquet in bouquets:
-					self.serviceList.enterUserbouquet(bouquet[1])
-					if self.l.setCurrent(ref):
-						config.servicelist.lastmode.save()
-						self.serviceList.saveChannel(ref)
-						return True
-				self.serviceList.enterUserbouquet(revert_radio_root)
+				if not isRadio:
+					self.serviceList.setModeTv()
+					revert_tv_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_tv_root)
+				else:
+					self.serviceList.setModeRadio()
+					revert_radio_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_radio_root)
 				print("[servicelist] service not found in any userbouquets")
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()
@@ -311,7 +310,7 @@ class ServiceList(GUIComponent):
 				index = indexup
 
 		self.instance.moveSelectionTo(index)
-		print("Moving to character " + str(char))
+		print("Moving to character %s" % str(char))
 
 	def moveToNextMarker(self):
 		idx = self.l.getNextMarkerPos()
@@ -343,7 +342,7 @@ class ServiceList(GUIComponent):
 		self.ServiceNumberFont = gFont(self.ServiceNumberFontName, self.ServiceNumberFontSize + config.usage.servicenum_fontsize.value)
 		self.ServiceNameFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicename_fontsize.value)
 		self.ServiceInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value)
-		if self.progressInfoFontSize == -1: # font in skin not defined
+		if self.progressInfoFontSize == -1:  # font in skin not defined
 			self.ProgressInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.progressinfo_fontsize.value)
 		else:
 			self.ProgressInfoFont = gFont(self.progressInfoFontName, self.progressInfoFontSize + config.usage.progressinfo_fontsize.value)

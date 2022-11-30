@@ -22,6 +22,8 @@ std::string GEOSTD8ToUTF8(const char *szIn, int len, int *pconvertedLen=0);
 std::string convertDVBUTF8(const unsigned char *data, int len, int table=-1, int tsidonid=1,int *pconvertedLen=0);
 std::string convertLatin1UTF8(const std::string &string);
 int isUTF8(const std::string &string);
+std::string repairUTF8(const char *szIn, int len);
+
 unsigned int truncateUTF8(std::string &s, unsigned int newsize);
 
 std::string removeDVBChars(const std::string &s);

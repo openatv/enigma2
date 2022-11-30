@@ -73,7 +73,7 @@ enum {
 
 const char *to_prio[] = { "none", "realtime", "best-effort", "idle", };
 
-void setIoPrio(int prio_class, int prio)
+void setIoPrio(int prio_class, int prio, int pid)
 {
 	if (prio_class < 0 || prio_class > 3)
 	{
@@ -85,15 +85,15 @@ void setIoPrio(int prio_class, int prio)
 		eDebug("[setIoPrio] level(%d) out of range (0..7)", prio);
 		return;
 	}
-	if (ioprio_set(IOPRIO_WHO_PROCESS, 0 /*pid 0 .. current process*/, prio | prio_class << IOPRIO_CLASS_SHIFT) == -1)
+	if (ioprio_set(IOPRIO_WHO_PROCESS, pid /*pid 0 .. current process*/, prio | prio_class << IOPRIO_CLASS_SHIFT) == -1)
 		eDebug("[setIoPrio] failed: %m");
 	else
 		eDebug("[setIoPrio] %s level %d ok", to_prio[prio_class], prio);
 }
 
-void printIoPrio()
+void printIoPrio(int pid)
 {
-	int pid = 0, ioprio = ioprio_get(IOPRIO_WHO_PROCESS, pid);
+	int ioprio = ioprio_get(IOPRIO_WHO_PROCESS, pid);
 
 	eDebug("[printIoPrio] pid=%d, %d", pid, ioprio);
 

@@ -180,9 +180,6 @@ class LCD:
 	def setFlipped(self, value):
 		eDBoxLCD.getInstance().setFlipped(value)
 
-	def setScreenShot(self, value):
-		eDBoxLCD.getInstance().setDump(value)
-
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
@@ -304,17 +301,12 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass  # DEBUG: Should this be doing something?
 
-			def setLCDScreenshot(configElement):
-				ilcd.setScreenShot(configElement.value)
-
 			config.lcd.modepip = ConfigSelection(choices={
 				"0": _("Off"),
 				"5": _("PiP"),
 				"7": _("PiP with OSD")
 			}, default="0")
 			config.lcd.modepip.addNotifier(setLCDModePiP)
-			config.lcd.screenshot = ConfigYesNo(default=False)
-			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 			config.lcd.modeminitv = ConfigSelection(choices={
 				"0": _("normal"),
 				"1": _("MiniTV"),

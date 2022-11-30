@@ -37,6 +37,8 @@ def fuzzyDate(date, inPast=False):
 def scaleNumber(number, style="Si", suffix="B", format="%.3f"):
 	units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"]
 	style = style.capitalize()
+	# if style == "Auto":
+	# 	style = config.usage.scaleUnits.value
 	if style not in ("Si", "Iec", "Jedec"):
 		print("[Conversions] Error: Invalid number unit style '%s' specified so 'Si' is assumed!" % style)
 	if style == "Si":
@@ -50,7 +52,9 @@ def scaleNumber(number, style="Si", suffix="B", format="%.3f"):
 	if negative:
 		result = -result
 	# print("[Conversions] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
+	# if suffix:
 	return "%s %s%s%s" % (format_string(format, result), units[scale], ("i" if style == "Iec" and scale else ""), suffix)
+	# return format_string("%d", result, grouping=True) if isinstance(
 
 
 class UnitMultipliers:
@@ -65,7 +69,6 @@ class UnitMultipliers:
 		("Z", 10 ** 21),
 		("Y", 10 ** 24)
 	)
-
 	SiFull = (
 		("y", 10 ** -24),
 		("z", 10 ** -21),
@@ -76,7 +79,6 @@ class UnitMultipliers:
 		("u", 10 ** -6),
 		("m", 10 ** -3),
 	) + Si
-
 	Iec = (
 		("", 1024 ** 0),
 		("Ki", 1024 ** 1),
@@ -88,7 +90,6 @@ class UnitMultipliers:
 		("Zi", 1024 ** 7),
 		("Yi", 1024 ** 8),
 	)
-
 	Jedec = (
 		("", 1024 ** 0),
 		("K", 1024 ** 1),
@@ -100,7 +101,6 @@ class UnitMultipliers:
 		("Z", 1024 ** 7),
 		("Y", 1024 ** 8),
 	)
-
 	Default = Si
 
 
@@ -127,3 +127,35 @@ class UnitScaler:
 
 	def __call__(self, number):
 		return self.scale(number)
+
+
+class NumberScaler:
+	def __init__(self):
+		self.styles = {
+			"Si": UnitMultipliers.Si,
+			"Sifull": UnitMultipliers.SiFull,
+			"Iec": UnitMultipliers.Iec,
+			"Jedec": UnitMultipliers.Jedec
+		}
+
+	def scale(self, number, style=None, suffix="B", firstScaleIndex=1, maxNumLen=4, decimals=0):
+		if style is None:
+			style = "Si"  # config.usage.scaleUnits.value
+		style = style.capitalize()
+		if style not in ("Si", "Sifull", "Iec", "Jedec"):
+			print("[Conversions] Error: Invalid number unit style '%s' specified so '%s' is assumed!" % (style, config.usage.scaleUnits.value))
+		scaleTable = self.styles.get(style, UnitMultipliers.Default)
+		firstScaleIndex = min(firstScaleIndex, len(scaleTable) - 1)
+		maxNumLen = max(maxNumLen, 3)
+		maxVal = 10 ** maxNumLen
+		negative = number < 0
+		if negative:
+			number = -number
+		index = firstScaleIndex
+		scaledNum = round(float(number) / scaleTable[index][1], decimals)
+		while scaledNum >= maxVal and index < len(scaleTable) - 1:
+			index += 1
+			scaledNum = round(float(number) / scaleTable[index][1], decimals)
+		if negative:
+			scaledNum = -scaledNum
+		return "%s %s%s" % ("%.*f" % (decimals, scaledNum), scaleTable[index][0], suffix)

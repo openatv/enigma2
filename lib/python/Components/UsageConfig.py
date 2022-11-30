@@ -1,11 +1,11 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import mkdir, remove, system as ossystem
-from os.path import exists, isfile, join as pathjoin, normpath
+from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder, eServiceEvent
 
 from keyids import KEYIDS
 from skin import parameters
@@ -13,7 +13,6 @@ from Components.About import about
 from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
-from Components.RcModel import rc_model
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_HDD, SCOPE_SYSETC, SCOPE_TIMESHIFT, defaultRecordingLocation, fileContains, isPluginInstalled, resolveFilename
@@ -23,22 +22,16 @@ DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 
 
 def InitUsageConfig():
-	AvailRemotes = glob("/usr/share/enigma2/rc_models/*")
+	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
-	DefaultRemote = rc_model.getRcFolder(GetDefault=True)
+	DefaultRemote = BoxInfo.getItem("rcname")
 
 	remoteSelectable = False
 	if AvailRemotes is not None:
 		for remote in AvailRemotes:
-			if isfile(remote + "/rc.png") and isfile(remote + "/rcpositions.xml") and isfile(remote + "/remote.html"):
-				pass
-			else:
-				AvailRemotes.remove(remote)
-		if len(AvailRemotes) > 1:
-			remoteSelectable = True
-			for remote in AvailRemotes:
-				toadd = (remote.split("/")[-1], remote.split("/")[-1])
-				RemoteChoices.append(toadd)
+			pngfile = "%s.png" % remote
+			if isfile(pngfile):
+				RemoteChoices.append(remote.split("/")[-1])
 
 	config.misc.SettingsVersion = ConfigFloat(default=[1, 1], limits=[(1, 10), (0, 99)])
 	config.misc.SettingsVersion.value = [1, 1]
@@ -105,6 +98,7 @@ def InitUsageConfig():
 		(20, _("Slow")),
 		(50, _("Very slow"))
 	])
+	config.usage.unhandledKeyTimeout = ConfigSelection(default=2, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 6)])
 	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.screen_saver = ConfigSelection(default="0", choices=[(0, _("Disabled"))] + [(x, _("%d Seconds") % x) for x in (5, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
 	config.usage.informationExtraSpacing = ConfigYesNo(False)
@@ -154,6 +148,16 @@ def InitUsageConfig():
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
+
+	def correctInvalidEPGDataChange(configElement):
+		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
+
+	config.usage.correct_invalid_epgdata = ConfigSelection(default="1", choices=[
+		("0", _("Disabled")),
+		("1", _("Enabled")),
+		("2", _("Debug"))
+	])
+	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default=False)
 
@@ -1616,7 +1620,7 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
 		choiceList = [("0", _("None"))]
-		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
+		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
 			choiceList.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choiceList.append((str(y + 1), _("All")))
@@ -1707,7 +1711,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
 	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
 	config.epgselection.infobar_prevtime = ConfigClock(default=time())
-	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes")) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
@@ -1983,6 +1987,7 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultValue, choices=[(defaultValue, defaultValue), (savedValue, savedValue)])
 			config.timeshift.path.value = savedValue
 	config.timeshift.path.save()
+	config.timeshift.skipreturntolive = ConfigYesNo(default=False)
 	config.timeshift.showInfoBar = ConfigYesNo(default=True)
 	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)
 	choiceList = [

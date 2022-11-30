@@ -873,6 +873,12 @@ class ConfigSelection(ConfigElement):
 	def toDisplayString(self, val):
 		return self.description[val]
 
+	def getChoices(self):
+		return self.choices.__list__()
+
+	def getDescriptions(self):
+		return self.description.__list__()
+
 	def setChoices(self, choices, default=None):
 		value = self.value
 		self.choices = choicesList(choices)
@@ -944,11 +950,21 @@ class ConfigSatlist(ConfigSatellite):
 # wraparound: Pressing RIGHT key at max value brings you to min value and vice versa
 # if set to True.
 #
+# units: This is a list or tuple with two strings that contain a "%d" formatting
+# element that will be used, via ngettext(), to display the numbers in a more
+# meaningful way.  The first string in the list/tuple is the singular string and
+# the second is the one for other numbers.
+#
+# NOTE: If the units argument is used please ensure that the text to be used is
+# 	already defined and translated elsewhere so that unit strings are properly
+# 	available for translation. If the strings are not used elsewhere in the
+# 	code then the translations can be added to the TranslationHelper.py file.
+#
 class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default=None, wraparound=False):
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False, units=None):
 		if default is None:
 			default = min
-		ConfigSelection.__init__(self, choices=[(x, str(x)) for x in range(min, max + 1, stepwidth)], default=default)
+		ConfigSelection.__init__(self, choices=[(x, (ngettext(units[0], units[1], x) % x if units and isinstance(units, (list, tuple)) else str(x))) for x in range(min, max + 1, stepwidth)], default=default)
 		self.wrapAround = wraparound
 
 	def handleKey(self, key, callback=None):

@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[7.0],[https://www.opena.tv])
+AC_INIT([enigma2],[7.1],[https://www.opena.tv])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -925,8 +925,6 @@ lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
 lib/python/Plugins/Extensions/FileCommander/Makefile
-lib/python/Plugins/Extensions/FileCommander/addons/Makefile
-lib/python/Plugins/Extensions/FileCommander/pic/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile

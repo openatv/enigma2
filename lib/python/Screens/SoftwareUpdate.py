@@ -152,6 +152,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 		self.feedState = self.FEED_UNKNOWN
 		self.updateFlag = True
 		self.packageCount = 0
+		self.feedOnline = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
 		self.timer.callback.append(self.checkTrafficLight)
@@ -219,6 +220,11 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 			callback()
 
 	def opkgCallback(self, event, parameter):
+		if self.updateFlag:
+			if event == OpkgComponent.EVENT_UPDATED and "openatv-all" in parameter:
+				self.feedOnline = True
+			if event == OpkgComponent.EVENT_ERROR and self.feedOnline:  # suppress error if openatv-all feed is online
+				event = OpkgComponent.EVENT_DONE
 		if event == OpkgComponent.EVENT_ERROR:
 			self.setStatus("error")
 			self.activity = -1
@@ -336,6 +342,8 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 		self["feedstatus_green"].hide()
 		self["feedmessage"].setText("")
 		self.activity = 0
+		self.feedOnline = False
+		self.updateFlag = True
 		self["activity"].setValue(self.activity)
 		self["activity"].show()
 		self.setStatus("update")

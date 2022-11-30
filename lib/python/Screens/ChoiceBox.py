@@ -106,7 +106,7 @@ class ChoiceBox(Screen):
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions", "MenuActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "NavigationActions", "MenuActions"],
 		{
 			"ok": self.go,
 			"1": self.keyNumberGlobal,
@@ -128,8 +128,8 @@ class ChoiceBox(Screen):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
-			"shiftUp": self.additionalMoveUp,
-			"shiftDown": self.additionalMoveDown,
+			"first": self.additionalMoveUp,
+			"last": self.additionalMoveDown,
 			"menu": self.setDefaultChoiceList,
 			"back": lambda: 0,  # drop through to self["cancelaction"]
 		}, prio=-2)

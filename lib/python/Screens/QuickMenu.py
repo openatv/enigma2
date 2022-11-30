@@ -1,6 +1,4 @@
-
-
-from re import search
+from re import search, sub
 from os.path import exists, realpath, isdir
 from skin import getSkinFactor
 from time import sleep
@@ -8,6 +6,7 @@ from time import sleep
 from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation, BT_SCALE
 
 from Components.ActionMap import ActionMap
+from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
@@ -335,7 +334,6 @@ class QuickMenu(Screen, ProtectedScreen):
 #####################################################################
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
-
 
 	def okList(self):
 		item = self["list"].getCurrent()
@@ -690,31 +688,36 @@ class QuickMenuDevices(Screen):
 	def updateList2(self):
 		self.activityTimer.stop()
 		self.devicelist = []
-		list2 = []
-		f = open('/proc/partitions', 'r')
-		for line in f.readlines():
-			parts = line.strip().split()
-			if not parts:
-				continue
-			device = parts[3]
-			if not search('sd[a-z][1-9]', device):
-				continue
-			if device in list2:
-				continue
-			self.buildMy_rec(device)
-			list2.append(device)
 
-		f.close()
-		self['devicelist'].list = self.devicelist
-		if len(self.devicelist) == 0:
-			self['lab1'].setText(_("No Devices Found !!"))
-		else:
-			self['lab1'].hide()
+		def swapCallback(data, retVal, extraArgs):
+			list2 = []
+			swapdevices = data.replace('\n', '').split('/')
+			f = open('/proc/partitions', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if not parts:
+					continue
+				device = parts[3]
+				if not search(r'^sd[a-z][1-9][\d]*$', device):
+					continue
+				if device in list2:
+					continue
+				self.buildMy_rec(device, swapdevices)
+				list2.append(device)
 
-	def buildMy_rec(self, device):
-		device2 = device[:-1]  # strip device number
+			f.close()
+			self['devicelist'].list = self.devicelist
+			if len(self.devicelist) == 0:
+				self['lab1'].setText(_("No Devices Found !!"))
+			else:
+				self['lab1'].hide()
+
+		self.Console = Console()
+		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}'", swapCallback)
+
+	def buildMy_rec(self, device, swapdevices):
+		device2 = sub(r'[\d]', '', device)  # strip device number
 		devicetype = realpath('/sys/block/' + device2 + '/device')
-		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		model = open('/sys/block/' + device2 + '/device/model').read()
@@ -725,15 +728,6 @@ class QuickMenuDevices(Screen):
 			mypixmap = '/usr/share/enigma2/icons/dev_hdd.png'
 		name = name + model
 
-		from Components.Console import Console
-		self.Console = Console()
-		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
-		sleep(0.5)
-		f = open('/tmp/devices.tmp', 'r')
-		swapdevices = f.read()
-		f.close()
-		swapdevices = swapdevices.replace('\n', '')
-		swapdevices = swapdevices.split('/')
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			if line.find(device) != -1:
