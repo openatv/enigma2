@@ -385,6 +385,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.displayStatusTimer = eTimer()  # Initialize status display timer.
 		self.displayStatusTimer.callback.append(self.displayStatusTimeout)
 		self.multiSelect = None
+		self.enabledmenuActionMaps = []
 		global running
 		running = True
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -414,6 +415,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		currentDirectory = self.sourceColumn.getCurrentDirectory()
 		srcPath = self.sourceColumn.getPath()
 		srcName = self.sourceColumn.getName()
+		self.enabledmenuActionMaps = []
 		self["multiSelectAction"].setEnabled(currentDirectory)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
 			self["key_red"].setText(_("Delete"))
@@ -426,6 +428,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
 			self["directoryFileNumberActions"].setEnabled(True)
+			self.enabledmenuActionMaps.append("directoryFileNumberActions")
 		else:
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
@@ -437,8 +440,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		else:
 			self["key_blue"].setText("")
 			self["renameAction"].setEnabled(False)
-		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value if currentDirectory and srcPath else False)
-		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False)
+		notStorageNumberAction = True if currentDirectory and srcPath else False
+		fileOnlyNumberActions = True if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False
+		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
+		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
+		if notStorageNumberAction:
+			self.enabledmenuActionMaps.append("notStorageNumberAction")
+		if fileOnlyNumberActions:
+			self.enabledmenuActionMaps.append("fileOnlyNumberActions")
 
 	def keyNumberGlobal(self, digit):
 		self.quickSelectTimer.stop()
@@ -931,12 +940,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		buttons = tuple(digits)  # + ("red", "green", "yellow", "blue")
 		# Map the listed button actions to their help texts and build a list of the contexts used by the selected buttons.
 		actionMaps = [self["alwaysNumberActions"]]
-		if self["notStorageNumberAction"].getEnabled():
-			actionMaps.append(self["notStorageNumberAction"])
-		if self["directoryFileNumberActions"].getEnabled():
-			actionMaps.append(self["directoryFileNumberActions"])
-		if self["fileOnlyNumberActions"].getEnabled():
-			actionMaps.append(self["fileOnlyNumberActions"])
+		for enabledActionmaps in self.enabledmenuActionMaps:
+			actionMaps.append(self[enabledActionmaps])
 		actions = {}
 		haveContext = set()
 		haveContext.add("MenuActions")
@@ -1339,6 +1344,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						(_("Run script in background"), "YES_BG")
 					]
 					parameter = self.targetColumn.getPath() or ""
+					msg = ""
 					if parameter:
 						choiceList.append((_("Run script with optional parameter"), "PAR"))
 						choiceList.append((_("Run script with optional parameter in background"), "PAR_BG"))
@@ -2156,7 +2162,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
 		Screen.__init__(self, session, mandatoryWidgets=["infolabels"])
 		HelpableScreen.__init__(self)
-		self.skinName = ["FileCommanderImageViewer", "ImageViewer"]
+		self.skinName = ["FileCommanderImageViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Image Viewer"))
 		self.startIndex = index
@@ -2330,7 +2336,11 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 	def __init__(self, session, path, target):
 		def displayDirectorySize(retVal):
 			if directorySizeIndex:
-				treeSize = int(self.textBuffer.split("\t")[0]) if self.textBuffer else None
+				treeSize = None
+				try:
+					treeSize = int(self.textBuffer.split("\n")[-1].split("\t")[0]) if self.textBuffer else None
+				except:
+					pass
 				if treeSize:
 					info[directorySizeIndex] = "%s:|%s   (%s)   (%s)" % (_("Tree size"), "{:n}".format(treeSize), NumberScaler().scale(treeSize, style="Si", maxNumLen=3, decimals=3), NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3))
 				else:
@@ -2542,7 +2552,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	def __init__(self, session, path):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		self.skinName = ["FileCommanderTextEditor", "vEditorScreen"]
+		self.skinName = ["FileCommanderTextEditor"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Text Editor"))
 		self.path = normpath(path)
@@ -2720,7 +2730,7 @@ class FileTransferTask(Task):
 		if exists(srcPath) and exists(dstPath):
 			self.srcPath = srcPath
 			self.dstPath = dstPath
-			target = pathjoin(dstPath, basename(normpath(srcPath)), "") if isdir(srcPath) else pathjoin(dstPath, basename(normpath(srcPath)))
+			target = pathjoin(dstPath, "") if isdir(srcPath) else pathjoin(dstPath, basename(normpath(srcPath)))
 			if jobType == self.JOB_COPY:
 				cmdLine = ("cp", "-pr", srcPath, target)
 			elif jobType == self.JOB_MOVE:
@@ -2741,8 +2751,8 @@ class FileTransferTask(Task):
 				self.processStderr = taskProcessStderr
 				# print("[Directories] FileTransferTask DEBUG: Command line '/bin/busybox %s'." % " ".join(cmdLine))
 				self.setCommandline("/bin/busybox", cmdLine)
-				# self.setNice(10)
-				# self.setIONice(8)
+				# self.nice = 0
+				self.ionice = 8
 				self.progressTimer = eTimer()
 				self.progressTimer.callback.append(self.progressUpdate)
 
