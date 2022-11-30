@@ -2157,7 +2157,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
 		Screen.__init__(self, session, mandatoryWidgets=["infolabels"])
 		HelpableScreen.__init__(self)
-		self.skinName = ["FileCommanderImageViewer", "ImageViewer"]
+		self.skinName = ["FileCommanderImageViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Image Viewer"))
 		self.startIndex = index
@@ -2547,7 +2547,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	def __init__(self, session, path):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		self.skinName = ["FileCommanderTextEditor", "vEditorScreen"]
+		self.skinName = ["FileCommanderTextEditor"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Text Editor"))
 		self.path = normpath(path)
