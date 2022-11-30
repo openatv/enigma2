@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-27 17:29+0000\n"
-"PO-Revision-Date: 2022-11-29 12:36+0000\n"
+"PO-Revision-Date: 2022-11-30 06:01+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -2866,7 +2866,7 @@ msgid "Automatically put the TV in standby whenever the receiver goes into stand
 msgstr "Metti automaticamente la TV in standby ogni volta che il ricevitore va in standby o spegnimento."
 
 msgid "Automatically start time shift after"
-msgstr "Avviare automaticamente time shift dopo"
+msgstr "Avvio automaticamente Timeshift dopo"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Attivare automaticamente i sottotitoli esterni"
@@ -14966,7 +14966,7 @@ msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select '
 msgstr "Seleziona 'A' o 'B' se il tuo sistema aereo lo richiede, altrimenti seleziona 'nessuno'. Se non sei sicuro, seleziona 'nessuno'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Seleziona 'No' per fare in modo che il Timeshift utilizzi un singolo file buffer. Utilizza \"Controllo Timeshift per file meno recenti [in minuti]\" e \"Controllo time shift per spazio libero?\" per controllare la dimensione del file buffer."
+msgstr "Seleziona 'No' per fare in modo che il Timeshift utilizzi un singolo file buffer. Utilizza \"Controllo Timeshift per file meno recenti [in minuti]\" e \"Controllo Timeshift per spazio libero?\" per controllare la dimensione del file buffer."
 
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Seleziona 'No' per scrivere solo un messaggio di registro nel file di registro di debug."
@@ -15468,9 +15468,11 @@ msgstr "Seleziona ritardo prima dell'attivazione del timer."
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Seleziona funzione desiderata e fare clic su 'OK' per assegnarla. Usa 'CH+/-' per passare da un elenco all'altro. Seleziona funzione assegnata e fare clic su 'OK' per rimuoverla. Utilizza 'SUCC/PREC' per modificare l'ordine delle funzioni assegnate."
 
-#, python-format
-msgid "Select the directory sort order for the %s column:"
-msgstr "Seleziona ordinamento della cartella per la colonna %s:"
+msgid "Select the directory sort order for the left column:"
+msgstr "Seleziona ordinamento per cartella per la colonna di sinistra:"
+
+msgid "Select the directory sort order for the right column:"
+msgstr "Seleziona ordinamento per cartella per la colonna di destra:"
 
 msgid "Select the display design for menus."
 msgstr "Seleziona design del display per i menu."
@@ -17623,7 +17625,7 @@ msgid "Start mode"
 msgstr "Modalità di avvio"
 
 msgid "Start offline decode"
-msgstr "Avviare decodifica offline"
+msgstr "Avvio decodifica offline"
 
 msgid "Start recording current event"
 msgstr "Inizia a registrare l'evento in corso"
@@ -17632,16 +17634,16 @@ msgid "Start recording?"
 msgstr "Avviare registrazione?"
 
 msgid "Start teletext"
-msgstr "Avviare il televideo"
+msgstr "Avvio il televideo"
 
 msgid "Start test"
-msgstr "Avviare il test"
+msgstr "Avvio il test"
 
 msgid "Start time"
 msgstr "Orario di avvio"
 
 msgid "Start time shift"
-msgstr "Avviare Timeshift"
+msgstr "Avvio Timeshift"
 
 msgid "Start/stop slide show"
 msgstr "Avvia / arresta la presentazione"
@@ -21559,7 +21561,7 @@ msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr "Il Timeshift sembra essere attivo: interromperlo?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
-msgstr "Sembri essere in time shift, il servizio si interromperà brevemente quando il Timeshift si interromperà."
+msgstr "Sembri essere in Timeshift, il servizio si interromperà brevemente quando il Timeshift si interromperà."
 
 msgid "You should flash a new image!"
 msgstr "Dovresti flashare una nuova immagine!"
@@ -23264,6 +23266,10 @@ msgstr "il tuo %s %s potrebbe essere inutilizzabile ora. Consulta il manuale per
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Select the directory sort order for the %s column:"
+#~ msgstr "Seleziona ordinamento della cartella per la colonna %s:"
 
 #, python-format
 #~ msgid ""
