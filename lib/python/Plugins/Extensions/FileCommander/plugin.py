@@ -540,10 +540,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				processCopy("CURRENT")
 
 		def processCopy(answer):
-			def processCallback(answer):
-				if answer:
+			def processCallback(processanswer):
+				if processanswer:
 					JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Copy job queued."))
+					if answer == "MULTI":
+						self.sourceColumn.clearSelection()
 
 			if answer:
 				if answer == "ALL":
@@ -642,6 +644,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					srcPaths = [path]
 				JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
 				self.displayStatus(_("Delete job queued."))
+				if answer == "MULTI":
+					self.sourceColumn.clearSelection()
 
 		def successCallback(job):
 			print("[FileCommander] Job '%s' finished." % (job.name))
@@ -991,10 +995,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				processMove("CURRENT")
 
 		def processMove(answer):
-			def processCallback(answer):
-				if answer:
+			def processCallback(processanswer):
+				if processanswer:
 					JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Move job queued."))
+					if answer == "MULTI":
+						self.sourceColumn.clearSelection()
 
 			if answer:
 				if answer == "ALL":
