@@ -1369,6 +1369,7 @@ class PowerTimerEdit(Setup):
 class RecordTimerEdit(Setup):
 	def __init__(self, session, timer):
 		self.timer = timer
+		self.initEndTime = True
 		self.createConfig()
 		Setup.__init__(self, session, "RecordTimer")
 
@@ -1478,6 +1479,12 @@ class RecordTimerEdit(Setup):
 		current = self["config"].getCurrent()[1]
 		if current == self.timerLocation and self.timerType.value != "zap":
 			self.getSpace()
+		if current == self.timerType and self.timerType.value == "zap":
+			if self.initEndTime:
+				self.initEndTime = False
+				self.timer.hasEndTime = config.recording.zap_has_endtime.value
+				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
+				Setup.createSetup(self)
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
@@ -1556,12 +1563,9 @@ class RecordTimerEdit(Setup):
 		self.timer.justplay = self.timerType.value == "zap"
 		self.timer.always_zap = self.timerType.value == "zap+record"
 		self.timer.rename_repeat = 1 if self.timerRename.value else 0
-		# if self.timerType.value == "zap":
-		# 	if not self.timerHasEndTime.value:
-		# 		# self.timerEndTime.value = self.timerStartTime.value
-		# 		self.timerAfterEvent.value = "nothing"
 		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
 			self.timerAfterEvent.value = "nothing"
+			self.timerMarginAfter.value = 0
 		if self.timerEndTime.value == self.timerStartTime.value and self.timerAfterEvent.value != "nothing":
 			self.timerAfterEvent.value = "nothing"
 			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30)
@@ -1602,6 +1606,8 @@ class RecordTimerEdit(Setup):
 		marginBefore = self.timerMarginBefore.value * 60
 		eventBegin = self.getTimeStamp(startDate, self.timerStartTime.value)
 		eventEnd = self.getTimeStamp(startDate, self.timerEndTime.value)
+		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
+			eventEnd = eventBegin + 1
 		marginAfter = self.timerMarginAfter.value * 60
 		if eventEnd < eventBegin:  # If eventEnd is less than eventBegin then add 1 day to the eventEnd time.
 			eventEnd += 86400
@@ -1674,8 +1680,10 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 
 	def keySave(self, result=None):
 		if self.timer.justplay:
-			self.timer.begin += config.recording.margin_before.value * 60
-			self.timer.end = self.timer.begin + 1
+			self.timer.begin += config.recording.zap_margin_before.value * 60
+			self.timer.hasEndTime = config.recording.zap_has_endtime.value
+			if not self.timer.hasEndTime:
+				self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
 		self.session.nav.RecordTimer.saveTimers()
 
