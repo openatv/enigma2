@@ -2344,7 +2344,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 			if directorySizeIndex:
 				treeSize = None
 				try:
-					treeSize = int(self.textBuffer.split("\n")[-1].split("\t")[0]) if self.textBuffer else None
+					treeSize = int([line for line in self.textBuffer.split("\n") if line][-1].split("\t")[0]) if self.textBuffer else None
 				except:
 					pass
 				if treeSize:
