@@ -1482,8 +1482,9 @@ class RecordTimerEdit(Setup):
 		if current == self.timerType and self.timerType.value == "zap":
 			if self.initEndTime:
 				self.initEndTime = False
-				self.timer.hasEndTime = config.recording.zap_has_endtime.value
 				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
+				self.timerMarginBefore.value = config.recording.zap_margin_before.value // 60
+				self.timerMarginAfter.value = config.recording.zap_margin_after.value // 60
 				Setup.createSetup(self)
 
 	def selectionChanged(self):
