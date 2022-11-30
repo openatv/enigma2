@@ -385,6 +385,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.displayStatusTimer = eTimer()  # Initialize status display timer.
 		self.displayStatusTimer.callback.append(self.displayStatusTimeout)
 		self.multiSelect = None
+		self.enabledmenuActionMaps = []
 		global running
 		running = True
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -414,6 +415,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		currentDirectory = self.sourceColumn.getCurrentDirectory()
 		srcPath = self.sourceColumn.getPath()
 		srcName = self.sourceColumn.getName()
+		self.enabledmenuActionMaps = []
 		self["multiSelectAction"].setEnabled(currentDirectory)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
 			self["key_red"].setText(_("Delete"))
@@ -426,6 +428,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
 			self["directoryFileNumberActions"].setEnabled(True)
+			self.enabledmenuActionMaps.append("directoryFileNumberActions")
 		else:
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
@@ -437,8 +440,14 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		else:
 			self["key_blue"].setText("")
 			self["renameAction"].setEnabled(False)
-		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value if currentDirectory and srcPath else False)
-		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False)
+		notStorageNumberAction = True if currentDirectory and srcPath else False
+		fileOnlyNumberActions = True if currentDirectory and srcPath and not self.sourceColumn.getIsDir() else False
+		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
+		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
+		if notStorageNumberAction:
+			self.enabledmenuActionMaps.append("notStorageNumberAction")
+		if fileOnlyNumberActions:
+			self.enabledmenuActionMaps.append("fileOnlyNumberActions")
 
 	def keyNumberGlobal(self, digit):
 		self.quickSelectTimer.stop()
@@ -931,12 +940,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		buttons = tuple(digits)  # + ("red", "green", "yellow", "blue")
 		# Map the listed button actions to their help texts and build a list of the contexts used by the selected buttons.
 		actionMaps = [self["alwaysNumberActions"]]
-		if self["notStorageNumberAction"].getEnabled():
-			actionMaps.append(self["notStorageNumberAction"])
-		if self["directoryFileNumberActions"].getEnabled():
-			actionMaps.append(self["directoryFileNumberActions"])
-		if self["fileOnlyNumberActions"].getEnabled():
-			actionMaps.append(self["fileOnlyNumberActions"])
+		for enabledActionmaps in self.enabledmenuActionMaps:
+			actionMaps.append(self[enabledActionmaps])
 		actions = {}
 		haveContext = set()
 		haveContext.add("MenuActions")
