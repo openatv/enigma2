@@ -540,8 +540,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				processCopy("CURRENT")
 
 		def processCopy(answer):
-			def processCallback(processanswer):
-				if processanswer:
+			def processCallback(result):
+				if result:
 					JobManager.AddJob(FileCopyTask(srcPaths, directory, _("File Commander Copy")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Copy job queued."))
 					if answer == "MULTI":
@@ -995,8 +995,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				processMove("CURRENT")
 
 		def processMove(answer):
-			def processCallback(processanswer):
-				if processanswer:
+			def processCallback(result):
+				if result:
 					JobManager.AddJob(FileMoveTask(srcPaths, directory, _("File Commander Move")), onSuccess=successCallback, onFail=failCallback)
 					self.displayStatus(_("Move job queued."))
 					if answer == "MULTI":
@@ -2344,7 +2344,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 			if directorySizeIndex:
 				treeSize = None
 				try:
-					treeSize = int([line for line in self.textBuffer.split("\n") if line][-1].split("\t")[0]) if self.textBuffer else None
+					treeSize = int([x for x in self.textBuffer.split("\n") if x][-1].split("\t")[0]) if self.textBuffer else None
 				except:
 					pass
 				if treeSize:
