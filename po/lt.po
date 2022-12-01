@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -922,6 +922,20 @@ msgstr[2] "%d Minučių"
 msgid "%d Minutes"
 msgstr "%d minutės"
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -943,6 +957,20 @@ msgstr[2] "%d sekundžių"
 #, python-format
 msgid "%d Seconds"
 msgstr "%d sekundės"
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2105,7 +2133,7 @@ msgid "Add"
 msgstr "Pridėti"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6070,7 +6098,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8013,13 +8041,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "Failų valdytojo nustatymai"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "Failų valdytojo nustatymai"
 
 msgid "File System Check"
 msgstr "Failų sistemos tikrinimas"
@@ -10528,8 +10559,14 @@ msgstr "Maračių"
 msgid "Margin after recording"
 msgstr "Intarpas po įrašymo (min.)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Intarpas prieš įrašymą (min.)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
@@ -14042,7 +14079,7 @@ msgid "Remove"
 msgstr "Pašalinti"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16584,9 +16621,6 @@ msgstr "Rodyti SD kaip"
 msgid "Show Single EPG"
 msgstr "Rodyti vieno kanalo EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Rodyti laikmačių sąrašą"
 
@@ -16926,6 +16960,9 @@ msgstr "Rodyti subtitrų pasirinkimą"
 
 msgid "Show system information"
 msgstr "Rodyti sistemos informaciją"
+
+msgid "Show task list"
+msgstr "Rodyti užduočių sąrašą"
 
 msgid "Show task messages"
 msgstr ""
@@ -20212,6 +20249,9 @@ msgstr "Naudokite ViaSat EPG informaciją, jei ji yra prieinama."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Naudokite Virgin EPG informaciją, kai ji yra prieinama."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
 
@@ -21114,6 +21154,9 @@ msgstr "Kai įjungta, Enigma2 įkels nesusietus paketus. Tai reiškia, kad paket
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Kai įjungta, SDT, BAT duomenys bus įtraukti į http srautus."
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Įjungus, iššokantis pranešimas bus rodomas, kai filmas bus baigtas ir bus pradėtas kitas."
 
@@ -21239,6 +21282,12 @@ msgstr "Kai ne nulis, įrašymas prasidės anksčiau nei nurodytas EPG pradžios
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kai ne nulis, įrašymas vėliau nei EPG nurodytas pabaigos laikas."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Kai imtuvas pažadinamas iš budėjimo režimo, jis duos komandą televizoriui perjungti HDMI įvestį, prie kurios prijungtas imtuvas."
@@ -23939,9 +23988,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Rodyti pranešimą, jei fono scenarijus baigiasi sėkmingai. Turi 'stout', tai rodoma kaip papildoma informacija."
-
-#~ msgid "Show task list"
-#~ msgstr "Rodyti užduočių sąrašą"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Rodyti nežinomą plėtinį kaip tekstą"

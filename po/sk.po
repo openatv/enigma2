@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-11-27 17:29+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -920,6 +920,20 @@ msgid "%d Minutes"
 msgstr "%d minúty"
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "šírka %d pixla"
@@ -940,6 +954,20 @@ msgstr[2] "%d sekúnd"
 #, python-format
 msgid "%d Seconds"
 msgstr "%d sekúnd"
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2100,7 +2128,7 @@ msgid "Add"
 msgstr "Pridať"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6056,7 +6084,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -7997,13 +8025,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "Nastavenia správcu súborov"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "Nastavenia správcu súborov"
 
 msgid "File System Check"
 msgstr "Kontrola súborového systému"
@@ -10511,8 +10542,14 @@ msgstr "Maráthčina"
 msgid "Margin after recording"
 msgstr "Rezerva po nahrávaní (minúty)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Rezerva pred nahrávaním (minúty)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Označiť stanicu ako dedikovanú pre 3D"
@@ -14022,7 +14059,7 @@ msgid "Remove"
 msgstr "Odstrániť"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16564,9 +16601,6 @@ msgstr "Zobraziť SD ako"
 msgid "Show Single EPG"
 msgstr "Zobraziť Single EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Zobraziť zoznam časovačov"
 
@@ -16906,6 +16940,9 @@ msgstr "Zobraziť výber titulkov"
 
 msgid "Show system information"
 msgstr "Zobraziť systémové informácie"
+
+msgid "Show task list"
+msgstr "Zobraziť zoznam úloh"
 
 msgid "Show task messages"
 msgstr ""
@@ -20191,6 +20228,9 @@ msgstr "Používať ViaSat EPG informácie, ak sú dostupné."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Používať Virgin EPG informácie, ak sú dostupné."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Použiť bránu"
 
@@ -21067,6 +21107,9 @@ msgstr "Ak je povolené, systém Enigma2 načíta aj neprepojené prehľady kan�
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Ak je aktívne, budú údaje SDT, BAT zahrnuté do http streamov."
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Ak je povolené, zobrazí sa po skončení prehrávania správa, pred začiatkom nového prehrávania."
 
@@ -21192,6 +21235,12 @@ msgstr "Pri nenulovej hodnote začne nahrávanie skôr, ako je čas začiatku uv
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Pri nenulovej hodnote skončí nahrávanie neskôr, ako je čas konca uvedený v EPG."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Keď sa prijímač prebudí z pohotovostného režimu, odošle TV príkaz na prepnutie na vstup HDMI, ku ktorému je pripojený."
@@ -23892,9 +23941,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Zobraziť správu, keď sa skript na pozadí úspešne dokončí. Ak je 'stout', tak sa zobrazí ako doplnková informácia."
-
-#~ msgid "Show task list"
-#~ msgstr "Zobraziť zoznam úloh"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Zobrazovať neznámu koncovku ako text"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -940,6 +940,18 @@ msgstr[1] "%d Perc"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -959,6 +971,18 @@ msgstr[1] "%d másodperc"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2118,7 +2142,7 @@ msgid "Add"
 msgstr "Hozzáadás"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6096,7 +6120,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8034,13 +8058,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "File Commander beállításai"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "File Commander beállításai"
 
 msgid "File System Check"
 msgstr "Fájlrendszer ellenőrzése"
@@ -10594,8 +10621,14 @@ msgstr "MaraM9"
 msgid "Margin after recording"
 msgstr "Felvétel utáni ráhagyás (perc)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Felvétel előtti ráhagyás (perc)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "A csatorna jelölése mint dedikált 3D csatorna"
@@ -14155,7 +14188,7 @@ msgid "Remove"
 msgstr "Eltávolítás"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16720,9 +16753,6 @@ msgstr "Megjelenítés SD-ként"
 msgid "Show Single EPG"
 msgstr "EPG műsorújság megjelenítése"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Időzitőlista megjelenítése"
 
@@ -17066,6 +17096,9 @@ msgstr "Felirat kiválasztás mutatása"
 
 msgid "Show system information"
 msgstr ""
+
+msgid "Show task list"
+msgstr "Feladatlista megjelenítése"
 
 msgid "Show task messages"
 msgstr ""
@@ -20385,6 +20418,9 @@ msgstr "ViaSat EPG információk beolvasása a jelforrásból."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Virgin EPG információk beolvasása a jelforrásból."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Átjáró használata"
 
@@ -21271,6 +21307,9 @@ msgstr "Ha engedélyezi, a leválasztott csatornacsomagok is betöltődnek. Ez a
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Egy felugró üzenet jelenjen meg a képernyőn amikor egy fájl a végéhez ért és a következő elindul."
 
@@ -21396,6 +21435,12 @@ msgstr "Ennyivel korábban kezdje a felvételt, mint amit az EPG műsorújság k
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Ennyivel később fejezze be a felvételt, mint amit az EPG műsorújság befejezési időnek jelez ki."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr ""
@@ -24092,9 +24137,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Üzenet megjelenítése, ha a háttér szkript sikeresen befejeződik. Van 'stout', akkor ez kiegészítő információként jelenik meg."
-
-#~ msgid "Show task list"
-#~ msgstr "Feladatlista megjelenítése"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Ismeretlen kiterjesztés megjelenítése szövegként"

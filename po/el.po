@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
-"PO-Revision-Date: 2022-11-30 06:01+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"PO-Revision-Date: 2022-11-30 23:34+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -915,6 +915,18 @@ msgid "%d Minutes"
 msgstr "%d λεπτά"
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "%d πίξελ σε πλάτος"
@@ -933,6 +945,18 @@ msgstr[1] "%d δευτερόλεπτα"
 #, python-format
 msgid "%d Seconds"
 msgstr "%d δευτερόλεπτα"
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1063,7 +1087,7 @@ msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
 msgid "%d.%B %Y"
-msgstr "%e %B %Y"
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1465,7 +1489,7 @@ msgid "16:10 Letterbox"
 msgstr "16:10 μπάρες πάνω - κάτω"
 
 msgid "16:10 PanScan"
-msgstr "16:10 Πανοραμική&Σάρωση"
+msgstr "16:10 Παν-σάρωση"
 
 msgid "16:9"
 msgstr "16:9"
@@ -1666,7 +1690,7 @@ msgid "4:3 Letterbox"
 msgstr "4:3 μπάρες πάνω - κάτω"
 
 msgid "4:3 PanScan"
-msgstr "4:3 Πανοραμική&Σάρωση"
+msgstr "4:3 Παν-σάρωση"
 
 msgid "4K"
 msgstr "4K"
@@ -1929,16 +1953,16 @@ msgid "A/V aspect ratio is '%s'."
 msgstr "Ο λόγος πλευρών A/V είναι '%s'."
 
 msgid "AAC downmix"
-msgstr "Αποκωδικοποίηση & μίξη AAC"
+msgstr "Αποκωδικοποίηση και μίξη AAC"
 
 msgid "AAC plus downmix"
-msgstr "Αποκωδικοποίηση & μίξη AAC"
+msgstr "Αποκωδικοποίηση και μίξη AAC"
 
 msgid "AAC transcoding"
 msgstr "Διακωδικοποίηση AAC"
 
 msgid "AC3 downmix"
-msgstr "Αποκωδικοποίηση & μίξη AC3"
+msgstr "Αποκωδικοποίηση και μίξη AC3"
 
 msgid "AC3 plus transcoding"
 msgstr "Διακωδικοποίηση AC3 Plus"
@@ -2073,7 +2097,7 @@ msgid "Add"
 msgstr "Προσθήκη"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr "Προσθήκη '%s' στους σελιδοδείκτες"
 
 msgid "Add AutoTimer"
@@ -2542,7 +2566,7 @@ msgid "Aragonese"
 msgstr "Αραγονικά"
 
 msgid "Are you ready to run the script ?"
-msgstr "Είστε έτοιμοι να εκτελέσετε το script;"
+msgstr "Είστε έτοιμοι να εκτελέσετε το σενάριο ενεργειών;"
 
 msgid "Are you sure to cancel all changes?"
 msgstr "Θέλετε σίγουρα να ακυρωθούν όλες οι αλλαγές;"
@@ -2572,7 +2596,9 @@ msgstr "Θέλετε σίγουρα να ενεργοποιηθεί αυτή η 
 msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
-msgstr "Θέλετε σίγουρα να διαγράψετε το παρακάτω αντίγραφο ασφαλείας:\n"
+msgstr ""
+"Θέλετε σίγουρα να διαγράψετε\n"
+"το παρακάτω αντίγραφο ασφαλείας:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Θέλετε σίγουρα να διαγραφούν όλες οι επιλεγμένες καταγραφές:\n"
@@ -2605,9 +2631,10 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Θέλετε σίγουρα να επαναφέρετε το παρακάτω αντίγραφο ασφαλείας:\n"
+"Θέλετε σίγουρα να επαναφέρετε\n"
+"το παρακάτω αντίγραφο ασφαλείας:\n"
 "%s\n"
-"Ο δέκτης θα επανεκκινηθεί μετά την επαναφορά!"
+"Θα γίνει επανεκκίνηση του δέκτη μετά την επαναφορά!"
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
@@ -3577,7 +3604,7 @@ msgid "CPU brand"
 msgstr "Μάρκα CPU"
 
 msgid "CPU priority for scripts"
-msgstr "Προτεραιότητα CPU για scripts"
+msgstr "Προτεραιότητα CPU για δέσμες ενεργειών"
 
 msgid "CPU rating"
 msgstr "Βαθμολογία CPU"
@@ -5304,10 +5331,10 @@ msgstr ""
 "Να γίνει ενημέρωση τώρα;"
 
 msgid "DTS HD downmix"
-msgstr "Αποκωδικοποίηση & μίξη DTS HD"
+msgstr "Αποκωδικοποίηση και μίξη DTS HD"
 
 msgid "DTS downmix"
-msgstr "Αποκωδικοποίηση & μίξη DTS"
+msgstr "Αποκωδικοποίηση και μίξη DTS"
 
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
@@ -5585,13 +5612,13 @@ msgid "Default 'Timer type' *"
 msgstr "Προεπιλεγμένος 'Τύπος χρονοδιακόπτη' *"
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Προεπιλεγμένη προτεραιότητα CPU (nice) για εκτελεσμένα scripts. Αυτό μπορεί να μειώσει τον φόρτο συστήματος ώστε τα scripts να μην απασχολούν τους υπόλοιπους πόρους του. (υψηλότερες τιμές = χαμηλότερη προτεραιότητα)"
+msgstr "Προεπιλεγμένη προτεραιότητα CPU (nice) για εκτελεσμένα σενάρια ενεργειών. Αυτό μπορεί να μειώσει τον φόρτο συστήματος ώστε τα σενάρια να μην απασχολούν τους υπόλοιπους πόρους του. (υψηλότερες τιμές = χαμηλότερη προτεραιότητα)"
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr "Προεπιλεγμένη ολίσθηση Dolby Digital / Dolby AC-3"
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr "Προεπιλεγμένη προτεραιότητα I/O (ionice) για εκτελεσμένα scripts. Αυτό μπορεί να μειώσει τον φόρτο συστήματος ώστε τα scripts να μην απασχολούν τους υπόλοιπους πόρους του. (υψηλότερες τιμές = χαμηλότερη προτεραιότητα)"
+msgstr "Προεπιλεγμένη προτεραιότητα I/O (ionice) για εκτελεσμένα σενάρια ενεργειών. Αυτό μπορεί να μειώσει τον φόρτο συστήματος ώστε τα σενάρια να μην απασχολούν τους υπόλοιπους πόρους του. (υψηλότερες τιμές = χαμηλότερη προτεραιότητα)"
 
 msgid "Default Modes Selected."
 msgstr "Έχουν επιλεγεί οι Προεπιλεγμένες Λειτουργίες."
@@ -6026,7 +6053,7 @@ msgstr "Φάκελος/αρχείο %d από %d"
 msgid "Directory/File Status Actions"
 msgstr "Ενέργειες κατάστασης φακέλου/αρχείου"
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr "Πληροφορίες κατάστασης φακέλου/αρχείου"
 
 msgid "Disable"
@@ -6409,7 +6436,7 @@ msgid "Documentary"
 msgstr "Ντοκυμαντέρ"
 
 msgid "Dolby Digital downmix is now"
-msgstr "Η αποκωδικοποίηση & μίξη Dolby Digital είναι τώρα"
+msgstr "Η αποκωδικοποίηση και μίξη Dolby Digital είναι τώρα"
 
 msgid "Domain"
 msgstr "Ιστότοπος"
@@ -6504,7 +6531,7 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε..."
 
 msgid "Downmix"
-msgstr "Αποκωδικοποίηση & μίξη"
+msgstr "Αποκωδικοποίηση και μίξη"
 
 msgid "Drama"
 msgstr "Δράμα"
@@ -7423,7 +7450,7 @@ msgstr "Σφάλμα: Η διαγραφή του φακέλου '%s' απέτυ�
 
 #, python-format
 msgid "Error: Script '%s' must have read permission to be able to run!"
-msgstr "Σφάλμα: Το script '%s' πρέπει να έχει δικαίωμα ανάγνωσης για να μπορέσει να εκτελεστεί!"
+msgstr "Σφάλμα: Η δέσμη ενεργειών '%s' πρέπει να έχει δικαίωμα ανάγνωσης για να μπορέσει να εκτελεστεί!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Σφάλμα: ο νέος κωδικός δεν μπορεί να είναι κενός!"
@@ -7758,7 +7785,7 @@ msgid "FEC modes"
 msgstr "Λειτουργίες FEC"
 
 msgid "FFmpeg Probe"
-msgstr ""
+msgstr "Ανιχνευτής FFmpeg"
 
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "Το FFmpeg δεν είναι εγκατεστημένο, οπότε οι ενέργειες αρχείων '.mvi' δεν είναι διαθέσιμες!"
@@ -7907,13 +7934,13 @@ msgid "File Commander - All tasks are complete."
 msgstr "File Commander - Όλες οι εργασίες ολοκληρώθηκαν."
 
 msgid "File Commander Actions"
-msgstr "Ενέργειες File Commander"
+msgstr "File Commander Ενέργειες"
 
 msgid "File Commander Archive"
-msgstr "Αρχείο File Commander"
+msgstr "File Commander Αρχείο"
 
 msgid "File Commander Archive Actions"
-msgstr "Ενέργειες αρχείου File Commander"
+msgstr "File Commander Ενέργειες αρχείου"
 
 msgid "File Commander Context Menu"
 msgstr "Μενού περιεχομένων του File Commander"
@@ -7922,55 +7949,58 @@ msgid "File Commander Copy"
 msgstr "File Commander Αντιγραφή"
 
 msgid "File Commander Data"
-msgstr "Δεδομένα του File Commander"
+msgstr "File Commander Δεδομένα"
 
 msgid "File Commander Data Actions"
-msgstr "Ενέργειες δεδομένων File Commander"
+msgstr "File Commander Ενέργειες δεδομένων"
 
 msgid "File Commander Delete"
-msgstr "File Commander διαγραφή"
+msgstr "File Commander Διαγραφή"
 
 msgid "File Commander Directory/File Information"
-msgstr "File Commander πληροφορίες φακέλου/αρχείου"
+msgstr "File Commander Πληροφορίες φακέλου/αρχείου"
 
 msgid "File Commander File Viewer"
-msgstr "File Commander προβολή αρχείων"
+msgstr "File Commander Προβολή αρχείων"
 
 msgid "File Commander File Viewer Actions"
-msgstr "File Commander ενέργειες προβολής αρχείων"
+msgstr "File Commander Ενέργειες προβολής αρχείων"
 
 msgid "File Commander Hash / Checksum Actions"
-msgstr "File Commander ενέργειες κατακερματισμού/αθροίσματος ελέγχου αρχείου"
+msgstr "File Commander Ενέργειες κατακερματισμού/αθροίσματος ελέγχου"
 
 msgid "File Commander Hashes / Checksums"
-msgstr "File Commander κατακερματισμοί/αθροίσματα ελέγχου"
+msgstr "File Commander Κατακερματισμοί/αθροίσματα ελέγχου"
 
 msgid "File Commander Image Viewer"
-msgstr "File Commander προβολή εικόνων"
+msgstr "File Commander Προβολή εικόνων"
 
 msgid "File Commander Image Viewer Actions"
-msgstr "Ενέργειες προβολής εικόνων File Commander"
+msgstr "File Commander Ενέργειες προβολής εικόνων"
 
 msgid "File Commander Information Actions"
-msgstr ""
+msgstr "File Commander Ενέργειες πληροφοριών"
 
 msgid "File Commander Media Information"
-msgstr ""
+msgstr "File Commander Πληροφορίες πολυμέσων"
 
 msgid "File Commander Media Information Actions"
-msgstr ""
+msgstr "File Commander Ενέργειες πληροφοριών πολυμέσων"
 
 msgid "File Commander Move"
-msgstr ""
+msgstr "File Commander Μετακίνηση"
 
 msgid "File Commander Settings"
-msgstr "Ρυθμίσεις File Commander"
+msgstr ""
 
 msgid "File Commander Text Editor"
-msgstr ""
+msgstr "File Commander Επεξεργαστής κειμένου"
 
 msgid "File Commander Text Editor Actions"
-msgstr ""
+msgstr "File Commander Ενέργειες επεξεργαστή κειμένου"
+
+msgid "File Commander settings"
+msgstr "File Commander Ρυθμίσεις"
 
 msgid "File System Check"
 msgstr "Έλεγχος συστήματος αρχείων"
@@ -8108,7 +8138,7 @@ msgid "Flash type"
 msgstr "Τύπος flash"
 
 msgid "Flash used"
-msgstr ""
+msgstr "Flash σε χρήση"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
@@ -8336,7 +8366,9 @@ msgstr ""
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
-msgstr "Πρέπει να γίνει επανεκκίνηση της διεπαφής χρήστη για να ενεργοποιηθεί το νέο θέμα. Να γίνει τώρα;"
+msgstr ""
+"Πρέπει να γίνει επανεκκίνηση της διεπαφής χρήστη για να ενεργοποιηθεί το νέο θέμα.\n"
+"Να γίνει τώρα;"
 
 msgid "Gabon"
 msgstr "Γκαμπόν"
@@ -8952,7 +8984,7 @@ msgid "I"
 msgstr "I"
 
 msgid "I/O priority for scripts"
-msgstr "Προτεραιότητα I/O για scripts"
+msgstr "Προτεραιότητα I/O για σενάρια ενεργειών"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 νέο μοντέλο"
@@ -9938,7 +9970,7 @@ msgid "Large"
 msgstr "Μεγάλο"
 
 msgid "Last Request"
-msgstr "Τελευταία ζήτηση."
+msgstr "Τελευταία ζήτηση"
 
 msgid "Last config"
 msgstr "Τελευταία ρύθμιση"
@@ -10389,7 +10421,7 @@ msgid "Maintain your multi boot device."
 msgstr "Διατήρηση της συσκευής πολλαπλής εκκίνησης."
 
 msgid "Make"
-msgstr ""
+msgstr "Κατασκευή"
 
 msgid "Make this mark an 'in' point"
 msgstr "Μαρκάρισμα αυτού του σημαδιού ως σημείο εσόδου"
@@ -10475,8 +10507,14 @@ msgstr "Μαράτι"
 msgid "Margin after recording"
 msgstr "Περιθώριο μετά την εγγραφή"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Περιθώριο πριν την εγγραφή"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Μαρκάρισμα υπηρεσίας ως σταθερή υπηρεσία 3D"
@@ -10497,7 +10535,7 @@ msgid "Martinique"
 msgstr "Μαρτινίκα"
 
 msgid "Mature Adult Audience 15+"
-msgstr "Ενήλικο κοινό, κοινό 15+"
+msgstr "Ενήλικο κοινό 15+"
 
 msgid "Mature Audience 15+"
 msgstr "Ενήλικο κοινό 15+"
@@ -13248,7 +13286,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Πιέστε ΟΚ για χρήση αυτής της γλώσσας.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Πιέστε τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ για επιλογή μίας θέσης και το ΟΚ ή το ΠΡΑΣΙΝΟ για επανεκκίνηση σε αυτό το image. Αν είναι διαθέσιμο, το ΚΙΤΡΙΝΟ θα διαγράψει ή θα κάνει εκκαθάριση του image. Ένα διαγραμμένο image μπορεί να επανέλθει με το ΜΠΛΕ πλήκτρο. Ένα εκκαθαρισμένο image αφαιρείται εντελώς και είναι αδύνατη η επαναφορά του."
+msgstr "Πιέστε τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ για επιλογή μίας θέσης και το ΟΚ ή το ΠΡΑΣΙΝΟ για επανεκκίνηση σε αυτό το image. Αν είναι διαθέσιμο, το ΚΙΤΡΙΝΟ θα διαγράψει ή θα κάνει εκκαθάριση του image. Ένα διαγραμμένο image μπορεί να επανέλθει με το ΜΠΛΕ πλήκτρο. Ένα εκκαθαρισμένο image αφαιρείται εντελώς και είναι αδύνατη η επαναφορά του!"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Πιέστε αυτό το πλήκτρο για να γίνει προσομοίωση της παρατεταμένης πίεσης σε ένα πλήκτρο που θα πιεστεί μετέπειτα (αυτό επίσης παρακάμπτει οποιαδήποτε άλλη ενέργεια έχει ανατεθεί το πλήκτρο προσομοίωσης)."
@@ -13989,7 +14027,7 @@ msgid "Remove"
 msgstr "Διαγραφή"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr "Αφαίρεση του '%s' από τους σελιδοδείκτες"
 
 msgid "Remove Bookmark"
@@ -14449,16 +14487,16 @@ msgid "Run how often?"
 msgstr "Πόσο συχνά να γίνεται εκτέλεση;"
 
 msgid "Run script"
-msgstr "Εκτέλεση script"
+msgstr "Εκτέλεση σεναρίου ενεργειών"
 
 msgid "Run script in background"
-msgstr "Εκτέλεση script στο παρασκήνιο"
+msgstr "Εκτέλεση σεναρίου ενεργειών στο παρασκήνιο"
 
 msgid "Run script with optional parameter"
-msgstr "Εκτέλεση script με προαιρετική παράμετρο"
+msgstr "Εκτέλεση σεναρίου ενεργειών με προαιρετική παράμετρο"
 
 msgid "Run script with optional parameter in background"
-msgstr "Εκτέλεση script με προαιρετική παράμετρο στο παρασκήνιο"
+msgstr "Εκτέλεση σεναρίου ενεργειών με προαιρετική παράμετρο στο παρασκήνιο"
 
 msgid "Rundi"
 msgstr "Ρούντι"
@@ -14467,7 +14505,7 @@ msgid "Running"
 msgstr "Σε εκτέλεση"
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Εκτέλεση του script Myrestore, περιμένετε..."
+msgstr "Εκτέλεση του σεναρίου Myrestore, περιμένετε..."
 
 msgid "Russian"
 msgstr "Ρωσικά"
@@ -14741,7 +14779,7 @@ msgid "Save time shift as movie and stop recording"
 msgstr "Αποθήκευση χρονομετατόπισης ως ταινία και διακοπή εγγραφής"
 
 msgid "Saved lines in script messages"
-msgstr "Αποθηκευμένες γραμμές στα μηνύματα script"
+msgstr "Αποθηκευμένες γραμμές στα μηνύματα δέσμης ενεργειών"
 
 msgid "Saving EPG Cache..."
 msgstr "Αποθήκευση προσωρινής μνήμης EPG..."
@@ -14839,10 +14877,10 @@ msgid "Scope"
 msgstr "Εύρος"
 
 msgid "Script Manager"
-msgstr "Διαχείριση script"
+msgstr "Διαχείριση σεναρίων ενεργειών"
 
 msgid "ScriptRunner"
-msgstr "Εκτέλεση Script"
+msgstr "Εκτέλεση σεναρίου ενεργειών"
 
 msgid "Scrolling Speed"
 msgstr "Ταχύτητα κύλισης"
@@ -14938,7 +14976,7 @@ msgid "Seek forward (enter time)"
 msgstr "Μεταπήδηση εμπρός (σε χρόνο)"
 
 msgid "Seek forward long"
-msgstr "Αναζήτηση εμπρός  παρατεταμένο"
+msgstr "Αναζήτηση εμπρός παρατεταμένο"
 
 msgid "Seekbar"
 msgstr "Μπάρα αναζήτησης"
@@ -14995,7 +15033,7 @@ msgid "Select 'Yes' to check if network connections are coming from nominated IP
 msgstr "Επιλέξτε 'ναι' για γίνει έλεγχος αν οι συνδέσεις δικτύου έρχονται από καθορισμένες διευθύνσεις IP κατά την ενεργοποίηση του χρονοδιακόπτη. Αν ισχύει, ο χρονοδιακόπτης θα απενεργοποιηθεί."
 
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για συνεχή προβολή όλων των εικόνων σε επανάληψη ή επιλέξτε 'όχι' για προβολή όλων των εικόνων μόνο μία φορά."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Επιλέξτε 'ναι' για εμφάνιση μίας μικρής εικόνας TV (PiG - εικόνα σε γραφικό) μέσα από την οθόνη του EPG."
@@ -15016,7 +15054,7 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Αν επιλεγεί το 'ναι', ο αριθμός του καναλιού θα εμφανίζεται στη μπάρα πληροφοριών."
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για εμφάνιση των άγνωστων αρχείων στην προβολή αρχείων του File Commander, επιλέξτε 'όχι' για μη επεξεργασία των άγνωστων αρχείων."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Επιλέξτε 'ναι' για επεξεργασία των ρυθμίσεων αυτής της συσκευής. Αν επιλεγεί το 'όχι', θα γίνει επαναφορά αυτών των ρυθμίσεων στις προεπιλεγμένες τιμές."
@@ -15064,10 +15102,10 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Επιλέξτε 'ναι' για επαναφορά των ρυθμίσεων δικτύου στις προεπιλογές. Αυτό θα ενεργοποιήσει τη θύρα ethernet, αν υπάρχει, και θα γίνει χρήση του DHCP από τον δέκτη. Όλες οι υπόλοιπες διεπαφές δικτύου θα διαγραφούν."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για να ορίσετε τη θέση του δρομέα στο τέλος της γραμμής κατά την επεξεργασία ενός αρχείου κειμένου.  Επιλέξτε 'όχι' για να μετακινηθεί ο κέρσορας στην αρχή της γραμμής."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για να εμφανίζονται οι φάκελοι στην κορυφή/αρχή της λίστας ή επιλέξτε 'όχι' για να εμφανίζονται πρώτα τα αρχεία."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Επιλέξτε 'ναι' για εμφάνιση των προχωρημένων επιλογών ρύθμισης."
@@ -15079,13 +15117,13 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Επιλέξτε 'ναι' για εμφάνιση της λίστας καναλιών μετά τη μετάβαση μεταξύ της λειτουργίας TV και ραδιοφώνου."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για να εμφανίζεται ο τρέχον φάκελος στη λίστα των καταλόγων. Σημειώστε ότι πρέπει να γίνει επανεκκίνηση του File Commander για να εφαρμοστεί αυτή η αλλαγή."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Επιλέξτε 'ναι' για χρήση των τιμών σήματος (SNR, κλπ) με υπολογισμό από το παλιότερο API V3. Αυτή η έκδοση API είναι παρωχημένη."
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για να χρησιμοποιήσετε τα αριθμητικά πλήκτρα για γρήγορη επιλογή αρχείων/φακέλων, επιλέξτε 'όχι' για να χρησιμοποιήσετε τα αριθμητικά πλήκτρα για τις συντομεύσεις επιλογών μενού."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Αν επιλεγεί το 'ναι', θα εμφανίζεται η μπάρα πληροφοριών κατά την προώθηση εμπρός/πίσω κατά την αναπαραγωγή πολυμέσων."
@@ -15212,7 +15250,7 @@ msgid "Select a repository commit log to view:"
 msgstr "Επιλογή ενός αρχείου καταγραφής αποσφαλμάτωσης από το αποθετήριο για προβολή:"
 
 msgid "Select a script to run:"
-msgstr "Επιλογή ενός script προς εκτέλεση:"
+msgstr "Επιλογή ενός σεναρίου προς εκτέλεση:"
 
 msgid "Select a softcam from the available list."
 msgstr "Επιλογή ενός softcam από τη λίστα διαθέσιμων."
@@ -15255,7 +15293,7 @@ msgid "Select default EPG type..."
 msgstr "Επιλογή προεπιλεγμένου τύπου EPG..."
 
 msgid "Select default File Commander directory:"
-msgstr ""
+msgstr "Επιλογή προεπιλεγμένου φακέλου του File Commander"
 
 msgid "Select destination for:"
 msgstr "Επιλογή προορισμού για το:"
@@ -15273,7 +15311,7 @@ msgid "Select how long to display the button error pop up. Button input is still
 msgstr "Επιλογή του χρόνου εμφάνισης του αναδυόμενου μηνύματος σφάλματος πλήκτρου. Η εισαγωγή πλήκτρου συνεχίζει να επιτρέπεται κατά την εμφάνιση του μηνύματος."
 
 msgid "Select how long to display the task and script message pop up."
-msgstr "Επιλέξτε το χρονικό διάστημα για το οποίο θα εμφανίζεται το αναδυόμενο μήνυμα εργασίας και δέσμης ενεργειών."
+msgstr "Επιλέξτε το χρονικό διάστημα για το οποίο θα εμφανίζεται το αναδυόμενο μήνυμα εργασίας και σεναρίου ενεργειών."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Επιλέξτε πόσο συχνά, σε δευτερόλεπτα, θα εμφανίζεται η ένταση ήχου πριν γίνει αυτόματη απόκρυψη."
@@ -15453,10 +15491,10 @@ msgid "Select the day of the week that this timer will activate."
 msgstr "Επιλέξτε την ημέρα της εβδομάδας στην οποία θα ενεργοποιηθεί αυτός ο χρονοδιακόπτης."
 
 msgid "Select the default directory to be used if the left column directory is not saved."
-msgstr ""
+msgstr "Επιλέξτε τον προεπιλεγμένο φάκελο που θα χρησιμοποιηθεί αν ο κατάλογος της αριστερής στήλης δεν είναι αποθηκευμένος."
 
 msgid "Select the default directory to be used if the right column directory is not saved."
-msgstr ""
+msgstr "Επιλέξτε τον προεπιλεγμένο φάκελο που θα χρησιμοποιηθεί αν ο κατάλογος της δεξιάς στήλης δεν είναι αποθηκευμένος."
 
 msgid "Select the delay before the timer activates."
 msgstr "Επιλέξτε την καθυστέρηση πριν από την ενεργοποίηση του χρονοδιακόπτη."
@@ -15465,10 +15503,10 @@ msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' t
 msgstr "Επιλέξτε την επιθυμητή λειτουργία και πιέστε το \"OK\" για ανάθεση. Χρησιμοποιήστε τα \"CH+/-\" για εναλλαγή μεταξύ λιστών. Επιλέξτε μία ανατεθειμένη λειτουργία και πιέστε το \"OK\" για να την ακυρώσετε. Χρήση των \"ΕΠΟΜΕΝΟ/ΠΡΟΗΓΟΥΜΕΝΟ\" για αλλαγή σειράς των ανατεθειμένων λειτουργιών."
 
 msgid "Select the directory sort order for the left column:"
-msgstr ""
+msgstr "Επιλέξτε τη σειρά ταξινόμησης των φακέλων για την αριστερή στήλη:"
 
 msgid "Select the directory sort order for the right column:"
-msgstr ""
+msgstr "Επιλέξτε τη σειρά ταξινόμησης των φακέλων για τη δεξιά στήλη:"
 
 msgid "Select the display design for menus."
 msgstr "Επιλέξτε τη μορφή εμφάνισης των μενού."
@@ -15478,7 +15516,7 @@ msgstr "Επιλέξτε τη μορφή εμφάνισης για κάθε στ
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
-msgstr ""
+msgstr "Επιλέξτε τη σειρά ταξινόμησης των αρχείων για τη στήλη %s:"
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Επιλογή του πρώτου στοιχείου της λίστας ή μετάβαση στην αρχή του κειμένου"
@@ -15839,7 +15877,7 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Αριθμός, λογότυπο και όνομα υπηρεσίας"
 
 msgid "Service Selection Actions"
-msgstr "Ενέργειες επιλογής υπηρεσιών."
+msgstr "Ενέργειες επιλογής υπηρεσιών"
 
 msgid "Service Selection/Zap Actions"
 msgstr "Επιλογή υπηρεσιών/Ενέργειες ζάπινγκ"
@@ -16029,7 +16067,7 @@ msgid "Set the jump-size of the seekbar."
 msgstr "Ορισμός του μεγέθους υπερπήδησης της μπάρας αναζήτησης."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
-msgstr "Ορισμός του αριθμού γραμμών που θα αποθηκεύονται για την έξοδο 'stout' και 'sterr' στα scripts."
+msgstr "Ορισμός του αριθμού γραμμών που θα αποθηκεύονται για την έξοδο 'stout' και 'sterr' στα σενάρια ενεργειών."
 
 msgid "Set the position of the recording icons"
 msgstr "Ορισμός θέσης εικονιδίων εγγραφής"
@@ -16087,7 +16125,7 @@ msgid "Set to the desired primetime (hour)."
 msgstr "Ορισμός επιθυμητής ζώνης αιχμής (ώρα)."
 
 msgid "Set to the desired primetime (minutes."
-msgstr "Ορισμός επιθυμητής ζώνης αιχμής (λεπτά)"
+msgstr "Ορισμός επιθυμητής ζώνης αιχμής (λεπτά)."
 
 msgid "Set to what you want the button to do."
 msgstr "Ορισμός ενέργειας του πλήκτρου."
@@ -16316,7 +16354,7 @@ msgid "Sharpness"
 msgstr "Οξύτητα"
 
 msgid "Shellscript"
-msgstr "Script κελύφους"
+msgstr "Σενάριο ενεργειών κελύφους"
 
 msgid "Shift"
 msgstr "Shift"
@@ -16386,7 +16424,7 @@ msgid "Show 30p up to resolution 720p or higher than 720p as a different Framera
 msgstr "Εμφάνιση 30p μέχρι την ανάλυση 720p ή υψηλότερη από 720p ως διαφορετικό Ρυθμό Καρέ."
 
 msgid "Show 480/576p 24fps as"
-msgstr "Εμφάνιση  480/576p 24fps ως"
+msgstr "Εμφάνιση 480/576p 24fps ως"
 
 msgid "Show 720p 24fps as"
 msgstr "Εμφάνιση 720p 24fps ως"
@@ -16528,9 +16566,6 @@ msgstr "Εμφάνιση SD ως"
 
 msgid "Show Single EPG"
 msgstr "Εμφάνιση μονού EPG"
-
-msgid "Show Task List"
-msgstr "Εμφάνιση λίστας εργασιών"
 
 msgid "Show Timer List"
 msgstr "Εμφάνιση λίστας χρονοδιακοπτών"
@@ -16810,7 +16845,7 @@ msgid "Show script messages"
 msgstr "Εμφάνιση μηνυμάτων δέσμης ενεργειών"
 
 msgid "Show script messages if a background script ends. If the script has additional output then this will also be shown."
-msgstr ""
+msgstr "Εμφάνιση των μηνυμάτων δέσμης ενεργειών αν μία λήξει στο παρασκήνιο. Αν το σενάριο έχει πρόσθετη έξοδο, τότε αυτό θα εμφανιστεί επίσης."
 
 msgid "Show selection for system information screen"
 msgstr "Εμφάνιση επιλογής για την οθόνη πληροφοριών συστήματος"
@@ -16872,11 +16907,14 @@ msgstr "Εμφάνιση επιλογής υποτίτλων"
 msgid "Show system information"
 msgstr "Εμφάνιση πληροφοριών συστήματος"
 
+msgid "Show task list"
+msgstr "Εμφάνιση λίστας εργασιών"
+
 msgid "Show task messages"
 msgstr "Εμφάνιση μηνυμάτων εργασιών"
 
 msgid "Show task messages if File Commander is not running and all task are completed."
-msgstr ""
+msgstr "Εμφάνιση μηνυμάτων εργασιών αν το File Commander δεν εκτελείται και έχουν ολοκληρωθεί όλες οι εργασίες."
 
 msgid "Show the CCcam Info Screen"
 msgstr "Εμφάνιση οθόνης πληροφοριών CCcam"
@@ -16963,7 +17001,7 @@ msgid "Show unknown video format as"
 msgstr "Εμφάνιση άγνωστου φορμά βίντεο ως"
 
 msgid "Show usage and GUI menu..."
-msgstr "Εμφάνιση μενού χρήσης & διεπαφής χρήστη..."
+msgstr "Εμφάνιση μενού χρήσης και διεπαφής χρήστη..."
 
 msgid "Show vertical Program Guide"
 msgstr "Εμφάνιση κάθετου οδηγού προγράμματος"
@@ -17200,7 +17238,7 @@ msgstr[0] "Χρονοδιακόπτης ύπνου: απομένει %d δευτ
 msgstr[1] "Χρονοδιακόπτης ύπνου: απομένουν %d δευτερόλεπτα."
 
 msgid "SleepTimer: Inactive."
-msgstr "Χρονοδιακόπτης ύπνου: ανενεργός"
+msgstr "Χρονοδιακόπτης ύπνου: ανενεργός."
 
 msgid "Sleeping"
 msgstr "Σε ύπνο"
@@ -17494,7 +17532,7 @@ msgstr "Ταξινόμηση λιστών αναπαραγωγής"
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
-msgstr ""
+msgstr "Ταξινόμηση: Φάκελοι κατά %s %s: αρχεία κατά %s %s."
 
 msgid "Sotho, Southern"
 msgstr "Σότο, Νότιο"
@@ -19033,7 +19071,7 @@ msgid "This option lets you choose the 3D mode"
 msgstr "Αυτή η επιλογή επιτρέπει την επιλογή της λειτουργίας 3D"
 
 msgid "This option lets you show the option in the extension screen."
-msgstr "Αυτή η επιλογή εμφανίζει τις επιλογές στο μενού προσθέτων"
+msgstr "Αυτή η επιλογή εμφανίζει τις επιλογές στο μενού προσθέτων."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Αυτή η επιλογή μετακινεί την κατάσταση PVR από ξεχωριστό παράθυρο στη μπάρα πληροφοριών ταινιών."
@@ -19281,7 +19319,7 @@ msgid "Time style"
 msgstr "Στυλ χρόνου"
 
 msgid "Time to execute command or script"
-msgstr "Χρόνος εκτέλεσης εντολής ή script"
+msgstr "Χρόνος εκτέλεσης εντολής ή δέσμης ενεργειών"
 
 msgid "Time update in minutes"
 msgstr "Ενημέρωση ώρας σε λεπτά"
@@ -19332,11 +19370,13 @@ msgstr "Καταγραφή χρονοδιακόπτη"
 msgid ""
 "Timer overlap in '%s' detected!\n"
 "Please recheck it!"
-msgstr "Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο '%s'! Ελέγξτε ξανά!"
+msgstr ""
+"Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο '%s'!\n"
+"Ελέγξτε ξανά!"
 
 #, python-format
 msgid "Timer overlap in '%s' detected! Please check all the timers."
-msgstr "Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο '%s'! Ελέγξτε ξανά!"
+msgstr "Εντοπίστηκε επικάλυψη χρονοδιακόπτη στο '%s'! Ελέγξτε ξανά."
 
 msgid "Timer recording location"
 msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
@@ -19606,7 +19646,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Προσπάθεια αποφυγής επανεκκινήσεων για σφάλματα λογισμικού και διατήρηση της λειτουργίας του δέκτη."
 
 msgid "Try to send repeated commands if not all commands are executed. (e.g. TV wake up, but not switched to correct input.)"
-msgstr "Προσπάθεια αποστολής επαναλαμβανόμενων εντολών αν δεν εκτελούνται όλες. (π.χ. αφύπνιση TV, αλλά όχι αλλαγή στη σωστή υποδοχή)."
+msgstr "Προσπάθεια αποστολής επαναλαμβανόμενων εντολών αν δεν εκτελούνται όλες. (π.χ. αφύπνιση TV, αλλά όχι αλλαγή στη σωστή υποδοχή.)"
 
 msgid "Trying to download a new packet list. Please wait..."
 msgstr "Προσπάθεια λήψης νέας λίστας πακέτων. Παρακαλώ περιμένετε..."
@@ -19980,7 +20020,7 @@ msgid "Up/Down button mode"
 msgstr "Λειτουργία πλήκτρου επάνω/κάτω"
 
 msgid "Up/Down buttons also for 'all up/down'"
-msgstr "Πλήκτρα επάνω/κάτω επίσης για το 'όλο επάνω/κάτω';"
+msgstr "Πλήκτρα επάνω/κάτω επίσης για το 'όλο επάνω/κάτω'"
 
 msgid "Update"
 msgstr "Ενημέρωση"
@@ -20154,6 +20194,9 @@ msgstr "Χρήση πληροφοριών ViaSat EPG όταν είναι δια�
 
 msgid "Use Virgin EPG information when it is available."
 msgstr "Χρήση πληροφοριών Virgin EPG όταν είναι διαθέσιμες."
+
+msgid "Use Zap timer end time"
+msgstr ""
 
 msgid "Use a gateway"
 msgstr "Χρήση πύλης"
@@ -20694,7 +20737,7 @@ msgstr "Λειτουργία επισκόπησης"
 
 #, python-format
 msgid "View or edit this %s script"
-msgstr "Προβολή η επεξεργασία αυτού του %s script"
+msgstr "Προβολή η επεξεργασία αυτού του σεναρίου %s"
 
 msgid "View photos..."
 msgstr "Προβολή φωτογραφιών..."
@@ -20793,7 +20836,7 @@ msgid "WMA Pro"
 msgstr "WMA Pro"
 
 msgid "WMA Pro downmix"
-msgstr "Αποκωδικοποίηση & μίξη WMA Pro"
+msgstr "Αποκωδικοποίηση και μίξη WMA Pro"
 
 msgid "WOL Standby"
 msgstr "ΑΣΔ Αναμονή"
@@ -21022,7 +21065,7 @@ msgid "What would you like to do with the package file:"
 msgstr "Τι θέλετε να γίνει με το αρχείο πακέτου:"
 
 msgid "What would you like to do with the script file:"
-msgstr "Τι θέλετε να γίνει με το αρχείο script:"
+msgstr "Τι θέλετε να γίνει με το αρχείο δέσμης ενεργειών:"
 
 msgid "What would you like to do?"
 msgstr "Τι θέλετε να κάνετε;"
@@ -21056,6 +21099,9 @@ msgstr "Όταν είναι ενεργό, το Enigma2 θα φορτώσει τ�
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Όταν είναι ενεργό, τα δεδομένα SDT, BAT θα συμπεριλαμβάνονται στις ροές http."
+
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Όταν είναι ενεργό, ένα αναδυόμενο μήνυμα θα εμφανίζεται όταν μια ταινία έχει τελειώσει και αρχίζει η επόμενη."
@@ -21182,6 +21228,12 @@ msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα ξεκ
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα σταματά την καθορισμένη περίοδο μετά την ώρα που αναγράφεται στο EPG."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Όταν ο δέκτης επανέρχεται από την αναμονή, θα σταλεί εντολή στην TV να γυρίσει στην είσοδο HDMI στην οποία είναι συνδεδεμένος."
@@ -21511,10 +21563,12 @@ msgstr "Έχετε επιλέξει να αποθηκευτεί η τρέχου�
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
-msgstr "Έχετε επιλέξει να αποθηκευτεί η τρέχουσα χρονομετατόπιση, αλλά η εκπομπή δεν έχει ακόμα τελειώσει. Τι θέλετε να γίνει ;"
+msgstr ""
+"Έχετε επιλέξει να αποθηκευτεί η τρέχουσα χρονομετατόπιση, αλλά η εκπομπή δεν έχει ακόμα τελειώσει.\n"
+"Τι θέλετε να γίνει;"
 
 msgid "You have no script to run."
-msgstr "Δεν υπάρχει script για εκτέλεση."
+msgstr "Δεν υπάρχει σενάριο ενεργειών για εκτέλεση."
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -22890,7 +22944,7 @@ msgid "scan state"
 msgstr "κατάσταση ανίχνευσης"
 
 msgid "science fiction/fantasy/horror"
-msgstr "επιστημονικής φαντασίας/φαντασίας/τρόμου"
+msgstr "επιστημονικής φαντασίας/τρόμου"
 
 msgid "sdr"
 msgstr "sdr"
@@ -23876,9 +23930,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Εμφάνιση μηνύματος αν ένα script στο παρασκήνιο εκτελέστηκε με επιτυχία. Αν έχει 'stout', τότε εμφανίζεται ως πρόσθετη πληροφορία."
-
-#~ msgid "Show task list"
-#~ msgstr "Εμφάνιση λίστας εργασιών"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Εμφάνιση άγνωστης επέκτασης ως κείμενο"

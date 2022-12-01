@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -913,6 +913,18 @@ msgstr[1] "%d Minutit"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -932,6 +944,18 @@ msgstr[1] "%d sekundit"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2099,7 +2123,7 @@ msgid "Add"
 msgstr "Lisa"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6145,7 +6169,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8127,13 +8151,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "Failihalduri seaded"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "Failihalduri seaded"
 
 msgid "File System Check"
 msgstr "Failisüsteemi kontroll"
@@ -10743,8 +10770,14 @@ msgstr "MaraM9"
 msgid "Margin after recording"
 msgstr "Salvestuse lõppu lisatakse (min)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Salvestuse algusesse lisatakse (min)"
+
+msgid "Margin before zap"
+msgstr ""
 
 #
 msgid "Mark service as dedicated 3D service"
@@ -14426,7 +14459,7 @@ msgid "Remove"
 msgstr "Eemalda"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -17040,9 +17073,6 @@ msgstr "SD kuvamine"
 msgid "Show Single EPG"
 msgstr "Kanali EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Taimerite nimekiri"
 
@@ -17392,6 +17422,9 @@ msgstr "Kuva subtiitrite valik"
 
 msgid "Show system information"
 msgstr ""
+
+msgid "Show task list"
+msgstr "Kuva ülesanded"
 
 msgid "Show task messages"
 msgstr ""
@@ -20787,6 +20820,9 @@ msgstr "Kasuta saadavusel Viasat EPG infot."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Kasuta saadavusel Virgin EPG infot."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Lüüs lubatud"
 
@@ -21699,6 +21735,9 @@ msgstr "Kui lubatud, laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab,
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Kui lubatud, teavitatakse filmi lõppemisest ja uue alustamisest hüpikaknaga."
 
@@ -21828,6 +21867,12 @@ msgstr "Salvestamist alustatakse enne saatekavas näidatud aega."
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr ""
@@ -24526,9 +24571,6 @@ msgstr ""
 
 #~ msgid "Show message if File Commander is not running and all Task's are completed."
 #~ msgstr "Kuva teade, kui failihaldur ei tööta ja kõik ülesanded on täidetud."
-
-#~ msgid "Show task list"
-#~ msgstr "Kuva ülesanded"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Ava tundmatud laiendused tekstina"

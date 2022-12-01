@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -896,6 +896,18 @@ msgstr[1] "%d Minutter"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -915,6 +927,18 @@ msgstr[1] "%d sekunder"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2040,7 +2064,7 @@ msgid "Add"
 msgstr "Legg til"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -5979,7 +6003,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -7868,6 +7892,9 @@ msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
+msgstr ""
+
+msgid "File Commander settings"
 msgstr ""
 
 msgid "File System Check"
@@ -10361,8 +10388,14 @@ msgstr ""
 msgid "Margin after recording"
 msgstr "Stopptid etter opptak (minutter)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Start tid før opptak (minutter)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Bruk denne som standard 3D kanal"
@@ -13820,7 +13853,7 @@ msgid "Remove"
 msgstr "Fjern"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16341,9 +16374,6 @@ msgstr ""
 msgid "Show Single EPG"
 msgstr ""
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr ""
 
@@ -16682,6 +16712,9 @@ msgid "Show subtitle selection"
 msgstr "Vis tekst tv valg"
 
 msgid "Show system information"
+msgstr ""
+
+msgid "Show task list"
 msgstr ""
 
 msgid "Show task messages"
@@ -19898,6 +19931,9 @@ msgstr "Bruk ViaSat EPG-informasjon når den er tilgjengelig."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Bruk Virgin EPG informasjon når tilgjengelig."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Bruk gateway"
 
@@ -20748,6 +20784,9 @@ msgstr ""
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Hvis aktivert, en popup-melding vil bli vist når en film er ferdig og den neste vil starte."
 
@@ -20873,6 +20912,12 @@ msgstr "Når annet tall enn null er valgt vil et opptak starte tidligere enn sta
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Når annet tall enn null er valgt vil et opptak stoppe senere enn sluttiden angitt av EPG."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-10-02 11:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -915,6 +915,18 @@ msgid "%d Minutes"
 msgstr "%d Minuten"
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "%d pixel breedte"
@@ -933,6 +945,18 @@ msgstr[1] "%d seconden"
 #, python-format
 msgid "%d Seconds"
 msgstr "%d Seconden"
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2081,7 +2105,7 @@ msgid "Add"
 msgstr "Toevoegen"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6147,7 +6171,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8097,13 +8121,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "File Commander instellingen"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "File Commander instellingen"
 
 msgid "File System Check"
 msgstr "Bestandssysteemcontrole"
@@ -10617,8 +10644,14 @@ msgstr "Marathi"
 msgid "Margin after recording"
 msgstr "Marge na een opname (minuten)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Marge voor een opname (minuten)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Als 3D zender markeren"
@@ -14134,7 +14167,7 @@ msgid "Remove"
 msgstr "Verwijderen"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16700,9 +16733,6 @@ msgstr "Toon SD als"
 msgid "Show Single EPG"
 msgstr "Toon de Single-EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Toon timers"
 
@@ -17048,6 +17078,9 @@ msgstr "Toon de selectie van de ondertitels"
 
 msgid "Show system information"
 msgstr "Toon systeem informatie"
+
+msgid "Show task list"
+msgstr "Toon takenlijst"
 
 msgid "Show task messages"
 msgstr ""
@@ -20377,6 +20410,9 @@ msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de Viasat EPG inf
 msgid "Use Virgin EPG information when it is available."
 msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de Virgin EPG informatie inschakelen."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
@@ -21280,6 +21316,9 @@ msgstr "Favorietenlijsten die niet aanwezig zijn in bouquets.tv of bouquets.radi
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Bij \"Ja\" worden gegevens uit de SDT (Service Description Table) en BAT (Bouquet Association Table) opgenomen in HTTP-streams."
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Bij 'Ja' ziet u aan het eind van een opname of film een bericht voordat de volgende wordt gestart."
 
@@ -21412,6 +21451,12 @@ msgstr "Met deze optie stelt u het aantal minuten in dat de opname eerder moet s
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Met deze optie stelt u het aantal minuten in dat de lopende opname later moet eindigen t.o.v. het in de EPG aangegeven tijdstip."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Wanneer de ontvanger ontwaakt uit Stand-by zal die naar de HDMI poort in de TV schakelen waar de ontvanger op aangesloten is."
@@ -24122,9 +24167,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Toon bericht als een achtergrond script succesvol eindigt. Heeft ' stout ', dan word dit weergegeven als extra info."
-
-#~ msgid "Show task list"
-#~ msgstr "Toon takenlijst"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Toon onbekende extensies als tekst"

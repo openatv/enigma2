@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-05-29 17:02+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -918,6 +918,16 @@ msgstr[0] "%d dakika"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -935,6 +945,16 @@ msgstr[0] "%d ikinci"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
 
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
@@ -2144,7 +2164,7 @@ msgid "Add"
 msgstr "Ekle"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6315,7 +6335,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 #
@@ -8353,13 +8373,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "Dosya Komutu Ayarları"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "Dosya Komutu Ayarları"
 
 msgid "File System Check"
 msgstr "Dosya sistemi kontrolü"
@@ -11015,9 +11038,15 @@ msgstr "Marathi"
 msgid "Margin after recording"
 msgstr "Kayıt sonuna boşluk süresi ekle (dk.)"
 
+msgid "Margin after zap"
+msgstr ""
+
 #
 msgid "Margin before recording"
 msgstr "Kayıt başına boşluk süresi ekle (dk.)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Hizmete özel 3D hizmeti olarak işaretle"
@@ -14779,7 +14808,7 @@ msgid "Remove"
 msgstr "Kaldır"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 #
@@ -17449,9 +17478,6 @@ msgstr "SD yi göster"
 msgid "Show Single EPG"
 msgstr "Tekli EPG Göster"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Zamanlayıcı Listesini göster"
 
@@ -17807,6 +17833,9 @@ msgstr "Altyazı seçimini göster"
 
 msgid "Show system information"
 msgstr "Sistem bilgilerini göster"
+
+msgid "Show task list"
+msgstr "Görev listesini göster"
 
 msgid "Show task messages"
 msgstr ""
@@ -21272,6 +21301,9 @@ msgstr "Varsa ViaSat EPG bilgisini kullan."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Mevcut olduğunda Virgin EPG bilgilerini kullanın."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
@@ -22210,6 +22242,9 @@ msgstr "Etkinleştirildiğinde, Enigma2 bağlantısız buketleri yükler. Bu, me
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Etkinleşince, bir film bitip diğeri başlıyacağı zaman pencere mesajı görülür."
 
@@ -22335,6 +22370,12 @@ msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen başlangıç zamanında
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Sıfırdan farklı ise, kayıt EPG de belirtilen bitiş zamanından daha sonra duracaktır."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Alıcı bekleme modundan çıktığında TV'ye alıcının bağlı olduğu HDMI girişine geçmesi için komut verir."
@@ -25242,9 +25283,6 @@ msgstr ""
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Bir arka plan komut dosyası başarılı bir şekilde sona ererse mesajı göster. 'Stout' var, bu ek bilgi olarak gösterilir."
-
-#~ msgid "Show task list"
-#~ msgstr "Görev listesini göster"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Bilinmeyen uzantıları metin olarak göster"

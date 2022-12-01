@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
-"PO-Revision-Date: 2022-11-30 20:03+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
+"PO-Revision-Date: 2022-12-01 16:00+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -928,6 +928,18 @@ msgid "%d Minutes"
 msgstr "%d Minuten"
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] "%d Monat"
+msgstr[1] "%d Monate"
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] "%d Pixel"
+msgstr[1] "%d Pixel"
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "%d Pixel breit"
@@ -946,6 +958,18 @@ msgstr[1] "%d Sekunden"
 #, python-format
 msgid "%d Seconds"
 msgstr "%d Sekunden"
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] "%d Woche"
+msgstr[1] "%d Wochen"
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] "%d Jahr"
+msgstr[1] "%d Jahre"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2177,7 +2201,7 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr "'%s' zu Lesezeichen hinzufügen"
 
 msgid "Add AutoTimer"
@@ -6377,7 +6401,7 @@ msgstr "Verzeichnis/Datei %d von %d"
 msgid "Directory/File Status Actions"
 msgstr "Verzeichnis-/Dateistatus-Aktionen"
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr "Informationen zum Verzeichnis-/Dateistatus"
 
 #
@@ -7839,7 +7863,6 @@ msgstr "Fehler: Datei '%s' kann nicht geöffnet werden! (%s)"
 msgid "Error: File or directory '%s' already exists!"
 msgstr "Fehler: Datei oder Verzeichnis '%s' existiert bereits!"
 
-#, fuzzy
 msgid "Error: FileCommanderData screen requires a formatting dictionary!"
 msgstr "Fehler: FileCommanderData-Bildschirm benötig valide Daten!"
 
@@ -8447,6 +8470,9 @@ msgstr "File Commander Text Editor"
 
 msgid "File Commander Text Editor Actions"
 msgstr "File Commander Text Editor-Optionen"
+
+msgid "File Commander settings"
+msgstr "File Commander Einstellungen"
 
 #
 msgid "File System Check"
@@ -11113,9 +11139,15 @@ msgstr "Marathi"
 msgid "Margin after recording"
 msgstr "Nachlauf nach Aufnahme"
 
+msgid "Margin after zap"
+msgstr "Nachlauf nach Umschalten"
+
 #
 msgid "Margin before recording"
 msgstr "Vorlauf vor Aufnahme"
+
+msgid "Margin before zap"
+msgstr "Vorlauf vor Umschalten"
 
 #
 msgid "Mark service as dedicated 3D service"
@@ -14967,7 +14999,7 @@ msgid "Remove"
 msgstr "Entfernen"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr "'%s' aus Lesezeichen entfernen"
 
 #
@@ -17692,9 +17724,6 @@ msgstr "SD anzeigen als"
 msgid "Show Single EPG"
 msgstr "Einzel-EPG anzeigen"
 
-msgid "Show Task List"
-msgstr "Aufgabenliste anzeigen"
-
 msgid "Show Timer List"
 msgstr "Alle Timer anzeigen"
 
@@ -18054,8 +18083,11 @@ msgstr "Untertitelmenü"
 msgid "Show system information"
 msgstr "System-Informationen anzeigen"
 
+msgid "Show task list"
+msgstr "Aufgabenliste anzeigen"
+
 msgid "Show task messages"
-msgstr "Zeige Task-Meldungen"
+msgstr "Task-Meldungen anzeigen"
 
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr "Infos zeigen, wenn der File Commander nicht läuft und alle Aufgaben erledigt sind."
@@ -21592,6 +21624,9 @@ msgstr "Bei 'Ja' werden ViaSat-EPG-Informationen verwendet, wenn sie verfügbar 
 msgid "Use Virgin EPG information when it is available."
 msgstr "Bei 'Ja' werden Virgin-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
+msgid "Use Zap timer end time"
+msgstr "Endzeit des Zap-Timers verwenden"
+
 #
 msgid "Use a gateway"
 msgstr "Ein Gateway verwenden"
@@ -21735,7 +21770,7 @@ msgid "Use time shift SeekBar while time shifting"
 msgstr "Timeshift-Suchleiste bei Timeshift verwenden *"
 
 msgid "Use viewer for unknown files"
-msgstr "Anzeiger für unbekannte Dateien benutzen"
+msgstr "Unbekannte Dateien bearbeiten"
 
 msgid "Use workaround for wake up from deep-standby"
 msgstr "Workaround für das Aufwachen aus dem Deep-Standby"
@@ -22577,6 +22612,9 @@ msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie 
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Wenn aktiviert, werden Daten von SDT (Service Description Table - Programmbeschreibungstabelle) und BAT (Bouquet Association Table - Bouquetbeschreibungstabelle) in HTTP-Streams eingefügt."
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr "Wenn diese Option aktiviert ist, wird ein neuer Zap-Timer mit Endzeit erstellt."
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Bei 'Ja' wird eine Info angezeigt, sobald ein Film beendet ist und der nächste beginnt."
 
@@ -22709,6 +22747,12 @@ msgstr "Die Vorlaufzeit in Minuten einstellen, die eine Aufnahme vor dem eigentl
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Die Nachlaufzeit in Minuten einstellen, die eine Aufnahme nach dem eigentlichen Aufnahmeende noch weiter laufen soll."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr "Die Vorlaufzeit in Minuten einstellen, wann der Umschalttimer vor dem eigentlichen Beginn starten soll."
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr "Die Nachlaufzeit in Minuten einstellen, wie lange der Umschalttimer nach dem eigentlichen Ende noch weiter laufen soll."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Wenn der Receiver aus dem Standby aufwacht, wird am Fernseher auf den HDMI Eingang geschaltet, an dem der Receiver angeschlossen ist."
@@ -25635,9 +25679,6 @@ msgstr "®"
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Eine Nachricht anzeigen, wenn ein Hintergrundskript erfolgreich beendet wurde. Ist 'stout' vorhanden, wird es als Zusatzinformation angezeigt."
-
-#~ msgid "Show task list"
-#~ msgstr "Aufgabenliste anzeigen"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Unbekannte Erweiterungen als Text anzeigen"

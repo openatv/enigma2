@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -985,6 +985,16 @@ msgid "%d Minutes"
 msgstr ""
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] ""
@@ -1001,6 +1011,16 @@ msgstr[0] "%d ثانیه"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2163,7 +2183,7 @@ msgid "Add"
 msgstr "اضافه کردن"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6257,7 +6277,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8198,6 +8218,9 @@ msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
+msgstr ""
+
+msgid "File Commander settings"
 msgstr ""
 
 msgid "File System Check"
@@ -10801,8 +10824,14 @@ msgstr ""
 msgid "Margin after recording"
 msgstr "حاشیه بعد از ضبط (دقیقه)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "حاشیه قبل از ضبط (دقیقه)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr ""
@@ -14442,7 +14471,7 @@ msgid "Remove"
 msgstr "حذف"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -17054,9 +17083,6 @@ msgstr "نمایش وضعیت شبکه بدون سیم"
 msgid "Show Single EPG"
 msgstr ""
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr ""
 
@@ -17419,6 +17445,10 @@ msgstr ""
 
 msgid "Show system information"
 msgstr ""
+
+#, fuzzy
+msgid "Show task list"
+msgstr "برو پایین لیست"
 
 msgid "Show task messages"
 msgstr ""
@@ -20755,6 +20785,9 @@ msgstr "استفاده از اطلاعات EPG مربوط به ViaSat وقتی �
 msgid "Use Virgin EPG information when it is available."
 msgstr "استفاده از اطلاعات EPG مربوط به Virgin وقتی در دسترس باشد."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "استفاده از دروازه"
 
@@ -21650,6 +21683,9 @@ msgstr ""
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr ""
 
@@ -21774,6 +21810,12 @@ msgid "When nonzero, a recording will start the nominated period before the star
 msgstr ""
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
@@ -24079,10 +24121,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Show image information"
 #~ msgstr "اطلاعات مدیریت نرم افزار"
-
-#, fuzzy
-#~ msgid "Show task list"
-#~ msgstr "برو پایین لیست"
 
 #, fuzzy
 #~ msgid "Show unknown extension as text"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2022-04-01 20:50+0300\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -909,6 +909,18 @@ msgstr[1] "%d минути"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -928,6 +940,18 @@ msgstr[1] "%d секунди"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2073,7 +2097,7 @@ msgid "Add"
 msgstr "Добавяне на"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6027,7 +6051,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -7963,13 +7987,16 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Settings"
-msgstr "Настройки на File Commander"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+msgid "File Commander settings"
+msgstr "Настройки на File Commander"
 
 msgid "File System Check"
 msgstr "Проверка файлова система"
@@ -10473,8 +10500,14 @@ msgstr ""
 msgid "Margin after recording"
 msgstr "Марж след записа (минути)"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Марж преди записа (минути)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Маркирайте сервиза като специален 3D сервиз"
@@ -13984,7 +14017,7 @@ msgid "Remove"
 msgstr "Премахване"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -16525,9 +16558,6 @@ msgstr "Показване на SD като"
 msgid "Show Single EPG"
 msgstr "Показване на единичен EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Показване на списъка с таймери"
 
@@ -16867,6 +16897,9 @@ msgstr "Показване на избора на субтитри"
 
 msgid "Show system information"
 msgstr "Показване на информация за системата"
+
+msgid "Show task list"
+msgstr "Показване на списъка със задачи"
 
 msgid "Show task messages"
 msgstr ""
@@ -20141,6 +20174,9 @@ msgstr "Използване на ViaSat EPG информация когато �
 msgid "Use Virgin EPG information when it is available."
 msgstr "Използване на Virgin EPG информация когато е на разположение."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Използвайте шлюз"
 
@@ -21017,6 +21053,9 @@ msgstr "Когато е разрешено, Enigma2 ще зареди несвъ
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Когато е разрешено, ще се покаже изскачащо съобщение, когато филмът приключи и следващия ще стартира."
 
@@ -21142,6 +21181,12 @@ msgstr "Когато не е нула, записът ще стартира по
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Когато не е нула, записът ще спре по-късно от момента на приключване посочен чрез EPG."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Когато приемникът се събуди от режим на готовност, той ще заповяда на телевизора да превключи към HDMI входа, към който е свързан приемникът."
@@ -23768,9 +23813,6 @@ msgstr ""
 
 #~ msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 #~ msgstr "Показване на съобщение, ако фонов скрипт завърши успешно. Има „здрав“, тогава това се показва като допълнителна информация."
-
-#~ msgid "Show task list"
-#~ msgstr "Показване на списъка със задачи"
 
 #~ msgid "Show unknown extension as text"
 #~ msgstr "Показване на неизвестно разширение като текст"

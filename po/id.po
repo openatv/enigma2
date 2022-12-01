@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -1040,6 +1040,18 @@ msgstr[1] "%d Menit"
 msgid "%d Minutes"
 msgstr ""
 
+#, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
@@ -1059,6 +1071,18 @@ msgstr[1] "%d detik"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2252,7 +2276,7 @@ msgid "Add"
 msgstr "Tambah"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 msgid "Add AutoTimer"
@@ -6293,7 +6317,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 msgid "Disable"
@@ -8263,15 +8287,18 @@ msgstr ""
 msgid "File Commander Move"
 msgstr ""
 
-#, fuzzy
 msgid "File Commander Settings"
-msgstr "Video Settings"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+#, fuzzy
+msgid "File Commander settings"
+msgstr "Video Settings"
 
 msgid "File System Check"
 msgstr "File System Check"
@@ -10876,8 +10903,14 @@ msgstr "MaraM9"
 msgid "Margin after recording"
 msgstr "Margin after recording"
 
+msgid "Margin after zap"
+msgstr ""
+
 msgid "Margin before recording"
 msgstr "Margin before recording"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Mark service as dedicated 3D service"
@@ -14510,7 +14543,7 @@ msgid "Remove"
 msgstr "Remove"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -17104,9 +17137,6 @@ msgstr "Show SD as"
 msgid "Show Single EPG"
 msgstr "Show Single EPG"
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr "Show Timer List"
 
@@ -17459,6 +17489,9 @@ msgid "Show subtitle selection"
 msgstr "Show subtitle selection"
 
 msgid "Show system information"
+msgstr ""
+
+msgid "Show task list"
 msgstr ""
 
 msgid "Show task messages"
@@ -20826,6 +20859,9 @@ msgstr "Use ViaSat EPG information when it is available."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Use Virgin EPG information when it is available."
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 msgid "Use a gateway"
 msgstr "Use a gateway"
 
@@ -21724,6 +21760,9 @@ msgstr "When enabled, Enigma2 will load unlinked bouquets. This means that bouqu
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 
@@ -21849,6 +21888,12 @@ msgstr "When nonzero, a recording will start the nominated period before the sta
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
 msgstr "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr ""
@@ -24254,10 +24299,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Show image information"
 #~ msgstr "Informasi pengelola perangkat lunak"
-
-#, fuzzy
-#~ msgid "Show task list"
-#~ msgstr "Show service list"
 
 #, fuzzy
 #~ msgid "Show unknown extension as text"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-27 17:29+0000\n"
+"POT-Creation-Date: 2022-12-01 15:13+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -1007,6 +1007,20 @@ msgid "%d Minutes"
 msgstr ""
 
 #, python-format
+msgid "%d Month"
+msgid_plural "%d Months"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Pixel"
+msgid_plural "%d Pixels"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] ""
@@ -1028,6 +1042,20 @@ msgstr[2] "%d sekund"
 #, python-format
 msgid "%d Seconds"
 msgstr ""
+
+#, python-format
+msgid "%d Week"
+msgid_plural "%d Weeks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d Year"
+msgid_plural "%d Years"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
@@ -2309,7 +2337,7 @@ msgid "Add"
 msgstr "Dodajanje"
 
 #, python-format
-msgid "Add '%s' To Bookmarks"
+msgid "Add '%s' to bookmarks"
 msgstr ""
 
 #
@@ -6684,7 +6712,7 @@ msgstr ""
 msgid "Directory/File Status Actions"
 msgstr ""
 
-msgid "Directory/File Status Information"
+msgid "Directory/File status information"
 msgstr ""
 
 #
@@ -8776,16 +8804,19 @@ msgstr ""
 msgid "File Commander Move"
 msgstr ""
 
-#
-#, fuzzy
 msgid "File Commander Settings"
-msgstr "Napredne nastavitve slike"
+msgstr ""
 
 msgid "File Commander Text Editor"
 msgstr ""
 
 msgid "File Commander Text Editor Actions"
 msgstr ""
+
+#
+#, fuzzy
+msgid "File Commander settings"
+msgstr "Napredne nastavitve slike"
 
 #
 msgid "File System Check"
@@ -11606,10 +11637,16 @@ msgstr ""
 msgid "Margin after recording"
 msgstr "Meja pred snemanjem (v minutah)"
 
+msgid "Margin after zap"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Margin before recording"
 msgstr "Meja pred snemanjem (v minutah)"
+
+msgid "Margin before zap"
+msgstr ""
 
 msgid "Mark service as dedicated 3D service"
 msgstr ""
@@ -15584,7 +15621,7 @@ msgid "Remove"
 msgstr "Odstrani"
 
 #, python-format
-msgid "Remove '%s' From Bookmarks"
+msgid "Remove '%s' from bookmarks"
 msgstr ""
 
 #
@@ -18375,9 +18412,6 @@ msgstr "Prikaz stanja brezzične mreže"
 msgid "Show Single EPG"
 msgstr ""
 
-msgid "Show Task List"
-msgstr ""
-
 msgid "Show Timer List"
 msgstr ""
 
@@ -18771,6 +18805,9 @@ msgid "Show subtitle selection"
 msgstr ""
 
 msgid "Show system information"
+msgstr ""
+
+msgid "Show task list"
 msgstr ""
 
 msgid "Show task messages"
@@ -22372,6 +22409,9 @@ msgstr ""
 msgid "Use Virgin EPG information when it is available."
 msgstr ""
 
+msgid "Use Zap timer end time"
+msgstr ""
+
 #
 msgid "Use a gateway"
 msgstr "Uporaba prehoda"
@@ -23327,6 +23367,9 @@ msgstr ""
 msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new Zap timer will be created with activated end time."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr ""
 
@@ -23451,6 +23494,12 @@ msgid "When nonzero, a recording will start the nominated period before the star
 msgstr ""
 
 msgid "When nonzero, a recording will stop the nominated period after the ending time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
+msgstr ""
+
+msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
