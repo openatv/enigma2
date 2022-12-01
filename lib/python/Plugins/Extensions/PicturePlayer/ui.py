@@ -1,3 +1,5 @@
+from os.path import isfile
+
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Components.Pixmap import Pixmap, MovingPixmap
@@ -89,7 +91,7 @@ class picshow(Screen):
 		self["key_yellow"].setText(_("Exif"))
 
 	def showThumb(self):
-		if not self.filelist.canDescent() and self.filelist.getCurrentDirectory() and self.filelist.getFilename() and self.picload.getThumbnail(self.filelist.getCurrentDirectory() + self.filelist.getFilename()) == 1:
+		if self.filelist.getPath() and isfile(self.filelist.getPath()) and self.picload.getThumbnail(self.filelist.getPath()) == 1:
 			self.ThumbTimer.start(500, True)
 
 	def selectionChanged(self):
@@ -106,7 +108,7 @@ class picshow(Screen):
 
 	def KeyYellow(self):
 		if not self.filelist.canDescent():
-			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getCurrentDirectory() + self.filelist.getFilename()))
+			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getPath()))
 
 	def KeyMenu(self):
 		self.session.openWithCallback(self.setConf, Pic_Setup)
@@ -354,13 +356,13 @@ class Pic_Thumb(Screen):
 		self.paintFrame()
 
 	def key_up(self):
-		self.index -= self.thumbsX
+		self.index -= int(self.thumbsX)
 		if self.index < 0:
 			self.index = self.maxentry
 		self.paintFrame()
 
 	def key_down(self):
-		self.index += self.thumbsX
+		self.index += int(self.thumbsX)
 		if self.index > self.maxentry:
 			self.index = 0
 		self.paintFrame()
