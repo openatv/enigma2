@@ -353,7 +353,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 		self["directoryFileNumberActions"] = HelpableActionMap(self, ["NumberActions"], {
 			"2": (self.keyMakeSymlink, _("Create a symbolic link")),
-			"3": (self.keyInformation, _("Directory/File Status Information"))
+			"3": (self.keyInformation, _("Directory/File status information"))
 		}, prio=0, description=_("File Commander Actions"))
 		self["directoryFileNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 		self["fileOnlyNumberActions"] = HelpableActionMap(self, ["NumberActions"], {
@@ -385,7 +385,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.displayStatusTimer = eTimer()  # Initialize status display timer.
 		self.displayStatusTimer.callback.append(self.displayStatusTimeout)
 		self.multiSelect = None
-		self.enabledmenuActionMaps = []
+		self.enabledMenuActionMaps = []
 		global running
 		running = True
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -415,7 +415,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		currentDirectory = self.sourceColumn.getCurrentDirectory()
 		srcPath = self.sourceColumn.getPath()
 		srcName = self.sourceColumn.getName()
-		self.enabledmenuActionMaps = []
+		self.enabledMenuActionMaps = []
 		self["multiSelectAction"].setEnabled(currentDirectory)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
 			self["key_red"].setText(_("Delete"))
@@ -428,7 +428,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
 			self["directoryFileNumberActions"].setEnabled(True)
-			self.enabledmenuActionMaps.append("directoryFileNumberActions")
+			self.enabledMenuActionMaps.append("directoryFileNumberActions")
 		else:
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
@@ -445,9 +445,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
 		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
 		if notStorageNumberAction:
-			self.enabledmenuActionMaps.append("notStorageNumberAction")
+			self.enabledMenuActionMaps.append("notStorageNumberAction")
 		if fileOnlyNumberActions:
-			self.enabledmenuActionMaps.append("fileOnlyNumberActions")
+			self.enabledMenuActionMaps.append("fileOnlyNumberActions")
 
 	def keyNumberGlobal(self, digit):
 		self.quickSelectTimer.stop()
@@ -944,7 +944,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		buttons = tuple(digits)  # + ("red", "green", "yellow", "blue")
 		# Map the listed button actions to their help texts and build a list of the contexts used by the selected buttons.
 		actionMaps = [self["alwaysNumberActions"]]
-		for enabledActionmaps in self.enabledmenuActionMaps:
+		for enabledActionmaps in self.enabledMenuActionMaps:
 			actionMaps.append(self[enabledActionmaps])
 		actions = {}
 		haveContext = set()
@@ -961,20 +961,17 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						if context not in haveContext:
 							contexts.append(context)
 							haveContext.add(context)
-						if isinstance(text, str):
-							actions[button] = " ".join([x.capitalize() for x in text.split()])
-						else:
-							actions[button] = " ".join([x.capitalize() for x in text().split()])
+						actions[button] = text if isinstance(text, str) else  text()
 		# Create the menu list with the buttons in the order of the "buttons" tuple.
-		menu = [("menu", _("File Commander Settings")), ("info", _("Show Task List"))]
+		menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
 		menu += [(button, actions[button]) for button in buttons if button in actions]
 		directory = self.sourceColumn.getCurrentDirectory()
 		if directory:
 			# menu.append(("bullet", _("Remove Current Directory From Bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add Current Directory To Bookmarks"), "bookmark+current"))
-			menu.append(("bullet", _("Remove '%s' From Bookmarks") % directory if directory in config.plugins.FileCommander.bookmarks.value else _("Add '%s' To Bookmarks") % directory, "bookmark+current"))
+			menu.append(("bullet", _("Remove '%s' from bookmarks") % directory if directory in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % directory, "bookmark+current"))
 		if path and isdir(path):
 			# menu.append(("bullet", _("Remove Selected/Highlighted Directory From Bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add Selected/Highlighted Directory To Bookmarks"), "bookmark+selected"))
-			menu.append(("bullet", _("Remove '%s' From Bookmarks") % path if path in config.plugins.FileCommander.bookmarks.value else _("Add '%s' To Bookmarks") % path, "bookmark+selected"))
+			menu.append(("bullet", _("Remove '%s' from bookmarks") % path if path in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % path, "bookmark+selected"))
 		self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu)
 
 	def keyMove(self):
