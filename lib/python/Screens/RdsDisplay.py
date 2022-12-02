@@ -206,6 +206,7 @@ class RassInteractive(Screen):
 			if not decoder: # this should never happen
 				print("NO RDS DECODER in getMaskForPage")
 			masks = decoder.getRassInteractiveMask()
+		mask = 0
 		if masks:
 			mask = masks[(page * 4) / 8]
 			if page % 2:
