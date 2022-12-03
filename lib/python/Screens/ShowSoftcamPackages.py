@@ -49,8 +49,6 @@ class ShowSoftcamPackages(Screen):
 			"pageUp": (self.pageUp, _("Move up a page / screen")),
 			"up": (self.pageUp, _("Move up a page / screen")),
 			# "first": (self.top, _("Move to first line")),
-			"left": (self.pageUp, _("Move up a page / screen")),
-			"right": (self.pageDown, _("Move down a page / screen")),
 			# "last": (self.bottom, _("Move to last line")),
 			"down": (self.pageDown, _("Move down a page / screen")),
 			"pageDown": (self.pageDown, _("Move down a page / screen")),
@@ -97,7 +95,6 @@ class ShowSoftcamPackages(Screen):
 
 	def layoutFinished(self):
 		self.rebuildList()
-
 
 	def selectionChanged(self):
 		cur = self["list"].getCurrent()
@@ -194,4 +191,3 @@ class ShowSoftcamPackages(Screen):
 
 	def bottom(self):
 		self["list"].bottom()
-

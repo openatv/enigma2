@@ -128,8 +128,6 @@ class LocaleSelection(Screen, HelpableScreen):
 			"pageUp": (self.keyPageUp, (pageUpItem, pageUpDesc)),
 			"up": (self.keyUp, (upItem, upDesc)),
 			"first": (self.keyTop, (topItem, topDesc)),
-			"left": (self.keyPageUp, (pageUpItem, pageUpDesc)),
-			"right": (self.keyPageDown, (pageDownItem, pageDownDesc)),
 			"last": (self.keyBottom, (bottomItem, bottomDesc)),
 			"down": (self.keyDown, (downItem, downDesc)),
 			"pageDown": (self.keyPageDown, (pageDownItem, pageDownDesc)),

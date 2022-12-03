@@ -128,8 +128,6 @@ class InformationBase(Screen, HelpableScreen):
 			"top": (self["information"].moveTop, _("Move to first line / screen")),
 			"pageUp": (self["information"].pageUp, _("Move up a screen")),
 			"up": (self["information"].moveUp, _("Move up a line")),
-			# "left": (self["information"].pageUp, _("Move up a screen")),
-			# "right": (self["information"].pageDown, _("Move down a screen")),
 			"down": (self["information"].moveDown, _("Move down a line")),
 			"pageDown": (self["information"].pageDown, _("Move down a screen")),
 			"bottom": (self["information"].moveBottom, _("Move to last line / screen"))
