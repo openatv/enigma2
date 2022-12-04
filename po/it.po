@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-11-30 06:01+0000\n"
+"PO-Revision-Date: 2022-12-03 09:46+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -126,7 +126,7 @@ msgid " (higher than any auto)"
 msgstr " (superiore ad auto)"
 
 msgid " (higher than rotor any auto)"
-msgstr " (priorità del rotore su auto)"
+msgstr " (priorità del motore su auto)"
 
 msgid " (lower than any auto)"
 msgstr " (inferiore ad auto)"
@@ -916,14 +916,14 @@ msgstr "%d Minuti"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d mese"
+msgstr[1] "%d mesi"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pixel"
+msgstr[1] "%d pixel"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -948,14 +948,14 @@ msgstr "%d Secondi"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d settimana"
+msgstr[1] "%d settimane"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d anno"
+msgstr[1] "%d anni"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -7520,7 +7520,7 @@ msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr "Anche se inizia un timer di registrazione 'zap and record'?"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "Anche se si avvia un timer di registrazione 'zap'?"
+msgstr "Anche se si avvia un timer di registrazione 'Zap'?"
 
 msgid "Event Info"
 msgstr "Info evento"
@@ -7990,7 +7990,7 @@ msgid "File Commander Move"
 msgstr "File Comandante Sposta"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "Impostazioni di File Commander"
 
 msgid "File Commander Text Editor"
 msgstr "File Commander Editor di testo"
@@ -9129,13 +9129,13 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Se un'azione è configurabile dall'utente, la relativa voce della guida verrà contrassegnata con un suffisso '(C)'."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Se abilitata, la funzione riavvierà il ricevitore dallo stato di spegnimento all'ora prestabilita per verificare che il programma non inizi in anticipo."
+msgstr "Se abilitato, la funzione riavvierà il ricevitore dallo stato di spegnimento all'ora prestabilita per verificare che il programma non inizi in anticipo."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr "Se abilitata, la risoluzione di uscita del ricevitore cercherà di corrispondere alla risoluzione del contenuto video"
+msgstr "Se abilitato, la risoluzione di uscita del ricevitore cercherà di corrispondere alla risoluzione del contenuto video"
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr "Se abilitata, il video sarà sempre non interlacciato."
+msgstr "Se abilitato, il video sarà sempre non interlacciato."
 
 msgid "If enabled, AIT data is included in recordings."
 msgstr "Se abilitato, i dati AIT sono inclusi nelle registrazioni."
@@ -10507,13 +10507,13 @@ msgid "Margin after recording"
 msgstr "Margine dopo la registrazione (minuti)"
 
 msgid "Margin after zap"
-msgstr ""
+msgstr "Margine dopo lo zap"
 
 msgid "Margin before recording"
 msgstr "Margine prima della registrazione (minuti)"
 
 msgid "Margin before zap"
-msgstr ""
+msgstr "Margine prima dello zap"
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Contrassegna come servizio 3D dedicato"
@@ -15680,7 +15680,7 @@ msgid "Select what do do after the timer recording has completed."
 msgstr "Seleziona cosa fare dopo che la registrazione con il timer è stata completata."
 
 msgid "Select what do do after the timer zap has completed."
-msgstr "Seleziona cosa fare dopo che il timer zap è stato completato."
+msgstr "Seleziona cosa fare dopo che il timer Zap è stato completato."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr "Seleziona cosa fare quando %s %s verrà avviato: se dovrà andare in riproduzione normale o in standby."
@@ -16260,7 +16260,7 @@ msgid "Setup network. Here you can setup DHCP, IP, DNS"
 msgstr "Impostazionil DHCP, IP e DNS della tua rete"
 
 msgid "Setup rotor"
-msgstr "Installazione del rotore"
+msgstr "Installazione del motore"
 
 msgid "Setup tuner(s)"
 msgstr "Configurazione sintonizzatore"
@@ -20195,7 +20195,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Utilizza le informazioni Virgin EPG quando sono disponibili."
 
 msgid "Use Zap timer end time"
-msgstr ""
+msgstr "Usa l'ora di fine del timer Zap"
 
 msgid "Use a gateway"
 msgstr "Usa un gateway"
@@ -21070,157 +21070,157 @@ msgid "What would you like to do?"
 msgstr "Cosa ti piacerebbe fare?"
 
 msgid "When enabled enigma2 will load unlinked user bouquets. This means that user bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Se abilitata, Enigma2 caricherà anche i bouquet orfani. Per bouquet orfani si intendono quei bouquet propri/personali non inseriti nel bouquets.tv o bouquets.radio"
+msgstr "Se abilitato, Enigma2 caricherà anche i bouquet orfani. Per bouquet orfani si intendono quei bouquet propri/personali non inseriti nel bouquets.tv o bouquets.radio"
 
 msgid "When enabled the PiP can be closed by the exit button."
-msgstr "Se abilitata, la funzione PiP può essere chiusa con il tasto ESCI."
+msgstr "Se abilitato, la funzione PiP può essere chiusa con il tasto ESCI."
 
 msgid "When enabled the receiver will automatically be switched off."
-msgstr "Quando abilitato, il ricevitore si spegnerà automaticamente."
+msgstr "Se abilitato, il ricevitore si spegnerà automaticamente."
 
 msgid "When enabled the receiver will automatically be switched on."
-msgstr "Quando abilitato, il ricevitore si accenderà automaticamente."
+msgstr "Se abilitato, il ricevitore si accenderà automaticamente."
 
 msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
-msgstr "Quando abilitato, il ricevitore tornerà automaticamente in standby quando la TV sarà spenta."
+msgstr "Se abilitato, il ricevitore tornerà automaticamente in standby quando la TV sarà spenta."
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Quando abilitato, il ricevitore si riattiverà automaticamente quando la TV sarà accesa."
+msgstr "Se abilitato, il ricevitore si riattiverà automaticamente quando la TV sarà accesa."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Se abilitati, i dati AIT verranno inclusi negli stream http. Ciò consente a un ricevitore di utilizzare HbbTV."
+msgstr "Se abilitato, i dati AIT saranno inclusi negli stream http. Ciò consentirà al ricevitore di utilizzare HbbTV."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr "Se abilitata, i dati EIT saranno inclusi nei flussi HTTP. Ciò permette ad un ricevitore client di vedere EPG."
+msgstr "Se abilitato, i dati EI§T saranno inclusi negli stream http. Ciò consentirà al ricevitore di utilizzare HbbTV."
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Quando abilitato, Enigma2 caricherà i bouquet non collegati. Ciò significa che i bouquet disponibili, ma non inclusi nei file bouquets.tv o bouquets.radio, verranno comunque caricati. Ciò ti consente, ad esempio, di mantenere il tuo bouquet utente mentre le impostazioni installate vengono aggiornate"
+msgstr "Se abilitato, Enigma2 caricherà i bouquet non collegati. Ciò significa che i bouquet disponibili, ma non inclusi nei file bouquets.tv o bouquets.radio, verranno comunque caricati. Ciò ti consentirà, ad esempio, di mantenere il tuo bouquet utente mentre le impostazioni installate vengono aggiornate"
 
 msgid "When enabled, SDT, BAT data will be included in http streams."
-msgstr "Se abilitati, i dati SDT e BAT verranno inclusi nei flussi http."
+msgstr "Se abilitato, i dati SDT e BAT verranno inclusi nei flussi http."
 
 msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
+msgstr "Se abilitato, verrà creato un nuovo timer Zap con l'ora di fine attivata."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
-msgstr "Se abilitata, verrà mostrato un messaggio di popup quando un evento è finito e il prossimo avrà inizio."
+msgstr "Se abilitato, verrà mostrato un messaggio di popup quando un evento è finito e il prossimo avrà inizio."
 
 msgid "When enabled, a pop up message will be shown when a recording starts."
-msgstr "Se abilitata, verrà visualizzato un messaggio popup all'avvio di una registrazione."
+msgstr "Se abilitato, verrà visualizzato un messaggio popup all'avvio di una registrazione."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Se abilitata, una registrazione può interrompere la modalità picture-in-picture quando non ci sono sintonizzatori liberi."
+msgstr "Se abilitato, una registrazione potrà interrompere la modalità picture-in-picture se non ci sono sintonizzatori liberi."
 
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
-msgstr "Se abilitata, una registrazione può interrompere le pseudo-registrazioni quando non ci sono sintonizzatori liberi."
+msgstr "Se abilitato, una registrazione potrà interrompere le pseudo-registrazioni se non ci sono sintonizzatori liberi."
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
-msgstr "Se abilitata, una registrazione può interrompere lo streaming quando non ci sono sintonizzatori liberi."
+msgstr "Se abilitato, una registrazione potrà interrompere lo streaming se non ci sono sintonizzatori liberi."
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
-msgstr "Se abilitata, la registrazione può interrompere la diretta TV quando non ci sono sintonizzatori liberi."
+msgstr "Se abilitato, una registrazione potrà interrompere la diretta TV se non ci sono sintonizzatori liberi."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Se abilitata, verrà visualizzato un messaggio di avviso e l'utente potrà interrompere o proseguire il Timeshift."
+msgstr "Se abilitato, verrà visualizzato un messaggio di avviso e l'utente potrà interrompere o proseguire il Timeshift."
 
 msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
-msgstr "Quando abilitato, decodifica sempre la ricezione di flussi http. Ciò richiede più risorse (decodifica demuxer), abilita solo se necessario. I singoli flussi vengono sempre decodificati se viene aggiunto 0x100 al tipo di servizio, indipendentemente da questa impostazione."
+msgstr "Se abilitato, decodifica sempre la ricezione di flussi http. Ciò richiede più risorse (decodifica demuxer), abilita solo se necessario. I singoli flussi verranno sempre decodificati se viene aggiunto 0x100 al tipo di servizio, indipendentemente da questa impostazione."
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr "Se abilitata, è richiesta l'autenticazione per guardare i canali in stream http."
+msgstr "Se abilitato, verrà richiesta l'autenticazione per guardare i canali in stream http."
 
 msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
 msgstr "Se abilitato, prima dell'aggiornamento di opkg ci sarà opkg clean per assicurarsi che nulla rovini l'aggiornamento: abilitalo solo quando non puoi aggiornare in linea."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Se abilitata, la numerazione dei canali inizia da 1 per ogni bouquet."
+msgstr "Se abilitato, la numerazione dei canali inizierà da 1 per ogni bouquet."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr "Se abilitata, il contenuto con un aspect ratio di 4:3 viene ampliato per adattarsi allo schermo."
+msgstr "Se abilitato, il contenuto con un aspect ratio di 4:3 verrà ampliato per adattarsi allo schermo."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "Se abilitato, passa al bouquet successivo quando viene raggiunto l'ultimo canale del bouquet attuale mentre si cambia canale."
+msgstr "Se abilitato, passerà al bouquet successivo se verrà raggiunto l'ultimo canale del bouquet attuale mentre si cambia canale."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Se abilitata, le registrazioni eliminate vengono spostate nel cestino, invece di essere eliminate immediatamente."
+msgstr "Se abilitato, le registrazioni eliminate verranno spostate nel cestino, invece di essere eliminate immediatamente."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
-msgstr "Se abilitata, i sottotitoli esterni sono sempre accesi per la riproduzione di film."
+msgstr "Se abilitato, i sottotitoli esterni verranno sempre abilitati durante la riproduzione di film."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr "Se abilitata, i sottotitoli DVB grafici sono preferiti rispetto ai sottotitoli del televideo, se entrambi i tipi sono disponibili."
+msgstr "Se abilitato, i sottotitoli DVB grafici verranno preferiti rispetto ai sottotitoli del televideo, se entrambi i tipi sono disponibili."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr "Se abilitata, i sottotitoli DVB grafici verranno visualizzati nella loro posizione originale."
+msgstr "Se abilitato, i sottotitoli DVB grafici verranno visualizzati nella loro posizione originale."
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Se abilitata, i sottotitoli DVB grafici verranno visualizzati in giallo, invece del colore originale."
+msgstr "Se abilitato, i sottotitoli DVB grafici verranno visualizzati in giallo, invece del colore originale."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
-msgstr "Quando abilitato, è possibile lasciare il movieplayer con esci."
+msgstr "Se abilitato, sarà possibile lasciare il movieplayer con esci."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Se abilitato, misura il consumo di energia per rilevare quando il rotore smette di girare (se supportato dal sintonizzatore)."
+msgstr "Se abilitato, misurerà il consumo di energia per rilevare quando il motore smette di girare (se supportato dal sintonizzatore)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Se abilitato, il cestino di rete sarà visualizzato prima dello svuotamento."
 
 msgid "When enabled, number markers will be hidden."
-msgstr "Se attivata abilita la scomparsa degli indicatori numerici."
+msgstr "Se abilitato, i marcatori numerici saranno nascosti."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Se abilitata, premendo '0 ',vai al primo canale del primo bouquet e elimini la memoria degli ultimi canali visionati."
+msgstr "Se abilitato, premendo '0 ', salterà al primo canale del primo bouquet e eliminerà la memoria degli ultimi canali visionati."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr "Se abilitata, riadatta la larghezza dei sottotitoli con quella dello schermo."
+msgstr "Se abilitato, la larghezza dei sottotitoli verrà adattata a quella dello schermo."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Se abilitata, mostra i numeri dei canali nella Lista Canali."
+msgstr "Se abilitato, mostrerà i numeri dei canali nella schermata di selezione dei canali."
 
 msgid "When enabled, show status or error messages."
-msgstr "Se abilitata, mostra lo stato o un messaggio d'errore."
+msgstr "Se abilitato, mostrerà lo stato o un messaggio d'errore."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr "Se abilitati, è possibile utilizzare i sottotitoli per non udenti."
+msgstr "Se abilitato, sarà possibile utilizzare i sottotitoli per non udenti."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr "Se abilitata, i sottotitoli per i non udenti saranno preferiti ai sottotitoli normali, quando entrambi i tipi sono disponibili."
+msgstr "Se abilitato, i sottotitoli per i non udenti saranno preferiti ai sottotitoli normali, quando entrambi i tipi sono disponibili."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr "Se abilitata, le pagine del televideo verranno memorizzate nella cache, ciò consentirà un accesso più rapido."
+msgstr "Se abilitato, le pagine del televideo verranno memorizzate nella cache, ciò consentirà un accesso più rapido."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
-msgstr "Se abilitata, i sottotitoli del televideo vengono visualizzati nella loro posizione originale."
+msgstr "Se abilitato, i sottotitoli del televideo verranno visualizzati nella loro posizione originale."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu"
-msgstr "Quando abilitata, l'opzione VCR scart verrà mostrata nel menu principale"
+msgstr "Se abilitato, l'opzione VCR scart verrà mostrata nel menu principale"
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
-msgstr "Se abilitata, la lunghezza di ogni registrazione verrà mostrata nell'elenco registrazioni (questo potrebbe causare maggior tempo di ricarica)."
+msgstr "Se abilitato, la lunghezza di ogni registrazione verrà mostrata nell'elenco registrazioni (questo potrebbe causare maggior tempo di ricarica)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Se abilitata, il ricevitore userà automaticamente la traccia audio precedentemente selezionata."
+msgstr "Se abilitato, il ricevitore userà automaticamente la traccia audio precedentemente selezionata."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr "Se abilitata, il ricevitore userà automaticamente i sottotitoli precedentemente selezionati."
+msgstr "Se abilitato, il ricevitore userà automaticamente i sottotitoli precedentemente selezionati."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Se abilitata,, il ricevitore seleziona una traccia AC3 (se disponibile)."
+msgstr "Se abilitato, il ricevitore selezionerà una traccia AC3 (se disponibile)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Se abilitata,, il ricevitore seleziona una traccia AC3+ (se disponibile)."
+msgstr "Se abilitato, il ricevitore selezionerà una traccia AC3+ (se disponibile)."
 
 msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Se abilitata, il Timeshift si avvia automaticamente in background dopo l'ora specificata."
+msgstr "Se abilitato, il Timeshift si avvierà automaticamente in background dopo l'ora specificata."
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Se abilitata, utilizza DHCP per la configurazione IP."
+msgstr "Se abilitato, verrà utilizzato DHCP per la configurazione IP."
 
 msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr "Quando è abilitato, vedrai i pacchetti dev, staticdev, dbg, doc, src e po nell'elenco opkg."
+msgstr "Se abilitato, vedrai i pacchetti dev, staticdev, dbg, doc, src e po nell'elenco opkg."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Se abilitata, il ricevitore rileverà l'attività sull'ingresso SCART VCR."
+msgstr "Se abilitato, il ricevitore rileverà l'attività sull'ingresso SCART VCR."
 
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Se diverso da zero, la registrazione inizierà in anticipo rispetto all'orario d'inizio indicato dalla EPG."
@@ -21229,37 +21229,37 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Se diverso da zero, la registrazione si fermerà entro l'ora di fine indicata dalla EPG .."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr ""
+msgstr "Se diverso da zero, un timer Zap avvierà il periodo nominato prima dell'orario di inizio indicato nell'EPG."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr ""
+msgstr "Se diverso da zero, un timer Zap fermerà il periodo nominato dopo l'ora di fine indicata nell'EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
-msgstr "Quando il ricevitore si riattiva dalla modalità standby, ordina alla TV di passare all'ingresso HDMI a cui è collegato il ricevitore."
+msgstr "Se il ricevitore si riattiva dalla modalità standby, ordinerà alla TV di passare all'ingresso HDMI a cui è collegato il ricevitore."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
-msgstr "Se è impostato su ogni cartella mostrerà lo stato precedente utilizzato, diversamente saranno visualizzati i valori di default."
+msgstr "Se impostato, ogni cartella mostrerà lo stato precedente utilizzato, diversamente saranno visualizzati i valori predefiniti."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Se impostato, la PiG tornerà a funzionare dopo l'arresto d'una riproduzione."
+msgstr "Se impostato, il PIG tornerà in diretta dopo che un film ha smesso di essere riprodotto."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "Quando il contenuto ha una 'proporzione' di 16:9, scegliere se scalare/allungare l'immagine."
+msgstr "Se il contenuto ha un formato 16:9, scegli se ridimensionare/allungare l'immagine."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "Quando il contenuto ha una 'proporzione' di 4:3, scegliere se scalare/allungare l'immagine."
+msgstr "Se il contenuto ha proporzioni di 4:3, scegli se ridimensionare/allungare l'immagine."
 
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
-msgstr "Quando il cursore di input raggiunge questo punto (percentuale della larghezza, da entrambi i lati), scorre il testo fino al cursore."
+msgstr "Se il cursore di input raggiunge questo punto (percentuale della larghezza, da entrambi i lati), scorre il testo fino al cursore."
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
-msgstr "Quando il ricevitore si riattiva dallo standby o dallo spegnimento, invierà un comando alla TV per portarla fuori dallo standby."
+msgstr "Se il ricevitore si riattiva dallo standby o dallo spegnimento, invierà un comando alla TV per portarla fuori dallo standby."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr "Quando è sintonizzato su un servizio, il sistema normalmente eseguirà la scansione del transponder per eventuali modifiche e le salverà. Imposta su 'sì' solo se sei assolutamente sicuro di quello che stai facendo."
+msgstr "Se è sintonizzato su un servizio, il sistema normalmente eseguirà la scansione del transponder per eventuali modifiche e le salverà. Imposta su 'sì' solo se sei assolutamente sicuro di quello che stai facendo."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "Se attivata, la funzione abiliterà VPS sulle registrazioni istantanee (arresto al termine dell'evento in corso), se il canale lo supporta."
+msgstr "Se sì, il VPS sarà abilitato per le registrazioni rapide (interrompi dopo il programma corrente) se il canale supporta VPS."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Dove vuoi eseguire il backup delle tue impostazioni?"

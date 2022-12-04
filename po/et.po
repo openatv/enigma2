@@ -1,19 +1,19 @@
-# rimasx <riks_12@hot.ee>, 2021.
+# rimasx <riks_12@hot.ee>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2021-08-21 11:46+0000\n"
-"Last-Translator: openATV <openatv@gmail.com>\n"
+"PO-Revision-Date: 2022-12-04 20:43+0000\n"
+"Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid ""
 "\n"
@@ -323,18 +323,15 @@ msgstr "%A %-d-%B"
 msgid "%A %-d-%B-%Y"
 msgstr "%A %-d-%B-%Y"
 
-#, fuzzy
 msgid "%A %-d. %B"
 msgstr "%A %-d. %B"
 
 msgid "%A %-d. %B %Y"
 msgstr "%A %-d. %B %Y"
 
-#, fuzzy
 msgid "%A %-d.%-m"
 msgstr "%A %-d.%-m"
 
-#, fuzzy
 msgid "%A %-d.%-m.%Y"
 msgstr "%A %-d.%-m.%Y"
 
@@ -821,16 +818,16 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d + %d + %d minut"
+msgstr[1] "%d + %d + %d minutit"
 
 #, python-format
 msgid "%d DMIPS per core"
-msgstr ""
+msgstr "%d DMIPS tuuma kohta"
 
 #, python-format
 msgid "%d DMIPS with %d cores"
-msgstr ""
+msgstr "%d DMIPS %d tuumaga"
 
 #, python-format
 msgid "%d Day"
@@ -862,7 +859,7 @@ msgstr[1] "%d tundi"
 
 #, python-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d tundi"
 
 #, python-format
 msgid "%d KB"
@@ -874,11 +871,11 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MB/s"
-msgstr ""
+msgstr "%d MB/s"
 
 #, python-format
 msgid "%d MHz"
-msgstr ""
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -911,13 +908,13 @@ msgstr[1] "%d Minutit"
 
 #, python-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d minutit"
 
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kuu"
+msgstr[1] "%d kuud"
 
 #, python-format
 msgid "%d Pixel"
@@ -925,7 +922,7 @@ msgid_plural "%d Pixels"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "Laius %d piksel"
@@ -933,7 +930,7 @@ msgstr[1] "laius %d pikslit"
 
 #, python-format
 msgid "%d Pixels"
-msgstr ""
+msgstr "%d pikslit"
 
 #, python-format
 msgid "%d Second"
@@ -943,19 +940,19 @@ msgstr[1] "%d sekundit"
 
 #, python-format
 msgid "%d Seconds"
-msgstr ""
+msgstr "%d sekundit"
 
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nädal"
+msgstr[1] "%d nädalat"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d aasta"
+msgstr[1] "%d aastat"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -967,14 +964,14 @@ msgstr[1] "%d kanalit leitud"
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tuum"
+msgstr[1] "%d tuuma"
 
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d kataloogi pakett värskendati."
+msgstr[1] "%d kataloogi paketti värskendati."
 
 #, python-format
 msgid "%d kB"
@@ -995,8 +992,8 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pakett uuendati."
+msgstr[1] "%d paketti uuendati."
 
 #, python-format
 msgid "%d package was configured."

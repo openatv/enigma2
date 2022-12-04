@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-01 15:13+0000\n"
-"PO-Revision-Date: 2022-12-01 14:36+0000\n"
+"PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -927,16 +927,16 @@ msgstr "%d хвилин"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Місяць"
+msgstr[1] "%d Mісяця"
+msgstr[2] "%d Місяців"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Піксель"
+msgstr[1] "%d Пікселя"
+msgstr[2] "%d Пікселів"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -963,16 +963,16 @@ msgstr "%d секунд"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Неділя"
+msgstr[1] "%d Неділі"
+msgstr[2] "%d Неділів"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Рік"
+msgstr[1] "%d Роки"
+msgstr[2] "%d Років"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -7175,7 +7175,7 @@ msgid "Enter a description for this timer."
 msgstr "Введіть опис для цього таймера."
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
-msgstr "Ввести каталог, або обробити файл (відтворити/переглянути/редагувати/встановити/розпакувати/запустити)"
+msgstr "Ввести каталог, обробити файл (відтворити/переглянути/редагувати/встановити/розпакувати/...)"
 
 msgid "Enter a name for this timer."
 msgstr "Введіть назву для цього таймера."
@@ -8004,28 +8004,28 @@ msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Хеші/Контрольні суми"
 
 msgid "File Commander Image Viewer"
-msgstr ""
+msgstr "File Commander Переглядач зображень"
 
 msgid "File Commander Image Viewer Actions"
-msgstr ""
+msgstr "File Commander Дії засобу перегляду зображень"
 
 msgid "File Commander Information Actions"
-msgstr ""
+msgstr "File Commander Дії з Інформацією"
 
 msgid "File Commander Media Information"
-msgstr ""
+msgstr "File Commander Медіа-інформація"
 
 msgid "File Commander Media Information Actions"
-msgstr ""
+msgstr "File Commander Дії з Медіа-інформацією"
 
 msgid "File Commander Move"
-msgstr ""
+msgstr "File Commander Переміщення"
 
 msgid "File Commander Settings"
-msgstr ""
+msgstr "File Commander Налаштування"
 
 msgid "File Commander Text Editor"
-msgstr ""
+msgstr "File Commander Текстовий редактор"
 
 msgid "File Commander Text Editor Actions"
 msgstr "File Commander Дії текстового редактора"
@@ -9475,7 +9475,7 @@ msgid "Initializing storage device..."
 msgstr "Ініціалізація пристрою зберігання даних ..."
 
 msgid "Inode"
-msgstr ""
+msgstr "Індекс"
 
 msgid "Inotify Monitoring"
 msgstr "Інотіфікувати Моніторинг"
@@ -9515,7 +9515,7 @@ msgstr "Встановити"
 
 #, python-format
 msgid "Install '%s' command"
-msgstr ""
+msgstr "Встановити команду '%s'"
 
 msgid "Install 1/1"
 msgstr "Встановити 1/1"
@@ -9557,7 +9557,7 @@ msgid "Install picons on"
 msgstr "Встановити пікони на"
 
 msgid "Install the package"
-msgstr ""
+msgstr "Встановити пакет"
 
 msgid "Install/Remove plugin"
 msgstr "Встановити/Видалити Додаток"
@@ -10016,7 +10016,7 @@ msgid "Last update"
 msgstr "Останнє оновлення"
 
 msgid "Last used column"
-msgstr ""
+msgstr "Останній використаний стовпець"
 
 msgid "Last used share: "
 msgstr "Останній мережевий диск: "
@@ -10050,13 +10050,13 @@ msgid "Left"
 msgstr "Вліво"
 
 msgid "Left column"
-msgstr ""
+msgstr "Ліва колонка"
 
 msgid "Left column directory sort"
-msgstr ""
+msgstr "Сортування каталогу в лівій колонці"
 
 msgid "Left column file sort"
-msgstr ""
+msgstr "Сортування файлів у лівій колонці"
 
 msgid "Left from service name"
 msgstr "Ліворуч назви каналу"
@@ -10096,7 +10096,7 @@ msgid "Light Grey"
 msgstr "Світло-сірий"
 
 msgid "Light source"
-msgstr ""
+msgstr "Джерело світла"
 
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Лімбурган / Лімбургер / Лімбургський"
@@ -10130,7 +10130,7 @@ msgstr "Ввімкнути обмеження"
 
 #, python-format
 msgid "Line %d / %d"
-msgstr ""
+msgstr "Рядок %d / %d"
 
 msgid "Lingala"
 msgstr "Лінгала"
@@ -10142,7 +10142,7 @@ msgid "Link quality:"
 msgstr "Якість з'єднання:"
 
 msgid "Link target"
-msgstr ""
+msgstr "Цільове посилання"
 
 msgid "Link:"
 msgstr "З’єднання:"
@@ -10151,7 +10151,7 @@ msgid "Linked titles with a DVD menu"
 msgstr "Заголовки пов'язані з DVD-Меню"
 
 msgid "Links"
-msgstr ""
+msgstr "Посилання"
 
 msgid "List EPG functions..."
 msgstr "Список функцій EPG..."
@@ -10163,7 +10163,7 @@ msgid "List available networks"
 msgstr "Список доступних мереж"
 
 msgid "List of Storage Devices"
-msgstr ""
+msgstr "Список пристроїв зберігання"
 
 msgid "List of storage devices"
 msgstr "Список пристроїв зберігання"
@@ -10453,7 +10453,7 @@ msgid "Maintain your multi boot device."
 msgstr "Підтимка Вашим пристроєм мультизавантаження."
 
 msgid "Make"
-msgstr ""
+msgstr "Модель"
 
 msgid "Make this mark an 'in' point"
 msgstr "Зробити цю закладку як внутрішню"
@@ -10498,7 +10498,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
 
 msgid "Manage and explore directories and files."
-msgstr ""
+msgstr "Керуйте та досліджуйте каталоги і файли."
 
 msgid "Manage network mounts"
 msgstr "Управління монтуванням мережі"
@@ -10540,13 +10540,13 @@ msgid "Margin after recording"
 msgstr "Об'єднати після запису (у хвилинах)"
 
 msgid "Margin after zap"
-msgstr ""
+msgstr "Поле після zap"
 
 msgid "Margin before recording"
 msgstr "Об'єднати перед записом (у хвилинах)"
 
 msgid "Margin before zap"
-msgstr ""
+msgstr "Поле до zap"
 
 msgid "Mark service as dedicated 3D service"
 msgstr "Позначити даний канал як 3D канал"
@@ -10637,7 +10637,7 @@ msgid "Media service"
 msgstr "Медіа-сервіс"
 
 msgid "MediaInfo"
-msgstr ""
+msgstr "МедіаІнфо"
 
 msgid "MediaPlayer"
 msgstr "Медіа Плеєр"
@@ -10716,13 +10716,13 @@ msgid "Message Box Actions"
 msgstr "Функції Повідомлень"
 
 msgid "Message pop up timeout"
-msgstr ""
+msgstr "Тайм-аут спливаючого повідомлення"
 
 msgid "Message..."
 msgstr "Повідомлення..."
 
 msgid "Metering mode"
-msgstr ""
+msgstr "Режим вимірювання"
 
 msgid "Mexico"
 msgstr "Мексика"
@@ -10995,7 +10995,7 @@ msgid "Move job queued."
 msgstr "Перемістити завдання в чергу."
 
 msgid "Move only highlighted file"
-msgstr ""
+msgstr "Перемістити лише виділений файл"
 
 msgid "Move the current DNS entry down one line"
 msgstr "Перемістити поточний запис DNS на один рядок вниз"
@@ -11010,14 +11010,14 @@ msgid "Move the current bookmark up"
 msgstr "Перемістити поточну закладку вгору"
 
 msgid "Move the current line down"
-msgstr ""
+msgstr "Перемістити поточний рядок вниз"
 
 msgid "Move the current line up"
-msgstr ""
+msgstr "Перемістити поточний рядок вгору"
 
 #, python-format
 msgid "Move the directory/file '%s'?"
-msgstr ""
+msgstr "Перемістити каталог/файл '%s'?"
 
 msgid "Move the keyboard cursor down"
 msgstr "Перемістіть курсор клавіатури вниз"
@@ -11044,7 +11044,7 @@ msgid "Move the text cursor to the last character"
 msgstr "Перемістіть курсор тексту до останнього символу"
 
 msgid "Move these directories/files?"
-msgstr ""
+msgstr "Перемістити каталог/файл?"
 
 msgid "Move to first line"
 msgstr "Перейти до першого рядка"
@@ -11152,7 +11152,7 @@ msgid "Movieplayer"
 msgstr "Програвач відео"
 
 msgid "Movies"
-msgstr ""
+msgstr "Фільми"
 
 msgid "Moving"
 msgstr "Переміщення"
@@ -11237,7 +11237,7 @@ msgid "Mute"
 msgstr "Без звуку"
 
 msgid "My extensions"
-msgstr ""
+msgstr "Мої розширення"
 
 msgid "Myanmar"
 msgstr "М'янма"
@@ -11265,7 +11265,7 @@ msgstr "Тюнер і модель"
 
 #, python-format
 msgid "NOTE: The directory/file '%s' exists and will be overwritten!"
-msgstr ""
+msgstr "ПРИМІТКА: Каталог/файл '%s' існує і буде перезаписано!"
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
@@ -11408,7 +11408,7 @@ msgid "Network Test:"
 msgstr "Тест мережі: "
 
 msgid "Network Wizard"
-msgstr "Майстер налаштування мережі"
+msgstr "Майстер налашт. мережі"
 
 msgid "Network address"
 msgstr "Мережева адреса"
@@ -13403,7 +13403,7 @@ msgstr "Передача"
 
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
-msgstr ""
+msgstr "Для виконання цієї дії необхідно встановити програму '%s'. Бажаєте встановити пакет '%s', щоб інсталювати програму?"
 
 msgid "Programmlisten History"
 msgstr "Історія програми"
@@ -13544,7 +13544,7 @@ msgid "Put your AV Receiver in standby"
 msgstr "Перевести Ваш приймач в режим очікування"
 
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python інтерфейс для /tmp/mmi.socket"
@@ -14060,7 +14060,7 @@ msgstr "Видалити"
 
 #, python-format
 msgid "Remove '%s' from bookmarks"
-msgstr ""
+msgstr "Видалити '%s' із закладок"
 
 msgid "Remove Bookmark"
 msgstr "Видалити закладку"
@@ -14159,10 +14159,10 @@ msgid "Rename Directory"
 msgstr "Перейменувати каталог"
 
 msgid "Rename all related files"
-msgstr ""
+msgstr "Перейменуйте всі пов’язані файли"
 
 msgid "Rename directory/file"
-msgstr ""
+msgstr "Перейменувати каталог/файл"
 
 msgid "Rename failed!"
 msgstr "Не вдалося перейменувати!"
@@ -14171,7 +14171,7 @@ msgid "Rename name and description for new events"
 msgstr "Перейменувати ім'я та опис для нових подій"
 
 msgid "Rename only highlighted file"
-msgstr ""
+msgstr "Перейменувати лише виділений файл"
 
 msgid "Rename the proposed file to be created"
 msgstr "Перейменуйте файл, який пропонується створити"
@@ -14255,7 +14255,7 @@ msgid "Reset and renumerate title names"
 msgstr "Скинути і перенумерувати назви заголовків"
 
 msgid "Reset executable mode (644)"
-msgstr ""
+msgstr "Скинути режим виконання (644)"
 
 msgid "Reset network configuration"
 msgstr "Скидання конфігурації мережі"
@@ -14285,7 +14285,7 @@ msgid "Resolution"
 msgstr "Роздільна здатність"
 
 msgid "Resolution unit"
-msgstr ""
+msgstr "Одиниця роздільної здатності"
 
 msgid "Restart"
 msgstr "Перезавантажити"
@@ -15088,7 +15088,7 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr "Якщо вибрано 'так', номер канал буде показуватися в інфобарі."
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
-msgstr ""
+msgstr "Виберіть 'Так', щоб відображати невідомі файли у програмі перегляду файлів File Commander, виберіть 'Ні', щоб не обробляти невідомі файли."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Виберіть 'Так', щоб увімкнути редагування налаштувань цього пристрою. Вибір 'Ні' скидає налаштування пристроїв до значень за замовчуванням."
@@ -15136,10 +15136,10 @@ msgid "Select 'Yes' to reset network configuration to the default. This will ena
 msgstr "Виберіть 'Так', щоб скинути конфігурацію мережі до стандартних. Це активує порт Ethernet, якщо він існує, і налаштує приймач на використання DHCP. Усі інші мережеві інтерфейси будуть видалені."
 
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
-msgstr ""
+msgstr "Виберіть 'Так', щоб установити позицію курсору в кінець рядка під час редагування текстового файлу.  Виберіть 'Ні', щоб встановити курсор на початок рядка."
 
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
-msgstr ""
+msgstr "Виберіть 'Так', щоб відображати каталоги вгорі/на початку списку, або виберіть 'Ні', щоб спочатку відображати файли."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Виберіть 'Так', щоб відобразити розширені параметри налаштувань."
@@ -15306,7 +15306,7 @@ msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
 
 msgid "Select all related files"
-msgstr ""
+msgstr "Виберіть усі пов’язані файли"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Виберіть дію, яку потрібно виконати після завершення завдання."
@@ -15327,7 +15327,7 @@ msgid "Select default EPG type..."
 msgstr "Вибір тип ЕПГ за умовчанням..."
 
 msgid "Select default File Commander directory:"
-msgstr ""
+msgstr "Вибрати каталог File Commander за замовчуванням:"
 
 msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
@@ -15339,13 +15339,13 @@ msgid "Select files/folders to backup"
 msgstr "Виберіть файли/теки для резерв. копії"
 
 msgid "Select how long to display status messages."
-msgstr ""
+msgstr "Виберіть, як довго відображати повідомлення про стан."
 
 msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
 msgstr "Виберіть, як довго відображати спливаюче повідомлення про помилку кнопки. Введення кнопок все ще дозволено, поки відображається спливаюче вікно."
 
 msgid "Select how long to display the task and script message pop up."
-msgstr ""
+msgstr "Виберіть, як довго відображати спливаюче повідомлення про завдання скрипта."
 
 msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
 msgstr "Виберіть час у секундах, протягом якого відображення гучності буде показано, перш ніж воно автоматично приховається."
@@ -15426,7 +15426,7 @@ msgid "Select movie"
 msgstr "Виберіть фільм"
 
 msgid "Select only highlighted file"
-msgstr ""
+msgstr "Вибрати лише виділений файл"
 
 msgid "Select provider to add..."
 msgstr "Виберіть провайдера, щоб додати..."
@@ -15453,10 +15453,10 @@ msgid "Select system information to view:"
 msgstr "Виберіть системну інформацію для перегляду:"
 
 msgid "Select temporary directory sort order for the current column"
-msgstr ""
+msgstr "Виберіть тимчасовий порядок сортування каталогу для поточного стовпця"
 
 msgid "Select temporary file sort order for the current column"
-msgstr ""
+msgstr "Виберіть тимчасовий порядок сортування файлів для поточного стовпця"
 
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
@@ -15525,10 +15525,10 @@ msgid "Select the day of the week that this timer will activate."
 msgstr "Виберіть день тижня, який цей таймер буде активувати."
 
 msgid "Select the default directory to be used if the left column directory is not saved."
-msgstr ""
+msgstr "Виберіть каталог за замовчуванням, який буде використовуватися, якщо каталог лівого стовпця не збережено."
 
 msgid "Select the default directory to be used if the right column directory is not saved."
-msgstr ""
+msgstr "Виберіть каталог за замовчуванням, який буде використовуватися, якщо каталог правого стовпця не збережено."
 
 msgid "Select the delay before the timer activates."
 msgstr "Виберіть затримку перед активацією таймера."
@@ -15537,10 +15537,10 @@ msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' t
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
 
 msgid "Select the directory sort order for the left column:"
-msgstr ""
+msgstr "Виберіть порядок сортування каталогу для лівого стовпця:"
 
 msgid "Select the directory sort order for the right column:"
-msgstr ""
+msgstr "Виберіть порядок сортування каталогу для правого стовпця:"
 
 msgid "Select the display design for menus."
 msgstr "Виберіть дизайн дисплея для меню."
@@ -15550,7 +15550,7 @@ msgstr "Виберіть параметри відображення для ко
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
-msgstr ""
+msgstr "Виберіть порядок сортування файлів для стовпця %s:"
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Виберіть перший елемент у списку, або перейдіть на початок тексту"
@@ -15649,7 +15649,7 @@ msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
-msgstr ""
+msgstr "Виберіть стартовий/початковий стовпець, який буде активовано під час запуску File Commander."
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Виберіть теги, які слід використовувати для цього запису."
@@ -16101,7 +16101,7 @@ msgid "Set the jump-size of the seekbar."
 msgstr "Встановити крок переходу для Seekbar."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
-msgstr ""
+msgstr "Встановіть кількість рядків, які будуть збережені для виводу 'stout' і 'stderr' у скриптах."
 
 msgid "Set the position of the recording icons"
 msgstr "Встановіть положення значка запису"
@@ -16668,7 +16668,7 @@ msgid "Show crypto info in InfoBar"
 msgstr "Показати інфо кодування в Інфобарі"
 
 msgid "Show current directory"
-msgstr ""
+msgstr "Показати поточний каталог"
 
 msgid "Show debug log information"
 msgstr "Показати інформацію журналу відлагодження"
@@ -16728,7 +16728,7 @@ msgid "Show files backed up by default"
 msgstr "Файли резервної копії"
 
 msgid "Show first image"
-msgstr ""
+msgstr "Показати перше зображення"
 
 msgid "Show graphical multi EPG"
 msgstr "Показати графічний телегід"
@@ -16740,11 +16740,11 @@ msgid "Show icon for new/unseen items"
 msgstr "Показати іконки для нових/невидимих елементів"
 
 msgid "Show image"
-msgstr ""
+msgstr "Показати зображення"
 
 #, python-format
 msgid "Show image and save as '%s'"
-msgstr ""
+msgstr "Показати зображення та зберегти як '%s'"
 
 msgid "Show in Standby"
 msgstr "Показати в Режимі очікування"
@@ -17179,10 +17179,10 @@ msgid "Size"
 msgstr "Розмір"
 
 msgid "Size ascending"
-msgstr ""
+msgstr "Розмір по зростанню"
 
 msgid "Size descending"
-msgstr ""
+msgstr "Розмір за спаданням"
 
 msgid "Skin"
 msgstr "Скін"
@@ -17197,7 +17197,7 @@ msgid "Skin Setting"
 msgstr "Налаштування скіну"
 
 msgid "Skin Settings"
-msgstr "Налаштування скіну"
+msgstr "Вибір скіну"
 
 msgid "Skin setup"
 msgstr "Налаштування скіну"
@@ -17236,7 +17236,7 @@ msgid "Sleep delay"
 msgstr "Затримка засинання"
 
 msgid "Sleep test"
-msgstr ""
+msgstr "Тест на виключення"
 
 msgid "Sleep timer"
 msgstr "Таймер вимкнення"
@@ -17295,13 +17295,13 @@ msgid "Slide right to left"
 msgstr "Слайд-шоу справа на ліво"
 
 msgid "Slide show delay"
-msgstr ""
+msgstr "Затримка показу слайдів"
 
 msgid "Slide show interval (sec.)"
 msgstr "Інтервал слайд-шоу (сек.)"
 
 msgid "Slide show loop"
-msgstr ""
+msgstr "Цикл показу слайдів"
 
 msgid "Slide top to bottom"
 msgstr "Слайд-шоу зверху вниз"
@@ -18266,7 +18266,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 01.12.2022"
+msgstr "Переклад: kvinto - 04.12.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18444,10 +18444,10 @@ msgid "Test DiSEqC settings"
 msgstr "Тест налаштувань DiSEqC"
 
 msgid "Test job completed."
-msgstr ""
+msgstr "Тестове завдання виконано."
 
 msgid "Test job failed!"
-msgstr ""
+msgstr "Тестове завдання не вдалося!"
 
 msgid "Test mode"
 msgstr "Тестовий режим"
@@ -18620,7 +18620,7 @@ msgid "The aspect ratio of the recording."
 msgstr "Співвідношення сторін запису."
 
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
-msgstr ""
+msgstr "Автори НЕ НЕСУТЬ ВІДПОВІДАЛЬНОСТІ за ВТРАТУ, АБО ПОШКОДЖЕННЯ ДАНИХ!"
 
 msgid ""
 "The available disk space for time shift is less than specified in the settings.\n"
@@ -18680,11 +18680,11 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to discard the changes?"
-msgstr ""
+msgstr "Файл '%s' було змінено. Відмінити зміни?"
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
-msgstr ""
+msgstr "Файл '%s' було змінено. Ви хочете зберегти його?"
 
 msgid ""
 "The file system on your time shift device does not support hard links.\n"
@@ -18695,7 +18695,7 @@ msgstr ""
 
 #, python-format
 msgid "The following files are related to '%s':"
-msgstr ""
+msgstr "Наступні файли пов'язані з '%s':"
 
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
@@ -18816,7 +18816,7 @@ msgstr "В даний час немає невиконаних дій."
 
 #, python-format
 msgid "There are no actions available to process '%s'!"
-msgstr ""
+msgstr "Немає доступних дій для обробки '%s'!"
 
 msgid "There are no items currently available for this screen."
 msgstr "Наразі на цьому екрані немає елементів."
@@ -18925,7 +18925,7 @@ msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Це поле дозволяє шукати додаткову швидкість передачі символів до %s."
 
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
-msgstr ""
+msgstr "Ця функція недоступна, оскільки обробка великих файлів може зайняти надто багато часу для роботи на цьому обладнанні."
 
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "Це обхідний шлях для деяких пристроїв, які знову прокидаються після переходу в режим очікування. Команда пробудження з інших пристроїв буде ігнорована протягом кількох секунд."
@@ -19273,7 +19273,7 @@ msgid "Time Update in Minutes:"
 msgstr "Час Оновлення в хвилинах:"
 
 msgid "Time between slides in image viewer slide show."
-msgstr ""
+msgstr "Час між слайдами в слайд-шоу програми перегляду зображень."
 
 msgid "Time delay for the repeated transmission"
 msgstr "Час затримки для повторної передачі"
@@ -19458,7 +19458,7 @@ msgstr "Щоб відновити імідж:"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
-msgstr ""
+msgstr "Куди ви бажаєте видобути '%s'?"
 
 msgid "Today"
 msgstr "Сьогодні"
@@ -20232,7 +20232,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Використовувати інформацію Virgin ЕПГ, коли вона доступна."
 
 msgid "Use Zap timer end time"
-msgstr ""
+msgstr "Використовувати час завершення таймера Zap"
 
 msgid "Use a gateway"
 msgstr "Використовувати шлюз"
@@ -21137,7 +21137,7 @@ msgid "When enabled, SDT, BAT data will be included in http streams."
 msgstr "Якщо ввімкнено, дані SDT, BAT будуть долучені у потоки HTTP."
 
 msgid "When enabled, a new Zap timer will be created with activated end time."
-msgstr ""
+msgstr "Якщо ввімкнено, новий таймер Zap буде створено з активованим часом завершення."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Показати спливаюче вікно, коли один фільм закінчився, а наступний починається."
@@ -21266,10 +21266,10 @@ msgid "When nonzero, a recording will stop the nominated period after the ending
 msgstr "Вкажіть на скільки хвилин пізніше має закінчитися запис після закінчення передачі."
 
 msgid "When nonzero, a zap timer will start the nominated period before the starting time indicated in the EPG."
-msgstr ""
+msgstr "Якщо значення відмінне від нуля, таймер перемикання запустить призначений період раніше часу початку, зазначеного в EPG."
 
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
-msgstr ""
+msgstr "Якщо значення відмінне від нуля, таймер перемикання зупинить заданий період після закінчення часу, зазначеного в EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
 msgstr "Коли приймач виходить із режиму очікування, він дасть команду телевізору переключитися на вхід HDMI, до якого підключено приймач."
