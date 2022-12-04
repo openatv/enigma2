@@ -305,7 +305,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["key_blue"] = StaticText()
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_info"] = StaticText(_("INFO"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "MenuActions", "InfoActions", "ColorActions", "NavigationActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "MenuActions", "InfoActions", "ColorActions", "NavigationActions", "InfobarTeletextActions"], {
 			"cancel": (self.keyExit, _("Exit File Commander")),
 			"ok": (self.keyOk, _("Enter a directory or process a file (play/view/edit/install/extract/run)")),
 			"menu": (self.keyMenu, _("Open context menu (contains settings menu)")),
@@ -325,7 +325,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"right": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
+			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
+			"startTeletext": (self.keyViewEdit, _("View or edit file (if size < 1MB)"))
 		}, prio=-1, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
 		self["multiSelectAction"] = HelpableActionMap(self, ["InfobarActions"], {
 			"showMovies": (self.keyMultiSelect, _("Toggle multi-selection mode"))
@@ -652,6 +653,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
+				if startIndex >= self.sourceColumn.count():
+					self.sourceColumn.goBottom()
+				else:
+					self.sourceColumn.setCurrentIndex(startIndex)
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job completed.")), MessageBox.TYPE_INFO)
 
@@ -665,6 +670,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Delete"))
 		path = self.sourceColumn.getPath()
+		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
@@ -1037,6 +1043,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
 				self.keyRefresh()
+				if startIndex >= self.sourceColumn.count():
+					self.sourceColumn.goBottom()
+				else:
+					self.sourceColumn.setCurrentIndex(startIndex)
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job completed.")), MessageBox.TYPE_INFO)
 
@@ -1050,6 +1060,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Move"))
 		path = self.sourceColumn.getPath()
+		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
