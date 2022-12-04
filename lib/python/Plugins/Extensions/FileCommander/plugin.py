@@ -326,7 +326,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
-			"startTeletext": (self.keyViewEdit, _("View or edit file (if size < 1MB)"))
+			"startTeletext": (self.keyText, _("View or edit file (if size < 1MB)"))
 		}, prio=-1, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
 		self["multiSelectAction"] = HelpableActionMap(self, ["InfobarActions"], {
 			"showMovies": (self.keyMultiSelect, _("Toggle multi-selection mode"))
@@ -1525,6 +1525,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			progress = job.getProgress()
 			self.taskList.append((job, job.name, job.getStatustext(), progress, "%d %%" % progress))
 		self.session.open(TaskListScreen, self.taskList)
+
+	def keyText(self):
+		path = self.sourceColumn.getPath()
+		if path and isfile(path):
+			fileType = splitext(path)[1].lower()
+			# TODO define valid extensions
+			self.keyViewEdit(self)
+			return
+		InfoBar.instance.showUnhandledKey()
 
 	def keyViewEdit(self, path=None):
 		if path is None:
