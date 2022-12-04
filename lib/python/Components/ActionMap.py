@@ -265,7 +265,14 @@ class HelpableActionMap(ActionMap):
 		actions = actions or {}
 		self.description = description
 		actionDict = {}
+		legacyMode = config.usage.actionLeftRightToPageUpPageDown.value
 		for context in contexts:
+			if legacyMode and context == "NavigationActions":
+				copyLeft = "left" not in actions and "pageUp" in actions
+				copyRight = "right" not in actions and "pageDown" in actions
+			else:
+				copyLeft = False
+				copyRight = False
 			actionList = []
 			for (action, response) in actions.items():
 				if not isinstance(response, (list, tuple)):
@@ -273,6 +280,12 @@ class HelpableActionMap(ActionMap):
 				if queryKeyBinding(context, action):
 					actionList.append((action, response[1]))
 				actionDict[action] = response[0]
+				if copyLeft and action == "pageUp":
+					actionList.append(("left", response[1]))
+					actionDict["left"] = response[0]
+				if copyRight and action == "pageDown":
+					actionList.append(("right", response[1]))
+					actionDict["right"] = response[0]
 			parent.helpList.append((self, context, actionList))
 		ActionMap.__init__(self, contexts, actionDict, prio)
 

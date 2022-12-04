@@ -1263,6 +1263,7 @@ def InitUsageConfig():
 	config.usage.keymap = ConfigSelection(default=keymapdefault, choices=keymapchoices)
 	config.usage.keytrans = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
+	config.usage.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
 
 	config.network = ConfigSubsection()
 	if BoxInfo.getItem("WakeOnLAN"):
