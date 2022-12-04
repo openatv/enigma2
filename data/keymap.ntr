@@ -131,8 +131,12 @@
 
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_MENU" mapto="MENU" flags="b" />
+		<key id="KEY_MENU" mapto="menuLong" flags="l" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_SPACE" mapto="menu" flags="m" />
+		<key id="KEY_SPACE" mapto="MENU" flags="b" />
+		<key id="KEY_SPACE" mapto="menuLong" flags="l" />
 	</map>
 
 	<map context="NavigationActions">
@@ -318,6 +322,17 @@
 		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="m" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_SPACE" mapto="showMenu" flags="m" />
+	</map>
+
+	<map context="LocaleSelectionActions">
+		<key id="KEY_RED" mapto="cancel" flags="m" />
+		<key id="KEY_GREEN" mapto="save" flags="m" />
+		<key id="KEY_YELLOW" mapto="manage" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<key id="KEY_OK" mapto="select" flags="m" />
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_INFO" mapto="current" flags="m" />
 	</map>
 
 	<map context="MsgBoxActions">
@@ -527,13 +542,13 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
+		<key id="KEY_LEFT" mapto="historyBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="historyNext" flags="b" />
 		<key id="KEY_UP" mapto="zapDown" flags="mr" />
 		<key id="KEY_DOWN" mapto="zapUp" flags="mr" />
 		<key id="KEY_OK" mapto="openServiceList" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
-		<key id="KEY_LEFT" mapto="historyBack" flags="b" />
-		<key id="KEY_RIGHT" mapto="historyNext" flags="b" />
 		<key id="KEY_BACK" mapto="historyBack" flags="b" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
 		<key id="KEY_ARCHIVE" mapto="historyBack" flags="b" />
@@ -989,12 +1004,12 @@
 		<key id="KEY_BLUE" mapto="showFavourites" flags="m" />
 		<key id="KEY_RIGHT" mapto="nextBouquet" flags="m" />
 		<key id="KEY_LEFT" mapto="prevBouquet" flags="m" />
+		<key id="KEY_UP" mapto="keyUp" flags="mr"/>
+		<key id="KEY_DOWN" mapto="keyDown" flags="mr"/>
 		<key id="KEY_PREVIOUS" mapto="prevMarker" flags="m" />
 		<key id="KEY_NEXT" mapto="nextMarker" flags="m" />
 		<key id="KEY_BACK" mapto="prevMarker" flags="m" />
 		<key id="KEY_FORWARD" mapto="nextMarker" flags="m" />
-		<key id="KEY_UP" mapto="keyUp" flags="mr"/>
-		<key id="KEY_DOWN" mapto="keyDown" flags="mr"/>
 	</map>
 
 	<map context="ChannelSelectInfoActions">
@@ -1058,12 +1073,6 @@
 		<key id="KEY_YELLOW" mapto="openSingleServiceEPG" flags="m" />
 		<key id="KEY_BLUE" mapto="openMultiServiceEPG" flags="m" />
 		<key id="KEY_EPG" mapto="openSingleServiceEPG" flags="m" />
-	</map>
-
-	<map context="MenuActions">
-		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_MENU" mapto="MENU" flags="b" />
-		<key id="KEY_MENU" mapto="menuLong" flags="l" />
 	</map>
 
 	<map context="DirectionActions">
@@ -1386,16 +1395,5 @@
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
 		<key id="KEY_RED" mapto="subtitles" flags="m" />
-	</map>
-
-	<map context="LocaleSelectionActions">
-		<key id="KEY_RED" mapto="cancel" flags="m" />
-		<key id="KEY_GREEN" mapto="save" flags="m" />
-		<key id="KEY_YELLOW" mapto="manage" flags="m" />
-		<key id="KEY_EXIT" mapto="cancel" flags="b" />
-		<key id="KEY_EXIT" mapto="close" flags="l" />
-		<key id="KEY_OK" mapto="select" flags="m" />
-		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_INFO" mapto="current" flags="m" />
 	</map>
 </keymap>
