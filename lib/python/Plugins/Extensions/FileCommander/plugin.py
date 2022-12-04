@@ -899,6 +899,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				if item in bookmarks or item == _("Storage Devices"):
 					continue
 				order.remove(item)
+			if _("Storage Devices") not in order:
+				order.insert(0, _("Storage Devices"))
 			insertPoint = 1 if order[0] == _("Storage Devices") else 0
 			bookmarks.insert(insertPoint, directory)
 			if directory not in order:
@@ -961,17 +963,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						if context not in haveContext:
 							contexts.append(context)
 							haveContext.add(context)
-						actions[button] = text if isinstance(text, str) else  text()
+						actions[button] = text if isinstance(text, str) else text()
 		# Create the menu list with the buttons in the order of the "buttons" tuple.
 		menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
 		menu += [(button, actions[button]) for button in buttons if button in actions]
 		directory = self.sourceColumn.getCurrentDirectory()
 		if directory:
+			directoryName = basename(normpath(directory)) if len(directory) > 20 else directory
 			# menu.append(("bullet", _("Remove Current Directory From Bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add Current Directory To Bookmarks"), "bookmark+current"))
-			menu.append(("bullet", _("Remove '%s' from bookmarks") % directory if directory in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % directory, "bookmark+current"))
+			menu.append(("bullet", _("Remove '%s' from bookmarks") % directoryName if directory in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % directoryName, "bookmark+current"))
 		if path and isdir(path):
+			directoryName = basename(normpath(path)) if len(path) > 20 else path
 			# menu.append(("bullet", _("Remove Selected/Highlighted Directory From Bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add Selected/Highlighted Directory To Bookmarks"), "bookmark+selected"))
-			menu.append(("bullet", _("Remove '%s' from bookmarks") % path if path in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % path, "bookmark+selected"))
+			menu.append(("bullet", _("Remove '%s' from bookmarks") % directoryName if path in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % directoryName, "bookmark+selected"))
 		self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu)
 
 	def keyMove(self):
