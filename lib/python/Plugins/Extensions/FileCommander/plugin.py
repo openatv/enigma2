@@ -305,7 +305,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["key_blue"] = StaticText()
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_info"] = StaticText(_("INFO"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "MenuActions", "InfoActions", "ColorActions", "NavigationActions"], {
+		self["key_text"] = StaticText(_("TEXT"))
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "FileCommanderActions", "InfoActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyExit, _("Exit File Commander")),
 			"ok": (self.keyOk, _("Enter a directory or process a file (play/view/edit/install/extract/run)")),
 			"menu": (self.keyMenu, _("Open context menu (contains settings menu)")),
@@ -327,8 +328,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
 		}, prio=-1, description=_("File Commander Actions"))  # DEBUG: Something has stolen UP, DOWN, LEFT and RIGHT! :(
-		self["multiSelectAction"] = HelpableActionMap(self, ["InfobarActions"], {
-			"showMovies": (self.keyMultiSelect, _("Toggle multi-selection mode"))
+		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
+			"multi": (self.keyMultiSelect, _("Toggle multi-selection mode"))
+		}, prio=0, description=_("File Commander Actions"))
+		self["textEditViewAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
+			"text": (self.keyViewEdit, _("View or edit files less than 1MB in size"))
 		}, prio=0, description=_("File Commander Actions"))
 		self["deleteAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"red": (self.keyDelete, _("Delete directory or file"))
@@ -417,6 +421,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		srcName = self.sourceColumn.getName()
 		self.enabledMenuActionMaps = []
 		self["multiSelectAction"].setEnabled(currentDirectory)
+		if currentDirectory and srcPath and isfile(srcPath) and getsize(srcPath) < MAX_EDIT_SIZE:  # Should we check that this is not a known binary file?
+			self["key_text"].setText(_("TEXT"))
+			self["textEditViewAction"].setEnabled(True)
+		else:
+			self["key_text"].setText("")
+			self["textEditViewAction"].setEnabled(False)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
 			self["key_red"].setText(_("Delete"))
 			self["deleteAction"].setEnabled(True)
@@ -652,6 +662,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Delete job completed."))
 				self.sourceColumn.refresh()
+				if startIndex < self.sourceColumn.count():
+					self.sourceColumn.setCurrentIndex(startIndex)
+				else:
+					self.sourceColumn.goBottom()
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Delete job completed.")), MessageBox.TYPE_INFO)
 
@@ -665,6 +679,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Delete"))
 		path = self.sourceColumn.getPath()
+		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be deleted!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
@@ -893,21 +908,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		directory = current and self.sourceColumn.getCurrentDirectory() or self.sourceColumn.getPath()
 		if directory in bookmarks:
 			bookmarks.remove(directory)
+			self.displayStatus(_("Bookmark removed."))
 		else:
-			order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
-			for item in order:
-				if item in bookmarks or item == _("Storage Devices"):
-					continue
-				order.remove(item)
-			insertPoint = 1 if order[0] == _("Storage Devices") else 0
-			bookmarks.insert(insertPoint, directory)
-			if directory not in order:
-				if len(order) > 1:
-					order.insert(insertPoint, directory)
-				else:
-					order.append(directory)
-				config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
-				config.misc.pluginlist.fc_bookmarks_order.save()
+			bookmarks.insert(0, directory)
+			self.displayStatus(_("Bookmark added."))
 		config.plugins.FileCommander.bookmarks.value = bookmarks
 		config.plugins.FileCommander.bookmarks.save()
 
@@ -961,18 +965,16 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						if context not in haveContext:
 							contexts.append(context)
 							haveContext.add(context)
-						actions[button] = text if isinstance(text, str) else  text()
+						actions[button] = text if isinstance(text, str) else text()
 		# Create the menu list with the buttons in the order of the "buttons" tuple.
 		menu = [("menu", _("File Commander settings")), ("info", _("Show task list"))]
 		menu += [(button, actions[button]) for button in buttons if button in actions]
 		directory = self.sourceColumn.getCurrentDirectory()
 		if directory:
-			# menu.append(("bullet", _("Remove Current Directory From Bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add Current Directory To Bookmarks"), "bookmark+current"))
-			menu.append(("bullet", _("Remove '%s' from bookmarks") % directory if directory in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % directory, "bookmark+current"))
-		if path and isdir(path):
-			# menu.append(("bullet", _("Remove Selected/Highlighted Directory From Bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add Selected/Highlighted Directory To Bookmarks"), "bookmark+selected"))
-			menu.append(("bullet", _("Remove '%s' from bookmarks") % path if path in config.plugins.FileCommander.bookmarks.value else _("Add '%s' to bookmarks") % path, "bookmark+selected"))
-		self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu)
+			menu.append(("bullet", _("Remove current directory from bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add current directory to bookmarks"), "bookmark+current"))
+		if path and path != directory and isdir(path):
+			menu.append(("bullet", _("Remove highlighted directory from bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add highlighted directory to bookmarks"), "bookmark+selected"))
+		self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu, directory, path)
 
 	def keyMove(self):
 		def checkRelatedMove():
@@ -1037,6 +1039,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			if "status" in self:
 				self.displayStatus(_("Move job completed."))
 				self.keyRefresh()
+				if startIndex < self.sourceColumn.count():
+					self.sourceColumn.setCurrentIndex(startIndex)
+				else:
+					self.sourceColumn.goBottom()
 			else:
 				self.displayPopUp("%s: %s" % (windowTitle, _("Move job completed.")), MessageBox.TYPE_INFO)
 
@@ -1050,6 +1056,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 		windowTitle = "%s - %s" % (self.getTitle(), _("Move"))
 		path = self.sourceColumn.getPath()
+		startIndex = self.sourceColumn.getCurrentIndex()
 		if path == sep:
 			self.session.open(MessageBox, _("Error: The root file system can not be moved!"), MessageBox.TYPE_ERROR, windowTitle=windowTitle)
 			return
@@ -1432,11 +1439,29 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keySelectBookmark(self):
 		def selectBookmarkCallback(answer):
+			order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+			# print("[FileCommander] DEBUG: Order choice='%s'." % order)
+			# print("[FileCommander] DEBUG: Bookmarks='%s'." % config.plugins.FileCommander.bookmarks.value)
+			if order:
+				if _("Storage Devices") in order:
+					order.remove(_("Storage Devices"))
+				config.plugins.FileCommander.bookmarks.value = order
+				config.plugins.FileCommander.bookmarks.save()
+				# config.misc.pluginlist.fc_bookmarks_order.value = config.misc.pluginlist.fc_bookmarks_order.default
+				# config.misc.pluginlist.fc_bookmarks_order.save()
 			if answer:
 				self.sourceColumn.changeDir(answer[1])
 
 		bookmarks = [(x, x) for x in config.plugins.FileCommander.bookmarks.value]
 		bookmarks.insert(0, (_("Storage Devices"), None))
+		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+		# print("[FileCommander] DEBUG: Order before='%s'." % order)
+		if order and _("Storage Devices") in order:
+			order.remove(_("Storage Devices"))
+			order.insert(0, _("Storage Devices"))
+		# print("[FileCommander] DEBUG: Order after='%s'." % order)
+		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
+		config.misc.pluginlist.fc_bookmarks_order.save()
 		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fc_bookmarks_order")
 
 	def keySettings(self):
@@ -1675,11 +1700,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 class FileCommanderContextMenu(Screen):
 	skin = """
-	<screen name="FileCommanderContextMenu" title="File Commander Context Menu" position="center,center" size="560,570" resolution="1280,720">
-		<widget name="menu" position="fill" itemHeight="35" />
+	<screen name="FileCommanderContextMenu" title="File Commander Context Menu" position="center,center" size="560,545" resolution="1280,720">
+		<widget name="menu" position="0,0" size="560,385" itemHeight="35" />
+		<widget name="description" position="0,395" size="560,100" font="Regular;20" valign="center" />
+		<widget source="key_menu" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_menu" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>"""
 
-	def __init__(self, session, contexts, menuList):
+	def __init__(self, session, contexts, menuList, directory, path):
 		Screen.__init__(self, session)
 		if not self.getTitle():
 			self.setTitle(_("File Commander Context Menu"))
@@ -1703,6 +1732,10 @@ class FileCommanderContextMenu(Screen):
 		self["actions"] = ActionMap(contexts, actions, prio=0)
 		self["key_menu"] = StaticText(_("MENU"))
 		self["menu"] = ChoiceList(menu)
+		description = ["%s: %s" % (_("Current directory"), directory)]
+		if path != directory:
+			description.append("%s: %s" % (_("Highlighted item"), path))
+		self["description"] = Label("\n".join(description))
 
 	def keyCancel(self):
 		self.close(False)
