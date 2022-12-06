@@ -433,7 +433,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		else:
 			self["key_red"].setText("")
 			self["deleteAction"].setEnabled(False)
-		if currentDirectory and srcPath and self.targetColumn.getPath() and srcName and not srcName.startswith("<") and self.targetColumn.getName():
+		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.targetColumn.getCurrentDirectory() and currentDirectory != self.targetColumn.getCurrentDirectory():
 			self["key_green"].setText(_("Move"))
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
