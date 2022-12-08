@@ -765,10 +765,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						symbolicMode,  # 1
 						_("%s (%s)") % (octalMode, symbolicMode)  # 2
 					)
+					size = pathStat.st_size
 					if S_ISCHR(pathStat.st_mode) or S_ISBLK(pathStat.st_mode):
 						sizes = ("", "", "")
 					else:
-						size = pathStat.st_size
 						scaledSize = NumberScaler().scale(size, maxNumLen=3, decimals=3)
 						formattedSize = "{:n}".format(size)
 						sizes = (
