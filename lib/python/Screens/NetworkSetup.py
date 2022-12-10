@@ -680,7 +680,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 		if self["config"].getCurrent() == self.WakeOnWiFiEntry:
 			iNetwork.onlyWoWifaces[self.iface] = self.onlyWakeOnWiFi.value
-			open(BoxInfo.getItem("WakeOnLAN"), "w").write(self.onlyWakeOnWiFi.value and "enable" or "disable")
+			if BoxInfo.getItem("WakeOnLANType") == "0":
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(self.onlyWakeOnWiFi.value and "on" or "off")
+			else:
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(self.onlyWakeOnWiFi.value and "enable" or "disable")
 			self.createSetup()
 		if iNetwork.isWirelessInterface(self.iface):
 			if self["config"].getCurrent() == self.encryption:
@@ -787,9 +790,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def ConfigfinishedCB(self, data):
-		if data != None:
-			if data == True:
-				self.close("ok")
+		if data != None and data == True:
+			self.close("ok")
 
 	def keyCancelConfirm(self, result):
 		if not result:
@@ -809,9 +811,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.close("cancel")
 
 	def keyCancelCB(self, data):
-		if data != None:
-			if data == True:
-				self.close("cancel")
+		if data != None and data == True:
+			self.close("cancel")
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
