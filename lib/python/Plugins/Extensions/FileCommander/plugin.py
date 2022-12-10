@@ -2672,13 +2672,15 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 
 	def keyEdit(self):
 		line = self["data"].getCurrent()
-		line = line.replace("	", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
+		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
+		# line = line.replace("\t", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
 		currPos = None if config.plugins.FileCommander.editLineEnd.value == True else 0
 		self.session.openWithCallback(self.keyEditCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
 
 	def keyEditCallback(self, line):
 		if line is not None:
-			line = line.replace("<TAB>", "	") # Find and restore TABs.  This could also be helpful for NEWLINE as well.
+			# Find and restore TABs from a special single character.  This could also be helpful for NEWLINE as well.
+			# line = line.replace("<TAB>", "\t") # Find and restore TABs.  This could also be helpful for NEWLINE as well.
 			self.data[self["data"].getCurrentIndex()] = line
 			self["data"].setList(self.data)
 			self.isChanged = True
