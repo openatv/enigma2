@@ -64,6 +64,9 @@ class PluginDescriptor(object):
 	# Arguments: reason, session, instance, type.
 	WHERE_INFOBARLOADED = 24
 
+	# Argument: session
+	WHERE_BUTTONSETUP = 25
+
 	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
 		self.name = name
 		if not where:
