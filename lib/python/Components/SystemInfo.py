@@ -295,6 +295,7 @@ def GetBoxName():
 
 
 def getWakeOnLANType(fileName):
+	value = ""
 	if fileName:
 		value = fileReadLine(fileName)
 	onOff = ("off", "on")
