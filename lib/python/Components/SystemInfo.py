@@ -297,7 +297,8 @@ def GetBoxName():
 def getWakeOnLANType(fileName):
 	if fileName:
 		value = fileReadLine(fileName)
-	return "0" if value in ("on", "off") else "1"
+	onOff = ("off", "on")
+	return onOff if value in onOff else ("disable", "enable")
 
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
