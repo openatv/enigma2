@@ -184,7 +184,7 @@ def getButtonSetupFunctions():
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
 			ButtonSetupFunctions.append((plugin.name, "%s/%s" % (plugin.path[plugin.path.rfind("Plugins"):], str(twinPaths[plugin.path[plugin.path.rfind("Plugins"):]])), "EPG"))
 			twinPlugins.append(plugin.name)
-	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
+	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO, PluginDescriptor.WHERE_BUTTONSETUP])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path:
@@ -618,7 +618,7 @@ class InfoBarButtonSetup():
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
-				pluginList = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
+				pluginList = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_BUTTONSETUP])
 				pluginList.sort(key=lambda p: p.name)
 				for plugin in pluginList:
 					if plugin.name not in twinPlugins and plugin.path:
