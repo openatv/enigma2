@@ -433,7 +433,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		else:
 			self["key_red"].setText("")
 			self["deleteAction"].setEnabled(False)
-		if currentDirectory and srcPath and self.targetColumn.getPath() and srcName and not srcName.startswith("<") and self.targetColumn.getName():
+		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.targetColumn.getCurrentDirectory() and currentDirectory != self.targetColumn.getCurrentDirectory():
 			self["key_green"].setText(_("Move"))
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
@@ -765,12 +765,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 						symbolicMode,  # 1
 						_("%s (%s)") % (octalMode, symbolicMode)  # 2
 					)
+					size = pathStat.st_size
+					formattedSize = "{:n}".format(size)
 					if S_ISCHR(pathStat.st_mode) or S_ISBLK(pathStat.st_mode):
 						sizes = ("", "", "")
 					else:
-						size = pathStat.st_size
 						scaledSize = NumberScaler().scale(size, maxNumLen=3, decimals=3)
-						formattedSize = "{:n}".format(size)
 						sizes = (
 							formattedSize,  # 10
 							scaledSize,  # 11
@@ -905,15 +905,22 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
+		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
 		directory = current and self.sourceColumn.getCurrentDirectory() or self.sourceColumn.getPath()
 		if directory in bookmarks:
 			bookmarks.remove(directory)
+			if directory in order:
+				order.remove(directory)
 			self.displayStatus(_("Bookmark removed."))
 		else:
 			bookmarks.insert(0, directory)
+			if directory not in order:
+				order.insert(0, directory)
 			self.displayStatus(_("Bookmark added."))
 		config.plugins.FileCommander.bookmarks.value = bookmarks
 		config.plugins.FileCommander.bookmarks.save()
+		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
+		config.misc.pluginlist.fc_bookmarks_order.save()
 
 	def keyMediaInfo(self):
 		self.shortcutAction("mediainfo")
@@ -928,7 +935,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.keySettings()
 				elif action == "info":
 					self.keyTaskList()
-				elif action.startswith("bookmark"):
+				elif action.startswith("bookmark+"):
 					self.keyManageBookmarks(action.endswith("current"))
 				else:
 					actions = self["alwaysNumberActions"].actions
@@ -1439,27 +1446,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keySelectBookmark(self):
 		def selectBookmarkCallback(answer):
-			order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
-			# print("[FileCommander] DEBUG: Order choice='%s'." % order)
-			# print("[FileCommander] DEBUG: Bookmarks='%s'." % config.plugins.FileCommander.bookmarks.value)
-			if order:
-				if _("Storage Devices") in order:
-					order.remove(_("Storage Devices"))
-				config.plugins.FileCommander.bookmarks.value = order
-				config.plugins.FileCommander.bookmarks.save()
-				# config.misc.pluginlist.fc_bookmarks_order.value = config.misc.pluginlist.fc_bookmarks_order.default
-				# config.misc.pluginlist.fc_bookmarks_order.save()
 			if answer:
 				self.sourceColumn.changeDir(answer[1])
 
 		bookmarks = [(x, x) for x in config.plugins.FileCommander.bookmarks.value]
 		bookmarks.insert(0, (_("Storage Devices"), None))
 		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
-		# print("[FileCommander] DEBUG: Order before='%s'." % order)
 		if order and _("Storage Devices") in order:
 			order.remove(_("Storage Devices"))
-			order.insert(0, _("Storage Devices"))
-		# print("[FileCommander] DEBUG: Order after='%s'." % order)
+		order.insert(0, _("Storage Devices"))
 		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
 		config.misc.pluginlist.fc_bookmarks_order.save()
 		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fc_bookmarks_order")
@@ -2673,12 +2668,14 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	def keyEdit(self):
 		line = self["data"].getCurrent()
 		# Find and replace TABs with a special single character.  This could also be helpful for NEWLINE as well.
+		# line = line.replace("\t", "<TAB>") # Find and replace TABs.  This could also be helpful for NEWLINE as well.
 		currPos = None if config.plugins.FileCommander.editLineEnd.value == True else 0
 		self.session.openWithCallback(self.keyEditCallback, VirtualKeyBoard, title="%s: %s" % (_("Original"), line), text=line, currPos=currPos, allMarked=False, windowTitle=self.getTitle())
 
 	def keyEditCallback(self, line):
 		if line is not None:
 			# Find and restore TABs from a special single character.  This could also be helpful for NEWLINE as well.
+			# line = line.replace("<TAB>", "\t") # Find and restore TABs.  This could also be helpful for NEWLINE as well.
 			self.data[self["data"].getCurrentIndex()] = line
 			self["data"].setList(self.data)
 			self.isChanged = True
