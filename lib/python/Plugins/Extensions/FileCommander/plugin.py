@@ -905,15 +905,22 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
+		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
 		directory = current and self.sourceColumn.getCurrentDirectory() or self.sourceColumn.getPath()
 		if directory in bookmarks:
 			bookmarks.remove(directory)
+			if directory in order:
+				order.remove(directory)
 			self.displayStatus(_("Bookmark removed."))
 		else:
 			bookmarks.insert(0, directory)
+			if directory not in order:
+				order.insert(0, directory)
 			self.displayStatus(_("Bookmark added."))
 		config.plugins.FileCommander.bookmarks.value = bookmarks
 		config.plugins.FileCommander.bookmarks.save()
+		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
+		config.misc.pluginlist.fc_bookmarks_order.save()
 
 	def keyMediaInfo(self):
 		self.shortcutAction("mediainfo")
@@ -928,7 +935,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.keySettings()
 				elif action == "info":
 					self.keyTaskList()
-				elif action.startswith("bookmark"):
+				elif action.startswith("bookmark+"):
 					self.keyManageBookmarks(action.endswith("current"))
 				else:
 					actions = self["alwaysNumberActions"].actions
@@ -1439,27 +1446,15 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 
 	def keySelectBookmark(self):
 		def selectBookmarkCallback(answer):
-			order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
-			# print("[FileCommander] DEBUG: Order choice='%s'." % order)
-			# print("[FileCommander] DEBUG: Bookmarks='%s'." % config.plugins.FileCommander.bookmarks.value)
-			if order:
-				if _("Storage Devices") in order:
-					order.remove(_("Storage Devices"))
-				config.plugins.FileCommander.bookmarks.value = order
-				config.plugins.FileCommander.bookmarks.save()
-				# config.misc.pluginlist.fc_bookmarks_order.value = config.misc.pluginlist.fc_bookmarks_order.default
-				# config.misc.pluginlist.fc_bookmarks_order.save()
 			if answer:
 				self.sourceColumn.changeDir(answer[1])
 
 		bookmarks = [(x, x) for x in config.plugins.FileCommander.bookmarks.value]
 		bookmarks.insert(0, (_("Storage Devices"), None))
 		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
-		# print("[FileCommander] DEBUG: Order before='%s'." % order)
 		if order and _("Storage Devices") in order:
 			order.remove(_("Storage Devices"))
-			order.insert(0, _("Storage Devices"))
-		# print("[FileCommander] DEBUG: Order after='%s'." % order)
+		order.insert(0, _("Storage Devices"))
 		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
 		config.misc.pluginlist.fc_bookmarks_order.save()
 		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fc_bookmarks_order")
