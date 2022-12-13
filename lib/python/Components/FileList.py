@@ -332,7 +332,7 @@ class FileListBase(MenuList):
 		for mountPoint in self.mountPoints:
 			if path.startswith(mountPoint):
 				return mountPoint
-		return False
+		return "/"  # Return root if path not in mountPoints to prevent crashes
 
 	def getMountpoint(self, path):  # Legacy method name for external code.
 		self.getMountPoint(path)
