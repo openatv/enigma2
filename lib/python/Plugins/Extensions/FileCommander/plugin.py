@@ -433,17 +433,19 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		else:
 			self["key_red"].setText("")
 			self["deleteAction"].setEnabled(False)
+		if currentDirectory and srcPath and srcName and not srcName.startswith("<"):
+			self["directoryFileNumberActions"].setEnabled(True)
+			self.enabledMenuActionMaps.append("directoryFileNumberActions")
+		else:
+			self["directoryFileNumberActions"].setEnabled(False)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.targetColumn.getCurrentDirectory() and currentDirectory != self.targetColumn.getCurrentDirectory():
 			self["key_green"].setText(_("Move"))
 			self["key_yellow"].setText(_("Copy"))
 			self["copyMoveActions"].setEnabled(True)
-			self["directoryFileNumberActions"].setEnabled(True)
-			self.enabledMenuActionMaps.append("directoryFileNumberActions")
 		else:
 			self["key_green"].setText("")
 			self["key_yellow"].setText("")
 			self["copyMoveActions"].setEnabled(False)
-			self["directoryFileNumberActions"].setEnabled(False)
 		if currentDirectory and srcPath and srcName and not srcName.startswith("<") and self.multiSelect is None:
 			self["key_blue"].setText(_("Rename"))
 			self["renameAction"].setEnabled(True)
